@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Astrology & Palmistry Services | Dr. Prodyut Acharya</title>
+  <meta name="description" content="Explore astrology, palmistry, vastu, numerology & horoscope services by Dr. Prodyut Acharya. India's best astrologer in Ranaghat.">
+  <meta name="keywords" content="Astrology Services, Palmistry, Vastu Consultant, Numerology, Horoscope Reading, Dr. Prodyut Acharya, Indian Astrologer, Ranaghat Astrology">
+  <meta name="author" content="Dr. Prodyut Acharya">
+  <link rel="canonical" href="https://astro.myastrology.in/services.html" />
+</head>
+<body>
+  <header>
+    <h1>Astrology & Palmistry Services by Dr. Prodyut Acharya</h1>
+    <p>Best Indian Astrologer & Palmist | Online & Offline Consultations</p>
+    <p><strong>📞 Call:</strong> +91 9333122768 | <strong>📱 WhatsApp:</strong> <a href="https://wa.me/919333122768">Message Now</a></p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Our Services</h2>
+      <ul>
+        <li>✅ Horoscope Analysis (Birth Chart Reading)</li>
+        <li>✅ Palmistry (Hasta Rekha Analysis)</li>
+        <li>✅ Love & Marriage Matching</li>
+        <li>✅ Career & Business Consultation</li>
+        <li>✅ Vastu Shastra Guidance</li>
+        <li>✅ Gemstone Recommendation (Ratna Pariksha)</li>
+        <li>✅ Numerology (Name & Date of Birth)</li>
+        <li>✅ Online & Offline Personalized Reports</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Why Choose Us?</h2>
+      <p>🔹 20+ Years of Experience in Astrology & Palmistry</p>
+      <p>🔹 Trusted by Thousands Across India & Abroad</p>
+      <p>🔹 Personalized Guidance Based on Graha, Nakshatra, and Rashi</p>
+      <p>🔹 Scientific & Spiritual Blend with Vedic Knowledge</p>
+    </section>
+
+    <section>
+      <h2>Book a Consultation</h2>
+      <p>📍 Location: Ranaghat, West Bengal (India)</p>
+      <p><strong>👉 Online Booking:</strong> <a href="https://www.myastrology.in/booking">Book Now</a></p>
+      <p><strong>👉 Watch Video:</strong> <a href="https://www.myastrology.in/video">Click Here</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 MyAstrology.in | Dr. Prodyut Acharya | All Rights Reserved.</p>
+  </footer>
+</body>
+</html>
