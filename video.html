@@ -637,75 +637,48 @@
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer>
-    <div class="social-section">
-      <h2>📲 আমাদের সোশ্যাল মিডিয়ায় যুক্ত হোন</h2>
-      <div class="social-icons">
-        <a href="https://facebook.com/MyAstrology" target="_blank" aria-label="Facebook">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="https://instagram.com/myastrology.in" target="_blank" aria-label="Instagram">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://youtube.com/@myastrology" target="_blank" aria-label="YouTube">
-          <i class="fab fa-youtube"></i>
-        </a>
-        <a href="https://x.com/AcharyaProdyut" target="_blank" aria-label="Twitter">
-          <i class="fab fa-x-twitter"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/ProdyutAcharya" target="_blank" aria-label="LinkedIn">
-          <i class="fab fa-linkedin-in"></i>
-        </a>
-      </div>
-    </div>
+  <!-- 🌐 Professional Footer Start -->
+<footer style="background:#f4f7ff; padding:40px 20px; font-family:'Segoe UI', sans-serif; color:#333; text-align:center;">
+  
+  <h2 style="font-size:22px; margin-bottom:25px; font-weight:600;">
+    📲 আমাদের সোশ্যাল মিডিয়ায় যুক্ত থাকুন
+  </h2>
+  
+  <!-- 🔗 Social Media Icons -->
+  <div style="display:flex; justify-content:center; flex-wrap:wrap; gap:25px; margin-bottom:30px;">
+    <a href="https://facebook.com/MyAstrology" target="_blank" aria-label="Facebook" style="color:#1877F2; font-size:28px; transition:0.3s;">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="https://instagram.com/myastrology.in" target="_blank" aria-label="Instagram" style="color:#E4405F; font-size:28px; transition:0.3s;">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://youtube.com/@myastrology" target="_blank" aria-label="YouTube" style="color:#FF0000; font-size:28px; transition:0.3s;">
+      <i class="fab fa-youtube"></i>
+    </a>
+    <a href="https://x.com/AcharyaProdyut" target="_blank" aria-label="X" style="color:#1DA1F2; font-size:28px; transition:0.3s;">
+      <i class="fab fa-x-twitter"></i>
+    </a>
+    <a href="https://www.linkedin.com/in/ProdyutAcharya" target="_blank" aria-label="LinkedIn" style="color:#0077B5; font-size:28px; transition:0.3s;">
+      <i class="fab fa-linkedin-in"></i>
+    </a>
+  </div>
 
-    <div class="footer-content">
-      <p>© ২০২৫ <strong>MyAstrology.in</strong> — ভারতের শীর্ষস্থানীয় জ্যোতিষ ও হস্তরেখা বিশেষজ্ঞ</p>
-      <p>ডাঃ প্রদ্যুত আচার্য্য দ্বারা প্রতিষ্ঠিত</p>
-      
-      <div class="footer-links">
-        <a href="https://www.myastrology.in">হোমপেজ</a>
-        <a href="/privacy">গোপনীয়তা নীতি</a>
-        <a href="/terms">সেবার শর্তাবলী</a>
-        <a href="/contact">যোগাযোগ করুন</a>
-      </div>
-      
-      <p class="copyright">
-        রানাঘাট, নদীয়া, পশ্চিমবঙ্গ, ভারত | ফোন: +91 XXXXX XXXXX<br>
-        সকল অধিকার সংরক্ষিত - সঠিক, গোপনীয় এবং বিশ্বস্ত পরামর্শ
-      </p>
-    </div>
-  </footer>
-
-  <script>
-    // Video card interaction
-    document.querySelectorAll('.video-card').forEach(card => {
-      card.addEventListener('click', (e) => {
-        // Only open video if not clicking on a button or link
-        if (!e.target.closest('.watch-button') && !e.target.closest('.play-icon')) {
-          const link = card.querySelector('.watch-button');
-          if (link) {
-            window.open(link.href, '_blank');
-          }
-        }
-      });
-    });
-    
-    // Category filtering
-    document.querySelectorAll('.category-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        // Remove active class from all buttons
-        document.querySelectorAll('.category-btn').forEach(b => {
-          b.classList.remove('active');
-        });
-        
-        // Add active class to clicked button
-        btn.classList.add('active');
-        
-        // In a real implementation, you would filter videos here
-      });
-    });
-  </script>
-</body>
-</html>
+  <!-- 🔖 Info & Navigation -->
+  <div style="background:#419bff; color:#fff; padding:25px 15px; border-radius:10px; max-width:800px; margin:0 auto;">
+    <p style="margin:8px 0; font-size:15px;">
+      © ২০২৫ <strong>MyAstrology.in</strong> — Trusted for <strong>Indian Astrology</strong>, <strong>Palmistry</strong>, and <strong>Horoscope Matching</strong>.
+    </p>
+    <p style="margin:8px 0; font-size:15px;">
+      Crafted with care by <strong>Dr. Prodyut Acharya</strong>, Esteemed Astrologer & Consultant in India.
+    </p>
+    <p style="margin:10px 0; font-size:15px;">
+      <a href="https://www.myastrology.in" style="color:#fff; text-decoration:underline; margin:0 10px;">Home</a>
+      <a href="https://www.myastrology.in/online-service" style="color:#fff; text-decoration:underline; margin:0 10px;">Services</a>
+      <a href="https://www.myastrology.in/booking" style="color:#fff; text-decoration:underline; margin:0 10px;">Booking</a>
+    </p>
+    <p style="margin-top:15px; font-size:13px; color:#e0e0e0;">
+      100% Confidential | Verified Guidance | All India & International Clients Served
+    </p>
+  </div>
+</footer>
+<!-- 🌐 Professional Footer End -->
