@@ -171,88 +171,111 @@
     }
 
     .banner-slider img.active {
-      display: block;
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <!-- ✅ Meta Charset & Viewport -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ✅ Page Title -->
+  <title>ইউটিউব ভিডিও সংগ্রহ | Dr. Prodyut Acharya | MyAstrology</title>
+
+  <!-- ✅ Meta Description -->
+  <meta name="description" content="Dr. Prodyut Acharya-এর ইউটিউব ভিডিও সংগ্রহ। জ্যোতিষশাস্ত্র, হস্তরেখা, রাশি, কুণ্ডলী মিলান, এবং বাস্তুশাস্ত্র নিয়ে তথ্যবহুল বাংলা ভিডিও দেখুন।" />
+
+  <!-- ✅ Meta Keywords -->
+  <meta name="keywords" content="YouTube ভিডিও, জ্যোতিষ ভিডিও, হস্তরেখা বিশ্লেষণ, বাংলা জ্যোতিষ ভিডিও, Dr. Prodyut Acharya, MyAstrology, Kundli Matching, Palmistry, Astrology Video, Vastu Video, রাশি মিল, ভাগ্য বিশ্লেষণ" />
+
+  <!-- ✅ Canonical URL -->
+  <link rel="canonical" href="https://astro.myastrology.in/vedio" />
+
+  <!-- ✅ Open Graph Tags -->
+  <meta property="og:title" content="ইউটিউব ভিডিও | Dr. Prodyut Acharya | MyAstrology" />
+  <meta property="og:description" content="বাংলা ভাষায় জ্যোতিষশাস্ত্র ও হস্তরেখাবিদ্যার ভিডিও সমগ্র। Dr. Prodyut Acharya-এর প্রামাণ্য বিশ্লেষণ।" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://astro.myastrology.in/vedio" />
+  <meta property="og:image" content="https://astro.myastrology.in/images/og-image.jpg" />
+
+  <!-- ✅ Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ইউটিউব ভিডিও | Dr. Prodyut Acharya | MyAstrology" />
+  <meta name="twitter:description" content="জ্যোতিষশাস্ত্র ও হস্তরেখা নিয়ে প্রামাণ্য ভিডিও গ্যালারি | MyAstrology" />
+  <meta name="twitter:image" content="https://astro.myastrology.in/images/og-image.jpg" />
+
+  <!-- ✅ Favicon -->
+  <link rel="icon" href="https://astro.myastrology.in/favicon.ico" type="image/x-icon" />
+
+  <!-- ✅ JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoGallery",
+    "name": "Dr. Prodyut Acharya - YouTube Video Gallery",
+    "url": "https://astro.myastrology.in/vedio",
+    "description": "Astrology, palmistry, and Vastu video collection by Dr. Prodyut Acharya in Bengali.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "MyAstrology",
+      "url": "https://www.myastrology.in"
     }
+  }
+  </script>
 
-    .logo-on-banner {
-      position: absolute;
-      bottom: 15px;
-      left: 15px;
-      height: 50px;
-      z-index: 10;
+  <!-- ✅ Fonts & Styles (Optional CDN) -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Noto Sans Bengali', Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
     }
-
-    @media (max-width: 600px) {
-      .top-nav {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .nav-links {
-        margin-top: 8px;
-      }
-
-      .logo-on-banner {
-        height: 40px;
-      }
+    header {
+      background: #420f56;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 28px;
     }
   </style>
 </head>
 
-<body>
-  <!-- ✅ Header Start -->
-  <header class="header-container">
-    <div class="top-nav">
-      <div class="nav-links">
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/services">Services</a>
-        <a href="/contact">Contact</a>
-      </div>
-    </div>
 
-    <!-- ✅ Logo over Banner -->
-    <img src="logo.png" alt="MyAstrology Logo" class="logo-on-banner">
-
-    <!-- ✅ Banner Slider -->
-    <div class="banner-slider">
-      <img src="banner1.jpg" alt="Banner 1" class="active">
-      <img src="banner2.jpg" alt="Banner 2">
-      <img src="banner3.jpg" alt="Banner 3">
-      <img src="banner4.jpg" alt="Banner 4">
-      <img src="banner5.jpg" alt="Banner 5">
-    </div>
-  </header>
   <!-- ✅ Header End -->
 
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- ✅ Basic Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>ডাঃ প্রদ্যুত আচার্য্যর ইউটিউব ভিডিও - হস্তরেখা, জ্যোতিষ ও জীবন পরিবর্তনের দর্শন</title>
+  <title>ডাঃ প্রদ্যুত আচার্য্যর ইউটিউব ভিডিও - হস্তরেখা, জ্যোতিষ ও জীবন পরিবর্তন</title>
 
   <!-- ✅ SEO Meta -->
-  <meta name="description" content="Dr. Prodyut Acharya-এর সেরা ইউটিউব ভিডিও দেখুন - হস্তরেখা, জ্যোতিষ, রাশিচক্র, ভাগ্য পরিবর্তন, প্রেম-দাম্পত্য, কর্মজীবন, বাস্তু টিপস ও আত্মিক উন্নয়ন সম্পর্কে।">
-  <meta name="keywords" content="Astrology YouTube Video Bengali, Dr. Prodyut Acharya, হস্তরেখা ভিডিও, জ্যোতিষ শিক্ষা, palmistry video Bangla, online astrology, graha dosh solution, রাশি ভবিষ্যৎ, vastu tips, জীবন পরিবর্তন ভিডিও, জ্যোতিষ বাংলা ইউটিউব">
-  <meta name="author" content="Dr. Prodyut Acharya">
+  <meta name="description" content="Dr. Prodyut Acharya-এর সেরা ইউটিউব ভিডিও দেখুন - হস্তরেখা, জ্যোতিষ, রাশিচক্র, ভাগ্য পরিবর্তন, প্রেম-দাম্পত্য, কর্মজীবন, বাস্তু টিপস ও আত্মিক উন্নয়ন সম্পর্কে।" />
+  <meta name="keywords" content="Astrology YouTube Video Bengali, Dr. Prodyut Acharya, হস্তরেখা ভিডিও, জ্যোতিষ শিক্ষা, palmistry video Bangla, online astrology, graha dosh solution, রাশি ভবিষ্যৎ, vastu tips, জীবন পরিবর্তন ভিডিও, জ্যোতিষ বাংলা ইউটিউব" />
+  <meta name="author" content="Dr. Prodyut Acharya" />
   <link rel="canonical" href="https://www.myastrology.in/video" />
 
   <!-- ✅ Open Graph for Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Dr. Prodyut Acharya - হস্তরেখা ও জ্যোতিষ ভিডিও">
-  <meta property="og:description" content="বাংলায় জ্যোতিষ ও হস্তরেখা সম্পর্কিত সেরা ইউটিউব ভিডিও এখানে দেখুন।">
-  <meta property="og:url" content="https://www.myastrology.in/video">
-  <meta property="og:image" content="https://www.myastrology.in/assets/youtube-cover.jpg">
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Dr. Prodyut Acharya - হস্তরেখা ও জ্যোতিষ ভিডিও" />
+  <meta property="og:description" content="বাংলায় জ্যোতিষ ও হস্তরেখা সম্পর্কিত সেরা ইউটিউব ভিডিও এখানে দেখুন।" />
+  <meta property="og:url" content="https://www.myastrology.in/video" />
+  <meta property="og:image" content="https://www.myastrology.in/assets/youtube-cover.jpg" />
 
   <!-- ✅ Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Dr. Prodyut Acharya - হস্তরেখা ও জ্যোতিষ ভিডিও">
-  <meta name="twitter:description" content="বাংলায় জ্যোতিষ ও হস্তরেখা সম্পর্কিত সেরা ইউটিউব ভিডিও দেখুন।">
-  <meta name="twitter:image" content="https://www.myastrology.in/assets/youtube-cover.jpg">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Dr. Prodyut Acharya - হস্তরেখা ও জ্যোতিষ ভিডিও" />
+  <meta name="twitter:description" content="বাংলায় জ্যোতিষ ও হস্তরেখা সম্পর্কিত সেরা ইউটিউব ভিডিও দেখুন।" />
+  <meta name="twitter:image" content="https://www.myastrology.in/assets/youtube-cover.jpg" />
 
-  <!-- ✅ JSON-LD Schema -->
+  <!-- ✅ JSON-LD Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -268,19 +291,23 @@
   }
   </script>
 
-  <!-- ✅ Styling -->
+  <!-- ✅ Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- ✅ Custom Styling -->
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f9f9f9;
+      font-family: 'Noto Sans Bengali', sans-serif;
+      background-color: #f9f9f9;
       margin: 0;
       padding: 20px;
+      color: #222;
     }
 
     h1 {
       text-align: center;
       font-size: 28px;
-      color: #222;
+      color: #4B0082;
       margin-bottom: 30px;
     }
 
@@ -292,10 +319,10 @@
 
     .video-container iframe {
       width: 100%;
-      aspect-ratio: 16/9;
-      border: 0;
+      aspect-ratio: 16 / 9;
+      border: none;
       border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
     @media (max-width: 600px) {
