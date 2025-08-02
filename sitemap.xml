@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Welcome to MyAstrology</title>
-</head>
-<body>
-  <h1>MyAstrology - Coming Soon</h1>
-  <p>This is a placeholder page. Sitemap is available at <a href="/sitemap.xml">sitemap.xml</a></p>
-</body>
-</html>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://astro.myastrology.in/</loc>
+    <lastmod>2025-08-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>
