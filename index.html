@@ -39,36 +39,21 @@
     color: #419bff;
   }
 
-  .slider {
+  .banner-slider {
     width: 100%;
-    height: 250px;
+    height: auto;
     position: relative;
-    overflow: hidden;
-    border-top: 2px solid #419bff;
   }
 
-  .slides {
-    display: flex;
-    width: 500%;
-    animation: slideAnimation 15s infinite;
-  }
-
-  .slides img {
+  .banner-slider img {
     width: 100%;
-    height: 250px;
-    object-fit: cover;
+    height: auto;
+    display: none;
+    transition: opacity 1s ease-in-out;
   }
 
-  @keyframes slideAnimation {
-    0% { margin-left: 0%; }
-    20% { margin-left: 0%; }
-    25% { margin-left: -100%; }
-    45% { margin-left: -100%; }
-    50% { margin-left: -200%; }
-    70% { margin-left: -200%; }
-    75% { margin-left: -300%; }
-    95% { margin-left: -300%; }
-    100% { margin-left: -400%; }
+  .banner-slider img.active {
+    display: block;
   }
 
   @media (max-width: 600px) {
@@ -93,17 +78,27 @@
     </div>
   </div>
 
-  <!-- Slideshow banner -->
-  <div class="slider">
-    <div class="slides">
-      <img src="banner1.jpg" alt="Banner 1">
-      <img src="banner2.jpg" alt="Banner 2">
-      <img src="banner3.jpg" alt="Banner 3">
-      <img src="banner4.jpg" alt="Banner 4">
-      <img src="banner5.jpg" alt="Banner 5">
-    </div>
+  <div class="banner-slider">
+    <img src="banner1.jpg" alt="Banner 1" class="active">
+    <img src="banner2.jpg" alt="Banner 2">
+    <img src="banner3.jpg" alt="Banner 3">
+    <img src="banner4.jpg" alt="Banner 4">
+    <img src="banner5.jpg" alt="Banner 5">
   </div>
 </header>
+
+<script>
+  const images = document.querySelectorAll('.banner-slider img');
+  let currentIndex = 0;
+
+  function showNextImage() {
+    images[currentIndex].classList.remove('active');
+    currentIndex = (currentIndex + 1) % images.length;
+    images[currentIndex].classList.add('active');
+  }
+
+  setInterval(showNextImage, 5000); // ৫ সেকেন্ডে পরিবর্তন
+</script>
 <!-- Header End -->
 
 <!DOCTYPE html>
