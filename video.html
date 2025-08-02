@@ -1,266 +1,152 @@
-   <!DOCTYPE html><html lang="bn">
+<!DOCTYPE html>
+<html lang="bn">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ডাঃ প্রদ্যুত আচার্য্যর ইউটিউব ভিডিও সংগ্রহ | MyAstrology</title>
-  <meta name="description" content="Dr. Prodyut Acharya-এর ইউটিউব ভিডিও সংগ্রহ। জ্যোতিষশাস্ত্র, হস্তরেখা, রাশি, কুণ্ডলী মিলান, এবং বাস্তুশাস্ত্র নিয়ে তথ্যবহুল বাংলা ভিডিও দেখুন।">  <!-- Open Graph / Facebook -->  <meta property="og:title" content="ডাঃ প্রদ্যুত আচার্য্যর ইউটিউব ভিডিও সংগ্রহ">
-  <meta property="og:description" content="জ্যোতিষশাস্ত্র ও হস্তরেখা নিয়ে প্রামাণ্য ভিডিও গ্যালারি | MyAstrology">
-  <meta property="og:image" content="https://astro.myastrology.in/images/og-image.jpg">
-  <meta property="og:url" content="https://astro.myastrology.in/vedio">
-  <meta property="og:type" content="website">  <!-- Twitter -->  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="ডাঃ প্রদ্যুত আচার্য্যর ইউটিউব ভিডিও সংগ্রহ">
-  <meta name="twitter:description" content="জ্যোতিষশাস্ত্র ও হস্তরেখা নিয়ে প্রামাণ্য ভিডিও গ্যালারি | MyAstrology">
-  <meta name="twitter:image" content="https://astro.myastrology.in/images/og-image.jpg">  <!-- Fonts & Icons -->  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;700&display=swap" rel="stylesheet">
+  <title>MyAstrology Ranaghat – Dr. Prodyut Acharya</title>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="icon" type="image/x-icon" href="https://astro.myastrology.in/favicon.ico">  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
 
+  <style>
     body {
-      font-family: 'Noto Sans Bengali', Arial, sans-serif;
-      background: linear-gradient(135deg, #f9f9f9 0%, #e6f0ff 100%);
-      color: #222;
-      line-height: 1.6;
-      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
     }
 
-    /* Header */
+    /* Header Container */
     .header-container {
-      border: 4px solid #419bff;
+      border: 3px solid #2a68c2;
       border-radius: 10px;
-      margin: 10px;
       overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin: 10px;
     }
 
+    /* Top Navigation */
     .top-nav {
-      background: #fff;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 12px 20px;
-      border-bottom: 2px solid #419bff;
+      background-color: #ffffff;
+      border-bottom: 2px solid #2a68c2;
       flex-wrap: wrap;
     }
 
-    .logo {
-      font-size: 24px;
-      font-weight: 700;
-      color: #419bff;
+    .logo-area {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
 
-    .logo i {
-      color: #4B0082;
+    .logo-area img {
+      height: 40px;
+    }
+
+    .logo-text {
+      font-size: 20px;
+      font-weight: bold;
+      color: #2a68c2;
     }
 
     .nav-links {
       display: flex;
-      gap: 25px;
+      gap: 18px;
       flex-wrap: wrap;
     }
 
     .nav-links a {
       text-decoration: none;
-      color: #0d1117;
+      color: #222;
       font-weight: 500;
-      font-size: 18px;
-      position: relative;
-      transition: color 0.3s;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: #419bff;
-      transition: width 0.3s;
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
+      padding: 6px 10px;
+      border-radius: 4px;
+      transition: 0.3s;
     }
 
     .nav-links a:hover {
-      color: #419bff;
-    }
-
-    .banner-slider {
-      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-      height: 300px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 20px;
-    }
-
-    .banner-text {
+      background-color: #2a68c2;
       color: #fff;
-      max-width: 800px;
     }
 
-    .banner-text h1 {
-      font-size: 36px;
-      margin-bottom: 15px;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    /* Banner Slider */
+    .banner-slider {
+      position: relative;
+      width: 100%;
+      height: auto;
     }
 
-    .banner-text p {
-      font-size: 18px;
+    .banner-slider img {
+      width: 100%;
+      display: none;
     }
 
+    .banner-slider img.active {
+      display: block;
+    }
+
+    /* Responsive */
     @media (max-width: 768px) {
       .top-nav {
         flex-direction: column;
-        text-align: center;
+        align-items: flex-start;
       }
 
       .nav-links {
-        justify-content: center;
-<!-- ✅ Improved Responsive Header Start -->
-<header class="header-container">
-  <div class="top-nav">
-    <div class="logo">
-      <img src="logo.png" alt="MyAstrology Logo">
-      <span>MyAstrology</span>
+        margin-top: 10px;
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .nav-links a {
+        width: 100%;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ✅ Header -->
+  <header class="header-container">
+    <div class="top-nav">
+      <div class="logo-area">
+        <img src="logo.png" alt="Logo">
+        <span class="logo-text">MyAstrology</span>
+      </div>
+      <nav class="nav-links">
+        <a href="/">হোম</a>
+        <a href="/about">আমাদের সম্পর্কে</a>
+        <a href="/services">সেবা</a>
+        <a href="/videos">ভিডিও</a>
+        <a href="/contact">যোগাযোগ</a>
+      </nav>
     </div>
-    <nav class="nav-links">
-      <a href="/" class="nav-link">হোম</a>
-      <a href="/about" class="nav-link">আমাদের সম্পর্কে</a>
-      <a href="/services" class="nav-link">সেবা</a>
-      <a href="/video" class="nav-link active">ভিডিও</a>
-      <a href="/contact" class="nav-link">যোগাযোগ</a>
-    </nav>
-  </div>
 
-  <!-- 🔁 Banner Slider -->
-  <div class="banner-slider">
-    <img src="banner1.jpg" class="slide active" alt="Banner 1">
-    <img src="banner2.jpg" class="slide" alt="Banner 2">
-    <img src="banner3.jpg" class="slide" alt="Banner 3">
-  </div>
-</header>
+    <!-- ✅ Banner Slider -->
+    <div class="banner-slider">
+      <img src="banner1.jpg" class="active" alt="Banner 1">
+      <img src="banner2.jpg" alt="Banner 2">
+      <img src="banner3.jpg" alt="Banner 3">
+      <img src="banner4.jpg" alt="Banner 4">
+      <img src="banner5.jpg" alt="Banner 5">
+    </div>
+  </header>
 
-<style>
-  body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-  }
+  <script>
+    // Banner slider auto transition
+    let currentIndex = 0;
+    const slides = document.querySelectorAll(".banner-slider img");
 
-  .header-container {
-    border-bottom: 4px solid #419bff;
-    overflow: hidden;
-  }
+    setInterval(() => {
+      slides[currentIndex].classList.remove("active");
+      currentIndex = (currentIndex + 1) % slides.length;
+      slides[currentIndex].classList.add("active");
+    }, 4000); // Change every 4 seconds
+  </script>
 
-  .top-nav {
-    background: #ffffff;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 20px;
-    font-weight: 600;
-    color: #2a68c2;
-  }
-
-  .logo img {
-    height: 40px;
-    width: auto;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 18px;
-    flex-wrap: wrap;
-  }
-
-  .nav-link {
-    text-decoration: none;
-    color: #222;
-    font-weight: 500;
-    padding: 6px 10px;
-    border-radius: 6px;
-    transition: all 0.3s;
-  }
-
-  .nav-link:hover,
-  .nav-link.active {
-    background-color: #419bff;
-    color: #fff;
-  }
-
-  /* Banner Slider */
-  .banner-slider {
-    position: relative;
-    width: 100%;
-    height: auto;
-    overflow: hidden;
-  }
-
-  .banner-slider img {
-    width: 100%;
-    height: auto;
-    display: none;
-    transition: opacity 1s ease-in-out;
-  }
-
-  .banner-slider img.active {
-    display: block;
-  }
-
-  /* Responsive */
-  @media (max-width: 768px) {
-    .top-nav {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    .nav-links {
-      width: 100%;
-      flex-direction: column;
-    }
-
-    .nav-link {
-      width: 100%;
-    }
-
-    .logo {
-      font-size: 18px;
-    }
-
-    .logo img {
-      height: 32px;
-    }
-  }
-</style>
-
-<script>
-  // 🔁 Banner auto slider
-  let current = 0;
-  const slides = document.querySelectorAll(".banner-slider .slide");
-  setInterval(() => {
-    slides[current].classList.remove("active");
-    current = (current + 1) % slides.length;
-    slides[current].classList.add("active");
-  }, 4000);
-</script>
-<!-- ✅ Improved Responsive Header End -->   
+</body>
+</html>   
   
    
    <!-- Main Content -->
