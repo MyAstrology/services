@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
+<!-- Essential Meta Tags -->
+<meta name="description" content="Dr. Prodyut Acharya-এর জনপ্রিয় জ্যোতিষ ও হস্তরেখা ভিডিওগুলি একসাথে দেখুন। প্রেম, বিবাহ, কর্ম, বাস্তু, রত্ন ও জন্মছক বিশ্লেষণ ভিডিও এখানে পাওয়া যায়।">
+<meta name="keywords" content="Astrology Video, Palmistry Video, Online Astrology Consultation, Dr. Prodyut Acharya, Marriage Astrology, Career Astrology, YouTube Astrology Videos, Best Astrologer Ranaghat, India Astrology Service">
+<meta name="author" content="Dr. Prodyut Acharya">
+
+<!-- Open Graph for Facebook -->
+<meta property="og:title" content="Astrology Video Collection | Dr. Prodyut Acharya">
+<meta property="og:description" content="দেখুন ডঃ প্রোদ্যুত আচার্যের জ্যোতিষ ও হস্তরেখা সংক্রান্ত গুরুত্বপূর্ণ ভিডিও একসাথে।">
+<meta property="og:image" content="https://yourdomain.com/og-image.jpg">
+<meta property="og:url" content="https://astro.myastrology.in/video">
+<meta property="og:type" content="website">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Astrology Video Collection | Dr. Prodyut Acharya">
+<meta name="twitter:description" content="জ্যোতিষ ও হস্তরেখা সংক্রান্ত ভিডিও দেখুন এখনই।">
+<meta name="twitter:image" content="https://yourdomain.com/og-image.jpg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
