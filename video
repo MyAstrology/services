@@ -225,83 +225,34 @@
   </header>
   <!-- ✅ Header End -->
 
-  <!-- ✅ JavaScript for Slider -->
-  <script>
-    let currentIndex = 0;
-    const images = document.querySelectorAll(".banner-slider img");
-
-    function showNextImage() {
-      images[currentIndex].classList.remove("active");
-      currentIndex = (currentIndex + 1) % images.length;
-      images[currentIndex].classList.add("active");
-    }
-
-    setInterval(showNextImage, 4000); // Change every 4 seconds
-  </script>
-</body>
-</html>
-
-  <script>
-    const images = document.querySelectorAll('.banner-slider img');
-    let currentIndex = 0;
-
-    function showNextImage() {
-      images[currentIndex].classList.remove('active');
-      currentIndex = (currentIndex + 1) % images.length;
-      images[currentIndex].classList.add('active');
-    }
-
-    setInterval(showNextImage, 5000);
-  </script>
-
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="bn">
 <head>
-<!-- Essential Meta Tags -->
-<meta name="description" content="Dr. Prodyut Acharya-এর জনপ্রিয় জ্যোতিষ ও হস্তরেখা ভিডিওগুলি একসাথে দেখুন। প্রেম, বিবাহ, কর্ম, বাস্তু, রত্ন ও জন্মছক বিশ্লেষণ ভিডিও এখানে পাওয়া যায়।">
-<meta name="keywords" content="Astrology Video, Palmistry Video, Online Astrology Consultation, Dr. Prodyut Acharya, Marriage Astrology, Career Astrology, YouTube Astrology Videos, Best Astrologer Ranaghat, India Astrology Service">
-<meta name="author" content="Dr. Prodyut Acharya">
-
-<!-- Open Graph for Facebook -->
-<meta property="og:title" content="Astrology Video Collection | Dr. Prodyut Acharya">
-<meta property="og:description" content="দেখুন ডঃ প্রোদ্যুত আচার্যের জ্যোতিষ ও হস্তরেখা সংক্রান্ত গুরুত্বপূর্ণ ভিডিও একসাথে।">
-<meta property="og:image" content="https://yourdomain.com/og-image.jpg">
-<meta property="og:url" content="https://astro.myastrology.in/video">
-<meta property="og:type" content="website">
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Astrology Video Collection | Dr. Prodyut Acharya">
-<meta name="twitter:description" content="জ্যোতিষ ও হস্তরেখা সংক্রান্ত ভিডিও দেখুন এখনই।">
-<meta name="twitter:image" content="https://yourdomain.com/og-image.jpg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+
   <title>ডাঃ প্রদ্যুত আচার্য্যর ইউটিউব ভিডিও - হস্তরেখা, জ্যোতিষ ও জীবন পরিবর্তনের দর্শন</title>
 
-  <!-- Meta Description -->
+  <!-- ✅ SEO Meta -->
   <meta name="description" content="Dr. Prodyut Acharya-এর সেরা ইউটিউব ভিডিও দেখুন - হস্তরেখা, জ্যোতিষ, রাশিচক্র, ভাগ্য পরিবর্তন, প্রেম-দাম্পত্য, কর্মজীবন, বাস্তু টিপস ও আত্মিক উন্নয়ন সম্পর্কে।">
-
-  <!-- SEO Keywords -->
   <meta name="keywords" content="Astrology YouTube Video Bengali, Dr. Prodyut Acharya, হস্তরেখা ভিডিও, জ্যোতিষ শিক্ষা, palmistry video Bangla, online astrology, graha dosh solution, রাশি ভবিষ্যৎ, vastu tips, জীবন পরিবর্তন ভিডিও, জ্যোতিষ বাংলা ইউটিউব">
-
-  <!-- Canonical Tag -->
+  <meta name="author" content="Dr. Prodyut Acharya">
   <link rel="canonical" href="https://www.myastrology.in/video" />
 
-  <!-- Open Graph -->
+  <!-- ✅ Open Graph for Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Dr. Prodyut Acharya - হস্তরেখা ও জ্যোতিষ ভিডিও">
   <meta property="og:description" content="বাংলায় জ্যোতিষ ও হস্তরেখা সম্পর্কিত সেরা ইউটিউব ভিডিও এখানে দেখুন।">
   <meta property="og:url" content="https://www.myastrology.in/video">
   <meta property="og:image" content="https://www.myastrology.in/assets/youtube-cover.jpg">
 
-  <!-- Twitter Card -->
+  <!-- ✅ Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Dr. Prodyut Acharya - হস্তরেখা ও জ্যোতিষ ভিডিও">
   <meta name="twitter:description" content="বাংলায় জ্যোতিষ ও হস্তরেখা সম্পর্কিত সেরা ইউটিউব ভিডিও দেখুন।">
   <meta name="twitter:image" content="https://www.myastrology.in/assets/youtube-cover.jpg">
 
-  <!-- JSON-LD Schema -->
+  <!-- ✅ JSON-LD Schema -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -317,23 +268,47 @@
   }
   </script>
 
+  <!-- ✅ Styling -->
   <style>
-    body { font-family: Arial; padding: 20px; background: #f9f9f9; }
-    h1 { text-align: center; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 28px;
+      color: #222;
+      margin-bottom: 30px;
+    }
+
     .video-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 20px;
-      margin-top: 30px;
     }
+
     .video-container iframe {
       width: 100%;
       aspect-ratio: 16/9;
+      border: 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 22px;
+      }
     }
   </style>
 </head>
+
 <body>
-  <h1>আমার ইউটিউব ভিডিও</h1>
+  <h1>ডাঃ প্রদ্যুত আচার্য্যর ইউটিউব ভিডিও সংগ্রহ</h1>
+
   <div class="video-container">
     <iframe src="https://www.youtube.com/embed/rnmBu1P6Cjs" allowfullscreen></iframe>
     <iframe src="https://www.youtube.com/embed/Zn9vG_TQ3mM" allowfullscreen></iframe>
