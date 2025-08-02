@@ -126,61 +126,141 @@
 
       .nav-links {
         justify-content: center;
-        margin-top: 15px;
-      }
+<!-- ✅ Improved Responsive Header Start -->
+<header class="header-container">
+  <div class="top-nav">
+    <div class="logo">
+      <img src="logo.png" alt="MyAstrology Logo">
+      <span>MyAstrology</span>
+    </div>
+    <nav class="nav-links">
+      <a href="/" class="nav-link">হোম</a>
+      <a href="/about" class="nav-link">আমাদের সম্পর্কে</a>
+      <a href="/services" class="nav-link">সেবা</a>
+      <a href="/video" class="nav-link active">ভিডিও</a>
+      <a href="/contact" class="nav-link">যোগাযোগ</a>
+    </nav>
+  </div>
 
-      .banner-slider {
-        height: 250px;
-      }
+  <!-- 🔁 Banner Slider -->
+  <div class="banner-slider">
+    <img src="banner1.jpg" class="slide active" alt="Banner 1">
+    <img src="banner2.jpg" class="slide" alt="Banner 2">
+    <img src="banner3.jpg" class="slide" alt="Banner 3">
+  </div>
+</header>
 
-      .banner-text h1 {
-        font-size: 28px;
-      }
+<style>
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .header-container {
+    border-bottom: 4px solid #419bff;
+    overflow: hidden;
+  }
+
+  .top-nav {
+    background: #ffffff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #2a68c2;
+  }
+
+  .logo img {
+    height: 40px;
+    width: auto;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+
+  .nav-link {
+    text-decoration: none;
+    color: #222;
+    font-weight: 500;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: all 0.3s;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    background-color: #419bff;
+    color: #fff;
+  }
+
+  /* Banner Slider */
+  .banner-slider {
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+  }
+
+  .banner-slider img {
+    width: 100%;
+    height: auto;
+    display: none;
+    transition: opacity 1s ease-in-out;
+  }
+
+  .banner-slider img.active {
+    display: block;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .top-nav {
+      flex-direction: column;
+      align-items: flex-start;
     }
 
-    @media (max-width: 480px) {
-      .nav-links {
-        gap: 15px;
-      }
-
-      .nav-links a {
-        font-size: 16px;
-      }
-
-      .banner-text h1 {
-        font-size: 24px;
-      }
-
-      .banner-text p {
-        font-size: 16px;
-      }
+    .nav-links {
+      width: 100%;
+      flex-direction: column;
     }
-  </style></head><body>
-  <!-- Header Section -->
-  <header class="header-container">
-    <div class="top-nav">
-      <div class="logo">
-        <i class="fas fa-star-and-crescent"></i>
-        MyAstrology
-      </div>
-      <nav class="nav-links">
-        <a href="/">হোম</a>
-        <a href="/services">সেবা</a>
-        <a href="/video" class="active">ভিডিও</a>
-        <a href="/contact">যোগাযোগ</a>
-        <a href="/appointment">অ্যাপয়েন্টমেন্ট</a>
-      </nav>
-    </div>
-    <div class="banner-slider">
-      <div class="banner-text">
-        <h1>ডাঃ প্রদ্যুত আচার্য্যর বিশেষ ভিডিও সংগ্রহ</h1>
-        <p>জ্যোতিষশাস্ত্র, হস্তরেখা বিশ্লেষণ, রাশিফল ও জীবন পরিবর্তনের গাইডেন্স</p>
-      </div>
-    </div>
-  </header>
-  </body>
- </div>    
-    </div>    
+
+    .nav-link {
+      width: 100%;
+    }
+
+    .logo {
+      font-size: 18px;
+    }
+
+    .logo img {
+      height: 32px;
+    }
+  }
+</style>
+
+<script>
+  // 🔁 Banner auto slider
+  let current = 0;
+  const slides = document.querySelectorAll(".banner-slider .slide");
+  setInterval(() => {
+    slides[current].classList.remove("active");
+    current = (current + 1) % slides.length;
+    slides[current].classList.add("active");
+  }, 4000);
+</script>
+<!-- ✅ Improved Responsive Header End -->   
   </div> 
 
   <!-- Main Content -->
