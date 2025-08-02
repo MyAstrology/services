@@ -1,116 +1,137 @@
-<!-- Header Start -->
-<style>
-  body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-  }
 
-  .header-container {
-    border: 4px solid #419bff;
-    border-radius: 10px;
-    overflow: hidden;
-    margin: 10px;
-  }
+    <!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyAstrology</title>
 
-  .top-nav {
-    background-color: #fff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 16px;
-    border-bottom: 2px solid #419bff;
-    flex-wrap: wrap;
-  }
+  <!-- ✅ Favicon -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-  .nav-links {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
 
-  .nav-links a {
-    text-decoration: none;
-    color: #0d1117;
-    font-weight: 500;
-    transition: color 0.3s;
-  }
+    .header-container {
+      border: 4px solid #419bff;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 10px;
+      position: relative;
+    }
 
-  .nav-links a:hover {
-    color: #419bff;
-  }
-
-  .banner-slider {
-    width: 100%;
-    height: auto;
-    position: relative;
-  }
-
-  .banner-slider img {
-    width: 100%;
-    height: auto;
-    display: none;
-    transition: opacity 1s ease-in-out;
-  }
-
-  .banner-slider img.active {
-    display: block;
-  }
-
-  @media (max-width: 600px) {
     .top-nav {
-      flex-direction: column;
-      align-items: flex-start;
+      background-color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 16px;
+      border-bottom: 2px solid #419bff;
+      flex-wrap: wrap;
     }
 
     .nav-links {
-      margin-top: 8px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
     }
-  }
-</style>
 
-<header class="header-container">
-  <div class="top-nav">
-    <div class="nav-links">
-      <a href="/">Home</a>
-      <a href="/about">About</a>
-      <a href="/services">Services</a>
-      <a href="/contact">Contact</a>
+    .nav-links a {
+      text-decoration: none;
+      color: #0d1117;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #419bff;
+    }
+
+    .banner-slider {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+
+    .banner-slider img {
+      width: 100%;
+      height: auto;
+      display: none;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .banner-slider img.active {
+      display: block;
+    }
+
+    /* ✅ Logo styling */
+    .logo-on-banner {
+      position: absolute;
+      bottom: 15px;
+      left: 15px;
+      height: 50px;
+      z-index: 10;
+    }
+
+    @media (max-width: 600px) {
+      .top-nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        margin-top: 8px;
+      }
+
+      .logo-on-banner {
+        height: 40px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ✅ Header start -->
+  <header class="header-container">
+    <div class="top-nav">
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/services">Services</a>
+        <a href="/contact">Contact</a>
+      </div>
     </div>
-  </div>
 
-  <div class="banner-slider">
-    <img src="banner1.jpg" alt="Banner 1" class="active">
-    <img src="banner2.jpg" alt="Banner 2">
-    <img src="banner3.jpg" alt="Banner 3">
-    <img src="banner4.jpg" alt="Banner 4">
-    <img src="banner5.jpg" alt="Banner 5">
-  </div>
-</header>
+    <!-- ✅ Logo on banner -->
+    <img src="logo.png" alt="MyAstrology Logo" class="logo-on-banner">
 
-<script>
-  const images = document.querySelectorAll('.banner-slider img');
-  let currentIndex = 0;
+    <div class="banner-slider">
+      <img src="banner1.jpg" alt="Banner 1" class="active">
+      <img src="banner2.jpg" alt="Banner 2">
+      <img src="banner3.jpg" alt="Banner 3">
+      <img src="banner4.jpg" alt="Banner 4">
+      <img src="banner5.jpg" alt="Banner 5">
+    </div>
+  </header>
+  <!-- ✅ Header end -->
 
-  function showNextImage() {
-    images[currentIndex].classList.remove('active');
-    currentIndex = (currentIndex + 1) % images.length;
-    images[currentIndex].classList.add('active');
-  }
+  <script>
+    const images = document.querySelectorAll('.banner-slider img');
+    let currentIndex = 0;
 
-  setInterval(showNextImage, 5000); // ৫ সেকেন্ডে পরিবর্তন
-</script>
-<!-- Header End -->
+    function showNextImage() {
+      images[currentIndex].classList.remove('active');
+      currentIndex = (currentIndex + 1) % images.length;
+      images[currentIndex].classList.add('active');
+    }
 
-<!DOCTYPE html>
-<html lang="bn">
-<head>
-
-<!-- favicon -->
-<link rel="icon" type="image/x-icon" href="favicon.ico">
-
-<!-- logo -->
-<img src="logo.png" alt="MyAstrology Logo" style="height: 50px;">
-  
+    setInterval(showNextImage, 5000);
+  </script>
+</body>
+</html>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
