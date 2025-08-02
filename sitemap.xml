@@ -7,3 +7,5 @@
     <priority>1.0</priority>
   </url>
 </urlset>
+User-agent: *
+Sitemap: https://astro.myastrology.in/sitemap.xml
