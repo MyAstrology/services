@@ -1,152 +1,63 @@
-<!DOCTYPE html>
-<html lang="bn">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MyAstrology Ranaghat – Dr. Prodyut Acharya</title>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-    }
+    <!DOCTYPE html><html lang="bn"><head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ডাঃ প্রদ্যুত আচার্য্যর ইউটিউব ভিডিও - হস্তরেখা, জ্যোতিষ ও জীবন পরিবর্তনের দর্শন</title>
+  <meta name="description" content="ডাঃ প্রদ্যুত আচার্য্যর ইউটিউব ভিডিও - হস্তরেখা, জ্যোতিষ ও জীবন দর্শনের উপর বাংলা ভিডিওসমূহ।" />
+  <meta name="keywords" content="astrology video, palmistry video, bangla astrology, Dr. Prodyut Acharya, MyAstrology" />
+  <meta name="author" content="Dr. Prodyut Acharya" />
+  <link rel="stylesheet" href="style.css">
+</head><body>
+  <header>
+    <h1>ডাঃ প্রদ্যুত আচার্য্যর ভিডিও সংগ্রহ</h1>
+    <p>হস্তরেখা, জ্যোতিষ ও জীবন দর্শনের উপর বাংলা ভিডিও</p>
+  </header>  <main>
+    <!-- এখানে ভিডিও কার্ড / এমবেডেড ভিডিও যুক্ত করা যাবে -->
+    <section>
+      <p>নিচে আমাদের সর্বশেষ ইউটিউব ভিডিও গুলো দেখুন এবং সাবস্ক্রাইব করতে ভুলবেন না।</p>
+    </section>
+  </main>  <footer>
+    <style>
+      footer {
+        background-color: #f2f2f2;
+        padding: 20px 10px;
+        text-align: center;
+        font-size: 14px;
+        color: #333;
+        margin-top: 40px;
+      }.social-icons {
+    margin-top: 10px;
+  }
 
-    /* Header Container */
-    .header-container {
-      border: 3px solid #2a68c2;
-      border-radius: 10px;
-      overflow: hidden;
-      margin: 10px;
-    }
+  .social-icons a {
+    margin: 0 10px;
+    text-decoration: none;
+    display: inline-block;
+  }
 
-    /* Top Navigation */
-    .top-nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 20px;
-      background-color: #ffffff;
-      border-bottom: 2px solid #2a68c2;
-      flex-wrap: wrap;
-    }
+  .social-icons img {
+    width: 60px;
+    height: 60px;
+    transition: transform 0.3s ease;
+  }
 
-    .logo-area {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+  .social-icons img:hover {
+    transform: scale(1.1);
+  }
+</style>
 
-    .logo-area img {
-      height: 40px;
-    }
+<div class="social-icons">
+  <a href="https://wa.me/919333122768" target="_blank" title="WhatsApp"><img src="https://img.icons8.com/color/96/000000/whatsapp--v1.png" alt="WhatsApp" /></a>
+  <a href="mailto:myastrology.in@gmail.com" title="Email"><img src="https://img.icons8.com/fluency/96/000000/apple-mail.png" alt="Email" /></a>
+  <a href="https://www.facebook.com/Dr.ProdyutAcharya" target="_blank" title="Facebook"><img src="https://img.icons8.com/fluency/96/000000/facebook-new.png" alt="Facebook" /></a>
+</div>
 
-    .logo-text {
-      font-size: 20px;
-      font-weight: bold;
-      color: #2a68c2;
-    }
+<p>© 2025 MyAstrology.in | সমস্ত অধিকার সংরক্ষিত</p>
+<p>পরিকল্পনা ও ডিজাইন: Dr. Prodyut Acharya</p>
 
-    .nav-links {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: #222;
-      font-weight: 500;
-      padding: 6px 10px;
-      border-radius: 4px;
-      transition: 0.3s;
-    }
-
-    .nav-links a:hover {
-      background-color: #2a68c2;
-      color: #fff;
-    }
-
-    /* Banner Slider */
-    .banner-slider {
-      position: relative;
-      width: 100%;
-      height: auto;
-    }
-
-    .banner-slider img {
-      width: 100%;
-      display: none;
-    }
-
-    .banner-slider img.active {
-      display: block;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .top-nav {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .nav-links {
-        margin-top: 10px;
-        flex-direction: column;
-        width: 100%;
-      }
-
-      .nav-links a {
-        width: 100%;
-        padding: 10px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <!-- ✅ Header -->
-  <header class="header-container">
-    <div class="top-nav">
-      <div class="logo-area">
-        <img src="logo.png" alt="Logo">
-        <span class="logo-text">MyAstrology</span>
-      </div>
-      <nav class="nav-links">
-        <a href="/">হোম</a>
-        <a href="/about">আমাদের সম্পর্কে</a>
-        <a href="/services">সেবা</a>
-        <a href="/videos">ভিডিও</a>
-        <a href="/contact">যোগাযোগ</a>
-      </nav>
-    </div>
-
-    <!-- ✅ Banner Slider -->
-    <div class="banner-slider">
-      <img src="banner1.jpg" class="active" alt="Banner 1">
-      <img src="banner2.jpg" alt="Banner 2">
-      <img src="banner3.jpg" alt="Banner 3">
-      <img src="banner4.jpg" alt="Banner 4">
-      <img src="banner5.jpg" alt="Banner 5">
-    </div>
-  </header>
-
-  <script>
-    // Banner slider auto transition
-    let currentIndex = 0;
-    const slides = document.querySelectorAll(".banner-slider img");
-
-    setInterval(() => {
-      slides[currentIndex].classList.remove("active");
-      currentIndex = (currentIndex + 1) % slides.length;
-      slides[currentIndex].classList.add("active");
-    }, 4000); // Change every 4 seconds
-  </script>
-
-</body>
- 
+  </footer>
+</body></html>
   
    
    <!-- Main Content -->
