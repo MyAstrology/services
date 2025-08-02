@@ -147,176 +147,181 @@
   </header>
   <!-- ✅ Header End -->
 
-  <!-- ✅ Optional: Banner Slider Script -->
-  <script>
-    let currentIndex = 0;
-    const slides = document.querySelectorAll(".banner-slider img");
+                    <!-- ✅ Banner Slider Script -->
+<script>
+  let currentIndex = 0;
+  const slides = document.querySelectorAll(".banner-slider img");
 
-    setInterval(() => {
-      slides[currentIndex].classList.remove("active");
-      currentIndex = (currentIndex + 1) % slides.length;
-      slides[currentIndex].classList.add("active");
-    }, 4000); // change every 4 seconds
-  </script>
-
+  setInterval(() => {
+    slides[currentIndex].classList.remove("active");
+    currentIndex = (currentIndex + 1) % slides.length;
+    slides[currentIndex].classList.add("active");
+  }, 4000); // change every 4 seconds
+</script>
 </body>
 </html>
-  
-   
-   <!-- Main Content -->
-  <div class="container">
-    <h1 class="page-title">ডাঃ প্রদ্যুত আচার্য্যর ইউটিউব ভিডিও সংগ্রহ</h1>
-    
-    <div class="categories">
-      <button class="category-btn active">সব ভিডিও</button>
-      <button class="category-btn">জ্যোতিষশাস্ত্র</button>
-      <button class="category-btn">হস্তরেখা</button>
-      <button class="category-btn">বাস্তুশাস্ত্র</button>
-      <button class="category-btn">জীবন সমস্যার সমাধান</button>
-    </div>
-    
-    <div class="video-container">
-      <div class="video-card">
-        <div class="video-thumbnail">
-          <img src="https://img.youtube.com/vi/rnmBu1P6Cjs/maxresdefault.jpg" alt="হস্তরেখায় অর্থলাভের রহস্য">
-          <div class="play-icon">
-            <i class="fas fa-play"></i>
-          </div>
-        </div>
-        <div class="video-info">
-          <h3>হস্তরেখায় অর্থলাভের রহস্য</h3>
-          <div class="video-stats">
-            <span><i class="fas fa-eye"></i> ১.২ লাখ</span>
-            <span><i class="far fa-calendar"></i> ৩ মাস আগে</span>
-          </div>
-          <a href="https://www.youtube.com/watch?v=rnmBu1P6Cjs" class="watch-button" target="_blank">ভিডিও দেখুন</a>
-        </div>
+
+<!-- ✅ Main Content -->
+<div class="container">
+  <h1 class="page-title">ডাঃ প্রদ্যুত আচার্য্য - জ্যোতিষ, হস্তরেখা, বাস্তু ও জীবন সমস্যার সমাধান ভিডিও</h1>
+
+  <div class="categories">
+    <button class="category-btn active">সব ভিডিও</button>
+    <button class="category-btn">জ্যোতিষশাস্ত্র</button>
+    <button class="category-btn">হস্তরেখা</button>
+    <button class="category-btn">বাস্তুশাস্ত্র</button>
+    <button class="category-btn">জীবন সমস্যার সমাধান</button>
+  </div>
+
+  <div class="video-container">
+    <!-- Video Card 1 -->
+    <div class="video-card">
+      <div class="video-thumbnail">
+        <img src="https://img.youtube.com/vi/rnmBu1P6Cjs/maxresdefault.jpg"
+             alt="হস্তরেখায় অর্থলাভের রহস্য | Palmistry for Wealth in Bengali"
+             title="হস্তরেখায় অর্থলাভের রহস্য | Palmistry for Wealth in Bengali">
+        <div class="play-icon"><i class="fas fa-play"></i></div>
       </div>
-      
-      <div class="video-card">
-        <div class="video-thumbnail">
-          <img src="https://img.youtube.com/vi/Zn9vG_TQ3mM/maxresdefault.jpg" alt="বিয়ে সংক্রান্ত জ্যোতিষীয় সমাধান">
-          <div class="play-icon">
-            <i class="fas fa-play"></i>
-          </div>
+      <div class="video-info">
+        <h3>হস্তরেখায় অর্থলাভের রহস্য</h3>
+        <div class="video-stats">
+          <span><i class="fas fa-eye"></i> ১.২ লাখ</span>
+          <span><i class="far fa-calendar"></i> ৩ মাস আগে</span>
         </div>
-        <div class="video-info">
-          <h3>বিয়ে সংক্রান্ত জ্যোতিষীয় সমাধান</h3>
-          <div class="video-stats">
-            <span><i class="fas fa-eye"></i> ৯৮ হাজার</span>
-            <span><i class="far fa-calendar"></i> ২ মাস আগে</span>
-          </div>
-          <a href="https://www.youtube.com/watch?v=Zn9vG_TQ3mM" class="watch-button" target="_blank">ভিডিও দেখুন</a>
-        </div>
-      </div>
-      
-      <div class="video-card">
-        <div class="video-thumbnail">
-          <img src="https://img.youtube.com/vi/isRu1J5Cc5o/maxresdefault.jpg" alt="কর্মজীবনে সফলতার মন্ত্র">
-          <div class="play-icon">
-            <i class="fas fa-play"></i>
-          </div>
-        </div>
-        <div class="video-info">
-          <h3>কর্মজীবনে সফলতার মন্ত্র</h3>
-          <div class="video-stats">
-            <span><i class="fas fa-eye"></i> ১.৫ লাখ</span>
-            <span><i class="far fa-calendar"></i> ৪ মাস আগে</span>
-          </div>
-          <a href="https://www.youtube.com/watch?v=isRu1J5Cc5o" class="watch-button" target="_blank">ভিডিও দেখুন</a>
-        </div>
-      </div>
-      
-      <div class="video-card">
-        <div class="video-thumbnail">
-          <img src="https://img.youtube.com/vi/UhyPzvXXI4k/maxresdefault.jpg" alt="গ্রহ দোষ নিরাময়ের উপায়">
-          <div class="play-icon">
-            <i class="fas fa-play"></i>
-          </div>
-        </div>
-        <div class="video-info">
-          <h3>গ্রহ দোষ নিরাময়ের উপায়</h3>
-          <div class="video-stats">
-            <span><i class="fas fa-eye"></i> ৮৭ হাজার</span>
-            <span><i class="far fa-calendar"></i> ৫ মাস আগে</span>
-          </div>
-          <a href="https://www.youtube.com/watch?v=UhyPzvXXI4k" class="watch-button" target="_blank">ভিডিও দেখুন</a>
-        </div>
-      </div>
-      
-      <div class="video-card">
-        <div class="video-thumbnail">
-          <img src="https://img.youtube.com/vi/9UbbdHNTIwo/maxresdefault.jpg" alt="সন্তান লাভের জ্যোতিষ টিপস">
-          <div class="play-icon">
-            <i class="fas fa-play"></i>
-          </div>
-        </div>
-        <div class="video-info">
-          <h3>সন্তান লাভের জ্যোতিষ টিপস</h3>
-          <div class="video-stats">
-            <span><i class="fas fa-eye"></i> ১.১ লাখ</span>
-            <span><i class="far fa-calendar"></i> ৩ মাস আগে</span>
-          </div>
-          <a href="https://www.youtube.com/watch?v=9UbbdHNTIwo" class="watch-button" target="_blank">ভিডিও দেখুন</a>
-        </div>
-      </div>
-      
-      <div class="video-card">
-        <div class="video-thumbnail">
-          <img src="https://img.youtube.com/vi/dQ2dKQvI5ag/maxresdefault.jpg" alt="বাস্তু দোষ সংশোধন">
-          <div class="play-icon">
-            <i class="fas fa-play"></i>
-          </div>
-        </div>
-        <div class="video-info">
-          <h3>বাস্তু দোষ সংশোধন</h3>
-          <div class="video-stats">
-            <span><i class="fas fa-eye"></i> ৭৬ হাজার</span>
-            <span><i class="far fa-calendar"></i> ২ মাস আগে</span>
-          </div>
-          <a href="https://www.youtube.com/watch?v=dQ2dKQvI5ag" class="watch-button" target="_blank">ভিডিও দেখুন</a>
-        </div>
+        <a href="https://www.youtube.com/watch?v=rnmBu1P6Cjs" class="watch-button" target="_blank">ভিডিও দেখুন</a>
       </div>
     </div>
-    
-    <h2 class="section-title">আরও জনপ্রিয় ভিডিও</h2>
-    
-    <div class="video-container">
-      <div class="video-card">
-        <div class="video-thumbnail">
-          <img src="https://img.youtube.com/vi/abc123/maxresdefault.jpg" alt="রাশি অনুযায়ী ভাগ্য পরীক্ষা">
-          <div class="play-icon">
-            <i class="fas fa-play"></i>
-          </div>
-        </div>
-        <div class="video-info">
-          <h3>রাশি অনুযায়ী ভাগ্য পরীক্ষা</h3>
-          <div class="video-stats">
-            <span><i class="fas fa-eye"></i> ২.৩ লাখ</span>
-            <span><i class="far fa-calendar"></i> ৬ মাস আগে</span>
-          </div>
-          <a href="https://www.youtube.com/watch?v=abc123" class="watch-button" target="_blank">ভিডিও দেখুন</a>
-        </div>
+
+    <!-- Video Card 2 -->
+    <div class="video-card">
+      <div class="video-thumbnail">
+        <img src="https://img.youtube.com/vi/Zn9vG_TQ3mM/maxresdefault.jpg"
+             alt="বিয়ে সংক্রান্ত জ্যোতিষীয় সমাধান | Marriage Astrology in Bengali"
+             title="বিয়ে সংক্রান্ত জ্যোতিষীয় সমাধান | Marriage Astrology in Bengali">
+        <div class="play-icon"><i class="fas fa-play"></i></div>
       </div>
-      
-      <div class="video-card">
-        <div class="video-thumbnail">
-          <img src="https://img.youtube.com/vi/def456/maxresdefault.jpg" alt="কুণ্ডলী মিলান গুরুত্ব">
-          <div class="play-icon">
-            <i class="fas fa-play"></i>
-          </div>
+      <div class="video-info">
+        <h3>বিয়ে সংক্রান্ত জ্যোতিষীয় সমাধান</h3>
+        <div class="video-stats">
+          <span><i class="fas fa-eye"></i> ৯৮ হাজার</span>
+          <span><i class="far fa-calendar"></i> ২ মাস আগে</span>
         </div>
-        <div class="video-info">
-          <h3>কুণ্ডলী মিলান গুরুত্ব</h3>
-          <div class="video-stats">
-            <span><i class="fas fa-eye"></i> ১.৮ লাখ</span>
-            <span><i class="far fa-calendar"></i> ৭ মাস আগে</span>
-          </div>
-          <a href="https://www.youtube.com/watch?v=def456" class="watch-button" target="_blank">ভিডিও দেখুন</a>
+        <a href="https://www.youtube.com/watch?v=Zn9vG_TQ3mM" class="watch-button" target="_blank">ভিডিও দেখুন</a>
+      </div>
+    </div>
+
+    <!-- Video Card 3 -->
+    <div class="video-card">
+      <div class="video-thumbnail">
+        <img src="https://img.youtube.com/vi/isRu1J5Cc5o/maxresdefault.jpg"
+             alt="কর্মজীবনে সফলতার মন্ত্র | Career Success Mantra Bengali"
+             title="কর্মজীবনে সফলতার মন্ত্র | Career Success Mantra Bengali">
+        <div class="play-icon"><i class="fas fa-play"></i></div>
+      </div>
+      <div class="video-info">
+        <h3>কর্মজীবনে সফলতার মন্ত্র</h3>
+        <div class="video-stats">
+          <span><i class="fas fa-eye"></i> ১.৫ লাখ</span>
+          <span><i class="far fa-calendar"></i> ৪ মাস আগে</span>
         </div>
+        <a href="https://www.youtube.com/watch?v=isRu1J5Cc5o" class="watch-button" target="_blank">ভিডিও দেখুন</a>
+      </div>
+    </div>
+
+    <!-- Video Card 4 -->
+    <div class="video-card">
+      <div class="video-thumbnail">
+        <img src="https://img.youtube.com/vi/UhyPzvXXI4k/maxresdefault.jpg"
+             alt="গ্রহ দোষ নিরাময়ের উপায় | Remedies for Planetary Dosha Bengali"
+             title="গ্রহ দোষ নিরাময়ের উপায় | Remedies for Planetary Dosha Bengali">
+        <div class="play-icon"><i class="fas fa-play"></i></div>
+      </div>
+      <div class="video-info">
+        <h3>গ্রহ দোষ নিরাময়ের উপায়</h3>
+        <div class="video-stats">
+          <span><i class="fas fa-eye"></i> ৮৭ হাজার</span>
+          <span><i class="far fa-calendar"></i> ৫ মাস আগে</span>
+        </div>
+        <a href="https://www.youtube.com/watch?v=UhyPzvXXI4k" class="watch-button" target="_blank">ভিডিও দেখুন</a>
+      </div>
+    </div>
+
+    <!-- Video Card 5 -->
+    <div class="video-card">
+      <div class="video-thumbnail">
+        <img src="https://img.youtube.com/vi/9UbbdHNTIwo/maxresdefault.jpg"
+             alt="সন্তান লাভের জ্যোতিষ টিপস | Bengali Astrology Tips for Children"
+             title="সন্তান লাভের জ্যোতিষ টিপস | Bengali Astrology Tips for Children">
+        <div class="play-icon"><i class="fas fa-play"></i></div>
+      </div>
+      <div class="video-info">
+        <h3>সন্তান লাভের জ্যোতিষ টিপস</h3>
+        <div class="video-stats">
+          <span><i class="fas fa-eye"></i> ১.১ লাখ</span>
+          <span><i class="far fa-calendar"></i> ৩ মাস আগে</span>
+        </div>
+        <a href="https://www.youtube.com/watch?v=9UbbdHNTIwo" class="watch-button" target="_blank">ভিডিও দেখুন</a>
+      </div>
+    </div>
+
+    <!-- Video Card 6 -->
+    <div class="video-card">
+      <div class="video-thumbnail">
+        <img src="https://img.youtube.com/vi/dQ2dKQvI5ag/maxresdefault.jpg"
+             alt="বাস্তু দোষ সংশোধন | Vastu Dosh Solution in Bengali"
+             title="বাস্তু দোষ সংশোধন | Vastu Dosh Solution in Bengali">
+        <div class="play-icon"><i class="fas fa-play"></i></div>
+      </div>
+      <div class="video-info">
+        <h3>বাস্তু দোষ সংশোধন</h3>
+        <div class="video-stats">
+          <span><i class="fas fa-eye"></i> ৭৬ হাজার</span>
+          <span><i class="far fa-calendar"></i> ২ মাস আগে</span>
+        </div>
+        <a href="https://www.youtube.com/watch?v=dQ2dKQvI5ag" class="watch-button" target="_blank">ভিডিও দেখুন</a>
       </div>
     </div>
   </div>
+
+  <!-- ✅ More Popular Videos -->
+  <h2 class="section-title">আরও জনপ্রিয় ভিডিও</h2>
+  <div class="video-container">
+    <!-- Video Card 7 -->
+    <div class="video-card">
+      <div class="video-thumbnail">
+        <img src="https://img.youtube.com/vi/abc123/maxresdefault.jpg"
+             alt="রাশি অনুযায়ী ভাগ্য পরীক্ষা | Zodiac Destiny Prediction Bengali"
+             title="রাশি অনুযায়ী ভাগ্য পরীক্ষা | Zodiac Destiny Prediction Bengali">
+        <div class="play-icon"><i class="fas fa-play"></i></div>
+      </div>
+      <div class="video-info">
+        <h3>রাশি অনুযায়ী ভাগ্য পরীক্ষা</h3>
+        <div class="video-stats">
+          <span><i class="fas fa-eye"></i> ২.৩ লাখ</span>
+          <span><i class="far fa-calendar"></i> ৬ মাস আগে</span>
+        </div>
+        <a href="https://www.youtube.com/watch?v=abc123" class="watch-button" target="_blank">ভিডিও দেখুন</a>
+      </div>
+    </div>
+
+    <!-- Video Card 8 -->
+    <div class="video-card">
+      <div class="video-thumbnail">
+        <img src="https://img.youtube.com/vi/def456/maxresdefault.jpg"
+             alt="কুণ্ডলী মিলান গুরুত্ব | Kundli Milan for Marriage Bengali"
+             title="কুণ্ডলী মিলান গুরুত্ব | Kundli Milan for Marriage Bengali">
+        <div class="play-icon"><i class="fas fa-play"></i></div>
+      </div>
+      <div class="video-info">
+        <h3>কুণ্ডলী মিলান গুরুত্ব</h3>
+        <div class="video-stats">
+          <span><i class="fas fa-eye"></i> ১.৮ লাখ</span>
+          <span><i class="far fa-calendar"></i> ৭ মাস আগে</span>
+        </div>
+        <a href="https://www.youtube.com/watch?v=def456" class="watch-button" target="_blank">ভিডিও দেখুন</a>
+      </div>
+    </div>
+</div>
 
 <!-- 🌐 Smart Compact Footer Start -->
 <footer style="background:#f9fbfe; padding:22px 10px; font-family:'Segoe UI', sans-serif; color:#222; font-size:12.5px; text-align:center;">
