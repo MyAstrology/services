@@ -11,7 +11,7 @@
   <meta name="author" content="Dr. Prodyut Acharya">
 
   <!-- Favicon -->
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
 
   <!-- Open Graph Meta -->
   <meta property="og:title" content="MyAstrology – Dr. Prodyut Acharya" />
@@ -35,20 +35,13 @@
       font-family: 'Segoe UI', sans-serif;
     }
 
-    .header-container {
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      margin: 10px;
-      overflow: hidden;
-    }
-
     .top-nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: #ffffff;
       padding: 10px 16px;
-      border-bottom: 1px solid #e0e0e0;
+      background-color: #fff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
       position: relative;
     }
 
@@ -68,11 +61,11 @@
       position: absolute;
       top: 60px;
       left: 10px;
-      background-color: #ffffff;
+      background-color: #fff;
       border: 1px solid #d0e6ff;
-      border-radius: 5px;
-      width: 220px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      border-radius: 6px;
+      width: 230px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
       z-index: 999;
     }
 
@@ -80,8 +73,8 @@
       padding: 10px 16px;
       text-decoration: none;
       color: #222;
-      border-bottom: 1px solid #f0f0f0;
       font-size: 14px;
+      border-bottom: 1px solid #eee;
     }
 
     .nav-drawer a:hover {
@@ -92,7 +85,7 @@
     .banner {
       margin: 10px;
       border: 2px solid #419bff;
-      border-radius: 6px;
+      border-radius: 4px;
       overflow: hidden;
     }
 
@@ -123,37 +116,34 @@
 </head>
 <body>
 
-  <header class="header-container">
-    <div class="top-nav">
-      <!-- Navigation icon -->
-      <i class="fas fa-bars menu-icon" onclick="toggleDrawer()" aria-label="Navigation menu icon"></i>
+  <!-- ✅ Top Navigation -->
+  <div class="top-nav">
+    <i class="fas fa-bars menu-icon" onclick="toggleDrawer()" aria-label="Toggle menu"></i>
+    <img src="logo.png" alt="MyAstrology Logo – Dr. Prodyut Acharya" class="logo" />
+  </div>
 
-      <!-- Logo aligned right -->
-      <img src="logo.png" alt="MyAstrology logo – Dr. Prodyut Acharya" class="logo" />
-    </div>
+  <!-- ✅ Navigation Drawer -->
+  <div class="nav-drawer" id="navDrawer">
+    <a href="/home"><i class="fa fa-home"></i> Home</a>
+    <a href="/about"><i class="fa fa-user"></i> About</a>
+    <a href="/services"><i class="fa fa-star"></i> Services</a>
+    <a href="/consultation"><i class="fa fa-comments"></i> Consultation</a>
+    <a href="/horoscope"><i class="fa fa-moon"></i> Horoscope</a>
+    <a href="/palmistry"><i class="fa fa-hand-paper"></i> Palmistry</a>
+    <a href="/vastu"><i class="fa fa-university"></i> Vastu</a>
+    <a href="/gallery"><i class="fa fa-image"></i> Gallery</a>
+    <a href="/reviews"><i class="fa fa-star-half-alt"></i> Testimonials</a>
+    <a href="/contact"><i class="fa fa-envelope"></i> Contact</a>
+  </div>
 
-    <!-- Navigation drawer with 10 links -->
-    <div class="nav-drawer" id="navDrawer">
-      <a href="/home"><i class="fa fa-home"></i> Home</a>
-      <a href="/about"><i class="fa fa-user"></i> About</a>
-      <a href="/services"><i class="fa fa-star"></i> Services</a>
-      <a href="/consult"><i class="fa fa-comments"></i> Consultation</a>
-      <a href="/horoscope"><i class="fa fa-moon"></i> Horoscope</a>
-      <a href="/palmistry"><i class="fa fa-hand-paper"></i> Palmistry</a>
-      <a href="/vastu"><i class="fa fa-university"></i> Vastu</a>
-      <a href="/gallery"><i class="fa fa-image"></i> Gallery</a>
-      <a href="/reviews"><i class="fa fa-star-half-alt"></i> Testimonials</a>
-      <a href="/contact"><i class="fa fa-envelope"></i> Contact</a>
-    </div>
-
-    <!-- Banner with blue border -->
-    <div class="banner">
-      <img src="banner1.jpg" alt="Astrological symbols and celestial elements banner image" />
-    </div>
-  </header>
+  <!-- ✅ Banner Image with Blue Border -->
+  <div class="banner">
+    <img src="banner1.jpg" alt="Astrological banner with stars and symbols" />
+  </div>
 
 </body>
 </html>
+
 
   <script>
     const images = document.querySelectorAll('.banner-slider img');
