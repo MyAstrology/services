@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Google tag -->
+  <title>MyAstrology Ranaghat – Dr. Prodyut Acharya | Indian Astrology & Palmistry</title>
+
+  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-S7BQGLP211"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -13,27 +15,12 @@
     gtag('config', 'G-S7BQGLP211');
   </script>
 
-  <title>MyAstrology Ranaghat – Dr. Prodyut Acharya | Indian Astrology & Palmistry</title>
-  <meta name="description" content="Expert astrology and palmistry consultation by Dr. Prodyut Acharya. Career, marriage, vastu, and spiritual guidance across India.">
-  <meta name="keywords" content="Astrology, Palmistry, Horoscope, Vedic Astrology, Ranaghat, Prodyut Acharya">
-  <meta name="robots" content="index, follow">
-  <meta name="author" content="Dr. Prodyut Acharya">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="MyAstrology – Dr. Prodyut Acharya">
-  <meta property="og:description" content="Accurate astrology and palmistry guidance from expert Dr. Prodyut Acharya.">
-  <meta property="og:image" content="https://astro.myastrology.in/images/og-image.jpg">
-  <meta property="og:url" content="https://astro.myastrology.in">
-  <meta property="og:type" content="website">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="MyAstrology – Dr. Prodyut Acharya">
-  <meta name="twitter:description" content="Astrology & palmistry for love, marriage, career, health.">
-  <meta name="twitter:image" content="https://astro.myastrology.in/images/og-image.jpg">
+  <!-- SEO Meta -->
+  <meta name="description" content="Expert astrology and palmistry consultation by Dr. Prodyut Acharya. Career, marriage, vastu, and spiritual guidance across India." />
+  <meta name="keywords" content="Astrology, Palmistry, Horoscope, Vedic Astrology, Ranaghat, Prodyut Acharya" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Dr. Prodyut Acharya" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -57,24 +44,19 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 8px 16px;
+      padding: 10px 16px;
       border-bottom: 2px solid #419bff;
     }
 
-    .logo {
-      height: 50px;
-    }
-
     .menu-toggle {
-      display: none;
       font-size: 24px;
       cursor: pointer;
+      display: none;
     }
 
     .nav-links {
       display: flex;
       gap: 20px;
-      flex-wrap: wrap;
     }
 
     .nav-links a {
@@ -88,13 +70,19 @@
       color: #419bff;
     }
 
+    .logo {
+      height: 50px;
+    }
+
     .banner-slider {
       width: 100%;
+      height: auto;
       position: relative;
     }
 
     .banner-slider img {
       width: 100%;
+      height: auto;
       display: none;
       transition: opacity 1s ease-in-out;
     }
@@ -103,12 +91,17 @@
       display: block;
     }
 
+    /* Responsive styles */
     @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
       .nav-links {
         display: none;
         flex-direction: column;
         width: 100%;
-        background: #fff;
+        background-color: #fff;
         border-top: 1px solid #ccc;
         margin-top: 10px;
         padding: 10px;
@@ -116,14 +109,6 @@
 
       .nav-links.show {
         display: flex;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-
-      .logo {
-        height: 40px;
       }
     }
   </style>
@@ -133,7 +118,7 @@
   <!-- ✅ Header Start -->
   <header class="header-container">
     <div class="top-nav">
-      <!-- Left: Hamburger -->
+      <!-- Left: Hamburger Menu -->
       <div class="menu-toggle" onclick="toggleMenu()">
         <i class="fas fa-bars"></i>
       </div>
@@ -144,7 +129,7 @@
       </div>
     </div>
 
-    <!-- Navigation Menu -->
+    <!-- Hidden Navigation Menu -->
     <div class="nav-links" id="navMenu">
       <a href="/">Home</a>
       <a href="/about">About</a>
@@ -169,7 +154,12 @@
   </header>
   <!-- ✅ Header End -->
 
+  <!-- ✅ JavaScript -->
   <script>
+    function toggleMenu() {
+      document.getElementById('navMenu').classList.toggle('show');
+    }
+
     const images = document.querySelectorAll('.banner-slider img');
     let currentIndex = 0;
 
@@ -180,31 +170,6 @@
     }
 
     setInterval(showNextImage, 5000);
-
-    function toggleMenu() {
-      document.getElementById('navMenu').classList.toggle('show');
-    }
-  </script>
-</body>
-</html>      const images = document.querySelectorAll('.banner-slider img');
-      let currentIndex = 0;
-
-      function showNextImage() {
-        images[currentIndex].classList.remove('active');
-        currentIndex = (currentIndex + 1) % images.length;
-        images[currentIndex].classList.add('active');
-      }
-
-      setInterval(showNextImage, 5000);
-
-      // Menu Toggle
-      const menuToggle = document.getElementById('menuToggle');
-      const navMenu = document.getElementById('navMenu');
-
-      menuToggle.addEventListener('click', function () {
-        navMenu.classList.toggle('show');
-      });
-    });
   </script>
 </body>
 </html>
