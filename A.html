@@ -11,7 +11,7 @@
   <meta name="author" content="Dr. Prodyut Acharya">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="MyAstrology – Dr. Prodyut Acharya" />
@@ -26,36 +26,42 @@
   <meta name="twitter:description" content="Astrology & palmistry for love, marriage, career, health." />
   <meta name="twitter:image" content="https://astro.myastrology.in/images/og-image.jpg" />
 
-  <!-- Font Awesome for Icons -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: #fff;
+      background-color: #ffffff;
     }
 
     .header-container {
-      border: 1px solid #cccccc;
+      border: 1px solid #ccc;
       border-radius: 8px;
       margin: 10px;
       overflow: hidden;
+      position: relative;
     }
 
-    .top-bar {
+    .top-nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 10px 16px;
-      background-color: #ffffff;
-      border-bottom: 1px solid #dddddd;
+      background-color: #fff;
+      border-bottom: 1px solid #e0e0e0;
+      position: relative;
     }
 
     .menu-icon {
-      font-size: 20px;
-      cursor: pointer;
+      font-size: 22px;
       color: #333;
+      cursor: pointer;
+    }
+
+    .logo {
+      height: 50px;
     }
 
     .nav-drawer {
@@ -64,33 +70,29 @@
       position: absolute;
       top: 60px;
       left: 10px;
-      background: #fff;
+      background: #ffffff;
       border: 1px solid #ddd;
       border-radius: 4px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-      z-index: 999;
-      width: 180px;
+      width: 200px;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
 
     .nav-drawer a {
       padding: 10px;
       text-decoration: none;
       color: #222;
-      border-bottom: 1px solid #f1f1f1;
+      border-bottom: 1px solid #f0f0f0;
       font-size: 14px;
     }
 
     .nav-drawer a:hover {
-      background-color: #f0faff;
-      color: #0073e6;
-    }
-
-    .logo {
-      height: 50px;
+      background-color: #f5faff;
+      color: #0077cc;
     }
 
     .banner {
-      margin: 12px;
+      margin: 10px;
       border: 1px solid #ddd;
       border-radius: 6px;
       overflow: hidden;
@@ -103,10 +105,6 @@
     }
 
     @media (max-width: 600px) {
-      .top-bar {
-        flex-direction: row;
-      }
-
       .logo {
         height: 40px;
       }
@@ -119,26 +117,24 @@
   </style>
 
   <script>
-    function toggleNav() {
-      const drawer = document.getElementById("navDrawer");
-      drawer.style.display = drawer.style.display === "flex" ? "none" : "flex";
+    function toggleDrawer() {
+      const drawer = document.getElementById('navDrawer');
+      drawer.style.display = (drawer.style.display === 'flex') ? 'none' : 'flex';
     }
   </script>
 </head>
 <body>
 
-  <!-- ✅ Header with nav icon (left) and logo (right) -->
   <header class="header-container">
-    <div class="top-bar">
-      <i class="fas fa-bars menu-icon" onclick="toggleNav()" aria-label="Open menu"></i>
-      <img src="logo.png" alt="MyAstrology logo - Dr. Prodyut Acharya" class="logo" />
+    <div class="top-nav">
+      <i class="fas fa-bars menu-icon" onclick="toggleDrawer()" aria-label="Navigation menu icon"></i>
+      <img src="logo.png" alt="MyAstrology logo – Dr. Prodyut Acharya" class="logo" />
     </div>
 
-    <!-- ✅ Hidden navigation drawer -->
     <div class="nav-drawer" id="navDrawer">
       <a href="/home"><i class="fa fa-home"></i> Home</a>
       <a href="/about"><i class="fa fa-user"></i> About</a>
-      <a href="/services"><i class="fa fa-asterisk"></i> Services</a>
+      <a href="/services"><i class="fa fa-sun"></i> Services</a>
       <a href="/consult"><i class="fa fa-comments"></i> Consultation</a>
       <a href="/horoscope"><i class="fa fa-moon"></i> Horoscope</a>
       <a href="/palmistry"><i class="fa fa-hand-paper"></i> Palmistry</a>
@@ -148,9 +144,8 @@
       <a href="/contact"><i class="fa fa-envelope"></i> Contact</a>
     </div>
 
-    <!-- ✅ Banner with image and border -->
     <div class="banner">
-      <img src="banner1.jpg" alt="Astrological banner showing celestial symbols and zodiac wheel" />
+      <img src="banner1.jpg" alt="Zodiac and astrology-themed banner with celestial graphics" />
     </div>
   </header>
 
