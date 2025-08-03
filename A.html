@@ -1,40 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MyAstrology Ranaghat – Dr. Prodyut Acharya | Indian Astrology & Palmistry</title>
+
   <meta name="description" content="Expert astrology and palmistry consultation by Dr. Prodyut Acharya. Career, marriage, vastu, and spiritual guidance across India.">
   <meta name="keywords" content="Astrology, Palmistry, Horoscope, Vedic Astrology, Ranaghat, Prodyut Acharya">
   <meta name="robots" content="index, follow">
   <meta name="author" content="Dr. Prodyut Acharya">
 
-  <!-- Open Graph Meta -->
+  <!-- Open Graph -->
   <meta property="og:title" content="MyAstrology – Dr. Prodyut Acharya">
   <meta property="og:description" content="Accurate astrology and palmistry guidance from expert Dr. Prodyut Acharya.">
   <meta property="og:image" content="https://astro.myastrology.in/images/og-image.jpg">
   <meta property="og:url" content="https://astro.myastrology.in">
   <meta property="og:type" content="website">
 
-  <!-- Twitter Card Meta -->
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="MyAstrology – Dr. Prodyut Acharya">
   <meta name="twitter:description" content="Astrology & palmistry for love, marriage, career, health.">
   <meta name="twitter:image" content="https://astro.myastrology.in/images/og-image.jpg">
 
-  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
 
-  <!-- ✅ Header Start -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MyAstrology - Best Astrology & Palmistry Consultant in India</title>
-  <link rel="icon" href="favicon.png" type="image/png">
   <style>
-    /* Reset and Base Styles */
     * {
       margin: 0;
       padding: 0;
@@ -42,141 +34,115 @@
     }
 
     body {
-      font-family: Arial, sans-serif;
-    }
-
-    /* Header Styles */
-    header {
-      position: sticky;
-      top: 0;
-      background-color: #ffffff;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      z-index: 1000;
-    }
-
-    .navbar {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 20px;
-      max-width: 1200px;
-      margin: 0 auto;
+      font-family: 'Segoe UI', sans-serif;
+      background: #ffffff;
+      color: #111;
+      min-height: 100vh;
     }
 
-    .logo img {
-      height: 50px;
-      width: auto;
+    .sidebar {
+      width: 180px;
+      border-right: 1px solid #cce4ff;
+      padding: 20px 10px;
+      background-color: #f9fcff;
     }
 
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 20px;
-    }
-
-    nav ul li a {
+    .sidebar a {
+      display: block;
+      margin-bottom: 10px;
       text-decoration: none;
-      color: #333;
+      color: #222;
       font-weight: 500;
-      transition: color 0.3s;
+      padding: 8px;
+      border-radius: 4px;
+      transition: background 0.2s ease;
     }
 
-    nav ul li a:hover {
-      color: #007bff;
-      text-decoration: underline;
+    .sidebar a:hover {
+      background-color: #e6f2ff;
+      color: #0073e6;
     }
 
-    /* Hamburger Menu */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      gap: 4px;
+    .main {
+      flex: 1;
+      position: relative;
+      padding: 20px;
     }
 
-    .hamburger div {
-      width: 25px;
-      height: 3px;
-      background: #333;
+    .banner-container {
+      border: 1px solid #cde7ff;
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+      max-width: 100%;
+    }
+
+    .banner-container img.banner {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .logo {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      height: 50px;
+      z-index: 5;
     }
 
     @media (max-width: 768px) {
-      nav ul {
-        display: none;
+      body {
         flex-direction: column;
-        background: #fff;
-        position: absolute;
-        top: 70px;
-        right: 20px;
-        width: 200px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.15);
       }
 
-      nav ul.show {
+      .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #cce4ff;
         display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
       }
 
-      .hamburger {
-        display: flex;
+      .sidebar a {
+        margin: 8px;
+      }
+
+      .logo {
+        height: 40px;
+        top: 10px;
+        right: 10px;
       }
     }
   </style>
 </head>
 <body>
 
-  <header role="banner" aria-label="Main Navigation">
-    <div class="navbar">
-      <!-- 1. Logo with SEO Alt Tag -->
-      <div class="logo">
-        <a href="index.html">
-          <img src="logo.png" alt="MyAstrology Logo - Indian Astrology & Palmistry Expert">
-        </a>
-      </div>
+  <!-- ✅ Navigation Bar -->
+  <nav class="sidebar">
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+    <a href="/services">Services</a>
+    <a href="/palmistry">Palmistry</a>
+    <a href="/horoscope">Horoscope</a>
+    <a href="/consultation">Consultation</a>
+    <a href="/online">Online Services</a>
+    <a href="/testimonials">Testimonials</a>
+    <a href="/blog">Blog</a>
+    <a href="/contact">Contact</a>
+  </nav>
 
-      <!-- 2. Navigation Bar with Internal Links -->
-      <nav role="navigation" aria-label="Primary Menu">
-        <ul id="nav-menu">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="video.html">Video</a></li>
-          <li><a href="astrology.html">Astrology</a></li>
-          <li><a href="palmistry.html">Palmistry</a></li>
-          <li><a href="philosophy.html">PhilosopPage</a></li>
-          <li><a href="service.html">Service</a></li>
-          <li><a href="others.html">Others</a></li>
-        </ul>
-      </nav>
-
-      <!-- 3. Hamburger Icon for Mobile -->
-      <div class="hamburger" aria-label="Menu Toggle" role="button" tabindex="0" onclick="toggleMenu()" onkeypress="if(event.key==='Enter')toggleMenu()">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
+  <!-- ✅ Main Section -->
+  <div class="main">
+    <div class="banner-container">
+      <!-- ✅ Logo -->
+      <img src="logo.png" alt="MyAstrology Logo" class="logo" loading="lazy">
+      <!-- ✅ Banner Image -->
+      <img src="banner.jpg" alt="Astrology Banner" class="banner" loading="lazy">
     </div>
-  </header>
-
-  <script>
-    function toggleMenu() {
-      document.getElementById('nav-menu').classList.toggle('show');
-    }
-  </script>
-
-</body>
-</html>
-
-  <header class="header-container">
-    <div class="top-nav">
-      <div class="nav-links">
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/services">Services</a>
-        <a href="/contact">Contact</a>
-      </div>
-    </div>
-      <img src="banner5.jpg" alt="Banner 5">
-    </div>
-  </header>
-  <!-- ✅ Header end -->
+  </div>
 
 </body>
 </html>
