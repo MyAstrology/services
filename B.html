@@ -154,70 +154,47 @@
 </body>
 </html>
 
-<!-- 🌌 Astrology Tagline Slider - Start -->
-
+<!-- 🌟 One-line Astrology Slider with Emojis -->
 <style>
-  .astro-slider {
-    position: relative;
+  .scroll-slider {
     width: 100%;
-    height: 240px;
-    background: linear-gradient(120deg, #0a0a2a, #1f1f5c);
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ffffff;
+    background: #000028;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
     font-family: 'Segoe UI', sans-serif;
+    white-space: nowrap;
+    box-sizing: border-box;
+    padding: 16px 0;
+    border-top: 3px solid #ffcc00;
+    border-bottom: 3px solid #ffcc00;
   }
 
-  .astro-slides {
-    display: flex;
-    width: 300%;
-    animation: scrollSlide 15s infinite;
+  .scroll-text {
+    display: inline-block;
+    padding-left: 100%;
+    animation: scroll-left 20s linear infinite;
   }
 
-  .astro-slide {
-    flex: 1 0 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 20px;
-    font-size: 1.6rem;
-    text-align: center;
-    line-height: 1.6;
-  }
-
-  @keyframes scrollSlide {
-    0% { transform: translateX(0%); }
-    33% { transform: translateX(-100%); }
-    66% { transform: translateX(-200%); }
-    100% { transform: translateX(0%); }
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
   }
 
   @media (max-width: 768px) {
-    .astro-slide {
+    .scroll-slider {
       font-size: 1.1rem;
-      padding: 0 10px;
-    }
-    .astro-slider {
-      height: auto;
-      padding: 30px 10px;
     }
   }
 </style>
 
-<div class="astro-slider">
-  <div class="astro-slides">
-    <div class="astro-slide">
-      My Astrology – Indian Best Astrology and Palmistry Consultant Services
-    </div>
-    <div class="astro-slide">
-      Trusted Astrologer & Palmist Dr. Prodyut Acharya – Know Your Path
-    </div>
-    <div class="astro-slide">
-      Accurate Horoscope, Hand Reading, Career, Marriage & Life Guidance
-    </div>
+<div class="scroll-slider">
+  <div class="scroll-text">
+    🔮✨ MY ASTROLOGY – INDIAN BEST ASTROLOGY AND PALMISTRY CONSULTANT SERVICES 🔭🌟 ASTROLOGER & PALMIST DR. PRODYUT ACHARYA 🌠💫
   </div>
 </div>
-
-<!-- 🌌 Astrology Tagline Slider - End -->
