@@ -26,22 +26,23 @@
   <meta name="twitter:description" content="Astrology & palmistry for love, marriage, career, health." />
   <meta name="twitter:image" content="https://astro.myastrology.in/images/og-image.jpg" />
 
-  <!-- Font Awesome for icons -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
+      background-color: #fff;
     }
 
     .top-nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 16px;
+      padding: 6px 12px; /* slimmer top padding */
       background-color: #fff;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
       position: relative;
     }
 
@@ -52,14 +53,14 @@
     }
 
     .logo {
-      height: 50px;
+      height: 44px; /* slightly smaller logo */
     }
 
     .nav-drawer {
       display: none;
       flex-direction: column;
       position: absolute;
-      top: 60px;
+      top: 48px;
       left: 10px;
       background-color: #fff;
       border: 1px solid #d0e6ff;
@@ -83,21 +84,22 @@
     }
 
     .banner {
-      margin: 10px;
       border: 2px solid #419bff;
-      border-radius: 4px;
+      border-radius: 0;
       overflow: hidden;
+      margin: 0;           /* removes spacing around the banner */
+      padding: 0;          /* ensures tight fit */
     }
 
     .banner img {
+      display: block;
       width: 100%;
       height: auto;
-      display: block;
     }
 
     @media (max-width: 600px) {
       .logo {
-        height: 40px;
+        height: 36px;
       }
 
       .nav-drawer {
@@ -136,9 +138,9 @@
     <a href="/contact"><i class="fa fa-envelope"></i> Contact</a>
   </div>
 
-  <!-- ✅ Banner Image with Blue Border -->
+  <!-- ✅ Banner -->
   <div class="banner">
-    <img src="banner1.jpg" alt="Astrological banner with stars and symbols" />
+    <img src="banner1.jpg" alt="Astrology banner with blue border and cosmic symbols" />
   </div>
 
 </body>
