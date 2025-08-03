@@ -5,25 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>MyAstrology Ranaghat – Dr. Prodyut Acharya | Indian Astrology & Palmistry</title>
-
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S7BQGLP211"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-S7BQGLP211');
-  </script>
-
-  <!-- SEO Meta -->
   <meta name="description" content="Expert astrology and palmistry consultation by Dr. Prodyut Acharya. Career, marriage, vastu, and spiritual guidance across India." />
   <meta name="keywords" content="Astrology, Palmistry, Horoscope, Vedic Astrology, Ranaghat, Prodyut Acharya" />
   <meta name="robots" content="index, follow" />
   <meta name="author" content="Dr. Prodyut Acharya" />
+
+  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <style>
     body {
@@ -36,7 +27,6 @@
       border-radius: 10px;
       overflow: hidden;
       margin: 10px;
-      position: relative;
     }
 
     .top-nav {
@@ -48,41 +38,41 @@
       border-bottom: 2px solid #419bff;
     }
 
-    .menu-toggle {
-      font-size: 24px;
-      cursor: pointer;
-      display: none;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 20px;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: #0d1117;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-
-    .nav-links a:hover {
-      color: #419bff;
-    }
-
     .logo {
       height: 50px;
     }
 
+    .menu-icon {
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .nav-menu {
+      display: none;
+      flex-direction: column;
+      background-color: #f9f9f9;
+      border-top: 1px solid #ccc;
+    }
+
+    .nav-menu a {
+      padding: 10px 16px;
+      text-decoration: none;
+      color: #0d1117;
+      border-bottom: 1px solid #ddd;
+      transition: background 0.3s;
+    }
+
+    .nav-menu a:hover {
+      background-color: #e6f0ff;
+    }
+
     .banner-slider {
       width: 100%;
-      height: auto;
       position: relative;
     }
 
     .banner-slider img {
       width: 100%;
-      height: auto;
       display: none;
       transition: opacity 1s ease-in-out;
     }
@@ -91,75 +81,65 @@
       display: block;
     }
 
-    /* Responsive styles */
-    @media (max-width: 768px) {
-      .menu-toggle {
-        display: block;
-      }
-
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background-color: #fff;
-        border-top: 1px solid #ccc;
-        margin-top: 10px;
-        padding: 10px;
-      }
-
-      .nav-links.show {
-        display: flex;
+    @media (min-width: 768px) {
+      .nav-menu {
+        position: absolute;
+        top: 60px;
+        left: 10px;
+        width: 250px;
+        z-index: 1000;
+        border: 1px solid #ccc;
+        border-radius: 6px;
       }
     }
   </style>
 </head>
 
 <body>
-  <!-- ✅ Header Start -->
+  <!-- ✅ Header start -->
   <header class="header-container">
     <div class="top-nav">
-      <!-- Left: Hamburger Menu -->
-      <div class="menu-toggle" onclick="toggleMenu()">
+      <!-- Hamburger menu on left -->
+      <div class="menu-icon" onclick="toggleMenu()">
         <i class="fas fa-bars"></i>
       </div>
 
-      <!-- Right: Logo -->
-      <div>
-        <img src="logo.png" alt="MyAstrology Logo" class="logo">
-      </div>
+      <!-- Logo on right -->
+      <img src="logo.png" alt="MyAstrology Logo" class="logo" />
     </div>
 
-    <!-- Hidden Navigation Menu -->
-    <div class="nav-links" id="navMenu">
+    <!-- Navigation Menu -->
+    <nav id="navMenu" class="nav-menu">
       <a href="/">Home</a>
       <a href="/about">About</a>
       <a href="/services">Services</a>
       <a href="/contact">Contact</a>
+      <a href="/career">Career</a>
+      <a href="/marriage">Marriage</a>
       <a href="/horoscope">Horoscope</a>
       <a href="/palmistry">Palmistry</a>
-      <a href="/career">Career Solutions</a>
-      <a href="/love-marriage">Love & Marriage</a>
-      <a href="/child-future">Child Future</a>
-      <a href="/online-consultation">Online Consultation</a>
-    </div>
+      <a href="/vastu">Vastu</a>
+      <a href="/spiritual">Spiritual</a>
+    </nav>
 
     <!-- ✅ Banner Slider -->
     <div class="banner-slider">
-      <img src="banner1.webp" alt="Banner 1" class="active">
-      <img src="banner2.webp" alt="Banner 2">
-      <img src="banner3.webp" alt="Banner 3">
-      <img src="banner4.webp" alt="Banner 4">
-      <img src="banner5.webp" alt="Banner 5">
+      <img src="banner1.webp" alt="Banner 1" class="active" />
+      <img src="banner2.webp" alt="Banner 2" />
+      <img src="banner3.webp" alt="Banner 3" />
+      <img src="banner4.webp" alt="Banner 4" />
+      <img src="banner5.webp" alt="Banner 5" />
     </div>
   </header>
-  <!-- ✅ Header End -->
+  <!-- ✅ Header end -->
 
-  <!-- ✅ JavaScript -->
   <script>
     function toggleMenu() {
-      document.getElementById('navMenu').classList.toggle('show');
+      const menu = document.getElementById("navMenu");
+      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
     }
 
+    // Banner image slider
     const images = document.querySelectorAll('.banner-slider img');
     let currentIndex = 0;
 
