@@ -11,37 +11,36 @@
   <meta name="author" content="Dr. Prodyut Acharya">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="MyAstrology – Dr. Prodyut Acharya">
-  <meta property="og:description" content="Accurate astrology and palmistry guidance from expert Dr. Prodyut Acharya.">
-  <meta property="og:image" content="https://astro.myastrology.in/images/og-image.jpg">
-  <meta property="og:url" content="https://astro.myastrology.in">
-  <meta property="og:type" content="website">
+  <meta property="og:title" content="MyAstrology – Dr. Prodyut Acharya" />
+  <meta property="og:description" content="Accurate astrology and palmistry guidance from expert Dr. Prodyut Acharya." />
+  <meta property="og:image" content="https://astro.myastrology.in/images/og-image.jpg" />
+  <meta property="og:url" content="https://astro.myastrology.in" />
+  <meta property="og:type" content="website" />
 
   <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="MyAstrology – Dr. Prodyut Acharya">
-  <meta name="twitter:description" content="Astrology & palmistry for love, marriage, career, health.">
-  <meta name="twitter:image" content="https://astro.myastrology.in/images/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="MyAstrology – Dr. Prodyut Acharya" />
+  <meta name="twitter:description" content="Astrology & palmistry for love, marriage, career, health." />
+  <meta name="twitter:image" content="https://astro.myastrology.in/images/og-image.jpg" />
 
-  <!-- Font Awesome -->
+  <!-- Font Awesome for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #fff;
+      background: #fff;
     }
 
     .header-container {
-      border: 1px solid #cde4ff;
+      border: 1px solid #cccccc;
       border-radius: 8px;
+      margin: 10px;
       overflow: hidden;
-      margin: 12px;
-      position: relative;
     }
 
     .top-bar {
@@ -49,18 +48,14 @@
       justify-content: space-between;
       align-items: center;
       padding: 10px 16px;
-      border-bottom: 1px solid #b5d9ff;
-      background-color: #f9fcff;
+      background-color: #ffffff;
+      border-bottom: 1px solid #dddddd;
     }
 
     .menu-icon {
-      font-size: 22px;
+      font-size: 20px;
       cursor: pointer;
       color: #333;
-    }
-
-    .logo {
-      height: 50px;
     }
 
     .nav-drawer {
@@ -69,32 +64,36 @@
       position: absolute;
       top: 60px;
       left: 10px;
-      background-color: #ffffff;
-      border: 1px solid #cce4ff;
-      border-radius: 6px;
-      padding: 10px;
-      z-index: 1000;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      z-index: 999;
       width: 180px;
     }
 
     .nav-drawer a {
+      padding: 10px;
       text-decoration: none;
       color: #222;
-      padding: 8px;
-      border-bottom: 1px solid #eee;
-      font-size: 15px;
+      border-bottom: 1px solid #f1f1f1;
+      font-size: 14px;
     }
 
     .nav-drawer a:hover {
-      background-color: #f1f9ff;
+      background-color: #f0faff;
       color: #0073e6;
     }
 
+    .logo {
+      height: 50px;
+    }
+
     .banner {
-      border: 2px solid #b8dfff;
-      border-radius: 5px;
+      margin: 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
       overflow: hidden;
-      margin: 16px;
     }
 
     .banner img {
@@ -108,50 +107,50 @@
         flex-direction: row;
       }
 
+      .logo {
+        height: 40px;
+      }
+
       .nav-drawer {
         width: 90%;
         left: 5%;
-      }
-
-      .logo {
-        height: 40px;
       }
     }
   </style>
 
   <script>
     function toggleNav() {
-      const drawer = document.getElementById('navDrawer');
-      drawer.style.display = drawer.style.display === 'flex' ? 'none' : 'flex';
+      const drawer = document.getElementById("navDrawer");
+      drawer.style.display = drawer.style.display === "flex" ? "none" : "flex";
     }
   </script>
 </head>
 <body>
 
-  <!-- ✅ Header with nav icon and logo -->
+  <!-- ✅ Header with nav icon (left) and logo (right) -->
   <header class="header-container">
     <div class="top-bar">
-      <i class="fas fa-bars menu-icon" onclick="toggleNav()" aria-label="Toggle navigation menu"></i>
-      <img src="logo.png" alt="MyAstrology logo by Dr. Prodyut Acharya" class="logo" />
+      <i class="fas fa-bars menu-icon" onclick="toggleNav()" aria-label="Open menu"></i>
+      <img src="logo.png" alt="MyAstrology logo - Dr. Prodyut Acharya" class="logo" />
     </div>
 
-    <!-- ✅ Navigation Drawer with 10 links -->
+    <!-- ✅ Hidden navigation drawer -->
     <div class="nav-drawer" id="navDrawer">
       <a href="/home"><i class="fa fa-home"></i> Home</a>
       <a href="/about"><i class="fa fa-user"></i> About</a>
-      <a href="/services"><i class="fa fa-star"></i> Services</a>
-      <a href="/consultation"><i class="fa fa-comments"></i> Consultation</a>
+      <a href="/services"><i class="fa fa-asterisk"></i> Services</a>
+      <a href="/consult"><i class="fa fa-comments"></i> Consultation</a>
       <a href="/horoscope"><i class="fa fa-moon"></i> Horoscope</a>
       <a href="/palmistry"><i class="fa fa-hand-paper"></i> Palmistry</a>
-      <a href="/vastu"><i class="fa fa-building"></i> Vastu</a>
+      <a href="/vastu"><i class="fa fa-university"></i> Vastu</a>
       <a href="/gallery"><i class="fa fa-image"></i> Gallery</a>
-      <a href="/testimonials"><i class="fa fa-users"></i> Testimonials</a>
+      <a href="/reviews"><i class="fa fa-star"></i> Testimonials</a>
       <a href="/contact"><i class="fa fa-envelope"></i> Contact</a>
     </div>
 
-    <!-- ✅ Banner Image -->
+    <!-- ✅ Banner with image and border -->
     <div class="banner">
-      <img src="banner1.jpg" alt="Astrology banner with celestial elements and symbols" />
+      <img src="banner1.jpg" alt="Astrological banner showing celestial symbols and zodiac wheel" />
     </div>
   </header>
 
