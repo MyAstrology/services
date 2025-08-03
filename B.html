@@ -1,83 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MyAstrology – Indian Best Astrology and Palmistry Consultant Services by Dr. Prodyut Acharya. Expert in love, marriage, career & kundli solutions.">
+  <meta name="keywords" content="Astrologer Prodyut Acharya, Indian astrologer, palmistry consultant, love problem solution, kundli matching, career astrology, vastu tips, online astrology consultation">
+  <meta name="author" content="Dr. Prodyut Acharya">
+
+  <!-- Open Graph for social sharing -->
+  <meta property="og:title" content="MyAstrology – Dr. Prodyut Acharya | Indian Astrology & Palmistry">
+  <meta property="og:description" content="Best Astrologer in India – MyAstrology Services by Dr. Prodyut Acharya. Online Astrology, Palmistry, Horoscope, Vastu, Kundli Solutions.">
+  <meta property="og:image" content="https://www.myastrology.in/logo.png">
+  <meta property="og:url" content="https://www.myastrology.in">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MyAstrology – Dr. Prodyut Acharya | Indian Astrology & Palmistry">
+  <meta name="twitter:description" content="Astrology & Palmistry Consultation – Love, Marriage, Career, Kundli. Online & Offline Services.">
+  <meta name="twitter:image" content="https://www.myastrology.in/logo.png">
+
+  <!-- JSON-LD Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "MyAstrology",
+    "url": "https://www.myastrology.in",
+    "logo": "https://www.myastrology.in/logo.png",
+    "sameAs": [
+      "https://www.facebook.com/Dr.ProdyutAcharya",
+      "https://www.instagram.com/myastrology.in",
+      "https://youtube.com/@myastrology"
+    ],
+    "description": "MyAstrology – Indian Astrology & Palmistry Services by Dr. Prodyut Acharya. Accurate love, marriage, career solutions.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Ranaghat",
+      "addressCountry": "IN"
+    }
+  }
+  </script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S7BQGLP211"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-S7BQGLP211');
+  </script>
+
   <title>MyAstrology Ranaghat – Dr. Prodyut Acharya | Indian Astrology & Palmistry</title>
+
   <style>
-    /* Basic reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
-      font-family: Arial, sans-serif;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
     }
 
-    /* Header styles */
     .header {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       padding: 10px 20px;
-      background-color: #1a1a40;
+      background: #0c1b33;
       color: white;
       position: relative;
     }
 
-    .menu-toggle {
-      font-size: 28px;
+    .hamburger {
+      font-size: 24px;
       cursor: pointer;
-      display: block;
     }
 
-    .site-name {
-      font-size: 22px;
+    .logo-text {
+      font-size: 20px;
       font-weight: bold;
-      text-align: center;
-      flex-grow: 1;
     }
 
-    .logo {
-      width: 45px;
-      height: auto;
+    .logo-on-banner {
+      height: 40px;
     }
 
-    /* Navigation styles */
-    .nav-menu {
+    .menu {
       display: none;
       flex-direction: column;
       position: absolute;
       top: 60px;
-      left: 0;
-      width: 100%;
-      background-color: #1a1a40;
-      z-index: 99;
+      left: 10px;
+      background: #0c1b33;
+      border: 1px solid #fff;
+      z-index: 999;
     }
 
-    .nav-menu a {
+    .menu a {
       color: white;
-      padding: 12px 20px;
+      padding: 10px 20px;
       text-decoration: none;
-      border-top: 1px solid #444;
     }
 
-    .nav-menu a:hover {
-      background-color: #333;
+    .menu a:hover {
+      background: #13274a;
     }
 
-    /* Banner slider */
     .banner-slider {
       width: 100%;
+      height: auto;
       overflow: hidden;
-      display: flex;
     }
 
     .banner-slider img {
       width: 100%;
-      height: auto;
       display: none;
     }
 
@@ -85,13 +119,8 @@
       display: block;
     }
 
-    /* Responsive */
-    @media(min-width: 768px) {
-      .menu-toggle {
-        display: block;
-      }
-
-      .nav-menu {
+    @media screen and (min-width: 768px) {
+      .menu {
         display: none;
       }
     }
@@ -99,28 +128,25 @@
 </head>
 <body>
 
-  <!-- ✅ Header -->
   <div class="header">
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-    <div class="site-name">MyAstrology</div>
-    <img src="logo.png" alt="MyAstrology Logo" class="logo">
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <div class="logo-text">MyAstrology</div>
+    <img src="logo.png" alt="MyAstrology Logo" class="logo-on-banner">
   </div>
 
-  <!-- ✅ Navigation Menu -->
-  <div class="nav-menu" id="menu">
+  <div class="menu" id="menu">
     <a href="#">Home</a>
     <a href="#">About</a>
     <a href="#">Services</a>
     <a href="#">Contact</a>
+    <a href="#">Kundli</a>
     <a href="#">Palmistry</a>
     <a href="#">Horoscope</a>
-    <a href="#">Love & Marriage</a>
-    <a href="#">Career Guidance</a>
-    <a href="#">Gemstone Advice</a>
-    <a href="#">Online Consultation</a>
+    <a href="#">Love/Marriage</a>
+    <a href="#">Career</a>
+    <a href="#">Consult Now</a>
   </div>
 
-  <!-- ✅ Banner Slider -->
   <div class="banner-slider">
     <img src="banner1.webp" alt="Banner 1" class="active">
     <img src="banner2.webp" alt="Banner 2">
@@ -131,22 +157,18 @@
 
   <script>
     function toggleMenu() {
-      var menu = document.getElementById("menu");
-      if (menu.style.display === "flex") {
-        menu.style.display = "none";
-      } else {
-        menu.style.display = "flex";
-      }
+      const menu = document.getElementById('menu');
+      menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
     }
 
-    // Optional: Auto slider
+    // Simple slider
     let current = 0;
-    const banners = document.querySelectorAll('.banner-slider img');
+    const images = document.querySelectorAll('.banner-slider img');
     setInterval(() => {
-      banners[current].classList.remove('active');
-      current = (current + 1) % banners.length;
-      banners[current].classList.add('active');
-    }, 3000);
+      images[current].classList.remove('active');
+      current = (current + 1) % images.length;
+      images[current].classList.add('active');
+    }, 4000);
   </script>
 
 </body>
