@@ -138,10 +138,85 @@
     <a href="/contact"><i class="fa fa-envelope"></i> Contact</a>
   </div>
 
-  <!-- ✅ Banner -->
-  <div class="banner">
-    <img src="banner1.jpg" alt="Astrology banner with blue border and cosmic symbols" />
-  </div>
+  <!-- ✅ Banner Slider Start -->
+<style>
+  .banner-slider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+
+  .banner-slider img {
+    width: 100%;
+    height: auto;
+    display: none;
+    border: 3px solid #1e40af; /* blue border */
+    border-radius: 8px;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  .banner-slider img.active {
+    display: block;
+  }
+
+  .slider-dots {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .slider-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 4px;
+    background-color: #bbb;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .slider-dot.active {
+    background-color: #1e40af;
+  }
+</style>
+
+<div class="banner-slider">
+  <img src="banner1.webp" alt="Astrology banner 1 with cosmic symbols" class="active" loading="lazy" width="1200" height="500" />
+  <img src="banner2.webp" alt="Palmistry consultation banner with celestial graphics" loading="lazy" width="1200" height="500" />
+  <img src="banner3.webp" alt="Horoscope reading service banner with zodiac signs" loading="lazy" width="1200" height="500" />
+  <img src="banner4.webp" alt="Online astrology consultation banner with night sky" loading="lazy" width="1200" height="500" />
+  <img src="banner5.webp" alt="Marriage and career solution astrology banner" loading="lazy" width="1200" height="500" />
+</div>
+
+<div class="slider-dots">
+  <span class="slider-dot active" onclick="showSlide(0)"></span>
+  <span class="slider-dot" onclick="showSlide(1)"></span>
+  <span class="slider-dot" onclick="showSlide(2)"></span>
+  <span class="slider-dot" onclick="showSlide(3)"></span>
+  <span class="slider-dot" onclick="showSlide(4)"></span>
+</div>
+
+<script>
+  let slideIndex = 0;
+  const slides = document.querySelectorAll(".banner-slider img");
+  const dots = document.querySelectorAll(".slider-dot");
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle("active", i === index);
+      dots[i].classList.toggle("active", i === index);
+    });
+    slideIndex = index;
+  }
+
+  function autoSlide() {
+    slideIndex = (slideIndex + 1) % slides.length;
+    showSlide(slideIndex);
+  }
+
+  setInterval(autoSlide, 4000); // every 4 seconds
+</script>
+<!-- ✅ Banner Slider End -->
 
 </body>
 </html>
