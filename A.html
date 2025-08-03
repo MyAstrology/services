@@ -88,3 +88,50 @@
       }
 
       .sidebar {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+        padding: 10px 5px;
+      }
+
+      .sidebar a {
+        margin: 5px;
+        padding: 8px 12px;
+        font-size: 14px;
+      }
+
+      .logo {
+        top: 10px;
+        right: 10px;
+        height: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ Sidebar Navigation -->
+  <nav class="sidebar">
+    <a href="/">হোম</a>
+    <a href="/about">আমাদের সম্পর্কে</a>
+    <a href="/services">সার্ভিস</a>
+    <a href="/palmistry">হস্তরেখা</a>
+    <a href="/horoscope">কুণ্ডলী</a>
+    <a href="/booking">বুকিং</a>
+    <a href="/video">ভিডিও</a>
+    <a href="/online-service">অনলাইন সেবা</a>
+    <a href="/blog">ব্লগ</a>
+    <a href="/contact">যোগাযোগ</a>
+  </nav>
+
+  <!-- ✅ Main Banner -->
+  <div class="main">
+    <img src="logo.png" alt="MyAstrology Logo" class="logo">
+    <img src="banner1.jpg" alt="Main Banner" class="banner-image" loading="lazy">
+  </div>
+
+</body>
+</html>
