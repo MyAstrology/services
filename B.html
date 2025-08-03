@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Google tag -->
+  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-S7BQGLP211"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -35,7 +35,7 @@
   <meta name="twitter:description" content="Astrology & palmistry for love, marriage, career, health.">
   <meta name="twitter:image" content="https://astro.myastrology.in/images/og-image.jpg">
 
-  <!-- Font Awesome -->
+  <!-- Font Awesome (for hamburger icon) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
@@ -50,42 +50,48 @@
       overflow: hidden;
       margin: 10px;
       position: relative;
+      background: #fff;
     }
 
     .top-nav {
-      background-color: #fff;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 8px 16px;
+      padding: 10px 16px;
       border-bottom: 2px solid #419bff;
     }
 
-    .logo {
-      height: 50px;
-    }
-
     .menu-toggle {
-      display: none;
       font-size: 24px;
       cursor: pointer;
+      color: #419bff;
+    }
+
+    .logo {
+      height: 48px;
     }
 
     .nav-links {
+      display: none;
+      flex-direction: column;
+      background: #ffffff;
+      border-top: 1px solid #ccc;
+    }
+
+    .nav-links.show {
       display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
     }
 
     .nav-links a {
+      padding: 10px 16px;
       text-decoration: none;
       color: #0d1117;
-      font-weight: 500;
-      transition: color 0.3s;
+      border-bottom: 1px solid #eee;
+      transition: background 0.3s;
     }
 
     .nav-links a:hover {
-      color: #419bff;
+      background: #f0f8ff;
     }
 
     .banner-slider {
@@ -96,69 +102,59 @@
     .banner-slider img {
       width: 100%;
       display: none;
-      transition: opacity 1s ease-in-out;
     }
 
     .banner-slider img.active {
       display: block;
     }
 
-    @media (max-width: 768px) {
+    @media (min-width: 768px) {
       .nav-links {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background: #fff;
-        border-top: 1px solid #ccc;
-        margin-top: 10px;
-        padding: 10px;
+        display: flex !important;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        border-top: none;
       }
 
-      .nav-links.show {
-        display: flex;
+      .nav-links a {
+        border: none;
       }
 
       .menu-toggle {
-        display: block;
-      }
-
-      .logo {
-        height: 40px;
+        display: none;
       }
     }
   </style>
 </head>
 
 <body>
-  <!-- ✅ Header Start -->
   <header class="header-container">
+    <!-- Top Navigation Bar -->
     <div class="top-nav">
-      <!-- Left: Hamburger -->
-      <div class="menu-toggle" onclick="toggleMenu()">
+      <!-- Left: Menu Icon -->
+      <div class="menu-toggle" id="menuToggle">
         <i class="fas fa-bars"></i>
       </div>
-
       <!-- Right: Logo -->
-      <div>
-        <img src="logo.png" alt="MyAstrology Logo" class="logo">
-      </div>
+      <img src="logo.png" alt="MyAstrology Logo" class="logo">
     </div>
 
     <!-- Navigation Menu -->
-    <div class="nav-links" id="navMenu">
+    <nav class="nav-links" id="navMenu">
       <a href="/">Home</a>
       <a href="/about">About</a>
       <a href="/services">Services</a>
       <a href="/contact">Contact</a>
       <a href="/horoscope">Horoscope</a>
       <a href="/palmistry">Palmistry</a>
-      <a href="/career">Career Solutions</a>
+      <a href="/career">Career</a>
       <a href="/love-marriage">Love & Marriage</a>
       <a href="/child-future">Child Future</a>
       <a href="/online-consultation">Online Consultation</a>
-    </div>
+    </nav>
 
-    <!-- ✅ Banner Slider -->
+    <!-- Banner Slider -->
     <div class="banner-slider">
       <img src="banner1.webp" alt="Banner 1" class="active">
       <img src="banner2.webp" alt="Banner 2">
@@ -167,23 +163,30 @@
       <img src="banner5.webp" alt="Banner 5">
     </div>
   </header>
-  <!-- ✅ Header End -->
 
+  <!-- JavaScript -->
   <script>
-    const images = document.querySelectorAll('.banner-slider img');
-    let currentIndex = 0;
+    // Banner Slider
+    document.addEventListener('DOMContentLoaded', function () {
+      const images = document.querySelectorAll('.banner-slider img');
+      let currentIndex = 0;
 
-    function showNextImage() {
-      images[currentIndex].classList.remove('active');
-      currentIndex = (currentIndex + 1) % images.length;
-      images[currentIndex].classList.add('active');
-    }
+      function showNextImage() {
+        images[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % images.length;
+        images[currentIndex].classList.add('active');
+      }
 
-    setInterval(showNextImage, 5000);
+      setInterval(showNextImage, 5000);
 
-    function toggleMenu() {
-      document.getElementById('navMenu').classList.toggle('show');
-    }
+      // Menu Toggle
+      const menuToggle = document.getElementById('menuToggle');
+      const navMenu = document.getElementById('navMenu');
+
+      menuToggle.addEventListener('click', function () {
+        navMenu.classList.toggle('show');
+      });
+    });
   </script>
 </body>
 </html>
