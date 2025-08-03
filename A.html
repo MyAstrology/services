@@ -1,30 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>MyAstrology Ranaghat – Dr. Prodyut Acharya | Indian Astrology & Palmistry</title>
+  <meta name="description" content="Expert astrology and palmistry consultation by Dr. Prodyut Acharya. Career, marriage, vastu, and spiritual guidance across India." />
+  <meta name="keywords" content="Astrology, Palmistry, Horoscope, Vedic Astrology, Ranaghat, Prodyut Acharya" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Dr. Prodyut Acharya" />
 
-  <meta name="description" content="Expert astrology and palmistry consultation by Dr. Prodyut Acharya. Career, marriage, vastu, and spiritual guidance across India.">
-  <meta name="keywords" content="Astrology, Palmistry, Horoscope, Vedic Astrology, Ranaghat, Prodyut Acharya">
-  <meta name="robots" content="index, follow">
-  <meta name="author" content="Dr. Prodyut Acharya">
+  <!-- Open Graph Meta -->
+  <meta property="og:title" content="MyAstrology – Dr. Prodyut Acharya" />
+  <meta property="og:description" content="Accurate astrology and palmistry guidance from expert Dr. Prodyut Acharya." />
+  <meta property="og:image" content="https://astro.myastrology.in/images/og-image.jpg" />
+  <meta property="og:url" content="https://astro.myastrology.in" />
+  <meta property="og:type" content="website" />
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="MyAstrology – Dr. Prodyut Acharya">
-  <meta property="og:description" content="Accurate astrology and palmistry guidance from expert Dr. Prodyut Acharya.">
-  <meta property="og:image" content="https://astro.myastrology.in/images/og-image.jpg">
-  <meta property="og:url" content="https://astro.myastrology.in">
-  <meta property="og:type" content="website">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="MyAstrology – Dr. Prodyut Acharya">
-  <meta name="twitter:description" content="Astrology & palmistry for love, marriage, career, health.">
-  <meta name="twitter:image" content="https://astro.myastrology.in/images/og-image.jpg">
+  <!-- Twitter Card Meta -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="MyAstrology – Dr. Prodyut Acharya" />
+  <meta name="twitter:description" content="Astrology & palmistry for love, marriage, career, health." />
+  <meta name="twitter:image" content="https://astro.myastrology.in/images/og-image.jpg" />
 
   <!-- Favicon -->
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <style>
     * {
@@ -36,60 +39,65 @@
     body {
       display: flex;
       font-family: 'Segoe UI', sans-serif;
-      background: #ffffff;
+      background-color: #ffffff;
       color: #111;
       min-height: 100vh;
     }
 
-    .sidebar {
+    nav.sidebar {
       width: 180px;
-      border-right: 1px solid #cce4ff;
+      border-right: 1px solid #d0eaff;
+      background-color: #f8fbff;
       padding: 20px 10px;
-      background-color: #f9fcff;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
 
-    .sidebar a {
-      display: block;
-      margin-bottom: 10px;
+    nav.sidebar a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       text-decoration: none;
       color: #222;
-      font-weight: 500;
-      padding: 8px;
+      font-size: 15px;
+      padding: 6px 8px;
       border-radius: 4px;
       transition: background 0.2s ease;
     }
 
-    .sidebar a:hover {
+    nav.sidebar a:hover {
       background-color: #e6f2ff;
       color: #0073e6;
     }
 
     .main {
       flex: 1;
-      position: relative;
       padding: 20px;
-    }
-
-    .banner-container {
-      border: 1px solid #cde7ff;
-      border-radius: 6px;
-      overflow: hidden;
       position: relative;
-      max-width: 100%;
-    }
-
-    .banner-container img.banner {
-      width: 100%;
-      height: auto;
-      display: block;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
     }
 
     .logo {
-      position: absolute;
-      top: 15px;
-      right: 15px;
       height: 50px;
-      z-index: 5;
+      margin-bottom: 15px;
+    }
+
+    .banner-container {
+      width: 100%;
+      max-width: 100%;
+      border: 2px solid #b5dcff;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .banner-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: none;
     }
 
     @media (max-width: 768px) {
@@ -97,50 +105,52 @@
         flex-direction: column;
       }
 
-      .sidebar {
+      nav.sidebar {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
         width: 100%;
         border-right: none;
         border-bottom: 1px solid #cce4ff;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        padding: 10px;
       }
 
-      .sidebar a {
-        margin: 8px;
+      .main {
+        align-items: center;
+        padding: 15px;
       }
 
       .logo {
         height: 40px;
-        top: 10px;
-        right: 10px;
+        margin-bottom: 10px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- ✅ Navigation Bar -->
+  <!-- ✅ Sidebar Navigation -->
   <nav class="sidebar">
-    <a href="/">Home</a>
-    <a href="/about">About</a>
-    <a href="/services">Services</a>
-    <a href="/palmistry">Palmistry</a>
-    <a href="/horoscope">Horoscope</a>
-    <a href="/consultation">Consultation</a>
-    <a href="/online">Online Services</a>
-    <a href="/testimonials">Testimonials</a>
-    <a href="/blog">Blog</a>
-    <a href="/contact">Contact</a>
+    <a href="/"><i class="fas fa-home"></i> Home</a>
+    <a href="/about"><i class="fas fa-user"></i> About</a>
+    <a href="/services"><i class="fas fa-star"></i> Services</a>
+    <a href="/palmistry"><i class="fas fa-hand-paper"></i> Palmistry</a>
+    <a href="/horoscope"><i class="fas fa-moon"></i> Horoscope</a>
+    <a href="/consultation"><i class="fas fa-comments"></i> Consultation</a>
+    <a href="/remedies"><i class="fas fa-seedling"></i> Remedies</a>
+    <a href="/blog"><i class="fas fa-blog"></i> Blog</a>
+    <a href="/testimonials"><i class="fas fa-quote-left"></i> Testimonials</a>
+    <a href="/contact"><i class="fas fa-envelope"></i> Contact</a>
   </nav>
 
-  <!-- ✅ Main Section -->
+  <!-- ✅ Main Content Area -->
   <div class="main">
+    <!-- ✅ Logo (right side) -->
+    <img src="logo.png" alt="MyAstrology logo – Dr. Prodyut Acharya" class="logo" loading="lazy" />
+
+    <!-- ✅ Banner Image with border -->
     <div class="banner-container">
-      <!-- ✅ Logo -->
-      <img src="logo.png" alt="MyAstrology Logo" class="logo" loading="lazy">
-      <!-- ✅ Banner Image -->
-      <img src="banner1.jpg" alt="Astrology Banner" class="banner" loading="lazy">
+      <img src="banner.jpg" alt="Astrological chart and cosmic background – consultation with Dr. Prodyut Acharya" loading="lazy" />
     </div>
   </div>
 
