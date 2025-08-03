@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
+
   <title>MyAstrology Ranaghat – Dr. Prodyut Acharya | Indian Astrology & Palmistry</title>
   <meta name="description" content="Expert astrology and palmistry consultation by Dr. Prodyut Acharya. Career, marriage, vastu, and spiritual guidance across India.">
   <meta name="keywords" content="Astrology, Palmistry, Horoscope, Vedic Astrology, Ranaghat, Prodyut Acharya">
   <meta name="robots" content="index, follow">
   <meta name="author" content="Dr. Prodyut Acharya">
 
-  <!-- Open Graph for Social Media -->
+  <!-- Open Graph Meta -->
   <meta property="og:title" content="MyAstrology – Dr. Prodyut Acharya">
   <meta property="og:description" content="Accurate astrology and palmistry guidance from expert Dr. Prodyut Acharya.">
   <meta property="og:image" content="https://astro.myastrology.in/images/og-image.jpg">
   <meta property="og:url" content="https://astro.myastrology.in">
   <meta property="og:type" content="website">
 
-  <!-- Twitter Card -->
+  <!-- Twitter Card Meta -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="MyAstrology – Dr. Prodyut Acharya">
   <meta name="twitter:description" content="Astrology & palmistry for love, marriage, career, health.">
@@ -26,52 +26,54 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
 
   <style>
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
+      padding: 0;
+    }
+
+    body {
       display: flex;
-      flex-direction: row;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff;
     }
 
     /* Sidebar Navigation */
     .sidebar {
-      width: 220px;
-      background-color: #f8fbff;
-      border-right: 1px solid #ddd;
+      width: 200px;
+      background-color: #f2f8ff;
+      border-right: 2px solid #d0e6ff;
       padding: 20px 10px;
-      box-sizing: border-box;
       min-height: 100vh;
     }
 
     .sidebar a {
       display: block;
-      padding: 10px 15px;
-      color: #222;
+      margin-bottom: 12px;
       text-decoration: none;
+      color: #222;
       font-weight: 500;
-      border-radius: 5px;
-      transition: background 0.3s, color 0.3s;
+      transition: color 0.2s, background-color 0.2s;
+      padding: 8px 12px;
+      border-radius: 4px;
     }
 
     .sidebar a:hover {
-      background-color: #e0f0ff;
+      background-color: #e6f3ff;
       color: #0077cc;
     }
 
-    /* Main Content Area */
-    .main {
+    /* Main content area */
+    .main-content {
       flex-grow: 1;
       position: relative;
-      display: flex;
-      justify-content: flex-end;
-      align-items: flex-start;
-      background-color: #ffffff;
+      padding: 0;
     }
 
     .banner-image {
       width: 100%;
-      max-height: 100vh;
-      object-fit: cover;
+      height: auto;
+      display: block;
     }
 
     .logo {
@@ -79,7 +81,7 @@
       top: 20px;
       right: 20px;
       height: 50px;
-      z-index: 10;
+      z-index: 5;
     }
 
     /* Responsive Design */
@@ -94,14 +96,11 @@
         flex-wrap: wrap;
         justify-content: center;
         border-right: none;
-        border-bottom: 1px solid #ddd;
-        padding: 10px 5px;
+        border-bottom: 2px solid #d0e6ff;
       }
 
       .sidebar a {
-        margin: 5px;
-        padding: 8px 12px;
-        font-size: 14px;
+        margin: 8px;
       }
 
       .logo {
@@ -114,24 +113,24 @@
 </head>
 <body>
 
-  <!-- Sidebar Navigation -->
+  <!-- ✅ Sidebar Navigation -->
   <nav class="sidebar">
     <a href="/">Home</a>
     <a href="/about">About</a>
     <a href="/services">Services</a>
     <a href="/palmistry">Palmistry</a>
     <a href="/horoscope">Horoscope</a>
-    <a href="/booking">Booking</a>
+    <a href="/consultation">Consultation</a>
     <a href="/video">Videos</a>
     <a href="/online-service">Online Service</a>
     <a href="/blog">Blog</a>
     <a href="/contact">Contact</a>
   </nav>
 
-  <!-- Main Banner Area -->
-  <div class="main">
-    <img src="logo.png" alt="MyAstrology Logo" class="logo" />
-    <img src="banner1.jpg" alt="Main Banner" class="banner-image" loading="lazy" />
+  <!-- ✅ Main Banner Area -->
+  <div class="main-content">
+    <img src="logo.png" alt="MyAstrology Logo" class="logo">
+    <img src="banner1.jpg" alt="Astrology Banner" class="banner-image" loading="lazy">
   </div>
 
 </body>
