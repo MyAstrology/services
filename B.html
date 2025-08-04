@@ -288,66 +288,103 @@
       text-align: center;
       margin: 2rem 0;
     }
-    @media screen and (max-width: 768px) {
-      .about-container {
-        flex-direction: column;
-        padding: 1rem;
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dr. Prodyut Acharya — Vedic astrologer, palmistry expert, and spiritual guide with over a decade of experience.">
+  <meta name="keywords" content="Vedic Astrology, Palmistry, Prodyut Acharya, Spiritual Guide, MyAstrology">
+  <meta name="author" content="Dr. Prodyut Acharya">
+  <title>About Prodyut Acharya | My Astrology</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      background: #f5f7fa;
+      color: #222;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .about-header {
+      text-align: center;
+      font-size: 2rem;
+      color: #2c3e50;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .about-flex {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .about-img {
+      border: 5px solid #3498db;
+      max-width: 100%;
+      height: auto;
+    }
+    .caption {
+      text-align: center;
+      font-size: 0.95rem;
+      color: #555;
+      margin-top: 5px;
+    }
+    .about-content {
+      padding: 20px;
+    }
+    .tagline {
+      font-family: 'Brush Script MT', cursive;
+      font-size: 1.8rem;
+      color: #8e44ad;
+      text-align: center;
+      margin-top: 30px;
+    }
+    @media (min-width: 768px) {
+      .about-flex {
+        flex-direction: row;
+        gap: 30px;
+        align-items: flex-start;
       }
-      .image-box::before {
-        content: "Dr. Prodyut Acharya";
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        background-color: rgba(0, 123, 255, 0.7);
-        color: #fff;
-        padding: 0.3rem 0.6rem;
-        font-size: 1.1rem;
-      }
-      h1 {
-        font-size: 1.5rem;
-        border-left: none;
-        text-align: center;
-        padding: 0;
+      .about-img {
+        max-width: 350px;
       }
     }
   </style>
 </head>
 <body>
-  <section class="about-container">
-    <div class="image-box">
-      <img src="About.jpg" alt="Dr. Prodyut Acharya at work with certificates and globe">
-      <div class="image-caption">Dr. Prodyut Acharya - Vedic Astrologer & Spiritual Guide</div>
-    </div>
-    <div class="text-box">
-      <h1>Where Ancient Vision Meets Cosmic Transformation</h1>
-      <p>
-        Welcome to <strong>My Astrology</strong> — where ancient wisdom meets modern insight.
-        I’m <strong>Dr. Prodyut Acharya</strong>, a Vedic astrologer, palmistry expert, and spiritual guide with over a decade of experience in decoding the cosmic blueprint of human life.
-        With academic credentials including M.A., M.Phil., and Ph.D. in Astrology, my journey has been one of <em>deep study, soulful practice, and heartfelt service</em>.
-      </p>
-      <p>
-        I was once a curious seeker—scientific, skeptical, and spiritually neutral. But life has a way of turning doubts into revelations. From reading about <a href="https://prodyutacharya.blogspot.com/2025/07/krishna-astrology-transformation-map.html" target="_blank">Swami Vivekananda and Ramakrishna</a> to exploring the depths of the <a href="https://blog.myastrology.in/2025/07/myastrology-sartre-marcus-aurelius.html" target="_blank">Mahabharata and Patanjali's Yoga Sutras</a>, I discovered not just knowledge—but purpose.
-      </p>
-      <p>
-        Astrology found me through personal suffering. Why could I not overcome financial hardship despite success? In pursuit of answers, I immersed myself in ancient scriptures and later studied formally at
-        <strong>Viswa Jyotish Vidyapeeth</strong> and <strong>South Kolkata Astrology and Vastu Science Academy</strong>. Here’s a brief overview:
-      </p>
-      <ul>
-        <li><strong>Certificate in Astrology</strong> – Basics of signs, planets, houses, dashas, nakshatras.</li>
-        <li><strong>Diploma in Astrology</strong> – Divisional charts, shadbala, transits, progressions.</li>
-        <li><strong>Bachelor of Astrology</strong> – Vedic, Western, Chinese comparative systems.</li>
-        <li><strong>Master of Astrology</strong> – Research methodology, spiritual counseling, and remedies.</li>
-      </ul>
-      <p>
-        I explore how ancient knowledge intersects with consciousness, karma, and neuroscience—detailed in <a href="https://prodyutacharya.blogspot.com/2025/07/Palmistryneuroscience.html" target="_blank">this article on palmistry and science</a>.
-        For reflections on how Vedic astrology transforms destiny, explore my <a href="https://blog.myastrology.in/2025/07/blog-post_30.html" target="_blank">astrology and transformation journal</a>.
-      </p>
-      <p>
-        Join me on this sacred path—where we don’t just predict the future, we shape it with divine alignment.
-      </p>
-      <p><strong>Om Namah Shivay</strong></p>
-    </div>
-  </section>  <div class="tagline">✨ Guided by the Stars, Grounded in the Soul ✨</div>
+  <div class="container">
+    <div class="about-header">🔮 Dr. Prodyut Acharya — Guiding Light Through Vedic Wisdom</div>
+    <div class="about-flex">
+      <div>
+        <img src="About.jpg" alt="Dr. Prodyut Acharya at work with globe and certificates" class="about-img">
+        <div class="caption">Dr. Prodyut Acharya in his study — where cosmic patterns come alive.</div>
+      </div>
+      <div class="about-content">
+        <p>Welcome to <strong>My Astrology</strong> — where ancient wisdom meets modern insight. I’m <strong>Dr. Prodyut Acharya</strong>, a Vedic astrologer, palmistry expert, and spiritual guide with over a decade of experience in decoding the cosmic blueprint of human life.</p><p>With academic credentials including M.A., M.Phil., and Ph.D. in Astrology, my journey has been one of deep study, soulful practice, and heartfelt service. I once viewed divinity through a scientific lens, but my quest to challenge God led me to discover Him more deeply — through the teachings of <a href="https://bangla.myastrology.in/2025/07/BestA.html" target="_blank">Swami Vivekananda</a>, Ramakrishna Paramahamsa, Adiguru Shankaracharya, and Buddha. Their lives became my turning point.</p>
+
+    <p>Astrology came into my life through pain — not curiosity. Despite fame and tireless effort, financial struggle haunted me. Searching for answers, I turned to scriptures. Self-study wasn't enough. That’s when I enrolled at <strong>Viswa Jyotish Vidyapeeth</strong> in Kolkata, followed by <strong>South Kolkata Astrology and Vastu Science Academy</strong>. Over 6 years, I trained intensely, earning the following degrees:</p>
+
+    <ul>
+      <li><strong>Certificate in Astrology</strong>: Basics of planets, houses, yogas, and horoscope interpretation</li>
+      <li><strong>Diploma in Astrology</strong>: Deeper analysis using divisional charts, transits, shadbala, etc.</li>
+      <li><strong>Bachelor of Astrology</strong>: Introduction to Vedic, Western, and Chinese astrology systems</li>
+      <li><strong>Master of Astrology</strong>: Advanced techniques, counseling, research, and remedial practices</li>
+    </ul>
+
+    <p>I share thoughts on divine transformation in blogs like <a href="https://prodyutacharya.blogspot.com/2025/07/krishna-astrology-transformation-map.html" target="_blank">Krishna Astrology & Transformation</a>, and explore intersections of palmistry and psychology in <a href="https://prodyutacharya.blogspot.com/2025/07/Palmistryneuroscience.html" target="_blank">Palmistry & Neuroscience</a>.</p>
+
+    <p>You may also like: <a href="https://blog.myastrology.in/2025/07/myastrology-sartre-marcus-aurelius.html" target="_blank">Spirituality & Stoicism</a> and <a href="https://blog.myastrology.in/2025/07/blog-post_30.html" target="_blank">Modern Vedic Reflections</a>.</p>
+
+    <p><em>Om Namah Shivay</em></p>
+  </div>
+</div>
+<div class="tagline">“In the dance of the cosmos, the soul finds its rhythm.”</div>
+
+  </div>
 </body>
 </html>
 
