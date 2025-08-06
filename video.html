@@ -24,128 +24,239 @@
   <!-- ✅ Twitter Meta -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="MyAstrology – Dr. Prodyut Acharya">
-  <meta name="twitter:description" content="Astrology & palmistry for love, marriage, career, health.">
-  <meta name="twitter:image" content="https://astro.myastrology.in/images/og-image.jpg">
 
-  <!-- ✅ Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MyAstrology – Indian Best Astrology and Palmistry Consultant Services by Dr. Prodyut Acharya. Expert in love, marriage, career & kundli solutions.">
+  <meta name="keywords" content="Astrologer Prodyut Acharya, Indian astrologer, palmistry consultant, love problem solution, kundli matching, career astrology, vastu tips, online astrology consultation">
+  <meta name="author" content="Dr. Prodyut Acharya">
+    
+    <!-- Font Awesome CDN --><!-- Replace previous CDN with this -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.0/css/all.css" crossorigin="anonymous" />
+    
+<meta property="og:title" content="My Astrology – Google Map & Reviews">
+<meta property="og:description" content="Accurate Jyotish & Hast Rekha services in West Bengal. See location and read client reviews.">
+<meta property="og:url" content="https://g.co/kgs/gKvsyvb">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://astro.myastrology.in/images/jyotish-location-review.jpg">
+    
+  <!-- Open Graph for social sharing -->
+  <meta property="og:title" content="MyAstrology – Dr. Prodyut Acharya | Indian Astrology & Palmistry">
+  <meta property="og:description" content="Best Astrologer in India – MyAstrology Services by Dr. Prodyut Acharya. Online Astrology, Palmistry, Horoscope, Vastu, Kundli Solutions.">
+  <meta property="og:image" content="https://www.myastrology.in/logo.png">
+  <meta property="og:url" content="https://www.myastrology.in">
+  <meta property="og:type" content="website">
 
-  <!-- ✅ Styles -->
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MyAstrology – Dr. Prodyut Acharya | Indian Astrology & Palmistry">
+  <meta name="twitter:description" content="Astrology & Palmistry Consultation – Love, Marriage, Career, Kundli. Online & Offline Services.">
+  <meta name="twitter:image" content="https://www.myastrology.in/logo.png">
+
+  <!-- JSON-LD Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "MyAstrology",
+    "url": "https://www.myastrology.in",
+    "logo": "https://www.myastrology.in/logo.png",
+    "sameAs": [
+      "https://www.facebook.com/Dr.ProdyutAcharya",
+      "https://www.instagram.com/myastrology.in",
+      "https://youtube.com/@myastrology"
+    ],
+    "description": "MyAstrology – Indian Astrology & Palmistry Services by Dr. Prodyut Acharya. Accurate love, marriage, career solutions.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Ranaghat",
+      "addressCountry": "IN"
+    }
+  }
+  </script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S7BQGLP211"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-S7BQGLP211');
+  </script>
+
+  <title>MyAstrology Ranaghat – Dr. Prodyut Acharya | Indian Astrology & Palmistry</title>
+
   <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #f9f9f9;
     }
 
-    /* ===== Header Styles ===== */
-    .header-container {
-      border: 3px solid #419bff;
-      border-radius: 12px;
-      overflow: hidden;
-      margin: 15px;
-      background-color: #fff;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-    }
-
-    .top-nav {
+    .header {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 12px 20px;
-      background-color: #ffffff;
-      border-bottom: 2px solid #419bff;
-      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 10px 20px;
+      background: #0c1b33;
+      color: white;
+      position: relative;
     }
 
-    .nav-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
+    .hamburger {
+      font-size: 24px;
+      cursor: pointer;
     }
 
-    .nav-links a {
+    .logo-text {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .logo-on-banner {
+      height: 40px;
+    }
+
+    .menu {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      left: 10px;
+      background: #0c1b33;
+      border: 1px solid #fff;
+      z-index: 999;
+    }
+
+    .menu a {
+      color: white;
+      padding: 10px 20px;
       text-decoration: none;
-      color: #0d1117;
-      font-weight: 600;
-      transition: all 0.3s ease;
     }
 
-    .nav-links a:hover {
-      color: #419bff;
+    .menu a:hover {
+      background: #13274a;
     }
 
     .banner-slider {
-      position: relative;
       width: 100%;
       height: auto;
+      overflow: hidden;
     }
 
     .banner-slider img {
       width: 100%;
-      height: auto;
       display: none;
-      object-fit: cover;
-      transition: opacity 1s ease-in-out;
     }
 
     .banner-slider img.active {
       display: block;
     }
 
-    .logo-on-banner {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      height: 60px;
-      z-index: 10;
-    }
-
-    @media (max-width: 600px) {
-      .top-nav {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .nav-links {
-        margin-top: 10px;
-      }
-
-      .logo-on-banner {
-        height: 45px;
-        bottom: 10px;
-        left: 10px;
+    @media screen and (min-width: 768px) {
+      .menu {
+        display: none;
       }
     }
   </style>
 </head>
 
-<body>
+    
+    <body>
 
-  <!-- ✅ Header Start -->
-  <header class="header-container">
-    <div class="top-nav">
-      <div class="nav-links">
-        <a href="/">হোম</a>
-        <a href="/about">আমাদের সম্পর্কে</a>
-        <a href="/services">সেবা</a>
-        <a href="/contact">যোগাযোগ</a>
-      </div>
-    </div>
+  <div class="header">
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <div class="logo-text">MyAstrology</div>
+    <img src="logo.png" alt="MyAstrology Logo" class="logo-on-banner">
+  </div>
 
-    <!-- ✅ Logo on Banner -->
-    <img src="logo.png" alt="MyAstrology Logo" class="logo-on-banner" />
+  <div class="menu" id="menu">
+    <a href="https://astro.myastrology.in">Home</a>
+    <a href="https://astro.myastrology.in/about.html">About</a>
+    <a href="https://astro.myastrology.in/video.html">Video</a>
+    <a href="https://astro.myastrology.in/vedic-astronomy.html">Contact</a>
+    <a href="#">Kundli</a>
+    <a href="https://astro.myastrology.in/Palmistry.html">Palmistry</a>
+    <a href="#">Horoscope</a>
+    <a href="#">Love/Marriage</a>
+    <a href="#">Career</a>
+    <a href="#">Consult Now</a>
+  </div>
 
-    <!-- ✅ Banner Image Slider -->
-    <div class="banner-slider">
-      <img src="banner1.jpg" alt="Banner 1" class="active" />
-      <img src="banner2.jpg" alt="Banner 2" />
-      <img src="banner3.jpg" alt="Banner 3" />
-      <img src="banner4.jpg" alt="Banner 4" />
-      <img src="banner5.jpg" alt="Banner 5" />
-    </div>
-  </header>
-  <!-- ✅ Header End -->
+  <div class="banner-slider">
+    <img src="banner1.webp" alt="MyAstrology banner – Best Indian astrologer and palmist Dr. Prodyut Acharya offering online and offline astrology consultation in Ranaghat, West Bengal" class="active">
+    <img src="banner2.webp" alt="Astrology and palmistry consultation banner – Dr. Prodyut Acharya, expert in love, marriage, career, kundli matching, and gemstone advice">
+    <img src="banner3.webp" alt="Vedic astrology and palm reading services – MyAstrology by Dr. Prodyut Acharya, accurate horoscope analysis and life guidance">
+    <img src="banner4.webp" alt="MyAstrology Ranaghat – Indian astrology, palmistry, numerology, vastu tips, and gemstone consultation by Dr. Prodyut Acharya">
+    <img src="banner5.webp" Professional astrologer and palmist Dr. Prodyut Acharya – MyAstrology online consultation for destiny, karma, and life solutions">
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+    }
+
+    // Simple slider
+    let current = 0;
+    const images = document.querySelectorAll('.banner-slider img');
+    setInterval(() => {
+      images[current].classList.remove('active');
+      current = (current + 1) % images.length;
+      images[current].classList.add('active');
+    }, 4000);
+  </script>
+
+</body>
+</html>
+
+<!-- 🌟 One-line Astrology Slider with Emojis -->
+<style>
+  .scroll-slider {
+    width: 100%;
+    overflow: hidden;
+    background: #000028;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: 'Segoe UI', sans-serif;
+    white-space: nowrap;
+    box-sizing: border-box;
+    padding: 16px 0;
+    border-top: 3px solid #ffcc00;
+    border-bottom: 3px solid #ffcc00;
+  }
+
+  .scroll-text {
+    display: inline-block;
+    padding-left: 100%;
+    animation: scroll-left 20s linear infinite;
+  }
+
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .scroll-slider {
+      font-size: 1.1rem;
+    }
+  }
+</style>
+
+<div class="scroll-slider">
+  <div class="scroll-text">
+    ✨ MyAstrology – Indian Best Astrology & Palmistry Consultant Services 🔭 Astrologer & Palmist Dr. Prodyut Acharya PhD in Vedic Jyotish 💫
+  </div>
+</div>
+  
 
                               <section class="video-gallery" style="padding: 20px; max-width: 1200px; margin: auto;">
   <h2 style="text-align: center; font-size: 28px; margin-bottom: 30px;">
