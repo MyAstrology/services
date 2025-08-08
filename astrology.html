@@ -112,20 +112,27 @@
       margin: 4px 0;
     }
     @media (max-width: 900px) {
-      nav {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background: #fff;
-        border-top: 1px solid #ddd;
-      }
-      nav.active {
-        display: flex;
-      }
-      .menu-toggle {
-        display: flex;
-      }
-    }
+  nav {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    align-items: center;  /* এখানে যোগ করুন */
+  }
+  nav.active {
+    display: flex;
+  }
+  nav a {
+    width: 90%;           /* আকার নিয়ন্ত্রণে দিতে পারেন */
+    text-align: center;   /* টেক্সট সেন্টার করার জন্য */
+    padding: 12px 0;      /* কিছু অতিরিক্ত padding */
+    border-bottom: 1px solid #eee;
+  }
+  .menu-toggle {
+    display: flex;
+  }
+}
     /* Banner */
     .banner img {
       width: 100%;
