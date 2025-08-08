@@ -205,16 +205,42 @@
     <img src="banner1.jpg" alt="MyAstrology Banner" />
   </div>
 
-  <!-- Scroll Banner -->
-  <section class="scroll-banner" aria-label="ভাগ্যের রহস্য বার্তা">
-    <span>
-      🌟 ভাগ্যের রহস্য উন্মোচনে প্রস্তুত? আমি ড. প্রদ্যুৎ আচার্য — MyAstrology, যেখানে প্রতিটি পরামর্শ হয় আপনার ভবিষ্যতের সঠিক চাবিকাঠি। 🔑✨
-    </span>
-  </section>
-</body>
-</html>
+<!-- Scroll Banner -->
+<section class="scroll-banner" aria-label="ভাগ্যের রহস্য বার্তা">
+  <span>
+    🌟 ভাগ্যের রহস্য উন্মোচনে প্রস্তুত? আমি ড. প্রদ্যুৎ আচার্য — MyAstrology, যেখানে প্রতিটি পরামর্শ হয় আপনার ভবিষ্যতের সঠিক চাবিকাঠি। 🔑✨
+  </span>
+</section>
 
-
+<style>
+  .scroll-banner {
+    position: relative;
+    background: #fff;
+    padding: 15px 0;
+    border-top: 2px solid #eee;
+    border-bottom: 2px solid #eee;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+    font-size: 1.6rem;
+    color: #222;
+    white-space: nowrap;
+  }
+  .scroll-banner span {
+    display: inline-block;
+    padding-left: 100%;
+    animation: scroll-left 20s linear infinite;
+  }
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+</style>
+  
 <style>
   .card {
     background: linear-gradient(135deg, #f0f4ff, #d9e6ff);
