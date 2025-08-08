@@ -1216,9 +1216,9 @@
 
 <style>
   .ctr-card {
-    max-width: 600px;
+    max-width: 800px;       /* আগে ছিল 600px */
     margin: 40px auto;
-    padding: 30px 28px;
+    padding: 30px 40px;     /* প্যাডিং একটু বাড়ানো */
     background: linear-gradient(135deg, #fff7e6, #ffe0b2);
     border-radius: 18px;
     box-shadow: 0 12px 30px rgba(255, 165, 0, 0.35);
@@ -1234,13 +1234,15 @@
   .btn-group {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 24px;              /* gap একটু বাড়ানো */
     flex-wrap: wrap;
   }
   .btn {
+    flex: 1 1 250px;        /* প্রতিটি বাটন কমপক্ষে 250px */
+    max-width: 320px;       /* বাটন খুব বড় না হয় */
     display: inline-block;
-    padding: 12px 24px;
-    font-size: 1.15em;
+    padding: 14px 28px;     /* বাটন প্যাডিং একটু বাড়ানো */
+    font-size: 1.2em;       /* ফন্ট সাইজ একটু বড় */
     font-weight: 700;
     border-radius: 30px;
     cursor: pointer;
@@ -1265,6 +1267,19 @@
   .btn-razerpay:hover {
     background-color: #24b984;
   }
+
+  /* মোবাইলের জন্য স্পেশাল */
+  @media (max-width: 480px) {
+    .ctr-card {
+      padding: 25px 20px;
+    }
+    .btn {
+      flex: 1 1 100%;
+      max-width: 100%;
+      font-size: 1.15em;
+      padding: 14px 20px;
+    }
+  }
 </style>
 
 <div class="ctr-card">
@@ -1283,18 +1298,16 @@
 
 <!-- Google Fonts Bengali-friendly -->
 <link href="https://fonts.googleapis.com/css2?family=SolaimanLipi&display=swap" rel="stylesheet">
-
 <style>
   .footer {
-    background: #222;
+    background: #2c2f33;
     color: #eee;
-    padding: 30px 20px;
-    font-family: 'SolaimanLipi', 'Noto Sans Bengali', sans-serif;
+    padding: 24px 0;
     text-align: center;
-    border-top: 4px solid #ff9800;
+    font-family: 'SolaimanLipi', 'Noto Sans Bengali', sans-serif;
   }
   .footer .social-icons {
-    margin: 15px 0 25px;
+    margin: 12px 0 0;
     display: flex;
     justify-content: center;
     gap: 24px;
@@ -1303,32 +1316,60 @@
     color: #eee;
     font-size: 28px;
     transition: color 0.3s ease;
-    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #40444b;
   }
   .footer .social-icons a:hover {
-    color: #ff9800;
+    color: #1db954;
+    background: #181a1d;
   }
-  .footer p {
+  /* Individual brand colors on hover */
+  .footer .social-icons a.whatsapp:hover {
+    color: #25d366;
+  }
+  .footer .social-icons a.facebook:hover {
+    color: #3b5998;
+  }
+  .footer .social-icons a.youtube:hover {
+    color: #ff0000;
+  }
+  .footer .social-icons a.x:hover {
+    color: #1da1f2;
+  }
+  .footer .copyright {
+    margin-top: 14px;
     font-size: 14px;
-    margin: 0;
-    opacity: 0.8;
+    color: #aaa;
   }
 </style>
 
+<!-- FontAwesome CDN for icons -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+
 <footer class="footer">
-  <div class="social-icons" aria-label="সোশ্যাল মিডিয়া লিংক">
-    <a href="https://www.facebook.com/Dr.ProdyutAcharya" target="_blank" aria-label="Facebook" rel="noopener noreferrer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M22 12c0-5.522-4.477-10-10-10S2 6.478 2 12c0 5 3.657 9.128 8.438 9.878v-6.987h-2.54v-2.89h2.54v-2.206c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.772-1.63 1.562v1.879h2.773l-.443 2.89h-2.33v6.987C18.343 21.127 22 17 22 12z"/></svg>
+  <div class="social-icons" aria-label="সোশ্যাল মিডিয়া লিঙ্কসমূহ">
+    <a href="https://wa.me/919333122768" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="whatsapp">
+      <i class="fab fa-whatsapp"></i>
     </a>
-    <a href="https://instagram.com/myastrology.in" target="_blank" aria-label="Instagram" rel="noopener noreferrer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zM12 7a5 5 0 110 10 5 5 0 010-10zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm5.5-.25a1 1 0 110 2 1 1 0 010-2z"/></svg>
+    <a href="https://www.facebook.com/YourPage" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="facebook">
+      <i class="fab fa-facebook-f"></i>
     </a>
-    <a href="https://youtube.com/@myastrology" target="_blank" aria-label="YouTube" rel="noopener noreferrer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M10 15l5.19-3L10 9v6zm10-3c0-1.1-.9-2-2-2h-2v4h2c1.1 0 2-.9 2-2zm-4-7H8c-2.21 0-4 1.79-4 4v6c0 2.21 1.79 4 4 4h8c2.21 0 4-1.79 4-4v-6c0-2.21-1.79-4-4-4z"/></svg>
+    <a href="https://www.youtube.com/@YourChannel" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="youtube">
+      <i class="fab fa-youtube"></i>
     </a>
-    <a href="https://twitter.com/AcharyaProdyut" target="_blank" aria-label="Twitter" rel="noopener noreferrer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.16 4.16 0 001.82-2.3 8.29 8.29 0 01-2.63 1 4.13 4.13 0 00-7.03 3.76A11.72 11.72 0 013 5.15a4.13 4.13 0 001.28 5.51 4.07 4.07 0 01-1.87-.52v.05a4.14 4.14 0 003.31 4.06 4.19 4.19 0 01-1.86.07 4.15 4.15 0 003.87 2.88 8.29 8.29 0 01-5.13 1.76A8.36 8.36 0 012 19.54a11.69 11.69 0 006.29 1.84c7.55 0 11.68-6.26 11.68-11.68 0-.18 0-.37-.01-.55A8.34 8.34 0 0022.46 6z"/></svg>
+    <a href="https://x.com/YourProfile" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" class="x">
+      <i class="fab fa-x-twitter"></i>
     </a>
-</div>
-  <p>© 2025 MyAstrology | নির্মিত প্রফেশনাল Dr. Prodyut Acharya দ্বারা</p>
+  </div>
+  <div class="copyright">
+    © 2025 MyAstrology | সর্বস্বত্ব সংরক্ষিত
+  </div>
 </footer>
