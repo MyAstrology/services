@@ -492,14 +492,18 @@
     
     
     
-
 <footer style="
   background: #66ccff;
   color: #330000;
   padding: 25px 15px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
 ">
+
   <p style="margin: 0 0 10px 0; font-weight: 600; font-size: 16px;">
     © 2025 MyAstrology | All Rights Reserved.
   </p>
@@ -532,16 +536,5 @@
       <i class="fab fa-linkedin-in"></i>
     </a>
   </div>
-</footer>
 
-<script>
-  // Optional: ছোট হোভার এফেক্ট যোগ করার জন্য
-  document.querySelectorAll('footer a').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      el.style.transform = 'scale(1.2)';
-    });
-    el.addEventListener('mouseleave', () => {
-      el.style.transform = 'scale(1)';
-    });
-  });
-</script>
+</footer>
