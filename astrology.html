@@ -869,24 +869,58 @@
   <p>© 2025 MyAstrology | সকল অধিকার সংরক্ষিত</p>
   <p>আপনার জীবন এবং ভাগ্যের জন্য প্রামাণিক জ্যোতিষ ও হস্তরেখা পরামর্শ</p>
   
-  <div style="margin:15px 0;">
-    <a href="WHATSAPP_LINK" target="_blank" style="margin:0 10px; color:#25D366; font-size:24px; text-decoration:none;">
-      <i class="fa fa-whatsapp"></i>
+  <!-- Add FontAwesome CDN in your <head> if না থাকে -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+<footer style="
+  background: #375bd2;
+  color: #f0f4f8;
+  padding: 25px 15px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+">
+  <p style="margin: 0 0 10px 0; font-weight: 600; font-size: 16px;">
+    © 2025 MyAstrology | সকল অধিকার সংরক্ষিত
+  </p>
+  <p style="margin: 0 0 20px 0; font-size: 14px;">
+    আপনার জীবন এবং ভাগ্যের জন্য প্রামাণিক জ্যোতিষ ও হস্তরেখা পরামর্শ
+  </p>
+
+  <div style="
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    font-size: 26px;
+  ">
+    <a href="WHATSAPP_LINK" target="_blank" style="color: #25D366; transition: transform 0.3s;" title="WhatsApp" aria-label="WhatsApp">
+      <i class="fab fa-whatsapp"></i>
     </a>
-    <a href="FACEBOOK_LINK" target="_blank" style="margin:0 10px; color:#3b5998; font-size:24px; text-decoration:none;">
-      <i class="fa fa-facebook-f"></i>
+    <a href="FACEBOOK_LINK" target="_blank" style="color: #3b5998; transition: transform 0.3s;" title="Facebook" aria-label="Facebook">
+      <i class="fab fa-facebook-f"></i>
     </a>
-    <a href="YOUTUBE_LINK" target="_blank" style="margin:0 10px; color:#FF0000; font-size:24px; text-decoration:none;">
-      <i class="fa fa-youtube"></i>
+    <a href="YOUTUBE_LINK" target="_blank" style="color: #FF0000; transition: transform 0.3s;" title="YouTube" aria-label="YouTube">
+      <i class="fab fa-youtube"></i>
     </a>
-    <a href="INSTAGRAM_LINK" target="_blank" style="margin:0 10px; color:#E4405F; font-size:24px; text-decoration:none;">
-      <i class="fa fa-instagram"></i>
+    <a href="INSTAGRAM_LINK" target="_blank" style="color: #E4405F; transition: transform 0.3s;" title="Instagram" aria-label="Instagram">
+      <i class="fab fa-instagram"></i>
     </a>
-    <a href="X_LINK" target="_blank" style="margin:0 10px; color:#1DA1F2; font-size:24px; text-decoration:none;">
-      <i class="fa fa-twitter"></i>
+    <a href="X_LINK" target="_blank" style="color: #1DA1F2; transition: transform 0.3s;" title="X (Twitter)" aria-label="X (Twitter)">
+      <i class="fab fa-twitter"></i>
     </a>
-    <a href="LINKEDIN_LINK" target="_blank" style="margin:0 10px; color:#0077b5; font-size:24px; text-decoration:none;">
-      <i class="fa fa-linkedin"></i>
+    <a href="LINKEDIN_LINK" target="_blank" style="color: #0077b5; transition: transform 0.3s;" title="LinkedIn" aria-label="LinkedIn">
+      <i class="fab fa-linkedin-in"></i>
     </a>
   </div>
 </footer>
+
+<script>
+  // Optional: ছোট হোভার এফেক্ট যোগ করার জন্য
+  document.querySelectorAll('footer a').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      el.style.transform = 'scale(1.2)';
+    });
+    el.addEventListener('mouseleave', () => {
+      el.style.transform = 'scale(1)';
+    });
+  });
+</script>
