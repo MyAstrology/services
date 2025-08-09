@@ -1,6 +1,6 @@
 # 🌟 MyAstrology – Indian Astrology & Palmistry Services  
 
-![MyAstrology Banner]([https://www.facebook.com/share/p/16jFFdPqQu/)] 
+![MyAstrology Banner]([https://www.facebook.com/p/16jFFdPqQu/)] 
 *(Replace with your actual banner image URL)*  
 
 Welcome to **MyAstrology**, your trusted destination for **Vedic astrology**, **palmistry**, and **spiritual guidance**.  
