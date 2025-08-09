@@ -1,6 +1,8 @@
 # 🌟 MyAstrology – Indian Astrology & Palmistry Services  
 
- ![MyAstrology banner with Vedic astrology and palmistry theme, golden zodiac signs, cosmic starry sky, and a mystical palmistry hand – designed for Indian astrology website by Dr. Prodyut Acharya](https://astro.myastrology.in/images/banner.jpg "MyAstrology – Indian Astrology & Palmistry Banner by Dr. Prodyut Acharya")
+# MyAstrology – Indian Astrology & Palmistry Services
+
+![MyAstrology banner with Vedic astrology and palmistry theme, golden zodiac signs, cosmic starry sky, and a mystical palmistry hand – designed for Indian astrology website by Dr. Prodyut Acharya](https://astro.myastrology.in/images/banner.jpg "MyAstrology – Indian Astrology & Palmistry Banner by Dr. Prodyut Acharya")
 *(Replace with your actual banner image URL)*  
 
 Welcome to **MyAstrology**, your trusted destination for **Vedic astrology**, **palmistry**, and **spiritual guidance**.  
