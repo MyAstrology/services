@@ -22,8 +22,8 @@ Visit our official site: [astro.myastrology.in](https://astro.myastrology.in)
 
 ## 📞 Contact
 
-WhatsApp: [+91 97325 22709](https://wa.me/919732522709)  
-Email: myastrologyconsult@gmail.com
+WhatsApp: [+91 9333122768](https://wa.me/919333122768)  
+Email: prodyutacharya7@gmail.com
 
 ## 📣 About the Astrologer
 
