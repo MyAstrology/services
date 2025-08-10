@@ -11,6 +11,30 @@
   
   <!-- JSON-LD LocalBusiness Schema -->
   <script type="application/ld+json">
+.scroll-banner {
+  background: #fff;
+  padding: 15px 0;
+  overflow: hidden;
+  border-top: 2px solid #eee;
+  border-bottom: 2px solid #eee;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #222;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.scroll-text {
+  display: inline-block;
+  white-space: nowrap;
+  padding-left: 100%;
+  animation: scroll-left 15s linear infinite;
+}
+
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+    
   {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -139,10 +163,10 @@
 </body>
 </html>
 
-<section style="background:#fff; padding:15px 0; overflow:hidden; border-top:2px solid #eee; border-bottom:2px solid #eee;">  
-  <marquee behavior="scroll" direction="left" scrollamount="4" style="font-size:1.6rem; font-weight:600; color:#222; font-family: 'Segoe UI', sans-serif;">  
-    🌟 ভাগ্যের রহস্য উন্মোচনে প্রস্তুত? আমি ড. প্রদ্যুৎ আচার্য — MyAstrology, যেখানে প্রতিটি পরামর্শ হয় আপনার ভবিষ্যতের সঠিক চাবিকাঠি। 🔑✨  
-  </marquee>  
+<section class="scroll-banner">
+  <div class="scroll-text">
+    🌟 ভাগ্যের রহস্য উন্মোচনে প্রস্তুত? আমি ড. প্রদ্যুৎ আচার্য — MyAstrology, যেখানে প্রতিটি পরামর্শ হয় আপনার ভবিষ্যতের সঠিক চাবিকাঠি। 🔑✨
+  </div>
 </section>
 
 
