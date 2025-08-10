@@ -1,101 +1,174 @@
-<!DOCTYPE html>
-<html lang="bn">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<!DOCTYPE html>  
+<html lang="bn">  
+<head>  
+  <meta charset="UTF-8">  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
   
-  <title>Vedic Astronomy – রাশিচক্র, সূর্য-চন্দ্র বছর ও তিথি</title>
-  <meta name="description" content="রাশিচক্র, সূর্য ও চন্দ্র বছরের পার্থক্য, তিথি গণনা ও বৈদিক জ্যোতির্বিজ্ঞান নিয়ে বিস্তারিত ব্যাখ্যা। ড. প্রদ্যুৎ আচার্য – MyAstrology.in" />
-  <link rel="canonical" href="https://astro.myastrology.in/vedic-astronomy.html" />
-  <meta name="author" content="Dr. Prodyut Acharya" />
-
-  <!-- CSS স্ক্রলিং টেক্সটের জন্য -->
-  <style>
-    /* Scroll Banner CSS */
-    .scroll-banner {
-      position: relative;
-      background: #fff;
-      padding: 15px 0;
-      overflow: hidden;
-      border-top: 2px solid #eee;
-      border-bottom: 2px solid #eee;
-    }
-    .scroll-text {
-      display: inline-block;
-      white-space: nowrap;
-      font-size: 1.6rem;
-      font-weight: 600;
-      color: #222;
-      font-family: 'Segoe UI', sans-serif;
-      animation: scroll-left 15s linear infinite;
-    }
-    @keyframes scroll-left {
-      0%   { transform: translateX(100%); }  /* ডান পাশ থেকে শুরু */
-      100% { transform: translateX(-100%); } /* বাম পাশ পর্যন্ত */
-    }
-
-    /* আপনার বাকি CSS এখানে থাকবে */
-    body {
-      margin: 0;
-      font-family: 'Noto Serif Bengali', serif;
-    }
-    /* header, nav, banner ইত্যাদি এর CSS এখানে থাকবে */
-  </style>
-
-  <!-- JSON-LD LocalBusiness Schema (শুধুমাত্র JSON ডাটা) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "MyAstrology – Dr. Prodyut Acharya",
-    "url": "https://www.myastrology.in",
-    "telephone": "+91-9333122768",
-    "sameAs": [
-      "https://www.facebook.com/Dr.ProdyutAcharya",
-      "https://www.instagram.com/myastrology.in",
-      "https://youtube.com/@myastrology",
-      "https://x.com/AcharyaProdyut"
-    ]
-  }
-  </script>
-
-</head>
-<body>
-
-<header>
-  <div class="logo">
-    <img src="logo.png" alt="MyAstrology Logo – বৈদিক জ্যোতিষ ও জ্যোতির্বিজ্ঞান, Dr. Prodyut Acharya" />
-    <span><strong> MyAstrology – ড. প্রদ্যুৎ আচার্য</strong></span>
-  </div>
-  <div class="menu-toggle" onclick="document.querySelector('nav').classList.toggle('active')">
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
-  <nav>
-    <a href="index.html">🏠 হোম</a>
-    <a href="https://astro.myastrology.in/about.html">আমাদের সম্পর্কে</a>
-    <a href="services.html">সেবা</a>
-    <a href="astrology.html">জ্যোতিষ শাস্ত্র</a>
-    <a href="https://astro.myastrology.in/palmistry.html">হস্তরেখা</a>
-    <a href="https://prodyutacharya.blogspot.com">ব্লগ</a>
-    <a href="https://astro.myastrology.in/video.html">ভিডিও</a>
-    <a href="contact.html">যোগাযোগ</a>
-    <a href="https://www.myastrology.in">বুকিং</a>
-    <a href="faq.html">প্রশ্নোত্তর</a>
-  </nav>
-</header>
-
-<div class="banner">
-  <img src="banner1.jpg" alt="MyAstrology – বৈদিক জ্যোতির্বিজ্ঞান ও রাশিচক্র ব্যানার" />
-</div>
-
-<!-- স্ক্রলিং টেক্সট সেকশন -->
-<section class="scroll-banner">
-  <div class="scroll-text">
-    🌟 ভাগ্যের রহস্য উন্মোচনে প্রস্তুত? আমি ড. প্রদ্যুৎ আচার্য — MyAstrology, যেখানে প্রতিটি পরামর্শ হয় আপনার ভবিষ্যতের সঠিক চাবিকাঠি। 🔑✨
-  </div>
-</section>
+  <!-- SEO Meta Tags -->  
+  <title>Vedic Astronomy – রাশিচক্র, সূর্য-চন্দ্র বছর ও তিথি</title>  
+  <meta name="description" content="রাশিচক্র, সূর্য ও চন্দ্র বছরের পার্থক্য, তিথি গণনা ও বৈদিক জ্যোতির্বিজ্ঞান নিয়ে বিস্তারিত ব্যাখ্যা। ড. প্রদ্যুৎ আচার্য – MyAstrology.in">  
+<link rel="canonical" href="https://astro.myastrology.in/vedic-astronomy.html">  
+    
+  <!-- JSON-LD LocalBusiness Schema -->  
+  <script type="application/ld+json">  
+.scroll-banner {  
+  background: #fff;  
+  padding: 15px 0;  
+  overflow: hidden;  
+  border-top: 2px solid #eee;  
+  border-bottom: 2px solid #eee;  
+  font-size: 1.6rem;  
+  font-weight: 600;  
+  color: #222;  
+  font-family: 'Segoe UI', sans-serif;  
+}  
+  
+.scroll-text {  
+  display: inline-block;  
+  white-space: nowrap;  
+  padding-left: 100%;  
+  animation: scroll-left 15s linear infinite;  
+}  
+  
+@keyframes scroll-left {  
+  0% { transform: translateX(0); }  
+  100% { transform: translateX(-100%); }  
+}  
+      
+  {  
+    "@context": "https://schema.org",  
+    "@type": "LocalBusiness",  
+    "name": "MyAstrology – Dr. Prodyut Acharya",  
+    "url": "https://www.myastrology.in",  
+    "telephone": "+91-9333122768",  
+    "sameAs": [  
+      "https://www.facebook.com/Dr.ProdyutAcharya",  
+      "https://www.instagram.com/myastrology.in",  
+      "https://youtube.com/@myastrology",  
+      "https://x.com/AcharyaProdyut"  
+    ]  
+  }  
+  </script>  
+    
+  <style>  
+    body {  
+      margin: 0;  
+      font-family: 'Noto Serif Bengali', serif;  
+    }  
+    /* Header */  
+    header {  
+      background: #fff;  
+      border-bottom: 2px solid #ddd;  
+      display: flex;  
+      align-items: center;  
+      justify-content: space-between;  
+      padding: 8px 16px;  
+      flex-wrap: wrap;  
+    }  
+    .logo {  
+      display: flex;  
+      align-items: center;  
+    }  
+    .logo img {  
+      height: 50px;  
+      margin-right: 10px;  
+    }  
+    nav {  
+      display: flex;  
+      gap: 12px;  
+    }  
+    nav a {  
+      text-decoration: none;  
+      color: #222;  
+      font-weight: bold;  
+      font-size: 0.95rem;  
+      padding: 6px 10px;  
+      border-radius: 4px;  
+      transition: background 0.3s;  
+    }  
+    nav a:hover {  
+      background: #f2f2f2;  
+    }  
+    /* Mobile Menu Button */  
+    .menu-toggle {  
+      display: none;  
+      flex-direction: column;  
+      cursor: pointer;  
+    }  
+    .menu-toggle div {  
+      width: 25px;  
+      height: 3px;  
+      background: #333;  
+      margin: 4px 0;  
+    }  
+    @media (max-width: 900px) {  
+      nav {  
+        display: none;  
+        flex-direction: column;  
+        width: 100%;  
+        background: #fff;  
+        border-top: 1px solid #ddd;  
+      }  
+      nav.active {  
+        display: flex;  
+      }  
+      .menu-toggle {  
+        display: flex;  
+      }  
+    }  
+    /* Banner */  
+    .banner img {  
+      width: 100%;  
+      height: auto;  
+      display: block;  
+    }  
+  </style>  
+</head>  
+<body>  
+  
+<header>  
+  <!-- Logo -->  
+  <div class="logo">  
+    <img src="logo.png" <img src="logo.png" alt="MyAstrology Logo – বৈদিক জ্যোতিষ ও জ্যোতির্বিজ্ঞান, Dr. Prodyut Acharya">  
+    <span><strong> MyAstrology – ড. প্রদ্যুৎ আচার্য</strong></span>  
+  </div>  
+  
+  <!-- Mobile Menu Button -->  
+  <div class="menu-toggle" onclick="document.querySelector('nav').classList.toggle('active')">  
+    <div></div>  
+    <div></div>  
+    <div></div>  
+  </div>  
+  
+  <!-- Navigation Menu -->  
+  <nav>  
+    <a href="index.html">🏠 হোম</a>  
+    <a href="https://astro.myastrology.in/about.html">আমাদের সম্পর্কে</a>  
+    <a href="services.html">সেবা</a>  
+    <a href="astrology.html">জ্যোতিষ শাস্ত্র</a>  
+    <a href="https://astro.myastrology.in/palmistry.html">হস্তরেখা</a>  
+    <a href="https://prodyutacharya.blogspot.com">ব্লগ</a>  
+    <a href="https://astro.myastrology.in/video.html">ভিডিও</a>  
+    <a href="contact.html">যোগাযোগ</a>  
+    <a href="https://www.myastrology.in">বুকিং</a>  
+    <a href="faq.html">প্রশ্নোত্তর</a>  
+  </nav>  
+</header>  
+  
+<!-- Banner Section -->  
+<div class="banner">  
+  <img src="banner1.jpg" alt="MyAstrology – বৈদিক জ্যোতির্বিজ্ঞান ও রাশিচক্র ব্যানার">  
+</div>  
+  
+</body>  
+</html>  
+  
+<section class="scroll-banner">  
+  <div class="scroll-text">  
+    🌟 ভাগ্যের রহস্য উন্মোচনে প্রস্তুত? আমি ড. প্রদ্যুৎ আচার্য — MyAstrology, যেখানে প্রতিটি পরামর্শ হয় আপনার ভবিষ্যতের সঠিক চাবিকাঠি। 🔑✨  
+  </div>  
+</section>  
+  
 
 <!-- আপনার বাকী কন্টেন্ট এখানে থাকবে -->
 
