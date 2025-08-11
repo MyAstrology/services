@@ -117,6 +117,17 @@
     .banner-slider img.active {
       display: block;
     }
+   @media screen and (min-width: 768px) {
+  .menu {
+    display: flex !important; /* অথবা display:block; */
+    flex-direction: row;
+    position: static;
+    border: none;
+  }
+  .menu a {
+    padding: 10px 15px;
+  }
+}
     @media screen and (min-width: 768px) {
       .menu {
         display: none;
