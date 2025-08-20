@@ -9,6 +9,16 @@
   
   <style>
     body {margin:0; font-family: SolaimanLipi, sans-serif; background:#fafafa;}
+
+.menu {
+  display:none;
+  flex-direction: column;
+}
+.menu.show {
+  display: flex;
+}
+
+
     
 /* Headline */
 .rashi-section h2{
@@ -293,6 +303,16 @@
         document.getElementById("menu").classList.remove("show");
       });
     });
+
+    document.addEventListener("DOMContentLoaded", function() {
+  const hamburger = document.querySelector(".hamburger");
+  const menu = document.querySelector(".menu");
+
+  hamburger.addEventListener("click", function() {
+    menu.classList.toggle("show");
+  });
+});
+
   </script>
 </body>
 </html>
