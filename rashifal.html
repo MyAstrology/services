@@ -23,12 +23,20 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />  
 
   <style>  
-stacking */
-  @media (max-width:768px) {
-    .rashifal-grid {
-      grid-template-columns: 1fr; /* এক কলাম হবে */
-    }
+
+.rashifal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Desktop: 2 column */
+  gap: 20px;
+}
+
+/* Mobile / ছোট screen: vertical stacking */
+@media (max-width:768px) {
+  .rashifal-grid {
+    grid-template-columns: 1fr;
   }
+}
+
     
  html, body {
 max-width: 100%;
