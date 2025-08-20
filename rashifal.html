@@ -84,6 +84,92 @@
       margin:auto;
     }
     .zodiac-icons .icon:hover {
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyAstrology Ranaghat Astrologer and Palmist Dr Prodyut Acharya – রাশিফল</title>
+
+  <style>
+    body {margin:0; font-family: SolaimanLipi, sans-serif; background:#fafafa;}
+
+    /* Header */
+    header {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:12px 20px;
+      background:#fff8f2;
+      border-bottom:1px solid #e2d4c5;
+      position:sticky;
+      top:0;
+      z-index:999;
+    }
+    header .logo img {height:40px;}
+    header .title {font-size:22px; font-weight:bold; color:#b33;}
+    header .hamburger {
+      display:flex;
+      flex-direction:column;
+      cursor:pointer;
+      gap:5px;
+    }
+    header .hamburger span {
+      width:28px; height:3px;
+      background:#333; border-radius:3px;
+    }
+
+    /* Menu */
+    .menu {
+      display:none;
+      flex-direction:column;
+      background:#fff8f2;
+      padding:12px;
+      border-top:1px solid #e2d4c5;
+    }
+    .menu.show {display:flex;}
+    .menu a {
+      padding:8px 12px;
+      text-decoration:none;
+      color:#444;
+      font-size:16px;
+      border-radius:6px;
+      display:block;
+    }
+    .menu a:hover {background:#f3e7da; color:#b33;}
+
+    @media(min-width:768px){
+      .menu {display:flex; flex-direction:row; justify-content:center;}
+      header .hamburger {display:none;}
+    }
+
+    /* Zodiac Icons */
+    .zodiac-icons {
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(80px,1fr));
+      gap:18px;
+      padding:20px;
+      background:#fff;
+    }
+    .zodiac-icons a {
+      text-align:center;
+      text-decoration:none;
+      color:#333;
+      font-size:14px;
+    }
+    .zodiac-icons .icon {
+      width:60px; height:60px;
+      border-radius:50%;
+      border:2px solid #e2d4c5;
+      background:#faf7f2;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:28px;
+      transition:0.3s;
+      margin:auto;
+    }
+    .zodiac-icons .icon:hover {
       transform:scale(1.1);
       border-color:#b33;
       color:#b33;
@@ -119,18 +205,18 @@
 
   <!-- Zodiac Icons -->
   <section class="zodiac-icons">
-    <a href="#mesha-rashi-svabhab-bhagya"><div class="icon">♈</div>মেষ</a>
-    <a href="#brisha-rashi-svabhab-bhagya"><div class="icon">♉</div>বৃষ</a>
-    <a href="#mithun-rashi-svabhab-bhagya"><div class="icon">♊</div>মিথুন</a>
-    <a href="#karkat-rashi-svabhab-bhagya"><div class="icon">♋</div>কর্কট</a>
-    <a href="#simha-rashi-svabhab-bhagya"><div class="icon">♌</div>সিংহ</a>
-    <a href="#kanya-rashi-svabhab-bhagya"><div class="icon">♍</div>কন্যা</a>
-    <a href="#tula-rashi-svabhab-bhagya"><div class="icon">♎</div>তুলা</a>
-    <a href="#brishchik-rashi-svabhab-bhagya"><div class="icon">♏</div>বৃশ্চিক</a>
-    <a href="#dhanu-rashi-svabhab-bhagya"><div class="icon">♐</div>ধনু</a>
-    <a href="#makar-rashi-svabhab-bhagya"><div class="icon">♑</div>মকর</a>
-    <a href="#kumbha-rashi-svabhab"><div class="icon">♒</div>কুম্ভ</a>
-    <a href="#meen-rashi-svabhab"><div class="icon">♓</div>মীন</a>
+    <a href="#mesha-rashi"><div class="icon">♈</div>মেষ</a>
+    <a href="#brisha-rashi"><div class="icon">♉</div>বৃষ</a>
+    <a href="#mithun-rashi"><div class="icon">♊</div>মিথুন</a>
+    <a href="#karkat-rashi"><div class="icon">♋</div>কর্কট</a>
+    <a href="#simha-rashi"><div class="icon">♌</div>সিংহ</a>
+    <a href="#kanya-rashi"><div class="icon">♍</div>কন্যা</a>
+    <a href="#tula-rashi"><div class="icon">♎</div>তুলা</a>
+    <a href="#brishchik-rashi"><div class="icon">♏</div>বৃশ্চিক</a>
+    <a href="#dhanu-rashi"><div class="icon">♐</div>ধনু</a>
+    <a href="#makar-rashi"><div class="icon">♑</div>মকর</a>
+    <a href="#kumbha-rashi"><div class="icon">♒</div>কুম্ভ</a>
+    <a href="#meen-rashi"><div class="icon">♓</div>মীন</a>
   </section>
 
   <!-- JS -->
@@ -139,12 +225,12 @@
       const hamburger = document.querySelector(".hamburger");
       const menu = document.getElementById("menu");
 
-      // হ্যামবার্গার টগল
+      // Hamburger click → toggle menu
       hamburger.addEventListener("click", function() {
         menu.classList.toggle("show");
       });
 
-      // যেকোনো লিঙ্কে ক্লিক করলে মেনু বন্ধ
+      // When clicking any menu link → close menu
       document.querySelectorAll(".menu a").forEach(link=>{
         link.addEventListener("click",()=> menu.classList.remove("show"));
       });
