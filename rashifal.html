@@ -728,40 +728,145 @@
       color: #555;
       line-height: 1.6;
     }
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MyAstrology – ড. প্রদ্যুৎ আচার্য কর্তৃক বৈদিক জ্যোতিষশাস্ত্র, হস্তরেখা, বাস্তু শাস্ত্র, ব্লগ ও ভিডিওর সঠিক পরামর্শ। রাশি, গ্রহ ও ভবিষ্যৎ বিশ্লেষণ।">
+  <meta name="keywords" content="জ্যোতিষ, রাশি, হস্তরেখা, বাস্তু, astrology, Bengali astrology, Dr Prodyut Acharya">
+  <meta name="author" content="Dr. Prodyut Acharya">
+  <title>MyAstrology – ড. প্রদ্যুৎ আচার্য | বৈদিক জ্যোতিষ ও রাশিফল</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "SolaimanLipi", Arial, sans-serif;
+      background: #fafafa;
+      color: #333;
+    }
 
-    /* Zodiac Grid */
-    .zodiac {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-      gap: 15px;
+    /* Header */
+    header {
+      background: #4a148c;
+      color: #fff;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 20px;
+    }
+    header h1 span {
+      font-size: 14px;
+      display: block;
+      color: #f8bbd0;
+    }
+
+    /* Navigation */
+    nav {
+      margin-top: 10px;
+      width: 100%;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+    nav ul li {
+      display: inline;
+    }
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 6px 10px;
+      transition: 0.3s;
+    }
+    nav ul li a:hover {
+      background: #6a1b9a;
+      border-radius: 6px;
+    }
+
+    /* Banner */
+    .banner {
+      text-align: center;
+      padding: 30px 15px;
+      background: linear-gradient(120deg, #f3e5f5, #ede7f6);
+    }
+    .banner h2 {
+      font-size: 22px;
+      margin-bottom: 12px;
+      color: #4a148c;
+    }
+    .banner p {
+      font-size: 16px;
       max-width: 700px;
-      margin: 20px auto;
+      margin: auto;
+      line-height: 1.6;
+    }
+
+    /* Rashi Section */
+    .rashi-section {
+      max-width: 1200px;
+      margin: 30px auto;
       padding: 0 15px;
     }
-    .zodiac div {
+    .rashi-section h3 {
+      text-align: center;
+      font-size: 22px;
+      margin-bottom: 20px;
+      color: #b33;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 12px;
+    }
+    .rashi-card {
       background: #fff;
       padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
       text-align: center;
-      transition: transform 0.3s ease;
-      font-size: 16px;
+      border-radius: 10px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      font-size: 15px;
+      transition: transform 0.3s;
     }
-    .zodiac div:hover {
-      transform: translateY(-4px);
-      background: #ffecec;
+    .rashi-card:hover {
+      transform: translateY(-5px);
+    }
+    .rashi-card span {
+      font-size: 22px;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    /* Footer */
+    footer {
+      background: #4a148c;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      margin-top: 30px;
+      font-size: 14px;
     }
 
     @media (max-width: 600px) {
-      .header h1 {
+      header h1 {
         font-size: 18px;
+      }
+      nav ul {
+        gap: 8px;
       }
       .banner h2 {
         font-size: 18px;
-      }
-      nav a {
-        display: block;
-        margin: 8px 0;
       }
     }
   </style>
@@ -769,53 +874,59 @@
 <body>
 
   <!-- Header -->
-  <div class="header">
-    <h1>MyAstrology Logo – Dr. Prodyut Acharya</h1>
-    <p>MyAstrology – ড. প্রদ্যুৎ আচার্য</p>
-  </div>
-
-  <!-- Navbar -->
-  <nav>
-    🏠 হোম
-    <a href="https://astro.myastrology.in/about.html">আমাদের সম্পর্কে</a>
-    <a href="https://wa.me/919333122768">যোগাযোগ</a>
-    <span>জ্যোতিষ শাস্ত্র</span>
-    <a href="https://astro.myastrology.in/palmistry.html">হস্তরেখা</a>
-    <a href="https://prodyutacharya.blogspot.com">ব্লগ</a>
-    <a href="https://astro.myastrology.in/video.html">ভিডিও</a>
-    <span>বাস্তু শাস্ত্র</span>
-    <a href="https://www.myastrology.in">বুকিং</a>
-    <a href="https://blog.myastrology.in">বাংলা ব্লগ</a>
-  </nav>
+  <header>
+    <h1>MyAstrology Logo – Dr. Prodyut Acharya <span>MyAstrology – ড. প্রদ্যুৎ আচার্য</span></h1>
+    
+    <!-- Navigation -->
+    <nav>
+      <ul>
+        <li>🏠 হোম</li>
+        <li><a href="https://astro.myastrology.in/about.html">আমাদের সম্পর্কে</a></li>
+        <li><a href="https://wa.me/919333122768">যোগাযোগ</a></li>
+        <li>জ্যোতিষ শাস্ত্র</li>
+        <li><a href="https://astro.myastrology.in/palmistry.html">হস্তরেখা</a></li>
+        <li><a href="https://prodyutacharya.blogspot.com">ব্লগ</a></li>
+        <li><a href="https://astro.myastrology.in/video.html">ভিডিও</a></li>
+        <li>বাস্তু শাস্ত্র</li>
+        <li><a href="https://www.myastrology.in">বুকিং</a></li>
+        <li><a href="https://blog.myastrology.in">বাংলা ব্লগ</a></li>
+      </ul>
+    </nav>
+  </header>
 
   <!-- Banner -->
-  <div class="banner">
+  <section class="banner">
     <h2>বৈদিক জ্যোতির্বিজ্ঞান ও রাশিচক্র</h2>
-    <p>🌟 ভাগ্যের রহস্য উন্মোচনে প্রস্তুত?  
-    আমি ড. প্রদ্যুৎ আচার্য — MyAstrology,  
-    যেখানে প্রতিটি পরামর্শ হয় আপনার ভবিষ্যতের সঠিক চাবিকাঠি। 🔑✨</p>
-  </div>
+    <p>🌟 ভাগ্যের রহস্য উন্মোচনে প্রস্তুত? আমি ড. প্রদ্যুৎ আচার্য — <b>MyAstrology</b>, 
+       যেখানে প্রতিটি পরামর্শ হয় আপনার ভবিষ্যতের সঠিক চাবিকাঠি। 🔑✨</p>
+  </section>
 
-  <!-- Zodiac Signs -->
-  <div class="zodiac">
-    <div>♈ মেষ</div>
-    <div>♉ বৃষ</div>
-    <div>♊ মিথুন</div>
-    <div>♋ কর্কট</div>
-    <div>♌ সিংহ</div>
-    <div>♍ কন্যা</div>
-    <div>♎ তুলা</div>
-    <div>♏ বৃশ্চিক</div>
-    <div>♐ ধনু</div>
-    <div>♑ মকর</div>
-    <div>♒ কুম্ভ</div>
-    <div>♓ মীন</div>
-  </div>
+  <!-- Rashi Section -->
+  <section class="rashi-section">
+    <h3>♈ রাশি তালিকা</h3>
+    <div class="grid">
+      <div class="rashi-card"><span>♈</span> মেষ</div>
+      <div class="rashi-card"><span>♉</span> বৃষ</div>
+      <div class="rashi-card"><span>♊</span> মিথুন</div>
+      <div class="rashi-card"><span>♋</span> কর্কট</div>
+      <div class="rashi-card"><span>♌</span> সিংহ</div>
+      <div class="rashi-card"><span>♍</span> কন্যা</div>
+      <div class="rashi-card"><span>♎</span> তুলা</div>
+      <div class="rashi-card"><span>♏</span> বৃশ্চিক</div>
+      <div class="rashi-card"><span>♐</span> ধনু</div>
+      <div class="rashi-card"><span>♑</span> মকর</div>
+      <div class="rashi-card"><span>♒</span> কুম্ভ</div>
+      <div class="rashi-card"><span>♓</span> মীন</div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 MyAstrology – ড. প্রদ্যুৎ আচার্য | All Rights Reserved
+  </footer>
 
 </body>
 </html>
-
-
 
 
 <section id="janma-rashi" style="padding:40px 20px; background-color:#fdfdfd; font-family: 'Segoe UI', sans-serif;">
