@@ -14,6 +14,18 @@
   <meta property="og:type" content="website" />
 
   <style>
+.rashi-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 20px !important;
+}
+@media (max-width: 768px) {
+  .rashi-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+    
     /* Reset and base */
     body {
       margin: 0;
