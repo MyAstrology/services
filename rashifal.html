@@ -106,36 +106,53 @@ color: #b33;
 font-size: 18px;
 }
 
-/* ✅ Hamburger */
+/* Hamburger সবসময় visible */
 .hamburger {
-display: none;
-flex-direction: column;
-cursor: pointer;
-gap: 5px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
 }
 .hamburger span {
-width: 28px;
-height: 3px;
-background: #333;
-border-radius: 3px;
+  width: 28px;
+  height: 3px;
+  background: #333;
+  border-radius: 3px;
 }
 
-/* ✅ Menu */
+/* Menu hidden by default */
 nav.menu {
-display: flex;
-gap: 14px;
+  display: none;
+  flex-direction: column;
+  gap: 14px;
+  background: #fff8f2;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  padding: 12px 0;
+  border-top: 1px solid #e2d4c5;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  z-index: 999;
 }
+
+nav.menu.show {
+  display: flex;
+}
+
+/* Menu links */
 nav.menu a {
-padding: 8px 12px;
-text-decoration: none;
-color: #444;
-font-size: 15px;
-border-radius: 6px;
-transition: background 0.3s, color 0.3s;
+  padding: 8px 12px;
+  text-decoration: none;
+  color: #444;
+  font-size: 15px;
+  border-radius: 6px;
+  transition: background 0.3s, color 0.3s;
 }
+
 nav.menu a:hover {
-background: #f3e7da;
-color: #b33;
+  background: #f3e7da;
+  color: #b33;
 }
 
 /* ✅ Responsive Menu */
@@ -222,10 +239,6 @@ border-color: #b33;
 color: #b33;
 }
 
-
-
-
-
   </style>
 
 
@@ -284,26 +297,16 @@ color: #b33;
   </section>  
 
   <!-- ✅ JS for Hamburger Menu -->  
-  <script>  
-    const hamburger = document.getElementById("hamburger-menu");  
-    const navMenu = document.getElementById("nav-menu");  
+  <script>
+  const hamburger = document.getElementById('hamburger-menu');
+  const menu = document.getElementById('nav-menu');
 
-    hamburger.addEventListener("click", () => {  
-      navMenu.classList.toggle("show");  
-    });  
+  hamburger.addEventListener('click', () => {
+    menu.classList.toggle('show'); // click করলে show class toggle হবে
+  });
+</script>
 
-    document.querySelectorAll("nav.menu a").forEach(link => {  
-      link.addEventListener("click", () => {  
-        navMenu.classList.remove("show");  
-      });  
-    });  
-  </script>  
-</body>  
-</html>
-  
 
-</body>
-</html>
   <!-- Rashi Section -->
 
 
