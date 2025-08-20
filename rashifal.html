@@ -654,98 +654,166 @@
       transform: scale(1.1);
       border-color: #b33;
       color: #b33;
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyAstrology – ড. প্রদ্যুৎ আচার্য</title>
+  <style>
+    body {
+      font-family: "SolaimanLipi", Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fafafa;
+      color: #333;
     }
 
-    /* Scroll Banner */
-    .scroll-banner {
+    /* Header */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
       background: #fff;
-      padding: 15px 0;
-      overflow: hidden;
-      border-top: 2px solid #eee;
-      border-bottom: 2px solid #eee;
-      font-size: 1.6rem;
-      font-weight: 600;
-      color: #222;
-      font-family: 'Segoe UI', sans-serif;
-      white-space: nowrap;
+      padding: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
     }
-    .scroll-text {
+    .header h1 {
+      margin: 5px 0;
+      font-size: 22px;
+      color: #b22222;
+    }
+    .header p {
+      margin: 0;
+      font-size: 16px;
+      color: #444;
+    }
+
+    /* Navbar */
+    nav {
+      background: #b22222;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 6px 10px;
+      font-size: 15px;
       display: inline-block;
-      padding-left: 100%;
-      animation: scroll-left 15s linear infinite;
     }
-    @keyframes scroll-left {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Banner */
+    .banner {
+      background: linear-gradient(to right, #ffefef, #fff9f5);
+      text-align: center;
+      padding: 30px 20px;
+      margin: 20px auto;
+      border-radius: 12px;
+      max-width: 900px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .banner h2 {
+      font-size: 22px;
+      margin-bottom: 10px;
+      color: #444;
+    }
+    .banner p {
+      font-size: 16px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    /* Zodiac Grid */
+    .zodiac {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 15px;
+      max-width: 700px;
+      margin: 20px auto;
+      padding: 0 15px;
+    }
+    .zodiac div {
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      text-align: center;
+      transition: transform 0.3s ease;
+      font-size: 16px;
+    }
+    .zodiac div:hover {
+      transform: translateY(-4px);
+      background: #ffecec;
+    }
+
+    @media (max-width: 600px) {
+      .header h1 {
+        font-size: 18px;
+      }
+      .banner h2 {
+        font-size: 18px;
+      }
+      nav a {
+        display: block;
+        margin: 8px 0;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <img src="logo.png" alt="MyAstrology Logo – Dr. Prodyut Acharya" />
-      <span>MyAstrology – ড. প্রদ্যুৎ আচার্য</span>
-    </div>
-    <div class="hamburger" id="hamburger-menu">
-      <span></span><span></span><span></span>
-    </div>
-    <nav class="menu" id="nav-menu">
-      <a href="index.html">🏠 হোম</a>
-      <a href="https://astro.myastrology.in/about.html">আমাদের সম্পর্কে</a>
-      <a href="https://wa.me/919333122768">যোগাযোগ</a>
-      <a href="astrology.html">জ্যোতিষ শাস্ত্র</a>
-      <a href="https://astro.myastrology.in/palmistry.html">হস্তরেখা</a>
-      <a href="https://prodyutacharya.blogspot.com">ব্লগ</a>
-      <a href="https://astro.myastrology.in/video.html">ভিডিও</a>
-      <a href="vastu-science.html">বাস্তু শাস্ত্র</a>
-      <a href="https://www.myastrology.in">বুকিং</a>
-      <a href="https://blog.myastrology.in">বাংলা ব্লগ</a>
-    </nav>
-  </header>
 
-  <div class="banner">
-    <img src="astrology-ranaghat-banner4.webp" alt="বৈদিক জ্যোতির্বিজ্ঞান ও রাশিচক্র ব্যানার" />
+  <!-- Header -->
+  <div class="header">
+    <h1>MyAstrology Logo – Dr. Prodyut Acharya</h1>
+    <p>MyAstrology – ড. প্রদ্যুৎ আচার্য</p>
   </div>
 
-  <section class="scroll-banner">
-    <div class="scroll-text">
-      🌟 ভাগ্যের রহস্য উন্মোচনে প্রস্তুত? আমি ড. প্রদ্যুৎ আচার্য — MyAstrology, যেখানে প্রতিটি পরামর্শ হয় আপনার ভবিষ্যতের সঠিক চাবিকাঠি। 🔑✨
-    </div>
-  </section>
+  <!-- Navbar -->
+  <nav>
+    🏠 হোম
+    <a href="https://astro.myastrology.in/about.html">আমাদের সম্পর্কে</a>
+    <a href="https://wa.me/919333122768">যোগাযোগ</a>
+    <span>জ্যোতিষ শাস্ত্র</span>
+    <a href="https://astro.myastrology.in/palmistry.html">হস্তরেখা</a>
+    <a href="https://prodyutacharya.blogspot.com">ব্লগ</a>
+    <a href="https://astro.myastrology.in/video.html">ভিডিও</a>
+    <span>বাস্তু শাস্ত্র</span>
+    <a href="https://www.myastrology.in">বুকিং</a>
+    <a href="https://blog.myastrology.in">বাংলা ব্লগ</a>
+  </nav>
 
-  <section class="zodiac-icons">
-    <a href="#mesha-rashi-svabhab-bhagya"><div class="icon">♈</div>মেষ</a>
-    <a href="#brisha-rashi-svabhab-bhagya"><div class="icon">♉</div>বৃষ</a>
-    <a href="#mithun-rashi-svabhab-bhagya"><div class="icon">♊</div>মিথুন</a>
-    <a href="#karkat-rashi-svabhab-bhagya"><div class="icon">♋</div>কর্কট</a>
-    <a href="#simha-rashi-svabhab-bhagya"><div class="icon">♌</div>সিংহ</a>
-    <a href="#kanya-rashi-svabhab-bhagya"><div class="icon">♍</div>কন্যা</a>
-    <a href="#tula-rashi-svabhab-bhagya"><div class="icon">♎</div>তুলা</a>
-    <a href="#brishchik-rashi"><div class="icon">♏</div>বৃশ্চিক</a>
-    <a href="#dhanu-rashi-svabhab-bhagya"><div class="icon">♐</div>ধনু</a>
-    <a href="#makar-rashi-svabhab-bhagya"><div class="icon">♑</div>মকর</a>
-    <a href="#kumv-rashi-svabhab-bhagya"><div class="icon">♒</div>কুম্ভ</a>
-    <a href="#meen-rashi-svabhab-bhagya"><div class="icon">♓</div>মীন</a>
-  </section>
+  <!-- Banner -->
+  <div class="banner">
+    <h2>বৈদিক জ্যোতির্বিজ্ঞান ও রাশিচক্র</h2>
+    <p>🌟 ভাগ্যের রহস্য উন্মোচনে প্রস্তুত?  
+    আমি ড. প্রদ্যুৎ আচার্য — MyAstrology,  
+    যেখানে প্রতিটি পরামর্শ হয় আপনার ভবিষ্যতের সঠিক চাবিকাঠি। 🔑✨</p>
+  </div>
 
-  <script>
-    const hamburger = document.getElementById("hamburger-menu");
-    const navMenu = document.getElementById("nav-menu");
+  <!-- Zodiac Signs -->
+  <div class="zodiac">
+    <div>♈ মেষ</div>
+    <div>♉ বৃষ</div>
+    <div>♊ মিথুন</div>
+    <div>♋ কর্কট</div>
+    <div>♌ সিংহ</div>
+    <div>♍ কন্যা</div>
+    <div>♎ তুলা</div>
+    <div>♏ বৃশ্চিক</div>
+    <div>♐ ধনু</div>
+    <div>♑ মকর</div>
+    <div>♒ কুম্ভ</div>
+    <div>♓ মীন</div>
+  </div>
 
-    hamburger.addEventListener("click", () => {
-      navMenu.classList.toggle("show");
-    });
-
-    // Close menu when a menu link is clicked (optional)
-    document.querySelectorAll("nav.menu a").forEach(link => {
-      link.addEventListener("click", () => {
-        navMenu.classList.remove("show");
-      });
-    });
-  </script>
 </body>
 </html>
-
 
 
 
