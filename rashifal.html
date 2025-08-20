@@ -21,77 +21,7 @@
   line-height: 1.85;
   font-size: 17px;
   font-family: "SolaimanLipi", "Noto Sans Bengali", "Noto Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  color: #222;
-}
 
-/* Headline */
-.rashi-section h2{
-  margin: 0 0 12px;
-  font-size: 1.6rem;
-  line-height: 1.2;
-  color: #b33;
-  font-weight: 700;
-}
-
-/* Anchor inside H2 (for anchor link look) */
-.rashi-section h2 a{
-  color: inherit;
-  text-decoration: none;
-  display: inline-block;
-}
-
-/* Figure & image */
-.rashi-section figure{
-  margin: 18px 0;
-  text-align: center;
-}
-.rashi-section img{
-  max-width: 100%;
-  height: auto;
-  display: inline-block;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-  vertical-align: middle;
-  /* ensure responsive retina clarity */
-  image-rendering: auto;
-}
-
-/* Figcaption */
-.rashi-section figcaption{
-  margin-top: 8px;
-  font-size: 0.95rem;
-  color: #575757;
-}
-
-/* Subheadings */
-.rashi-section h3{
-  margin-top: 20px;
-  margin-bottom: 10px;
-  font-size: 1.05rem;
-  line-height: 1.25;
-  font-weight: 600;
-}
-
-/* Paragraphs */
-.rashi-section p{
-  margin: 0 0 12px;
-  text-align: justify;
-  text-justify: inter-word;
-}
-
-/* Lists */
-.rashi-section ul{
-  margin: 8px 0 12px 1.15rem;
-  padding: 0;
-}
-.rashi-section li{
-  margin: 6px 0;
-  padding-left: 6px;
-}
-
-/* Emphasis and strong */
-.rashi-section strong{
-  font-weight: 700;
   color: #1b1b1b;
 }
 
@@ -200,31 +130,110 @@
       padding:20px;
       background:#fff;
     }
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyAstrology</title>
+  <style>
+    body {margin:0; font-family: SolaimanLipi, sans-serif; background:#fafafa;}
+
+    /* Base section style */
+    .rashi-section{
+      box-sizing: border-box;
+      max-width: 960px;
+      margin: 22px auto;
+      padding: 24px;
+      background: #faf7f2;
+      border: 1px solid #efe0cf;
+      border-radius: 14px;
+      line-height: 1.85;
+      font-size: 17px;
+      font-family: "SolaimanLipi","Noto Sans Bengali","Noto Sans",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+      color: #222;
+    }
+    .rashi-section h2{
+      margin: 0 0 12px;
+      font-size: 1.6rem;
+      line-height: 1.2;
+      color: #b33;
+      font-weight: 700;
+    }
+    .rashi-section h2 a{
+      color: inherit;
+      text-decoration: none; /* underline বন্ধ */
+      display: inline-block;
+    }
+    .rashi-section figure{margin:18px 0; text-align:center;}
+    .rashi-section img{
+      max-width:100%; height:auto; border-radius:12px;
+      box-shadow:0 2px 8px rgba(0,0,0,0.12);
+    }
+    .rashi-section figcaption{margin-top:8px;font-size:0.95rem;color:#575757;}
+    .rashi-section h3{margin:20px 0 10px;font-size:1.05rem;line-height:1.25;font-weight:600;}
+    .rashi-section p{margin:0 0 12px;text-align:justify;text-justify:inter-word;}
+    .rashi-section ul{margin:8px 0 12px 1.15rem;padding:0;}
+    .rashi-section li{margin:6px 0;padding-left:6px;}
+    .rashi-section strong{font-weight:700;color:#1b1b1b;}
+    .rashi-section p:last-of-type,
+    .rashi-section .rashi-footer{
+      text-align:center;margin-top:18px;font-weight:600;color:#444;
+    }
+
+    @media (max-width:520px){
+      .rashi-section{padding:18px;font-size:16px;border-radius:12px;margin:14px;}
+      .rashi-section h2{font-size:1.35rem;}
+      .rashi-section h3{font-size:1rem;}
+    }
+
+    /* Header */
+    header {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:12px 20px; background:#fff8f2; border-bottom:1px solid #e2d4c5;
+      position:sticky; top:0; z-index:999;
+    }
+    header .logo img {height:40px;}
+    header .title {font-size:22px;font-weight:bold;color:#b33;}
+    header .hamburger {
+      display:flex; flex-direction:column; cursor:pointer; gap:5px;
+    }
+    header .hamburger span {
+      width:28px; height:3px; background:#333; border-radius:3px;
+    }
+
+    /* Menu */
+    .menu {
+      display:none; flex-direction:column;
+      background:#fff8f2; padding:12px;
+      border-top:1px solid #e2d4c5;
+    }
+    .menu.show {display:flex;} /* toggle এর জন্য */
+    .menu a {
+      padding:8px 12px; text-decoration:none; color:#444;
+      font-size:16px; border-radius:6px;
+    }
+    .menu a:hover {background:#f3e7da; color:#b33;}
+
+    /* Zodiac icons */
+    .zodiac-icons {
+      display:grid; grid-template-columns: repeat(auto-fit,minmax(80px,1fr));
+      gap:18px; padding:20px; background:#fff;
+    }
     .zodiac-icons a {
-      text-align:center;
-      text-decoration:none;
-      color:#333;
-      font-size:14px;
+      text-align:center; text-decoration:none; color:#333; font-size:14px;
     }
     .zodiac-icons .icon {
-      width:60px; height:60px;
-      border-radius:50%;
-      border:2px solid #e2d4c5;
-      background:#faf7f2;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:28px;
-      transition:0.3s;
+      width:60px; height:60px; border-radius:50%; border:2px solid #e2d4c5;
+      background:#faf7f2; display:flex; align-items:center; justify-content:center;
+      font-size:28px; transition:0.3s;
     }
     .zodiac-icons .icon:hover {
-      transform:scale(1.1);
-      border-color:#b33;
-      color:#b33;
+      transform:scale(1.1); border-color:#b33; color:#b33;
     }
 
     @media(min-width:768px){
-      .menu {display:flex; flex-direction:row; justify-content:center;}
+      .menu {display:flex!important; flex-direction:row; justify-content:center;}
       header .hamburger {display:none;}
     }
   </style>
@@ -237,22 +246,12 @@
       <img src="logo.png" alt="MyAstrology Logo">
     </div>
     <div class="title">MyAstrology</div>
-    <div class="hamburger" onclick="document.getElementById('menu').classList.toggle('show')">
+    <div class="hamburger" id="hamburger">
       <span></span><span></span><span></span>
     </div>
   </header>
 
-  <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const hamburger = document.querySelector(".hamburger");
-    const menu = document.querySelector(".menu");
-
-    hamburger.addEventListener("click", function() {
-      menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
-    });
-  });
-  </script>
-  <!-- ✅ Menu -->
+  <!-- Menu -->
   <div class="menu" id="menu">
     <a href="https://astro.myastrology.in">Home</a>
     <a href="https://astro.myastrology.in/about.html">About</a>
@@ -267,31 +266,34 @@
   </div>
 
   <!-- Zodiac Icons -->
-<section class="zodiac-icons">
-  <a href="#mesha-rashi-svabhab-bhagya"><div class="icon">♈</div>মেষ</a>
-  <a href="#brisha-rashi-svabhab-bhagya"><div class="icon">♉</div>বৃষ</a>
-  <a href="#mithun-rashi-svabhab-bhagya"><div class="icon">♊</div>মিথুন</a>
-  <a href="#karkat-rashi-svabhab-bhagya"><div class="icon">♋</div>কর্কট</a>
-  <a href="#simha-rashi-svabhab-bhagya"><div class="icon">♌</div>সিংহ</a>
-  <a href="#kanya-rashi-svabhab-bhagya"><div class="icon">♍</div>কন্যা</a>
-  <a href="#tula-rashi-svabhab-bhagya"><div class="icon">♎</div>তুলা</a>
-  <a href="#brishchik-rashi-svabhab-bhagya"><div class="icon">♏</div>বৃশ্চিক</a>
-  <a href="#dhanu-rashi-svabhab-bhagya"><div class="icon">♐</div>ধনু</a>
-  <a href="#makar-rashi-svabhab-bhagya"><div class="icon">♑</div>মকর</a>
-  <a href="#kumbha-rashi-svabhab"><div class="icon">♒</div>কুম্ভ</a>
-  <a href="#meen-rashi-svabhab"><div class="icon">♓</div>মীন</a>
-</section>
+  <section class="zodiac-icons">
+    <a href="#mesha-rashi-svabhab-bhagya"><div class="icon">♈</div>মেষ</a>
+    <a href="#brisha-rashi-svabhab-bhagya"><div class="icon">♉</div>বৃষ</a>
+    <a href="#mithun-rashi-svabhab-bhagya"><div class="icon">♊</div>মিথুন</a>
+    <a href="#karkat-rashi-svabhab-bhagya"><div class="icon">♋</div>কর্কট</a>
+    <a href="#simha-rashi-svabhab-bhagya"><div class="icon">♌</div>সিংহ</a>
+    <a href="#kanya-rashi-svabhab-bhagya"><div class="icon">♍</div>কন্যা</a>
+    <a href="#tula-rashi-svabhab-bhagya"><div class="icon">♎</div>তুলা</a>
+    <a href="#brishchik-rashi-svabhab-bhagya"><div class="icon">♏</div>বৃশ্চিক</a>
+    <a href="#dhanu-rashi-svabhab-bhagya"><div class="icon">♐</div>ধনু</a>
+    <a href="#makar-rashi-svabhab-bhagya"><div class="icon">♑</div>মকর</a>
+    <a href="#kumbha-rashi-svabhab"><div class="icon">♒</div>কুম্ভ</a>
+    <a href="#meen-rashi-svabhab"><div class="icon">♓</div>মীন</a>
+  </section>
 
   <script>
-    // For mobile menu toggle
+    // Menu toggle
+    document.getElementById("hamburger").addEventListener("click",()=>{
+      document.getElementById("menu").classList.toggle("show");
+    });
+    // Close menu on link click (mobile)
     document.querySelectorAll(".menu a").forEach(link=>{
       link.addEventListener("click",()=>{
         document.getElementById("menu").classList.remove("show");
       });
     });
   </script>
-</body>
-</html>
+
 
 
 
