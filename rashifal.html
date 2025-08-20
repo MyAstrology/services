@@ -1524,11 +1524,12 @@ color: #b33;
 
 
 
-
 <!-- FOOTER SECTION: MyAstrology — রাশিফল পাতার জন্য -->
-<footer style="background:#0b0b2e;color:#f1f1f1;padding:40px 20px 20px;font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Noto Sans Bengali','Noto Sans',sans-serif;">
-  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px;">
-    
+<footer style="background:#0b0b2e;color:#f1f1f1;padding:40px 20px 20px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Noto Sans Bengali','Noto Sans',sans-serif;">
+  
+  <!-- GRID/FLEX CONTAINER -->
+  <div class="footer-grid" style="max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:28px;">
+
     <!-- Brand/Intro -->
     <div>
       <h2 style="font-size:20px;margin:0 0 10px;color:#fff;">🌌 MyAstrology</h2>
@@ -1537,7 +1538,7 @@ color: #b33;
         রাশি বিশ্লেষণ, জন্ম কুণ্ডলী, বিবাহ মিলন, ক্যারিয়ার, ব্যবসা ও জীবনের প্রতিটি ক্ষেত্রে সমাধান।
       </p>
     </div>
-    
+
     <!-- Quick Links -->
     <div>
       <h3 style="font-size:16px;margin:0 0 12px;color:#fff;">🔗 দরকারী লিংক</h3>
@@ -1580,6 +1581,7 @@ color: #b33;
         </a>
       </div>
     </div>
+
   </div>
 
   <!-- Bottom Note -->
@@ -1589,7 +1591,25 @@ color: #b33;
 
   <!-- FontAwesome for social icons -->
   <script src="https://kit.fontawesome.com/2d3d4446d5.js" crossorigin="anonymous"></script>
+
+  <!-- RESPONSIVE FLEX CSS -->
+  <style>
+    /* Vertical stacking for all screens */
+    footer .footer-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    /* Optional: যদি বড় স্ক্রিনে এক লাইনে রাখতে চাও তবে uncomment করো */
+    /*
+    @media(min-width:1024px){
+      footer .footer-grid {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+    */
+  </style>
+
 </footer>
-
-
-    
