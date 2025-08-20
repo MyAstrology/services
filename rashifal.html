@@ -304,17 +304,126 @@
     }
     .hamburger span {
       width: 25px;
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>বাংলা রাশিফল ২০২৬ – Dr Prodyut Acharya | MyAstrology Ranaghat</title>
+
+  <!-- SEO Meta Description -->
+  <meta name="description" content="দৈনিক রাশিফল, জন্ম রাশি ও জ্যোতিষ শাস্ত্র বিশ্লেষণ – বাংলায়। প্রতিদিনের ভাগ্য, বৈদিক জ্যোতিষ ও জীবন পথ নির্দেশিকা Dr. প্রদ্যুৎ আচার্যের কাছে। MyAstrology থেকে রাশির সঠিক ভবিষ্যৎ জানুন।" />
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="বাংলা রাশিফল ২০২৬ – Dr Prodyut Acharya | MyAstrology Ranaghat" />
+  <meta property="og:description" content="দৈনিক রাশিফল, জন্ম রাশি ও জ্যোতিষ শাস্ত্র বিশ্লেষণ – বাংলায়।" />
+  <meta property="og:image" content="https://astro.myastrology.in/images/rashifal-preview.jpg" />
+  <meta property="og:url" content="https://astro.myastrology.in/rashifal.html" />
+  <meta property="og:type" content="website" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://astro.myastrology.in/rashifal.html" />
+
+  <!-- FontAwesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">  
+  {  
+    "@context": "https://schema.org",  
+    "@type": "LocalBusiness",  
+    "name": "MyAstrology – Dr. Prodyut Acharya",  
+    "url": "https://www.myastrology.in",  
+    "telephone": "+91-9333122768",  
+    "sameAs": [  
+      "https://www.facebook.com/Dr.ProdyutAcharya",  
+      "https://www.instagram.com/myastrology.in",  
+      "https://youtube.com/@myastrology",  
+      "https://x.com/AcharyaProdyut"  
+    ]  
+  }  
+  </script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "SolaimanLipi", "Noto Sans Bengali", sans-serif;
+      background: #fafafa;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Header styles */
+    header {
+      background: #fff8f2;
+      border-bottom: 1px solid #e2d4c5;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+    .logo img {
+      height: 40px;
+      margin-right: 10px;
+    }
+    .logo span {
+      font-weight: bold;
+      color: #b33;
+      font-size: 20px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    nav a {
+      text-decoration: none;
+      color: #333;
+      padding: 6px 10px;
+      border-radius: 4px;
+      transition: background 0.3s;
+      font-weight: 600;
+    }
+    nav a:hover {
+      background: #f3e7da;
+      color: #b33;
+    }
+
+    /* Hamburger styles */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+    .hamburger span {
+      width: 25px;
       height: 3px;
       background: #333;
       border-radius: 3px;
+      display: block;
     }
+
+    /* Responsive */
     @media (max-width: 768px) {
       nav {
         display: none;
         flex-direction: column;
         width: 100%;
-        background: #fff;
-        margin-top: 10px;
+        background: #fff8f2;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        padding: 10px 20px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
       }
       nav.active {
         display: flex;
@@ -324,11 +433,13 @@
       }
     }
 
+    /* Banner */
     .banner img {
       width: 100%;
       display: block;
     }
 
+    /* Scroll banner */
     .scroll-banner {
       background: #fff;
       padding: 10px 0;
@@ -338,10 +449,10 @@
       font-size: 1.2rem;
       font-weight: 600;
       color: #222;
+      white-space: nowrap;
     }
     .scroll-text {
       display: inline-block;
-      white-space: nowrap;
       padding-left: 100%;
       animation: scroll-left 15s linear infinite;
     }
@@ -350,6 +461,7 @@
       100% { transform: translateX(-100%); }
     }
 
+    /* Zodiac Icons */
     .zodiac-icons {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
@@ -383,7 +495,7 @@
       color: #b33;
     }
 
-    /* Section titles for each Rashi */
+    /* Rashi Section */
     section.rashi-section {
       background: #fff;
       margin: 20px 0;
@@ -400,41 +512,41 @@
 </head>
 <body>
 
-  <!-- Header -->
   <header>
     <div class="logo">
-      <img src="logo.png" alt="MyAstrology Logo – Dr. Prodyut Acharya">
+      <img src="logo.png" alt="MyAstrology Logo – Dr. Prodyut Acharya" />
       <span>MyAstrology – ড. প্রদ্যুৎ আচার্য</span>
     </div>
+
     <div class="hamburger" id="hamburger">
       <span></span><span></span><span></span>
     </div>
+
     <nav id="nav-menu">
-      <a href="index.html">🏠 হোম</a>  
-      <a href="https://astro.myastrology.in/about.html">আমাদের সম্পর্কে</a>  
-      <a href="https://wa.me/919333122768">যোগাযোগ</a>  
-      <a href="astrology.html">জ্যোতিষ শাস্ত্র</a>  
-      <a href="https://astro.myastrology.in/palmistry.html">হস্তরেখা</a>  
-      <a href="https://prodyutacharya.blogspot.com">ব্লগ</a>  
-      <a href="https://astro.myastrology.in/video.html">ভিডিও</a>  
-      <a href="vastu-science.html">বাস্তু শাস্ত্র</a>  
-      <a href="https://www.myastrology.in">বুকিং</a>  
-      <a href="https://blog.myastrology.in">বাংলা ব্লগ</a>  
+      <a href="index.html">🏠 হোম</a>
+      <a href="https://astro.myastrology.in/about.html">আমাদের সম্পর্কে</a>
+      <a href="https://wa.me/919333122768">যোগাযোগ</a>
+      <a href="astrology.html">জ্যোতিষ শাস্ত্র</a>
+      <a href="https://astro.myastrology.in/palmistry.html">হস্তরেখা</a>
+      <a href="https://prodyutacharya.blogspot.com">ব্লগ</a>
+      <a href="https://astro.myastrology.in/video.html">ভিডিও</a>
+      <a href="vastu-science.html">বাস্তু শাস্ত্র</a>
+      <a href="https://www.myastrology.in">বুকিং</a>
+      <a href="https://blog.myastrology.in">বাংলা ব্লগ</a>
     </nav>
   </header>
 
-  <!-- Banner -->
   <div class="banner">
-    <img src="astrology-ranaghat-banner4.webp" alt="বৈদিক জ্যোতির্বিজ্ঞান ও রাশিচক্র ব্যানার">
+    <img src="astrology-ranaghat-banner4.webp" alt="বৈদিক জ্যোতির্বিজ্ঞান ও রাশিচক্র ব্যানার" />
   </div>
 
-  <!-- Scrolling Banner -->
   <section class="scroll-banner">
     <div class="scroll-text">
       🌟 ভাগ্যের রহস্য উন্মোচনে প্রস্তুত? আমি ড. প্রদ্যুৎ আচার্য — MyAstrology, যেখানে প্রতিটি পরামর্শ হয় আপনার ভবিষ্যতের সঠিক চাবিকাঠি। 🔑✨
     </div>
   </section>
 
+  
   <!-- Zodiac Icons -->
   <section class="zodiac-icons">
     <a href="#mesha-rashi-svabhab-bhagya"><div class="icon">♈</div>মেষ</a>
