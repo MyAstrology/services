@@ -1,3 +1,172 @@
+
+
+/* style.css - For Rashi sections (mobile-first, responsive, accessible) */
+
+/* --- Base / Reset helpers --- */
+:root{
+  --bg: #faf7f2;
+  --border: #efe0cf;
+  --accent: #b33;
+  --muted: #6b6b6b;
+  --text: #222;
+  --radius: 14px;
+  --max-width: 960px;
+  --content-padding: 24px;
+  --line-height: 1.85;
+  --font-family: "SolaimanLipi", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+
+/* sensible box-sizing */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+/* Section container */
+.rashi-section {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin: 22px auto;
+  padding: var(--content-padding);
+  max-width: var(--max-width);
+  color: var(--text);
+  font-family: var(--font-family);
+  line-height: var(--line-height);
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Headline */
+.rashi-section h2,
+.rashi-section h2 a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 1.5rem;      /* ~24px */
+  line-height: 1.2;
+  display: inline-block;
+  margin: 0 0 12px 0;
+  font-weight: 700;
+}
+
+/* Figure & image */
+.rashi-section figure {
+  margin: 18px 0;
+  text-align: center;
+}
+.rashi-section img {
+  max-width: 100%;
+  height: auto;
+  display: inline-block;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  vertical-align: middle;
+  /* ensure images don't cause layout shift if width known */
+  width: 100%;
+  object-fit: cover;
+}
+
+/* figcaption */
+.rashi-section figcaption {
+  margin-top: 8px;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+/* Headings inside section */
+.rashi-section h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 1.125rem; /* ~18px */
+  font-weight: 600;
+  display: block;
+}
+
+/* Paragraphs */
+.rashi-section p {
+  margin: 0 0 12px 0;
+  font-size: 1rem;
+  color: var(--text);
+  word-break: break-word;
+}
+
+/* Lists */
+.rashi-section ul {
+  margin: 8px 0 12px 20px;
+  padding: 0;
+  list-style-type: disc;
+}
+.rashi-section ul li {
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+/* Footer / small note */
+.rashi-footer {
+  text-align: center;
+  margin-top: 18px;
+  font-weight: 600;
+  color: #444;
+}
+
+/* Emphasis tags */
+.rashi-section strong { font-weight: 700; }
+
+/* Accessibility: focus states for anchor */
+.rashi-section a:focus,
+.rashi-section a:active {
+  outline: 3px solid rgba(179, 51, 51, .15);
+  outline-offset: 3px;
+}
+
+/* Print: simplify */
+@media print {
+  .rashi-section { box-shadow: none; border: 1px solid #ddd; }
+  .rashi-image img { box-shadow: none; border-radius: 4px; }
+  .rashi-section a { text-decoration: underline; color: #000; }
+}
+
+/* Responsive: medium screens */
+@media (min-width: 700px) {
+  .rashi-section {
+    padding: 30px;
+    font-size: 17px;
+  }
+  .rashi-section h2 { font-size: 1.75rem; } /* larger */
+}
+
+/* Responsive: wide screens - center and add subtle padding */
+@media (min-width: 1100px) {
+  .rashi-section { padding: 36px; }
+  .rashi-section img { max-width: 820px; }
+}
+
+/* Utility: hidden but indexable (for keywords if needed) */
+.rashi-keywords {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+
+/* Optional: small decorative emoji-sizing control */
+.rashi-section p > img.emoji,
+.rashi-section h2 > img.emoji {
+  width: 1.2em;
+  height: 1.2em;
+  vertical-align: -0.15em;
+}
+
+/* Smooth anchor scroll (if you want) */
+html { scroll-behavior: smooth; }
+
+
+
+
 <section id="janma-rashi" style="padding:40px 20px; background-color:#fdfdfd; font-family: 'Segoe UI', sans-serif;">
   <div style="max-width:900px; margin:auto;">
     
