@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <title>MyAstrology Ranaghat Astrologer and Palmist Dr Prodyut Acharya – জন্ম রাশি, রাশিফল, জ্যোতিষ ও হস্তরেখা বিশ্লেষণ</title>
+
   
   <style>
     body {margin:0; font-family: SolaimanLipi, sans-serif; background:#fafafa;}
@@ -222,6 +223,15 @@
   padding-left: 10px;
   margin: 25px 0 15px;
 } 
+.menu {
+  display:none;
+  flex-direction: column;
+}
+.menu.show {
+  display: flex;
+}
+
+    
   </style>
 </head>
 <body>
@@ -232,9 +242,7 @@
       <img src="logo.png" alt="MyAstrology Logo">
     </div>
     <div class="title">MyAstrology</div>
-    <div class="hamburger" onclick="document.getElementById('menu').classList.toggle('show')">
-      <span></span><span></span><span></span>
-    </div>
+    
   </header>
 
   <script>
