@@ -1,3 +1,169 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyAstrology</title>
+  <style>
+    /* Reset */
+    * {margin:0; padding:0; box-sizing:border-box;}
+    body {font-family: "Noto Sans Bengali", Arial, sans-serif; background:#fff; color:#222;}
+
+    /* Header */
+    header {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:10px 18px;
+      background:#faf7f2;
+      border-bottom:1px solid #ddd;
+      position:sticky;
+      top:0;
+      z-index:1000;
+    }
+    header .logo img{
+      height:40px;
+    }
+    header .title{
+      font-size:20px;
+      font-weight:700;
+      color:#b33;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      cursor:pointer;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      width:24px;
+      height:18px;
+    }
+    .hamburger span {
+      display:block;
+      height:3px;
+      background:#333;
+      border-radius:2px;
+    }
+
+    /* Menu */
+    .menu {
+      display:none;
+      position:absolute;
+      top:60px;
+      right:12px;
+      background:#fff;
+      border:1px solid #ddd;
+      border-radius:8px;
+      padding:10px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.15);
+    }
+    .menu a {
+      display:block;
+      padding:8px 12px;
+      color:#222;
+      text-decoration:none;
+    }
+    .menu a:hover {background:#f5f5f5;}
+
+    /* Zodiac Icon bar */
+    .zodiac-bar{
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:12px;
+      padding:12px;
+      background:#fdfaf7;
+      border-bottom:1px solid #eee;
+    }
+    .zodiac-bar a{
+      text-decoration:none;
+      text-align:center;
+      font-size:14px;
+      color:#444;
+      width:64px;
+    }
+    .zodiac-bar img{
+      width:40px;
+      height:40px;
+      display:block;
+      margin:0 auto 4px;
+    }
+
+    /* Responsive */
+    @media(min-width:768px){
+      .menu{ 
+        display:flex !important; 
+        position:static; 
+        flex-direction:row; 
+        background:none; 
+        border:none; 
+        box-shadow:none;
+        padding:0;
+      }
+      .menu a{padding:0 10px;}
+      .hamburger{display:none;}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <!-- Left logo -->
+  <div class="logo">
+    <a href="https://astro.myastrology.in">
+      <img src="logo.png" alt="MyAstrology Logo" loading="lazy">
+    </a>
+  </div>
+
+  <!-- Center title -->
+  <div class="title">MyAstrology</div>
+
+  <!-- Right hamburger -->
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+
+  <!-- ✅ Menu -->
+  <div class="menu" id="menu">
+    <a href="https://astro.myastrology.in">Home</a>
+    <a href="https://astro.myastrology.in/about.html">About</a>
+    <a href="https://astro.myastrology.in/video.html">Video</a>
+    <a href="https://astro.myastrology.in/vedic-astronomy.html">Astronomy</a>
+    <a href="https://astro.myastrology.in/astrology.html">Astrology</a>
+    <a href="https://astro.myastrology.in/palmistry.html">Palmistry</a>
+    <a href="https://youtube.com/@myastrology">YouTube</a>
+    <a href="https://bangla.myastrology.in">Blog</a>
+    <a href="https://wa.me/919333122768">WhatsApp</a>
+    <a href="https://blog.myastrology.in">Blog</a>
+  </div>
+</header>
+
+<!-- Zodiac bar -->
+<div class="zodiac-bar">
+  <a href="#mesha"><img src="aries.png" alt="মেষ" loading="lazy">মেষ</a>
+  <a href="#vrishabha"><img src="taurus.png" alt="বৃষভ" loading="lazy">বৃষ</a>
+  <a href="#mithuna"><img src="gemini.png" alt="মিথুন" loading="lazy">মিথুন</a>
+  <a href="#karka"><img src="cancer.png" alt="কর্কট" loading="lazy">কর্কট</a>
+  <a href="#simha"><img src="leo.png" alt="সিংহ" loading="lazy">সিংহ</a>
+  <a href="#kanya"><img src="virgo.png" alt="কন্যা" loading="lazy">কন্যা</a>
+  <a href="#tula"><img src="libra.png" alt="তুলা" loading="lazy">তুলা</a>
+  <a href="#vrischika"><img src="scorpio.png" alt="বৃশ্চিক" loading="lazy">বৃশ্চিক</a>
+  <a href="#dhanu"><img src="sagittarius.png" alt="ধনু" loading="lazy">ধনু</a>
+  <a href="#makar"><img src="capricorn.png" alt="মকর" loading="lazy">মকর</a>
+  <a href="#kumbha"><img src="aquarius.png" alt="কুম্ভ" loading="lazy">কুম্ভ</a>
+  <a href="#meena"><img src="pisces.png" alt="মীন" loading="lazy">মীন</a>
+</div>
+
+<script>
+  const hamburger=document.getElementById("hamburger");
+  const menu=document.getElementById("menu");
+  hamburger.addEventListener("click", ()=>{
+    menu.style.display = menu.style.display==="block" ? "none":"block";
+  });
+</script>
+
+
 
 
 /* style.css - For Rashi sections (mobile-first, responsive, accessible) */
