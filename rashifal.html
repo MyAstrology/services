@@ -515,14 +515,181 @@
   <header>
     <div class="logo">
       <img src="logo.png" alt="MyAstrology Logo – Dr. Prodyut Acharya" />
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>বাংলা রাশিফল ২০২৬ – Dr Prodyut Acharya | MyAstrology Ranaghat</title>
+
+  <!-- SEO Meta Description -->
+  <meta name="description" content="দৈনিক রাশিফল, জন্ম রাশি ও জ্যোতিষ শাস্ত্র বিশ্লেষণ – বাংলায়। প্রতিদিনের ভাগ্য, বৈদিক জ্যোতিষ ও জীবন পথ নির্দেশিকা Dr. প্রদ্যুৎ আচার্যের কাছে। MyAstrology থেকে রাশির সঠিক ভবিষ্যৎ জানুন।" />
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="বাংলা রাশিফল ২০২৬ – Dr Prodyut Acharya | MyAstrology Ranaghat" />
+  <meta property="og:description" content="দৈনিক রাশিফল, জন্ম রাশি ও জ্যোতিষ শাস্ত্র বিশ্লেষণ – বাংলায়।" />
+  <meta property="og:image" content="https://astro.myastrology.in/images/rashifal-preview.jpg" />
+  <meta property="og:url" content="https://astro.myastrology.in/rashifal.html" />
+  <meta property="og:type" content="website" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://astro.myastrology.in/rashifal.html" />
+
+  <!-- FontAwesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "SolaimanLipi", "Noto Sans Bengali", sans-serif;
+      background: #fafafa;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      background: #fff8f2;
+      border-bottom: 1px solid #e2d4c5;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    header .logo img {
+      height: 40px;
+      margin-right: 12px;
+    }
+    header .logo span {
+      font-weight: bold;
+      color: #b33;
+      font-size: 20px;
+    }
+    header .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+    header .hamburger span {
+      width: 28px;
+      height: 3px;
+      background: #333;
+      border-radius: 3px;
+      display: block;
+    }
+
+    nav.menu {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 15px;
+    }
+    nav.menu a {
+      padding: 8px 12px;
+      text-decoration: none;
+      color: #444;
+      font-size: 16px;
+      border-radius: 6px;
+      display: block;
+      transition: background 0.3s, color 0.3s;
+    }
+    nav.menu a:hover {
+      background: #f3e7da;
+      color: #b33;
+    }
+
+    @media (max-width: 768px) {
+      nav.menu {
+        display: none;
+        flex-direction: column;
+        background: #fff8f2;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        padding: 12px 0;
+        border-top: 1px solid #e2d4c5;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      }
+      nav.menu.show {
+        display: flex;
+      }
+      header .hamburger {
+        display: flex;
+      }
+    }
+
+    /* Zodiac Icons */
+    .zodiac-icons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+      gap: 18px;
+      padding: 20px;
+      background: #fff;
+      margin-bottom: 20px;
+    }
+    .zodiac-icons a {
+      text-align: center;
+      text-decoration: none;
+      color: #333;
+      font-size: 14px;
+    }
+    .zodiac-icons .icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 2px solid #e2d4c5;
+      background: #faf7f2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      transition: 0.3s;
+      margin: auto;
+    }
+    .zodiac-icons .icon:hover {
+      transform: scale(1.1);
+      border-color: #b33;
+      color: #b33;
+    }
+
+    /* Scroll Banner */
+    .scroll-banner {
+      background: #fff;
+      padding: 15px 0;
+      overflow: hidden;
+      border-top: 2px solid #eee;
+      border-bottom: 2px solid #eee;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #222;
+      font-family: 'Segoe UI', sans-serif;
+      white-space: nowrap;
+    }
+    .scroll-text {
+      display: inline-block;
+      padding-left: 100%;
+      animation: scroll-left 15s linear infinite;
+    }
+    @keyframes scroll-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="MyAstrology Logo – Dr. Prodyut Acharya" />
       <span>MyAstrology – ড. প্রদ্যুৎ আচার্য</span>
     </div>
-
-    <div class="hamburger" id="hamburger">
+    <div class="hamburger" id="hamburger-menu">
       <span></span><span></span><span></span>
     </div>
-
-    <nav id="nav-menu">
+    <nav class="menu" id="nav-menu">
       <a href="index.html">🏠 হোম</a>
       <a href="https://astro.myastrology.in/about.html">আমাদের সম্পর্কে</a>
       <a href="https://wa.me/919333122768">যোগাযোগ</a>
@@ -546,8 +713,6 @@
     </div>
   </section>
 
-  
-  <!-- Zodiac Icons -->
   <section class="zodiac-icons">
     <a href="#mesha-rashi-svabhab-bhagya"><div class="icon">♈</div>মেষ</a>
     <a href="#brisha-rashi-svabhab-bhagya"><div class="icon">♉</div>বৃষ</a>
@@ -563,24 +728,21 @@
     <a href="#meen-rashi-svabhab-bhagya"><div class="icon">♓</div>মীন</a>
   </section>
 
-  <!-- JS -->
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const hamburger = document.querySelector(".hamburger");
-      const menu = document.getElementById("menu");
+    const hamburger = document.getElementById("hamburger-menu");
+    const navMenu = document.getElementById("nav-menu");
 
-      // Hamburger click → toggle menu
-      hamburger.addEventListener("click", function() {
-        menu.classList.toggle("show");
-      });
+    hamburger.addEventListener("click", () => {
+      navMenu.classList.toggle("show");
+    });
 
-      // When clicking any menu link → close menu
-      document.querySelectorAll(".menu a").forEach(link=>{
-        link.addEventListener("click",()=> menu.classList.remove("show"));
+    // Close menu when a menu link is clicked (optional)
+    document.querySelectorAll("nav.menu a").forEach(link => {
+      link.addEventListener("click", () => {
+        navMenu.classList.remove("show");
       });
     });
   </script>
-
 </body>
 </html>
 
