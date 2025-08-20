@@ -99,6 +99,16 @@
     </div>
   </header>
 
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const hamburger = document.querySelector(".hamburger");
+    const menu = document.querySelector(".menu");
+
+    hamburger.addEventListener("click", function() {
+      menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+    });
+  });
+  </script>
   <!-- ✅ Menu -->
   <div class="menu" id="menu">
     <a href="https://astro.myastrology.in">Home</a>
