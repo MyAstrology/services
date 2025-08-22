@@ -75,7 +75,16 @@
   border-radius: 12px;
   box-shadow: 0 4px 25px rgba(0,0,0,0.08);
   margin-top: 40px;
-     }
+  box-sizing: border-box; /* padding সহ ঠিক থাকবে */
+}
+
+/* মোবাইলের জন্য */
+@media (max-width: 768px) {
+  section {
+    padding: 15px;   /* padding কমানো হলো */
+    margin-top: 20px;
+  }
+}
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
