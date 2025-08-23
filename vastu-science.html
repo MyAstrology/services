@@ -34,8 +34,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali&display=swap" rel="stylesheet">
 <link href="https://fonts.maateen.me/solaiman-lipi/font.css" rel="stylesheet">
 
-  
-<style>
+ <style>
 /* ==========================
    🌟 Base & Reset
 ========================== */
@@ -47,20 +46,21 @@
 
 body {
   font-family: 'Noto Serif Bengali', serif;
-  background: #fff8e1;       /* হালকা হলুদাভ: সৌভাগ্যের রঙ */
-  color: #4e342e;            /* গাঢ় বাদামী: প্রাকৃতিক ও স্থিরতার অনুভূতি */
+  background: #fff8e1;
+  color: #4e342e;
   line-height: 1.65;
 }
 
 h1, h2, h3 {
   font-family: 'SolaimanLipi', 'Noto Sans Bengali', sans-serif;
-  color: #bf360c;            /* গাঢ় কমলা */
+  color: #bf360c;
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
 }
 
-p {
+p, li {
   color: #555;
+  line-height: 1.6;
 }
 
 a {
@@ -80,9 +80,9 @@ header {
   background: #fff3e0;
   border-bottom: 2px solid #d7ccc8;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 4px 16px;
+  align-items: center;
+  padding: 8px 16px;
   flex-wrap: wrap;
   position: sticky;
   top: 0;
@@ -118,7 +118,7 @@ nav a:hover {
 }
 
 /* ==========================
-   🌟 Mobile Menu
+   🌟 Mobile Menu Toggle
 ========================== */
 .menu-toggle {
   display: none;
@@ -146,17 +146,12 @@ nav a:hover {
   .menu-toggle {
     display: flex;
   }
-  .banner {
-    margin: 0 !important;
-    padding: 0 !important;
-    border: none !important;
-  }
   .banner img {
-    margin: 0 !important;
-    padding: 0 !important;
-    display: block !important;
     width: 100% !important;
     height: auto !important;
+    display: block;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 }
 
@@ -166,7 +161,6 @@ nav a:hover {
 .banner img {
   width: 100%;
   height: auto;
-  display: block;
   border-radius: 12px;
   box-shadow: 0 6px 15px rgba(179, 89, 0, 0.3);
 }
@@ -204,8 +198,8 @@ table {
   width: 100%;
   border-collapse: collapse;
   border-radius: 8px;
-  box-shadow: 0px 2px 5px rgba(0,0,0,0.2);
   overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 .table-container {
@@ -220,7 +214,7 @@ table th, table td {
 
 @media (max-width: 600px) {
   table {
-    min-width: 650px;   /* স্ক্রলযোগ্য মোবাইল টেবিল */
+    min-width: 650px;
     font-size: 13px;
   }
 }
@@ -230,11 +224,11 @@ table th, table td {
 ========================== */
 #vastu-deities-part1 {
   font-family: 'Noto Sans Bengali', Kalpurush, sans-serif;
-  padding: 24px;
   background: linear-gradient(180deg,#fffdf8,#fff6ee);
   border-radius: 10px;
   max-width: 1100px;
   margin: 20px auto;
+  padding: 24px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
@@ -245,23 +239,55 @@ table th, table td {
   margin-bottom: 8px;
 }
 
+#vastu-deities-part1 h3 {
+  color: #b34700;
+  margin-bottom: 12px;
+}
+
 #vastu-deities-part1 p {
   text-align: center;
   margin-bottom: 18px;
 }
 
+#vastu-deities-part1 ul {
+  padding-left: 20px;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+figcaption {
+  font-size: 0.9em;
+  color: #666;
+  text-align: center;
+  margin-top: 4px;
+}
+
+/* ==========================
+   🌟 Mobile Adjustments
+========================== */
 @media screen and (max-width: 600px) {
   #vastu-deities-part1 {
-    padding: 28px;       /* মোবাইলে সামান্য বেশি ফাঁকা */
-    max-width: 95%;      /* প্রায় পুরো চওড়া */
+    padding: 20px 15px;  /* দুই পাশে খালি স্পেস */
+    max-width: 95%;
   }
 
   #vastu-deities-part1 h2 {
-    font-size: 2rem;     /* শিরোনাম সামান্য বড় */
+    font-size: 2rem;
   }
 
-  #vastu-deities-part1 p {
+  #vastu-deities-part1 p, #vastu-deities-part1 li {
     font-size: 14px;
+  }
+
+  figure img {
+    width: 100%;
   }
 }
 </style>
