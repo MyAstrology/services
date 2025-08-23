@@ -37,60 +37,47 @@
   
 <style>
 /* ==========================
-   🌟 Base Table Style
+   🌟 Base & Reset
 ========================== */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  border-radius: 8px;
-  box-shadow: 0px 2px 5px rgba(0,0,0,0.2);
-}
-
-/* ✅ মোবাইল স্ক্রিনে টেবিল চওড়া + স্ক্রল */
-.table-container {
-  overflow-x: auto;
-}
-@media (max-width: 600px) {
-  table {
-    min-width: 650px;   /* মোবাইলে টেবিলকে স্ক্রলযোগ্য করা হলো */
-    font-size: 13px;
-  }
-}
-
-/* ==========================
-   🌟 Reset & Base
-========================== */
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+body {
   font-family: 'Noto Serif Bengali', serif;
-  background: #fff8e1;       /* হালকা হলুদাভ বর্ণ: বাস্তু শাস্ত্রের সৌভাগ্যের রঙ */
+  background: #fff8e1;       /* হালকা হলুদাভ: সৌভাগ্যের রঙ */
   color: #4e342e;            /* গাঢ় বাদামী: প্রাকৃতিক ও স্থিরতার অনুভূতি */
   line-height: 1.65;
 }
 
 h1, h2, h3 {
   font-family: 'SolaimanLipi', 'Noto Sans Bengali', sans-serif;
-  color: #bf360c;            /* বাস্তু শাস্ত্রের শুভ রঙ: গাঢ় কমলা */
+  color: #bf360c;            /* গাঢ় কমলা */
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
 }
 
+p {
+  color: #555;
+}
+
 a {
-  color: #6d4c41;            /* বাদামি */
+  color: #6d4c41;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 a:hover {
-  text-decoration: underline;
   color: #bf360c;
+  text-decoration: underline;
 }
 
 /* ==========================
-   🌟 Header
+   🌟 Header & Navigation
 ========================== */
 header {
-  background: #fff3e0;       /* হালকা কমলা */
+  background: #fff3e0;
   border-bottom: 2px solid #d7ccc8;
   display: flex;
   align-items: center;
@@ -122,7 +109,7 @@ nav a {
   font-size: 0.95rem;
   padding: 6px 10px;
   border-radius: 4px;
-  background: #ffe0b2;       /* হালকা কমলা */
+  background: #ffe0b2;
   color: #4e342e;
 }
 nav a:hover {
@@ -208,6 +195,74 @@ nav a:hover {
 @keyframes scroll-left {
   0% { transform: translateX(0); }
   100% { transform: translateX(-100%); }
+}
+
+/* ==========================
+   🌟 Table Style
+========================== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.2);
+  overflow: hidden;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+table th, table td {
+  padding: 10px;
+  border: 1px solid #efe0cf;
+  text-align: left;
+}
+
+@media (max-width: 600px) {
+  table {
+    min-width: 650px;   /* স্ক্রলযোগ্য মোবাইল টেবিল */
+    font-size: 13px;
+  }
+}
+
+/* ==========================
+   🌟 Vastu Deities Section
+========================== */
+#vastu-deities-part1 {
+  font-family: 'Noto Sans Bengali', Kalpurush, sans-serif;
+  padding: 24px;
+  background: linear-gradient(180deg,#fffdf8,#fff6ee);
+  border-radius: 10px;
+  max-width: 1100px;
+  margin: 20px auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+#vastu-deities-part1 h2 {
+  color: #b34700;
+  text-align: center;
+  font-size: 1.9rem;
+  margin-bottom: 8px;
+}
+
+#vastu-deities-part1 p {
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+@media screen and (max-width: 600px) {
+  #vastu-deities-part1 {
+    padding: 28px;       /* মোবাইলে সামান্য বেশি ফাঁকা */
+    max-width: 95%;      /* প্রায় পুরো চওড়া */
+  }
+
+  #vastu-deities-part1 h2 {
+    font-size: 2rem;     /* শিরোনাম সামান্য বড় */
+  }
+
+  #vastu-deities-part1 p {
+    font-size: 14px;
+  }
 }
 </style>
 
