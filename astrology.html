@@ -47,148 +47,152 @@
     "description": "Astrology বা জ্যোতিষ — ভবিষ্যৎ নয়, আত্মজ্ঞান ও জীবন বদলানোর বিজ্ঞান। ভারতীয় ও পশ্চিমা দর্শন, আধ্যাত্মিকতা, Law of Attraction ভিত্তিক অন্তর্জ্যোতি। ড. প্রদ্যুৎ আচার্য থেকে সম্পূর্ণ জ্ঞান।"
   }
   </script>
+   
+  
     <!-- Styles -->
-  <style>
-    /* Reset & Base */
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Noto Serif Bengali', serif;
-      background: #fffef0;
-      color: #5d4037;
-      line-height: 1.65;
-    }
-    h1, h2, h3 {
-      font-family: 'SolaimanLipi', 'Noto Sans Bengali', sans-serif;
-      color: #3142f7;
-      margin-top: 1.5rem;
-      margin-bottom: 0.75rem;
-    }
-    a {
-      color: #e65100;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    a:hover {
-      text-decoration: underline;
-      color: #bf360c;
-    }
-    /* Header */
-    header {
-      background: #fff8e1;
-      border-bottom: 2px solid #ddd;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 4px 16px;
-      flex-wrap: wrap;
-      position: sticky;
-      top: 0;
-      z-index: 999;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-    }
-    .logo img {
-      height: 50px;
-      margin-right: 10px;
-    }
+<style>
+  /* Reset & Base */
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Serif Bengali', serif;
+    background: #fffef0;
+    color: #5d4037;
+    line-height: 1.65;
+  }
+  h1, h2, h3 {
+    font-family: 'SolaimanLipi', 'Noto Sans Bengali', sans-serif;
+    color: #3142f7;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  p {
+    font-size: 1.15em;
+    margin-bottom: 18px;
+  }
+  a {
+    color: #e65100;
+    text-decoration: none;
+    transition: color 0.3s ease, border-color 0.3s ease;
+    font-weight: 600;
+    border-bottom: 2px solid transparent;
+  }
+  a:hover {
+    color: #bf360c;
+    border-color: #bf360c;
+  }
+
+  /* Header */
+  header {
+    background: #fff8e1;
+    border-bottom: 2px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 16px;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  .logo img {
+    height: 50px;
+    margin-right: 10px;
+  }
+  nav {
+    display: flex;
+    gap: 12px;
+  }
+  nav a {
+    font-weight: bold;
+    font-size: 0.95rem;
+    padding: 6px 10px;
+    border-radius: 4px;
+  }
+  nav a:hover {
+    background: #f2f2f2;
+  }
+  /* Mobile Menu */
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  .menu-toggle div {
+    width: 25px;
+    height: 3px;
+    background: #333;
+    margin: 4px 0;
+  }
+
+  @media (max-width: 800px) {
     nav {
-      display: flex;
-      gap: 12px;
-    }
-    nav a {
-      font-weight: bold;
-      font-size: 0.95rem;
-      padding: 6px 10px;
-      border-radius: 4px;
-    }
-    nav a:hover {
-      background: #f2f2f2;
-    }
-    /* Mobile Menu */
-    .menu-toggle {
       display: none;
       flex-direction: column;
-      cursor: pointer;
-    }
-    .menu-toggle div {
-      width: 25px;
-      height: 3px;
-      background: #333;
-      margin: 4px 0;
-    }
-    @media (max-width: 800px) {
-      nav {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background: #fff;
-        border-top: 1px solid #ddd;
-      }
-      nav.active {
-        display: flex;
-      }
-      .menu-toggle {
-        display: flex;
-      }
-   .banner {
-  margin: 0 !important;
-  padding: 0 !important;
-  border: none !important;
-}
-
-.banner img {
-  margin: 0 !important;
-  padding: 0 !important;
-  display: block !important;
-  width: 100% !important;
-  height: auto !important;
-}
-    }
-    /* Banner */
-    .banner img {
       width: 100%;
-      height: auto;
-      display: block;
+      background: #fff;
+      border-top: 1px solid #ddd;
     }
-    /* Scroll Banner (Marquee replacement) */
-    .scroll-banner {
-  position: relative;
-  background: #fff;
-  padding: 15px 0;
-  border-top: 1px solid rgba(238, 238, 238, 0.5);
-  border-bottom: 1px solid rgba(238, 238, 238, 0.5);
-  overflow: hidden;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-weight: 600;
-  font-size: 1.6rem;
-  color: #222;
-  white-space: nowrap;
+    nav.active {
+      display: flex;
     }
-    .scroll-banner span {
-      display: inline-block;
-      padding-left: 100%;
-      animation: scroll-left 20s linear infinite;
+    .menu-toggle {
+      display: flex;
     }
-    @keyframes scroll-left {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-100%);
-      }
+    .banner {
+      margin: 0 !important;
+      padding: 0 !important;
+      border: none !important;
     }
-  
+    .banner img {
+      margin: 0 !important;
+      padding: 0 !important;
+      display: block !important;
+      width: 100% !important;
+      height: auto !important;
+    }
+  }
 
+  /* Banner */
+  .banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
 
+  /* Scroll Banner (Marquee replacement) */
+  .scroll-banner {
+    position: relative;
+    background: #fff;
+    padding: 15px 0;
+    border-top: 1px solid rgba(238, 238, 238, 0.5);
+    border-bottom: 1px solid rgba(238, 238, 238, 0.5);
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+    font-size: 1.6rem;
+    color: #222;
+    white-space: nowrap;
+  }
+  .scroll-banner span {
+    display: inline-block;
+    padding-left: 100%;
+    animation: scroll-left 20s linear infinite;
+  }
+  @keyframes scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }
 
-
+  /* CTA Card */
   .ctr-card {
-    max-width: 800px;       /* আগে ছিল 600px */
+    max-width: 800px;
     margin: 40px auto;
-    padding: 30px 40px;     /* প্যাডিং একটু বাড়ানো */
+    padding: 30px 40px;
     background: linear-gradient(135deg, #fff7e6, #ffe0b2);
     border-radius: 18px;
     box-shadow: 0 12px 30px rgba(255, 165, 0, 0.35);
@@ -204,15 +208,15 @@
   .btn-group {
     display: flex;
     justify-content: center;
-    gap: 24px;              /* gap একটু বাড়ানো */
+    gap: 24px;
     flex-wrap: wrap;
   }
   .btn {
-    flex: 1 1 250px;        /* প্রতিটি বাটন কমপক্ষে 250px */
-    max-width: 320px;       /* বাটন খুব বড় না হয় */
+    flex: 1 1 250px;
+    max-width: 320px;
     display: inline-block;
-    padding: 14px 28px;     /* বাটন প্যাডিং একটু বাড়ানো */
-    font-size: 1.2em;       /* ফন্ট সাইজ একটু বড় */
+    padding: 14px 28px;
+    font-size: 1.2em;
     font-weight: 700;
     border-radius: 30px;
     cursor: pointer;
@@ -223,7 +227,6 @@
   .btn-whatsapp {
     background-color: #25d366;
     color: #fff;
-    border: none;
   }
   .btn-whatsapp:hover {
     background-color: #1ebe5d;
@@ -231,18 +234,13 @@
   .btn-razerpay {
     background-color: #2ee59d;
     color: #fff;
-    border: none;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
   .btn-razerpay:hover {
     background-color: #24b984;
   }
 
-  /* মোবাইলের জন্য স্পেশাল */
   @media (max-width: 480px) {
-    .ctr-card {
-      padding: 25px 20px;
-    }
+    .ctr-card { padding: 25px 20px; }
     .btn {
       flex: 1 1 100%;
       max-width: 100%;
@@ -250,11 +248,72 @@
       padding: 14px 20px;
     }
   }
+
+  /* Content Card */
+  .card {
+    background: linear-gradient(135deg, #f5fbfc, #fff8e1);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(255, 193, 7, 0.3);
+    padding: 30px 40px;
+    max-width: 850px;
+    margin: 30px auto;
+    font-family: 'Noto Serif Bengali', 'SolaimanLipi', serif;
+    color: #5d4037;
+    line-height: 1.75;
+  }
+  .headline-h2 {
+    font-size: 2.2em;
+    font-weight: 700;
+    color: #bf360c;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-shadow: 1px 1px 3px #ffb300;
+  }
+  .headline-h2 span {
+    font-size: 2.3em;
+  }
+  .headline-h3 {
+    font-size: 1.75em;
+    font-weight: 600;
+    color: #d84315;
+    margin-top: 35px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .headline-h3 span {
+    font-size: 1.8em;
+  }
+  blockquote {
+    font-size: 1.1em;
+    font-style: italic;
+    color: #6d4c41;
+    border-left: 4px solid #ffb300;
+    margin: 20px 0 20px 20px;
+    padding-left: 16px;
+    background-color: #fff3e0;
+    border-radius: 6px;
+  }
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 32px auto;
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(255, 152, 0, 0.3);
+  }
+  .tagline {
+    font-family: 'Kalam', cursive;
+    font-size: 1.65em;
+    text-align: center;
+    margin-top: 42px;
+    color: #bf360c;
+    letter-spacing: 1.5px;
+  }
 </style>
-
-
-
-
 
   
 
@@ -299,88 +358,7 @@
   <span>🌟 ভাগ্যের রহস্য উন্মোচনে প্রস্তুত? আমি ড. প্রদ্যুৎ আচার্য — MyAstrology, যেখানে প্রতিটি পরামর্শ হয় আপনার ভবিষ্যতের সঠিক চাবিকাঠি। 🔑✨</span>
 </section>
 
-<!-- Main Content Placeholder -->
 
-<style>
-  .card {
-    background: linear-gradient(135deg, #f5fbfc, #fff8e1);
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(255, 193, 7, 0.3);
-    padding: 30px 40px;
-    max-width: 850px;
-    margin: 30px auto;
-    font-family: 'Noto Serif Bengali', 'SolaimanLipi', serif;
-    color: #5d4037;
-    line-height: 1.75;
-  }
-  .headline-h2 {
-    font-size: 2.2em;
-    font-weight: 700;
-    color: #bf360c;
-    margin-bottom: 25px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    text-shadow: 1px 1px 3px #ffb300;
-  }
-  .headline-h2 span {
-    font-size: 2.3em;
-  }
-  .headline-h3 {
-    font-size: 1.75em;
-    font-weight: 600;
-    color: #d84315;
-    margin-top: 35px;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .headline-h3 span {
-    font-size: 1.8em;
-  }
-  p {
-    font-size: 1.15em;
-    margin-bottom: 18px;
-  }
-  blockquote {
-    font-size: 1.1em;
-    font-style: italic;
-    color: #6d4c41;
-    border-left: 4px solid #ffb300;
-    margin: 20px 0 20px 20px;
-    padding-left: 16px;
-    background-color: #fff3e0;
-    border-radius: 6px;
-  }
-  a {
-    color: #bf360c;
-    font-weight: 600;
-    text-decoration: none;
-    border-bottom: 2px solid #ffb300;
-    transition: color 0.3s ease, border-color 0.3s ease;
-  }
-  a:hover {
-    color: #7f2704;
-    border-color: #7f2704;
-  }
-  img {
-    display: block;
-    max-width: 100%;
-    height: auto;
-    margin: 32px auto;
-    border-radius: 14px;
-    box-shadow: 0 8px 24px rgba(255, 152, 0, 0.3);
-  }
-  .tagline {
-    font-family: 'Kalam', cursive;
-    font-size: 1.65em;
-    text-align: center;
-    margin-top: 42px;
-    color: #bf360c;
-    letter-spacing: 1.5px;
-  }
-</style>
 
 <div class="card">
   <h1 id="jyotish-aloy-atma-jiggasha" class="headline-h1">
