@@ -36,185 +36,180 @@
 
   
 <style>
-    table {
+/* ==========================
+   🌟 Base Table Style
+========================== */
+table {
   width: 100%;
   border-collapse: collapse;
   border-radius: 8px;
   box-shadow: 0px 2px 5px rgba(0,0,0,0.2);
 }
-</style>
-  
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "MyAstrology – Dr. Prodyut Acharya",
-  "description": "বাস্তু শাস্ত্র, জ্যোতিষ, হস্তরেখা পরামর্শ – রানাঘাট থেকে কলকাতা ও পশ্চিমবঙ্গ জুড়ে পরিষেবা।",
-  "url": "https://astro.myastrology.in/vastu-science.html",
-  "image": "https://astro.myastrology.in/assets/vastu-banner.jpg",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Ranaghat",
-    "addressRegion": "West Bengal",
-    "postalCode": "741201",
-    "addressCountry": "IN"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": "23.1765",
-    "longitude": "88.5667"
-  },
-  "openingHours": "Mo-Su 09:00-20:00",
-  "priceRange": "₹₹",
-  "telephone": "+91-9333122768"
+
+/* ✅ মোবাইল স্ক্রিনে টেবিল চওড়া + স্ক্রল */
+.table-container {
+  overflow-x: auto;
 }
-</script>
-  <style>
-table {
+@media (max-width: 600px) {
+  table {
+    min-width: 650px;   /* মোবাইলে টেবিলকে স্ক্রলযোগ্য করা হলো */
+    font-size: 13px;
+  }
+}
+
+/* ==========================
+   🌟 Reset & Base
+========================== */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Noto Serif Bengali', serif;
+  background: #fff8e1;       /* হালকা হলুদাভ বর্ণ: বাস্তু শাস্ত্রের সৌভাগ্যের রঙ */
+  color: #4e342e;            /* গাঢ় বাদামী: প্রাকৃতিক ও স্থিরতার অনুভূতি */
+  line-height: 1.65;
+}
+
+h1, h2, h3 {
+  font-family: 'SolaimanLipi', 'Noto Sans Bengali', sans-serif;
+  color: #bf360c;            /* বাস্তু শাস্ত্রের শুভ রঙ: গাঢ় কমলা */
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+a {
+  color: #6d4c41;            /* বাদামি */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+a:hover {
+  text-decoration: underline;
+  color: #bf360c;
+}
+
+/* ==========================
+   🌟 Header
+========================== */
+header {
+  background: #fff3e0;       /* হালকা কমলা */
+  border-bottom: 2px solid #d7ccc8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 16px;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+.logo img {
+  height: 50px;
+  margin-right: 10px;
+  border-radius: 8px;
+  box-shadow: 0 3px 6px rgba(179, 89, 0, 0.3);
+}
+
+nav {
+  display: flex;
+  gap: 12px;
+}
+nav a {
+  font-weight: bold;
+  font-size: 0.95rem;
+  padding: 6px 10px;
+  border-radius: 4px;
+  background: #ffe0b2;       /* হালকা কমলা */
+  color: #4e342e;
+}
+nav a:hover {
+  background: #ffcc80;
+  color: #bf360c;
+}
+
+/* ==========================
+   🌟 Mobile Menu
+========================== */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+.menu-toggle div {
+  width: 25px;
+  height: 3px;
+  background: #4e342e;
+  margin: 4px 0;
+}
+
+@media (max-width: 800px) {
+  nav {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: #fff3e0;
+    border-top: 1px solid #d7ccc8;
+  }
+  nav.active {
+    display: flex;
+  }
+  .menu-toggle {
+    display: flex;
+  }
+  .banner {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+  }
+  .banner img {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+}
+
+/* ==========================
+   🌟 Banner
+========================== */
+.banner img {
   width: 100%;
-  border-collapse: collapse;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(179, 89, 0, 0.3);
 }
 
-
-    
-    /* Reset & Base */
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Noto Serif Bengali', serif;
-      background: #fff8e1; /* হালকা হলুদাভ বর্ণ: বাস্তু শাস্ত্রের সৌভাগ্যের রঙ */
-      color: #4e342e; /* গাঢ় বাদামী: প্রাকৃতিক ও স্থিরতার অনুভূতি */
-      line-height: 1.65;
-    }
-    h1, h2, h3 {
-      font-family: 'SolaimanLipi', 'Noto Sans Bengali', sans-serif;
-      color: #bf360c; /* বাস্তু শাস্ত্রের শুভ রঙ: গাঢ় কমলা */
-      margin-top: 1.5rem;
-      margin-bottom: 0.75rem;
-    }
-    a {
-      color: #6d4c41; /* বাদামি */
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    a:hover {
-      text-decoration: underline;
-      color: #bf360c;
-    }
-    /* Header */
-    header {
-      background: #fff3e0; /* হালকা কমলা */
-      border-bottom: 2px solid #d7ccc8; /* হালকা বাদামী */
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 4px 16px;
-      flex-wrap: wrap;
-      position: sticky;
-      top: 0;
-      z-index: 999;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-    }
-    .logo img {
-      height: 50px;
-      margin-right: 10px;
-      border-radius: 8px;
-      box-shadow: 0 3px 6px rgba(179, 89, 0, 0.3);
-    }
-    nav {
-      display: flex;
-      gap: 12px;
-    }
-    nav a {
-      font-weight: bold;
-      font-size: 0.95rem;
-      padding: 6px 10px;
-      border-radius: 4px;
-      background: #ffe0b2; /* হালকা কমলা */
-      color: #4e342e;
-    }
-    nav a:hover {
-      background: #ffcc80;
-      color: #bf360c;
-    }
-    /* Mobile Menu */
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-    }
-    .menu-toggle div {
-      width: 25px;
-      height: 3px;
-      background: #4e342e;
-      margin: 4px 0;
-    }
-    @media (max-width: 800px) {
-      nav {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background: #fff3e0;
-        border-top: 1px solid #d7ccc8;
-      }
-      nav.active {
-        display: flex;
-      }
-      .menu-toggle {
-        display: flex;
-      }
-      .banner {
-        margin: 0 !important;
-        padding: 0 !important;
-        border: none !important;
-      }
-      .banner img {
-        margin: 0 !important;
-        padding: 0 !important;
-        display: block !important;
-        width: 100% !important;
-        height: auto !important;
-      }
-    }
-    /* Banner */
-    .banner img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 12px;
-      box-shadow: 0 6px 15px rgba(179, 89, 0, 0.3);
-    }
-    /* Scroll Banner */
-    .scroll-banner {
-      position: relative;
-      background: #fff3e0;
-      padding: 15px 0;
-      border-top: 1px solid #d7ccc8;
-      border-bottom: 1px solid #d7ccc8;
-      overflow: hidden;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      font-weight: 600;
-      font-size: 1.6rem;
-      color: #bf360c;
-      white-space: nowrap;
-    }
-    .scroll-banner span {
-      display: inline-block;
-      padding-left: 100%;
-      animation: scroll-left 20s linear infinite;
-    }
-    @keyframes scroll-left {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-100%);
-      }
-    }
-  </style>
+/* ==========================
+   🌟 Scroll Banner
+========================== */
+.scroll-banner {
+  position: relative;
+  background: #fff3e0;
+  padding: 15px 0;
+  border-top: 1px solid #d7ccc8;
+  border-bottom: 1px solid #d7ccc8;
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 600;
+  font-size: 1.6rem;
+  color: #bf360c;
+  white-space: nowrap;
+}
+.scroll-banner span {
+  display: inline-block;
+  padding-left: 100%;
+  animation: scroll-left 20s linear infinite;
+}
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+</style>
 
 </head>
 <body>
