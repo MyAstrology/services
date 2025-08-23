@@ -78,7 +78,6 @@
   .hamburger {
     font-size: 24px;
     cursor: pointer;
-    display: block; /* মোবাইলে দেখা যাবে */
   }
   .logo-text {
     font-size: 20px;
@@ -88,7 +87,7 @@
     height: 40px;
   }
   .menu {
-    display: none; /* ডিফল্টে লুকানো */
+    display: none; /* ডিফল্টে মোবাইলে লুকানো থাকবে */
     flex-direction: column;
     position: absolute;
     top: 60px;
@@ -106,6 +105,7 @@
     background: #13274a;
   }
 
+  /* ✅ Banner */
   .banner-slider {
     width: 100%;
     height: auto;
@@ -119,19 +119,20 @@
     display: block;
   }
 
-  /* ✅ Desktop view */
+  /* ✅ Tablet/Desktop view */
   @media screen and (min-width: 768px) {
     .menu {
-      display: flex !important;
+      display: flex !important; /* বড় স্ক্রিনে মেনু সবসময় দেখাবে */
       flex-direction: row;
       position: static;
       border: none;
+      background: none;
     }
     .menu a {
       padding: 10px 15px;
     }
     .hamburger {
-      display: none; /* ডেস্কটপে হ্যামবার্গার লুকানো */
+      display: none; /* বড় স্ক্রিনে hamburger লুকানো থাকবে */
     }
   }
 </style>
