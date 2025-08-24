@@ -1,206 +1,418 @@
 <!DOCTYPE html>
-<html lang="bn">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MyAstrology Gallery</title>
+
+<html lang="en">      
+<head>      
+  <meta charset="UTF-8" />      
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />        <!-- ✅ SEO Title and Meta Tags -->        <title>Dr. Prodyut Acharya – Astrology & Palmistry in Ranaghat</title>      
+    <meta name="description" content="Astrology & Palmistry consultation by Dr. Prodyut Acharya – Career, Marriage, Vastu & Horoscope guidance in India & worldwide.">      
+    <meta name="robots" content="index, follow">      
+  <meta name="author" content="Dr. Prodyut Acharya">      
+<meta name="msvalidate.01" content="984EF24A6EC23EFF015DCA989DAAD547" />      
+    <link rel="canonical" href="https://astro.myastrology.in/">        <!-- ✅ Favicon -->        <link rel="icon" type="image/x-icon" href="favicon.ico">        <!-- ✅ Open Graph Meta -->        <meta property="og:title" content="MyAstrology – Dr. Prodyut Acharya">      
+  <meta property="og:description" content="Accurate astrology and palmistry guidance from expert Dr. Prodyut Acharya.">      
+  <meta property="og:image" content="https://astro.myastrology.in/images/og-image.jpg">      
+  <meta property="og:url" content="https://astro.myastrology.in">      
+  <meta property="og:type" content="website">        <!-- ✅ Twitter Meta -->        <meta name="twitter:card" content="summary_large_image">      
+  <meta name="twitter:title" content="MyAstrology – Dr. Prodyut Acharya">      
+  <meta name="twitter:description" content="Online and offline astrology & palmistry consultation with Dr. Prodyut Acharya – Career, love, marriage, and vastu solutions.">      
+  <meta name="twitter:image" content="https://astro.myastrology.in/images/og-image.jpg">        <!-- ✅ Font Awesome -->        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.0/css/all.css" crossorigin="anonymous" />      <script async type="application/javascript"      
+        src="https://news.google.com/swg/js/v1/swg-basic.js"></script>      <script>      
+  (self.SWG_BASIC = self.SWG_BASIC || []).push( basicSubscriptions => {      
+    basicSubscriptions.init({      
+      type: "NewsArticle",      
+      isPartOfType: ["Product"],      
+      isPartOfProductId: "CAowq669DA:openaccess",      
+      clientOptions: { theme: "light", lang: "bn" },      
+    });      
+  });      
+</script>        <!-- ✅ JSON-LD Schema -->        <script type="application/ld+json">      
+  {      
+    "@context": "https://schema.org",      
+    "@type": "Organization",      
+    "name": "MyAstrology",      
+    "url": "https://astro.myastrology.in",      
+    "logo": "https://astro.myastrology.in/logo.png",      
+    "sameAs": [      
+      "https://www.facebook.com/Dr.ProdyutAcharya",      
+      "https://www.instagram.com/myastrology.in",      
+      "https://youtube.com/@myastrology"      
+    ],      
+    "description": "MyAstrology – Indian Astrology & Palmistry Services by Dr. Prodyut Acharya. Accurate love, marriage, career, vastu and kundli solutions.",      
+    "address": {      
+      "@type": "PostalAddress",      
+      "addressLocality": "Ranaghat",      
+      "addressCountry": "IN"      
+    }      
+  }      
+  </script>        <!-- ✅ Google Analytics -->        <script async src="https://www.googletagmanager.com/gtag/js?id=G-S7BQGLP211"></script>        <script>      
+    window.dataLayer = window.dataLayer || [];      
+    function gtag(){dataLayer.push(arguments);}      
+    gtag('js', new Date());      
+    gtag('config', 'G-S7BQGLP211');      
+  </script>        <!-- ✅ CSS -->        <style>      
+    body {      
+      margin: 0;      
+      font-family: 'Segoe UI', sans-serif;      
+    }      
+    .header {      
+      display: flex;      
+      align-items: center;      
+      justify-content: space-between;      
+      padding: 10px 20px;      
+      background: #0c1b33;      
+      color: white;      
+      position: relative;      
+    }      
+    .hamburger {      
+      font-size: 24px;      
+      cursor: pointer;      
+    }      
+    .logo-text {      
+      font-size: 20px;      
+      font-weight: bold;      
+    }      
+    .logo-on-banner {      
+      height: 40px;      
+    }      
+    .menu {      
+      display: none;      
+      flex-direction: column;      
+      position: absolute;      
+      top: 60px;      
+      left: 10px;      
+      background: #0c1b33;      
+      border: 1px solid #fff;      
+      z-index: 999;      
+    }      
+    .menu a {      
+      color: white;      
+      padding: 10px 20px;      
+      text-decoration: none;      
+    }      
+    .menu a:hover {      
+      background: #13274a;      
+    }      
+    .banner-slider {      
+      width: 100%;      
+      height: auto;      
+      overflow: hidden;      
+    }      
+    .banner-slider img {      
+      width: 100%;      
+      display: none;      
+    }      
+    .banner-slider img.active {      
+      display: block;      
+    }      
+  </style>      </head>      <body>        <!-- ✅ Header -->        <div class="header">      
+    <div class="hamburger" onclick="toggleMenu()">☰</div>      
+    <div class="logo-text">MyAstrology</div>      
+    <img src="images/MyAstrology-Ranghat-logo.png" alt="MyAstrology Online Astrology and Palmistry Consultant Services Logo" class="logo-on-banner">      
+  </div>        <!-- ✅ Menu -->        <div class="menu" id="menu">      
+    <a href="https://astro.myastrology.in">Home</a>      
+    <a href="https://astro.myastrology.in/about.html">About</a>      
+    <a href="https://astro.myastrology.in/video.html">Video</a>      
+    <a href="https://astro.myastrology.in/vedic-astronomy.html">Astronomy</a>      
+    <a href="https://astro.myastrology.in/astrology.html">Astrology</a>      
+   <a href="/rashifal.html">Rashifal</a>      
+      <a href="https://astro.myastrology.in/palmistry.html">Palmistry</a>      
+    <a href="/vastu-science.html">Vastu</a>      
+      <a href="https://youtube.com/@myastrology">YouTube</a>      
+    <a href="https://wa.me/919333122768">WhatsApp</a>      
+    <a href="https://blog.myastrology.in">Blog</a>      
+  </div>        <div class="banner-slider">      
+    <img src="images/astrology-ranaghat-banner1.webp"       
+         alt="Best astrologer in Ranaghat – Dr. Prodyut Acharya, expert in Indian astrology, palmistry, horoscope and vastu consultation"       
+         class="active"> <!-- পরিবর্তন: ফাইলনেম + alt টেক্সট -->      <img src="images/astrology-ranaghat-banner2.webp"       
+     alt="Online and offline astrology & palmistry in Ranaghat – Love, marriage, career, kundli matching, gemstone guidance"> <!-- পরিবর্তন -->      
   
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Kalpurush&display=swap" rel="stylesheet">
+<img src="images/astrology-ranaghat-banner3.webp"       
+     alt="Vedic astrology & palm reading in Ranaghat – Accurate horoscope and spiritual life guidance by Dr. Prodyut Acharya"> <!-- পরিবর্তন -->      
+  
+<img src="images/astrology-ranaghat-banner4.webp"       
+     alt="Indian astrology, palmistry, numerology, vastu consultation and gemstone advice – Ranaghat expert Dr. Prodyut Acharya"> <!-- পরিবর্তন -->      
+  
+<img src="images/astrology-ranaghat-banner5.webp"       
+     alt="Professional astrologer & palmist in Ranaghat – MyAstrology online consultation for destiny, karma and life solutions"> <!-- পরিবর্তন -->
 
-  <!-- Swiper CSS for slider -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+</div>        <!-- ✅ Scripts -->        <script>      
+    function toggleMenu() {      
+      const menu = document.getElementById('menu');      
+      menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';      
+    }      
+    let current = 0;      
+    const images = document.querySelectorAll('.banner-slider img');      
+    setInterval(() => {      
+      images[current].classList.remove('active');      
+      current = (current + 1) % images.length;      
+      images[current].classList.add('active');      
+    }, 4000);      
+  </script>      <!-- 🌟 One-line Astrology Slider with Emojis -->      <style>      
+  .scroll-slider {      
+    width: 100%;      
+    overflow: hidden;      
+    background: #000028;      
+    color: #fff;      
+    font-size: 1.5rem;      
+    font-weight: bold;      
+    font-family: 'Segoe UI', sans-serif;      
+    white-space: nowrap;      
+    box-sizing: border-box;      
+    padding: 16px 0;      
+    border-top: 3px solid #ffcc00;      
+    border-bottom: 3px solid #ffcc00;      
+  }      
+      
+  .scroll-text {      
+    display: inline-block;      
+    padding-left: 100%;      
+    animation: scroll-left 20s linear infinite;      
+  }      
+      
+  @keyframes scroll-left {      
+    0% {      
+      transform: translateX(0%);      
+    }      
+    100% {      
+      transform: translateX(-100%);      
+    }      
+  }      
+      
+  @media (max-width: 768px) {      
+    .scroll-slider {      
+      font-size: 1.1rem;      
+    }      
+  }      
+</style>      <div class="scroll-slider">      
+  <div class="scroll-text">      
+    ✨ MyAstrology – Indian Best Astrology & Palmistry Consultant Services 🔭 Astrologer & Palmist Dr. Prodyut Acharya PhD in Vedic Jyotish 💫      
+  </div>      
+</div>      <!-- Main Content -->      <section class="intro-section" style="padding: 2rem; background: #fefeff; font-family: 'Georgia', serif; color: #1c1c1c;">      
+  <h1 style="text-align: center; font-size: 2.4rem; color: #004466; margin-bottom: 1rem;">      
+    ✨ <span style="color:#003366;">Astrology & Palmistry Online –</span> <br>      
+    <span style="color:#cc0066;">Ranaghat’s Trusted Consultant at MyAstrology</span> 🪐      
+  </h1>        <p style="font-size: 1.1rem; line-height: 1.7; max-width: 850px; margin: auto; text-align: justify;">      
+    In the silent language of stars and the forgotten script of palm lines lies a map — not of fixed fate, but of possibility.       
+    At <strong>MyAstrology Ranaghat</strong>, we believe life is not a mechanical chain of events, but a cosmic dialogue between your soul and the universe. 💫      
+  </p>        <p style="font-size: 1.1rem; line-height: 1.7; max-width: 850px; margin: 1rem auto; text-align: justify;">      
+    Guided by <strong>Best Online Astrologer & Palmist Expert Dr. Prodyut Acharya</strong>, each       
+    <a href="https://blog.myastrology.in/2025/07/blog-post_30.html" target="_blank" style="color:#006699;">Horoscope Analysis</a>,       
+    <a href="https://prodyutacharya.blogspot.com/2025/07/Palmistryneuroscience.html" target="_blank" style="color:#006699;">hand line reading</a>, or       
+    <a href="https://prodyutacharya.blogspot.com/2025/07/Vedicastrology.html" target="_blank" style="color:#006699;">Birth Chart consultation</a>       
+    is not merely a service — it is a conversation with your inner truth. Dr. Acharya, renowned for       
+    <a href="https://bangla.myastrology.in/2025/07/blog-post_19.html" target="_blank" style="color:#006699;">Famous Birth Chart and Palm Reading in India</a>, interprets the ancient wisdom as tools for awareness — not superstition.      
+  </p>        <p style="font-size: 1.1rem; line-height: 1.7; max-width: 850px; margin: 1rem auto; text-align: justify;">      
+    When you consult MyAstrology, you don’t just seek predictions — you embark on a journey. A journey where every planetary motion and every line in your palm becomes a verse of your own unfolding poem. 🌙 Through that poetic dialogue, awareness is born — and transformation begins.      
+  </p>        <p style="text-align: center; font-style: italic; font-size: 1.2rem; margin-top: 2rem; color: #333;">      
+    🕊️ "Your destiny is not written in stone — it's waiting to be read between the lines." ✍️      
+  </p>      
+</section>      <!-- 🌌 Section Container --><section style="padding: 40px 20px; background: #FAFAFA; font-family: 'Segoe UI', sans-serif;">        <h2 style="text-align: center; color: #2E86C1; font-size: 28px; margin-bottom: 40px;">      
+    🔮 Discover Guidance from the <span style="color:#D35400;">Best Astrologer in West Bengal</span> – Not Just a Palmist, But Your Spiritual Advisor – <strong>Dr. Prodyut Acharya</strong>      
+  </h2>  <div style="display: flex; flex-wrap: wrap; gap: 30px; justify-content: center;"><!-- 🖐️ Palm Reading Card -->      
+<div style="flex: 1 1 300px; background: #FFFFFF; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); padding: 20px;">      
+  <h2 style="text-align: center; color: #6A1B9A;">🖐️ Online Palm Reading</h2>      
+  <img src="palmistry.jpg" alt="Palmistry Hand Reading by Dr Prodyut Acharya" style="width: 100%; border-radius: 10px; margin-bottom: 10px;">      
+  <small style="display: block; text-align: center; font-style: italic;">Palmistry</small>      
+  <p><strong>👉 To get an online palm reading:</strong><br>      
+    Please send clear front and back photos of both palms and fingers to our <a href="https://wa.me/919333122768" target="_blank">WhatsApp</a>.<br>      
+    🔖 <strong>Service Charge:</strong> ₹1001      
+  </p>      
+  <p><strong>🕒 Detailed Live Consultation:</strong><br>      
+    After 3–4 hours of report preparation (or at your convenient time), you will receive a live call (around 20 minutes).      
+  </p>      
+  <p><strong>🪬 Remedies:</strong><br>      
+    You will receive personalized remedies based on your palm lines.      
+  </p>      
+  <p><strong>🌐 Language:</strong> Bengali & Hindi</p>      
+  <a href="https://pages.razorpay.com/pl_PSd8AAe189ECFo/view" target="_blank" style="display:block; text-align:center; background:#007BFF; color:#fff; padding:10px 20px; border-radius:8px; text-decoration:none; margin-top:10px;">Book Now</a>      
+  <p style="text-align:center; font-style:italic; color:#5D6D7E; margin-top:10px;">"Your hands reveal the poetry of your past and path ahead."</p>      
+</div>      <!-- 🪐 Horoscope Analysis Card -->      <div style="flex: 1 1 300px; background: #FFFFFF; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); padding: 20px;">      
+  <h2 style="text-align: center; color: #D84315;">🪐 Horoscope Analysis</h2>      
+  <img src="horoscope.jpg" alt="Horoscope Analysis and Birth Chart by Astrologer Dr Prodyut Acharya" style="width: 100%; border-radius: 10px; margin-bottom: 10px;">      
+  <p style="text-align: center; font-style: italic;">Birth chart making </p>      
+  <p><strong>👉 Required:</strong> Name, date of birth, time of birth, and place of birth via <a href="https://wa.me/919333122768" target="_blank">WhatsApp</a>.<br>      
+  🔖 <strong>Fee:</strong> ₹1501</p>      
+  <p><strong>🔥 Special Offer:</strong> Combo with Palm Reading also ₹1501</p>      
+  <p><strong>📄 You will receive:</strong><br>      
+    – 35–40 page PDF via WhatsApp<br>      
+    – 30-minute phone consultation      
+  </p>      
+  <p><strong>Languages:</strong> Bengali & Hindi</p>      
+  <a href="https://pages.razorpay.com/Myastrology" target="_blank" style="display:block; text-align:center; background:#007BFF; color:#fff; padding:10px 20px; border-radius:8px; text-decoration:none; margin-top:10px;">Book Now</a>      
+  <p style="text-align:center; font-style:italic; color:#5D6D7E; margin-top:10px;">"The stars above echo the truths within."</p>      
+</div>      <!-- 💑 Marriage Matching Card -->      <div style="flex: 1 1 300px; background: #FFFFFF; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); padding: 20px;">      
+  <h2 style="text-align: center; color: #1E8449;">💑 Marriage Matching (Kundli Milan)</h2>      
+  <img src="jotok.jpg" alt="Kundli Milan Marriage Matching Astrology by Dr Prodyut Acharya" style="width: 100%; border-radius: 10px; margin-bottom: 10px;">      
+  <p style="text-align: center; font-style: italic;">Kundli Milan </p>      
+  <p><strong>📩 Required:</strong> Name, DOB, time, and place of both bride and groom via <a href="https://wa.me/919333122768" target="_blank">WhatsApp</a>.<br>      
+  🔖 <strong>Fee:</strong> ₹2001</p>      
+  <p><strong>📄 Includes:</strong><br>      
+    – Birth charts for both<br>      
+    – Detailed Milan report<br>      
+    – 30-min live call explanation      
+  </p>      
+  <p><strong>🪔 Remedies:</strong> Spiritual solutions and personalized guidance.</p>      
+  <p><strong>Languages:</strong> Bengali & Hindi</p>      
+  <a href="https://pages.razorpay.com/pl_Il9ZfqCTzepgnd/view#view-1" target="_blank" style="display:block; text-align:center; background:#007BFF; color:#fff; padding:10px 20px; border-radius:8px; text-decoration:none; margin-top:10px;">Book Now</a>      
+  <p style="text-align:center; font-style:italic; color:#5D6D7E; margin-top:10px;">"A union aligned by the cosmos is a bond forever."</p>      
+</div>      
+  </div>      
+</section>      <!-- 🌍 Location & Reviews Section -->      <section style="background:#f9f9ff; padding:40px 20px; font-family:sans-serif; color:#333;">      
+  <div style="max-width:1000px; margin:0 auto; text-align:center;">      <h2 style="font-size:28px; margin-bottom:10px;">📍 Visit MyAstrology – Dr. Prodyut Acharya in Ranaghat</h2>      
+<p style="font-size:16px; margin-bottom:30px;">      
+  Explore our location on Google Maps and see what clients say about our astrology and palmistry services.       
+  We are committed to serving you with accurate guidance in love, marriage, career, and health.      
+</p>      
+  
+<!-- 🗺️ Embedded Google Map -->      
+<div style="border-radius:12px; overflow:hidden; box-shadow:0 0 10px rgba(0,0,0,0.1); margin-bottom:25px;">      
+  <iframe       
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3668.070250807818!2d88.57832607531822!3d23.167635979072344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f8c5001e3d32e1%3A0xe7df69113d9f922a!2sMy%20Astrology!5e0!3m2!1sen!2sin!4v1754284717358!5m2!1sen!2sin"       
+    width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"       
+    referrerpolicy="no-referrer-when-downgrade">      
+  </iframe>      
+</div>      
+  
+<!-- ⭐ Review & Directions Button -->      
+<div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">      
+  <a href="https://maps.app.goo.gl/fqRtwbDWnBDx1qet7" target="_blank"       
+     style="background:#2e7d32; color:#fff; padding:12px 24px; border-radius:8px; text-decoration:none; font-weight:600;">      
+    ⭐ Read Google Reviews      
+  </a>      
+  
+  <a href="https://maps.app.goo.gl/fqRtwbDWnBDx1qet7" target="_blank"       
+     style="background:#1e88e5; color:#fff; padding:12px 24px; border-radius:8px; text-decoration:none; font-weight:600;">      
+    🚗 Get Directions      
+  </a>      
+</div>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Kalpurush', sans-serif;
-      background: #f9f9f9;
-    }
+  </div>      
+</section>      
+  </div>      
+</section>      
+<!-- ✅ Third Content Block: HTML Mode for GitHub Pages -->      
+<section style="padding: 2rem; background: #fdf8f1; font-family: 'Segoe UI', sans-serif; line-height: 1.7;">      
+  <h2 style="color: #8B0000; font-size: 2rem; margin-bottom: 1rem;">      
+    🕉️ Dr. Pradyut Acharya on Jyotish, Hand Line & Destiny: A Scientific-Spiritual Inquiry into Human Nature      
+  </h2>        <p>      
+    In the timeless search for truth, few paths bridge science, philosophy, and inner transformation like       
+    <a href="https://bangla.myastrology.in/2025/07/BestA.html" target="_blank">Vedic Astrology</a> and       
+    <a href="https://prodyutacharya.blogspot.com/2025/07/Palmistryneuroscience.html" target="_blank">Palmistry</a>.       
+    These are not mere tools of prediction, but ancient frameworks of cosmic reflection.       
+    The lines on your hand—<strong>"Hast Rekha"</strong>—are not static scripts of fate but living blueprints of your evolving mind, as explained by       
+    <a href="https://prodyutacharya.blogspot.com/2025/07/Vedicastrology.html" target="_blank">Dr. Pradyut Acharya</a>,       
+    a visionary who combines Indian Jyotish with modern neuroscience and philosophy.      
+  </p>        <p>      
+    Human behavior, as Carl Jung noted, emerges from both the conscious ego and the vast unconscious—a view mirrored by ancient sages through Nakshatra, Graha, and Karma.       
+    Recent neuroscience echoes this through neuroplasticity: our brain changes with choices, not just biology. Thus, <em>your "hand line" is a neuro-emotional reflection</em>—as plastic as your habits.       
+    <a href="https://prodyutacharya.blogspot.com/2025/07/krishna-astrology-transformation-map.html" target="_blank">Krishna’s dialogue in the Bhagavad Gita</a> reinforces this by declaring:       
+    <em>"Uddharet Atman Atmanam" — Elevate yourself, by yourself.</em>       
+  </p>        <p>      
+    The hand is the most visible interface of action—<em>karma</em>.       
+    But karma isn't fatalistic; it's a potential, constantly altered by thought, awareness, and action. As detailed in       
+    <a href="https://blog.myastrology.in/2025/07/myastrology-sartre-marcus-aurelius.html" target="_blank">this essay on existential astrology</a>,       
+    even Western thinkers like Marcus Aurelius and Jean-Paul Sartre emphasized responsibility over resignation.       
+    In this light, Jyotish becomes not a superstition but a mirror—revealing who we are, and who we may become.      
+  </p>        <p style="font-style: italic; font-size: 1.1rem; color: #444;">      
+    In Dr. Acharya’s interpretation, the sacred meets the scientific. Destiny is not given—it is built.      
+  </p>        <!-- ✅ Emotional Tagline -->        <div style="margin-top: 2rem; background: #fff3e6; border-left: 4px solid #ffa500; padding: 1rem 1.5rem; border-radius: 8px; color: #5a2800;">      
+    <strong>✨ Your hand is not a cage of fate, but a canvas of choice — let MyAstrology guide your transformation. ✨</strong>      
+  </div>      
+</section>      <!-- ✅ Structured Data (JSON-LD) -->      <script type="application/ld+json">      
+{      
+  "@context": "https://schema.org",      
+  "@type": "Article",      
+  "mainEntityOfPage": "https://astro.myastrology.in/third-content-block",      
+  "headline": "Dr. Pradyut Acharya on Jyotish, Hand Line & Destiny: A Scientific-Spiritual Inquiry",      
+  "description": "An exploration of Jyotish, Hast Rekha, and the science of destiny through the lens of Dr. Pradyut Acharya's teachings.",      
+  "author": {      
+    "@type": "Person",      
+    "name": "Dr. Pradyut Acharya"      
+  },      
+  "publisher": {      
+    "@type": "Organization",      
+    "name": "MyAstrology",      
+    "logo": {      
+      "@type": "ImageObject",      
+      "url": "https://www.myastrology.in/logo.png"      
+    }      
+  },      
+  "datePublished": "2025-08-04"      
+}      
+</script>      <!-- 🔮 Section 4: Jyotish & Hast Rekha Remedies -->      <section style="padding: 20px; max-width: 900px; margin: auto; font-family: 'Segoe UI', sans-serif; line-height: 1.7; background: #fffaf5; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">        <h2 style="text-align:center; color:#5A189A;">🔱 Discover the Ancient Wisdom of Bengali Jyotish & Hater Rekha Remedies</h2>        <figure style="text-align:center; margin: 20px 0;">      
+    <img src="Image.jpg" alt="Jyotish and Hast Rekha consultation in West Bengal by experienced hand line experts" loading="lazy" width="100%" style="max-width:100%; height:auto; border-radius: 8px;" />      
+    <figcaption style="font-style: italic; color: #555; margin-top: 8px;"><em>Lines are not random. They speak, we interpret.</em></figcaption>      
+  </figure>        <p>      
+    In the heart of <strong>West Bengal</strong>, the timeless practice of <strong>Bengali Jyotish</strong> and <strong>Hater Rekha</strong> (hand line) reading continues to offer clarity and direction to seekers. Unlike modern guesswork, classical Jyotish is rooted in precise calculations of <strong>graha dosh</strong>, <strong>nakshatra</strong>, and karmic imprints. When combined with the ancient science of <strong>hand line analysis</strong>, it becomes a transformative tool — guiding life decisions with spiritual logic and practical <strong>remedies</strong>.      
+  </p>        <p>      
+    Whether you are facing uncertainties in marriage, career, or finances — or simply feel lost in the flow of life — traditional Jyotish and <strong>hast rekha</strong> can help you align with your unique karmic path. We follow a time-honored, scripture-based approach integrating <strong>mantra remedies</strong>, <strong>ratna upay</strong> (gemstone suggestions), and personalized consultations for West Bengal, <strong>Kolkata</strong>, and across <strong>India</strong>.      
+  </p>        <p>      
+    Explore how <a href="https://blog.myastrology.in/2025/07/blog-post_30.html" target="_blank">graha remedies</a> can release mental blocks, or how <a href="https://prodyutacharya.blogspot.com/2025/07/Palmistryneuroscience.html" target="_blank">hand line interpretations</a> reveal subconscious behavioral patterns. Dive into our <a href="https://bangla.myastrology.in/2025/07/BestA.html" target="_blank">Bengali Jyotish expertise</a> or reflect on the <a href="https://prodyutacharya.blogspot.com/2025/07/Vedicastrology.html" target="_blank">philosophical roots of Jyotish</a> through Vedic insight.      
+  </p>        <hr style="margin: 30px 0;" />        <h3 style="font-family: 'Georgia', serif; font-style: italic; text-align: center; color: #5A189A;">      
+    “Your lines are not fixed — they respond to conscious choices.”      
+  </h3>        <hr style="margin: 30px 0;" />        <h4>📌 Types of Services Offered (Available Pan-India, Especially in West Bengal & Kolkata):</h4>      <ul style="margin-left: 20px;">      
+  <li>✅ Bengali Jyotish based on traditional scriptures</li>      
+  <li>✅ Detailed Hater Rekha (hand line) consultation</li>      
+  <li>✅ Mantra and Yantra Remedies for Graha Dosh</li>      
+  <li>✅ Kundli correction and psychological alignment</li>      
+  <li>✅ Ratna (Gemstone) suggestion based on planetary harmony</li>      
+  <li>✅ Family and relationship insight through birth energy patterns</li>      
+  <li>✅ Career guidance aligned with karma and graha positions</li>      
+  <li>✅ Personalized do's and don'ts based on Jyotish interpretation</li>      
+</ul>      <!-- 🌟 Stylish Tagline -->      <h3 style="text-align:center; margin-top:30px; color:#222; font-family: 'Georgia', serif; font-size: 22px;">      
+  🌟 *Where Ancient Bengali Jyotish Meets Real-Life Guidance — From Hand Lines to Inner Alignment* 🌟      
+</h3>      <!-- 🌍 Location & Services Grid -->      <div style="display: flex; flex-wrap: wrap; justify-content: center; margin-top: 30px; gap: 20px; font-family:sans-serif;">        <div style="flex: 1 1 300px; background: #f3ffe6; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.05); text-align: center;">      
+    <h4 style="margin-bottom:10px;">📍 Ranaghat Services</h4>      
+    <p style="font-size: 15px;">Hand Line & Jyotish-based insight <br>for love, career & family guidance.</p>      
+  </div>        <div style="flex: 1 1 300px; background: #f3ffe6; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.05); text-align: center;">      
+    <h4 style="margin-bottom:10px;">📍 Kolkata & Suburbs</h4>      
+    <p style="font-size: 15px;">Traditional Bengali Jyotish & <br>Remedial consultations in person or phone.</p>      
+  </div>        <div style="flex: 1 1 300px; background: #f3ffe6; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.05); text-align: center;">      
+    <h4 style="margin-bottom:10px;">📍 Across India</h4>      
+    <p style="font-size: 15px;">Pan-India support for Kundli rectification,<br> Hast Rekha guidance & mantra solutions.</p>      
+  </div>      
+</style>      
+</div>      <footer style="      
+  background-color: #6666ff;  /* একটু হালকা এবং প্রফেশনাল ব্লু */      
+  color: #edffb3;      
+  padding: 25px 15px;      
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;      
+  text-align: center;      
+  display: flex;      
+  flex-direction: column;      
+  align-items: center;      
+  gap: 18px;      
+  margin-top: 40px;      
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);      
+  border-radius: 8px;      
+">        <p style="margin: 0; font-weight: 700; font-size: 17px;">      
+    © 2025 MyAstrology | All Rights Reserved.      
+  </p>        <p style="font-weight: 600; font-size: 15px; color: #ffffff; margin: 0;">      
+  Reliable Astrology &amp; Palmistry Guidance for Your Life &amp; Destiny — <strong>Dr. Pradyut Acharya</strong>      
+</p>        <div style="      
+    display: flex;      
+    justify-content: center;      
+    gap: 28px;      
+    font-size: 28px;      
+  ">      
+    <a href="https://wa.me/919333122768" target="_blank" style="color: #25D366; transition: transform 0.3s, color 0.3s;" title="WhatsApp" aria-label="WhatsApp" onmouseover="this.style.transform='scale(1.2)';" onmouseout="this.style.transform='scale(1)';">      
+      <i class="fab fa-whatsapp"></i>      
+    </a>      
+    <a href="https://www.facebook.com/Dr.ProdyutAcharya" target="_blank" style="color: #000099; transition: transform 0.3s, color 0.3s;" title="Facebook" aria-label="Facebook" onmouseover="this.style.transform='scale(1.2)';" onmouseout="this.style.transform='scale(1)';">      
+      <i class="fab fa-facebook-f"></i>      
+    </a>      
+    <a href="https://youtube.com/@myastrology" target="_blank" style="color: #FF0000; transition: transform 0.3s, color 0.3s;" title="YouTube" aria-label="YouTube" onmouseover="this.style.transform='scale(1.2)';" onmouseout="this.style.transform='scale(1)';">      
+      <i class="fab fa-youtube"></i>      
+    </a>      
+    <a href="INSTAGRAM_LINK" target="_blank" style="color: #FF00f0; transition: transform 0.3s, color 0.3s;" title="Instagram" aria-label="Instagram" onmouseover="this.style.transform='scale(1.2)';" onmouseout="this.style.transform='scale(1)';">      
+      <i class="fab fa-instagram"></i>      
+    </a>      
+    <a href="https://x.com/AcharyaProdyut?t=ProR_oGYrQtQRP-DjsliFw&s=09" target="_blank" style="color: #1DA1F2; transition: transform 0.3s, color 0.3s;" title="X (Twitter)" aria-label="X (Twitter)" onmouseover="this.style.transform='scale(1.2)';" onmouseout="this.style.transform='scale(1)';">      
+      <i class="fab fa-twitter"></i>      
+    </a>      
+    <a href="https://www.linkedin.com/in/ProdyutAcharya" target="_blank" style="color: #000099; transition: transform 0.3s, color 0.3s;" title="LinkedIn" aria-label="LinkedIn" onmouseover="this.style.transform='scale(1.2)';" onmouseout="this.style.transform='scale(1)';">      
+      <i class="fab fa-linkedin-in"></i>      
+    </a>      
+  </div>      </footer>      </body>
 
-    /* ================= HEADER ================= */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 24px;
-      background: #0c1b33;
-      color: #fff;
-      position: relative;
-      z-index: 1000;
-    }
-
-    header .logo {
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-
-    header .hamburger {
-      font-size: 1.8rem;
-      cursor: pointer;
-      display: none;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-    }
-
-    nav ul li a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    /* Responsive Hamburger */
-    @media(max-width: 768px) {
-      nav ul {
-        display: none;
-        flex-direction: column;
-        background: #0c1b33;
-        position: absolute;
-        top: 60px;
-        right: 0;
-        width: 200px;
-        padding: 10px 0;
-        border-radius: 0 0 8px 8px;
-      }
-
-      nav ul.show {
-        display: flex;
-      }
-
-      header .hamburger {
-        display: block;
-      }
-    }
-
-    /* ================= SLIDER ================= */
-    .swiper {
-      width: 100%;
-      height: 400px;
-      position: relative;
-    }
-
-    .swiper-slide {
-      background-size: cover;
-      background-position: center;
-      position: relative;
-    }
-
-    /* Zodiac wheel overlay */
-    .zodiac-wheel {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 120px;
-      height: 120px;
-      margin: -60px 0 0 -60px;
-      background: url('images/zodiac-wheel.png') no-repeat center/contain;
-      animation: spin 20s linear infinite;
-      pointer-events: none;
-      z-index: 10;
-    }
-
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    /* ================= GALLERY ================= */
-    .gallery {
-      max-width: 1200px;
-      margin: 40px auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 0 20px;
-    }
-
-    .gallery img {
-      width: 100%;
-      border-radius: 12px;
-      transition: transform 0.3s;
-      cursor: pointer;
-    }
-
-    .gallery img:hover {
-      transform: scale(1.05);
-    }
-  </style>
-</head>
-<body>
-
-  <!-- HEADER -->
-  <header>
-    <div class="logo">MyAstrology</div>
-    <div class="hamburger" id="hamburger">&#9776;</div>
-    <nav>
-      <ul id="nav-links">
-        <li><a href="#">হোম</a></li>
-        <li><a href="#">রাশিফল</a></li>
-        <li><a href="#">হস্তরেখা</a></li>
-        <li><a href="#">গ্যালারি</a></li>
-        <li><a href="#">যোগাযোগ</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <!-- SLIDER -->
-  <div class="swiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide" style="background-image:url('images/slider1.jpg')"></div>
-      <div class="swiper-slide" style="background-image:url('images/slider2.jpg')"></div>
-      <div class="swiper-slide" style="background-image:url('images/slider3.jpg')"></div>
-      <div class="swiper-slide" style="background-image:url('images/slider4.jpg')"></div>
-      <div class="swiper-slide" style="background-image:url('images/slider5.jpg')"></div>
-    </div>
-    <!-- Pagination -->
-    <div class="swiper-pagination"></div>
-    <!-- Navigation buttons -->
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
-
-    <!-- Zodiac Wheel -->
-    <div class="zodiac-wheel"></div>
-  </div>
-
-  <!-- GALLERY -->
-  <section class="gallery">
-    <img src="images/gallery1.jpg" alt="Gallery Image 1">
-    <img src="images/gallery2.jpg" alt="Gallery Image 2">
-    <img src="images/gallery3.jpg" alt="Gallery Image 3">
-    <img src="images/gallery4.jpg" alt="Gallery Image 4">
-    <img src="images/gallery5.jpg" alt="Gallery Image 5">
-    <img src="images/gallery6.jpg" alt="Gallery Image 6">
-  </section>
-
-  <!-- Swiper JS -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-  <script>
-    const swiper = new Swiper('.swiper', {
-      loop: true,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      autoplay: {
-        delay: 4000,
-        disableOnInteraction: false,
-      },
-    });
-
-    // Hamburger toggle
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('nav-links');
-    hamburger.addEventListener('click', () => {
-      navLinks.classList.toggle('show');
-    });
-  </script>
-</body>
-</html>
+</html> 
