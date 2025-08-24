@@ -11,8 +11,92 @@
 <link href="https://fonts.googleapis.com/css2?family=Kalpurush&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
+
 <style>
+
+.gallery-section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.gallery-section h1 {
+  color: #3478f6;
+  font-weight: 900;
+  font-size: 2rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.gallery-section p {
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+  text-align: justify;
+  font-size: 1rem;
+}
+
+.image-slider img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #3478f6;
+}
+
+.swiper-pagination-bullet {
+  background: #3478f6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .gallery-section h1 {
+    font-size: 1.6rem;
+  }
   
+  .gallery-section p {
+    font-size: 0.95rem;
+  }
+}
+
+.gallery-section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.gallery-section h1 {
+  color: #3478f6;
+  font-weight: 900;
+  font-size: 2rem; /* হেডলাইন ছোট করা হয়েছে */
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.gallery-section p {
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+  text-align: justify;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .gallery-section h1 {
+    font-size: 1.6rem; /* মোবাইলের জন্য হেডলাইন ছোট করা */
+  }
+  
+  .gallery-section p {
+    font-size: 0.95rem;
+  }
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -182,83 +266,39 @@ nav.active ul {
   }
 }
 
-/* Gallery Section */
-.gallery-section {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
-}
-
-.gallery-section h1 {
-  color: #3478f6;
-  font-weight: 900;
-  font-size: 2rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.gallery-section p {
-  margin-bottom: 1.5rem;
-  line-height: 1.8;
-  text-align: justify;
-  font-size: 1rem;
-}
-
 /* Image Slider Swiper */
 .image-swiper {
   width: 100%;
-  height: auto; /* উচ্চতা স্বয়ংক্রিয় করে দিলাম */
+  height: 300px; /* প্রয়োজনমতো পরিবর্তন করতে পারেন */
   margin-top: 20px;
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap; /* ছবি ছোট স্ক্রীনে নিচে নেমে যাবে */
-  justify-content: center;
 }
 
+/* Important: ছবি দেখা যাবে এমন হওয়া দরকার */
 .image-swiper .swiper-slide {
-  flex: 1 1 calc(33.333% - 10px); /* বড় স্ক্রিনে তিনটি ছবি পাশে */
-  max-width: calc(33.333% - 10px);
   display: flex;
   justify-content: center;
   align-items: center;
   background: none !important;
-  margin-bottom: 15px;
 }
-
 .image-swiper .swiper-slide img {
   width: 100%;
-  height: auto; /* ছবি রেস্পন্সিভ */
+  height: 100%;
   object-fit: cover;
   border-radius: 8px;
-  display: block;
+  display: block; /* এটা খুব গুরুত্বপূর্ণ, না হলে ছবি দেখা যায় না */
 }
 
 /* Responsive image slider height */
 @media (max-width: 768px) {
-  .image-swiper .swiper-slide {
-    flex: 1 1 calc(50% - 10px); /* ২ টি ছবি পাশে মোবাইলে */
-    max-width: calc(50% - 10px);
+  .image-swiper {
+    height: 250px;
   }
 }
 @media (max-width: 480px) {
-  .image-swiper .swiper-slide {
-    flex: 1 1 100%; /* মোবাইলে এক এক ছবি নিচে */
-    max-width: 100%;
+  .image-swiper {
+    height: 200px;
   }
 }
-
-/* Swiper Buttons & Pagination */
-.swiper-button-next,
-.swiper-button-prev {
-  color: #3478f6;
-}
-
-.swiper-pagination-bullet {
-  background: #3478f6;
-}
-
 </style>
     
 
