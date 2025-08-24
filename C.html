@@ -11,11 +11,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Kalpurush&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 
+
 <style>
 * { box-sizing: border-box; margin:0; padding:0; }
 body { font-family: 'Kalpurush', sans-serif; background: #f9f9f9; }
 
-/* HEADER */
+/* ===== HEADER ===== */
 header {
   display: flex;
   justify-content: space-between; /* logo বাম, hamburger ডান */
@@ -32,7 +33,7 @@ header {
   display: flex;
   align-items: center;
   font-weight: bold;
-  font-size: 2rem; /* ডিফল্ট ডেস্কটপ ফন্ট */
+  font-size: 2rem; /* desktop */
 }
 
 .logo img {
@@ -40,70 +41,91 @@ header {
   margin-right: 10px;
 }
 
-/* মোবাইলে ফন্ট ছোট করুন */
-@media (max-width: 768px) {
-  .logo {
-    font-size: 1.2rem; /* মোবাইল ফন্ট */
-  }
-  .logo img {
-    height: 40px; /* optional, ছবিও ছোট করতে পারেন */
-  }
-}
-
+/* hamburger icon সবসময় ডান দিকে */
 .hamburger {
   font-size: 1.8rem;
   cursor: pointer;
-  display: block;
   color: #fff;
-  margin-left: auto; /* hamburger icon ডান দিকে রাখে */
+  display: block;
 }
 
-/* hidden menu (toggle active) */
+/* nav menu hidden by default */
+nav ul {
+  display: none;
+  list-style: none;
+  flex-direction: column;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+}
+
+/* dropdown menu show on active */
 nav.active ul {
   display: flex;
   position: absolute;
-  top: 70px; /* header height অনুযায়ী */
-  right: 20px;
+  top: 70px; /* header height */
+  right: 24px;
   background: #162a4d;
-  padding: 15px;
+  padding: 15px 20px;
   border-radius: 8px;
+  flex-direction: column;
+  z-index: 1001;
 }
 
-/* SWIPER BANNER */
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .logo { font-size: 1.2rem; }
+  .logo img { height: 40px; }
+
+  nav.active ul {
+    top: 60px;
+    right: 12px;
+    padding: 10px 15px;
+  }
+}
+
+/* ===== SWIPER BANNER ===== */
 .swiper {
   width: 100%;
-  height: 100vh; /* ফুল ব্যানার */
+  height: 100vh;
   position: relative;
 }
+
 .swiper-slide {
-  background-size: cover !important;   /* ছবি কাটবে না */
+  background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
 }
 
-/* Zodiac Wheel */
-.zodiac-wheel {    
-  position: absolute;    
-  bottom: 0; left: 0;    
-  width: 300px; height: 300px;    
-  background: url('gallery/myastrology-ranaghat-astrology-palmistry.png') 
-              no-repeat center/contain;    
-  opacity: 0.7;    
-  animation: spin 20s linear infinite;    
-  z-index: 10;    
+/* ===== ZODIAC WHEEL ===== */
+.zodiac-wheel {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 300px; height: 300px;
+  background: url('gallery/myastrology-ranaghat-astrology-palmistry.png') no-repeat center/contain;
+  opacity: 0.7;
+  animation: spin 20s linear infinite;
+  z-index: 10;
 }
-@keyframes spin { from { transform: rotate(0deg);} to { transform: rotate(360deg);} }
 
-@media (max-width: 480px) {
-  .zodiac-wheel { width: 120px; height: 120px; }
+@keyframes spin { 
+  from { transform: rotate(0deg);}
+  to { transform: rotate(360deg);}
 }
-@media (min-width: 481px) and (max-width: 767px) {
-  .zodiac-wheel { width: 200px; height: 200px; }
-}
-@media (min-width: 1200px) {
-  .zodiac-wheel { width: 500px; height: 500px; }
-}
+
+/* Responsive zodiac wheel */
+@media (max-width: 480px) { .zodiac-wheel { width: 120px; height: 120px; } }
+@media (min-width: 481px) and (max-width: 767px) { .zodiac-wheel { width: 200px; height: 200px; } }
+@media (min-width: 1200px) { .zodiac-wheel { width: 500px; height: 500px; } }
+
 </style>
+
 
 
 </head>
