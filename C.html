@@ -48,9 +48,9 @@ nav ul li a{ color:#fff; text-decoration:none; font-weight:500; }
 /* Zodiac Wheel default - Desktop */
 .zodiac-wheel {
   position: absolute;
-  bottom: -30px;
-  left: -30px;
-  width: 350px;  /* ডেস্কটপে বড়ো */
+  bottom: -50px;  /* নিচের কোনায় আংশিক দেখাবে */
+  left: -50px;    /* বাম কোনায় আংশিক দেখাবে */
+  width: 350px;
   height: 350px;
   background: url('gallery/myastrology-ranaghat-astrology-palmistry.png') no-repeat center/contain;
   opacity: 0.8;
@@ -59,26 +59,24 @@ nav ul li a{ color:#fff; text-decoration:none; font-weight:500; }
   pointer-events: none;
 }
 
-/* Mobile - smaller size */
-@media(max-width:768px){
+/* Mobile view - ছোট চাকা */
+@media(max-width:768px) {
   .zodiac-wheel {
-    width: 180px;   /* মোবাইলে ছোট */
+    width: 180px;
     height: 180px;
     bottom: -20px;
     left: -20px;
   }
 }
 
-/* Spin animation */
-@keyframes spin{
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-/* Keep the spin animation */
-@keyframes spin{
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+/* Optional: Tablet view medium size */
+@media(min-width:769px) and (max-width:1024px) {
+  .zodiac-wheel {
+    width: 250px;
+    height: 250px;
+    bottom: -30px;
+    left: -30px;
+  }
 }
 /* SCROLLING BANNER */
 .scroll-banner{
