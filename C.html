@@ -45,13 +45,17 @@ nav ul li a{ color:#fff; text-decoration:none; font-weight:500; }
   background-repeat:no-repeat;
 }
 
-/* Zodiac Wheel full visible, bottom-left corner, larger */
+/* Zodiac Wheel - responsive */
 .zodiac-wheel{
   position: absolute;
-  bottom: -30px; /* নিচের কোণে বাইরে একটু দেখাবে */
-  left: -30px;   /* বাম কোণে বাইরে একটু দেখাবে */
-  width: 300px;  /* বড়ো করা হয়েছে */
-  height: 300px; /* বড়ো করা হয়েছে */
+  bottom: -5%; /* নিচের কোণে */
+  left: -5%;   /* বাম কোণে */
+  width: 20vw;  /* viewport width অনুযায়ী proportionally */
+  height: 20vw; /* viewport width অনুযায়ী proportionally */
+  max-width: 300px; /* desktop max size */
+  max-height: 300px; 
+  min-width: 120px; /* mobile min size */
+  min-height: 120px;
   background: url('gallery/myastrology-ranaghat-astrology-palmistry.png') no-repeat center/contain;
   opacity: 0.8;
   animation: spin 20s linear infinite;
