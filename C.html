@@ -301,7 +301,6 @@ nav.active ul {
   </div>
 </div>
 
-
 <section class="gallery-section">
   <h1>📸✨ জীবনের বহুমাত্রিক ছবি: সময় ও স্থানের মুহূর্ত 🌿🌏</h1>
   
@@ -326,73 +325,109 @@ nav.active ul {
     <strong>Horoscope Reading Ranaghat</strong> এবং <strong>Birth Chart & Palm Reading Nadia</strong> এর সঙ্গী এই ছবিগুলোতে সময়, স্থান ও আত্মার মিলন ঘটে—এক অনন্য মহাশূন্য যাত্রা, যা আমাদের জীবনের অন্তর্নিহিত অর্থ খুঁজে বের করতে সহায়তা করে।
   </p>
 
+  <!-- Image Slider Swiper -->
+  <div class="image-slider">
+    <div class="image-swiper swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img src="gallery/astrologer-expert-palmist-nadia.webp" alt="Astrology & Palmistry Consultation" loading="lazy" />
+        </div>
+        <div class="swiper-slide">
+          <img src="gallery/myastrology-ranaghat-astrology-palmistry.webp" alt="Best Astrologer & Palmist" loading="lazy" />
+        </div>
+        <div class="swiper-slide">
+          <img src="gallery/astrologer-best-palmist-dr-prodyut-acharya.webp" alt="Horoscope & Palm Reading" loading="lazy" />
+        </div>
+        <div class="swiper-slide">
+          <img src="gallery/ranaghat-horoscope-palm-reading-services.webp" alt="Expert Astrologer Nadia" loading="lazy" />
+        </div>
+        <div class="swiper-slide">
+          <img src="gallery/astrology-palmistry-consultation-ranaghat.webp" alt="Astrology & Palmistry Services" loading="lazy" />
+        </div>
+      </div>
 
-
-
-  
-<!-- নীচের Image Slider Swiper -->
-<div class="image-slider">
-  <div class="image-swiper swiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">
-        <img src="gallery/astrologer-expert-palmist-nadia.webp" alt="Astrology & Palmistry Consultation" loading="lazy" />
-      </div>
-      <div class="swiper-slide">
-        <img src="gallery/myastrology-ranaghat-astrology-palmistry.webp" alt="Best Astrologer & Palmist" loading="lazy" />
-      </div>
-      <div class="swiper-slide">
-        <img src="gallery/astrologer-best-palmist-dr-prodyut-acharya.webp" alt="Horoscope & Palm Reading" loading="lazy" />
-      </div>
-      <div class="swiper-slide">
-        <img src="gallery/ranaghat-horoscope-palm-reading-services.webp" alt="Expert Astrologer Nadia" loading="lazy" />
-      </div>
-      <div class="swiper-slide">
-        <img src="gallery/astrology-palmistry-consultation-ranaghat.webp" alt="Astrology & Palmistry Services" loading="lazy" />
-      </div>
+      <!-- Pagination & Navigation -->
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
     </div>
-
-    <!-- Pagination & Navigation -->
-    <div class="swiper-pagination"></div>
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
   </div>
+</section>
 
+<style>
+.gallery-section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.gallery-section h1 {
+  color: #3478f6;
+  font-weight: 900;
+  font-size: 2rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.gallery-section p {
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+  text-align: justify;
+  font-size: 1rem;
+}
+
+.image-slider img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #3478f6;
+}
+
+.swiper-pagination-bullet {
+  background: #3478f6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .gallery-section h1 {
+    font-size: 1.6rem;
+  }
+  
+  .gallery-section p {
+    font-size: 0.95rem;
+  }
+}
+</style>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-  // প্রধান ব্যানার Swiper ইনিশিয়ালাইজেশন 
-  var mainSwiper = new Swiper('.main-swiper', {
-    loop: true,
-    autoplay: { delay: 4000, disableOnInteraction: false },
-    pagination: { el: '.main-swiper .swiper-pagination', clickable: true },
-    navigation: {
-      nextEl: '.main-swiper .swiper-button-next',
-      prevEl: '.main-swiper .swiper-button-prev',
-    },
-  });
-
-  // নীচের ছবি স্লাইডার Swiper ইনিশিয়ালাইজেশন
   var imageSwiper = new Swiper('.image-swiper', {
     loop: true,
-    slidesPerView: 3,
+    slidesPerView: 1,       // প্রতিটি slide একটি করে দেখানো
     spaceBetween: 15,
     pagination: { el: '.image-swiper .swiper-pagination', clickable: true },
     navigation: {
       nextEl: '.image-swiper .swiper-button-next',
       prevEl: '.image-swiper .swiper-button-prev',
     },
+    lazy: true,
     breakpoints: {
       768: {
-        slidesPerView: 2,
+        slidesPerView: 1,   // Tablet/mobile এক slide
       },
       480: {
         slidesPerView: 1,
       },
     },
-    lazy: true,
   });
 </script>
-</section>
 
 </body>
 </html>
