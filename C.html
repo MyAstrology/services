@@ -23,14 +23,27 @@ header{
 }
 .logo { display:flex; align-items:center; font-size:1.5rem; font-weight:bold; }
 .logo img{ height:50px; margin-right:10px; }
-nav ul{ list-style:none; display:flex; gap:20px; }
-nav ul li a{ color:#fff; text-decoration:none; font-weight:500; }
-.hamburger{ font-size:1.8rem; cursor:pointer; display:none; color:#fff; }
 
-/* মোবাইলে menu hide */
-@media(max-width:768px){
-  nav ul{ display:none; }
-  .hamburger{ display:block; }
+/* সবসময় hide */
+nav ul{ display:none; list-style:none; flex-direction:column; gap:15px; }
+
+/* hamburger সবসময় দেখা যাবে */
+.hamburger{ font-size:1.8rem; cursor:pointer; display:block; color:#fff; }
+
+/* hidden menu (hamburger এ ক্লিক করলে show হবে) */
+nav.active ul{
+  display:flex;
+  position:absolute;
+  top:70px; /* header height অনুযায়ী */
+  right:20px;
+  background:#162a4d;
+  padding:15px;
+  border-radius:8px;
+}
+nav ul li a{
+  color:#fff;
+  text-decoration:none;
+  font-weight:500;
 }
 
 /* SWIPER BANNER */
