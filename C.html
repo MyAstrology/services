@@ -12,80 +12,73 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
 
 <style>
-*{margin:0; padding:0; box-sizing:border-box;}
-body{font-family:'Kalpurush', sans-serif; background:#f9f9f9;}
+* { box-sizing: border-box; margin:0; padding:0; }
+body { font-family: 'Kalpurush', sans-serif; background: #f9f9f9; }
 
 /* HEADER */
 header{
   display:flex; justify-content:space-between; align-items:center;
-  padding:12px 24px; background:#0c1b33; color:#fff;
-  position:sticky; top:0; z-index:1000;
+  padding:12px 24px; background:#0c1b33; color:#fff; position:sticky; top:0; z-index:1000;
 }
-.logo{display:flex; align-items:center; font-size:1.5rem; font-weight:bold;}
-.logo img{height:50px; margin-right:10px;}
-nav ul{list-style:none; display:none; flex-direction:column; background:#0c1b33;
-       position:absolute; top:70px; right:10px; width:220px;
-       padding:15px 0; border-radius:0 0 8px 8px;}
-nav ul li{padding:10px 20px;}
-nav ul li a{color:#fff; text-decoration:none; font-weight:500; display:block;}
-nav ul.show{display:flex;}
-.hamburger{font-size:1.8rem; cursor:pointer; color:#fff; display:block;}
+.logo { display:flex; align-items:center; font-size:1.5rem; font-weight:bold; }
+.logo img{ height:50px; margin-right:10px; }
+nav ul{ list-style:none; display:flex; gap:20px; }
+nav ul li a{ color:#fff; text-decoration:none; font-weight:500; }
+.hamburger{ font-size:1.8rem; cursor:pointer; display:none; color:#fff; }
+
+@media(max-width:768px){
+  nav ul{
+    display:none; flex-direction:column; background:#0c1b33;
+    position:absolute; top:70px; right:10px; width:200px; padding:10px 0; border-radius:0 0 8px 8px;
+  }
+  nav ul.show{ display:flex; }
+  .hamburger{ display:block; }
+}
 
 /* SWIPER BANNER */
 .swiper{
-  width:100%; height:100vh; position:relative; background:#000;
+  width:100%; height:100vh; position:relative;
 }
 .swiper-slide{
-  display:flex; justify-content:center; align-items:center;
-  background:#000;
-}
-.swiper-slide img{
-  max-width:100%; max-height:100%; object-fit:contain;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
 }
 
-/* Zodiac Wheel */
+/* Zodiac Wheel full visible, responsive */
 .zodiac-wheel{
-  position:absolute; bottom:20px; left:20px;
+  position:absolute;
+  bottom:20px; left:20px;
+  width:150px; height:150px;
   background:url('gallery/myastrology-ranaghat-astrology-palmistry.png') no-repeat center/contain;
-  opacity:0.8; animation:spin 20s linear infinite; z-index:10;
+  opacity:0.7; animation:spin 20s linear infinite; z-index:10;
 }
-@keyframes spin{from{transform:rotate(0deg);} to{transform:rotate(360deg);}}
-
-/* Responsive wheel sizes */
-@media(min-width:1024px){
-  .zodiac-wheel{width:200px; height:200px;}
-}
-@media(max-width:1023px){
-  .zodiac-wheel{width:120px; height:120px;}
-}
+@keyframes spin{ from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
 
 /* SCROLLING BANNER */
 .scroll-banner{
-  background:#ffcc80; color:#0c1b33;
+  background:#ffe5b4; color:#0c1b33;
   overflow:hidden; border-top:2px solid #f1c40f; border-bottom:2px solid #f1c40f;
   padding:12px 0; position:relative;
 }
 .scroll-content{
   display:inline-flex; gap:50px; white-space:nowrap;
-  animation:scroll-left 25s linear infinite; padding-left:100%;
+  animation:scroll-left 25s linear infinite;
+  padding-left:100%;
 }
-.scroll-item{
-  font-size:1.2rem; font-weight:500; flex-shrink:0;
-  background:#fff3e0; padding:6px 12px; border-radius:8px;
-}
-@keyframes scroll-left{0%{transform:translateX(0);}100%{transform:translateX(-100%);}}
+.scroll-item{ font-size:1.2rem; font-weight:500; flex-shrink:0; }
+@keyframes scroll-left{ 0%{transform:translateX(0);} 100%{transform:translateX(-100%);} }
 
 /* GALLERY */
 .gallery{
   max-width:1200px; margin:40px auto;
-  display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px; padding:0 20px;
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; padding:0 20px;
 }
 .gallery img{
-  border-radius:12px; transition:transform 0.3s; cursor:pointer;
-  object-fit:cover; width:100%; height:250px;
+  border-radius:12px; transition:transform 0.3s; cursor:pointer; object-fit:cover; width:100%; height:250px;
 }
-.gallery img:hover{transform:scale(1.05);}
+.gallery img:hover{ transform:scale(1.05); }
+
 </style>
 </head>
 <body>
@@ -116,11 +109,11 @@ nav ul.show{display:flex;}
 <!-- SWIPER BANNER -->
 <div class="swiper">
   <div class="swiper-wrapper">
-    <div class="swiper-slide"><img src="gallery/myastrology-ranaghat-astrology-palmistry-consultant.webp" alt="Astrology & Palmistry Consultation"></div>
-    <div class="swiper-slide"><img src="gallery/best-astrologer-palmist-dr-prodyut-acharya.webp" alt="Best Astrologer & Palmist"></div>
-    <div class="swiper-slide"><img src="gallery/myastrology-ranaghat-horoscope-palm-reading.webp" alt="Horoscope & Palm Reading"></div>
-    <div class="swiper-slide"><img src="gallery/expert-astrologer-palmist-nadia.webp" alt="Expert Astrologer Nadia"></div>
-    <div class="swiper-slide"><img src="gallery/astrology-palmistry-services-best.webp" alt="Astrology & Palmistry Services"></div>
+    <div class="swiper-slide" style="background-image:url('gallery/myastrology-ranaghat-astrology-palmistry-consultant.webp')" alt="Astrology & Palmistry Consultation"></div>
+    <div class="swiper-slide" style="background-image:url('gallery/best-astrologer-palmist-dr-prodyut-acharya.webp')" alt="Best Astrologer & Palmist"></div>
+    <div class="swiper-slide" style="background-image:url('gallery/myastrology-ranaghat-horoscope-palm-reading.webp')" alt="Horoscope & Palm Reading"></div>
+    <div class="swiper-slide" style="background-image:url('gallery/expert-astrologer-palmist-nadia.webp')" alt="Expert Astrologer Nadia"></div>
+    <div class="swiper-slide" style="background-image:url('gallery/astrology-palmistry-services-best.webp')" alt="Astrology & Palmistry Services"></div>
   </div>
   <div class="swiper-pagination"></div>
   <div class="swiper-button-prev"></div>
@@ -158,9 +151,9 @@ const swiper = new Swiper('.swiper', {
 });
 
 // Hamburger toggle
-const hamburger=document.getElementById('hamburger');
-const navLinks=document.getElementById('nav-links');
-hamburger.addEventListener('click',()=>{ navLinks.classList.toggle('show'); });
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('nav-links');
+hamburger.addEventListener('click', ()=>{ navLinks.classList.toggle('show'); });
 </script>
 
 </body>
