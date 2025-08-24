@@ -260,3 +260,89 @@ var swiper = new Swiper('.swiper', {
   </div>
 </section>
 
+
+
+
+<!-- Scroll Banner -->
+<div class="scroll-banner">
+  <div class="scroll-content">
+    <div class="scroll-item">🔮 জ্যোতিষে ভবিষ্যৎ বলি – প্রেম, বিবাহ, কর্ম, ব্যবসা সমাধান</div>
+    <div class="scroll-item">🖐️ হস্তরেখা বিশ্লেষণ – ভাগ্য, স্বাস্থ্য, সাফল্য চিহ্নিত করি</div>
+    <div class="scroll-item">📜 কুষ্ঠি, রাশিফল ও জন্মকুণ্ডলী – বিস্তারিত পারিবারিক পরামর্শ</div>
+    <div class="scroll-item">💎 রত্ন ও নেকলেস পরামর্শ – শ্রী, সমৃদ্ধি ও সৌভাগ্য বৃদ্ধি</div>
+  </div>
+</div>
+
+<!-- Swiper Slider -->
+<section class="image-slider">
+  <div class="swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" style="background-image:url('gallery/myastrology-ranaghat-astrology-palmistry-consultant.webp');">
+        <img src="gallery/myastrology-ranaghat-astrology-palmistry-consultant.webp" alt="Astrology & Palmistry Consultation" loading="lazy">
+      </div>
+      <div class="swiper-slide" style="background-image:url('gallery/best-astrologer-palmist-dr-prodyut-acharya.webp');">
+        <img src="gallery/best-astrologer-palmist-dr-prodyut-acharya.webp" alt="Best Astrologer & Palmist" loading="lazy">
+      </div>
+      <div class="swiper-slide" style="background-image:url('gallery/myastrology-ranaghat-horoscope-palm-reading.webp');">
+        <img src="gallery/myastrology-ranaghat-horoscope-palm-reading.webp" alt="Horoscope & Palm Reading" loading="lazy">
+      </div>
+      <div class="swiper-slide" style="background-image:url('gallery/expert-astrologer-palmist-nadia.webp');">
+        <img src="gallery/expert-astrologer-palmist-nadia.webp" alt="Expert Astrologer Nadia" loading="lazy">
+      </div>
+      <div class="swiper-slide" style="background-image:url('gallery/astrology-palmistry-consultation-ranaghat.webp');">
+        <img src="gallery/astrology-palmistry-consultation-ranaghat.webp" alt="Astrology & Palmistry Services" loading="lazy">
+      </div>
+    </div>
+
+    <!-- Pagination & Navigation inside swiper -->
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  </div>
+</section>
+
+<!-- CSS -->
+<style>
+.scroll-banner {
+  width: 100%;
+  background: #0c1b33;
+  color: #fff;
+  overflow: hidden;
+  padding: 8px 0;
+}
+.scroll-content {
+  display: flex;
+  gap: 50px;
+  animation: scroll-left 20s linear infinite;
+}
+.scroll-item { white-space: nowrap; font-weight: 500; }
+@keyframes scroll-left {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* Swiper */
+.image-slider { width: 100%; height: 80vh; }
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+.swiper-slide img { display: none; }
+</style>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+const swiper = new Swiper('.swiper', {
+  loop: true,
+  autoplay: { delay: 3000, disableOnInteraction: false },
+  pagination: { el: '.swiper-pagination', clickable: true },
+  navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+  lazy: true
+});
+</script>
+
