@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MyAstrology Ranaghat Gallery – Astrology & Palmistry Services</title>
+  <title>MyAstrology Gallery - Ranaghat Nadia Astrology & Palmistry Services</title>
+  <meta name="description" content="MyAstrology Ranaghat Nadia Best Astrologer & Palmist Dr. Prodyut Acharya providing astrology, horoscope, palmistry, and vastu consultation services.">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Kalpurush&display=swap" rel="stylesheet">
@@ -60,6 +61,7 @@
       display: none;
     }
 
+    /* Responsive Hamburger */
     @media(max-width: 768px) {
       nav ul {
         display: none;
@@ -83,7 +85,7 @@
     /* SLIDER */
     .swiper {
       width: 100%;
-      height: 450px;
+      height: 400px;
       position: relative;
     }
 
@@ -93,10 +95,10 @@
       position: relative;
     }
 
-    /* Zodiac Wheel overlay bottom-left, 30% visible */
+    /* Zodiac Wheel bottom-left partially visible */
     .zodiac-wheel {
       position: absolute;
-      bottom: 20px;
+      bottom: -70px; /* 70% outside the banner */
       left: 20px;
       width: 120px;
       height: 120px;
@@ -112,16 +114,28 @@
       to { transform: rotate(360deg); }
     }
 
-    /* One-line slider article below banner */
-    .slider-article {
-      max-width: 1200px;
-      margin: 20px auto;
-      text-align: center;
+    /* One line scroll banner article */
+    .scroll-banner {
+      width: 100%;
+      background: #f1f1f1;
+      overflow: hidden;
+      white-space: nowrap;
+      box-sizing: border-box;
+      padding: 10px 0;
       font-size: 1rem;
       color: #0c1b33;
-      padding: 10px 20px;
-      background: #e8f0ff;
-      border-radius: 8px;
+    }
+
+    .scroll-banner p {
+      display: inline-block;
+      padding-left: 100%;
+      animation: scroll-left 20s linear infinite;
+      margin: 0;
+    }
+
+    @keyframes scroll-left {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-100%); }
     }
 
     /* GALLERY */
@@ -139,6 +153,8 @@
       border-radius: 12px;
       transition: transform 0.3s;
       cursor: pointer;
+      object-fit: cover;
+      height: 250px;
     }
 
     .gallery img:hover {
@@ -175,11 +191,11 @@
   <!-- SLIDER -->
   <div class="swiper">
     <div class="swiper-wrapper">
-      <div class="swiper-slide" style="background-image:url('gallery/myastrology-ranaghat-astrology-palmistry-consultant.webp')"></div>
-      <div class="swiper-slide" style="background-image:url('gallery/best-astrologer-palmist-dr-prodyut-acharya.webp')"></div>
-      <div class="swiper-slide" style="background-image:url('gallery/myastrology-ranaghat-horoscope-palm-reading.webp')"></div>
-      <div class="swiper-slide" style="background-image:url('gallery/expert-astrologer-palmist-nadia.webp')"></div>
-      <div class="swiper-slide" style="background-image:url('gallery/astrology-palmistry-services-best.webp')"></div>
+      <div class="swiper-slide" style="background-image:url('gallery/myastrology-ranaghat-astrology-palmistry-consultant.webp')" aria-label="Astrology and Palmistry Consultant Ranaghat" role="img"></div>
+      <div class="swiper-slide" style="background-image:url('gallery/best-astrologer-palmist-dr-prodyut-acharya.webp')" aria-label="Best Astrologer & Palmist Dr. Prodyut Acharya" role="img"></div>
+      <div class="swiper-slide" style="background-image:url('gallery/myastrology-ranaghat-horoscope-palm-reading.webp')" aria-label="Horoscope & Palm Reading Services" role="img"></div>
+      <div class="swiper-slide" style="background-image:url('gallery/expert-astrologer-palmist-nadia.webp')" aria-label="Expert Astrologer & Palmist Nadia" role="img"></div>
+      <div class="swiper-slide" style="background-image:url('gallery/astrology-palmistry-services-best.webp')" aria-label="Astrology & Palmistry Services Best in Ranaghat" role="img"></div>
     </div>
     <div class="swiper-pagination"></div>
     <div class="swiper-button-prev"></div>
@@ -189,19 +205,19 @@
     <div class="zodiac-wheel"></div>
   </div>
 
-  <!-- One-line slider article -->
-  <div class="slider-article">
-    MyAstrology Ranaghat Nadia – Expert Astrology & Palmistry Consultant Services by Dr. Prodyut Acharya | Best Astrologer & Palmist
+  <!-- One-line scroll banner -->
+  <div class="scroll-banner">
+    <p>Best Astrology & Palmistry Consultant in Ranaghat, Nadia - MyAstrology | Horoscope, Palm Reading, Vastu, Love, Marriage & Career Solutions</p>
   </div>
 
   <!-- GALLERY -->
   <section class="gallery">
-    <img src="images/gallery1.jpg" alt="Best Astrologer in Ranaghat – MyAstrology" loading="lazy">
-    <img src="images/gallery2.jpg" alt="Expert Palmist Dr. Prodyut Acharya" loading="lazy">
-    <img src="images/gallery3.jpg" alt="Astrology & Palmistry Services Ranaghat" loading="lazy">
-    <img src="images/gallery4.jpg" alt="Horoscope and Palm Reading Consultant Nadia" loading="lazy">
-    <img src="images/gallery5.jpg" alt="Top Astrology Consultant in Ranaghat Nadia" loading="lazy">
-    <img src="images/gallery6.jpg" alt="MyAstrology Gallery Services" loading="lazy">
+    <img src="images/gallery1.jpg" alt="Astrology Service Image 1" loading="lazy">
+    <img src="images/gallery2.jpg" alt="Palmistry Service Image 2" loading="lazy">
+    <img src="images/gallery3.jpg" alt="Horoscope Consultation Image 3" loading="lazy">
+    <img src="images/gallery4.jpg" alt="Vastu & Astrology Image 4" loading="lazy">
+    <img src="images/gallery5.jpg" alt="Astrologer Dr. Prodyut Acharya Image 5" loading="lazy">
+    <img src="images/gallery6.jpg" alt="Astrology & Palmistry Services Image 6" loading="lazy">
   </section>
 
   <!-- Swiper JS -->
