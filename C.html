@@ -12,15 +12,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
 
 <style>
-  .swiper-slide{
-  display:flex; justify-content:center; align-items:center;
-  background:#000;
-}
-.swiper-slide img{
-  width:100%;
-  height:100%;
-  object-fit:contain;   /* পাশে/উপরে কিছুই কাটবে না */
-}
+
   
 * { box-sizing: border-box; margin:0; padding:0; }
 body { font-family: 'Kalpurush', sans-serif; background: #f9f9f9; }
@@ -42,29 +34,41 @@ nav ul{
 
 /* SWIPER BANNER */
 .swiper{
-  width:100%; height:100vh; position:relative;
+  width:100%;
+  height:100vh;
+  position:relative;
+  background:#000;  /* ফাঁকা জায়গা কালো দেখাবে */
+}
+.swiper-slide{
+  display:flex; justify-content:center; align-items:center;
 }
 .swiper-slide img{
-  width:100%; height:100%; object-fit:cover; /* ফাঁকা থাকবে না */
+  width:100%;
+  height:100%;
+  object-fit:contain;   /* কোনো crop হবে না */
 }
 
 .zodiac-wheel{
   position:absolute;
   bottom:0; left:0;
   background:url('gallery/myastrology-ranaghat-astrology-palmistry.png') no-repeat center/contain;
-  opacity:0.5;   /* আরও transparent */
+  opacity:0.5;              /* আরও transparent */
+  animation: spin 25s linear infinite; /* ঘুরবে */
   z-index:10;
-  animation: spin 25s linear infinite; /* আবার ঘুরবে, ধীরে */
+}
+
+/* মোবাইলের জন্য ছোট */
+@media(max-width:600px){
+  .zodiac-wheel{ width:150px; height:150px; }
+}
+
+/* ডেস্কটপের জন্য বড় */
+@media(min-width:601px){
+  .zodiac-wheel{ width:300px; height:300px; }
 }
 @keyframes spin {
   from { transform:rotate(0deg); }
   to   { transform:rotate(360deg); }
-}
-@media(max-width:600px){
-  .zodiac-wheel{ width:150px; height:150px; }  /* মোবাইলে */
-}
-@media(min-width:601px){
-  .zodiac-wheel{ width:280px; height:280px; }  /* ডেস্কটপে আরও বড় */
 }
 
 /* SCROLLING BANNER */
