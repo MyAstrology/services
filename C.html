@@ -22,42 +22,46 @@ header{
 }
 .logo { display:flex; align-items:center; font-size:1.5rem; font-weight:bold; }
 .logo img{ height:50px; margin-right:10px; }
-nav ul{ list-style:none; display:flex; gap:20px; }
-nav ul li a{ color:#fff; text-decoration:none; font-weight:500; }
-.hamburger{ font-size:1.8rem; cursor:pointer; display:none; color:#fff; }
-
-@media(max-width:768px){
-  nav ul{
-    display:none; flex-direction:column; background:#0c1b33;
-    position:absolute; top:70px; right:10px; width:200px; padding:10px 0; border-radius:0 0 8px 8px;
-  }
-  nav ul.show{ display:flex; }
-  .hamburger{ display:block; }
+nav ul{ list-style:none; flex-direction:column; background:#0c1b33;
+  position:absolute; top:70px; right:10px; width:200px; padding:10px 0;
+  border-radius:0 0 8px 8px; display:none;
 }
+nav ul.show{ display:flex; }
+nav ul li{ padding:8px 16px; }
+nav ul li a{ color:#fff; text-decoration:none; font-weight:500; display:block; }
+.hamburger{ font-size:1.8rem; cursor:pointer; color:#fff; }
 
 /* SWIPER BANNER */
 .swiper{
   width:100%; height:100vh; position:relative;
 }
 .swiper-slide{
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
+  display:flex; justify-content:center; align-items:center;
+  background:#000;
+}
+.swiper-slide img{
+  width:100%; height:100%; object-fit:contain; /* Responsive without crop */
 }
 
-/* Zodiac Wheel full visible, responsive */
+/* Zodiac Wheel responsive */
 .zodiac-wheel{
   position:absolute;
   bottom:20px; left:20px;
-  width:150px; height:150px;
   background:url('gallery/myastrology-ranaghat-astrology-palmistry.png') no-repeat center/contain;
   opacity:0.7; animation:spin 20s linear infinite; z-index:10;
 }
 @keyframes spin{ from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
+@media(max-width:600px){
+  .zodiac-wheel{ width:80px; height:80px; }
+}
+@media(min-width:601px){
+  .zodiac-wheel{ width:150px; height:150px; }
+}
 
 /* SCROLLING BANNER */
-.scroll-banner{
-  background:#ffe5b4; color:#0c1b33;
+.scroll-banner article{
+  background:#d6f5ff; /* নতুন রঙ */
+  color:#0c1b33;
   overflow:hidden; border-top:2px solid #f1c40f; border-bottom:2px solid #f1c40f;
   padding:12px 0; position:relative;
 }
@@ -75,17 +79,17 @@ nav ul li a{ color:#fff; text-decoration:none; font-weight:500; }
   display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; padding:0 20px;
 }
 .gallery img{
-  border-radius:12px; transition:transform 0.3s; cursor:pointer; object-fit:cover; width:100%; height:250px;
+  border-radius:12px; transition:transform 0.3s; cursor:pointer;
+  width:100%; height:auto; object-fit:cover;
 }
 .gallery img:hover{ transform:scale(1.05); }
-
 </style>
 </head>
 <body>
 
 <header>
   <div class="logo">
-    <img src="images/MyAstrology-Ranghat-logo.png" alt="MyAstrology Logo">
+    <img src="images/MyAstrology-Ranghat-logo.png" alt="MyAstrology Ranaghat Logo">
     MyAstrology প্রদ্যুত আচার্য
   </div>
   <div class="hamburger" id="hamburger">&#9776;</div>
@@ -109,11 +113,11 @@ nav ul li a{ color:#fff; text-decoration:none; font-weight:500; }
 <!-- SWIPER BANNER -->
 <div class="swiper">
   <div class="swiper-wrapper">
-    <div class="swiper-slide" style="background-image:url('gallery/myastrology-ranaghat-astrology-palmistry-consultant.webp')" alt="Astrology & Palmistry Consultation"></div>
-    <div class="swiper-slide" style="background-image:url('gallery/best-astrologer-palmist-dr-prodyut-acharya.webp')" alt="Best Astrologer & Palmist"></div>
-    <div class="swiper-slide" style="background-image:url('gallery/myastrology-ranaghat-horoscope-palm-reading.webp')" alt="Horoscope & Palm Reading"></div>
-    <div class="swiper-slide" style="background-image:url('gallery/expert-astrologer-palmist-nadia.webp')" alt="Expert Astrologer Nadia"></div>
-    <div class="swiper-slide" style="background-image:url('gallery/astrology-palmistry-services-best.webp')" alt="Astrology & Palmistry Services"></div>
+    <div class="swiper-slide"><img src="gallery/myastrology-ranaghat-astrology-palmistry-consultant.webp" alt="Astrology & Palmistry Consultation"></div>
+    <div class="swiper-slide"><img src="gallery/best-astrologer-palmist-dr-prodyut-acharya.webp" alt="Best Astrologer & Palmist"></div>
+    <div class="swiper-slide"><img src="gallery/myastrology-ranaghat-horoscope-palm-reading.webp" alt="Horoscope & Palm Reading"></div>
+    <div class="swiper-slide"><img src="gallery/expert-astrologer-palmist-nadia.webp" alt="Expert Astrologer Nadia"></div>
+    <div class="swiper-slide"><img src="gallery/astrology-palmistry-services-best.webp" alt="Astrology & Palmistry Services"></div>
   </div>
   <div class="swiper-pagination"></div>
   <div class="swiper-button-prev"></div>
@@ -123,12 +127,14 @@ nav ul li a{ color:#fff; text-decoration:none; font-weight:500; }
 
 <!-- SCROLLING BANNER -->
 <div class="scroll-banner">
-  <div class="scroll-content">
-    <div class="scroll-item">🔮 জ্যোতিষে ভবিষ্যৎ বলি – প্রেম, বিবাহ, কর্ম, ব্যবসা সমাধান</div>
-    <div class="scroll-item">🖐️ হস্তরেখা বিশ্লেষণ – ভাগ্য, স্বাস্থ্য, সাফল্য চিহ্নিত করি</div>
-    <div class="scroll-item">📜 কুষ্ঠি, রাশিফল ও জন্মকুণ্ডলী – বিস্তারিত পারিবারিক পরামর্শ</div>
-    <div class="scroll-item">💎 রত্ন ও নেকলেস পরামর্শ – শ্রী, সমৃদ্ধি ও সৌভাগ্য বৃদ্ধি</div>
-  </div>
+  <article>
+    <div class="scroll-content">
+      <div class="scroll-item">🔮 জ্যোতিষে ভবিষ্যৎ বলি – প্রেম, বিবাহ, কর্ম, ব্যবসা সমাধান</div>
+      <div class="scroll-item">🖐️ হস্তরেখা বিশ্লেষণ – ভাগ্য, স্বাস্থ্য, সাফল্য চিহ্নিত করি</div>
+      <div class="scroll-item">📜 কুষ্ঠি, রাশিফল ও জন্মকুণ্ডলী – বিস্তারিত পারিবারিক পরামর্শ</div>
+      <div class="scroll-item">💎 রত্ন ও নেকলেস পরামর্শ – শ্রী, সমৃদ্ধি ও সৌভাগ্য বৃদ্ধি</div>
+    </div>
+  </article>
 </div>
 
 <!-- GALLERY -->
@@ -150,7 +156,7 @@ const swiper = new Swiper('.swiper', {
   autoplay:{delay:4000, disableOnInteraction:false},
 });
 
-// Hamburger toggle
+// Hamburger toggle (desktop & mobile)
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('nav-links');
 hamburger.addEventListener('click', ()=>{ navLinks.classList.toggle('show'); });
