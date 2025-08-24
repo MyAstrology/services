@@ -47,28 +47,36 @@ nav ul{
   height:100%;
   object-fit:contain;   /* কোনো crop হবে না */
 }
-
-.zodiac-wheel{
-  position:absolute;
-  bottom:0; left:0;
-  background:url('gallery/myastrology-ranaghat-astrology-palmistry.png') no-repeat center/contain;
-  opacity:0.5;              /* আরও transparent */
-  animation: spin 25s linear infinite; /* ঘুরবে */
-  z-index:10;
+.banner {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+  
+.wheel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  opacity: 0.7; /* transparent effect */
+  animation: spin 20s linear infinite;
 }
 
-/* মোবাইলের জন্য ছোট */
-@media(max-width:600px){
-  .zodiac-wheel{ width:150px; height:150px; }
+@media (min-width: 768px) {
+  .wheel {
+    width: 250px;  /* ডেস্কটপে বড় */
+  }
 }
 
-/* ডেস্কটপের জন্য বড় */
-@media(min-width:601px){
-  .zodiac-wheel{ width:300px; height:300px; }
+@media (max-width: 767px) {
+  .wheel {
+    width: 120px;  /* মোবাইলে ছোট */
+  }
 }
+
 @keyframes spin {
-  from { transform:rotate(0deg); }
-  to   { transform:rotate(360deg); }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 /* SCROLLING BANNER */
