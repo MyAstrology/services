@@ -1,20 +1,26 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>MyAstrology Gallery – Dr. Prodyut Acharya</title>
 
-<meta name="description" content="MyAstrology Ranaghat: Expert Indian Astrology & Palmistry consultation by Dr. Prodyut Acharya. Horoscope, palm reading, vastu, numerology services available.">
-<meta name="keywords" content="Astrology, Palmistry, Horoscope, Vastu, Numerology, Dr. Prodyut Acharya, Ranaghat, Indian Astrology, Online Consultation, Birth Chart, Love Marriage, Career Guidance">
+<meta name="description" content="MyAstrology Ranaghat: Expert Indian Astrology & Palmistry consultation by Dr. Prodyut Acharya. Horoscope, palm reading, vastu, numerology services available." />
+<meta name="keywords" content="Astrology, Palmistry, Horoscope, Vastu, Numerology, Dr. Prodyut Acharya, Ranaghat, Indian Astrology, Online Consultation, Birth Chart, Love Marriage, Career Guidance" />
 
-<link href="https://fonts.googleapis.com/css2?family=Kalpurush&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-
+<link href="https://fonts.googleapis.com/css2?family=Kalpurush&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
 <style>
-* { box-sizing: border-box; margin:0; padding:0; }
-body { font-family: 'Kalpurush', sans-serif; background: #f9f9f9; }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: 'Kalpurush', sans-serif;
+  background: #f9f9f9;
+}
 
 /* ===== HEADER ===== */
 header {
@@ -80,8 +86,12 @@ nav.active ul {
 
 /* ===== MOBILE ===== */
 @media (max-width: 768px) {
-  .logo { font-size: 1.2rem; }
-  .logo img { height: 40px; }
+  .logo {
+    font-size: 1.2rem;
+  }
+  .logo img {
+    height: 40px;
+  }
 
   nav.active ul {
     top: 60px;
@@ -90,14 +100,14 @@ nav.active ul {
   }
 }
 
-/* ===== SWIPER BANNER ===== */
-.swiper {
+/* ===== MAIN SWIPER BANNER ===== */
+.main-swiper {
   width: 100%;
   height: 100vh;
   position: relative;
 }
 
-.swiper-slide {
+.main-swiper .swiper-slide {
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
@@ -106,25 +116,46 @@ nav.active ul {
 /* ===== ZODIAC WHEEL ===== */
 .zodiac-wheel {
   position: absolute;
-  bottom: 0; left: 0;
-  width: 300px; height: 300px;
+  bottom: 0;
+  left: 0;
+  width: 300px;
+  height: 300px;
   background: url('gallery/myastrology-ranaghat-astrology-palmistry.png') no-repeat center/contain;
   opacity: 0.7;
   animation: spin 20s linear infinite;
   z-index: 10;
 }
 
-@keyframes spin { 
-  from { transform: rotate(0deg);}
-  to { transform: rotate(360deg);}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Responsive zodiac wheel */
-@media (max-width: 480px) { .zodiac-wheel { width: 120px; height: 120px; } }
-@media (min-width: 481px) and (max-width: 767px) { .zodiac-wheel { width: 200px; height: 200px; } }
-@media (min-width: 1200px) { .zodiac-wheel { width: 500px; height: 500px; } }
+@media (max-width: 480px) {
+  .zodiac-wheel {
+    width: 120px;
+    height: 120px;
+  }
+}
+@media (min-width: 481px) and (max-width: 767px) {
+  .zodiac-wheel {
+    width: 200px;
+    height: 200px;
+  }
+}
+@media (min-width: 1200px) {
+  .zodiac-wheel {
+    width: 500px;
+    height: 500px;
+  }
+}
 
-  /* Scroll Banner */
+/* Scroll Banner */
 .scroll-banner {
   width: 100%;
   background: #0c1b33;
@@ -142,19 +173,54 @@ nav.active ul {
   font-weight: 500;
 }
 @keyframes scroll-left {
-  0% { transform: translateX(100%); }
-  100% { transform: translateX(-100%); }
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Image Slider Swiper */
+.image-swiper {
+  width: 100%;
+  height: 300px; /* প্রয়োজনমতো পরিবর্তন করতে পারেন */
+  margin-top: 20px;
+}
+
+/* Important: ছবি দেখা যাবে এমন হওয়া দরকার */
+.image-swiper .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none !important;
+}
+.image-swiper .swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block; /* এটা খুব গুরুত্বপূর্ণ, না হলে ছবি দেখা যায় না */
+}
+
+/* Responsive image slider height */
+@media (max-width: 768px) {
+  .image-swiper {
+    height: 250px;
+  }
+}
+@media (max-width: 480px) {
+  .image-swiper {
+    height: 200px;
+  }
 }
 </style>
-
-
-
 </head>
 <body>
 
 <header>
   <div class="logo">
-    <img src="images/MyAstrology-Ranghat-logo.png" alt="MyAstrology Logo">
+    <img src="images/MyAstrology-Ranghat-logo.png" alt="MyAstrology Logo" />
     MyAstrology প্রদ্যুত আচার্য
   </div>
   <div class="hamburger" id="hamburger">&#9776;</div>
@@ -174,29 +240,22 @@ nav.active ul {
     </ul>
   </nav>
 </header>
-  
 
-  <!-- ✅ One Swiper Only -->
-<!-- ✅ Swiper -->
-<div class="swiper">
+<!-- প্রধান Swiper ব্যানার -->
+<div class="main-swiper swiper">
   <div class="swiper-wrapper">
-    <div class="swiper-slide" style="background-image:url('gallery/myastrology-ranaghat-astrology-palmistry-consultant.webp);" title="Astrology & Palmistry Consultation"></div>
+    <div class="swiper-slide" style="background-image:url('gallery/myastrology-ranaghat-astrology-palmistry-consultant.webp');" title="Astrology & Palmistry Consultation"></div>
     <div class="swiper-slide" style="background-image:url('gallery/expert-astrologer-palmist-nadia.webp');" title="Best Astrologer & Palmist"></div>
     <div class="swiper-slide" style="background-image:url('gallery/best-astrologer-palmist-dr-prodyut-acharya.webp');" title="Horoscope & Palm Reading"></div>
     <div class="swiper-slide" style="background-image:url('gallery/myastrology-ranaghat-horoscope-palm-reading.webp');" title="Expert Astrologer Nadia"></div>
     <div class="swiper-slide" style="background-image:url('gallery/astrology-palmistry-services-best.webp');" title="Astrology & Palmistry Services"></div>
   </div>
   <div class="zodiac-wheel"></div>
-</div>
-  
-  </div>
-</div>
 
   <div class="swiper-pagination"></div>
   <div class="swiper-button-prev"></div>
   <div class="swiper-button-next"></div>
-
-
+</div>
 
 <!-- SCROLLING BANNER -->
 <div class="scroll-banner">
@@ -208,38 +267,25 @@ nav.active ul {
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script>
-var swiper = new Swiper('.swiper', {
-  loop: true,
-  autoplay: { delay: 4000, disableOnInteraction: false },
-  pagination: { el: '.swiper-pagination', clickable: true },
-  navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-});
-</script>
-
-</body>
-</html>
-
-<!-- Swiper Slider Section -->
+<!-- নীচের Image Slider Swiper -->
 <section class="image-slider">
-  <div class="swiper">
+  <div class="image-swiper swiper">
     <div class="swiper-wrapper">
-      <div class="swiper-slide" style="background-image:url('gallery/myastrology-ranaghat-astrology-palmistry.webp');">
-        <img src="gallery/myastrology-ranaghat-astrology-palmistry-consultant.webp" alt="Astrology & Palmistry Consultation" loading="lazy">
-      </div>      
-      <div class="swiper-slide" style="background-image:url('gallery/astrology-palmistry-consultation-ranaghat.webp');">
-        <img src="gallery/best-astrologer-palmist-dr-prodyut-acharya.webp" alt="Best Astrologer & Palmist" loading="lazy">
-      </div>      
-      <div class="swiper-slide" style="background-image:url('gallery/ranaghat-horoscope-palm-reading-services.webp');">
-        <img src="gallery/myastrology-ranaghat-horoscope-palm-reading.webp" alt="Horoscope & Palm Reading" loading="lazy">
-      </div>      
-      <div class="swiper-slide" style="background-image:url('gallery/expert-astrologer-palmist-nadia.webp');">
-        <img src="gallery/expert-astrologer-palmist-nadia.webp" alt="Expert Astrologer Nadia" loading="lazy">
-      </div>      
-      <div class="swiper-slide" style="background-image:url('gallery/astrology-palmistry-consultation-ranaghat.webp');">
-        <img src="gallery/astrology-palmistry-consultation-ranaghat.webp" alt="Astrology & Palmistry Services" loading="lazy">
-      </div>      
+      <div class="swiper-slide">
+        <img src="gallery/myastrology-ranaghat-astrology-palmistry-consultant.webp" alt="Astrology & Palmistry Consultation" loading="lazy" />
+      </div>
+      <div class="swiper-slide">
+        <img src="gallery/best-astrologer-palmist-dr-prodyut-acharya.webp" alt="Best Astrologer & Palmist" loading="lazy" />
+      </div>
+      <div class="swiper-slide">
+        <img src="gallery/myastrology-ranaghat-horoscope-palm-reading.webp" alt="Horoscope & Palm Reading" loading="lazy" />
+      </div>
+      <div class="swiper-slide">
+        <img src="gallery/expert-astrologer-palmist-nadia.webp" alt="Expert Astrologer Nadia" loading="lazy" />
+      </div>
+      <div class="swiper-slide">
+        <img src="gallery/astrology-palmistry-consultation-ranaghat.webp" alt="Astrology & Palmistry Services" loading="lazy" />
+      </div>
     </div>
 
     <!-- Pagination & Navigation -->
@@ -249,36 +295,40 @@ var swiper = new Swiper('.swiper', {
   </div>
 </section>
 
-
-
-
-<style>
-/* Scroll Banner */
-.scroll-banner { width:100%; background:#0c1b33; color:#fff; overflow:hidden; padding:8px 0; }
-.scroll-content { display:flex; gap:50px; animation:scroll-left 20s linear infinite; }
-.scroll-item { white-space:nowrap; font-weight:500; }
-@keyframes scroll-left { 0% { transform:translateX(100%);} 100% { transform:translateX(-100%);} }
-
-/* Swiper Slider */
-.image-slider { width:100%; height:70vh; } /* মোবাইল+desktop responsive */
-.swiper-slide {
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background-size:cover !important;
-  background-position:center !important;
-  background-repeat:no-repeat !important;
-}
-.swiper-slide img { display:none; } /* lazy SEO image */
-</style>
-
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-const swiper = new Swiper('.swiper', {
-  loop:true,
-  autoplay:{ delay:3000, disableOnInteraction:false },
-  pagination:{ el:'.swiper-pagination', clickable:true },
-  navigation:{ nextEl:'.swiper-button-next', prevEl:'.swiper-button-prev' },
-  lazy:true,
-});
+  // প্রধান ব্যানার Swiper ইনিশিয়ালাইজেশন 
+  var mainSwiper = new Swiper('.main-swiper', {
+    loop: true,
+    autoplay: { delay: 4000, disableOnInteraction: false },
+    pagination: { el: '.main-swiper .swiper-pagination', clickable: true },
+    navigation: {
+      nextEl: '.main-swiper .swiper-button-next',
+      prevEl: '.main-swiper .swiper-button-prev',
+    },
+  });
+
+  // নীচের ছবি স্লাইডার Swiper ইনিশিয়ালাইজেশন
+  var imageSwiper = new Swiper('.image-swiper', {
+    loop: true,
+    slidesPerView: 3,
+    spaceBetween: 15,
+    pagination: { el: '.image-swiper .swiper-pagination', clickable: true },
+    navigation: {
+      nextEl: '.image-swiper .swiper-button-next',
+      prevEl: '.image-swiper .swiper-button-prev',
+    },
+    breakpoints: {
+      768: {
+        slidesPerView: 2,
+      },
+      480: {
+        slidesPerView: 1,
+      },
+    },
+    lazy: true,
+  });
 </script>
+
+</body>
+</html>
