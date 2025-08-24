@@ -16,34 +16,55 @@
 body { font-family: 'Kalpurush', sans-serif; background: #f9f9f9; }
 
 /* HEADER */
-header{
-  display:flex; justify-content:space-between; align-items:center;
-  padding:12px 24px; background:#0c1b33; color:#fff;
-  position:sticky; top:0; z-index:1000;
+header {
+  display: flex;
+  justify-content: space-between; /* logo বাম, hamburger ডান */
+  align-items: center;
+  padding: 12px 24px;
+  background: #0c1b33;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
-.logo { display:flex; align-items:center; font-size:1.5rem; font-weight:bold; }
-.logo img{ height:50px; margin-right:10px; }
 
-/* সবসময় hide */
-nav ul{ display:none; list-style:none; flex-direction:column; gap:15px; }
-
-/* hamburger সবসময় দেখা যাবে */
-.hamburger{ font-size:1.8rem; cursor:pointer; display:block; color:#fff; }
-
-/* hidden menu (hamburger এ ক্লিক করলে show হবে) */
-nav.active ul{
-  display:flex;
-  position:absolute;
-  top:70px; /* header height অনুযায়ী */
-  right:20px;
-  background:#162a4d;
-  padding:15px;
-  border-radius:8px;
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
-nav ul li a{
-  color:#fff;
-  text-decoration:none;
-  font-weight:500;
+
+.logo img {
+  height: 50px;
+  margin-right: 10px;
+}
+
+/* nav সবসময় hide */
+nav ul {
+  display: none;
+  list-style: none;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.hamburger {
+  font-size: 1.8rem;
+  cursor: pointer;
+  display: block;
+  color: #fff;
+  margin-left: auto; /* hamburger icon ডান দিকে রাখে */
+}
+
+/* hidden menu (toggle active) */
+nav.active ul {
+  display: flex;
+  position: absolute;
+  top: 70px; /* header height অনুযায়ী */
+  right: 20px;
+  background: #162a4d;
+  padding: 15px;
+  border-radius: 8px;
 }
 
 /* SWIPER BANNER */
