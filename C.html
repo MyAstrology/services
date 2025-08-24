@@ -35,34 +35,40 @@ nav ul li a{ color:#fff; text-decoration:none; font-weight:500; }
   .hamburger{ display:block; }
 }
 
+<!-- SWIPER CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+<style>
 /* SWIPER BANNER */
-.swiper{
-  width:100%; height:100vh; position:relative;
+.swiper {
+  width: 100%;
+  height: 100vh;       /* পুরো ভিউপোর্ট হাইট */
+  position: relative;
+  overflow: hidden;
 }
-.swiper-slide{
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
+.swiper-slide {
+  background-size: cover;      /* ইমেজ ফিট করবে */
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-/* Common zodiac wheel (default) */
+/* Zodiac Wheel */
 .zodiac-wheel {    
   position: absolute;    
-  bottom: 0;        /* একদম নিচে ঘেঁষে */
-  left: 0;          /* একদম বামে ঘেঁষে */
-  width: 300px;     /* default size */
+  bottom: 0;    
+  left: 0;    
+  width: 300px;    
   height: 300px;    
   background: url('gallery/myastrology-ranaghat-astrology-palmistry.png') 
               no-repeat center/contain;    
   opacity: 0.7;    
   animation: spin 20s linear infinite;    
   z-index: 10;    
-}    
-
+}
 @keyframes spin {    
   from { transform: rotate(0deg); }    
   to { transform: rotate(360deg); }    
-}    
+}
 
 /* Very small phones */
 @media (max-width: 480px) {
@@ -95,6 +101,56 @@ nav ul li a{ color:#fff; text-decoration:none; font-weight:500; }
     height: 500px;
   }
 }
+</style>
+
+<!-- SWIPER HTML -->
+<div class="swiper">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide" style="background-image:url('gallery/myastrology-ranaghat-astrology-palmistry-consultant.webp');" 
+         title="Astrology & Palmistry Consultation"></div>
+
+    <div class="swiper-slide" style="background-image:url('gallery/best-astrologer-palmist-dr-prodyut-acharya.webp');" 
+         title="Best Astrologer & Palmist"></div>
+
+    <div class="swiper-slide" style="background-image:url('gallery/myastrology-ranaghat-horoscope-palm-reading.webp');" 
+         title="Horoscope & Palm Reading"></div>
+
+    <div class="swiper-slide" style="background-image:url('gallery/expert-astrologer-palmist-nadia.webp');" 
+         title="Expert Astrologer Nadia"></div>
+
+    <div class="swiper-slide" style="background-image:url('gallery/astrology-palmistry-services-best.webp');" 
+         title="Astrology & Palmistry Services"></div>
+  </div>
+
+  <!-- Optional navigation -->
+  <div class="swiper-pagination"></div>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+
+  <!-- Zodiac Wheel -->
+  <div class="zodiac-wheel"></div>
+</div>
+
+<!-- SWIPER JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+var swiper = new Swiper('.swiper', {
+  loop: true,
+  autoplay: {
+    delay: 4000,
+    disableOnInteraction: false,
+  },
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+});
+</script>
+  
 /* SCROLLING BANNER */
 .scroll-banner{
   background:#ffe5b4; color:#0c1b33;
