@@ -140,3 +140,58 @@ var swiper = new Swiper('.swiper', {
 
 </body>
 </html>
+
+<!-- Swiper Slider Section -->
+<section class="image-slider">
+  <div class="swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" style="background-image:url('gallery/myastrology-ranaghat-astrology-palmistry-consultant.webp');" title="Astrology & Palmistry Consultation"></div>      
+      <div class="swiper-slide" style="background-image:url('gallery/best-astrologer-palmist-dr-prodyut-acharya.webp');" title="Best Astrologer & Palmist"></div>      
+      <div class="swiper-slide" style="background-image:url('gallery/myastrology-ranaghat-horoscope-palm-reading.webp');" title="Horoscope & Palm Reading"></div>      
+      <div class="swiper-slide" style="background-image:url('gallery/expert-astrologer-palmist-nadia.webp');" title="Expert Astrologer Nadia"></div>      
+      <div class="swiper-slide" style="background-image:url('gallery/astrology-palmistry-services-best.webp');" title="Astrology & Palmistry Services"></div>      
+    </div>
+
+    <!-- Pagination & Navigation -->
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  </div>
+</section>
+
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+  const swiper = new Swiper('.swiper', {
+    loop: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+</script>
+
+<!-- CSS -->
+<style>
+.image-slider {
+  width: 100%;
+  height: 500px; /* আপনার প্রয়োজন অনুযায়ী পরিবর্তন করুন */
+}
+.swiper-slide {
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+}
+</style>
