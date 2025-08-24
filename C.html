@@ -1,165 +1,236 @@
-<!DOCTYPE html>
-<html lang="bn">
+<!DOCTYPE html><html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MyAstrology Gallery – Dr. Prodyut Acharya</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MyAstrology — প্রদ্যুত আচার্য</title>
+  <meta name="description" content="MyAstrology | প্রদ্যুত আচার্য — জ্যোতিষ, হস্তরেখা, বাস্তু ও কুষ্ঠি পরামর্শ" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b1020;
+      --card: #0f1530;
+      --accent: #e0b400;
+      --accent-2:#9dd6ff;
+      --text: #f6f7fb;
+      --muted:#b9c0d0;
+      --shadow: 0 10px 30px rgba(0,0,0,.25);
+      --radius: 16px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family: 'Noto Sans Bengali', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      background: radial-gradient(1200px 800px at 75% -10%, #16204a 0%, var(--bg) 60%);
+      color: var(--text);
+      line-height: 1.6;
+    }a{color:inherit;text-decoration:none}
+img{max-width:100%;height:auto;display:block}
+.container{width:min(1200px, 92vw);margin-inline:auto}
 
-<meta name="description" content="MyAstrology Ranaghat: Expert Indian Astrology & Palmistry consultation by Dr. Prodyut Acharya. Horoscope, palm reading, vastu, numerology services available.">
-<meta name="keywords" content="Astrology, Palmistry, Horoscope, Vastu, Numerology, Dr. Prodyut Acharya, Ranaghat, Indian Astrology, Online Consultation, Birth Chart, Love Marriage, Career Guidance">
+/* Header */
+.site-header{position:sticky;top:0;z-index:50;background:rgba(11,16,32,.75);backdrop-filter:saturate(1.2) blur(10px);border-bottom:1px solid rgba(255,255,255,.06)}
+.nav{display:flex;align-items:center;gap:16px;min-height:72px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#ffd36e,#ff8a00);color:#241400;font-weight:800;box-shadow:var(--shadow);}
+.brand-title{display:flex;flex-direction:column}
+.brand-title .en{font-weight:700;letter-spacing:.2px}
+.brand-title .bn{font-size:.92rem;color:var(--muted)}
 
-<link href="https://fonts.googleapis.com/css2?family=Kalpurush&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+.nav-spacer{flex:1}
 
-<style>
-*{margin:0; padding:0; box-sizing:border-box;}
-body{font-family:'Kalpurush',sans-serif; background:#f9f9f9;}
+/* Desktop menu */
+.menu{display:none;gap:6px;align-items:center}
+.menu a{padding:.55rem .8rem;border-radius:999px;color:var(--muted);border:1px solid transparent}
+.menu a:hover{color:var(--text);border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.04)}
+.menu a.active{color:#0b1020;background:var(--accent);border-color:var(--accent)}
 
-/* HEADER */
-header{
-  display:flex; justify-content:space-between; align-items:center;
-  padding:12px 24px; background:#0c1b33; color:#fff; position:sticky; top:0; z-index:1000;
-}
-.logo{display:flex; align-items:center; font-size:1.5rem; font-weight:bold;}
-.logo img{height:50px; margin-right:10px;}
-nav ul{list-style:none; display:flex; gap:20px; transition:all 0.3s ease;}
-nav ul li a{color:#fff; text-decoration:none; font-weight:500;}
-.hamburger{font-size:1.8rem; cursor:pointer; display:block; color:#fff;}
+/* CTA */
+.cta{display:none}
+.btn{appearance:none;border:0;cursor:pointer;padding:.65rem 1rem;border-radius:999px;font-weight:700}
+.btn-primary{background:linear-gradient(135deg,#ffd36e,#ffb300);color:#201600;box-shadow:0 8px 24px rgba(255, 211, 110, .35)}
+.btn-primary:hover{filter:brightness(1.05)}
 
-/* Mobile Menu */
-@media(max-width:768px){
-  nav ul{
-    display:none; flex-direction:column; background:#0c1b33;
-    position:absolute; top:70px; right:10px; width:200px; padding:10px 0; border-radius:0 0 8px 8px;
-  }
-  nav ul.show{display:flex;}
+/* Hamburger */
+.hamburger{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);cursor:pointer}
+.hamburger span{display:block;width:18px;height:2px;background:var(--text);position:relative}
+.hamburger span::before,.hamburger span::after{content:"";position:absolute;left:0;width:18px;height:2px;background:var(--text)}
+.hamburger span::before{top:-6px}
+.hamburger span::after{top:6px}
+
+/* Mobile drawer */
+.drawer{position:fixed;inset:72px 0 auto 0;background:rgba(11,16,32,.9);backdrop-filter:blur(6px);border-top:1px solid rgba(255,255,255,.08);transform:translateY(-8px);opacity:0;visibility:hidden;transition:.25s ease;}
+.drawer.open{transform:translateY(0);opacity:1;visibility:visible}
+.drawer .drawer-inner{padding:14px 16px 24px}
+.drawer a{display:block;padding:12px 14px;border-radius:12px;color:var(--text);border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);margin-bottom:8px}
+.drawer a:hover{background:rgba(255,255,255,.07)}
+
+/* Hero */
+.hero{padding:48px 0 28px}
+.hero-card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px}
+.hero h1{margin:0 0 10px;font-size:clamp(26px, 3.2vw, 40px);line-height:1.2}
+.hero p.lead{margin:0;color:var(--muted)}
+
+.features{display:grid;grid-template-columns:1fr;gap:10px;margin-top:20px}
+.feature{display:flex;gap:10px;align-items:flex-start;padding:12px;border-radius:14px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)}
+.feature .emoji{font-size:1.15rem}
+
+/* Gallery */
+.gallery{margin:26px 0 60px}
+.gallery-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.gallery figure{margin:0;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.08);background:#0f1530}
+.gallery figcaption{padding:8px 10px;color:var(--muted);font-size:.9rem;border-top:1px solid rgba(255,255,255,.06)}
+
+/* Footer */
+footer{padding:32px 0;color:var(--muted);border-top:1px solid rgba(255,255,255,.06)}
+
+/* Responsive */
+@media (min-width: 992px){
+  .menu{display:flex}
+  .cta{display:block}
+  .hamburger{display:none}
+  .drawer{display:none}
+  .features{grid-template-columns:1fr 1fr}
+  .gallery-grid{grid-template-columns:repeat(3, 1fr)}
+}
+@media (min-width: 1280px){
+  .features{grid-template-columns:repeat(3, 1fr)}
+  .gallery-grid{grid-template-columns:repeat(6, 1fr)}
 }
 
-/* SWIPER BANNER */
-.swiper{width:100%; height:90vh; position:relative;}
-.swiper-slide{
-  background-size:contain;
-  background-position:center;
-  background-repeat:no-repeat;
-}
-
-/* Zodiac Wheel */
-.zodiac-wheel{
-  position:absolute;
-  bottom:20px; left:20px;
-  width:300px; height:300px; /* Desktop large */
-  background:url('gallery/myastrology-ranaghat-astrology-palmistry.png') no-repeat center/contain;
-  opacity:0.8;
-  animation:spin 20s linear infinite;
-  z-index:10;
-  pointer-events:none;
-}
-@media(max-width:768px){
-  .zodiac-wheel{
-    width:150px; height:150px; bottom:10px; left:10px;
-  }
-}
-@keyframes spin{from{transform:rotate(0deg);} to{transform:rotate(360deg);}}
-
-/* SCROLLING BANNER */
-.scroll-banner{
-  background:#ffe5b4; color:#0c1b33;
-  overflow:hidden; border-top:2px solid #f1c40f; border-bottom:2px solid #f1c40f;
-  padding:12px 0; position:relative;
-}
-.scroll-content{
-  display:inline-flex; gap:50px; white-space:nowrap;
-  animation:scroll-left 25s linear infinite;
-  padding-left:100%;
-}
-.scroll-item{ font-size:1.2rem; font-weight:500; flex-shrink:0; }
-@keyframes scroll-left{ 0%{transform:translateX(0);} 100%{transform:translateX(-100%);}}
-
-/* GALLERY */
-.gallery{
-  max-width:1200px; margin:40px auto;
-  display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; padding:0 20px;
-}
-.gallery img{
-  border-radius:12px; transition:transform 0.3s; cursor:pointer; object-fit:cover; width:100%; height:250px;
-}
-.gallery img:hover{transform:scale(1.05);}
-</style>
+  </style>
 </head>
 <body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container nav" role="navigation" aria-label="Primary">
+      <a href="#home" class="brand" aria-label="MyAstrology Home">
+        <div class="logo" aria-hidden="true">MA</div>
+        <div class="brand-title">
+          <span class="en">MyAstrology</span>
+          <span class="bn">প্রদ্যুত আচার্য</span>
+        </div>
+      </a><div class="nav-spacer"></div>
 
-<header>
-  <div class="logo">
-    <img src="images/MyAstrology-Ranghat-logo.png" alt="MyAstrology Logo">
-    MyAstrology প্রদ্যুত আচার্য
-  </div>
-  <div class="hamburger" id="hamburger">&#9776;</div>
-  <nav>
-    <ul id="nav-links">
-      <li><a href="index.html">🏠 হোম</a></li>
-      <li><a href="about.html">আমাদের সম্পর্কে</a></li>
-      <li><a href="vedic-astronomy.html">জ্যোতির্বিজ্ঞান</a></li>
-      <li><a href="Vastu-science.html">বাস্তু</a></li>
-      <li><a href="astrology.html">জ্যোতিষ</a></li>
-      <li><a href="palmistry.html">হস্তরেখা</a></li>
-      <li><a href="gallery.html">ফটো গ্যালারি</a></li>
-      <li><a href="blog.html">ব্লগ</a></li>
-      <li><a href="video.html">ভিডিও</a></li>
-      <li><a href="https://wa.me/919333122768">যোগাযোগ</a></li>
-      <li><a href="booking.html">বুকিং</a></li>
-    </ul>
+  <!-- Desktop menu -->
+  <nav class="menu" aria-label="Main menu">
+    <a href="#home" class="active">🏠 হোম</a>
+    <a href="#about">আমাদের সম্পর্কে</a>
+    <a href="#astronomy">জ্যোতির্বিজ্ঞান</a>
+    <a href="#vastu">বাস্তু</a>
+    <a href="#jyotish">জ্যোতিষ</a>
+    <a href="#palm">হস্তরেখা</a>
+    <a href="#photos">ফটো গ্যালারি</a>
+    <a href="#blog">ব্লগ</a>
+    <a href="#video">ভিডিও</a>
+    <a href="#contact">যোগাযোগ</a>
   </nav>
-</header>
 
-<!-- SWIPER BANNER -->
-<div class="swiper">
-  <div class="swiper-wrapper">
-    <div class="swiper-slide" style="background-image:url('gallery/myastrology-ranaghat-astrology-palmistry-consultant.webp')" alt="Astrology & Palmistry Consultation"></div>
-    <div class="swiper-slide" style="background-image:url('gallery/best-astrologer-palmist-dr-prodyut-acharya.webp')" alt="Best Astrologer & Palmist"></div>
-    <div class="swiper-slide" style="background-image:url('gallery/myastrology-ranaghat-horoscope-palm-reading.webp')" alt="Horoscope & Palm Reading"></div>
-    <div class="swiper-slide" style="background-image:url('gallery/expert-astrologer-palmist-nadia.webp')" alt="Expert Astrologer Nadia"></div>
-    <div class="swiper-slide" style="background-image:url('gallery/astrology-palmistry-services-best.webp')" alt="Astrology & Palmistry Services"></div>
+  <div class="cta">
+    <a href="#booking" class="btn btn-primary" role="button">বুকিং</a>
   </div>
-  <div class="swiper-pagination"></div>
-  <div class="swiper-button-prev"></div>
-  <div class="swiper-button-next"></div>
-  <div class="zodiac-wheel"></div>
+
+  <!-- Mobile hamburger -->
+  <button class="hamburger" id="navToggle" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false">
+    <span></span>
+  </button>
 </div>
 
-<!-- SCROLLING BANNER -->
-<div class="scroll-banner">
-  <div class="scroll-content">
-    <div class="scroll-item">🔮 জ্যোতিষে ভবিষ্যৎ বলি – প্রেম, বিবাহ, কর্ম, ব্যবসা সমাধান</div>
-    <div class="scroll-item">🖐️ হস্তরেখা বিশ্লেষণ – ভাগ্য, স্বাস্থ্য, সাফল্য চিহ্নিত করি</div>
-    <div class="scroll-item">📜 কুষ্ঠি, রাশিফল ও জন্মকুণ্ডলী – বিস্তারিত পারিবারিক পরামর্শ</div>
-    <div class="scroll-item">💎 রত্ন ও নেকলেস পরামর্শ – শ্রী, সমৃদ্ধি ও সৌভাগ্য বৃদ্ধি</div>
+<!-- Mobile drawer -->
+<div id="mobileMenu" class="drawer" role="dialog" aria-modal="true" aria-label="Mobile menu">
+  <div class="drawer-inner container">
+    <a href="#home">🏠 হোম</a>
+    <a href="#about">আমাদের সম্পর্কে</a>
+    <a href="#astronomy">জ্যোতির্বিজ্ঞান</a>
+    <a href="#vastu">বাস্তু</a>
+    <a href="#jyotish">জ্যোতিষ</a>
+    <a href="#palm">হস্তরেখা</a>
+    <a href="#photos">ফটো গ্যালারি</a>
+    <a href="#blog">ব্লগ</a>
+    <a href="#video">ভিডিও</a>
+    <a href="#contact">যোগাযোগ</a>
+    <a href="#booking" class="btn btn-primary" style="display:inline-block;margin-top:6px">বুকিং</a>
   </div>
 </div>
 
-<!-- GALLERY -->
-<section class="gallery">
-  <img src="images/gallery1.jpg" alt="Astrology Consultation Image" loading="lazy">
-  <img src="images/gallery2.jpg" alt="Palmistry Analysis Image" loading="lazy">
-  <img src="images/gallery3.jpg" alt="Horoscope Reading Image" loading="lazy">
-  <img src="images/gallery4.jpg" alt="Vastu and Home Energy Image" loading="lazy">
-  <img src="images/gallery5.jpg" alt="Astrology Chart Image" loading="lazy">
-  <img src="images/gallery6.jpg" alt="Palm Lines Closeup Image" loading="lazy">
+  </header>  <!-- Main -->  <main id="home" class="container">
+    <section class="hero">
+      <div class="hero-card">
+        <h1>🔮 MyAstrology — আপনার জীবনের সঠিক দিশা</h1>
+        <p class="lead">জ্যোতিষ, হস্তরেখা, বাস্তু ও কুষ্ঠি বিশ্লেষণে অভিজ্ঞ পরামর্শ। অ্যাপয়েন্টমেন্ট নিন — অনলাইন/অফলাইন দু’ভাবেই।</p>
+        <div class="features">
+          <div class="feature"><div class="emoji">🔮</div><div>জ্যোতিষে ভবিষ্যৎ বলি – প্রেম, বিবাহ, কর্ম, ব্যবসা সমাধান</div></div>
+          <div class="feature"><div class="emoji">🖐️</div><div>হস্তরেখা বিশ্লেষণ – ভাগ্য, স্বাস্থ্য, সাফল্য চিহ্নিত করি</div></div>
+          <div class="feature"><div class="emoji">📜</div><div>কুষ্ঠি, রাশিফল ও জন্মকুণ্ডলী – বিস্তারিত পারিবারিক পরামর্শ</div></div>
+          <div class="feature"><div class="emoji">💎</div><div>রত্ন ও নেকলেস পরামর্শ – শ্রী, সমৃদ্ধি ও সৌভাগ্য বৃদ্ধি</div></div>
+        </div>
+        <div style="margin-top:18px">
+          <a class="btn btn-primary" href="#booking">এখনই বুকিং করুন</a>
+        </div>
+      </div>
+    </section><section id="photos" class="gallery" aria-labelledby="galleryTitle">
+  <h2 id="galleryTitle" style="margin:0 0 12px">গ্যালারি</h2>
+  <div class="gallery-grid">
+    <figure>
+      <img src="images/astrology-consultation.jpg" alt="Astrology Consultation Image" loading="lazy">
+      <figcaption>জ্যোতিষ পরামর্শ</figcaption>
+    </figure>
+    <figure>
+      <img src="images/palmistry-analysis.jpg" alt="Palmistry Analysis Image" loading="lazy">
+      <figcaption>হস্তরেখা বিশ্লেষণ</figcaption>
+    </figure>
+    <figure>
+      <img src="images/horoscope-reading.jpg" alt="Horoscope Reading Image" loading="lazy">
+      <figcaption>রাশিফল পাঠ</figcaption>
+    </figure>
+    <figure>
+      <img src="images/vastu-home-energy.jpg" alt="Vastu and Home Energy Image" loading="lazy">
+      <figcaption>বাস্তু ও হোম এনার্জি</figcaption>
+    </figure>
+    <figure>
+      <img src="images/astrology-chart.jpg" alt="Astrology Chart Image" loading="lazy">
+      <figcaption>জ্যোতিষ চার্ট</figcaption>
+    </figure>
+    <figure>
+      <img src="images/palm-lines-closeup.jpg" alt="Palm Lines Closeup Image" loading="lazy">
+      <figcaption>হাতের রেখার ক্লোজআপ</figcaption>
+    </figure>
+  </div>
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-<script>
-const swiper = new Swiper('.swiper', {
-  loop:true,
-  pagination:{el:'.swiper-pagination', clickable:true},
-  navigation:{nextEl:'.swiper-button-next', prevEl:'.swiper-button-prev'},
-  autoplay:{delay:4000, disableOnInteraction:false},
-});
+  </main>  <footer class="container">
+    <div>© <span id="yr"></span> MyAstrology — প্রদ্যুত আচার্য • সর্বস্বত্ব সংরক্ষিত</div>
+  </footer>  <script>
+    // Mobile menu toggle
+    const navToggle = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    navToggle?.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', String(open));
+      navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
 
-// Hamburger toggle
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.getElementById('nav-links');
-hamburger.addEventListener('click', ()=>{ navLinks.classList.toggle('show'); });
-</script>
+    // Close mobile menu on link click
+    mobileMenu?.addEventListener('click', (e) => {
+      if(e.target.tagName === 'A'){
+        mobileMenu.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.setAttribute('aria-label', 'Open menu');
+      }
+    });
 
-</body>
+    // Active state for menu based on hash
+    function updateActive(){
+      const hash = location.hash || '#home';
+      document.querySelectorAll('.menu a').forEach(a=>{
+        if(a.getAttribute('href')===hash){a.classList.add('active')} else {a.classList.remove('active')}
+      });
+    }
+    window.addEventListener('hashchange', updateActive);
+    updateActive();
+
+    // Year in footer
+    document.getElementById('yr').textContent = new Date().getFullYear();
+  </script></body>
 </html>
