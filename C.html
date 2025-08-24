@@ -16,109 +16,83 @@
 body { font-family: 'Kalpurush', sans-serif; background: #f9f9f9; }
 
 /* HEADER */
-header {
+header{
   display:flex; justify-content:space-between; align-items:center;
   padding:12px 24px; background:#0c1b33; color:#fff;
   position:sticky; top:0; z-index:1000;
 }
 .logo { display:flex; align-items:center; font-size:1.5rem; font-weight:bold; }
-.logo img { height:50px; margin-right:10px; }
+.logo img{ height:50px; margin-right:10px; }
 
-/* Navigation */
-nav ul {
-  list-style:none;
-  display:flex; gap:20px;
-}
-nav ul li a { color:#fff; text-decoration:none; font-weight:500; }
+.hamburger{ font-size:1.8rem; cursor:pointer; color:#fff; }
 
-/* Hamburger */
-.hamburger {
-  font-size:1.8rem; cursor:pointer; color:#fff;
-  display:none; /* desktop এ লুকোনো */
+/* NAVIGATION */
+nav ul{ 
+  list-style:none; flex-direction:column; background:#0c1b33;
+  position:absolute; top:70px; right:0; width:200px;
+  padding:10px 0; border-radius:0 0 8px 8px; display:none;
 }
-
-/* Mobile menu */
-@media (max-width: 767px) {
-  nav ul {
-    flex-direction:column; background:#0c1b33;
-    position:absolute; top:70px; right:0;
-    width:200px; padding:10px 0;
-    border-radius:0 0 8px 8px; display:none;
-  }
-  .hamburger { display:block; margin-left:auto; }
-}
+nav ul li{ padding:10px 20px; }
+nav ul li a{ color:#fff; text-decoration:none; display:block; }
 
 /* SWIPER BANNER */
-.swiper {
-  width:100%;
-  height:100vh;
-  position:relative;
+.swiper{
+  width:100%; height:100vh;
+  position:relative; overflow:hidden;
 }
-.swiper-slide {
-  display:flex; justify-content:center; align-items:center;
-}
-.swiper-slide img {
-  width:100%;
-  height:100%;
-  object-fit:cover;   /* পুরো ফিট করবে, crop হবে না */
-}
-.banner {
-  margin:0; padding:0; position:relative; overflow:hidden;
+.swiper-slide{ width:100%; height:100%; }
+.swiper-slide img{
+  width:100%; height:100%;
+  object-fit:cover; /* পুরো ফিট হবে */
 }
 
 /* WHEEL */
 .wheel {
   position:absolute;
-  bottom:0; left:0;
-  opacity:0.7;
-  animation:spin 20s linear infinite;
-  z-index:10;
+  bottom:10px; left:10px;
+  opacity:0.7; z-index:10;
+  animation: spin 20s linear infinite;
 }
 @media (min-width:768px){
-  .wheel {
-    width:300px; height:300px;  /* desktop এ বড় */
-  }
+  .wheel{ width:300px; }  /* ডেস্কটপে বড় */
 }
 @media (max-width:767px){
-  .wheel {
-    width:150px; height:150px;  /* mobile এ ছোট */
-  }
+  .wheel{ width:140px; }  /* মোবাইলে ছোট */
 }
 @keyframes spin {
-  0% { transform:rotate(0deg); }
-  100% { transform:rotate(360deg); }
+  0%{ transform:rotate(0deg); }
+  100%{ transform:rotate(360deg); }
 }
 
-/* SCROLLING BANNER */
-.scroll-banner article {
+/* SCROLL BANNER */
+.scroll-banner article{
   background:#d6f5ff;
-  color:#0c1b33;
-  overflow:hidden;
+  color:#0c1b33; padding:12px 0;
   border-top:2px solid #f1c40f; border-bottom:2px solid #f1c40f;
-  padding:12px 0; position:relative;
+  overflow:hidden; position:relative;
 }
-.scroll-content {
+.scroll-content{
   display:inline-flex; gap:50px; white-space:nowrap;
   animation:scroll-left 25s linear infinite;
   padding-left:100%;
 }
-.scroll-item { font-size:1.2rem; font-weight:500; flex-shrink:0; }
-@keyframes scroll-left {
-  0% { transform:translateX(0); }
-  100% { transform:translateX(-100%); }
+.scroll-item{ font-size:1.2rem; font-weight:500; flex-shrink:0; }
+@keyframes scroll-left{
+  0%{transform:translateX(0);}
+  100%{transform:translateX(-100%);}
 }
 
 /* GALLERY */
-.gallery {
+.gallery{
   max-width:1200px; margin:40px auto;
   display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
   gap:20px; padding:0 20px;
 }
-.gallery img {
-  border-radius:12px; transition:transform 0.3s; cursor:pointer;
-  width:100%; height:auto; object-fit:cover;
+.gallery img{
+  border-radius:12px; transition:transform 0.3s;
+  width:100%; height:auto; object-fit:cover; cursor:pointer;
 }
-.gallery img:hover { transform:scale(1.05); }
+.gallery img:hover{ transform:scale(1.05); }
 </style>
 </head>
 <body>
