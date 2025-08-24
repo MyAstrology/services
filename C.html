@@ -45,23 +45,43 @@ nav ul li a{ color:#fff; text-decoration:none; font-weight:500; }
   background-repeat:no-repeat;
 }
 
-/* Zodiac Wheel full visible, responsive */
-.zodiac-wheel {
-  position: fixed;   /* absolute নয়, fixed হলে সবসময় corner এ থাকবে */
-  bottom: 0;
-  left: 0;
-  width: 180px;
-  height: 180px;
-  background: url('gallery/myastrology-ranaghat-astrology-palmistry.png') no-repeat center/contain;
-  opacity: 0.7;
-  animation: spin 20s linear infinite;
-  z-index: 10;
+/* Common zodiac wheel (default for desktop) */
+.zodiac-wheel {    
+  position: absolute;    
+  bottom: 10px;     /* নিচে একেবারে ঘেঁষানো */
+  left: 10px;       /* বামপাশে একেবারে ঘেঁষানো */
+  width: 200px;     /* বড় সাইজ ডেস্কটপে */
+  height: 200px;    
+  background: url('gallery/myastrology-ranaghat-astrology-palmistry.png') 
+              no-repeat center/contain;    
+  opacity: 0.7;    
+  animation: spin 20s linear infinite;    
+  z-index: 10;    
+}    
+
+@keyframes spin {    
+  from { transform: rotate(0deg); }    
+  to { transform: rotate(360deg); }    
+}    
+
+/* Mobile view (max-width: 768px for tablets/phones) */
+@media (max-width: 768px) {
+  .zodiac-wheel {
+    bottom: 5px;   /* মোবাইলে আরো ঘেঁষে */
+    left: 5px;
+    width: 120px;  /* মোবাইলে ছোট সাইজ */
+    height: 120px;
+  }
 }
 
-/* Rotation animation */
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+/* Very small screens (max-width: 480px for small phones) */
+@media (max-width: 480px) {
+  .zodiac-wheel {
+    bottom: 0;    
+    left: 0;    
+    width: 100px;   /* আরও ছোট যাতে ছবি ঢেকে না যায় */
+    height: 100px;
+  }
 }
 
 /* Mobile view */
