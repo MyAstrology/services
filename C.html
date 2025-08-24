@@ -31,8 +31,8 @@ header {
 .logo {
   display: flex;
   align-items: center;
-  font-size: 1.5rem;
   font-weight: bold;
+  font-size: 2rem; /* ডিফল্ট ডেস্কটপ ফন্ট */
 }
 
 .logo img {
@@ -40,12 +40,14 @@ header {
   margin-right: 10px;
 }
 
-/* nav সবসময় hide */
-nav ul {
-  display: none;
-  list-style: none;
-  flex-direction: column;
-  gap: 15px;
+/* মোবাইলে ফন্ট ছোট করুন */
+@media (max-width: 768px) {
+  .logo {
+    font-size: 1.2rem; /* মোবাইল ফন্ট */
+  }
+  .logo img {
+    height: 40px; /* optional, ছবিও ছোট করতে পারেন */
+  }
 }
 
 .hamburger {
