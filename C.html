@@ -204,11 +204,21 @@ var swiper = new Swiper('.swiper', {
 <section class="image-slider">
   <div class="swiper">
     <div class="swiper-wrapper">
-      <div class="swiper-slide" style="background-image:url('gallery/myastrology-ranaghat-astrology-palmistry-consultant.webp');" title="Astrology & Palmistry Consultation"></div>      
-      <div class="swiper-slide" style="background-image:url('gallery/best-astrologer-palmist-dr-prodyut-acharya.webp');" title="Best Astrologer & Palmist"></div>      
-      <div class="swiper-slide" style="background-image:url('gallery/myastrology-ranaghat-horoscope-palm-reading.webp');" title="Horoscope & Palm Reading"></div>      
-      <div class="swiper-slide" style="background-image:url('gallery/expert-astrologer-palmist-nadia.webp');" title="Expert Astrologer Nadia"></div>      
-      <div class="swiper-slide" style="background-image:url('gallery/astrology-palmistry-consultation-ranaghat.webp');" title="Astrology & Palmistry Services"></div>      
+      <div class="swiper-slide" style="background-image:url('gallery/myastrology-ranaghat-astrology-palmistry-consultant.webp');">
+        <img src="gallery/myastrology-ranaghat-astrology-palmistry-consultant.webp" alt="Astrology & Palmistry Consultation" loading="lazy">
+      </div>      
+      <div class="swiper-slide" style="background-image:url('gallery/best-astrologer-palmist-dr-prodyut-acharya.webp');">
+        <img src="gallery/best-astrologer-palmist-dr-prodyut-acharya.webp" alt="Best Astrologer & Palmist" loading="lazy">
+      </div>      
+      <div class="swiper-slide" style="background-image:url('gallery/myastrology-ranaghat-horoscope-palm-reading.webp');">
+        <img src="gallery/myastrology-ranaghat-horoscope-palm-reading.webp" alt="Horoscope & Palm Reading" loading="lazy">
+      </div>      
+      <div class="swiper-slide" style="background-image:url('gallery/expert-astrologer-palmist-nadia.webp');">
+        <img src="gallery/expert-astrologer-palmist-nadia.webp" alt="Expert Astrologer Nadia" loading="lazy">
+      </div>      
+      <div class="swiper-slide" style="background-image:url('gallery/astrology-palmistry-consultation-ranaghat.webp');">
+        <img src="gallery/astrology-palmistry-consultation-ranaghat.webp" alt="Astrology & Palmistry Services" loading="lazy">
+      </div>      
     </div>
 
     <!-- Pagination & Navigation -->
@@ -218,6 +228,52 @@ var swiper = new Swiper('.swiper', {
   </div>
 </section>
 
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+  const swiper = new Swiper('.swiper', {
+    loop: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    lazy: true, // enable lazy loading
+  });
+</script>
+
+<!-- CSS -->
+<style>
+.image-slider {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+.swiper-slide img {
+  display: none; /* background-image থাকবে মূল, img শুধু SEO + lazy loading */
+}
+</style>
 <!-- Swiper CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
