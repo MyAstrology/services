@@ -1,224 +1,206 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Astro.myastrology.in Gallery</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyAstrology Gallery</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Kalpurush&display=swap" rel="stylesheet">
+
+  <!-- Swiper CSS for slider -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+
   <style>
-    /* বেসিক রিসেট ও ফন্ট */
-    * {
-      margin: 0; padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
     body {
-      background: #f9faff;
-      color: #2c3e50;
+      margin: 0;
+      font-family: 'Kalpurush', sans-serif;
+      background: #f9f9f9;
     }
 
-    /* হেডার স্টাইল */
+    /* ================= HEADER ================= */
     header {
-      background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
-      padding: 15px 30px;
-      position: sticky;
-      top: 0;
-      z-index: 9999;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-    header .logo {
-      font-weight: 700;
-      font-size: 28px;
+      padding: 12px 24px;
+      background: #0c1b33;
       color: #fff;
-      letter-spacing: 1.2px;
-      cursor: pointer;
-      user-select: none;
+      position: relative;
+      z-index: 1000;
     }
+
+    header .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    header .hamburger {
+      font-size: 1.8rem;
+      cursor: pointer;
+      display: none;
+    }
+
     nav ul {
       list-style: none;
       display: flex;
-      gap: 30px;
+      gap: 20px;
     }
+
     nav ul li a {
+      color: #fff;
       text-decoration: none;
-      color: #ecf0f1;
       font-weight: 500;
-      font-size: 18px;
-      transition: color 0.3s ease;
-    }
-    nav ul li a:hover,
-    nav ul li a:focus {
-      color: #ffe066;
     }
 
-    /* হ্যামবার্গার মেনু (মোবাইল) */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      gap: 5px;
-      width: 28px;
-      height: 22px;
-      justify-content: center;
-    }
-    .hamburger span {
-      height: 3px;
-      background: white;
-      border-radius: 3px;
-      transition: 0.3s;
-    }
-
-    /* রেসপনসিভ মেনু */
-    @media (max-width: 900px) {
+    /* Responsive Hamburger */
+    @media(max-width: 768px) {
       nav ul {
-        position: fixed;
-        top: 65px;
-        right: 0;
-        background: linear-gradient(180deg, #6a11cb 0%, #2575fc 100%);
-        height: calc(100vh - 65px);
+        display: none;
         flex-direction: column;
-        gap: 20px;
-        width: 220px;
-        padding: 40px 20px;
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
-        box-shadow: -4px 0 12px rgba(0,0,0,0.15);
+        background: #0c1b33;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 200px;
+        padding: 10px 0;
+        border-radius: 0 0 8px 8px;
       }
-      nav ul.active {
-        transform: translateX(0);
-      }
-      .hamburger {
+
+      nav ul.show {
         display: flex;
       }
+
+      header .hamburger {
+        display: block;
+      }
     }
 
-    /* স্লাইডার স্টাইল */
-    .slider {
+    /* ================= SLIDER ================= */
+    .swiper {
+      width: 100%;
+      height: 400px;
       position: relative;
-      overflow: hidden;
-      max-width: 1200px;
-      height: 360px;
-      margin: 40px auto;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    }
-    .slides {
-      display: flex;
-      width: 500%;
-      transition: transform 0.6s ease-in-out;
-    }
-    .slide {
-      width: 20%;
-      flex-shrink: 0;
-      background-size: cover;
-      background-position: center center;
-      border-radius: 12px;
     }
 
-    /* নেভিগেশন বাটন */
-    .slider-nav {
+    .swiper-slide {
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    /* Zodiac wheel overlay */
+    .zodiac-wheel {
       position: absolute;
-      bottom: 15px;
-      right: 20px;
-      display: flex;
-      gap: 10px;
+      top: 50%;
+      left: 50%;
+      width: 120px;
+      height: 120px;
+      margin: -60px 0 0 -60px;
+      background: url('images/zodiac-wheel.png') no-repeat center/contain;
+      animation: spin 20s linear infinite;
+      pointer-events: none;
+      z-index: 10;
     }
-    .slider-nav button {
-      background: rgba(255,255,255,0.7);
-      border: none;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* ================= GALLERY ================= */
+    .gallery {
+      max-width: 1200px;
+      margin: 40px auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 0 20px;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 12px;
+      transition: transform 0.3s;
       cursor: pointer;
-      transition: background 0.3s ease;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
     }
-    .slider-nav button.active {
-      background: #ffe066;
-      box-shadow: 0 1px 8px #ffe066;
+
+    .gallery img:hover {
+      transform: scale(1.05);
     }
   </style>
 </head>
 <body>
 
-<header>
-  <div class="logo" tabindex="0">MyAstrology.in</div>
-  <nav>
-    <ul id="nav-menu">
-      <li><a href="#" tabindex="0">হোম</a></li>
-      <li><a href="#" tabindex="0">সেবা</a></li>
-      <li><a href="#" tabindex="0">গ্যালারি</a></li>
-      <li><a href="#" tabindex="0">ব্লগ</a></li>
-      <li><a href="#" tabindex="0">যোগাযোগ</a></li>
-    </ul>
-  </nav>
-  <div class="hamburger" id="hamburger" aria-label="মেনু খুলুন" role="button" tabindex="0">
-    <span></span>
-    <span></span>
-    <span></span>
+  <!-- HEADER -->
+  <header>
+    <div class="logo">MyAstrology</div>
+    <div class="hamburger" id="hamburger">&#9776;</div>
+    <nav>
+      <ul id="nav-links">
+        <li><a href="#">হোম</a></li>
+        <li><a href="#">রাশিফল</a></li>
+        <li><a href="#">হস্তরেখা</a></li>
+        <li><a href="#">গ্যালারি</a></li>
+        <li><a href="#">যোগাযোগ</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- SLIDER -->
+  <div class="swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" style="background-image:url('images/slider1.jpg')"></div>
+      <div class="swiper-slide" style="background-image:url('images/slider2.jpg')"></div>
+      <div class="swiper-slide" style="background-image:url('images/slider3.jpg')"></div>
+      <div class="swiper-slide" style="background-image:url('images/slider4.jpg')"></div>
+      <div class="swiper-slide" style="background-image:url('images/slider5.jpg')"></div>
+    </div>
+    <!-- Pagination -->
+    <div class="swiper-pagination"></div>
+    <!-- Navigation buttons -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+
+    <!-- Zodiac Wheel -->
+    <div class="zodiac-wheel"></div>
   </div>
-</header>
 
-<!-- স্লাইডার -->
-<div class="slider" aria-label="স্লাইডার ব্যানার">
-  <div class="slides" id="slides">
-    <div class="slide" style="background-image: url('gallery/myastrology-ranaghat-astrology-palmistry-consultant.webp');" role="img" aria-label="ব্যানার ১"></div>
-    <div class="slide" style="background-image: url('gallery/best-astrologer-palmist-dr-prodyut-acharya.webp');" role="img" aria-label="ব্যানার ২"></div>
-    <div class="slide" style="background-image: url('gallery/myastrology-ranaghat-horoscope-palm-reading.webp');" role="img" aria-label="ব্যানার ৩"></div>
-    <div class="slide" style="background-image: url('gallery/expert-astrologer-palmist-nadia.webp');" role="img" aria-label="ব্যানার ৪"></div>
-    <div class="slide" style="background-image: url('gallery/astrology-palmistry-services-best.webp(900_x_1200_pixel)_16_11zon.jpg');" role="img" aria-label="ব্যানার ৫"></div>
-  </div>
-  <div class="slider-nav" id="slider-nav" aria-label="স্লাইডার নিয়ন্ত্রণ">
-    <button class="active" data-index="0" aria-label="স্লাইড ১"></button>
-    <button data-index="1" aria-label="স্লাইড ২"></button>
-    <button data-index="2" aria-label="স্লাইড ৩"></button>
-    <button data-index="3" aria-label="স্লাইড ৪"></button>
-    <button data-index="4" aria-label="স্লাইড ৫"></button>
-  </div>
-</div>
+  <!-- GALLERY -->
+  <section class="gallery">
+    <img src="images/gallery1.jpg" alt="Gallery Image 1">
+    <img src="images/gallery2.jpg" alt="Gallery Image 2">
+    <img src="images/gallery3.jpg" alt="Gallery Image 3">
+    <img src="images/gallery4.jpg" alt="Gallery Image 4">
+    <img src="images/gallery5.jpg" alt="Gallery Image 5">
+    <img src="images/gallery6.jpg" alt="Gallery Image 6">
+  </section>
 
-<script>
-  // হ্যামবার্গার মেনু টগল
-  const hamburger = document.getElementById('hamburger');
-  const navMenu = document.getElementById('nav-menu');
-
-  hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-  });
-
-  hamburger.addEventListener('keypress', (e) => {
-    if(e.key === 'Enter' || e.key === ' ') {
-      navMenu.classList.toggle('active');
-    }
-  });
-
-  // স্লাইডার ফাংশনালিটি
-  const slides = document.getElementById('slides');
-  const sliderButtons = document.querySelectorAll('.slider-nav button');
-  let currentSlide = 0;
-  const totalSlides = sliderButtons.length;
-
-  function setSlide(index) {
-    slides.style.transform = `translateX(-${index * 20}%)`;
-    sliderButtons.forEach(btn => btn.classList.remove('active'));
-    sliderButtons[index].classList.add('active');
-    currentSlide = index;
-  }
-
-  sliderButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      setSlide(parseInt(btn.dataset.index));
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script>
+    const swiper = new Swiper('.swiper', {
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false,
+      },
     });
-  });
 
-  // অটো স্লাইডার, ৫ সেকেন্ডে পরিবর্তন
-  setInterval(() => {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    setSlide(currentSlide);
-  }, 5000);
-</script>
-
+    // Hamburger toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+  </script>
 </body>
 </html>
