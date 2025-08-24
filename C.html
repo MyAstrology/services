@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
 <style>
-/* ===== General Reset ===== */
+  
 * {
   box-sizing: border-box;
   margin: 0;
@@ -23,10 +23,10 @@ body {
   background: #f9f9f9;
 }
 
-/* ===== Header ===== */
+/* ===== HEADER ===== */
 header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* logo বাম, hamburger ডান */
   align-items: center;
   padding: 12px 24px;
   background: #0c1b33;
@@ -40,7 +40,7 @@ header {
   display: flex;
   align-items: center;
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 2rem; /* desktop */
 }
 
 .logo img {
@@ -48,6 +48,7 @@ header {
   margin-right: 10px;
 }
 
+/* hamburger icon সবসময় ডান দিকে */
 .hamburger {
   font-size: 1.8rem;
   cursor: pointer;
@@ -55,11 +56,14 @@ header {
   display: block;
 }
 
+/* nav menu hidden by default */
 nav ul {
   display: none;
   list-style: none;
   flex-direction: column;
   gap: 15px;
+  margin: 0;
+  padding: 0;
 }
 
 nav ul li a {
@@ -68,10 +72,11 @@ nav ul li a {
   font-weight: 500;
 }
 
+/* dropdown menu show on active */
 nav.active ul {
   display: flex;
   position: absolute;
-  top: 70px;
+  top: 70px; /* header height */
   right: 24px;
   background: #162a4d;
   padding: 15px 20px;
@@ -80,7 +85,104 @@ nav.active ul {
   z-index: 1001;
 }
 
-/* ===== Gallery Section ===== */
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .logo {
+    font-size: 1.2rem;
+  }
+  .logo img {
+    height: 40px;
+  }
+
+  nav.active ul {
+    top: 60px;
+    right: 12px;
+    padding: 10px 15px;
+  }
+}
+
+/* ===== MAIN SWIPER BANNER ===== */
+.main-swiper {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+.main-swiper .swiper-slide {
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+/* ===== ZODIAC WHEEL ===== */
+.zodiac-wheel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 300px;
+  height: 300px;
+  background: url('gallery/myastrology-ranaghat-astrology-palmistry.png') no-repeat center/contain;
+  opacity: 0.7;
+  animation: spin 20s linear infinite;
+  z-index: 10;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive zodiac wheel */
+@media (max-width: 480px) {
+  .zodiac-wheel {
+    width: 120px;
+    height: 120px;
+  }
+}
+@media (min-width: 481px) and (max-width: 767px) {
+  .zodiac-wheel {
+    width: 200px;
+    height: 200px;
+  }
+}
+@media (min-width: 1200px) {
+  .zodiac-wheel {
+    width: 500px;
+    height: 500px;
+  }
+}
+
+/* Scroll Banner */
+.scroll-banner {
+  width: 100%;
+  background: #0c1b33;
+  color: #fff;
+  overflow: hidden;
+  padding: 8px 0;
+}
+.scroll-content {
+  display: flex;
+  gap: 50px;
+  animation: scroll-left 20s linear infinite;
+}
+.scroll-item {
+  white-space: nowrap;
+  font-weight: 500;
+}
+@keyframes scroll-left {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Gallery Section */
 .gallery-section {
   max-width: 1000px;
   margin: 0 auto;
@@ -104,101 +206,60 @@ nav.active ul {
   font-size: 1rem;
 }
 
-/* ===== Image Slider ===== */
-.image-slider {
-  width: 100%;
-  margin-top: 20px;
-}
+/* Image Slider Swiper */
 .image-swiper {
   width: 100%;
-  height: 300px; /* desktop height */
+  height: auto; /* উচ্চতা স্বয়ংক্রিয় করে দিলাম */
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap; /* ছবি ছোট স্ক্রীনে নিচে নেমে যাবে */
+  justify-content: center;
 }
+
 .image-swiper .swiper-slide {
+  flex: 1 1 calc(33.333% - 10px); /* বড় স্ক্রিনে তিনটি ছবি পাশে */
+  max-width: calc(33.333% - 10px);
   display: flex;
   justify-content: center;
   align-items: center;
+  background: none !important;
+  margin-bottom: 15px;
 }
+
 .image-swiper .swiper-slide img {
   width: 100%;
-  height: 100%;
-  object-fit: contain; /* cover->contain, crop হবে না */
+  height: auto; /* ছবি রেস্পন্সিভ */
+  object-fit: cover;
   border-radius: 8px;
   display: block;
 }
+
+/* Responsive image slider height */
+@media (max-width: 768px) {
+  .image-swiper .swiper-slide {
+    flex: 1 1 calc(50% - 10px); /* ২ টি ছবি পাশে মোবাইলে */
+    max-width: calc(50% - 10px);
+  }
+}
+@media (max-width: 480px) {
+  .image-swiper .swiper-slide {
+    flex: 1 1 100%; /* মোবাইলে এক এক ছবি নিচে */
+    max-width: 100%;
+  }
+}
+
+/* Swiper Buttons & Pagination */
 .swiper-button-next,
 .swiper-button-prev {
   color: #3478f6;
 }
+
 .swiper-pagination-bullet {
   background: #3478f6;
 }
 
-/* ===== Responsive ===== */
-@media (max-width: 1200px) {
-  .image-swiper { height: 280px; }
-}
-@media (max-width: 768px) {
-  .gallery-section h1 { font-size: 1.6rem; }
-  .gallery-section p { font-size: 0.95rem; }
-  .image-swiper { height: 250px; }
-  .logo { font-size: 1.2rem; }
-  .logo img { height: 40px; }
-  nav.active ul { top: 60px; right: 12px; padding: 10px 15px; }
-}
-@media (max-width: 480px) {
-  .image-swiper { height: 200px; }
-}
-
-/* ===== Main Swiper Banner ===== */
-.main-swiper {
-  width: 100%;
-  height: 100vh;
-  position: relative;
-}
-.main-swiper .swiper-slide {
-  background-size: cover !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-}
-
-/* ===== Zodiac Wheel ===== */
-.zodiac-wheel {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 300px;
-  height: 300px;
-  background: url('gallery/myastrology-ranaghat-astrology-palmistry.png') no-repeat center/contain;
-  opacity: 0.7;
-  animation: spin 20s linear infinite;
-  z-index: 10;
-}
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-@media (max-width: 480px) { .zodiac-wheel { width: 120px; height: 120px; } }
-@media (min-width: 481px) and (max-width: 767px) { .zodiac-wheel { width: 200px; height: 200px; } }
-@media (min-width: 1200px) { .zodiac-wheel { width: 500px; height: 500px; } }
-
-/* ===== Scroll Banner ===== */
-.scroll-banner {
-  width: 100%;
-  background: #0c1b33;
-  color: #fff;
-  overflow: hidden;
-  padding: 8px 0;
-}
-.scroll-content {
-  display: flex;
-  gap: 50px;
-  animation: scroll-left 20s linear infinite;
-}
-.scroll-item { white-space: nowrap; font-weight: 500; }
-@keyframes scroll-left { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-
 </style>
-
     
 
 </head>
