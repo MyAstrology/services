@@ -12,7 +12,57 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
 <style>
- 
+
+.gallery-section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.gallery-section h1 {
+  color: #3478f6;
+  font-weight: 900;
+  font-size: 2rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.gallery-section p {
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+  text-align: justify;
+  font-size: 1rem;
+}
+
+.image-slider img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #3478f6;
+}
+
+.swiper-pagination-bullet {
+  background: #3478f6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .gallery-section h1 {
+    font-size: 1.6rem;
+  }
+  
+  .gallery-section p {
+    font-size: 0.95rem;
+  }
+}
+
 .gallery-section {
   max-width: 1000px;
   margin: 0 auto;
@@ -354,57 +404,7 @@ nav.active ul {
   </div>
 </section>
 
-<style>
-.gallery-section {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
-}
 
-.gallery-section h1 {
-  color: #3478f6;
-  font-weight: 900;
-  font-size: 2rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.gallery-section p {
-  margin-bottom: 1.5rem;
-  line-height: 1.8;
-  text-align: justify;
-  font-size: 1rem;
-}
-
-.image-slider img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  object-fit: cover;
-}
-
-.swiper-button-next,
-.swiper-button-prev {
-  color: #3478f6;
-}
-
-.swiper-pagination-bullet {
-  background: #3478f6;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .gallery-section h1 {
-    font-size: 1.6rem;
-  }
-  
-  .gallery-section p {
-    font-size: 0.95rem;
-  }
-}
-</style>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
