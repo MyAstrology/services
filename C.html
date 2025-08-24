@@ -391,6 +391,13 @@ nav.active ul {
     },
   });
 </script>
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const nav = document.querySelector('nav');
+  hamburger.addEventListener('click', () => {
+    nav.classList.toggle('active');
+  });
+</script>
 
 </body>
 </html>
