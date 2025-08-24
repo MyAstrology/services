@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MyAstrology Gallery</title>
-  
+
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Kalpurush&display=swap" rel="stylesheet">
 
-  <!-- Swiper CSS for slider -->
+  <!-- Swiper CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
 
   <style>
@@ -18,7 +18,7 @@
       background: #f9f9f9;
     }
 
-    /* ================= HEADER ================= */
+    /* HEADER */
     header {
       display: flex;
       justify-content: space-between;
@@ -30,15 +30,16 @@
       z-index: 1000;
     }
 
-    header .logo {
+    .logo {
+      display: flex;
+      align-items: center;
       font-size: 1.5rem;
       font-weight: bold;
     }
 
-    header .hamburger {
-      font-size: 1.8rem;
-      cursor: pointer;
-      display: none;
+    .logo img {
+      height: 50px;
+      margin-right: 10px;
     }
 
     nav ul {
@@ -53,6 +54,12 @@
       font-weight: 500;
     }
 
+    .hamburger {
+      font-size: 1.8rem;
+      cursor: pointer;
+      display: none;
+    }
+
     /* Responsive Hamburger */
     @media(max-width: 768px) {
       nav ul {
@@ -60,23 +67,21 @@
         flex-direction: column;
         background: #0c1b33;
         position: absolute;
-        top: 60px;
+        top: 70px;
         right: 0;
-        width: 200px;
+        width: 220px;
         padding: 10px 0;
         border-radius: 0 0 8px 8px;
       }
-
       nav ul.show {
         display: flex;
       }
-
-      header .hamburger {
+      .hamburger {
         display: block;
       }
     }
 
-    /* ================= SLIDER ================= */
+    /* SLIDER */
     .swiper {
       width: 100%;
       height: 400px;
@@ -89,15 +94,15 @@
       position: relative;
     }
 
-    /* Zodiac wheel overlay */
+    /* Zodiac Wheel bottom-left */
     .zodiac-wheel {
       position: absolute;
-      top: 50%;
-      left: 50%;
+      bottom: 20px;
+      left: 20px;
       width: 120px;
       height: 120px;
-      margin: -60px 0 0 -60px;
       background: url('gallery/myastrology-ranaghat-astrology-palmistry.png') no-repeat center/contain;
+      opacity: 0.3;
       animation: spin 20s linear infinite;
       pointer-events: none;
       z-index: 10;
@@ -108,7 +113,7 @@
       to { transform: rotate(360deg); }
     }
 
-    /* ================= GALLERY ================= */
+    /* GALLERY */
     .gallery {
       max-width: 1200px;
       margin: 40px auto;
@@ -134,21 +139,25 @@
 
   <!-- HEADER -->
   <header>
-    <div class="images/MyAstrology-Ranghat-logo.png">MyAstrology প্রদ্যুৎ আচার্য</div>
+    <div class="logo">
+      <img src="images/MyAstrology-Ranaghat-logo.png" alt="MyAstrology Logo">
+      MyAstrology প্রদ্যুত আচার্য
+    </div>
     <div class="hamburger" id="hamburger">&#9776;</div>
     <nav>
-          <a href="index.html">🏠 হোম</a>
-    <a href="https://astro.myastrology.in/about.html">আমাদের সম্পর্কে</a>
-    <a href="vedic-astronomy.html">জ্যোতির্বিজ্ঞান</a>
-    <a href="Vastu-science.html">বাস্তু</a>
-    <a href="https://astro.myastrology.in/astrology.html">জ্যোতিষ</a>
-    <a href="https://astro.myastrology.in/palmistry.html">হস্তরেখা</a>
-      <a href="blog.prodyut-aharya-gallery.html">ফটো গ্যালারি</a>
-    <a href="https://prodyutacharya.blogspot.com">ব্লগ</a>
-    <a href="https://astro.myastrology.in/video.html">ভিডিও</a>
-    <a href="https://wa.me/919333122768">যোগাযোগ</a>
-    <a href="https://www.myastrology.in">বুকিং</a>
-    <a href="blog.myastrology.in">বাংলা ব্লগ</a>
+      <ul id="nav-links">
+        <li><a href="index.html">🏠 হোম</a></li>
+        <li><a href="about.html">আমাদের সম্পর্কে</a></li>
+        <li><a href="vedic-astronomy.html">জ্যোতির্বিজ্ঞান</a></li>
+        <li><a href="Vastu-science.html">বাস্তু</a></li>
+        <li><a href="astrology.html">জ্যোতিষ</a></li>
+        <li><a href="palmistry.html">হস্তরেখা</a></li>
+        <li><a href="gallery.html">ফটো গ্যালারি</a></li>
+        <li><a href="blog.html">ব্লগ</a></li>
+        <li><a href="video.html">ভিডিও</a></li>
+        <li><a href="https://wa.me/919333122768">যোগাযোগ</a></li>
+        <li><a href="booking.html">বুকিং</a></li>
+      </ul>
     </nav>
   </header>
 
@@ -161,9 +170,7 @@
       <div class="swiper-slide" style="background-image:url('gallery/expert-astrologer-palmist-nadia.webp')"></div>
       <div class="swiper-slide" style="background-image:url('gallery/astrology-palmistry-services-best.webp')"></div>
     </div>
-    <!-- Pagination -->
     <div class="swiper-pagination"></div>
-    <!-- Navigation buttons -->
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
 
