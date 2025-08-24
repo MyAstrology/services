@@ -22,40 +22,34 @@ header{
 }
 .logo { display:flex; align-items:center; font-size:1.5rem; font-weight:bold; }
 .logo img{ height:50px; margin-right:10px; }
-nav ul{ list-style:none; flex-direction:column; background:#0c1b33;
-  position:absolute; top:70px; right:10px; width:200px; padding:10px 0;
+nav ul{ 
+  list-style:none; flex-direction:column; background:#0c1b33;
+  position:absolute; top:70px; right:0; /* corner-এ বসবে */
+  width:200px; padding:10px 0;
   border-radius:0 0 8px 8px; display:none;
 }
-nav ul.show{ display:flex; }
-nav ul li{ padding:8px 16px; }
-nav ul li a{ color:#fff; text-decoration:none; font-weight:500; display:block; }
-.hamburger{ font-size:1.8rem; cursor:pointer; color:#fff; }
+.hamburger{ font-size:1.8rem; cursor:pointer; color:#fff; margin-left:auto; }
 
 /* SWIPER BANNER */
 .swiper{
   width:100%; height:100vh; position:relative;
 }
-.swiper-slide{
-  display:flex; justify-content:center; align-items:center;
-  background:#000;
-}
 .swiper-slide img{
-  width:100%; height:100%; object-fit:contain; /* Responsive without crop */
+  width:100%; height:100%; object-fit:cover; /* ফাঁকা থাকবে না */
 }
 
-/* Zodiac Wheel responsive */
+/* Zodiac Wheel */
 .zodiac-wheel{
   position:absolute;
-  bottom:20px; left:20px;
+  bottom:0; left:0;   /* কোনা ঘেঁষে */
   background:url('gallery/myastrology-ranaghat-astrology-palmistry.png') no-repeat center/contain;
-  opacity:0.7; animation:spin 20s linear infinite; z-index:10;
+  opacity:0.8; animation:spin 20s linear infinite; z-index:10;
 }
-@keyframes spin{ from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
 @media(max-width:600px){
-  .zodiac-wheel{ width:80px; height:80px; }
+  .zodiac-wheel{ width:120px; height:120px; } /* মোবাইলে ছোট */
 }
 @media(min-width:601px){
-  .zodiac-wheel{ width:150px; height:150px; }
+  .zodiac-wheel{ width:220px; height:220px; } /* ডেস্কটপে বড় */
 }
 
 /* SCROLLING BANNER */
