@@ -14,7 +14,73 @@
 
 <style>
 
+/* Gallery Section */
+.gallery-section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
 
+.gallery-section h1 {
+  color: #3478f6;
+  font-weight: 900;
+  font-size: 2rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.gallery-section p {
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+  text-align: justify;
+  font-size: 1rem;
+}
+
+/* Image Slider */
+.image-slider {
+  width: 100%;
+  background: #000; /* ব্যাকগ্রাউন্ড কালার সেট করলাম যাতে gap সুন্দর দেখায় */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.image-slider img {
+  max-width: 100%;
+  max-height: 80vh; /* স্ক্রিন অনুযায়ী এডজাস্ট হবে */
+  height: auto;
+  width: auto;
+  border-radius: 8px;
+  object-fit: contain; /* পুরো ছবি দেখা যাবে */
+}
+
+/* Swiper Navigation */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #3478f6;
+}
+
+.swiper-pagination-bullet {
+  background: #3478f6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .gallery-section h1 {
+    font-size: 1.6rem;
+  }
+  
+  .gallery-section p {
+    font-size: 0.95rem;
+  }
+
+  .image-slider img {
+    max-height: 60vh; /* মোবাইলে একটু ছোট দেখাবে যাতে স্ক্রিন ফিট হয় */
+  }
+}
 
   .gallery-section {
   max-width: 1000px;
@@ -32,22 +98,7 @@
   margin-bottom: 2rem;
 }
 
-.gallery-section p {
-  margin-bottom: 1.5rem;
-  line-height: 1.8;
-  text-align: justify;
-  font-size: 1rem;
-}
 
-@media (max-width: 768px) {
-  .gallery-section h1 {
-    font-size: 1.6rem; /* মোবাইলের জন্য হেডলাইন ছোট করা */
-  }
-  
-  .gallery-section p {
-    font-size: 0.95rem;
-  }
-}
 
 * {
   box-sizing: border-box;
