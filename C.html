@@ -12,98 +12,113 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
 
 <style>
-
-  
 * { box-sizing: border-box; margin:0; padding:0; }
 body { font-family: 'Kalpurush', sans-serif; background: #f9f9f9; }
 
 /* HEADER */
-header{
+header {
   display:flex; justify-content:space-between; align-items:center;
-  padding:12px 24px; background:#0c1b33; color:#fff; position:sticky; top:0; z-index:1000;
+  padding:12px 24px; background:#0c1b33; color:#fff;
+  position:sticky; top:0; z-index:1000;
 }
 .logo { display:flex; align-items:center; font-size:1.5rem; font-weight:bold; }
-.logo img{ height:50px; margin-right:10px; }
-nav ul{ 
-  list-style:none; flex-direction:column; background:#0c1b33;
-  position:absolute; top:70px; right:0; /* corner-এ বসবে */
-  width:200px; padding:10px 0;
-  border-radius:0 0 8px 8px; display:none;
+.logo img { height:50px; margin-right:10px; }
+
+/* Navigation */
+nav ul {
+  list-style:none;
+  display:flex; gap:20px;
 }
-.hamburger{ font-size:1.8rem; cursor:pointer; color:#fff; margin-left:auto; }
+nav ul li a { color:#fff; text-decoration:none; font-weight:500; }
+
+/* Hamburger */
+.hamburger {
+  font-size:1.8rem; cursor:pointer; color:#fff;
+  display:none; /* desktop এ লুকোনো */
+}
+
+/* Mobile menu */
+@media (max-width: 767px) {
+  nav ul {
+    flex-direction:column; background:#0c1b33;
+    position:absolute; top:70px; right:0;
+    width:200px; padding:10px 0;
+    border-radius:0 0 8px 8px; display:none;
+  }
+  .hamburger { display:block; margin-left:auto; }
+}
 
 /* SWIPER BANNER */
-.swiper{
+.swiper {
   width:100%;
   height:100vh;
   position:relative;
-  background:#000;  /* ফাঁকা জায়গা কালো দেখাবে */
 }
-.swiper-slide{
+.swiper-slide {
   display:flex; justify-content:center; align-items:center;
 }
-.swiper-slide img{
+.swiper-slide img {
   width:100%;
   height:100%;
-  object-fit:contain;   /* কোনো crop হবে না */
+  object-fit:cover;   /* পুরো ফিট করবে, crop হবে না */
 }
 .banner {
-  margin: 0;
-  padding: 0;
-  position: relative;
-  overflow: hidden;
+  margin:0; padding:0; position:relative; overflow:hidden;
 }
-  
+
+/* WHEEL */
 .wheel {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  opacity: 0.7; /* transparent effect */
-  animation: spin 20s linear infinite;
+  position:absolute;
+  bottom:0; left:0;
+  opacity:0.7;
+  animation:spin 20s linear infinite;
+  z-index:10;
 }
-
-@media (min-width: 768px) {
+@media (min-width:768px){
   .wheel {
-    width: 250px;  /* ডেস্কটপে বড় */
+    width:300px; height:300px;  /* desktop এ বড় */
   }
 }
-
-@media (max-width: 767px) {
+@media (max-width:767px){
   .wheel {
-    width: 120px;  /* মোবাইলে ছোট */
+    width:150px; height:150px;  /* mobile এ ছোট */
   }
 }
-
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% { transform:rotate(0deg); }
+  100% { transform:rotate(360deg); }
 }
 
 /* SCROLLING BANNER */
-.scroll-banner article{
-  background:#d6f5ff; /* নতুন রঙ */
+.scroll-banner article {
+  background:#d6f5ff;
   color:#0c1b33;
-  overflow:hidden; border-top:2px solid #f1c40f; border-bottom:2px solid #f1c40f;
+  overflow:hidden;
+  border-top:2px solid #f1c40f; border-bottom:2px solid #f1c40f;
   padding:12px 0; position:relative;
 }
-.scroll-content{
+.scroll-content {
   display:inline-flex; gap:50px; white-space:nowrap;
   animation:scroll-left 25s linear infinite;
   padding-left:100%;
 }
-.scroll-item{ font-size:1.2rem; font-weight:500; flex-shrink:0; }
-@keyframes scroll-left{ 0%{transform:translateX(0);} 100%{transform:translateX(-100%);} }
+.scroll-item { font-size:1.2rem; font-weight:500; flex-shrink:0; }
+@keyframes scroll-left {
+  0% { transform:translateX(0); }
+  100% { transform:translateX(-100%); }
+}
 
 /* GALLERY */
-.gallery{
+.gallery {
   max-width:1200px; margin:40px auto;
-  display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; padding:0 20px;
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px; padding:0 20px;
 }
-.gallery img{
+.gallery img {
   border-radius:12px; transition:transform 0.3s; cursor:pointer;
   width:100%; height:auto; object-fit:cover;
 }
-.gallery img:hover{ transform:scale(1.05); }
+.gallery img:hover { transform:scale(1.05); }
 </style>
 </head>
 <body>
