@@ -407,7 +407,25 @@ nav.active ul {
     <div class="swiper-button-next"></div>
   </div>
 </section>
+<script>
+  const swiper = new Swiper(".main-swiper", {
+    loop: true,                 // অসীম লুপে ঘুরবে
+    autoplay: {
+      delay: 3000,              // 3 সেকেন্ড পর স্লাইড বদলাবে
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+</script>
 
+  
 <!-- Swiper CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 
