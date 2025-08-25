@@ -273,22 +273,33 @@ nav.active {
 }
 
 /* Scroll Banner */
+/* Scroll Banner */
 .scroll-banner {
   width: 100%;
   background: #0c1b33;
   color: #fff;
   overflow: hidden;
-  padding: 8px 0;
+  padding: 12px 0;
 }
+
 .scroll-content {
   display: flex;
   gap: 50px;
   animation: scroll-left 20s linear infinite;
 }
+
 .scroll-item {
   white-space: nowrap;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 2rem; /* বড়ো লেখা */
 }
+
+@media (max-width: 768px) {
+  .scroll-item {
+    font-size: 1.6rem; /* মোবাইলে সামঞ্জস্যপূর্ণ */
+  }
+}
+
 @keyframes scroll-left {
   0% {
     transform: translateX(100%);
@@ -297,7 +308,6 @@ nav.active {
     transform: translateX(-100%);
   }
 }
-
 /* Image Slider Swiper */
 .image-swiper {
   width: 100%;
