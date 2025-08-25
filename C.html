@@ -444,20 +444,178 @@ nav.active ul {
 </body>
 </html>
 
+<!-- =====================
+  ✅ Paste this whole <section> block into your page
+  - Desktop: 2 sliders per row (2×2 layout)
+  - Mobile: stacked vertically (1 column)
+  - Each slider uses 5 images (total 20)
+  - Autoplay, arrows, dots, hover-pause, swipe
+======================= --><section id="four-sliders-2up" style="--autoplay-ms:3000; --gap:18px; --radius:16px; --dot:10px; --active:#0ea5e9; margin: 24px auto; max-width: 1200px; padding: 0 16px; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans Bengali', sans-serif;">  <style>
+    /* Layout */
+    #four-sliders-2up .grid { display:grid; grid-template-columns:1fr; gap:var(--gap); }
+    @media (min-width: 900px) { #four-sliders-2up .grid { grid-template-columns:repeat(2,1fr); } }
 
-.gallery-section p {
-  margin-bottom: 1.5rem;
-  line-height: 1.8;
-  text-align: justify;
-  font-size: 1rem;
-}
+    /* Card */
+    #four-sliders-2up .card { background:#0f172a; border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); overflow:hidden; box-shadow:0 8px 24px rgba(0,0,0,.12); }
 
-@media (max-width: 768px) {
-  .gallery-section h1 {
-    font-size: 1.6rem; /* মোবাইলের জন্য হেডলাইন ছোট করা */
-  }
-  
-  .gallery-section p {
-    font-size: 0.95rem;
-  }
-}
+    /* Slider shell */
+    #four-sliders-2up .slider { position:relative; overflow:hidden; border-radius:var(--radius); isolation:isolate; background:#0b1220; }
+    #four-sliders-2up .slider::before { content:""; display:block; padding-top:56.25%; } /* 16:9 aspect */
+
+    /* Track */
+    #four-sliders-2up .slides { position:absolute; inset:0; display:flex; transition:transform .5s ease; will-change:transform; }
+    #four-sliders-2up .slide { min-width:100%; height:100%; position:relative; }
+    #four-sliders-2up .slide img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+
+    /* Arrows */
+    #four-sliders-2up .nav { position:absolute; inset:0; display:flex; align-items:center; justify-content:space-between; padding:0 6px; pointer-events:none; }
+    #four-sliders-2up .btn { pointer-events:auto; width:36px; height:36px; border:0; border-radius:999px; cursor:pointer; background:rgba(0,0,0,.35); color:#fff; display:grid; place-items:center; }
+    #four-sliders-2up .btn:hover { background:rgba(0,0,0,.5); }
+
+    /* Dots */
+    #four-sliders-2up .dots { position:absolute; left:50%; bottom:10px; transform:translateX(-50%); display:flex; gap:8px; padding:6px 10px; border-radius:999px; background:rgba(0,0,0,.28); backdrop-filter:blur(6px); }
+    #four-sliders-2up .dot { width:var(--dot); height:var(--dot); border-radius:50%; background:rgba(255,255,255,.7); border:0; padding:0; cursor:pointer; }
+    #four-sliders-2up .dot[aria-current="true"] { background:var(--active); }
+
+    /* Caption */
+    #four-sliders-2up .cap { padding:10px 12px 14px; color:#dbeafe; font-size:14px; line-height:1.35; border-top:1px dashed rgba(255,255,255,.08); background:linear-gradient(180deg,#0f172a,#0b1220); }
+  </style>  <div class="grid" role="list" aria-label="Image sliders"><!-- ========== Slider 1 (images/set1-1.jpg ... set1-5.jpg) ========== -->
+<article class="card" role="listitem">
+  <div class="slider" data-autoplay="true" aria-roledescription="carousel" aria-label="Slider 1" aria-live="polite">
+    <div class="slides">
+      <div class="slide"><img loading="lazy" src="images/set1-1.jpg" alt="Slider 1 – Image 1"></div>
+      <div class="slide"><img loading="lazy" src="images/set1-2.jpg" alt="Slider 1 – Image 2"></div>
+      <div class="slide"><img loading="lazy" src="images/set1-3.jpg" alt="Slider 1 – Image 3"></div>
+      <div class="slide"><img loading="lazy" src="images/set1-4.jpg" alt="Slider 1 – Image 4"></div>
+      <div class="slide"><img loading="lazy" src="images/set1-5.jpg" alt="Slider 1 – Image 5"></div>
+    </div>
+    <div class="nav" aria-hidden="false">
+      <button class="btn prev" aria-label="Previous slide">&#10094;</button>
+      <button class="btn next" aria-label="Next slide">&#10095;</button>
+    </div>
+    <div class="dots" aria-label="Slider 1 pagination"></div>
+  </div>
+  <div class="cap">স্লাইডার ১ – আপনার ক্যাপশন লিখুন।</div>
+</article>
+
+<!-- ========== Slider 2 (images/set2-1.jpg ... set2-5.jpg) ========== -->
+<article class="card" role="listitem">
+  <div class="slider" data-autoplay="true" aria-roledescription="carousel" aria-label="Slider 2" aria-live="polite">
+    <div class="slides">
+      <div class="slide"><img loading="lazy" src="images/set2-1.jpg" alt="Slider 2 – Image 1"></div>
+      <div class="slide"><img loading="lazy" src="images/set2-2.jpg" alt="Slider 2 – Image 2"></div>
+      <div class="slide"><img loading="lazy" src="images/set2-3.jpg" alt="Slider 2 – Image 3"></div>
+      <div class="slide"><img loading="lazy" src="images/set2-4.jpg" alt="Slider 2 – Image 4"></div>
+      <div class="slide"><img loading="lazy" src="images/set2-5.jpg" alt="Slider 2 – Image 5"></div>
+    </div>
+    <div class="nav" aria-hidden="false">
+      <button class="btn prev" aria-label="Previous slide">&#10094;</button>
+      <button class="btn next" aria-label="Next slide">&#10095;</button>
+    </div>
+    <div class="dots" aria-label="Slider 2 pagination"></div>
+  </div>
+  <div class="cap">স্লাইডার ২ – আপনার ক্যাপশন লিখুন।</div>
+</article>
+
+<!-- ========== Slider 3 (images/set3-1.jpg ... set3-5.jpg) ========== -->
+<article class="card" role="listitem">
+  <div class="slider" data-autoplay="true" aria-roledescription="carousel" aria-label="Slider 3" aria-live="polite">
+    <div class="slides">
+      <div class="slide"><img loading="lazy" src="images/set3-1.jpg" alt="Slider 3 – Image 1"></div>
+      <div class="slide"><img loading="lazy" src="images/set3-2.jpg" alt="Slider 3 – Image 2"></div>
+      <div class="slide"><img loading="lazy" src="images/set3-3.jpg" alt="Slider 3 – Image 3"></div>
+      <div class="slide"><img loading="lazy" src="images/set3-4.jpg" alt="Slider 3 – Image 4"></div>
+      <div class="slide"><img loading="lazy" src="images/set3-5.jpg" alt="Slider 3 – Image 5"></div>
+    </div>
+    <div class="nav" aria-hidden="false">
+      <button class="btn prev" aria-label="Previous slide">&#10094;</button>
+      <button class="btn next" aria-label="Next slide">&#10095;</button>
+    </div>
+    <div class="dots" aria-label="Slider 3 pagination"></div>
+  </div>
+  <div class="cap">স্লাইডার ৩ – আপনার ক্যাপশন লিখুন।</div>
+</article>
+
+<!-- ========== Slider 4 (images/set4-1.jpg ... set4-5.jpg) ========== -->
+<article class="card" role="listitem">
+  <div class="slider" data-autoplay="true" aria-roledescription="carousel" aria-label="Slider 4" aria-live="polite">
+    <div class="slides">
+      <div class="slide"><img loading="lazy" src="images/set4-1.jpg" alt="Slider 4 – Image 1"></div>
+      <div class="slide"><img loading="lazy" src="images/set4-2.jpg" alt="Slider 4 – Image 2"></div>
+      <div class="slide"><img loading="lazy" src="images/set4-3.jpg" alt="Slider 4 – Image 3"></div>
+      <div class="slide"><img loading="lazy" src="images/set4-4.jpg" alt="Slider 4 – Image 4"></div>
+      <div class="slide"><img loading="lazy" src="images/set4-5.jpg" alt="Slider 4 – Image 5"></div>
+    </div>
+    <div class="nav" aria-hidden="false">
+      <button class="btn prev" aria-label="Previous slide">&#10094;</button>
+      <button class="btn next" aria-label="Next slide">&#10095;</button>
+    </div>
+    <div class="dots" aria-label="Slider 4 pagination"></div>
+  </div>
+  <div class="cap">স্লাইডার ৪ – আপনার ক্যাপশন লিখুন।</div>
+</article>
+
+  </div>  <script>
+    (function () {
+      const root = document.getElementById('four-sliders-2up');
+      const AUTOPLAY_MS = parseInt(getComputedStyle(root).getPropertyValue('--autoplay-ms')) || 3000;
+
+      function makeSlider(slider) {
+        const track = slider.querySelector('.slides');
+        const slides = Array.from(slider.querySelectorAll('.slide'));
+        const btnPrev = slider.querySelector('.prev');
+        const btnNext = slider.querySelector('.next');
+        const dotsWrap = slider.querySelector('.dots');
+        let index = 0;
+        let timer = null;
+        let startX = 0, deltaX = 0, isDragging = false;
+
+        // Build dots
+        slides.forEach((_, i) => {
+          const b = document.createElement('button');
+          b.className = 'dot';
+          b.type = 'button';
+          b.setAttribute('aria-label', `Go to slide ${i+1}`);
+          b.addEventListener('click', () => go(i));
+          dotsWrap.appendChild(b);
+        });
+
+        function update() {
+          track.style.transform = `translateX(${-index * 100}%)`;
+          [...dotsWrap.children].forEach((d, i) => d.setAttribute('aria-current', i === index ? 'true' : 'false'));
+        }
+        function prev() { index = (index - 1 + slides.length) % slides.length; update(); }
+        function next() { index = (index + 1) % slides.length; update(); }
+        function go(i) { index = (i + slides.length) % slides.length; update(); }
+
+        // Buttons
+        btnPrev.addEventListener('click', prev);
+        btnNext.addEventListener('click', next);
+
+        // Autoplay
+        function start() { if (slider.dataset.autoplay !== 'false') { stop(); timer = setInterval(next, AUTOPLAY_MS); } }
+        function stop() { if (timer) { clearInterval(timer); timer = null; } }
+        slider.addEventListener('mouseenter', stop);
+        slider.addEventListener('mouseleave', start);
+
+        // Swipe (touch)
+        slider.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; deltaX = 0; isDragging = true; stop(); }, {passive:true});
+        slider.addEventListener('touchmove', (e) => { if (!isDragging) return; deltaX = e.touches[0].clientX - startX; track.style.transform = `translateX(${(-index * 100) + (deltaX / slider.clientWidth) * 100}%)`; }, {passive:true});
+        slider.addEventListener('touchend', () => {
+          if (!isDragging) return; isDragging = false;
+          const threshold = slider.clientWidth * 0.15;
+          if (Math.abs(deltaX) > threshold) { deltaX < 0 ? next() : prev(); } else { update(); }
+          start();
+        });
+
+        // Keyboard
+        slider.setAttribute('tabindex', '0');
+        slider.addEventListener('keydown', (e) => { if (e.key === 'ArrowLeft') prev(); if (e.key === 'ArrowRight') next(); });
+
+        update();
+        start();
+      }
+
+      document.querySelectorAll('#four-sliders-2up .slider').forEach(makeSlider);
+    })();
+  </script></section>
