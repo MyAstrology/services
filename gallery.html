@@ -106,35 +106,43 @@ nav.active {
     </nav>
   </header>
 
-<!-- ===== MAIN SWIPER BANNER ===== -->
-<div class="swiper main-swiper">
-  <div class="swiper-wrapper">
-    <div class="swiper-slide">
-      <img src="gallery/myastrology-nadia-astrology-gallery.webp" alt="Astrology & Palmistry Consultation">
+<!-- ===== Swiper Slider with Rotating Wheel ===== -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+/>
+
+<div class="swiper-container-with-wheel" style="position: relative; max-width:1000px; margin:auto;">
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <img src="gallery/myastrology-nadia-astrology-gallery.webp" alt="Astrology & Palmistry Consultation" style="width:100%; border-radius:12px;">
+      </div>
+      <div class="swiper-slide">
+        <img src="gallery/horoscope-reading-bengali-india.webp" alt="Best Astrologer & Palmist" style="width:100%; border-radius:12px;">
+      </div>
+      <div class="swiper-slide">
+        <img src="gallery/vedic-astrology-ranaghat-myastrology.webp" alt="Horoscope & Palm Reading" style="width:100%; border-radius:12px;">
+      </div>
+      <div class="swiper-slide">
+        <img src="gallery/ranaghat-expect-astrology-consultant.webp" alt="Horoscope and Palm Reading Services" style="width:100%; border-radius:12px;">
+      </div>
+      <div class="swiper-slide">
+        <img src="gallery/vedic-astrologer-dr-prodyut-acharya.webp" alt="Astrology & Palmistry Services" style="width:100%; border-radius:12px;">
+      </div>
     </div>
-    <div class="swiper-slide">
-      <img src="gallery/horoscope-reading-bengali-india.webp" alt="Best Astrologer & Palmist">
-    </div>
-    <div class="swiper-slide">
-      <img src="gallery/vedic-astrology-ranaghat-myastrology.webp" alt="Horoscope & Palm Reading">
-    </div>
-    <div class="swiper-slide">
-      <img src="gallery/ranaghat-expect-astrology-consultant.webp" alt="Horoscope and Palm Reading Services">
-    </div>
-    <div class="swiper-slide">
-      <img src="gallery/vedic-astrologer-dr-prodyut-acharya.webp" alt="Astrology & Palmistry Services">
-    </div>
+
+    <!-- Navigation buttons -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+
+    <!-- Pagination -->
+    <div class="swiper-pagination"></div>
   </div>
 
-  <!-- Pagination & Navigation -->
-  <div class="swiper-pagination"></div>
-  <div class="swiper-button-prev"></div>
-  <div class="swiper-button-next"></div>
+  <!-- Rotating Zodiac Wheel -->
+  <div class="zodiac-wheel"></div>
 </div>
-  
-    <!-- Zodiac Wheel -->
-    <div class="zodiac-wheel"></div>
-  </div>
 
   <!-- ===== SCROLLING BANNER ===== -->
   <div class="scroll-banner">
@@ -553,43 +561,7 @@ setInterval(() => moveSlide(1), 5000);
 
 
 
-<!-- ===== Swiper Slider with Rotating Wheel ===== -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
-/>
 
-<div class="swiper-container-with-wheel" style="position: relative; max-width:1000px; margin:auto;">
-  <div class="swiper mySwiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">
-        <img src="gallery/myastrology-nadia-astrology-gallery.webp" alt="Astrology & Palmistry Consultation" style="width:100%; border-radius:12px;">
-      </div>
-      <div class="swiper-slide">
-        <img src="gallery/horoscope-reading-bengali-india.webp" alt="Best Astrologer & Palmist" style="width:100%; border-radius:12px;">
-      </div>
-      <div class="swiper-slide">
-        <img src="gallery/vedic-astrology-ranaghat-myastrology.webp" alt="Horoscope & Palm Reading" style="width:100%; border-radius:12px;">
-      </div>
-      <div class="swiper-slide">
-        <img src="gallery/ranaghat-expect-astrology-consultant.webp" alt="Horoscope and Palm Reading Services" style="width:100%; border-radius:12px;">
-      </div>
-      <div class="swiper-slide">
-        <img src="gallery/vedic-astrologer-dr-prodyut-acharya.webp" alt="Astrology & Palmistry Services" style="width:100%; border-radius:12px;">
-      </div>
-    </div>
-
-    <!-- Navigation buttons -->
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-
-    <!-- Pagination -->
-    <div class="swiper-pagination"></div>
-  </div>
-
-  <!-- Rotating Zodiac Wheel -->
-  <div class="zodiac-wheel"></div>
-</div>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 <script>
