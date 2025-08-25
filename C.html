@@ -273,11 +273,9 @@ nav.active {
 }
 
 /* Scroll Banner */
-
 .scroll-banner {
   width: 100%;
   background: #0c1b33;
-  color: #fff;
   overflow: hidden;
   padding: 12px 0;
 }
@@ -288,25 +286,23 @@ nav.active {
   animation: scroll-left 20s linear infinite;
 }
 
-.scroll-item {
+.scroll-item span {
   white-space: nowrap;
-  font-weight: 600;
-  font-size: 2rem; /* বড়ো লেখা */
+  font-weight: 700;
+  font-size: 2rem;          /* বড়ো লেখা */
+  color: gold;              /* গোল্ডেন রঙ */
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.8); /* হালকা ছায়া */
 }
 
 @media (max-width: 768px) {
-  .scroll-item {
-    font-size: 1.6rem; /* মোবাইলে সামঞ্জস্যপূর্ণ */
+  .scroll-item span {
+    font-size: 1.5rem; /* মোবাইলে সামঞ্জস্যপূর্ণ */
   }
 }
 
 @keyframes scroll-left {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
 }
 /* Image Slider Swiper */
 .image-swiper {
