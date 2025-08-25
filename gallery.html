@@ -569,29 +569,29 @@ setInterval(() => moveSlide(1), 5000);
 
 
 
-<!-- Swiper CSS -->
+
+<!-- ===== Swiper Slider ===== -->
 <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
 />
 
-<!-- Swiper HTML -->
-<div class="swiper mySwiper" style="width:100%; max-width:1000px; margin:auto;">
+<div class="swiper mySwiper" style="width:100%; max-width:1000px; margin:auto; margin-bottom:40px;">
   <div class="swiper-wrapper">
     <div class="swiper-slide">
-      <img src="gallery/myastrology-nadia-astrology-gallery.webp" alt="Astrology & Palmistry Consultation" style="width:100%; border-radius:10px;">
+      <img src="gallery/myastrology-nadia-astrology-gallery.webp" alt="Astrology & Palmistry Consultation" style="width:100%; border-radius:12px;">
     </div>
     <div class="swiper-slide">
-      <img src="gallery/horoscope-reading-bengali-india.webp" alt="Best Astrologer & Palmist" style="width:100%; border-radius:10px;">
+      <img src="gallery/horoscope-reading-bengali-india.webp" alt="Best Astrologer & Palmist" style="width:100%; border-radius:12px;">
     </div>
     <div class="swiper-slide">
-      <img src="gallery/vedic-astrology-ranaghat-myastrology.webp" alt="Horoscope & Palm Reading" style="width:100%; border-radius:10px;">
+      <img src="gallery/vedic-astrology-ranaghat-myastrology.webp" alt="Horoscope & Palm Reading" style="width:100%; border-radius:12px;">
     </div>
     <div class="swiper-slide">
-      <img src="gallery/ranaghat-expect-astrology-consultant.webp" alt="Horoscope and Palm Reading Services" style="width:100%; border-radius:10px;">
+      <img src="gallery/ranaghat-expect-astrology-consultant.webp" alt="Horoscope and Palm Reading Services" style="width:100%; border-radius:12px;">
     </div>
     <div class="swiper-slide">
-      <img src="gallery/vedic-astrologer-dr-prodyut-acharya.webp" alt="Astrology & Palmistry Services" style="width:100%; border-radius:10px;">
+      <img src="gallery/vedic-astrologer-dr-prodyut-acharya.webp" alt="Astrology & Palmistry Services" style="width:100%; border-radius:12px;">
     </div>
   </div>
 
@@ -603,14 +603,13 @@ setInterval(() => moveSlide(1), 5000);
   <div class="swiper-pagination"></div>
 </div>
 
-<!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 <script>
   const swiper = new Swiper('.mySwiper', {
     loop: true,
     grabCursor: true,
     centeredSlides: true,
-    slidesPerView: 1, // সব ডিভাইসে এক ছবি
+    slidesPerView: 1,
     spaceBetween: 20,
     pagination: {
       el: '.swiper-pagination',
@@ -624,19 +623,14 @@ setInterval(() => moveSlide(1), 5000);
       delay: 4000,
       disableOnInteraction: false,
     },
-    breakpoints: {} // breakpoints খালি রাখছি
   });
 </script>
 
-
-
-
-<!-- Banner Section -->
+<!-- ===== Banner Section ===== -->
 <div class="banner-container">
-  <!-- Banner Image -->
   <img src="gallery/myastrology-nadia-astrology-gallery.webp" alt="Astrology Banner" class="banner-image">
 
-  <!-- Rotating Zodiac Wheel -->
+  <!-- Rotating Zodiac Wheel with shadow -->
   <div class="zodiac-wheel"></div>
 </div>
 
@@ -658,17 +652,21 @@ setInterval(() => moveSlide(1), 5000);
   border-radius: 12px;
 }
 
-/* Zodiac Wheel */
+/* Zodiac Wheel with Shadow */
 .zodiac-wheel {
   position: absolute;
   bottom: 0;      /* নিচের কোণে */
   left: 0;        /* বাম কোণে */
-  width: 250px;   /* চাকাটির আকার */
+  width: 250px;
   height: 250px;
   background: url('gallery/myastrology-ranaghat-astrology-palmistry.png') no-repeat center/contain;
-  opacity: 0.8;
+  opacity: 0.85;
   animation: spin 20s linear infinite;
-  pointer-events: none; /* মাউস হোভার/ক্লিক প্রভাব নেই */
+  pointer-events: none;
+
+  /* Shadow for 3D effect */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  border-radius: 50%;
 }
 
 /* Rotation Animation */
@@ -677,7 +675,7 @@ setInterval(() => moveSlide(1), 5000);
   100% { transform: rotate(360deg); }
 }
 
-/* Responsive Adjustments */
+/* Responsive adjustments */
 @media (max-width: 768px) {
   .zodiac-wheel {
     width: 150px;
@@ -692,4 +690,3 @@ setInterval(() => moveSlide(1), 5000);
   }
 }
 </style>
-
