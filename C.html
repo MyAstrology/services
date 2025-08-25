@@ -407,58 +407,40 @@ nav.active ul {
     <div class="swiper-button-next"></div>
   </div>
 </section>
-<script>
-  const swiper = new Swiper(".main-swiper", {
-    loop: true,                 // অসীম লুপে ঘুরবে
-    autoplay: {
-      delay: 3000,              // 3 সেকেন্ড পর স্লাইড বদলাবে
-      disableOnInteraction: false,
-    },
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-  });
-</script>
 
-  
-<!-- Swiper CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 
-<!-- Swiper JS -->
+
+  <!-- Swiper JS (only once) -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
 <script>
-  var imageSwiper = new Swiper('.image-swiper', {
+  // MAIN (banner) swiper
+  const mainSwiper = new Swiper('.main-swiper', {
+    loop: true,
+    autoplay: { delay: 4000, disableOnInteraction: false },
+    pagination: { el: '.main-swiper .swiper-pagination', clickable: true },
+    navigation: { nextEl: '.main-swiper .swiper-button-next', prevEl: '.main-swiper .swiper-button-prev' },
+  });
+
+  // GALLERY image swiper (the one inside .image-slider)
+  const imageSwiper = new Swiper('.image-swiper', {
     loop: true,
     spaceBetween: 15,
     slidesPerView: 1,
-    pagination: {
-      el: '.image-slider .swiper-pagination',
-      clickable: true,
-    },
+    pagination: { el: '.image-slider .swiper-pagination', clickable: true },
     navigation: {
       nextEl: '.image-slider .swiper-button-next',
       prevEl: '.image-slider .swiper-button-prev',
     },
-    lazy: {
-      loadPrevNext: true,   // কাছাকাছি ইমেজ প্রি-লোড করবে
-    },
-    autoplay: {
-      delay: 3000,
-      disableOnInteraction: false,
-    },
-    breakpoints: {
-      768: {
-        slidesPerView: 1,
-      },
-      480: {
-        slidesPerView: 1,
-      },
-    },
+    lazy: { loadPrevNext: true },
+    autoplay: { delay: 3000, disableOnInteraction: false },
+  });
+
+  // Hamburger (safe)
+  const hamburger = document.getElementById('hamburger');
+  const nav = document.querySelector('nav');
+  hamburger?.addEventListener('click', () => {
+    nav.classList.toggle('active');
   });
 </script>
 
