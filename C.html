@@ -346,6 +346,30 @@ nav.active {
 </head>
 <body>
 
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  var imageSwiper = new Swiper('.image-swiper', {
+    loop: true,
+    slidesPerView: 1,       // প্রতিটি slide একটি করে দেখানো
+    spaceBetween: 15,
+    pagination: { el: '.image-swiper .swiper-pagination', clickable: true },
+    navigation: {
+      nextEl: '.image-swiper .swiper-button-next',
+      prevEl: '.image-swiper .swiper-button-prev',
+    },
+    lazy: true,
+    breakpoints: {
+      768: {
+        slidesPerView: 1,   // Tablet/mobile এক slide
+      },
+      480: {
+        slidesPerView: 1,
+      },
+    },
+  });
+</script>
+  
   <script>
   const hamburger = document.getElementById('hamburger');
   const nav = document.querySelector('nav');
