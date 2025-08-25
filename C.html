@@ -271,7 +271,6 @@ nav.active {
     height: 900px;
   }
 }
-
 /* Scroll Banner */
 .scroll-banner {
   width: 100%;
@@ -292,8 +291,9 @@ nav.active {
   font-size: 2rem;          /* বড়ো লেখা */
   color: gold;              /* গোল্ডেন রঙ */
   text-shadow: 
-  4px 4px 8px rgba(0,0,0,0.9),
-  0 0 10px rgba(255,215,0,0.6);
+    4px 4px 8px rgba(0,0,0,0.9),
+    0 0 10px rgba(255,215,0,0.6);
+} /* <-- এখানে বন্ধ হচ্ছে span ব্লক */
 
 @media (max-width: 768px) {
   .scroll-item span {
@@ -305,6 +305,7 @@ nav.active {
   0% { transform: translateX(100%); }
   100% { transform: translateX(-100%); }
 }
+
 /* Image Slider Swiper */
 .image-swiper {
   width: 100%;
