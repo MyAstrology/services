@@ -1,342 +1,309 @@
-<!DOCTYPE html>      
-<html lang="bn">      
-<head>      
-<meta charset="UTF-8" />      
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />      
-<title>MyAstrology Gallery – Dr. Prodyut Acharya</title>      
-      
-<meta name="description" content="MyAstrology Ranaghat: Expert Indian Astrology & Palmistry consultation by Dr. Prodyut Acharya. Horoscope, palm reading, vastu, numerology services available." />      
-<meta name="keywords" content="Astrology, Palmistry, Horoscope, Vastu, Numerology, Dr. Prodyut Acharya, Ranaghat, Indian Astrology, Online Consultation, Birth Chart, Love Marriage, Career Guidance" />      
-      
-<link href="https://fonts.googleapis.com/css2?family=Kalpurush&display=swap" rel="stylesheet" />      
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />      
-      
-      
-      
-    <style>      
-/* ==========================      
-   🌟 Base & Reset      
-========================== */      
-* {      
-  box-sizing: border-box;      
-  margin: 0;      
-  padding: 0;      
-}      
-      
-body {      
-  font-family: 'Kalpurush', 'Noto Serif Bengali', sans-serif;      
-  background: #f9f9f9;      
-  color: #222;      
-}      
-      
-/* ==========================      
-   🌟 HEADER      
-========================== */      
-header {      
-  display: flex;      
-  justify-content: space-between;      
-  align-items: center;      
-  padding: 12px 24px;      
-  background: #0c1b33;      
-  color: #fff;      
-  position: sticky;      
-  top: 0;      
-  z-index: 1000;      
-}      
-      
-.logo {      
-  display: flex;      
-  align-items: center;      
-  font-weight: bold;      
-  font-size: 1.5rem;      
-}      
-      
-.logo img {      
-  height: 45px;      
-  margin-right: 10px;      
-}      
-      
-.hamburger {      
-  font-size: 1.8rem;      
-  cursor: pointer;      
-  color: #fff;      
-  z-index: 1100;      
-}      
-      
-/* nav hidden by default */      
-nav {      
-  display: none;      
-}      
-      
-nav ul {      
-  list-style: none;      
-  display: flex;      
-  flex-direction: column;      
-  gap: 15px;      
-}      
-      
-nav ul li a {      
-  text-decoration: none;      
-  color: #fff;      
-  font-weight: 500;      
-}      
-      
-/* dropdown menu show on active */      
-nav.active {      
-  display: flex;      
-  position: absolute;      
-  top: 70px;      
-  right: 24px;      
-  background: #162a4d;      
-  padding: 15px 20px;      
-  border-radius: 8px;      
-  flex-direction: column;      
-  z-index: 1001;      
-}      
-      
-/* ===== MOBILE ===== */      
-@media (max-width: 768px) {      
-  .logo { font-size: 1.2rem; }      
-  .logo img { height: 40px; }      
-  nav.active { top: 60px; right: 12px; padding: 10px 15px; }      
-}      
-      
-/* Swiper Navigation & Pagination */      
-.main-swiper .swiper-button-next,      
-.main-swiper .swiper-button-prev {      
-  color: #fff;      
-  z-index: 20;      
-}      
-      
-.main-swiper .swiper-pagination-bullet {      
-  background: #ffd700;      
-  opacity: 0.8;      
-}      
-      
-.main-swiper .swiper-pagination-bullet-active {      
-  opacity: 1;      
-  background: gold;      
-}      
-      
-      
-/* Parent Swiper Container */      
-.main-swiper {      
-  width: 100%;      
-  height: 100vh;        /* viewport height */      
-  position: relative;      
-  padding: 0;      
-  margin: 0;      
-  overflow: visible;     /* চাকা বাইরে চলে গেলে দেখা যাবে */      
-}      
-      
-.main-swiper {      
-  width: 100%;      
-  height: 100vh; /* বা আপনার banner height */      
-  position: relative;  /* <-- relative container */      
-  margin: 0;      
-  padding: 0;      
-  overflow: visible;   /* চাকা পুরো দেখা যাবে */      
-}      
-      
-/* ZODIAC WHEEL */      
-.zodiac-wheel {      
-  position: absolute;      
-  bottom: 0;           /* বাম-নিচের কোণে */      
-  left: 0;      
-  width: 30%;          /* ব্যানারের width অনুযায়ী পরিবর্তন করুন */      
-  height: auto;        /* aspect ratio ধরে রাখবে */      
-  max-height: 100%;    /* ব্যানারের বাইরে যাবে না */      
-  background: url('gallery/myastrology-ranaghat-astrology-palmistry.png') no-repeat left bottom;      
-  background-size: contain;      
-  opacity: 0.7;      
-  animation: spin 20s linear infinite;      
-  transform-origin: bottom left;      
-  z-index: 10;      
-}      
-      
-/* Responsive */      
-@media (max-width: 768px) {      
-  .zodiac-wheel { width: 40%; }      
-}      
-@media (max-width: 480px) {      
-  .zodiac-wheel { width: 50%; }      
-}      
-      
-              
- /* ==========================      
-   🌟 SCROLLING BANNER      
-========================== */      
-.scroll-banner {      
-  width: 100%;      
-  background: #0c1b33;      
-  overflow: hidden;      
-  padding: 12px 0;      
-}      
-      
-.scroll-content {      
-  display: flex;      
-  gap: 50px;      
-  animation: scroll-left 20s linear infinite;      
-}      
-      
-.scroll-item span {      
-  white-space: nowrap;      
-  font-weight: 700;      
-  font-size: 2rem;      
-  color: gold;      
-  text-shadow:      
-    4px 4px 8px rgba(0,0,0,0.9),      
-    0 0 10px rgba(255,215,0,0.6);      
-}      
-      
-@media (max-width: 768px) {      
-  .scroll-item span { font-size: 1.2rem; }      
-}      
-      
-@keyframes scroll-left {      
-  0% { transform: translateX(100%); }      
-  100% { transform: translateX(-100%); }      
-}      
-</style>      
-      
-</head>      
-<body>      
-      
-      
-<header class="header">      
-  <div class="logo">      
-    <img src="images/MyAstrology-Ranghat-logo.png" alt="MyAstrology Logo" />      
-    MyAstrology প্রদ্যুত আচার্য      
-  </div>      
-  <div class="hamburger" id="hamburger">&#9776;</div>      
-      
-  <nav>      
-    <ul id="nav-links">      
-      <li><a href="index.html">🏠 হোম</a></li>      
-      <li><a href="about.html">আমাদের সম্পর্কে</a></li>      
-      <li><a href="vedic-astronomy.html">জ্যোতির্বিজ্ঞান</a></li>      
-      <li><a href="Vastu-science.html">বাস্তু</a></li>      
-      <li><a href="astrology.html">জ্যোতিষ</a></li>      
-      <li><a href="palmistry.html">হস্তরেখা</a></li>      
-      <li><a href="gallery.html">ফটো গ্যালারি</a></li>      
-      <li><a href="blog.html">ব্লগ</a></li>      
-      <li><a href="video.html">ভিডিও</a></li>      
-      <li><a href="https://wa.me/919333122768">যোগাযোগ</a></li>      
-      <li><a href="booking.html">বুকিং</a></li>      
-    </ul>      
-  </nav>      
-</header>      
-      
-<!-- ===== MAIN SWIPER BANNER ===== -->      
-<div class="swiper main-swiper">      
-  <div class="swiper-wrapper">      
-    <div class="swiper-slide">      
-      <img src="gallery/myastrology-ranaghat-astrology-palmistry-consultant.webp" alt="Astrology & Palmistry Consultation">      
-    </div>      
-    <div class="swiper-slide">      
-      <img src="gallery/expert-astrologer-palmist-nadia.webp" alt="Best Astrologer & Palmist">      
-    </div>      
-    <div class="swiper-slide">      
-      <img src="gallery/best-astrologer-palmist-dr-prodyut-acharya.webp" alt="Horoscope & Palm Reading">      
-    </div>      
-    <div class="swiper-slide">      
-      <img src="gallery/myastrology-ranaghat-horoscope-palm-reading.webp" alt="Horoscope and Palm Reading Services">      
-    </div>      
-    <div class="swiper-slide">      
-      <img src="gallery/astrology-palmistry-services-best.webp" alt="Astrology & Palmistry Services">      
-    </div>      
-  </div>      
-      
-  <!-- Pagination & Navigation -->      
-  <div class="swiper-pagination"></div>      
-  <div class="swiper-button-prev"></div>      
-  <div class="swiper-button-next"></div>      
-      
-  <!-- Zodiac Wheel -->      
-  <div class="zodiac-wheel"></div>      
-</div>      
-      
-<!-- ===== Swiper JS ===== -->      
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>      
-<script>      
-  const mainSwiper = new Swiper('.main-swiper', {      
-    loop: true,      
-    autoplay: { delay: 4000, disableOnInteraction: false },      
-    pagination: { el: '.swiper-pagination', clickable: true },      
-    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },      
-    lazy: { loadPrevNext: true },      
-  });      
-</script>      
-      
-<!-- ===== CSS ===== -->      
-<style>      
-.main-swiper {      
-  width: 100%;      
-  height: 100vh; /* viewport height */      
-  position: relative;      
-  overflow: hidden;      
-}      
-      
-.main-swiper .swiper-slide img {      
-  width: 100%;      
-  height: 100%;      
-  object-fit: cover; /* ছবি পুরো area cover করবে */      
-  display: block;      
-}      
-      
-/* Spin Animation */      
-@keyframes spin {      
-  from { transform: translateX(-50%) rotate(0deg); }      
-  to { transform: translateX(-50%) rotate(360deg); }      
-}      
-      
-/* Swiper navigation buttons */      
-.swiper-button-next, .swiper-button-prev {      
-  color: #fff;      
-  z-index: 20;      
-}      
-      
-/* Swiper pagination bullets */      
-.swiper-pagination-bullet {      
-  background: #fff;      
-  opacity: 0.7;      
-}      
-.swiper-pagination-bullet-active {      
-  opacity: 1;      
-}      
-      
-      
-</style>      
-</div>      
-  <!-- SCROLLING BANNER -->      
-<div class="scroll-banner">      
-  <div class="scroll-content">      
-    <div class="scroll-item">      
-      <span>🔮 জ্যোতিষের দার্শনিক আলোকে – প্রেম, বিবাহ, কর্ম ও ব্যবসার অন্তর্দৃষ্টি</span>      
-    </div>      
-    <div class="scroll-item">      
-      <span>🖐️ হস্তরেখার গভীরে লুকানো রহস্য – ভাগ্য, স্বাস্থ্য ও সাফল্যের চিহ্ন</span>      
-    </div>      
-    <div class="scroll-item">      
-      <span>📜 রাশিফল ও জন্মকুণ্ডলীর আধ্যাত্মিক গল্প – পরিবারের জীবন ও সিদ্ধান্তের প্রজ্ঞা</span>      
-    </div>      
-    <div class="scroll-item">      
-      <span>💎 রত্ন ও নেকলেসের জ্যোতিষ পরামর্শ – শ্রী, সমৃদ্ধি ও সৌভাগ্য বৃদ্ধি</span>      
-    </div>      
-  </div>      
-</div>      
-  </div>      
-</div>      
-      
-<script>      
-  // Hamburger Menu      
-  const hamburger = document.getElementById('hamburger');      
-  const nav = document.querySelector('nav');      
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MyAstrology Gallery – Dr. Prodyut Acharya</title>
+
+<meta name="description" content="MyAstrology Ranaghat: Expert Indian Astrology & Palmistry consultation by Dr. Prodyut Acharya. Horoscope, palm reading, vastu, numerology services available." />
+<meta name="keywords" content="Astrology, Palmistry, Horoscope, Vastu, Numerology, Dr. Prodyut Acharya, Ranaghat, Indian Astrology, Online Consultation, Birth Chart, Love Marriage, Career Guidance" />
+
+<link href="https://fonts.googleapis.com/css2?family=Kalpurush&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+
+
+    <style>
+/* ==========================
+   🌟 Base & Reset
+========================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Kalpurush', 'Noto Serif Bengali', sans-serif;
+  background: #f9f9f9;
+  color: #222;
+}
+
+/* ==========================
+   🌟 HEADER
+========================== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  background: #0c1b33;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.logo img {
+  height: 45px;
+  margin-right: 10px;
+}
+
+.hamburger {
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #fff;
+  z-index: 1100;
+}
+
+/* nav hidden by default */
+nav {
+  display: none;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+}
+
+/* dropdown menu show on active */
+nav.active {
+  display: flex;
+  position: absolute;
+  top: 70px;
+  right: 24px;
+  background: #162a4d;
+  padding: 15px 20px;
+  border-radius: 8px;
+  flex-direction: column;
+  z-index: 1001;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .logo { font-size: 1.2rem; }
+  .logo img { height: 40px; }
+  nav.active { top: 60px; right: 12px; padding: 10px 15px; }
+}
+
+/* Swiper Navigation & Pagination */
+.main-swiper .swiper-button-next,
+.main-swiper .swiper-button-prev {
+  color: #fff;
+  z-index: 20;
+}
+
+.main-swiper .swiper-pagination-bullet {
+  background: #ffd700;
+  opacity: 0.8;
+}
+
+.main-swiper .swiper-pagination-bullet-active {
+  opacity: 1;
+  background: gold;
+}
+
+
+/* Parent Swiper Container */
+.main-swiper {
+  width: 100%;
+  height: 100vh;        /* viewport height */
+  position: relative;
+  padding: 0;
+  margin: 0;
+  overflow: visible;     /* চাকা বাইরে চলে গেলে দেখা যাবে */
+}
+
+.main-swiper {
+  width: 100%;
+  height: 100vh; /* বা আপনার banner height */
+  position: relative;  /* <-- relative container */
+  margin: 0;
+  padding: 0;
+  overflow: visible;   /* চাকা পুরো দেখা যাবে */
+}
+
+/* ZODIAC WHEEL */
+.zodiac-wheel {
+  position: absolute;
+  bottom: 0;           /* বাম-নিচের কোণে */
+  left: 0;
+  width: 30%;          /* ব্যানারের width অনুযায়ী পরিবর্তন করুন */
+  height: auto;        /* aspect ratio ধরে রাখবে */
+  max-height: 100%;    /* ব্যানারের বাইরে যাবে না */
+  background: url('gallery/myastrology-ranaghat-astrology-palmistry.png') no-repeat left bottom;
+  background-size: contain;
+  opacity: 0.7;
+  animation: spin 20s linear infinite;
+  transform-origin: bottom left;
+  z-index: 10;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .zodiac-wheel { width: 40%; }
+}
+@media (max-width: 480px) {
+  .zodiac-wheel { width: 50%; }
+}
+
         
-  hamburger?.addEventListener('click', () => {      
-    nav.classList.toggle('active');      
-  });      
-</script>      
-        
-এইটুকু সম্পুর্ন সংশোধন করে দিতে পারেন? কোনো কিছু পরিবর্তন না করে?    
-যেন চাকাটি বাম ও নিচের কর্নার ঘেষে সম্পুর্ন দেখা যায়।
+ /* ==========================
+   🌟 SCROLLING BANNER
+========================== */
+.scroll-banner {
+  width: 100%;
+  background: #0c1b33;
+  overflow: hidden;
+  padding: 12px 0;
+}
+
+.scroll-content {
+  display: flex;
+  gap: 50px;
+  animation: scroll-left 20s linear infinite;
+}
+
+.scroll-item span {
+  white-space: nowrap;
+  font-weight: 700;
+  font-size: 2rem;
+  color: gold;
+  text-shadow:
+    4px 4px 8px rgba(0,0,0,0.9),
+    0 0 10px rgba(255,215,0,0.6);
+}
+
+@media (max-width: 768px) {
+  .scroll-item span { font-size: 1.2rem; }
+}
+
+@keyframes scroll-left {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+</style>
+
+</head>
+<body>
+
+
+<header class="header">
+  <div class="logo">
+    <img src="images/MyAstrology-Ranghat-logo.png" alt="MyAstrology Logo" />
+    MyAstrology প্রদ্যুত আচার্য
+  </div>
+  <div class="hamburger" id="hamburger">&#9776;</div>
+
+  <nav>
+    <ul id="nav-links">
+      <li><a href="index.html">🏠 হোম</a></li>
+      <li><a href="about.html">আমাদের সম্পর্কে</a></li>
+      <li><a href="vedic-astronomy.html">জ্যোতির্বিজ্ঞান</a></li>
+      <li><a href="Vastu-science.html">বাস্তু</a></li>
+      <li><a href="astrology.html">জ্যোতিষ</a></li>
+      <li><a href="palmistry.html">হস্তরেখা</a></li>
+      <li><a href="gallery.html">ফটো গ্যালারি</a></li>
+      <li><a href="blog.html">ব্লগ</a></li>
+      <li><a href="video.html">ভিডিও</a></li>
+      <li><a href="https://wa.me/919333122768">যোগাযোগ</a></li>
+      <li><a href="booking.html">বুকিং</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ===== MAIN SWIPER BANNER ===== -->
+<div class="swiper main-swiper">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide">
+      <img src="gallery/myastrology-ranaghat-astrology-palmistry-consultant.webp" alt="Astrology & Palmistry Consultation">
+    </div>
+    <div class="swiper-slide">
+      <img src="gallery/expert-astrologer-palmist-nadia.webp" alt="Best Astrologer & Palmist">
+    </div>
+    <div class="swiper-slide">
+      <img src="gallery/best-astrologer-palmist-dr-prodyut-acharya.webp" alt="Horoscope & Palm Reading">
+    </div>
+    <div class="swiper-slide">
+      <img src="gallery/myastrology-ranaghat-horoscope-palm-reading.webp" alt="Horoscope and Palm Reading Services">
+    </div>
+    <div class="swiper-slide">
+      <img src="gallery/astrology-palmistry-services-best.webp" alt="Astrology & Palmistry Services">
+    </div>
+  </div>
+
+  <!-- Pagination & Navigation -->
+  <div class="swiper-pagination"></div>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+
+  <!-- Zodiac Wheel -->
+  <div class="zodiac-wheel"></div>
+</div>
+
+<!-- ===== Swiper JS ===== -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  const mainSwiper = new Swiper('.main-swiper', {
+    loop: true,
+    autoplay: { delay: 4000, disableOnInteraction: false },
+    pagination: { el: '.swiper-pagination', clickable: true },
+    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+    lazy: { loadPrevNext: true },
+  });
+</script>
+
+<!-- ===== CSS ===== -->
+<style>
+.main-swiper {
+  width: 100%;
+  height: 100vh; /* viewport height */
+  position: relative;
+  overflow: hidden;
+}
+
+.main-swiper .swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* ছবি পুরো area cover করবে */
+  display: block;
+}
+
+/* Spin Animation */
+@keyframes spin {
+  from { transform: translateX(-50%) rotate(0deg); }
+  to { transform: translateX(-50%) rotate(360deg); }
+}
+
+/* Swiper navigation buttons */
+.swiper-button-next, .swiper-button-prev {
+  color: #fff;
+  z-index: 20;
+}
+
+/* Swiper pagination bullets */
+.swiper-pagination-bullet {
+  background: #fff;
+  opacity: 0.7;
+}
+.swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
+
+</style>
