@@ -133,12 +133,18 @@ header {
   margin-right: 10px;
 }
 
-/* hamburger icon সবসময় ডান দিকে */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* লোগো বামে, হ্যামবার্গার ডানে */
+  padding: 10px 20px;
+  background: #0c1b33;
+}
+
 .hamburger {
   font-size: 1.8rem;
   cursor: pointer;
   color: #fff;
-  display: block;
 }
 
 /* nav menu hidden by default */
