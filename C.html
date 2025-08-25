@@ -118,27 +118,52 @@ nav.active {
   background: gold;
 }
 
-/* ===== ZODIAC WHEEL ===== */
+/* Parent swiper container */
+.main-swiper {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  padding: 0;           /* কোন extra space নেই */
+  margin: 0;
+  overflow: visible;    /* চাকা পুরোপুরি দেখা যাবে */
+}
+
+/* Zodiac Wheel */
 .zodiac-wheel {
   position: absolute;
-  bottom: 0; left: 0;
-  width: 300px; height: 300px;
-  background: url('gallery/myastrology-ranaghat-astrology-palmistry.png') no-repeat center/contain;
+  bottom: 0;
+  left: 0;
+  width: 500px;         /* desktop default */
+  height: 500px;
+  background: url('gallery/myastrology-ranaghat-astrology-palmistry.png') no-repeat left bottom;
+  background-size: 100% 100%; /* পুরো চাকা parent-এ ফিট হবে */
   opacity: 0.7;
-  animation: spin 20s linear infinite;
   z-index: 10;
+  transform-origin: bottom left; /* ঘূর্ণন এই কোণ থেকে শুরু হবে */
+  animation: spin 20s linear infinite;
 }
 
-@keyframes spin { 
-  from { transform: rotate(0deg);}
-  to { transform: rotate(360deg);}
+/* Spin Animation */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
-/* Responsive zodiac wheel */
-@media (max-width: 480px) { .zodiac-wheel { width: 120px; height: 120px; } }
-@media (min-width: 481px) and (max-width: 767px) { .zodiac-wheel { width: 200px; height: 200px; } }
-@media (min-width: 1200px) { .zodiac-wheel { width: 500px; height: 500px; } }
-/* ==========================
+/* Responsive Zodiac Wheel */
+@media (max-width: 480px) {
+  .zodiac-wheel { width: 200px; height: 200px; }
+}
+@media (min-width: 481px) and (max-width: 767px) {
+  .zodiac-wheel { width: 300px; height: 300px; }
+}
+@media (min-width: 768px) and (max-width: 1199px) {
+  .zodiac-wheel { width: 700px; height: 700px; }
+}
+@media (min-width: 1200px) {
+  .zodiac-wheel { width: 900px; height: 900px; }
+}
+        
+ /* ==========================
    🌟 SCROLLING BANNER
 ========================== */
 .scroll-banner {
