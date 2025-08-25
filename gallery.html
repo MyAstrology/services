@@ -52,9 +52,6 @@ nav.active {
   nav.active { top: 60px; right: 12px; padding: 10px 15px; }
 }
 
-
-
-
 /* ========================== SCROLLING BANNER ========================== */
 .scroll-banner {
   width: 100%;
@@ -78,7 +75,60 @@ nav.active {
 }
 @media (max-width: 768px) { .scroll-item span { font-size: 1.2rem; } }
 @keyframes scroll-left { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+  
+/* Zodiac Wheel over Slider */
+.swiper-container-with-wheel {
+    position: relative;
+}
+
+/* Wheel */
+.zodiac-wheel {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 450px;
+    height: 450px;
+    background: url('gallery/myastrology-ranaghat-astrology-palmistry.png') no-repeat center/contain;
+    opacity: 0.4;
+    pointer-events: none;
+
+    /* 3D Shadow effect */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    border-radius: 50%;
+    z-index: 10;
+
+    /* Spin animation */
+    animation: spin 20s linear infinite;
+}
+
+/* Spin keyframes */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Rotation Animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .zodiac-wheel {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .zodiac-wheel {
+    width: 120px;
+    height: 120px;
+  }
+}
 </style>
+
   
 </head>
 
@@ -172,6 +222,31 @@ nav.active {
       nav.classList.toggle('active');
     });
   </script>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script>
+  const swiper = new Swiper('.mySwiper', {
+    loop: true,
+    grabCursor: true,
+    centeredSlides: true,
+    slidesPerView: 1, // সব ডিভাইসে এক ছবি
+    spaceBetween: 20,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false,
+    },
+  });
+</script>
+  
+  
 </body>
 </html>
 
@@ -592,79 +667,3 @@ setInterval(() => moveSlide(1), 5000);
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-<script>
-  const swiper = new Swiper('.mySwiper', {
-    loop: true,
-    grabCursor: true,
-    centeredSlides: true,
-    slidesPerView: 1, // সব ডিভাইসে এক ছবি
-    spaceBetween: 20,
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-    autoplay: {
-      delay: 4000,
-      disableOnInteraction: false,
-    },
-  });
-</script>
-
-<style>
-/* Zodiac Wheel over Slider */
-.swiper-container-with-wheel {
-    position: relative;
-}
-
-/* Wheel */
-.zodiac-wheel {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 450px;
-    height: 450px;
-    background: url('gallery/myastrology-ranaghat-astrology-palmistry.png') no-repeat center/contain;
-    opacity: 0.4;
-    pointer-events: none;
-
-    /* 3D Shadow effect */
-    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-    border-radius: 50%;
-    z-index: 10;
-
-    /* Spin animation */
-    animation: spin 20s linear infinite;
-}
-
-/* Spin keyframes */
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* Rotation Animation */
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .zodiac-wheel {
-    width: 150px;
-    height: 150px;
-  }
-}
-
-@media (max-width: 480px) {
-  .zodiac-wheel {
-    width: 120px;
-    height: 120px;
-  }
-}
-</style>
