@@ -111,7 +111,7 @@ body {
 /* ===== HEADER ===== */
 header {
   display: flex;
-  justify-content: space-between; /* logo বাম, hamburger ডান */
+  justify-content: space-between; /* logo বামে, nav+hamburger ডানে */
   align-items: center;
   padding: 12px 24px;
   background: #0c1b33;
@@ -137,14 +137,14 @@ header {
   font-size: 1.8rem;
   cursor: pointer;
   color: #fff;
+  display: none; /* desktop-এ hidden */
 }
 
-/* nav menu hidden by default */
+/* Desktop nav */
 nav ul {
-  display: none;
+  display: flex;
+  gap: 20px;
   list-style: none;
-  flex-direction: column;
-  gap: 15px;
   margin: 0;
   padding: 0;
 }
@@ -155,32 +155,34 @@ nav ul li a {
   font-weight: 500;
 }
 
-/* dropdown menu show on active */
-nav.active ul {
-  display: flex;
-  position: absolute;
-  top: 70px; /* header height */
-  right: 24px;
-  background: #162a4d;
-  padding: 15px 20px;
-  border-radius: 8px;
-  flex-direction: column;
-  z-index: 1001;
-}
-
 /* ===== MOBILE ===== */
 @media (max-width: 768px) {
-  .logo {
-    font-size: 1.2rem;
-  }
-  .logo img {
-    height: 40px;
+  nav ul {
+    display: none; /* mobile-এ hidden */
+    flex-direction: column;
+    position: absolute;
+    top: 70px; /* header height */
+    right: 24px;
+    background: #162a4d;
+    padding: 15px 20px;
+    border-radius: 8px;
+    z-index: 1001;
   }
 
   nav.active ul {
-    top: 60px;
-    right: 12px;
-    padding: 10px 15px;
+    display: flex; /* active হলে show */
+  }
+
+  .hamburger {
+    display: block; /* mobile-এ show */
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .logo img {
+    height: 40px;
   }
 }
 
