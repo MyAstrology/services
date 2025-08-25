@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+    
+    <!DOCTYPE html>
 <html lang="bn">
 <head>
 <meta charset="UTF-8" />
@@ -11,17 +12,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Kalpurush&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-
-
-    <style>
+<style>
 /* ==========================
    🌟 Base & Reset
 ========================== */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
   font-family: 'Kalpurush', 'Noto Serif Bengali', sans-serif;
@@ -51,10 +46,7 @@ header {
   font-size: 1.5rem;
 }
 
-.logo img {
-  height: 45px;
-  margin-right: 10px;
-}
+.logo img { height: 45px; margin-right: 10px; }
 
 .hamburger {
   font-size: 1.8rem;
@@ -63,10 +55,7 @@ header {
   z-index: 1100;
 }
 
-/* nav hidden by default */
-nav {
-  display: none;
-}
+nav { display: none; }
 
 nav ul {
   list-style: none;
@@ -81,7 +70,6 @@ nav ul li a {
   font-weight: 500;
 }
 
-/* dropdown menu show on active */
 nav.active {
   display: flex;
   position: absolute;
@@ -101,7 +89,23 @@ nav.active {
   nav.active { top: 60px; right: 12px; padding: 10px 15px; }
 }
 
-/* Swiper Navigation & Pagination */
+/* ==========================
+   🌟 SWIPER
+========================== */
+.main-swiper {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.main-swiper .swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 .main-swiper .swiper-button-next,
 .main-swiper .swiper-button-prev {
   color: #fff;
@@ -112,40 +116,21 @@ nav.active {
   background: #ffd700;
   opacity: 0.8;
 }
-
 .main-swiper .swiper-pagination-bullet-active {
   opacity: 1;
   background: gold;
 }
 
-
-/* Parent Swiper Container */
-.main-swiper {
-  width: 100%;
-  height: 100vh;        /* viewport height */
-  position: relative;
-  padding: 0;
-  margin: 0;
-  overflow: visible;     /* চাকা বাইরে চলে গেলে দেখা যাবে */
-}
-
-.main-swiper {
-  width: 100%;
-  height: 100vh; /* বা আপনার banner height */
-  position: relative;  /* <-- relative container */
-  margin: 0;
-  padding: 0;
-  overflow: visible;   /* চাকা পুরো দেখা যাবে */
-}
-
-/* ZODIAC WHEEL */
+/* ==========================
+   🌟 ZODIAC WHEEL
+========================== */
 .zodiac-wheel {
   position: absolute;
-  bottom: 0;           /* বাম-নিচের কোণে */
+  bottom: 0;
   left: 0;
-  width: 30%;          /* ব্যানারের width অনুযায়ী পরিবর্তন করুন */
-  height: auto;        /* aspect ratio ধরে রাখবে */
-  max-height: 100%;    /* ব্যানারের বাইরে যাবে না */
+  width: 30%;
+  height: auto;
+  max-height: 100%;
   background: url('gallery/myastrology-ranaghat-astrology-palmistry.png') no-repeat left bottom;
   background-size: contain;
   opacity: 0.7;
@@ -154,16 +139,16 @@ nav.active {
   z-index: 10;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .zodiac-wheel { width: 40%; }
-}
-@media (max-width: 480px) {
-  .zodiac-wheel { width: 50%; }
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
-        
- /* ==========================
+/* Responsive Zodiac Wheel */
+@media (max-width: 768px) { .zodiac-wheel { width: 40%; } }
+@media (max-width: 480px) { .zodiac-wheel { width: 50%; } }
+
+/* ==========================
    🌟 SCROLLING BANNER
 ========================== */
 .scroll-banner {
@@ -189,9 +174,7 @@ nav.active {
     0 0 10px rgba(255,215,0,0.6);
 }
 
-@media (max-width: 768px) {
-  .scroll-item span { font-size: 1.2rem; }
-}
+@media (max-width: 768px) { .scroll-item span { font-size: 1.2rem; } }
 
 @keyframes scroll-left {
   0% { transform: translateX(100%); }
@@ -201,7 +184,6 @@ nav.active {
 
 </head>
 <body>
-
 
 <header class="header">
   <div class="logo">
@@ -256,7 +238,16 @@ nav.active {
   <div class="zodiac-wheel"></div>
 </div>
 
-<!-- ===== Swiper JS ===== -->
+<!-- ===== SCROLLING BANNER ===== -->
+<div class="scroll-banner">
+  <div class="scroll-content">
+    <div class="scroll-item"><span>🔮 জ্যোতিষের দার্শনিক আলোকে – প্রেম, বিবাহ, কর্ম ও ব্যবসার অন্তর্দৃষ্টি</span></div>
+    <div class="scroll-item"><span>🖐️ হস্তরেখার গভীরে লুকানো রহস্য – ভাগ্য, স্বাস্থ্য ও সাফল্যের চিহ্ন</span></div>
+    <div class="scroll-item"><span>📜 রাশিফল ও জন্মকুণ্ডলীর আধ্যাত্মিক গল্প – পরিবারের জীবন ও সিদ্ধান্তের প্রজ্ঞা</span></div>
+    <div class="scroll-item"><span>💎 রত্ন ও নেকলেসের জ্যোতিষ পরামর্শ – শ্রী, সমৃদ্ধি ও সৌভাগ্য বৃদ্ধি</span></div>
+  </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
   const mainSwiper = new Swiper('.main-swiper', {
@@ -266,77 +257,15 @@ nav.active {
     navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
     lazy: { loadPrevNext: true },
   });
-</script>
 
-<!-- ===== CSS ===== -->
-<style>
-.main-swiper {
-  width: 100%;
-  height: 100vh; /* viewport height */
-  position: relative;
-  overflow: hidden;
-}
-
-.main-swiper .swiper-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* ছবি পুরো area cover করবে */
-  display: block;
-}
-
-/* Spin Animation */
-@keyframes spin {
-  from { transform: translateX(-50%) rotate(0deg); }
-  to { transform: translateX(-50%) rotate(360deg); }
-}
-
-/* Swiper navigation buttons */
-.swiper-button-next, .swiper-button-prev {
-  color: #fff;
-  z-index: 20;
-}
-
-/* Swiper pagination bullets */
-.swiper-pagination-bullet {
-  background: #fff;
-  opacity: 0.7;
-}
-.swiper-pagination-bullet-active {
-  opacity: 1;
-}
-
-
-</style>
-</div>
-  <!-- SCROLLING BANNER -->
-<div class="scroll-banner">
-  <div class="scroll-content">
-    <div class="scroll-item">
-      <span>🔮 জ্যোতিষের দার্শনিক আলোকে – প্রেম, বিবাহ, কর্ম ও ব্যবসার অন্তর্দৃষ্টি</span>
-    </div>
-    <div class="scroll-item">
-      <span>🖐️ হস্তরেখার গভীরে লুকানো রহস্য – ভাগ্য, স্বাস্থ্য ও সাফল্যের চিহ্ন</span>
-    </div>
-    <div class="scroll-item">
-      <span>📜 রাশিফল ও জন্মকুণ্ডলীর আধ্যাত্মিক গল্প – পরিবারের জীবন ও সিদ্ধান্তের প্রজ্ঞা</span>
-    </div>
-    <div class="scroll-item">
-      <span>💎 রত্ন ও নেকলেসের জ্যোতিষ পরামর্শ – শ্রী, সমৃদ্ধি ও সৌভাগ্য বৃদ্ধি</span>
-    </div>
-  </div>
-</div>
-  </div>
-</div>
-
-<script>
   // Hamburger Menu
   const hamburger = document.getElementById('hamburger');
   const nav = document.querySelector('nav');
-  
-  hamburger?.addEventListener('click', () => {
-    nav.classList.toggle('active');
-  });
+  hamburger?.addEventListener('click', () => { nav.classList.toggle('active'); });
 </script>
+
+</body>
+</html>
 
   
 <!-- ==========================
