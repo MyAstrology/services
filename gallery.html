@@ -569,51 +569,49 @@ setInterval(() => moveSlide(1), 5000);
 
 
 
-
-<!-- Include Swiper CSS -->
+<!-- Swiper CSS -->
 <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
 />
 
-<!-- Swiper -->
-<div class="swiper mySwiper">
+<!-- Swiper HTML -->
+<div class="swiper mySwiper" style="width:100%; max-width:1000px; margin:auto;">
   <div class="swiper-wrapper">
     <div class="swiper-slide">
-      <img src="gallery/myastrology-nadia-astrology-gallery.webp" alt="Astrology & Palmistry Consultation">
+      <img src="gallery/myastrology-nadia-astrology-gallery.webp" alt="Astrology & Palmistry Consultation" style="width:100%; border-radius:10px;">
     </div>
     <div class="swiper-slide">
-      <img src="gallery/horoscope-reading-bengali-india.webp" alt="Best Astrologer & Palmist">
+      <img src="gallery/horoscope-reading-bengali-india.webp" alt="Best Astrologer & Palmist" style="width:100%; border-radius:10px;">
     </div>
     <div class="swiper-slide">
-      <img src="gallery/vedic-astrology-ranaghat-myastrology.webp" alt="Horoscope & Palm Reading">
+      <img src="gallery/vedic-astrology-ranaghat-myastrology.webp" alt="Horoscope & Palm Reading" style="width:100%; border-radius:10px;">
     </div>
     <div class="swiper-slide">
-      <img src="gallery/ranaghat-expect-astrology-consultant.webp" alt="Horoscope and Palm Reading Services">
+      <img src="gallery/ranaghat-expect-astrology-consultant.webp" alt="Horoscope and Palm Reading Services" style="width:100%; border-radius:10px;">
     </div>
     <div class="swiper-slide">
-      <img src="gallery/vedic-astrologer-dr-prodyut-acharya.webp" alt="Astrology & Palmistry Services">
+      <img src="gallery/vedic-astrologer-dr-prodyut-acharya.webp" alt="Astrology & Palmistry Services" style="width:100%; border-radius:10px;">
     </div>
   </div>
-  
+
   <!-- Navigation buttons -->
   <div class="swiper-button-next"></div>
   <div class="swiper-button-prev"></div>
 
-  <!-- Pagination dots -->
+  <!-- Pagination -->
   <div class="swiper-pagination"></div>
 </div>
 
-<!-- Include Swiper JS -->
+<!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-
 <script>
   const swiper = new Swiper('.mySwiper', {
     loop: true,
-    autoplay: {
-      delay: 3000,
-      disableOnInteraction: false,
-    },
+    grabCursor: true,
+    centeredSlides: true,
+    slidesPerView: 1,
+    spaceBetween: 20,
     pagination: {
       el: '.swiper-pagination',
       clickable: true,
@@ -622,29 +620,23 @@ setInterval(() => moveSlide(1), 5000);
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
     },
-    slidesPerView: 1,
-    spaceBetween: 20,
     breakpoints: {
+      640: {
+        slidesPerView: 1,
+        spaceBetween: 15,
+      },
       768: {
         slidesPerView: 2,
+        spaceBetween: 20,
       },
       1024: {
         slidesPerView: 3,
+        spaceBetween: 30,
       },
+    },
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false,
     },
   });
 </script>
-
-<style>
-  .swiper {
-    width: 100%;
-    max-width: 1100px;
-    margin: 40px auto;
-  }
-
-  .swiper-slide img {
-    width: 100%;
-    border-radius: 12px;
-    object-fit: cover;
-  }
-</style>
