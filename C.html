@@ -71,22 +71,19 @@
 .zodiac-wheel {
   position: absolute;
   bottom: 0; left: 0;
-  width: 300px; height: 300px;
+  width: 600px;   /* আগের 300px থেকে বড়ানো হয়েছে */
+  height: 600px;  /* আগের 300px থেকে বড়ানো হয়েছে */
   background: url('gallery/myastrology-ranaghat-astrology-palmistry.png') no-repeat center/contain;
   opacity: 0.7;
   animation: spin 20s linear infinite;
   z-index: 10;
 }
 
-@keyframes spin { 
-  from { transform: rotate(0deg);}
-  to { transform: rotate(360deg);}
-}
-
 /* Responsive zodiac wheel */
 @media (max-width: 480px) { .zodiac-wheel { width: 120px; height: 120px; } }
 @media (min-width: 481px) and (max-width: 767px) { .zodiac-wheel { width: 200px; height: 200px; } }
-@media (min-width: 1200px) { .zodiac-wheel { width: 500px; height: 500px; } }
+@media (min-width: 1200px) { .zodiac-wheel { width: 600px; height: 600px; } } /* বড়ো আকার */  
+    
     /* ========================== SCROLLING BANNER ========================== */
     .scroll-banner {
       width: 100%;
