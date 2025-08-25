@@ -209,7 +209,98 @@
 
 
 
+<!-- ==========================
+🌟 Astrology & Palmistry Slider Section
+========================== -->
+<section class="astrology-slider" style="padding:40px 20px; background:#f9f9f9; max-width:1100px; margin:0 auto; border-radius:12px; font-family:'Noto Serif Bengali', serif;">
+  <h2 style="text-align:center; font-size:2rem; margin-bottom:20px; color:#1e6091;">রানাঘাটের সেরা জ্যোতিষ ও হস্তরেখা পরামর্শ</h2>
 
+  <div class="slider-container" style="position:relative; overflow:hidden; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
+    <div class="slider-track" style="display:flex; transition:transform 0.5s ease-in-out;">
+      
+      <!-- Slide 1 -->
+      <div class="slide" style="min-width:100%; position:relative;">
+        <img src="gallery/ranaghat-horoscope-palm-reading-services.webp" 
+             alt="রানাঘাট হরোস্কোপ এবং হস্তরেখা পরিষেবা - Dr. Prodyut Acharya" 
+             style="width:100%; display:block; border-radius:12px;">
+        <div class="caption" style="position:absolute; bottom:15px; left:20px; color:#fff; background:rgba(30,96,145,0.7); padding:10px 15px; border-radius:8px; font-size:1rem;">
+          হরোস্কোপ ও হস্তরেখা পরামর্শ – Ranaghat Astrology & Palmistry
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="slide" style="min-width:100%; position:relative;">
+        <img src="gallery/myastrology-ranaghat-astrology-palmistry.webp" 
+             alt="MyAstrology Ranaghat – Expert Astrology ও Palmistry Services" 
+             style="width:100%; display:block; border-radius:12px;">
+        <div class="caption" style="position:absolute; bottom:15px; left:20px; color:#fff; background:rgba(30,96,145,0.7); padding:10px 15px; border-radius:8px; font-size:1rem;">
+          MyAstrology Ranaghat – Astrology & Palmistry Expert Services
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="slide" style="min-width:100%; position:relative;">
+        <img src="gallery/astrologer-best-palmist-dr-prodyut-acharya.webp" 
+             alt="সেরা জ্যোতিষ ও হস্তরেখাবিদ Dr. Prodyut Acharya" 
+             style="width:100%; display:block; border-radius:12px;">
+        <div class="caption" style="position:absolute; bottom:15px; left:20px; color:#fff; background:rgba(30,96,145,0.7); padding:10px 15px; border-radius:8px; font-size:1rem;">
+          সেরা Astrologer & Palmist – Dr. Prodyut Acharya
+        </div>
+      </div>
+
+      <!-- Slide 4 -->
+      <div class="slide" style="min-width:100%; position:relative;">
+        <img src="gallery/astrologer-expert-palmist-nadia.webp" 
+             alt="Nadia Expert Astrologer এবং Palmist পরামর্শ" 
+             style="width:100%; display:block; border-radius:12px;">
+        <div class="caption" style="position:absolute; bottom:15px; left:20px; color:#fff; background:rgba(30,96,145,0.7); padding:10px 15px; border-radius:8px; font-size:1rem;">
+          Nadia – Expert Astrology & Palmistry Services
+        </div>
+      </div>
+
+      <!-- Slide 5 -->
+      <div class="slide" style="min-width:100%; position:relative;">
+        <img src="gallery/astrology-palmistry-consultation-ranaghat.webp" 
+             alt="রানাঘাটে Astrology & Palmistry Consultation - MyAstrology" 
+             style="width:100%; display:block; border-radius:12px;">
+        <div class="caption" style="position:absolute; bottom:15px; left:20px; color:#fff; background:rgba(30,96,145,0.7); padding:10px 15px; border-radius:8px; font-size:1rem;">
+          Ranaghat Astrology & Palmistry Consultation – MyAstrology
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Slider Navigation -->
+  <div class="slider-nav" style="text-align:center; margin-top:15px;">
+    <button onclick="prevSlide()" style="padding:8px 15px; margin:0 5px; border:none; background:#1e6091; color:#fff; border-radius:6px; cursor:pointer;">পূর্ববর্তী</button>
+    <button onclick="nextSlide()" style="padding:8px 15px; margin:0 5px; border:none; background:#1e6091; color:#fff; border-radius:6px; cursor:pointer;">পরবর্তী</button>
+  </div>
+</section>
+
+<!-- ==========================
+🌟 Slider JS
+========================== -->
+<script>
+let currentIndex = 0;
+const slides = document.querySelectorAll('.slider-track .slide');
+
+function showSlide(index) {
+  const total = slides.length;
+  if(index >= total) currentIndex = 0;
+  else if(index < 0) currentIndex = total - 1;
+  else currentIndex = index;
+  
+  const offset = -currentIndex * 100;
+  document.querySelector('.slider-track').style.transform = 'translateX(' + offset + '%)';
+}
+
+function nextSlide(){ showSlide(currentIndex + 1); }
+function prevSlide(){ showSlide(currentIndex - 1); }
+
+// Auto-slide every 5 seconds
+setInterval(()=>{ nextSlide(); },5000);
+</script>
 
 
 
