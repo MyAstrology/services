@@ -381,33 +381,68 @@ nav.active ul {
   </p>
 
   <!-- Image Slider Swiper -->
-  <div class="image-slider">
-    <div class="image-swiper swiper">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <img src="gallery/astrologer-expert-palmist-nadia.webp" alt="Astrology & Palmistry Consultation" loading="lazy" />
-        </div>
-        <div class="swiper-slide">
-          <img src="gallery/myastrology-ranaghat-astrology-palmistry.webp" alt="Best Astrologer & Palmist" loading="lazy" />
-        </div>
-        <div class="swiper-slide">
-          <img src="gallery/astrologer-best-palmist-dr-prodyut-acharya.webp" alt="Horoscope & Palm Reading" loading="lazy" />
-        </div>
-        <div class="swiper-slide">
-          <img src="gallery/ranaghat-horoscope-palm-reading-services.webp" alt="Expert Astrologer Nadia" loading="lazy" />
-        </div>
-        <div class="swiper-slide">
-          <img src="gallery/astrology-palmistry-consultation-ranaghat.webp" alt="Astrology & Palmistry Services" loading="lazy" />
-        </div>
+<section class="image-slider">
+  <div class="swiper image-swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <img src="gallery/astrologer-expert-palmist-nadia.webp" alt="Astrology & Palmistry Consultation" loading="lazy" />
       </div>
-
-      <!-- Pagination & Navigation -->
-      <div class="swiper-pagination"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
+      <div class="swiper-slide">
+        <img src="gallery/myastrology-ranaghat-astrology-palmistry.webp" alt="Best Astrologer & Palmist" loading="lazy" />
+      </div>
+      <div class="swiper-slide">
+        <img src="gallery/astrologer-best-palmist-dr-prodyut-acharya.webp" alt="Horoscope & Palm Reading" loading="lazy" />
+      </div>
+      <div class="swiper-slide">
+        <img src="gallery/ranaghat-horoscope-palm-reading-services.webp" alt="Expert Astrologer Nadia" loading="lazy" />
+      </div>
+      <div class="swiper-slide">
+        <img src="gallery/astrology-palmistry-consultation-ranaghat.webp" alt="Astrology & Palmistry Services" loading="lazy" />
+      </div>
     </div>
+
+    <!-- Pagination & Navigation -->
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
   </div>
 </section>
+
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  var imageSwiper = new Swiper('.image-swiper', {
+    loop: true,
+    spaceBetween: 15,
+    slidesPerView: 1,
+    pagination: {
+      el: '.image-slider .swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.image-slider .swiper-button-next',
+      prevEl: '.image-slider .swiper-button-prev',
+    },
+    lazy: {
+      loadPrevNext: true,   // কাছাকাছি ইমেজ প্রি-লোড করবে
+    },
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    breakpoints: {
+      768: {
+        slidesPerView: 1,
+      },
+      480: {
+        slidesPerView: 1,
+      },
+    },
+  });
+</script>
 
 
 
