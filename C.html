@@ -232,35 +232,54 @@ nav.active {
   </nav>
 </header>
 
-<!-- ✅ Main Swiper Only -->
+<!-- ✅ Main Swiper Banner HTML -->
 <div class="swiper main-swiper">
   <div class="swiper-wrapper">
-
     <div class="swiper-slide">
-      <img loading="lazy" src="gallery/myastrology-ranaghat-astrology-palmistry-consultant.webp" 
-           alt="Astrology & Palmistry Consultation in Ranaghat – Dr. Prodyut Acharya MyAstrology">
+      <img src="gallery/myastrology-ranaghat-astrology-palmistry-consultant.webp" alt="Astrology & Palmistry Consultation">
     </div>
-
     <div class="swiper-slide">
-      <img loading="lazy" src="gallery/expert-astrologer-palmist-nadia.webp" 
-           alt="Best Astrologer & Palmist in Nadia – Dr. Prodyut Acharya MyAstrology">
+      <img src="gallery/expert-astrologer-palmist-nadia.webp" alt="Best Astrologer & Palmist">
     </div>
-
     <div class="swiper-slide">
-      <img loading="lazy" src="gallery/best-astrologer-palmist-dr-prodyut-acharya.webp" 
-           alt="Horoscope & Palm Reading by Dr. Prodyut Acharya – MyAstrology">
+      <img src="gallery/best-astrologer-palmist-dr-prodyut-acharya.webp" alt="Horoscope & Palm Reading">
     </div>
-
     <div class="swiper-slide">
-      <img loading="lazy" src="gallery/myastrology-ranaghat-horoscope-palm-reading.webp" 
-           alt="Horoscope and Palm Reading Services – MyAstrology Ranaghat">
+      <img src="gallery/myastrology-ranaghat-horoscope-palm-reading.webp" alt="Horoscope and Palm Reading Services">
     </div>
-
     <div class="swiper-slide">
-      <img loading="lazy" src="gallery/astrology-palmistry-services-best.webp" 
-           alt="Astrology & Palmistry Services in Ranaghat – Dr. Prodyut Acharya">
+      <img src="gallery/astrology-palmistry-services-best.webp" alt="Astrology & Palmistry Services">
     </div>
+  </div>
 
+  <!-- Pagination & Navigation -->
+  <div class="swiper-pagination"></div>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+</div>
+
+<!-- ✅ Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  const mainSwiper = new Swiper('.main-swiper', {
+    loop: true,
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false
+    },
+    pagination: {
+      el: '.main-swiper .swiper-pagination',
+      clickable: true
+    },
+    navigation: {
+      nextEl: '.main-swiper .swiper-button-next',
+      prevEl: '.main-swiper .swiper-button-prev'
+    },
+    lazy: {
+      loadPrevNext: true
+    }
+  });
+</script>
   </div>
 
   <div class="zodiac-wheel"></div>
