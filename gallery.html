@@ -627,3 +627,69 @@ setInterval(() => moveSlide(1), 5000);
     breakpoints: {} // breakpoints খালি রাখছি
   });
 </script>
+
+
+
+
+<!-- Banner Section -->
+<div class="banner-container">
+  <!-- Banner Image -->
+  <img src="gallery/myastrology-nadia-astrology-gallery.webp" alt="Astrology Banner" class="banner-image">
+
+  <!-- Rotating Zodiac Wheel -->
+  <div class="zodiac-wheel"></div>
+</div>
+
+<style>
+/* Banner Container */
+.banner-container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+/* Banner Image */
+.banner-image {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+}
+
+/* Zodiac Wheel */
+.zodiac-wheel {
+  position: absolute;
+  bottom: 0;      /* নিচের কোণে */
+  left: 0;        /* বাম কোণে */
+  width: 250px;   /* চাকাটির আকার */
+  height: 250px;
+  background: url('gallery/myastrology-ranaghat-astrology-palmistry.png') no-repeat center/contain;
+  opacity: 0.8;
+  animation: spin 20s linear infinite;
+  pointer-events: none; /* মাউস হোভার/ক্লিক প্রভাব নেই */
+}
+
+/* Rotation Animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .zodiac-wheel {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .zodiac-wheel {
+    width: 120px;
+    height: 120px;
+  }
+}
+</style>
+
