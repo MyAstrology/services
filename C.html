@@ -232,7 +232,7 @@ nav.active {
   </nav>
 </header>
 
-<!-- ✅ Main Swiper Banner HTML -->
+<!-- ===== MAIN SWIPER BANNER ===== -->
 <div class="swiper main-swiper">
   <div class="swiper-wrapper">
     <div class="swiper-slide">
@@ -256,36 +256,88 @@ nav.active {
   <div class="swiper-pagination"></div>
   <div class="swiper-button-prev"></div>
   <div class="swiper-button-next"></div>
+
+  <!-- Zodiac Wheel -->
+  <div class="zodiac-wheel"></div>
 </div>
 
-<!-- ✅ Swiper JS -->
+<!-- ===== Swiper JS ===== -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
   const mainSwiper = new Swiper('.main-swiper', {
     loop: true,
-    autoplay: {
-      delay: 4000,
-      disableOnInteraction: false
-    },
-    pagination: {
-      el: '.main-swiper .swiper-pagination',
-      clickable: true
-    },
-    navigation: {
-      nextEl: '.main-swiper .swiper-button-next',
-      prevEl: '.main-swiper .swiper-button-prev'
-    },
-    lazy: {
-      loadPrevNext: true
-    }
+    autoplay: { delay: 4000, disableOnInteraction: false },
+    pagination: { el: '.swiper-pagination', clickable: true },
+    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+    lazy: { loadPrevNext: true },
   });
 </script>
-  </div>
 
-  <div class="zodiac-wheel"></div>
-  <div class="swiper-pagination"></div>
-  <div class="swiper-button-prev"></div>
-  <div class="swiper-button-next"></div>
+<!-- ===== CSS ===== -->
+<style>
+.main-swiper {
+  width: 100%;
+  height: 100vh; /* viewport height */
+  position: relative;
+  overflow: hidden;
+}
+
+.main-swiper .swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* ছবি পুরো area cover করবে */
+  display: block;
+}
+
+/* Zodiac wheel */
+.zodiac-wheel {
+  position: absolute;
+  bottom: 20px; /* নিচে ঠিক রাখুন */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  height: 400px;
+  background: url('gallery/myastrology-ranaghat-astrology-palmistry.png') no-repeat center/contain;
+  opacity: 0.7;
+  animation: spin 20s linear infinite;
+  z-index: 10;
+}
+
+/* Spin Animation */
+@keyframes spin {
+  from { transform: translateX(-50%) rotate(0deg); }
+  to { transform: translateX(-50%) rotate(360deg); }
+}
+
+/* Swiper navigation buttons */
+.swiper-button-next, .swiper-button-prev {
+  color: #fff;
+  z-index: 20;
+}
+
+/* Swiper pagination bullets */
+.swiper-pagination-bullet {
+  background: #fff;
+  opacity: 0.7;
+}
+.swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
+/* Responsive zodiac wheel */
+@media (max-width: 768px) {
+  .zodiac-wheel {
+    width: 250px;
+    height: 250px;
+  }
+}
+@media (max-width: 480px) {
+  .zodiac-wheel {
+    width: 180px;
+    height: 180px;
+  }
+}
+</style>
 </div>
   <!-- SCROLLING BANNER -->
 <div class="scroll-banner">
