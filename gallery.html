@@ -589,25 +589,33 @@ setInterval(() => moveSlide(1), 5000);
 <style>
 /* Zodiac Wheel over Slider */
 .swiper-container-with-wheel {
-  position: relative;
+    position: relative;
 }
 
 /* Wheel */
 .zodiac-wheel {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 350px;
-  height: 350px;
-  background: url('gallery/myastrology-ranaghat-astrology-palmistry.png') no-repeat center/contain;
-  opacity: 0.5;
-  animation: spin 20s linear infinite;
-  pointer-events: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 350px;
+    height: 350px;
+    background: url('gallery/myastrology-ranaghat-astrology-palmistry.png') no-repeat center/contain;
+    opacity: 0.5;
+    pointer-events: none;
 
-  /* Shadow for 3D effect */
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-  border-radius: 50%;
-  z-index: 10; /* slider-এর উপরে থাকবে */
+    /* 3D Shadow effect */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    border-radius: 50%;
+    z-index: 10;
+
+    /* Spin animation */
+    animation: spin 20s linear infinite;
+}
+
+/* Spin keyframes */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 /* Rotation Animation */
