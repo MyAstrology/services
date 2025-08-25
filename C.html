@@ -346,6 +346,14 @@ nav.active {
 </head>
 <body>
 
+  // Hamburger (safe)
+  const hamburger = document.getElementById('hamburger');
+  const nav = document.querySelector('nav');
+  hamburger?.addEventListener('click', () => {
+    nav.classList.toggle('active');
+  });
+</script>
+
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
