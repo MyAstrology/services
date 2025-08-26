@@ -1,0 +1,5 @@
+# Enable Rewrite Engine
+RewriteEngine On
+
+# Redirect old sitemap.xml to site-map.xml
+Redirect 301 /sitemap.xml https://astro.myastrology.in/site-map.xml
