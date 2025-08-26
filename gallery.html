@@ -837,72 +837,89 @@ setInterval(() => moveSlide(1), 5000);
 </section>
 
 
-<!-- FOOTER SECTION: MyAstrology — রাশিফল পাতার জন্য -->
-<footer style="background:#0b0b2e;color:#f1f1f1;padding:40px 20px 20px;font-family:apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Noto Sans Bengali','Noto Sans',sans-serif;text-align:center;">  
-  <!-- GRID/FLEX CONTAINER -->  
-  <div class="footer-grid" style="max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:28px;align-items:center;">  
+<!-- FOOTER SECTION -->
+<footer style="background:#0b0b2e;color:#f1f1f1;padding:50px 20px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Noto Sans Bengali','Noto Sans',sans-serif;">
 
-    <!-- Brand/Intro -->  
-    <div>  
-      <h2 style="font-size:20px;margin:0 0 10px;color:#fff;">🌌 MyAstrology</h2>  
-      <p style="font-size:14px;line-height:1.6;color:#ccc;margin:0;">  
-        ড. প্রদ্যুৎ আচার্য এর দার্শনিক জ্যোতিষ ও হস্তরেখা পরামর্শ।    
-        রাশি বিশ্লেষণ, জন্ম কুণ্ডলী, বিবাহ মিলন, ক্যারিয়ার, ব্যবসা ও জীবনের প্রতিটি ক্ষেত্রে সমাধান।  
-      </p>  
-    </div>  
+  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;text-align:center;">
 
-    <!-- Quick Links -->  
-    <div>  
-      <h3 style="font-size:16px;margin:0 0 12px;color:#fff;">🔗 দরকারী লিংক</h3>  
-      <ul style="list-style:none;margin:0;padding:0;font-size:14px;line-height:1.9;text-align:center;">  
-        <li><a href="https://astro.myastrology.in/about.html" style="color:#ccc;text-decoration:none;">আমাদের সম্পর্কে</a></li>  
-        <li><a href="https://astro.myastrology.in/contact.html" style="color:#ccc;text-decoration:none;">যোগাযোগ</a></li>  
-        <li><a href="https://astro.myastrology.in/palmistry.html" style="color:#ccc;text-decoration:none;">হস্তরেখা</a></li>  
-        <li><a href="https://astro.myastrology.in/rashifal.html" style="color:#ccc;text-decoration:none;">রাশিফল</a></li>  
-        <li><a href="https://blog.myastrology.in" style="color:#ccc;text-decoration:none;">ব্লগ</a></li>  
-      </ul>  
+    <!-- Brand -->
+    <div>
+      <h2 style="color:#FFD700;font-size:22px;margin-bottom:10px;">🌌 MyAstrology</h2>
+      <p style="font-size:14px;color:#ccc;line-height:1.7;">
+        ড. প্রদ্যুৎ আচার্য এর জ্যোতিষ ও হস্তরেখা পরামর্শ।  
+        জন্মকুণ্ডলী, বিবাহ মিলন, ক্যারিয়ার, ব্যবসা ও জীবন সমস্যা সমাধান।
+      </p>
     </div>
+
+    <!-- Quick Links -->
+    <div>
+      <h3 style="font-size:16px;color:#fff;margin-bottom:12px;">🔗 দরকারী লিংক</h3>
+      <ul style="list-style:none;padding:0;margin:0;font-size:14px;line-height:2;">
+        <li><a href="about.html" style="color:#ccc;text-decoration:none;">আমাদের সম্পর্কে</a></li>
+        <li><a href="contact.html" style="color:#ccc;text-decoration:none;">যোগাযোগ</a></li>
+        <li><a href="palmistry.html" style="color:#ccc;text-decoration:none;">হস্তরেখা</a></li>
+        <li><a href="rashifal.html" style="color:#ccc;text-decoration:none;">রাশিফল</a></li>
+        <li><a href="https://blog.myastrology.in" style="color:#ccc;text-decoration:none;">ব্লগ</a></li>
+      </ul>
+    </div>
+
+    <!-- Social Media -->
+    <div>
+      <h3 style="font-size:16px;color:#fff;margin-bottom:12px;">🌐 সোশ্যাল মিডিয়া</h3>
+      <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;">
+
+        <a href="https://wa.me/919333122768" target="_blank" class="social"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://youtube.com/@myastrology" target="_blank" class="social"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://facebook.com/Dr.ProdyutAcharya" target="_blank" class="social"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://linkedin.com/in/ProdyutAcharya" target="_blank" class="social"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://x.com/AcharyaProdyut" target="_blank" class="social"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://instagram.com/myastrology.in" target="_blank" class="social"><i class="fa-brands fa-instagram"></i></a>
+
+      </div>
+    </div>
+
   </div>
 
-  <!-- Social Media -->
-  <div>
-    <h3 style="font-size:16px;margin:20px 0 12px;color:#fff;">🌐 সোশ্যাল মিডিয়া</h3>
-    <div class="social-icons" style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
-      <!-- WhatsApp -->
-      <a href="https://wa.me/919333122768" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;background:#25D366;border-radius:50%;color:#fff;text-decoration:none;font-size:18px;">
-        <i class="fab fa-whatsapp"></i>
-      </a>
-      <!-- YouTube -->
-      <a href="https://youtube.com/@myastrology" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;background:#FF0000;border-radius:50%;color:#fff;text-decoration:none;font-size:18px;">
-        <i class="fab fa-youtube"></i>
-      </a>
-      <!-- Facebook -->
-      <a href="https://www.facebook.com/Dr.ProdyutAcharya" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;background:#1877F2;border-radius:50%;color:#fff;text-decoration:none;font-size:18px;">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-      <!-- LinkedIn -->
-      <a href="https://www.linkedin.com/in/ProdyutAcharya" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;background:#0077b5;border-radius:50%;color:#fff;text-decoration:none;font-size:18px;">
-        <i class="fab fa-linkedin-in"></i>
-      </a>
-      <!-- Twitter / X -->
-      <a href="https://x.com/AcharyaProdyut" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;background:#1DA1F2;border-radius:50%;color:#fff;text-decoration:none;font-size:18px;">
-        <i class="fab fa-x-twitter"></i>
-      </a>
-      <!-- Instagram -->
-      <a href="https://www.instagram.com/myastrology.in" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;background:#E1306C;border-radius:50%;color:#fff;text-decoration:none;font-size:18px;">
-        <i class="fab fa-instagram"></i>
-      </a>
-    </div>
-  </div>
-
-  <!-- Bottom Note -->
-  <div style="text-align:center;font-size:13px;color:#999;margin-top:30px;border-top:1px solid #222;padding-top:14px;">
+  <!-- Bottom -->
+  <div style="text-align:center;margin-top:30px;font-size:13px;color:#999;border-top:1px solid #222;padding-top:14px;">
     © <script>document.write(new Date().getFullYear())</script> MyAstrology — Dr. Prodyut Acharya. All Rights Reserved.
   </div>
 </footer>
 
 <!-- ✅ Font Awesome CDN -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<!-- ✅ Extra Social Button Styling -->
+<style>
+  .social {
+    width:40px;
+    height:40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    background:#222;
+    color:#fff;
+    font-size:18px;
+    transition:0.3s;
+  }
+  .social:hover { transform:scale(1.1); opacity:0.8; }
+
+  /* Individual Brand Colors */
+  .fa-whatsapp { color:#25D366; }
+  .fa-youtube { color:#FF0000; }
+  .fa-facebook-f { color:#1877F2; }
+  .fa-linkedin-in { color:#0077B5; }
+  .fa-x-twitter { color:#1DA1F2; }
+  .fa-instagram { color:#E1306C; }
+
+  /* Responsive */
+  @media(max-width:768px){
+    footer div[style*="grid-template-columns"] {
+      grid-template-columns:1fr;
+      text-align:center;
+    }
+  }
+</style>
 </body>
 </html>
