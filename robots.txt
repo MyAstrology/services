@@ -1,4 +1,2 @@
-User-agent: *
-Allow: /
-
 Sitemap: https://astro.myastrology.in/sitemap.xml
+Sitemap: https://astro.myastrology.in/image-sitemap.xml
