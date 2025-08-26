@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+
+  <!-- Video 1 -->
+  <url>
+    <loc>https://astro.myastrology.in/video.html</loc>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/rnmBu1P6Cjs/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>Life Line Analysis — MyAstrology</video:title>
+      <video:description>Discover how the Life Line reflects your vitality, health, and major life changes. Explained by Best Palmistry Consultant in India.</video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=rnmBu1P6Cjs</video:content_loc>
+      <video:player_loc allow_embed="yes">https://www.youtube.com/embed/rnmBu1P6Cjs</video:player_loc>
+      <video:duration>300</video:duration>
+      <video:publication_date>2025-08-26T12:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+
+  <!-- Video 2 -->
+  <url>
+    <loc>https://astro.myastrology.in/video.html</loc>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/Zn9vG_TQ3mM/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>Head Line Explained — MyAstrology</video:title>
+      <video:description>Decode your intelligence, decision-making, and mindset with expert palmistry analysis. Indian Vedic Palmistry guidance.</video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=Zn9vG_TQ3mM</video:content_loc>
+      <video:player_loc allow_embed="yes">https://www.youtube.com/embed/Zn9vG_TQ3mM</video:player_loc>
+      <video:duration>300</video:duration>
+      <video:publication_date>2025-08-26T12:05:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+
+  <!-- Video 3 -->
+  <url>
+    <loc>https://astro.myastrology.in/video.html</loc>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/isRu1J5Cc5o/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>Heart Line Reading — MyAstrology</video:title>
+      <video:description>Learn what your Heart Line says about love, emotions & relationships. From Top Astrologer in West Bengal.</video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=isRu1J5Cc5o</video:content_loc>
+      <video:player_loc allow_embed="yes">https://www.youtube.com/embed/isRu1J5Cc5o</video:player_loc>
+      <video:duration>300</video:duration>
+      <video:publication_date>2025-08-26T12:10:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+
+  <!-- Video 4 -->
+  <url>
+    <loc>https://astro.myastrology.in/video.html</loc>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/UhyPzvXXI4k/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>Fate Line Analysis — MyAstrology</video:title>
+      <video:description>Discover how the Fate Line reflects your career, destiny and major life path. A must-watch by Online Astrology Expert India.</video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=UhyPzvXXI4k</video:content_loc>
+      <video:player_loc allow_embed="yes">https://www.youtube.com/embed/UhyPzvXXI4k</video:player_loc>
+      <video:duration>300</video:duration>
+      <video:publication_date>2025-08-26T12:15:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+
+  <!-- Video 5 -->
+  <url>
+    <loc>https://astro.myastrology.in/video.html</loc>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/9UbbdHNTIwo/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>Sun Line (Apollo) — MyAstrology</video:title>
+      <video:description>Understand how Sun Line shows fame, recognition, and talent. Learn from an Indian Palmistry Specialist.</video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=9UbbdHNTIwo</video:content_loc>
+      <video:player_loc allow_embed="yes">https://www.youtube.com/embed/9UbbdHNTIwo</video:player_loc>
+      <video:duration>300</video:duration>
+      <video:publication_date>2025-08-26T12:20:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+
+  <!-- আরও ভিডিও যেমন Video 6 – 12 একই pattern অনুসারে যোগ করা যাবে -->
+
+</urlset>
