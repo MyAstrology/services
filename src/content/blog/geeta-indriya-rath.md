@@ -1,7 +1,7 @@
 ---
 title: "গীতার দার্শনিক ব্যাখ্যা: ইন্দ্রিয় রথ ও মনের সারথি"
 description: "মহাভারতের রথচিত্র থেকে শিখুন কিভাবে মন ও ইন্দ্রিয় নিয়ন্ত্রণে এনে শান্তি ও সাফল্যের পথে এগোনো যায়।"
-image: "/images/blog/geeta-indriya-rath.jpg"
+image: "/gallery/astrologer-expert-palmist-nadia.webp"
 date: "2025-08-30"
 author: "Dr. প্রদ্যুত আচার্য"
 tags: ["Geeta", "Philosophy", "Mind Control", "Spirituality", "Astrology"]
