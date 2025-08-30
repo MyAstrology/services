@@ -34,52 +34,35 @@
 <body>
 
   <h1>আমাদের ব্লগ</h1>
-
   <div id="blog-container" class="blog-container">
     <p>লোড হচ্ছে...</p>
   </div>
 
   <script>
-    // ব্লগ ডাটা (এটা ভবিষ্যতে আলাদা JSON ফাইল থেকেও আসতে পারে)
-    const blogs = [
-      {
-        slug: "geeta-indriya-rath",
-        title: "গীতার দার্শনিক ব্যাখ্যা",
-        image: "https://astro.myastrology.in/gallery/astrologer-expert-palmist-nadia.webp",
-        description: "মহাভারতের রথচিত্র থেকে শিখুন কিভাবে মন ও ইন্দ্রিয় নিয়ন্ত্রণে এনে শান্তি ও সাফল্যের পথে এগোনো যায়..."
-      },
-      {
-        slug: "palmistry-tips",
-        title: "Palmistry Tips",
-        image: "/src/content/blog/palmistry-tips.jpg",
-        description: "হাতের রেখা আমাদের জীবনের নানা রহস্য প্রকাশ করে..."
-      },
-      {
-        slug: "vedic-astrology-basics",
-        title: "বৈদিক জ্যোতিষ শাস্ত্র",
-        image: "/src/content/blog/vedic-astrology-basics.jpg",
-        description: "জ্যোতিষ শাস্ত্রের মূল ধারণা ও মৌলিক নিয়ম জানুন..."
-      }
-      // ⬇⬇⬇ নতুন পোস্ট এখানে শুধু যোগ করুন (কোড এডিট না করেই)
-      // { slug: "new-post", title: "নতুন পোস্ট", image: "img-url", description: "সংক্ষিপ্ত বিবরণ" }
-    ];
-
-    const container = document.getElementById("blog-container");
-    container.innerHTML = ""; // লোড হচ্ছে মেসেজ মুছে ফেললাম
-
-    blogs.forEach(blog => {
-      const a = document.createElement("a");
-      a.href = `blog.html?post=${blog.slug}`;
-      a.className = "blog-card";
-      a.innerHTML = `
-        <img src="${blog.image}" alt="${blog.title}">
-        <div class="content">
-          <h2>${blog.title}</h2>
-          <p>${blog.description}</p>
-        </div>
-      `;
-      container.appendChild(a);
-    });
+    // JSON ফাইল থেকে ব্লগ ডাটা লোড
+    fetch('/src/content/blog/list.json')
+      .then(res => res.json())
+      .then(blogs => {
+        const container = document.getElementById("blog-container");
+        container.innerHTML = "";
+        blogs.forEach(blog => {
+          const a = document.createElement("a");
+          a.href = `blog.html?post=${blog.slug}`;
+          a.className = "blog-card";
+          a.innerHTML = `
+            <img src="${blog.image}" alt="${blog.title}">
+            <div class="content">
+              <h2>${blog.title}</h2>
+              <p>${blog.description}</p>
+            </div>
+          `;
+          container.appendChild(a);
+        });
+      })
+      .catch(err => {
+        document.getElementById("blog-container").innerHTML = "<p>পোস্ট লোড করতে সমস্যা হচ্ছে!</p>";
+        console.error(err);
+      });
   </script>
 
 </body>
