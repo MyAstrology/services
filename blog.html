@@ -1,77 +1,91 @@
-<!DOCTYPE html>  
-<html lang="bn">  
-<head>  
-  <meta charset="UTF-8">  
-  <title>লোড হচ্ছে...</title>  
-  <meta name="description" content="">  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>  
-</head>  
-<body style="font-family:sans-serif;max-width:800px;margin:auto;line-height:1.6">  
-  
-  <!-- টাইটেল -->  
-  <h1 id="post-title">লোড হচ্ছে...</h1>  
-  
-  <!-- পোস্ট ইমেজ -->  
-  <img id="post-image" style="max-width:100%;border-radius:12px;margin:15px 0;display:none;" alt="Post Banner">  
-  
-  <!-- পোস্ট কন্টেন্ট -->  
-  <div id="blog-content">লোড হচ্ছে...</div>  
-  
-  <!-- স্ক্রিপ্ট -->  
-  
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <title>লোড হচ্ছে...</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    body { font-family: sans-serif; max-width: 800px; margin: auto; line-height: 1.6; background: #f9f9f9; padding: 20px; }
+    h1 { text-align: center; margin-bottom: 15px; }
+    #post-image { max-width: 100%; border-radius: 12px; margin: 15px 0; display: none; }
+    #blog-content { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+    .loader { text-align: center; font-size: 18px; }
+  </style>
+</head>
+<body>
 
-<script>
-const params = new URLSearchParams(window.location.search);
-const postSlug = params.get('post');
+  <!-- টাইটেল -->
+  <h1 id="post-title">লোড হচ্ছে...</h1>
 
-const blogContent = document.getElementById('blog-content');
-blogContent.innerHTML = "⏳ পোস্ট লোড হচ্ছে...";
+  <!-- পোস্ট ইমেজ -->
+  <img id="post-image" alt="Post Banner">
 
-if (!postSlug) {
-  blogContent.innerHTML = "❌ কোনো পোস্ট সিলেক্ট করা হয়নি!";
-} else {
-  fetch(`/src/content/blog/${postSlug}.md`)
-    .then(res => {
-      if (!res.ok) throw new Error("পোস্ট পাওয়া যায়নি!");
-      return res.text();
-    })
-    .then(text => {
-      // Frontmatter parse
-      const match = /^---([\s\S]*?)---/.exec(text);
-      let frontMatter = {};
-      if (match) {
-        const yaml = match[1].trim().split('\n');
-        yaml.forEach(line => {
-          const [key, value] = line.split(':');
-          if (key && value) {
-            frontMatter[key.trim()] = value.trim().replace(/^"|"$/g, '');
+  <!-- পোস্ট কন্টেন্ট -->
+  <div id="blog-content"><p class="loader">⏳ পোস্ট লোড হচ্ছে...</p></div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const postSlug = params.get('post');
+    const blogContent = document.getElementById('blog-content');
+
+    if(!postSlug){
+      blogContent.innerHTML = "❌ কোনো পোস্ট সিলেক্ট করা হয়নি!";
+    } else {
+      fetch(`/src/content/blog/${postSlug}.md`)
+        .then(res => {
+          if(!res.ok) throw new Error("পোস্ট পাওয়া যায়নি!");
+          return res.text();
+        })
+        .then(text => {
+          // Frontmatter parse (robust)
+          const match = /^---([\s\S]*?)---/.exec(text);
+          let frontMatter = {};
+          if(match){
+            const yamlLines = match[1].trim().split('\n');
+            yamlLines.forEach(line => {
+              const sepIndex = line.indexOf(':'); // প্রথম colon
+              if(sepIndex > 0){
+                const key = line.slice(0, sepIndex).trim();
+                const value = line.slice(sepIndex + 1).trim().replace(/^"|"$/g,'');
+                frontMatter[key] = value;
+              }
+            });
+            text = text.replace(match[0], '');
           }
+
+          // Title
+          if(frontMatter.title){
+            document.title = frontMatter.title;
+            document.getElementById('post-title').innerText = frontMatter.title;
+          }
+
+          // Description meta
+          if(frontMatter.description){
+            const descMeta = document.querySelector('meta[name="description"]');
+            if(descMeta){
+              descMeta.setAttribute('content', frontMatter.description);
+            }
+          }
+
+          // Image
+          if(frontMatter.image){
+            const img = document.getElementById('post-image');
+            img.src = frontMatter.image.trim();
+            img.alt = frontMatter.title || "Blog Banner";
+            img.style.display = 'block';
+          }
+
+          // Markdown content
+          blogContent.innerHTML = marked.parse(text);
+        })
+        .catch(err => {
+          blogContent.innerHTML = "❌ পোস্ট লোড করা যায়নি। ফাইল নেই বা সার্ভারে সমস্যা হচ্ছে।";
+          console.error(err);
         });
-        text = text.replace(match[0], '');
-      }
+    }
+  </script>
 
-      // Title, Description, Image
-      if (frontMatter.title) {
-        document.title = frontMatter.title;
-        document.getElementById('post-title').innerText = frontMatter.title;
-      }
-      if (frontMatter.description) {
-        document.querySelector('meta[name="description"]').setAttribute('content', frontMatter.description);
-      }
-      if (frontMatter.image) {
-  const img = document.getElementById('post-image');
-  img.src = frontMatter.image.trim();
-  img.style.display = 'block';
-}
-
-      blogContent.innerHTML = marked.parse(text);
-    })
-    .catch(err => {
-      blogContent.innerHTML = "❌ পোস্ট লোড করা যায়নি। ফাইল নেই বা সার্ভারে সমস্যা হচ্ছে।";
-      console.error(err);
-    });
-}
-</script>
 </body>
 </html>
