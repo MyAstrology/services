@@ -6,92 +6,133 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 800px;
+      margin: auto;
+      line-height: 1.7;
+      padding: 0 15px;
+      background: #fdfdfd;
+      color: #222;
+    }
+    img#post-image {
+      max-width: 100%;
+      border-radius: 12px;
+      margin: 20px 0;
+      display: none;
+    }
+    h1#post-title {
+      font-size: 28px;
+      margin-top: 20px;
+      text-align: center;
+    }
+    #blog-content {
+      margin-top: 20px;
+    }
+    #blog-content h2 {
+      margin-top: 25px;
+      font-size: 22px;
+      color: #333;
+    }
+    #blog-content p, #blog-content li, #blog-content blockquote {
+      margin: 12px 0;
+      font-size: 16px;
+    }
+    blockquote {
+      border-left: 4px solid #3478f6;
+      padding-left: 12px;
+      color: #555;
+      font-style: italic;
+    }
+  </style>
 </head>
-<body style="font-family:sans-serif; max-width:800px; margin:auto; line-height:1.6; padding: 0 15px;">
+<body>
 
-  <!-- টাইটেল -->
   <h1 id="post-title">লোড হচ্ছে...</h1>
 
-  <!-- পোস্ট ইমেজ -->
-  <img id="post-image" style="max-width:100%;border-radius:12px;margin:15px 0;display:none;" alt="Post Banner">
+  <img id="post-image" alt="MyAstrology – Indian Best Astrology & Palmistry">
 
-  <!-- পোস্ট কন্টেন্ট -->
   <div id="blog-content">লোড হচ্ছে...</div>
 
   <script>
-  const blogContent = document.getElementById('blog-content');
-  blogContent.innerHTML = "⏳ পোস্ট লোড হচ্ছে...";
+    const blogContent = document.getElementById('blog-content');
+    blogContent.innerHTML = "⏳ পোস্ট লোড হচ্ছে...";
 
-  // URL থেকে post slug
-  const params = new URLSearchParams(window.location.search);
-  let postSlug = params.get('post');
+    const params = new URLSearchParams(window.location.search);
+    let postSlug = params.get('post');
 
-  // function to load post
-  function loadPost(slug) {
-    fetch(`/src/content/blog/${slug}.md`)
-      .then(res => {
-        if(!res.ok) throw new Error("পোস্ট পাওয়া যায়নি!");
-        return res.text();
-      })
-      .then(text => {
-        // Frontmatter parse
-        const match = /^---([\s\S]*?)---/.exec(text);
-        let frontMatter = {};
-        if(match){
-          const yamlLines = match[1].trim().split('\n');
-          yamlLines.forEach(line => {
-            const sepIndex = line.indexOf(':');
-            if(sepIndex > 0){
-              const key = line.slice(0, sepIndex).trim();
-              const value = line.slice(sepIndex+1).trim().replace(/^"|"$/g,'');
-              frontMatter[key] = value;
-            }
-          });
-          text = text.replace(match[0],'');
-        }
+    function loadPost(slug) {
+      fetch(`/src/content/blog/${slug}.md`)
+        .then(res => {
+          if (!res.ok) throw new Error("পোস্ট পাওয়া যায়নি!");
+          return res.text();
+        })
+        .then(text => {
+          // Frontmatter parse
+          const match = /^---([\s\S]*?)---/.exec(text);
+          let frontMatter = {};
+          if (match) {
+            const yamlLines = match[1].trim().split('\n');
+            yamlLines.forEach(line => {
+              const sepIndex = line.indexOf(':');
+              if (sepIndex > 0) {
+                const key = line.slice(0, sepIndex).trim();
+                let value = line.slice(sepIndex + 1).trim().replace(/^"|"$/g,'');
+                frontMatter[key] = value;
+              }
+            });
+            text = text.replace(match[0],'');
+          }
 
-        // Title, Description, Image
-        if(frontMatter.title){
-          document.title = frontMatter.title;
-          document.getElementById('post-title').innerText = frontMatter.title;
-        }
-        if(frontMatter.description){
-          document.querySelector('meta[name="description"]').setAttribute('content', frontMatter.description);
-        }
-        if(frontMatter.image){
-          const img = document.getElementById('post-image');
-          img.src = frontMatter.image.trim();
-          img.style.display = 'block';
-        }
+          // SEO-friendly title & meta
+          if (frontMatter.title) {
+            document.title = `${frontMatter.title} | MyAstrology – Indian Astrology & Palmistry`;
+            document.getElementById('post-title').innerText = frontMatter.title;
+          }
+          if (frontMatter.description) {
+            document.querySelector('meta[name="description"]').setAttribute(
+              'content',
+              `${frontMatter.description} – MyAstrology, Ranaghat, Expert Astrologer & Palmist Dr. Prodyut Acharya`
+            );
+          }
 
-        blogContent.innerHTML = marked.parse(text);
-      })
-      .catch(err => {
-        blogContent.innerHTML = "❌ পোস্ট লোড করা যায়নি। ফাইল নেই বা সার্ভারে সমস্যা হচ্ছে।";
-        console.error(err);
-      });
-  }
+          // Image with SEO alt
+          if (frontMatter.image) {
+            const img = document.getElementById('post-image');
+            img.src = frontMatter.image.trim();
+            img.alt = `${frontMatter.title} – MyAstrology, Indian Astrology & Palmistry`;
+            img.style.display = 'block';
+          }
 
-  // যদি URL এ post parameter না থাকে → list.json থেকে প্রথম পোস্ট নাও
-  if(!postSlug){
-    fetch('/src/content/blog/list.json')
-      .then(res => res.json())
-      .then(list => {
-        if(list.length > 0){
-          postSlug = list[0].slug; // প্রথম পোস্ট
-          loadPost(postSlug);
-        } else {
-          blogContent.innerHTML = "❌ কোনো পোস্ট পাওয়া যায়নি!";
-        }
-      })
-      .catch(err => {
-        blogContent.innerHTML = "❌ ব্লগ লিস্ট লোড করতে সমস্যা হচ্ছে!";
-        console.error(err);
-      });
-  } else {
-    loadPost(postSlug);
-  }
+          // Content render
+          blogContent.innerHTML = marked.parse(text);
+        })
+        .catch(err => {
+          blogContent.innerHTML = "❌ পোস্ট লোড করা যায়নি। ফাইল নেই বা সার্ভারে সমস্যা হচ্ছে।";
+          console.error(err);
+        });
+    }
 
+    // যদি URL এ post parameter না থাকে → list.json থেকে প্রথম পোস্ট নাও
+    if (!postSlug) {
+      fetch('/src/content/blog/list.json')
+        .then(res => res.json())
+        .then(list => {
+          if (list.length > 0) {
+            postSlug = list[0].slug;
+            loadPost(postSlug);
+          } else {
+            blogContent.innerHTML = "❌ কোনো পোস্ট পাওয়া যায়নি!";
+          }
+        })
+        .catch(err => {
+          blogContent.innerHTML = "❌ ব্লগ লিস্ট লোড করতে সমস্যা হচ্ছে!";
+          console.error(err);
+        });
+    } else {
+      loadPost(postSlug);
+    }
   </script>
 </body>
 </html>
