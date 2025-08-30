@@ -60,10 +60,10 @@ if (!postSlug) {
         document.querySelector('meta[name="description"]').setAttribute('content', frontMatter.description);
       }
       if (frontMatter.image) {
-        const img = document.getElementById('post-image');
-        img.src = frontMatter.image.trim();
-        img.style.display = 'block';
-      }
+  const img = document.getElementById('post-image');
+  img.src = frontMatter.image.trim();
+  img.style.display = 'block';
+}
 
       blogContent.innerHTML = marked.parse(text);
     })
