@@ -8,19 +8,19 @@
   {
     "slug": "palmistry-tips",
     "title": "Palmistry Tips",
-    "image": "/src/content/blog/palmistry-tips.jpg",
+    "image": "https://astro.myastrology.in/gallery/palmistry-tips.jpg",
     "description": "হাতের রেখা আমাদের জীবনের নানা রহস্য প্রকাশ করে..."
   },
   {
     "slug": "vedic-astrology-basics",
     "title": "বৈদিক জ্যোতিষ শাস্ত্র",
-    "image": "/src/content/blog/vedic-astrology-basics.jpg",
+    "image": "https://astro.myastrology.in/gallery/vedic-astrology-basics.jpg",
     "description": "জ্যোতিষ শাস্ত্রের মূল ধারণা ও মৌলিক নিয়ম জানুন..."
-  }, 
-    {
-  "slug": "new-post-slug",
-  "title": "নতুন পোস্টের শিরোনাম",
-  "image": "/src/content/blog/new-post.jpg",
-  "description": "সংক্ষিপ্ত বর্ণনা এখানে লিখুন..."
-}
-] 
+  },
+  {
+    "slug": "new-post-slug",
+    "title": "নতুন পোস্টের শিরোনাম",
+    "image": "https://astro.myastrology.in/gallery/new-post.jpg",
+    "description": "সংক্ষিপ্ত বর্ণনা এখানে লিখুন..."
+  }
+]
