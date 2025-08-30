@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <title>আমাদের ব্লগ | MyAstrology</title>
+  <meta name="description" content="হাতের রেখা, রাশিফল, জ্যোতিষ ও অন্যান্য বিষয়ে আমাদের ব্লগ পড়ুন।">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {font-family:sans-serif;background:#f9f9f9;margin:0;padding:20px;}
+    h1 {text-align:center;color:#333;}
+    .blog-container {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:20px;
+      max-width:1000px;
+      margin:20px auto;
+    }
+    .blog-card {
+      background:white;
+      border-radius:12px;
+      box-shadow:0 2px 6px rgba(0,0,0,0.1);
+      overflow:hidden;
+      transition:transform 0.2s;
+      text-decoration:none;
+      color:#000;
+    }
+    .blog-card:hover {transform:translateY(-4px);}
+    .blog-card img {width:100%;height:160px;object-fit:cover;}
+    .blog-card .content {padding:15px;}
+    .blog-card h2 {font-size:18px;margin:0 0 10px;color:#222;}
+    .blog-card p {font-size:14px;color:#555;}
+  </style>
+</head>
+<body>
+
+  <h1>আমাদের ব্লগ</h1>
+
+  <div class="blog-container">
+
+    <!-- ব্লগ পোস্ট লিংকগুলো এখানে বসান -->
+    <a href="blog.html?post=palmistry-tips" class="blog-card">
+      <img src="/src/content/blog/palmistry-tips.jpg" alt="Palmistry Tips">
+      <div class="content">
+        <h2>Palmistry Tips</h2>
+        <p>হাতের রেখা আমাদের জীবনের নানা রহস্য প্রকাশ করে...</p>
+      </div>
+    </a>
+
+    <a href="blog.html?post=vedic-astrology-basics" class="blog-card">
+      <img src="/src/content/blog/vedic-astrology-basics.jpg" alt="Vedic Astrology Basics">
+      <div class="content">
+        <h2>বৈদিক জ্যোতিষ শাস্ত্র</h2>
+        <p>জ্যোতিষ শাস্ত্রের মূল ধারণা ও মৌলিক নিয়ম জানুন...</p>
+      </div>
+    </a>
+
+    <!-- নতুন পোস্ট হলে এরকম আরও কার্ড যোগ করুন -->
+
+  </div>
+
+</body>
+</html>
