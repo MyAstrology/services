@@ -13,6 +13,16 @@
   <div id="blog-content">লোড হচ্ছে...</div>
 
   <script>
+
+const params = new URLSearchParams(window.location.search);
+const postSlug = params.get('post'); // ?post=geeta-rath-philosophy
+
+fetch(`/src/content/blog/${postSlug}.md`)
+  .then(res => res.text())
+  .then(data => {
+    document.querySelector("#blog-content").innerHTML = marked.parse(data);
+  });
+    
     fetch('/src/content/blog/palmistry-tips.md')
       .then(response => response.text())
       .then(text => {
