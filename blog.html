@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <title>আমাদের ব্লগ – MyAstrology</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body style="font-family:sans-serif;max-width:800px;margin:auto;line-height:1.6">
+  <h1>MyAstrology ব্লগ</h1>
+  <div id="blog-content">লোড হচ্ছে...</div>
+
+  <script>
+    fetch('/src/content/blog/myastrology.md')
+      .then(response => response.text())
+      .then(text => {
+        document.getElementById('blog-content').innerHTML = marked.parse(text);
+      })
+      .catch(err => {
+        document.getElementById('blog-content').innerHTML = "ব্লগ লোড করা যাচ্ছে না!";
+      });
+  </script>
+</body>
+</html>
