@@ -31,7 +31,7 @@
     const blogContent = document.getElementById('blog-content');
 
     if(!postSlug){
-      blogContent.innerHTML = "❌ কোনো পোস্ট সিলেক্ট করা হয়নি!";
+      blogContent.innerHTML = "astro.myastrology.in/blog.html?post=geeta-indriya-rath";
     } else {
       fetch(`/src/content/blog/${postSlug}.md`)
         .then(res => {
