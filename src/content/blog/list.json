@@ -6,6 +6,12 @@
     "description": "মহাভারতের রথচিত্র থেকে শিখুন কিভাবে মন ও ইন্দ্রিয় নিয়ন্ত্রণে এনে শান্তি ও সাফল্যের পথে এগোনো যায়..."
   },
   {
+    "slug": "relationship-rage-control-astrology",
+    "title": "সম্পর্কে ফাটল ধরার আগে রাগ নিয়ন্ত্রণ করুন",
+    "image": "https://astro.myastrology.in/gallery/new-post.jpg",
+    "description": "মানুষের জীবনে ধন-সম্পদ, অর্থকড়ি যেমন গুরুত্বপূর্ণ, ঠিক তেমনই সম্পর্কের গুরুত্ব অনেক বেশি। এমনকি বলা যায়, ধন-সম্পদের চেয়েও সম্পর্ক মানুষের জন্য অপরিসীম। কারণ আপনার সাথে সম্পর্ক ভালো না থাকলে, হাজার মানুষের মধ্যেও নিজেকে একা মনে হয়। ..."
+  }, 
+  {
     "slug": "palmistry-tips",
     "title": "Palmistry Tips",
     "image": "https://astro.myastrology.in/gallery/palmistry-tips.jpg",
@@ -22,13 +28,5 @@
     "title": "নতুন পোস্টের শিরোনাম",
     "image": "https://astro.myastrology.in/gallery/new-post.jpg",
     "description": "সংক্ষিপ্ত বর্ণনা এখানে লিখুন..."
-  }, 
-{
-    "slug": "relationship-rage-control-astrology",
-    "title": "সম্পর্কে ফাটল ধরার আগে রাগ নিয়ন্ত্রণ করুন",
-    "image": "https://astro.myastrology.in/gallery/new-post.jpg",
-    "description": "মানুষের জীবনে ধন-সম্পদ, অর্থকড়ি যেমন গুরুত্বপূর্ণ, ঠিক তেমনই সম্পর্কের গুরুত্ব অনেক বেশি। এমনকি বলা যায়, 
-  ধন-সম্পদের চেয়েও সম্পর্ক মানুষের জন্য অপরিসীম। কারণ আপনার সাথে সম্পর্ক ভালো না থাকলে, 
-  হাজার মানুষের মধ্যেও নিজেকে একা মনে হয়। ..."
   }
 ]
