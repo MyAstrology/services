@@ -16,24 +16,7 @@
  
     <style>    
 
-#nav-menu {
-  display: none;  /* <-- এখানে hide হবে */
-  flex-direction: column;
-  gap: 10px;
-  background: #fff8f2;
-  position: absolute;
-  top: 60px;
-  left: 0;
-  width: 100%;
-  padding: 10px 20px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  z-index: 999;
-  border-radius: 8px;
-}
 
-#nav-menu.show {
-  display: flex;
-}
 
 
       
@@ -250,13 +233,11 @@
 </head>    
     
 <body>    
-<!-- ✅ Responsive Header for MyAstrology -->    
-<header style="background:#fff8f2; padding:10px 20px; display:flex; align-items:center; justify-content:space-between; position:relative; box-shadow:0 2px 6px rgba(0,0,0,0.1);">    
       
   <!-- Left: Hamburger + Search Icon -->    
   <div style="display:flex; align-items:center; gap:10px;">    
-    <!-- Hamburger -->    
-    <div id="hamburger" style="display:flex; flex-direction:column; cursor:pointer; gap:4px;">    
+   
+      <!-- Hamburger -->    
       <span style="width:25px; height:3px; background:#333; border-radius:2px;"></span>    
       <span style="width:25px; height:3px; background:#333; border-radius:2px;"></span>    
       <span style="width:25px; height:3px; background:#333; border-radius:2px;"></span>    
@@ -287,8 +268,7 @@
 </nav>
     
   <!-- Search Bar (hidden by default) -->    
-  <form id="search-bar" style="display:none; position:absolute; top:60px; left:50%; transform:translateX(-50%); background:#fff; padding:5px 10px; border-radius:6px; box-shadow:0 2px 6px rgba(0,0,0,0.15);" action="blog-list.html" method="get">    
-    <input type="text" name="q" placeholder="Search blogs..." style="padding:5px 8px; font-size:14px; width:200px; border:1px solid #ccc; border-radius:4px;">    
+     <input type="text" name="q" placeholder="Search blogs..." style="padding:5px 8px; font-size:14px; width:200px; border:1px solid #ccc; border-radius:4px;">    
     <button type="submit" style="padding:5px 8px; background:#b33; color:#fff; border:none; border-radius:4px; cursor:pointer;">Search</button>    
   </form>    
     
