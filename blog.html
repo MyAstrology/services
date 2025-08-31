@@ -13,7 +13,30 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Pacifico&display=swap" rel="stylesheet">    
       
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>    
-  <style>    
+ 
+    <style>    
+
+#nav-menu {
+  display: none;  /* <-- এখানে hide হবে */
+  flex-direction: column;
+  gap: 10px;
+  background: #fff8f2;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  padding: 10px 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  z-index: 999;
+  border-radius: 8px;
+}
+
+#nav-menu.show {
+  display: flex;
+}
+
+
+      
     body {    
       font-family: sans-serif;    
       max-width: 800px;    
