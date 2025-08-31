@@ -53,80 +53,91 @@
 </head>
 <body>
 
-<!-- HEADER START -->
-<header style="position:sticky;top:0;z-index:1000;background:#0b0b2e;color:#f1f1f1;box-shadow:0 2px 5px rgba(0,0,0,0.1);">
-  <div style="max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:10px 20px;flex-wrap:wrap;">
-    
-    <!-- Logo -->
-    <div class="logo" style="display:flex;align-items:center;gap:10px;">
-      <img src="images/MyAstrology-Ranghat-logo.png" alt="MyAstrology Logo – Dr. Prodyut Acharya" style="height:50px;">
-      <span style="font-weight:bold;font-size:1.2rem;">MyAstrology – ড. প্রদ্যুৎ আচার্য</span>
-    </div>
+<!-- ================= HEADER ================= -->
+<head>
+  <meta charset="UTF-8">
+  <title>MyAstrology – ড. প্রদ্যুৎ আচার্য</title>
+  <meta name="description" content="MyAstrology – Indian best Astrology and Palmistry Consultant Service, Ranaghat Nadia. Famous Astrologer and Expert Palmist Dr Prodyut Acharya.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+  <style>
+    /* ================= Global ================= */
+    * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', sans-serif; }
+    body { background:#f9f9f9; }
 
-    <!-- Hamburger -->
-    <div class="hamburger" id="hamburger-menu" style="display:none;flex-direction:column;cursor:pointer;gap:5px;">
-      <span style="width:28px;height:3px;background:#f1f1f1;border-radius:3px;"></span>
-      <span style="width:28px;height:3px;background:#f1f1f1;border-radius:3px;"></span>
-      <span style="width:28px;height:3px;background:#f1f1f1;border-radius:3px;"></span>
-    </div>
+    /* ================= Header ================= */
+    header { 
+      position: fixed; top:0; left:0; width:100%; background:#fff; 
+      display:flex; justify-content:space-between; align-items:center;
+      padding:10px 20px; box-shadow:0 2px 8px rgba(0,0,0,0.1); z-index:1000;
+    }
 
-    <!-- Navigation -->
-    <nav class="menu" id="nav-menu" style="display:flex;gap:15px;flex-wrap:wrap;">
-      <a href="index.html" style="color:#f1f1f1;text-decoration:none;">🏠 হোম</a>
-      <a href="astrology.html" style="color:#f1f1f1;text-decoration:none;">জ্যোতিষ শাস্ত্র</a>
-      <a href="vedic-astronomy.html" style="color:#f1f1f1;text-decoration:none;">জ্যোতির্বিজ্ঞান</a>
-      <a href="palmistry.html" style="color:#f1f1f1;text-decoration:none;">হস্তরেখা</a>
-      <a href="rashifal.html" style="color:#f1f1f1;text-decoration:none;">রাশিফল</a>
-      <a href="video.html" style="color:#f1f1f1;text-decoration:none;">ভিডিও</a>
-      <a href="vastu-science.html" style="color:#f1f1f1;text-decoration:none;">বাস্তু শাস্ত্র</a>
-      <a href="gallery.html" style="color:#f1f1f1;text-decoration:none;">গ্যালারি</a>
-      <a href="about.html" style="color:#f1f1f1;text-decoration:none;">আমাদের সম্পর্কে</a>
-      <a href="https://www.myastrology.in" style="color:#f1f1f1;text-decoration:none;">বুকিং</a>
-      <a href="https://wa.me/919333122768" style="color:#f1f1f1;text-decoration:none;">যোগাযোগ</a>
-      <a href="https://prodyutacharya.blogspot.com" style="color:#f1f1f1;text-decoration:none;">ব্লগ পোস্ট</a>
-      <a href="https://blog.myastrology.in" style="color:#f1f1f1;text-decoration:none;">বাংলা ব্লগ</a>
-    </nav>
+    .logo { display:flex; align-items:center; gap:10px; }
+    .logo img { height:50px; border-radius:6px; }
+    .logo span { font-weight:700; font-size:18px; color:#333; }
+
+    /* ================= Menu ================= */
+    nav.menu { display:flex; gap:15px; }
+    nav.menu a { text-decoration:none; color:#333; font-weight:500; padding:8px 12px; border-radius:6px; transition:0.3s; }
+    nav.menu a:hover { background:#f3e7da; color:#b33; }
+
+    /* ================= Hamburger ================= */
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; }
+    .hamburger span { width:28px; height:3px; background:#333; border-radius:3px; }
+
+    /* ================= Responsive ================= */
+    @media(max-width:900px){
+      nav.menu { display:none; flex-direction:column; background:#fff; position:absolute; top:70px; left:0; width:100%; padding:12px 0; box-shadow:0 2px 8px rgba(0,0,0,0.15); }
+      nav.menu.show { display:flex; }
+      .hamburger { display:flex; }
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="logo">
+    <img src="images/MyAstrology-Ranaghat-logo.png" alt="MyAstrology Logo">
+    <span>MyAstrology – ড. প্রদ্যুৎ আচার্য</span>
   </div>
+
+  <div class="hamburger" id="hamburger-menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <nav class="menu" id="nav-menu">
+    <a href="index.html">🏠 হোম</a>
+    <a href="astrology.html">জ্যোতিষ শাস্ত্র</a>
+    <a href="vedic-astronomy.html">জ্যোতির্বিজ্ঞান</a>
+    <a href="palmistry.html">হস্তরেখা</a>
+    <a href="rashifal.html">রাশিফল</a>
+    <a href="video.html">ভিডিও</a>
+    <a href="vastu-science.html">বাস্তু শাস্ত্র</a>
+    <a href="gallery.html">গ্যালারি</a>
+    <a href="about.html">আমাদের সম্পর্কে</a>
+    <a href="https://www.myastrology.in">বুকিং</a>
+    <a href="https://wa.me/919333122768">যোগাযোগ</a>
+    <a href="https://blog.myastrology.in">বাংলা ব্লগ</a>
+  </nav>
 </header>
 
-<!-- Hamburger JS -->
 <script>
   const hamburger = document.getElementById('hamburger-menu');
-  const menu = document.getElementById('nav-menu');
+  const navMenu = document.getElementById('nav-menu');
 
-  function checkScreen(){
-    if(window.innerWidth <= 768){
-      hamburger.style.display = 'flex';
-      menu.style.display = 'none';
-      menu.classList.remove('show');
-    } else {
-      hamburger.style.display = 'none';
-      menu.style.display = 'flex';
-    }
-  }
+  hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('show');
+  });
 
-  checkScreen();
-  window.addEventListener('resize', checkScreen);
-
-  hamburger.addEventListener('click', ()=>{
-    menu.classList.toggle('show');
-    menu.style.display = menu.classList.contains('show') ? 'flex' : 'none';
+  // Scroll effect (optional)
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    if(window.scrollY > 10) header.style.boxShadow = "0 2px 12px rgba(0,0,0,0.15)";
+    else header.style.boxShadow = "0 2px 8px rgba(0,0,0,0.1)";
   });
 </script>
-
-<!-- HEADER END -->
-
-<style>
-  nav.menu.show {
-    flex-direction: column;
-    gap: 10px;
-    background: #0b0b2e;
-    padding: 10px;
-  }
-  nav.menu a:hover {
-    color: #f1c40f;
-  }
-</style>
 
 
 
