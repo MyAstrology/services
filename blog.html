@@ -5,44 +5,28 @@
 <title>MyAstrology – ড. প্রদ্যুৎ আচার্য</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="MyAstrology – Expert Indian Astrology & Palmistry by Dr. Prodyut Acharya">
-
-<!-- Favicon -->
 <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-
-<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Pacifico&display=swap" rel="stylesheet">
-
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
 <style>
-/* Reset */
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family:'Montserrat', sans-serif; background:#fdf6f0; color:#222; line-height:1.6; max-width:900px; margin:auto; padding:0 15px; }
 
 /* Header */
 header {
   display:flex; justify-content:space-between; align-items:center;
-  padding:10px 20px;
-  background:#fff8f2; 
-  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+  padding:10px 20px; background:#fff8f2; box-shadow:0 2px 8px rgba(0,0,0,0.1);
   position:fixed; width:100%; top:0; left:0; z-index:1000;
 }
 
 /* Left: Logo + Search */
-.header-left {
-  display:flex; align-items:center; gap:10px;
-}
+.header-left { display:flex; align-items:center; gap:10px; }
 .header-left img { height:50px; width:auto; cursor:pointer; }
-.search-container {
-  position:relative;
-}
+.search-container { position:relative; }
 .search-container input {
-  padding:5px 10px;
-  font-size:14px;
-  border-radius:20px;
-  border:1px solid #ccc;
-  width:150px;
-  transition:0.3s;
+  padding:5px 10px; font-size:14px; border-radius:20px; border:1px solid #ccc;
+  width:150px; transition:0.3s;
 }
 .search-container button {
   background:#b33; color:#fff; border:none;
@@ -50,12 +34,10 @@ header {
   margin-left:5px;
 }
 
-/* Center: Brand Title */
+/* Center: Brand */
 .header-center a {
-  font-family:'Montserrat', sans-serif; font-size:28px; font-weight:700;
+  font-family:'Montserrat', sans-serif; font-size:24px; font-weight:700;
   color:#b33; text-decoration:none; text-shadow:1px 1px 2px rgba(0,0,0,0.2);
-  padding:5px 10px; border-radius:4px; background:#fff8f2;
-  box-shadow:0 2px 4px rgba(0,0,0,0.1);
 }
 
 /* Right: Hamburger */
@@ -69,14 +51,11 @@ header {
   background:#fff8f2; position:absolute; top:70px; right:20px;
   width:220px; padding:10px 0; box-shadow:0 2px 8px rgba(0,0,0,0.15); border-radius:8px; z-index:999;
 }
-#nav-menu a {
-  padding:8px 15px; text-decoration:none; color:#444; font-size:14px;
-  transition:0.2s; border-radius:5px;
-}
+#nav-menu a { padding:8px 15px; text-decoration:none; color:#444; font-size:14px; transition:0.2s; border-radius:5px; }
 #nav-menu a:hover { background:#f3e7da; color:#b33; }
 
 /* Blog content */
-h1#post-title { font-size:28px; margin-top:100px; text-align:center; }
+h1#post-title { font-size:28px; margin-top:120px; text-align:center; word-break:break-word; }
 img#post-image { max-width:100%; border-radius:12px; margin:20px 0; display:none; }
 #blog-content { margin-top:20px; }
 #blog-content h2 { margin-top:25px; font-size:22px; color:#333; }
@@ -84,11 +63,13 @@ img#post-image { max-width:100%; border-radius:12px; margin:20px 0; display:none
 blockquote { border-left:4px solid #3478f6; padding-left:12px; color:#555; font-style:italic; }
 
 /* Responsive */
-@media(max-width:900px){
+@media(max-width:768px){
   header { flex-wrap:wrap; justify-content:space-between; padding:10px; }
   .header-center { order:2; flex:1; display:flex; justify-content:center; margin:5px 0; }
   .header-left, .header-right { order:1; display:flex; align-items:center; }
   #nav-menu { right:10px; }
+  h1#post-title { margin-top:140px; font-size:24px; }
+  .search-container input { width:120px; }
 }
 </style>
 </head>
@@ -96,7 +77,6 @@ blockquote { border-left:4px solid #3478f6; padding-left:12px; color:#555; font-
 <body>
 
 <header>
-  <!-- Left: Logo + Search -->
   <div class="header-left">
     <a href="https://astro.myastrology.in"><img src="images/MyAstrology-Ranghat-logo.png" alt="Logo"></a>
     <div class="search-container">
@@ -105,17 +85,12 @@ blockquote { border-left:4px solid #3478f6; padding-left:12px; color:#555; font-
     </div>
   </div>
 
-  <!-- Center: Brand -->
   <div class="header-center"><a href="https://astro.myastrology.in">MyAstrology</a></div>
 
-  <!-- Right: Hamburger -->
   <div class="header-right">
-    <div id="hamburger" class="hamburger">
-      <span></span><span></span><span></span>
-    </div>
+    <div id="hamburger" class="hamburger"><span></span><span></span><span></span></div>
   </div>
 
-  <!-- Hamburger Menu -->
   <nav id="nav-menu">
     <a href="index.html">🏠 হোম</a>
     <a href="astrology.html">জ্যোতিষ শাস্ত্র</a>
@@ -139,85 +114,57 @@ const navMenu = document.getElementById('nav-menu');
 const searchBtn = document.getElementById('search-btn');
 const searchBar = document.getElementById('search-bar');
 const blogContent = document.getElementById('blog-content');
+const postTitle = document.getElementById('post-title');
+const postImage = document.getElementById('post-image');
 
 // Hamburger toggle
-hamburger.addEventListener('click', () => {
-  navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
-});
+hamburger.addEventListener('click',()=>{navMenu.style.display=navMenu.style.display==='flex'?'none':'flex';});
 
-// Search toggle
-searchBtn.addEventListener('click', () => {
-  if(searchBar.style.width === '0px' || searchBar.style.width === ''){
-    searchBar.style.width = '150px';
-    searchBar.style.opacity = '1';
-    searchBar.focus();
-  } else {
-    searchBar.style.width = '0';
-    searchBar.style.opacity = '0';
-  }
-});
-
-// Press Enter to search
-searchBar.addEventListener('keypress', function(e){
-  if(e.key === 'Enter'){
-    const query = searchBar.value.trim();
-    if(query){
-      window.location.href = `blog-list.html?search=${encodeURIComponent(query)}`;
-    }
-  }
-});
-
-// Load blog post
-const params = new URLSearchParams(window.location.search);
-let postSlug = params.get('post');
-
+// Load post
+let params=new URLSearchParams(window.location.search);
+let postSlug=params.get('post');
 function loadPost(slug){
   fetch(`/src/content/blog/${slug}.md`)
-  .then(res => { if(!res.ok) throw new Error("পোস্ট পাওয়া যায়নি!"); return res.text(); })
-  .then(text => {
-    const match = /^---([\s\S]*?)---/.exec(text);
-    let frontMatter = {};
+  .then(res=>{if(!res.ok) throw new Error("পোস্ট পাওয়া যায়নি!"); return res.text();})
+  .then(text=>{
+    const match=/^---([\s\S]*?)---/.exec(text);
+    let frontMatter={};
     if(match){
       match[1].trim().split('\n').forEach(line=>{
-        const sep = line.indexOf(':');
-        if(sep>0){
-          const key = line.slice(0,sep).trim();
-          const value = line.slice(sep+1).trim().replace(/^"|"$/g,'');
-          frontMatter[key]=value;
-        }
+        const sep=line.indexOf(':');
+        if(sep>0){ const key=line.slice(0,sep).trim(); let value=line.slice(sep+1).trim().replace(/^"|"$/g,''); frontMatter[key]=value; }
       });
-      text = text.replace(match[0],'');
+      text=text.replace(match[0],'');
     }
-    if(frontMatter.title){
-      document.title = `${frontMatter.title} | MyAstrology`;
-      document.getElementById('post-title').innerText = frontMatter.title;
-    }
-    if(frontMatter.image){
-      const img = document.getElementById('post-image');
-      img.src = frontMatter.image.trim();
-      img.alt = `${frontMatter.title} – MyAstrology`;
-      img.style.display = 'block';
-    }
-    blogContent.innerHTML = marked.parse(text);
-  })
-  .catch(err=>{
-    blogContent.innerHTML="❌ পোস্ট লোড করা যায়নি।";
-    console.error(err);
-  });
+    if(frontMatter.title){ document.title=`${frontMatter.title} | MyAstrology`; postTitle.innerText=frontMatter.title; }
+    if(frontMatter.image){ postImage.src=frontMatter.image; postImage.style.display='block'; postImage.alt=`${frontMatter.title} – MyAstrology`; }
+    blogContent.innerHTML=marked.parse(text);
+  }).catch(err=>{blogContent.innerHTML="❌ পোস্ট লোড করা যায়নি।"; console.error(err);});
 }
 
+// Load first post if no slug
 if(!postSlug){
   fetch('/src/content/blog/list.json')
-    .then(res=>res.json())
-    .then(list=>{
-      if(list.length>0){ postSlug = list[0].slug; loadPost(postSlug); }
-      else blogContent.innerHTML="❌ কোনো পোস্ট পাওয়া যায়নি!";
-    })
-    .catch(err=>{ blogContent.innerHTML="❌ ব্লগ লিস্ট লোড করতে সমস্যা!"; });
-} else {
-  loadPost(postSlug);
+  .then(res=>res.json())
+  .then(list=>{if(list.length>0){ postSlug=list[0].slug; loadPost(postSlug);} else blogContent.innerHTML="❌ কোন পোস্ট নেই!";})
+  .catch(err=>{blogContent.innerHTML="❌ ব্লগ লিস্ট লোড করতে সমস্যা!";});
+}else{loadPost(postSlug);}
+
+// Search functionality
+searchBtn.addEventListener('click', doSearch);
+searchBar.addEventListener('keypress', function(e){ if(e.key==='Enter'){doSearch();} });
+
+function doSearch(){
+  const query=searchBar.value.trim().toLowerCase();
+  if(!query) return;
+  fetch('/src/content/blog/list.json')
+  .then(res=>res.json())
+  .then(list=>{
+    const results=list.filter(post=>post.title.toLowerCase().includes(query) || (post.description && post.description.toLowerCase().includes(query)));
+    if(results.length>0){ loadPost(results[0].slug); } 
+    else{ blogContent.innerHTML="❌ কোন পোস্ট খুঁজে পাওয়া যায়নি। postTitle.innerText='কোন পোস্ট নেই'; postImage.style.display='none'; }
+  }).catch(err=>{ console.error(err); blogContent.innerHTML="❌ সার্চ সমস্যা!"; });
 }
 </script>
-
 </body>
 </html>
