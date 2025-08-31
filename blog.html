@@ -3,189 +3,94 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MyAstrology – ড. প্রদ্যুৎ আচার্য</title>
-<meta name="description" content="MyAstrology Ranaghat: Expert Indian Astrology & Palmistry consultation by Dr. Prodyut Acharya">
+<title>লোড হচ্ছে...</title>
+<meta name="description" content="MyAstrology – Expert Indian Astrology & Palmistry">
 
 <!-- Favicon -->
-<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/images/favicon.ico" type="image/x-icon">
 
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Pacifico&display=swap" rel="stylesheet">
 
-<!-- Marked JS for markdown -->
+<!-- Marked.js for markdown parsing -->
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
 <style>
-/* Reset */
-* { margin:0; padding:0; box-sizing:border-box; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Montserrat',sans-serif;background:#fdf6f0;color:#222;line-height:1.7;padding-top:80px;max-width:900px;margin:auto;}
 
-/* Body */
-body {
-  font-family: 'Montserrat', sans-serif;
-  background: #fdf6f0;
-  color: #222;
-  max-width: 900px;
-  margin: auto;
-  line-height: 1.6;
-  padding: 0 15px;
-}
+  /* Header */
+  header{
+    position:fixed;top:0;left:0;width:100%;background:#fff8f2;display:flex;justify-content:space-between;align-items:center;padding:10px 20px;box-shadow:0 3px 10px rgba(0,0,0,0.12);z-index:1000;flex-wrap:wrap;
+  }
 
-/* Header */
-header {
-  position: fixed;
-  top:0;
-  left:0;
-  width:100%;
-  background:#fff8f2;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:10px 20px;
-  box-shadow:0 3px 8px rgba(0,0,0,0.1);
-  z-index:1000;
-  flex-wrap:wrap;
-}
+  .header-left{
+    display:flex;align-items:center;gap:10px;
+  }
 
-/* Left: Logo + Search */
-.header-left {
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-.header-left img {
-  height:50px;
-  cursor:pointer;
-}
-.search-container {
-  position:relative;
-}
-.search-container input {
-  padding:5px 8px;
-  font-size:14px;
-  border-radius:20px;
-  border:1px solid #ccc;
-  outline:none;
-  width:0;
-  opacity:0;
-  transition:0.3s;
-}
-.search-container input.show {
-  width:120px;
-  opacity:1;
-}
-.search-container button {
-  background:#b33;
-  color:#fff;
-  border:none;
-  border-radius:5px;
-  padding:5px 8px;
-  cursor:pointer;
-}
+  .header-left img{height:50px;cursor:pointer;}
 
-/* Center: Title */
-.header-center a {
-  font-family:'Montserrat', sans-serif;
-  font-weight:700;
-  font-size:22px;
-  color:#b33;
-  text-decoration:none;
-  text-shadow:1px 1px 2px rgba(0,0,0,0.2);
-  padding:2px 6px;
-  border-radius:4px;
-  background:#fff8f2;
-}
+  /* Search Box */
+  .search-container{position:relative;}
+  #search-bar{
+    padding:5px 10px;font-size:14px;width:0;opacity:0;border:1px solid #ccc;border-radius:20px;transition:0.3s;
+  }
+  #search-bar.show{width:140px;opacity:1;}
+  #search-btn{
+    background:#b33;color:#fff;border:none;border-radius:4px;padding:5px 8px;cursor:pointer;margin-left:5px;
+  }
 
-/* Right: Hamburger */
-.header-right {
-  display:flex;
-  align-items:center;
-}
-.hamburger {
-  display:flex;
-  flex-direction:column;
-  gap:4px;
-  cursor:pointer;
-}
-.hamburger span {
-  width:25px;
-  height:3px;
-  background:#333;
-  border-radius:3px;
-  transition:0.3s;
-}
+  /* Center Brand */
+  .header-center a{
+    font-family:'Pacifico',cursive;font-size:24px;color:#b33;text-decoration:none;text-shadow:1px 1px 3px rgba(0,0,0,0.2);transition:0.3s;
+  }
+  .header-center a:hover{color:#d94b39;}
 
-/* Hamburger Menu */
-#nav-menu {
-  display:none;
-  flex-direction:column;
-  gap:10px;
-  background:#fff8f2;
-  position:absolute;
-  top:60px;
-  right:20px;
-  width:200px;
-  padding:10px 0;
-  box-shadow:0 2px 8px rgba(0,0,0,0.1);
-  border-radius:8px;
-  z-index:999;
-}
-#nav-menu a {
-  padding:6px 12px;
-  text-decoration:none;
-  color:#444;
-  font-size:14px;
-  transition:0.3s;
-}
-#nav-menu a:hover {
-  background:#f3e7da;
-  color:#d94b39;
-  border-radius:5px;
-}
+  /* Right Hamburger */
+  .header-right{display:flex;align-items:center;gap:10px;}
+  .hamburger{display:flex;flex-direction:column;gap:4px;cursor:pointer;}
+  .hamburger span{width:25px;height:3px;background:#333;border-radius:3px;transition:0.3s;}
 
-/* Blog Post */
-#post-title {
-  font-size:28px;
-  margin:100px 0 20px;
-  text-align:center;
-}
-#post-image {
-  max-width:100%;
-  border-radius:12px;
-  margin:20px 0;
-  display:none;
-}
-#blog-content h2 { margin-top:25px; font-size:22px; color:#333; }
-#blog-content p, #blog-content li, #blog-content blockquote { margin:12px 0; font-size:16px; }
-blockquote { border-left:4px solid #3478f6; padding-left:12px; color:#555; font-style:italic; }
+  /* Nav Menu */
+  #nav-menu{
+    display:none;flex-direction:column;gap:10px;background:#fff8f2;position:absolute;top:60px;right:20px;width:200px;padding:10px 0;box-shadow:0 2px 8px rgba(0,0,0,0.1);border-radius:8px;z-index:999;
+  }
+  #nav-menu.show{display:flex;}
+  #nav-menu a{padding:6px 12px;text-decoration:none;color:#444;font-size:14px;}
+  #nav-menu a:hover{background:#f3e7da;color:#d94b39;border-radius:5px;}
 
-/* Responsive */
-@media(max-width:600px){
-  header { padding:8px 10px; }
-  .header-left img { height:40px; }
-  .search-container input.show { width:90px; font-size:12px; }
-  .header-center a { font-size:18px; }
-  #nav-menu { width:160px; right:10px; top:60px; }
-}
+  /* Blog content */
+  #post-title{font-size:28px;margin:20px 0;text-align:center;}
+  #post-image{max-width:100%;border-radius:12px;margin:20px 0;display:none;}
+  #blog-content{margin-top:20px;}
+  #blog-content h2{margin-top:25px;font-size:22px;color:#333;}
+  #blog-content p,#blog-content li,#blog-content blockquote{margin:12px 0;font-size:16px;}
+  blockquote{border-left:4px solid #3478f6;padding-left:12px;color:#555;font-style:italic;}
+
+  @media(max-width:768px){
+    .header-center a{font-size:20px;}
+    #nav-menu{right:10px;width:180px;}
+  }
 </style>
 </head>
-
 <body>
+
 <header>
-  <!-- Left -->
+  <!-- Left: Logo + Search -->
   <div class="header-left">
-    <a href="https://astro.myastrology.in"><img src="/images/MyAstrology-Ranghat-logo.png" alt="Logo"></a>
+    <a href="https://astro.myastrology.in"><img src="/images/MyAstrology-Ranghat-logo.png" alt="MyAstrology Logo"></a>
     <div class="search-container">
       <input type="text" id="search-bar" placeholder="Search blogs...">
-      <button type="button" id="search-btn">🔍</button>
+      <button id="search-btn">🔍</button>
     </div>
   </div>
 
-  <!-- Center -->
+  <!-- Center Brand -->
   <div class="header-center">
     <a href="https://astro.myastrology.in">MyAstrology</a>
   </div>
 
-  <!-- Right -->
+  <!-- Right Hamburger -->
   <div class="header-right">
     <div id="hamburger" class="hamburger">
       <span></span>
@@ -194,7 +99,7 @@ blockquote { border-left:4px solid #3478f6; padding-left:12px; color:#555; font-
     </div>
   </div>
 
-  <!-- Menu -->
+  <!-- Nav Menu -->
   <nav id="nav-menu">
     <a href="index.html">🏠 হোম</a>
     <a href="astrology.html">জ্যোতিষ শাস্ত্র</a>
@@ -213,103 +118,94 @@ blockquote { border-left:4px solid #3478f6; padding-left:12px; color:#555; font-
 <div id="blog-content">লোড হচ্ছে...</div>
 
 <script>
-const hamburger = document.getElementById('hamburger');
-const navMenu = document.getElementById('nav-menu');
-const searchBtn = document.getElementById('search-btn');
-const searchBar = document.getElementById('search-bar');
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.getElementById('nav-menu');
+  const searchBtn = document.getElementById('search-btn');
+  const searchBar = document.getElementById('search-bar');
+  const blogContent = document.getElementById('blog-content');
+  const postTitle = document.getElementById('post-title');
+  const postImage = document.getElementById('post-image');
 
-// Hamburger toggle
-hamburger.addEventListener('click', ()=>{ navMenu.style.display = navMenu.style.display==='flex'?'none':'flex'; });
+  // Hamburger toggle
+  hamburger.addEventListener('click', ()=>{navMenu.classList.toggle('show');});
 
-// Search toggle
-let searchVisible = false;
-searchBtn.addEventListener('click', ()=>{
-  searchVisible = !searchVisible;
-  if(searchVisible){
-    searchBar.classList.add('show');
-    searchBar.focus();
-  } else {
-    searchBar.classList.remove('show');
-  }
-});
+  // Search toggle
+  searchBtn.addEventListener('click', ()=>{
+    searchBar.classList.toggle('show');
+    if(searchBar.classList.contains('show')) searchBar.focus();
+  });
 
-// Enter key search
-searchBar.addEventListener('keypress', function(e){
-  if(e.key==='Enter'){
-    const query = searchBar.value.trim();
-    if(query){
-      window.location.href = `blog-list.html?search=${encodeURIComponent(query)}`;
-    }
-  }
-});
-
-// Blog post loader
-const blogContent = document.getElementById('blog-content');
-blogContent.innerHTML = "⏳ পোস্ট লোড হচ্ছে...";
-const params = new URLSearchParams(window.location.search);
-let postSlug = params.get('post');
-
-function loadPost(slug){
-  fetch(`/src/content/blog/${slug}.md`)
-  .then(res=>{
-    if(!res.ok) throw new Error("পোস্ট পাওয়া যায়নি!");
-    return res.text();
-  })
-  .then(text=>{
-    const match = /^---([\s\S]*?)---/.exec(text);
-    let frontMatter = {};
-    if(match){
-      const lines = match[1].trim().split('\n');
-      lines.forEach(line=>{
-        const idx = line.indexOf(':');
-        if(idx>0){
-          const key = line.slice(0,idx).trim();
-          let value = line.slice(idx+1).trim().replace(/^"|"$/g,'');
-          frontMatter[key] = value;
+  // Load posts
+  function loadPost(slug){
+    fetch(`/src/content/blog/${slug}.md`)
+      .then(res=>{if(!res.ok) throw new Error("পোস্ট পাওয়া যায়নি!"); return res.text();})
+      .then(text=>{
+        const match = /^---([\s\S]*?)---/.exec(text);
+        let frontMatter = {};
+        if(match){
+          const lines = match[1].trim().split('\n');
+          lines.forEach(line=>{
+            const idx = line.indexOf(':');
+            if(idx>0){
+              const key = line.slice(0,idx).trim();
+              let val = line.slice(idx+1).trim().replace(/^"|"$/g,'');
+              frontMatter[key]=val;
+            }
+          });
+          text = text.replace(match[0],'');
         }
+
+        if(frontMatter.title){
+          postTitle.innerText=frontMatter.title;
+          document.title=`${frontMatter.title} | MyAstrology – Indian Astrology & Palmistry`;
+        }
+        if(frontMatter.description){
+          document.querySelector('meta[name="description"]').setAttribute('content',`${frontMatter.description} – MyAstrology, Ranaghat, Expert Astrologer & Palmist Dr. Prodyut Acharya`);
+        }
+        if(frontMatter.image){
+          postImage.src=frontMatter.image.trim();
+          postImage.alt=`${frontMatter.title} – MyAstrology, Indian Astrology & Palmistry`;
+          postImage.style.display='block';
+        }
+
+        blogContent.innerHTML=marked.parse(text);
+      })
+      .catch(err=>{
+        blogContent.innerHTML="❌ পোস্ট লোড করা যায়নি।";
+        console.error(err);
       });
-      text = text.replace(match[0],'');
-    }
+  }
 
-    if(frontMatter.title){
-      document.title = `${frontMatter.title} | MyAstrology – Indian Astrology & Palmistry`;
-      document.getElementById('post-title').innerText = frontMatter.title;
+  // Search functionality
+  searchBar.addEventListener('keypress',function(e){
+    if(e.key==='Enter'){
+      const query = searchBar.value.trim().toLowerCase();
+      if(query){
+        fetch('/src/content/blog/list.json')
+          .then(res=>res.json())
+          .then(list=>{
+            const filtered = list.filter(post=>post.title.toLowerCase().includes(query));
+            if(filtered.length>0){
+              loadPost(filtered[0].slug);
+            } else {
+              blogContent.innerHTML="❌ কোনো পোস্ট পাওয়া যায়নি!";
+            }
+          })
+          .catch(err=>{console.error(err); blogContent.innerHTML="❌ সার্চ করতে সমস্যা!";});
+      }
     }
-    if(frontMatter.description){
-      document.querySelector('meta[name="description"]').setAttribute('content', `${frontMatter.description} – MyAstrology, Ranaghat, Expert Astrologer & Palmist Dr. Prodyut Acharya`);
-    }
-    if(frontMatter.image){
-      const img = document.getElementById('post-image');
-      img.src = frontMatter.image.trim();
-      img.alt = `${frontMatter.title} – MyAstrology, Indian Astrology & Palmistry`;
-      img.style.display='block';
-    }
-    blogContent.innerHTML = marked.parse(text);
-  })
-  .catch(err=>{
-    blogContent.innerHTML="❌ পোস্ট লোড করা যায়নি।";
-    console.error(err);
   });
-}
 
-if(!postSlug){
-  fetch('/src/content/blog/list.json')
-  .then(res=>res.json())
-  .then(list=>{
-    if(list.length>0){
-      postSlug=list[0].slug;
-      loadPost(postSlug);
-    } else {
-      blogContent.innerHTML="❌ কোনো পোস্ট পাওয়া যায়নি!";
-    }
-  })
-  .catch(err=>{
-    blogContent.innerHTML="❌ ব্লগ লিস্ট লোড করতে সমস্যা হচ্ছে!";
-    console.error(err);
-  });
-} else {
-  loadPost(postSlug);
-}
+  // Load first post if no slug
+  const params = new URLSearchParams(window.location.search);
+  let postSlug = params.get('post');
+  if(!postSlug){
+    fetch('/src/content/blog/list.json')
+      .then(res=>res.json())
+      .then(list=>{if(list.length>0) loadPost(list[0].slug); else blogContent.innerHTML="❌ কোনো পোস্ট পাওয়া যায়নি!";})
+      .catch(err=>{console.error(err); blogContent.innerHTML="❌ ব্লগ লিস্ট লোড করতে সমস্যা!";});
+  } else { loadPost(postSlug); }
 </script>
+
 </body>
 </html>
