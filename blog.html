@@ -1,369 +1,163 @@
-    
-<!DOCTYPE html>    
-<html lang="bn">    
-<head>    
-  <meta charset="UTF-8">    
-  <title>লোড হচ্ছে...</title>    
-  <meta name="description" content="">    
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-    
-   <!-- Favicon -->    
-  <link rel="icon" href="images/favicon.ico" type="image/x-icon">    
-    
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Pacifico&display=swap" rel="stylesheet">    
-      
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>    
- 
-    <style>    
 
-    body {    
-      font-family: sans-serif;    
-      max-width: 800px;    
-      margin: auto;    
-      line-height: 1.7;    
-      padding: 0 15px;    
-      background: #fdfdfd;    
-      color: #222;    
-    }    
-    img#post-image {    
-      max-width: 100%;    
-      border-radius: 12px;    
-      margin: 20px 0;    
-      display: none;    
-    }    
-    h1#post-title {    
-      font-size: 28px;    
-      margin-top: 20px;    
-      text-align: center;    
-    }    
-    #blog-content {    
-      margin-top: 20px;    
-    }    
-    #blog-content h2 {    
-      margin-top: 25px;    
-      font-size: 22px;    
-      color: #333;    
-    }    
-    #blog-content p, #blog-content li, #blog-content blockquote {    
-      margin: 12px 0;    
-      font-size: 16px;    
-    }    
-    blockquote {    
-      border-left: 4px solid #3478f6;    
-      padding-left: 12px;    
-      color: #555;    
-      font-style: italic;    
-    }    
-
-  /* Reset */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  html, body {
-    width: 100%;
-    font-family: 'Montserrat', sans-serif;
-    background: #fdf6f0;
-  }
-
-
-
-
-        <header>
-  <!-- Left: Logo -->
 <!DOCTYPE html>
 <html lang="bn">
 <head>
   <meta charset="UTF-8">
-  <title>লোড হচ্ছে...</title>
-  <meta name="description" content="">
+  <title>MyAstrology</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Favicon -->
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Pacifico&display=swap" rel="stylesheet">
-
+  
   <style>
-    /* Reset */
-    * { margin:0; padding:0; box-sizing:border-box; }
-    html, body { width:100%; font-family:'Montserrat', sans-serif; background:#fdf6f0; }
+    * {
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
 
-    /* Header */
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #fdf6f0;
+    }
+
     header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: #fff8f2;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 10px 20px;
+      background: #fff8f2;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
       z-index: 1000;
+    }
 
-<!DOCTYPE html>
-<html lang="bn">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MyAstrology</title>
-<link rel="icon" href="/images/favicon.ico" type="image/x-icon">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Pacifico&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
-<style>
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:'Montserrat', sans-serif; background:#fdf6f0; }
+    /* Left: Logo + Search */
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-  header {
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:10px 20px;
-    background:#fff8f2;
-    box-shadow:0 2px 10px rgba(0,0,0,0.08);
-    position:fixed;
-    width:100%;
-    top:0;
-    z-index:1000;
-  }
+    .header-left img {
+      height: 50px;
+      width: auto;
+      cursor: pointer;
+    }
 
-  /* Left: Logo + Search */
-  .header-left {
-    display:flex;
-    align-items:center;
-    gap:15px;
-  }
+    .search-container {
+      position: relative;
+    }
 
-  .header-left img {
-    height:50px;
-    width:auto;
-    object-fit:contain;
-    cursor:pointer;
-  }
+    .search-container input {
+      width: 0;
+      opacity: 0;
+      padding: 5px 10px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      transition: 0.3s;
+      font-size: 13px;
+    }
 
-  .search-container {
-    position:relative;
-  }
+    .search-container button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      color: #b33;
+    }
 
-  .search-container input {
-    padding:6px 12px;
-    width:180px;
-    border:1px solid #ccc;
-    border-radius:25px;
-    outline:none;
-    font-size:14px;
-    transition:0.3s;
-  }
+    .search-container input.show {
+      width: 140px;
+      opacity: 1;
+    }
 
-  .search-container input:focus {
-    border-color:#b33;
-    box-shadow:0 0 5px rgba(179,51,51,0.4);
-  }
+    /* Center: Brand */
+    .header-center a {
+      font-family: 'Pacifico', cursive;
+      font-size: 26px;
+      color: #b33;
+      text-decoration: none;
+      letter-spacing: 1px;
+      transition: color 0.3s;
+    }
+    .header-center a:hover {
+      color: #d94b39;
+    }
 
-  .search-container button {
-    position:absolute;
-    right:2px;
-    top:50%;
-    transform:translateY(-50%);
-    background:#b33;
-    color:#fff;
-    border:none;
-    padding:6px 10px;
-    border-radius:50%;
-    cursor:pointer;
-    font-size:16px;
-  }
+    /* Right: Hamburger */
+    .header-right {
+      display: flex;
+      align-items: center;
+    }
 
-  /* Center: Brand */
-  .header-center a {
-    font-family:'Roboto Slab', serif;
-    font-size:28px;
-    font-weight:700;
-    letter-spacing:1px;
-    color:#b33;
-    text-decoration:none;
-    background: linear-gradient(45deg,#d94b39,#f8a03d);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+    }
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: #333;
+      border-radius: 3px;
+      transition: 0.3s;
+    }
 
-  .header-center a:hover {
-    transform: scale(1.05);
-    transition:0.3s;
-  }
+    /* Hamburger menu */
+    #nav-menu {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      background: #fff8f2;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      width: 200px;
+      padding: 10px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      z-index: 999;
+    }
+    #nav-menu.show {
+      display: flex;
+    }
+    #nav-menu a {
+      padding: 6px 12px;
+      text-decoration: none;
+      color: #333;
+      font-size: 14px;
+    }
+    #nav-menu a:hover {
+      background: #f3e7da;
+      color: #d94b39;
+      border-radius: 5px;
+    }
 
-<!DOCTYPE html>
-<html lang="bn">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MyAstrology</title>
-<link rel="icon" href="images/favicon.ico" type="image/x-icon">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Pacifico&display=swap" rel="stylesheet">
-
-<style>
-* {
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-body {
-  font-family: 'Montserrat', sans-serif;
-  background: #fdf6f0;
-}
-
-/* Header */
-header {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:10px 20px;
-  background:#fff8f2;
-  box-shadow:0 2px 6px rgba(0,0,0,0.1);
-  position:fixed;
-  width:100%;
-  top:0;
-  left:0;
-  z-index:1000;
-}
-
-/* Left: Logo + Search */
-.header-left {
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-/* Logo */
-.header-left img {
-  height:50px;
-  width:auto;
-  cursor:pointer;
-  object-fit:contain;
-}
-
-/* Search Bar */
-.search-container {
-  position:relative;
-}
-
-.search-container input {
-  padding:5px 10px;
-  border-radius:20px;
-  border:1px solid #ccc;
-  outline:none;
-  width:150px;
-  transition:0.3s;
-  font-size:14px;
-}
-
-.search-container button {
-  position:absolute;
-  right:0;
-  top:0;
-  height:100%;
-  border:none;
-  background:#b33;
-  color:#fff;
-  padding:0 10px;
-  border-radius:0 20px 20px 0;
-  cursor:pointer;
-  font-size:16px;
-}
-
-/* Center: Brand Title */
-.header-center a {
-  font-family:'Pacifico', cursive;
-  font-size:32px;
-  color:#b33;
-  text-decoration:none;
-  transition:color 0.3s;
-}
-
-.header-center a:hover {
-  color:#d94b39;
-  text-shadow:1px 1px 2px rgba(0,0,0,0.2);
-}
-
-/* Right: Hamburger */
-.header-right {
-  display:flex;
-  align-items:center;
-}
-
-.hamburger {
-  display:flex;
-  flex-direction:column;
-  gap:4px;
-  cursor:pointer;
-}
-
-.hamburger span {
-  width:25px;
-  height:3px;
-  background:#333;
-  border-radius:3px;
-  transition:0.3s;
-}
-
-/* Hamburger Menu */
-#nav-menu {
-  display:none;
-  flex-direction:column;
-  gap:10px;
-  background:#fff8f2;
-  position:absolute;
-  top:60px;
-  right:20px;
-  width:200px;
-  padding:10px 0;
-  box-shadow:0 2px 8px rgba(0,0,0,0.1);
-  border-radius:8px;
-  z-index:999;
-}
-
-#nav-menu a {
-  padding:6px 12px;
-  text-decoration:none;
-  color:#444;
-  font-size:14px;
-}
-
-#nav-menu a:hover {
-  background:#f3e7da;
-  color:#d94b39;
-  border-radius:5px;
-}
-
-/* Responsive */
-@media(max-width:900px){
-  header {
-    flex-wrap:wrap;
-    justify-content:space-between;
-    padding:10px;
-  }
-  .header-center {
-    order:2;
-    flex:1;
-    display:flex;
-    justify-content:center;
-    margin:5px 0;
-  }
-  .header-left, .header-right {
-    order:1;
-  }
-  .search-container input {
-    width:120px;
-    font-size:13px;
-  }
-}
-</style>
+    @media(max-width:900px){
+      header {
+        flex-wrap: wrap;
+      }
+      .header-center {
+        order:2;
+        flex:1;
+        display:flex;
+        justify-content:center;
+        margin:5px 0;
+      }
+      .header-left, .header-right {
+        order:1;
+      }
+      #nav-menu {
+        right: 10px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
 <header>
@@ -372,6 +166,7 @@ header {
     <a href="https://astro.myastrology.in">
       <img src="/images/MyAstrology-Ranghat-logo.png" alt="Logo">
     </a>
+
     <div class="search-container">
       <input type="text" id="search-bar" placeholder="Search blogs...">
       <button id="search-btn">🔍</button>
@@ -407,37 +202,41 @@ header {
 </header>
 
 <script>
-const hamburger = document.getElementById('hamburger');
-const navMenu = document.getElementById('nav-menu');
-const searchBtn = document.getElementById('search-btn');
-const searchBar = document.getElementById('search-bar');
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.getElementById('nav-menu');
+  const searchBtn = document.getElementById('search-btn');
+  const searchBar = document.getElementById('search-bar');
 
-// Hamburger toggle
-hamburger.addEventListener('click', () => {
-  navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
-});
+  // Hamburger toggle
+  hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('show');
+  });
 
-// Search functionality
-searchBtn.addEventListener('click', () => {
-  const query = searchBar.value.trim();
-  if(query){
-    window.location.href = `blog-list.html?search=${encodeURIComponent(query)}`;
-  }
-});
-
-searchBar.addEventListener('keypress', (e)=>{
-  if(e.key === 'Enter'){
-    const query = searchBar.value.trim();
-    if(query){
-      window.location.href = `blog-list.html?search=${encodeURIComponent(query)}`;
+  // Search toggle
+  let searchVisible = false;
+  searchBtn.addEventListener('click', () => {
+    searchVisible = !searchVisible;
+    if(searchVisible){
+      searchBar.classList.add('show');
+      searchBar.focus();
+    } else {
+      searchBar.classList.remove('show');
     }
-  }
-});
+  });
+
+  // Press Enter to search
+  searchBar.addEventListener('keypress', function(e){
+    if(e.key === 'Enter'){
+      const query = searchBar.value.trim();
+      if(query){
+        window.location.href = `blog-list.html?search=${encodeURIComponent(query)}`;
+      }
+    }
+  });
 </script>
 
 </body>
 </html>
-
         
     
 
