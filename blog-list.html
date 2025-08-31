@@ -6,9 +6,61 @@
 <meta name="description" content="হাতের রেখা, রাশিফল, জ্যোতিষ ও অন্যান্য বিষয়ে আমাদের ব্লগ পড়ুন।">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- Favicon -->
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Pacifico&display=swap" rel="stylesheet">
+
 <style>
-body {font-family:sans-serif;background:#f9f9f9;margin:0;padding:20px;}
-h1 {text-align:center;color:#333;}
+/* Reset */
+* {margin:0; padding:0; box-sizing:border-box;}
+body {font-family:'Montserrat', sans-serif; background:#fdf6f0; color:#222; line-height:1.6; padding-top:80px;}
+
+/* Header */
+header {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:10px 20px; background:#fff8f2;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+  position:fixed; width:100%; top:0; left:0; z-index:1000;
+}
+.header-left { display:flex; align-items:center; gap:10px; }
+.header-left img { height:50px; width:auto; cursor:pointer; }
+.search-container { position:relative; }
+.search-container input {
+  padding:5px 10px; font-size:14px; border-radius:20px; border:1px solid #ccc; width:150px; transition:0.3s;
+}
+.search-container button {
+  background:#b33; color:#fff; border:none; padding:5px 10px; border-radius:6px; cursor:pointer; margin-left:5px;
+}
+
+/* Center: Brand */
+.header-center a {
+  font-family:'Montserrat', sans-serif; font-size:24px; font-weight:700;
+  color:#b33; text-decoration:none; text-shadow:1px 1px 2px rgba(0,0,0,0.2);
+  padding:5px 10px; border-radius:4px; background:#fff8f2;
+  box-shadow:0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Right: Hamburger */
+.header-right { display:flex; align-items:center; }
+.hamburger { display:flex; flex-direction:column; gap:4px; cursor:pointer; }
+.hamburger span { width:25px; height:3px; background:#333; border-radius:3px; transition:0.3s; }
+
+/* Hamburger Menu */
+#nav-menu {
+  display:none; flex-direction:column; gap:10px;
+  background:#fff8f2; position:absolute; top:70px; right:20px;
+  width:220px; padding:10px 0; box-shadow:0 2px 8px rgba(0,0,0,0.15); border-radius:8px; z-index:999;
+}
+#nav-menu a {
+  padding:8px 15px; text-decoration:none; color:#444; font-size:14px;
+  transition:0.2s; border-radius:5px;
+}
+#nav-menu a:hover { background:#f3e7da; color:#b33; }
+
+/* Blog list */
+h1 { text-align:center; margin-bottom:20px; color:#333; }
 .blog-container {
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
@@ -17,156 +69,111 @@ h1 {text-align:center;color:#333;}
   margin:20px auto;
 }
 .blog-card {
-  background:white;
-  border-radius:12px;
-  box-shadow:0 2px 6px rgba(0,0,0,0.1);
-  overflow:hidden;
-  transition:transform 0.2s;
-  text-decoration:none;
-  color:#000;
+  background:white; border-radius:12px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.1); overflow:hidden;
+  transition:transform 0.2s; text-decoration:none; color:#000;
 }
-.blog-card:hover {transform:translateY(-4px);}
-.blog-card img {width:100%;height:160px;object-fit:cover;}
-.blog-card .content {padding:15px;}
-.blog-card h2 {font-size:18px;margin:0 0 10px;color:#222;}
-.blog-card p {font-size:14px;color:#555;}
+.blog-card:hover { transform:translateY(-4px); }
+.blog-card img { width:100%; height:160px; object-fit:cover; }
+.blog-card .content { padding:15px; }
+.blog-card h2 { font-size:18px; margin:0 0 10px; color:#222; }
+.blog-card p { font-size:14px; color:#555; }
 
-/* Search Box */
-#search-bar { width:200px; padding:5px 10px; border-radius:20px; border:1px solid #ccc; margin-bottom:20px; }
-#search-btn { padding:5px 10px; border-radius:6px; background:#b33; color:#fff; border:none; cursor:pointer; }
+/* Responsive */
+@media(max-width:900px){
+  header { flex-wrap:wrap; justify-content:space-between; padding:10px; }
+  .header-center { order:2; flex:1; display:flex; justify-content:center; margin:5px 0; }
+  .header-left, .header-right { order:1; display:flex; align-items:center; }
+  #nav-menu { right:10px; }
+}
 </style>
 </head>
+
 <body>
 
-<h1>আমাদের ব্লগ</h1>
-
-<div style="text-align:center; margin-bottom:20px;">
-  <input type="text" id="search-bar" placeholder="Search blogs...">
-  <button id="search-btn">🔍</button>
-</div>
-
-<div id="blog-container" class="blog-container">
-  <p>লোড হচ্ছে...</p>
-</div>
-
-<script>
-const container = document.getElementById("blog-container");
-const searchBar = document.getElementById("search-bar");
-const searchBtn = document.getElementById("search-btn");
-
-let blogs = [];
-
-// Load blogs
-fetch('/src/content/blog/list.json')
-  .then(res => res.json())
-  .then(data => {
-    blogs = data;
-    displayBlogs(blogs);
-    
-    // যদি URL এ search প্যারামিটার থাকে
-    const params = new URLSearchParams(window.location.search);
-    const searchQuery = params.get('search');
-    if(searchQuery){
-      searchBar.value = searchQuery;
-      filterBlogs(searchQuery);
-    }
-  })
-  .catch(err => {
-    container.innerHTML = "<p>পোস্ট লোড করতে সমস্যা হচ্ছে!</p>";
-    console.error(err);
-  });
-
-// Display blogs
-function displayBlogs(blogList){
-  container.innerHTML = "";
-  if(blogList.length === 0){
-    container.innerHTML = "<p>কোনো পোস্ট পাওয়া যায়নি।</p>";
-    return;
-  }
-  blogList.forEach(blog => {
-    const a = document.createElement("a");
-    a.href = `blog.html?post=${blog.slug}`;
-    a.className = "blog-card";
-    a.innerHTML = `
-      <img src="${blog.image}" alt="${blog.title}">
-      <div class="content">
-        <h2>${blog.title}</h2>
-        <p>${blog.description}</p>
-      </div>
-    `;
-    container.appendChild(a);
-  });
-}
-
-// Filter blogs
-function filterBlogs(query){
-  const filtered = blogs.filter(blog => 
-    blog.title.toLowerCase().includes(query.toLowerCase()) || 
-    blog.description.toLowerCase().includes(query.toLowerCase())
-  );
-  displayBlogs(filtered);
-}
-
-// Search events
-searchBtn.addEventListener('click', () => {
-  const query = searchBar.value.trim();
-  filterBlogs(query);
-});
-searchBar.addEventListener('keypress', (e)=>{
-  if(e.key==='Enter'){
-    filterBlogs(searchBar.value.trim());
-  }
-});
-</script>
-
-
-
-<!-- Professional CTA Footer Start -->
-<footer style="background:#2a2a3d;color:#f0f0f0;padding:30px 20px;text-align:center;font-family:'Montserrat',sans-serif;width:100%;">
-  
-  <!-- CTA Heading -->
-  <div>
-    <h2 style="font-size:22px;margin-bottom:10px;color:#FFD700;text-shadow:1px 1px 3px rgba(0,0,0,0.3);">
-      আপনার ভবিষ্যৎ জানুন ও জীবনের রহস্য উন্মোচন করুন
-    </h2>
-    <p style="font-size:17px;margin-bottom:25px;color:#E0E0E0;line-height:1.6;">
-      MyAstrology Ranaghat-এ ড. প্রদ্যুত আচার্য-এর ব্যক্তিগত পরামর্শের সঙ্গে।
-    </p>
-
-    <!-- Social Media Icons -->
-    <div style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:35px;font-size:28px;">
-      <a href="https://www.facebook.com/YourPage" target="_blank" style="color:#1877f2;text-decoration:none;transition:0.3s;">
-        <i class="fa-brands fa-facebook"></i>
-      </a>
-      <a href="https://twitter.com/YourProfile" target="_blank" style="color:#1da1f2;text-decoration:none;transition:0.3s;">
-        <i class="fa-brands fa-twitter"></i>
-      </a>
-      <a href="https://www.instagram.com/YourProfile" target="_blank" style="color:#e1306c;text-decoration:none;transition:0.3s;">
-        <i class="fa-brands fa-instagram"></i>
-      </a>
-      <a href="https://www.youtube.com/YourChannel" target="_blank" style="color:#FF0000;text-decoration:none;transition:0.3s;">
-        <i class="fa-brands fa-youtube"></i>
-      </a>
-      <a href="https://wa.me/919333122768" target="_blank" style="color:#25D366;text-decoration:none;transition:0.3s;">
-        <i class="fa-brands fa-whatsapp"></i>
-      </a>
-      <a href="https://www.linkedin.com/in/YourProfile" target="_blank" style="color:#0a66c2;text-decoration:none;transition:0.3s;">
-        <i class="fa-brands fa-linkedin"></i>
-      </a>
+<header>
+  <div class="header-left">
+    <a href="index.html"><img src="images/MyAstrology-Ranghat-logo.png" alt="Logo"></a>
+    <div class="search-container">
+      <input type="text" id="search-bar" placeholder="Search blogs...">
+      <button id="search-btn">🔍</button>
     </div>
-
-    <!-- CTA Button -->
-    <a href="https://pages.razorpay.com/pl_PSd8AAe189ECFo/view" style="display:inline-block;background:#0d6efd;color:#fff;font-weight:bold;padding:10px 40px;border-radius:20px;text-decoration:none;font-size:15px;transition:0.3s;">
-      Book Now
-    </a>
   </div>
 
-  <p style="margin-top:30px;font-size:14px;color:#bbb;">© 2025 MyAstrology. All Rights Reserved.</p>
-</footer>
+  <div class="header-center"><a href="index.html">MyAstrology</a></div>
 
-<!-- Font Awesome CDN -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <div class="header-right">
+    <div id="hamburger" class="hamburger"><span></span><span></span><span></span></div>
+  </div>
 
-  
+  <nav id="nav-menu">
+    <a href="index.html">🏠 হোম</a>
+    <a href="astrology.html">জ্যোতিষ শাস্ত্র</a>
+    <a href="vedic-astronomy.html">জ্যোতির্বিজ্ঞান</a>
+    <a href="palmistry.html">হস্তরেখা</a>
+    <a href="rashifal.html">রাশিফল</a>
+    <a href="video.html">ভিডিও</a>
+    <a href="vastu-science.html">বাস্তু শাস্ত্র</a>
+    <a href="gallery.html">গ্যালারি</a>
+    <a href="about.html">আমাদের সম্পর্কে</a>
+  </nav>
+</header>
+
+<h1>আমাদের ব্লগ</h1>
+<div id="blog-container" class="blog-container"><p>লোড হচ্ছে...</p></div>
+
+<script>
+// Hamburger toggle
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
+hamburger.addEventListener('click', () => {
+  navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+});
+
+// Search functionality
+const searchBtn = document.getElementById('search-btn');
+const searchBar = document.getElementById('search-bar');
+searchBtn.addEventListener('click', () => {
+  const query = searchBar.value.trim();
+  if(query) window.location.href = `blog-list.html?search=${encodeURIComponent(query)}`;
+});
+searchBar.addEventListener('keypress', e => {
+  if(e.key === 'Enter'){
+    const query = searchBar.value.trim();
+    if(query) window.location.href = `blog-list.html?search=${encodeURIComponent(query)}`;
+  }
+});
+
+// Load blogs
+const container = document.getElementById('blog-container');
+const params = new URLSearchParams(window.location.search);
+const searchQuery = params.get('search') ? params.get('search').toLowerCase() : '';
+
+fetch('/src/content/blog/list.json')
+  .then(res => res.json())
+  .then(blogs => {
+    container.innerHTML = '';
+    let filtered = blogs;
+    if(searchQuery) filtered = blogs.filter(b => b.title.toLowerCase().includes(searchQuery) || b.description.toLowerCase().includes(searchQuery));
+    if(filtered.length===0) container.innerHTML='<p>কোনো পোস্ট পাওয়া যায়নি!</p>';
+    filtered.forEach(blog => {
+      const a = document.createElement('a');
+      a.href = `blog.html?post=${blog.slug}`;
+      a.className = 'blog-card';
+      a.innerHTML = `
+        <img src="${blog.image}" alt="${blog.title}">
+        <div class="content">
+          <h2>${blog.title}</h2>
+          <p>${blog.description}</p>
+        </div>`;
+      container.appendChild(a);
+    });
+  })
+  .catch(err => {
+    container.innerHTML = '<p>পোস্ট লোড করতে সমস্যা হচ্ছে!</p>';
+    console.error(err);
+  });
+</script>
+
 </body>
 </html>
