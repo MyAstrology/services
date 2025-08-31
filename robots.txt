@@ -1,8 +1,14 @@
 User-agent: *
 Allow: /
 
-# Main Sitemap
+# Main Sitemap (New)
+Sitemap: https://astro.myastrology.in/my-sitemap.xml
+
+# Old Sitemap (Optional, but you can keep)
 Sitemap: https://astro.myastrology.in/site-map.xml
 
 # Image Sitemap
 Sitemap: https://astro.myastrology.in/image-sitemap.xml
+
+# Video Sitemap
+Sitemap: https://astro.myastrology.in/video-sitemap.xml
