@@ -1,66 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+  <url>
+    <loc>https://astro.myastrology.in/</loc>
+  </url>
 
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://astro.myastrology.in/astrology.html</loc>
+  </url>
 
-<url>
+  <url>
+    <loc>https://astro.myastrology.in/palmistry.html</loc>
+  </url>
 
-<loc>https://astro.myastrology.in/</loc>
+  <url>
+    <loc>https://astro.myastrology.in/rashifal.html</loc>
+  </url>
 
-</url>
+  <url>
+    <loc>https://astro.myastrology.in/video.html</loc>
+  </url>
 
-<url>
+  <url>
+    <loc>https://astro.myastrology.in/vastu-science.html</loc>
+  </url>
 
-<loc>https://astro.myastrology.in/astrology.html</loc>
+  <url>
+    <loc>https://astro.myastrology.in/gallery.html</loc>
+  </url>
 
-</url>
+  <url>
+    <loc>https://astro.myastrology.in/about.html</loc>
+  </url>
 
-<url>
+  <url>
+    <loc>https://astro.myastrology.in/blog.html</loc>
+  </url>
 
-<loc>https://astro.myastrology.in/palmistry.html</loc>
-
-</url>
-
-<url>
-
-<loc>https://astro.myastrology.in/rashifal.html</loc>
-
-</url>
-
-<url>
-
-<loc>https://astro.myastrology.in/video.html</loc>
-
-</url>
-
-<url>
-
-<loc>https://astro.myastrology.in/vastu-science.html</loc>
-
-</url>
-
-<url>
-
-<loc>https://astro.myastrology.in/gallery.html</loc>
-
-</url>
-
-<url>
-
-<loc>https://astro.myastrology.in/about.html</loc>
-
-</url>
-
-<url>
-
-<loc>https://astro.myastrology.in/blog.html</loc>
-
-</url>
-
-<url>
-
-<loc>https://astro.myastrology.in/blog-list.html</loc>
-
-</url>
+  <url>
+    <loc>https://astro.myastrology.in/blog-list.html</loc>
+  </url>
 
 </urlset>
-
