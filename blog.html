@@ -53,51 +53,57 @@
 </head>
 <body>
 
-<!-- ================= HEADER ================= -->
+<!-- ================= Modern Header ================= -->
 <head>
   <meta charset="UTF-8">
   <title>MyAstrology – ড. প্রদ্যুৎ আচার্য</title>
   <meta name="description" content="MyAstrology – Indian best Astrology and Palmistry Consultant Service, Ranaghat Nadia. Famous Astrologer and Expert Palmist Dr Prodyut Acharya.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-  <style>
-    /* ================= Global ================= */
-    * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', sans-serif; }
-    body { background:#f9f9f9; }
 
-    /* ================= Header ================= */
-    header { 
-      position: fixed; top:0; left:0; width:100%; background:#fff; 
-      display:flex; justify-content:space-between; align-items:center;
-      padding:10px 20px; box-shadow:0 2px 8px rgba(0,0,0,0.1); z-index:1000;
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif; }
+    body { background:#fdf6f0; }
+
+    header {
+      position: fixed; top:0; left:0; width:100%;
+      background:#ffffff; display:flex; justify-content:space-between; align-items:center;
+      padding:10px 25px; box-shadow:0 2px 12px rgba(0,0,0,0.08); z-index:1000;
+      transition: background 0.3s, box-shadow 0.3s;
     }
 
-    .logo { display:flex; align-items:center; gap:10px; }
-    .logo img { height:50px; border-radius:6px; }
-    .logo span { font-weight:700; font-size:18px; color:#333; }
+    /* Logo */
+    .logo { display:flex; align-items:center; gap:12px; }
+    .logo img { height:50px; width:auto; object-fit:contain; }
+    .logo span { font-weight:700; font-size:20px; color:#222; }
 
-    /* ================= Menu ================= */
-    nav.menu { display:flex; gap:15px; }
-    nav.menu a { text-decoration:none; color:#333; font-weight:500; padding:8px 12px; border-radius:6px; transition:0.3s; }
-    nav.menu a:hover { background:#f3e7da; color:#b33; }
+    /* Desktop Menu */
+    nav.menu { display:flex; gap:18px; }
+    nav.menu a {
+      text-decoration:none; color:#333; font-weight:500; padding:8px 14px; border-radius:8px; transition:0.3s;
+    }
+    nav.menu a:hover { background:#ffe9d6; color:#d94b39; }
 
-    /* ================= Hamburger ================= */
+    /* Hamburger */
     .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; }
-    .hamburger span { width:28px; height:3px; background:#333; border-radius:3px; }
+    .hamburger span { width:28px; height:3px; background:#333; border-radius:3px; transition: all 0.3s ease; }
 
-    /* ================= Responsive ================= */
+    /* Mobile Menu */
     @media(max-width:900px){
-      nav.menu { display:none; flex-direction:column; background:#fff; position:absolute; top:70px; left:0; width:100%; padding:12px 0; box-shadow:0 2px 8px rgba(0,0,0,0.15); }
+      nav.menu { display:none; flex-direction:column; background:#fff; position:absolute; top:70px; left:0; width:100%; padding:15px 0; box-shadow:0 4px 16px rgba(0,0,0,0.1); border-top:1px solid #ffe5d1; }
       nav.menu.show { display:flex; }
       .hamburger { display:flex; }
     }
+
+    /* Smooth hover and shadow effect */
+    header.scrolled { background:#fff; box-shadow:0 4px 16px rgba(0,0,0,0.15); }
   </style>
 </head>
 
 <body>
 <header>
   <div class="logo">
-    <img src="images/MyAstrology-Ranaghat-logo.png" alt="MyAstrology Logo">
+    <img src="images/MyAstrology-Ranaghat-logo.png" alt="MyAstrology Logo" onerror="this.src='https://via.placeholder.com/150x50?text=Logo'">
     <span>MyAstrology – ড. প্রদ্যুৎ আচার্য</span>
   </div>
 
@@ -131,11 +137,11 @@
     navMenu.classList.toggle('show');
   });
 
-  // Scroll effect (optional)
+  // Scroll effect
   window.addEventListener('scroll', () => {
     const header = document.querySelector('header');
-    if(window.scrollY > 10) header.style.boxShadow = "0 2px 12px rgba(0,0,0,0.15)";
-    else header.style.boxShadow = "0 2px 8px rgba(0,0,0,0.1)";
+    if(window.scrollY > 10) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
   });
 </script>
 
