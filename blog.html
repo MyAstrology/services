@@ -120,77 +120,67 @@
 </head>
 
 <body>
-<header>
-  <!-- Left: Logo -->
-  <div class="header-left">
-    <a href="https://astro.myastrology.in">
-      <img src="images/MyAstrology-Ranaghat-logo.png" alt="MyAstrology Logo" onerror="this.src='https://via.placeholder.com/120x50?text=Logo'">
-    </a>
-  </div>
-
-  <!-- Center: Brand -->
-  <div class="header-center">
-    <a href="https://astro.myastrology.in">MyAstrology</a>
-  </div>
-
-  <!-- Right: Hamburger + Search -->
-  <div class="header-right">
-    <div class="search-container">
-      <input type="text" id="search-input" placeholder="Search...">
-      <button id="search-btn">🔍</button>
+<!-- ✅ Responsive Header for MyAstrology -->
+<header style="background:#fff8f2; padding:10px 20px; display:flex; align-items:center; justify-content:space-between; position:relative; box-shadow:0 2px 6px rgba(0,0,0,0.1);">
+  
+  <!-- Left: Hamburger + Search Icon -->
+  <div style="display:flex; align-items:center; gap:10px;">
+    <!-- Hamburger -->
+    <div id="hamburger" style="display:flex; flex-direction:column; cursor:pointer; gap:4px;">
+      <span style="width:25px; height:3px; background:#333; border-radius:2px;"></span>
+      <span style="width:25px; height:3px; background:#333; border-radius:2px;"></span>
+      <span style="width:25px; height:3px; background:#333; border-radius:2px;"></span>
     </div>
-    <div class="hamburger" id="hamburger-menu">
-      <span></span><span></span><span></span>
-    </div>
+    <!-- Search Icon -->
+    <div id="search-icon" style="cursor:pointer; font-size:18px;">🔍</div>
+  </div>
+  
+  <!-- Center: Stylish Title -->
+  <a href="https://astro.myastrology.in" style="font-family:'Kalpurush', sans-serif; font-size:24px; font-weight:bold; letter-spacing:2px; color:#b33; text-decoration:none;">MyAstrology</a>
+  
+  <!-- Right: Logo -->
+  <div>
+    <img src="/images/MyAstrology-Ranghat-logo.png" alt="MyAstrology Logo" style="height:50px;">
   </div>
 
-  <!-- Hamburger Menu Links -->
-  <nav class="menu" id="nav-menu">
-    <a href="index.html">🏠 হোম</a>
-    <a href="astrology.html">জ্যোতিষ শাস্ত্র</a>
-    <a href="palmistry.html">হস্তরেখা</a>
-    <a href="rashifal.html">রাশিফল</a>
-    <a href="vastu-science.html">বাস্তু শাস্ত্র</a>
-    <a href="gallery.html">গ্যালারি</a>
-    <a href="about.html">আমাদের সম্পর্কে</a>
+  <!-- Hamburger Menu -->
+  <nav id="nav-menu" style="display:none; position:absolute; top:60px; left:0; width:100%; background:#fff8f2; flex-direction:column; gap:10px; padding:10px 20px; box-shadow:0 2px 6px rgba(0,0,0,0.1); z-index:999;">
+    <a href="index.html" style="text-decoration:none; color:#444;">🏠 হোম</a>
+    <a href="astrology.html" style="text-decoration:none; color:#444;">জ্যোতিষ শাস্ত্র</a>
+    <a href="vedic-astronomy.html" style="text-decoration:none; color:#444;">জ্যোতির্বিজ্ঞান</a>
+    <a href="palmistry.html" style="text-decoration:none; color:#444;">হস্তরেখা</a>
+    <a href="rashifal.html" style="text-decoration:none; color:#444;">রাশিফল</a>
+    <a href="video.html" style="text-decoration:none; color:#444;">ভিডিও</a>
+    <a href="vastu-science.html" style="text-decoration:none; color:#444;">বাস্তু শাস্ত্র</a>
+    <a href="gallery.html" style="text-decoration:none; color:#444;">গ্যালারি</a>
+    <a href="about.html" style="text-decoration:none; color:#444;">আমাদের সম্পর্কে</a>
   </nav>
+
+  <!-- Search Bar (hidden by default) -->
+  <form id="search-bar" style="display:none; position:absolute; top:60px; left:50%; transform:translateX(-50%); background:#fff; padding:5px 10px; border-radius:6px; box-shadow:0 2px 6px rgba(0,0,0,0.15);" action="blog-list.html" method="get">
+    <input type="text" name="q" placeholder="Search blogs..." style="padding:5px 8px; font-size:14px; width:200px; border:1px solid #ccc; border-radius:4px;">
+    <button type="submit" style="padding:5px 8px; background:#b33; color:#fff; border:none; border-radius:4px; cursor:pointer;">Search</button>
+  </form>
+
 </header>
 
 <script>
-  // Hamburger toggle
-  const hamburger = document.getElementById('hamburger-menu');
+  const hamburger = document.getElementById('hamburger');
   const navMenu = document.getElementById('nav-menu');
+  const searchIcon = document.getElementById('search-icon');
+  const searchBar = document.getElementById('search-bar');
+
+  // Toggle hamburger menu
   hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('show');
+    navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
   });
 
-  // Search toggle
-  const searchInput = document.getElementById('search-input');
-  const searchBtn = document.getElementById('search-btn');
-  let searchVisible = false;
-
-  searchBtn.addEventListener('click', () => {
-    searchVisible = !searchVisible;
-    if(searchVisible){
-      searchInput.classList.add('show');
-      searchInput.focus();
-    } else {
-      searchInput.classList.remove('show');
-    }
-  });
-
-  // Search functionality
-  searchInput.addEventListener('keypress', function(e){
-    if(e.key === 'Enter'){
-      const query = searchInput.value.toLowerCase();
-      if(query){
-        window.location.href = `blog-list.html?search=${encodeURIComponent(query)}`;
-      }
-    }
+  // Toggle search bar
+  searchIcon.addEventListener('click', () => {
+    searchBar.style.display = searchBar.style.display === 'block' ? 'none' : 'block';
+    if(searchBar.style.display === 'block') searchBar.querySelector('input').focus();
   });
 </script>
-
-  
 
   
   <h1 id="post-title">লোড হচ্ছে...</h1>
