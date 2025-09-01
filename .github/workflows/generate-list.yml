@@ -1,6 +1,5 @@
 name: Auto-generate list.json
 
-# Trigger workflow when any Markdown file in blog folder changes
 on:
   push:
     paths:
@@ -11,30 +10,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout the repository
       - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GH_PAT }}
 
-      # 2️⃣ Setup Node.js environment
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 20
 
-      # 3️⃣ Install dependencies
       - name: Install dependencies
         run: npm install gray-matter
 
-      # 4️⃣ Generate list.json from Markdown files
       - name: Generate list.json
         run: node src/content/blog/generate-list.js
 
-      # 5️⃣ Commit & Push list.json using PAT
       - name: Commit & Push
-        env:
-          GH_PAT: ${{ secrets.GH_PAT }}   # Make sure you created this secret
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add src/content/blog/list.json
           git commit -m "Auto-update list.json [skip ci]" || echo "No changes"
-          git push https://$GH_PAT@github.com/MyAstrology/services.git HEAD:main
+          git push
