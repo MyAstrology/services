@@ -1,32 +1,32 @@
 [
   {
+    "slug": "palmistry-star-signs",
+    "title": "Palmistry: হাতের বিভিন্ন স্থানে স্টার চিহ্নের অর্থ এবং প্রভাব",
+    "image": "/blog/palmistry-star-signs.webp",
+    "description": ""
+  },
+  {
     "slug": "geeta-indriya-rath",
-    "title": "গীতার দার্শনিক ব্যাখ্যা",
+    "title": "গীতার দার্শনিক ব্যাখ্যা: ইন্দ্রিয় রথ ও মনের সারথি",
     "image": "https://astro.myastrology.in/gallery/astrologer-expert-palmist-nadia.webp",
-    "description": "মহাভারতের রথচিত্র থেকে শিখুন কিভাবে মন ও ইন্দ্রিয় নিয়ন্ত্রণে এনে শান্তি ও সাফল্যের পথে এগোনো যায়..."
-  },
-  {
-    "slug": "relationship-rage-control-astrology",
-    "title": "সম্পর্কে ফাটল ধরার আগে রাগ নিয়ন্ত্রণ করুন",
-    "image": "https://astro.myastrology.in/blog/astrology-relationship.webp",
-    "description": "মানুষের জীবনে ধন-সম্পদ, অর্থকড়ি যেমন গুরুত্বপূর্ণ, ঠিক তেমনই সম্পর্কের গুরুত্ব অনেক বেশি। এমনকি বলা যায় ..."
-  }, 
-  {
-    "slug": "astrology-star-signs",
-    "title": "হাতের বিভিন্ন স্থানে স্টার চিহ্নের অর্থ এবং প্রভাব",
-    "image": "https://astro.myastrology.in/blog/palmistry-star-signs.webp",
-    "description": "হাতের রেখা বা Palmistry অনুসারে স্টার চিহ্ন (Star Sign) খুব গুরুত্বপূর্ণ একটি চিহ্ন। প্রতিটি মানুষের ..."
-  },
-  {
-    "slug": "women-samudrik-shastra",
-    "title": "সামুদ্রিক শাস্ত্র: নারীদের ব্যক্তিত্ব ও গুণাবলী বিচার জ্যোতিষ দর্শনে",
-    "image": "https://astro.myastrology.in/blog/samudrik-shastra-women.webp",
-    "description": "সামুদ্রিক শাস্ত্র হল একটি প্রাচীন জ্যোতিষ শাস্ত্র যা মানুষের শরীর এবং বাহ্যিক বৈশিষ্ট্য পর্যবেক্ষণ করে তার চরিত্র ও ..."
+    "description": "মহাভারতের রথচিত্র থেকে শিখুন কিভাবে মন ও ইন্দ্রিয় নিয়ন্ত্রণে এনে শান্তি ও সাফল্যের পথে এগোনো যায়।"
   },
   {
     "slug": "new-post-slug",
     "title": "নতুন পোস্টের শিরোনাম",
     "image": "https://astro.myastrology.in/gallery/new-post.jpg",
     "description": "সংক্ষিপ্ত বর্ণনা এখানে লিখুন..."
+  },
+  {
+    "slug": "relationship-rage-control-astrology",
+    "title": "সম্পর্কে ফাটল ধরার আগে রাগ নিয়ন্ত্রণ করুন",
+    "image": "/blog/astrology-relationship.webp",
+    "description": "মানুষের সম্পর্ক রক্ষা ও রাগ নিয়ন্ত্রণের গুরুত্ব জ্যোতিষী দৃষ্টিকোণ থেকে। প্রয়োগযোগ্য দৃষ্টিভঙ্গি ও জীবনযাপনের কৌশল।"
+  },
+  {
+    "slug": "women-samudrik-shastra",
+    "title": "সামুদ্রিক শাস্ত্র: নারীদের ব্যক্তিত্ব ও গুণাবলী বিচার জ্যোতিষ দর্শনে",
+    "image": "/blog/samudrik-shastra-women.webp",
+    "description": "সামুদ্রিক শাস্ত্রের মাধ্যমে নারীদের ব্যক্তিত্ব ও গুণাবলী বিশ্লেষণ। জানুন কীভাবে পূর্বজন্মের অভিজ্ঞতা ও সত্ত্ব অনুযায়ী নারীরা ৯ ধরনের শ্রেণিতে ভাগ করা হয়।"
   }
 ]
