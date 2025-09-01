@@ -12,10 +12,10 @@
     "description": "মানুষের জীবনে ধন-সম্পদ, অর্থকড়ি যেমন গুরুত্বপূর্ণ, ঠিক তেমনই সম্পর্কের গুরুত্ব অনেক বেশি। এমনকি বলা যায় ..."
   }, 
   {
-    "slug": "palmistry-tips",
-    "title": "Palmistry Tips",
+    "slug": "src/content/blog/astrology-star-signs",
+    "title": "হাতের বিভিন্ন স্থানে স্টার চিহ্নের অর্থ এবং প্রভাব",
     "image": "https://astro.myastrology.in/gallery/palmistry-tips.jpg",
-    "description": "হাতের রেখা আমাদের জীবনের নানা রহস্য প্রকাশ করে..."
+    "description": "হাতের রেখা বা Palmistry অনুসারে স্টার চিহ্ন (Star Sign) খুব গুরুত্বপূর্ণ একটি চিহ্ন। প্রতিটি মানুষের ..."
   },
   {
     "slug": "vedic-astrology-basics",
