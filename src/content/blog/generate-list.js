@@ -19,3 +19,4 @@ const posts = files.map(file => {
 
 fs.writeFileSync(path.join(blogDir, 'list.json'), JSON.stringify(posts, null, 2));
 console.log('✅ list.json generated successfully!');
+
