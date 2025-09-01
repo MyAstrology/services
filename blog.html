@@ -142,6 +142,34 @@ function doSearch(){
   if(results.length>0){ loadPost(results[0].slug); } 
   else { blogContent.innerHTML="❌ কোন পোস্ট খুঁজে পাওয়া যায়নি।"; postTitle.innerText='কোন পোস্ট নেই'; postImage.style.display='none'; }
 }
+
+
+
+const blogListContainer = document.getElementById('blog-list');
+
+fetch('/src/content/blog/list.json')
+  .then(res => res.json())
+  .then(posts => {
+    if(posts.length === 0){
+      blogListContainer.innerHTML = "❌ কোন পোস্ট নেই।";
+      return;
+    }
+    blogListContainer.innerHTML = posts.map(post => `
+      <div class="blog-card" style="margin-bottom:20px; padding:15px; border:1px solid #ddd; border-radius:12px; background:#fff;">
+        <img src="${post.image}" alt="${post.title}" style="width:100%; border-radius:10px; margin-bottom:10px;">
+        <h3 style="margin-bottom:10px;">${post.title}</h3>
+        <p style="margin-bottom:10px;">${post.description}</p>
+        <a href="blog.html?post=${post.slug}" style="color:#b33; font-weight:bold;">Read more</a>
+      </div>
+    `).join('');
+  })
+  .catch(err => {
+    blogListContainer.innerHTML = "❌ ব্লগ লিস্ট লোড করতে সমস্যা!";
+    console.error(err);
+  });
+
+
+
 </script>
 
 
