@@ -1,8 +1,8 @@
 ---
 title: "Palmistry: হাতের বিভিন্ন স্থানে স্টার চিহ্নের অর্থ এবং প্রভাব"
 date: 2025-08-31
-slug: palmistry-star-signs
 tags: ["Palmistry", "হাতের রেখা", "স্টার চিহ্ন", "জ্যোতিষ", "MyAstrology Ranaghat Nadia"]
+slug: palmistry-star-signs
 image: "/blog/palmistry-star-signs.webp"
 alt: "হাতের রেখায় স্টার চিহ্নের অবস্থান এবং জ্যোতিষী প্রদ্যুত আচার্যের ব্যাখ্যা"
 excerpt: "হাতের রেখায় স্টার চিহ্ন (Star Sign) কিসের ইঙ্গিত দেয়? বৃহস্পতি থেকে চন্দ্র, শুক্র থেকে ভাগ্য রেখা পর্যন্ত প্রতিটি ক্ষেত্রের স্টার চিহ্নের শুভ অশুভ প্রভাব জানতে পড়ুন MyAstrology Ranaghat Nadia-এর বিশেষ বিশ্লেষণ।"
