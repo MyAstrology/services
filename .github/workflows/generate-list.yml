@@ -37,3 +37,4 @@ jobs:
           git add src/content/blog/list.json
           git commit -m "Auto-update list.json [skip ci]" || echo "No changes"
           git push https://$GH_PAT@github.com/MyAstrology/services.git HEAD:main
+
