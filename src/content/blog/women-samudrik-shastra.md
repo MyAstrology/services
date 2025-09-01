@@ -6,7 +6,7 @@ categories: [Samudrik Shastra, Women, Astrology]
 tags: [Samudrik Shastra, Women Personality, Astrology, MyAstrology, Ranaghat, Nadia, Predyut Acharya, Palmistry, Horoscope, Remedies, Gems]
 image: /blog/samudrik-shastra-women.webp
 alt: "সামুদ্রিক শাস্ত্র অনুযায়ী নারীদের গুণাবলী ও চরিত্র"
-excerpt: "সামুদ্রিক শাস্ত্রের মাধ্যমে নারীদের ব্যক্তিত্ব ও গুণাবলী বিশ্লেষণ। জানুন কীভাবে পূর্বজন্মের অভিজ্ঞতা ও সত্ত্ব অনুযায়ী নারীরা ৯ ধরনের শ্রেণিতে ভাগ করা হয়।"
+description: "সামুদ্রিক শাস্ত্রের মাধ্যমে নারীদের ব্যক্তিত্ব ও গুণাবলী বিশ্লেষণ। জানুন কীভাবে পূর্বজন্মের অভিজ্ঞতা ও সত্ত্ব অনুযায়ী নারীরা ৯ ধরনের শ্রেণিতে ভাগ করা হয়।"
 ---
 
 # সামুদ্রিক শাস্ত্র: নারীদের ব্যক্তিত্ব ও গুণাবলী বিচার জ্যোতিষ দর্শনে
