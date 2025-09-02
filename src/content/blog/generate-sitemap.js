@@ -105,3 +105,4 @@ xml += `</urlset>`;
 // Write to file
 fs.writeFileSync(sitemapPath, xml, 'utf8');
 console.log(`✅ my-sitemap.xml তৈরি হয়েছে: ${sitemapPath}`);
+
