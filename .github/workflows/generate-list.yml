@@ -12,30 +12,39 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # 1️⃣ Repository checkout (পুরো history সহ)
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # সম্পূর্ণ history আনতে হবে rebase করার জন্য
+          fetch-depth: 0
 
+      # 2️⃣ Node.js setup
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
+      # 3️⃣ Install dependencies (gray-matter)
       - name: Install dependencies
         run: npm install gray-matter
 
+      # 4️⃣ Generate blog list JSON
       - name: Generate blog list
         run: node src/content/blog/generate-list.js
 
+      # 5️⃣ Commit and push list.json safely
       - name: Commit and push list.json
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Remote changes নিন এবং rebase করুন
-          git pull --rebase origin main || true
+          # Remote থেকে latest changes নিন এবং rebase করুন
+          git fetch origin main
+          git rebase origin/main || git rebase --abort
 
+          # Auto-generated file commit
           git add src/content/blog/list.json
           git diff --cached --quiet || git commit -m "🔄 Auto-update blog list"
-          git push origin main
+
+          # Push changes safely
+          git push origin HEAD:main
