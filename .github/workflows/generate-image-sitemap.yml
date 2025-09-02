@@ -42,3 +42,4 @@ jobs:
 
           # Push updated sitemap
           git push origin main
+
