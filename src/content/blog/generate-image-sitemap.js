@@ -77,3 +77,4 @@ xml += `</urlset>`;
 // Write to file
 fs.writeFileSync(imageSitemapPath, xml, 'utf8');
 console.log(`✅ image-sitemap.xml তৈরি হয়েছে: ${imageSitemapPath}`);
+
