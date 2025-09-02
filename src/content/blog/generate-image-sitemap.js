@@ -18,7 +18,8 @@ const imageSitemapPath = path.join(__dirname, '../../image-sitemap.xml');
 function readJSON(filePath) {
   try {
     return JSON.parse(fs.readFileSync(filePath, 'utf8'));
-  } catch {
+  } catch (err) {
+    console.warn(`⚠️ Could not read JSON from ${filePath}: ${err.message}`);
     return [];
   }
 }
@@ -29,6 +30,16 @@ jsonFiles.forEach(file => {
   allItems = allItems.concat(readJSON(file));
 });
 
+// Remove duplicates based on image URL
+const seenImages = new Set();
+allItems = allItems.filter(item => {
+  if (!item.image) return false;
+  const imageUrl = `${BASE_URL}${item.image}`;
+  if (seenImages.has(imageUrl)) return false;
+  seenImages.add(imageUrl);
+  return true;
+});
+
 // Start XML
 let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
 xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -36,16 +47,16 @@ xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
 
 // Add images
 allItems.forEach(item => {
-  if (item.image) {
-    const pageUrl = item.slug ? `${BASE_URL}/blog.html?post=${item.slug}` : BASE_URL;
-    xml += `  <url>
+  const pageUrl = item.slug ? `${BASE_URL}/blog.html?post=${item.slug}` : BASE_URL;
+  const caption = item.alt || item.title || '';
+  
+  xml += `  <url>
     <loc>${pageUrl}</loc>
     <image:image>
       <image:loc>${BASE_URL}${item.image}</image:loc>
-      <image:caption>${item.alt || item.title || ''}</image:caption>
+      <image:caption><![CDATA[${caption}]]></image:caption>
     </image:image>
   </url>\n`;
-  }
 });
 
 // Close XML
