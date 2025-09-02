@@ -19,9 +19,6 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install dependencies
-        run: npm install
-
       # ✅ 1. Generate Blog List JSON
       - name: Generate blog list
         run: node scripts/generate-blog-list.js
