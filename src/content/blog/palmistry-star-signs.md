@@ -97,3 +97,4 @@ twitter_image: "https://astro.myastrology.in/blog/palmistry-star-signs.webp"
 MyAstrology Ranaghat Nadia-এর [**প্রদ্যুত আচার্য**](https://www.facebook.com/Dr.ProdyutAcharya) এই চিহ্নের ভিত্তিতে গ্রহ প্রতিকার, রত্ন পরামর্শ এবং ব্যক্তিগত পরামর্শ প্রদান করে থাকেন।  
 
 > এই ব্লগটি পশ্চিমবঙ্গ, কোলকাতা, নদীয়া ও সমগ্র ভারতীয় পাঠকের জন্য **Palmistry ও জ্যোতিষ শাস্ত্রের দিকনির্দেশনা** হিসেবে প্রস্তুত করা হয়েছে।  
+
