@@ -1,69 +1,44 @@
-const fs = require('fs');
-const path = require('path');
+name: Generate Blog Data & Sitemaps
 
-// Base URL
-const BASE_URL = 'https://astro.myastrology.in';
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
-// JSON files paths
-const jsonFiles = [
-  path.join(__dirname, 'list.json'),     // blog
-  path.join(__dirname, 'gallery.json'),  // gallery
-  path.join(__dirname, 'assist.json'),   // assist
-];
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-// Sitemap output path (root folder)
-const imageSitemapPath = path.join(__dirname, '../../image-sitemap.xml');
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-// Read JSON safely
-function readJSON(filePath) {
-  try {
-    return JSON.parse(fs.readFileSync(filePath, 'utf8'));
-  } catch (err) {
-    console.warn(`⚠️ Could not read JSON from ${filePath}: ${err.message}`);
-    return [];
-  }
-}
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
-// Collect all items
-let allItems = [];
-jsonFiles.forEach(file => {
-  allItems = allItems.concat(readJSON(file));
-});
+      - name: Install dependencies
+        run: npm install
 
-// Remove duplicates based on image URL
-const seenImages = new Set();
-allItems = allItems.filter(item => {
-  if (!item.image) return false;
-  const imageUrl = `${BASE_URL}${item.image}`;
-  if (seenImages.has(imageUrl)) return false;
-  seenImages.add(imageUrl);
-  return true;
-});
+      # ✅ 1. Generate Blog List JSON
+      - name: Generate blog list
+        run: node scripts/generate-blog-list.js
 
-// Start XML
-let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
-xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n`;
+      # ✅ 2. Generate Blog Post Sitemap
+      - name: Generate blog sitemap
+        run: node scripts/generate-blog-sitemap.js
 
-// Add images
-allItems.forEach(item => {
-  const pageUrl = item.slug ? `${BASE_URL}/blog.html?post=${item.slug}` : BASE_URL;
-  const imageLoc = `${BASE_URL}${item.image}`;
-  const caption = item.alt || item.title || '';
+      # ✅ 3. Generate Image Sitemap
+      - name: Generate image sitemap
+        run: node scripts/generate-image-sitemap.js
 
-  xml += `  <url>
-    <loc>${pageUrl}</loc>
-    <image:image>
-      <image:loc>${imageLoc}</image:loc>
-      <image:caption><![CDATA[${caption}]]></image:caption>
-    </image:image>
-  </url>\n`;
-});
-
-// Close XML
-xml += `</urlset>`;
-
-// Write sitemap to root folder
-fs.writeFileSync(imageSitemapPath, xml, 'utf8');
-console.log('✅ image-sitemap.xml তৈরি হয়েছে root folder-এ।');
-
+      # ✅ Commit & Push if any file changed
+      - name: Commit and Push
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add list.json sitemap.xml image-sitemap.xml
+          git commit -m "🔄 Auto-update blog list & sitemaps" || echo "No changes to commit"
+          git push
