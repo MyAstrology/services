@@ -1,15 +1,21 @@
 [
   {
-    "slug": "astrology-star-signs",
+    "slug": "palmistry-star-signs",
     "title": "Palmistry: হাতের বিভিন্ন স্থানে স্টার চিহ্নের অর্থ এবং প্রভাব",
     "image": "/blog/palmistry-star-signs.webp",
-    "description": "হাতের রেখা বা Palmistry অনুসারে স্টার চিহ্ন (Star Sign) খুব গুরুত্বপূর্ণ একটি চিহ্ন। প্রতিটি মানুষের হাতে এটি বিভিন্ন স্থানে দেখা যায় এবং এর নিজস্ব প্রভাব থাকে।"
+    "description": ""
   },
   {
     "slug": "geeta-indriya-rath",
     "title": "গীতার দার্শনিক ব্যাখ্যা: ইন্দ্রিয় রথ ও মনের সারথি",
     "image": "https://astro.myastrology.in/gallery/astrologer-expert-palmist-nadia.webp",
     "description": "মহাভারতের রথচিত্র থেকে শিখুন কিভাবে মন ও ইন্দ্রিয় নিয়ন্ত্রণে এনে শান্তি ও সাফল্যের পথে এগোনো যায়।"
+  },
+  {
+    "slug": "life-fate-astrology-analysis",
+    "title": "No Title",
+    "image": "",
+    "description": ""
   },
   {
     "slug": "new-post-slug",
