@@ -1,4 +1,4 @@
-name: Generate Blog List & Image Sitemap
+name: Generate Blog List
 
 on:
   push:
@@ -14,6 +14,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # সম্পূর্ণ history আনতে হবে rebase করার জন্য
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -26,15 +28,14 @@ jobs:
       - name: Generate blog list
         run: node src/content/blog/generate-list.js
 
-      - name: Generate image sitemap
-        run: node src/content/blog/generate-image-sitemap.js
-
-      - name: Commit and push list.json & image-sitemap.xml
+      - name: Commit and push list.json
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git fetch origin main
-          git pull --rebase origin main
-          git add src/content/blog/list.json image-sitemap.xml
-          git diff --cached --quiet || git commit -m "🔄 Auto-update blog list & image sitemap"
-          git push
+
+          # Remote changes নিন এবং rebase করুন
+          git pull --rebase origin main || true
+
+          git add src/content/blog/list.json
+          git diff --cached --quiet || git commit -m "🔄 Auto-update blog list"
+          git push origin main
