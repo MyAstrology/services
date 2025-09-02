@@ -29,7 +29,7 @@ jobs:
       - name: Generate list.json
         run: node src/content/blog/generate-list.js
 
-      # 5️⃣ Generate my-sitemap.xml
+      # 5️⃣ Generate my-sitemap.xml in root
       - name: Generate my-sitemap.xml
         run: node src/content/blog/generate-sitemap.js
 
@@ -40,6 +40,6 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add src/content/blog/list.json src/content/blog/my-sitemap.xml
+          git add src/content/blog/list.json my-sitemap.xml
           git commit -m "Auto-update list.json & my-sitemap.xml [skip ci]" || echo "No changes"
           git push https://$GH_PAT@github.com/MyAstrology/services.git HEAD:main
