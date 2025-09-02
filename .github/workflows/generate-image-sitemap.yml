@@ -24,6 +24,9 @@ jobs:
 
       - name: Generate image sitemap
         run: node src/content/blog/generate-image-sitemap.js
+run: node src/content/assist/generate-image-sitemap.js
+run: node src/content/gallery/generate-image-sitemap.js
+run: node src/content/images/generate-image-sitemap.js
 
       - name: Commit and push sitemap
         run: |
