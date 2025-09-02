@@ -1,7 +1,7 @@
 ---
 title: "নিষ্ঠুর সত্যের পথে আত্ম-উন্নয়ন: হস্তরেখা ও জ্যোতিষের দৃষ্টিকোণ"
 description: "My Astrology Ranaghat-এর জ্যোতিষী ও হস্তরেখা বিশেষজ্ঞ প্রদ্যুত আচার্যের দিকনির্দেশনায় নিজের ভেতরের অন্ধকার অংশের মুখোমুখি হয়ে আত্ম-সচেতনতা ও আধ্যাত্মিক উন্নতি। best astrologer near me, famous astrologer Kolkata, top astrologer India, Expert Palmist, genuine Gemstone, spiritual guidance।"
-image: "blog/shadow-truth-self-awareness.webp"
+image: "/blog/shadow-truth-self-awareness.webp"
 date: "2025-09-02"
 author: "Dr. Prodyut Acharya"
 tags: ["MyAstrology Ranaghat", "best astrologer near me", "famous astrologer Kolkata", "top astrologer India", "Expert Palmist", "genuine Gemstone", "spiritual guidance", "self-awareness", "astrology insights"]
