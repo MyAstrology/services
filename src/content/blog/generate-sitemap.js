@@ -23,7 +23,7 @@ const staticPages = [
 
 // সব JSON ফাইল এবং type
 const jsonFiles = [
-  { path: path.join(__dirname, 'list.json'), type: 'blog' },
+  { path: path.join(process.cwd(), 'src/content/blog/list.json'), type: 'blog' },
   { path: path.join(process.cwd(), 'src/content/gallery/gallery.json'), type: 'gallery' },
   { path: path.join(process.cwd(), 'src/content/assist/assist.json'), type: 'assist' },
   { path: path.join(process.cwd(), 'src/content/images/images.json'), type: 'images' },
@@ -51,20 +51,26 @@ jsonFiles.forEach(({ path: filePath, type }) => {
   allItems = allItems.concat(data);
 });
 
-// Duplicate remove করা
+// Duplicate remove এবং URL তৈরি
 const seenUrls = new Set();
 allItems = allItems.filter(item => {
-  if (!item.slug && !item.url) return false;
-
   let pageUrl = BASE_URL;
-  if (item._type === 'blog') pageUrl += `/blog.html?post=${item.slug}`;
-  else if (item._type === 'gallery') pageUrl += `/gallery.html`;
-  else if (item._type === 'assist') pageUrl += `/assist.html`;
-  else if (item._type === 'images') pageUrl += `/images.html`;
+
+  if (item._type === 'blog') {
+    if (!item.slug) return false;
+    pageUrl += `/blog.html?post=${item.slug}`;
+  } else if (item._type === 'gallery') {
+    pageUrl += `/gallery.html`;
+  } else if (item._type === 'assist') {
+    pageUrl += `/assist.html`;
+  } else if (item._type === 'images') {
+    pageUrl += `/images.html`;
+  } else {
+    return false;
+  }
 
   if (seenUrls.has(pageUrl)) return false;
   seenUrls.add(pageUrl);
-
   item._fullUrl = pageUrl;
   return true;
 });
