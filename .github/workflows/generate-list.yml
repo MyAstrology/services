@@ -28,7 +28,7 @@ jobs:
       - name: Generate blog list
         run: node src/content/blog/generate-list.js
 
-      - name: Commit and push list.json
+      - name: Commit and push list.json safely
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
@@ -36,4 +36,9 @@ jobs:
           # Add & commit only if changes exist
           git add src/content/blog/list.json
           git diff --cached --quiet || git commit -m "🔄 Auto-update blog list"
+
+          # Pull remote changes first to avoid conflicts
+          git pull --rebase origin main || true
+
+          # Push updated list.json
           git push origin main
