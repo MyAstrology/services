@@ -23,5 +23,4 @@ tags: ["MyAstrology Ranaghat", "best astrologer near me", "famous astrologer Kol
 
 ---
 
-**Alt text for headline image (SEO-friendly):**  
-*"Discover your true self with My Astrology Ranaghat - best astrologer near me, famous astrologer Kolkata, Expert Palmist offering genuine Gemstone advice and spiritual guidance for self-awareness and inner growth."*
+![Discover your true self with My Astrology Ranaghat - best astrologer near me, famous astrologer Kolkata, Expert Palmist offering genuine Gemstone advice and spiritual guidance for self-awareness and inner growth.](shadow-truth-self-awareness.webp)
