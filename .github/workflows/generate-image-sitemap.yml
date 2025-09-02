@@ -6,30 +6,40 @@ on:
       - main
 
 permissions:
-  contents: write  # ✅ Repo-তে ফাইল লিখতে অনুমতি দিচ্ছে
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # 1️⃣ Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0  # পূর্ণ history আনতে হবে, force push করতে সুবিধা হবে
 
+      # 2️⃣ Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
+      # 3️⃣ Install dependencies (যদি আপনার generate-image-sitemap.js অন্য npm package ব্যবহার করে)
+      - name: Install dependencies
+        run: npm install
+
+      # 4️⃣ Generate image sitemap
       - name: Generate image sitemap
         run: node src/content/blog/generate-image-sitemap.js
 
+      # 5️⃣ Commit and push
       - name: Commit and push sitemap
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
           git add image-sitemap.xml
           git diff --cached --quiet || git commit -m "🔄 Auto-update image sitemap"
-          git push
 
+          # Force push, যাতে remote conflict না হয়
+          git push origin main --force
