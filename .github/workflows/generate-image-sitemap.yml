@@ -32,3 +32,4 @@ jobs:
           git add image-sitemap.xml
           git diff --cached --quiet || git commit -m "🔄 Auto-update image sitemap"
           git push
+
