@@ -29,8 +29,8 @@ jobs:
       - name: Generate list.json
         run: node src/content/blog/generate-list.js
 
-      # 5️⃣ Generate sitemap.xml
-      - name: Generate sitemap.xml
+      # 5️⃣ Generate my-sitemap.xml
+      - name: Generate my-sitemap.xml
         run: node src/content/blog/generate-sitemap.js
 
       # 6️⃣ Commit & Push changes
