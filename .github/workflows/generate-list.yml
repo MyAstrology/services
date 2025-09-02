@@ -1,15 +1,16 @@
-name: Generate Blog Data & Sitemaps
+name: Generate Blog List
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -17,25 +18,18 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: '18'
 
-      # ✅ 1. Generate Blog List JSON
+      - name: Install dependencies
+        run: npm install gray-matter
+
       - name: Generate blog list
-        run: node scripts/generate-blog-list.js
+        run: node src/content/blog/generate-list.js
 
-      # ✅ 2. Generate Blog Post Sitemap
-      - name: Generate blog sitemap
-        run: node scripts/generate-blog-sitemap.js
-
-      # ✅ 3. Generate Image Sitemap
-      - name: Generate image sitemap
-        run: node scripts/generate-image-sitemap.js
-
-      # ✅ Commit & Push if any file changed
-      - name: Commit and Push
+      - name: Commit and push list.json
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add list.json sitemap.xml image-sitemap.xml
-          git commit -m "🔄 Auto-update blog list & sitemaps" || echo "No changes to commit"
+          git add src/content/blog/list.json
+          git diff --cached --quiet || git commit -m "🔄 Auto-update blog list"
           git push
