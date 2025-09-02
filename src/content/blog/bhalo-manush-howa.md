@@ -6,7 +6,7 @@ image: "/blog/bhalo-manush.webp"
 date: "2025-09-02"
 author:
   name: "Dr. Prodyut Acharya"
-  bio: "SEO friendly লেখক ও জীবনদর্শন বিশ্লেষক"
+  bio: "জ্যোতিষী, হস্তরেখা বিশেষজ্ঞ, লেখক ও জীবনদর্শন বিশ্লেষক"
   profile_url: "https://astro.myastrology.in"
 categories: ["আত্মউন্নয়ন", "চেতনার জীবন"]
 tags: ["ভালো মানুষ হওয়ার উপায়", "সচেতনতা", "আত্মউন্নয়ন বাংলা", "Dr. Prodyut Acharya ব্লগ"]
