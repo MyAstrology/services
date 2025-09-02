@@ -1,27 +1,42 @@
 const fs = require('fs');
 const path = require('path');
 
-// ব্লগ লিস্ট ফাইল
+// Blog list JSON path
 const blogListPath = path.join(__dirname, 'src/content/blog/list.json');
-const sitemapPath = path.join(__dirname, 'site-map.xml');
 
-// স্ট্যাটিক পেজগুলো
+// Sitemap output path
+const sitemapPath = path.join(__dirname, 'sitemap.xml');
+
+// Base site URL
+const BASE_URL = 'https://astro.myastrology.in';
+
+// Static pages
 const staticPages = [
-  { loc: 'https://astro.myastrology.in/', lastmod: '2025-08-30', changefreq: 'weekly', priority: 1.0 },
-  { loc: 'https://astro.myastrology.in/index.html', lastmod: '2025-08-30', changefreq: 'weekly', priority: 1.0 },
-  { loc: 'https://astro.myastrology.in/video.html', lastmod: '2025-08-30', changefreq: 'monthly', priority: 0.8 },
-  { loc: 'https://astro.myastrology.in/astrology.html', lastmod: '2025-08-30', changefreq: 'monthly', priority: 0.85 },
-  { loc: 'https://astro.myastrology.in/palmistry.html', lastmod: '2025-08-30', changefreq: 'monthly', priority: 0.85 },
-  // আরও পেজ এখানে যোগ করুন
+  { loc: `${BASE_URL}/`, lastmod: '2025-08-30', changefreq: 'weekly', priority: 1.0 },
+  { loc: `${BASE_URL}/index.html`, lastmod: '2025-08-30', changefreq: 'weekly', priority: 1.0 },
+  { loc: `${BASE_URL}/video.html`, lastmod: '2025-08-30', changefreq: 'monthly', priority: 0.8 },
+  { loc: `${BASE_URL}/astrology.html`, lastmod: '2025-08-30', changefreq: 'monthly', priority: 0.85 },
+  { loc: `${BASE_URL}/palmistry.html`, lastmod: '2025-08-30', changefreq: 'monthly', priority: 0.85 },
+  { loc: `${BASE_URL}/rashifal.html`, lastmod: '2025-08-30', changefreq: 'monthly', priority: 0.85 },
+  { loc: `${BASE_URL}/vastu-science.html`, lastmod: '2025-08-30', changefreq: 'monthly', priority: 0.8 },
+  { loc: `${BASE_URL}/gallery.html`, lastmod: '2025-08-30', changefreq: 'monthly', priority: 0.8 },
+  { loc: `${BASE_URL}/about.html`, lastmod: '2025-08-30', changefreq: 'yearly', priority: 0.7 },
+  { loc: `${BASE_URL}/blog.html`, lastmod: '2025-08-30', changefreq: 'daily', priority: 0.9 },
 ];
 
-// ব্লগ লিস্ট পড়া
-const blogList = JSON.parse(fs.readFileSync(blogListPath, 'utf8'));
+// Read blog list JSON
+let blogList = [];
+try {
+  blogList = JSON.parse(fs.readFileSync(blogListPath, 'utf8'));
+} catch (err) {
+  console.warn('⚠️ blog list not found or invalid JSON. Proceeding with static pages only.');
+}
 
-// XML হেডার
-let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+// Start XML
+let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
+xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
 
-// স্ট্যাটিক পেজ যোগ করা
+// Add static pages
 staticPages.forEach(page => {
   xml += `  <url>
     <loc>${page.loc}</loc>
@@ -31,19 +46,21 @@ staticPages.forEach(page => {
   </url>\n`;
 });
 
-// ব্লগ পোস্ট যোগ করা
+// Add blog posts
 blogList.forEach(blog => {
+  const slug = blog.slug;
+  const lastmod = blog.lastmod || new Date().toISOString().split('T')[0];
   xml += `  <url>
-    <loc>https://astro.myastrology.in/blog.html?post=${blog.slug}</loc>
-    <lastmod>${blog.lastmod || '2025-08-30'}</lastmod>
+    <loc>${BASE_URL}/blog.html?post=${slug}</loc>
+    <lastmod>${lastmod}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>\n`;
 });
 
-// XML ক্লোজিং ট্যাগ
+// Close XML
 xml += `</urlset>`;
 
-// ফাইল লেখা
+// Write sitemap.xml
 fs.writeFileSync(sitemapPath, xml, 'utf8');
 console.log('✅ sitemap.xml তৈরি হয়েছে।');
