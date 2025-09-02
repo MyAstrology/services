@@ -4,8 +4,8 @@ const path = require('path');
 // Blog list JSON path
 const blogListPath = path.join(__dirname, 'list.json'); // workflow অনুযায়ী list.json একই ফোল্ডারে আছে
 
-// Sitemap output path
-const sitemapPath = path.join(__dirname, 'my-sitemap.xml'); // Google-friendly নাম
+// Sitemap output path (root folder)
+const sitemapPath = path.join(__dirname, '../../my-sitemap.xml'); // root folder-এ Google-friendly
 
 // Base site URL
 const BASE_URL = 'https://astro.myastrology.in';
@@ -61,6 +61,6 @@ blogList.forEach(blog => {
 // Close XML
 xml += `</urlset>`;
 
-// Write sitemap
+// Write sitemap to root folder
 fs.writeFileSync(sitemapPath, xml, 'utf8');
-console.log('✅ my-sitemap.xml তৈরি হয়েছে।');
+console.log('✅ my-sitemap.xml তৈরি হয়েছে root folder-এ।');
