@@ -21,22 +21,59 @@ const staticPages = [
   { loc: '/blog.html', lastmod: '2025-08-30', changefreq: 'daily', priority: 0.9 },
 ];
 
-// Blog JSON path
-const blogListPath = path.join(__dirname, 'list.json');
+// সব JSON ফাইল এবং type
+const jsonFiles = [
+  { path: path.join(__dirname, 'list.json'), type: 'blog' },
+  { path: path.join(process.cwd(), 'src/content/gallery/gallery.json'), type: 'gallery' },
+  { path: path.join(process.cwd(), 'src/content/assist/assist.json'), type: 'assist' },
+  { path: path.join(process.cwd(), 'src/content/images/images.json'), type: 'images' },
+];
 
-// Read blog list JSON safely
-let blogList = [];
-try {
-  blogList = JSON.parse(fs.readFileSync(blogListPath, 'utf8'));
-} catch (err) {
-  console.warn('⚠️ blog list not found. Proceeding with static pages only.');
+// সব item একত্রিত করার জন্য
+let allItems = [];
+
+// JSON safely read করা
+function readJSON(filePath, type) {
+  try {
+    const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    console.log(`📂 Loaded ${data.length} items from ${type}`);
+    return data;
+  } catch (err) {
+    console.warn(`⚠️ Could not read JSON from ${filePath} (${type}): ${err.message}`);
+    return [];
+  }
 }
 
-// Start XML
+// সব JSON থেকে items collect
+jsonFiles.forEach(({ path: filePath, type }) => {
+  const data = readJSON(filePath, type);
+  data.forEach(item => item._type = type);
+  allItems = allItems.concat(data);
+});
+
+// Duplicate remove করা
+const seenUrls = new Set();
+allItems = allItems.filter(item => {
+  if (!item.slug && !item.url) return false;
+
+  let pageUrl = BASE_URL;
+  if (item._type === 'blog') pageUrl += `/blog.html?post=${item.slug}`;
+  else if (item._type === 'gallery') pageUrl += `/gallery.html`;
+  else if (item._type === 'assist') pageUrl += `/assist.html`;
+  else if (item._type === 'images') pageUrl += `/images.html`;
+
+  if (seenUrls.has(pageUrl)) return false;
+  seenUrls.add(pageUrl);
+
+  item._fullUrl = pageUrl;
+  return true;
+});
+
+// XML শুরু
 let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
 xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
 
-// Add static pages
+// Static pages যোগ করা
 staticPages.forEach(page => {
   xml += `  <url>
     <loc>${BASE_URL}${page.loc}</loc>
@@ -46,19 +83,19 @@ staticPages.forEach(page => {
   </url>\n`;
 });
 
-// Add blog posts
-blogList.forEach(blog => {
+// JSON থেকে pages যোগ করা
+allItems.forEach(item => {
   xml += `  <url>
-    <loc>${BASE_URL}/blog.html?post=${blog.slug}</loc>
-    <lastmod>${blog.lastmod || new Date().toISOString().split('T')[0]}</lastmod>
+    <loc>${item._fullUrl}</loc>
+    <lastmod>${item.lastmod || new Date().toISOString().split('T')[0]}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>\n`;
 });
 
-// Close XML
+// XML close
 xml += `</urlset>`;
 
-// Write sitemap
+// Write to file
 fs.writeFileSync(sitemapPath, xml, 'utf8');
 console.log(`✅ my-sitemap.xml তৈরি হয়েছে: ${sitemapPath}`);
