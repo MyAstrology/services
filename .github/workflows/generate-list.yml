@@ -12,33 +12,43 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # 1️⃣ Checkout repo
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # full history for safety
+          fetch-depth: 0  # full history for rebase
 
+      # 2️⃣ Setup Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
+      # 3️⃣ Install dependencies
       - name: Install dependencies
         run: npm install gray-matter
 
+      # 4️⃣ Generate blog list
       - name: Generate blog list
         run: node src/content/blog/generate-list.js
 
-      - name: Commit and push list.json safely
+      # 5️⃣ Commit and push list.json safely
+      - name: Commit and push list.json
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Add & commit only if changes exist
+          # Stage changes
           git add src/content/blog/list.json
+
+          # Commit only if there are changes
           git diff --cached --quiet || git commit -m "🔄 Auto-update blog list"
 
-          # Pull remote changes first to avoid conflicts
-          git pull --rebase origin main || true
+          # Fetch latest changes from remote
+          git fetch origin main
+
+          # Reset local branch to remote to avoid conflicts
+          git reset --hard origin/main
 
           # Push updated list.json
-          git push origin main
+          git push origin main --force
