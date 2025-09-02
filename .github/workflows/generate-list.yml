@@ -66,3 +66,4 @@ xml += `</urlset>`;
 // Write sitemap to root folder
 fs.writeFileSync(imageSitemapPath, xml, 'utf8');
 console.log('✅ image-sitemap.xml তৈরি হয়েছে root folder-এ।');
+
