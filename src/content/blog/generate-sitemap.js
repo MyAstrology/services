@@ -1,29 +1,30 @@
 const fs = require('fs');
 const path = require('path');
 
-// Workflow অনুযায়ী list.json ফোল্ডার
-const blogListPath = path.join(__dirname, 'list.json'); // যদি generate-list.js src/content/blog/ এ থাকে
+// Repo root-এ sitemap generate হবে
+const sitemapPath = path.join(process.cwd(), 'my-sitemap.xml');
 
-// Sitemap root folder-এ
-const sitemapPath = path.join(process.cwd(), 'my-sitemap.xml'); // process.cwd() → repo root
-
+// Base URL
 const BASE_URL = 'https://astro.myastrology.in';
 
 // Static pages
 const staticPages = [
-  { loc: `${BASE_URL}/`, lastmod: '2025-08-30', changefreq: 'weekly', priority: 1.0 },
-  { loc: `${BASE_URL}/index.html`, lastmod: '2025-08-30', changefreq: 'weekly', priority: 1.0 },
-  { loc: `${BASE_URL}/video.html`, lastmod: '2025-08-30', changefreq: 'monthly', priority: 0.8 },
-  { loc: `${BASE_URL}/astrology.html`, lastmod: '2025-08-30', changefreq: 'monthly', priority: 0.85 },
-  { loc: `${BASE_URL}/palmistry.html`, lastmod: '2025-08-30', changefreq: 'monthly', priority: 0.85 },
-  { loc: `${BASE_URL}/rashifal.html`, lastmod: '2025-08-30', changefreq: 'monthly', priority: 0.85 },
-  { loc: `${BASE_URL}/vastu-science.html`, lastmod: '2025-08-30', changefreq: 'monthly', priority: 0.8 },
-  { loc: `${BASE_URL}/gallery.html`, lastmod: '2025-08-30', changefreq: 'monthly', priority: 0.8 },
-  { loc: `${BASE_URL}/about.html`, lastmod: '2025-08-30', changefreq: 'yearly', priority: 0.7 },
-  { loc: `${BASE_URL}/blog.html`, lastmod: '2025-08-30', changefreq: 'daily', priority: 0.9 },
+  { loc: '/', lastmod: '2025-08-30', changefreq: 'weekly', priority: 1.0 },
+  { loc: '/index.html', lastmod: '2025-08-30', changefreq: 'weekly', priority: 1.0 },
+  { loc: '/video.html', lastmod: '2025-08-30', changefreq: 'monthly', priority: 0.8 },
+  { loc: '/astrology.html', lastmod: '2025-08-30', changefreq: 'monthly', priority: 0.85 },
+  { loc: '/palmistry.html', lastmod: '2025-08-30', changefreq: 'monthly', priority: 0.85 },
+  { loc: '/rashifal.html', lastmod: '2025-08-30', changefreq: 'monthly', priority: 0.85 },
+  { loc: '/vastu-science.html', lastmod: '2025-08-30', changefreq: 'monthly', priority: 0.8 },
+  { loc: '/gallery.html', lastmod: '2025-08-30', changefreq: 'monthly', priority: 0.8 },
+  { loc: '/about.html', lastmod: '2025-08-30', changefreq: 'yearly', priority: 0.7 },
+  { loc: '/blog.html', lastmod: '2025-08-30', changefreq: 'daily', priority: 0.9 },
 ];
 
-// Read blog list JSON
+// Blog JSON path
+const blogListPath = path.join(__dirname, 'list.json');
+
+// Read blog list JSON safely
 let blogList = [];
 try {
   blogList = JSON.parse(fs.readFileSync(blogListPath, 'utf8'));
@@ -32,12 +33,13 @@ try {
 }
 
 // Start XML
-let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
+xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
 
 // Add static pages
 staticPages.forEach(page => {
   xml += `  <url>
-    <loc>${page.loc}</loc>
+    <loc>${BASE_URL}${page.loc}</loc>
     <lastmod>${page.lastmod}</lastmod>
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>
@@ -57,6 +59,6 @@ blogList.forEach(blog => {
 // Close XML
 xml += `</urlset>`;
 
-// Write sitemap to root folder
+// Write sitemap
 fs.writeFileSync(sitemapPath, xml, 'utf8');
-console.log('✅ my-sitemap.xml তৈরি হয়েছে root folder-এ।');
+console.log(`✅ my-sitemap.xml তৈরি হয়েছে: ${sitemapPath}`);
