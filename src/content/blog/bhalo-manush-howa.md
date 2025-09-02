@@ -11,7 +11,7 @@ author:
 categories: ["আত্মউন্নয়ন", "চেতনার জীবন"]
 tags: ["ভালো মানুষ হওয়ার উপায়", "সচেতনতা", "আত্মউন্নয়ন বাংলা", "Dr. Prodyut Acharya ব্লগ"]
 keywords: ["ভালো মানুষ কিভাবে হওয়া যায়", "ভালো মানুষ হওয়ার উপায়", "আত্মউন্নয়ন বাংলা", "সচেতনতা ও স্মৃতি", "Dr. Prodyut Acharya ব্লগ"]
-canonical_url: "https://astro.myastrology.in/bhalo-manush"
+canonical_url: "https://astro.myastrology.in/blog.html?post=bhalo-manush-howa" 
 featured: true
 priority: 1
 reading_time: "7 min"
