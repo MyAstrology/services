@@ -1,45 +1,68 @@
-name: Auto-generate list.json & my-sitemap.xml
+const fs = require('fs');
+const path = require('path');
 
-on:
-  push:
-    paths:
-      - 'src/content/blog/**.md'
+// Base URL
+const BASE_URL = 'https://astro.myastrology.in';
 
-jobs:
-  generate:
-    runs-on: ubuntu-latest
-    steps:
-      # 1️⃣ Checkout repository
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          persist-credentials: false
+// JSON files paths
+const jsonFiles = [
+  path.join(__dirname, 'list.json'),     // blog
+  path.join(__dirname, 'gallery.json'),  // gallery
+  path.join(__dirname, 'assist.json'),   // assist
+];
 
-      # 2️⃣ Setup Node.js
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
+// Sitemap output path (root folder)
+const imageSitemapPath = path.join(__dirname, '../../image-sitemap.xml');
 
-      # 3️⃣ Install dependencies
-      - name: Install dependencies
-        run: npm install gray-matter
+// Read JSON safely
+function readJSON(filePath) {
+  try {
+    return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+  } catch (err) {
+    console.warn(`⚠️ Could not read JSON from ${filePath}: ${err.message}`);
+    return [];
+  }
+}
 
-      # 4️⃣ Generate list.json
-      - name: Generate list.json
-        run: node src/content/blog/generate-list.js
+// Collect all items
+let allItems = [];
+jsonFiles.forEach(file => {
+  allItems = allItems.concat(readJSON(file));
+});
 
-      # 5️⃣ Generate my-sitemap.xml in root
-      - name: Generate my-sitemap.xml
-        run: node src/content/blog/generate-sitemap.js
+// Remove duplicates based on image URL
+const seenImages = new Set();
+allItems = allItems.filter(item => {
+  if (!item.image) return false;
+  const imageUrl = `${BASE_URL}${item.image}`;
+  if (seenImages.has(imageUrl)) return false;
+  seenImages.add(imageUrl);
+  return true;
+});
 
-      # 6️⃣ Commit & Push changes
-      - name: Commit & Push
-        env:
-          GH_PAT: ${{ secrets.GH_PAT }}
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git add src/content/blog/list.json my-sitemap.xml
-          git commit -m "Auto-update list.json & my-sitemap.xml [skip ci]" || echo "No changes"
-          git push https://$GH_PAT@github.com/MyAstrology/services.git HEAD:main
+// Start XML
+let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
+xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n`;
+
+// Add images
+allItems.forEach(item => {
+  const pageUrl = item.slug ? `${BASE_URL}/blog.html?post=${item.slug}` : BASE_URL;
+  const imageLoc = `${BASE_URL}${item.image}`;
+  const caption = item.alt || item.title || '';
+
+  xml += `  <url>
+    <loc>${pageUrl}</loc>
+    <image:image>
+      <image:loc>${imageLoc}</image:loc>
+      <image:caption><![CDATA[${caption}]]></image:caption>
+    </image:image>
+  </url>\n`;
+});
+
+// Close XML
+xml += `</urlset>`;
+
+// Write sitemap to root folder
+fs.writeFileSync(imageSitemapPath, xml, 'utf8');
+console.log('✅ image-sitemap.xml তৈরি হয়েছে root folder-এ।');
