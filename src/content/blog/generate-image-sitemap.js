@@ -3,10 +3,11 @@ const path = require('path');
 
 const BASE_URL = 'https://astro.myastrology.in';
 
+// JSON ফাইলগুলোর absolute path
 const jsonFiles = [
-  { path: path.join(__dirname, 'list.json'), type: 'blog' },
-  { path: path.join(__dirname, 'gallery.json'), type: 'gallery' },
-  { path: path.join(__dirname, 'assist.json'), type: 'assist' },
+  { path: path.join(process.cwd(), 'src/content/blog/list.json'), type: 'blog' },
+  { path: path.join(process.cwd(), 'src/content/gallery/gallery.json'), type: 'gallery' },
+  { path: path.join(process.cwd(), 'src/content/assist/assist.json'), type: 'assist' },
 ];
 
 const imageSitemapPath = path.join(process.cwd(), 'image-sitemap.xml');
@@ -20,15 +21,15 @@ function readJSON(filePath) {
   }
 }
 
+// সব আইটেম একসাথে collect করা
 let allItems = [];
 jsonFiles.forEach(({ path: filePath, type }) => {
   const data = readJSON(filePath);
-  // data-তে type যোগ করা
   data.forEach(item => item._type = type);
   allItems = allItems.concat(data);
 });
 
-// Remove duplicates based on full image URL
+// Duplicate images remove করা
 const seenImages = new Set();
 allItems = allItems.filter(item => {
   if (!item.image) return false;
@@ -39,24 +40,23 @@ allItems = allItems.filter(item => {
 
   if (seenImages.has(imageUrl)) return false;
   seenImages.add(imageUrl);
+
   item._fullImageUrl = imageUrl;
   return true;
 });
 
+// XML শুরু
 let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
 xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n`;
 
+// প্রতিটি item যোগ করা
 allItems.forEach(item => {
   let pageUrl = BASE_URL;
 
-  if (item._type === 'blog') {
-    pageUrl = `${BASE_URL}/blog.html?post=${item.slug}`;
-  } else if (item._type === 'gallery') {
-    pageUrl = `${BASE_URL}/gallery.html`;
-  } else if (item._type === 'assist') {
-    pageUrl = `${BASE_URL}/assist.html`;
-  }
+  if (item._type === 'blog') pageUrl = `${BASE_URL}/blog.html?post=${item.slug}`;
+  else if (item._type === 'gallery') pageUrl = `${BASE_URL}/gallery.html`;
+  else if (item._type === 'assist') pageUrl = `${BASE_URL}/assist.html`;
 
   xml += `  <url>
     <loc>${pageUrl}</loc>
@@ -67,7 +67,9 @@ allItems.forEach(item => {
   </url>\n`;
 });
 
+// XML close
 xml += `</urlset>`;
 
+// Write to file
 fs.writeFileSync(imageSitemapPath, xml, 'utf8');
 console.log(`✅ image-sitemap.xml তৈরি হয়েছে: ${imageSitemapPath}`);
