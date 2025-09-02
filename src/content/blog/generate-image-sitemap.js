@@ -1,18 +1,20 @@
 const fs = require('fs');
 const path = require('path');
 
-// Blog, Gallery, Assist list paths
-const blogListPath = path.join(__dirname, 'list.json');  // blog
-const galleryListPath = path.join(__dirname, 'gallery.json');  // gallery
-const assistListPath = path.join(__dirname, 'assist.json');  // assist
-
-// Sitemap output path
-const imageSitemapPath = path.join(__dirname, '../../image-sitemap.xml');
-
 // Base URL
 const BASE_URL = 'https://astro.myastrology.in';
 
-// Function to read JSON safely
+// JSON files paths
+const jsonFiles = [
+  path.join(__dirname, 'list.json'),     // blog
+  path.join(__dirname, 'gallery.json'),  // gallery
+  path.join(__dirname, 'assist.json'),   // assist
+];
+
+// Sitemap output path (root folder)
+const imageSitemapPath = path.join(__dirname, '../../image-sitemap.xml');
+
+// Read JSON safely
 function readJSON(filePath) {
   try {
     return JSON.parse(fs.readFileSync(filePath, 'utf8'));
@@ -21,12 +23,11 @@ function readJSON(filePath) {
   }
 }
 
-// Collect all images
-const blogList = readJSON(blogListPath);
-const galleryList = readJSON(galleryListPath);
-const assistList = readJSON(assistListPath);
-
-const allItems = [...blogList, ...galleryList, ...assistList];
+// Collect all items
+let allItems = [];
+jsonFiles.forEach(file => {
+  allItems = allItems.concat(readJSON(file));
+});
 
 // Start XML
 let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
@@ -36,8 +37,9 @@ xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
 // Add images
 allItems.forEach(item => {
   if (item.image) {
+    const pageUrl = item.slug ? `${BASE_URL}/blog.html?post=${item.slug}` : BASE_URL;
     xml += `  <url>
-    <loc>${BASE_URL}${item.slug ? '/blog.html?post=' + item.slug : '/'}</loc>
+    <loc>${pageUrl}</loc>
     <image:image>
       <image:loc>${BASE_URL}${item.image}</image:loc>
       <image:caption>${item.alt || item.title || ''}</image:caption>
@@ -49,6 +51,6 @@ allItems.forEach(item => {
 // Close XML
 xml += `</urlset>`;
 
-// Write to root
+// Write sitemap to root folder
 fs.writeFileSync(imageSitemapPath, xml, 'utf8');
-console.log('✅ image-sitemap.xml তৈরি হয়েছে।');
+console.log('✅ image-sitemap.xml তৈরি হয়েছে root folder-এ।');
