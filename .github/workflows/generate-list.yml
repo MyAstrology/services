@@ -1,6 +1,5 @@
-name: Auto-generate list.json
+name: Auto-generate list.json & sitemap.xml
 
-# Trigger workflow when any Markdown file in blog folder changes
 on:
   push:
     paths:
@@ -9,15 +8,14 @@ on:
 jobs:
   generate:
     runs-on: ubuntu-latest
-
     steps:
-      # 1️⃣ Checkout the repository
+      # 1️⃣ Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          persist-credentials: false  # এখানে false দিতে হবে, তাহলে bot token ব্যবহার হবে না
+          persist-credentials: false
 
-      # 2️⃣ Setup Node.js environment
+      # 2️⃣ Setup Node.js
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
@@ -27,17 +25,21 @@ jobs:
       - name: Install dependencies
         run: npm install gray-matter
 
-      # 4️⃣ Generate list.json from Markdown files
+      # 4️⃣ Generate list.json
       - name: Generate list.json
         run: node src/content/blog/generate-list.js
 
-      # 5️⃣ Commit & Push list.json using GH_PAT
+      # 5️⃣ Generate sitemap.xml
+      - name: Generate sitemap.xml
+        run: node src/content/blog/generate-sitemap.js
+
+      # 6️⃣ Commit & Push changes
       - name: Commit & Push
         env:
-          GH_PAT: ${{ secrets.GH_PAT }}   # Secret token
+          GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add src/content/blog/list.json
-          git commit -m "Auto-update list.json [skip ci]" || echo "No changes"
+          git add src/content/blog/list.json sitemap.xml
+          git commit -m "Auto-update list.json & sitemap.xml [skip ci]" || echo "No changes"
           git push https://$GH_PAT@github.com/MyAstrology/services.git HEAD:main
