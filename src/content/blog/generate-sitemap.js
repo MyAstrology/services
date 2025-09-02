@@ -1,11 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-// Repo root-এ sitemap generate হবে
-const sitemapPath = path.join(process.cwd(), 'my-sitemap.xml');
-
-// Base URL
 const BASE_URL = 'https://astro.myastrology.in';
+const sitemapPath = path.join(process.cwd(), 'my-sitemap.xml');
 
 // Static pages
 const staticPages = [
@@ -21,7 +18,7 @@ const staticPages = [
   { loc: '/blog.html', lastmod: '2025-08-30', changefreq: 'daily', priority: 0.9 },
 ];
 
-// সব JSON ফাইল এবং type
+// সব JSON ফাইল ও type
 const jsonFiles = [
   { path: path.join(process.cwd(), 'src/content/blog/list.json'), type: 'blog' },
   { path: path.join(process.cwd(), 'src/content/gallery/gallery.json'), type: 'gallery' },
@@ -29,10 +26,10 @@ const jsonFiles = [
   { path: path.join(process.cwd(), 'src/content/images/images.json'), type: 'images' },
 ];
 
-// সব item একত্রিত করার জন্য
+// সব item একত্রিত
 let allItems = [];
 
-// JSON safely read করা
+// JSON safely read
 function readJSON(filePath, type) {
   try {
     const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
@@ -44,14 +41,14 @@ function readJSON(filePath, type) {
   }
 }
 
-// সব JSON থেকে items collect
+// JSON থেকে items collect
 jsonFiles.forEach(({ path: filePath, type }) => {
   const data = readJSON(filePath, type);
   data.forEach(item => item._type = type);
   allItems = allItems.concat(data);
 });
 
-// Duplicate remove এবং URL তৈরি
+// Duplicate URLs remove & full URL তৈরি
 const seenUrls = new Set();
 allItems = allItems.filter(item => {
   let pageUrl = BASE_URL;
@@ -71,6 +68,7 @@ allItems = allItems.filter(item => {
 
   if (seenUrls.has(pageUrl)) return false;
   seenUrls.add(pageUrl);
+
   item._fullUrl = pageUrl;
   return true;
 });
@@ -79,7 +77,7 @@ allItems = allItems.filter(item => {
 let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
 xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
 
-// Static pages যোগ করা
+// Static pages যোগ
 staticPages.forEach(page => {
   xml += `  <url>
     <loc>${BASE_URL}${page.loc}</loc>
@@ -89,7 +87,7 @@ staticPages.forEach(page => {
   </url>\n`;
 });
 
-// JSON থেকে pages যোগ করা
+// JSON থেকে pages যোগ
 allItems.forEach(item => {
   xml += `  <url>
     <loc>${item._fullUrl}</loc>
@@ -105,4 +103,3 @@ xml += `</urlset>`;
 // Write to file
 fs.writeFileSync(sitemapPath, xml, 'utf8');
 console.log(`✅ my-sitemap.xml তৈরি হয়েছে: ${sitemapPath}`);
-
