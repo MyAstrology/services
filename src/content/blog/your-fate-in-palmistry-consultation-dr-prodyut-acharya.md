@@ -65,4 +65,3 @@ keywords: ["Online Astrology Consultation India", "Palm Reading by Photo", "Best
 🔮 আপনার ভাগ্য হাতের রেখায় লুকিয়ে আছে—এখনই খুঁজে বের করার সময়।  
 **MyAstrology Ranaghat – India’s Trusted Astrology & Palmistry Expert.**
 
-
