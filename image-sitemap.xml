@@ -1,403 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-
-  <!-- ================= /images/ folder ================= -->
   <url>
-    <loc>https://astro.myastrology.in/images/</loc>
+    <loc>https://astro.myastrology.in/blog.html?post=bhalo-manush-howa</loc>
     <image:image>
-      <image:loc>https://astro.myastrology.in/images/Ancient_Indian_Astrology_Chart.jpg</image:loc>
-      <image:caption>Ancient Indian Astrology Chart</image:caption>
-      <image:title>Ancient Indian Astrology Chart</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/Astrology-and-Palmistry.webp</image:loc>
-      <image:caption>Astrology and Palmistry</image:caption>
-      <image:title>Astrology and Palmistry</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/Best-Astrologer-in-Kolkota.webp</image:loc>
-      <image:caption>Best Astrologer in Kolkota</image:caption>
-      <image:title>Best Astrologer in Kolkota</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/Indian_style.jpg</image:loc>
-      <image:caption>Indian Style</image:caption>
-      <image:title>Indian Style</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/MyAstrology-Prodyut-Acharya.webp</image:loc>
-      <image:caption>MyAstrology Prodyut Acharya</image:caption>
-      <image:title>MyAstrology Prodyut Acharya</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/MyAstrology-Ranghat-logo.png</image:loc>
-      <image:caption>MyAstrology Ranghat Logo</image:caption>
-      <image:title>MyAstrology Ranghat Logo</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/Online-Astrology-and-Palmistry Consultant.webp</image:loc>
-      <image:caption>Online Astrology-and-Palmistry Consultant</image:caption>
-      <image:title>Online Astrology-and-Palmistry Consultant</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/Palmistry-colour.webp</image:loc>
-      <image:caption>Palmistry Colour</image:caption>
-      <image:title>Palmistry Colour</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/Palmistry-expert.webp</image:loc>
-      <image:caption>Palmistry Expert</image:caption>
-      <image:title>Palmistry Expert</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/Palmistry-finger-and-mount.webp</image:loc>
-      <image:caption>Palmistry Finger and Mount</image:caption>
-      <image:title>Palmistry Finger and Mount</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/Quantum_Vibration.png</image:loc>
-      <image:caption>Quantum Vibration</image:caption>
-      <image:title>Quantum Vibration</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/astrologer-india-banner1.webp</image:loc>
-      <image:caption>Astrologer India Banner 1</image:caption>
-      <image:title>Astrologer India Banner 1</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/astrologer-india-banner2.webp</image:loc>
-      <image:caption>Astrologer India Banner 2</image:caption>
-      <image:title>Astrologer India Banner 2</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/astrologer-india-banner3.webp</image:loc>
-      <image:caption>Astrologer India Banner 3</image:caption>
-      <image:title>Astrologer India Banner 3</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/images/best-astrology-and-palmistry.webp</image:loc>
-      <image:caption>Best-Astrology-and-Palmistry</image:caption>
-      <image:title>Best-Astrology-and-Palmistry</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/astrology-and-palmistry.webp</image:loc>
-      <image:caption>Astrology and Palmistry</image:caption>
-      <image:title>Astrology and Palmistry</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/astrology-ranaghat-banner1.webp</image:loc>
-      <image:caption>Astrology Ranaghat Banner 1</image:caption>
-      <image:title>Astrology Ranaghat Banner 1</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/astrology-ranaghat-banner2.webp</image:loc>
-      <image:caption>Astrology Ranaghat Banner 2</image:caption>
-      <image:title>Astrology Ranaghat Banner 2</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/astrology-ranaghat-banner3.webp</image:loc>
-      <image:caption>Astrology Ranaghat Banner 3</image:caption>
-      <image:title>Astrology Ranaghat Banner 3</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/astrology-ranaghat-banner4.webp</image:loc>
-      <image:caption>Astrology Ranaghat Banner 4</image:caption>
-      <image:title>Astrology Ranaghat Banner 4</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/astrology-ranaghat-banner5.webp</image:loc>
-      <image:caption>Astrology Ranaghat Banner 5</image:caption>
-      <image:title>Astrology Ranaghat Banner 5</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/auspicious-inauspicious-signs.webp</image:loc>
-      <image:caption>Auspicious Inauspicious Signs</image:caption>
-      <image:title>Auspicious Inauspicious Signs</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/banner.jpg</image:loc>
-      <image:caption>Banner</image:caption>
-      <image:title>Banner</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/banner1.webp</image:loc>
-      <image:caption>Banner 1</image:caption>
-      <image:title>Banner 1</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/banner3.webp</image:loc>
-      <image:caption>Banner 3</image:caption>
-      <image:title>Banner 3</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/banner4.webp</image:loc>
-      <image:caption>Banner 4</image:caption>
-      <image:title>Banner 4</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/banner5.webp</image:loc>
-      <image:caption>Banner 5</image:caption>
-      <image:title>Banner 5</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/chandra-rashi.jpg</image:loc>
-      <image:caption>Chandra Rashi</image:caption>
-      <image:title>Chandra Rashi</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/dhanu-rashi-sagittarius.webp</image:loc>
-      <image:caption>Dhanu Rashi Sagittarius</image:caption>
-      <image:title>Dhanu Rashi Sagittarius</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/heliocentric-vs-geocentric-diagram.jpg</image:loc>
-      <image:caption>Heliocentric vs Geocentric Diagram</image:caption>
-      <image:title>Heliocentric vs Geocentric Diagram</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/historical-root.jpg</image:loc>
-      <image:caption>Historical Root</image:caption>
-      <image:title>Historical Root</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/horoscope.jpg</image:loc>
-      <image:caption>Horoscope</image:caption>
-      <image:title>Horoscope</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/jyotish-map.jpg</image:loc>
-      <image:caption>Jyotish Map</image:caption>
-      <image:title>Jyotish Map</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/kanya-rashi-virgo.webp</image:loc>
-      <image:caption>Kanya Rashi Virgo</image:caption>
-      <image:title>Kanya Rashi Virgo</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/karka-rashi-cancer.webp</image:loc>
-      <image:caption>Karka Rashi Cancer</image:caption>
-      <image:title>Karka Rashi Cancer</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/kumbha-rashi-aquarius.webp</image:loc>
-      <image:caption>Kumbha Rashi Aquarius</image:caption>
-      <image:title>Kumbha Rashi Aquarius</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/main-six-palm-lines.webp</image:loc>
-      <image:caption>Main Six Palm Lines</image:caption>
-      <image:title>Main Six Palm Lines</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/makar-rashi-capricorn.webp</image:loc>
-      <image:caption>Makar Rashi Capricorn</image:caption>
-      <image:title>Makar Rashi Capricorn</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/meen-rashi-pisces.webp</image:loc>
-      <image:caption>Meen Rashi Pisces</image:caption>
-      <image:title>Meen Rashi Pisces</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/mesha-rashi-aries.webp</image:loc>
-      <image:caption>Mesha Rashi Aries</image:caption>
-      <image:title>Mesha Rashi Aries</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/mithun-rashi-gemini.webp</image:loc>
-      <image:caption>Mithun Rashi Gemini</image:caption>
-      <image:title>Mithun Rashi Gemini</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/palmistry-line-brain-lobes.webp</image:loc>
-      <image:caption>Palmistry Line Brain Lobes</image:caption>
-      <image:title>Palmistry Line Brain Lobes</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/palmistry.webp</image:loc>
-      <image:caption>Palmistry</image:caption>
-      <image:title>Palmistry</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/philosophy-bengali.jpg</image:loc>
-      <image:caption>Philosophy Bengali</image:caption>
-      <image:title>Philosophy Bengali</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/planet-orbit-diagram.jpg</image:loc>
-      <image:caption>Planet Orbit Diagram</image:caption>
-      <image:title>Planet Orbit Diagram</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/plot-road-vastu.jpg</image:loc>
-      <image:caption>Plot Road Vastu</image:caption>
-      <image:title>Plot Road Vastu</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/psychology-astrology.jpg</image:loc>
-      <image:caption>Psychology Astrology</image:caption>
-      <image:title>Psychology Astrology</image:title>
+      <image:loc>https://astro.myastrology.in/blog/bhalo-manush.webp</image:loc>
+      <image:caption><![CDATA[ভালো মানুষ হওয়া – চেতনার পথে নিজেকে খুঁজে পাওয়া]]></image:caption>
     </image:image>
   </url>
-
-  <!-- ================= /gallery/ folder ================= -->
   <url>
-    <loc>https://astro.myastrology.in/gallery/</loc>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/gallery/astrologer-best-palmist-dr-prodyut-acharya.webp</image:loc>
-      <image:caption>Astrologer Best Palmist Dr Prodyut Acharya</image:caption>
-      <image:title>Astrologer Best Palmist Dr Prodyut Acharya</image:title>
-    </image:image>
+    <loc>https://astro.myastrology.in/blog.html?post=geeta-indriya-rath</loc>
     <image:image>
       <image:loc>https://astro.myastrology.in/gallery/astrologer-expert-palmist-nadia.webp</image:loc>
-      <image:caption>Astrologer Expert Palmist Nadia</image:caption>
-      <image:title>Astrologer Expert Palmist Nadia</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/gallery/astrology-and-palmistry-service-india.webp</image:loc>
-      <image:caption>Astrology and Palmistry Service India</image:caption>
-      <image:title>Astrology and Palmistry Service India</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/gallery/astrology-consultant-in-ranaghat.webp</image:loc>
-      <image:caption>Astrology Consultant in Ranaghat</image:caption>
-      <image:title>Astrology Consultant in Ranaghat</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/gallery/astrology-consultation-ranaghat-dr-prodyut-acharya.webp</image:loc>
-      <image:caption>Astrology Consultation Ranaghat Dr Prodyut Acharya</image:caption>
-      <image:title>Astrology Consultation Ranaghat Dr Prodyut Acharya</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/gallery/astrology-palmistry-consultation-ranaghat.webp</image:loc>
-      <image:caption>Astrology Palmistry Consultation Ranaghat</image:caption>
-      <image:title>Astrology Palmistry Consultation Ranaghat</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/gallery/astrology-palmistry-services-best.webp</image:loc>
-      <image:caption>Astrology Palmistry Services Best</image:caption>
-      <image:title>Astrology Palmistry Services Best</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/gallery/best-astrologer-in-ranaghat-india.webp</image:loc>
-      <image:caption>Best Astrologer in Ranaghat India</image:caption>
-      <image:title>Best Astrologer in Ranaghat India</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/gallery/best-astrologer-palmist-dr-prodyut-acharya.webp</image:loc>
-      <image:caption>Best Astrologer Palmist Dr Prodyut Acharya</image:caption>
-      <image:title>Best Astrologer Palmist Dr Prodyut Acharya</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/gallery/career-astrology-consultation-india.webp</image:loc>
-      <image:caption>Career Astrology Consultation India</image:caption>
-      <image:title>Career Astrology Consultation India</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/gallery/dr-prodyut-acharya-astrology-palmistry.webp</image:loc>
-      <image:caption>Dr Prodyut Acharya Astrology Palmistry</image:caption>
-      <image:title>Dr Prodyut Acharya Astrology Palmistry</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/gallery/expert-astrologer-palmist-nadia.webp</image:loc>
-      <image:caption>Expert Astrologer Palmist Nadia</image:caption>
-      <image:title>Expert Astrologer Palmist Nadia</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/gallery/gemstone-consultation-dr-prodyut-acharya.webp</image:loc>
-      <image:caption>Gemstone Consultation Dr Prodyut Acharya</image:caption>
-      <image:title>Gemstone Consultation Dr Prodyut Acharya</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/gallery/horoscope-reading-bengali-india.webp</image:loc>
-      <image:caption>Horoscope Reading Bengali India</image:caption>
-      <image:title>Horoscope Reading Bengali India</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/gallery/horoscope-reading-in-bengali-india.webp</image:loc>
-      <image:caption>Horoscope Reading in Bengali India</image:caption>
-      <image:title>Horoscope Reading in Bengali India</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/gallery/indian-palmistry-consultation-ranaghat.webp</image:loc>
-      <image:caption>Indian Palmistry Consultation Ranaghat</image:caption>
-      <image:title>Indian Palmistry Consultation Ranaghat</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/gallery/kundli-matching-online-india.webp</image:loc>
-      <image:caption>Kundli Matching Online India</image:caption>
-      <image:title>Kundli Matching Online India</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/gallery/love-relationship-astrology-ranaghat.webp</image:loc>
-      <image:caption>Love Relationship Astrology Ranaghat</image:caption>
-      <image:title>Love Relationship Astrology Ranaghat</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/gallery/marriage-astrology-ranaghat.webp</image:loc>
-      <image:caption>Marriage Astrology Ranaghat</image:caption>
-      <image:title>Marriage Astrology Ranaghat</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/gallery/marriage-matching-astrology-ranaghat.webp</image:loc>
-      <image:caption>Marriage Matching Astrology Ranaghat</image:caption>
-      <image:title>Marriage Matching Astrology Ranaghat</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/gallery/myastrology-horoscope-analysis.webp</image:loc>
-      <image:caption>MyAstrology Horoscope Analysis</image:caption>
-      <image:title>MyAstrology Horoscope Analysis</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/gallery/myastrology-nadia-astrology-gallery.webp</image:loc>
-      <image:caption>MyAstrology Nadia Astrology Gallery</image:caption>
-      <image:title>MyAstrology Nadia Astrology Gallery</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/gallery/myastrology-ranaghat-astrology-gallery.webp</image:loc>
-      <image:caption>MyAstrology Ranaghat Astrology Gallery</image:caption>
-      <image:title>MyAstrology Ranaghat Astrology Gallery</image:title>
+      <image:caption><![CDATA[গীতার দার্শনিক ব্যাখ্যা: ইন্দ্রিয় রথ ও মনের সারথি]]></image:caption>
     </image:image>
   </url>
-
-  <!-- ================= /assist/ folder ================= -->
   <url>
-    <loc>https://astro.myastrology.in/assist/</loc>
+    <loc>https://astro.myastrology.in/blog.html?post=life-fate-astrology-analysis</loc>
     <image:image>
-      <image:loc>https://astro.myastrology.in/assist/astrology-certificate1.jpg</image:loc>
-      <image:caption>Astrology Certificate 1</image:caption>
-      <image:title>Astrology Certificate 1</image:title>
+      <image:loc>https://astro.myastrology.in/blog/life-fate-astrology.webp</image:loc>
+      <image:caption><![CDATA[জীবনে ভাগ্য, ব্যর্থতা এবং গ্রহ নক্ষত্র: দার্শনিক ও আধ্যাত্মিক বিশ্লেষণ]]></image:caption>
     </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/assist/astrology-certificate2.jpg</image:loc>
-      <image:caption>Astrology Certificate 2</image:caption>
-      <image:title>Astrology Certificate 2</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/assist/astrology-certificate6.jpg</image:loc>
-      <image:caption>Astrology Certificate 6</image:caption>
-      <image:title>Astrology Certificate 6</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/assist/astrology-certificate7.jpg</image:loc>
-      <image:caption>Astrology Certificate 7</image:caption>
-      <image:title>Astrology Certificate 7</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/assist/astrology-certificate10.jpg</image:loc>
-      <image:caption>Astrology Certificate 10</image:caption>
-      <image:title>Astrology Certificate 10</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/assist/astrology-certificate11.jpg</image:loc>
-      <image:caption>Astrology Certificate 11</image:caption>
-      <image:title>Astrology Certificate 11</image:title>
-    </image:image>
-    <!-- Note: some certificate files were marked with ☐ in your list (possible missing). I included the ones you confirmed. -->
   </url>
-
+  <url>
+    <loc>https://astro.myastrology.in/blog.html?post=new-post-slug</loc>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/new-post.jpg</image:loc>
+      <image:caption><![CDATA[নতুন পোস্টের শিরোনাম]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://astro.myastrology.in/blog.html?post=nishthur-satyer-pathe-astrology-hastrikha</loc>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/blog/shadow-truth-self-awareness.webp</image:loc>
+      <image:caption><![CDATA[নিষ্ঠুর সত্যের পথে আত্ম-উন্নয়ন: হস্তরেখা ও জ্যোতিষের দৃষ্টিকোণ]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://astro.myastrology.in/blog.html?post=palmistry-star-signs</loc>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/blog/palmistry-star-signs.webp</image:loc>
+      <image:caption><![CDATA[Palmistry: হাতের বিভিন্ন স্থানে স্টার চিহ্নের অর্থ এবং প্রভাব]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://astro.myastrology.in/blog.html?post=relationship-rage-control-astrology</loc>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/blog/astrology-relationship.webp</image:loc>
+      <image:caption><![CDATA[সম্পর্কে ফাটল ধরার আগে রাগ নিয়ন্ত্রণ করুন]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://astro.myastrology.in/blog.html?post=successful-and-good-person</loc>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/blog/success-good-person.webp</image:loc>
+      <image:caption><![CDATA[সফলতা ও ভালো মানুষ হওয়া – জ্যোতিষ ও হস্তরেখার দৃষ্টিকোণ]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://astro.myastrology.in/blog.html?post=women-samudrik-shastra</loc>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/blog/samudrik-shastra-women.webp</image:loc>
+      <image:caption><![CDATA[সামুদ্রিক শাস্ত্র: নারীদের ব্যক্তিত্ব ও গুণাবলী বিচার জ্যোতিষ দর্শনে]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://astro.myastrology.in/blog.html?post=your-fate-in-palmistry-consultation-dr-prodyut-acharya</loc>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/blog/palmistry-astrology-consultation.webp</image:loc>
+      <image:caption><![CDATA[আপনার ভাগ্য হাতের রেখায়: Online Palmistry & Astrology Consultation by Dr. Prodyut Acharya]]></image:caption>
+    </image:image>
+  </url>
 </urlset>
-
-
