@@ -8,6 +8,7 @@ const jsonFiles = [
   { path: path.join(process.cwd(), 'src/content/blog/list.json'), type: 'blog' },
   { path: path.join(process.cwd(), 'src/content/gallery/gallery.json'), type: 'gallery' },
   { path: path.join(process.cwd(), 'src/content/assist/assist.json'), type: 'assist' },
+  { path: path.join(process.cwd(), 'src/content/images/images.json'), type: 'images' },
 ];
 
 const imageSitemapPath = path.join(process.cwd(), 'image-sitemap.xml');
@@ -40,7 +41,7 @@ allItems = allItems.filter(item => {
     return false;
   }
 
-  const imageUrl = item.image.startsWith('http') ? item.image : `${BASE_URL}${item.image}`;
+  const imageUrl = item.image.startsWith('http') ? item.image : `${BASE_URL}/${item.image}`;
 
   if (seenImages.has(imageUrl)) return false;
   seenImages.add(imageUrl);
@@ -61,6 +62,7 @@ allItems.forEach(item => {
   if (item._type === 'blog') pageUrl = `${BASE_URL}/blog.html?post=${item.slug}`;
   else if (item._type === 'gallery') pageUrl = `${BASE_URL}/gallery.html`;
   else if (item._type === 'assist') pageUrl = `${BASE_URL}/assist.html`;
+  else if (item._type === 'images') pageUrl = `${BASE_URL}/images.html`;
 
   xml += `  <url>
     <loc>${pageUrl}</loc>
@@ -77,4 +79,3 @@ xml += `</urlset>`;
 // Write to file
 fs.writeFileSync(imageSitemapPath, xml, 'utf8');
 console.log(`✅ image-sitemap.xml তৈরি হয়েছে: ${imageSitemapPath}`);
-
