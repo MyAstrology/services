@@ -1,11 +1,5 @@
 [
   {
-    "slug": "palmistry-star-signs",
-    "title": "Palmistry: হাতের বিভিন্ন স্থানে স্টার চিহ্নের অর্থ এবং প্রভাব",
-    "image": "/blog/palmistry-star-signs.webp",
-    "description": ""
-  },
-  {
     "slug": "geeta-indriya-rath",
     "title": "গীতার দার্শনিক ব্যাখ্যা: ইন্দ্রিয় রথ ও মনের সারথি",
     "image": "https://astro.myastrology.in/gallery/astrologer-expert-palmist-nadia.webp",
@@ -22,6 +16,12 @@
     "title": "নতুন পোস্টের শিরোনাম",
     "image": "https://astro.myastrology.in/gallery/new-post.jpg",
     "description": "সংক্ষিপ্ত বর্ণনা এখানে লিখুন..."
+  },
+  {
+    "slug": "palmistry-star-signs",
+    "title": "Palmistry: হাতের বিভিন্ন স্থানে স্টার চিহ্নের অর্থ এবং প্রভাব",
+    "image": "/blog/palmistry-star-signs.webp",
+    "description": ""
   },
   {
     "slug": "relationship-rage-control-astrology",
