@@ -34,10 +34,11 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Fetch latest changes to avoid push conflicts
-          git fetch origin main
-          git reset --hard origin/main
-
           git add image-sitemap.xml
           git diff --cached --quiet || git commit -m "🔄 Auto-update image sitemap"
+
+          # Pull remote changes first to avoid conflicts
+          git pull --rebase origin main || true
+
+          # Push updated sitemap
           git push origin main
