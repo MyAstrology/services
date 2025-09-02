@@ -3,7 +3,7 @@ const path = require('path');
 
 const BASE_URL = 'https://astro.myastrology.in';
 
-// JSON ফাইলগুলোর absolute path
+// JSON ফাইলগুলোর absolute path এবং type
 const jsonFiles = [
   { path: path.join(process.cwd(), 'src/content/blog/list.json'), type: 'blog' },
   { path: path.join(process.cwd(), 'src/content/gallery/gallery.json'), type: 'gallery' },
@@ -12,11 +12,14 @@ const jsonFiles = [
 
 const imageSitemapPath = path.join(process.cwd(), 'image-sitemap.xml');
 
-function readJSON(filePath) {
+// JSON safely read করা
+function readJSON(filePath, type) {
   try {
-    return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    console.log(`📂 Loaded ${data.length} items from ${type}`);
+    return data;
   } catch (err) {
-    console.warn(`⚠️ Could not read JSON from ${filePath}: ${err.message}`);
+    console.warn(`⚠️ Could not read JSON from ${filePath} (${type}): ${err.message}`);
     return [];
   }
 }
@@ -24,19 +27,20 @@ function readJSON(filePath) {
 // সব আইটেম একসাথে collect করা
 let allItems = [];
 jsonFiles.forEach(({ path: filePath, type }) => {
-  const data = readJSON(filePath);
+  const data = readJSON(filePath, type);
   data.forEach(item => item._type = type);
   allItems = allItems.concat(data);
 });
 
-// Duplicate images remove করা
+// Duplicate images remove করা এবং missing image warning
 const seenImages = new Set();
 allItems = allItems.filter(item => {
-  if (!item.image) return false;
+  if (!item.image) {
+    console.warn(`⚠️ Missing image for ${item._type} item:`, item);
+    return false;
+  }
 
-  const imageUrl = item.image.startsWith('http')
-    ? item.image
-    : `${BASE_URL}${item.image}`;
+  const imageUrl = item.image.startsWith('http') ? item.image : `${BASE_URL}${item.image}`;
 
   if (seenImages.has(imageUrl)) return false;
   seenImages.add(imageUrl);
