@@ -12,27 +12,32 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # 1️⃣ Checkout repo
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0
+          fetch-depth: 0  # full history needed
 
+      # 2️⃣ Setup Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
+      # 3️⃣ Generate image sitemap
       - name: Generate image sitemap
         run: node src/content/blog/generate-image-sitemap.js
-run: node src/content/assist/generate-image-sitemap.js
-run: node src/content/gallery/generate-image-sitemap.js
-run: node src/content/images/generate-image-sitemap.js
 
+      # 4️⃣ Commit and push sitemap safely
       - name: Commit and push sitemap
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
+          # Fetch latest changes to avoid push conflicts
+          git fetch origin main
+          git reset --hard origin/main
+
           git add image-sitemap.xml
           git diff --cached --quiet || git commit -m "🔄 Auto-update image sitemap"
-          git push origin main --force
+          git push origin main
