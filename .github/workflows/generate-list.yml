@@ -52,3 +52,4 @@ jobs:
 
           # Push updated list.json
           git push origin main --force
+
