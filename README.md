@@ -44,3 +44,4 @@ he blends **traditional wisdom** with **modern insights** to offer life-changing
 ## 👉 Book Your Consultation Today  
 Get answers to your **life's most important questions** with accurate and insightful readings.  
 🌐 [Book Now on MyAstrology](https://pages.razorpay.com/Myastrology)
+# Test trigger for image sitemap
