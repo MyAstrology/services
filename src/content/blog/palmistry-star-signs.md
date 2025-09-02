@@ -1,17 +1,29 @@
 ---
 title: "Palmistry: হাতের বিভিন্ন স্থানে স্টার চিহ্নের অর্থ এবং প্রভাব"
+description: "হাতের রেখায় স্টার চিহ্ন (Star Sign) কিসের ইঙ্গিত দেয়? বৃহস্পতি থেকে চন্দ্র, শুক্র থেকে ভাগ্য রেখা পর্যন্ত প্রতিটি ক্ষেত্রের স্টার চিহ্নের শুভ অশুভ প্রভাব জানতে পড়ুন MyAstrology Ranaghat Nadia-এর বিশেষ বিশ্লেষণ।"
 slug: palmistry-star-signs
-image: "/blog/palmistry-star-signs.webp"
+image: "https://astro.myastrology.in/blog/palmistry-star-signs.webp"
 alt: "হাতের রেখায় স্টার চিহ্নের অবস্থান এবং জ্যোতিষী প্রদ্যুত আচার্যের ব্যাখ্যা"
-date: 2025-08-31
+date: "2025-08-31"
+author:
+  name: "Dr. Prodyut Acharya"
+  bio: "জ্যোতিষী, হস্তরেখাবিদ, দার্শনিক চিন্তাবিদ, ভাগ্য উন্নতির পরামর্শ দাতা।"
+  profile_url: "https://astro.myastrology.in"
+categories: ["Palmistry", "হাতের রেখা"]
 tags: ["Palmistry", "হাতের রেখা", "স্টার চিহ্ন", "জ্যোতিষ", "MyAstrology Ranaghat Nadia"]
-excerpt: "হাতের রেখায় স্টার চিহ্ন (Star Sign) কিসের ইঙ্গিত দেয়? বৃহস্পতি থেকে চন্দ্র, শুক্র থেকে ভাগ্য রেখা পর্যন্ত প্রতিটি ক্ষেত্রের স্টার চিহ্নের শুভ অশুভ প্রভাব জানতে পড়ুন MyAstrology Ranaghat Nadia-এর বিশেষ বিশ্লেষণ।"
----
-
-# Palmistry: হাতের বিভিন্ন স্থানে স্টার চিহ্নের অর্থ
-
-হাতের রেখা বা [Palmistry](https://astro.myastrology.in/palmistry.html) অনুসারে **স্টার চিহ্ন (Star Sign)** খুব গুরুত্বপূর্ণ একটি চিহ্ন। প্রতিটি মানুষের হাতে এটি বিভিন্ন স্থানে দেখা যায় এবং প্রতিটি ক্ষেত্র অনুযায়ী এর **শুভ ও অশুভ প্রভাব** আলাদা। স্বনামধন্য জ্যোতিষী ও হস্তরেখা বিশেষজ্ঞ **প্রদ্যুত আচার্য**, [MyAstrology](www.myastrology.in) Ranaghat Nadia-এর দৃষ্টিকোণ থেকে আমরা বিস্তারিত আলোচনা করছি।  
-
+keywords: ["Palmistry", "হাতের রেখা", "স্টার চিহ্ন", "জ্যোতিষ"]
+canonical_url: "https://astro.myastrology.in/blog.html?post=palmistry-star-signs"
+featured: true
+priority: 1
+reading_time: "7 min"
+og_title: "Palmistry: হাতের বিভিন্ন স্থানে স্টার চিহ্নের অর্থ এবং প্রভাব"
+og_description: "হাতের রেখায় স্টার চিহ্ন (Star Sign) কিসের ইঙ্গিত দেয়? বৃহস্পতি থেকে চন্দ্র, শুক্র থেকে ভাগ্য রেখা পর্যন্ত প্রতিটি ক্ষেত্রের স্টার চিহ্নের শুভ অশুভ প্রভাব জানতে পড়ুন MyAstrology Ranaghat Nadia-এর বিশেষ বিশ্লেষণ।"
+og_image: "https://astro.myastrology.in/blog/palmistry-star-signs.webp"
+og_image_alt: "হাতের রেখায় স্টার চিহ্নের অবস্থান এবং জ্যোতিষী প্রদ্যুত আচার্যের ব্যাখ্যা"
+twitter_card: "summary_large_image"
+twitter_title: "Palmistry: হাতের বিভিন্ন স্থানে স্টার চিহ্নের অর্থ এবং প্রভাব"
+twitter_description: "হাতের রেখায় স্টার চিহ্ন (Star Sign) কিসের ইঙ্গিত দেয়? বৃহস্পতি থেকে চন্দ্র, শুক্র থেকে ভাগ্য রেখা পর্যন্ত প্রতিটি ক্ষেত্রের স্টার চিহ্নের শুভ অশুভ প্রভাব জানতে পড়ুন MyAstrology Ranaghat Nadia-এর বিশেষ বিশ্লেষণ।"
+twitter_image: "https://astro.myastrology.in/blog/palmistry-star-signs.webp"
 ---
 
 ## বৃহস্পতির ক্ষেত্রে স্টার চিহ্ন
