@@ -1,13 +1,12 @@
 const fs = require('fs');
 const path = require('path');
 
-// Blog list JSON path
-const blogListPath = path.join(__dirname, 'list.json'); // workflow অনুযায়ী list.json একই ফোল্ডারে আছে
+// Workflow অনুযায়ী list.json ফোল্ডার
+const blogListPath = path.join(__dirname, 'list.json'); // যদি generate-list.js src/content/blog/ এ থাকে
 
-// Sitemap output path (root folder)
-const sitemapPath = path.join(__dirname, '../../my-sitemap.xml'); // root folder-এ Google-friendly
+// Sitemap root folder-এ
+const sitemapPath = path.join(process.cwd(), 'my-sitemap.xml'); // process.cwd() → repo root
 
-// Base site URL
 const BASE_URL = 'https://astro.myastrology.in';
 
 // Static pages
@@ -29,12 +28,11 @@ let blogList = [];
 try {
   blogList = JSON.parse(fs.readFileSync(blogListPath, 'utf8'));
 } catch (err) {
-  console.warn('⚠️ blog list not found or invalid JSON. Proceeding with static pages only.');
+  console.warn('⚠️ blog list not found. Proceeding with static pages only.');
 }
 
 // Start XML
-let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
-xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
 
 // Add static pages
 staticPages.forEach(page => {
@@ -48,11 +46,9 @@ staticPages.forEach(page => {
 
 // Add blog posts
 blogList.forEach(blog => {
-  const slug = blog.slug;
-  const lastmod = blog.lastmod || new Date().toISOString().split('T')[0];
   xml += `  <url>
-    <loc>${BASE_URL}/blog.html?post=${slug}</loc>
-    <lastmod>${lastmod}</lastmod>
+    <loc>${BASE_URL}/blog.html?post=${blog.slug}</loc>
+    <lastmod>${blog.lastmod || new Date().toISOString().split('T')[0]}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>\n`;
