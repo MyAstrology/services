@@ -24,12 +24,9 @@ jobs:
         with:
           node-version: '18'
 
-      # 3️⃣ Generate image sitemap
+      # 3️⃣ Generate image sitemap (handles all sources)
       - name: Generate image sitemap
         run: node src/content/blog/generate-image-sitemap.js
-run: node src/content/gallery/generate-image-sitemap.js
-run: node src/content/assist/generate-image-sitemap.js
-run: node src/content/images/generate-image-sitemap.js
 
       # 4️⃣ Commit and push sitemap safely
       - name: Commit and push sitemap
