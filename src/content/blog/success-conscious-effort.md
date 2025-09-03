@@ -1,7 +1,7 @@
 ---
 ## title: "সফলতার শিখরে পৌঁছানোর চাবিকাঠি: চেতনা, উদ্যোগ ও ধৈর্য"
 description: "জীবনে সফলতা অর্জনের জন্য প্রয়োজনীয় চাবিকাঠি, উৎসাহ, সিদ্ধান্ত, ধৈর্য, মনোযোগ এবং সঠিক সঙ্গের গুরুত্ব। জ্যোতিষ দর্শন অনুযায়ী নির্দেশ।"
-slug: blog/success-conscious-effort
+slug: "success-conscious-effort" 
 image: "https://astro.myastrology.in/blog/blog/success-conscious-effort.webp"
 date: "2025-09-03"
 author:
