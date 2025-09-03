@@ -18,88 +18,69 @@ const staticPages = [
   { loc: '/blog.html', lastmod: '2025-08-30', changefreq: 'daily', priority: 0.9 },
 ];
 
-// সব JSON ফাইল ও type
-const jsonFiles = [
-  { path: path.join(process.cwd(), 'src/content/blog/list.json'), type: 'blog' },
-  { path: path.join(process.cwd(), 'src/content/gallery/gallery.json'), type: 'gallery' },
-  { path: path.join(process.cwd(), 'src/content/assist/assist.json'), type: 'assist' },
-  { path: path.join(process.cwd(), 'src/content/images/images.json'), type: 'images' },
-];
-
-// সব item একত্রিত
-let allItems = [];
-
-// JSON safely read
-function readJSON(filePath, type) {
+// blog.json থেকে ব্লগ লোড
+function readBlogPosts() {
+  const blogPath = path.join(process.cwd(), 'src/content/blog/list.json');
   try {
-    const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-    console.log(`📂 Loaded ${data.length} items from ${type}`);
-    return data;
+    const posts = JSON.parse(fs.readFileSync(blogPath, 'utf8'));
+    return posts.map(post => ({
+      url: `${BASE_URL}/blog.html?post=${post.slug}`,
+      lastmod: new Date().toISOString().split('T')[0],
+      changefreq: 'monthly',
+      priority: 0.85
+    }));
   } catch (err) {
-    console.warn(`⚠️ Could not read JSON from ${filePath} (${type}): ${err.message}`);
+    console.warn("⚠️ Blog JSON read failed:", err.message);
     return [];
   }
 }
 
-// JSON থেকে items collect
-jsonFiles.forEach(({ path: filePath, type }) => {
-  const data = readJSON(filePath, type);
-  data.forEach(item => item._type = type);
-  allItems = allItems.concat(data);
-});
+// ফোল্ডার থেকে ইমেজ URL তৈরি
+function readFolderImages(folder, pageUrl) {
+  const dirPath = path.join(process.cwd(), 'public', folder);
+  if (!fs.existsSync(dirPath)) return [];
 
-// Duplicate URLs remove & full URL তৈরি
-const seenUrls = new Set();
-allItems = allItems.filter(item => {
-  let pageUrl = BASE_URL;
+  return fs.readdirSync(dirPath)
+    .filter(file => /\.(png|jpe?g|webp|gif)$/i.test(file))
+    .map(file => ({
+      url: `${BASE_URL}${pageUrl}`,
+      lastmod: new Date().toISOString().split('T')[0],
+      changefreq: 'monthly',
+      priority: 0.8
+    }));
+}
 
-  if (item._type === 'blog') {
-    if (!item.slug) return false;
-    pageUrl += `/blog.html?post=${item.slug}`;
-  } else if (item._type === 'gallery') {
-    pageUrl += `/gallery.html`;
-  } else if (item._type === 'assist') {
-    pageUrl += `/assist.html`;
-  } else if (item._type === 'images') {
-    pageUrl += `/images.html`;
-  } else {
-    return false;
-  }
+// সব ডেটা merge
+let allUrls = [
+  ...staticPages.map(p => ({ url: BASE_URL + p.loc, ...p })),
+  ...readBlogPosts(),
+  ...readFolderImages('gallery', '/gallery.html'),
+  ...readFolderImages('assist', '/assist.html'),
+  ...readFolderImages('images', '/index.html'),
+];
 
-  if (seenUrls.has(pageUrl)) return false;
-  seenUrls.add(pageUrl);
-
-  item._fullUrl = pageUrl;
+// Duplicate remove
+const seen = new Set();
+allUrls = allUrls.filter(item => {
+  if (seen.has(item.url)) return false;
+  seen.add(item.url);
   return true;
 });
 
-// XML শুরু
-let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
-xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+// XML বানানো
+let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
 
-// Static pages যোগ
-staticPages.forEach(page => {
+allUrls.forEach(page => {
   xml += `  <url>
-    <loc>${BASE_URL}${page.loc}</loc>
+    <loc>${page.url}</loc>
     <lastmod>${page.lastmod}</lastmod>
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>
   </url>\n`;
 });
 
-// JSON থেকে pages যোগ
-allItems.forEach(item => {
-  xml += `  <url>
-    <loc>${item._fullUrl}</loc>
-    <lastmod>${item.lastmod || new Date().toISOString().split('T')[0]}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>\n`;
-});
-
-// XML close
 xml += `</urlset>`;
 
-// Write to file
+// Write
 fs.writeFileSync(sitemapPath, xml, 'utf8');
 console.log(`✅ my-sitemap.xml তৈরি হয়েছে: ${sitemapPath}`);
