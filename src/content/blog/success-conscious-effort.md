@@ -1,7 +1,7 @@
 ---
 title: "সফলতার শিখরে পৌঁছানোর চাবিকাঠি: চেতনা, উদ্যোগ ও ধৈর্য"
 description: "জীবনে সফলতা অর্জনের জন্য প্রয়োজনীয় চাবিকাঠি, উৎসাহ, সিদ্ধান্ত, ধৈর্য, মনোযোগ এবং সঠিক সঙ্গের গুরুত্ব। জ্যোতিষ দর্শন অনুযায়ী নির্দেশ।"
-slug: "success-conscious-effort" 
+slug: "success-conscious-effort"
 image: "https://astro.myastrology.in/blog/success-conscious-effort.webp"
 date: "2025-09-03"
 author:
@@ -11,7 +11,7 @@ author:
 categories: ["Astrology", "Personal Development"]
 tags: ["Success", "Motivation", "Astrology", "Palmistry", "Dr. Prodyut Acharya"]
 keywords: "উৎসাহ, নির্ণয়, ধৈর্য, তৎকর্ম, সঙ্গত্যাগ, সৎসঙ্গ, সফলতা, প্রফেশনাল জ্যোতিষী, হস্তরেখা বিশ্লেষণ, রাণাঘাট, নদীয়া, গ্রহ প্রতিকার, আসল গ্রহ রত্ন"
-canonical_url: "https://astro.myastrology.in/blog.html?post=blog/success-conscious-effort"
+canonical_url: "https://astro.myastrology.in/blog/success-conscious-effort"
 featured: true
 priority: 1
 reading_time: "20 min"
@@ -24,15 +24,6 @@ twitter_title: "সফলতার চাবিকাঠি: চেতনা ও
 twitter_description: "জীবনে সফলতা পাওয়ার জন্য প্রয়োজনীয় চাবিকাঠি ও জ্যোতিষ দর্শন অনুযায়ী নির্দেশ।"
 twitter_image: "https://astro.myastrology.in/blog/success-conscious-effort.webp"
 ---
-
-<!-- Social Share Buttons Start -->
-<div class="social-share">
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https://astro.myastrology.in/blog/success-conscious-effort" target="_blank">Facebook</a>
-  <a href="https://twitter.com/intent/tweet?url=https://astro.myastrology.in/blog/success-conscious-effort&text=সফলতার শিখরে পৌঁছানোর চাবিকাঠি: চেতনা, উদ্যোগ ও ধৈর্য" target="_blank">Twitter</a>
-  <a href="https://api.whatsapp.com/send?text=সফলতার শিখরে পৌঁছানোর চাবিকাঠি: চেতনা, উদ্যোগ ও ধৈর্য https://astro.myastrology.in/blog/success-conscious-effort" target="_blank">WhatsApp</a>
-  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://astro.myastrology.in/blog/success-conscious-effort" target="_blank">LinkedIn</a>
-</div>
-<!-- Social Share Buttons End -->
 
 # সফলতার শিখরে পৌঁছানোর চাবিকাঠি: চেতনা, উদ্যোগ ও ধৈর্য
 
