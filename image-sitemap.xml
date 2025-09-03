@@ -701,6 +701,13 @@
     </image:image>
   </url>
   <url>
+    <loc>https://astro.myastrology.in/blog.html?post=blog/success-conscious-effort</loc>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/blog/blog/success-conscious-effort.webp</image:loc>
+      <image:caption><![CDATA[No Title]]></image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://astro.myastrology.in/blog.html?post=successful-and-good-person</loc>
     <image:image>
       <image:loc>https://astro.myastrology.in/blog/success-good-person.webp</image:loc>
