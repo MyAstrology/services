@@ -93,94 +93,136 @@ blockquote { border-left:4px solid #3478f6; padding-left:12px; color:#555; font-
 <div id="blog-content">লোড হচ্ছে...</div>
 
 
-  
   <script>
-const hamburger=document.getElementById('hamburger');
-const navMenu=document.getElementById('nav-menu');
-const searchBtn=document.getElementById('search-btn');
-const searchBar=document.getElementById('search-bar');
-const blogContent=document.getElementById('blog-content');
-const postTitle=document.getElementById('post-title');
-const postImage=document.getElementById('post-image');
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
+const searchBtn = document.getElementById('search-btn');
+const searchBar = document.getElementById('search-bar');
+const blogContent = document.getElementById('blog-content');
+const postTitle = document.getElementById('post-title');
+const postImage = document.getElementById('post-image');
 
-hamburger.addEventListener('click',()=>{navMenu.style.display=navMenu.style.display==='flex'?'none':'flex';});
+hamburger.addEventListener('click', () => {
+  navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+});
 
 // Load all posts
-let postsList=[];
+let postsList = [];
 fetch('/src/content/blog/list.json')
-.then(res=>res.json())
-.then(list=>{postsList=list; loadInitialPost();})
-.catch(err=>{ blogContent.innerHTML="❌ ব্লগ লিস্ট লোড করতে সমস্যা!"; console.error(err); });
+  .then(res => res.json())
+  .then(list => { postsList = list; loadInitialPost(); })
+  .catch(err => {
+    blogContent.innerHTML = "❌ ব্লগ লিস্ট লোড করতে সমস্যা!";
+    console.error(err);
+  });
 
-function loadInitialPost(){
-  const params=new URLSearchParams(window.location.search);
-  let postSlug=params.get('post');
-  if(!postSlug){
-    if(postsList.length>0) postSlug=postsList[0].slug;
-    else { blogContent.innerHTML="❌ কোনো পোস্ট নেই!"; return; }
+function loadInitialPost() {
+  const params = new URLSearchParams(window.location.search);
+  let postSlug = params.get('post');
+  if (!postSlug) {
+    if (postsList.length > 0) postSlug = postsList[0].slug;
+    else { blogContent.innerHTML = "❌ কোনো পোস্ট নেই!"; return; }
   }
   loadPost(postSlug);
 }
 
-function loadPost(slug){
+function loadPost(slug) {
   fetch(`/src/content/blog/${slug}.md`)
-  .then(res=>{ if(!res.ok) throw new Error("পোস্ট পাওয়া যায়নি!"); return res.text(); })
-  .then(text=>{
-    const match=/^---([\s\S]*?)---/.exec(text);
-    let frontMatter={};
-    if(match){
-      match[1].trim().split('\n').forEach(line=>{
-        const sep=line.indexOf(':');
-        if(sep>0){ const key=line.slice(0,sep).trim(); let value=line.slice(sep+1).trim().replace(/^"|"$/g,''); frontMatter[key]=value; }
-      });
-      text=text.replace(match[0],'');
-    }
-    if(frontMatter.title){ document.title=`${frontMatter.title} | MyAstrology`; postTitle.innerText=frontMatter.title; }
-    if(frontMatter.image){ postImage.src=frontMatter.image; postImage.style.display='block'; postImage.alt=`${frontMatter.title} – MyAstrology`; }
-    else postImage.style.display='none';
-    blogContent.innerHTML=marked.parse(text);
-  }).catch(err=>{ blogContent.innerHTML="❌ পোস্ট লোড করা যায়নি।"; console.error(err); });
+    .then(res => { if (!res.ok) throw new Error("পোস্ট পাওয়া যায়নি!"); return res.text(); })
+    .then(text => {
+      const match = /^---([\s\S]*?)---/.exec(text);
+      let frontMatter = {};
+      if (match) {
+        match[1].trim().split('\n').forEach(line => {
+          const sep = line.indexOf(':');
+          if (sep > 0) {
+            const key = line.slice(0, sep).trim();
+            let value = line.slice(sep + 1).trim().replace(/^"|"$/g, '');
+            frontMatter[key] = value;
+          }
+        });
+        text = text.replace(match[0], '');
+      }
+
+      if (frontMatter.title) {
+        document.title = `${frontMatter.title} | MyAstrology`;
+        postTitle.innerText = frontMatter.title;
+      }
+
+      if (frontMatter.image) {
+        postImage.src = frontMatter.image;
+        postImage.style.display = 'block';
+        postImage.alt = `${frontMatter.title} – MyAstrology`;
+      } else postImage.style.display = 'none';
+
+      // মূল ব্লগ কনটেন্ট লোড
+      blogContent.innerHTML = marked.parse(text);
+
+      // 🔴 Social Share Block dynamic যোগ
+      const shareBlock = `
+        <div class="social-share" style="margin-top:20px; display:flex; gap:15px; font-size:20px;">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=${window.location.href}" target="_blank">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://twitter.com/intent/tweet?url=${window.location.href}&text=${frontMatter.title}" target="_blank">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://api.whatsapp.com/send?text=${frontMatter.title} ${window.location.href}" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=${window.location.href}" target="_blank">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+        </div>
+      `;
+      blogContent.insertAdjacentHTML('beforeend', shareBlock);
+
+    }).catch(err => {
+      blogContent.innerHTML = "❌ পোস্ট লোড করা যায়নি।";
+      console.error(err);
+    });
 }
 
 // Search
-searchBtn.addEventListener('click',doSearch);
-searchBar.addEventListener('keypress', function(e){ if(e.key==='Enter'){ doSearch(); } });
+searchBtn.addEventListener('click', doSearch);
+searchBar.addEventListener('keypress', function(e) { if (e.key === 'Enter') { doSearch(); } });
 
-function doSearch(){
-  const query=searchBar.value.trim().toLowerCase();
-  if(!query) return;
-  const results=postsList.filter(post=>post.title.toLowerCase().includes(query) || (post.description && post.description.toLowerCase().includes(query)));
-  if(results.length>0){ loadPost(results[0].slug); } 
-  else { blogContent.innerHTML="❌ কোন পোস্ট খুঁজে পাওয়া যায়নি।"; postTitle.innerText='কোন পোস্ট নেই'; postImage.style.display='none'; }
+function doSearch() {
+  const query = searchBar.value.trim().toLowerCase();
+  if (!query) return;
+  const results = postsList.filter(post => post.title.toLowerCase().includes(query) || (post.description && post.description.toLowerCase().includes(query)));
+  if (results.length > 0) { loadPost(results[0].slug); }
+  else {
+    blogContent.innerHTML = "❌ কোন পোস্ট খুঁজে পাওয়া যায়নি।";
+    postTitle.innerText = 'কোন পোস্ট নেই';
+    postImage.style.display = 'none';
+  }
 }
 
-
+// Blog list (sidebar / main list)
 const blogListContainer = document.getElementById('blog-list');
+if (blogListContainer) {
+  fetch('/src/content/blog/list.json')
+    .then(res => res.json())
+    .then(posts => {
+      if (posts.length === 0) { blogListContainer.innerHTML = "❌ কোন পোস্ট নেই।"; return; }
+      blogListContainer.innerHTML = posts.map(post => `
+        <div class="blog-card" style="margin-bottom:20px; padding:15px; border:1px solid #ddd; border-radius:12px; background:#fff;">
+          <img src="${post.image}" alt="${post.title}" style="width:100%; border-radius:10px; margin-bottom:10px;">
+          <h3 style="margin-bottom:10px;">${post.title}</h3>
+          <p style="margin-bottom:10px;">${post.description}</p>
+          <a href="blog.html?post=${post.slug}" style="color:#b33; font-weight:bold;">Read more</a>
+        </div>
+      `).join('');
+    })
+    .catch(err => {
+      blogListContainer.innerHTML = "❌ ব্লগ লিস্ট লোড করতে সমস্যা!";
+      console.error(err);
+    });
 
-fetch('/src/content/blog/list.json')
-  .then(res => res.json())
-  .then(posts => {
-    if(posts.length === 0){
-      blogListContainer.innerHTML = "❌ কোন পোস্ট নেই।";
-      return;
-    }
-    blogListContainer.innerHTML = posts.map(post => `
-      <div class="blog-card" style="margin-bottom:20px; padding:15px; border:1px solid #ddd; border-radius:12px; background:#fff;">
-        <img src="${post.image}" alt="${post.title}" style="width:100%; border-radius:10px; margin-bottom:10px;">
-        <h3 style="margin-bottom:10px;">${post.title}</h3>
-        <p style="margin-bottom:10px;">${post.description}</p>
-        <a href="blog.html?post=${post.slug}" style="color:#b33; font-weight:bold;">Read more</a>
-      </div>
-    `).join('');
-  })
-  .catch(err => {
-    blogListContainer.innerHTML = "❌ ব্লগ লিস্ট লোড করতে সমস্যা!";
-    console.error(err);
-  });
-
-
+}
 </script>
-
+  
 
 
   <!-- Professional CTA Footer Start -->
