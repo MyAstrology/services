@@ -99,4 +99,18 @@
       <image:caption><![CDATA[Assist section sample image 2]]></image:caption>
     </image:image>
   </url>
+  <url>
+    <loc>https://astro.myastrology.in/images.html</loc>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/logo.png</image:loc>
+      <image:caption><![CDATA[MyAstrology Website Logo]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://astro.myastrology.in/images.html</loc>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/banner.webp</image:loc>
+      <image:caption><![CDATA[MyAstrology Website Main Banner]]></image:caption>
+    </image:image>
+  </url>
 </urlset>
