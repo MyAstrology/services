@@ -156,30 +156,6 @@ function loadPost(slug){
     if(frontMatter.image){ postImage.src=frontMatter.image; postImage.style.display='block'; postImage.alt=`${frontMatter.title} – MyAstrology`; }
     else postImage.style.display='none';
     blogContent.innerHTML = marked.parse(text);
-
-// Canonical
-let canonical = document.querySelector('#canonical-url');
-if (canonical) canonical.setAttribute('href', window.location.href);
-
-// Base URL সেট করুন (আপনার ডোমেইন)
-const baseURL = "https://astro.myastrology.in";
-
-// Open Graph
-document.querySelector('#og-title').setAttribute('content', frontMatter.title || '');
-document.querySelector('#og-description').setAttribute('content', frontMatter.description || '');
-document.querySelector('#og-image').setAttribute(
-  'content',
-  frontMatter.image ? `${baseURL}${frontMatter.image}` : `${baseURL}/default-image.webp`
-);
-document.querySelector('#og-url').setAttribute('content', window.location.href);
-
-// Twitter
-document.querySelector('#twitter-title').setAttribute('content', frontMatter.title || '');
-document.querySelector('#twitter-description').setAttribute('content', frontMatter.description || '');
-document.querySelector('#twitter-image').setAttribute(
-  'content',
-  frontMatter.image ? `${baseURL}${frontMatter.image}` : `${baseURL}/default-image.webp`
-);
     
 // 🔴 Social Share Toggle
 const socialShareHTML = `
