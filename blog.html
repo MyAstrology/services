@@ -8,7 +8,11 @@
 <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Pacifico&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<style>
+
+  <!-- Add this line inside -->
+<link rel="stylesheet" href="/assets/css/social-share.css">
+  
+  <style>
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family:'Montserrat', sans-serif; background:#fdf6f0; color:#222; line-height:1.6; max-width:900px; margin:auto; padding:0 15px; }
 
@@ -84,9 +88,25 @@ blockquote { border-left:4px solid #3478f6; padding-left:12px; color:#555; font-
   </nav>
 </header>
 
-<h1 id="post-title">লোড হচ্ছে...</h1>
+<h1 id="post-title">লোড হচ্ছে...</h1>  
 <img id="post-image" alt="MyAstrology – Indian Astrology & Palmistry">
 <div id="blog-content">লোড হচ্ছে...</div>
+
+<!-- 🔴 এখানে Social Share Block বসান -->
+<div class="social-share">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https://astro.myastrology.in/blog.html?post=success-conscious-effort" target="_blank">
+    <i class="fab fa-facebook-f"></i>
+  </a>
+  <a href="https://twitter.com/intent/tweet?url=https://astro.myastrology.in/blog.html?post=success-conscious-effort&text=সফলতার শিখরে পৌঁছানোর চাবিকাঠি" target="_blank">
+    <i class="fab fa-twitter"></i>
+  </a>
+  <a href="https://api.whatsapp.com/send?text=সফলতার শিখরে পৌঁছানোর চাবিকাঠি https://astro.myastrology.in/blog.html?post=success-conscious-effort" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://astro.myastrology.in/blog.html?post=success-conscious-effort" target="_blank">
+    <i class="fab fa-linkedin-in"></i>
+  </a>
+</div>
 
 <h2 style="margin-top:40px; text-align:center; color:#b33;">সব ব্লগ পোস্ট</h2>
 <div id="blog-list"></div>
@@ -178,7 +198,24 @@ fetch('/src/content/blog/list.json')
     console.error(err);
   });
 
-
+// 🔴 Social Share Block dynamic যোগ
+const shareBlock = `
+<div class="social-share">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=${window.location.href}" target="_blank">
+    <i class="fab fa-facebook-f"></i>
+  </a>
+  <a href="https://twitter.com/intent/tweet?url=${window.location.href}&text=${postTitle.innerText}" target="_blank">
+    <i class="fab fa-twitter"></i>
+  </a>
+  <a href="https://api.whatsapp.com/send?text=${postTitle.innerText} ${window.location.href}" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=${window.location.href}" target="_blank">
+    <i class="fab fa-linkedin-in"></i>
+  </a>
+</div>
+`;
+blogContent.insertAdjacentHTML('beforeend', shareBlock);
 
 </script>
 
