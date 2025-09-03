@@ -78,4 +78,18 @@
       <image:caption><![CDATA[Famous Temple in Ranaghat]]></image:caption>
     </image:image>
   </url>
+  <url>
+    <loc>https://astro.myastrology.in/index.html</loc>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/logo.png</image:loc>
+      <image:caption><![CDATA[MyAstrology Website Logo]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://astro.myastrology.in/about.html</loc>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/banner.jpg</image:loc>
+      <image:caption><![CDATA[Astrology Banner Image]]></image:caption>
+    </image:image>
+  </url>
 </urlset>
