@@ -121,12 +121,6 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://astro.myastrology.in/gallery.html</loc>
-    <lastmod>2025-09-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
     <loc>https://astro.myastrology.in/assist.html</loc>
     <lastmod>2025-09-03</lastmod>
     <changefreq>monthly</changefreq>
