@@ -41,7 +41,7 @@ allItems = allItems.filter(item => {
     return false;
   }
 
-  const imageUrl = item.image.startsWith('http') ? item.image : `${BASE_URL}/${item.image}`;
+  const imageUrl = item.image.startsWith('http') ? item.image : `${BASE_URL}${item.image.startsWith('/') ? '' : '/'}${item.image}`;
 
   if (seenImages.has(imageUrl)) return false;
   seenImages.add(imageUrl);
@@ -59,10 +59,18 @@ xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
 allItems.forEach(item => {
   let pageUrl = BASE_URL;
 
-  if (item._type === 'blog') pageUrl = `${BASE_URL}/blog.html?post=${item.slug}`;
-  else if (item._type === 'gallery') pageUrl = `${BASE_URL}/gallery.html`;
-  else if (item._type === 'assist') pageUrl = `${BASE_URL}/assist.html`;
-  else if (item._type === 'images') pageUrl = `${BASE_URL}/images.html`;
+  if (item.pageUrl) {
+    // যদি JSON ফাইলে pageUrl দেওয়া থাকে
+    pageUrl = `${BASE_URL}${item.pageUrl}`;
+  } else if (item._type === 'blog') {
+    pageUrl = `${BASE_URL}/blog.html?post=${item.slug}`;
+  } else if (item._type === 'gallery') {
+    pageUrl = `${BASE_URL}/gallery.html`;
+  } else if (item._type === 'assist') {
+    pageUrl = `${BASE_URL}/assist.html`;
+  } else if (item._type === 'images') {
+    pageUrl = `${BASE_URL}/images.html`;
+  }
 
   xml += `  <url>
     <loc>${pageUrl}</loc>
