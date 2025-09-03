@@ -138,38 +138,6 @@ function loadPost(slug){
     else postImage.style.display='none';
     blogContent.innerHTML = marked.parse(text);
 
-    // পোস্ট লোড করার পরে
-if(frontMatter.title){
-    document.title = `${frontMatter.title} | MyAstrology`;
-    postTitle.innerText = frontMatter.title;
-
-    // Dynamic OG tags
-    let ogTitle = document.querySelector('meta[property="og:title"]') || document.createElement('meta');
-    ogTitle.setAttribute('property', 'og:title');
-    ogTitle.setAttribute('content', frontMatter.title);
-    document.head.appendChild(ogTitle);
-
-    let ogDesc = document.querySelector('meta[property="og:description"]') || document.createElement('meta');
-    ogDesc.setAttribute('property', 'og:description');
-    ogDesc.setAttribute('content', frontMatter.description || '');
-    document.head.appendChild(ogDesc);
-
-    let ogImage = document.querySelector('meta[property="og:image"]') || document.createElement('meta');
-    ogImage.setAttribute('property', 'og:image');
-    ogImage.setAttribute('content', frontMatter.image || '');
-    document.head.appendChild(ogImage);
-
-    let ogUrl = document.querySelector('meta[property="og:url"]') || document.createElement('meta');
-    ogUrl.setAttribute('property', 'og:url');
-    ogUrl.setAttribute('content', window.location.href);
-    document.head.appendChild(ogUrl);
-
-    let ogType = document.querySelector('meta[property="og:type"]') || document.createElement('meta');
-    ogType.setAttribute('property', 'og:type');
-    ogType.setAttribute('content', 'article');
-    document.head.appendChild(ogType);
-}
-
 // 🔴 Social Share Toggle
 const socialShareHTML = `
   <div id="share-container" style="margin-top:20px; padding:15px; background:#f9f9f9; border-radius:10px; display:flex; flex-direction:column; align-items:flex-start; gap:10px;">
