@@ -86,20 +86,6 @@
     </image:image>
   </url>
   <url>
-    <loc>https://astro.myastrology.in/assist.html</loc>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/assist/assist1.png</image:loc>
-      <image:caption><![CDATA[Assist section sample image 1]]></image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://astro.myastrology.in/assist.html</loc>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/assist/assist2.png</image:loc>
-      <image:caption><![CDATA[Assist section sample image 2]]></image:caption>
-    </image:image>
-  </url>
-  <url>
     <loc>https://astro.myastrology.in/images.html</loc>
     <image:image>
       <image:loc>https://astro.myastrology.in/images/logo.png</image:loc>
