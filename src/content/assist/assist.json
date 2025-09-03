@@ -1,0 +1,12 @@
+[
+  {
+    "title": "Assist Image 1",
+    "alt": "Assist section sample image 1",
+    "image": "https://astro.myastrology.in/assist/assist1.png"
+  },
+  {
+    "title": "Assist Image 2",
+    "alt": "Assist section sample image 2",
+    "image": "https://astro.myastrology.in/assist/assist2.png"
+  }
+]
