@@ -1,0 +1,12 @@
+[
+  {
+    "title": "Website Logo",
+    "alt": "MyAstrology Website Logo",
+    "image": "https://astro.myastrology.in/images/logo.png"
+  },
+  {
+    "title": "Main Banner",
+    "alt": "MyAstrology Website Main Banner",
+    "image": "https://astro.myastrology.in/images/banner.webp"
+  }
+]
