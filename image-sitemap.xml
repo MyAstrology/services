@@ -71,4 +71,11 @@
       <image:caption><![CDATA[আপনার ভাগ্য হাতের রেখায়: Online Palmistry & Astrology Consultation by Dr. Prodyut Acharya]]></image:caption>
     </image:image>
   </url>
+  <url>
+    <loc>https://astro.myastrology.in/gallery.html</loc>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/ranaghat-temple.jpg</image:loc>
+      <image:caption><![CDATA[Famous Temple in Ranaghat]]></image:caption>
+    </image:image>
+  </url>
 </urlset>
