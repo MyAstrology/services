@@ -3,7 +3,7 @@ const path = require('path');
 
 const BASE_URL = 'https://astro.myastrology.in';
 
-// JSON ফাইলগুলোর absolute path এবং type
+// JSON ফাইলগুলো
 const jsonFiles = [
   { path: path.join(process.cwd(), 'src/content/blog/list.json'), type: 'blog' },
   { path: path.join(process.cwd(), 'src/content/gallery/gallery.json'), type: 'gallery' },
@@ -13,10 +13,10 @@ const jsonFiles = [
 
 const imageSitemapPath = path.join(process.cwd(), 'image-sitemap.xml');
 
-// JSON safely read করা
 function readJSON(filePath, type) {
   try {
-    const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    const raw = fs.readFileSync(filePath, 'utf8');
+    const data = JSON.parse(raw);
     console.log(`📂 Loaded ${data.length} items from ${type}`);
     return data;
   } catch (err) {
@@ -25,7 +25,18 @@ function readJSON(filePath, type) {
   }
 }
 
-// সব আইটেম একসাথে collect করা
+function ensureAbsUrl(u) {
+  if (!u) return '';
+  if (u.startsWith('http')) return u;
+  return `${BASE_URL}${u.startsWith('/') ? '' : '/'}${u}`;
+}
+
+function toArray(v) {
+  if (!v) return [];
+  return Array.isArray(v) ? v.filter(Boolean) : [v];
+}
+
+// collect all items
 let allItems = [];
 jsonFiles.forEach(({ path: filePath, type }) => {
   const data = readJSON(filePath, type);
@@ -33,57 +44,63 @@ jsonFiles.forEach(({ path: filePath, type }) => {
   allItems = allItems.concat(data);
 });
 
-// Duplicate images remove করা এবং missing image warning
-const seenImages = new Set();
-allItems = allItems.filter(item => {
-  if (!item.image) {
-    console.warn(`⚠️ Missing image for ${item._type} item:`, item);
-    return false;
-  }
+// normalize image URLs and drop items without image
+allItems = allItems
+  .map(item => {
+    if (!item.image) {
+      console.warn(`⚠️ Missing image field for ${item._type} item:`, item.title || item.slug || item);
+      return null;
+    }
+    item._fullImageUrl = ensureAbsUrl(item.image);
+    return item;
+  })
+  .filter(Boolean);
 
-  const imageUrl = item.image.startsWith('http') ? item.image : `${BASE_URL}${item.image.startsWith('/') ? '' : '/'}${item.image}`;
-
-  if (seenImages.has(imageUrl)) return false;
-  seenImages.add(imageUrl);
-
-  item._fullImageUrl = imageUrl;
-  return true;
-});
-
-// XML শুরু
+// start XML
 let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
-xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n`;
+xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n`;
 
-// প্রতিটি item যোগ করা
+// dedupe by (pageUrl + imageUrl)
+const seenPairs = new Set();
+
 allItems.forEach(item => {
-  let pageUrl = BASE_URL;
+  // determine pages this image should be attached to
+  let pages = [];
 
-  if (item.pageUrl) {
-    // যদি JSON ফাইলে pageUrl দেওয়া থাকে
-    pageUrl = `${BASE_URL}${item.pageUrl}`;
-  } else if (item._type === 'blog') {
-    pageUrl = `${BASE_URL}/blog.html?post=${item.slug}`;
-  } else if (item._type === 'gallery') {
-    pageUrl = `${BASE_URL}/gallery.html`;
-  } else if (item._type === 'assist') {
-    pageUrl = `${BASE_URL}/assist.html`;
-  } else if (item._type === 'images') {
-    pageUrl = `${BASE_URL}/images.html`;
+  // explicit pageUrl or pageUrls in JSON (preferred)
+  pages = pages.concat(toArray(item.pageUrl));
+  pages = pages.concat(toArray(item.pageUrls));
+
+  // blog fallback: if blog and slug provided, attach to blog post URL
+  if (!pages.length && item._type === 'blog' && item.slug) {
+    pages.push(`/blog.html?post=${item.slug}`);
   }
 
-  xml += `  <url>
-    <loc>${pageUrl}</loc>
+  if (!pages.length) {
+    // আমরা এখন non-blog আইটেমগুলোতে ডিফল্ট পেজ ব্যবহার করব না — স্কিপ করে সতর্কবার্তা দেখাবো
+    console.warn(`⏭️ Skipping ${item._type} image because no pageUrl/pageUrls found:`, item._fullImageUrl);
+    return;
+  }
+
+  pages.forEach(p => {
+    const pageAbs = ensureAbsUrl(p);
+    const pairKey = `${pageAbs}||${item._fullImageUrl}`;
+    if (seenPairs.has(pairKey)) return;
+    seenPairs.add(pairKey);
+
+    const caption = item.alt || item.title || '';
+    xml += `  <url>
+    <loc>${pageAbs}</loc>
     <image:image>
       <image:loc>${item._fullImageUrl}</image:loc>
-      ${item.title || item.alt ? `<image:caption><![CDATA[${item.alt || item.title}]]></image:caption>` : ''}
+      ${caption ? `<image:caption><![CDATA[${caption}]]></image:caption>` : ''}
     </image:image>
   </url>\n`;
+  });
 });
 
-// XML close
 xml += `</urlset>`;
 
-// Write to file
+// write file
 fs.writeFileSync(imageSitemapPath, xml, 'utf8');
 console.log(`✅ image-sitemap.xml তৈরি হয়েছে: ${imageSitemapPath}`);
