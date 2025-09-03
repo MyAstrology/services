@@ -137,6 +137,37 @@ function loadPost(slug){
     if(frontMatter.image){ postImage.src=frontMatter.image; postImage.style.display='block'; postImage.alt=`${frontMatter.title} – MyAstrology`; }
     else postImage.style.display='none';
     blogContent.innerHTML=marked.parse(text);
+
+// 🔴 Social Share Toggle + Staticman Comment Block
+const socialCommentHTML = `
+<div id="share-container" style="margin-top:20px;">
+  <button id="share-toggle" style="background:#b33;color:#fff;padding:8px 15px;border:none;border-radius:6px;cursor:pointer;font-size:16px;">
+    শেয়ার করুন
+  </button>
+  <div id="social-icons" style="margin-top:10px; display:none; gap:15px; font-size:20px; flex-wrap:wrap;">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=${window.location.href}" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://twitter.com/intent/tweet?url=${window.location.href}&text=${postTitle.innerText}" target="_blank"><i class="fab fa-twitter"></i></a>
+    <a href="https://api.whatsapp.com/send?text=${postTitle.innerText} ${window.location.href}" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=${window.location.href}" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+  </div>
+</div>
+
+<div id="comments-section" style="margin-top:30px;">
+  <h3>কমেন্ট করুন</h3>
+  <form id="comment-form" method="POST" action="https://staticman3.herokuapp.com/v3/entry/github/USERNAME/REPO/main/comments">
+    <input type="text" name="fields[name]" placeholder="আপনার নাম" required style="width:100%; padding:8px; margin-bottom:8px;">
+    <input type="email" name="fields[email]" placeholder="ইমেইল" required style="width:100%; padding:8px; margin-bottom:8px;">
+    <input type="url" name="fields[website]" placeholder="ওয়েবসাইট (ঐচ্ছিক)" style="width:100%; padding:8px; margin-bottom:8px;">
+    <textarea name="fields[message]" placeholder="আপনার কমেন্ট লিখুন" required style="width:100%; padding:8px; margin-bottom:8px;"></textarea>
+    <button type="submit" style="background:#b33;color:#fff;padding:8px 15px;border:none;border-radius:6px;cursor:pointer;">কমেন্ট করুন</button>
+  </form>
+  <div id="comments-list" style="margin-top:15px;"></div>
+</div>
+`;
+
+blogContent.insertAdjacentHTML('beforeend', socialCommentHTML);
+
+    
   }).catch(err=>{ blogContent.innerHTML="❌ পোস্ট লোড করা যায়নি।"; console.error(err); });
 }
 
