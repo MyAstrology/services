@@ -1,0 +1,12 @@
+[
+  {
+    "title": "Gallery Image 1",
+    "alt": "MyAstrology gallery sample image 1",
+    "image": "https://astro.myastrology.in/gallery/gallery1.webp"
+  },
+  {
+    "title": "Gallery Image 2",
+    "alt": "MyAstrology gallery sample image 2",
+    "image": "https://astro.myastrology.in/gallery/gallery2.webp"
+  }
+]
