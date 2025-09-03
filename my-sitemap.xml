@@ -79,12 +79,6 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://astro.myastrology.in/blog.html?post=new-post-slug</loc>
-    <lastmod>2025-09-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
     <loc>https://astro.myastrology.in/blog.html?post=nishthur-satyer-pathe-astrology-hastrikha</loc>
     <lastmod>2025-09-03</lastmod>
     <changefreq>monthly</changefreq>

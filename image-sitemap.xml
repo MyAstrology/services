@@ -680,13 +680,6 @@
     </image:image>
   </url>
   <url>
-    <loc>https://astro.myastrology.in/blog.html?post=new-post-slug</loc>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/gallery/new-post.jpg</image:loc>
-      <image:caption><![CDATA[নতুন পোস্টের শিরোনাম]]></image:caption>
-    </image:image>
-  </url>
-  <url>
     <loc>https://astro.myastrology.in/blog.html?post=nishthur-satyer-pathe-astrology-hastrikha</loc>
     <image:image>
       <image:loc>https://astro.myastrology.in/blog/shadow-truth-self-awareness.webp</image:loc>

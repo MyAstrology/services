@@ -18,12 +18,6 @@
     "description": "জীবনের সাফল্য ও ব্যর্থতা, ভাগ্য, গ্রহ নক্ষত্র, জ্যোতিষ ও হস্তরেখা বিশ্লেষণ এবং আধ্যাত্মিক দিকনির্দেশনা নিয়ে প্রফেশনাল ও দার্শনিক বিশ্লেষণ।"
   },
   {
-    "slug": "new-post-slug",
-    "title": "নতুন পোস্টের শিরোনাম",
-    "image": "https://astro.myastrology.in/gallery/new-post.jpg",
-    "description": "সংক্ষিপ্ত বর্ণনা এখানে লিখুন..."
-  },
-  {
     "slug": "nishthur-satyer-pathe-astrology-hastrikha",
     "title": "নিষ্ঠুর সত্যের পথে আত্ম-উন্নয়ন: হস্তরেখা ও জ্যোতিষের দৃষ্টিকোণ",
     "image": "/blog/shadow-truth-self-awareness.webp",
