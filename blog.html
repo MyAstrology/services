@@ -157,6 +157,22 @@ function loadPost(slug){
     else postImage.style.display='none';
     blogContent.innerHTML = marked.parse(text);
 
+// Canonical
+let canonical = document.querySelector('#canonical-url');
+if (canonical) canonical.setAttribute('href', window.location.href);
+
+// Open Graph
+document.querySelector('#og-title').setAttribute('content', frontMatter.title || '');
+document.querySelector('#og-description').setAttribute('content', frontMatter.description || '');
+document.querySelector('#og-image').setAttribute('content', frontMatter.image || '/default-image.webp');
+document.querySelector('#og-url').setAttribute('content', window.location.href);
+
+// Twitter
+document.querySelector('#twitter-title').setAttribute('content', frontMatter.title || '');
+document.querySelector('#twitter-description').setAttribute('content', frontMatter.description || '');
+document.querySelector('#twitter-image').setAttribute('content', frontMatter.image || '/default-image.webp');
+
+    
 // 🔴 Social Share Toggle
 const socialShareHTML = `
   <div id="share-container" style="margin-top:20px; padding:15px; background:#f9f9f9; border-radius:10px; display:flex; flex-direction:column; align-items:flex-start; gap:10px;">
@@ -221,33 +237,6 @@ fetch('/src/content/blog/list.json')
 
 </script>
   
-
-
-  <script>
-  fetch('/src/content/blog/myastrology.json') // এখানে আপনার JSON ফাইলের path দিন
-    .then(res => res.json())
-    .then(frontMatter => {
-      if (frontMatter.title) {
-        // Title
-        document.title = `${frontMatter.title} | MyAstrology`;
-        document.querySelector('#og-title').setAttribute('content', frontMatter.title);
-        document.querySelector('#twitter-title').setAttribute('content', frontMatter.title);
-
-        // Description
-        document.querySelector('#og-description').setAttribute('content', frontMatter.description || '');
-        document.querySelector('#twitter-description').setAttribute('content', frontMatter.description || '');
-
-        // Image
-        document.querySelector('#og-image').setAttribute('content', frontMatter.image || '/default-image.webp');
-        document.querySelector('#twitter-image').setAttribute('content', frontMatter.image || '/default-image.webp');
-
-        // URL + Canonical
-        let url = window.location.href;
-        document.querySelector('#og-url').setAttribute('content', url);
-        document.querySelector('#canonical-url').setAttribute('href', url);
-      }
-    });
-</script>
 
 
   <!-- Professional CTA Footer Start -->
