@@ -17,12 +17,12 @@ priority: 1
 reading_time: "20 min"
 og_title: "সফলতার পথে সঠিক চেতনা ও পদক্ষেপ"
 og_description: "সফলতা অর্জনের জন্য প্রয়োজনীয় উৎসাহ, সিদ্ধান্ত, ধৈর্য, তৎকর্ম ও সঠিক সঙ্গের গুরুত্ব।"
-og_image: "https://astro.myastrology.in/blog/blog/success-conscious-effort.webp"
+og_image: "https://astro.myastrology.in/blog/success-conscious-effort.webp"
 og_image_alt: "ভালো মানুষ হওয়া, চেতনার পথ, আত্মউন্নয়ন"
 twitter_card: "summary_large_image"
 twitter_title: "সফলতার চাবিকাঠি: চেতনা ও ধৈর্য"
 twitter_description: "জীবনে সফলতা পাওয়ার জন্য প্রয়োজনীয় চাবিকাঠি ও জ্যোতিষ দর্শন অনুযায়ী নির্দেশ।"
-twitter_image: "https://astro.myastrology.in/blog/blog/success-conscious-effort.webp"
+twitter_image: "https://astro.myastrology.in/blog/success-conscious-effort.webp"
 ---
 
 # সফলতার শিখরে পৌঁছানোর চাবিকাঠি: চেতনা, উদ্যোগ ও ধৈর্য
