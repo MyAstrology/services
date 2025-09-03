@@ -79,6 +79,13 @@
     </image:image>
   </url>
   <url>
+    <loc>https://astro.myastrology.in/assist.html</loc>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/assist/consultation.webp</image:loc>
+      <image:caption><![CDATA[Online Astrology Consultation]]></image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://astro.myastrology.in/index.html</loc>
     <image:image>
       <image:loc>https://astro.myastrology.in/images/logo.png</image:loc>
