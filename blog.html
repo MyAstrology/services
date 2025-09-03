@@ -140,11 +140,11 @@ function loadPost(slug){
 
 // 🔴 Social Share Toggle
 const socialShareHTML = `
-  <div id="share-container" style="margin-top:20px;">
+  <div id="share-container" style="margin-top:20px; padding:15px; background:#f9f9f9; border-radius:10px; display:flex; flex-direction:column; align-items:flex-start; gap:10px;">
     <button id="share-toggle" style="background:#b33;color:#fff;padding:8px 15px;border:none;border-radius:6px;cursor:pointer;font-size:16px;">
       শেয়ার করুন
     </button>
-    <div id="social-icons" style="margin-top:10px; display:none; gap:15px; font-size:20px;">
+    <div id="social-icons" style="margin-top:10px; display:none; gap:15px; font-size:20px; flex-wrap:wrap;">
       <a href="https://www.facebook.com/sharer/sharer.php?u=${window.location.href}" target="_blank"><i class="fab fa-facebook-f"></i></a>
       <a href="https://twitter.com/intent/tweet?url=${window.location.href}&text=${postTitle.innerText}" target="_blank"><i class="fab fa-twitter"></i></a>
       <a href="https://api.whatsapp.com/send?text=${postTitle.innerText} ${window.location.href}" target="_blank"><i class="fab fa-whatsapp"></i></a>
@@ -160,7 +160,6 @@ const socialIcons = document.getElementById('social-icons');
 shareToggle.addEventListener('click', () => {
   socialIcons.style.display = socialIcons.style.display === 'flex' ? 'none' : 'flex';
 });
-
     
   }).catch(err=>{ blogContent.innerHTML="❌ পোস্ট লোড করা যায়নি।"; console.error(err); });
 }
