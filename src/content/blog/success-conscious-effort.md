@@ -1,7 +1,7 @@
-Font matter markdown
 
+---
 title: "শিরনাম" description: "বিস্তারিত বিবরণ" slug: blog/success-conscious-effort: "https://astro.myastrology.in/blog/ blog/success-conscious-effort.webp" date: "2025-00-00" author: name: "Dr. Prodyut Acharya" bio: "জ্যোতিষী, হস্তরেখাবিদ, দার্শনিক চিন্তাবিদ, ভাগ্য উন্নতির পরামর্শ দাতা।" profile_url: "https://astro.myastrology.in" categories: ["SEO friendly"] tags: ["SEO friendly"] keywords: "searchable" canonical_url: "https://astro.myastrology.in/blog.html?post=blog/success-conscious-effort" featured: true priority: 1 reading_time: "00 min" og_title: "প্রয়োজন অনুযায়ী" og_description: "প্রয়োজন অনুযায়ী।" og_image: "https://astro.myastrology.in/blog/ image-name.webp" og_image_alt: "ভালো মানুষ হওয়া, চেতনার পথ, আত্মউন্নয়ন" twitter_card: "summary_large_image" twitter_title: "title" twitter_description: " সংক্ষিপ্ত বর্ণনা।" twitter_image: "https://astro.myastrology.in/blog/ image-name.webp"
-
+---
 সফলতা পাওয়ার জন্য মানুষ জীবনে কত কিছু চেষ্টা করে, কিন্তু সবাই কি সফল হতে পারে? না পারে না, কিন্তু কেন? পন্ডিত শীলা রুপা গোস্বামী যে বিষয়গুলোর অভাব মানুষের মধ্যে লক্ষ্য করেছিলেন| shila roopa Goswami 
 
 ✍️অভিজ্ঞ জ্যোতিষী ও হস্তরেখা বিশেষজ্ঞ প্রদ্যুত আচার্য
