@@ -138,23 +138,6 @@ function loadPost(slug){
     else postImage.style.display='none';
     blogContent.innerHTML=marked.parse(text);
 
-// Simple Comment Submission (Front-end only)
-const submitComment = document.getElementById('submit-comment');
-const commentBox = document.getElementById('comment-box');
-const commentList = document.getElementById('comment-list');
-
-submitComment.addEventListener('click', () => {
-  const comment = commentBox.value.trim();
-  if(comment){
-    const newComment = document.createElement('p');
-    newComment.textContent = comment;
-    newComment.style.borderBottom = '1px solid #ddd';
-    newComment.style.padding = '5px 0';
-    commentList.appendChild(newComment);
-    commentBox.value = '';
-  }
-});
-
 
     
   }).catch(err=>{ blogContent.innerHTML="❌ পোস্ট লোড করা যায়নি।"; console.error(err); });
