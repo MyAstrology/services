@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://astro.myastrology.in/blog.html?post=bhalo-manush-howa</loc>
     <image:image>
@@ -69,6 +68,13 @@
     <image:image>
       <image:loc>https://astro.myastrology.in/blog/palmistry-astrology-consultation.webp</image:loc>
       <image:caption><![CDATA[আপনার ভাগ্য হাতের রেখায়: Online Palmistry & Astrology Consultation by Dr. Prodyut Acharya]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://astro.myastrology.in/gallery.html</loc>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/astrologer-expert-palmist-nadia.webp</image:loc>
+      <image:caption><![CDATA[Best Astrologer and Palmist in Nadia]]></image:caption>
     </image:image>
   </url>
   <url>
