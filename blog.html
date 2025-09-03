@@ -92,7 +92,6 @@ blockquote { border-left:4px solid #3478f6; padding-left:12px; color:#555; font-
 <img id="post-image" alt="MyAstrology – Indian Astrology & Palmistry">
 <div id="blog-content">লোড হচ্ছে...</div>
 
-
   <script>
 const hamburger=document.getElementById('hamburger');
 const navMenu=document.getElementById('nav-menu');
@@ -138,57 +137,6 @@ function loadPost(slug){
     if(frontMatter.image){ postImage.src=frontMatter.image; postImage.style.display='block'; postImage.alt=`${frontMatter.title} – MyAstrology`; }
     else postImage.style.display='none';
     blogContent.innerHTML=marked.parse(text);
-
-// 🔴 Social Share Toggle এবং Comment Block
-const socialShareHTML = `
-  <div id="share-container" style="margin-top:20px;">
-    <button id="share-toggle" style="background:#b33;color:#fff;padding:8px 15px;border:none;border-radius:6px;cursor:pointer;font-size:16px;">
-      শেয়ার করুন
-    </button>
-    <div id="social-icons" style="margin-top:10px; display:none; gap:15px; font-size:20px;">
-      <a href="https://www.facebook.com/sharer/sharer.php?u=${window.location.href}" target="_blank"><i class="fab fa-facebook-f"></i></a>
-      <a href="https://twitter.com/intent/tweet?url=${window.location.href}&text=${postTitle.innerText}" target="_blank"><i class="fab fa-twitter"></i></a>
-      <a href="https://api.whatsapp.com/send?text=${postTitle.innerText} ${window.location.href}" target="_blank"><i class="fab fa-whatsapp"></i></a>
-      <a href="https://www.linkedin.com/sharing/share-offsite/?url=${window.location.href}" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-    </div>
-  </div>
-  <div id="comment-section" style="margin-top:25px;">
-    <h3 style="margin-bottom:10px;">কমেন্ট করুন</h3>
-    <textarea id="comment-box" placeholder="আপনার মন্তব্য লিখুন..." style="width:100%; padding:10px; border-radius:8px; border:1px solid #ccc; resize:none;"></textarea>
-    <button id="submit-comment" style="margin-top:10px; padding:8px 20px; background:#b33; color:#fff; border:none; border-radius:6px; cursor:pointer;">পাঠান</button>
-    <div id="comment-list" style="margin-top:15px;"></div>
-  </div>
-`;
-
-blogContent.insertAdjacentHTML('beforeend', socialShareHTML);
-
-// Toggle Social Icons
-const shareToggle = document.getElementById('share-toggle');
-const socialIcons = document.getElementById('social-icons');
-
-shareToggle.addEventListener('click', () => {
-  socialIcons.style.display = socialIcons.style.display === 'flex' ? 'none' : 'flex';
-});
-
-// Simple Comment Submission (Front-end only)
-const submitComment = document.getElementById('submit-comment');
-const commentBox = document.getElementById('comment-box');
-const commentList = document.getElementById('comment-list');
-
-submitComment.addEventListener('click', () => {
-  const comment = commentBox.value.trim();
-  if(comment){
-    const newComment = document.createElement('p');
-    newComment.textContent = comment;
-    newComment.style.borderBottom = '1px solid #ddd';
-    newComment.style.padding = '5px 0';
-    commentList.appendChild(newComment);
-    commentBox.value = '';
-  }
-});
-
-
-    
   }).catch(err=>{ blogContent.innerHTML="❌ পোস্ট লোড করা যায়নি।"; console.error(err); });
 }
 
@@ -231,6 +179,7 @@ fetch('/src/content/blog/list.json')
 
 </script>
   
+
 
 
   <!-- Professional CTA Footer Start -->
