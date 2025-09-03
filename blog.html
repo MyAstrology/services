@@ -92,7 +92,9 @@ blockquote { border-left:4px solid #3478f6; padding-left:12px; color:#555; font-
 <img id="post-image" alt="MyAstrology – Indian Astrology & Palmistry">
 <div id="blog-content">লোড হচ্ছে...</div>
 
-<script>
+
+  
+  <script>
 const hamburger=document.getElementById('hamburger');
 const navMenu=document.getElementById('nav-menu');
 const searchBtn=document.getElementById('search-btn');
@@ -153,7 +155,6 @@ function doSearch(){
 }
 
 
-
 const blogListContainer = document.getElementById('blog-list');
 
 fetch('/src/content/blog/list.json')
@@ -177,24 +178,6 @@ fetch('/src/content/blog/list.json')
     console.error(err);
   });
 
-// 🔴 Social Share Block dynamic যোগ
-const shareBlock = `
-<div class="social-share">
-  <a href="https://www.facebook.com/sharer/sharer.php?u=${window.location.href}" target="_blank">
-    <i class="fab fa-facebook-f"></i>
-  </a>
-  <a href="https://twitter.com/intent/tweet?url=${window.location.href}&text=${postTitle.innerText}" target="_blank">
-    <i class="fab fa-twitter"></i>
-  </a>
-  <a href="https://api.whatsapp.com/send?text=${postTitle.innerText} ${window.location.href}" target="_blank">
-    <i class="fab fa-whatsapp"></i>
-  </a>
-  <a href="https://www.linkedin.com/sharing/share-offsite/?url=${window.location.href}" target="_blank">
-    <i class="fab fa-linkedin-in"></i>
-  </a>
-</div>
-`;
-blogContent.insertAdjacentHTML('beforeend', shareBlock);
 
 </script>
 
