@@ -46,6 +46,9 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
+          # Pull remote first to avoid conflicts
+          git pull --rebase origin main || true
+
           # Stage all generated files
           git add src/content/blog/list.json
           git add my-sitemap.xml
@@ -54,8 +57,5 @@ jobs:
           # Commit only if changes exist
           git diff --cached --quiet || git commit -m "🔄 Auto-update blog list & sitemaps"
 
-          # Pull remote changes to avoid conflicts
-          git pull --rebase origin main || true
-
           # Push updated files
-          git push origin main
+          git push origin mainin
