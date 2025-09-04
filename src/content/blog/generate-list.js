@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const matter = require('gray-matter');
 
-// Markdown source ফোল্ডার
+// Blog ফোল্ডারের absolute path
 const blogDir = path.join(process.cwd(), 'src', 'content', 'blog');
 
 // Markdown ফাইলগুলো filter
@@ -21,8 +21,7 @@ const posts = files.map(file => {
   };
 });
 
-// ⚠️ Public ফোল্ডারে write করা
-const outputPath = path.join(process.cwd(), 'public', 'blog', 'list.json');
+// list.json লিখে দেওয়া
+const outputPath = path.join(blogDir, 'list.json');
 fs.writeFileSync(outputPath, JSON.stringify(posts, null, 2));
-
 console.log(`✅ list.json generated successfully at ${outputPath}`);
