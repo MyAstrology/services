@@ -16,7 +16,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # full history needed
+          fetch-depth: 0
 
       # 2️⃣ Setup Node.js
       - name: Set up Node.js
@@ -29,11 +29,11 @@ jobs:
         run: npm install gray-matter
 
       # 4️⃣ Generate blog list
-- name: Generate blog list
-  run: |
-    node src/content/blog/generate-list.js
-    mkdir -p public/blog
-    cp src/content/blog/list.json public/blog/list.json
+      - name: Generate blog list
+        run: |
+          node src/content/blog/generate-list.js
+          mkdir -p public/blog
+          cp src/content/blog/list.json public/blog/list.json
 
       # 5️⃣ Generate blog sitemap
       - name: Generate blog sitemap
@@ -43,20 +43,17 @@ jobs:
       - name: Generate image sitemap
         run: node src/content/blog/generate-image-sitemap.js
 
+      # 7️⃣ Commit & push
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-# 7️⃣ Commit & push
-- name: Commit and push changes
-  run: |
-    git config --global user.name "github-actions[bot]"
-    git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/content/blog/list.json
+          git add public/blog/list.json
+          git add my-sitemap.xml
+          git add image-sitemap.xml
 
-    git add src/content/blog/list.json
-    git add public/blog/list.json
-    git add my-sitemap.xml
-    git add image-sitemap.xml
-
-    git diff --cached --quiet || git commit -m "🔄 Auto-update blog list & sitemaps"
-    git pull --rebase origin main || true
-    git push origin main
-
-
+          git diff --cached --quiet || git commit -m "🔄 Auto-update blog list & sitemaps"
+          git pull --rebase origin main || true
+          git push origin main
