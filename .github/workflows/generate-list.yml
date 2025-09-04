@@ -44,16 +44,16 @@ jobs:
         run: node src/content/blog/generate-image-sitemap.js
 
       # 7️⃣ Commit & push
-      - name: Commit and push changes
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+- name: Commit and push changes
+  run: |
+    git config --global user.name "github-actions[bot]"
+    git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add src/content/blog/list.json
-          git add public/blog/list.json
-          git add my-sitemap.xml
-          git add image-sitemap.xml
+    git add src/content/blog/list.json
+    git add public/blog/list.json
+    git add my-sitemap.xml
+    git add image-sitemap.xml
 
-          git diff --cached --quiet || git commit -m "🔄 Auto-update blog list & sitemaps"
-          git pull --rebase origin main || true
-          git push origin main
+    git diff --cached --quiet || git commit -m "🔄 Auto-update blog list & sitemaps"
+    git pull --rebase origin main || true
+    git push origin main
