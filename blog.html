@@ -239,7 +239,7 @@ function doSearch(){
 
 const blogListContainer = document.getElementById('blog-list');
 
-fetch('/src/content/blog/list.json')
+fetch('https://astro.myastrology.in/src/content/blog/list.json')
   .then(res => res.json())
   .then(posts => {
     if(posts.length === 0){
