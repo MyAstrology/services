@@ -12,37 +12,6 @@
     </image:image>
   </url>
   <url>
-    <loc>https://astro.myastrology.in/Hola.html</loc>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/MyAstrology-Ranghat-logo.png</image:loc>
-      <image:caption><![CDATA[MyAstrology Logo]]></image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/astrologer-india-banner3.webp</image:loc>
-      <image:caption><![CDATA[ভারতের সেরা জ্যোতিষ ও হস্তরেখা পরামর্শদাতা ড. প্রদ্যুৎ আচার্য]]></image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg</image:loc>
-      <image:caption><![CDATA[WhatsApp]]></image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg</image:loc>
-      <image:caption><![CDATA[Facebook]]></image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg</image:loc>
-      <image:caption><![CDATA[Instagram]]></image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg</image:loc>
-      <image:caption><![CDATA[YouTube]]></image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/googlemaps.svg</image:loc>
-      <image:caption><![CDATA[Google Maps]]></image:caption>
-    </image:image>
-  </url>
-  <url>
     <loc>https://astro.myastrology.in/about.html</loc>
     <image:image>
       <image:loc>https://astro.myastrology.in/images/MyAstrology-Ranghat-logo.png</image:loc>
@@ -543,6 +512,37 @@
     <image:image>
       <image:loc>https://astro.myastrology.in/images/meen-rashi-pisces.webp</image:loc>
       <image:caption><![CDATA[মীন রাশির মানুষের স্বভাব, প্রকৃতি ও ভাগ্য বিশ্লেষণ—দুটি বিপরীতমুখী মাছের প্রতীক ও বৃহস্পতির প্রভাব]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://astro.myastrology.in/reviews.html</loc>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/MyAstrology-Ranghat-logo.png</image:loc>
+      <image:caption><![CDATA[MyAstrology Logo]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/astrologer-india-banner3.webp</image:loc>
+      <image:caption><![CDATA[ভারতের সেরা জ্যোতিষ ও হস্তরেখা পরামর্শদাতা ড. প্রদ্যুৎ আচার্য]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg</image:loc>
+      <image:caption><![CDATA[WhatsApp]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg</image:loc>
+      <image:caption><![CDATA[Facebook]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg</image:loc>
+      <image:caption><![CDATA[Instagram]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg</image:loc>
+      <image:caption><![CDATA[YouTube]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/googlemaps.svg</image:loc>
+      <image:caption><![CDATA[Google Maps]]></image:caption>
     </image:image>
   </url>
   <url>
