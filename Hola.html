@@ -101,6 +101,14 @@
 </script>
 
   <style>
+.review-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width:700px) { .review-grid { grid-template-columns: 1fr; } }
+.review-card { background: #fff8f2; padding: 15px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.section-heading { text-align: center; font-size: 28px; color: #b33; margin-bottom: 30px; }
+.cta-btn { display: inline-block; background: #b33; color: #fff; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: 0.3s; }
+
+
+    
 .hero-img {
   width: 100%;
   height: auto;
