@@ -14,48 +14,8 @@
   <url>
     <loc>https://astro.myastrology.in/Hola.html</loc>
     <image:image>
-      <image:loc>https://astro.myastrology.in/images/vedic-astrology-symbols.jpg</image:loc>
-      <image:caption><![CDATA[প্রাচীন ভারতীয় জ্যোতিষশাস্ত্রের প্রতীক ও চিহ্ন]]></image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/jyotish-etymology.jpg</image:loc>
-      <image:caption><![CDATA[জ্যোতিষ শব্দের সংস্কৃত উৎস ও অর্থ]]></image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/time-in-vedas.jpg</image:loc>
-      <image:caption><![CDATA[বেদে সময়ের দার্শনিক ব্যাখ্যা]]></image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/vedic-horoscope-chart.jpg</image:loc>
-      <image:caption><![CDATA[জন্মকুণ্ডলীর উদাহরণ — রাশি ও ঘরসমূহ]]></image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/chakras-and-planets.jpg</image:loc>
-      <image:caption><![CDATA[চক্র ও গ্রহের মধ্যে সম্পর্ক]]></image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/vedic-kundli-reflection.jpg</image:loc>
-      <image:caption><![CDATA[জন্মকুণ্ডলী — আত্মজ্ঞান ও চেতনার প্রতিফলন]]></image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/planets-archetypes-infographic.jpg</image:loc>
-      <image:caption><![CDATA[গ্রহ-প্রতীক ও মানসিক আর্কিটাইপ—জ্যোতিষ ও মনোবিজ্ঞান]]></image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/janmakundali-analysis.jpg</image:loc>
-      <image:caption><![CDATA[বাংলা জন্মকুণ্ডলী ও গ্রহ বিশ্লেষণের প্রতীকী চিত্র]]></image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/conscious-astrology.jpg</image:loc>
-      <image:caption><![CDATA[জ্যোতিষ ও চেতনার সংযোগের প্রতীকী চিত্র]]></image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/images/relationship-chart.jpg</image:loc>
-      <image:caption><![CDATA[জন্মছকের সম্পর্ক নির্ধারণকারী ভাব]]></image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/ideal-astrologer-bengali.jpg</image:loc>
-      <image:caption><![CDATA[সত্যিকারের জ্যোতিষীর বৈশিষ্ট্য - জ্যোতিষ ও দর্শন]]></image:caption>
+      <image:loc>https://astro.myastrology.in/images/MyAstrology-Ranghat-logo.png</image:loc>
+      <image:caption><![CDATA[MyAstrology Logo]]></image:caption>
     </image:image>
   </url>
   <url>
