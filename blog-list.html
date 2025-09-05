@@ -221,6 +221,49 @@ fetch('src/content/blog/list.json')
 </script>
 
 
+
+
+
+<!-- paste this in blog-list.html (before </body>) -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const params = new URLSearchParams(window.location.search);
+  const q = (params.get('q') || '').trim().toLowerCase();
+  if (!q) return;
+
+  // selector: adjust if your post items use different class/tag
+  const posts = document.querySelectorAll('.post-card');
+  let found = 0;
+  posts.forEach(post => {
+    const txt = (post.textContent || '').toLowerCase();
+    if (txt.includes(q)) {
+      post.style.display = ''; // show
+      found++;
+    } else {
+      post.style.display = 'none'; // hide
+    }
+  });
+
+  // show info banner
+  const info = document.createElement('div');
+  info.className = 'search-info';
+  info.innerHTML = `<p>Search results for "<strong>${q}</strong>": ${found} result(s). <a href="/blog-list.html">Show all</a></p>`;
+  const main = document.querySelector('main') || document.body;
+  main.insertBefore(info, main.firstChild);
+});
+</script>
+<style>
+.search-info { background:#fff8f2; border:1px solid #eee; padding:10px; border-radius:6px; margin:12px 0; }
+</style>
+
+
+
+
+
+
+
+  
+
 <!-- Professional CTA Footer Start -->
 <footer style="background:#2a2a3d;color:#f0f0f0;padding:30px 20px;text-align:center;font-family:'Montserrat',sans-serif;width:100%;">
   
