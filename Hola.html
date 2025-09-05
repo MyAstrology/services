@@ -59,6 +59,13 @@
   </script>
 
   <style>
+
+/* add to existing <style> */
+#nav-menu.open { display: flex; } /* consistent toggle via class */
+#nav-menu { flex-direction: column; } /* ensure column layout when opened */
+
+
+    
     * { margin:0; padding:0; box-sizing:border-box; }
     body { font-family:'Montserrat', sans-serif; background:#fdf6f0; color:#222; line-height:1.6; max-width:900px; margin:auto; padding:0 15px; }
     header { display:flex; justify-content:space-between; align-items:center;
@@ -118,3 +125,75 @@
     <a href="https://blog.myastrology.in">বাংলা ব্লগ</a>
   </nav>
 </header>
+
+
+
+  <!-- Hamburger toggle + Search redirect (paste before </body>) -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // ---- HAMBURGER / NAV TOGGLE ----
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.getElementById('nav-menu');
+
+  if (hamburger && navMenu) {
+    // accessibility attributes
+    hamburger.setAttribute('role', 'button');
+    hamburger.setAttribute('aria-controls', 'nav-menu');
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.tabIndex = 0;
+
+    const openMenu = () => {
+      navMenu.style.display = 'flex';
+      navMenu.classList.add('open');
+      hamburger.setAttribute('aria-expanded', 'true');
+    };
+    const closeMenu = () => {
+      navMenu.style.display = 'none';
+      navMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    };
+    const toggleMenu = () => (navMenu.classList.contains('open') ? closeMenu() : openMenu());
+
+    // click / keyboard
+    hamburger.addEventListener('click', function (e) { e.stopPropagation(); toggleMenu(); });
+    hamburger.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMenu(); }
+    });
+
+    // click outside => close
+    document.addEventListener('click', function (ev) {
+      if (!navMenu.contains(ev.target) && !hamburger.contains(ev.target)) {
+        if (navMenu.classList.contains('open')) closeMenu();
+      }
+    });
+
+    // ESC to close
+    document.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Escape' && navMenu.classList.contains('open')) closeMenu();
+    });
+  }
+
+  // ---- SEARCH: redirect to blog-list with query param 'q' ----
+  const searchBar = document.getElementById('search-bar');
+  const searchBtn = document.getElementById('search-btn');
+
+  function doSearch() {
+    if (!searchBar) return;
+    const q = searchBar.value.trim();
+    // if empty, go to blog-list (show all)
+    if (!q) {
+      window.location.href = '/blog-list.html';
+      return;
+    }
+    // build URL relative to current origin
+    const url = new URL('/blog-list.html', window.location.origin);
+    url.searchParams.set('q', q);
+    window.location.href = url.toString();
+  }
+
+  if (searchBtn && searchBar) {
+    searchBtn.addEventListener('click', function (e) { e.preventDefault(); doSearch(); });
+    searchBar.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); doSearch(); } });
+  }
+});
+</script>
