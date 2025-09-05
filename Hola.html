@@ -104,64 +104,21 @@
 
  
   <style>
-.review-card {
-  background: #fff;
-  padding: 15px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  border: 2px solid skyblue; /* আকাশী নীল দাগ */
-}
-
-/* রিভিউ শিরোনাম এখন কার্ডের অংশ */
-.review-card h2 {
-  color: #b33;   /* গাঢ় লাল */
-  font-size: 22px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  padding-bottom: 6px;
-  border-bottom: 2px solid skyblue;  /* শুধু নিচে লাইন */
-}
-
-/* রিভিউ বাটনে দাগ */
-.review-btn {
-  display: inline-block;
-  background: #007bff;      /* নীল ব্যাকগ্রাউন্ড */
-  color: #fff;              /* সাদা টেক্সট */
-  padding: 12px 22px;
-  margin: 10px 5px;
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 8px;
-  border: 2px solid #0056b3; /* বর্ডার যোগ */
-  transition: 0.3s ease;
-}
-
-.review-btn:hover {
-  background: #0056b3;      /* হোভার করলে গাঢ় নীল */
-  transform: translateY(-2px);
-  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-}
-.review-source {
-  font-size: 12px;
-  color: #555;
-  margin-top: 8px;
-}
-
-
+/* --- Reviews Section --- */
 #Reviews {
   padding: 40px 0;
-  background: #b8d1fc;
+  background: #b8d1fc; /* হালকা নীল ব্যাকগ্রাউন্ড */
 }
-
 
 .section-heading {
   text-align: center;
   font-size: 28px;
-  color: #b33;
+  color: #b33; /* গাঢ় লাল */
   margin-bottom: 30px;
+  font-weight: bold;
 }
 
+/* গ্রিড লেআউট */
 .review-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -174,10 +131,83 @@
   }
 }
 
+/* প্রতিটি রিভিউ কার্ড */
+.review-card {
+  background: #fff;
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border: 2px solid skyblue;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-    
-.cta-btn { display: inline-block; background: #b33; color: #fff; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: 0.3s; }
+.review-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
 
+/* শিরোনাম এখন কার্ডের অংশ */
+.review-card h2 {
+  color: #b33;
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid skyblue; /* underline style */
+}
+
+/* রিভিউ টেক্সট */
+.review-card p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+/* রিভিউ সোর্স */
+.review-source {
+  font-size: 12px;
+  color: #555;
+  margin-top: 8px;
+  font-style: italic;
+}
+
+/* রিভিউ বাটন */
+.review-btn {
+  display: inline-block;
+  background: #007bff;
+  color: #fff;
+  padding: 12px 22px;
+  margin: 10px 5px 0 0;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  border: 2px solid #0056b3;
+  transition: all 0.3s ease;
+}
+
+.review-btn:hover {
+  background: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+/* Call-to-action বাটন */
+.cta-btn {
+  display: inline-block;
+  background: #b33;
+  color: #fff;
+  padding: 12px 25px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.cta-btn:hover {
+  background: #922;
+}
 
     
 .hero-img {
