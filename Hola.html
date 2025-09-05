@@ -982,39 +982,40 @@ document.addEventListener('DOMContentLoaded', function () {
 <footer class="site-footer">
   <div class="footer-container">
 
-    <!-- Brand / Name -->
-    <div class="footer-brand">
-      <h3>MyAstrology Ranaghat</h3>
-      <p>✨ জ্যোতিষ, হস্তরেখা ও জীবনের সঠিক দিশা ✨</p>
-    </div>
+    <!-- Brand / Title -->
+    <h3 class="footer-title">🔯 MyAstrology Ranaghat</h3>
+    <p class="footer-tagline">
+      জ্যোতিষ ও হস্তরেখার আলোয় আপনার আগামীকে আলোকিত করুন।
+    </p>
 
-    <!-- Social Links -->
+    <!-- Social Media Links -->
     <div class="footer-social">
       <a href="https://wa.me/919333122768" target="_blank" aria-label="WhatsApp">
-        <i class="fab fa-whatsapp"></i>
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" alt="WhatsApp" width="24">
       </a>
-      <a href="https://www.facebook.com/MyAstrologyRanaghat" target="_blank" aria-label="Facebook">
-        <i class="fab fa-facebook"></i>
+      <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" width="24">
       </a>
-      <a href="https://www.instagram.com/MyAstrologyRanaghat" target="_blank" aria-label="Instagram">
-        <i class="fab fa-instagram"></i>
+      <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" width="24">
       </a>
-      <a href="https://www.youtube.com/@MyAstrologyRanaghat" target="_blank" aria-label="YouTube">
-        <i class="fab fa-youtube"></i>
-      </a>
-      <a href="https://www.justdial.com/Ranaghat/My-Astrology" target="_blank" aria-label="JustDial">
-        <i class="fas fa-star"></i>
+      <a href="https://youtube.com" target="_blank" aria-label="YouTube">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube" width="24">
       </a>
       <a href="https://maps.app.goo.gl/fqRtwbDWnBDx1qet7" target="_blank" aria-label="Google Maps">
-        <i class="fas fa-map-marker-alt"></i>
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/googlemaps.svg" alt="Google Maps" width="24">
       </a>
     </div>
 
-    <!-- Footer Bottom -->
-    <div class="footer-bottom">
-      <p>&copy; 2025 MyAstrology Ranaghat | Designed with ❤️ by Dr. Prodyut Acharya</p>
-    </div>
-
+    
+    <!-- Copyright -->
+    <p class="footer-copy">
+      © <span id="year"></span> MyAstrology Ranaghat. সর্বস্বত্ব সংরক্ষিত।
+    </p>
   </div>
+
+  <script>
+    // স্বয়ংক্রিয়ভাবে বর্তমান বছর দেখাবে
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </footer>
-  
