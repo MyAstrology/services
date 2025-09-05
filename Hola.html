@@ -241,18 +241,23 @@ header {
   text-align: center;
   font-size: 32px;
   font-weight: bold;
-  margin: 30px 0;
-  padding: 95px 10px 10px; /* উপরের padding বাড়ানো হলো */
-  color: #b33; /* লাল হেডলাইন */
+  margin: 40px 0 20px;  /* উপরের-নিচের ফাঁকা বাড়ানো হলো */
+  padding: 70px 10px 10px; /* আগে 95px ছিল, এখন কমানো হলো */
+  color: #b33;
 }
 
-/* --- Section Heading --- */
+/* প্রতিটি সেকশনের মাঝে ফাঁকা তৈরি */
+section {
+  margin-bottom: 50px; /* প্রতিটি সেকশনের পরে পর্যাপ্ত ফাঁকা থাকবে */
+}
+
+/* Section Heading */
 h2, .section-heading {
   text-align: center;
   font-size: 28px;
   font-weight: bold;
-  margin: 2px 0;
-  padding: 20px;
+  margin: 20px auto;
+  padding: 16px;
   border: 2px solid #007bff;
   color: #007bff;
   border-radius: 10px;
