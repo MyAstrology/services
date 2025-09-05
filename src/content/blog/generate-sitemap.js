@@ -16,6 +16,8 @@ const staticPages = [
   { loc: '/gallery.html', lastmod: '2025-08-30', changefreq: 'monthly', priority: 0.8 },
   { loc: '/about.html', lastmod: '2025-08-30', changefreq: 'yearly', priority: 0.7 },
   { loc: '/blog.html', lastmod: '2025-08-30', changefreq: 'daily', priority: 0.9 },
+  { loc: '/reviews.html', lastmod: '2025-08-30', changefreq: 'daily', priority: 0.9 },
+];
 ];
 
 // blog.json থেকে ব্লগ লোড
