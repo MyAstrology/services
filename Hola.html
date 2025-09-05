@@ -605,13 +605,74 @@
 
 
   
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // ---- HAMBURGER / NAV TOGGLE ----
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.getElementById('nav-menu');
 
+  if (hamburger && navMenu) {
+    hamburger.setAttribute('role', 'button');
+    hamburger.setAttribute('aria-controls', 'nav-menu');
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.tabIndex = 0;
+
+    const openMenu = () => {
+      navMenu.style.display = 'flex';
+      navMenu.classList.add('open');
+      hamburger.setAttribute('aria-expanded', 'true');
+    };
+    const closeMenu = () => {
+      navMenu.style.display = 'none';
+      navMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    };
+    const toggleMenu = () => (navMenu.classList.contains('open') ? closeMenu() : openMenu());
+
+    // click / keyboard
+    hamburger.addEventListener('click', function (e) { e.stopPropagation(); toggleMenu(); });
+    hamburger.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMenu(); }
+    });
+
+    // click outside => close
+    document.addEventListener('click', function (ev) {
+      if (!navMenu.contains(ev.target) && !hamburger.contains(ev.target)) {
+        if (navMenu.classList.contains('open')) closeMenu();
+      }
+    });
+
+    // ESC to close
+    document.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Escape' && navMenu.classList.contains('open')) closeMenu();
+    });
+  }
+
+  // ---- SEARCH: redirect to blog-list with query param 'q' ----
+  const searchBar = document.getElementById('search-bar');
+  const searchBtn = document.getElementById('search-btn');
+
+  function doSearch() {
+    if (!searchBar) return;
+    const q = searchBar.value.trim();
+    if (!q) {
+      window.location.href = '/blog-list.html';
+      return;
+    }
+    const url = new URL('/blog-list.html', window.location.origin);
+    url.searchParams.set('q', q);
+    window.location.href = url.toString();
+  }
+
+  if (searchBtn && searchBar) {
+    searchBtn.addEventListener('click', function (e) { e.preventDefault(); doSearch(); });
+    searchBar.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); doSearch(); } });
+  }
+});
+</script>
 
   <!-- Hamburger toggle + Search redirect (paste before </body>) -->
 <script>
-
-const hamburger = document.querySelector('.hamburger');
-const menu = document.querySelector('.menu');
 
 hamburger.addEventListener('click', () => {
   menu.classList.toggle('active');
