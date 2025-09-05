@@ -250,7 +250,7 @@ header {
 /* --- Section Heading --- */
 h2, .section-heading {
   text-align: center;
-  font-size: 26px;
+  font-size: 28px;
   font-weight: bold;
   margin: 20px 0;
   padding: 10px;
@@ -290,7 +290,7 @@ h2, .section-heading {
 
 .review-card h3 {
   color: ##000000;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: bold;
   margin-bottom: 8px;
   border-bottom: 1px solid #cfe2ff;
@@ -313,16 +313,16 @@ h2, .section-heading {
 
 /* --- Buttons --- */
 .review-btn, .cta-btn {
-  display: inline-block;
+  display: block;         /* এখন এটি পুরো লাইনের জায়গা নেবে */
+  text-align: center;     /* টেক্সট মাঝখানে থাকবে */
   background: #007bff;
   color: #fff;
-  padding: 10px 18px;
-  margin-top: 8px;
-  text-decoration: none;
+  padding: 12px 18px;
+  margin: 10px auto 0;    /* উপরে 10px ফাঁকা, auto দিলে সেন্টারে থাকবে */
+  max-width: 450px;       /* চাইলে বোতামের সর্বোচ্চ প্রস্থ সীমিত রাখতে পারেন */
   font-size: 16px;
   font-weight: bold;
   border-radius: 8px;
-  border: 2px solid #0056b3;
   transition: all 0.3s ease;
 }
 
@@ -630,15 +630,13 @@ h2, .section-heading {
       </article>
     </div>
 
-    <p style="margin-top:18px;">
-      <a href="https://maps.app.goo.gl/fqRtwbDWnBDx1qet7"
-         target="_blank"
-         rel="noopener noreferrer"
-         class="review-btn"
-         aria-label="Read Google Reviews of Dr. Prodyut Acharya MyAstrology Ranaghat">
-         ⭐ গুগল রিভিউ পড়ুন – Dr. Prodyut Acharya (MyAstrology Ranaghat)
-      </a>
-    </p>
+    <a href="https://maps.app.goo.gl/fqRtwbDWnBDx1qet7"
+   target="_blank"
+   rel="noopener noreferrer"
+   class="review-btn"
+   aria-label="Read Google Reviews of Dr. Prodyut Acharya MyAstrology Ranaghat">
+   ⭐ গুগল রিভিউ পড়ুন – Dr. Prodyut Acharya (MyAstrology Ranaghat)
+</a>
   </div>
 </section>
        
