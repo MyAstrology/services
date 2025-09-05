@@ -128,3 +128,54 @@
     <a href="https://blog.myastrology.in">বাংলা ব্লগ</a>
   </nav>
 </header>
+
+
+<input type="text" id="search-bar" placeholder="ব্লগ পোস্ট খুঁজুন...">
+<button id="search-btn">🔍</button>
+
+<div id="hamburger">☰</div>
+<nav id="nav-menu" style="display:none;">
+   <a href="/">হোম</a>
+   <a href="/blog">ব্লগ</a>
+   <a href="/about">আমাদের সম্পর্কে</a>
+</nav>
+
+<div id="blog-content">
+   <div class="post">
+      <h2 class="post-title">মেষ রাশির মানুষের স্বভাব</h2>
+      <img class="post-image" src="mesh.jpg">
+   </div>
+   <div class="post">
+      <h2 class="post-title">বৃষ রাশির বৈশিষ্ট্য</h2>
+      <img class="post-image" src="brish.jpg">
+   </div>
+   <!-- আরও পোস্ট এখানে থাকবে -->
+</div>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
+const searchBtn = document.getElementById('search-btn');
+const searchBar = document.getElementById('search-bar');
+
+// ✅ Hamburger টগল
+hamburger.addEventListener('click', () => {
+   navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+});
+
+// ✅ ব্লগ সার্চ
+searchBtn.addEventListener('click', () => {
+   const query = searchBar.value.toLowerCase();
+   const posts = document.querySelectorAll('#blog-content .post');
+
+   posts.forEach(post => {
+      const title = post.querySelector('.post-title').innerText.toLowerCase();
+      if (title.includes(query)) {
+         post.style.display = 'block';
+      } else {
+         post.style.display = 'none';
+      }
+   });
+});
+</script>
+  
