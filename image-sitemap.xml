@@ -562,6 +562,13 @@
     </image:image>
   </url>
   <url>
+    <loc>https://astro.myastrology.in/reviews.html</loc>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/MyAstrology-Ranghat-logo.png</image:loc>
+      <image:caption><![CDATA[MyAstrology Logo]]></image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://astro.myastrology.in/vastu-science.html</loc>
     <image:image>
       <image:loc>https://astro.myastrology.in/images/MyAstrology-Ranghat-logo.png</image:loc>
