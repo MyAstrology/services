@@ -100,7 +100,54 @@
 }
 </script>
 
+
+
+ 
   <style>
+.section-heading {
+  text-align: center;
+  font-size: 28px;
+  color: #b33;
+  margin-bottom: 30px;
+}
+.review-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+@media (max-width: 700px) {
+  .review-grid { grid-template-columns: 1fr; }
+}
+.review-card {
+  background: #fff8f2;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.review-source {
+  font-size: 12px;
+  color: #555;
+  margin-top: 8px;
+}
+.cta-btn {
+  display: inline-block;
+  background: #b33;
+  color: #fff;
+  padding: 12px 25px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+  margin-top: 20px;
+}
+#Google-Reviews,
+#justdial-reviews {
+  padding: 35px 0;
+  background: #b8d1fc;
+}
+
+
+    
 .review-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 @media (max-width:700px) { .review-grid { grid-template-columns: 1fr; } }
 .review-card { background: #fff8f2; padding: 15px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
@@ -250,12 +297,9 @@
   </p>  
 </section>
 
-<section id="Google-Reviews" style="padding:10px 0; background:#b8d1fc;">
-  <div style="max-width:1000px; margin:0 auto; padding:0 20px;">
- <h2>  ⭐⭐⭐⭐⭐ Google Reviews – MyAstrology Ranaghat </h2>
+<section id="Google-Reviews">
+   <h2>  ⭐⭐⭐⭐⭐ Google Reviews – MyAstrology Ranaghat </h2>
   
-
-<div style="display:grid; grid-template-columns:1fr; gap:20px;">
 
           <!-- Review 1 -->
     <div class="review-card">
@@ -436,22 +480,18 @@
   </div>
 
   <!-- Read More Button -->
-  <div style="text-align:center; margin-top:30px;">
-    <a href="https://maps.app.goo.gl/fqRtwbDWnBDx1qet7" target="_blank" style="display:inline-block; background:#b33; color:#fff; padding:12px 25px; border-radius:8px; text-decoration:none; font-weight:600; transition:0.3s;">
-      👉 Read 100+ More Reviews on Google Maps
+   <a href="https://maps.app.goo.gl/fqRtwbDWnBDx1qet7" target="_blank">  
+     👉 Read 100+ আরও পড়ুন গুগল রিভিউ 
     </a>
   </div>
 </section>
        
 
 
-<section id="justdial-reviews" style="padding:40px 0; background:#b8d1fc;">
-  <div style="max-width:1000px; margin:0 auto; padding:0 20px;">
+<section id="justdial-reviews">
+    <h2 জাস্ট ডায়ালে আমাদের ক্লাইন্টদের অভিজ্ঞতা – Just Dial Reviews</h2>
 
-    <h2 style="text-align:center; font-size:28px; margin-bottom:30px; color:#b33;">What Our Clients Say – Just Dial Reviews</h2>
-
-    <div style="display:grid; grid-template-columns:1fr; gap:20px;">
-
+    
       <!-- Review 1 -->
       <div class="review-card">
         <p><strong>Ripan Ojha</strong> ⭐⭐⭐⭐⭐</p>
@@ -595,9 +635,8 @@
     </div>
 
     <!-- Read More Button -->
-    <div style="text-align:center; margin-top:30px;">
-      <a href="https://www.justdial.com/Ranaghat/My-Astrology" target="_blank" style="display:inline-block; background:#b33; color:#fff; padding:12px 25px; border-radius:8px; text-decoration:none; font-weight:600; transition:0.3s;">
-        👉 Read 100+ More Reviews on Just Dial
+     <a href="https://www.justdial.com/Ranaghat/My-Astrology" target="_blank">     
+       👉 Read 100+ আরও জাস্ট ডায়াল রিভিউ পড়ুন 
       </a>
     </div>
   </div>
@@ -610,10 +649,6 @@
   
 
 
-
-
-
-  
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   // ---- HAMBURGER / NAV TOGGLE ----
@@ -621,6 +656,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const navMenu = document.getElementById('nav-menu');
 
   if (hamburger && navMenu) {
+    // accessibility attributes
     hamburger.setAttribute('role', 'button');
     hamburger.setAttribute('aria-controls', 'nav-menu');
     hamburger.setAttribute('aria-expanded', 'false');
@@ -680,77 +716,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 
-  <!-- Hamburger toggle + Search redirect (paste before </body>) -->
-<script>
 
-hamburger.addEventListener('click', () => {
-  menu.classList.toggle('active');
-});
+
   
-document.addEventListener('DOMContentLoaded', function () {
-  // ---- HAMBURGER / NAV TOGGLE ----
-  const hamburger = document.getElementById('hamburger');
-  const navMenu = document.getElementById('nav-menu');
-
-  if (hamburger && navMenu) {
-    // accessibility attributes
-    hamburger.setAttribute('role', 'button');
-    hamburger.setAttribute('aria-controls', 'nav-menu');
-    hamburger.setAttribute('aria-expanded', 'false');
-    hamburger.tabIndex = 0;
-
-   const openMenu = () => {
-      navMenu.style.display = 'flex';
-      navMenu.classList.add('open');
-      hamburger.setAttribute('aria-expanded', 'true);
-    };
-    const closeMenu = () => {
-      navMenu.style.display = 'none';
-      navMenu.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', 'false');
-    };
-    const toggleMenu = () => (navMenu.classList.contains('open') ? closeMenu() : openMenu());
-
-    // click / keyboard
-    hamburger.addEventListener('click', function (e) { e.stopPropagation(); toggleMenu(); });
-    hamburger.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMenu(); }
-    });
-
-    // click outside => close
-    document.addEventListener('click', function (ev) {
-      if (!navMenu.contains(ev.target) && !hamburger.contains(ev.target)) {
-        if (navMenu.classList.contains('open')) closeMenu();
-      }
-    });
-
-    // ESC to close
-    document.addEventListener('keydown', function (ev) {
-      if (ev.key === 'Escape' && navMenu.classList.contains('open')) closeMenu();
-    });
-  }
-
-  // ---- SEARCH: redirect to blog-list with query param 'q' ----
-  const searchBar = document.getElementById('search-bar');
-  const searchBtn = document.getElementById('search-btn');
-
-  function doSearch() {
-    if (!searchBar) return;
-    const q = searchBar.value.trim();
-    // if empty, go to blog-list (show all)
-    if (!q) {
-      window.location.href = '/blog-list.html';
-      return;
-    }
-    // build URL relative to current origin
-    const url = new URL('/blog-list.html', window.location.origin);
-    url.searchParams.set('q', q);
-    window.location.href = url.toString();
-  }
-
-  if (searchBtn && searchBar) {
-    searchBtn.addEventListener('click', function (e) { e.preventDefault(); doSearch(); });
-    searchBar.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); doSearch(); } });
-  }
-});
-</script>
