@@ -103,7 +103,9 @@
 </script>
 
 <style>
-/* === Global Reset & Base Styles === */
+
+
+/* --- Reset & Base --- */
 * {
   margin: 0;
   padding: 0;
@@ -120,14 +122,14 @@ body {
   padding: 0 15px;
 }
 
-/* === Header === */
+/* --- Header --- */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
   background: #fff8f2;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   position: fixed;
   width: 100%;
   top: 0;
@@ -149,9 +151,9 @@ header {
 .header-center a {
   font-size: 24px;
   font-weight: 700;
-  color: #b33;
+  color: #007bff;
   text-decoration: none;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
 }
 
 .header-right {
@@ -169,7 +171,7 @@ header {
 }
 
 .search-container button {
-  background: #b33;
+  background: #007bff;
   color: #fff;
   border: none;
   padding: 5px 10px;
@@ -178,7 +180,6 @@ header {
   margin-left: 5px;
 }
 
-/* Hamburger Menu */
 .hamburger {
   display: flex;
   flex-direction: column;
@@ -204,7 +205,7 @@ header {
   right: 20px;
   width: 220px;
   padding: 10px 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
   border-radius: 8px;
   z-index: 999;
 }
@@ -223,95 +224,103 @@ header {
 }
 
 #nav-menu a:hover {
-  background: #f3e7da;
-  color: #b33;
+  background: #e8f0ff;
+  color: #007bff;
 }
 
-/* === Headings === */
-h2 {
-  color: #007bff; /* নীল হেডলাইন */
+/* --- Responsive Header --- */
+@media(max-width:768px){
+  header { flex-wrap: wrap; justify-content: space-between; padding: 10px; }
+  .header-center { order: 2; flex: 1; display: flex; justify-content: center; margin: 5px 0; }
+  .header-left, .header-right { order: 1; display: flex; align-items: center; }
+  #nav-menu { right: 10px; }
 }
 
+/* --- Page Title --- */
 .page-title {
   text-align: center;
   font-size: 32px;
-  color: #b33;
   font-weight: bold;
   margin: 30px 0;
+  padding: 10px;
+  border: 3px solid #007bff;
+  color: #007bff;
+  border-radius: 12px;
+  background: #e8f0ff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
-.section-heading {
+/* --- Section Heading --- */
+h2, .section-heading {
   text-align: center;
-  font-size: 28px;
-  color: #b33;
-  margin-bottom: 30px;
+  font-size: 26px;
   font-weight: bold;
+  margin: 20px 0;
+  padding: 10px;
+  border: 2px solid #007bff;
+  color: #007bff;
+  border-radius: 10px;
+  background: #f4f9ff;
 }
 
-/* === Hero Image === */
-.hero-img {
-  width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-
-/* === Review Section === */
+/* --- Reviews Section --- */
 #Reviews {
   padding: 40px 0;
-  background: #b8d1fc;
+  background: #f9fcff;
 }
 
+/* --- Grid Layout --- */
 .reviews-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0.8rem;
+  gap: 1rem;
 }
 
+/* --- Review Card --- */
 .review-card {
   background: #fff;
   padding: 18px;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  border: 2px solid skyblue;
+  border: 2px solid #007bff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .review-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-.review-card h2 {
-  color: #b33;
-  font-size: 22px;
+.review-card h3 {
+  color: #007bff;
+  font-size: 20px;
   font-weight: bold;
-  margin-bottom: 12px;
-  padding-bottom: 6px;
-  border-bottom: 2px solid skyblue;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #cfe2ff;
+  padding-bottom: 4px;
 }
 
 .review-card p {
   font-size: 15px;
   line-height: 1.6;
   color: #333;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .review-source {
   font-size: 12px;
   color: #555;
-  margin-top: 8px;
+  margin-top: 5px;
   font-style: italic;
 }
 
-/* === Buttons === */
-.review-btn {
+/* --- Buttons --- */
+.review-btn, .cta-btn {
   display: inline-block;
   background: #007bff;
   color: #fff;
-  padding: 12px 22px;
-  margin: 10px 5px 0 0;
+  padding: 10px 18px;
+  margin-top: 8px;
   text-decoration: none;
   font-size: 16px;
   font-weight: bold;
@@ -320,56 +329,23 @@ h2 {
   transition: all 0.3s ease;
 }
 
-.review-btn:hover {
+.review-btn:hover, .cta-btn:hover {
   background: #0056b3;
   transform: translateY(-2px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
 }
 
-.cta-btn {
-  display: inline-block;
-  background: #b33;
-  color: #fff;
-  padding: 12px 25px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: 0.3s;
+/* --- Hero Image --- */
+.hero-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 12px;
 }
 
-.cta-btn:hover {
-  background: #922;
-}
-
-/* === Responsive === */
-@media (max-width: 768px) {
-  header {
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 10px;
-  }
-
-  .header-center {
-    order: 2;
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    margin: 5px 0;
-  }
-
-  .header-left,
-  .header-right {
-    order: 1;
-    display: flex;
-    align-items: center;
-  }
-
-  #nav-menu {
-    right: 10px;
-  }
-}
- 
-  </style>
+  
+    </style>
 
 </head>
 
