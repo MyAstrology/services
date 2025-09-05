@@ -609,6 +609,14 @@
 
   <!-- Hamburger toggle + Search redirect (paste before </body>) -->
 <script>
+
+const menuToggle = document.querySelector('.hamburger');
+const nav = document.querySelector('.nav-links');
+
+menuToggle.addEventListener('click', () => {
+  nav.classList.toggle('active'); // show/hide
+});
+  
 document.addEventListener('DOMContentLoaded', function () {
   // ---- HAMBURGER / NAV TOGGLE ----
   const hamburger = document.getElementById('hamburger');
