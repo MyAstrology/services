@@ -107,52 +107,70 @@
       margin: 0;  
       font-family: 'Noto Serif Bengali', serif;  
     }  
-    /* Header */  
-    header {  
-      background: #fff;  
-      border-bottom: 2px solid #ddd;  
-      display: flex;  
-      align-items: center;  
-      justify-content: space-between;  
-      padding: 8px 16px;  
-      flex-wrap: wrap;  
-    }  
-    .logo {  
-      display: flex;  
-      align-items: center;  
-    }  
-    .logo img {  
-      height: 50px;  
-      margin-right: 10px;  
-    }  
-    nav {  
-      display: flex;  
-      gap: 12px;  
-    }  
-    nav a {  
-      text-decoration: none;  
-      color: #222;  
-      font-weight: bold;  
-      font-size: 0.95rem;  
-      padding: 6px 10px;  
-      border-radius: 4px;  
-      transition: background 0.3s;  
-    }  
-    nav a:hover {  
-      background: #f2f2f2;  
-    }  
-    /* Mobile Menu Button */  
-    .menu-toggle {  
-      display: none;  
-      flex-direction: column;  
-      cursor: pointer;  
-    }  
-    .menu-toggle div {  
-      width: 25px;  
-      height: 3px;  
-      background: #333;  
-      margin: 4px 0;  
-    }  
+    /* Header */
+header {
+  background: #fff;
+  border-bottom: 2px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  flex-wrap: wrap;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 50px;
+  margin-right: 10px;
+}
+
+/* Hide nav by default */
+nav {
+  display: none;
+  flex-direction: column;
+  width: 100%;
+  background: #fff;
+  border-top: 1px solid #ddd;
+}
+
+nav a {
+  text-decoration: none;
+  color: #222;
+  font-weight: bold;
+  font-size: 0.95rem;
+  padding: 6px 10px;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+nav a:hover {
+  background: #f2f2f2;
+}
+
+/* Show nav when active */
+nav.active {
+  display: flex;
+}
+
+/* Menu toggle should always be visible */
+.menu-toggle {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.menu-toggle div {
+  width: 25px;
+  height: 3px;
+  background: #333;
+  margin: 4px 0;
+}
+
+/* Remove media query so hamburger shows on desktop too */
     @media (max-width: 900px) {  
       nav {  
         display: none;  
