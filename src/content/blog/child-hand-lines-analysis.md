@@ -1,7 +1,7 @@
 ---
 title: "✨ শিশুর হাতে কেন থাকে রহস্যময় রেখা? – হস্তরেখা ও জ্যোতিষ বিশ্লেষণ"
 description: "শিশুর জন্মের সময় হাতে থাকা রহস্যময় রেখাগুলির আধ্যাত্মিক, জ্যোতিষ ও বৈজ্ঞানিক বিশ্লেষণ। হস্তরেখা বিচার ও ভাগ্য পরিবর্তনের দর্শন নিয়ে বিস্তারিত আলোচনা করেছেন ড. প্রদ্যুত আচার্য।"
-slug: "https://astro.myastrology.in/child-hand-lines-analysis"
+slug: "https://astro.myastrology.in/images/main-six-palm-lines.webp"
 date: "2025-09-06"
 author:
   name: "Dr. Prodyut Acharya"
