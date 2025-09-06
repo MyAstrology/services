@@ -197,3 +197,89 @@
     🌟 ভাগ্যের রহস্য উন্মোচনে প্রস্তুত? আমি ড. প্রদ্যুৎ আচার্য — MyAstrology, যেখানে প্রতিটি পরামর্শ হয় আপনার ভবিষ্যতের সঠিক চাবিকাঠি। 🔑✨  
   </div>  
 </section>  
+
+
+
+
+  <h2>জন্মকুণ্ডলী ক্যালকুলেটর (ফ্রি)</h2>
+
+  <form id="astroForm">
+    <label>জন্ম তারিখ:
+      <input type="date" id="dob" required>
+    </label>
+    <label>জন্ম সময়:
+      <input type="time" id="tob" required>
+    </label>
+    <label>জন্ম স্থান (শহর):
+      <input type="text" id="pob" required placeholder="উদাহরণ: Kolkata">
+    </label>
+    <button type="submit">জন্মকুণ্ডলী দেখুন</button>
+  </form>
+
+  <div id="result"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/astronomia@1.12.0/astronomia.min.js"></script>
+  <script src="astro.js"></script> <!-- যদি স্থানীয় লাইব্রেরি ব্যবহার করতে চান -->
+  <script>
+    const form = document.getElementById('astroForm');
+    const resultDiv = document.getElementById('result');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const dob = document.getElementById('dob').value;
+      const tob = document.getElementById('tob').value;
+      const pob = document.getElementById('pob').value;
+
+      if (!dob || !tob || !pob) return;
+
+      // তারিখ ও সময় একত্রিত
+      const dateTime = new Date(`${dob}T${tob}`);
+
+      // 🔹 এখানে আমরা জ্যোতিষ গণনা লজিক লিখব (ফ্রি লাইব্রেরি ব্যবহার)
+      // উদাহরণ: গ্রহের অবস্থান
+      // astro.js বা astronomia লাইব্রেরি ব্যবহার করে সূর্য, চন্দ্র, রাশি গণনা করা যায়
+
+      // ফ্রি উদাহরণ রেজাল্ট
+      const sunSign = getSunSign(dateTime); // নিচে ফাংশন দেখানো হবে
+      const moonSign = getMoonSign(dateTime);
+
+      resultDiv.innerHTML = `
+        <h3>আপনার রাশিফল</h3>
+        <p>সূর্য রাশি: <strong>${sunSign}</strong></p>
+        <p>চন্দ্র রাশি: <strong>${moonSign}</strong></p>
+        <p>জন্ম স্থান: ${pob}</p>
+      `;
+    });
+
+    // সরল সূর্য রাশি গণনা
+    function getSunSign(date) {
+      const day = date.getDate();
+      const month = date.getMonth() + 1;
+
+      if ((month == 3 && day >=21) || (month ==4 && day <=19)) return 'মেষ';
+      if ((month == 4 && day >=20) || (month ==5 && day <=20)) return 'বৃষ';
+      if ((month ==5 && day >=21) || (month ==6 && day <=20)) return 'মিথুন';
+      if ((month ==6 && day >=21) || (month ==7 && day <=22)) return 'কর্কট';
+      if ((month ==7 && day >=23) || (month ==8 && day <=22)) return 'সিংহ';
+      if ((month ==8 && day >=23) || (month ==9 && day <=22)) return 'কন্যা';
+      if ((month ==9 && day >=23) || (month ==10 && day <=22)) return 'তুলা';
+      if ((month ==10 && day >=23) || (month ==11 && day <=21)) return 'বৃশ্চিক';
+      if ((month ==11 && day >=22) || (month ==12 && day <=21)) return 'ধনু';
+      if ((month ==12 && day >=22) || (month ==1 && day <=19)) return 'মকর';
+      if ((month ==1 && day >=20) || (month ==2 && day <=18)) return 'কুম্ভ';
+      if ((month ==2 && day >=19) || (month ==3 && day <=20)) return 'মীন';
+      return 'অজানা';
+    }
+
+    // সরল চন্দ্র রাশি (placeholder, ফ্রি লাইব্রেরি দিয়ে উন্নত করা যায়)
+    function getMoonSign(date) {
+      // সহজ উদাহরণ: সূর্য রাশি থেকে 1 পজিশন এগিয়ে চন্দ্র রাশি
+      const sun = getSunSign(date);
+      const signs = ['মেষ','বৃষ','মিথুন','কর্কট','সিংহ','কন্যা','তুলা','বৃশ্চিক','ধনু','মকর','কুম্ভ','মীন'];
+      let index = signs.indexOf(sun);
+      return signs[(index + 1) % 12];
+    }
+  </script>
+</body>
+</html>
