@@ -31,31 +31,34 @@
   <!-- ✅ Favicon -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-  <!-- ✅ JSON-LD LocalBusiness Schema -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "MyAstrology – Dr. Prodyut Acharya",
-    "url": "https://www.myastrology.in/",
-    "logo": "https://astro.myastrology.in/images/MyAstrology-Ranghat-logo.png",
-    "image": "https://astro.myastrology.in/images/MyAstrology-Prodyut-Acharya.webp",
-    "description": "Expert Indian Astrology, Palmistry, Horoscope & Kundli Consultation by Dr. Prodyut Acharya in Ranaghat, West Bengal.",
-    "telephone": "+91-9333122768",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Ranaghat, Nadia",
-      "addressLocality": "Ranaghat",
-      "addressRegion": "West Bengal",
-      "postalCode": "741201",
-      "addressCountry": "IN"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": "23.1765",
-      "longitude": "88.5667"
-    },
-    "openingHoursSpecification": [{
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "MyAstrology – Dr. Prodyut Acharya",
+  "alternateName": "Best Astrologer & Palmist in Ranaghat",
+  "url": "https://www.myastrology.in/",
+  "logo": "https://astro.myastrology.in/images/MyAstrology-Ranghat-logo.png",
+  "image": "https://astro.myastrology.in/images/MyAstrology-Prodyut-Acharya.webp",
+  "description": "Expert Indian Astrology, Palmistry, Horoscope & Kundli Consultation by Dr. Prodyut Acharya in Ranaghat, West Bengal.",
+  "slogan": "Empowering lives through ancient wisdom & modern insight",
+  "telephone": "+91-9333122768",
+  "priceRange": "₹1000-₹2500",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Ranaghat, Nadia",
+    "addressLocality": "Ranaghat",
+    "addressRegion": "West Bengal",
+    "postalCode": "741201",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "23.1765",
+    "longitude": "88.5667"
+  },
+  "openingHoursSpecification": [
+    {
       "@type": "OpeningHoursSpecification",
       "dayOfWeek": [
         "Monday",
@@ -68,15 +71,33 @@
       ],
       "opens": "09:00",
       "closes": "21:00"
-    }],
-    "sameAs": [
-      "https://www.facebook.com/Dr.ProdyutAcharya",
-      "https://www.instagram.com/myastrology.in",
-      "https://youtube.com/@myastrology",
-      "https://x.com/AcharyaProdyut"
-    ]
-  }
-  </script>
+    }
+  ],
+  "areaServed": {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": "23.1765",
+      "longitude": "88.5667"
+    },
+    "geoRadius": "150"
+  },
+  "sameAs": [
+    "https://www.facebook.com/Dr.ProdyutAcharya",
+    "https://www.instagram.com/myastrology.in",
+    "https://youtube.com/@myastrology",
+    "https://x.com/AcharyaProdyut"
+  ],
+  "knowsAbout": [
+    "Indian Astrology",
+    "Palmistry",
+    "Vedic Horoscope",
+    "Kundli Analysis",
+    "Vastu Consultation"
+  ]
+}
+</script>
+
 
 
 <style>
