@@ -59,243 +59,197 @@
 </script>
    
 
-<style>
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-     /* Default (ডেস্কটপ) */
-header .logo span {
-  font-weight: bold;
-  color: #b33;
-  font-size: 30px; /* ডেস্কটপে বড় */
-}
-
-/* Mobile / ছোট স্ক্রিনে */
-@media (max-width: 768px) {
-  header .logo span {
-    font-size: 16px; /* মোবাইলে ছোট */
-  }
-}
-/* ============================= */
-/* General Reset & Base Styles   */
-/* ============================= */
-html, body {
-  max-width: 100%;
-  overflow-x: hidden;
-  margin: 0;
-  font-family: "SolaimanLipi", "Noto Sans Bengali", sans-serif;
-  background: #fafafa;
-  color: #333;
-  line-height: 1.6;
+  <style>
+/* Reset & Base */
+* {
   box-sizing: border-box;
-}
-*, *::before, *::after {
-  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
 }
 
-/* ============================= */
-/* Rashi Section / Content        */
-/* ============================= */
-.rashi-section {
-  font-family: SolaimanLipi, Arial, sans-serif;
-  max-width: 900px;
-  margin: 20px auto;
-  padding: 0 15px;
-  font-weight: 400;
-  color: #333;
-  line-height: 1.6;
+body {
+  font-family: 'Noto Serif Bengali', serif;
+  background: #fffef0;
+  color: #5d4037;
+  line-height: 1.65;
 }
-.rashi-section p,
-.rashi-section li {
-  font-weight: 400;
+
+h1, h2, h3 {
+  font-family: 'SolaimanLipi', 'Noto Sans Bengali', sans-serif;
+  color: #3142f7;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
 }
-.rashi-section strong {
+
+p {
+  font-size: 1.15em;
+  margin-bottom: 18px;
+}
+
+a {
+  color: #e65100;
+  text-decoration: none;
   font-weight: 600;
+  border-bottom: 2px solid transparent;
+  transition: color 0.3s ease, border-color 0.3s ease;
 }
 
-/* ============================= */
-/* Rashifal Grid                  */
-/* ============================= */
-.rashifal-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-}
-@media (max-width: 768px) {
-  .rashifal-grid {
-    grid-template-columns: 1fr;
-  }
+a:hover {
+  color: #bf360c;
+  border-color: #bf360c;
 }
 
-/* ============================= */
-/* Header / Navbar                */
-/* ============================= */
+/* Header */
 header {
+  background: #fff8e1;
+  border-bottom: 2px solid #ddd;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 18px;
-  background: #fff8f2;
-  border-bottom: 1px solid #e2d4c5;
+  padding: 8px 16px;
   position: sticky;
   top: 0;
-  z-index: 1000;
-}
-header .logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-header .logo img {
-  height: 42px;
-}
-header .logo span {
-  font-weight: bold;
-  color: #b33;
-  
-}
-
-/* Hamburger - সবসময় visible */
-.hamburger {
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-  gap: 5px;
-}
-.hamburger span {
-  width: 28px;
-  height: 3px;
-  background: #333;
-  border-radius: 3px;
-}
-
-/* Menu - hidden by default */
-nav.menu {
-  display: none;
-  flex-direction: column;
-  gap: 14px;
-  background: #fff8f2;
-  position: absolute;
-  top: 60px;
-  left: 0;
-  width: 100%;
-  padding: 12px 0;
-  border-top: 1px solid #e2d4c5;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   z-index: 999;
 }
-nav.menu.show {
+
+/* Logo */
+.logo {
   display: flex;
+  align-items: center;
 }
-nav.menu a {
-  padding: 8px 12px;
-  text-decoration: none;
-  color: #444;
-  font-size: 15px;
-  border-radius: 6px;
-  transition: background 0.3s, color 0.3s;
-}
-nav.menu a:hover {
-  background: #f3e7da;
-  color: #b33;
+.logo img {
+  height: 50px;
+  margin-right: 10px;
 }
 
-/* ============================= */
-/* Banner / Scroll Banner         */
-/* ============================= */
+/* Navigation (hidden by default on mobile) */
+nav {
+  display: flex;
+  gap: 12px;
+}
+nav a {
+  font-weight: bold;
+  font-size: 0.95rem;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+nav a:hover {
+  background: #f2f2f2;
+}
+
+/* Hamburger Menu (Always Right Side) */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  margin-left: auto;
+}
+.menu-toggle div {
+  width: 25px;
+  height: 3px;
+  background: #333;
+  margin: 4px 0;
+}
+
+/* Mobile Responsive */
+@media (max-width: 800px) {
+  nav {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    margin-top: 8px;
+    padding: 8px 0;
+  }
+  nav.active {
+    display: flex;
+  }
+  .menu-toggle {
+    display: flex;
+  }
+}
+
+/* Banner */
 .banner img {
   width: 100%;
   height: auto;
   display: block;
 }
 
+/* Scroll Banner */
 .scroll-banner {
+  position: relative;
   background: #fff;
-  padding: 12px 0;
+  padding: 15px 0;
+  border-top: 1px solid rgba(238, 238, 238, 0.5);
+  border-bottom: 1px solid rgba(238, 238, 238, 0.5);
   overflow: hidden;
-  border-top: 2px solid #eee;
-  border-bottom: 2px solid #eee;
-  font-size: 1.3rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 600;
+  font-size: 1.6rem;
   color: #222;
   white-space: nowrap;
 }
-.scroll-text {
+.scroll-banner span {
   display: inline-block;
   padding-left: 100%;
-  animation: scroll-left 15s linear infinite;
+  animation: scroll-left 20s linear infinite;
 }
 @keyframes scroll-left {
   0% { transform: translateX(0); }
   100% { transform: translateX(-100%); }
 }
 
-/* ============================= */
-/* Zodiac Icons / Rashis          */
-/* ============================= */
-.zodiac-icons {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(85px, 1fr));
-  gap: 16px;
-  padding: 22px;
-  background: #fff;
+/* Section Styling */
+section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 15px;
 }
-.zodiac-icons a {
+
+/* Images & Blockquote */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 32px auto;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(255, 152, 0, 0.3);
+}
+blockquote {
+  font-size: 1.1em;
+  font-style: italic;
+  color: #6d4c41;
+  border-left: 4px solid #ffb300;
+  margin: 20px 0 20px 20px;
+  padding-left: 16px;
+  background-color: #fff3e0;
+  border-radius: 6px;
+}
+
+/* Tagline */
+.tagline {
+  font-family: 'Kalam', cursive;
+  font-size: 1.65em;
   text-align: center;
-  text-decoration: none;
-  color: #333;
-  font-size: 14px;
-}
-.zodiac-icons .icon {
-  width: 62px;
-  height: 62px;
-  border-radius: 50%;
-  border: 2px solid #e2d4c5;
-  background: #faf7f2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 26px;
-  transition: 0.3s;
-  margin: auto;
-}
-.zodiac-icons .icon:hover {
-  transform: scale(1.1);
-  border-color: #b33;
-  color: #b33;
+  margin-top: 42px;
+  color: #bf360c;
+  letter-spacing: 1.5px;
 }
 
-/* Mobile / ছোট স্ক্রিনে Zodiac Icons */
-@media (max-width: 768px) {
-  .zodiac-icons .icon {
-    width: 35px;
-    height: 35px;
-    font-size: 16px;
-  }
-  .zodiac-icons a {
-    font-size: 14px;
-  }
-  nav.menu {
-    display: none; /* মোবাইলেও hamburger ক্লিক করে দেখানো হবে */
-  }
+/* Responsive Text */
+@media (max-width: 480px) {
+  h1, h2, h3 { font-size: 1.3em; }
+  .scroll-banner { font-size: 1.2rem; }
 }
-
-  
 </style>
 
 <script>
-// Toggle menu on click
-document.addEventListener("DOMContentLoaded", () => {
-  const hamburger = document.querySelector(".hamburger");
-  const menu = document.querySelector("nav.menu");
-  hamburger.addEventListener("click", () => {
-    menu.classList.toggle("show");
-  });
+document.querySelector(".menu-toggle").addEventListener("click", () => {
+  document.querySelector("nav").classList.toggle("active");
 });
 </script>
-
         
   
   
