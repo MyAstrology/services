@@ -60,12 +60,12 @@
    
   <style>
 /* =========================
-   Base Reset & Typography
+   RESET & BASE STYLES
 ========================= */
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -75,6 +75,9 @@ body {
   line-height: 1.65;
 }
 
+/* =========================
+   TYPOGRAPHY
+========================= */
 h1, h2, h3 {
   font-family: 'SolaimanLipi', 'Noto Sans Bengali', sans-serif;
   color: #3142f7;
@@ -100,7 +103,7 @@ a:hover {
 }
 
 /* =========================
-   Header & Navigation
+   HEADER + HAMBURGER MENU
 ========================= */
 header {
   background: #fff8e1;
@@ -111,7 +114,7 @@ header {
   padding: 8px 16px;
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 999;
 }
 
 .logo {
@@ -124,45 +127,43 @@ header {
   margin-right: 10px;
 }
 
-/* Hamburger - সবসময় ডানদিকে */
+/* Hamburger - Always visible */
 .hamburger {
   display: flex;
   flex-direction: column;
-  gap: 5px;
   cursor: pointer;
+  gap: 5px;
 }
 .hamburger span {
   width: 28px;
   height: 3px;
   background: #333;
-  border-radius: 3px;
+  border-radius: 2px;
   transition: all 0.3s ease;
 }
 
-/* Menu - Hidden by default */
+/* Menu - initially hidden */
 nav.menu {
   display: none;
   flex-direction: column;
-  gap: 12px;
-  background: #fff8f2;
   position: absolute;
   right: 16px;
   top: 60px;
+  background: #fff;
   width: 220px;
   padding: 12px;
   border: 1px solid #e2d4c5;
   border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 nav.menu.show {
   display: flex;
 }
 nav.menu a {
-  padding: 8px 10px;
-  text-decoration: none;
+  padding: 10px;
   color: #444;
-  font-size: 15px;
   border-radius: 6px;
+  font-size: 15px;
   transition: background 0.3s, color 0.3s;
 }
 nav.menu a:hover {
@@ -171,7 +172,7 @@ nav.menu a:hover {
 }
 
 /* =========================
-   Banner & Scroll Text
+   BANNER
 ========================= */
 .banner img {
   width: 100%;
@@ -179,6 +180,7 @@ nav.menu a:hover {
   display: block;
 }
 
+/* Scroll banner (Marquee replacement) */
 .scroll-banner {
   position: relative;
   background: #fff;
@@ -203,7 +205,7 @@ nav.menu a:hover {
 }
 
 /* =========================
-   Section & Content
+   CONTENT STYLING
 ========================= */
 section {
   max-width: 900px;
@@ -240,7 +242,7 @@ blockquote {
   letter-spacing: 1.5px;
 }
 
-/* Responsive */
+/* Responsive text size */
 @media (max-width: 480px) {
   h1, h2, h3 {
     font-size: 1.3em;
@@ -252,7 +254,7 @@ blockquote {
 </style>
 
 <script>
-// Hamburger toggle
+// Toggle menu on click
 document.addEventListener("DOMContentLoaded", () => {
   const hamburger = document.querySelector(".hamburger");
   const menu = document.querySelector("nav.menu");
@@ -261,7 +263,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
-
 
         
   
