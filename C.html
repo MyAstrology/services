@@ -1,207 +1,17 @@
-<!DOCTYPE html>  
-<html lang="bn">  
-<head>  
-  <meta charset="UTF-8">  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-<meta name="author" content="Dr. Prodyut Acharya">
-  
-  <!-- Add FontAwesome CDN in your <head> if না থাকে -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-  <!-- SEO Meta Tags -->  
-  <title>Vedic Astronomy – রাশিচক্র, সূর্য-চন্দ্র বছর ও তিথি</title>  
-  <meta name="description" content="রাশিচক্র, সূর্য ও চন্দ্র বছরের পার্থক্য, তিথি গণনা ও বৈদিক জ্যোতির্বিজ্ঞান নিয়ে বিস্তারিত ব্যাখ্যা। ড. প্রদ্যুৎ আচার্য – MyAstrology.in">  
-<link rel="canonical" href="https://astro.myastrology.in/vedic-astronomy.html">  
-    
-  <!-- ✅ Favicon -->    <link rel="icon" type="image/x-icon" href="favicon.ico">
-  
-  <!-- JSON-LD LocalBusiness Schema -->  
-  <script type="application/ld+json">   
-  {  
-    "@context": "https://schema.org",  
-    "@type": "LocalBusiness",  
-    "name": "MyAstrology – Dr. Prodyut Acharya",  
-    "url": "https://www.myastrology.in",  
-    "telephone": "+91-9333122768",  
-    "sameAs": [  
-      "https://www.facebook.com/Dr.ProdyutAcharya",  
-      "https://www.instagram.com/myastrology.in",  
-      "https://youtube.com/@myastrology",  
-      "https://x.com/AcharyaProdyut"  
-    ]  
-  }  
-  </script>  
-
-<style>
-.scroll-banner {  
-  background: #fff;  
-  padding: 15px 0;  
-  overflow: hidden;  
-  border-top: 2px solid #eee;  
-  border-bottom: 2px solid #eee;  
-  font-size: 1.6rem;  
-  font-weight: 600;  
-  color: #222;  
-  font-family: 'Segoe UI', sans-serif;  
-}  
-  
-.scroll-text {  
-  display: inline-block;  
-  white-space: nowrap;  
-  padding-left: 100%;  
-  animation: scroll-left 15s linear infinite;  
-}  
-  
-@keyframes scroll-left {  
-  0% { transform: translateX(0); }  
-  100% { transform: translateX(-100%); }  
-}
-
-/* ========================== ZODIAC WHEEL ========================== */
-.zodiac-wheel {  
-  position: absolute;  
-  bottom: 0; left: 0;  
-  width: 600px;  
-  height: 600px;  
-  background: url('gallery/myastrology-ranaghat-astrology-palmistry.png') no-repeat center/contain;  
-  opacity: 0.5;  
-  animation: spin 20s linear infinite;  
-  z-index: 10;  
-}  
-@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-/* Responsive zodiac wheel */
-@media (max-width: 480px) { .zodiac-wheel { width: 250px; height: 250px; } }
-@media (min-width: 481px) and (max-width: 767px) { .zodiac-wheel { width: 450px; height: 450px; } }
-@media (min-width: 768px) and (max-width: 1199px) { .zodiac-wheel { width: 550px; height: 550px; } }
-@media (min-width: 1200px) { .zodiac-wheel { width: 700px; height: 700px; } }
-
-
-
-  
-    body {  
-      margin: 0;  
-      font-family: 'Noto Serif Bengali', serif;  
-    }  
-    /* Header */  
-    header {  
-      background: #fff;  
-      border-bottom: 2px solid #ddd;  
-      display: flex;  
-      align-items: center;  
-      justify-content: space-between;  
-      padding: 8px 16px;  
-      flex-wrap: wrap;  
-    }  
-    .logo {  
-      display: flex;  
-      align-items: center;  
-    }  
-    .logo img {  
-      height: 50px;  
-      margin-right: 10px;  
-    }  
-    nav {  
-      display: flex;  
-      gap: 12px;  
-    }  
-    nav a {  
-      text-decoration: none;  
-      color: #222;  
-      font-weight: bold;  
-      font-size: 0.95rem;  
-      padding: 6px 10px;  
-      border-radius: 4px;  
-      transition: background 0.3s;  
-    }  
-    nav a:hover {  
-      background: #f2f2f2;  
-    }  
-    /* Mobile Menu Button */  
-    .menu-toggle {  
-      display: none;  
-      flex-direction: column;  
-      cursor: pointer;  
-    }  
-    .menu-toggle div {  
-      width: 25px;  
-      height: 3px;  
-      background: #333;  
-      margin: 4px 0;  
-    }  
-    @media (max-width: 900px) {  
-      nav {  
-        display: none;  
-        flex-direction: column;  
-        width: 100%;  
-        background: #fff;  
-        border-top: 1px solid #ddd;  
-      }  
-      nav.active {  
-        display: flex;  
-      }  
-      .menu-toggle {  
-        display: flex;  
-      }  
-    }  
-    /* Banner */  
-    .banner img {  
-      width: 100%;  
-      height: auto;  
-      display: block;  
-    }  
-  </style>  
-</head>  
-<body>  
-  
-<header>  
-  <!-- Logo --> 
-  <div class="logo">  
-    <img src="images/MyAstrology-Ranghat-logo.png" alt="MyAstrology Logo – বৈদিক জ্যোতিষ ও জ্যোতির্বিজ্ঞান, Dr. Prodyut Acharya">  
-    <span><strong> MyAstrology – ড. প্রদ্যুৎ আচার্য</strong></span>  
-  </div>  
-  <!-- Zodiac Wheel -->
-    <div class="zodiac-wheel"></div>
-  </div>
-
-  <!-- Mobile Menu Button -->  
-  <div class="menu-toggle" onclick="document.querySelector('nav').classList.toggle('active')">  
-    <div></div>  
-    <div></div>  
-    <div></div>  
-  </div>  
-  
-  <!-- Navigation Menu -->  
-  <nav>  
-    <a href="index.html">🏠 হোম</a>  
-    <a href="https://astro.myastrology.in/about.html">আমাদের সম্পর্কে</a>  
-    <a href="https://wa.me/919333122768">যোগাযোগ</a>  
-    <a href="astrology.html">জ্যোতিষ শাস্ত্র</a>  
-    <a href="/rashifal.html">রাশি ফল</a>  
-    <a href="https://astro.myastrology.in/palmistry.html">হস্তরেখা</a>  
-    <a href="/rashifal.html">রাশিফল</a>  
-    <a href="https://astro.myastrology.in/video.html">ভিডিও</a>  
-    <a href="vastu-science.html">বাস্তু শাস্ত্র</a>  
-    <a href="https://www.myastrology.in">বুকিং</a>  
-    <a href="https://blog.myastrology.in">বাংলা ব্লগ</a>  
-  </nav>  
-</header>  
-  
-<!-- Banner Section -->  
-<div class="banner">  
-  <img src="images/astrology-ranaghat-banner4.webp" alt="MyAstrology – বৈদিক জ্যোতির্বিজ্ঞান ও রাশিচক্র ব্যানার">  
-</div>  
-    
-<section class="scroll-banner">  
-  <div class="scroll-text">  
-    🌟 ভাগ্যের রহস্য উন্মোচনে প্রস্তুত? আমি ড. প্রদ্যুৎ আচার্য — MyAstrology, যেখানে প্রতিটি পরামর্শ হয় আপনার ভবিষ্যতের সঠিক চাবিকাঠি। 🔑✨  
-  </div>  
-</section>  
-
-
-
-
-  <h2>জন্মকুণ্ডলী ক্যালকুলেটর (ফ্রি)</h2>
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <title>সঠিক জন্মকুণ্ডলী ক্যালকুলেটর</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #fff8f0; margin: 20px; }
+    label { display: block; margin-top: 10px; }
+    input, button { margin-top: 5px; padding: 8px; width: 220px; }
+    #result { margin-top: 20px; padding: 15px; background: #fff3e0; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <h2>সঠিক জন্মকুণ্ডলী ক্যালকুলেটর</h2>
 
   <form id="astroForm">
     <label>জন্ম তারিখ:
@@ -210,8 +20,8 @@
     <label>জন্ম সময়:
       <input type="time" id="tob" required>
     </label>
-    <label>জন্ম স্থান (শহর):
-      <input type="text" id="pob" required placeholder="উদাহরণ: Kolkata">
+    <label>জন্ম স্থান (উদাহরণ: Kolkata, India):
+      <input type="text" id="pob" required>
     </label>
     <button type="submit">জন্মকুণ্ডলী দেখুন</button>
   </form>
@@ -219,13 +29,13 @@
   <div id="result"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/astronomia@1.12.0/astronomia.min.js"></script>
-  <script src="astro.js"></script> <!-- যদি স্থানীয় লাইব্রেরি ব্যবহার করতে চান -->
   <script>
     const form = document.getElementById('astroForm');
     const resultDiv = document.getElementById('result');
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      resultDiv.innerHTML = "লোড হচ্ছে…";
 
       const dob = document.getElementById('dob').value;
       const tob = document.getElementById('tob').value;
@@ -236,50 +46,29 @@
       // তারিখ ও সময় একত্রিত
       const dateTime = new Date(`${dob}T${tob}`);
 
-      // 🔹 এখানে আমরা জ্যোতিষ গণনা লজিক লিখব (ফ্রি লাইব্রেরি ব্যবহার)
-      // উদাহরণ: গ্রহের অবস্থান
-      // astro.js বা astronomia লাইব্রেরি ব্যবহার করে সূর্য, চন্দ্র, রাশি গণনা করা যায়
+      // 🔹 জ্যোতিষ গণনা
+      const Sun = astronomia.sun;
+      const Moon = astronomia.moonphase;
+      const julianDay = astronomia.julian.CalendarGregorianToJD(dateTime.getFullYear(), dateTime.getMonth()+1, dateTime.getDate()) + 
+                        dateTime.getHours()/24 + dateTime.getMinutes()/1440;
 
-      // ফ্রি উদাহরণ রেজাল্ট
-      const sunSign = getSunSign(dateTime); // নিচে ফাংশন দেখানো হবে
-      const moonSign = getMoonSign(dateTime);
+      // সূর্য এবং চন্দ্র অবস্থান
+      const sunLon = Sun.apparentLongitude(julianDay);
+      const moonLon = astronomia.moonposition.position(julianDay).lon;
+
+      // রাশিফল নির্ধারণ
+      const signs = ['মেষ','বৃষ','মিথুন','কর্কট','সিংহ','কন্যা','তুলা','বৃশ্চিক','ধনু','মকর','কুম্ভ','মীন'];
+      const sunSign = signs[Math.floor(sunLon / 30) % 12];
+      const moonSign = signs[Math.floor(moonLon / 30) % 12];
 
       resultDiv.innerHTML = `
-        <h3>আপনার রাশিফল</h3>
+        <h3>আপনার জন্মকুণ্ডলী ফলাফল</h3>
         <p>সূর্য রাশি: <strong>${sunSign}</strong></p>
         <p>চন্দ্র রাশি: <strong>${moonSign}</strong></p>
         <p>জন্ম স্থান: ${pob}</p>
+        <p>রাশিফল বিশ্লেষণ (সাধারণ): সূর্য রাশি অনুযায়ী আপনার ব্যক্তিত্বের মূল বৈশিষ্ট্য ও চন্দ্র রাশি অনুযায়ী মানসিক প্রভাব।</p>
       `;
     });
-
-    // সরল সূর্য রাশি গণনা
-    function getSunSign(date) {
-      const day = date.getDate();
-      const month = date.getMonth() + 1;
-
-      if ((month == 3 && day >=21) || (month ==4 && day <=19)) return 'মেষ';
-      if ((month == 4 && day >=20) || (month ==5 && day <=20)) return 'বৃষ';
-      if ((month ==5 && day >=21) || (month ==6 && day <=20)) return 'মিথুন';
-      if ((month ==6 && day >=21) || (month ==7 && day <=22)) return 'কর্কট';
-      if ((month ==7 && day >=23) || (month ==8 && day <=22)) return 'সিংহ';
-      if ((month ==8 && day >=23) || (month ==9 && day <=22)) return 'কন্যা';
-      if ((month ==9 && day >=23) || (month ==10 && day <=22)) return 'তুলা';
-      if ((month ==10 && day >=23) || (month ==11 && day <=21)) return 'বৃশ্চিক';
-      if ((month ==11 && day >=22) || (month ==12 && day <=21)) return 'ধনু';
-      if ((month ==12 && day >=22) || (month ==1 && day <=19)) return 'মকর';
-      if ((month ==1 && day >=20) || (month ==2 && day <=18)) return 'কুম্ভ';
-      if ((month ==2 && day >=19) || (month ==3 && day <=20)) return 'মীন';
-      return 'অজানা';
-    }
-
-    // সরল চন্দ্র রাশি (placeholder, ফ্রি লাইব্রেরি দিয়ে উন্নত করা যায়)
-    function getMoonSign(date) {
-      // সহজ উদাহরণ: সূর্য রাশি থেকে 1 পজিশন এগিয়ে চন্দ্র রাশি
-      const sun = getSunSign(date);
-      const signs = ['মেষ','বৃষ','মিথুন','কর্কট','সিংহ','কন্যা','তুলা','বৃশ্চিক','ধনু','মকর','কুম্ভ','মীন'];
-      let index = signs.indexOf(sun);
-      return signs[(index + 1) % 12];
-    }
   </script>
 </body>
 </html>
