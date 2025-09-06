@@ -137,43 +137,21 @@ nav a:hover {
   background: #f2f2f2;
 }
 
-/* Hamburger Menu (Always Right Side) */
-.menu-toggle {
-  display: flex;   /* সবসময় দেখাবে */
-  flex-direction: column;
-  cursor: pointer;
-  margin-left: auto;  /* ডান দিকে রাখবে */
-}
-.menu-toggle div {
-  width: 25px;
-  height: 3px;
-  background: #333;
-  margin: 4px 0;
-}
-
-/* Navigation (ডিফল্টভাবে hidden থাকবে, active হলে দেখাবে) */
-nav {
-  display: none;
-  flex-direction: column;
-  width: 100%;
-  background: #fff;
-  border-top: 1px solid #ddd;
-  margin-top: 8px;
-  padding: 8px 0;
-}
-nav.active {
-  display: flex;
-}
-
-/* চাইলে ডেস্কটপে মেনু horizontal করতে পারেন */
-@media (min-width: 801px) {
+@media (max-width: 800px) {
   nav {
-    position: absolute;
-    top: 60px; /* header height অনুসারে adjust করুন */
-    right: 10px;
-    width: 250px;
-    border: 1px solid #ddd;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    margin-top: 8px;
+    padding: 8px 0;
+  }
+  nav.active {
+    display: flex;
+  }
+  .menu-toggle {
+    display: flex;  /* শুধু মোবাইলে দেখা যাবে */
   }
 }
 
