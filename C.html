@@ -1,18 +1,5 @@
-<!DOCTYPE html>
-<html lang="bn">
-<head>
-  <meta charset="UTF-8">
-  <title>সঠিক জন্মকুণ্ডলী ক্যালকুলেটর</title>
-  <style>
-    body { font-family: Arial, sans-serif; background: #fff8f0; margin: 20px; }
-    label { display: block; margin-top: 10px; }
-    input, button { margin-top: 5px; padding: 8px; width: 220px; }
-    #result { margin-top: 20px; padding: 15px; background: #fff3e0; border-radius: 5px; }
-  </style>
-</head>
-<body>
-  <h2>সঠিক জন্মকুণ্ডলী ক্যালকুলেটর</h2>
-
+<div id="astro-calculator">
+  <h2>জন্মকুণ্ডলী ক্যালকুলেটর</h2>
   <form id="astroForm">
     <label>জন্ম তারিখ:
       <input type="date" id="dob" required>
@@ -20,55 +7,11 @@
     <label>জন্ম সময়:
       <input type="time" id="tob" required>
     </label>
-    <label>জন্ম স্থান (উদাহরণ: Kolkata, India):
-      <input type="text" id="pob" required>
+    <label>জন্ম স্থান (শহর, দেশ):
+      <input type="text" id="pob" required placeholder="উদাহরণ: Kolkata, India">
     </label>
     <button type="submit">জন্মকুণ্ডলী দেখুন</button>
   </form>
 
-  <div id="result"></div>
-
-  <script src="https://cdn.jsdelivr.net/npm/astronomia@1.12.0/astronomia.min.js"></script>
-  <script>
-    const form = document.getElementById('astroForm');
-    const resultDiv = document.getElementById('result');
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      resultDiv.innerHTML = "লোড হচ্ছে…";
-
-      const dob = document.getElementById('dob').value;
-      const tob = document.getElementById('tob').value;
-      const pob = document.getElementById('pob').value;
-
-      if (!dob || !tob || !pob) return;
-
-      // তারিখ ও সময় একত্রিত
-      const dateTime = new Date(`${dob}T${tob}`);
-
-      // 🔹 জ্যোতিষ গণনা
-      const Sun = astronomia.sun;
-      const Moon = astronomia.moonphase;
-      const julianDay = astronomia.julian.CalendarGregorianToJD(dateTime.getFullYear(), dateTime.getMonth()+1, dateTime.getDate()) + 
-                        dateTime.getHours()/24 + dateTime.getMinutes()/1440;
-
-      // সূর্য এবং চন্দ্র অবস্থান
-      const sunLon = Sun.apparentLongitude(julianDay);
-      const moonLon = astronomia.moonposition.position(julianDay).lon;
-
-      // রাশিফল নির্ধারণ
-      const signs = ['মেষ','বৃষ','মিথুন','কর্কট','সিংহ','কন্যা','তুলা','বৃশ্চিক','ধনু','মকর','কুম্ভ','মীন'];
-      const sunSign = signs[Math.floor(sunLon / 30) % 12];
-      const moonSign = signs[Math.floor(moonLon / 30) % 12];
-
-      resultDiv.innerHTML = `
-        <h3>আপনার জন্মকুণ্ডলী ফলাফল</h3>
-        <p>সূর্য রাশি: <strong>${sunSign}</strong></p>
-        <p>চন্দ্র রাশি: <strong>${moonSign}</strong></p>
-        <p>জন্ম স্থান: ${pob}</p>
-        <p>রাশিফল বিশ্লেষণ (সাধারণ): সূর্য রাশি অনুযায়ী আপনার ব্যক্তিত্বের মূল বৈশিষ্ট্য ও চন্দ্র রাশি অনুযায়ী মানসিক প্রভাব।</p>
-      `;
-    });
-  </script>
-</body>
-</html>
+  <div id="result" style="margin-top:15px; background:#fff3e0; padding:10px; border-radius:5px;"></div>
+</div>
