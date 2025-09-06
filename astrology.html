@@ -111,7 +111,7 @@ header {
   padding: 8px 16px;
   position: sticky;
   top: 0;
-  z-index: 999;
+  z-index: 1000;
 }
 
 .logo {
@@ -124,42 +124,41 @@ header {
   margin-right: 10px;
 }
 
-
-
-
-/* Hamburger - সবসময় visible */
+/* Hamburger - সবসময় ডানদিকে */
 .hamburger {
   display: flex;
   flex-direction: column;
-  cursor: pointer;
   gap: 5px;
+  cursor: pointer;
 }
 .hamburger span {
   width: 28px;
   height: 3px;
   background: #333;
   border-radius: 3px;
+  transition: all 0.3s ease;
 }
-/* Menu - hidden by default */
+
+/* Menu - Hidden by default */
 nav.menu {
   display: none;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
   background: #fff8f2;
   position: absolute;
+  right: 16px;
   top: 60px;
-  left: 0;
-  width: 10%;
-  padding: 12px 0;
-  border-top: 1px solid #e2d4c5;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  z-index: 999;
+  width: 220px;
+  padding: 12px;
+  border: 1px solid #e2d4c5;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
 }
 nav.menu.show {
   display: flex;
 }
 nav.menu a {
-  padding: 8px 12px;
+  padding: 8px 10px;
   text-decoration: none;
   color: #444;
   font-size: 15px;
@@ -171,9 +170,8 @@ nav.menu a:hover {
   color: #b33;
 }
 
-
 /* =========================
-   Banner & Scrolling Text
+   Banner & Scroll Text
 ========================= */
 .banner img {
   width: 100%;
@@ -205,7 +203,7 @@ nav.menu a:hover {
 }
 
 /* =========================
-   Section & Content Styling
+   Section & Content
 ========================= */
 section {
   max-width: 900px;
@@ -242,7 +240,7 @@ blockquote {
   letter-spacing: 1.5px;
 }
 
-/* Responsive Text */
+/* Responsive */
 @media (max-width: 480px) {
   h1, h2, h3 {
     font-size: 1.3em;
@@ -252,6 +250,17 @@ blockquote {
   }
 }
 </style>
+
+<script>
+// Hamburger toggle
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburger = document.querySelector(".hamburger");
+  const menu = document.querySelector("nav.menu");
+  hamburger.addEventListener("click", () => {
+    menu.classList.toggle("show");
+  });
+});
+</script>
 
 
         
