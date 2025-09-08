@@ -355,25 +355,6 @@
     </image:image>
   </url>
   <url>
-    <loc>https://astro.myastrology.in/nonindex.html</loc>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/logo.png</image:loc>
-      <image:caption><![CDATA[MyAstrology Logo - Indian Astrology & Palmistry Expert]]></image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/palmistry.jpg</image:loc>
-      <image:caption><![CDATA[Palmistry]]></image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/horoscope.jpg</image:loc>
-      <image:caption><![CDATA[Horoscope Analysis]]></image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/jotok.jpg</image:loc>
-      <image:caption><![CDATA[Marriage Matching]]></image:caption>
-    </image:image>
-  </url>
-  <url>
     <loc>https://astro.myastrology.in/palmistry.html</loc>
     <image:image>
       <image:loc>https://astro.myastrology.in/images/MyAstrology-Ranghat-logo.png</image:loc>
