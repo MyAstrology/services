@@ -342,7 +342,15 @@ body {
 .logo-on-banner {
   height: 40px;
 }
+.menu {
+  display: none;
+}
+.menu.show {
+  display: flex;
+  flex-direction: column;
+}
 
+  
 .menu {
   display: none;
   flex-direction: column;
@@ -434,10 +442,11 @@ body {
     <!-- ✅ Scripts -->        
     
     <script>      
-    function toggleMenu() {      
-      const menu = document.getElementById('menu');      
-      menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';      
-    }      
+    function toggleMenu() {
+  const menu = document.getElementById('menu');
+  menu.classList.toggle('show');
+}
+      
     let current = 0;      
     const images = document.querySelectorAll('.banner-slider img');      
     setInterval(() => {      
@@ -445,7 +454,9 @@ body {
       current = (current + 1) % images.length;      
       images[current].classList.add('active');      
     }, 4000);      
-  </script>      <!-- 🌟 One-line Astrology Slider with Emojis -->      <style>      
+  </script>      
+    
+    <!-- 🌟 One-line Astrology Slider with Emojis -->      <style>      
   .scroll-slider {      
     width: 100%;      
     overflow: hidden;      
