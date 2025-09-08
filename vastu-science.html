@@ -14,8 +14,12 @@
   <link rel="canonical" href="https://astro.myastrology.in/vastu-science.html" />
 
   
-  <!-- ✅ Favicon -->    
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!-- ✅ Favicon for browsers -->
+<link rel="icon" type="image/x-icon" href="favicon.ico" sizes="16x16 32x32" />
+
+<!-- ✅ Apple Touch Icon for iOS devices -->
+<link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180" />
+
   
   <!-- Open Graph Tags -->
   <meta property="og:title" content="বাস্তু শাস্ত্র – প্রকৃতি ও মহাজাগতিক শক্তির সঙ্গতি | Prodyut Acharya" />
@@ -34,33 +38,53 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali&display=swap" rel="stylesheet">
 <link href="https://fonts.maateen.me/solaiman-lipi/font.css" rel="stylesheet">
 
-<!-- ✅ Structured Data JSON-LD -->
+<!-- JSON-LD Schema for MyAstrology Ranaghat – Vastu Science Page -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Article",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://astro.myastrology.in/vastu-science.html"
+  "@type": "ProfessionalService",
+  "name": "MyAstrology – Vastu Science & Astrology Services",
+  "url": "https://astro.myastrology.in/vastu-science.html",
+  "logo": "https://astro.myastrology.in/images/MyAstrology-Ranghat-logo.png",
+  "description": "MyAstrology – Expert Vastu Science, Indian Astrology & Palmistry Services by Dr. Prodyut Acharya. Accurate solutions for home, office, love, marriage, career, business & gemstone guidance.",
+  "sameAs": [
+    "https://www.facebook.com/Dr.ProdyutAcharya",
+    "https://www.instagram.com/myastrology.in",
+    "https://youtube.com/@myastrology",
+    "https://www.linkedin.com/in/ProdyutAcharya"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Post Nasra",
+    "addressLocality": "Ranaghat",
+    "addressRegion": "Nadia",
+    "postalCode": "741202",
+    "addressCountry": "IN"
   },
-  "headline": "বাস্তু শাস্ত্র – প্রকৃতি ও মহাজাগতিক শক্তির সঙ্গতি",
-  "description": "বাস্তু শাস্ত্র – প্রকৃতির শক্তি, দিকনির্দেশ ও মহাজাগতিক শক্তির সুষম বিন্যাস। রানাঘাট থেকে কলকাতা পর্যন্ত প্রাচীন ও আধুনিক জ্ঞানের মিশেল। ড. প্রদ্যুৎ আচার্যের MyAstrology থেকে বাস্তু শাস্ত্র পরামর্শ।",
-  "image": "https://astro.myastrology.in/assets/vastu-banner.jpg",  
-  "author": {
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+91 9333122768",
+    "contactType": "customer service"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 23.1676,
+    "longitude": 88.5809
+  },
+  "areaServed": "India",
+  "founder": {
     "@type": "Person",
-    "name": "Dr. Prodyut Acharya",
-    "url": "https://astro.myastrology.in/about.html"
+    "name": "Dr. Prodyut Acharya"
   },
-  "publisher": {
-    "@type": "Organization",
-    "name": "MyAstrology",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://astro.myastrology.in/assets/logo.png"
-    }
-  },
-  "datePublished": "2025-08-04T10:00:00+05:30",
-  "dateModified": "2025-08-26T18:30:00+05:30"
+  "serviceType": [
+    "Vastu Consultation",
+    "Vastu for Home and Office",
+    "Indian Astrology",
+    "Palmistry",
+    "Gemstone Recommendation",
+    "Career & Business Solutions",
+    "Love & Marriage Guidance"
+  ]
 }
 </script>
   
