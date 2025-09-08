@@ -132,7 +132,13 @@ body {
 .menu a:hover { background: #13274a; }
 
 @media screen and (min-width: 768px) {
-    .menu { display: none; }
+    .menu {
+        display: flex !important;
+        position: static;
+        flex-direction: row;
+        gap: 20px;
+        border: none;
+    }
 }
 
 /* =============================
@@ -147,10 +153,13 @@ body {
 .banner-slider img {
     width: 100%;
     display: none;
+    transition: opacity 1s ease-in-out;
+    opacity: 0;
 }
-
-.banner-slider img.active { display: block; }
-
+.banner-slider img.active {
+    display: block;
+    opacity: 1;
+}
 /* =============================
    Common Section Styles (All Sections)
 ============================= */
@@ -280,7 +289,7 @@ body {
   <div class="header">
     <div class="hamburger" onclick="toggleMenu()">☰</div>
     <div class="logo-text">MyAstrology</div>
-    <img src="images/MyAstrology-Ranghat-logo.png" alt="MyAstrology Logo" class="logo-on-banner">
+    <img src="images/MyAstrology-Ranghat-logo.png" alt="MyAstrology – Dr. Prodyut Acharya Logo" class="logo-on-banner">
   </div>
 
   <div class="menu" id="menu">
