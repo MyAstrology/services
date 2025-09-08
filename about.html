@@ -86,52 +86,31 @@
   </script>
 
  <style>
-.card p, 
-.card .card-subtitle {
-  text-align: center;
+/* =============================
+   Reset & Body
+============================= */
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.85;
+  color: #2c2c2c;
 }
 
-   .award-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 10px;
-}
-
-.award-card {
-  background: #fff;
-  border-radius: 12px;
-  padding: 20px;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-   .academic-cards {
-  display: grid;  
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 10px;
-}
-
-.academic-cards .card {
-  text-align: center;
-  padding: 20px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-   img {
+/* =============================
+   Global Image Responsive
+============================= */
+img {
   max-width: 100%;
   height: auto;
   display: block;
 }
 
-/* Section Heading */
+/* =============================
+   Section Heading
+============================= */
 .section-title {
   text-align: center;
   font-size: 1.8rem;
@@ -139,180 +118,163 @@
   color: #0c1b33;
 }
 
-/* Cards Container */
-.cards-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 25px;
-  max-width: 1200px;
-  margin: auto;
-  padding: 10px;
-}
-
-/* Card */
-.card {
+/* =============================
+   Generic Card Style
+============================= */
+.card,
+.award-card,
+.academic-card {
   background: #fff;
   border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   transition: transform 0.3s ease-in-out;
 }
-
 .card:hover {
   transform: translateY(-5px);
 }
 
-/* Card Title */
-.card-title {
-  font-size: 1.4rem;
-  font-weight: 600;
-  margin-bottom: 12px;
-}
-
-/* Optional Color Variations */
+/* Card Titles Colors */
 .card-title.purple { color: #6A1B9A; }
 .card-title.orange { color: #D84315; }
-.card-title.green { color: #1E8449; }
-.card-title.brown { color: #AF601A; }
-.card-title.blue { color: #2874A6; }
+.card-title.green  { color: #1E8449; }
+.card-title.brown  { color: #AF601A; }
+.card-title.blue   { color: #2874A6; }
 .card-title.violet { color: #884EA0; }
 
 /* Card Image */
-.card img {
+.card img, 
+.academic-card img, 
+.award-card img {
   width: 100%;
-  height: auto;   /* Makes image responsive */
   border-radius: 10px;
   margin-bottom: 12px;
-  display: block;
   object-fit: cover;
 }
 
-/* Subtitle */
+/* Card Subtitles */
 .card-subtitle {
   display: block;
   font-style: italic;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   color: #444;
+  font-size: 0.9rem;
+  text-align: center;
 }
 
-/* Card Text */
-.card p {
-  font-size: 1rem;
-  line-height: 1.6;
+/* Card Text → ছোট সাইজ */
+.card p,
+.award-card p,
+.academic-card p {
+  font-size: 0.9rem;   /* আগের 1rem থেকে ছোট */
+  line-height: 1.55;
   color: #333;
+  text-align: center;
 }
 
-/* Media Query for smaller devices */
-@media screen and (max-width: 768px) {
-  .cards-container {
-    grid-template-columns: 1fr; /* Single column on mobile */
-  }
-}
-   
 /* =============================
-   Reset & Body
+   Card Grid Layouts
 ============================= */
-* {
-    box-sizing: border-box;
+.cards-container,
+.academic-cards,
+.award-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 10px;
 }
 
-body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    line-height: 1.85;
-    color: #2c2c2c;
+/* Academic container (flex old kept intact for other use) */
+.academic-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
 }
 
 /* =============================
    Header & Navigation
 ============================= */
 .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-    background: #0c1b33;
-    color: white;
-    position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background: #0c1b33;
+  color: white;
+  position: relative;
 }
-
 .hamburger { font-size: 24px; cursor: pointer; }
 .logo-text { font-size: 20px; font-weight: bold; }
 .logo-on-banner { height: 40px; }
 
 .menu {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    left: 10px;
-    background: #0c1b33;
-    border: 1px solid #fff;
-    z-index: 999;
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  left: 10px;
+  background: #0c1b33;
+  border: 1px solid #fff;
+  z-index: 999;
 }
-
 .menu a {
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
 }
-
 .menu a:hover { background: #13274a; }
 
 @media screen and (min-width: 768px) {
-    .menu { display: none; }
+  .menu { display: none; }
 }
 
 /* =============================
    Banner Slider
 ============================= */
 .banner-slider {
-    width: 100%;
-    height: auto;
-    overflow: hidden;
+  width: 100%;
+  overflow: hidden;
 }
-
 .banner-slider img {
-    width: 100%;
-    display: none;
-    transition: opacity 1s ease-in-out;
-    opacity: 0;
+  width: 100%;
+  display: none;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
 }
 .banner-slider img.active {
-    display: block;
-    opacity: 1;
+  display: block;
+  opacity: 1;
 }
+
 /* =============================
-   Common Section Styles (All Sections)
+   Common Section Styles
 ============================= */
 .section {
-    padding: 40px 20px;      /* vertical 40px, horizontal 20px */
-    max-width: 960px;         /* centered max width */
-    margin: 0 auto;           /* center alignment */
-    font-family: 'Segoe UI', sans-serif;
-    line-height: 1.85;
-    color: #2c2c2c;
+  padding: 40px 20px;
+  max-width: 960px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.85;
+  color: #2c2c2c;
 }
-
-/* For larger screens, increase horizontal spacing */
 @media screen and (min-width: 1200px) {
-    .section {
-        padding-left: 60px;
-        padding-right: 60px;
-    }
+  .section { padding-left: 60px; padding-right: 60px; }
 }
 
-/* =============================
-   Headlines
-============================= */
+/* Headlines */
 .section h1,
 .section h2 {
-    text-align: center;
-    margin-bottom: 25px;
-    font-weight: 700;
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: 700;
 }
-
 .about-section h1 { color: #8B0000; font-size: 2.3rem; }
 .section h2 { font-size: 2rem; }
 .astrology-section h2 { color: #4B0082; }
@@ -321,9 +283,7 @@ body {
 .closing-section h2 { color: #8B0000; }
 .awards-section h2 { color: #8B0000; font-size: 2.5rem; margin-bottom: 15px; }
 
-/* =============================
-   Links
-============================= */
+/* Links */
 .section a { text-decoration: none; }
 .about-section a { color: #8B0000; }
 .astrology-section a { color: #4B0082; }
@@ -332,27 +292,22 @@ body {
 .closing-section a { color: #8B0000; }
 .awards-section a { color: inherit; }
 
-/* =============================
-   Blockquotes
-============================= */
+/* Blockquotes */
 .section blockquote {
-    border-left: 4px solid #8B0000;
-    padding-left: 15px;
-    margin: 25px 0;
-    font-style: italic;
-    color: #444;
+  border-left: 4px solid #8B0000;
+  padding-left: 15px;
+  margin: 25px 0;
+  font-style: italic;
+  color: #444;
 }
 
-/* =============================
-   Philosophical Taglines
-============================= */
+/* Philosophical Taglines */
 .section .philosophical-tagline {
-    font-family: 'Dancing Script', cursive;
-    font-size: 1.5rem;
-    text-align: center;
-    margin-top: 30px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-top: 30px;
 }
-
 .about-section .philosophical-tagline { color: #8B0000; }
 .astrology-section .philosophical-tagline { color: #4B0082; }
 .philosophy-section .philosophical-tagline { color: #6a0dad; }
@@ -360,50 +315,19 @@ body {
 .closing-section .philosophical-tagline { color: #8B0000; }
 .awards-section .philosophical-tagline { color: #8B0000; }
 
-/* =============================
-   Lists (Professional Section)
-============================= */
-.professional-section ul {
-    margin: 20px 0 20px 25px;
-}
+/* Lists */
+.professional-section ul { margin: 20px 0 20px 25px; }
 
-/* =============================
-   Awards Container
-============================= */
+/* Awards container */
 .awards-section .awards-container {
-    max-width: 1100px;
-    margin: auto;
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-   /* Academic Excellence Container */
-.academic-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  justify-content: center;
-  max-width: 1200px;
+  max-width: 1100px;
   margin: auto;
-  padding: 0 20px; /* ✅ দুই পাশে ফাঁকা রাখবে */
-}
-
-/* Each Card */
-.academic-card {
-  flex: 1 1 300px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  padding: 20px;
   text-align: center;
+  margin-bottom: 40px;
 }
 
-.academic-card img {
-  width: 100%;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
 
+        
 </style>
    
 </head>
