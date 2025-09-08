@@ -86,6 +86,76 @@
   </script>
 
  <style>
+
+/* Section Heading */
+.section-title {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #0c1b33;
+}
+
+/* Container */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  max-width: 1100px;
+  margin: auto;
+  padding: 10px;
+}
+
+/* Common Card */
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* Card Title */
+.card-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+/* Optional Color Variations */
+.card-title.purple { color: #6A1B9A; }
+.card-title.orange { color: #D84315; }
+.card-title.green { color: #1E8449; }
+.card-title.brown { color: #AF601A; }
+.card-title.blue { color: #2874A6; }
+.card-title.violet { color: #884EA0; }
+
+/* Card Image */
+.card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+/* Subtitle / Intro Text */
+.card-subtitle {
+  display: block;
+  font-style: italic;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+/* Card Text */
+.card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
+}
+   
 /* =============================
    Reset & Body
 ============================= */
