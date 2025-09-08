@@ -70,11 +70,14 @@
     gtag('config', 'G-S7BQGLP211');
   </script>
 
- 
-  <style>
+ <style>
 /* =============================
    Reset & Body
 ============================= */
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
@@ -95,19 +98,9 @@ body {
     position: relative;
 }
 
-.hamburger {
-    font-size: 24px;
-    cursor: pointer;
-}
-
-.logo-text {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.logo-on-banner {
-    height: 40px;
-}
+.hamburger { font-size: 24px; cursor: pointer; }
+.logo-text { font-size: 20px; font-weight: bold; }
+.logo-on-banner { height: 40px; }
 
 .menu {
     display: none;
@@ -126,14 +119,10 @@ body {
     text-decoration: none;
 }
 
-.menu a:hover {
-    background: #13274a;
-}
+.menu a:hover { background: #13274a; }
 
 @media screen and (min-width: 768px) {
-    .menu {
-        display: none;
-    }
+    .menu { display: none; }
 }
 
 /* =============================
@@ -150,24 +139,21 @@ body {
     display: none;
 }
 
-.banner-slider img.active {
-    display: block;
-}
+.banner-slider img.active { display: block; }
 
 /* =============================
    Common Section Styles (All Sections)
 ============================= */
 .section {
-    padding: 40px 20px; /* vertical 40px, horizontal 20px */
-    max-width: 960px;
-    margin: 0 auto; /* center align */
+    padding: 40px 20px;      /* vertical 40px, horizontal 20px */
+    max-width: 960px;         /* centered max width */
+    margin: 0 auto;           /* center alignment */
     font-family: 'Segoe UI', sans-serif;
     line-height: 1.85;
     color: #2c2c2c;
-    box-sizing: border-box; /* ensures padding included in width */
 }
 
-/* Optional: increase horizontal padding on larger screens */
+/* For larger screens, increase horizontal spacing */
 @media screen and (min-width: 1200px) {
     .section {
         padding-left: 60px;
@@ -185,9 +171,8 @@ body {
     font-weight: 700;
 }
 
-/* Section-specific headline colors */
 .about-section h1 { color: #8B0000; font-size: 2.3rem; }
-.section h2 { font-size: 2rem; } /* default for h2 */
+.section h2 { font-size: 2rem; }
 .astrology-section h2 { color: #4B0082; }
 .philosophy-section h2 { color: #6a0dad; }
 .professional-section h2 { color: #b8860b; }
@@ -197,9 +182,7 @@ body {
 /* =============================
    Links
 ============================= */
-.section a {
-    text-decoration: none;
-}
+.section a { text-decoration: none; }
 .about-section a { color: #8B0000; }
 .astrology-section a { color: #4B0082; }
 .philosophy-section a { color: #6a0dad; }
@@ -228,7 +211,6 @@ body {
     margin-top: 30px;
 }
 
-/* Section-specific tagline colors */
 .about-section .philosophical-tagline { color: #8B0000; }
 .astrology-section .philosophical-tagline { color: #4B0082; }
 .philosophy-section .philosophical-tagline { color: #6a0dad; }
@@ -253,8 +235,8 @@ body {
     margin-bottom: 40px;
 }
 
-
-  </style>
+</style>
+   
 </head>
 <body>
 
