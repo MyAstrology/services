@@ -72,15 +72,92 @@
 
  
   <style>
+/* =============================
+   Reset & Body
+============================= */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    line-height: 1.85;
+    color: #2c2c2c;
+}
 
 /* =============================
-   Common Section Styles
+   Header & Navigation
 ============================= */
-.about-section,
-.astrology-section,
-.philosophy-section,
-.professional-section,
-.closing-section {
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background: #0c1b33;
+    color: white;
+    position: relative;
+}
+
+.hamburger {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.logo-on-banner {
+    height: 40px;
+}
+
+.menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 10px;
+    background: #0c1b33;
+    border: 1px solid #fff;
+    z-index: 999;
+}
+
+.menu a {
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+}
+
+.menu a:hover {
+    background: #13274a;
+}
+
+@media screen and (min-width: 768px) {
+    .menu {
+        display: none;
+    }
+}
+
+/* =============================
+   Banner Slider
+============================= */
+.banner-slider {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.banner-slider img {
+    width: 100%;
+    display: none;
+}
+
+.banner-slider img.active {
+    display: block;
+}
+
+/* =============================
+   Common Section Styles (All Sections)
+============================= */
+.section {
     padding: 40px 20px;
     max-width: 960px;
     margin: auto;
@@ -92,78 +169,39 @@
 /* =============================
    Headlines
 ============================= */
-.about-section h1 {
-    color: #8B0000;
-    font-size: 2.3rem;
+.section h1,
+.section h2 {
     text-align: center;
     margin-bottom: 25px;
     font-weight: 700;
 }
 
-.astrology-section h2 {
-    color: #4B0082;
-    font-size: 2rem;
-    text-align: center;
-    margin-bottom: 25px;
-    font-weight: 700;
-}
-
-.philosophy-section h2 {
-    color: #6a0dad;
-    font-size: 2rem;
-    text-align: center;
-    margin-bottom: 25px;
-    font-weight: 700;
-}
-
-.professional-section h2 {
-    color: #b8860b;
-    font-size: 2rem;
-    text-align: center;
-    margin-bottom: 25px;
-    font-weight: 700;
-}
-
-.closing-section h2 {
-    color: #8B0000;
-    font-size: 2rem;
-    text-align: center;
-    margin-bottom: 25px;
-    font-weight: 700;
-}
+/* Section-specific headline colors */
+.about-section h1 { color: #8B0000; font-size: 2.3rem; }
+.section h2 { font-size: 2rem; } /* default for h2 */
+.astrology-section h2 { color: #4B0082; }
+.philosophy-section h2 { color: #6a0dad; }
+.professional-section h2 { color: #b8860b; }
+.closing-section h2 { color: #8B0000; }
+.awards-section h2 { color: #8B0000; font-size: 2.5rem; margin-bottom: 15px; }
 
 /* =============================
    Links
 ============================= */
-.about-section a {
-    color: #8B0000;
+.section a {
     text-decoration: none;
 }
-
-.astrology-section a {
-    color: #4B0082;
-    text-decoration: none;
-}
-
-.philosophy-section a {
-    color: #6a0dad;
-    text-decoration: none;
-}
-
-.professional-section a {
-    color: #b8860b;
-    text-decoration: none;
-}
-
-.closing-section a {
-    color: #8B0000;
-    text-decoration: none;
-}
+.about-section a { color: #8B0000; }
+.astrology-section a { color: #4B0082; }
+.philosophy-section a { color: #6a0dad; }
+.professional-section a { color: #b8860b; }
+.closing-section a { color: #8B0000; }
+.awards-section a { color: inherit; }
 
 /* =============================
    Blockquotes
 ============================= */
-.about-section blockquote {
+.section blockquote {
     border-left: 4px solid #8B0000;
     padding-left: 15px;
     margin: 25px 0;
@@ -174,36 +212,20 @@
 /* =============================
    Philosophical Taglines
 ============================= */
-.about-section .philosophical-tagline,
-.astrology-section .philosophical-tagline,
-.philosophy-section .philosophical-tagline,
-.professional-section .philosophical-tagline,
-.closing-section .philosophical-tagline {
+.section .philosophical-tagline {
     font-family: 'Dancing Script', cursive;
     font-size: 1.5rem;
     text-align: center;
     margin-top: 30px;
 }
 
-.about-section .philosophical-tagline {
-    color: #8B0000;
-}
-
-.astrology-section .philosophical-tagline {
-    color: #4B0082;
-}
-
-.philosophy-section .philosophical-tagline {
-    color: #6a0dad;
-}
-
-.professional-section .philosophical-tagline {
-    color: #b8860b;
-}
-
-.closing-section .philosophical-tagline {
-    color: #8B0000;
-}
+/* Section-specific tagline colors */
+.about-section .philosophical-tagline { color: #8B0000; }
+.astrology-section .philosophical-tagline { color: #4B0082; }
+.philosophy-section .philosophical-tagline { color: #6a0dad; }
+.professional-section .philosophical-tagline { color: #b8860b; }
+.closing-section .philosophical-tagline { color: #8B0000; }
+.awards-section .philosophical-tagline { color: #8B0000; }
 
 /* =============================
    Lists (Professional Section)
@@ -211,77 +233,18 @@
 .professional-section ul {
     margin: 20px 0 20px 25px;
 }
-    
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-    }
 
-    .header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 20px;
-      background: #0c1b33;
-      color: white;
-      position: relative;
-    }
+/* =============================
+   Awards Container
+============================= */
+.awards-section .awards-container {
+    max-width: 1100px;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 40px;
+}
 
-    .hamburger {
-      font-size: 24px;
-      cursor: pointer;
-    }
 
-    .logo-text {
-      font-size: 20px;
-      font-weight: bold;
-    }
-
-    .logo-on-banner {
-      height: 40px;
-    }
-
-    .menu {
-      display: none;
-      flex-direction: column;
-      position: absolute;
-      top: 60px;
-      left: 10px;
-      background: #0c1b33;
-      border: 1px solid #fff;
-      z-index: 999;
-    }
-
-    .menu a {
-      color: white;
-      padding: 10px 20px;
-      text-decoration: none;
-    }
-
-    .menu a:hover {
-      background: #13274a;
-    }
-
-    .banner-slider {
-      width: 100%;
-      height: auto;
-      overflow: hidden;
-    }
-
-    .banner-slider img {
-      width: 100%;
-      display: none;
-    }
-
-    .banner-slider img.active {
-      display: block;
-    }
-
-    @media screen and (min-width: 768px) {
-      .menu {
-        display: none;
-      }
-    }
   </style>
 </head>
 <body>
