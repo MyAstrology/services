@@ -97,7 +97,7 @@ twitter_image: "https://astro.myastrology.in/blog/puraskar-noy-manusher-astha.we
 - **Blog:** [Create on your life](https://prodyutacharya.blogspot.com)  
 
 এছাড়াও আমার 
-[১. বাংলা ব্লগ:] (https://bangla.myastrology.in) [২.বাংলা ব্লগ](https://blog.myastrology.in) [৩. বাংলা ব্লগ:](https://astro.myastrology.in/blog.html) 
+[১. বাংলা ব্লগ:](https://bangla.myastrology.in) [২.বাংলা ব্লগ](https://blog.myastrology.in) [৩. বাংলা ব্লগ:](https://astro.myastrology.in/blog.html) 
 
 গুগল, জাস্ট ডায়াল এবং অন্যান্য প্ল্যাটফর্মে যারা আমার কাজের রিভিউ শেয়ার করেছেন, তাদের কাছে আমি আন্তরিকভাবে কৃতজ্ঞ।  
 
