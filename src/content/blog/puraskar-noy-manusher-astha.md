@@ -91,13 +91,13 @@ twitter_image: "https://astro.myastrology.in/blog/puraskar-noy-manusher-astha.we
 তাই আমি সব চেম্বার ছেড়ে দিয়ে শুধু রানাঘাট থেকেই সেবা দেওয়া শুরু করি। আর এই সব সম্ভব হয়েছে আমার ডিজিটাল প্ল্যাটফর্মের কারণে:  
 
 - **YouTube Channel:** [MyAstrology](https://youtube.com/@myastrology)  
-- [**Facebook Page:**](https://www.facebook.com/Dr.ProdyutAcharya)  
-- [**1. Website:**](https://www.myastrology.in)  
-- [**2. Website:**](https://astro.myastrology.in) 
-- [**Blog:**](https://prodyutacharya.blogspot.com)  
+- **Facebook Page:** [MyAstrology](https://www.facebook.com/Dr.ProdyutAcharya)  
+- **1. Website:** [MyAstrology.in](https://www.myastrology.in)  
+- **2. Website:** [astro.myastrology.in](https://astro.myastrology.in) 
+- **Blog:** [Create on your life](https://prodyutacharya.blogspot.com)  
 
 এছাড়াও আমার 
-[১. বাংলা ব্লগ:] (https://bangla.myastrology.in) [২.বাংলা ব্লগ](https://blog.myastrology.in) [৩. বাংলা ব্লগ](https://astro.myastrology.in/blog.html) 
+[১. বাংলা ব্লগ:] (https://bangla.myastrology.in) [২.বাংলা ব্লগ](https://blog.myastrology.in) [৩. বাংলা ব্লগ:](https://astro.myastrology.in/blog.html) 
 
 গুগল, জাস্ট ডায়াল এবং অন্যান্য প্ল্যাটফর্মে যারা আমার কাজের রিভিউ শেয়ার করেছেন, তাদের কাছে আমি আন্তরিকভাবে কৃতজ্ঞ।  
 
