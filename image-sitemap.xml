@@ -613,13 +613,6 @@
     </image:image>
   </url>
   <url>
-    <loc>https://astro.myastrology.in/blog.html?post=palmistry-guide-myastrology-ranaghat-nadia</loc>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/blog/palmistry-guide.webp</image:loc>
-      <image:caption><![CDATA[হস্তরেখা পাঠ: প্রাচীন শাস্ত্রের আলোকে আত্ম-অন্বেষণের এক দার্শনিক পথ]]></image:caption>
-    </image:image>
-  </url>
-  <url>
     <loc>https://astro.myastrology.in/blog.html?post=bhalo-manush-howa</loc>
     <image:image>
       <image:loc>https://astro.myastrology.in/blog/bhalo-manush.webp</image:loc>
@@ -666,6 +659,13 @@
     <image:image>
       <image:loc>https://astro.myastrology.in/blog/shadow-truth-self-awareness.webp</image:loc>
       <image:caption><![CDATA[নিষ্ঠুর সত্যের পথে আত্ম-উন্নয়ন: হস্তরেখা ও জ্যোতিষের দৃষ্টিকোণ]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://astro.myastrology.in/blog.html?post=palmistry-guide-myastrology-ranaghat-nadia</loc>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/blog/palmistry-guide.webp</image:loc>
+      <image:caption><![CDATA[হস্তরেখা পাঠ: প্রাচীন শাস্ত্রের আলোকে আত্ম-অন্বেষণের এক দার্শনিক পথ]]></image:caption>
     </image:image>
   </url>
   <url>
