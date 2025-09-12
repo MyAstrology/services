@@ -2,7 +2,7 @@
 title: "কোলকাতার সেরা জ্যোতিষী ও হস্তরেখাবিদ: জীবন সমস্যার দার্শনিক সমাধান"
 description: "কোলকাতার মানুষদের জন্য ডঃ প্রদ্যুত আচার্যের অভিজ্ঞ জ্যোতিষী ও হস্তরেখাবিদ সেবা। জীবন সমস্যা, সম্পর্ক, কর্মজীবন ও মানসিক শান্তি নিয়ে দার্শনিক দৃষ্টিভঙ্গিতে সমাধান।"
 slug: "kolkata-best-astrologer-palmist"
-image: "https://astro.myastrology.in/images/kolkata-astrologer-palmist.webp"
+image: "https://astro.myastrology.in/blog/kolkata-astrologer-palmist.webp"
 date: "2025-09-12"
 author:
   name: "Dr. Prodyut Acharya"
@@ -17,12 +17,12 @@ priority: 1
 reading_time: "06 min"
 og_title: "কোলকাতার সেরা জ্যোতিষী ও হস্তরেখাবিদ: জীবন সমস্যার দার্শনিক সমাধান"
 og_description: "ডঃ প্রদ্যুত আচার্যের অভিজ্ঞ জ্যোতিষী ও হস্তরেখাবিদ সেবা। জীবন সমস্যা, সম্পর্ক, কর্মজীবন ও মানসিক শান্তি নিয়ে দার্শনিক দৃষ্টিভঙ্গিতে সমাধান।"
-og_image: "https://astro.myastrology.in/images/kolkata-astrologer-palmist.webp"
+og_image: "https://astro.myastrology.in/blog/kolkata-astrologer-palmist.webp"
 og_image_alt: "ডঃ প্রদ্যুত আচার্য, কোলকাতার সেরা জ্যোতিষী ও হস্তরেখাবিদ"
 twitter_card: "summary_large_image"
 twitter_title: "কোলকাতার সেরা জ্যোতিষী ও হস্তরেখাবিদ"
 twitter_description: "ডঃ প্রদ্যুত আচার্যের অভিজ্ঞতা ও দার্শনিক দৃষ্টিভঙ্গিতে জীবন সমস্যার সমাধান।"
-twitter_image: "https://astro.myastrology.in/images/kolkata-astrologer-palmist.webp"
+twitter_image: "https://astro.myastrology.in/blog/kolkata-astrologer-palmist.webp"
 ---
 
 
