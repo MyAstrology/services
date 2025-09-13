@@ -1,17 +1,5 @@
 [
   {
-    "slug": "kolkata-best-astrologer-palmist",
-    "title": "কোলকাতার সেরা জ্যোতিষী ও হস্তরেখাবিদ: জীবন সমস্যার দার্শনিক সমাধান",
-    "image": "https://astro.myastrology.in/blog/kolkata-astrologer-palmist.webp",
-    "description": "কোলকাতার মানুষদের জন্য ডঃ প্রদ্যুত আচার্যের অভিজ্ঞ জ্যোতিষী ও হস্তরেখাবিদ সেবা। জীবন সমস্যা, সম্পর্ক, কর্মজীবন ও মানসিক শান্তি নিয়ে দার্শনিক দৃষ্টিভঙ্গিতে সমাধান।"
-  },
-  {
-    "slug": "ranaghat-best-astrologer-palmist",
-    "title": "রানাঘাট: জীবনের দার্শনিক দিশা — একজন অভিজ্ঞ জ্যোতিষী ও হস্তরেখাবিদ",
-    "image": "https://astro.myastrology.in/blog/ranaghat-astrologer.webp",
-    "description": "রানাঘাটে ১৫+ বছরের অভিজ্ঞতা সম্পন্ন কোলকাতা PhD জ্যোতিষী ও হস্তরেখাবিদের দার্শনিক দৃষ্টিভঙ্গি ও বাস্তবসম্মত পরামর্শের গল্প — কিভাবে জীবন সমস্যার সঙ্গে লড়াই করে নিজের ভাগ্য নিজে গড়া যায়।"
-  },
-  {
     "slug": "west-bengal-best-astrologer-palmistry",
     "title": "পশ্চিমবঙ্গের সেরা জ্যোতিষী ও হস্তরেখাবিদ: দার্শনিক দৃষ্টিভঙ্গি",
     "image": "https://astro.myastrology.in/blog/west-bengal-astrologer.webp",
@@ -46,6 +34,12 @@
     "title": "জন্মকুন্ডলি না হস্তরেখা — কোনটি বেশি নির্ভুল? (জ্যোতিষ ও হস্তরেখার সমন্বিত বিশ্লেষণ)",
     "image": "https://astro.myastrology.in/blog/kundali-vs-palm-reading.webp",
     "description": "জন্ম কুন্ডলি (birth chart) ও হস্তরেখাবিদ্যার (palmistry) উৎপত্তি, বিশ্লেষণ পদ্ধতি, নির্ভুলতা ও সীমাবদ্ধতা বিশ্লেষণ করে কেন এই দুই পদ্ধতির সমন্বয় জীবনের জন্য সর্বোত্তম নির্দেশনা দেয়—MyAstrology রানাঘাট নদীয়া’র ড. প্রদ্যুত আচার্যের অভিজ্ঞ দৃষ্টিভঙ্গি সহ।"
+  },
+  {
+    "slug": "kolkata-best-astrologer-palmist",
+    "title": "কোলকাতার সেরা জ্যোতিষী ও হস্তরেখাবিদ: জীবন সমস্যার দার্শনিক সমাধান",
+    "image": "https://astro.myastrology.in/blog/kolkata-astrologer-palmist.webp",
+    "description": "কোলকাতার মানুষদের জন্য ডঃ প্রদ্যুত আচার্যের অভিজ্ঞ জ্যোতিষী ও হস্তরেখাবিদ সেবা। জীবন সমস্যা, সম্পর্ক, কর্মজীবন ও মানসিক শান্তি নিয়ে দার্শনিক দৃষ্টিভঙ্গিতে সমাধান।"
   },
   {
     "slug": "life-fate-astrology-analysis",
@@ -94,6 +88,12 @@
     "title": "পুরস্কার নয়, মানুষের আস্থা আমার আসল অর্জন – Dr. Prodyut Acharya | MyAstrology",
     "image": "https://astro.myastrology.in/blog/puraskar-noy-manusher-astha.webp",
     "description": "Dr. Prodyut Acharya – জ্যোতিষী ও হস্তরেখাবিদ। কলকাতা, নদীয়া, রানাঘাটসহ সারা ভারত ও বিদেশে অনলাইন জ্যোতিষ ও হস্তরেখা পরামর্শ প্রদান। মানুষের আস্থা, অভিজ্ঞতা ও দর্শনভিত্তিক সঠিক জ্যোতিষ বিশ্লেষণ।"
+  },
+  {
+    "slug": "ranaghat-best-astrologer-palmist",
+    "title": "রানাঘাট: জীবনের দার্শনিক দিশা — একজন অভিজ্ঞ জ্যোতিষী ও হস্তরেখাবিদ",
+    "image": "https://astro.myastrology.in/blog/ranaghat-astrologer.webp",
+    "description": "রানাঘাটে ১৫+ বছরের অভিজ্ঞতা সম্পন্ন কোলকাতা PhD জ্যোতিষী ও হস্তরেখাবিদের দার্শনিক দৃষ্টিভঙ্গি ও বাস্তবসম্মত পরামর্শের গল্প — কিভাবে জীবন সমস্যার সঙ্গে লড়াই করে নিজের ভাগ্য নিজে গড়া যায়।"
   },
   {
     "slug": "relationship-rage-control-astrology",
