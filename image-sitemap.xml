@@ -613,13 +613,6 @@
     </image:image>
   </url>
   <url>
-    <loc>https://astro.myastrology.in/blog.html?post=west-bengal-best-astrologer-palmistry</loc>
-    <image:image>
-      <image:loc>https://astro.myastrology.in/blog/west-bengal-astrologer.webp</image:loc>
-      <image:caption><![CDATA[পশ্চিমবঙ্গের সেরা জ্যোতিষী ও হস্তরেখাবিদ: দার্শনিক দৃষ্টিভঙ্গি]]></image:caption>
-    </image:image>
-  </url>
-  <url>
     <loc>https://astro.myastrology.in/blog.html?post=bhalo-manush-howa</loc>
     <image:image>
       <image:loc>https://astro.myastrology.in/blog/bhalo-manush.webp</image:loc>
@@ -750,6 +743,13 @@
     <image:image>
       <image:loc>https://astro.myastrology.in/blog/vishwas-prakriti-mannya.webp</image:loc>
       <image:caption><![CDATA[বিশ্বাস, প্রকৃতি ও মানুষের মান্যতা : এক দার্শনিক দৃষ্টিপাত]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://astro.myastrology.in/blog.html?post=west-bengal-best-astrologer-palmistry</loc>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/blog/west-bengal-astrologer.webp</image:loc>
+      <image:caption><![CDATA[পশ্চিমবঙ্গের সেরা জ্যোতিষী ও হস্তরেখাবিদ: দার্শনিক দৃষ্টিভঙ্গি]]></image:caption>
     </image:image>
   </url>
   <url>
