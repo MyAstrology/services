@@ -711,6 +711,13 @@
     </image:image>
   </url>
   <url>
+    <loc>https://astro.myastrology.in/blog.html?post=porichoyer-maya</loc>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/blog/image-name.webp</image:loc>
+      <image:caption><![CDATA[পরিচয়ের মায়া: কীভাবে মানুষ আপনাকে চেনে তার গুরুত্ব]]></image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://astro.myastrology.in/blog.html?post=puraskar-noy-manusher-astha</loc>
     <image:image>
       <image:loc>https://astro.myastrology.in/blog/puraskar-noy-manusher-astha.webp</image:loc>
