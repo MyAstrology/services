@@ -18,7 +18,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 0  # full history needed
 
       # 2️⃣ Setup Node.js
       - name: Set up Node.js
@@ -26,9 +26,9 @@ jobs:
         with:
           node-version: '18'
 
-      # 3️⃣ Install dependencies
+      # 3️⃣ Install dependencies (✅ fixed)
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       # 4️⃣ Generate blog list
       - name: Generate blog list
@@ -42,17 +42,31 @@ jobs:
       - name: Generate image sitemap
         run: node src/content/blog/generate-image-sitemap.js
 
-      # 7️⃣ Build project
+      # 7️⃣ Commit & push changes if any
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add src/content/blog/list.json || true
+          git add my-sitemap.xml || true
+          git add image-sitemap.xml || true
+
+          git diff --cached --quiet || git commit -m "🔄 Auto-update blog list & sitemaps"
+          git pull --rebase origin main || true
+          git push origin main
+
+      # 8️⃣ Build project (✅ NEW)
       - name: Build project
         run: npm run build
 
-      # 8️⃣ Upload build folder as artifact
+      # 9️⃣ Upload artifact for GitHub Pages (✅ NEW)
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: github-pages
-          path: ./dist # যদি Vite/Astro project হয়
-          # যদি React (CRA) হয় তবে path: ./build
+          path: ./dist  # ⚠️ যদি React (CRA) হয়, এটি ./build দিন
+          if-no-files-found: error
 
   deploy:
     needs: build
