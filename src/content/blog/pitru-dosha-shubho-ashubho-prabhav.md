@@ -2,7 +2,7 @@
 title: "পিতৃদোষ: জ্যোতিষ শাস্ত্র অনুযায়ী শুভ ও অশুভ প্রভাব"
 description: "পিতৃদোষের জ্যোতিষশাস্ত্র অনুযায়ী প্রভাব, অশুভ ও শুভ দিক এবং পূর্বপুরুষের আশীর্বাদে জীবনকে সমৃদ্ধ করার কার্যকর উপায়।"
 slug: "pitru-dosha-shubho-ashubho-prabhav"
-image: "https://astro.myastrology.in/blog/pitru-dosha.webp"
+image: "https://astro.myastrology.in/blog/pitri-dosha.webp"
 date: "2025-09-14"
 author:
   name: "Dr. Prodyut Acharya"
@@ -17,12 +17,12 @@ priority: 1
 reading_time: "08 min"
 og_title: "পিতৃদোষ: জ্যোতিষশাস্ত্র অনুযায়ী শুভ ও অশুভ প্রভাব"
 og_description: "পিতৃদোষের জ্যোতিষশাস্ত্র অনুযায়ী প্রভাব, শ্রাদ্ধ ও দান, এবং পূর্বপুরুষের আশীর্বাদে জীবনকে সমৃদ্ধ করার উপায়।"
-og_image: "https://astro.myastrology.in/blog/pitru-dosha.webp"
+og_image: "https://astro.myastrology.in/blog/pitri-dosha.webp"
 og_image_alt: "পিতৃদোষ নিরসনের জ্যোতিষ উপায় এবং পূর্বপুরুষের আশীর্বাদ"
 twitter_card: "summary_large_image"
 twitter_title: "পিতৃদোষ: জ্যোতিষশাস্ত্র অনুযায়ী শুভ ও অশুভ প্রভাব"
 twitter_description: "পিতৃদোষের প্রভাব এবং পূর্বপুরুষের আশীর্বাদে জীবনকে সমৃদ্ধ করার জ্যোতিষ পরামর্শ।"
-twitter_image: "https://astro.myastrology.in/blog/pitru-dosha.webp"
+twitter_image: "https://astro.myastrology.in/blog/pitri-dosha.webp"
 ---
 
 # পিতৃদোষ: জ্যোতিষশাস্ত্র, পূর্বপুরুষের আশীর্বাদ ও জীবনের সমৃদ্ধি  
