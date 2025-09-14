@@ -1,4 +1,4 @@
-name: Generate Blog & Sitemaps
+name: Generate Blog, Build & Deploy
 
 on:
   push:
@@ -7,6 +7,8 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
   build:
@@ -14,22 +16,21 @@ jobs:
     steps:
       # 1️⃣ Checkout repo
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # full history needed
+          fetch-depth: 0
 
       # 2️⃣ Setup Node.js
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
 
       # 3️⃣ Install dependencies
       - name: Install dependencies
-        run: npm install gray-matter
+        run: npm ci
 
-  
-# 4️⃣ Generate blog list
+      # 4️⃣ Generate blog list
       - name: Generate blog list
         run: node src/content/blog/generate-list.js
 
@@ -41,41 +42,25 @@ jobs:
       - name: Generate image sitemap
         run: node src/content/blog/generate-image-sitemap.js
 
+      # 7️⃣ Build project
+      - name: Build project
+        run: npm run build
 
+      # 8️⃣ Upload build folder as artifact
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: github-pages
+          path: ./dist # যদি Vite/Astro project হয়
+          # যদি React (CRA) হয় তবে path: ./build
 
-# 7️⃣ Commit & push all changes safely
-      - name: Commit and push changes
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
-          # Stage all generated files
-          git add src/content/blog/list.json
-          git add my-sitemap.xml
-          git add image-sitemap.xml
-
-          # Commit only if changes exist
-          git diff --cached --quiet || git commit -m "🔄 Auto-update blog list & sitemaps"
-
-          # Pull remote changes to avoid conflicts
-          git pull --rebase origin main || true
-
-          # Push updated files
-          git push origin main
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
