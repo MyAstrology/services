@@ -13,35 +13,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout repo
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      # 2️⃣ Setup Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
-      # 3️⃣ Install dependencies
       - name: Install dependencies
         run: npm install gray-matter fs-extra path
 
-      # 4️⃣ Generate blog list
       - name: Generate blog list
         run: node src/content/blog/generate-list.js
 
-      # 5️⃣ Generate blog sitemap
       - name: Generate blog sitemap
         run: node src/content/blog/generate-sitemap.js
 
-      # 6️⃣ Generate image sitemap
       - name: Generate image sitemap
         run: node src/content/blog/generate-image-sitemap.js
 
-      # 7️⃣ Commit & push changes
       - name: Commit and push changes
         run: |
           git config --global user.name "github-actions[bot]"
@@ -49,8 +42,11 @@ jobs:
 
           git add src/content/blog/list.json my-sitemap.xml image-sitemap.xml
 
+          # Only commit if changes exist
           git diff --cached --quiet || git commit -m "🔄 Auto-update blog list & sitemaps"
 
+          # Pull remote changes to avoid conflicts
           git pull --rebase origin main || true
-          git push origin main
 
+          # Push updated files
+          git push origin main
