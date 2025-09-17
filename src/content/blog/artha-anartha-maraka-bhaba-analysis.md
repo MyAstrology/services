@@ -2,7 +2,7 @@
 title: "অর্থ, অনর্থ ও জ্যোতিষ শাস্ত্রের মারক ভাব বিশ্লেষণ"
 description: "বৃহৎ পরাশর হোরাশাস্ত্র অনুযায়ী জন্মকুণ্ডলীর দ্বিতীয় ও সপ্তম ভাব কেন মারকস্থান হিসেবে ধরা হয়, তার শাস্ত্রীয় প্রমাণ, দার্শনিক ব্যাখ্যা ও বাস্তব উদাহরণ।"
 slug: "artha-anartha-maraka-bhaba-analysis"
-image: "https://astro.myastrology.in/blog/image-name.webp"
+image: "https://astro.myastrology.in/blog/artha-anartha-maraka-bhaba-analysis.webp"
 date: "2025-09-17"
 author:
   name: "Dr. Prodyut Acharya"
@@ -17,12 +17,12 @@ priority: 1
 reading_time: "7 min"
 og_title: "অর্থ, অনর্থ ও জ্যোতিষ শাস্ত্রের মারক ভাব বিশ্লেষণ"
 og_description: "বৃহৎ পরাশর হোরাশাস্ত্র অনুসারে দ্বিতীয় ও সপ্তম ভাবকে কেন মারক বলা হয়েছে তার বিশ্লেষণ, শাস্ত্রীয় প্রমাণ, দার্শনিক যুক্তি ও বাস্তব অভিজ্ঞতা।"
-og_image: "https://astro.myastrology.in/blog/image-name.webp"
+og_image: "https://astro.myastrology.in/blog/artha-anartha-maraka-bhaba-analysis.webp"
 og_image_alt: "অর্থ অনর্থ ও মারক ভাব বিশ্লেষণ"
 twitter_card: "summary_large_image"
 twitter_title: "অর্থ অনর্থ ও মারক ভাব"
 twitter_description: "জ্যোতিষ শাস্ত্র অনুসারে ধনভাব ও সপ্তম ভাব কেন মারকস্থান, তার শাস্ত্রীয় ব্যাখ্যা।"
-twitter_image: "https://astro.myastrology.in/blog/image-name.webp"
+twitter_image: "https://astro.myastrology.in/blog/artha-anartha-maraka-bhaba-analysis.webp"
 ---
 
 
