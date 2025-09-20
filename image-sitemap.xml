@@ -662,6 +662,13 @@
     </image:image>
   </url>
   <url>
+    <loc>https://astro.myastrology.in/blog.html?post=is-everything-predestined</loc>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/blog/predestination-astrology.webp</image:loc>
+      <image:caption><![CDATA[সবকিছু কি পূর্বনির্ধারিত? – জ্যোতিষ ও হস্তরেখা বিশ্লেষণ]]></image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://astro.myastrology.in/blog.html?post=jonmo-kundali-vs-hasta-rekha</loc>
     <image:image>
       <image:loc>https://astro.myastrology.in/blog/kundali-vs-palm-reading.webp</image:loc>
