@@ -228,4 +228,10 @@
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
+  <url>
+    <loc>https://astro.myastrology.in/blog.html?post=yukti-bigyan-o-biswas-jyotish-darshaner-aloke-satyer-anweshon</loc>
+    <lastmod>2025-09-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
 </urlset>
