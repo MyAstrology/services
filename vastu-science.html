@@ -188,15 +188,11 @@ nav a:hover {
   background: #4e342e;
   margin: 4px 0;
 }
-@media (max-width: 800px) {
-  nav {
-  display: none; /* সব স্ক্রিনে শুরুতে লুকানো */
-  flex-direction: column;
-  gap: 12px;
-}
-
-nav.active {
-  display: flex; /* হ্যামবার ক্লিক করলে দেখাবে */
+@media (min-width: 801px) {
+  nav.active {
+    flex-direction: row;       /* horizontal লেআউট */
+    justify-content: flex-end; /* ডানদিকে সারানো */
+  }
 }
   .menu-toggle {
     display: flex;
