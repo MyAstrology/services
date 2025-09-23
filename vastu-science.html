@@ -158,7 +158,8 @@ header {
 }
 
 nav {
-  display: flex;
+  display: none; /* শুরুতে লুকানো হবে সব স্ক্রিনে */
+  flex-direction: column; /* vertical মেনু মোবাইলে */
   gap: 12px;
 }
 nav a {
@@ -188,13 +189,16 @@ nav a:hover {
   background: #4e342e;
   margin: 4px 0;
 }
-@media (min-width: 801px) {
-  nav.active {
-    flex-direction: row;       /* horizontal লেআউট */
-    justify-content: flex-end; /* ডানদিকে সারানো */
+
+/* ==========================
+   🌟 Media Queries
+========================== */
+@media (max-width: 800px) {
+  nav {
+    /* মোবাইলে vertical মেনু */
+    display: none;
   }
-}
-  .menu-toggle {
+  nav.active {
     display: flex;
   }
   .banner img {
@@ -203,6 +207,19 @@ nav a:hover {
     display: block;
     margin: 0 !important;
     padding: 0 !important;
+  }
+}
+
+@media (min-width: 801px) {
+  nav {
+    display: flex; /* ডেস্কটপে সবসময় horizontal দেখাবে */
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+  nav.active {
+    /* ডেস্কটপে হ্যামবার ক্লিক করলেও horizontal থাকবে */
+    flex-direction: row;
+    justify-content: flex-end;
   }
 }
 
