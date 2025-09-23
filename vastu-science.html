@@ -131,85 +131,74 @@ a:hover {
 }
 
 /* ==========================
-   🌟 Header & Navigation
+🌟 Header & Navigation
 ========================== */
 header {
-  background: #fff3e0;
-  border-bottom: 2px solid #d7ccc8;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 16px;
-  position: relative;   /* overlay menu জন্য */
-  flex-wrap: wrap;
-  top: 0;
-  z-index: 999;
+background: #fff3e0;
+border-bottom: 2px solid #d7ccc8;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 8px 16px;
+flex-wrap: wrap;
+position: sticky;
+top: 0;
+z-index: 999;
 }
 
 .logo {
-  display: flex;
-  align-items: center;
+display: flex;
+align-items: center;
 }
 .logo img {
-  height: 50px;
-  margin-right: 10px;
-  border-radius: 8px;
-  box-shadow: 0 3px 6px rgba(179, 89, 0, 0.3);
+height: 50px;
+margin-right: 10px;
+border-radius: 8px;
+box-shadow: 0 3px 6px rgba(179, 89, 0, 0.3);
 }
 
 /* ==========================
-   🌟 Navigation
-========================== */
+🌟 Navigation
+========================== /
 nav {
-  display: none;               /* default লুকানো */
-  flex-direction: column;      /* vertical overlay */
-  gap: 12px;
-  position: absolute;          /* overlay হিসেবে */
-  top: 100%;                   /* header-এর ঠিক নিচে */
-  right: 0;
-  background: #fff3e0;
-  padding: 10px 16px;
-  border: 1px solid #d7ccc8;
-  border-radius: 8px;
-  z-index: 1000;
-  width: 220px;                /* ইচ্ছা মতো adjust */
+display: none; / শুরুতেই লুকানো /
+flex-direction: column; / vertical লেআউট */
+gap: 12px;
 }
 
 nav a {
-  font-weight: bold;
-  font-size: 0.95rem;
-  padding: 6px 10px;
-  border-radius: 4px;
-  background: #ffe0b2;
-  color: #4e342e;
+font-weight: bold;
+font-size: 0.95rem;
+padding: 6px 10px;
+border-radius: 4px;
+background: #ffe0b2;
+color: #4e342e;
 }
-
 nav a:hover {
-  background: #ffcc80;
-  color: #bf360c;
+background: #ffcc80;
+color: #bf360c;
 }
 
 /* ==========================
-   🌟 Menu Toggle (Hamburger)
-========================== */
+🌟 Menu Toggle (Hamburger)
+========================== /
 .menu-toggle {
-  display: flex;       /* সব স্ক্রিনে দেখাবে */
-  flex-direction: column;
-  cursor: pointer;
+display: flex;  / সব স্ক্রিনে দেখাবে */
+flex-direction: column;
+cursor: pointer;
 }
 .menu-toggle div {
-  width: 25px;
-  height: 3px;
-  background: #4e342e;
-  margin: 4px 0;
-  border-radius: 2px;
+width: 25px;
+height: 3px;
+background: #4e342e;
+margin: 4px 0;
 }
 
 /* ==========================
-   🌟 Active Class
+🌟 Active Class
 ========================== */
 nav.active {
-  display: flex;       /* Hamburger ক্লিক করলে দেখাবে */
+display: flex;
 }
 
 /* ==========================
