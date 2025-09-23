@@ -303,6 +303,10 @@
     <img src="images/MyAstrology-Ranghat-logo.png" alt="MyAstrology Logo" class="logo-on-banner">
   </div>
 
+  
+<!-- Hamburger Button -->
+<div class="hamburger" onclick="toggleMenu()">☰</div>
+
   <!-- ✅ Navigation Menu -->
   <div class="menu" id="menu">
     <a href="index.html">🏠 হোম</a>      
@@ -341,9 +345,9 @@
   <!-- ✅ Scripts -->
   <script>
     function toggleMenu() {
-      const menu = document.getElementById('menu');
-      menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
-    }
+    const menu = document.getElementById('menu');
+    menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+  }
     // Simple slider
     let current = 0;
     const images = document.querySelectorAll('.banner-slider img');
