@@ -176,10 +176,11 @@ nav a:hover {
 }
 
 /* ==========================
+/* ==========================
    🌟 Mobile Menu Toggle
 ========================== */
 .menu-toggle {
-  display: flex;  /* সব স্ক্রিনে হ্যামবারগার দেখাবে */
+  display: none;  /* ডিফল্ট: ডেস্কটপে লুকানো */
   flex-direction: column;
   cursor: pointer;
 }
@@ -193,13 +194,19 @@ nav a:hover {
 /* ==========================
    🌟 Media Queries
 ========================== */
+
+/* মোবাইল */
 @media (max-width: 800px) {
   nav {
-    /* মোবাইলে vertical মেনু */
-    display: none;
+    display: none;  /* শুরুতে লুকানো */
+    flex-direction: column;
+    gap: 12px;
   }
   nav.active {
-    display: flex;
+    display: flex;  /* হ্যামবার ক্লিক করলে দেখাবে */
+  }
+  .menu-toggle {
+    display: flex;  /* মোবাইলে হ্যামবার দেখাবে */
   }
   .banner img {
     width: 100% !important;
@@ -210,16 +217,19 @@ nav a:hover {
   }
 }
 
+/* ডেস্কটপ */
 @media (min-width: 801px) {
   nav {
-    display: flex; /* ডেস্কটপে সবসময় horizontal দেখাবে */
+    display: flex;           /* সবসময় horizontal মেনু দেখাবে */
     flex-direction: row;
     justify-content: flex-end;
   }
   nav.active {
-    /* ডেস্কটপে হ্যামবার ক্লিক করলেও horizontal থাকবে */
     flex-direction: row;
     justify-content: flex-end;
+  }
+  .menu-toggle {
+    display: none;           /* ডেস্কটপে হ্যামবার লুকানো */
   }
 }
 
