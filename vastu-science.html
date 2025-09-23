@@ -140,8 +140,8 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 8px 16px;
+  position: relative;   /* overlay menu জন্য */
   flex-wrap: wrap;
-  position: sticky;
   top: 0;
   z-index: 999;
 }
@@ -161,9 +161,18 @@ header {
    🌟 Navigation
 ========================== */
 nav {
-  display: none; /* শুরুতেই লুকানো */
-  flex-direction: column; /* vertical লেআউট */
+  display: none;               /* default লুকানো */
+  flex-direction: column;      /* vertical overlay */
   gap: 12px;
+  position: absolute;          /* overlay হিসেবে */
+  top: 100%;                   /* header-এর ঠিক নিচে */
+  right: 0;
+  background: #fff3e0;
+  padding: 10px 16px;
+  border: 1px solid #d7ccc8;
+  border-radius: 8px;
+  z-index: 1000;
+  width: 220px;                /* ইচ্ছা মতো adjust */
 }
 
 nav a {
@@ -174,6 +183,7 @@ nav a {
   background: #ffe0b2;
   color: #4e342e;
 }
+
 nav a:hover {
   background: #ffcc80;
   color: #bf360c;
@@ -183,7 +193,7 @@ nav a:hover {
    🌟 Menu Toggle (Hamburger)
 ========================== */
 .menu-toggle {
-  display: flex;  /* সব স্ক্রিনে দেখাবে */
+  display: flex;       /* সব স্ক্রিনে দেখাবে */
   flex-direction: column;
   cursor: pointer;
 }
@@ -192,13 +202,14 @@ nav a:hover {
   height: 3px;
   background: #4e342e;
   margin: 4px 0;
+  border-radius: 2px;
 }
 
 /* ==========================
    🌟 Active Class
 ========================== */
 nav.active {
-  display: flex;
+  display: flex;       /* Hamburger ক্লিক করলে দেখাবে */
 }
 
 /* ==========================
@@ -212,6 +223,32 @@ nav.active {
   padding: 0 !important;
 }
 
+/* ==========================
+   🌟 Media Queries
+========================== */
+
+/* মোবাইল: 800px পর্যন্ত */
+@media (max-width: 800px) {
+  nav {
+    width: 100%;          /* মোবাইল জন্য পূর্ণ প্রস্থ */
+    right: 0;
+    left: 0;
+  }
+}
+
+/* ডেস্কটপ: 801px উপরে */
+@media (min-width: 801px) {
+  nav {
+    display: flex !important;   /* সবসময় horizontal menu দেখাবে */
+    flex-direction: row;
+    justify-content: flex-end;
+    position: relative;         /* overlay নয়, normal flow */
+    width: auto;
+    border: none;
+    background: transparent;
+    padding: 0;
+  }
+}
 
 /* ==========================
    🌟 Scroll Banner
