@@ -311,20 +311,46 @@
     </div>
   </div>
 
-  <!-- ✅ Scripts -->
-  <script>
-    function toggleMenu() {
+   <script>
+    // Toggle menu by adding/removing .show (cleaner than inline style)
+    const hamburger = document.getElementById('hamburger');
     const menu = document.getElementById('menu');
-    menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
-  }
-    // Simple slider
+
+    function toggleMenu() {
+      menu.classList.toggle('show');
+    }
+
+    hamburger.addEventListener('click', toggleMenu);
+    // Also allow keyboard enter/space to toggle
+    hamburger.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMenu(); }
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e){
+      const target = e.target;
+      if (!menu.contains(target) && !hamburger.contains(target)) {
+        menu.classList.remove('show');
+      }
+    });
+
+    // close after clicking any link (useful for mobile)
+    menu.addEventListener('click', function(e){
+      if (e.target.tagName === 'A') {
+        menu.classList.remove('show');
+      }
+    });
+
+    // Simple banner slider
     let current = 0;
     const images = document.querySelectorAll('.banner-slider img');
-    setInterval(() => {
-      images[current].classList.remove('active');
-      current = (current + 1) % images.length;
-      images[current].classList.add('active');
-    }, 4000);
+    if(images.length > 0){
+      setInterval(() => {
+        images[current].classList.remove('active');
+        current = (current + 1) % images.length;
+        images[current].classList.add('active');
+      }, 4000);
+    }
   </script>
 
 </div>
