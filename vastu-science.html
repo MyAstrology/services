@@ -178,7 +178,7 @@ nav a:hover {
    🌟 Mobile Menu Toggle
 ========================== */
 .menu-toggle {
-  display: none;
+  display: flex;  /* সব স্ক্রিনে হ্যামবারগার দেখাবে */
   flex-direction: column;
   cursor: pointer;
 }
@@ -188,18 +188,15 @@ nav a:hover {
   background: #4e342e;
   margin: 4px 0;
 }
-
 @media (max-width: 800px) {
   nav {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    background: #fff3e0;
-    border-top: 1px solid #d7ccc8;
-  }
-  nav.active {
-    display: flex;
-  }
+  display: none; /* সব স্ক্রিনে শুরুতে লুকানো */
+  flex-direction: column; /* vertical মূলভাবে */
+  gap: 12px;
+}
+nav.active {
+  display: flex;  /* active হলে দেখাবে */
+}
   .menu-toggle {
     display: flex;
   }
