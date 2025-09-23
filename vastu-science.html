@@ -157,11 +157,15 @@ header {
   box-shadow: 0 3px 6px rgba(179, 89, 0, 0.3);
 }
 
+/* ==========================
+   🌟 Navigation
+========================== */
 nav {
-  display: none; /* শুরুতে লুকানো হবে সব স্ক্রিনে */
-  flex-direction: column; /* vertical মেনু মোবাইলে */
+  display: none; /* শুরুতেই লুকানো */
+  flex-direction: column; /* vertical লেআউট */
   gap: 12px;
 }
+
 nav a {
   font-weight: bold;
   font-size: 0.95rem;
@@ -176,11 +180,10 @@ nav a:hover {
 }
 
 /* ==========================
-/* ==========================
-   🌟 Mobile Menu Toggle
+   🌟 Menu Toggle (Hamburger)
 ========================== */
 .menu-toggle {
-  display: none;  /* ডিফল্ট: ডেস্কটপে লুকানো */
+  display: flex;  /* সব স্ক্রিনে দেখাবে */
   flex-direction: column;
   cursor: pointer;
 }
@@ -192,46 +195,23 @@ nav a:hover {
 }
 
 /* ==========================
-   🌟 Media Queries
+   🌟 Active Class
 ========================== */
-
-/* মোবাইল */
-@media (max-width: 800px) {
-  nav {
-    display: none;  /* শুরুতে লুকানো */
-    flex-direction: column;
-    gap: 12px;
-  }
-  nav.active {
-    display: flex;  /* হ্যামবার ক্লিক করলে দেখাবে */
-  }
-  .menu-toggle {
-    display: flex;  /* মোবাইলে হ্যামবার দেখাবে */
-  }
-  .banner img {
-    width: 100% !important;
-    height: auto !important;
-    display: block;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
+nav.active {
+  display: flex;
 }
 
-/* ডেস্কটপ */
-@media (min-width: 801px) {
-  nav {
-    display: flex;           /* সবসময় horizontal মেনু দেখাবে */
-    flex-direction: row;
-    justify-content: flex-end;
-  }
-  nav.active {
-    flex-direction: row;
-    justify-content: flex-end;
-  }
-  .menu-toggle {
-    display: none;           /* ডেস্কটপে হ্যামবার লুকানো */
-  }
+/* ==========================
+   🌟 Banner Adjustments
+========================== */
+.banner img {
+  width: 100% !important;
+  height: auto !important;
+  display: block;
+  margin: 0 !important;
+  padding: 0 !important;
 }
+
 
 /* ==========================
    🌟 Banner
