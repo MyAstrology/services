@@ -2,57 +2,29 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>আজকের পঞ্জিকা - MyAstrology</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
-        .result-box { border: 1px solid #ddd; padding: 20px; display: inline-block; border-radius: 10px; background: #fff8f0; }
-        h2 { color: #d32f2f; }
+        body { font-family: 'SolaimanLipi', Arial, sans-serif; background-color: #fff9f0; text-align: center; padding: 20px; }
+        .panjika-card { max-width: 650px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 15px; border: 2px solid #e67e22; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        h1 { color: #d35400; margin-bottom: 20px; }
+        .footer-text { margin-top: 20px; font-size: 14px; color: #7f8c8d; }
     </style>
 </head>
 <body>
-    <div class="result-box">
-        <div id="panchang-data">তথ্য লোড হচ্ছে...</div>
+
+    <div class="panjika-card">
+        <h1>আজকের বাংলা পঞ্জিকা (রানাঘাট)</h1>
+        
+        <div id="prokerala-panchang-widget">
+            <script src="https://www.prokerala.com/astrology/widgets/panchang.js" 
+                    data-language="bn" 
+                    data-location="23.18,88.56" 
+                    data-theme="modern">
+            </script>
+        </div>
+        <div class="footer-text">© ২০২৬ MyAstrology - রানাঘাট, পশ্চিমবঙ্গ</div>
     </div>
 
-    <script>
-        const clientId = '10f0df3a-365a-41bb-b788-bc5e89b7a463'; 
-        const clientSecret = 'v9c2UZyfpCmy22egcLEFiC78ysT9bqwGP0ayqXQm';
-
-        async function fetchPanchang() {
-            try {
-                // ১. টোকেন জেনারেট করা
-                const authResponse = await fetch('https://api.prokerala.com/token', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: `grant_type=client_credentials&client_id=${clientId}&client_secret=${clientSecret}`
-                });
-                
-                if (!authResponse.ok) throw new Error("টোকেন জেনারেশন ব্যর্থ হয়েছে।");
-                const auth = await authResponse.json();
-
-                // ২. ডেটা ফেচ করা (বাংলা ভাষায় - la=bn)
-                const panchangResponse = await fetch('https://api.prokerala.com/v2/astrology/panchang?location=23.18,88.56&datetime=2026-02-24T12:00:00+05:30&la=bn', {
-                    headers: { 'Authorization': `Bearer ${auth.access_token}` }
-                });
-                
-                if (!panchangResponse.ok) throw new Error("পঞ্জিকার তথ্য পাওয়া যায়নি।");
-                const result = await panchangResponse.json();
-                
-                // ৩. স্ক্রিনে দেখানো
-                const data = result.data.panchang;
-                document.getElementById('panchang-data').innerHTML = `
-                    <h2>আজকের পঞ্জিকা (রানাঘাট)</h2>
-                    <p><b>তিথি:</b> ${data.tithi[0].name}</p>
-                    <p><b>নক্ষত্র:</b> ${data.nakshatra[0].name}</p>
-                    <p><b>সূর্যোদয়:</b> ${data.sunrise}</p>
-                    <p><b>সূর্যাস্ত:</b> ${data.sunset}</p>
-                `;
-            } catch (error) {
-                document.getElementById('panchang-data').innerHTML = "ত্রুটি: " + error.message;
-                console.error(error);
-            }
-        }
-        fetchPanchang();
-    </script>
 </body>
 </html>
