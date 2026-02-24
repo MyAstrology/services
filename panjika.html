@@ -1,128 +1,83 @@
-<div id="panchang-output">
-  Panchang data লোড হচ্ছে...
-</div>
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        #panchang-output {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 400px;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+        .panchang-section { margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        .panchang-title { color: #d35400; font-weight: bold; }
+        .time-text { font-size: 0.9em; color: #555; }
+    </style>
+</head>
+<body>
+
+<div id="panchang-output">পঞ্জিকা তথ্য লোড হচ্ছে...</div>
 
 <script>
-
 async function loadPanchang() {
-  const el = document.getElementById("panchang-container");
-  el.innerText = "লোড হচ্ছে...";
+    const outputEl = document.getElementById("panchang-output");
 
-  try {
-    const res = await fetch("https://panchang-api.bipulbala64.workers.dev/");
-    const json = await res.json();
+    try {
+        const res = await fetch("https://panchang-api.bipulbala64.workers.dev/");
+        const json = await res.json();
 
-    // এখন আমরা শুধু একটি উদাহরণ দেখাচ্ছি
-    const vaara = json.data.vaara;
-    const sunrise = json.data.sunrise;
-    const sunset = json.data.sunset;
+        if (json.status !== "ok") {
+            outputEl.innerText = "দুঃখিত, তথ্য পাওয়া যায়নি।";
+            return;
+        }
 
-    el.innerHTML = `
-      <p>আজকের দিন: ${vaara}</p>
-      <p>সূর্যোদয়: ${sunrise}</p>
-      <p>সূর্যাস্ত: ${sunset}</p>
-    `;
-  } catch (err) {
-    el.innerText = "Panchang data লোড হয়নি। পরে চেষ্টা করুন।";
-    console.error(err);
-  }
-}
+        const data = json.data;
+        const formatTime = (isoString) => 
+            new Date(isoString).toLocaleTimeString("bn-IN", { hour: "2-digit", minute: "2-digit" });
 
-window.addEventListener("load", loadPanchang);
+        // Helper to format lists (Tithi, Nakshatra, etc.)
+        const formatList = (list) => list.map(item => `
+            <div>
+                <strong>${item.name}</strong> ${item.paksha ? `(${item.paksha})` : ''}
+                ${item.lord ? `<br><small>প্রভু: ${item.lord.vedic_name}</small>` : ''}
+                <div class="time-text">শুরু: ${formatTime(item.start)} - শেষ: ${formatTime(item.end)}</div>
+            </div>
+        `).join("");
 
-<div id="panchang-container">লোড হচ্ছে...</div>
+        // Construct HTML
+        outputEl.innerHTML = `
+            <h2 style="margin-top:0;">আজকের পঞ্জিকা</h2>
+            <div class="panchang-section">
+                <span class="panchang-title">বার:</span> ${data.vaara}
+            </div>
+            
+            <div class="panchang-section">
+                <span class="panchang-title">তিথি:</span><br> ${formatList(data.tithi)}
+            </div>
 
-  
-async function loadPanchang() {
-  try {
-    const res = await fetch("https://panchang-api.bipulbala64.workers.dev/");
-    const json = await res.json();
+            <div class="panchang-section">
+                <span class="panchang-title">নক্ষত্র:</span><br> ${formatList(data.nakshatra)}
+            </div>
 
-    if (json.status !== "ok") {
-      document.getElementById("panchang-output").innerText = "Panchang data লোড হয়নি। পরে চেষ্টা করুন।";
-      return;
+            <div class="panchang-section">
+                <span class="panchang-title">সূর্য ও চন্দ্র:</span><br>
+                ☀️ সূর্যোদয়: ${formatTime(data.sunrise)} | সূর্যাস্ত: ${formatTime(data.sunset)} <br>
+                🌙 চন্দ্রোদয়: ${formatTime(data.moonrise)} | চন্দ্রাস্ত: ${formatTime(data.moonset)}
+            </div>
+        `;
+
+    } catch (err) {
+        console.error("Error fetching Panchang:", err);
+        outputEl.innerText = "নেটওয়ার্ক সমস্যা। পরে চেষ্টা করুন।";
     }
-
-    const data = json.data;
-
-    // ==============================
-    // ১) আজকের Vaara (weekday)
-    // ==============================
-    const vaara = data.vaara;
-
-    // ==============================
-    // ২) তিথি
-    // ==============================
-    const tithiList = data.tithi.map(t => `
-      ${t.name} (${t.paksha}) 
-      <br> শুরু: ${new Date(t.start).toLocaleTimeString("bn-IN", {hour:"2-digit",minute:"2-digit"})} 
-      - শেষ: ${new Date(t.end).toLocaleTimeString("bn-IN", {hour:"2-digit",minute:"2-digit"})}
-    `).join("<br><br>");
-
-    // ==============================
-    // ৩) নক্ষত্র
-    // ==============================
-    const nakshatraList = data.nakshatra.map(n => `
-      ${n.name} (প্রভু: ${n.lord.vedic_name}) 
-      <br> শুরু: ${new Date(n.start).toLocaleTimeString("bn-IN",{hour:"2-digit",minute:"2-digit"})} 
-      - শেষ: ${new Date(n.end).toLocaleTimeString("bn-IN",{hour:"2-digit",minute:"2-digit"})}
-    `).join("<br><br>");
-
-    // ==============================
-    // ৪) কারণ
-    // ==============================
-    const karanaList = data.karana.map(k => `
-      ${k.name} 
-      <br> শুরু: ${new Date(k.start).toLocaleTimeString("bn-IN",{hour:"2-digit",minute:"2-digit"})} 
-      - শেষ: ${new Date(k.end).toLocaleTimeString("bn-IN",{hour:"2-digit",minute:"2-digit"})}
-    `).join("<br><br>");
-
-    // ==============================
-    // ৫) যোগ
-    // ==============================
-    const yogaList = data.yoga.map(y => `
-      ${y.name} 
-      <br> শুরু: ${new Date(y.start).toLocaleTimeString("bn-IN",{hour:"2-digit",minute:"2-digit"})} 
-      - শেষ: ${new Date(y.end).toLocaleTimeString("bn-IN",{hour:"2-digit",minute:"2-digit"})}
-    `).join("<br><br>");
-
-    // ==============================
-    // ৬) সূর্য/চাঁদ
-    // ==============================
-    const sunrise = new Date(data.sunrise).toLocaleTimeString("bn-IN",{hour:"2-digit",minute:"2-digit"});
-    const sunset = new Date(data.sunset).toLocaleTimeString("bn-IN",{hour:"2-digit",minute:"2-digit"});
-    const moonrise = new Date(data.moonrise).toLocaleTimeString("bn-IN",{hour:"2-digit",minute:"2-digit"});
-    const moonset = new Date(data.moonset).toLocaleTimeString("bn-IN",{hour:"2-digit",minute:"2-digit"});
-
-    // ==============================
-    // ৭) HTML তৈরি
-    // ==============================
-    const html = `
-      <h3>আজকের পঞ্জিকা</h3>
-      <b>বার:</b> ${vaara} <br><br>
-
-      <b>তিথি:</b><br> ${tithiList} <br><br>
-
-      <b>নক্ষত্র:</b><br> ${nakshatraList} <br><br>
-
-      <b>কারণ:</b><br> ${karanaList} <br><br>
-
-      <b>যোগ:</b><br> ${yogaList} <br><br>
-
-      <b>সূর্যোদয়:</b> ${sunrise} <br>
-      <b>সূর্যাস্ত:</b> ${sunset} <br>
-      <b>চন্দ্রোদয়:</b> ${moonrise} <br>
-      <b>চন্দ্রাস্ত:</b> ${moonset} <br>
-    `;
-
-    document.getElementById("panchang-output").innerHTML = html;
-
-  } catch (err) {
-    console.error(err);
-    document.getElementById("panchang-output").innerText = "Panchang data লোড হয়নি। পরে চেষ্টা করুন।";
-  }
 }
 
-// Load immediately
-loadPanchang();
+// Execute on load
+window.addEventListener("DOMContentLoaded", loadPanchang);
 </script>
+
+</body>
+</html>
