@@ -1,31 +1,104 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>আজকের পঞ্জিকা - MyAstrology</title>
-    <style>
-        body { font-family: 'Arial', sans-serif; background-color: #fff9f0; text-align: center; padding: 20px; }
-        .panjika-container { max-width: 600px; margin: 0 auto; background: #fff; padding: 15px; border-radius: 15px; border: 2px solid #e67e22; box-shadow: 0 5px 15px rgba(0,0,0,0.1); overflow: hidden; }
-        h1 { color: #d35400; font-size: 22px; margin-bottom: 15px; }
-        iframe { border: none; border-radius: 10px; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>আজকের পঞ্জিকা</title>
+  <style>
+    body { font-family: "Noto Sans Bengali", sans-serif; background: #fff7e6; color: #333; padding: 20px; }
+    h2, h3 { color: #d35400; }
+    .panchang-section { margin-bottom: 20px; }
+    ul { padding-left: 20px; }
+    li { margin-bottom: 5px; }
+  </style>
 </head>
 <body>
 
-    <div class="panjika-container">
-        <h1>আজকের বাংলা পঞ্জিকা (রানাঘাট)</h1>
-        
-        <iframe 
-            src="https://www.prokerala.com/astrology/widgets/panchang.php?la=bn&loc=23.18,88.56&theme=modern&header=false" 
-            width="100%" 
-            height="450" 
-            style="background: white;" 
-            allowTransparency="true">
-        </iframe>
+  <h2>আজকের পঞ্জিকা</h2>
+  <div id="panchang-output">
+    <p>লোড হচ্ছে…</p>
+  </div>
 
-        <p style="margin-top: 20px; font-size: 14px; color: #7f8c8d;">© ২০২৬ MyAstrology - রানাঘাট, পশ্চিমবঙ্গ</p>
-    </div>
+  <script>
+    const WORKER_URL = "https://panchang-api.bipulbala64.workers.dev/";
+
+    async function loadPanchang(lat, lon) {
+      let url = WORKER_URL;
+      if(lat && lon) url += `?lat=${lat}&lon=${lon}`;
+
+      try {
+        const res = await fetch(url);
+        const json = await res.json();
+        const p = json.data;
+
+        // Bengali Vaara mapping
+        const vaaraMap = {
+          "Sunday":"রবিবার", "Monday":"সোমবার", "Tuesday":"মঙ্গলবার",
+          "Wednesday":"বুধবার","Thursday":"বৃহস্পতিবার",
+          "Friday":"শুক্রবার","Saturday":"শনিবার"
+        };
+        const vaara = vaaraMap[p.vaara] || p.vaara;
+
+        // Helper: ISO date to Bengali time
+        const timeBN = t => new Date(t).toLocaleTimeString('bn-IN', {hour12:false});
+
+        // Render HTML
+        let html = `
+          <div class="panchang-section">
+            <p><strong>দিন:</strong> ${vaara}</p>
+            <p><strong>সূর্যোদয়:</strong> ${timeBN(p.sunrise)}</p>
+            <p><strong>সূর্যাস্ত:</strong> ${timeBN(p.sunset)}</p>
+            <p><strong>চন্দ্রোদয়:</strong> ${timeBN(p.moonrise)}</p>
+            <p><strong>চন্দ্রাস্ত:</strong> ${timeBN(p.moonset)}</p>
+          </div>
+          <div class="panchang-section">
+            <h3>তিথি:</h3>
+            <ul>
+              ${p.tithi.map(t => `<li>${t.name} (${t.paksha}) : ${timeBN(t.start)} - ${timeBN(t.end)}</li>`).join('')}
+            </ul>
+          </div>
+          <div class="panchang-section">
+            <h3>নক্ষত্র:</h3>
+            <ul>
+              ${p.nakshatra.map(n => `<li>${n.name} (${n.lord.vedic_name}) : ${timeBN(n.start)} - ${timeBN(n.end)}</li>`).join('')}
+            </ul>
+          </div>
+          <div class="panchang-section">
+            <h3>করণ:</h3>
+            <ul>
+              ${p.karana.map(k => `<li>${k.name} : ${timeBN(k.start)} - ${timeBN(k.end)}</li>`).join('')}
+            </ul>
+          </div>
+          <div class="panchang-section">
+            <h3>যোগ:</h3>
+            <ul>
+              ${p.yoga.map(y => `<li>${y.name} : ${timeBN(y.start)} - ${timeBN(y.end)}</li>`).join('')}
+            </ul>
+          </div>
+        `;
+        document.getElementById("panchang-output").innerHTML = html;
+
+      } catch(err) {
+        console.error(err);
+        document.getElementById("panchang-output").innerHTML = "<p>Panchang data লোড হয়নি। পরে চেষ্টা করুন।</p>";
+      }
+    }
+
+    // Try geolocation
+    if(navigator.geolocation){
+      navigator.geolocation.getCurrentPosition(pos => {
+        const lat = pos.coords.latitude.toFixed(2);
+        const lon = pos.coords.longitude.toFixed(2);
+        loadPanchang(lat, lon);
+      }, err => {
+        // fallback Ranaghat
+        loadPanchang();
+      });
+    } else {
+      loadPanchang(); // fallback Ranaghat
+    }
+
+  </script>
 
 </body>
 </html>
