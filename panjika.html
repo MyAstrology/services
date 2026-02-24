@@ -2,29 +2,56 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>আজকের পঞ্জিকা - MyAstrology</title>
     <style>
-        body { font-family: 'SolaimanLipi', Arial, sans-serif; background-color: #fff9f0; text-align: center; padding: 20px; }
-        .panjika-card { max-width: 650px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 15px; border: 2px solid #e67e22; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        h1 { color: #d35400; margin-bottom: 20px; }
-        .footer-text { margin-top: 20px; font-size: 14px; color: #7f8c8d; }
+        body { font-family: 'Arial', sans-serif; background-color: #fff9f0; text-align: center; padding: 20px; }
+        .panjika-card { max-width: 500px; margin: 0 auto; background: white; padding: 20px; border-radius: 15px; border: 2px solid #e67e22; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        h1 { color: #d35400; }
+        .info { font-size: 18px; margin: 10px 0; color: #333; }
+        .footer { margin-top: 20px; font-size: 14px; color: #7f8c8d; }
     </style>
 </head>
 <body>
 
     <div class="panjika-card">
         <h1>আজকের বাংলা পঞ্জিকা (রানাঘাট)</h1>
-        
-        <div id="prokerala-panchang-widget">
-            <script src="https://www.prokerala.com/astrology/widgets/panchang.js" 
-                    data-language="bn" 
-                    data-location="23.18,88.56" 
-                    data-theme="modern">
-            </script>
-        </div>
-        <div class="footer-text">© ২০২৬ MyAstrology - রানাঘাট, পশ্চিমবঙ্গ</div>
+        <div id="display-area">তথ্য লোড হচ্ছে...</div>
+        <div class="footer">© ২০২৬ MyAstrology - রানাঘাট, পশ্চিমবঙ্গ</div>
     </div>
 
+    <script>
+        const clientId = '10f0df3a-365a-41bb-b788-bc5e89b7a463'; 
+        const clientSecret = 'v9c2UZyfpCmy22egcLEFiC78ysT9bqwGP0ayqXQm';
+
+        async function getPanjika() {
+            try {
+                // ১. টোকেন তৈরি (Credential verify)
+                const authRes = await fetch('https://api.prokerala.com/token', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: `grant_type=client_credentials&client_id=${clientId}&client_secret=${clientSecret}`
+                });
+                const authData = await authRes.json();
+                
+                // ২. বাংলা পঞ্জিকা কল (Ranaghat Location & Bengali Language)
+                const res = await fetch('https://api.prokerala.com/v2/astrology/panchang?location=23.18,88.56&datetime=2026-02-24T12:00:00+05:30&la=bn', {
+                    headers: { 'Authorization': `Bearer ${authData.access_token}` }
+                });
+                const result = await res.json();
+                const panchang = result.data.panchang;
+
+                // ৩. স্ক্রিনে পঞ্জিকা দেখানো
+                document.getElementById('display-area').innerHTML = `
+                    <div class="info"><b>তিথি:</b> ${panchang.tithi[0].name}</div>
+                    <div class="info"><b>নক্ষত্র:</b> ${panchang.nakshatra[0].name}</div>
+                    <div class="info"><b>সূর্যোদয়:</b> ${panchang.sunrise}</div>
+                    <div class="info"><b>সূর্যাস্ত:</b> ${panchang.sunset}</div>
+                `;
+            } catch (err) {
+                document.getElementById('display-area').innerHTML = "তথ্য লোড করতে সমস্যা হয়েছে। দয়া করে আপনার ব্রাউজারের রিফ্রেশ বাটন চাপুন।";
+            }
+        }
+        getPanjika();
+    </script>
 </body>
 </html>
