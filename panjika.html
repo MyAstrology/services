@@ -3,6 +3,37 @@
 </div>
 
 <script>
+<script>
+async function loadPanchang() {
+  const el = document.getElementById("panchang-container");
+  el.innerText = "লোড হচ্ছে...";
+
+  try {
+    const res = await fetch("https://panchang-api.bipulbala64.workers.dev/");
+    const json = await res.json();
+
+    // এখন আমরা শুধু একটি উদাহরণ দেখাচ্ছি
+    const vaara = json.data.vaara;
+    const sunrise = json.data.sunrise;
+    const sunset = json.data.sunset;
+
+    el.innerHTML = `
+      <p>আজকের দিন: ${vaara}</p>
+      <p>সূর্যোদয়: ${sunrise}</p>
+      <p>সূর্যাস্ত: ${sunset}</p>
+    `;
+  } catch (err) {
+    el.innerText = "Panchang data লোড হয়নি। পরে চেষ্টা করুন।";
+    console.error(err);
+  }
+}
+
+window.addEventListener("load", loadPanchang);
+</script>
+
+<div id="panchang-container">লোড হচ্ছে...</div>
+
+  
 async function loadPanchang() {
   try {
     const res = await fetch("https://panchang-api.bipulbala64.workers.dev/");
