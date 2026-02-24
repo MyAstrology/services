@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <title>আজকের পঞ্জিকা - MyAstrology</title>
+</head>
+<body>
+    <div id="panchang-data">তথ্য লোড হচ্ছে...</div>
+
+    <script>
+        // আপনার প্রো কেরালা অ্যাকাউন্ট থেকে Client ID এবং Secret এখানে দিতে হবে
+        const clientId = '10f0df3a-365a-41bb-b788-bc5e89b7a463'; 
+        const clientSecret = 'v9c2UZyfpCmy22egcLEFiC78ysT9bqwGP0ayqXQm';
+
+        async function fetchPanchang() {
+            // ১. এপিআই টোকেন নেওয়া
+            const response = await fetch('https://api.prokerala.com/token', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `grant_type=client_credentials&client_id=${clientId}&client_secret=${clientSecret}`
+            });
+            const auth = await response.json();
+
+            // ২. রানাঘাটের লোকেশন এবং বাংলা ভাষায় ডেটা আনা
+            const panchangResponse = await fetch('https://api.prokerala.com/v2/astrology/panchang?location=23.18,88.56&datetime=2026-02-24T12:00:00+05:30&la=bn', {
+                headers: { 'Authorization': `Bearer ${auth.access_token}` }
+            });
+            const result = await panchangResponse.json();
+            
+            // স্ক্রিনে ডেটা দেখানো
+            document.getElementById('panchang-data').innerHTML = `
+                <h2>আজকের পঞ্জিকা</h2>
+                <p>তিথি: ${result.data.panchang.tithi[0].name}</p>
+            `;
+        }
+        fetchPanchang();
+    </script>
+</body>
+</html>
