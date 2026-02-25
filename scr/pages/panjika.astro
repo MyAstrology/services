@@ -24,8 +24,7 @@
       const outputEl = document.getElementById("panchang-output");
       try {
         const res = await fetch("https://panjika.bipulbala64.workers.dev/");
-        const json = await res.json();
-
+const json = await res.json();
         if(!json || json.status === "error") {
           outputEl.innerText = "দুঃখিত, পঞ্জিকা তথ্য পাওয়া যায়নি।";
           return;
