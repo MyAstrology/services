@@ -526,6 +526,167 @@ body {
     🕊️ "Your destiny is not written in stone — it's waiting to be read between the lines." ✍️        
   </p>        
 </section>
+
+
+
+
+<!-- Services বা Hero section-এর মাঝে যোগ করুন -->
+<section class="free-tools-section">
+  <div class="container">
+    <h3>🔮 <span>Free Daily Tools</span></h3>
+    <p style="color: #666; margin-bottom: 25px;">Explore our free astrology tools and get instant insights</p>
+    
+    <div class="tools-grid">
+      <a href="rashifal-calculator.html" class="tool-card" target="_blank">
+        <div class="tool-icon">✨</div>
+        <h4>Daily Bengali Horoscope</h4>
+        <p>Get your personalized daily predictions in Bengali</p>
+        <span class="btn-arrow">→</span>
+      </a>
+      
+      <!-- ভবিষ্যতে আরো tools যোগ করবেন -->
+      <div class="tool-placeholder">
+        <div class="coming-soon">Coming Soon</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.free-tools-section {
+  background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
+  padding: 50px 20px;
+  margin: 40px 0;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.free-tools-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ff6b35, #f7931e, #4ecdc4);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.free-tools-section h3 {
+  font-size: 28px;
+  color: #2c5530;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.free-tools-section h3 span {
+  background: linear-gradient(45deg, #ff6b35, #f7931e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.tool-card {
+  background: white;
+  padding: 30px 25px;
+  border-radius: 20px;
+  text-decoration: none;
+  color: #333;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid transparent;
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(45deg, #ff6b35, #f7931e) border-box;
+}
+
+.tool-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 50px rgba(255,107,53,0.3);
+  border-color: #ff6b35;
+}
+
+.tool-icon {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.tool-card h4 {
+  color: #2c5530;
+  font-size: 22px;
+  margin: 0 0 10px 0;
+}
+
+.tool-card p {
+  color: #666;
+  margin: 0 0 20px 0;
+  line-height: 1.6;
+}
+
+.btn-arrow {
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+  font-size: 24px;
+  color: #ff6b35;
+  transition: all 0.3s ease;
+}
+
+.tool-card:hover .btn-arrow {
+  right: 20px;
+  color: #f7931e;
+}
+
+.tool-placeholder {
+  background: #f8f9fa;
+  border: 2px dashed #ddd;
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  opacity: 0.7;
+}
+
+.coming-soon {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .free-tools-section {
+    padding: 30px 15px;
+    margin: 20px -15px;
+    border-radius: 0;
+  }
+  
+  .tools-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+
+
+
     
     <!-- 🌌 Section Container -->
     
