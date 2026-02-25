@@ -1,15 +1,127 @@
-<!DOCTYPE html><html lang="bn"><head><meta charset="UTF-8"><title>ফ্রি রাশিফল - MyAstrology</title></head><body>
-<h1>🌟 আজকের রাশিফল</h1>
-<select id="rashi"><option>মেষ</option><option>বৃষ</option><option>মিথুন</option><option>কর্কট</option><option>সিংহ</option><option>কন্যা</option><option>তুলা</option><option>বৃশ্চিক</option><option>ধনু</option><option>মকর</option><option>কুম্ভ</option><option>মীন</option></select>
-<button onclick="showRashifal()">দেখুন</button>
-<div id="result"></div>
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ফ্রি দৈনিক রাশিফল - MyAstrology রানাঘাট</title>
+    <meta name="description" content="আজকের বাংলা রাশিফল। ১২ রাশির দৈনিক ভবিষ্যৎ জানুন।">
+</head>
+<body style="font-family: Arial; max-width: 600px; margin: 50px auto; padding: 20px;">
+    <h1>🌟 আজকের রাশিফল (২৬ ফেব্রুয়ারি ২০২৬)</h1>
+    
+    <select id="rashi" style="padding: 10px; font-size: 16px;">
+        <option value="">আপনার রাশি নির্বাচন করুন</option>
+        <option value="mesha">মেষ</option>
+        <option value="brisha">বৃষ</option>
+        <option value="mithun">মিথুন</option>
+        <option value="karkat">কর্কট</option>
+        <option value="singha">সিংহ</option>
+        <option value="kanya">কন্যা</option>
+        <option value="tula">তুলা</option>
+        <option value="brischik">বৃশ্চিক</option>
+        <option value="dhanu">ধনু</option>
+        <option value="makar">মকর</option>
+        <option value="kumbha">কুম্ভ</option>
+        <option value="meen">মীন</option>
+    </select>
+    <br><br>
+    <button onclick="showRashifal()" style="background: #ff6b35; color: white; padding: 12px 24px; border: none; border-radius: 25px; font-size: 16px; cursor: pointer;">রাশিফল দেখুন 🌟</button>
+    
+    <div id="result" style="display: none; margin-top: 20px;"></div>
 
-<script>
-function showRashifal(){
-  const rashi = document.getElementById('rashi').value;
-  document.getElementById('result').innerHTML = 
-    `<h3>${rashi} রাশি</h3><p>কর্ম: আজ সাফল্য আসবে 💼<br>প্রেম: সম্পর্ক ভালো থাকবে 💕<br>স্বাস্থ্য: সতর্ক থাকুন 🏥</p>
-    <a href="https://wa.me/919333122768">বিস্তারিত জানতে WhatsApp →</a>`;
-}
-</script>
-</body></html>
+    <script>
+        // প্রতি রাশির আলাদা রাশিফল
+        const rashifalData = {
+            mesha: {
+                karma: "কর্মক্ষেত্রে নতুন সুযোগ। সাহসের সাথে এগিয়ে যান।",
+                prem: "প্রেমজীবনে সুখ। পার্টনারের সাথে সময় কাটান।",
+                swasthya: "স্বাস্থ্য ভালো। নিয়মিত ব্যায়াম করুন।"
+            },
+            brisha: {
+                karma: "ব্যবসায় লাভ। বিনিয়োগ সতর্কতার সাথে করুন।",
+                prem: "প্রেমের সম্পর্ক মধ্যম। ধৈর্য ধরুন।",
+                swasthya: "পেটের সমস্যা থেকে সাবধান। হালকা খাবার খান।"
+            },
+            mithun: {
+                karma: "চাকরিতে সহকর্মীর সাহায্য পাবেন।",
+                prem: "প্রেমে রোমান্স। তারিখ রাখুন।",
+                swasthya: "শরীর ফিট। বাইরে ঘুরতে যান।"
+            },
+            karkat: {
+                karma: "কর্মে চ্যালেঞ্জ। ধৈর্য ধরুন।",
+                prem: "পারিবারিক জীবনে সুখ।",
+                swasthya: "স্বাস্থ্য সতর্কতা। বিশ্রাম নিন।"
+            },
+            singha: {
+                karma: "লিডারশিপ ক্ষমতা প্রকাশ করুন। সাফল্য আসবে।",
+                prem: "প্রেমে আকর্ষণ বাড়বে।",
+                swasthya: "শক্তি বেশি থাকবে।"
+            },
+            kanya: {
+                karma: "বিস্তারিত কাজে মন দিন। প্রশংসা পাবেন।",
+                prem: "সম্পর্ক স্থিতিশীল।",
+                swasthya: "স্বাস্থ্য ভালো। ডায়েট মেনে চলুন।"
+            },
+            tula: {
+                karma: "টিমওয়ার্কে সাফল্য। সহযোগিতা করুন।",
+                prem: "প্রেমে সুখের খবর আসতে পারে।",
+                swasthya: "শরীর ঠিক আছে।"
+            },
+            brischik: {
+                karma: "কঠোর পরিশ্রমের ফল পাবেন।",
+                prem: "প্রেমে আবেগ নিয়ন্ত্রণ করুন।",
+                swasthya: "স্বাস্থ্যের দিকে নজর দিন।"
+            },
+            dhanu: {
+                karma: "নতুন প্রকল্প শুরু করুন।",
+                prem: "প্রেমজীবন উত্তেজনাপূর্ণ।",
+                swasthya: "শক্তি ও উৎসাহ ভালো।"
+            },
+            makar: {
+                karma: "কর্মে স্থিতিশীলতা। লক্ষ্যে মনোযোগ দিন।",
+                prem: "প্রেমে গভীরতা আসবে।",
+                swasthya: "স্বাস্থ্য সুস্থ।"
+            },
+            kumbha: {
+                karma: "উদ্ভাবনী চিন্তা করুন। সাফল্য আসবে।",
+                prem: "প্রেমে বন্ধন মজবুত হবে।",
+                swasthya: "শরীর ভালো চলবে।"
+            },
+            meen: {
+                karma: "ক্রিয়েটিভ কাজে সাফল্য।",
+                prem: "রোমান্টিক মুহূর্ত কাটাবেন।",
+                swasthya: "স্বাস্থ্য সতর্কতা। ঘুমানোর সময় বাড়ান।"
+        };
+
+        function showRashifal() {
+            const rashi = document.getElementById('rashi').value;
+            
+            if (!rashi || !rashifalData[rashi]) {
+                alert('দয়া করে আপনার রাশি নির্বাচন করুন!');
+                return;
+            }
+
+            const data = rashifalData[rashi];
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('result').innerHTML = `
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 25px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
+                    <h2 style="margin: 0 0 20px 0;">✨ ${rashi.toUpperCase()} রাশি ✨</h2>
+                    <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px; margin-bottom: 15px;">
+                        <h3>💼 কর্ম</h3><p>${data.karma}</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px; margin-bottom: 15px;">
+                        <h3>💕 প্রেম</h3><p>${data.prem}</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px;">
+                        <h3>🏥 স্বাস্থ্য</h3><p>${data.swasthya}</p>
+                    </div>
+                    <a href="https://wa.me/919333122768" target="_blank" 
+                       style="background: #25D366; color: white; padding: 12px 24px; text-decoration: none; border-radius: 25px; display: inline-block; margin-top: 20px; font-weight: bold;">
+                        📱 বিস্তারিত পরামর্শ - WhatsApp
+                    </a>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
