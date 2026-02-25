@@ -148,55 +148,36 @@
             `;
         }
     </script>
-    <!-- পঞ্জিকা সেকশন -->
-<div id="panchang-section" style="margin-top: 40px; padding: 25px; background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%); border-radius: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.1);">
-  <h3 style="color: #856404; text-align: center; margin-bottom: 20px;">📅 <strong>আজকের পঞ্জিকা</strong></h3>
-  <div id="panchang-loading" style="text-align: center; color: #856404;">
-    লোড হচ্ছে... ⏳
-  </div>
-  <div id="panchang-data" style="display: none;"></div>
+<div id="panchang-section"> <!-- পঞ্জিকা container -->
+  <h3>📅 আজকের পঞ্জিকা</h3>
+  <div id="panchang-loading">লোড হচ্ছে... ⏳</div>
+  <div id="panchang-data" style="display:none;"></div>
 </div>
 
 <script>
-// Prokerala Demo API (CORS Proxy দিয়ে)
-async function loadPanchang() {
+async function loadPanchang() {  // মেইন function
   try {
-    const response = await fetch('https://api.allorigins.win/get?url=' + 
-      encodeURIComponent('https://api.prokerala.com/demo/panchang.php?date=2026-02-26'));
+    // Step 1: CORS Proxy + Prokerala URL
+    const proxyUrl = 'https://api.allorigins.win/raw?url=';
+    const prokeralaUrl = 'https://api.prokerala.com/demo/panchang.php?date=2026-02-26';
     
+    // Step 2: API call
+    const response = await fetch(proxyUrl + encodeURIComponent(prokeralaUrl));
     const data = await response.json();
-    const panchang = JSON.parse(data.contents);
     
-    document.getElementById('panchang-loading').style.display = 'none';
-    document.getElementById('panchang-data').style.display = 'block';
+    // Step 3: Data দেখানো
     document.getElementById('panchang-data').innerHTML = `
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; font-size: 15px;">
-        <div style="background: rgba(255,255,255,0.7); padding: 12px; border-radius: 10px; text-align: center;">
-          <strong>তিথি</strong><br>${panchang.tithi?.name || 'N/A'}
-        </div>
-        <div style="background: rgba(255,255,255,0.7); padding: 12px; border-radius: 10px; text-align: center;">
-          <strong>নক্ষত্র</strong><br>${panchang.nakshatra?.name || 'N/A'}
-        </div>
-        <div style="background: rgba(255,255,255,0.7); padding: 12px; border-radius: 10px; text-align: center;">
-          <strong>যোগ</strong><br>${panchang.yoga?.name || 'N/A'}
-        </div>
-        <div style="background: rgba(255,255,255,0.7); padding: 12px; border-radius: 10px; text-align: center;">
-          <strong>করণ</strong><br>${panchang.karana?.name || 'N/A'}
-        </div>
-        <div style="background: rgba(255,255,255,0.7); padding: 12px; border-radius: 10px; text-align: center;">
-          <strong>সূর্যোদয়</strong><br>${panchang.sunrise || 'N/A'}
-        </div>
-      </div>
-      <p style="text-align: center; color: #856404; font-size: 12px; margin-top: 15px;">
-        সূত্র: Prokerala Astrology API
-      </p>
+      তিথি: ${data.tithi}<br>
+      নক্ষত্র: ${data.nakshatra}
     `;
-  } catch (error) {
-    document.getElementById('panchang-loading').innerHTML = 'পঞ্জিকা লোড করতে সমস্যা হচ্ছে 😅';
+    
+  } catch(error) {  // Error handling
+    console.log('API error:', error);
+    document.getElementById('panchang-loading').innerHTML = '🌐 পরে চেষ্টা করুন';
   }
 }
 
-// Page load হলে Panchang লোড করুন
+// Page load-এ চালানো
 window.onload = loadPanchang;
 </script>
 </body>
