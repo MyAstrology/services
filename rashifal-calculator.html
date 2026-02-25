@@ -1,0 +1,15 @@
+<!DOCTYPE html><html lang="bn"><head><meta charset="UTF-8"><title>ফ্রি রাশিফল - MyAstrology</title></head><body>
+<h1>🌟 আজকের রাশিফল</h1>
+<select id="rashi"><option>মেষ</option><option>বৃষ</option><option>মিথুন</option><option>কর্কট</option><option>সিংহ</option><option>কন্যা</option><option>তুলা</option><option>বৃশ্চিক</option><option>ধনু</option><option>মকর</option><option>কুম্ভ</option><option>মীন</option></select>
+<button onclick="showRashifal()">দেখুন</button>
+<div id="result"></div>
+
+<script>
+function showRashifal(){
+  const rashi = document.getElementById('rashi').value;
+  document.getElementById('result').innerHTML = 
+    `<h3>${rashi} রাশি</h3><p>কর্ম: আজ সাফল্য আসবে 💼<br>প্রেম: সম্পর্ক ভালো থাকবে 💕<br>স্বাস্থ্য: সতর্ক থাকুন 🏥</p>
+    <a href="https://wa.me/919333122768">বিস্তারিত জানতে WhatsApp →</a>`;
+}
+</script>
+</body></html>
