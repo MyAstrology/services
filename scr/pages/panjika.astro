@@ -1,5 +1,7 @@
 ---
+// কোন server-side logic নেই, সব client-side fetch হবে
 ---
+
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -21,34 +23,35 @@
     async function loadPanchang() {
       const outputEl = document.getElementById("panchang-output");
       try {
-        const res = await fetch("/api/panchang");
+        const res = await fetch("https://panjika.bipulbala64.workers.dev/");
         const json = await res.json();
 
-        if(json.status !== "ok" && !json.date) {
+        if(!json || json.status === "error") {
           outputEl.innerText = "দুঃখিত, পঞ্জিকা তথ্য পাওয়া যায়নি।";
           return;
         }
 
-        const data = json; // Prokerala API direct data
+        const data = json.data || json;
+
         const formatTime = iso => new Date(iso).toLocaleTimeString("bn-IN", { hour:"2-digit", minute:"2-digit" });
         const formatList = list => list.map(item => `
           <div>
             <strong>${item.name}</strong> ${item.paksha ? '('+item.paksha+')' : ''}
-            ${item.lord ? '<br><small>প্রভু: '+item.lord.name+'</small>' : ''}
+            ${item.lord ? '<br><small>প্রভু: '+item.lord.vedic_name+'</small>' : ''}
             <div class="time-text">শুরু: ${formatTime(item.start)} - শেষ: ${formatTime(item.end)}</div>
           </div>
         `).join("");
 
         outputEl.innerHTML = `
           <h2>আজকের পঞ্জিকা</h2>
-          <div class="panchang-section"><span class="panchang-title">বার:</span> ${data.vaara.name}</div>
-          <div class="panchang-section"><span class="panchang-title">তিথি:</span><br>${formatList([data.tithi])}</div>
-          <div class="panchang-section"><span class="panchang-title">নক্ষত্র:</span><br>${formatList([data.nakshatra])}</div>
-          <div class="panchang-section"><span class="panchang-title">কারণ:</span><br>${formatList([data.karana])}</div>
-          <div class="panchang-section"><span class="panchang-title">যোগ:</span><br>${formatList([data.yoga])}</div>
+          <div class="panchang-section"><span class="panchang-title">বার:</span> ${data.vaara}</div>
+          <div class="panchang-section"><span class="panchang-title">তিথি:</span><br>${formatList(data.tithi)}</div>
+          <div class="panchang-section"><span class="panchang-title">নক্ষত্র:</span><br>${formatList(data.nakshatra)}</div>
+          <div class="panchang-section"><span class="panchang-title">কারণ:</span><br>${formatList(data.karana)}</div>
+          <div class="panchang-section"><span class="panchang-title">যোগ:</span><br>${formatList(data.yoga)}</div>
           <div class="panchang-section"><span class="panchang-title">সূর্য ও চন্দ্র:</span><br>
-            ☀️ সূর্যোদয়: ${formatTime(data.sun.sunrise)} | সূর্যাস্ত: ${formatTime(data.sun.sunset)} <br>
-            🌙 চন্দ্রোদয়: ${formatTime(data.moon.moonrise)} | চন্দ্রাস্ত: ${formatTime(data.moon.moonset)}
+            ☀️ সূর্যোদয়: ${formatTime(data.sunrise)} | সূর্যাস্ত: ${formatTime(data.sunset)} <br>
+            🌙 চন্দ্রোদয়: ${formatTime(data.moonrise)} | চন্দ্রাস্ত: ${formatTime(data.moonset)}
           </div>
         `;
       } catch(err) {
