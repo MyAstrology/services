@@ -8,8 +8,8 @@ export async function get() {
 
     const res = await fetch(url, {
       headers: {
-        "X-Client-Id": "আপনার_CLIENT_ID",
-        "X-Client-Secret": "আপনার_SECRET_ID"
+        "X-Client-Id": "40548a50-d755-4e3a-97a2-907ca762fe40",
+        "X-Client-Secret": "1CCgiLUhBEmr8t0XyzlNssnv0EJVgHKFkDtU3eKS"
       }
     });
 
