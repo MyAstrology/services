@@ -377,7 +377,8 @@ function getBnInfo(date){
   const d=Math.floor((t-s.getTime())/86400000)+1;
   const ne=idx+1<BMS.length?new Date(BMS[idx+1].s+'T00:00:00'):null;
   const ml=ne?Math.floor((ne.getTime()-s.getTime())/86400000):30;
-  return{y:e.y,m:e.m,d,ml,name:BNM_NAMES[e.m],ritu:RITU[e.m],vikram:e.y+650,saka:e.y+515};
+return{y:e.y,m:e.m,d,ml,name:BNM_NAMES[e.m],ritu:RITU[e.m],vikram:e.y+650,saka:e.y+515};
+}
 function getBnMonthDays(idx){
   const e=BMS[idx];
   if(!e||idx+1>=BMS.length)return[];
