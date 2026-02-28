@@ -177,27 +177,96 @@ h1,h2,h3,h4{font-family:var(--fh);line-height:1.3}
 .banner img.active{display:block}
 /* NO text overlay — images displayed clean */
 
-/* ═══ PANJIKA STRIP ═══ */
-.pj-strip{
-  background:linear-gradient(90deg,var(--navy) 0%,var(--navy3) 50%,var(--navy) 100%);
-  border-top:1px solid rgba(184,134,11,.5);
-  border-bottom:1px solid rgba(184,134,11,.5);
-  padding:11px 20px;
-  display:flex;flex-wrap:wrap;align-items:center;
-  justify-content:center;gap:14px;text-align:center;
-}
-.pj-strip .pj-label{
-  font-family:var(--fh);font-size:.8rem;color:var(--gold3);
-  letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;
-}
-.pj-strip .pj-info{font-size:.9rem;color:#a8c0dc;font-style:italic;}
-.pj-strip .pj-link{
-  background:transparent;border:1.5px solid var(--gold);
-  color:var(--gold-lt);padding:5px 16px;border-radius:4px;
-  font-size:.82rem;font-weight:700;letter-spacing:.05em;
-  white-space:nowrap;transition:background .2s,color .2s;
-}
-.pj-strip .pj-link:hover{background:var(--gold);color:var(--navy)}
+
+  :root {
+    --navy: #0a192f;
+    --navy3: #112240;
+    --gold: #b8860b;
+    --gold3: #ffd700;
+    --gold-lt: #fff4ca;
+  }
+
+  .pj-strip {
+    background: linear-gradient(90deg, var(--navy) 0%, var(--navy3) 50%, var(--navy) 100%);
+    border-top: 1px solid rgba(184, 134, 11, .5);
+    border-bottom: 1px solid rgba(184, 134, 11, .5);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    gap: 15px;
+    position: relative;
+  }
+
+  .pj-label {
+    font-family: inherit;
+    font-size: .85rem;
+    color: var(--gold3);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    font-weight: bold;
+    border-right: 2px solid var(--gold);
+    padding-right: 15px;
+    z-index: 10;
+    background: inherit;
+  }
+
+  .ticker-wrap {
+    flex-grow: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+  }
+
+  .ticker-move {
+    display: inline-block;
+    white-space: nowrap;
+    padding-left: 100%;
+    animation: ticker-kf 40s linear infinite; /* গতি কমাতে চাইলে 40s বাড়াতে পারেন */
+  }
+
+  .ticker-move:hover {
+    animation-play-state: paused; /* মাউস রাখলে থেমে যাবে */
+  }
+
+  .ticker-item {
+    display: inline-block;
+    padding: 0 30px;
+    font-size: .95rem;
+    color: #a8c0dc;
+    font-style: italic;
+  }
+
+  .ticker-item b {
+    color: var(--gold-lt);
+    font-style: normal;
+  }
+
+  .pj-link {
+    background: transparent;
+    border: 1.5px solid var(--gold);
+    color: var(--gold-lt);
+    padding: 5px 16px;
+    border-radius: 4px;
+    font-size: .82rem;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: 0.3s;
+    z-index: 10;
+  }
+
+  .pj-link:hover {
+    background: var(--gold);
+    color: var(--navy);
+  }
+
+  @keyframes ticker-kf {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-100%, 0, 0); }
+  }
+
 
 /* ═══ HERO ═══ */
 .hero{
@@ -440,20 +509,17 @@ h1,h2,h3,h4{font-family:var(--fh);line-height:1.3}
 .region-card p{font-size:.86rem;color:var(--muted)}
 .svc-seo .tagline{margin-top:24px;padding:16px 20px;background:rgba(184,134,11,.08);border-left:4px solid var(--gold2);font-family:var(--fh);font-style:italic;font-size:.98rem;color:#3a3020;border-radius:0 var(--r) var(--r) 0}
 
-/* ═══ PANJIKA STRIP ═══ */
-.panjika-strip{
-  background:var(--navy);padding:36px 24px;text-align:center;
-  border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);
-}
-.panjika-strip h3{font-family:var(--fh);color:var(--gold-lt);font-size:1.3rem;margin-bottom:10px}
-.panjika-strip p{color:#8aaccf;font-size:.94rem;margin-bottom:20px;max-width:640px;margin-left:auto;margin-right:auto}
-.btn-pj{
-  background:var(--gold);color:var(--navy);
-  padding:13px 30px;border-radius:7px;
-  font-weight:700;font-size:.95rem;
-  display:inline-block;transition:background .2s;
-}
-.btn-pj:hover{background:var(--gold3)}
+<div class="pj-strip">
+  <span class="pj-label">আজকের রাশিফল</span>
+  
+  <div class="ticker-wrap">
+    <div class="ticker-move" id="rashifalTicker">
+      <span class="ticker-item">রাশিফল লোড হচ্ছে... অনুগ্রহ করে অপেক্ষা করুন।</span>
+    </div>
+  </div>
+
+  <a href="rashifal.html" class="pj-link">সব রাশি</a>
+</div>
 
 /* ═══ LOCATION ═══ */
 .location{background:var(--cream2);padding:56px 24px;content-visibility:auto}
@@ -1064,16 +1130,48 @@ setTimeout(function(){
   if(b){b.classList.add('show');setTimeout(function(){b.classList.remove('show')},6000)}
 },3000);
 
-/* Panjika strip — dynamic date */
-(function(){
-  var days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-  var months=['January','February','March','April','May','June','July','August','September','October','November','December'];
-  var rahu=['04:30 PM – 06:00 PM','07:30 AM – 09:00 AM','03:00 PM – 04:30 PM','12:00 PM – 01:30 PM','01:30 PM – 03:00 PM','10:30 AM – 12:00 PM','09:00 AM – 10:30 AM'];
-  var now=new Date(),d=now.getDay();
-  var el=document.getElementById('pjStrip');
-  if(el)el.textContent=days[d]+', '+now.getDate()+' '+months[now.getMonth()]+' '+now.getFullYear()+
-    ' | Rahu Kaal: '+rahu[d]+' | Abhijit Muhurta: 11:36–12:26';
-})();
+
+
+   
+// ১. আপনার সেই ডায়নামিক ফাংশন (যদি এই পেজে না থাকে তবে এটি নিশ্চিত করুন)
+function getRF(ri) {
+  const TODAY = new Date(); // এখানে TODAY ডিফাইন করা হলো
+  const W = TODAY.getDay(), D = TODAY.getDate(), M = TODAY.getMonth();
+  const seed = (ri * 19 + W * 13 + D * 7 + M); 
+
+  // আপনার SB ডাটাবেস না থাকলে এখানে একটি ডিফল্ট স্কোর লজিক
+  const sc = i => Math.min(5, Math.max(1, 3 + (seed % 3) - 1));
+  
+  return {
+    love: { score: sc(0), text: RFD.love[(seed + ri) % RFD.love.length] },
+    work: { score: sc(1), text: RFD.work[(seed + W + D) % RFD.work.length] },
+    msg: RFD.msg[(seed + ri + D) % RFD.msg.length],
+    // অন্যান্য ডেটা...
+  };
+}
+
+// ২. হোম পেজের টিকারে ডেটা দেখানোর লজিক
+document.addEventListener("DOMContentLoaded", function() {
+  const rashiNames = ["মেষ", "বৃষ", "মিথুন", "কর্কট", "সিংহ", "কন্যা", "তুলা", "বৃশ্চিক", "ধনু", "মকর", "কুম্ভ", "মীন"];
+  let tickerHTML = "";
+
+  // ১২টি রাশির বার্তা লুপের মাধ্যমে তৈরি করা
+  for (let i = 0; i < 12; i++) {
+    try {
+      const data = getRF(i);
+      tickerHTML += `<span class="ticker-item"><b>${rashiNames[i]}:</b> ${data.msg}</span>`;
+    } catch (e) {
+      console.error("Error generating ticker for index " + i, e);
+    }
+  }
+
+  const tickerContainer = document.getElementById('rashifalTicker');
+  if (tickerHTML) {
+    // নিরবিচ্ছিন্ন লুপের জন্য দুবার যোগ করা হলো
+    tickerContainer.innerHTML = tickerHTML + tickerHTML;
+  }
+});
+
 </script>
 
 <!-- ═══ ARTICLE SCHEMA ═══ -->
