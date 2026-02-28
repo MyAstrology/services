@@ -712,16 +712,12 @@ const LCOLS=['লাল','নীল','সবুজ','হলুদ','সাদা
 const LDIRS=['পূর্ব','পশ্চিম','উত্তর','দক্ষিণ','ঈশান','আগ্নেয়'];
 const SB=[[4,3,5,4],[3,4,3,5],[5,5,4,3],[3,3,4,4],[4,5,3,5],[5,4,5,3],[4,3,4,3],[3,4,3,4],[5,5,5,4],[4,3,4,5],[3,4,3,3],[4,4,5,4]];
 
-function getRF(ri) {
-  const D = TODAY.getDate();
-  const M = TODAY.getMonth();
-  const Y = TODAY.getFullYear();
-    const dateSeed = (Y * 365) + (M * 31) + D;
-  const getIdx = (pool, offset) => {
-    if(!pool || pool.length === 0) return 0;
-    return (dateSeed + (ri * 19) + offset) % pool.length;
-  };
-
+function getRF(ri){
+  const W=TODAY.getDay(),D=TODAY.getDate(),M=TODAY.getMonth();
+  const seed=(ri*7+W*3+D+M*2)%7;
+  const sc=i=>Math.min(5,Math.max(1,SB[ri][i]+(seed%3)-1));
+  return{
+    love: {score:sc(0), text:RFD.love[(ri+D)%RFD.love.length]},
     work: {score:sc(1), text:RFD.work[(ri+W+D)%RFD.work.length]},
     health:{score:sc(2), text:RFD.health[(ri*2+D)%RFD.health.length]},
     finance:{score:sc(3),text:RFD.finance[(ri+M+D)%RFD.finance.length]},
