@@ -71,6 +71,26 @@ body{background:var(--bg);color:var(--txt);font-family:'Baloo Da 2',sans-serif;p
 .hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
 .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
 
+
+/* ═══════════════════════════════════
+   CTA BANNER (inline — book now)
+═══════════════════════════════════ */
+.cta-banner{
+  background:linear-gradient(135deg,#1a0a00,#3d1c00);
+  border-radius:16px;padding:1.1rem 1.4rem;margin-bottom:1.1rem;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.9rem;
+  box-shadow:0 4px 20px rgba(0,0,0,.25);
+}
+.cta-banner-txt .ct-head{font-family:'Tiro Bangla',serif;font-size:1.05rem;color:#f5d78a;margin-bottom:.18rem;}
+.cta-banner-txt .ct-sub{font-size:.77rem;color:rgba(245,215,138,.65);}
+.cta-banner-btns{display:flex;gap:.6rem;flex-wrap:wrap;}
+.cta-btn{display:flex;align-items:center;gap:.4rem;padding:.55rem 1.1rem;border-radius:10px;font-size:.82rem;font-weight:700;text-decoration:none;transition:all .2s;border:none;cursor:pointer;}
+.cta-btn.gold{background:linear-gradient(135deg,var(--gold-d),var(--gold));color:#fff;box-shadow:0 3px 12px rgba(181,134,13,.4);}
+.cta-btn.gold:hover{transform:translateY(-1px);box-shadow:0 5px 18px rgba(181,134,13,.5);}
+.cta-btn.wa{background:#25d366;color:#fff;box-shadow:0 3px 10px rgba(37,211,102,.35);}
+.cta-btn.wa:hover{background:#1ebe5b;transform:translateY(-1px);} 
+
+  
 /* WhatsApp CTA in topbar */
 .tb-wa{
   display:flex;align-items:center;gap:.4rem;
