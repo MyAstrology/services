@@ -639,20 +639,31 @@ const LCOLS=['লাল','নীল','সবুজ','হলুদ','সাদা
 const LDIRS=['পূর্ব','পশ্চিম','উত্তর','দক্ষিণ','ঈশান','আগ্নেয়'];
 const SB=[[4,3,5,4],[3,4,3,5],[5,5,4,3],[3,3,4,4],[4,5,3,5],[5,4,5,3],[4,3,4,3],[3,4,3,4],[5,5,5,4],[4,3,4,5],[3,4,3,3],[4,4,5,4]];
 
-function getRF(ri){
-  const W=TODAY.getDay(),D=TODAY.getDate(),M=TODAY.getMonth();
-  const seed=(ri*7+W*3+D+M*2)%7;
-  const sc=i=>Math.min(5,Math.max(1,SB[ri][i]+(seed%3)-1));
-  return{
-    love:{score:sc(0),text:RFD.love[(ri+D)%7]},
-    work:{score:sc(1),text:RFD.work[(ri+W+D)%7]},
-    health:{score:sc(2),text:RFD.health[(ri*2+D)%7]},
-    finance:{score:sc(3),text:RFD.finance[(ri+M+D)%7]},
-    msg:RFD.msg[(ri*2+D+W)%RFD.msg.length],
-    caution:RFD.caution[(ri*3+W+D)%RFD.caution.length],
-    lucky:{num:toBn((ri+D*3+W)%9+1),color:LCOLS[(ri*2+D+M)%LCOLS.length],dir:LDIRS[(ri+W)%LDIRS.length],gem:RASHIS[ri].gem,time:W<5?'সকাল ও দুপুর':'বিকাল ও সন্ধ্যা'},
+function getRF(ri) {
+  const W = TODAY.getDay(), D = TODAY.getDate(), M = TODAY.getMonth();
+  // একটি শক্তিশালী ইউনিক সীড (Seed) তৈরি করা হয়েছে
+  const seed = (ri * 19 + W * 13 + D * 7 + M); 
+
+  const sc = i => Math.min(5, Math.max(1, SB[ri][i] + (seed % 3) - 1));
+  
+  return {
+    // .length ব্যবহার করায় এখন আপনি যত খুশি বাক্য যোগ করতে পারবেন
+    love: { score: sc(0), text: RFD.love[(seed + ri) % RFD.love.length] },
+    work: { score: sc(1), text: RFD.work[(seed + W + D) % RFD.work.length] },
+    health: { score: sc(2), text: RFD.health[(seed + ri * 2 + D) % RFD.health.length] },
+    finance: { score: sc(3), text: RFD.finance[(seed + M + D + ri) % RFD.finance.length] },
+    msg: RFD.msg[(seed + ri + D) % RFD.msg.length],
+    caution: RFD.caution[(seed + W + ri) % RFD.caution.length],
+    lucky: { 
+      num: toBn((ri + D * 3 + W) % 9 + 1), 
+      color: LCOLS[(ri * 2 + D + M) % LCOLS.length], 
+      dir: LDIRS[(ri + W) % LDIRS.length], 
+      gem: RASHIS[ri].gem, 
+      time: W < 5 ? 'সকাল ও দুপুর' : 'বিকাল ও সন্ধ্যা' 
+    },
   };
 }
+
 
 let actR=-1;
 function renderRG(){
