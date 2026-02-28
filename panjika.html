@@ -472,7 +472,12 @@ const FESTS=[
 ];
 const getFests=ds=>FESTS.filter(f=>f.d===ds);
 
+const dayCache=new Map();
+
 function calcDay(date){
+  const key=dStr(date);
+  if(dayCache.has(key))return dayCache.get(key);
+
   const y=date.getFullYear(),m=date.getMonth()+1,d=date.getDate(),w=date.getDay();
   const jd=JD(y,m,d)+0.5;
   const sl=sunL(jd),ml=moonL(jd);
@@ -485,7 +490,7 @@ function calcDay(date){
   const kI=Math.floor(diff/6)%11;
   const st=sunTimes(y,m,d);
   const bn=getBnInfo(date);
-  return{
+  const result={
     w,bn,tN,tName:TNAMES[tN-1],
     paksha:tN<=15?'শুক্লপক্ষ':'কৃষ্ণপক্ষ',pakDay:tN<=15?tN:tN-15,
     nak:NAKS[nI],yoga:YOGAS[yI],karan:KARANS[kI],
@@ -496,6 +501,8 @@ function calcDay(date){
     abhi:abhiT(st.rise,st.set),
     fests:getFests(dStr(date)),
   };
+  dayCache.set(key,result);
+  return result;
 }
 function moonEmoji(t){
   if(t===15)return'🌕';if(t===30||t===1)return'🌑';
