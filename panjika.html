@@ -107,7 +107,7 @@ nav{position:sticky;top:0;z-index:500;background:rgba(253,248,240,.97);backdrop-
 /* DIVIDER */
 .dvd{height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);margin:1.4rem 0;}
 
-/* CALENDAR — Bengali month primary */
+/* CALENDAR */
 .cal-card{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;box-shadow:0 4px 20px rgba(181,134,13,.08);margin-bottom:1.5rem;}
 .cal-hdr{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.2rem;border-bottom:1px solid var(--border);background:linear-gradient(135deg,rgba(181,134,13,.07),rgba(181,134,13,.02));}
 .cnav{background:rgba(181,134,13,.1);border:1px solid rgba(181,134,13,.2);color:var(--gold-l);border-radius:9px;padding:.35rem .8rem;cursor:pointer;font-size:.88rem;font-family:'Baloo Da 2',sans-serif;transition:background .2s;}
@@ -119,8 +119,6 @@ nav{position:sticky;top:0;z-index:500;background:rgba(253,248,240,.97);backdrop-
 .cwd{text-align:center;padding:.45rem 0;font-size:.68rem;color:var(--txt2);font-weight:600;}
 .cwd.ws{color:#c0392b;}.cwd.wsa{color:#1a56c0;}
 .cbody{display:grid;grid-template-columns:repeat(7,1fr);}
-
-/* Day cell — Bengali date LARGE */
 .cd{border-right:1px solid rgba(181,134,13,.1);border-bottom:1px solid rgba(181,134,13,.1);min-height:80px;padding:.38rem .32rem .28rem;cursor:pointer;transition:background .18s;position:relative;overflow:hidden;}
 .cd:hover:not(.ce){background:rgba(181,134,13,.07);}
 .ce{background:var(--bg2);cursor:default;opacity:.45;}
@@ -128,13 +126,9 @@ nav{position:sticky;top:0;z-index:500;background:rgba(253,248,240,.97);backdrop-
 .cs{background:rgba(181,134,13,.2);border:1.5px solid rgba(181,134,13,.58);}
 .cd.ds .db{color:#c0392b;}
 .cd.dsa .db{color:#1a56c0;}
-/* Bengali day number — LARGE & PROMINENT */
 .db{font-family:'Tiro Bangla',serif;font-size:1.35rem;font-weight:700;color:var(--txt);line-height:1;}
-/* English date — small */
 .de{font-size:.58rem;color:var(--txt2);margin-top:.1rem;}
-/* Tithi */
 .dti{font-family:'Tiro Bangla',serif;font-size:.55rem;color:var(--gold);margin-top:.18rem;line-height:1.2;}
-/* Festival */
 .df{font-size:.5rem;color:#c0392b;margin-top:.08rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .tdot{position:absolute;top:4px;right:4px;width:5px;height:5px;background:var(--gold);border-radius:50%;}
 
@@ -222,7 +216,7 @@ footer a{color:var(--gold);text-decoration:none;}
   <div class="chips" id="tb-chips"></div>
 </div>
 
-<!-- ══ দৈনিক রাশিফল (পেজের উপরে) ══ -->
+<!-- দৈনিক রাশিফল -->
 <div class="rf-wrap">
   <div class="rf-title">🪐 আজকের দৈনিক রাশিফল — আপনার রাশি বেছে নিন</div>
   <div class="rg" id="rg"></div>
@@ -242,10 +236,9 @@ footer a{color:var(--gold);text-decoration:none;}
   </div>
 </div>
 
-<!-- DIVIDER -->
 <div class="dvd"></div>
 
-<!-- ══ বাংলা পঞ্জিকা ক্যালেন্ডার ══ -->
+<!-- বাংলা পঞ্জিকা ক্যালেন্ডার -->
 <div class="cal-card">
   <div class="cal-hdr">
     <button class="cnav" onclick="shiftM(-1)">◀ আগের মাস</button>
@@ -346,25 +339,27 @@ function abhiT(rise,set){
 function dStr(d){return`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;}
 
 // ══════════════════════════════════
-// BENGALI MONTHS — hardcoded starts (Vishuddha Siddhanta)
+// BENGALI MONTHS
 // ══════════════════════════════════
 const BNM_NAMES=['বৈশাখ','জ্যৈষ্ঠ','আষাঢ়','শ্রাবণ','ভাদ্র','আশ্বিন','কার্তিক','অগ্রহায়ণ','পৌষ','মাঘ','ফাল্গুন','চৈত্র'];
 const RITU=['গ্রীষ্ম','গ্রীষ্ম','বর্ষা','বর্ষা','শরৎ','শরৎ','হেমন্ত','হেমন্ত','শীত','শীত','বসন্ত','বসন্ত'];
 const BMS=[
-  {y:1431,m:0, s:'2024-04-14'},{y:1431,m:1, s:'2024-05-15'},{y:1431,m:2, s:'2024-06-15'},
-  {y:1431,m:3, s:'2024-07-16'},{y:1431,m:4, s:'2024-08-17'},{y:1431,m:5, s:'2024-09-17'},
-  {y:1431,m:6, s:'2024-10-17'},{y:1431,m:7, s:'2024-11-16'},{y:1431,m:8, s:'2024-12-16'},
-  {y:1431,m:9, s:'2025-01-14'},{y:1431,m:10,s:'2025-02-13'},{y:1431,m:11,s:'2025-03-14'},
-  {y:1432,m:0, s:'2025-04-14'},{y:1432,m:1, s:'2025-05-15'},{y:1432,m:2, s:'2025-06-15'},
-  {y:1432,m:3, s:'2025-07-16'},{y:1432,m:4, s:'2025-08-17'},{y:1432,m:5, s:'2025-09-17'},
-  {y:1432,m:6, s:'2025-10-17'},{y:1432,m:7, s:'2025-11-16'},{y:1432,m:8, s:'2025-12-16'},
-  {y:1432,m:9, s:'2026-01-15'},{y:1432,m:10,s:'2026-02-14'},{y:1432,m:11,s:'2026-03-15'},
-  {y:1433,m:0, s:'2026-04-15'},{y:1433,m:1, s:'2026-05-15'},{y:1433,m:2, s:'2026-06-15'},
-  {y:1433,m:3, s:'2026-07-17'},{y:1433,m:4, s:'2026-08-17'},{y:1433,m:5, s:'2026-09-17'},
-  {y:1433,m:6, s:'2026-10-17'},{y:1433,m:7, s:'2026-11-16'},{y:1433,m:8, s:'2026-12-16'},
-  {y:1433,m:9, s:'2027-01-15'},{y:1433,m:10,s:'2027-02-13'},{y:1433,m:11,s:'2027-03-14'},
-  {y:1434,m:0, s:'2027-04-14'},
+  {y:1431,m:0,s:'2024-04-14'},{y:1431,m:1,s:'2024-05-15'},{y:1431,m:2,s:'2024-06-15'},
+  {y:1431,m:3,s:'2024-07-16'},{y:1431,m:4,s:'2024-08-17'},{y:1431,m:5,s:'2024-09-17'},
+  {y:1431,m:6,s:'2024-10-17'},{y:1431,m:7,s:'2024-11-16'},{y:1431,m:8,s:'2024-12-16'},
+  {y:1431,m:9,s:'2025-01-14'},{y:1431,m:10,s:'2025-02-13'},{y:1431,m:11,s:'2025-03-14'},
+  {y:1432,m:0,s:'2025-04-14'},{y:1432,m:1,s:'2025-05-15'},{y:1432,m:2,s:'2025-06-15'},
+  {y:1432,m:3,s:'2025-07-16'},{y:1432,m:4,s:'2025-08-17'},{y:1432,m:5,s:'2025-09-17'},
+  {y:1432,m:6,s:'2025-10-17'},{y:1432,m:7,s:'2025-11-16'},{y:1432,m:8,s:'2025-12-16'},
+  {y:1432,m:9,s:'2026-01-15'},{y:1432,m:10,s:'2026-02-14'},{y:1432,m:11,s:'2026-03-15'},
+  {y:1433,m:0,s:'2026-04-15'},{y:1433,m:1,s:'2026-05-15'},{y:1433,m:2,s:'2026-06-15'},
+  {y:1433,m:3,s:'2026-07-17'},{y:1433,m:4,s:'2026-08-17'},{y:1433,m:5,s:'2026-09-17'},
+  {y:1433,m:6,s:'2026-10-17'},{y:1433,m:7,s:'2026-11-16'},{y:1433,m:8,s:'2026-12-16'},
+  {y:1433,m:9,s:'2027-01-15'},{y:1433,m:10,s:'2027-02-13'},{y:1433,m:11,s:'2027-03-14'},
+  {y:1434,m:0,s:'2027-04-14'},
 ];
+
+// ══ FIX ১: getBnInfo — } বন্ধনী ঠিক আছে, vikram ও saka সঠিক ══
 function getBnInfo(date){
   const t=date.getTime();
   let idx=-1;
@@ -377,8 +372,10 @@ function getBnInfo(date){
   const d=Math.floor((t-s.getTime())/86400000)+1;
   const ne=idx+1<BMS.length?new Date(BMS[idx+1].s+'T00:00:00'):null;
   const ml=ne?Math.floor((ne.getTime()-s.getTime())/86400000):30;
-return{y:e.y,m:e.m,d,ml,name:BNM_NAMES[e.m],ritu:RITU[e.m],vikram:e.y+650,saka:e.y+515};
+  // FIX: vikram = বাংলা + ৬৫০, saka = বাংলা + ৫১৫
+  return{y:e.y,m:e.m,d,ml,name:BNM_NAMES[e.m],ritu:RITU[e.m],vikram:e.y+650,saka:e.y+515};
 }
+
 function getBnMonthDays(idx){
   const e=BMS[idx];
   if(!e||idx+1>=BMS.length)return[];
@@ -452,27 +449,24 @@ const FESTS=[
   {d:'2025-04-14',n:'পয়লা বৈশাখ – বাংলা নববর্ষ ১৪৩২',i:'🎉'},
   {d:'2025-04-30',n:'অক্ষয় তৃতীয়া',i:'🌟'},{d:'2025-05-12',n:'বুদ্ধ পূর্ণিমা',i:'☸️'},
   {d:'2025-06-27',n:'রথযাত্রা',i:'🎡'},{d:'2025-08-09',n:'জন্মাষ্টমী',i:'🦚'},
-  {d:'2025-08-27',n:'গণেশ চতুর্থী',i:'🐘'},{d:'2025-09-29',n:'মহালয়া',i:'🌙'},
-  {d:'2025-10-02',n:'মহাষষ্ঠী',i:'🪔'},{d:'2025-10-03',n:'মহাসপ্তমী',i:'🪔'},
-  {d:'2025-10-04',n:'মহাঅষ্টমী',i:'🪔'},{d:'2025-10-05',n:'মহানবমী',i:'🪔'},
-  {d:'2025-10-06',n:'বিজয়াদশমী',i:'🎊'},{d:'2025-10-20',n:'কোজাগরী লক্ষ্মীপূজা',i:'🌕'},
-  {d:'2025-10-29',n:'কালীপূজা / দীপাবলি',i:'🪔'},{d:'2025-11-05',n:'ভাইফোঁটা',i:'💛'},
-  {d:'2025-12-25',n:'বড়দিন',i:'🎄'},{d:'2026-01-01',n:'ইংরেজি নববর্ষ',i:'🎆'},
-  {d:'2026-01-15',n:'পৌষ সংক্রান্তি / মকরসংক্রান্তি',i:'🌾'},
+  {d:'2025-08-15',n:'স্বাধীনতা দিবস',i:'🇮🇳'},{d:'2025-08-27',n:'গণেশ চতুর্থী',i:'🐘'},
+  {d:'2025-09-29',n:'মহালয়া',i:'🌙'},{d:'2025-10-02',n:'মহাষষ্ঠী',i:'🪔'},
+  {d:'2025-10-03',n:'মহাসপ্তমী',i:'🪔'},{d:'2025-10-04',n:'মহাঅষ্টমী',i:'🪔'},
+  {d:'2025-10-05',n:'মহানবমী',i:'🪔'},{d:'2025-10-06',n:'বিজয়াদশমী',i:'🎊'},
+  {d:'2025-10-20',n:'কোজাগরী লক্ষ্মীপূজা',i:'🌕'},{d:'2025-10-29',n:'কালীপূজা / দীপাবলি',i:'🪔'},
+  {d:'2025-11-05',n:'ভাইফোঁটা',i:'💛'},{d:'2025-12-25',n:'বড়দিন',i:'🎄'},
+  {d:'2026-01-01',n:'ইংরেজি নববর্ষ',i:'🎆'},{d:'2026-01-15',n:'পৌষ সংক্রান্তি',i:'🌾'},
   {d:'2026-01-26',n:'প্রজাতন্ত্র দিবস',i:'🇮🇳'},{d:'2026-02-18',n:'মহাশিবরাত্রি',i:'🔱'},
-  {d:'2026-03-04',n:'দোল পূর্ণিমা / হোলি',i:'🎨'},{d:'2026-03-22',n:'চৈত্র নবরাত্রি',i:'🌸'},
-  {d:'2026-03-29',n:'রামনবমী',i:'🏹'},{d:'2026-04-14',n:'মহাবিষুব সংক্রান্তি',i:'🕉️'},
-  {d:'2026-04-15',n:'পয়লা বৈশাখ – বাংলা নববর্ষ ১৪৩৩',i:'🎉'},
-  {d:'2026-05-01',n:'মে দিবস',i:'✊'},{d:'2026-05-31',n:'বুদ্ধ পূর্ণিমা',i:'☸️'},
-  {d:'2026-07-17',n:'রথযাত্রা',i:'🎡'},{d:'2026-08-15',n:'স্বাধীনতা দিবস',i:'🇮🇳'},
-  {d:'2026-08-28',n:'জন্মাষ্টমী',i:'🦚'},{d:'2026-09-17',n:'গণেশ চতুর্থী',i:'🐘'},
-  {d:'2026-10-17',n:'মহালয়া',i:'🌙'},{d:'2026-10-20',n:'মহাষষ্ঠী',i:'🪔'},
-  {d:'2026-10-21',n:'মহাসপ্তমী',i:'🪔'},{d:'2026-10-22',n:'মহাঅষ্টমী',i:'🪔'},
-  {d:'2026-10-23',n:'মহানবমী',i:'🪔'},{d:'2026-10-24',n:'বিজয়াদশমী',i:'🎊'},
-  {d:'2026-11-08',n:'কালীপূজা',i:'🪔'},{d:'2026-12-25',n:'বড়দিন',i:'🎄'},
+  {d:'2026-03-04',n:'দোল পূর্ণিমা / হোলি',i:'🎨'},{d:'2026-03-29',n:'রামনবমী',i:'🏹'},
+  {d:'2026-04-14',n:'মহাবিষুব সংক্রান্তি',i:'🕉️'},{d:'2026-04-15',n:'পয়লা বৈশাখ – নববর্ষ ১৪৩৩',i:'🎉'},
+  {d:'2026-05-01',n:'মে দিবস',i:'✊'},{d:'2026-07-17',n:'রথযাত্রা',i:'🎡'},
+  {d:'2026-08-15',n:'স্বাধীনতা দিবস',i:'🇮🇳'},{d:'2026-08-28',n:'জন্মাষ্টমী',i:'🦚'},
+  {d:'2026-10-17',n:'মহালয়া',i:'🌙'},{d:'2026-11-08',n:'কালীপূজা',i:'🪔'},
+  {d:'2026-12-25',n:'বড়দিন',i:'🎄'},
 ];
 const getFests=ds=>FESTS.filter(f=>f.d===ds);
 
+// ══ FIX ২: dayCache — ক্যালেন্ডার দ্রুত লোড হবে ══
 const dayCache=new Map();
 
 function calcDay(date){
@@ -505,6 +499,7 @@ function calcDay(date){
   dayCache.set(key,result);
   return result;
 }
+
 function moonEmoji(t){
   if(t===15)return'🌕';if(t===30||t===1)return'🌑';
   if(t<8)return'🌒';if(t===8)return'🌓';if(t<15)return'🌔';
@@ -557,7 +552,8 @@ function renderCal(){
     if(wd===6)cls+=' dsa';
     if(isT)cls+=' ct';
     if(isS)cls+=' cs';
-   h+=`<div class="${cls}" onclick="showDetail(new Date('${ds_}T00:00:00'))">
+    // FIX ৩: T00:00:00 যোগ — timezone সমস্যা দূর
+    h+=`<div class="${cls}" onclick="showDetail(new Date('${ds_}T00:00:00'))">
       ${isT?'<div class="tdot"></div>':''}
       <div class="db">${toBn(bnDay)}</div>
       <div class="de">${enLbl}</div>
@@ -595,15 +591,15 @@ function showDetail(date){
     {i:'🕉️',l:'শক সম্বত',v:bn?toBn(bn.saka):'—',s:''},
   ].map(x=>`<div class="di"><div class="dii">${x.i}</div><div class="dil">${x.l}</div><div class="div2">${x.v}</div>${x.s?`<div class="dis">${x.s}</div>`:''}</div>`).join('');
   const rh=Math.floor(c.st.rise),rm=Math.round((c.st.rise-rh)*60);
-  const sh=Math.floor(c.st.set), sm=Math.round((c.st.set-sh)*60);
+  const sh=Math.floor(c.st.set),sm=Math.round((c.st.set-sh)*60);
   document.getElementById('dttimes').innerHTML=[
-    {ico:'🌅',cls:'shubha',l:'সূর্যোদয়',      v:fmtT(rh,rm)},
-    {ico:'🌇',cls:'',      l:'সূর্যাস্ত',      v:fmtT(sh,sm)},
-    {ico:'⚡',cls:'rahu',  l:'রাহুকাল',        v:c.rahu},
-    {ico:'🕯️',cls:'rahu', l:'গুলিকাকাল',      v:c.gulika},
-    {ico:'💫',cls:'shubha',l:'অভিজিৎ মুহূর্ত', v:c.abhi},
-    {ico:'🔥',cls:'',      l:'যমঘণ্ট',         v:c.yam},
-    {ico:'🌄',cls:'shubha',l:'ব্রাহ্ম মুহূর্ত', v:`${fmtT(rh-1,rm)} – ${fmtT(rh,rm)}`},
+    {ico:'🌅',cls:'shubha',l:'সূর্যোদয়',v:fmtT(rh,rm)},
+    {ico:'🌇',cls:'',l:'সূর্যাস্ত',v:fmtT(sh,sm)},
+    {ico:'⚡',cls:'rahu',l:'রাহুকাল',v:c.rahu},
+    {ico:'🕯️',cls:'rahu',l:'গুলিকাকাল',v:c.gulika},
+    {ico:'💫',cls:'shubha',l:'অভিজিৎ মুহূর্ত',v:c.abhi},
+    {ico:'🔥',cls:'',l:'যমঘণ্ট',v:c.yam},
+    {ico:'🌄',cls:'shubha',l:'ব্রাহ্ম মুহূর্ত',v:`${fmtT(rh-1,rm)} – ${fmtT(rh,rm)}`},
   ].map(t=>`<div class="dtime ${t.cls}"><div class="dtl">${t.ico} ${t.l}</div><div class="dtv">${t.v}</div></div>`).join('');
   document.getElementById('dtfests').innerHTML=c.fests.length
     ?c.fests.map(f=>`<div class="fi"><div class="fiico">${f.i}</div><div class="fin">${f.n}</div></div>`).join('')
@@ -617,24 +613,25 @@ function closeD(){document.getElementById('dtp').classList.remove('show');selDat
 // রাশি ডেটা
 // ══════════════════════════════════
 const RASHIS=[
-  {n:'মেষ',   e:'Aries',      s:'♈',l:'মঙ্গল',el:'অগ্নি', nat:'চর',   gem:'প্রবাল',   col:'লাল',   num:'৯'},
-  {n:'বৃষ',   e:'Taurus',     s:'♉',l:'শুক্র', el:'পৃথিবী',nat:'স্থির',gem:'হীরা',     col:'সাদা',  num:'৬'},
-  {n:'মিথুন', e:'Gemini',     s:'♊',l:'বুধ',   el:'বায়ু',  nat:'দ্বিস্বভাব',gem:'পান্না',col:'সবুজ', num:'৫'},
-  {n:'কর্কট', e:'Cancer',     s:'♋',l:'চন্দ্র',el:'জল',    nat:'চর',   gem:'মুক্তা',   col:'সাদা',  num:'২'},
-  {n:'সিংহ',  e:'Leo',        s:'♌',l:'সূর্য', el:'অগ্নি', nat:'স্থির',gem:'মাণিক',    col:'সোনালি',num:'১'},
-  {n:'কন্যা', e:'Virgo',      s:'♍',l:'বুধ',   el:'পৃথিবী',nat:'দ্বিস্বভাব',gem:'পান্না',col:'নীল',  num:'৫'},
-  {n:'তুলা',  e:'Libra',      s:'♎',l:'শুক্র', el:'বায়ু',  nat:'চর',   gem:'হীরা',     col:'নীল',   num:'৬'},
-  {n:'বৃশ্চিক',e:'Scorpio',   s:'♏',l:'মঙ্গল', el:'জল',    nat:'স্থির',gem:'প্রবাল',   col:'লাল',   num:'৯'},
-  {n:'ধনু',   e:'Sagittarius',s:'♐',l:'গুরু',  el:'অগ্নি', nat:'দ্বিস্বভাব',gem:'পুষ্পরাগ',col:'হলুদ',num:'৩'},
-  {n:'মকর',   e:'Capricorn',  s:'♑',l:'শনি',   el:'পৃথিবী',nat:'চর',   gem:'নীলম',     col:'কালো',  num:'৮'},
-  {n:'কুম্ভ', e:'Aquarius',   s:'♒',l:'শনি',   el:'বায়ু',  nat:'স্থির',gem:'নীলম',     col:'নীল',   num:'৮'},
-  {n:'মীন',   e:'Pisces',     s:'♓',l:'গুরু',  el:'জল',    nat:'দ্বিস্বভাব',gem:'পুষ্পরাগ',col:'হলুদ',num:'৩'},
+  {n:'মেষ',   e:'Aries',      s:'♈',l:'মঙ্গল',el:'অগ্নি',  nat:'চর',         gem:'প্রবাল',    col:'লাল',    num:'৯'},
+  {n:'বৃষ',   e:'Taurus',     s:'♉',l:'শুক্র', el:'পৃথিবী', nat:'স্থির',       gem:'হীরা',      col:'সাদা',   num:'৬'},
+  {n:'মিথুন', e:'Gemini',     s:'♊',l:'বুধ',   el:'বায়ু',   nat:'দ্বিস্বভাব',  gem:'পান্না',    col:'সবুজ',   num:'৫'},
+  {n:'কর্কট', e:'Cancer',     s:'♋',l:'চন্দ্র', el:'জল',     nat:'চর',         gem:'মুক্তা',    col:'সাদা',   num:'২'},
+  {n:'সিংহ',  e:'Leo',        s:'♌',l:'সূর্য', el:'অগ্নি',  nat:'স্থির',       gem:'মাণিক',     col:'সোনালি', num:'১'},
+  {n:'কন্যা', e:'Virgo',      s:'♍',l:'বুধ',   el:'পৃথিবী', nat:'দ্বিস্বভাব',  gem:'পান্না',    col:'নীল',    num:'৫'},
+  {n:'তুলা',  e:'Libra',      s:'♎',l:'শুক্র', el:'বায়ু',   nat:'চর',         gem:'হীরা',      col:'নীল',    num:'৬'},
+  {n:'বৃশ্চিক',e:'Scorpio',   s:'♏',l:'মঙ্গল', el:'জল',     nat:'স্থির',       gem:'প্রবাল',    col:'লাল',    num:'৯'},
+  {n:'ধনু',   e:'Sagittarius',s:'♐',l:'গুরু',  el:'অগ্নি',  nat:'দ্বিস্বভাব',  gem:'পুষ্পরাগ',  col:'হলুদ',   num:'৩'},
+  {n:'মকর',   e:'Capricorn',  s:'♑',l:'শনি',   el:'পৃথিবী', nat:'চর',         gem:'নীলম',      col:'কালো',   num:'৮'},
+  {n:'কুম্ভ', e:'Aquarius',   s:'♒',l:'শনি',   el:'বায়ু',   nat:'স্থির',       gem:'নীলম',      col:'নীল',    num:'৮'},
+  {n:'মীন',   e:'Pisces',     s:'♓',l:'গুরু',  el:'জল',     nat:'দ্বিস্বভাব',  gem:'পুষ্পরাগ',  col:'হলুদ',   num:'৩'},
 ];
 
 // ══════════════════════════════════
 // রাশিফল টেক্সট
 // ══════════════════════════════════
 const RFD={
+  const RFD={
     love: [
     'আজ প্রেমের দিক থেকে অত্যন্ত শুভ। হৃদয়ের কথা নিঃসংকোচে প্রিয়জনকে জানান।',
     'সম্পর্কে ছোট মতভেদ হতে পারে — মিষ্টি কথায় মিটিয়ে নিন, ধৈর্য রাখুন।',
@@ -1260,31 +1257,26 @@ const LCOLS=['লাল','নীল','সবুজ','হলুদ','সাদা
 const LDIRS=['পূর্ব','পশ্চিম','উত্তর','দক্ষিণ','ঈশান','আগ্নেয়'];
 const SB=[[4,3,5,4],[3,4,3,5],[5,5,4,3],[3,3,4,4],[4,5,3,5],[5,4,5,3],[4,3,4,3],[3,4,3,4],[5,5,5,4],[4,3,4,5],[3,4,3,3],[4,4,5,4]];
 
-function getRF(ri) {
-  const W = TODAY.getDay(), D = TODAY.getDate(), M = TODAY.getMonth();
-  // একটি শক্তিশালী ইউনিক সীড (Seed) তৈরি করা হয়েছে
-  const seed = (ri * 19 + W * 13 + D * 7 + M); 
-
-  const sc = i => Math.min(5, Math.max(1, SB[ri][i] + (seed % 3) - 1));
-  
-  return {
-    // .length ব্যবহার করায় এখন আপনি যত খুশি বাক্য যোগ করতে পারবেন
-    love: { score: sc(0), text: RFD.love[(seed + ri) % RFD.love.length] },
-    work: { score: sc(1), text: RFD.work[(seed + W + D) % RFD.work.length] },
-    health: { score: sc(2), text: RFD.health[(seed + ri * 2 + D) % RFD.health.length] },
-    finance: { score: sc(3), text: RFD.finance[(seed + M + D + ri) % RFD.finance.length] },
-    msg: RFD.msg[(seed + ri + D) % RFD.msg.length],
-    caution: RFD.caution[(seed + W + ri) % RFD.caution.length],
-    lucky: { 
-      num: toBn((ri + D * 3 + W) % 9 + 1), 
-      color: LCOLS[(ri * 2 + D + M) % LCOLS.length], 
-      dir: LDIRS[(ri + W) % LDIRS.length], 
-      gem: RASHIS[ri].gem, 
-      time: W < 5 ? 'সকাল ও দুপুর' : 'বিকাল ও সন্ধ্যা' 
+function getRF(ri){
+  const W=TODAY.getDay(),D=TODAY.getDate(),M=TODAY.getMonth();
+  const seed=(ri*7+W*3+D+M*2)%7;
+  const sc=i=>Math.min(5,Math.max(1,SB[ri][i]+(seed%3)-1));
+  return{
+    love: {score:sc(0), text:RFD.love[(ri+D)%RFD.love.length]},
+    work: {score:sc(1), text:RFD.work[(ri+W+D)%RFD.work.length]},
+    health:{score:sc(2), text:RFD.health[(ri*2+D)%RFD.health.length]},
+    finance:{score:sc(3),text:RFD.finance[(ri+M+D)%RFD.finance.length]},
+    msg:    RFD.msg[(ri*2+D+W)%RFD.msg.length],
+    caution:RFD.caution[(ri*3+W+D)%RFD.caution.length],
+    lucky:{
+      num:toBn((ri+D*3+W)%9+1),
+      color:LCOLS[(ri*2+D+M)%LCOLS.length],
+      dir:LDIRS[(ri+W)%LDIRS.length],
+      gem:RASHIS[ri].gem,
+      time:W<5?'সকাল ও দুপুর':'বিকাল ও সন্ধ্যা'
     },
   };
 }
-
 
 let actR=-1;
 function renderRG(){
@@ -1301,7 +1293,8 @@ function showRF(ri){
   const r=RASHIS[ri],rf=getRF(ri);
   const stars=s=>'★'.repeat(s)+'☆'.repeat(5-s);
   const bc=s=>s>=4?'var(--green)':s>=3?'var(--gold)':'var(--red)';
-  const sc=s=>s>=4?'s4':s>=3?'s3':'s2';
+  // FIX ৪: sc — স্কোর ৫ এর জন্য s5 class যোগ
+  const sc=s=>s>=5?'s5':s>=4?'s4':s>=3?'s3':'s2';
   const over=Math.round((rf.love.score+rf.work.score+rf.health.score+rf.finance.score)/4);
   const oL=['','কঠিন দিন','সাধারণ','মধ্যম','ভালো দিন','অত্যন্ত শুভ'];
   const oC=['','r','r','','g','g'];
@@ -1340,6 +1333,7 @@ function showRF(ri){
 renderHeader();
 renderRG();
 renderCal();
+// FIX ৫: showDetail(TODAY) সরানো হয়েছে — পেজ লোডে নিচে scroll হবে না
 </script>
 </body>
 </html>
