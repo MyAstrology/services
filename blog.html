@@ -746,13 +746,35 @@ let postsList = [];
 
 async function init() {
   try {
-    const res  = await fetch('/src/content/blog/list.json');
-    postsList  = await res.json();
+    const res = await fetch('/src/content/blog/list.json');
+
+    // Check HTTP status first
+    if (!res.ok) {
+      throw new Error(`HTTP ${res.status}: list.json পাওয়া যায়নি`);
+    }
+
+    // Check content-type — server 404 pages return HTML, not JSON
+    const contentType = res.headers.get('content-type') || '';
+    if (!contentType.includes('application/json') && !contentType.includes('text/plain')) {
+      const raw = await res.text();
+      throw new Error(`JSON আশা করা হয়েছিল, কিন্তু পাওয়া গেছে: ${raw.slice(0, 60)}...`);
+    }
+
+    postsList = await res.json();
     renderBlogList(postsList);
     loadInitialPost();
+
   } catch(err) {
-    blogContent.innerHTML = '<p style="color:#c00;">❌ ব্লগ লোড করতে সমস্যা হয়েছে। পুনরায় চেষ্টা করুন।</p>';
-    console.error(err);
+    console.error('Blog init error:', err);
+    postTitle.textContent = 'MyAstrology ব্লগ';
+    blogContent.innerHTML = `
+      <div style="text-align:center; padding:40px 20px; color:#555;">
+        <div style="font-size:48px; margin-bottom:16px;">📖</div>
+        <p style="font-size:16px; margin-bottom:8px; color:#b33; font-weight:600;">ব্লগ লিস্ট লোড করা যায়নি</p>
+        <p style="font-size:13px; color:#888; margin-bottom:20px;">সম্ভাব্য কারণ: <code style="background:#f0f0f0;padding:2px 6px;border-radius:4px;">/src/content/blog/list.json</code> ফাইলটি সঠিক পথে নেই বা JSON format ঠিক নেই।</p>
+        <a href="https://blog.myastrology.in" style="background:#b33;color:#fff;padding:10px 24px;border-radius:20px;text-decoration:none;font-size:14px;font-weight:600;">বাংলা ব্লগ দেখুন →</a>
+      </div>`;
+    blogList.innerHTML = '';
   }
 }
 
@@ -770,8 +792,15 @@ async function loadPost(slug) {
 
   try {
     const res  = await fetch(`/src/content/blog/${slug}.md`);
-    if (!res.ok) throw new Error('পোস্ট পাওয়া যায়নি!');
-    let text   = await res.text();
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+    const contentType = res.headers.get('content-type') || '';
+    // If server returns HTML (404 page) instead of markdown/text — bail out
+    if (contentType.includes('text/html')) {
+      throw new Error('পোস্ট ফাইলটি পাওয়া যায়নি (404)');
+    }
+
+    let text = await res.text();
     const fmRx = /^---([\s\S]*?)---/;
     const match = fmRx.exec(text);
     let fm = {};
