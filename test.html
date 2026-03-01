@@ -17,6 +17,10 @@
 <meta name="ICBM" content="23.1676690, 88.5808191">
 <meta name="msvalidate.01" content="984EF24A6EC23EFF015DCA989DAAD547">
 <link rel="canonical" href="https://astro.myastrology.in/">
+<link rel="sitemap" type="application/xml" href="https://astro.myastrology.in/sitemap.xml">
+<link rel="alternate" hreflang="en-IN" href="https://astro.myastrology.in/">
+<link rel="alternate" hreflang="bn-IN" href="https://blog.myastrology.in/">
+<link rel="alternate" hreflang="x-default" href="https://astro.myastrology.in/">
 
 <!-- ═══ OPEN GRAPH ═══ -->
 <meta property="og:site_name" content="MyAstrology">
@@ -537,13 +541,15 @@ h1,h2,h3,h4{font-family:var(--fh);line-height:1.3}
 /* ═══ FOOTER ═══ */
 .site-footer{background:#07101c;color:#6888a8;padding:50px 24px 20px}
 .footer-grid{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
-  gap:32px;max-width:1040px;margin:0 auto 40px;
+  display:grid;
+  grid-template-columns:1.4fr 1fr 1fr 1.2fr;
+  gap:36px;
+  max-width:1080px;margin:0 auto 40px;
 }
-.footer-col h4{font-family:var(--fh);color:var(--gold-lt);font-size:.95rem;margin-bottom:14px;letter-spacing:.03em}
-.footer-col p,.footer-col a{font-size:.83rem;color:#5878a0;display:block;margin-bottom:6px;transition:color .2s}
+.footer-col h4{font-family:var(--fh);color:var(--gold-lt);font-size:.95rem;margin-bottom:14px;letter-spacing:.03em;padding-bottom:8px;border-bottom:1px solid rgba(184,134,11,.2)}
+.footer-col p,.footer-col a{font-size:.83rem;color:#5878a0;display:block;margin-bottom:7px;transition:color .2s;line-height:1.6}
 .footer-col a:hover{color:var(--gold-lt)}
-.footer-col i{width:16px;margin-right:6px;opacity:.7}
+.footer-col i{width:16px;margin-right:6px;opacity:.7;color:var(--gold)}
 .footer-bottom{border-top:1px solid rgba(255,255,255,.06);padding-top:24px;text-align:center}
 .footer-bottom p{font-size:.8rem;color:#485868;margin-bottom:16px}
 .social-row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
@@ -557,6 +563,8 @@ h1,h2,h3,h4{font-family:var(--fh);line-height:1.3}
 .s-wa{background:#25d366}.s-fb{background:#1877f2}.s-yt{background:#ff0000}
 .s-ig{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285aeb 90%)}
 .s-tw{background:#000}.s-li{background:#0077b5}.s-tele{background:#0088cc}.s-pin{background:#e60023}
+@media(max-width:860px){.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
 
 /* ═══ FLOATING WHATSAPP ═══ */
 .wa-float{position:fixed;bottom:26px;right:22px;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
@@ -588,12 +596,8 @@ hr.divider{border:none;border-top:1px solid var(--border);max-width:580px;margin
   .about-img-wrap img{max-width:240px;margin:0 auto}
 }
 @media(max-width:640px){
-  .footer-grid{grid-template-columns:1fr 1fr}
   .hero h1{font-size:1.6rem}
   .trust-row{gap:16px}
-}
-@media(max-width:400px){
-  .footer-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -1027,7 +1031,7 @@ hr.divider{border:none;border-top:1px solid var(--border);max-width:580px;margin
     <h2>Frequently Asked Questions</h2>
     <div class="faq-item"><div class="faq-q" onclick="toggleFAQ(this)">How do I book an online astrology consultation?<i class="fas fa-chevron-down"></i></div><div class="faq-a">Book via the consultation link on this page or WhatsApp +91-93331-22768. For horoscope reading, provide your name, date, time and place of birth. For palmistry, send clear front and back photos of both palms.</div></div>
     <div class="faq-item"><div class="faq-q" onclick="toggleFAQ(this)">What is the fee for online palmistry consultation?<i class="fas fa-chevron-down"></i></div><div class="faq-a">Online palm reading starts at &#8377;1,001. You will receive a detailed written report within 3&#8211;4 hours, followed by a 20-minute live call with Dr. Acharya. Payment is made securely online before the session.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFAQ(this)">Are consultations available in Bengali and Hindi?<i class="fas fa-chevron-down"></i></div><div class="faq-a">হ্যাঁ / हाँ — All consultations are available exclusively in <strong>Bengali and Hindi</strong>. Dr. Acharya serves clients across India via phone, WhatsApp and video call. পরামর্শ সম্পূর্ণরূপে বাংলা ও হিন্দিতে পরিচালিত হয়।</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFAQ(this)">Are consultations available in Bengali and Hindi?<i class="fas fa-chevron-down"></i></div><div class="faq-a">Yes. All consultations are conducted exclusively in <strong>Bengali and Hindi</strong>. Dr. Acharya serves clients across India via phone, WhatsApp and video call.</div></div>
     <div class="faq-item"><div class="faq-q" onclick="toggleFAQ(this)">What is Kundli Matching and what does it include?<i class="fas fa-chevron-down"></i></div><div class="faq-a">Kundli Milan is the Vedic compatibility assessment for marriage. Ashtakoot Milan (36 Gunas), Mangal Dosha and planetary harmony are assessed. Fee starts at &#8377;2,001 and includes individual birth charts, detailed written report and a 30-minute live explanation.</div></div>
     <div class="faq-item"><div class="faq-q" onclick="toggleFAQ(this)">How accurate is Vedic Astrology?<i class="fas fa-chevron-down"></i></div><div class="faq-a">Vedic Astrology is a sophisticated system of probability analysis rooted in precise astronomical calculations. Its accuracy depends heavily on the exactness of birth time and the expertise of the astrologer. Dr. Acharya&#39;s 15+ years of practice and 2,000+ verified reviews across Google, JustDial and Facebook reflect consistently high levels of accuracy and client satisfaction.</div></div>
     <div class="faq-item"><div class="faq-q" onclick="toggleFAQ(this)">Do you offer Vastu consultation online?<i class="fas fa-chevron-down"></i></div><div class="faq-a">Yes. Send your floor plan online and receive a full Vastu Dosha analysis with scientific remedies. The service is available before or after construction and is suitable for homes, flats, shops and offices across India.</div></div>
@@ -1043,7 +1047,7 @@ hr.divider{border:none;border-top:1px solid var(--border);max-width:580px;margin
       <h4>MyAstrology</h4>
       <p><i class="fas fa-map-marker-alt"></i>Ranaghat, Nadia, WB &#8211; 741201</p>
       <p><i class="fas fa-phone"></i>+91 93331 22768</p>
-       <p><i class="fas fa-email"></i>info@myastrology.in</p>
+      <p><i class="fas fa-envelope"></i><a href="mailto:info@myastrology.in">info@myastrology.in</a></p>
       <a href="https://wa.me/919333122768" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i>WhatsApp Consultation</a>
       <a href="https://rzp.io/rzp/Axo6j2e" target="_blank" rel="noopener"><i class="fas fa-calendar-check"></i>Book Online</a>
     </div>
@@ -1072,7 +1076,7 @@ hr.divider{border:none;border-top:1px solid var(--border);max-width:580px;margin
     <div class="footer-col">
       <h4>Service Areas</h4>
       <p>Ranaghat &middot; Nadia &middot; Kolkata &middot; West Bengal &middot; North Bengal &middot; Jharkhand &middot; Tripura &middot; Assam &middot; Delhi &middot; Mumbai &middot; Pan-India Online</p>
-      <p style="margin-top:10px;font-size:.78rem;color:var(--gold);letter-spacing:.04em">&#9654; বাংলা ও হিন্দিতে পরামর্শ<br>Bengali &amp; Hindi Only</p>
+      <p style="margin-top:10px;font-size:.78rem;color:var(--gold);letter-spacing:.04em">&#9654; Consultations in Bengali &amp; Hindi only</p>
     </div>
   </div>
   <div class="footer-bottom">
@@ -1101,7 +1105,7 @@ hr.divider{border:none;border-top:1px solid var(--border);max-width:580px;margin
 </div>
 
 <!-- ═══ JAVASCRIPT ═══ -->
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* Nav */
 function toggleNav(){document.getElementById('navMenu').classList.toggle('open')}
 document.addEventListener('click',function(e){
@@ -1132,6 +1136,35 @@ setTimeout(function(){
   if(b){b.classList.add('show');setTimeout(function(){b.classList.remove('show')},6000)}
 },3000);
 
+/* ── GA4 Conversion Tracking ── */
+document.addEventListener('click', function(e) {
+  var a = e.target.closest('a');
+  if (!a) return;
+  var href = a.getAttribute('href') || '';
+  // WhatsApp clicks
+  if (href.includes('wa.me')) {
+    gtag('event', 'whatsapp_click', {
+      event_category: 'engagement',
+      event_label: a.innerText.trim() || 'WhatsApp Button'
+    });
+  }
+  // Book / Payment clicks
+  if (href.includes('rzp.io') || href.includes('share.google')) {
+    gtag('event', 'booking_click', {
+      event_category: 'conversion',
+      event_label: a.innerText.trim() || 'Book Now'
+    });
+  }
+  // Phone clicks
+  if (href.startsWith('tel:')) {
+    gtag('event', 'phone_click', {event_category: 'engagement'});
+  }
+  // Email clicks
+  if (href.startsWith('mailto:')) {
+    gtag('event', 'email_click', {event_category: 'engagement'});
+  }
+});
+
 
 
 
@@ -1140,5 +1173,12 @@ setTimeout(function(){
 
 <!-- ═══ ARTICLE SCHEMA ═══ -->
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":"https://astro.myastrology.in/","headline":"Best Astrologer and Palmist in Ranaghat \u2013 Dr. Prodyut Acharya | MyAstrology","description":"Expert Vedic Astrology, Palmistry, Kundli Matching, Born Baby Name, Name Correction and Vastu by Dr. Prodyut Acharya. Pan-India online service. 2000+ verified reviews.","author":{"@type":"Person","name":"Dr. Prodyut Acharya","sameAs":"https://astro.myastrology.in/about.html"},"publisher":{"@type":"Organization","name":"MyAstrology","logo":{"@type":"ImageObject","url":"https://astro.myastrology.in/images/MyAstrology-Ranghat-logo.png"}},"datePublished":"2025-08-04","dateModified":"2026-03-01","inLanguage":"en-IN"}</script>
+
+<!-- ═══ SCHEMA: Reviews ═══ -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"MyAstrology \u2013 Dr. Prodyut Acharya","url":"https://astro.myastrology.in","telephone":"+91-9333122768","address":{"@type":"PostalAddress","streetAddress":"Ranaghat, Nadia","addressLocality":"Ranaghat","addressRegion":"West Bengal","postalCode":"741201","addressCountry":"IN"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5","bestRating":"5","worstRating":"1","reviewCount":"122"},"review":[{"@type":"Review","author":{"@type":"Person","name":"Sreshtha Ghosh"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"I consulted Dr. Prodyut Acharya and I am very satisfied. Each and every prediction came true. He is very kind and helpful.","datePublished":"2025-01-10","publisher":{"@type":"Organization","name":"Google"}},{"@type":"Review","author":{"@type":"Person","name":"A. Banerjee"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"Best astrologer in Ranaghat. His horoscope reading was very accurate and gave me confidence to make important career decisions.","datePublished":"2025-02-14","publisher":{"@type":"Organization","name":"Google"}},{"@type":"Review","author":{"@type":"Person","name":"M. Ghosh"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"His palmistry reading was outstanding. Most aspects of my life and health matched perfectly. Very genuine and ethical guidance.","datePublished":"2025-03-05","publisher":{"@type":"Organization","name":"Google"}},{"@type":"Review","author":{"@type":"Person","name":"P. Choudhury"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"We consulted for marriage matching. The advice was logical, scientific and deeply rooted in Vedic Astrology. Very professional.","datePublished":"2025-04-18","publisher":{"@type":"Organization","name":"Google"}}]}</script>
+
+<!-- ═══ SCHEMA: Services ═══ -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Astrology Services by Dr. Prodyut Acharya","url":"https://astro.myastrology.in","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Service","name":"Palm Reading Consultation","url":"https://astro.myastrology.in/palmistry.html","description":"Online palmistry — send palm photos via WhatsApp, detailed report within 3-4 hours plus 20-minute live call.","provider":{"@type":"Person","name":"Dr. Prodyut Acharya"},"areaServed":"India","offers":{"@type":"Offer","price":"1001","priceCurrency":"INR"}}},{"@type":"ListItem","position":2,"item":{"@type":"Service","name":"Horoscope Analysis (Birth Chart Reading)","url":"https://astro.myastrology.in/astrology.html","description":"Vedic birth chart analysis — 35-40 page PDF report with 30-minute phone consultation.","provider":{"@type":"Person","name":"Dr. Prodyut Acharya"},"areaServed":"India","offers":{"@type":"Offer","price":"1501","priceCurrency":"INR"}}},{"@type":"ListItem","position":3,"item":{"@type":"Service","name":"Kundli Matching (Horoscope Compatibility)","url":"https://astro.myastrology.in/astrology.html","description":"Vedic marriage compatibility — Ashtakoot Milan, Mangal Dosha analysis with full written report.","provider":{"@type":"Person","name":"Dr. Prodyut Acharya"},"areaServed":"India","offers":{"@type":"Offer","price":"2001","priceCurrency":"INR"}}},{"@type":"ListItem","position":4,"item":{"@type":"Service","name":"Born Baby Name (Namakarana)","description":"Vedic auspicious newborn name based on Nakshatra, Rashi and birth chart.","provider":{"@type":"Person","name":"Dr. Prodyut Acharya"},"areaServed":"India","offers":{"@type":"Offer","price":"501","priceCurrency":"INR"}}},{"@type":"ListItem","position":5,"item":{"@type":"Service","name":"Name Correction (Naam Shuddhi)","description":"Vedic name correction aligned with Nakshatra and planetary positions to remove life obstacles.","provider":{"@type":"Person","name":"Dr. Prodyut Acharya"},"areaServed":"India","offers":{"@type":"Offer","price":"501","priceCurrency":"INR"}}},{"@type":"ListItem","position":6,"item":{"@type":"Service","name":"Vastu Consultation","url":"https://astro.myastrology.in/vastu-science.html","description":"Online Vastu Dosha analysis for home, flat, shop or office. Send floor plan — remedies provided.","provider":{"@type":"Person","name":"Dr. Prodyut Acharya"},"areaServed":"India"}}]}</script>
+
 </body>
 </html>
