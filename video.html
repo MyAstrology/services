@@ -1309,8 +1309,22 @@
   ];
   let msgIdx = 0;
   const bubble = document.getElementById('wa-bubble');
-
   function flashBubble() {
     bubble.classList.remove('show');
-    setTimeout(() => {
-      bubble.textContent = messages[msgIdx % me
+    setTimeout(function() {
+      bubble.textContent = messages[msgIdx % messages.length];
+      bubble.classList.add('show');
+      msgIdx++;
+    }, 400);
+  }
+
+  // Show first message after 1.5s, then cycle every 3s
+  setTimeout(function() {
+    flashBubble();
+    setInterval(flashBubble, 3000);
+  }, 1500);
+
+</script>
+
+</body>
+</html>
