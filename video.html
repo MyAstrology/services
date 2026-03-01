@@ -41,8 +41,8 @@
   <!-- ✅ Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
 
-  <!-- ✅ Font Awesome (defer-friendly) -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.0/css/all.css" crossorigin="anonymous" />
+  <!-- ✅ Font Awesome via cdnjs – reliable fallback -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <!-- ✅ Lite YouTube Embed – performance -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lite-youtube-embed@0.3.3/src/lite-yt-embed.css" />
@@ -188,9 +188,9 @@
     }
 
     /* ===== BANNER SLIDER ===== */
-    .banner-slider { width: 100%; height: auto; overflow: hidden; }
-    .banner-slider img { width: 100%; display: none; }
-    .banner-slider img.active { display: block; }
+    .banner-slider { width:100%; overflow:hidden; max-height:260px; }
+    .banner-slider img { width:100%; height:260px; object-fit:cover; object-position:center top; display:none; }
+    .banner-slider img.active { display:block; }
 
     /* ===== SCROLL TICKER ===== */
     .scroll-slider {
@@ -869,7 +869,7 @@
 
 <!-- ===== HEADER ===== -->
 <header class="header" role="banner">
-  <div class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="মেনু খুলুন" aria-expanded="false" tabindex="0">☰</div>
+  <div class="hamburger" id="hamburger" aria-label="মেনু খুলুন" aria-expanded="false" tabindex="0">☰</div>
   <div class="logo-text">🔮 MyAstrology</div>
   <img src="images/MyAstrology-Ranghat-logo.png" alt="MyAstrology Logo" class="logo-on-banner" width="40" height="40">
 </header>
@@ -1226,8 +1226,8 @@
   <div class="footer-bottom">
     <p>© 2025 MyAstrology.in — Guided by Dr. Prodyut Acharya</p>
     <p style="font-size:11px; color:#aab8cc; margin-top:4px;">Confidential · Verified Expertise · Serving India & Global Clients</p>
-    <a href="/cdn-cgi/l/email-protection#f0999e969fb09d89918384829f9c9f9789de999e" class="footer-email">
-      <i class="fas fa-envelope" style="font-size:12px;"></i> <span class="__cf_email__" data-cfemail="7b12151d143b16021a080f091417141c02551215">[email&#160;protected]</span>
+    <a href="mailto:info@myastrology.in" class="footer-email">
+      <i class="fas fa-envelope" style="font-size:12px;"></i> info@myastrology.in
     </a>
   </div>
 </footer>
@@ -1241,31 +1241,34 @@
 </div>
 
 <!-- ===== SCRIPTS ===== -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   /* --- Nav toggle --- */
-  const hamburger = document.getElementById('hamburger');
-  const menu      = document.getElementById('menu');
+  var hamburger = document.getElementById('hamburger');
+  var menu      = document.getElementById('menu');
 
   function toggleMenu() {
-    const open = menu.classList.toggle('show');
-    hamburger.setAttribute('aria-expanded', open);
+    var open = menu.classList.toggle('show');
+    hamburger.setAttribute('aria-expanded', String(open));
   }
 
-  // Close on outside click
+  hamburger.addEventListener('click', toggleMenu);
+  hamburger.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMenu(); }
+  });
+
+  // Close menu on outside click
   document.addEventListener('click', function(e) {
     if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
       menu.classList.remove('show');
       hamburger.setAttribute('aria-expanded', 'false');
     }
   });
+  // Close after clicking a nav link
   menu.addEventListener('click', function(e) {
     if (e.target.tagName === 'A') {
       menu.classList.remove('show');
       hamburger.setAttribute('aria-expanded', 'false');
     }
-  });
-  hamburger.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMenu(); }
   });
 
   /* --- Banner Slider --- */
