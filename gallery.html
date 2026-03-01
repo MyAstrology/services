@@ -806,5 +806,21 @@ document.querySelectorAll('.s-slider').forEach(function(slider){
 
   function show(){
     bubble.classList.remove('show');
+
     setTimeout(()=>{
-      bubble.t
+      bubble.textContent = msgs[m];
+      bubble.classList.add('show');
+      m = (m + 1) % msgs.length;
+    }, 400);
+  }
+
+  // প্রথমে দেখাবে
+  show();
+
+  // প্রতি 3 সেকেন্ডে পরিবর্তন হবে
+  setInterval(show, 3000);
+})();
+</script>
+
+</body>
+</html>
