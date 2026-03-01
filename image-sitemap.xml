@@ -126,11 +126,11 @@
     <loc>https://astro.myastrology.in/blog-list.html</loc>
     <image:image>
       <image:loc>https://astro.myastrology.in/images/MyAstrology-Ranghat-logo.png</image:loc>
-      <image:caption><![CDATA[Logo]]></image:caption>
+      <image:caption><![CDATA[MyAstrology]]></image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://astro.myastrology.in/${blog.image}</image:loc>
-      <image:caption><![CDATA[${blog.title}]]></image:caption>
+      <image:loc>https://astro.myastrology.in/${p.image ||</image:loc>
+      <image:caption><![CDATA[${p.title || ]]></image:caption>
     </image:image>
   </url>
   <url>
