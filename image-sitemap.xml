@@ -137,11 +137,11 @@
     <loc>https://astro.myastrology.in/blog.html</loc>
     <image:image>
       <image:loc>https://astro.myastrology.in/images/MyAstrology-Ranghat-logo.png</image:loc>
-      <image:caption><![CDATA[Logo]]></image:caption>
+      <image:caption><![CDATA[MyAstrology Logo – Ranaghat Astrologer Dr. Prodyut Acharya]]></image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://astro.myastrology.in/${post.image}</image:loc>
-      <image:caption><![CDATA[${post.title}]]></image:caption>
+      <image:loc>https://astro.myastrology.in/${post.image ||</image:loc>
+      <image:caption><![CDATA[${post.title || ]]></image:caption>
     </image:image>
   </url>
   <url>
