@@ -315,43 +315,75 @@
     <loc>https://astro.myastrology.in/index.html</loc>
     <image:image>
       <image:loc>https://astro.myastrology.in/images/MyAstrology-Ranghat-logo.png</image:loc>
-      <image:caption><![CDATA[MyAstrology Online Astrology and Palmistry Consultant Services Logo]]></image:caption>
+      <image:caption><![CDATA[MyAstrology Ranaghat Logo]]></image:caption>
     </image:image>
     <image:image>
       <image:loc>https://astro.myastrology.in/images/astrology-ranaghat-banner1.webp</image:loc>
-      <image:caption><![CDATA[Best astrologer in Ranaghat – Dr. Prodyut Acharya, expert in Indian astrology, palmistry, horoscope and vastu consultation]]></image:caption>
+      <image:caption><![CDATA[Best Astrologer in Ranaghat Dr. Prodyut Acharya – Vedic Jyotish Palmistry Consultation]]></image:caption>
     </image:image>
     <image:image>
       <image:loc>https://astro.myastrology.in/images/astrology-ranaghat-banner2.webp</image:loc>
-      <image:caption><![CDATA[Online and offline astrology & palmistry in Ranaghat – Love, marriage, career, kundli matching, gemstone guidance]]></image:caption>
+      <image:caption><![CDATA[Online Astrology Palmistry India – Love Marriage Career Kundli Matching]]></image:caption>
     </image:image>
     <image:image>
       <image:loc>https://astro.myastrology.in/images/astrology-ranaghat-banner3.webp</image:loc>
-      <image:caption><![CDATA[Vedic astrology & palm reading in Ranaghat – Accurate horoscope and spiritual life guidance by Dr. Prodyut Acharya]]></image:caption>
+      <image:caption><![CDATA[Vedic Astrology Palm Reading – Accurate Horoscope Spiritual Guidance Ranaghat]]></image:caption>
     </image:image>
     <image:image>
       <image:loc>https://astro.myastrology.in/images/astrology-ranaghat-banner4.webp</image:loc>
-      <image:caption><![CDATA[Indian astrology, palmistry, numerology, vastu consultation and gemstone advice – Ranaghat expert Dr. Prodyut Acharya]]></image:caption>
+      <image:caption><![CDATA[Indian Astrology Palmistry Vastu Consultation – Ranaghat West Bengal Expert]]></image:caption>
     </image:image>
     <image:image>
       <image:loc>https://astro.myastrology.in/images/astrology-ranaghat-banner5.webp</image:loc>
-      <image:caption><![CDATA[Professional astrologer & palmist in Ranaghat – MyAstrology online consultation for destiny, karma and life solutions]]></image:caption>
+      <image:caption><![CDATA[Professional Astrologer Palmist MyAstrology Online Consultation Pan-India]]></image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://astro.myastrology.in/images/palmistry.webp</image:loc>
-      <image:caption><![CDATA[Palmistry Hand Reading by Dr Prodyut Acharya]]></image:caption>
+      <image:loc>https://astro.myastrology.in/images/Palm Reading Consultation.webp</image:loc>
+      <image:caption><![CDATA[Online Palm Reading Consultation Dr Prodyut Acharya Ranaghat West Bengal]]></image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://astro.myastrology.in/images/horoscope.jpg</image:loc>
-      <image:caption><![CDATA[Horoscope Analysis and Birth Chart by Astrologer Dr Prodyut Acharya]]></image:caption>
+      <image:loc>https://astro.myastrology.in/images/birth-chart-reading-vedic-astrology.webp</image:loc>
+      <image:caption><![CDATA[Horoscope Analysis Birth Chart Reading Vedic Astrology Dr Prodyut Acharya]]></image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://astro.myastrology.in/jotok.jpg</image:loc>
-      <image:caption><![CDATA[Kundli Milan Marriage Matching Astrology by Dr Prodyut Acharya]]></image:caption>
+      <image:loc>https://astro.myastrology.in/images/kundli-matching-bengali-astrology.webp</image:loc>
+      <image:caption><![CDATA[Kundli Matching Vedic Horoscope Compatibility Marriage Bengali Astrologer]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/love-marriage-astrology-specialist.webp</image:loc>
+      <image:caption><![CDATA[Love Marriage Problem Solution Astrology Consultation Online India]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/career-astrology-business-success.webp</image:loc>
+      <image:caption><![CDATA[Career Business Astrology Consultation Dr Prodyut Acharya Online India]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/best-gemstone-astrologer-india.webp</image:loc>
+      <image:caption><![CDATA[Gemstone Recommendation Planetary Guidance Dr Prodyut Acharya India]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/online-astrologer-whatsapp-phone.webp</image:loc>
+      <image:caption><![CDATA[Online Astrology Consultation Phone WhatsApp Video Call Pan-India]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/shubh-muhurta-panjika-timing.webp</image:loc>
+      <image:caption><![CDATA[Auspicious Muhurta Timing Vedic Astrology Panjika]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/vastu-consultant-ranaghat-west-bengal.webp</image:loc>
+      <image:caption><![CDATA[Vastu Consultation Home Office Shastra Expert Ranaghat West Bengal]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/vedic-baby-naming-service.webp</image:loc>
+      <image:caption><![CDATA[Born Baby Name Namakarana Astrology Vedic Name Selection Dr Prodyut Acharya]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/numerological-name-correction.webp</image:loc>
+      <image:caption><![CDATA[Name Correction Numerology Astrology Naam Shuddhi Dr Prodyut Acharya]]></image:caption>
     </image:image>
     <image:image>
       <image:loc>https://astro.myastrology.in/images/Best-Astrologer-in-Kolkota.webp</image:loc>
-      <image:caption><![CDATA[Jyotish and Hast Rekha consultation in West Bengal by experienced hand line experts]]></image:caption>
+      <image:caption><![CDATA[Dr Prodyut Acharya Best Astrologer Palmist Ranaghat West Bengal]]></image:caption>
     </image:image>
   </url>
   <url>
