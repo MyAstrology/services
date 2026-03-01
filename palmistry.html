@@ -360,47 +360,172 @@ li { margin-bottom: 6px; }
 .panjika-section {
   max-width: 1080px;
   margin: 28px auto;
-  background: linear-gradient(135deg, #0c1b33 0%, #1a3560 100%);
+  background: linear-gradient(135deg, #0c1b33 0%, #1a3560 60%, #0e2247 100%);
   border-radius: var(--radius);
-  box-shadow: 0 6px 32px rgba(12,27,51,0.28);
+  box-shadow: 0 6px 32px rgba(12,27,51,0.32);
   overflow: hidden;
   border-top: 4px solid var(--gold);
+  position: relative;
 }
 
-.panjika-header {
-  padding: 22px 30px 16px;
+/* star-dust decorative dots */
+.panjika-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px),
+    radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 40px 40px, 20px 20px;
+  background-position: 0 0, 10px 10px;
+  pointer-events: none;
+}
+
+.panjika-inner {
+  position: relative;
+  z-index: 1;
+  padding: 28px 30px 32px;
   text-align: center;
 }
 
-.panjika-header h2 {
+.panjika-inner h2 {
   font-family: var(--font-heading);
-  font-size: clamp(1.4rem, 3.5vw, 2rem);
+  font-size: clamp(1.5rem, 3.5vw, 2.1rem);
   color: var(--gold);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   text-align: center;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.4);
 }
 
-.panjika-header p {
+.panjika-subtitle {
   font-size: 0.88rem;
-  color: #b0bdd6;
-  line-height: 1.5;
-  margin: 0;
-  text-align: center;
+  color: #b8c6df;
+  line-height: 1.6;
+  margin: 0 auto 22px;
   font-family: var(--font-body);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
+  max-width: 560px;
 }
 
-.panjika-iframe-wrap {
-  width: 100%;
-  height: 420px;
-  overflow: hidden;
+.panjika-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 24px;
 }
 
-.panjika-iframe-wrap iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-  display: block;
+.panjika-tag {
+  background: rgba(201,168,76,0.15);
+  border: 1px solid rgba(201,168,76,0.35);
+  color: var(--gold);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+  letter-spacing: 0.03em;
+}
+
+.panjika-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, var(--gold) 0%, #e8b84b 100%);
+  color: #1a0a00 !important;
+  text-decoration: none;
+  padding: 14px 36px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 800;
+  font-family: var(--font-body);
+  letter-spacing: 0.04em;
+  box-shadow: 0 4px 20px rgba(201,168,76,0.4);
+  transition: transform 0.22s, box-shadow 0.22s, filter 0.22s;
+}
+
+.panjika-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 32px rgba(201,168,76,0.55);
+  filter: brightness(1.06);
+  color: #1a0a00 !important;
+}
+
+.panjika-btn i { font-size: 1.15rem; }
+
+/* ========== TABLE OF CONTENTS ========== */
+.toc-section {
+  max-width: 1080px;
+  margin: 20px auto;
+  background: var(--bg-white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border-left: 5px solid var(--gold);
+  padding: 28px 32px;
+}
+
+.toc-section h2 {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  color: var(--maroon);
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.toc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 10px 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc-grid li {
+  margin: 0;
+}
+
+.toc-grid a {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--text-mid);
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 9px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border-light);
+  background: var(--bg-cream);
+  transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.18s;
+  line-height: 1.35;
+}
+
+.toc-grid a:hover {
+  background: var(--maroon-light);
+  color: var(--maroon);
+  border-color: rgba(123,17,19,0.25);
+  transform: translateX(3px);
+}
+
+.toc-grid a .toc-num {
+  background: var(--maroon);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  min-width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .toc-grid { grid-template-columns: 1fr; }
+  .toc-section { padding: 20px 16px; }
+  .panjika-inner { padding: 22px 16px 26px; }
 }
 
 /* ========== BREADCRUMB ========== */
@@ -608,6 +733,83 @@ footer {
   <span aria-hidden="true">›</span>
   <span aria-current="page">Palmistry &amp; Vedic Astrology</span>
 </nav>
+
+<!-- ========== RASHIFAL & PANJIKA — TOP SECTION ========== -->
+<div class="panjika-section" aria-label="Today's Horoscope and Daily Panjika">
+  <div class="panjika-inner">
+    <h2>🌟 আজকের রাশিফল ও দিন পঞ্জিকা</h2>
+    <p class="panjika-subtitle">
+      Discover your daily cosmic guidance — personalised insights for every zodiac sign
+    </p>
+    <div class="panjika-tags">
+      <span class="panjika-tag">♥ Love</span>
+      <span class="panjika-tag">💼 Career</span>
+      <span class="panjika-tag">💰 Finance</span>
+      <span class="panjika-tag">🌿 Health</span>
+      <span class="panjika-tag">🔢 Lucky Number</span>
+      <span class="panjika-tag">🎨 Lucky Colour</span>
+      <span class="panjika-tag">⏰ Auspicious Time</span>
+      <span class="panjika-tag">📅 Daily Panjika</span>
+    </div>
+    <a href="https://astro.myastrology.in/panjika.html"
+       target="_blank"
+       rel="noopener"
+       class="panjika-btn"
+       aria-label="Open Today's Rashifal and Panjika">
+      <i class="fas fa-star"></i>
+      জানুন আজকের রাশিফল ও পঞ্জিকা &nbsp;→
+    </a>
+  </div>
+</div>
+
+<!-- ========== TABLE OF CONTENTS ========== -->
+<div class="toc-section" aria-label="Page Table of Contents">
+  <h2>📖 On This Page — Contents</h2>
+  <ul class="toc-grid" role="list">
+    <li>
+      <a href="#palmistry-intro">
+        <span class="toc-num">1</span>
+        🌿 What is Palmistry?
+      </a>
+    </li>
+    <li>
+      <a href="#palmistry-neuro">
+        <span class="toc-num">2</span>
+        🧠 Palmistry &amp; Neuroscience
+      </a>
+    </li>
+    <li>
+      <a href="#palm-morphology">
+        <span class="toc-num">3</span>
+        🌿 Palm Morphology &amp; Hand Colours
+      </a>
+    </li>
+    <li>
+      <a href="#fingers-mounts">
+        <span class="toc-num">4</span>
+        🌺 Fingers &amp; Planetary Mounts
+      </a>
+    </li>
+    <li>
+      <a href="#six-lines">
+        <span class="toc-num">5</span>
+        🌿 Six Principal Palm Lines
+      </a>
+    </li>
+    <li>
+      <a href="#signs-section">
+        <span class="toc-num">6</span>
+        🌺 Auspicious &amp; Inauspicious Signs
+      </a>
+    </li>
+    <li>
+      <a href="#why-myastrology">
+        <span class="toc-num">7</span>
+        🙏 Why MyAstrology &amp; How to Book
+      </a>
+    </li>
+  </ul>
+</div>
 
 <!-- ========== SECTION 1: WHAT IS PALMISTRY ========== -->
 <section aria-labelledby="palmistry-intro">
@@ -1013,25 +1215,6 @@ footer {
     "The lines on your hands are not just marks of fate — they are the sacred map of your soul's eternal journey."
   </div>
 </section>
-
-<!-- ========== RASHIFAL & PANJIKA SECTION ========== -->
-<div class="panjika-section" aria-label="Today's Horoscope and Daily Panjika">
-  <div class="panjika-header">
-    <h2>🌟 আজকের রাশিফল ও দিন পঞ্জিকা</h2>
-    <p>
-      Know your Today's Rashifal — Love · Career · Finance · Health · Lucky Number · Lucky Colour · Auspicious Time
-    </p>
-  </div>
-  <div class="panjika-iframe-wrap">
-    <iframe
-      src="https://astro.myastrology.in/panjika.html"
-      title="Today's Rashifal and Panjika — MyAstrology"
-      loading="lazy"
-      scrolling="yes"
-      aria-label="Daily horoscope and panjika widget">
-    </iframe>
-  </div>
-</div>
 
 <!-- ========== FOOTER ========== -->
 <footer role="contentinfo">
