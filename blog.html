@@ -90,7 +90,7 @@
       --sh:         0 4px 20px rgba(0,0,0,.10);
       --sh-lg:      0 8px 32px rgba(0,0,0,.15);
       --ease:       .25s ease;
-      --top-h:      30px;
+      --top-h:      0px;
       --hdr-h:      64px;
     }
 
@@ -105,29 +105,6 @@
     a { text-decoration:none; transition:var(--ease); }
     img { display:block; max-width:100%; }
     button { font-family:inherit; }
-
-    /* ══════════════════════════════
-       TOP INFO BAR
-    ══════════════════════════════ */
-    .topbar {
-      position:fixed; top:0; left:0; width:100%;
-      height:var(--top-h); z-index:1100;
-      background:var(--navy);
-      display:flex; align-items:center; justify-content:space-between;
-      padding:0 28px;
-      font-size:11px; color:#b0a8cc; letter-spacing:.3px;
-    }
-    .topbar-l { display:flex; align-items:center; gap:20px; }
-    .topbar-l span { display:flex; align-items:center; gap:5px; }
-    .topbar-l i { color:var(--gold); font-size:9px; }
-    .topbar-r { display:flex; align-items:center; gap:10px; }
-    .topbar-r a {
-      color:#b0a8cc; font-size:12px;
-      width:24px; height:24px; border-radius:4px;
-      display:flex; align-items:center; justify-content:center;
-      transition:var(--ease);
-    }
-    .topbar-r a:hover { color:var(--gold-lt); background:rgba(255,255,255,.09); }
 
     /* ══════════════════════════════
        MAIN HEADER
@@ -457,8 +434,7 @@
       .btn-book { display:none; }
     }
     @media(max-width:600px) {
-      :root { --hdr-h:58px; --top-h:26px; }
-      .topbar-l span:last-child { display:none; }
+      :root { --hdr-h:58px; }
       header { padding:0 14px; }
       .logo-name { font-size:15px; }
       .logo-tag { display:none; }
@@ -470,20 +446,6 @@
   </style>
 </head>
 <body>
-
-<!-- ═══ TOP BAR ═══ -->
-<div class="topbar">
-  <div class="topbar-l">
-    <span><i class="fas fa-phone-alt"></i> +91 93331 22768</span>
-    <span><i class="fas fa-map-marker-alt"></i> Ranaghat, Nadia, WB</span>
-  </div>
-  <div class="topbar-r">
-    <a href="https://www.facebook.com/Dr.ProdyutAcharya" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-    <a href="https://www.instagram.com/myastrology.in"   target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-    <a href="https://youtube.com/@myastrology"           target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-    <a href="https://wa.me/919333122768"                 target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-  </div>
-</div>
 
 <!-- ═══ HEADER ═══ -->
 <header>
@@ -624,13 +586,13 @@
   </div>
   <a href="https://pages.razorpay.com/pl_PSd8AAe189ECFo/view" class="ft-cta" target="_blank" rel="noopener">পরামর্শ বুক করুন</a>
   <br>
-  <a href="mailto:info@myastrology.in" class="ft-email"><i class="fas fa-envelope"></i> info@myastrology.in</a>
+  <a href="/cdn-cgi/l/email-protection#c4adaaa2ab84a9bda5b7b0b6aba8aba3bdeaadaa" class="ft-email"><i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="c3aaada5ac83aebaa2b0b7b1acafaca4baedaaad">[email&#160;protected]</span></a>
   <hr class="ft-hr">
   <p class="ft-copy">© 2025 MyAstrology, Ranaghat, Nadia, West Bengal. All Rights Reserved.</p>
 </footer>
 
 <!-- ═══ SCRIPTS ═══ -->
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
 <script>
 const ham        = document.getElementById('ham');
 const sidebar    = document.getElementById('sidebar');
@@ -794,14 +756,4 @@ srchInput.addEventListener('keypress', e => { if(e.key==='Enter') doSearch(); })
 /* WA flash */
 const msgs = ['📞 পরামর্শ নিন!','🔮 রাশিফল জানুন','✋ হস্তরেখা বিশ্লেষণ','💬 এখনই যোগাযোগ করুন'];
 let mi = 0;
-const flash = () => {
-  waMsg.textContent = msgs[mi++ % msgs.length];
-  waMsg.classList.add('on');
-  setTimeout(() => waMsg.classList.remove('on'), 2200);
-};
-setTimeout(() => { flash(); setInterval(flash, 3000); }, 1800);
-
-init();
-</script>
-</body>
-</html>
+const flash = 
