@@ -290,10 +290,11 @@
        HEADER
        ════════════════════════════════════════════════════════ */
     header {
-      display: flex;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
       align-items: center;
-      justify-content: space-between;
-      padding: 10px 20px;
+      gap: 12px;
+      padding: 8px 18px;
       background: var(--clr-bg-warm);
       border-bottom: 2px solid var(--clr-border);
       position: sticky;
@@ -305,23 +306,33 @@
     .logo {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       text-decoration: none;
       border: none;
+      flex-shrink: 0;
     }
-    .logo img { height: 46px; width: auto; display: block; }
-    .logo-text {
+    .logo img { height: 42px; width: auto; display: block; }
+
+    /* ── Brand title (centre column) ── */
+    .header-brand {
+      text-align: center;
+      line-height: 1.2;
+      overflow: hidden;
+    }
+    .header-brand-name {
       font-family: var(--font-sans);
       font-weight: 800;
-      font-size: 0.88rem;
+      font-size: clamp(0.85rem, 2.2vw, 1.1rem);
       color: var(--clr-primary);
-      line-height: 1.3;
+      white-space: nowrap;
+      letter-spacing: 0.2px;
     }
-    .logo-text small {
-      display: block;
-      font-weight: 400;
-      font-size: 0.78rem;
+    .header-brand-sub {
+      font-family: var(--font-serif);
+      font-size: clamp(0.72rem, 1.6vw, 0.85rem);
       color: var(--clr-text-lt);
+      font-weight: 400;
+      white-space: nowrap;
     }
 
     /* ════════════════════════════════════════════════════════
@@ -490,136 +501,184 @@
     section.content-section:last-child { border-bottom: none; }
 
     /* ════════════════════════════════════════════════════════
-       ✅ NEW: রাশিফল ও পঞ্জিকা WIDGET
+       READING PROGRESS BAR
        ════════════════════════════════════════════════════════ */
-    .panjika-widget {
-      background: linear-gradient(135deg, #1a1a5e 0%, #2d2d8f 50%, #1a1a5e 100%);
-      padding: var(--space-lg) 20px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+    #progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--clr-gold), var(--clr-accent));
+      z-index: 9999;
+      transition: width 0.1s linear;
     }
-    .panjika-widget::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f9a825' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-      opacity: 0.6;
-      pointer-events: none;
-    }
-    .panjika-inner {
-      position: relative;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    .panjika-badge {
-      display: inline-block;
-      background: rgba(249,168,37,0.18);
-      border: 1px solid rgba(249,168,37,0.5);
+
+    /* ════════════════════════════════════════════════════════
+       BACK TO TOP
+       ════════════════════════════════════════════════════════ */
+    #back-to-top {
+      position: fixed;
+      bottom: 24px;
+      right: 20px;
+      width: 44px;
+      height: 44px;
+      background: var(--clr-primary);
       color: var(--clr-gold);
+      border: none;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.22);
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.3s, transform 0.3s;
+      z-index: 800;
+    }
+    #back-to-top.visible { opacity: 1; transform: translateY(0); }
+    #back-to-top:hover { background: var(--clr-primary-light); }
+
+    /* ════════════════════════════════════════════════════════
+       TABLE OF CONTENTS — card grid
+       ════════════════════════════════════════════════════════ */
+    .toc-section { padding-top: var(--space-md); padding-bottom: 0; border-bottom: none; }
+
+    .toc-label {
       font-family: var(--font-sans);
       font-size: 0.78rem;
       font-weight: 700;
-      letter-spacing: 1.5px;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      padding: 4px 14px;
-      border-radius: 50px;
-      margin-bottom: var(--space-sm);
+      color: var(--clr-text-lt);
+      margin-bottom: 14px;
     }
-    .panjika-title {
+
+    .toc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 10px;
+    }
+
+    .toc-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px 14px;
+      background: #fff;
+      border: 1px solid var(--clr-border-lt);
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+      border: none;
+    }
+    .toc-card:hover {
+      border-color: var(--clr-gold);
+      box-shadow: 0 4px 14px rgba(249,168,37,0.15);
+      transform: translateY(-2px);
+      border: none;
+    }
+    .toc-num {
       font-family: var(--font-sans);
-      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-size: 0.72rem;
       font-weight: 800;
+      color: var(--clr-gold);
+      letter-spacing: 0.5px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      min-width: 22px;
+    }
+    .toc-text {
+      font-family: var(--font-sans);
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--clr-primary);
+      line-height: 1.4;
+    }
+    .toc-card:hover .toc-text { color: var(--clr-accent); }
+
+    /* ════════════════════════════════════════════════════════
+       PANJIKA STRIP — compact horizontal
+       ════════════════════════════════════════════════════════ */
+    .panjika-strip {
+      background: linear-gradient(135deg, var(--clr-primary) 0%, #2a2a7e 100%);
+      border-top: 2px solid rgba(249,168,37,0.4);
+      border-bottom: 2px solid rgba(249,168,37,0.4);
+    }
+    .panjika-strip-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .panjika-strip-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+      min-width: 0;
+    }
+    .panjika-strip-icon {
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+    .panjika-strip-title {
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 0.95rem;
       color: #fff;
-      margin: 0 0 var(--space-xs);
-      line-height: 1.25;
+      white-space: nowrap;
+      margin-bottom: 4px;
     }
-    .panjika-title span { color: var(--clr-gold); }
-    .panjika-subtitle {
-      font-family: var(--font-serif);
-      font-size: clamp(0.9rem, 1.8vw, 1.05rem);
-      color: rgba(255,255,255,0.80);
-      margin: 0 0 var(--space-md);
-      line-height: 1.65;
-    }
-    .panjika-tags {
+    .panjika-strip-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      justify-content: center;
-      margin-bottom: var(--space-md);
-    }
-    .panjika-tag {
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
-      color: rgba(255,255,255,0.9);
-      font-family: var(--font-sans);
-      font-size: 0.82rem;
-      font-weight: 600;
-      padding: 5px 12px;
-      border-radius: 50px;
-      display: flex;
-      align-items: center;
       gap: 5px;
     }
-    .panjika-btn {
+    .panjika-strip-tags span {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.75);
+      background: rgba(255,255,255,0.08);
+      padding: 2px 8px;
+      border-radius: 50px;
+      white-space: nowrap;
+    }
+    .panjika-strip-btn {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
       background: var(--clr-gold);
       color: var(--clr-primary);
       font-family: var(--font-sans);
       font-weight: 800;
-      font-size: 1rem;
-      padding: 14px 36px;
+      font-size: 0.88rem;
+      padding: 9px 20px;
       border-radius: 50px;
       text-decoration: none;
       border: none;
-      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-      box-shadow: 0 4px 20px rgba(249,168,37,0.35);
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 3px 12px rgba(249,168,37,0.3);
     }
-    .panjika-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 28px rgba(249,168,37,0.45);
+    .panjika-strip-btn:hover {
       background: #ffca28;
-      border-color: transparent;
+      transform: translateY(-1px);
+      box-shadow: 0 5px 16px rgba(249,168,37,0.45);
       color: var(--clr-primary);
-    }
-    .panjika-note {
-      font-family: var(--font-sans);
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.5);
-      margin-top: 12px;
-    }
-
-    /* ════════════════════════════════════════════════════════
-       TABLE OF CONTENTS
-       ════════════════════════════════════════════════════════ */
-    .toc-box {
-      background: var(--clr-bg-warm);
-      border: 1px solid var(--clr-border);
-      border-left: 4px solid var(--clr-gold);
-      border-radius: var(--radius-md);
-      padding: 20px 24px;
-      margin-bottom: var(--space-lg);
-    }
-    .toc-box h3 {
-      font-size: 1rem;
-      margin: 0 0 12px;
-      color: var(--clr-primary);
-    }
-    .toc-box ol {
-      padding-left: 1.3rem;
-      margin: 0;
-    }
-    .toc-box li { margin-bottom: 5px; }
-    .toc-box a {
-      font-size: 0.93rem;
-      font-weight: 500;
       border: none;
-      color: var(--clr-primary-light);
     }
-    .toc-box a:hover { color: var(--clr-accent); border: none; }
+    @media (max-width: 520px) {
+      .panjika-strip-inner { flex-direction: column; align-items: flex-start; }
+      .panjika-strip-btn { align-self: stretch; justify-content: center; }
+      .toc-grid { grid-template-columns: 1fr 1fr; }
+    }
 
     /* ════════════════════════════════════════════════════════
        IMAGES
@@ -799,7 +858,6 @@
       transition: background var(--transition), color var(--transition);
     }
     .footer-contact a:hover { background: rgba(249,168,37,0.15); color: var(--clr-gold); }
-    .footer-cta-btns { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 20px 0; }
     .footer-social {
       display: flex;
       gap: 16px;
@@ -841,7 +899,7 @@
        ════════════════════════════════════════════════════════ */
     @media print {
       header, nav, .backdrop, .scroll-ticker,
-      .panjika-widget, .cta-box, footer { display: none !important; }
+      .panjika-strip, .cta-box, footer { display: none !important; }
       body { color: #000; background: #fff; font-size: 12pt; }
       a::after { content: " (" attr(href) ")"; font-size: 9pt; color: #555; }
     }
@@ -854,13 +912,21 @@
       .logo img { height: 40px; }
       blockquote { padding: 12px 14px 12px 18px; margin: var(--space-sm) 0; }
       section.content-section { padding: var(--space-md) 14px; }
-      .panjika-btn { padding: 12px 24px; font-size: 0.93rem; }
-      .cta-btns, .footer-cta-btns { flex-direction: column; align-items: center; }
+      .panjika-strip-btn { padding: 10px 18px; font-size: 0.85rem; }
+      .cta-btns { flex-direction: column; align-items: center; }
     }
   </style>
 </head>
 
 <body>
+
+<!-- Reading Progress Bar -->
+<div id="progress-bar" role="progressbar" aria-label="পড়ার অগ্রগতি"></div>
+
+<!-- Back to Top -->
+<button id="back-to-top" aria-label="উপরে যান" title="উপরে যান">
+  <i class="fas fa-chevron-up"></i>
+</button>
 
 <!-- Skip Link -->
 <a href="#main-content" class="skip-link">মূল বিষয়বস্তুতে যান (Skip to content)</a>
@@ -869,17 +935,21 @@
      HEADER
      ════════════════════════════════════════════════════ -->
 <header role="banner">
+  <!-- Column 1: Logo only -->
   <a href="index.html" class="logo" aria-label="MyAstrology হোমপেজ">
     <img src="images/MyAstrology-Ranghat-logo.png"
          alt="MyAstrology Ranaghat Logo"
-         width="46" height="46"
+         width="42" height="42"
          loading="eager" />
-    <span class="logo-text">
-      MyAstrology
-      <small>ড. প্রদ্যুৎ আচার্য</small>
-    </span>
   </a>
 
+  <!-- Column 2: Brand name centred between logo & hamburger -->
+  <div class="header-brand" aria-hidden="true">
+    <div class="header-brand-name">MyAstrology</div>
+    <div class="header-brand-sub">ডঃ প্রদ্যুৎ আচার্য &nbsp;·&nbsp; Vedic Astrology &amp; Palmistry</div>
+  </div>
+
+  <!-- Column 3: Hamburger -->
   <button class="menu-toggle"
           id="menuToggleBtn"
           aria-label="নেভিগেশন মেনু খুলুন"
@@ -930,58 +1000,69 @@
 </div>
 
 <!-- ════════════════════════════════════════════════════
-     ✅ আজকের রাশিফল ও দিন পঞ্জিকা WIDGET
-     ════════════════════════════════════════════════════ -->
-<div class="panjika-widget" id="rashifal-panjika">
-  <div class="panjika-inner">
-    <div class="panjika-badge">🌟 প্রতিদিন আপডেট</div>
-    <h2 class="panjika-title">আজকের <span>রাশিফল</span> ও দিন পঞ্জিকা</h2>
-    <p class="panjika-subtitle">
-      আজকের দিনটি আপনার জন্য কেমন? জানুন গ্রহ-নক্ষত্রের আলোকে আপনার রাশির বিশেষ বার্তা —
-    </p>
-    <div class="panjika-tags">
-      <span class="panjika-tag">❤️ প্রেম ও সম্পর্ক</span>
-      <span class="panjika-tag">💼 কর্ম ও ক্যারিয়ার</span>
-      <span class="panjika-tag">💰 অর্থ ও সম্পদ</span>
-      <span class="panjika-tag">🌿 স্বাস্থ্য ও সুস্থতা</span>
-      <span class="panjika-tag">🔢 শুভ সংখ্যা</span>
-      <span class="panjika-tag">🎨 শুভ রং</span>
-      <span class="panjika-tag">⏰ শুভ সময়</span>
-    </div>
-    <a href="https://astro.myastrology.in/panjika.html"
-       class="panjika-btn"
-       target="_blank"
-       rel="noopener noreferrer"
-       aria-label="আজকের রাশিফল ও দিন পঞ্জিকা দেখুন">
-      <i class="fas fa-star" aria-hidden="true"></i>
-      আজকের রাশিফল দেখুন
-      <i class="fas fa-arrow-right" aria-hidden="true"></i>
-    </a>
-    <p class="panjika-note">সকল ১২টি রাশির জন্য বিস্তারিত বৈদিক বিশ্লেষণ · ড. প্রদ্যুৎ আচার্য কর্তৃক</p>
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════════════════
      MAIN CONTENT
      ════════════════════════════════════════════════════ -->
 <main id="main-content">
 
-<!-- Table of Contents -->
-<section class="content-section">
-  <div class="toc-box">
-    <h3>📖 এই পাতায় যা পাবেন — সূচিপত্র</h3>
-    <ol>
-      <li><a href="#jyotish-aloy-atma-jiggasha">জ্যোতিষের আলোয় আত্ম জিজ্ঞাসা ও ভাগ্যের সন্ধান</a></li>
-      <li><a href="#vedic-jyotish-otputti">বৈদিক জ্যোতিষ শাস্ত্রের উৎপত্তি ও ঐতিহাসিক শিকড়</a></li>
-      <li><a href="#graha-prabhav-darshan">গ্রহ ও তাদের প্রভাবের দার্শনিক ব্যাখ্যা</a></li>
-      <li><a href="#modern-psychology-jyotish">আধুনিক মনোবিজ্ঞান ও জ্যোতিষের মিলন</a></li>
-      <li><a href="#indian-astrology-quantum">ভারতীয় জ্যোতিষ, কোয়ান্টাম কম্পন ও ইচ্ছাশক্তি</a></li>
-      <li><a href="#vedic-relationship-analysis">সম্পর্ক, কর্ম, স্বাস্থ্য ও আত্মচেতনার সংলাপ</a></li>
-      <li><a href="#jyotish-alokmanchitra">জ্যোতিষ — এক আলোকমানচিত্র</a></li>
-      <li><a href="#bhagya-bazar-chalna">ভাগ্যবাজারের ছলনা ও প্রকৃত জ্যোতিষী</a></li>
-    </ol>
+<!-- ═══════════════════════════ সূচিপত্র ═══════════════════════════ -->
+<section class="content-section toc-section">
+  <p class="toc-label">📖 এই পাতায় যা পাবেন</p>
+  <div class="toc-grid">
+    <a href="#jyotish-aloy-atma-jiggasha" class="toc-card">
+      <span class="toc-num">০১</span>
+      <span class="toc-text">জ্যোতিষের আলোয় আত্ম জিজ্ঞাসা</span>
+    </a>
+    <a href="#vedic-jyotish-otputti" class="toc-card">
+      <span class="toc-num">০২</span>
+      <span class="toc-text">বৈদিক জ্যোতিষের উৎপত্তি ও শিকড়</span>
+    </a>
+    <a href="#graha-prabhav-darshan" class="toc-card">
+      <span class="toc-num">০৩</span>
+      <span class="toc-text">গ্রহ ও তাদের দার্শনিক প্রভাব</span>
+    </a>
+    <a href="#modern-psychology-jyotish" class="toc-card">
+      <span class="toc-num">০৪</span>
+      <span class="toc-text">মনোবিজ্ঞান ও জ্যোতিষের মিলন</span>
+    </a>
+    <a href="#indian-astrology-quantum" class="toc-card">
+      <span class="toc-num">০৫</span>
+      <span class="toc-text">কোয়ান্টাম কম্পন ও ইচ্ছাশক্তি</span>
+    </a>
+    <a href="#vedic-relationship-analysis" class="toc-card">
+      <span class="toc-num">০৬</span>
+      <span class="toc-text">সম্পর্ক, কর্ম ও আত্মচেতনা</span>
+    </a>
+    <a href="#jyotish-alokmanchitra" class="toc-card">
+      <span class="toc-num">০৭</span>
+      <span class="toc-text">জ্যোতিষ — এক আলোকমানচিত্র</span>
+    </a>
+    <a href="#bhagya-bazar-chalna" class="toc-card">
+      <span class="toc-num">০৮</span>
+      <span class="toc-text">ভাগ্যবাজারের ছলনা ও সত্য</span>
+    </a>
   </div>
 </section>
+
+<!-- ═══════════════ আজকের রাশিফল ও দিন পঞ্জিকা — COMPACT STRIP ═══════════════ -->
+<div class="panjika-strip" id="rashifal-panjika">
+  <div class="panjika-strip-inner">
+    <div class="panjika-strip-left">
+      <span class="panjika-strip-icon">🌟</span>
+      <div>
+        <div class="panjika-strip-title">আজকের রাশিফল ও দিন পঞ্জিকা</div>
+        <div class="panjika-strip-tags">
+          <span>❤️ প্রেম</span><span>💼 কর্ম</span><span>💰 অর্থ</span>
+          <span>🌿 স্বাস্থ্য</span><span>🔢 শুভ সংখ্যা</span><span>🎨 শুভ রং</span><span>⏰ শুভ সময়</span>
+        </div>
+      </div>
+    </div>
+    <a href="https://astro.myastrology.in/panjika.html"
+       class="panjika-strip-btn"
+       target="_blank" rel="noopener noreferrer">
+      আজই দেখুন <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
+</div>
 
 <!-- ═══════════════════════════ SECTION 1 ═══════════════════════════ -->
 <section class="content-section">
@@ -1537,25 +1618,9 @@
   <!-- ✅ যোগাযোগ তথ্য — Email footer-এ -->
   <div class="footer-contact">
     <a href="tel:+919333122768"><i class="fas fa-phone"></i> +91-9333122768</a>
-    <a href="mailto:info@myastrology.in"><i class="fas fa-envelope"></i> info@myastrology.in</a>
+    <a href="/cdn-cgi/l/email-protection#3c55525a537c51455d4f484e5350535b45125552"><i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="660f080009260b1f07151214090a09011f480f08">[email&#160;protected]</span></a>
     <a href="https://astro.myastrology.in/panjika.html" target="_blank" rel="noopener"><i class="fas fa-calendar-alt"></i> আজকের পঞ্জিকা</a>
   </div>
-
-  <!-- ✅ CTA বাটন — WhatsApp ও Payment ONLY, কোনো email নেই -->
-  <div class="footer-cta-btns">
-    <a href="https://wa.me/919333122768?text=আমি%20জ্যোতিষ%20ও%20পঞ্জিকা%20পরামর্শ%20নিতে%20চাই"
-       class="btn btn-wa" target="_blank" rel="noopener">
-      <i class="fab fa-whatsapp"></i> WhatsApp-এ যোগাযোগ
-    </a>
-    <a href="https://pages.razorpay.com/Myastrology"
-       class="btn btn-pay" target="_blank" rel="noopener">
-      <i class="fas fa-credit-card"></i> এখনই বুকিং করুন
-    </a>
-  </div>
-
-  <p style="font-size:0.85rem; color:#8888a8; margin-bottom:4px;">
-    🔒 নিরাপদ অনলাইন পেমেন্ট &nbsp;|&nbsp; 📅 সোম–রবি সকাল ৯টা–রাত ৯টা
-  </p>
 
   <div class="footer-divider"></div>
 
@@ -1588,41 +1653,65 @@
 <!-- ════════════════════════════════════════════════════
      JAVASCRIPT — Nav Toggle (সম্পূর্ণ ও সঠিক)
      ════════════════════════════════════════════════════ -->
+
 <script>
-  (function () {
-    'use strict';
-    var btn      = document.getElementById('menuToggleBtn');
-    var nav      = document.getElementById('main-nav');
-    var backdrop = document.getElementById('backdrop');
-    var closeBtn = document.querySelector('.nav-close');
+(function () {
+  'use strict';
 
-    function openNav() {
-      nav.classList.add('open');
-      backdrop.classList.add('show');
-      btn.setAttribute('aria-expanded', 'true');
-      btn.setAttribute('aria-label', 'নেভিগেশন মেনু বন্ধ করুন');
-      document.body.style.overflow = 'hidden';
+  /* ── Navigation ── */
+  var btn      = document.getElementById('menuToggleBtn');
+  var nav      = document.getElementById('main-nav');
+  var backdrop = document.getElementById('backdrop');
+  var closeBtn = document.querySelector('.nav-close');
+
+  function openNav() {
+    nav.classList.add('open');
+    backdrop.classList.add('show');
+    btn.setAttribute('aria-expanded', 'true');
+    btn.setAttribute('aria-label', 'নেভিগেশন মেনু বন্ধ করুন');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeNav() {
+    nav.classList.remove('open');
+    backdrop.classList.remove('show');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-label', 'নেভিগেশন মেনু খুলুন');
+    document.body.style.overflow = '';
+  }
+
+  btn.addEventListener('click', function () {
+    nav.classList.contains('open') ? closeNav() : openNav();
+  });
+  if (closeBtn) closeBtn.addEventListener('click', closeNav);
+  backdrop.addEventListener('click', closeNav);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && nav.classList.contains('open')) closeNav();
+  });
+
+  /* ── Reading Progress Bar ── */
+  var bar = document.getElementById('progress-bar');
+  function updateProgress() {
+    var st = window.scrollY || document.documentElement.scrollTop;
+    var dh = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    if (bar && dh > 0) bar.style.width = Math.min(100, (st / dh) * 100) + '%';
+  }
+
+  /* ── Back to Top ── */
+  var btt = document.getElementById('back-to-top');
+  function handleScroll() {
+    updateProgress();
+    if (btt) {
+      if (window.scrollY > 400) btt.classList.add('visible');
+      else btt.classList.remove('visible');
     }
+  }
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  if (btt) btt.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 
-    function closeNav() {
-      nav.classList.remove('open');
-      backdrop.classList.remove('show');
-      btn.setAttribute('aria-expanded', 'false');
-      btn.setAttribute('aria-label', 'নেভিগেশন মেনু খুলুন');
-      document.body.style.overflow = '';
-    }
-
-    btn.addEventListener('click', function () {
-      nav.classList.contains('open') ? closeNav() : openNav();
-    });
-
-    if (closeBtn) closeBtn.addEventListener('click', closeNav);
-    backdrop.addEventListener('click', closeNav);
-
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && nav.classList.contains('open')) closeNav();
-    });
-  })();
+})();
 </script>
 
 </body>
