@@ -539,32 +539,73 @@ h1,h2,h3,h4{font-family:var(--fh);line-height:1.3}
 .faq-item.open .faq-a{display:block}
 
 /* ═══ FOOTER ═══ */
-.site-footer{background:#07101c;color:#6888a8;padding:50px 24px 20px}
+.site-footer{
+  background:linear-gradient(180deg,#0a1628 0%,#060e1a 100%);
+  border-top:3px solid var(--gold);
+  color:#6888a8;
+}
 .footer-grid{
   display:grid;
-  grid-template-columns:1.4fr 1fr 1fr 1.2fr;
-  gap:36px;
-  max-width:1080px;margin:0 auto 40px;
+  grid-template-columns:1.6fr 1fr 1fr 1.1fr;
+  gap:0;
+  max-width:1080px;
+  margin:0 auto;
+  padding:44px 24px 36px;
+  border-bottom:1px solid rgba(255,255,255,.05);
 }
-.footer-col h4{font-family:var(--fh);color:var(--gold-lt);font-size:.95rem;margin-bottom:14px;letter-spacing:.03em;padding-bottom:8px;border-bottom:1px solid rgba(184,134,11,.2)}
-.footer-col p,.footer-col a{font-size:.83rem;color:#5878a0;display:block;margin-bottom:7px;transition:color .2s;line-height:1.6}
+.footer-col{
+  padding:0 28px 0 0;
+  border-right:1px solid rgba(255,255,255,.05);
+}
+.footer-col:first-child{padding-left:0}
+.footer-col:last-child{padding-right:0;border-right:none}
+.footer-col + .footer-col{padding-left:28px}
+.footer-col h4{
+  font-family:var(--fh);
+  color:var(--gold);
+  font-size:.8rem;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  margin-bottom:18px;
+  padding-bottom:10px;
+  border-bottom:1px solid rgba(184,134,11,.25);
+}
+.footer-col p,.footer-col a{
+  font-size:.82rem;color:#8aabcb;
+  display:block;margin-bottom:8px;
+  transition:color .2s;line-height:1.65;
+}
 .footer-col a:hover{color:var(--gold-lt)}
-.footer-col i{width:16px;margin-right:6px;opacity:.7;color:var(--gold)}
-.footer-bottom{border-top:1px solid rgba(255,255,255,.06);padding-top:24px;text-align:center}
-.footer-bottom p{font-size:.8rem;color:#485868;margin-bottom:16px}
-.social-row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
-.social-row a{
-  width:42px;height:42px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-size:1rem;color:#fff;
-  transition:transform .2s,box-shadow .2s;
+.footer-col i{width:15px;margin-right:7px;opacity:.75;color:var(--gold);font-size:.78rem}
+.footer-bottom{
+  max-width:1080px;margin:0 auto;
+  padding:22px 24px;
+  display:flex;align-items:center;
+  justify-content:space-between;
+  gap:12px;flex-wrap:wrap;
 }
-.social-row a:hover{transform:scale(1.13);box-shadow:0 4px 18px rgba(0,0,0,.4)}
+.footer-bottom p{font-size:.76rem;color:#3d5570;}
+.social-row{display:flex;gap:8px;flex-wrap:wrap}
+.social-row a{
+  width:38px;height:38px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;color:#fff;
+  transition:transform .2s,filter .2s;
+  filter:brightness(.8);
+}
+.social-row a:hover{transform:translateY(-3px);filter:brightness(1)}
 .s-wa{background:#25d366}.s-fb{background:#1877f2}.s-yt{background:#ff0000}
 .s-ig{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285aeb 90%)}
-.s-tw{background:#000}.s-li{background:#0077b5}.s-tele{background:#0088cc}.s-pin{background:#e60023}
-@media(max-width:860px){.footer-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
+.s-tw{background:#14171a}.s-li{background:#0077b5}.s-tele{background:#0088cc}.s-pin{background:#e60023}
+@media(max-width:860px){
+  .footer-grid{grid-template-columns:1fr 1fr;gap:0}
+  .footer-col{border-right:none;padding:0 0 24px 0!important}
+  .footer-col + .footer-col{padding-left:0!important}
+}
+@media(max-width:480px){
+  .footer-grid{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;text-align:center}
+}
 
 /* ═══ FLOATING WHATSAPP ═══ */
 .wa-float{position:fixed;bottom:26px;right:22px;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
@@ -1081,7 +1122,7 @@ hr.divider{border:none;border-top:1px solid var(--border);max-width:580px;margin
     </div>
   </div>
   <div class="footer-bottom">
-    <p>&#169; 2026 MyAstrology | All Rights Reserved | Dr. Prodyut Acharya, PhD in Vedic Jyotish</p>
+    <p>&#169; 2026 MyAstrology &nbsp;&middot;&nbsp; Dr. Prodyut Acharya, PhD in Vedic Jyotish &nbsp;&middot;&nbsp; Ranaghat, West Bengal</p>
     <div class="social-row">
       <a href="https://wa.me/919333122768" target="_blank" rel="noopener" class="s-wa" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
       <a href="https://www.facebook.com/Dr.ProdyutAcharya" target="_blank" rel="noopener" class="s-fb" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -1106,7 +1147,7 @@ hr.divider{border:none;border-top:1px solid var(--border);max-width:580px;margin
 </div>
 
 <!-- ═══ JAVASCRIPT ═══ -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* Nav */
 function toggleNav(){document.getElementById('navMenu').classList.toggle('open')}
 document.addEventListener('click',function(e){
