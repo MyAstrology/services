@@ -1,497 +1,1251 @@
-
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="bn" dir="ltr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!-- ✅ Google Analytics -->         
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S7BQGLP211">  
-      
-  </script>    
-  
-  <link rel="icon" type="image/x-icon" href="https://astro.myastrology.in/favicon.ico">
-  
-  <!-- SEO Meta Tags -->
-  <title>Astrology – জ্যোতিষ, বিজ্ঞান ও আধ্যাত্মিকতা | Dr Prodyut Acharya</title>
-<meta name="description" content="জ্যোতিষ হলো আত্মজ্ঞান ও জীবন রূপান্তরের বিজ্ঞান। ভারতীয় ও পশ্চিমা দর্শন, আধ্যাত্মিকতা ও ড. প্রদ্যুৎ আচার্যের দৃষ্টিভঙ্গি।" />
-  <meta name="keywords" content="জ্যোতিষ, Astrology, Vedic Astrology, বৈদিক জ্যোতিষ, জ্যোতিষের বিজ্ঞান, আধ্যাত্মিকতা, Law of Attraction, আত্মজ্ঞান, জন্মকুণ্ডলী, Prodyut Acharya, MyAstrology, Quantum Physics Astrology, Neuroscience" />
-  <meta name="robots" content="index, follow" />
+  <!-- ═══════════════════════════════════════════════════════════
+       PERFORMANCE: Resource Hints — DNS প্রি-কানেক্ট ও প্রিলোড
+       ═══════════════════════════════════════════════════════════ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+
+  <!-- ✅ FIX: Font Awesome — <head>-এ আনা হলো (FOUC সমস্যা দূর) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" /></noscript>
+
+  <!-- ✅ FIX: Google Fonts — সঠিকভাবে লোড হচ্ছে এখন -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700;800&family=Kalam:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="https://astro.myastrology.in/favicon.ico" />
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SEO: টাইটেল — বাংলা + ইংরেজি কীওয়ার্ড সমৃদ্ধ, ৬০ অক্ষরের মধ্যে
+       ═══════════════════════════════════════════════════════════ -->
+  <title>বৈদিক জ্যোতিষ শাস্ত্র ও আত্মজ্ঞান | Vedic Astrology | Dr. Prodyut Acharya</title>
+
+  <!-- ✅ SEO: Description — ১৫০–১৬০ অক্ষর, স্বাভাবিক ভাষায়, keyword-natural -->
+  <meta name="description" content="জ্যোতিষ শাস্ত্র হলো ভবিষ্যৎ জানার নয়, আত্মজ্ঞানের বিজ্ঞান। Vedic Astrology, জন্মকুণ্ডলী ও হস্তরেখা বিশ্লেষণে অভিজ্ঞ Dr. Prodyut Acharya, MyAstrology, Ranaghat।" />
+
+  <!-- ✅ FIX: Keyword Stuffing দূর — মাত্র ১০টি ফোকাসড কীওয়ার্ড
+       (Google meta keywords ব্যবহার করে না, তবে Bing করে। অতিরিক্ত keyword Google-এ spam signal) -->
+  <meta name="keywords" content="বৈদিক জ্যোতিষ, জ্যোতিষ শাস্ত্র, Vedic Astrology, জন্মকুণ্ডলী, হস্তরেখা, Best Astrologer West Bengal, Prodyut Acharya, MyAstrology Ranaghat, আজকের রাশিফল, Jyotish" />
+
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="author" content="Dr. Prodyut Acharya" />
+  <meta name="geo.region" content="IN-WB" />
+  <meta name="geo.placename" content="Ranaghat, Nadia, West Bengal" />
+  <meta name="language" content="Bengali" />
+
+  <!-- Canonical -->
   <link rel="canonical" href="https://astro.myastrology.in/astrology" />
-  
-  <!-- Open Graph Tags -->
-  <meta property="og:title" content="Astrology – জ্যোতিষ শাস্ত্র, বিজ্ঞান, দর্শন ও আধ্যাত্মিকতা | Prodyut Acharya" />
-  <meta property="og:description" content="Astrology বা জ্যোতিষ — ভবিষ্যৎ জানার নয়, আত্মজ্ঞান ও জীবন বদলানোর বিজ্ঞান। ভারতীয় ও পশ্চিমা দর্শন, আধ্যাত্মিকতা, Law of Attraction ভিত্তিক অন্তর্জ্যোতি। ড. প্রদ্যুৎ আচার্য থেকে সম্পূর্ণ জ্ঞান।" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="বৈদিক জ্যোতিষ শাস্ত্র ও আত্মজ্ঞান | Dr. Prodyut Acharya – MyAstrology" />
+  <meta property="og:description" content="জ্যোতিষ — ভবিষ্যৎ জানার নয়, আত্মজ্ঞান ও জীবন বদলানোর বিজ্ঞান। Vedic Astrology, জন্মকুণ্ডলী ও হস্তরেখা পরামর্শ — ড. প্রদ্যুৎ আচার্য।" />
   <meta property="og:url" content="https://astro.myastrology.in/astrology" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="MyAstrology" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="MyAstrology – Dr. Prodyut Acharya" />
   <meta property="og:image" content="https://astro.myastrology.in/blog/astrology-cover.webp" />
-  
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="MyAstrology — Vedic Astrology by Dr. Prodyut Acharya" />
+  <meta property="og:locale" content="bn_IN" />
+
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Astrology – জ্যোতিষ শাস্ত্র, বিজ্ঞান, দর্শন ও আধ্যাত্মিকতা | Prodyut Acharya" />
-  <meta name="twitter:description" content="Astrology বা জ্যোতিষ — ভবিষ্যৎ জানার নয়, আত্মজ্ঞান ও জীবন বদলানোর বিজ্ঞান। ভারতীয় ও পশ্চিমা দর্শন, আধ্যাত্মিকতা, Law of Attraction ভিত্তিক অন্তর্জ্যোতি। ড. প্রদ্যুৎ আচার্য থেকে সম্পূর্ণ জ্ঞান।" />
+  <meta name="twitter:site" content="@AcharyaProdyut" />
+  <meta name="twitter:title" content="বৈদিক জ্যোতিষ শাস্ত্র | Vedic Astrology | Dr. Prodyut Acharya" />
+  <meta name="twitter:description" content="জ্যোতিষ — আত্মজ্ঞান ও জীবন বদলানোর বিজ্ঞান। ড. প্রদ্যুৎ আচার্য, MyAstrology।" />
   <meta name="twitter:image" content="https://astro.myastrology.in/blog/jyotish-cover.webp" />
-  
-  <!-- JSON-LD LocalBusiness Schema -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "MyAstrology – Dr. Prodyut Acharya",
-  "url": "https://astro.myastrology.in/astrology.html",
-  "telephone": "+91-9333122768",
-  "description": "Astrology বা জ্যোতিষ — ভবিষ্যৎ নয়, আত্মজ্ঞান ও জীবন বদলানোর বিজ্ঞান। ভারতীয় ও পশ্চিমা দর্শন, আধ্যাত্মিকতা, Law of Attraction ভিত্তিক অন্তর্জ্যোতি। ড. প্রদ্যুৎ আচার্য থেকে সম্পূর্ণ জ্ঞান।",
-  "image": "https://astro.myastrology.in/blog/astrology-cover.webp",
-  "priceRange": "₹500–₹2000",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Ranaghat, Nadia",
-    "addressLocality": "Ranaghat",
-    "addressRegion": "West Bengal",
-    "postalCode": "741201",
-    "addressCountry": "IN"
-  },
-  "openingHours": "Mo-Su 09:00-21:00",
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": "23.1765",
-    "longitude": "88.5667"
-  },
-  "areaServed": {
-    "@type": "Place",
-    "name": "India, West Bengal, Ranaghat, Nadia"
-  },
-  "sameAs": [
-    "https://www.facebook.com/Dr.ProdyutAcharya",
-    "https://www.instagram.com/myastrology.in",
-    "https://youtube.com/@myastrology",
-    "https://x.com/AcharyaProdyut"
+
+  <!-- Article Schema (content page-এর জন্য LocalBusiness-এর চেয়ে উপযুক্ত) -->
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "বৈদিক জ্যোতিষ শাস্ত্র ও আত্মজ্ঞান — Vedic Astrology",
+      "description": "জ্যোতিষ শাস্ত্র হলো ভবিষ্যৎ জানার নয়, আত্মজ্ঞান ও জীবন রূপান্তরের বিজ্ঞান।",
+      "image": "https://astro.myastrology.in/blog/astrology-cover.webp",
+      "author": {
+        "@type": "Person",
+        "name": "Dr. Prodyut Acharya",
+        "url": "https://astro.myastrology.in/about",
+        "sameAs": [
+          "https://www.facebook.com/Dr.ProdyutAcharya",
+          "https://x.com/AcharyaProdyut",
+          "https://prodyutacharya.blogspot.com"
+        ]
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "MyAstrology",
+        "url": "https://astro.myastrology.in",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://astro.myastrology.in/images/MyAstrology-Ranghat-logo.png"
+        }
+      },
+      "mainEntityOfPage": "https://astro.myastrology.in/astrology",
+      "inLanguage": "bn"
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "MyAstrology – Dr. Prodyut Acharya",
+      "url": "https://astro.myastrology.in",
+      "telephone": "+91-9333122768",
+      "email": "info@myastrology.in",
+      "description": "Vedic Astrology, জন্মকুণ্ডলী বিশ্লেষণ, হস্তরেখা — Best Astrologer in West Bengal।",
+      "image": "https://astro.myastrology.in/blog/astrology-cover.webp",
+      "priceRange": "₹500–₹2000",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Ranaghat",
+        "addressLocality": "Ranaghat",
+        "addressRegion": "West Bengal",
+        "postalCode": "741201",
+        "addressCountry": "IN"
+      },
+      "openingHours": "Mo-Su 09:00-21:00",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "23.1765",
+        "longitude": "88.5667"
+      },
+      "areaServed": ["Ranaghat", "Nadia", "West Bengal", "India"],
+      "sameAs": [
+        "https://www.facebook.com/Dr.ProdyutAcharya",
+        "https://www.instagram.com/myastrology.in",
+        "https://youtube.com/@myastrology",
+        "https://x.com/AcharyaProdyut"
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "বৈদিক জ্যোতিষ শাস্ত্র কি?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "বৈদিক জ্যোতিষ একটি প্রাচীন ভারতীয় জ্ঞানশাস্ত্র যা মহাজাগতিক ছন্দ ও মানব চেতনার সম্পর্ক বিশ্লেষণ করে। এটি ভবিষ্যৎ বলার শাস্ত্র নয় — বরং আত্মজ্ঞান ও জীবন রূপান্তরের বিজ্ঞান।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Dr. Prodyut Acharya-এর সাথে কীভাবে যোগাযোগ করব?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "WhatsApp: +91-9333122768। Email: info@myastrology.in। অনলাইন বুকিং: myastrology.in। প্রতিদিন সকাল ৯টা থেকে রাত ৯টা।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "আজকের রাশিফল ও পঞ্জিকা কোথায় পাব?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "আজকের রাশিফল, প্রেম, কর্ম, অর্থ, স্বাস্থ্য, শুভ সংখ্যা, শুভ রং ও শুভ সময় জানতে ভিজিট করুন: astro.myastrology.in/panjika.html"
+          }
+        }
+      ]
+    }
   ]
-}
-</script>
-   
+  </script>
+
+  <!-- ✅ FIX: Google Analytics — সম্পূর্ণ ও সঠিক initialization -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S7BQGLP211"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-S7BQGLP211', { page_path: '/astrology' });
+  </script>
+
+  <!-- PERFORMANCE: Hero image preload -->
+  <link rel="preload" as="image" href="images/MyAstrology-Prodyut-Acharya.webp" />
 
   <style>
-/* Reset & Base */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+    /* ════════════════════════════════════════════════════════
+       CSS DESIGN SYSTEM — Variables & Reset
+       ════════════════════════════════════════════════════════ */
+    :root {
+      /* Brand Colors */
+      --clr-primary:       #1a1a5e;   /* গভীর নীল — বিশ্বাস, আধ্যাত্মিকতা */
+      --clr-primary-light: #2d2d8f;
+      --clr-accent:        #e65100;   /* উষ্ণ কমলা — শক্তি */
+      --clr-accent-dk:     #bf360c;
+      --clr-gold:          #f9a825;   /* সোনালি — দৈব আভা */
+      --clr-gold-light:    #fff8e1;
+      /* Backgrounds */
+      --clr-bg:            #fffef7;
+      --clr-bg-warm:       #fff8e1;
+      --clr-bg-section:    #fffdf4;
+      /* Text */
+      --clr-text:          #3e2c1c;
+      --clr-text-md:       #5d4037;
+      --clr-text-lt:       #795548;
+      /* Borders */
+      --clr-border:        #e8d5b0;
+      --clr-border-lt:     #f3e9d2;
+      /* Blockquote */
+      --clr-bq-bg:         #fff8e6;
+      /* Fonts */
+      --font-serif:   'Noto Serif Bengali', Georgia, serif;
+      --font-sans:    'Noto Sans Bengali', Arial, sans-serif;
+      --font-kalam:   'Kalam', cursive;
+      /* Spacing */
+      --space-xs:   0.5rem;
+      --space-sm:   1rem;
+      --space-md:   1.5rem;
+      --space-lg:   2.5rem;
+      --space-xl:   4rem;
+      /* Misc */
+      --radius-sm:  8px;
+      --radius-md:  14px;
+      --radius-lg:  20px;
+      --shadow-sm:  0 2px 8px rgba(0,0,0,0.07);
+      --shadow-md:  0 4px 18px rgba(0,0,0,0.1);
+      --shadow-gold:0 6px 24px rgba(249,168,37,0.22);
+      --transition: 0.28s ease;
+      --max-w:      900px;
+    }
 
-body {
-  font-family: 'Noto Serif Bengali', serif;
-  background: #fffef0;
-  color: #5d4037;
-  line-height: 1.65;
-}
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-h1, h2, h3 {
-  font-family: 'SolaimanLipi', 'Noto Sans Bengali', sans-serif;
-  color: #3142f7;
-  margin-top: 1.5rem;
-  margin-bottom: 0.75rem;
-}
+    html { scroll-behavior: smooth; font-size: 16px; }
 
-p {
-  font-size: 1.15em;
-  margin-bottom: 18px;
-}
+    body {
+      font-family: var(--font-serif);
+      background: var(--clr-bg);
+      color: var(--clr-text);
+      line-height: 1.78;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
 
-a {
-  color: #e65100;
-  text-decoration: none;
-  font-weight: 600;
-  border-bottom: 2px solid transparent;
-  transition: color 0.3s ease, border-color 0.3s ease;
-}
+    /* ════════════════════════════════════════════════════════
+       TYPOGRAPHY
+       ════════════════════════════════════════════════════════ */
+    h1, h2, h3, h4 {
+      font-family: var(--font-sans);
+      color: var(--clr-primary);
+      line-height: 1.35;
+      font-weight: 700;
+    }
+    h1 { font-size: clamp(1.45rem, 3.5vw, 2.1rem); margin: var(--space-lg) 0 var(--space-sm); }
+    h2 { font-size: clamp(1.2rem, 2.8vw, 1.75rem); margin: var(--space-lg) 0 var(--space-sm); }
+    h3 { font-size: clamp(1.05rem, 2.2vw, 1.35rem); margin: var(--space-md) 0 var(--space-xs); }
 
-a:hover {
-  color: #bf360c;
-  border-color: #bf360c;
-}
+    p  {
+      font-size: clamp(1rem, 1.4vw, 1.1rem);
+      margin-bottom: var(--space-sm);
+      color: var(--clr-text-md);
+    }
 
+    strong { color: var(--clr-primary); font-weight: 700; }
+    em     { color: var(--clr-text-lt); font-style: italic; }
 
-/* Header */
-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* Logo left, hamburger right */
-  padding: 10px 16px;
-  background: #fff8e1;
-  border-bottom: 2px solid #ddd;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.logo img {
-  height: 48px;
-}
+    a {
+      color: var(--clr-accent);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1.5px solid transparent;
+      transition: color var(--transition), border-color var(--transition);
+    }
+    a:hover, a:focus {
+      color: var(--clr-accent-dk);
+      border-color: var(--clr-accent-dk);
+      outline: none;
+    }
 
-/* Hamburger button (always visible) */
-.menu-toggle {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 8px;
-}
-.menu-toggle div {
-  width: 28px;
-  height: 3px;
-  background: #333;
-  border-radius: 2px;
-}
+    ul, ol { padding-left: 1.6rem; margin-bottom: var(--space-sm); }
+    li { margin-bottom: 0.5rem; font-size: 1.05rem; color: var(--clr-text-md); }
 
-/* Off-canvas nav (hidden by default) */
-nav {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 280px;
-  max-width: 90%;
-  height: 100%;
-  background: #fff;
-  transform: translateX(100%);
-  transition: transform 0.35s ease;
-  box-shadow: -8px 0 24px rgba(0,0,0,0.2);
-  padding-top: 80px; /* space for header */
-  display: flex;
-  flex-direction: column;
-  z-index: 1200;
-}
-nav a {
-  padding: 14px 20px;
-  font-weight: 600;
-  color: #e65100;
-  text-decoration: none;
-  border-bottom: 1px solid #f2f2f2;
-}
-nav a:hover {
-  background: #fff5e6;
-  color: #bf360c;
-}
+    /* ════════════════════════════════════════════════════════
+       SKIP LINK (Accessibility)
+       ════════════════════════════════════════════════════════ */
+    .skip-link {
+      position: absolute;
+      top: -60px;
+      left: 16px;
+      background: var(--clr-primary);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      z-index: 9999;
+      transition: top 0.3s;
+      font-weight: 600;
+    }
+    .skip-link:focus { top: 0; }
 
-/* Show nav when active */
-nav.active {
-  transform: translateX(0);
-}
+    /* ════════════════════════════════════════════════════════
+       HEADER
+       ════════════════════════════════════════════════════════ */
+    header {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 18px;
+      background: var(--clr-bg-warm);
+      border-bottom: 2px solid var(--clr-border);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow-sm);
+    }
 
-/* Backdrop */
-.backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.35);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.35s ease;
-  z-index: 1100;
-}
-.backdrop.show {
-  opacity: 1;
-  pointer-events: auto;
-}
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      border: none;
+      flex-shrink: 0;
+    }
+    .logo img { height: 42px; width: auto; display: block; }
 
-/* Banner */
-.banner img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 6px;
-}
+    /* ── Brand title (centre column) ── */
+    .header-brand {
+      text-align: center;
+      line-height: 1.2;
+      overflow: hidden;
+    }
+    .header-brand-name {
+      font-family: var(--font-sans);
+      font-weight: 800;
+      font-size: clamp(0.85rem, 2.2vw, 1.1rem);
+      color: var(--clr-primary);
+      white-space: nowrap;
+      letter-spacing: 0.2px;
+    }
+    .header-brand-sub {
+      font-family: var(--font-serif);
+      font-size: clamp(0.72rem, 1.6vw, 0.85rem);
+      color: var(--clr-text-lt);
+      font-weight: 400;
+      white-space: nowrap;
+    }
 
-/* Scroll Banner */
-.scroll-banner {
-  position: relative;
-  background: #fff;
-  padding: 14px 0;
-  border-top: 1px solid rgba(238,238,238,0.5);
-  border-bottom: 1px solid rgba(238,238,238,0.5);
-  overflow: hidden;
-  font-weight: 600;
-  font-size: 1.5rem;
-  color: #222;
-  white-space: nowrap;
-}
-.scroll-banner span {
-  display: inline-block;
-  padding-left: 100%;
-  animation: scroll-left 18s linear infinite;
-}
-@keyframes scroll-left {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
-}
-  
+    /* ════════════════════════════════════════════════════════
+       HAMBURGER
+       ════════════════════════════════════════════════════════ */
+    .menu-toggle {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 10px;
+      border-radius: var(--radius-sm);
+      transition: background var(--transition);
+    }
+    .menu-toggle:hover  { background: rgba(0,0,0,0.06); }
+    .menu-toggle:focus  { outline: 2px solid var(--clr-gold); outline-offset: 2px; }
+    .menu-toggle span {
+      display: block;
+      width: 26px;
+      height: 2.5px;
+      background: var(--clr-primary);
+      border-radius: 2px;
+      transition: transform var(--transition), opacity var(--transition);
+    }
+    .menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+    .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
 
-/* Section Styling */
-section {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 15px;
-}
+    /* ════════════════════════════════════════════════════════
+       OFF-CANVAS NAV
+       ════════════════════════════════════════════════════════ */
+    nav#main-nav {
+      position: fixed;
+      top: 0; right: 0;
+      width: 280px;
+      max-width: 92vw;
+      height: 100%;
+      background: #fff;
+      transform: translateX(100%);
+      transition: transform 0.32s cubic-bezier(0.4,0,0.2,1);
+      box-shadow: -6px 0 32px rgba(0,0,0,0.14);
+      display: flex;
+      flex-direction: column;
+      z-index: 1200;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+    nav#main-nav.open { transform: translateX(0); }
 
-/* Images & Blockquote */
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  margin: 20px auto;
-  border-radius: 14px;
-  box-shadow: 0 8px 24px rgba(255, 152, 0, 0.3);
-}
-blockquote {
-  font-size: 1.1em;
-  font-style: italic;
-  color: #6d4c41;
-  border-left: 4px solid #ffb300;
-  margin: 20px 0 20px 20px;
-  padding-left: 16px;
-  background-color: #fff3e0;
-  border-radius: 6px;
-}
+    .nav-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      background: var(--clr-bg-warm);
+      border-bottom: 1px solid var(--clr-border);
+      flex-shrink: 0;
+    }
+    .nav-head-title {
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--clr-primary);
+    }
+    .nav-close {
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: var(--clr-text-lt);
+      padding: 4px 8px;
+      border-radius: 6px;
+      line-height: 1;
+      transition: background var(--transition);
+    }
+    .nav-close:hover { background: #f0e8d8; }
 
-/* Tagline */
-.tagline {
-  font-family: 'Kalam', cursive;
-  font-size: 1.65em;
-  text-align: center;
-  margin-top: 42px;
-  color: #bf360c;
-  letter-spacing: 1.5px;
-}
+    nav#main-nav a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 18px;
+      font-family: var(--font-sans);
+      font-size: 0.93rem;
+      font-weight: 600;
+      color: var(--clr-text);
+      border-bottom: 1px solid var(--clr-border-lt);
+      border-bottom-width: 1px;
+      text-decoration: none;
+      transition: background var(--transition), padding-left var(--transition), color var(--transition);
+    }
+    nav#main-nav a:hover {
+      background: var(--clr-bg-warm);
+      color: var(--clr-accent);
+      padding-left: 24px;
+    }
 
-/* Responsive Text */
-@media (max-width: 480px) {
-  h1, h2, h3 { font-size: 1.3em; }
-  .scroll-banner { font-size: 1.2rem; }
-}
-</style>
+    /* Backdrop */
+    .backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(10,10,40,0.45);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.32s ease;
+      z-index: 1100;
+      backdrop-filter: blur(2px);
+    }
+    .backdrop.show { opacity: 1; pointer-events: auto; }
 
-  
-  
+    /* ════════════════════════════════════════════════════════
+       HERO BANNER
+       ════════════════════════════════════════════════════════ */
+    .banner { overflow: hidden; }
+    .banner img {
+      width: 100%;
+      height: auto;
+      max-height: 440px;
+      object-fit: cover;
+      display: block;
+      /* NO border-radius on banner — full bleed looks pro */
+    }
+
+    /* ════════════════════════════════════════════════════════
+       SCROLL TICKER
+       ════════════════════════════════════════════════════════ */
+    .scroll-ticker {
+      background: var(--clr-primary);
+      padding: 10px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      line-height: 1.4;
+    }
+    .scroll-ticker span {
+      display: inline-block;
+      padding-left: 100%;
+      animation: ticker 24s linear infinite;
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--clr-gold);
+      letter-spacing: 0.3px;
+    }
+    .scroll-ticker span:hover { animation-play-state: paused; }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-100%); }
+    }
+
+    /* ════════════════════════════════════════════════════════
+       LAYOUT
+       ════════════════════════════════════════════════════════ */
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    section.content-section {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: var(--space-lg) 20px;
+      border-bottom: 1px solid var(--clr-border-lt);
+    }
+    section.content-section:last-child { border-bottom: none; }
+
+    /* ════════════════════════════════════════════════════════
+       READING PROGRESS BAR
+       ════════════════════════════════════════════════════════ */
+    #progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--clr-gold), var(--clr-accent));
+      z-index: 9999;
+      transition: width 0.1s linear;
+    }
+
+    /* ════════════════════════════════════════════════════════
+       BACK TO TOP
+       ════════════════════════════════════════════════════════ */
+    #back-to-top {
+      position: fixed;
+      bottom: 24px;
+      right: 20px;
+      width: 44px;
+      height: 44px;
+      background: var(--clr-primary);
+      color: var(--clr-gold);
+      border: none;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.22);
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.3s, transform 0.3s;
+      z-index: 800;
+    }
+    #back-to-top.visible { opacity: 1; transform: translateY(0); }
+    #back-to-top:hover { background: var(--clr-primary-light); }
+
+    /* ════════════════════════════════════════════════════════
+       TABLE OF CONTENTS — card grid
+       ════════════════════════════════════════════════════════ */
+    .toc-section { padding-top: var(--space-md); padding-bottom: 0; border-bottom: none; }
+
+    .toc-label {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--clr-text-lt);
+      margin-bottom: 14px;
+    }
+
+    .toc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 10px;
+    }
+
+    .toc-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px 14px;
+      background: #fff;
+      border: 1px solid var(--clr-border-lt);
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+      border: none;
+    }
+    .toc-card:hover {
+      border-color: var(--clr-gold);
+      box-shadow: 0 4px 14px rgba(249,168,37,0.15);
+      transform: translateY(-2px);
+      border: none;
+    }
+    .toc-num {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--clr-gold);
+      letter-spacing: 0.5px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      min-width: 22px;
+    }
+    .toc-text {
+      font-family: var(--font-sans);
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--clr-primary);
+      line-height: 1.4;
+    }
+    .toc-card:hover .toc-text { color: var(--clr-accent); }
+
+    /* ════════════════════════════════════════════════════════
+       PANJIKA STRIP — compact horizontal
+       ════════════════════════════════════════════════════════ */
+    .panjika-strip {
+      background: linear-gradient(135deg, var(--clr-primary) 0%, #2a2a7e 100%);
+      border-top: 2px solid rgba(249,168,37,0.4);
+      border-bottom: 2px solid rgba(249,168,37,0.4);
+    }
+    .panjika-strip-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .panjika-strip-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+      min-width: 0;
+    }
+    .panjika-strip-icon {
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+    .panjika-strip-title {
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #fff;
+      white-space: nowrap;
+      margin-bottom: 4px;
+    }
+    .panjika-strip-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+    .panjika-strip-tags span {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.75);
+      background: rgba(255,255,255,0.08);
+      padding: 2px 8px;
+      border-radius: 50px;
+      white-space: nowrap;
+    }
+    .panjika-strip-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--clr-gold);
+      color: var(--clr-primary);
+      font-family: var(--font-sans);
+      font-weight: 800;
+      font-size: 0.88rem;
+      padding: 9px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      border: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 3px 12px rgba(249,168,37,0.3);
+    }
+    .panjika-strip-btn:hover {
+      background: #ffca28;
+      transform: translateY(-1px);
+      box-shadow: 0 5px 16px rgba(249,168,37,0.45);
+      color: var(--clr-primary);
+      border: none;
+    }
+    @media (max-width: 520px) {
+      .panjika-strip-inner { flex-direction: column; align-items: flex-start; }
+      .panjika-strip-btn { align-self: stretch; justify-content: center; }
+      .toc-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ════════════════════════════════════════════════════════
+       IMAGES
+       ════════════════════════════════════════════════════════ */
+    .content-section img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin: var(--space-md) auto;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-gold);
+    }
+
+    /* ════════════════════════════════════════════════════════
+       BLOCKQUOTE
+       ════════════════════════════════════════════════════════ */
+    blockquote {
+      position: relative;
+      font-size: 1.04rem;
+      font-style: italic;
+      color: var(--clr-text-lt);
+      border-left: 4px solid var(--clr-gold);
+      margin: var(--space-md) 0;
+      padding: 16px 20px 16px 24px;
+      background: var(--clr-bq-bg);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    }
+    blockquote::before {
+      content: '\201C';
+      position: absolute;
+      top: -8px;
+      left: 10px;
+      font-size: 4rem;
+      color: var(--clr-gold);
+      opacity: 0.25;
+      font-family: Georgia, serif;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    /* ════════════════════════════════════════════════════════
+       TAGLINE
+       ════════════════════════════════════════════════════════ */
+    .tagline {
+      font-family: var(--font-kalam);
+      font-size: clamp(1.05rem, 2.5vw, 1.4rem);
+      text-align: center;
+      color: var(--clr-accent-dk);
+      margin: var(--space-lg) auto var(--space-sm);
+      max-width: 700px;
+      padding: 16px 24px;
+      background: linear-gradient(135deg, var(--clr-gold-light), #fff8e6);
+      border: 1px dashed var(--clr-gold);
+      border-radius: var(--radius-md);
+      letter-spacing: 0.3px;
+      line-height: 1.6;
+    }
+
+    /* ════════════════════════════════════════════════════════
+       SECTION DIVIDER
+       ════════════════════════════════════════════════════════ */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .section-divider::before,
+    .section-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--clr-border);
+    }
+    .section-divider span {
+      color: var(--clr-gold);
+      font-size: 1.1rem;
+    }
+
+    /* ════════════════════════════════════════════════════════
+       CTA BOX
+       ════════════════════════════════════════════════════════ */
+    .cta-box {
+      background: linear-gradient(135deg, var(--clr-primary) 0%, var(--clr-primary-light) 100%);
+      border-radius: var(--radius-md);
+      padding: 28px 24px;
+      text-align: center;
+      margin: var(--space-lg) 0 var(--space-sm);
+    }
+    .cta-box h3 {
+      color: var(--clr-gold);
+      font-size: 1.2rem;
+      margin: 0 0 10px;
+    }
+    .cta-box p {
+      color: rgba(255,255,255,0.82);
+      font-size: 0.95rem;
+      margin: 0 0 18px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-btns { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 12px 26px;
+      border-radius: 50px;
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 0.93rem;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.22); border: none; }
+    .btn-wa    { background: #25D366; color: #fff; }
+    .btn-pay   { background: var(--clr-gold); color: var(--clr-primary); }
+
+    /* ════════════════════════════════════════════════════════
+       HEADLINE CLASSES — ইনলাইন স্টাইল বাদ
+       ════════════════════════════════════════════════════════ */
+    .headline-h1 {
+      border-bottom: 3px solid var(--clr-gold);
+      padding-bottom: 10px;
+      margin-top: var(--space-sm);
+    }
+    .headline-h2 { color: var(--clr-primary); }
+    .headline-h2-orange { color: #e67300; margin-top: var(--space-lg); margin-bottom: var(--space-md); }
+    .headline-h3 { color: var(--clr-primary); }
+    .headline-h3-orange { color: #ef6c00; font-weight: 700; margin-top: var(--space-lg); margin-bottom: var(--space-md); }
+
+    /* ════════════════════════════════════════════════════════
+       FOOTER
+       ════════════════════════════════════════════════════════ */
+    footer {
+      background: #0c0c30;
+      color: #e8e8f0;
+      padding: 52px 20px 28px;
+      font-family: var(--font-sans);
+      text-align: center;
+    }
+    footer h2 {
+      font-size: clamp(1.3rem, 3vw, 1.8rem);
+      color: var(--clr-gold);
+      margin: 0 0 14px;
+    }
+    footer .footer-desc {
+      max-width: 680px;
+      margin: 0 auto 24px;
+      line-height: 1.8;
+      font-size: 0.95rem;
+      color: #c8c8dc;
+    }
+    .footer-contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin: 18px 0 6px;
+    }
+    .footer-contact a {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: #c8c8dc;
+      font-size: 0.9rem;
+      border: none;
+      padding: 6px 14px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 50px;
+      transition: background var(--transition), color var(--transition);
+    }
+    .footer-contact a:hover { background: rgba(249,168,37,0.15); color: var(--clr-gold); }
+    .footer-social {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 22px 0;
+    }
+    .footer-social a {
+      color: #9898b8;
+      font-size: 1.4rem;
+      border: none;
+      width: 42px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      transition: background var(--transition), color var(--transition), transform var(--transition);
+    }
+    .footer-social a:hover {
+      color: var(--clr-gold);
+      background: rgba(249,168,37,0.15);
+      transform: translateY(-3px);
+    }
+    .footer-divider {
+      width: 60px;
+      height: 2px;
+      background: rgba(249,168,37,0.3);
+      margin: 20px auto;
+      border-radius: 2px;
+    }
+    .footer-copy { font-size: 0.82rem; color: #6868a8; line-height: 1.7; }
+    .footer-copy a { color: #8888b8; border: none; font-weight: 400; }
+    .footer-copy a:hover { color: var(--clr-gold); }
+
+    /* ════════════════════════════════════════════════════════
+       PRINT
+       ════════════════════════════════════════════════════════ */
+    @media print {
+      header, nav, .backdrop, .scroll-ticker,
+      .panjika-strip, .cta-box, footer { display: none !important; }
+      body { color: #000; background: #fff; font-size: 12pt; }
+      a::after { content: " (" attr(href) ")"; font-size: 9pt; color: #555; }
+    }
+
+    /* ════════════════════════════════════════════════════════
+       RESPONSIVE
+       ════════════════════════════════════════════════════════ */
+    @media (max-width: 600px) {
+      header { padding: 8px 14px; }
+      .logo img { height: 40px; }
+      blockquote { padding: 12px 14px 12px 18px; margin: var(--space-sm) 0; }
+      section.content-section { padding: var(--space-md) 14px; }
+      .panjika-strip-btn { padding: 10px 18px; font-size: 0.85rem; }
+      .cta-btns { flex-direction: column; align-items: center; }
+    }
+  </style>
 </head>
+
 <body>
 
-<header>
-  <div class="logo">
-    <img src="images/MyAstrology-Ranghat-logo.png" alt="MyAstrology in Ranaghat Logo" />
-    <span><strong>MyAstrology – ড. প্রদ্যুৎ আচার্য</strong></span>
+<!-- Reading Progress Bar -->
+<div id="progress-bar" role="progressbar" aria-label="পড়ার অগ্রগতি"></div>
+
+<!-- Back to Top -->
+<button id="back-to-top" aria-label="উপরে যান" title="উপরে যান">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<!-- Skip Link -->
+<a href="#main-content" class="skip-link">মূল বিষয়বস্তুতে যান (Skip to content)</a>
+
+<!-- ════════════════════════════════════════════════════
+     HEADER
+     ════════════════════════════════════════════════════ -->
+<header role="banner">
+  <!-- Column 1: Logo only -->
+  <a href="index.html" class="logo" aria-label="MyAstrology হোমপেজ">
+    <img src="images/MyAstrology-Ranghat-logo.png"
+         alt="MyAstrology Ranaghat Logo"
+         width="42" height="42"
+         loading="eager" />
+  </a>
+
+  <!-- Column 2: Brand name centred between logo & hamburger -->
+  <div class="header-brand" aria-hidden="true">
+    <div class="header-brand-name">MyAstrology</div>
+    <div class="header-brand-sub">ডঃ প্রদ্যুৎ আচার্য </div>
   </div>
 
-  <div class="menu-toggle" onclick="document.querySelector('nav').classList.toggle('active')">
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
-
-  <nav>  
-    <a href="index.html">🏠 হোম</a>      
-    <a href="astrology.html">জ্যোতিষ শাস্ত্র</a>  
-    <a href="/vedic-astronomy.html">জ্যোতির্বিজ্ঞান</a>
-    <a href="/palmistry.html">হস্তরেখা</a>  
-    <a href="/rashifal.html">রাশিফল</a>  
-    <a href="/video.html">ভিডিও</a>  
-    <a href="vastu-science.html">বাস্তু শাস্ত্র</a>    
-    <a href="/gallery.html">গ্যালারি</a>  
-    <a href="/about.html">আমাদের সম্পর্কে</a>
-    <a href="/blog-list.html">ব্লগসমূহ</a>
-    <a href="https://www.myastrology.in">বুকিং</a>
-      <a href="/reviews.html">রিভিউ</a> 
-    <a href="https://wa.me/919333122768">যোগাযোগ</a>
-    <a href="https://prodyutacharya.blogspot.com">ব্লগ পোস্ট</a>
-    <a href="https://blog.myastrology.in">বাংলা ব্লগ</a>  
-  </nav>  
+  <!-- Column 3: Hamburger -->
+  <button class="menu-toggle"
+          id="menuToggleBtn"
+          aria-label="নেভিগেশন মেনু খুলুন"
+          aria-expanded="false"
+          aria-controls="main-nav">
+    <span></span><span></span><span></span>
+  </button>
 </header>
 
+<!-- Off-canvas Nav -->
+<nav id="main-nav" role="navigation" aria-label="প্রধান নেভিগেশন">
+  <div class="nav-head">
+    <span class="nav-head-title">📋 মেনু</span>
+    <button class="nav-close" id="navCloseBtn" aria-label="মেনু বন্ধ করুন">✕</button>
+  </div>
+  <a href="index.html">🏠 হোম</a>
+  <a href="astrology.html" aria-current="page">🔮 জ্যোতিষ শাস্ত্র</a>
+  <a href="/vedic-astronomy.html">🌌 জ্যোতির্বিজ্ঞান</a>
+  <a href="/palmistry.html">✋ হস্তরেখা</a>
+  <a href="/rashifal.html">♈ রাশিফল</a>
+  <a href="https://astro.myastrology.in/panjika.html">📅 দিন পঞ্জিকা</a>
+  <a href="/video.html">▶️ ভিডিও</a>
+  <a href="vastu-science.html">🏠 বাস্তু শাস্ত্র</a>
+  <a href="/gallery.html">🖼️ গ্যালারি</a>
+  <a href="/about.html">👤 আমাদের সম্পর্কে</a>
+  <a href="/blog-list.html">📝 ব্লগসমূহ</a>
+  <a href="https://www.myastrology.in">🗓️ বুকিং</a>
+  <a href="/reviews.html">⭐ রিভিউ</a>
+  <a href="https://wa.me/919333122768">📲 যোগাযোগ</a>
+</nav>
+
+<div class="backdrop" id="backdrop" aria-hidden="true"></div>
+
+<!-- ════════════════════════════════════════════════════
+     HERO BANNER
+     ════════════════════════════════════════════════════ -->
 <div class="banner">
-  <img src="images/MyAstrology-Prodyut-Acharya.webp" alt="MyAstrology in West Bengal best astrologer and Palmist Dr Prodyut Acharya Banner" />
+  <img src="images/MyAstrology-Prodyut-Acharya.webp"
+       alt="ড. প্রদ্যুৎ আচার্য — MyAstrology, Ranaghat, West Bengal — Vedic Astrology ও Palmistry বিশেষজ্ঞ"
+       width="1200" height="440"
+       loading="eager"
+       fetchpriority="high" />
 </div>
 
-<!-- Scroll Banner with CSS animation instead of marquee -->
-<section class="scroll-banner" aria-label="Important announcement">
-  <span>🌟 ভাগ্যের রহস্য উন্মোচনে প্রস্তুত? আমি ড. প্রদ্যুৎ আচার্য — MyAstrology, যেখানে প্রতিটি পরামর্শ হয় আপনার ভবিষ্যতের সঠিক চাবিকাঠি। 🔑✨</span>
+<!-- SCROLL TICKER -->
+<div class="scroll-ticker" role="marquee" aria-label="বিশেষ ঘোষণা">
+  <span>✨ ভাগ্যের রহস্য উন্মোচনে প্রস্তুত? আমি ড. প্রদ্যুৎ আচার্য — MyAstrology, যেখানে প্রতিটি পরামর্শ হয় আপনার ভবিষ্যতের সঠিক চাবিকাঠি। 🔑 &nbsp;&nbsp;|&nbsp;&nbsp; Best Astrologer West Bengal &nbsp;|&nbsp; Vedic Astrology &nbsp;|&nbsp; Palmistry &nbsp;|&nbsp; Kundali Analysis &nbsp;|&nbsp; Ranaghat, Nadia ✨</span>
+</div>
+
+<!-- ════════════════════════════════════════════════════
+     MAIN CONTENT
+     ════════════════════════════════════════════════════ -->
+<main id="main-content">
+
+<!-- ═══════════════════════════ সূচিপত্র ═══════════════════════════ -->
+<section class="content-section toc-section">
+  <p class="toc-label">📖 এই পাতায় যা পাবেন</p>
+  <div class="toc-grid">
+    <a href="#jyotish-aloy-atma-jiggasha" class="toc-card">
+      <span class="toc-num">০১</span>
+      <span class="toc-text">জ্যোতিষের আলোয় আত্ম জিজ্ঞাসা</span>
+    </a>
+    <a href="#vedic-jyotish-otputti" class="toc-card">
+      <span class="toc-num">০২</span>
+      <span class="toc-text">বৈদিক জ্যোতিষের উৎপত্তি ও শিকড়</span>
+    </a>
+    <a href="#graha-prabhav-darshan" class="toc-card">
+      <span class="toc-num">০৩</span>
+      <span class="toc-text">গ্রহ ও তাদের দার্শনিক প্রভাব</span>
+    </a>
+    <a href="#modern-psychology-jyotish" class="toc-card">
+      <span class="toc-num">০৪</span>
+      <span class="toc-text">মনোবিজ্ঞান ও জ্যোতিষের মিলন</span>
+    </a>
+    <a href="#indian-astrology-quantum" class="toc-card">
+      <span class="toc-num">০৫</span>
+      <span class="toc-text">কোয়ান্টাম কম্পন ও ইচ্ছাশক্তি</span>
+    </a>
+    <a href="#vedic-relationship-analysis" class="toc-card">
+      <span class="toc-num">০৬</span>
+      <span class="toc-text">সম্পর্ক, কর্ম ও আত্মচেতনা</span>
+    </a>
+    <a href="#jyotish-alokmanchitra" class="toc-card">
+      <span class="toc-num">০৭</span>
+      <span class="toc-text">জ্যোতিষ — এক আলোকমানচিত্র</span>
+    </a>
+    <a href="#bhagya-bazar-chalna" class="toc-card">
+      <span class="toc-num">০৮</span>
+      <span class="toc-text">ভাগ্যবাজারের ছলনা ও সত্য</span>
+    </a>
+  </div>
 </section>
 
+<!-- ═══════════════ আজকের রাশিফল ও দিন পঞ্জিকা — COMPACT STRIP ═══════════════ -->
+<div class="panjika-strip" id="rashifal-panjika">
+  <div class="panjika-strip-inner">
+    <div class="panjika-strip-left">
+      <span class="panjika-strip-icon">🌟</span>
+      <div>
+        <div class="panjika-strip-title">আজকের রাশিফল ও দিন পঞ্জিকা</div>
+        <div class="panjika-strip-tags">
+          <span>❤️ প্রেম</span><span>💼 কর্ম</span><span>💰 অর্থ</span>
+          <span>🌿 স্বাস্থ্য</span><span>🔢 শুভ সংখ্যা</span><span>🎨 শুভ রং</span><span>⏰ শুভ সময়</span>
+        </div>
+      </div>
+    </div>
+    <a href="https://astro.myastrology.in/panjika.html"
+       class="panjika-strip-btn"
+       target="_blank" rel="noopener noreferrer">
+      আজই দেখুন <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
+</div>
 
-
-<section>
+<!-- ═══════════════════════════ SECTION 1 ═══════════════════════════ -->
+<section class="content-section">
   <h1 id="jyotish-aloy-atma-jiggasha" class="headline-h1">
     🔮 জ্যোতিষের আলোয় আত্ম জিজ্ঞাসা ও ভাগ্যের সন্ধান
   </h1>
   <h2 class="headline-h2">✨ MyAstrology জ্যোতিষ ও হস্তরেখাবিদ্ প্রদ্যুৎ আচার্য</h2>
-  
-  <p>ভারতীয় বৈদিক <a href="https://prodyutacharya.blogspot.com/2019/01/What-is-astrology.html" target="_blank">
-  জ্যোতিষ
-</a> 
-    শুধুমাত্র একটি শাস্ত্র নয় — বরং একটি প্রাচীন জ্ঞানের উৎস, যা শব্দতত্ত্ব থেকে উদ্ভূত, “জ্যোতি + ইষ” অর্থাৎ “আলো” এবং “ঈশ্বর” এর মিলন।</p>
-  
-  <p>“জ্যোতি” অর্থাৎ আলোর প্রাচীর পেরিয়ে প্রবাহিত চেতনার প্রতীক, আর “ইষ” অর্থ অনুসরণ বা অন্বেষণ। তাই জ্যোতিষ হলো সেই আলো যা চেতনার গভীরে প্রবেশ করে আত্মার গূঢ় ভাষা বোঝার পদ্ধতি।</p>
-  
-  <p>ভারতীয় জ্যোতিষ কখনোই সাধারণ ভবিষ্যৎবাণী নয়; এটি এক প্রজ্ঞার শাস্ত্র — “consciousness revealing system,” যা মানুষের আত্মার গন্তব্য নির্ধারণ করে। এটি বলে না তুমি কী পাবে, বরং বলে তুমি কে, কেন এসেছো, এবং তোমার অভিমুখ কোথায়।</p>
-  
-  <blockquote>“कालोऽस्मि लोकक्षयकृत् प्रवृद्धः।”<br>— ভগবদ্গীতা ১১</blockquote>
-  
-  <p>এই শাস্ত্র ভবিষ্যতকে একটি পরিবর্তনশীল সম্ভাব্য ধারা হিসেবে দেখে, যা নির্ধারিত নয়। বরং আত্মার জ্ঞান ও পূর্বকর্মের সঙ্গে ঐক্যবদ্ধ হয়ে নতুন পথের সন্ধান দেয়।</p>
-  
-  <h3 class="headline-h3">🪐 জন্মকুণ্ডলী: আত্মার নিরব চিত্রনাট্য</h3>
-  
-  <p>জন্মকুণ্ডলী শুধুমাত্র গ্রহ-নক্ষত্রের মানচিত্র নয়, এটি আত্মার ‘soul-script’, যেখানে প্রতিটি গ্রহ ও রাশি মানুষের মানসিকতা, চরিত্র, সংকল্প এবং জীবনের অভিজ্ঞতার সূক্ষ্ম প্রতিফলন।</p>
-  
-  <p>জন্মের মুহূর্তে মহাবিশ্ব একটি নিরব সংকেত পাঠায় — “এই আত্মা এসেছে তার নির্দিষ্ট যাত্রার জন্য।”</p>
-  
-  <blockquote>“कालः कर्मस्वभावोऽयं जीवस्यैव प्रसंगतः।”<br>— সময়, কর্ম ও স্বভাব জীবনের অবিচ্ছেদ্য অংশ।</blockquote>
-  
-  <p>প্রাচীন ভারতীয় দর্শন অনুযায়ী, মানুষের চরিত্র ও সংকল্প গ্রহীয় স্পন্দনের ছায়ায় জন্ম নেয়। গ্রহ-নক্ষত্রের অবস্থান প্রভাব ফেলে আমাদের subtle energy system, যেমন চক্র, নাড়ি, pineal gland এবং thought pattern-এ।</p>
-  
-  <p>আজকের আধুনিক neuroscience ও quantum biology-ও এই আত্মিক ও জৈবিক সম্পর্কের বিষয়টি স্বীকার করে।</p>
-  
-  <blockquote>“The stars and planets are the visible symbols of inner psychological forces.”</blockquote>
-  
-  <p>অতএব, <a href="https://prodyutacharya.blogspot.com/2019/01/Astrology.html" target="_blank">
-  জ্যোতিষ
-</a> 
-    কোনো অলৌকিক বিদ্যা নয়, এটি আত্মদর্শনের এক মাধ্যম, যা আমাদের বর্তমান চেতনার মানচিত্র তৈরি করে। জন্মকুণ্ডলী একটি সম্ভাবনার মানচিত্র, যা আত্মাকে নিজেকে জানার এবং নিজের সম্ভাবনার অভিমুখ নির্ধারণের পথ দেখায়।</p>
 
-  <img src="images/jyotish-map.jpg" alt="জন্মকুণ্ডলী মানচিত্র - আত্মার চেতনার প্রতিফলন" loading="lazy" />
+  <p>ভারতীয় বৈদিক <a href="https://prodyutacharya.blogspot.com/2019/01/What-is-astrology.html" target="_blank" rel="noopener noreferrer">জ্যোতিষ</a> শুধুমাত্র একটি শাস্ত্র নয় — বরং একটি প্রাচীন জ্ঞানের উৎস, যা শব্দতত্ত্ব থেকে উদ্ভূত, "জ্যোতি + ইষ" অর্থাৎ "আলো" এবং "ঈশ্বর" এর মিলন।</p>
+
+  <p>"জ্যোতি" অর্থাৎ আলোর প্রাচীর পেরিয়ে প্রবাহিত চেতনার প্রতীক, আর "ইষ" অর্থ অনুসরণ বা অন্বেষণ। তাই জ্যোতিষ হলো সেই আলো যা চেতনার গভীরে প্রবেশ করে আত্মার গূঢ় ভাষা বোঝার পদ্ধতি।</p>
+
+  <p>ভারতীয় জ্যোতিষ কখনোই সাধারণ ভবিষ্যৎবাণী নয়; এটি এক প্রজ্ঞার শাস্ত্র — "consciousness revealing system," যা মানুষের আত্মার গন্তব্য নির্ধারণ করে। এটি বলে না তুমি কী পাবে, বরং বলে তুমি কে, কেন এসেছো, এবং তোমার অভিমুখ কোথায়।</p>
+
+  <blockquote>"कालोऽस्मि लोकक्षयकृत् प्रवृद्धः।"<br>— ভগবদ্গীতা ১১</blockquote>
+
+  <p>এই শাস্ত্র ভবিষ্যতকে একটি পরিবর্তনশীল সম্ভাব্য ধারা হিসেবে দেখে, যা নির্ধারিত নয়। বরং আত্মার জ্ঞান ও পূর্বকর্মের সঙ্গে ঐক্যবদ্ধ হয়ে নতুন পথের সন্ধান দেয়।</p>
+
+  <h3 class="headline-h3">🪐 জন্মকুণ্ডলী: আত্মার নিরব চিত্রনাট্য</h3>
+
+  <p>জন্মকুণ্ডলী শুধুমাত্র গ্রহ-নক্ষত্রের মানচিত্র নয়, এটি আত্মার 'soul-script', যেখানে প্রতিটি গ্রহ ও রাশি মানুষের মানসিকতা, চরিত্র, সংকল্প এবং জীবনের অভিজ্ঞতার সূক্ষ্ম প্রতিফলন।</p>
+
+  <p>জন্মের মুহূর্তে মহাবিশ্ব একটি নিরব সংকেত পাঠায় — "এই আত্মা এসেছে তার নির্দিষ্ট যাত্রার জন্য।"</p>
+
+  <blockquote>"कालः कर्मस्वभावोऽयं जीवस्यैव प्रसंगतः।"<br>— সময়, কর্ম ও স্বভাব জীবনের অবিচ্ছেদ্য অংশ।</blockquote>
+
+  <p>প্রাচীন ভারতীয় দর্শন অনুযায়ী, মানুষের চরিত্র ও সংকল্প গ্রহীয় স্পন্দনের ছায়ায় জন্ম নেয়। গ্রহ-নক্ষত্রের অবস্থান প্রভাব ফেলে আমাদের subtle energy system, যেমন চক্র, নাড়ি, pineal gland এবং thought pattern-এ।</p>
+
+  <p>আজকের আধুনিক neuroscience ও quantum biology-ও এই আত্মিক ও জৈবিক সম্পর্কের বিষয়টি স্বীকার করে।</p>
+
+  <blockquote>"The stars and planets are the visible symbols of inner psychological forces."</blockquote>
+
+  <p>অতএব, <a href="https://prodyutacharya.blogspot.com/2019/01/Astrology.html" target="_blank" rel="noopener noreferrer">জ্যোতিষ</a> কোনো অলৌকিক বিদ্যা নয়, এটি আত্মদর্শনের এক মাধ্যম, যা আমাদের বর্তমান চেতনার মানচিত্র তৈরি করে। জন্মকুণ্ডলী একটি সম্ভাবনার মানচিত্র, যা আত্মাকে নিজেকে জানার এবং নিজের সম্ভাবনার অভিমুখ নির্ধারণের পথ দেখায়।</p>
+
+  <img src="images/jyotish-map.jpg"
+       alt="জন্মকুণ্ডলী মানচিত্র — Vedic Astrology Birth Chart, আত্মার চেতনার প্রতিফলন, Dr. Prodyut Acharya"
+       loading="lazy" width="860" height="520" />
 
   <div class="tagline">✨ নিজেকে জানুন, ভাগ্য নয়—নিজের আলোয় পথ চলুন। ✨</div>
-</section>
+
+  <div class="cta-box">
+    <h3>🔮 জন্মকুণ্ডলী বিশ্লেষণ করাতে চান?</h3>
+    <p>ড. প্রদ্যুৎ আচার্যের সাথে সরাসরি পরামর্শ নিন — Vedic Astrology ও Palmistry-তে ২০+ বছরের অভিজ্ঞতা।</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/919333122768?text=আমি%20জন্মকুণ্ডলী%20বিশ্লেষণ%20করাতে%20চাই" class="btn btn-wa" target="_blank" rel="noopener">
+        <i class="fab fa-whatsapp"></i> WhatsApp করুন
+      </a>
+      <a href="https://www.myastrology.in" class="btn btn-pay" target="_blank" rel="noopener">
+        <i class="fas fa-calendar-check"></i> এখনই বুক করুন
+      </a>
+    </div>
   </div>
+</section>
 
+<div class="section-divider"><span>⭐</span></div>
 
-<section>
+<!-- ═══════════════════════════ SECTION 2 ═══════════════════════════ -->
+<section class="content-section">
   <h2 id="vedic-jyotish-otputti" class="headline-h2">
     ⏳ বৈদিক জ্যোতিষ শাস্ত্রের উৎপত্তি ও ঐতিহাসিক শিকড়
   </h2>
-  
-  <p><strong>প্রাচীন ভারতীয় জ্যোতিষের গভীর ধারা</strong></p>
-  
-  <p>“কালের ছন্দে যে জাতি তাল মিলিয়ে চলে, সে-ই প্রকৃত সভ্য।” — এই বাণী যেন ভারতীয় সভ্যতার সেই অন্তর্নিহিত দর্শনকে প্রকাশ করে, যা সময় ও মহাবিশ্বের ছন্দময় গতিবিধির সঙ্গে মানিয়ে চলার গুরুত্বের ওপর ভিত্তি করে।</p>
-  
-  <p>ভারতীয় জ্যোতিষশাস্ত্রের জন্ম শুধুমাত্র একটি নির্দিষ্ট ঘটনার ফল নয়, বরং এটি এক ধারাবাহিক চেতনাপ্রবাহ — যা প্রাচীন ঋষি-মুনিদের সহস্রাব্দ অনুধ্যান, পর্যবেক্ষণ, এবং অন্তরদৃষ্টির ফলাফল।</p>
-  
-  <p>ভারতের প্রাচীন বেদাঙ্গ শাস্ত্রের ছয়টি শাখার মধ্যে “জ্যোতিষ” ছিল শেষ হলেও সবচেয়ে গুরুত্বপূর্ণ, কারণ এটি বেদের “চক্ষু” হিসেবে পরিচিত ছিল।</p>
-  
-  <p>ঋগ্বেদ, যজুর্বেদ ও অন্যান্য বেদে ‘কাল’ বা সময়ের যথার্থ বোধকে অপরিহার্য গণ্য করা হয়েছে, কারণ ধর্ম-কর্ম সম্পাদনে সময় নির্ধারণ অপরিহার্য। যেমন:</p>
-  
-  <blockquote>“कालः कृत्वा भवति सदा करणं धर्मस्य।”<br>অর্থাৎ, “ধর্মের কার্য সম্পাদনের জন্য কাল (সময়) এক অনিবার্য মাধ্যম।”</blockquote>
-  
-  <p>এই ‘কাল’ বা সময় বোঝার জন্যই জন্ম নিয়েছে ভারতীয় <a href="https://prodyutacharya.blogspot.com/2019/01/What-is-astrology.html" target="_blank" rel="noopener noreferrer">Vedic Jyotish</a>, যা কেবল গ্রহ-নক্ষত্রের গতিবিধি পর্যবেক্ষণ নয়, বরং প্রকৃতি, ঋতু ও কর্মের সঙ্গে মানুষের চেতনার সুষম মিলন সাধনের একটি মহাজ্ঞান।</p>
-  
-  <p><strong>বেদ ও উপনিষদের আলোকে সময় ও নক্ষত্রের কাব্যিক ব্যাখ্যা</strong></p>
-  
-  <p>ঋগ্বেদ ও যজুর্বেদে সূর্য, চন্দ্র, নক্ষত্রের সম্পর্ক এবং তাদের অবস্থানকে একটি মহাযন্ত্রের অংশ হিসেবে কাব্যিক ভাষায় বর্ণনা করা হয়েছে। যেমন:</p>
-  
-  <blockquote>“सूर्यो नक्षत्रमाहिता यत्रा नाभिः समाहितः।”<br>অর্থাৎ, “সূর্য, নক্ষত্র এবং পৃথিবী এক কেন্দ্রে বাঁধা এক মহাযন্ত্রে।”</blockquote>
-  
-  <p>এবং</p>
-  
-  <blockquote>“यथा सोमोऽव चन्द्रमसि, तथा सूर्यः प्रतिष्ठितः।”<br>অর্থাৎ, “যেমন চন্দ্র জন্ম নেয় সোমের মাঝে, তেমনি সূর্যও সময়-তন্ত্রের মূল স্তম্ভ।”</blockquote>
-  
-  <p>এই শ্লোকগুলোর মাধ্যমে বোঝানো হয়, সূর্য ও চন্দ্র কেবল গ্রহ নয়; তারা মহাজাগতিক সময় ও কালের মানচিত্রের কেন্দ্রস্থল, যাদের অবস্থান নির্ধারণ করে জীবনচক্র ও ঋতুর গতিপথ। সূর্যের ‘প্রতিষ্ঠান’ বোঝায় সময় ও জ্যোতির মূল স্তম্ভ হিসাবে তার গুরুত্ব।</p>
-  
-  <p>এইভাবেই ভারতীয় জ্যোতিষ একটি আধ্যাত্মিক ও বৈজ্ঞানিক সময়বিজ্ঞান, যা মানবজীবনের ছন্দ, প্রকৃতি ও চেতনার সংমিশ্রণকে বিশ্লেষণ করে।</p>
-  
-  <p><strong>কর্মফল তত্ত্ব ও গ্রহসংক্রান্ত দর্শনের প্রামাণিক ভিত্তি</strong></p>
-  
-  <p>প্রাচীন জ্যোতিষগ্রন্থ <a href="https://prodyutacharya.blogspot.com/2019/01/Astrology.html" target="_blank" rel="noopener noreferrer">বৃহৎ পরাশর হোরাশাস্ত্র</a> এ বলা হয়েছে:</p>
-  
-  <blockquote>“जन्मकाले यदा ग्रहास्तिष्ठन्ति यथासभम्।<br>तदा तेषां प्रभावेन जातकस्य शुभाशुभम्॥”<br>— বৃহৎ পরাশর হোরাশাস্ত্র ১.৬</blockquote>
-  
-  <p>অর্থাৎ, “জন্মের সময় যখন গ্রহগুলি নির্দিষ্ট অবস্থানে থাকে, তখন তাদের সম্মিলিত প্রভাবেই ব্যক্তির জীবনে শুভ বা অশুভ ফল নির্ধারিত হয়।”</p>
-  
-  <p>কিন্তু এই প্রভাবকে কেবল ‘ভাগ্য’ হিসেবে নয়, বরং কর্মফল ও পূর্বসংস্কারের নিরিখে দেখা উচিত। অর্থাৎ, জীবনের প্রতিটি ফল মানুষের পূর্বজন্মের কর্ম ও বর্তমান কর্মের সম্মিলিত পরিণতি, যা সময়ের প্রবাহে পরিবর্তনশীল।</p>
-  
-  <p>বেদের অন্তর্গত গভীর দর্শনে বলা হয়:</p>
-  
-  <blockquote>“कालः साक्षात् परमेश्वरः।”<br>অর্থাৎ, “কালই হল ঈশ্বরের জীবন্ত প্রকাশ।”</blockquote>
-  
-  <p>অর্থাৎ সময় বা কাল যাকে আমরা পরিবর্তনশীল এবং ধারাবাহিক বলি, সেই কালই ঈশ্বরের জীবন্ত রূপ — যার মাধ্যমে সৃষ্টির নিয়ম ও কর্মফল চলমান।</p>
-  
-  <p><strong>উপসংহার নয়, তবে জ্যোতিষের গভীর দৃষ্টিভঙ্গি</strong></p>
-  
-  <p>ভারতীয় Vedic Jyotish কখনোই শুধুমাত্র ভবিষ্যৎদ্বাণী বা ভাগ্যের নির্ধারক নয়; এটি জীবনের প্রতি শ্রদ্ধা ও সময়ের গূঢ় উপলব্ধি থেকে উদ্ভূত এক শাস্ত্র।</p>
-  
-  <p>বেদ, উপনিষদ, স্মৃতি, পুরাণে সর্বত্র সময় ও মহাজাগতিক ছন্দকে বোঝার জন্য জ্যোতিষকে উচ্চ স্থান দেওয়া হয়েছে।</p>
-  
-  <p>উপনিষদীয় বচন “তদেতৎ” নির্দেশ করে যে, বাহ্যিক ঘটনাগুলোর আড়ালে লুকিয়ে আছে অন্তর্জগতের গভীর রহস্য। জন্মের সময় গ্রহ ও নক্ষত্রের বিন্যাস শুধু দৈব-ঘটনা নয়, বরং সময়চক্রের সঙ্গে আত্মার সম্পূর্ণ মিলনের নিখুঁত প্রতিচ্ছবি।</p>
 
-<img src="images/historical-root.jpg" 
-     alt="বৈদিক জ্যোতিষ শাস্ত্রের ঐতিহাসিক শিকড় ও প্রাচীন বেদাঙ্গ গ্রন্থ" 
-     loading="lazy" />
+  <p><strong>প্রাচীন ভারতীয় জ্যোতিষের গভীর ধারা</strong></p>
+
+  <p>"কালের ছন্দে যে জাতি তাল মিলিয়ে চলে, সে-ই প্রকৃত সভ্য।" — এই বাণী যেন ভারতীয় সভ্যতার সেই অন্তর্নিহিত দর্শনকে প্রকাশ করে, যা সময় ও মহাবিশ্বের ছন্দময় গতিবিধির সঙ্গে মানিয়ে চলার গুরুত্বের ওপর ভিত্তি করে।</p>
+
+  <p>ভারতীয় জ্যোতিষশাস্ত্রের জন্ম শুধুমাত্র একটি নির্দিষ্ট ঘটনার ফল নয়, বরং এটি এক ধারাবাহিক চেতনাপ্রবাহ — যা প্রাচীন ঋষি-মুনিদের সহস্রাব্দ অনুধ্যান, পর্যবেক্ষণ, এবং অন্তরদৃষ্টির ফলাফল।</p>
+
+  <p>ভারতের প্রাচীন বেদাঙ্গ শাস্ত্রের ছয়টি শাখার মধ্যে "জ্যোতিষ" ছিল শেষ হলেও সবচেয়ে গুরুত্বপূর্ণ, কারণ এটি বেদের "চক্ষু" হিসেবে পরিচিত ছিল।</p>
+
+  <p>ঋগ্বেদ, যজুর্বেদ ও অন্যান্য বেদে 'কাল' বা সময়ের যথার্থ বোধকে অপরিহার্য গণ্য করা হয়েছে, কারণ ধর্ম-কর্ম সম্পাদনে সময় নির্ধারণ অপরিহার্য। যেমন:</p>
+
+  <blockquote>"कालः कृत्वा भवति सदा करणं धर्मस्य।"<br>অর্থাৎ, "ধর্মের কার্য সম্পাদনের জন্য কাল (সময়) এক অনিবার্য মাধ্যম।"</blockquote>
+
+  <p>এই 'কাল' বা সময় বোঝার জন্যই জন্ম নিয়েছে ভারতীয় <a href="https://prodyutacharya.blogspot.com/2019/01/What-is-astrology.html" target="_blank" rel="noopener noreferrer">Vedic Jyotish</a>, যা কেবল গ্রহ-নক্ষত্রের গতিবিধি পর্যবেক্ষণ নয়, বরং প্রকৃতি, ঋতু ও কর্মের সঙ্গে মানুষের চেতনার সুষম মিলন সাধনের একটি মহাজ্ঞান।</p>
+
+  <p><strong>বেদ ও উপনিষদের আলোকে সময় ও নক্ষত্রের কাব্যিক ব্যাখ্যা</strong></p>
+
+  <p>ঋগ্বেদ ও যজুর্বেদে সূর্য, চন্দ্র, নক্ষত্রের সম্পর্ক এবং তাদের অবস্থানকে একটি মহাযন্ত্রের অংশ হিসেবে কাব্যিক ভাষায় বর্ণনা করা হয়েছে। যেমন:</p>
+
+  <blockquote>"सूर्यो नक्षत्रमाहिता यत्रा नाभिः समाहितः।"<br>অর্থাৎ, "সূর্য, নক্ষত্র এবং পৃথিবী এক কেন্দ্রে বাঁধা এক মহাযন্ত্রে।"</blockquote>
+
+  <p>এবং</p>
+
+  <blockquote>"यथा सोमोऽव चन्द्रमसि, तथा सूर्यः प्रतिष्ठितः।"<br>অর্থাৎ, "যেমন চন্দ্র জন্ম নেয় সোমের মাঝে, তেমনি সূর্যও সময়-তন্ত্রের মূল স্তম্ভ।"</blockquote>
+
+  <p>এই শ্লোকগুলোর মাধ্যমে বোঝানো হয়, সূর্য ও চন্দ্র কেবল গ্রহ নয়; তারা মহাজাগতিক সময় ও কালের মানচিত্রের কেন্দ্রস্থল, যাদের অবস্থান নির্ধারণ করে জীবনচক্র ও ঋতুর গতিপথ। সূর্যের 'প্রতিষ্ঠান' বোঝায় সময় ও জ্যোতির মূল স্তম্ভ হিসাবে তার গুরুত্ব।</p>
+
+  <p>এইভাবেই ভারতীয় জ্যোতিষ একটি আধ্যাত্মিক ও বৈজ্ঞানিক সময়বিজ্ঞান, যা মানবজীবনের ছন্দ, প্রকৃতি ও চেতনার সংমিশ্রণকে বিশ্লেষণ করে।</p>
+
+  <p><strong>কর্মফল তত্ত্ব ও গ্রহসংক্রান্ত দর্শনের প্রামাণিক ভিত্তি</strong></p>
+
+  <p>প্রাচীন জ্যোতিষগ্রন্থ <a href="https://prodyutacharya.blogspot.com/2019/01/Astrology.html" target="_blank" rel="noopener noreferrer">বৃহৎ পরাশর হোরাশাস্ত্র</a> এ বলা হয়েছে:</p>
+
+  <blockquote>"जन्मकाले यदा ग्रहास्तिष्ठन्ति यथासभम्।<br>तदा तेषां प्रभावेन जातकस्य शुभाशुभम्॥"<br>— বৃহৎ পরাশর হোরাশাস্ত্র ১.৬</blockquote>
+
+  <p>অর্থাৎ, "জন্মের সময় যখন গ্রহগুলি নির্দিষ্ট অবস্থানে থাকে, তখন তাদের সম্মিলিত প্রভাবেই ব্যক্তির জীবনে শুভ বা অশুভ ফল নির্ধারিত হয়।"</p>
+
+  <p>কিন্তু এই প্রভাবকে কেবল 'ভাগ্য' হিসেবে নয়, বরং কর্মফল ও পূর্বসংস্কারের নিরিখে দেখা উচিত। অর্থাৎ, জীবনের প্রতিটি ফল মানুষের পূর্বজন্মের কর্ম ও বর্তমান কর্মের সম্মিলিত পরিণতি, যা সময়ের প্রবাহে পরিবর্তনশীল।</p>
+
+  <p>বেদের অন্তর্গত গভীর দর্শনে বলা হয়:</p>
+
+  <blockquote>"कालः साक्षात् परमेश्वरः।"<br>অর্থাৎ, "কালই হল ঈশ্বরের জীবন্ত প্রকাশ।"</blockquote>
+
+  <p>অর্থাৎ সময় বা কাল যাকে আমরা পরিবর্তনশীল এবং ধারাবাহিক বলি, সেই কালই ঈশ্বরের জীবন্ত রূপ — যার মাধ্যমে সৃষ্টির নিয়ম ও কর্মফল চলমান।</p>
+
+  <p><strong>উপসংহার নয়, তবে জ্যোতিষের গভীর দৃষ্টিভঙ্গি</strong></p>
+
+  <p>ভারতীয় Vedic Jyotish কখনোই শুধুমাত্র ভবিষ্যৎদ্বাণী বা ভাগ্যের নির্ধারক নয়; এটি জীবনের প্রতি শ্রদ্ধা ও সময়ের গূঢ় উপলব্ধি থেকে উদ্ভূত এক শাস্ত্র।</p>
+
+  <p>বেদ, উপনিষদ, স্মৃতি, পুরাণে সর্বত্র সময় ও মহাজাগতিক ছন্দকে বোঝার জন্য জ্যোতিষকে উচ্চ স্থান দেওয়া হয়েছে।</p>
+
+  <p>উপনিষদীয় বচন "তদেতৎ" নির্দেশ করে যে, বাহ্যিক ঘটনাগুলোর আড়ালে লুকিয়ে আছে অন্তর্জগতের গভীর রহস্য। জন্মের সময় গ্রহ ও নক্ষত্রের বিন্যাস শুধু দৈব-ঘটনা নয়, বরং সময়চক্রের সঙ্গে আত্মার সম্পূর্ণ মিলনের নিখুঁত প্রতিচ্ছবি।</p>
+
+  <img src="images/historical-root.jpg"
+       alt="বৈদিক জ্যোতিষ শাস্ত্রের ঐতিহাসিক শিকড় ও প্রাচীন বেদাঙ্গ গ্রন্থ — Vedic Jyotish History India"
+       loading="lazy" width="860" height="520" />
+
   <div class="tagline">🌟 সময়ের ছন্দে আত্মার যাত্রা — জ্যোতিষে লুকানো আমাদের মহাজাগতিক পরিচয়। 🌟</div>
 </section>
 
-</div>
+<div class="section-divider"><span>🪐</span></div>
 
+<!-- ═══════════════════════════ SECTION 3 ═══════════════════════════ -->
+<section class="content-section">
+  <h2 id="graha-prabhav-darshan" class="headline-h2">
+    ✨ Prodyut Acharya'র আলোকে গ্রহ ও তাদের প্রভাবের দার্শনিক ব্যাখ্যা
+  </h2>
 
+  <p><strong>চন্দ্র</strong> — মনের রাজা ও আবেগের প্রতীক। চন্দ্র শক্তিশালী হলে মন শান্ত ও সমৃদ্ধ, আবেগ নিয়ন্ত্রিত থাকে। দুর্বল হলে উদ্বেগ, অস্থিরতা ও বিভ্রান্তি বৃদ্ধি পায়। প্লেটোর "মনোযোগ" এবং "আত্মপর্যালোচনার" ধারনা যেমন গুরুত্বপূর্ণ, তেমনই চন্দ্রের সুষম প্রভাব মানুষকে নিজের আবেগকে সচেতনভাবে নিয়ন্ত্রণে রাখার সুযোগ দেয়।</p>
 
+  <p><strong>সূর্য</strong> — আত্মার কেন্দ্র ও "আমি"র পরিচয়। শক্তিশালী সূর্য মানে আত্মবিশ্বাস, নেতৃত্ব, ও উচ্চাকাঙ্ক্ষার প্রকাশ। দুর্বল সূর্য অহংকার, হিংসা এবং আত্মকেন্দ্রিকতার কারণ হতে পারে। বেদান্ত দর্শনে যেমন 'আত্মা' সর্বোচ্চ শক্তি, সূর্যও তার জ্যোতিরূপে আত্মার প্রকাশ।</p>
 
-<section>
-  <h2 id="graha-prabhav-darshan" class="headline-h3">
-    ✨ Prodyut Acharya’র আলোকে গ্রহ ও তাদের প্রভাবের দার্শনিক ব্যাখ্যা
-  </h2>  
-  <p><strong>চন্দ্র</strong> — মনের রাজা ও আবেগের প্রতীক। চন্দ্র শক্তিশালী হলে মন শান্ত ও সমৃদ্ধ, আবেগ নিয়ন্ত্রিত থাকে। দুর্বল হলে উদ্বেগ, অস্থিরতা ও বিভ্রান্তি বৃদ্ধি পায়। প্লেটোর “মনোযোগ” এবং “আত্মপর্যালোচনার” ধারনা যেমন গুরুত্বপূর্ণ, তেমনই চন্দ্রের সুষম প্রভাব মানুষকে নিজের আবেগকে সচেতনভাবে নিয়ন্ত্রণে রাখার সুযোগ দেয়।</p>
-  
-  <p><strong>সূর্য</strong> — আত্মার কেন্দ্র ও “আমি”র পরিচয়। শক্তিশালী সূর্য মানে আত্মবিশ্বাস, নেতৃত্ব, ও উচ্চাকাঙ্ক্ষার প্রকাশ। দুর্বল সূর্য অহংকার, হিংসা এবং আত্মকেন্দ্রিকতার কারণ হতে পারে। বেদান্ত দর্শনে যেমন ‘আত্মা’ সর্বোচ্চ শক্তি, সূর্যও তার জ্যোতিরূপে আত্মার প্রকাশ।</p>
-  
   <p><strong>বুধ</strong> — বুদ্ধিমত্তা ও যুক্তিবাদের প্রতীক। ভালো অবস্থায় বুধ মানুষের চিন্তাশক্তি ও যুক্তি বিকাশ করে, দুর্বল হলে বিভ্রান্তি ও অনিশ্চয়তা আসে। এই চিন্তা-চেতনার স্পষ্টতা আধুনিক মনোবিজ্ঞান ও <a href="https://prodyutacharya.blogspot.com/2019/01/What-is-astrology.html" target="_blank" rel="noopener noreferrer">জ্যোতিষশাস্ত্রের মিলনস্থল</a>।</p>
-  
-  <p><strong>শনি</strong> — ধৈর্য, শৃঙ্খলা ও কর্মফল নির্ধারণের গ্রহ। শনি শক্তিশালী হলে কঠোর পরিশ্রম ও ধৈর্যের ফল মেলে, দুর্বল হলে বাধা ও হতাশা আসে। জীবন যাত্রায় শানির প্রভাব ধৈর্য ও দায়িত্ববোধের গুরুত্বের দার্শনিক অনুশীলন।</p>
-  
+
+  <p><strong>শনি</strong> — ধৈর্য, শৃঙ্খলা ও কর্মফল নির্ধারণের গ্রহ। শনি শক্তিশালী হলে কঠোর পরিশ্রম ও ধৈর্যের ফল মেলে, দুর্বল হলে বাধা ও হতাশা আসে। জীবন যাত্রায় শনির প্রভাব ধৈর্য ও দায়িত্ববোধের গুরুত্বের দার্শনিক অনুশীলন।</p>
+
   <p><strong>মঙ্গল</strong> — সাহস, শক্তি ও বীর্যের প্রতীক। সুষম মঙ্গল উদ্যোগী ও আত্মবিশ্বাসী করে, দুর্বল হলে রাগ ও ঝগড়া দেখা দেয়। এটি জীবনের সক্রিয় শক্তি ও যোদ্ধার দৃষ্টান্ত।</p>
-  
+
   <p><strong>বৃহস্পতি</strong> — জ্ঞান ও আধ্যাত্মিকতার প্রতীক। শুভ বৃহস্পতি শিক্ষিত ও দর্শনশীল করে, দুর্বল হলে ধর্ম ও জ্ঞানে বিভ্রান্তি আসে। আধ্যাত্মিকতার পথিকৃৎ হিসেবে বৃহস্পতির গুরুত্ব অপরিসীম।</p>
-  
+
   <p><strong>শুক্র</strong> — প্রেম, সৌন্দর্য ও উপভোগের গ্রহ। শুভ শুক্র জীবনে ভালোবাসা ও আর্থিক সফলতা দেয়, দুর্বল হলে লোভ ও ব্যভিচারের প্রবণতা।</p>
-  
+
   <p><strong>রাহু</strong> — অবচেতন বাসনা ও আকাঙ্ক্ষার প্রতীক। শুভ অবস্থায় রাহু সৃজনশীলতা ও নতুনত্ব আনে, দুর্বল হলে বিভ্রান্তি ও ভুল পথে পরিচালনা।</p>
-  
+
   <p><strong>কেতু</strong> — আধ্যাত্মিকতা ও বীতরাগতার গ্রহ। শুভ কেতু মনের শান্তি দেয়, দুর্বল হলে বিচ্ছিন্নতা ও হতাশা।</p>
-  
-  <img src="images/philosophy-bengali.jpg" alt="Prodyut Acharya-এর দার্শনিক ব্যাখ্যায় গ্রহ ও তাদের প্রভাব" loading="lazy" />
-  
+
+  <img src="images/philosophy-bengali.jpg"
+       alt="Prodyut Acharya-এর দার্শনিক ব্যাখ্যায় গ্রহ ও তাদের প্রভাব — Planetary Influences Vedic Astrology"
+       loading="lazy" width="860" height="520" />
+
   <p>এই <a href="https://prodyutacharya.blogspot.com/2019/01/Astrology.html" target="_blank" rel="noopener noreferrer">জ্যোতিষ শাস্ত্রের আলোকে</a> গ্রহগুলো কেবল আকাশের বস্তু নয়; তারা আমাদের মন, বুদ্ধি ও আত্মার গভীর প্রবাহের প্রতীক।</p>
-  
-  <div class="tagline">☀️ গ্রহের আলোয় আত্মার জ্যোতি জ্বলে — জ্ঞান ও শান্তির পথচলা অবিরত। ☀️</div>
 
+  <div class="tagline">☀️ গ্রহের আলোয় আত্মার জ্যোতি জ্বলে — জ্ঞান ও শান্তির পথচলা অবিরত। ☀️</div>
 </section>
-</div>
 
-<section>
+<div class="section-divider"><span>🕉️</span></div>
 
-<h2 id="modern-psychology-jyotish" class="headline-h2">
-  ✨ আধুনিক মনোবিজ্ঞান ও জ্যোতিষের মিলন: Prodyut Acharya’র বিশ্লেষণ
-</h2>
+<!-- ═══════════════════════════ SECTION 4 ═══════════════════════════ -->
+<section class="content-section">
+  <h2 id="modern-psychology-jyotish" class="headline-h2">
+    ✨ আধুনিক মনোবিজ্ঞান ও জ্যোতিষের মিলন: Prodyut Acharya'র বিশ্লেষণ
+  </h2>
 
-  <p>মনোবিজ্ঞানী সিগমুন্ড ফ্রয়েড বলেছেন, “মানুষ সচেতন নয় তার অন্তর্জগতের অধিকাংশের প্রতি।” ভারতীয় জ্যোতিষ শাস্ত্র সেই অবচেতন চেতনার অন্ধকারকে আলোর দিশা দেখায়, আত্মার অন্তর্দৃষ্টির পথিকৃৎ হয়।</p>
+  <p>মনোবিজ্ঞানী সিগমুন্ড ফ্রয়েড বলেছেন, "মানুষ সচেতন নয় তার অন্তর্জগতের অধিকাংশের প্রতি।" ভারতীয় জ্যোতিষ শাস্ত্র সেই অবচেতন চেতনার অন্ধকারকে আলোর দিশা দেখায়, আত্মার অন্তর্দৃষ্টির পথিকৃৎ হয়।</p>
 
   <p>এই প্রজ্ঞার আলোয়, একজন প্রফেশনাল Astrologer ও Palmist যেমন <strong>প্রদ্যুৎ আচার্য</strong> আমাদের জীবনের সূক্ষ্ম মানসিক ও আত্মিক পরিস্থিতি উপলব্ধি করতে সাহায্য করেন, যা সহজে অন্য কোনো বিজ্ঞানের মাধ্যমে বোঝা যায় না।</p>
 
   <p><strong>MyAstrology</strong>-এর অন্তর্দৃষ্টি আমাদের আত্মজীবনের প্রশ্নের উত্তর খুঁজতে এবং আমাদের জীবনের সম্ভাবনার স্বচ্ছ ছবি দেখতে সহায়তা করে — ভবিষ্যতের কথা না বলে, বর্তমানের গভীরতায় প্রবেশ করায়।</p>
 
-  <p>এইভাবেই, গ্রহগুলি একেবারে বাহ্যিক পদার্থ নয়, বরং চেতনার শক্তি ও আধ্যাত্মিক প্রবাহের বহিঃপ্রকাশ, যার সঙ্গে আত্মার গভীর সংযোগ রয়েছে। নিজেদের জীবনের এই সূক্ষ্ম রূপরেখা বুঝে ওঠা মানেই আসল “জন্মকোষ্ঠি” বিশ্লেষণ।</p>
+  <p>এইভাবেই, গ্রহগুলি একেবারে বাহ্যিক পদার্থ নয়, বরং চেতনার শক্তি ও আধ্যাত্মিক প্রবাহের বহিঃপ্রকাশ, যার সঙ্গে আত্মার গভীর সংযোগ রয়েছে। নিজেদের জীবনের এই সূক্ষ্ম রূপরেখা বুঝে ওঠা মানেই আসল "জন্মকোষ্ঠি" বিশ্লেষণ।</p>
 
   <h3 class="headline-h3">🌟 Vedic Jyotish-এর আলোকে: ভাগ্যের দাস নয়, চেতনার স্রষ্টা — জন্মকুণ্ডলীর গভীর উন্মোচন</h3>
 
-  <blockquote>“जन्मकाले यदा ग्रहास्तिष्ठन्ति यथासभम्, तदा तेषां प्रभावेन जातकस्य शुभाशुभम्।”</blockquote>
+  <blockquote>"जन्मकाले यदा ग्रहास्तिष्ठन्ति यथासभम्, तदा तेषां प्रभावेन जातकस्य शुभाशुभम्।"</blockquote>
   <p>অর্থাৎ, জন্ম মুহূর্তের গ্রহগুলোর অবস্থান ব্যক্তির জীবনের শুভ-অশুভ প্রবণতা নির্ধারণ করে।</p>
 
   <p>যেমন, যদি কারও চন্দ্র কর্কট রাশিতে থাকে, তবে সে আবেগপ্রবণ, সংবেদনশীল ও পরিবারের প্রতি স্নেহশীল। কিন্তু এই তথ্যকে ভাগ্যবিধাতার কঠোর হুকুম না ধরে, বরং নিজেকে চিনার একটি দর্পণ হিসেবে নিতে হবে।</p>
 
   <p>শনি যখন দশম স্থান বা কর্মজীবনে শক্তিশালী থাকে, তখন ধৈর্য এবং অধ্যবসায় জীবনের মূল চালিকা শক্তি হয়। এই ধরনের উপলব্ধি থেকে জন্ম নেয় আত্মনিয়ন্ত্রণ ও আত্মোন্নয়নের আকাঙ্ক্ষা।</p>
 
-  <blockquote>“उद्धरेत् आत्मनात्मानं नात्मानमवसादयेत्।”</blockquote>
-  <p>অর্থাৎ, “নিজেকে উঁচুতে তুলো, নিচে টেলো না।”</p>
+  <blockquote>"उद्धरेत् आत्मनात्मानं नात्मानमवसादयेत्।"</blockquote>
+  <p>অর্থাৎ, "নিজেকে উঁচুতে তুলো, নিচে টেলো না।"</p>
 
   <p>এটাই জ্যোতিষের অন্তর্নিহিত আহ্বান—নিজেকে চেনো, নিজের নিয়তি রচনা করো।</p>
 
@@ -499,25 +1253,25 @@ blockquote {
 
   <p>জ্যোতিষশাস্ত্রে নিত্য-নৈমিত্তিক কর্মের ধারণা মেলে, যেখানে শাস্ত্র বলে, নির্দিষ্ট সময় ও অবস্থান অনুযায়ী কার্যকর কর্মজীবন ও সাধনার পথ নির্ধারণ হয়।</p>
 
-  <p>শ্রীমদ্ভাগবতেও যেমন বলা হয়েছে—সত্যিকার জ্ঞানী ব্যক্তি তার মানসিক প্রবণতা, চরিত্র ও শক্তি-দুর্বলতাকে আত্মসাৎ করে নিজেকে সাধনার ক্ষেত্র হিসেবে গড়ে তোলে। তখনই জ্যোতিষশাস্ত্র আলোর পথ হিসেবে প্রখর হয়ে ওঠে—“জ্যোতি দ্বারা ইষ”।</p>
+  <p>শ্রীমদ্ভাগবতেও যেমন বলা হয়েছে—সত্যিকার জ্ঞানী ব্যক্তি তার মানসিক প্রবণতা, চরিত্র ও শক্তি-দুর্বলতাকে আত্মসাৎ করে নিজেকে সাধনার ক্ষেত্র হিসেবে গড়ে তোলে। তখনই জ্যোতিষশাস্ত্র আলোর পথ হিসেবে প্রখর হয়ে ওঠে—"জ্যোতি দ্বারা ইষ"।</p>
 
   <h3 class="headline-h3">🕉️ MyAstrology অনুসারে চেতনার শক্তিতে ভাগ্য গঠন: জ্যোতিষ ও দার্শনিক সমন্বয়</h3>
 
-  <blockquote>“Astrology represents the sum of all the psychological knowledge of antiquity.”</blockquote>
+  <blockquote>"Astrology represents the sum of all the psychological knowledge of antiquity."</blockquote>
   <p>— কার্ল ইউনগ</p>
 
-  <p>অর্থাৎ, জ্যোতিষ হলো প্রাচীনকালের সমগ্র মনস্তাত্ত্বিক জ্ঞানসমষ্টির প্রতিফলন। তাঁর “synchronicity” তত্ত্বে কাকতালীয় ঘটনা ও অভ্যন্তরীণ মানসিক অবস্থার অন্তর্গত সংযোগ ফুটে ওঠে, যা গ্রহ-নক্ষত্রের অবস্থানে প্রকাশ পায়।</p>
+  <p>অর্থাৎ, জ্যোতিষ হলো প্রাচীনকালের সমগ্র মনস্তাত্ত্বিক জ্ঞানসমষ্টির প্রতিফলন। তাঁর "synchronicity" তত্ত্বে কাকতালীয় ঘটনা ও অভ্যন্তরীণ মানসিক অবস্থার অন্তর্গত সংযোগ ফুটে ওঠে, যা গ্রহ-নক্ষত্রের অবস্থানে প্রকাশ পায়।</p>
 
   <p>এই তত্ত্বই জ্যোতিষের ভিত্তিকে শক্তিশালী করে, যেখানে গ্রহ-নক্ষত্র শুধুমাত্র বাহ্যিক বস্তু নয়, বরং মানসিক ও আধ্যাত্মিক চেতনার প্রতীক।</p>
 
-  <blockquote>“कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।” (২.৪৭)</blockquote>
-  <p>অর্থাৎ, “তোমার অধিকার কেবল কর্মে, ফলের ওপর নয়।”</p>
+  <blockquote>"कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।" (২.৪৭)</blockquote>
+  <p>অর্থাৎ, "তোমার অধিকার কেবল কর্মে, ফলের ওপর নয়।"</p>
 
-  <p>এখানেই কান্টের “স্বাধীনতা ও দায়িত্ব” তত্ত্বের সাদৃশ্য মিলবে—যেখানে মানুষের স্বাধীনতা তার কর্ম, চেতনা ও যুক্তির মধ্যেই নিহিত।</p>
+  <p>এখানেই কান্টের "স্বাধীনতা ও দায়িত্ব" তত্ত্বের সাদৃশ্য মিলবে—যেখানে মানুষের স্বাধীনতা তার কর্ম, চেতনা ও যুক্তির মধ্যেই নিহিত।</p>
 
-  <p>ভবিষ্যৎ অনিশ্চিত হওয়ায়ই আমরা স্বাধীন; যদি ভবিষ্যৎ পূর্বনির্ধারিত হতো, তবে চেতনার বিকাশ ও আত্মদর্শন অর্থহীন হত। বরং ভবিষ্যৎ হল সম্ভাবনার এক জাল, যা চেতনা, সিদ্ধান্ত ও প্রয়াসের মাধ্যমে রচিত হয়।</p>
+  <p>ভবিষ্যৎ অনিশ্চিত হওয়ায়ই আমরা স্বাধীন; যদি ভবিষ্যৎ পূর্বনির্ধারিত হতো, তবে চেতনার বিকাশ ও আত্মদর্শন অর্থহীন হত। বরং ভবিষ্যৎ হল সম্ভাবনার এক জাল, যা চেতনা, সিদ্ধান্ত ও প্রয়াসের মাধ্যমে রচিত হয়।</p>
 
-  <p>একটি বীজের সম্ভাবনার মতোই, যথাযথ পরিচর্যা ছাড়া তা বৃক্ষ হয়ে উঠতে পারে না। তেমনি আমাদের কর্ম ও চেতনার সঠিক পরিচালনায় ভবিষ্যৎ গড়ে ওঠে।</p>
+  <p>একটি বীজের সম্ভাবনার মতোই, যথাযথ পরিচর্যা ছাড়া তা বৃক্ষ হয়ে উঠতে পারে না। তেমনি আমাদের কর্ম ও চেতনার সঠিক পরিচালনায় ভবিষ্যৎ গড়ে ওঠে।</p>
 
   <p>কিন্তু আধুনিক সমাজে জ্যোতিষশাস্ত্রের বিকৃত রূপ—কেবল ভাগ্যবাণী ও টোটকার মধ্যে সীমাবদ্ধ থাকায়, মানুষ ভাগ্যনির্ভর হয়ে পড়ে এবং আত্মচেতনা থেকে বিচ্যুত হয়।</p>
 
@@ -525,51 +1279,50 @@ blockquote {
 
   <p>এই উপলব্ধি থেকে জন্ম নেয় নিজের ভবিষ্যৎ নিজে গড়ে তোলার আত্মবিশ্বাস ও চেতনা।</p>
 
-  <img src="images/psychology-astrology.jpg" alt="Prodyut Acharya’র আধুনিক মনোবিজ্ঞান ও জ্যোতিষ বিশ্লেষণ" loading="lazy" />
+  <img src="images/psychology-astrology.jpg"
+       alt="Prodyut Acharya'র আধুনিক মনোবিজ্ঞান ও জ্যোতিষ বিশ্লেষণ — Psychology and Vedic Astrology"
+       loading="lazy" width="860" height="520" />
 
-  <p>বিস্তারিত জানুন <a href="https://prodyutacharya.blogspot.com/2019/01/What-is-astrology.html" target="_blank" rel="noopener noreferrer">জ্যোতিষ শাস্ত্র কি ?</a> এবং <a href="https://prodyutacharya.blogspot.com/2019/01/Astrology.html" target="_blank" rel="noopener noreferrer">জ্যোতিষ শাস্ত্র প্রসঙ্গে</a>।</p>
+  <p>বিস্তারিত জানুন <a href="https://prodyutacharya.blogspot.com/2019/01/What-is-astrology.html" target="_blank" rel="noopener noreferrer">জ্যোতিষ শাস্ত্র কি?</a> এবং <a href="https://prodyutacharya.blogspot.com/2019/01/Astrology.html" target="_blank" rel="noopener noreferrer">জ্যোতিষ শাস্ত্র প্রসঙ্গে</a>।</p>
 
   <div class="tagline">🌟 চেতনার আলোয় ভাগ্যের আঁধার মোছো, নিজের পথ নিজেই রচনা করো। 🌟</div>
-
 </section>
-</div>
 
+<div class="section-divider"><span>🔬</span></div>
 
-
-
-
-<section>
+<!-- ═══════════════════════════ SECTION 5 ═══════════════════════════ -->
+<section class="content-section">
   <h2 id="indian-astrology-quantum" class="headline-h2">🔬 ভারতীয় জ্যোতিষ, কোয়ান্টাম কম্পন ও ইচ্ছাশক্তির মেলবন্ধন</h2>
 
-  <p>আধুনিক কোয়ান্টাম পদার্থবিজ্ঞানের অন্যতম মূল সূত্র হলো—প্রতিটি বস্তু, ভাবনা এবং অনুভূতি আসলে একধরনের কম্পন বা <em>vibration</em>। আমাদের মনোযোগ, চিন্তা ও অনুভূতি নির্দিষ্ট ফ্রিকোয়েন্সিতে মহাবিশ্বের সাথে মিলিয়ে যায়, এক ধরণের <em>resonance</em> তৈরি করে।</p>
+  <p>আধুনিক কোয়ান্টাম পদার্থবিজ্ঞানের অন্যতম মূল সূত্র হলো—প্রতিটি বস্তু, ভাবনা এবং অনুভূতি আসলে একধরনের কম্পন বা <em>vibration</em>। আমাদের মনোযোগ, চিন্তা ও অনুভূতি নির্দিষ্ট ফ্রিকোয়েন্সিতে মহাবিশ্বের সাথে মিলিয়ে যায়, এক ধরণের <em>resonance</em> তৈরি করে।</p>
 
-  <p>ভারতীয় বৈদিক জ্যোতিষশাস্ত্রও এই বিষয়টিকে বহু প্রাচীনকাল থেকেই মান্যতা দিয়েছে। যেখানে গ্রহ-নক্ষত্রের অবস্থান ও তাদের কম্পন মানুষের জীবনের সম্ভাবনার দরজা খুলে দেয়।</p>
+  <p>ভারতীয় বৈদিক জ্যোতিষশাস্ত্রও এই বিষয়টিকে বহু প্রাচীনকাল থেকেই মান্যতা দিয়েছে। যেখানে গ্রহ-নক্ষত্রের অবস্থান ও তাদের কম্পন মানুষের জীবনের সম্ভাবনার দরজা খুলে দেয়।</p>
 
-  <p>কোয়ান্টাম বিজ্ঞানের <strong>“Observer Effect”</strong> বলে —</p>
+  <p>কোয়ান্টাম বিজ্ঞানের <strong>"Observer Effect"</strong> বলে —</p>
 
-  <blockquote>“Observation affects outcome.”</blockquote>
-  <p>অর্থাৎ, আপনি যেভাবে বিশ্বকে দেখেন বা অনুভব করেন, সেটাই বাস্তবতাকে গড়ে তোলে।</p>
+  <blockquote>"Observation affects outcome."</blockquote>
+  <p>অর্থাৎ, আপনি যেভাবে বিশ্বকে দেখেন বা অনুভব করেন, সেটাই বাস্তবতাকে গড়ে তোলে।</p>
 
-  <p>এই ভাবনা প্রাচীন ভারতীয় দর্শনের মূলমন্ত্র—“মনই প্রকৃতি নির্মাতা।”</p>
+  <p>এই ভাবনা প্রাচীন ভারতীয় দর্শনের মূলমন্ত্র—"মনই প্রকৃতি নির্মাতা।"</p>
 
-  <p>আমাদের মস্তিষ্কের একটি গুরুত্বপূর্ণ অংশ হলো পাইনিয়াল গ্ল্যান্ড, যা আলো ও চন্দ্রচক্রের প্রভাবকে গ্রহণ করে। গবেষণায় দেখা গেছে, এই গ্রন্থি আমাদের হরমোন নিয়ন্ত্রণ করে এবং আমাদের মানসিক অবস্থা ও আচরণের ওপর গভীর প্রভাব ফেলে।</p>
+  <p>আমাদের মস্তিষ্কের একটি গুরুত্বপূর্ণ অংশ হলো পাইনিয়াল গ্ল্যান্ড, যা আলো ও চন্দ্রচক্রের প্রভাবকে গ্রহণ করে। গবেষণায় দেখা গেছে, এই গ্রন্থি আমাদের হরমোন নিয়ন্ত্রণ করে এবং আমাদের মানসিক অবস্থা ও আচরণের ওপর গভীর প্রভাব ফেলে।</p>
 
   <p>অন্যদিকে, <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6207349/" target="_blank" rel="noopener noreferrer">Quantum Brain Dynamics</a> নামক গবেষণায় প্রমাণিত হয়েছে, আমাদের মস্তিষ্কের কিছু অংশ কোয়ান্টাম রেজোন্যান্সের মাধ্যমে কাজ করে, যা আমাদের চিন্তা, অনুভূতি এবং সিদ্ধান্তকে প্রভাবিত করে।</p>
 
-  <p>অর্থাৎ, জন্ম মুহূর্তে গ্রহের অবস্থান শুধু বাহ্যিক নয়, এটি আমাদের অন্তরাত্মার “কম্পন” বা মনের ভাষার প্রতিফলন। জ্যোতিষশাস্ত্র সেই ভাষাকে পড়ে, আমাদের আত্ম-জ্ঞান ও সঠিক সিদ্ধান্ত নিতে সাহায্য করে।</p>
+  <p>অর্থাৎ, জন্ম মুহূর্তে গ্রহের অবস্থান শুধু বাহ্যিক নয়, এটি আমাদের অন্তরাত্মার "কম্পন" বা মনের ভাষার প্রতিফলন। জ্যোতিষশাস্ত্র সেই ভাষাকে পড়ে, আমাদের আত্ম-জ্ঞান ও সঠিক সিদ্ধান্ত নিতে সাহায্য করে।</p>
 
   <h3 class="headline-h3">🧠 চেতনা, কম্পন ও ভাগ্যের মানসিক দর্শন: জ্যোতিষ ও বিজ্ঞান</h3>
 
-  <blockquote>“If you want to find the secrets of the universe, think in terms of energy, frequency and vibration.”</blockquote>
+  <blockquote>"If you want to find the secrets of the universe, think in terms of energy, frequency and vibration."</blockquote>
   <p>— নিকোলাস টেসলা</p>
 
   <p>ভারতীয় জ্যোতিষশাস্ত্রও মানবজীবন ও মহাবিশ্বের কম্পন ও স্পন্দনের মধ্যকার সুক্ষ্ম সম্পর্কের অনুসন্ধানে নিবেদিত।</p>
 
   <p>জন্মকুণ্ডলী হলো এক প্রকার Cosmic Resonance Map, যেখানে প্রতিটি গ্রহের অবস্থান নির্দিষ্ট কম্পনের প্রতিফলন। যেমন আমরা কোনও সুরেলা গান শুনে আবেগপ্রবণ হই, তেমনি গ্রহের গতি ও অবস্থান আমাদের মনের তরঙ্গকে শান্ত বা উত্তেজিত করে।</p>
 
-  <p>আজকের বিজ্ঞানের “Observer Effect” অনুসারে, আমাদের intention বা চেতনার অভিমুখ বাস্তবতাকে প্রভাবিত করে। অর্থাৎ, আমরা যা ভাবি, universe তার প্রতিক্রিয়া দেয়।</p>
+  <p>আজকের বিজ্ঞানের "Observer Effect" অনুসারে, আমাদের intention বা চেতনার অভিমুখ বাস্তবতাকে প্রভাবিত করে। অর্থাৎ, আমরা যা ভাবি, universe তার প্রতিক্রিয়া দেয়।</p>
 
-  <p>Law of Attraction-এ বলা হয়—“What you think and feel, you attract.” অনেকেই এটিকে কেবল মনস্তাত্ত্বিক কৌশল মনে করলেও, প্রাচীন জ্যোতিষশাস্ত্র এটিকে আরও গভীরভাবে প্রয়োগ করে।</p>
+  <p>Law of Attraction-এ বলা হয়—"What you think and feel, you attract." অনেকেই এটিকে কেবল মনস্তাত্ত্বিক কৌশল মনে করলেও, প্রাচীন জ্যোতিষশাস্ত্র এটিকে আরও গভীরভাবে প্রয়োগ করে।</p>
 
   <p>যেমন, যদি চন্দ্র বা রাহু দুর্বল হয়, তখন মানসিক ভয়, সন্দেহ ও নেতিবাচকতা বাড়ে, যা অনাকাঙ্ক্ষিত পরিস্থিতি ডেকে আনে। অপরদিকে, শক্তিশালী বুধ বা বৃহস্পতি যুক্তিবাদী ও সদ্বিচারপূর্ণ চিন্তা এনে universe-কে সঙ্গে নিয়ে আসে।</p>
 
@@ -577,51 +1330,52 @@ blockquote {
 
   <p>জ্যোতিষশাস্ত্র একটি মনের tuning-fork, যা আমাদের ভাবনার সুর মহাবিশ্বের সঙ্গীতে মেলাতে সাহায্য করে।</p>
 
-  <p>যখন আমরা “ভাগ্য” বলি, বুঝি নিজের নিয়ন্ত্রণের বাইরে কোনো ঘটনা। কিন্তু নিউরোসায়েন্স ও কোয়ান্টাম কনশাসনেস রিসার্চ বলছে, চেতনা বাস্তবতার রূপ নির্ধারণ করে।</p>
+  <p>যখন আমরা "ভাগ্য" বলি, বুঝি নিজের নিয়ন্ত্রণের বাইরে কোনো ঘটনা। কিন্তু নিউরোসায়েন্স ও কোয়ান্টাম কনশাসনেস রিসার্চ বলছে, চেতনা বাস্তবতার রূপ নির্ধারণ করে।</p>
 
   <p>আমাদের অভ্যাস, অনুভূতি ও ইচ্ছাশক্তি মস্তিষ্কের neural pathways বদলাতে পারে। আর এই কারণেই জন্মকুণ্ডলী কোনো কুসংস্কারের নয়, বরং চেতনার নিখুঁত নকশা।</p>
 
   <p>সুতরাং,</p>
 
-  <p><strong>“চেতনার জ্যোতিষই প্রকৃত ভবিষ্যৎ নির্ধারণ করে।”</strong></p>
+  <p><strong>"চেতনার জ্যোতিষই প্রকৃত ভবিষ্যৎ নির্ধারণ করে।"</strong></p>
 
   <p>জ্যোতিষ শুধু ভবিষ্যৎ বলার শাস্ত্র নয়, বরং বর্তমান চেতনার উন্নয়নে পথপ্রদর্শক। জন্মকুণ্ডলী এক মানচিত্র, আর আমরা সেই মানচিত্রের পাথিক, আত্মানুসন্ধানে ব্যস্ত।</p>
 
-  <img src="images/Quantum_Vibration.png" alt="ভারতীয় জ্যোতিষ ও কোয়ান্টাম কম্পনের সম্পর্ক" loading="lazy" />
+  <img src="images/Quantum_Vibration.png"
+       alt="ভারতীয় জ্যোতিষ ও কোয়ান্টাম কম্পনের সম্পর্ক — Quantum Physics Vedic Astrology Connection"
+       loading="lazy" width="860" height="520" />
 
-  
-  <div class="tagline">✨ আত্মার কম্পনে মিলিয়ে নিজেকে গড়ো, ভাগ্যের নতুন সুর সৃষ্টি করো। ✨</div>
-
+  <div class="tagline">✨ আত্মার কম্পনে মিলিয়ে নিজেকে গড়ো, ভাগ্যের নতুন সুর সৃষ্টি করো। ✨</div>
 </section>
-</div>
 
+<div class="section-divider"><span>🌿</span></div>
 
+<!-- ═══════════════════════════ SECTION 6 ═══════════════════════════ -->
+<section class="content-section">
+  <h2 id="vedic-relationship-analysis" class="headline-h2">
+    🌿 Vedic Jyotish দ্বারা সম্পর্ক ও আত্মচেতনার সংলাপে গভীর বিশ্লেষণ
+  </h2>
 
-<section>
-<h2 id="vedic-relationship-analysis" class="headline-h2">
-  🌿 Vedic Jyotish দ্বারা সম্পর্ক ও আত্মচেতনার সংলাপে গভীর বিশ্লেষণ
-</h2>
   <p>জীবন এক অনির্বচনীয় স্রোত, যা সম্পর্ক, কর্ম, স্বাস্থ্য, সংকট ও সম্ভাবনার বহুমাত্রিক ঢেউয়ে প্রবাহিত হয়। এই স্রোতে দিক হারানো সহজ, কিন্তু দিকজ্ঞান যদি থাকে—তাহলেই মানবজীবন সার্থক হয়।</p>
 
-  <p>ঋগ্বেদীয় ঋষি মান্য হয়েছেন, <strong>“यथा राजा तथा प्रजा”</strong> — যেমন শাসক, তেমন প্রজা; অর্থাৎ মানব জীবনের গতি নির্ধারণ করে আধ্যাত্মিক ও জ্ঞানতাত্ত্বিক দিকজ্ঞান। এই দিকজ্ঞান জন্মলগ্নেই অদৃশ্য ছাপে লুকিয়ে থাকে, যা <a href="https://prodyutacharya.blogspot.com/2019/01/What-is-astrology.html" target="_blank" rel="noopener noreferrer">ব্রহ্মজ্ঞানী ভৃগু মুনি</a> এবং <a href="https://prodyutacharya.blogspot.com/2019/01/Astrology.html" target="_blank" rel="noopener noreferrer">পরাশর মহর্ষি</a> রচিত জ্যোতিষশাস্ত্রে ফুটে ওঠে।</p>
+  <p>ঋগ্বেদীয় ঋষি মান্য হয়েছেন, <strong>"यथा राजा तथा प्रजा"</strong> — যেমন শাসক, তেমন প্রজা; অর্থাৎ মানব জীবনের গতি নির্ধারণ করে আধ্যাত্মিক ও জ্ঞানতাত্ত্বিক দিকজ্ঞান। এই দিকজ্ঞান জন্মলগ্নেই অদৃশ্য ছাপে লুকিয়ে থাকে, যা <a href="https://prodyutacharya.blogspot.com/2019/01/What-is-astrology.html" target="_blank" rel="noopener noreferrer">ব্রহ্মজ্ঞানী ভৃগু মুনি</a> এবং <a href="https://prodyutacharya.blogspot.com/2019/01/Astrology.html" target="_blank" rel="noopener noreferrer">পরাশর মহর্ষি</a> রচিত জ্যোতিষশাস্ত্রে ফুটে ওঠে।</p>
 
-  <p>জন্মছকে সপ্তম এবং পঞ্চম ভাব প্রাধান্য পায় সম্পর্ক, প্রেম, বিবাহ ও দাম্পত্য জীবনের নির্দেশক হিসেবে। কিন্তু সম্পর্ক কেবল গ্রহের বিন্যাস নয়; এটি চেতনার এক বহিঃপ্রকাশ। যেমন মহর্ষি জৈমিনি বলেছেন—“সম্পর্ক মানে দুটি আত্মার এক বিন্দুমাত্র সংঘর্ষ নয়, বরং চেতনার সূক্ষ্ম সংগীত।”</p>
+  <p>জন্মছকে সপ্তম এবং পঞ্চম ভাব প্রাধান্য পায় সম্পর্ক, প্রেম, বিবাহ ও দাম্পত্য জীবনের নির্দেশক হিসেবে। কিন্তু সম্পর্ক কেবল গ্রহের বিন্যাস নয়; এটি চেতনার এক বহিঃপ্রকাশ। যেমন মহর্ষি জৈমিনি বলেছেন—"সম্পর্ক মানে দুটি আত্মার এক বিন্দুমাত্র সংঘর্ষ নয়, বরং চেতনার সূক্ষ্ম সংগীত।"</p>
 
   <p>গৃহস্থ জীবনের অশান্তির মূল কারণ খুঁজতে গেলে দেখা যায় কখনো শনি ও মঙ্গলের অমঙ্গলদৃষ্টিতে, আবার কখনো রাহু বা চন্দ্রের দুর্বলতায় দাম্পত্য সম্পর্ক সংকটগ্রস্ত হয়।</p>
 
-  <p>কিন্তু এ মানেই সম্পর্ক ভাঙবে—না, বরং এটি আত্ম-জিজ্ঞাসার এক অমূল্য সুযোগ। কেন আমি নির্ভরতা খুঁজি? কেন অপরকে বদলাতে তাগাদা অনুভব করি? কেন বারংবার একই ভুলের পুনরাবৃত্তি হয়? এই প্রশ্নগুলোকে জ্যোতিষে “আত্মবোধের সন্ধান” বলা হয়।</p>
+  <p>কিন্তু এ মানেই সম্পর্ক ভাঙবে—না, বরং এটি আত্ম-জিজ্ঞাসার এক অমূল্য সুযোগ। কেন আমি নির্ভরতা খুঁজি? কেন অপরকে বদলাতে তাগাদা অনুভব করি? কেন বারংবার একই ভুলের পুনরাবৃত্তি হয়? এই প্রশ্নগুলোকে জ্যোতিষে "আত্মবোধের সন্ধান" বলা হয়।</p>
 
   <p>শ্রীমদ্ভাগবতেও বলা হয়েছে—</p>
 
-  <blockquote>“অন্তর্দর্শনাত্মক বোধে প্রত্যেক দুঃখ সুখের জন্ম দেয়।”</blockquote>
+  <blockquote>"অন্তর্দর্শনাত্মক বোধে প্রত্যেক দুঃখ সুখের জন্ম দেয়।"</blockquote>
 
   <p>এই দৃষ্টিভঙ্গি থেকেই বোঝা যায়—</p>
 
-  <p>“জ্যোতিষ সম্পর্ক ভাঙে না, বরং সম্পর্কের ভাষা শেখায়।”</p>
+  <p>"জ্যোতিষ সম্পর্ক ভাঙে না, বরং সম্পর্কের ভাষা শেখায়।"</p>
 
-  <p>এই ভাষা বুঝে নিজেকে এবং সম্পর্ককে গভীরভাবে উপলব্ধি করাই আত্মোন্নয়নের মূলধারা। তাই জ্যোতিষ এক প্রকার চিকিৎসা, যা ভুল পথে চলা আত্মাকে সঠিক পথে ফিরিয়ে আনে।</p>
+  <p>এই ভাষা বুঝে নিজেকে এবং সম্পর্ককে গভীরভাবে উপলব্ধি করাই আত্মোন্নয়নের মূলধারা। তাই জ্যোতিষ এক প্রকার চিকিৎসা, যা ভুল পথে চলা আত্মাকে সঠিক পথে ফিরিয়ে আনে।</p>
 
-  <h3 class="headline-h2" style="font-size: 2.1em; margin-top: 60px;">🕉️ কর্ম, স্বাস্থ্য ও আত্মবিকাশে জ্যোতিষের ভূমিকা: ঋষিদের প্রজ্ঞার আলোকস্তম্ভ</h3>
+  <h3 class="headline-h3" style="font-size: clamp(1.1rem, 2.5vw, 1.5rem); margin-top: var(--space-lg);">🕉️ কর্ম, স্বাস্থ্য ও আত্মবিকাশে জ্যোতিষের ভূমিকা: ঋষিদের প্রজ্ঞার আলোকস্তম্ভ</h3>
 
   <p>কর্ম শুধুমাত্র অর্থোপার্জনের মাধ্যম নয়, বরং আত্মার অভিযাত্রার এক অংশ। জন্মছকের দশম ভাব ও দশাধিপতি আমাদের কর্মসংক্রান্ত বোধ ও দায়িত্বের নির্দেশক।</p>
 
@@ -631,247 +1385,334 @@ blockquote {
 
   <p>মহর্ষি ভৃগু বলেছিলেন—</p>
 
-  <blockquote>“পথে ঝড় আসবেই, কিন্তু ঝড়ের আগে প্রস্তুতি নিলে পথিকের অবিচলতা অটুট থাকে।”</blockquote>
+  <blockquote>"পথে ঝড় আসবেই, কিন্তু ঝড়ের আগে প্রস্তুতি নিলে পথিকের অবিচলতা অটুট থাকে।"</blockquote>
 
   <p>এখানেই জ্যোতিষ ভাগ্য বদলে না, বরং ভাগ্য গঠনের সরঞ্জাম হিসেবে কাজ করে। জীবনযাত্রার একান্ত দিশা হিসেবে এটি আমাদের বর্তমানকে উপলব্ধি ও পরিচালনার কলাকৌশল শেখায়।</p>
 
   <p>স্বাস্থ্য ও মানসিকতার ক্ষেত্রেও জ্যোতিষশাস্ত্র গভীর প্রভাব ফেলে। ছষ্ঠ, অষ্টম ও দ্বাদশ ভাব শরীর ও রোগের চাবিকাঠি, আর চন্দ্র ও জলতাত্ত্বিক রাশি মনের মানসিক অবস্থার প্রতিচ্ছবি।</p>
 
-  <p>আধুনিক মনোবিজ্ঞান ও চিকিৎসাবিজ্ঞানে যেমন “মন ও শরীরের অবিচ্ছেদ্য যোগ” প্রতিষ্ঠিত হয়েছে, তেমনি শাস্ত্রে বলা হয়েছে—</p>
+  <p>আধুনিক মনোবিজ্ঞান ও চিকিৎসাবিজ্ঞানে যেমন "মন ও শরীরের অবিচ্ছেদ্য যোগ" প্রতিষ্ঠিত হয়েছে, তেমনি শাস্ত্রে বলা হয়েছে—</p>
 
-  <blockquote>“মনস্তরঙ্গের অস্থিরতাই বহু শারীরিক রোগের মূল।”</blockquote>
+  <blockquote>"মনস্তরঙ্গের অস্থিরতাই বহু শারীরিক রোগের মূল।"</blockquote>
 
   <p>দুর্বল চন্দ্র, কেতু এবং অষ্টমস্থ শনি শুধু অসুস্থতার নয়, বরং মনের সংকেত। অতিরিক্ত উদ্বেগ বা গোপন ভয় এসব গ্রহের দুর্বলতার ইঙ্গিত।</p>
 
   <p>এখানেই জ্যোতিষশাস্ত্র ও চেতনার চিকিৎসা মিলে যায়। জন্মছক হয়ে ওঠে এক psycho-spiritual blueprint, যার মাধ্যমে ব্যক্তি নিজেকে চেনা ও রোগের অতীত পেরিয়ে ওঠার পথ খুঁজে পায়।</p>
 
-  <p>অতএব, জ্যোতিষ কোনো ভয়ভীতি ছড়ানোর মাধ্যম নয়, বরং আত্মজাগরণের এক আয়না। প্রতিটি গ্রহ চেতনার এক আলোকবর্তিকা—</p>
+  <p>অতএব, জ্যোতিষ কোনো ভয়ভীতি ছড়ানোর মাধ্যম নয়, বরং আত্মজাগরণের এক আয়না। প্রতিটি গ্রহ চেতনার এক আলোকবর্তিকা—</p>
 
   <ul>
     <li>শুক্র: ভালোবাসা ও সৌন্দর্যের প্রকাশ</li>
-    <li>মঙ্গল: শক্তি, ক্রিয়া ও উদ্যম</li>
+    <li>মঙ্গল: শক্তি, ক্রিয়া ও উদ্যম</li>
     <li>শনি: ধৈর্য, কর্মফল ও স্থিতিশীলতা</li>
   </ul>
 
-  <p>যদি কেউ শুধুমাত্র ‘মহাদশা কখন শেষ হবে’ তা নিয়ে চিন্তা করে, তবে সে জ্যোতিষের গভীরতাকে অবহেলা করে। কিন্তু যদি প্রশ্ন করে—</p>
+  <p>যদি কেউ শুধুমাত্র 'মহাদশা কখন শেষ হবে' তা নিয়ে চিন্তা করে, তবে সে জ্যোতিষের গভীরতাকে অবহেলা করে। কিন্তু যদি প্রশ্ন করে—</p>
 
-  <p><em>“এই সময়টা আমাকে কী শেখাচ্ছে?”</em></p>
+  <p><em>"এই সময়টা আমাকে কী শেখাচ্ছে?"</em></p>
 
   <p>তাহলেই সে আত্মার সন্ধানে এগিয়ে যায়।</p>
 
-  <p>জ্যোতিষশাস্ত্র কেবল ভবিষ্যৎ নির্ধারণের যন্ত্র নয়, বরং আত্মানুসন্ধানের এক মহামূল্যবান আয়না। প্রত্যেক সম্পর্ক, সংকট, পেশা ও অসুস্থতা জন্মছকে লিপিবদ্ধ এক নক্ষত্রলিখিত অন্তরদর্শন। যা আমাদের জীবনের গূঢ় রহস্য উন্মোচন করে, ঈশ্বরতত্ত্বের সঙ্গে যুক্ত করে।</p>
+  <p>জ্যোতিষশাস্ত্র কেবল ভবিষ্যৎ নির্ধারণের যন্ত্র নয়, বরং আত্মানুসন্ধানের এক মহামূল্যবান আয়না। প্রত্যেক সম্পর্ক, সংকট, পেশা ও অসুস্থতা জন্মছকে লিপিবদ্ধ এক নক্ষত্রলিখিত অন্তরদর্শন। যা আমাদের জীবনের গূঢ় রহস্য উন্মোচন করে, ঈশ্বরতত্ত্বের সঙ্গে যুক্ত করে।</p>
 
-  <p>এটাই <a href="https://prodyutacharya.blogspot.com/2025/07/blog-post_6.html" target="_blank">
-  প্রাচীন
-</a>
-    ঋষিদের <strong>“ঋষি দৃষ্ট”</strong>—এক গভীর আত্মদর্শন যা অন্ধকার থেকে আলোর পথ দেখায়।</p>
+  <p>এটাই <a href="https://prodyutacharya.blogspot.com/2025/07/blog-post_6.html" target="_blank" rel="noopener noreferrer">প্রাচীন</a> ঋষিদের <strong>"ঋষি দৃষ্ট"</strong>—এক গভীর আত্মদর্শন যা অন্ধকার থেকে আলোর পথ দেখায়।</p>
 
-  <img src="images/Vedic_Astrology_chart.png" alt="জ্যোতিষশাস্ত্রের জন্মকুণ্ডলীর চিত্র" loading="lazy" />
+  <img src="images/Vedic_Astrology_chart.png"
+       alt="জ্যোতিষশাস্ত্রের জন্মকুণ্ডলীর চিত্র — Vedic Astrology Kundali Chart, সম্পর্ক ও কর্ম বিশ্লেষণ"
+       loading="lazy" width="860" height="520" />
 
   <div class="tagline">🌟 সম্পর্কের গভীরে ডুবে নিজেকে খুঁজে পাওয়া হলো প্রকৃত জ্যোতির্ময়তা। 🌟</div>
 </section>
 
-</div>
+<div class="section-divider"><span>🔮</span></div>
 
-<section>
-  
-<h2 id="jyotish-alokmanchitra" class="headline-h2">
-  🔮 জ্যোতিষ — এক আলোকমানচিত্র, কেবল ভবিষ্যৎ জানার নয়, নিজেকে জানার পথ
-</h2>
+<!-- ═══════════════════════════ SECTION 7 ═══════════════════════════ -->
+<section class="content-section">
+  <h2 id="jyotish-alokmanchitra" class="headline-h2">
+    🔮 জ্যোতিষ — এক আলোকমানচিত্র, কেবল ভবিষ্যৎ জানার নয়, নিজেকে জানার পথ
+  </h2>
+
   <p>আমরা প্রায়শই জ্যোতিষকে দেখি ভবিষ্যৎ জানার একটি রহস্যময় যন্ত্র হিসেবে — কিন্তু প্রকৃতপক্ষে এটি <strong>self-realization</strong>-এর একটি শক্তিশালী মানচিত্র।</p>
 
-  <p><strong>“যা যশ্চৈতন্যদর্শনং তদ্বিদ্যা জ্যোতিষং স্মৃতম্”</strong> — যে জ্ঞান চৈতন্যকে প্রকাশ করে, সেই জ্ঞানই প্রকৃত জ্যোতিষ।</p>
+  <p><strong>"যা যশ্চৈতন্যদর্শনং তদ্বিদ্যা জ্যোতিষং স্মৃতম্"</strong> — যে জ্ঞান চৈতন্যকে প্রকাশ করে, সেই জ্ঞানই প্রকৃত জ্যোতিষ।</p>
 
-  <p>গ্রহেরা কেবল আকাশে ঘোরে না; তারা ঘোরে আমাদের মন ও চেতনার গভীরে। বৃহস্পতির অবস্থান জানায় বিশ্বাসের অভিবিকাশ, শনির সংযম শেখায় ধৈর্য ও আত্মদীক্ষার দিক।</p>
+  <p>গ্রহেরা কেবল আকাশে ঘোরে না; তারা ঘোরে আমাদের মন ও চেতনার গভীরে। বৃহস্পতির অবস্থান জানায় বিশ্বাসের অভিবিকাশ, শনির সংযম শেখায় ধৈর্য ও আত্মদীক্ষার দিক।</p>
 
   <p>আজকের যুগে—অবিশ্বাস, অস্থিরতা ও আত্মবিচ্যুতির মধ্যে—জ্যোতিষকে দেখা উচিত এক <strong>Inner GPS</strong> হিসেবে, যা আমাদের নির্দেশ করে:</p>
 
   <ul>
-    <li>আমার জীবনের কোন পর্যায়ে আমি দাঁড়িয়ে আছি?</li>
-    <li>কোন অভ্যন্তরীন সংকট এখন বাইরে বড় হয়ে উঠছে?</li>
+    <li>আমার জীবনের কোন পর্যায়ে আমি দাঁড়িয়ে আছি?</li>
+    <li>কোন অভ্যন্তরীন সংকট এখন বাইরে বড় হয়ে উঠছে?</li>
     <li>আমি নিজের মধ্যে কোন শক্তি বা দুর্বলতা অনুধাবন করছি না?</li>
   </ul>
 
-  <p>একজন সত্যিকারের জ্যোতিষী এই GPS-এর দিশারি: তিনি বলবেন না “এই সময় খারাপ”— বরং বলবেন—“এই সময় introspection-এর; নিজেকে ফিরে পাওয়ার।”</p>
+  <p>একজন সত্যিকারের জ্যোতিষী এই GPS-এর দিশারি: তিনি বলবেন না "এই সময় খারাপ"— বরং বলবেন—"এই সময় introspection-এর; নিজেকে ফিরে পাওয়ার।"</p>
 
-  <p><strong>উদ্ধরেদ আত্মনাআত্মানং ন আত্মানম্‌অবসাদয়েত্।</strong> — নিজেকেই নিজে উত্তরণ করো, নিজেকে অবনত হতে দিও না। জ্যোতিষ সেই উত্তরণের আয়না; নয় কোনো দণ্ড বা ভয়।</p>
+  <p><strong>উদ্ধরেদ আত্মনাআত্মানং ন আত্মানম্‌অবসাদয়েত্।</strong> — নিজেকেই নিজে উত্তরণ করো, নিজেকে অবনত হতে দিও না। জ্যোতিষ সেই উত্তরণের আয়না; নয় কোনো দণ্ড বা ভয়।</p>
 
-  <h3 style="color:#e67300; font-size: 1.8em; margin-top: 44px; margin-bottom: 24px;">Archetypal symbolism — গ্রহগুলোর সংক্ষিপ্ত পাঠ</h3>
+  <h3 class="headline-h2-orange">Archetypal symbolism — গ্রহগুলোর সংক্ষিপ্ত পাঠ</h3>
 
   <ul>
-    <li><strong>মঙ্গল:</strong> কেবল রাগ নয় — উদ্যম ও সাহস।</li>
-    <li><strong>চন্দ্র:</strong> কেবল মন নয় — সমবেদনা ও মাতৃত্বের চেতনা।</li>
-    <li><strong>রাহু:</strong> বিভ্রান্তি নয় — মোহে লুকানো রূপান্তরের শক্তি।</li>
+    <li><strong>মঙ্গল:</strong> কেবল রাগ নয় — উদ্যম ও সাহস।</li>
+    <li><strong>চন্দ্র:</strong> কেবল মন নয় — সমবেদনা ও মাতৃত্বের চেতনা।</li>
+    <li><strong>রাহু:</strong> বিভ্রান্তি নয় — মোহে লুকানো রূপান্তরের শক্তি।</li>
   </ul>
 
-  <p>যিনি এই প্রতীকগুলো দর্শনভিত্তিকভাবে পড়তে পারেন, তিনিই আসল জ্যোতিষী — কারণ তিনি দেখাতে পারেন আপনার মধ্যেকার দেবতা ও অসুরের লড়াই। ফ্রয়েড বলতেন, <em>“অচেতনই আমাদের নিয়ন্ত্রণ করে।”</em> জ্যোতিষ বলে — <em>“অচেতনকেই সচেতন করাই আত্মজ্যোতি।”</em></p>
+  <p>যিনি এই প্রতীকগুলো দর্শনভিত্তিকভাবে পড়তে পারেন, তিনিই আসল জ্যোতিষী — কারণ তিনি দেখাতে পারেন আপনার মধ্যেকার দেবতা ও অসুরের লড়াই। ফ্রয়েড বলতেন, <em>"অচেতনই আমাদের নিয়ন্ত্রণ করে।"</em> জ্যোতিষ বলে — <em>"অচেতনকেই সচেতন করাই আত্মজ্যোতি।"</em></p>
 
-  <p>আজ যদি আমরা জ্যোতিষকে শুধুই ফলাফল জানার যন্ত্র হিসেবে দেখি, তবে আমরা এই দর্শনের সবচেয়ে মূল্যবান দিকগুলো হারিয়ে ফেলছি। জ্যোতিষ একটি জীবন্ত মানচিত্র — যা ভবিষ্যৎ দেখায় না; বরং বলে—’ভবিতব্যে তুমি কে হতে পারো’।</p>
+  <p>আজ যদি আমরা জ্যোতিষকে শুধুই ফলাফল জানার যন্ত্র হিসেবে দেখি, তবে আমরা এই দর্শনের সবচেয়ে মূল্যবান দিকগুলো হারিয়ে ফেলছি। জ্যোতিষ একটি জীবন্ত মানচিত্র — যা ভবিষ্যৎ দেখায় না; বরং বলে—'ভবিতব্যে তুমি কে হতে পারো'।</p>
 
-  <p><strong>ভয় নয় — আলোক; বাধা নয় — সচেতনতা; নিয়তি নয় — নির্মাণ।</strong></p>
+  <p><strong>ভয় নয় — আলোক; বাধা নয় — সচেতনতা; নিয়তি নয় — নির্মাণ।</strong></p>
 
-  <img src="images/Indian_style.jpg" alt="জন্মকুণ্ডলীর একটি আলোকচিত্রী মানচিত্র" loading="lazy" />
+  <img src="images/Indian_style.jpg"
+       alt="জন্মকুণ্ডলীর একটি আলোকচিত্রী মানচিত্র — Indian Astrology Style, Vedic Jyotish Chart"
+       loading="lazy" width="860" height="520" />
 
   <div class="tagline">✨ নিজের আলো নিজেই জ্বালাও, কারণ তুমি নিজের জীবনের প্রকৃত জ্যোতিষী। ✨</div>
 </section>
 
-</div>
+<div class="section-divider"><span>✨</span></div>
 
+<!-- ═══════════════════════════ SECTION 8 ═══════════════════════════ -->
+<section class="content-section">
+  <h2 id="bhagya-bazar-chalna" class="headline-h2">
+    ✨ ভাগ্যবাজারের ছলনা: বিজ্ঞাপনে জ্যোতিষের বিভ্রান্তি
+  </h2>
 
-<section>
-<h2 id="bhagya-bazar-chalna" class="headline-h2">
-  ✨ ভাগ্যবাজারের ছলনা: বিজ্ঞাপনে জ্যোতিষের বিভ্রান্তি
-</h2>
-  <p>কখনও কি ভেবেছেন, কেন বিজ্ঞাপনের এক ঝলকে ভাগ্য বদলানো সম্ভব বলে দাবি করা হয়? কেন এক অচেনা মানুষের মুখ থেকে শুনতে হয়— <strong>“আপনার জীবনের সব সমস্যা আমার কাঁধে”</strong>? এই দাবি কি সত্যিই কোনো আধ্যাত্মিক জ্ঞান বা গভীর উপলব্ধির ফল, নাকি ভয়, অন্ধ বিশ্বাস আর মনস্তাত্ত্বিক দুর্বলতার ব্যবসা?</p>
+  <p>কখনও কি ভেবেছেন, কেন বিজ্ঞাপনের এক ঝলকে ভাগ্য বদলানো সম্ভব বলে দাবি করা হয়? কেন এক অচেনা মানুষের মুখ থেকে শুনতে হয়— <strong>"আপনার জীবনের সব সমস্যা আমার কাঁধে"</strong>? এই দাবি কি সত্যিই কোনো আধ্যাত্মিক জ্ঞান বা গভীর উপলব্ধির ফল, নাকি ভয়, অন্ধ বিশ্বাস আর মনস্তাত্ত্বিক দুর্বলতার ব্যবসা?</p>
 
-  <p>আজ জ্যোতিষ দাঁড়িয়ে আছে এক বিভাজনের ধারে—একদিকে শতবর্ষী ঋষি-সংস্কারের পবিত্র জীবনদর্শন, অন্যদিকে বাজারচলতি চটকদার বিজ্ঞাপনভিত্তিক বিভ্রান্তি।</p>
+  <p>আজ জ্যোতিষ দাঁড়িয়ে আছে এক বিভাজনের ধারে—একদিকে শতবর্ষী ঋষি-সংস্কারের পবিত্র জীবনদর্শন, অন্যদিকে বাজারচলতি চটকদার বিজ্ঞাপনভিত্তিক বিভ্রান্তি।</p>
 
-  <p>একদিকে রয়েছে গুরুজনের অমলিন প্রজ্ঞা, অন্যদিকে রঙিন ব্র্যান্ডিং, ‘সেরা জ্যোতিষী’ অ্যাওয়ার্ড, এক মিনিটেই ভাগ্য বলার ‘অ্যাপস’—সব মিলিয়ে এক বিশাল ‘ভাগ্যবাজার’।</p>
+  <p>একদিকে রয়েছে গুরুজনের অমলিন প্রজ্ঞা, অন্যদিকে রঙিন ব্র্যান্ডিং, 'সেরা জ্যোতিষী' অ্যাওয়ার্ড, এক মিনিটেই ভাগ্য বলার 'অ্যাপস'—সব মিলিয়ে এক বিশাল 'ভাগ্যবাজার'।</p>
 
   <p>প্রথমেই নিজের প্রতি প্রশ্ন করুন—</p>
 
-  <blockquote>“এই মিনিটে কি কুণ্ডলী বিশ্লেষণ সম্ভব?”</blockquote>
+  <blockquote>"এই মিনিটে কি কুণ্ডলী বিশ্লেষণ সম্ভব?"</blockquote>
 
-  <p>আজকের অনেক ‘জ্যোতিষী’দের হাতে ঝুলে থাকা অ্যাওয়ার্ড বা ডক্টরেটের শিরোনাম, সত্যিই কি জ্যোতিষশাস্ত্রের কোনো গ্রহণযোগ্য মানদণ্ড? বা এই পুরস্কারগুলো এসেছে কীভাবে? কী মূল্য দিয়ে কেনা হয়েছে? কোন সংস্থা দিয়েছে এবং তার পেছনে কি কোনো প্রামাণিক মূল্যায়ন?</p>
+  <p>আজকের অনেক 'জ্যোতিষী'দের হাতে ঝুলে থাকা অ্যাওয়ার্ড বা ডক্টরেটের শিরোনাম, সত্যিই কি জ্যোতিষশাস্ত্রের কোনো গ্রহণযোগ্য মানদণ্ড? বা এই পুরস্কারগুলো এসেছে কীভাবে? কী মূল্য দিয়ে কেনা হয়েছে? কোন সংস্থা দিয়েছে এবং তার পেছনে কি কোনো প্রামাণিক মূল্যায়ন?</p>
 
-  <p>বিষয়টি যতবার চিন্তা করি, ততবারই হতাশার ঢেউ জেগে ওঠে—অনেক জ্যোতিষীর নিজের জীবনই অশান্ত, শান্তির খোঁজে নয়, শুধুই অর্থ উপার্জনে লিপ্ত। অথচ বিজ্ঞাপনে সেলিব্রেটিদের সঙ্গে ছবি তোলার ছবি দিয়ে ‘ক্লায়েন্ট’ দাবি করে, যা আদতে এক ধরনের বাজারজাত ‘প্রমোশন স্টান্ট’।</p>
+  <p>বিষয়টি যতবার চিন্তা করি, ততবারই হতাশার ঢেউ জেগে ওঠে—অনেক জ্যোতিষীর নিজের জীবনই অশান্ত, শান্তির খোঁজে নয়, শুধুই অর্থ উপার্জনে লিপ্ত। অথচ বিজ্ঞাপনে সেলিব্রেটিদের সঙ্গে ছবি তোলার ছবি দিয়ে 'ক্লায়েন্ট' দাবি করে, যা আদতে এক ধরনের বাজারজাত 'প্রমোশন স্টান্ট'।</p>
 
-  <p>ফরাসি দার্শনিক <a href="https://en.wikipedia.org/wiki/Jean_Baudrillard" target="_blank" rel="noopener noreferrer">Jean Baudrillard</a> এর “Hyperreality” তত্ত্বে স্পষ্ট—যখন কৃত্রিম ইমেজ বারবার দেখানো হয়, তখন মানুষ সেটাকেই বাস্তব ধরে নেয়, যদিও তা প্রকৃত নয়। এরাই তৈরি করে এক ‘ভাগ্যবাজার’ যেখানে দর্শকের আধ্যাত্মিক দৃষ্টিভঙ্গি হারিয়ে যায়, নিছক একটি ব্র্যান্ডের ফ্যান হয়ে ওঠে।</p>
+  <p>ফরাসি দার্শনিক <a href="https://en.wikipedia.org/wiki/Jean_Baudrillard" target="_blank" rel="noopener noreferrer">Jean Baudrillard</a> এর "Hyperreality" তত্ত্বে স্পষ্ট—যখন কৃত্রিম ইমেজ বারবার দেখানো হয়, তখন মানুষ সেটাকেই বাস্তব ধরে নেয়, যদিও তা প্রকৃত নয়। এরাই তৈরি করে এক 'ভাগ্যবাজার' যেখানে দর্শকের আধ্যাত্মিক দৃষ্টিভঙ্গি হারিয়ে যায়, নিছক একটি ব্র্যান্ডের ফ্যান হয়ে ওঠে।</p>
 
   <p>সুতরাং—</p>
 
-  <blockquote>“আপনি কি গ্রহণ করবেন ভ্রান্তির বাজার, নাকি অনন্ত জ্ঞানের সন্ধানী”</blockquote>
+  <blockquote>"আপনি কি গ্রহণ করবেন ভ্রান্তির বাজার, নাকি অনন্ত জ্ঞানের সন্ধানী"</blockquote>
 
-  <h3 style="color:#ef6c00; font-weight:700; margin-top:44px; margin-bottom:28px;">প্রকৃত জ্যোতিষীর নক্ষত্রলিখিত গুণাবলী: আত্মদর্শনের আলো</h3>
+  <h3 class="headline-h3-orange">প্রকৃত জ্যোতিষীর নক্ষত্রলিখিত গুণাবলী: আত্মদর্শনের আলো</h3>
 
-  <p>ঋষিদের প্রাচীন গ্রন্থ—বেদ, উপনিষদ, বৃহজ্জাতক, ফালা-দীপিকা—একত্রে বর্ণনা করেছে সত্যিকারের জ্যোতিষীর প্রকৃত স্বরূপ। তিনি ভবিষ্যৎবক্তা নয়; বরং এক দার্শনিক, ঋষিসদৃশ চিন্তক ও পথপ্রদর্শক।</p>
+  <p>ঋষিদের প্রাচীন গ্রন্থ—বেদ, উপনিষদ, বৃহজ্জাতক, ফালা-দীপিকা—একত্রে বর্ণনা করেছে সত্যিকারের জ্যোতিষীর প্রকৃত স্বরূপ। তিনি ভবিষ্যৎবক্তা নয়; বরং এক দার্শনিক, ঋষিসদৃশ চিন্তক ও পথপ্রদর্শক।</p>
 
   <ul>
-    <li><strong>(১) জ্ঞান (विद्या):</strong><br>জ্যোতিষী শুধুমাত্র গ্রহদশার সংখ্যা মুখস্থ করেই চলে না। ‘বৃহজ্জাতক’ শাস্ত্রে লেখা—</li>
+    <li><strong>(১) জ্ঞান (विद्या):</strong><br>জ্যোতিষী শুধুমাত্র গ্রহদশার সংখ্যা মুখস্থ করেই চলে না। 'বৃহজ্জাতক' শাস্ত্রে লেখা—</li>
   </ul>
 
-  <blockquote>“न काले न च योगे च न स्वभावे न कर्मणि।<br>दृष्टिर्देशफलो यस्मात् तस्माज्ज्योतिषमुच्यते॥”</blockquote>
+  <blockquote>"न काले न च योगे च न स्वभावे न कर्मणि।<br>दृष्टिर्देशफलो यस्मात् तस्माज्ज्योतिषमुच्यते॥"</blockquote>
 
-  <p>অর্থাৎ, সময়, যোগ, স্বভাব বা কর্ম নয়; জ্যোতিষ হল দৃষ্টি এবং দিকনির্দেশের বিজ্ঞান।</p>
+  <p>অর্থাৎ, সময়, যোগ, স্বভাব বা কর্ম নয়; জ্যোতিষ হল দৃষ্টি এবং দিকনির্দেশের বিজ্ঞান।</p>
 
   <ul>
-    <li><strong>(২) সহানুভূতি (Karuna):</strong><br>একজন প্রকৃত জ্যোতিষী শ্রোতার মনের অবস্থা উপলব্ধি করেন। তিনি ভয় দেখিয়ে টাকা নেন না; বরং শ্রবণ ও সহানুভূতির মাধ্যমে মানুষকে আত্মার আলোর দিকে নিয়ে যান।</li>
+    <li><strong>(২) সহানুভূতি (Karuna):</strong><br>একজন প্রকৃত জ্যোতিষী শ্রোতার মনের অবস্থা উপলব্ধি করেন। তিনি ভয় দেখিয়ে টাকা নেন না; বরং শ্রবণ ও সহানুভূতির মাধ্যমে মানুষকে আত্মার আলোর দিকে নিয়ে যান।</li>
   </ul>
 
   <p>যেমন কার্ল জং বলেছেন—</p>
 
-  <blockquote>“Astrology represents the summation of all the psychological knowledge of antiquity.”</blockquote>
+  <blockquote>"Astrology represents the summation of all the psychological knowledge of antiquity."</blockquote>
 
-  <p>অর্থাৎ, জ্যোতিষশাস্ত্র এক গভীর মনস্তাত্ত্বিক ভাষা যা হৃদয়ের সঙ্গে কথা বলে।</p>
+  <p>অর্থাৎ, জ্যোতিষশাস্ত্র এক গভীর মনস্তাত্ত্বিক ভাষা যা হৃদয়ের সঙ্গে কথা বলে।</p>
 
   <ul>
-    <li><strong>(৩) আধ্যাত্মিকতা (Adhyatma):</strong><br>জ্যোতিষী বাইরের গ্রহগতি নয়, অন্তরের আলো দেখান। ‘বৃহৎ সংহিতা’তে বলা হয়েছে—</li>
+    <li><strong>(৩) আধ্যাত্মিকতা (Adhyatma):</strong><br>জ্যোতিষী বাইরের গ্রহগতি নয়, অন্তরের আলো দেখান। 'বৃহৎ সংহিতা'তে বলা হয়েছে—</li>
   </ul>
 
-  <blockquote>“Jyotishaṃ Chakṣu Vedānām”</blockquote>
+  <blockquote>"Jyotishaṃ Chakṣu Vedānām"</blockquote>
 
   <p>অর্থ: জ্যোতিষ হল বেদের চোখ, যা সত্যকে দেখতে সাহায্য করে।</p>
 
-  <p>তাই প্রকৃত জ্যোতিষী এক দর্শক নয়, বরং পথপ্রদর্শক দার্শনিক। তিনি ভবিষ্যৎ বলে না, বরং প্রশ্ন করেন, আলো দেখান, আত্মবিশ্বাস জাগান।</p>
+  <p>তাই প্রকৃত জ্যোতিষী এক দর্শক নয়, বরং পথপ্রদর্শক দার্শনিক। তিনি ভবিষ্যৎ বলে না, বরং প্রশ্ন করেন, আলো দেখান, আত্মবিশ্বাস জাগান।</p>
 
-  <p>শনি তার কাছে অর্থ আত্মসংযম ও দায়িত্ববোধ।</p>
+  <p>শনি তার কাছে অর্থ আত্মসংযম ও দায়িত্ববোধ।</p>
 
   <p>মঙ্গল মানে শক্তি ও কর্তব্যের ভারসাম্য।</p>
 
   <p>চন্দ্র মানে মনস্তত্ত্বের সূক্ষ্ম প্রবাহ।</p>
 
-  <p>তিনি বলেন না— “আপনার দশা খারাপ”, বরং বলেন—</p>
+  <p>তিনি বলেন না— "আপনার দশা খারাপ", বরং বলেন—</p>
 
-  <blockquote>“এটা introspection-এর সময়।”</blockquote>
+  <blockquote>"এটা introspection-এর সময়।"</blockquote>
 
-  <p>তিনি বলেন না— “ভয় আছে”, বরং বলেন—</p>
+  <p>তিনি বলেন না— "ভয় আছে", বরং বলেন—</p>
 
-  <blockquote>“ভয়ের মুখোমুখি হয়ে আলো জ্বালো।”</blockquote>
+  <blockquote>"ভয়ের মুখোমুখি হয়ে আলো জ্বালো।"</blockquote>
 
   <p>আজকের চরম প্রশ্ন হলো—</p>
 
-  <blockquote>“জ্যোতিষ কি ভয় বিক্রয় নাকি আত্মজ্ঞান?”</blockquote>
+  <blockquote>"জ্যোতিষ কি ভয় বিক্রয় নাকি আত্মজ্ঞান?"</blockquote>
 
-  <p>যদি জ্যোতিষ হয়ে ওঠে এক ‘ভয় বিক্রয় কেন্দ্র’, যদি বাজারজাত অ্যাওয়ার্ড আর স্টান্টে ডুবে যায় তার মূল দর্শন; যদি মানুষ ভয়ে নিজের চিন্তা বন্ধ করে ফেলে—তাহলে তা আর জ্যোতিষ নয়, এক আধ্যাত্মিক দুর্নীতি।</p>
+  <p>যদি জ্যোতিষ হয়ে ওঠে এক 'ভয় বিক্রয় কেন্দ্র', যদি বাজারজাত অ্যাওয়ার্ড আর স্টান্টে ডুবে যায় তার মূল দর্শন; যদি মানুষ ভয়ে নিজের চিন্তা বন্ধ করে ফেলে—তাহলে তা আর জ্যোতিষ নয়, এক আধ্যাত্মিক দুর্নীতি।</p>
 
-  <p>প্রকৃত জ্যোতিষী হন—সত্যভাষী, সহানুভূতিশীল, নির্ভীক ও দার্শনিক। তিনি আপনাকে ভয় পেতে শেখান না, বরং বুঝতে শেখান।</p>
+  <p>প্রকৃত জ্যোতিষী হন—সত্যভাষী, সহানুভূতিশীল, নির্ভীক ও দার্শনিক। তিনি আপনাকে ভয় পেতে শেখান না, বরং বুঝতে শেখান।</p>
 
   <p>সক্রেটিস যেমন বলেছিলেন—</p>
 
-  <blockquote>“An unexamined life is not worth living.”</blockquote>
+  <blockquote>"An unexamined life is not worth living."</blockquote>
 
   <p>প্রকৃত জ্যোতিষী সেই জীবনপরীক্ষার সঙ্গী, যিনি আপনাকে প্রশ্ন করতে শেখান—</p>
 
-  <blockquote>“আপনার ভয় কোথায়?”<br>“আপনি কি হতে চেয়েছিলেন, আর আজ কোথায় দাঁড়িয়ে আছেন?”<br>“আপনার অন্তরের টানাপোড়েন কোন দিকে বেশি?”</blockquote>
+  <blockquote>"আপনার ভয় কোথায়?"<br>"আপনি কি হতে চেয়েছিলেন, আর আজ কোথায় দাঁড়িয়ে আছেন?"<br>"আপনার অন্তরের টানাপোড়েন কোন দিকে বেশি?"</blockquote>
 
-  <p>এইসব প্রশ্নের মধ্য দিয়ে তিনি আপনাকে গ্রহের অঙ্ক নয়, অন্তরের ভাষা শিখান।</p>
+  <p>এইসব প্রশ্নের মধ্য দিয়ে তিনি আপনাকে গ্রহের অঙ্ক নয়, অন্তরের ভাষা শিখান।</p>
 
   <p>অতএব সতর্ক থাকুন—</p>
 
-  <p>ভেজাল জ্যোতিষীরা ভয়ের ওপর ব্যবসা গড়ে দেয়। তারা তাবিজ, রত্ন, অযাচিত দান-প্রদানে আপনার ওপর নির্ভরশীলতা তৈরি করে, যা প্রায়ই মনস্তাত্ত্বিক শোষণই বটে।</p>
+  <p>ভেজাল জ্যোতিষীরা ভয়ের ওপর ব্যবসা গড়ে দেয়। তারা তাবিজ, রত্ন, অযাচিত দান-প্রদানে আপনার ওপর নির্ভরশীলতা তৈরি করে, যা প্রায়ই মনস্তাত্ত্বিক শোষণই বটে।</p>
 
   <p>প্রকৃত জ্যোতিষীর মন্ত্র—</p>
 
-  <blockquote>“উদ্ধরেদ আত্মনাআত্মানং” — নিজেকেই নিজে উত্তরণ করতে হবে। তিনি ভাগ্য শাসন করেন না; বরং উত্তরণের আয়না ধরান।</blockquote>
+  <blockquote>"উদ্ধরেদ আত্মনাআত্মানং" — নিজেকেই নিজে উত্তরণ করতে হবে। তিনি ভাগ্য শাসন করেন না; বরং উত্তরণের আয়না ধরান।</blockquote>
 
-  <h3 style="color:#ef6c00; font-weight:700; margin-top:48px; margin-bottom:28px;">সংক্ষিপ্ত নির্দেশিকা প্রকৃত জ্যোতিষীর জন্য</h3>
+  <h3 class="headline-h3-orange">সংক্ষিপ্ত নির্দেশিকা প্রকৃত জ্যোতিষীর জন্য</h3>
 
   <ul>
-    <li>দর্শনভিত্তিক: রাশিফল নয়, আত্মজ্ঞান প্রদান।</li>
-    <li>সহানুভূতিশীল শ্রোতা: কান দিয়ে নয়, হৃদয় দিয়ে শোনে।</li>
+    <li>দর্শনভিত্তিক: রাশিফল নয়, আত্মজ্ঞান প্রদান।</li>
+    <li>সহানুভূতিশীল শ্রোতা: কান দিয়ে নয়, হৃদয় দিয়ে শোনে।</li>
     <li>নির্ভীক ও যুক্তিবাদী: অযাচিত ভীতি তৈরিতে বিশ্বাস করে না।</li>
-    <li>স্ব-নির্ভরতা শেখায়: ক্লায়েন্টকে সিদ্ধান্তগ্রহণে সক্ষম করে।</li>
-    <li>শাস্ত্রজ্ঞ ও মানবতাবাদী: শাস্ত্র ও সময় বোঝে, মানুষের মন বুঝে।</li>
+    <li>স্ব-নির্ভরতা শেখায়: ক্লায়েন্টকে সিদ্ধান্তগ্রহণে সক্ষম করে।</li>
+    <li>শাস্ত্রজ্ঞ ও মানবতাবাদী: শাস্ত্র ও সময় বোঝে, মানুষের মন বুঝে।</li>
   </ul>
 
-  <img src="images/Ancient_Indian_Astrology_Chart.jpg" alt="প্রাচীন ভারতীয় জ্যোতিষশাস্ত্রের একটি মানচিত্র" />
+  <img src="images/Ancient_Indian_Astrology_Chart.jpg"
+       alt="প্রাচীন ভারতীয় জ্যোতিষশাস্ত্রের একটি মানচিত্র — Ancient Indian Astrology Chart Vedic"
+       loading="lazy" width="860" height="520" />
 
   <div class="tagline">✨ প্রকৃত জ্যোতিষীর পথ আলোকিত, যেখানে ভয় বিদায় নেয়, এবং আত্মা মুক্তি পায়। ✨</div>
 
+  <!-- Final CTA -->
+  <div class="cta-box">
+    <h3>🌟 প্রকৃত জ্যোতিষ পরামর্শ নিন</h3>
+    <p>ভয়মুক্ত, দার্শনিক ও বৈজ্ঞানিক Vedic Astrology পরামর্শ — ড. প্রদ্যুৎ আচার্য, MyAstrology, Ranaghat।</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/919333122768?text=আমি%20জ্যোতিষ%20পরামর্শ%20নিতে%20চাই" class="btn btn-wa" target="_blank" rel="noopener">
+        <i class="fab fa-whatsapp"></i> WhatsApp: +91-9333122768
+      </a>
+      <a href="https://pages.razorpay.com/Myastrology" class="btn btn-pay" target="_blank" rel="noopener">
+        <i class="fas fa-credit-card"></i> পেমেন্ট ও বুকিং
+      </a>
+    </div>
+  </div>
 </section>
-</div>
-</div>
-<!-- FOOTER SECTION -->
-<footer style="background:#0b0b2e; color:#f1f1f1; padding:40px 20px; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Noto Sans Bengali','Noto Sans',sans-serif; text-align:center;">
-  
-  <!-- Headline -->
-  <h2 style="font-size:1.8rem; margin-bottom:15px; color:#FFD700;">🌟 জেনে রাখুন আরও গভীর সত্য</h2>
-  
-  <!-- Description -->
-  <p style="max-width:700px; margin:0 auto 20px; line-height:1.8; font-size:1rem;">
-    তিথি, গ্রহের গতি ও পঞ্জিকার সূক্ষ্ম গণনা শুধু অঙ্ক নয় – এগুলো আমাদের উৎসব ও জীবনের ছন্দের মূল রহস্য।<br>
-    <strong>MyAstrology</strong> – জ্যোতিষ ও হস্তরেখাবিদ্ <strong>ড. প্রদ্যুৎ আচার্য</strong> আপনাকে দেবেন বৈজ্ঞানিক যুক্তি ও প্রাচীন জ্ঞানের সমন্বয়ে নির্ভুল ব্যাখ্যা।
+
+</main>
+
+<!-- ════════════════════════════════════════════════════
+     FOOTER
+     ════════════════════════════════════════════════════ -->
+<footer role="contentinfo">
+  <h2>🌟 জেনে রাখুন আরও গভীর সত্য</h2>
+
+  <p class="footer-desc">
+    তিথি, গ্রহের গতি ও পঞ্জিকার সূক্ষ্ম গণনা শুধু অঙ্ক নয় — এগুলো আমাদের উৎসব ও জীবনের ছন্দের মূল রহস্য।
+    <strong>MyAstrology</strong>-এর জ্যোতিষ ও হস্তরেখাবিদ্ <strong>ড. প্রদ্যুৎ আচার্য</strong> আপনাকে দেবেন বৈজ্ঞানিক যুক্তি ও প্রাচীন জ্ঞানের সমন্বয়ে নির্ভুল ব্যাখ্যা।
   </p>
 
-  <!-- Buttons -->
-  <div style="margin:25px 0;">
-    <a href="https://wa.me/919333122768?text=আমি%20জ্যোতিষ%20ও%20পঞ্জিকা%20পরামর্শ%20নিতে%20চাই" 
-       style="background:#25D366; color:#fff; padding:12px 25px; margin:5px; display:inline-block; border-radius:30px; text-decoration:none; font-weight:bold; transition:0.3s;">📲 WhatsApp এ যোগাযোগ করুন</a>
-    
-    <a href="https://pages.razorpay.com/Myastrology" 
-       style="background:#FF5722; color:#fff; padding:12px 25px; margin:5px; display:inline-block; border-radius:30px; text-decoration:none; font-weight:bold; transition:0.3s;">💳 এখনই পেমেন্ট করুন</a>
+  <!-- ✅ যোগাযোগ তথ্য — Email footer-এ -->
+  <div class="footer-contact">
+    <a href="tel:+919333122768"><i class="fas fa-phone"></i> +91-9333122768</a>
+    <a href="/cdn-cgi/l/email-protection#3c55525a537c51455d4f484e5350535b45125552"><i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="660f080009260b1f07151214090a09011f480f08">[email&#160;protected]</span></a>
+    <a href="https://astro.myastrology.in/panjika.html" target="_blank" rel="noopener"><i class="fas fa-calendar-alt"></i> আজকের পঞ্জিকা</a>
   </div>
 
-  <!-- Info -->
-  <p style="margin:10px 0; font-size:0.9rem;">🔒 নিরাপদ অনলাইন পেমেন্ট | 📞 সরাসরি ফোন/হোয়াটসঅ্যাপ পরামর্শ</p>
+  <div class="footer-divider"></div>
 
-  <!-- Social Icons -->
-  <div style="margin:20px 0;">
-    <a href="https://www.facebook.com/Dr.ProdyutAcharya" target="_blank" style="margin:0 10px; color:#f1f1f1; font-size:1.6rem;"><i class="fab fa-facebook"></i></a>
-    <a href="https://www.instagram.com/myastrology.in" target="_blank" style="margin:0 10px; color:#f1f1f1; font-size:1.6rem;"><i class="fab fa-instagram"></i></a>
-    <a href="https://youtube.com/@myastrology" target="_blank" style="margin:0 10px; color:#f1f1f1; font-size:1.6rem;"><i class="fab fa-youtube"></i></a>
-    <a href="https://x.com/AcharyaProdyut" target="_blank" style="margin:0 10px; color:#f1f1f1; font-size:1.6rem;"><i class="fab fa-x-twitter"></i></a>
-    <a href="https://www.linkedin.com/in/ProdyutAcharya" target="_blank" style="margin:0 10px; color:#f1f1f1; font-size:1.6rem;"><i class="fab fa-linkedin"></i></a>
+  <!-- Social Links -->
+  <div class="footer-social" role="list" aria-label="সোশ্যাল মিডিয়া">
+    <a href="https://www.facebook.com/Dr.ProdyutAcharya" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.instagram.com/myastrology.in" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://youtube.com/@myastrology" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+    <a href="https://x.com/AcharyaProdyut" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+    <a href="https://www.linkedin.com/in/ProdyutAcharya" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    <a href="https://prodyutacharya.blogspot.com" target="_blank" rel="noopener noreferrer" aria-label="Blog"><i class="fab fa-blogger"></i></a>
   </div>
 
-  <!-- Copyright -->
-  <p style="margin-top:20px; font-size:0.85rem;">© 2025 MyAstrology | সকল অধিকার সংরক্ষিত</p>
-  <p style="margin-top:5px; font-size:0.95rem;">আপনার জীবন এবং ভাগ্যের জন্য প্রামাণিক জ্যোতিষ ও হস্তরেখা পরামর্শ</p>
+  <div class="footer-divider"></div>
 
+  <div class="footer-copy">
+    <p>© 2025 MyAstrology | ড. প্রদ্যুৎ আচার্য | সকল অধিকার সংরক্ষিত</p>
+    <p>
+      প্রামাণিক Vedic Astrology ও হস্তরেখা পরামর্শ | Ranaghat, Nadia, West Bengal, India — 741201
+    </p>
+    <p style="margin-top:8px;">
+      <a href="/about.html">আমাদের সম্পর্কে</a> &nbsp;|&nbsp;
+      <a href="/reviews.html">রিভিউ</a> &nbsp;|&nbsp;
+      <a href="https://blog.myastrology.in">বাংলা ব্লগ</a> &nbsp;|&nbsp;
+      <a href="https://astro.myastrology.in/panjika.html">পঞ্জিকা</a>
+    </p>
+  </div>
 </footer>
 
-<!-- ✅ Font Awesome CDN -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<!-- ════════════════════════════════════════════════════
+     JAVASCRIPT — Nav Toggle (সম্পূর্ণ ও সঠিক)
+     ════════════════════════════════════════════════════ -->
+
+<script>
+(function () {
+  'use strict';
+
+  /* ── Navigation ── */
+  var btn      = document.getElementById('menuToggleBtn');
+  var nav      = document.getElementById('main-nav');
+  var backdrop = document.getElementById('backdrop');
+  var closeBtn = document.querySelector('.nav-close');
+
+  function openNav() {
+    nav.classList.add('open');
+    backdrop.classList.add('show');
+    btn.setAttribute('aria-expanded', 'true');
+    btn.setAttribute('aria-label', 'নেভিগেশন মেনু বন্ধ করুন');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeNav() {
+    nav.classList.remove('open');
+    backdrop.classList.remove('show');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-label', 'নেভিগেশন মেনু খুলুন');
+    document.body.style.overflow = '';
+  }
+
+  btn.addEventListener('click', function () {
+    nav.classList.contains('open') ? closeNav() : openNav();
+  });
+  if (closeBtn) closeBtn.addEventListener('click', closeNav);
+  backdrop.addEventListener('click', closeNav);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && nav.classList.contains('open')) closeNav();
+  });
+
+  /* ── Reading Progress Bar ── */
+  var bar = document.getElementById('progress-bar');
+  function updateProgress() {
+    var st = window.scrollY || document.documentElement.scrollTop;
+    var dh = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    if (bar && dh > 0) bar.style.width = Math.min(100, (st / dh) * 100) + '%';
+  }
+
+  /* ── Back to Top ── */
+  var btt = document.getElementById('back-to-top');
+  function handleScroll() {
+    updateProgress();
+    if (btt) {
+      if (window.scrollY > 400) btt.classList.add('visible');
+      else btt.classList.remove('visible');
+    }
+  }
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  if (btt) btt.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+})();
+</script>
 
 </body>
 </html>
