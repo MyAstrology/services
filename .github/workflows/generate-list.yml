@@ -23,29 +23,29 @@ jobs:
         with:
           node-version: '18'
 
+      # সরাসরি 'services' ফোল্ডারে কাজ করা
       - name: Install dependencies
-        run: cd services && npm install
+        run: npm install --prefix services
 
       - name: Generate blog list
-        run: cd services && node src/content/blog/generate-list.js
+        run: node services/src/content/blog/generate-list.js
 
       - name: Generate blog sitemap
-        run: cd services && node src/content/blog/generate-sitemap.js
+        run: node services/src/content/blog/generate-sitemap.js
 
       - name: Generate image sitemap
-        run: cd services && node src/content/blog/generate-image-sitemap.js
+        run: node services/src/content/blog/generate-image-sitemap.js
 
       - name: Generate video sitemap
-        run: cd services && node src/content/blog/generate-video-sitemap.js
+        run: node services/src/content/blog/generate-video-sitemap.js
 
       - name: Commit and push changes
         run: |
-          cd services
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-          # ফাইলগুলো পাবলিক ফোল্ডারে আছে, তাই সঠিক পাথ ব্যবহার করা হয়েছে
-          git add src/content/blog/list.json public/my-sitemap.xml public/image-sitemap.xml public/video-sitemap.xml
+          # এখানে সরাসরি সঠিক পাথ উল্লেখ করা হয়েছে
+          git add services/src/content/blog/list.json services/public/my-sitemap.xml services/public/image-sitemap.xml services/public/video-sitemap.xml
           
           git diff --cached --quiet && echo "No changes to commit" && exit 0
           
