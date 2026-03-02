@@ -11,10 +11,6 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # এই ডিরেক্টরিটি সেট করলে সব কমান্ড 'services' ফোল্ডারের ভেতর থেকে চলবে
-    defaults:
-      run:
-        working-directory: services
 
     steps:
       - name: Checkout repository
@@ -28,26 +24,26 @@ jobs:
           node-version: '18'
 
       - name: Install dependencies
-        run: npm install
+        run: cd services && npm install
 
       - name: Generate blog list
-        run: node src/content/blog/generate-list.js
+        run: cd services && node src/content/blog/generate-list.js
 
       - name: Generate blog sitemap
-        run: node src/content/blog/generate-sitemap.js
+        run: cd services && node src/content/blog/generate-sitemap.js
 
       - name: Generate image sitemap
-        run: node src/content/blog/generate-image-sitemap.js
+        run: cd services && node src/content/blog/generate-image-sitemap.js
 
       - name: Generate video sitemap
-        run: node src/content/blog/generate-video-sitemap.js
+        run: cd services && node src/content/blog/generate-video-sitemap.js
 
       - name: Commit and push changes
         run: |
+          cd services
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          # পাথগুলো এখন 'services' ফোল্ডারের সাপেক্ষে সঠিক
           git add src/content/blog/list.json public/my-sitemap.xml public/image-sitemap.xml public/video-sitemap.xml
 
           git diff --cached --quiet && echo "No changes to commit" && exit 0
