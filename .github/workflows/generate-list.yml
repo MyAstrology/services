@@ -35,15 +35,20 @@ jobs:
       - name: Generate image sitemap
         run: node src/content/blog/generate-image-sitemap.js
 
+      - name: Generate video sitemap
+        run: node src/content/blog/generate-video-sitemap.js
+
       - name: Commit and push changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add src/content/blog/list.json my-sitemap.xml image-sitemap.xml
+          git add src/content/blog/list.json my-sitemap.xml image-sitemap.xml video-sitemap.xml
 
           git diff --cached --quiet && echo "✅ No changes to commit" && exit 0
 
           git commit -m "🔄 Auto-update blog list & sitemaps [skip ci]"
-          git push origin main
 
+          git pull --rebase origin main
+
+          git push origin main
