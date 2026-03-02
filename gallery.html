@@ -114,22 +114,20 @@ nav.open{
 /* ── SWIPER HERO ── */
 .swiper-hero-wrap{position:relative;width:100%;margin:0;padding:0;overflow:hidden}
 .mySwiper .swiper-slide img{
-  width:100%;height:460px;
-  object-fit:cover;object-position:center center;
+  width:100%;height:auto;
   display:block
 }
-@media(max-width:768px){.mySwiper .swiper-slide img{height:240px}}
 /* ── ZODIAC WHEEL ── */
 .zodiac-wheel{
   position:absolute;bottom:0;left:0;
-  width:160px;height:160px;
+  width:200px;height:200px;
   background:url('gallery/myastrology-ranaghat-astrology-palmistry.png') no-repeat center/contain;
-  opacity:.6;pointer-events:none;border-radius:50%;z-index:10;
+  opacity:.35;pointer-events:none;border-radius:50%;z-index:10;
   animation:spin 20s linear infinite;
-  filter:drop-shadow(0 0 10px rgba(255,215,0,.5))
+  filter:drop-shadow(0 0 12px rgba(255,215,0,.4))
 }
 @keyframes spin{to{transform:rotate(360deg)}}
-@media(max-width:768px){.zodiac-wheel{width:90px;height:90px}}
+@media(max-width:768px){.zodiac-wheel{width:120px;height:120px}}
 
 /* ── SECTION HEADING ── */
 .sec-head{text-align:center;padding:8px 0 22px}
