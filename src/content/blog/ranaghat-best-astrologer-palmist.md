@@ -75,3 +75,4 @@ twitter_image: "https://astro.myastrology.in/blog/ranaghat-astrologer.webp"
 - লোকেশন: রাণাঘাট, নদীয়া, পশ্চিমবঙ্গ  
 
 **আপনার ভাগ্য নিজেই তৈরি করুন, পথ খুঁজুন, এবং জীবনকে নতুন উচ্চতায় নিয়ে যান।**
+
