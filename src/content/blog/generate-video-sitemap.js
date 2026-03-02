@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const BASE_URL = 'https://astro.myastrology.in';
-const OUT_FILE = path.join(process.cwd(), 'video-sitemap.xml');
+const OUT_FILE = path.join(process.cwd(), 'public', 'video-sitemap.xml');
 
 function extractLiteYouTube(html) {
   const videos = [];
@@ -47,5 +47,5 @@ function extractLiteYouTube(html) {
   xml += `</urlset>\n`;
 
   fs.writeFileSync(OUT_FILE, xml, 'utf8');
-  console.log(`✅ video-sitemap.xml → ${videos.length} videos`);
+  console.log(`✅ public/video-sitemap.xml → ${videos.length} videos`);
 })();
