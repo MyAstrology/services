@@ -15,10 +15,10 @@ function extractLiteYouTube(html) {
 }
 
 (function main() {
-  const videoPagePath = path.join(process.cwd(), 'public', 'video.html');
+  const videoPagePath = path.join(process.cwd(), 'video.html');
 
   if (!fs.existsSync(videoPagePath)) {
-    console.warn('⚠️ video.html not found in public/');
+    console.warn('⚠️ video.html not found');
     fs.writeFileSync(OUT_FILE, `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"></urlset>`);
     return;
   }
