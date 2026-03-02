@@ -109,20 +109,12 @@ nav.open{
 @media(max-width:768px){.scroll-item span{font-size:.88rem}}
 
 /* ── SWIPER HERO ── */
-.swiper-hero-wrap{position:relative;max-width:1000px;margin:28px auto;padding:0 16px}
+.swiper-hero-wrap{position:relative;max-width:1000px;margin:0 auto;padding:0}
 .mySwiper .swiper-slide img{
-  width:100%;height:480px;object-fit:cover;object-position:center top;
-  border-radius:12px;display:block
+  width:100%;height:420px;object-fit:cover;object-position:center top;
+  display:block
 }
-@media(max-width:768px){.mySwiper .swiper-slide img{height:240px}}
-.zodiac-wheel{
-  position:absolute;bottom:20px;left:20px;width:280px;height:280px;
-  background:url('gallery/myastrology-ranaghat-astrology-palmistry.png') no-repeat center/contain;
-  opacity:.38;pointer-events:none;border-radius:50%;z-index:10;
-  animation:spin 24s linear infinite
-}
-@keyframes spin{to{transform:rotate(360deg)}}
-@media(max-width:768px){.zodiac-wheel{width:130px;height:130px;bottom:10px;left:10px}}
+@media(max-width:768px){.mySwiper .swiper-slide img{height:210px}}
 
 /* ── SECTION HEADING ── */
 .sec-head{text-align:center;padding:8px 0 22px}
@@ -249,58 +241,56 @@ nav.open{
 /* ── CTA ── */
 #cta-section{
   background:linear-gradient(160deg,#06091a 0%,#0c1b33 45%,#0e2244 75%,#06091a 100%);
-  padding:44px 24px;text-align:center;position:relative;overflow:hidden
+  padding:28px 20px;text-align:center;position:relative;overflow:hidden
 }
 #cta-section::before{
   content:'';position:absolute;inset:0;pointer-events:none;
-  background:
-    radial-gradient(ellipse at 20% 50%,rgba(255,153,51,.07) 0%,transparent 55%),
-    radial-gradient(ellipse at 80% 20%,rgba(100,180,255,.05) 0%,transparent 50%)
+  background:radial-gradient(ellipse at 30% 50%,rgba(255,153,51,.06) 0%,transparent 60%)
 }
-.cta-wrap{max-width:900px;margin:0 auto;position:relative;z-index:1}
+.cta-wrap{max-width:860px;margin:0 auto;position:relative;z-index:1}
 .cta-pill{
-  display:inline-block;background:rgba(255,153,51,.12);
-  border:1px solid rgba(255,153,51,.45);color:var(--saffron);
-  font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  padding:5px 18px;border-radius:30px;margin-bottom:16px
+  display:inline-block;background:rgba(255,153,51,.1);
+  border:1px solid rgba(255,153,51,.4);color:var(--saffron);
+  font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:3px 14px;border-radius:30px;margin-bottom:10px
 }
 #cta-section h2{
   font-family:'Cinzel',serif;color:#fff;
-  font-size:clamp(1.2rem,3vw,1.75rem);margin-bottom:10px;
-  line-height:1.45;letter-spacing:.02em
+  font-size:clamp(1rem,2.5vw,1.45rem);margin-bottom:6px;
+  line-height:1.4;letter-spacing:.02em
 }
-.cta-sub{color:#8ea8cc;font-size:.9rem;line-height:1.75;margin-bottom:26px;max-width:660px;margin-left:auto;margin-right:auto}
-.cta-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:26px}
-@media(max-width:768px){.cta-cards{grid-template-columns:repeat(4,1fr);gap:7px}}
-@media(max-width:480px){.cta-cards{grid-template-columns:repeat(2,1fr)}}
+.cta-sub{color:#7a9ab8;font-size:.82rem;line-height:1.65;margin-bottom:16px;max-width:620px;margin-left:auto;margin-right:auto}
+.cta-cards{display:grid;grid-template-columns:repeat(8,1fr);gap:7px;margin-bottom:16px}
+@media(max-width:768px){.cta-cards{grid-template-columns:repeat(4,1fr);gap:6px}}
+@media(max-width:400px){.cta-cards{grid-template-columns:repeat(4,1fr)}}
 .cta-card{
-  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
-  border-radius:12px;padding:12px 8px;transition:var(--tr);cursor:default
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);
+  border-radius:10px;padding:9px 5px;transition:var(--tr);cursor:default
 }
-.cta-card:hover{background:rgba(255,153,51,.1);border-color:rgba(255,153,51,.35);transform:translateY(-2px)}
-.cta-card .icon{font-size:1.5rem;margin-bottom:5px}
-.cta-card .label{color:#9ab0cc;font-size:.72rem;font-weight:600;line-height:1.35}
-.cta-div{display:flex;align-items:center;gap:14px;margin-bottom:22px}
-.cta-div::before,.cta-div::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent)}
-.cta-div span{color:#8ea8cc;font-size:.85rem;white-space:nowrap}
-.cta-btns{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-bottom:22px}
+.cta-card:hover{background:rgba(255,153,51,.1);border-color:rgba(255,153,51,.3);transform:translateY(-2px)}
+.cta-card .icon{font-size:1.25rem;margin-bottom:3px}
+.cta-card .label{color:#7a9ab8;font-size:.65rem;font-weight:600;line-height:1.3}
+.cta-div{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.cta-div::before,.cta-div::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent)}
+.cta-div span{color:#607080;font-size:.78rem;white-space:nowrap}
+.cta-btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:14px}
 .cta-btn{
-  display:inline-flex;align-items:center;gap:10px;
-  padding:14px 30px;font-size:.92rem;font-weight:700;border-radius:50px;
+  display:inline-flex;align-items:center;gap:8px;
+  padding:11px 24px;font-size:.85rem;font-weight:700;border-radius:50px;
   transition:var(--tr);font-family:'Noto Serif Bengali',serif
 }
 .cta-gold{
   background:linear-gradient(135deg,#ff6b35,#e8420d);color:#fff;
-  box-shadow:0 6px 22px rgba(255,107,53,.4)
+  box-shadow:0 4px 16px rgba(255,107,53,.38)
 }
-.cta-gold:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(255,107,53,.55)}
+.cta-gold:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,107,53,.5)}
 .cta-green{
   background:linear-gradient(135deg,#25D366,#1aad52);color:#fff;
-  box-shadow:0 6px 22px rgba(37,211,102,.35)
+  box-shadow:0 4px 16px rgba(37,211,102,.32)
 }
-.cta-green:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(37,211,102,.5)}
-.cta-badges{display:flex;flex-wrap:wrap;gap:16px;justify-content:center}
-.cta-badge{display:flex;align-items:center;gap:6px;color:#506070;font-size:.78rem}
+.cta-green:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,.48)}
+.cta-badges{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.cta-badge{display:flex;align-items:center;gap:5px;color:#455060;font-size:.74rem}
 
 /* ── FOOTER ── */
 footer{
@@ -334,37 +324,37 @@ footer{
 
 /* ── WHATSAPP FLOATING ── */
 #wa-wrap{
-  position:fixed;bottom:24px;right:20px;z-index:99999;
-  display:flex;flex-direction:column;align-items:flex-end;gap:10px
+  position:fixed;bottom:18px;right:16px;z-index:99999;
+  display:flex;flex-direction:column;align-items:flex-end;gap:7px
 }
 #wa-bubble{
-  background:#fff;color:#1a1a2e;padding:9px 14px;
-  border-radius:14px 14px 4px 14px;font-size:.78rem;font-weight:600;
-  max-width:175px;line-height:1.5;box-shadow:0 6px 24px rgba(0,0,0,.22);
+  background:#fff;color:#1a1a2e;padding:6px 11px;
+  border-radius:10px 10px 3px 10px;font-size:.72rem;font-weight:600;
+  max-width:150px;line-height:1.4;box-shadow:0 4px 16px rgba(0,0,0,.2);
   border:1.5px solid #25D366;text-align:center;
-  opacity:0;transform:translateX(14px) scale(.9);
-  transition:opacity .35s ease,transform .35s ease;pointer-events:none;
+  opacity:0;transform:translateX(10px) scale(.9);
+  transition:opacity .3s ease,transform .3s ease;pointer-events:none;
   position:relative
 }
 #wa-bubble::after{
-  content:'';position:absolute;bottom:-8px;right:16px;
-  width:0;height:0;border-left:8px solid transparent;
-  border-top:8px solid #25D366
+  content:'';position:absolute;bottom:-7px;right:13px;
+  width:0;height:0;border-left:7px solid transparent;
+  border-top:7px solid #25D366
 }
 #wa-bubble.show{opacity:1;transform:translateX(0) scale(1)}
 #wa-link{
-  width:58px;height:58px;border-radius:50%;
+  width:44px;height:44px;border-radius:50%;
   background:linear-gradient(145deg,#25D366,#1aad52);
   display:flex;align-items:center;justify-content:center;
-  box-shadow:0 6px 22px rgba(37,211,102,.55);
+  box-shadow:0 4px 16px rgba(37,211,102,.5);
   color:#fff;animation:waPulse 2.8s ease-in-out infinite
 }
-#wa-link:hover{transform:scale(1.12)}
-#wa-link svg{width:30px;height:30px;fill:#fff;display:block}
+#wa-link:hover{transform:scale(1.1)}
+#wa-link svg{width:24px;height:24px;fill:#fff;display:block}
 @keyframes waPulse{
-  0%{box-shadow:0 0 0 0 rgba(37,211,102,.55),0 6px 22px rgba(37,211,102,.45)}
-  50%{box-shadow:0 0 0 12px rgba(37,211,102,0),0 6px 22px rgba(37,211,102,.3)}
-  100%{box-shadow:0 0 0 0 rgba(37,211,102,0),0 6px 22px rgba(37,211,102,.45)}
+  0%{box-shadow:0 0 0 0 rgba(37,211,102,.5),0 4px 16px rgba(37,211,102,.4)}
+  50%{box-shadow:0 0 0 9px rgba(37,211,102,0),0 4px 16px rgba(37,211,102,.25)}
+  100%{box-shadow:0 0 0 0 rgba(37,211,102,0),0 4px 16px rgba(37,211,102,.4)}
 }
 </style>
 </head>
@@ -410,7 +400,6 @@ footer{
     <div class="swiper-button-prev"></div>
     <div class="swiper-pagination"></div>
   </div>
-  <div class="zodiac-wheel" role="presentation" aria-hidden="true"></div>
 </div>
 
 <!-- SCROLL BANNER (ব্যানার ছবির নিচে) -->
