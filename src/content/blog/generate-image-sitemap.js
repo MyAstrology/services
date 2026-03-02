@@ -1,9 +1,8 @@
-
 const fs = require('fs');
 const path = require('path');
 
 const BASE_URL = 'https://astro.myastrology.in';
-const OUT_FILE = path.join(process.cwd(), 'image-sitemap.xml');
+const OUT_FILE = path.join(process.cwd(), 'public', 'image-sitemap.xml');
 const IGNORE_DIRS = new Set(['node_modules', '.git', 'dist', '.astro', '.github', 'scripts']);
 const SCAN_DIRS = [
   path.join(process.cwd(), 'public'),
@@ -91,7 +90,6 @@ function escapeXml(str) {
     }
   }
 
-  // Blog posts — image + og_image
   const blogJsonPath = path.join(process.cwd(), 'src/content/blog/list.json');
   if (fs.existsSync(blogJsonPath)) {
     try {
@@ -113,7 +111,6 @@ function escapeXml(str) {
     }
   }
 
-  // XML build
   let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
   xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n`;
   xml += `        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n`;
