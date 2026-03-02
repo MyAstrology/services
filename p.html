@@ -1007,16 +1007,20 @@ _initLoad=false;
 })();
 </script>
 
-  <script type="module">
+<script type="module">
 import { getPanchanga } from './astro.js';
 
-const today = new Date();
-const result = getPanchanga(today);
+document.addEventListener("DOMContentLoaded", () => {
+    const today = new Date();
+    const result = getPanchanga(today);
 
-document.getElementById("tithi").innerText = result.tithi;
-document.getElementById("nakshatra").innerText = result.nakshatra;
-document.getElementById("yoga").innerText = result.yoga;
-document.getElementById("karana").innerText = result.karana;
-  </script>
+    if (result) {
+        document.getElementById("tithi").innerText = result.tithi;
+        document.getElementById("nakshatra").innerText = result.nakshatra;
+        document.getElementById("yoga").innerText = result.yoga;
+        document.getElementById("karana").innerText = result.karana;
+    }
+});
+</script>
 </body>
 </html>
