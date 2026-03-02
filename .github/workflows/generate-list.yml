@@ -14,17 +14,17 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
 
       - name: Install dependencies
-        run: npm install gray-matter fs-extra path
+        run: npm install
 
       - name: Generate blog list
         run: node src/content/blog/generate-list.js
@@ -42,11 +42,7 @@ jobs:
 
           git add src/content/blog/list.json my-sitemap.xml image-sitemap.xml
 
-          # Only commit if changes exist
-          git diff --cached --quiet || git commit -m "🔄 Auto-update blog list & sitemaps"
+          git diff --cached --quiet && echo "✅ No changes to commit" && exit 0
 
-          # Pull remote changes to avoid conflicts
-          git pull --rebase origin main || true
-
-          # Push updated files
+          git commit -m "🔄 Auto-update blog list & sitemaps [skip ci]"
           git push origin main
