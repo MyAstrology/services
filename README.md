@@ -7,6 +7,8 @@
 
 🔗 **[astro.myastrology.in](https://astro.myastrology.in)**
 
+![GitHub Actions](https://github.com/MyAstrology/services/actions/workflows/generate-list.yml/badge.svg)
+
 ---
 
 ## 🔮 Services Offered
@@ -27,6 +29,26 @@
 **Dr. Prodyut Acharya** পশ্চিমবঙ্গের একজন বিখ্যাত জ্যোতিষী ও হস্তরেখাবিদ।
 বৈদিক জ্যোতিষ, হস্তরেখাবিদ্যা, সংখ্যাতত্ত্ব ও বাস্তুশাস্ত্রে বহু বছরের অভিজ্ঞতার সাথে
 তিনি ঐতিহ্যবাহী জ্ঞান ও আধুনিক দৃষ্টিভঙ্গির সমন্বয়ে জীবন পরিবর্তনকারী পরামর্শ প্রদান করেন।
+
+---
+
+## 📞 Contact
+
+| মাধ্যম | যোগাযোগ |
+|--------|---------|
+| 📱 Call | [+91 93331 22768](tel:+919333122768) |
+| 💬 WhatsApp | [wa.me/919333122768](https://wa.me/919333122768) |
+| ✉ Email | [info@myastrology.in](mailto:info@myastrology.in) |
+| 🌐 Website | [astro.myastrology.in](https://astro.myastrology.in) |
+| 🎬 YouTube | [@myastrology](https://youtube.com/@myastrology) |
+
+---
+
+## 👉 Book Your Consultation
+
+জীবনের গুরুত্বপূর্ণ প্রশ্নের সঠিক উত্তর পান।
+
+🌐 **[এখনই Book করুন](https://pages.razorpay.com/Myastrology)**
 
 ---
 
@@ -76,27 +98,12 @@ services/
 ├── site-map.xml
 ├── my-sitemap.xml
 ├── image-sitemap.xml
-└── video-sitemap.xml
+├── video-sitemap.xml
+└── package.json
 ```
 
 ---
 
-## 📞 Contact
+## 📌 SEO Keywords
 
-📱 **[Call Now](tel:+919333122768)** | **[WhatsApp](https://wa.me/919333122768)**
-✉ **Email:** [prodyutacharya7@gmail.com](mailto:prodyutacharya7@gmail.com)
-🌐 **Website:** [astro.myastrology.in](https://astro.myastrology.in)
-
----
-
-## 👉 Book Your Consultation
-
-জীবনের গুরুত্বপূর্ণ প্রশ্নের সঠিক উত্তর পান।
-
-🌐 **[এখনই Book করুন](https://pages.razorpay.com/Myastrology)**
-
----
-
-## 📌 Keywords
-
-Indian Astrology, Palmistry, Online Horoscope, Marriage Problem, Career Astrology, Vastu, Dr. Prodyut Acharya, MyAstrology Ranaghat, Bengali Astrologer, Best Astrologer in India, Bengali Palmistry Expert, Online Astrology Consultation, Vedic Horoscope, Kundli Matching, Astrology in Bengali, জ্যোতিষ, হস্তরেখা, রাশিফল, বাস্তু
+Indian Astrology, Palmistry, Online Horoscope, Marriage Problem, Career Astrology, Vastu, Dr. Prodyut Acharya, MyAstrology Ranaghat, Bengali Astrologer, Best Astrologer in India, Bengali Palmistry Expert, Online Astrology Consultation, Vedic Horoscope, Kundli Matching, Astrology in Bengali, জ্যোতিষ, হস্তরেখা, রাশিফল, বাস্তু, কুণ্ডলী, গ্রহ শান্তি
