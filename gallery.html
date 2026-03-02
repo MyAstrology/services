@@ -79,27 +79,30 @@ a{text-decoration:none}
 
 /* ── HEADER ── */
 header{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:10px 24px;background:var(--navy);color:#fff;
+  display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;
+  padding:10px 20px;background:var(--navy);color:#fff;
   position:sticky;top:0;z-index:1000;
   box-shadow:0 2px 16px rgba(0,0,0,.4);
   border-bottom:2px solid rgba(255,215,0,.2)
 }
-.logo{display:flex;align-items:center;gap:10px;color:var(--gold);font-weight:700;font-size:1.3rem}
-.logo img{height:44px;border-radius:6px}
-.logo-sub{color:#e2e8f0;font-weight:400;font-size:.8rem;display:block;line-height:1.2}
-.hamburger{font-size:1.8rem;cursor:pointer;color:var(--gold);z-index:1100;line-height:1}
+.logo{display:flex;align-items:center;gap:10px;color:var(--gold);font-weight:700;font-size:1.25rem;flex-shrink:0}
+.logo img{height:44px;border-radius:6px;flex-shrink:0}
+.logo-sub{display:none}
+.header-title{text-align:center;line-height:1.3}
+.header-title .ht-main{display:block;font-family:'Cinzel',serif;font-size:clamp(.9rem,2vw,1.15rem);color:var(--gold);font-weight:700;letter-spacing:.04em}
+.header-title .ht-sub{display:block;font-size:clamp(.62rem,1.3vw,.76rem);color:#a8c0d8;font-weight:400;margin-top:2px}
+.hamburger{font-size:1.8rem;cursor:pointer;color:var(--gold);z-index:1100;line-height:1;flex-shrink:0}
 nav{display:none}
 nav ul{list-style:none;display:flex;flex-direction:column;gap:4px}
 nav ul li a{display:block;padding:8px 14px;color:#e2e8f0;font-size:.9rem;border-radius:6px;transition:var(--tr)}
 nav ul li a:hover{background:rgba(255,215,0,.15);color:var(--gold)}
 nav.open{
-  display:flex;position:fixed;top:62px;right:16px;
+  display:flex;position:fixed;top:66px;right:16px;
   background:#0f2040;padding:12px 8px;border-radius:var(--r);
   flex-direction:column;z-index:9999;box-shadow:0 12px 40px rgba(0,0,0,.5);
   border:1px solid rgba(255,215,0,.25);min-width:230px;max-height:82vh;overflow-y:auto
 }
-@media(max-width:768px){.logo{font-size:1.05rem}.logo img{height:36px}}
+@media(max-width:480px){.logo img{height:34px}.logo{font-size:1rem}.hamburger{font-size:1.5rem}}
 
 /* ── SCROLL BANNER ── */
 .scroll-banner{background:var(--navy-deep);overflow:hidden;padding:10px 0;border-top:1px solid rgba(255,215,0,.15);border-bottom:1px solid rgba(255,215,0,.15)}
@@ -109,12 +112,24 @@ nav.open{
 @media(max-width:768px){.scroll-item span{font-size:.88rem}}
 
 /* ── SWIPER HERO ── */
-.swiper-hero-wrap{position:relative;max-width:1000px;margin:0 auto;padding:0}
+.swiper-hero-wrap{position:relative;max-width:1000px;margin:0 auto;padding:0;overflow:hidden}
 .mySwiper .swiper-slide img{
-  width:100%;height:420px;object-fit:cover;object-position:center top;
-  display:block
+  width:100%;height:auto;max-height:500px;
+  object-fit:contain;object-position:center center;
+  background:#0c1b33;display:block
 }
-@media(max-width:768px){.mySwiper .swiper-slide img{height:210px}}
+@media(max-width:768px){.mySwiper .swiper-slide img{max-height:260px}}
+/* ── ZODIAC WHEEL ── */
+.zodiac-wheel{
+  position:absolute;bottom:16px;right:16px;
+  width:120px;height:120px;
+  background:url('gallery/myastrology-ranaghat-astrology-palmistry.png') no-repeat center/contain;
+  opacity:.55;pointer-events:none;border-radius:50%;z-index:10;
+  animation:spin 20s linear infinite;
+  filter:drop-shadow(0 0 8px rgba(255,215,0,.4))
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:768px){.zodiac-wheel{width:70px;height:70px;bottom:8px;right:8px}}
 
 /* ── SECTION HEADING ── */
 .sec-head{text-align:center;padding:8px 0 22px}
@@ -364,7 +379,10 @@ footer{
 <header>
   <div class="logo">
     <img src="images/MyAstrology-Ranghat-logo.png" alt="MyAstrology Logo" width="44" height="44">
-    <div>MyAstrology<span class="logo-sub">ড. প্রদ্যুৎ আচার্য · রানাঘাট</span></div>
+  </div>
+  <div class="header-title">
+    <span class="ht-main">MyAstrology</span>
+    <span class="ht-sub">ড. প্রদ্যুৎ আচার্য · রানাঘাট</span>
   </div>
   <div class="hamburger" id="ham" role="button" tabindex="0" aria-label="মেনু">&#9776;</div>
   <nav id="mnav">
@@ -400,6 +418,7 @@ footer{
     <div class="swiper-button-prev"></div>
     <div class="swiper-pagination"></div>
   </div>
+  <div class="zodiac-wheel" role="presentation" aria-hidden="true"></div>
 </div>
 
 <!-- SCROLL BANNER (ব্যানার ছবির নিচে) -->
