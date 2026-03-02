@@ -45,11 +45,10 @@ jobs:
 
           git add src/content/blog/list.json public/my-sitemap.xml public/image-sitemap.xml public/video-sitemap.xml
 
-          git diff --cached --quiet && echo "✅ No changes to commit" && exit 0
+          git diff --cached --quiet && echo "No changes to commit" && exit 0
 
-          git commit -m "🔄 Auto-update blog list & sitemaps [skip ci]"
+          git commit -m "Auto-update blog list and sitemaps [skip ci]"
 
           git pull --rebase origin main
 
           git push origin main
-
