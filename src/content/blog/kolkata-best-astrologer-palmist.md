@@ -86,3 +86,4 @@ twitter_image: "https://astro.myastrology.in/blog/kolkata-astrologer-palmist.web
 - লোকেশন: রাণাঘাট, নদীয়া, পশ্চিমবঙ্গ  
 
 **আপনার ভাগ্য নিজেই তৈরি করুন, জীবনকে নতুন উচ্চতায় নিয়ে যান এবং নিজের ক্ষমতার আলোয় পথ চলুন।**
+
