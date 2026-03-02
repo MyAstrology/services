@@ -35,4 +35,4 @@ ${allUrls.map(p => `  <url>
 </urlset>`;
 
 fs.writeFileSync(sitemapPath, xml, 'utf8');
-console.log(`✅ ${allUrls.length} blog posts → my-sitemap.xml`);
+const sitemapPath = path.join(process.cwd(), 'public', 'my-sitemap.xml');
