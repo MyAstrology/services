@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const BASE_URL = 'https://astro.myastrology.in';
-const sitemapPath = path.join(process.cwd(), 'my-sitemap.xml');
+const OUTPUT = path.join(process.cwd(), 'public', 'my-sitemap.xml');
 
 function readBlogPosts() {
   const blogPath = path.join(process.cwd(), 'src/content/blog/list.json');
@@ -34,5 +34,5 @@ ${allUrls.map(p => `  <url>
   </url>`).join('\n')}
 </urlset>`;
 
-fs.writeFileSync(sitemapPath, xml, 'utf8');
-const sitemapPath = path.join(process.cwd(), 'public', 'my-sitemap.xml');
+fs.writeFileSync(OUTPUT, xml, 'utf8');
+console.log(`✅ ${allUrls.length} blog posts → public/my-sitemap.xml`);
