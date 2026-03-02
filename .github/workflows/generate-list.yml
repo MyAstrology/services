@@ -11,6 +11,10 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # পুরো জবের জন্য বেস ডিরেক্টরি সেট করা হলো
+    defaults:
+      run:
+        working-directory: services
 
     steps:
       - name: Checkout repository
@@ -24,32 +28,32 @@ jobs:
           node-version: '18'
 
       - name: Install dependencies
-        run: cd services && npm install
+        run: npm install
 
       - name: Generate blog list
-        run: cd services && node src/content/blog/generate-list.js
+        run: node src/content/blog/generate-list.js
 
       - name: Generate blog sitemap
-        run: cd services && node src/content/blog/generate-sitemap.js
+        run: node src/content/blog/generate-sitemap.js
 
       - name: Generate image sitemap
-        run: cd services && node src/content/blog/generate-image-sitemap.js
+        run: node src/content/blog/generate-image-sitemap.js
 
       - name: Generate video sitemap
-        run: cd services && node src/content/blog/generate-video-sitemap.js
+        run: node src/content/blog/generate-video-sitemap.js
 
       - name: Commit and push changes
         run: |
-          cd services
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
+          
+          # এখানে পাথগুলো সরাসরি দেয়া আছে কারণ আমরা অলরেডি 'services' ফোল্ডারের ভেতরে আছি
           git add src/content/blog/list.json public/my-sitemap.xml public/image-sitemap.xml public/video-sitemap.xml
-
+          
           git diff --cached --quiet && echo "No changes to commit" && exit 0
-
+          
           git commit -m "Auto-update blog list and sitemaps [skip ci]"
-
+          
           git pull --rebase origin main
-
+          
           git push origin main
