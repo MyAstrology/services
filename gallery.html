@@ -94,15 +94,15 @@ nav ul{list-style:none;display:flex;flex-direction:column;gap:4px}
 nav ul li a{display:block;padding:8px 14px;color:#e2e8f0;font-size:.9rem;border-radius:6px;transition:var(--tr)}
 nav ul li a:hover{background:rgba(255,215,0,.15);color:var(--gold)}
 nav.open{
-  display:flex;position:absolute;top:64px;right:16px;
-  background:var(--navy-mid);padding:12px 8px;border-radius:var(--r);
-  flex-direction:column;z-index:1001;box-shadow:var(--sh);
-  border:1px solid rgba(255,215,0,.2);min-width:220px;max-height:80vh;overflow-y:auto
+  display:flex;position:fixed;top:62px;right:16px;
+  background:#0f2040;padding:12px 8px;border-radius:var(--r);
+  flex-direction:column;z-index:9999;box-shadow:0 12px 40px rgba(0,0,0,.5);
+  border:1px solid rgba(255,215,0,.25);min-width:230px;max-height:82vh;overflow-y:auto
 }
 @media(max-width:768px){.logo{font-size:1.05rem}.logo img{height:36px}}
 
 /* ── SCROLL BANNER ── */
-.scroll-banner{background:var(--navy-deep);overflow:hidden;padding:10px 0;border-bottom:1px solid rgba(255,215,0,.2)}
+.scroll-banner{background:var(--navy-deep);overflow:hidden;padding:10px 0;border-top:1px solid rgba(255,215,0,.15);border-bottom:1px solid rgba(255,215,0,.15)}
 .scroll-content{display:flex;gap:60px;animation:scrollL 28s linear infinite;will-change:transform}
 .scroll-item span{white-space:nowrap;font-weight:700;font-size:1.05rem;color:var(--gold);text-shadow:0 0 12px rgba(255,215,0,.35)}
 @keyframes scrollL{0%{transform:translateX(20%)}100%{transform:translateX(-120%)}}
@@ -110,14 +110,19 @@ nav.open{
 
 /* ── SWIPER HERO ── */
 .swiper-hero-wrap{position:relative;max-width:1000px;margin:28px auto;padding:0 16px}
+.mySwiper .swiper-slide img{
+  width:100%;height:480px;object-fit:cover;object-position:center top;
+  border-radius:12px;display:block
+}
+@media(max-width:768px){.mySwiper .swiper-slide img{height:240px}}
 .zodiac-wheel{
-  position:absolute;bottom:20px;left:20px;width:200px;height:200px;
+  position:absolute;bottom:20px;left:20px;width:280px;height:280px;
   background:url('gallery/myastrology-ranaghat-astrology-palmistry.png') no-repeat center/contain;
-  opacity:.35;pointer-events:none;border-radius:50%;z-index:10;
+  opacity:.38;pointer-events:none;border-radius:50%;z-index:10;
   animation:spin 24s linear infinite
 }
 @keyframes spin{to{transform:rotate(360deg)}}
-@media(max-width:768px){.zodiac-wheel{width:100px;height:100px;bottom:10px;left:10px}}
+@media(max-width:768px){.zodiac-wheel{width:130px;height:130px;bottom:10px;left:10px}}
 
 /* ── SECTION HEADING ── */
 .sec-head{text-align:center;padding:8px 0 22px}
@@ -192,19 +197,19 @@ nav.open{
 }
 .pan-go-btn{
   display:inline-flex;align-items:center;gap:12px;
-  background:linear-gradient(135deg,#FFD700,#f5a623);
-  color:#06091a;font-family:'Noto Serif Bengali',serif;
+  background:linear-gradient(135deg,#ff6b35,#e8420d);
+  color:#fff;font-family:'Noto Serif Bengali',serif;
   font-size:1.05rem;font-weight:700;padding:17px 40px;
   border-radius:50px;text-decoration:none;
-  box-shadow:0 8px 28px rgba(255,215,0,.45);
+  box-shadow:0 8px 28px rgba(255,107,53,.45);
   transition:.3s cubic-bezier(.4,0,.2,1);
   animation:panGlow 2.5s ease-in-out infinite
 }
-.pan-go-btn:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 14px 36px rgba(255,215,0,.6)}
+.pan-go-btn:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 14px 36px rgba(255,107,53,.65)}
 .pan-go-btn svg{width:22px;height:22px;flex-shrink:0}
 @keyframes panGlow{
-  0%,100%{box-shadow:0 8px 28px rgba(255,215,0,.45)}
-  50%{box-shadow:0 8px 40px rgba(255,215,0,.7)}
+  0%,100%{box-shadow:0 8px 28px rgba(255,107,53,.45)}
+  50%{box-shadow:0 8px 40px rgba(255,107,53,.7)}
 }
 .pan-note{color:#6a85a8;font-size:.78rem}
 
@@ -244,57 +249,58 @@ nav.open{
 /* ── CTA ── */
 #cta-section{
   background:linear-gradient(160deg,#06091a 0%,#0c1b33 45%,#0e2244 75%,#06091a 100%);
-  padding:72px 24px;text-align:center;position:relative;overflow:hidden
+  padding:44px 24px;text-align:center;position:relative;overflow:hidden
 }
 #cta-section::before{
   content:'';position:absolute;inset:0;pointer-events:none;
   background:
-    radial-gradient(ellipse at 20% 50%,rgba(255,215,0,.07) 0%,transparent 55%),
-    radial-gradient(ellipse at 80% 20%,rgba(255,153,51,.06) 0%,transparent 50%)
+    radial-gradient(ellipse at 20% 50%,rgba(255,153,51,.07) 0%,transparent 55%),
+    radial-gradient(ellipse at 80% 20%,rgba(100,180,255,.05) 0%,transparent 50%)
 }
 .cta-wrap{max-width:900px;margin:0 auto;position:relative;z-index:1}
 .cta-pill{
-  display:inline-block;background:rgba(255,215,0,.1);
-  border:1px solid rgba(255,215,0,.4);color:var(--gold);
-  font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
-  padding:5px 18px;border-radius:30px;margin-bottom:22px
+  display:inline-block;background:rgba(255,153,51,.12);
+  border:1px solid rgba(255,153,51,.45);color:var(--saffron);
+  font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:5px 18px;border-radius:30px;margin-bottom:16px
 }
 #cta-section h2{
   font-family:'Cinzel',serif;color:#fff;
-  font-size:clamp(1.35rem,3.5vw,2.1rem);margin-bottom:14px;
+  font-size:clamp(1.2rem,3vw,1.75rem);margin-bottom:10px;
   line-height:1.45;letter-spacing:.02em
 }
-.cta-sub{color:#8ea8cc;font-size:.97rem;line-height:1.8;margin-bottom:38px;max-width:680px;margin-left:auto;margin-right:auto}
-.cta-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:38px}
-@media(max-width:768px){.cta-cards{grid-template-columns:repeat(2,1fr)}}
+.cta-sub{color:#8ea8cc;font-size:.9rem;line-height:1.75;margin-bottom:26px;max-width:660px;margin-left:auto;margin-right:auto}
+.cta-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:26px}
+@media(max-width:768px){.cta-cards{grid-template-columns:repeat(4,1fr);gap:7px}}
+@media(max-width:480px){.cta-cards{grid-template-columns:repeat(2,1fr)}}
 .cta-card{
-  background:rgba(255,255,255,.05);border:1px solid rgba(255,215,0,.18);
-  border-radius:14px;padding:18px 10px;transition:var(--tr);cursor:default
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;padding:12px 8px;transition:var(--tr);cursor:default
 }
-.cta-card:hover{background:rgba(255,215,0,.1);border-color:rgba(255,215,0,.45);transform:translateY(-3px)}
-.cta-card .icon{font-size:1.75rem;margin-bottom:7px}
-.cta-card .label{color:#c8daee;font-size:.78rem;font-weight:600;line-height:1.4}
-.cta-div{display:flex;align-items:center;gap:16px;margin-bottom:34px}
-.cta-div::before,.cta-div::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(255,215,0,.35),transparent)}
-.cta-div span{color:var(--gold);font-size:1rem;white-space:nowrap}
-.cta-btns{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-bottom:28px}
+.cta-card:hover{background:rgba(255,153,51,.1);border-color:rgba(255,153,51,.35);transform:translateY(-2px)}
+.cta-card .icon{font-size:1.5rem;margin-bottom:5px}
+.cta-card .label{color:#9ab0cc;font-size:.72rem;font-weight:600;line-height:1.35}
+.cta-div{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.cta-div::before,.cta-div::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent)}
+.cta-div span{color:#8ea8cc;font-size:.85rem;white-space:nowrap}
+.cta-btns{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-bottom:22px}
 .cta-btn{
   display:inline-flex;align-items:center;gap:10px;
-  padding:16px 34px;font-size:.95rem;font-weight:700;border-radius:50px;
+  padding:14px 30px;font-size:.92rem;font-weight:700;border-radius:50px;
   transition:var(--tr);font-family:'Noto Serif Bengali',serif
 }
 .cta-gold{
-  background:linear-gradient(135deg,#FFD700,#f5a623);color:#06091a;
-  box-shadow:0 6px 24px rgba(255,215,0,.35)
+  background:linear-gradient(135deg,#ff6b35,#e8420d);color:#fff;
+  box-shadow:0 6px 22px rgba(255,107,53,.4)
 }
-.cta-gold:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(255,215,0,.5)}
+.cta-gold:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(255,107,53,.55)}
 .cta-green{
   background:linear-gradient(135deg,#25D366,#1aad52);color:#fff;
-  box-shadow:0 6px 24px rgba(37,211,102,.35)
+  box-shadow:0 6px 22px rgba(37,211,102,.35)
 }
-.cta-green:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(37,211,102,.5)}
-.cta-badges{display:flex;flex-wrap:wrap;gap:20px;justify-content:center}
-.cta-badge{display:flex;align-items:center;gap:7px;color:#607090;font-size:.8rem}
+.cta-green:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(37,211,102,.5)}
+.cta-badges{display:flex;flex-wrap:wrap;gap:16px;justify-content:center}
+.cta-badge{display:flex;align-items:center;gap:6px;color:#506070;font-size:.78rem}
 
 /* ── FOOTER ── */
 footer{
@@ -390,17 +396,15 @@ footer{
   </nav>
 </header>
 
-
-
 <!-- SWIPER HERO -->
 <div class="swiper-hero-wrap">
   <div class="swiper mySwiper">
     <div class="swiper-wrapper">
-      <div class="swiper-slide"><img src="gallery/myastrology-nadia-astrology-gallery.webp" alt="MyAstrology Ranaghat – Astrology & Palmistry by Dr. Prodyut Acharya" fetchpriority="high" style="width:100%;border-radius:12px"></div>
-      <div class="swiper-slide"><img src="gallery/horoscope-reading-bengali-india.webp" alt="Bengali Horoscope Reading – Astrology Consultation Ranaghat" loading="lazy" style="width:100%;border-radius:12px"></div>
-      <div class="swiper-slide"><img src="gallery/vedic-astrology-ranaghat-myastrology.webp" alt="Vedic Astrology Consultation – MyAstrology Ranaghat" loading="lazy" style="width:100%;border-radius:12px"></div>
-      <div class="swiper-slide"><img src="gallery/ranaghat-expect-astrology-consultant.webp" alt="Expert Astrology Consultant Ranaghat – Palmistry & Horoscope" loading="lazy" style="width:100%;border-radius:12px"></div>
-      <div class="swiper-slide"><img src="gallery/vedic-astrologer-dr-prodyut-acharya.webp" alt="Vedic Astrologer Dr. Prodyut Acharya – Astrology Palmistry" loading="lazy" style="width:100%;border-radius:12px"></div>
+      <div class="swiper-slide"><img src="gallery/myastrology-nadia-astrology-gallery.webp" alt="MyAstrology Ranaghat – Astrology & Palmistry by Dr. Prodyut Acharya" fetchpriority="high" ></div>
+      <div class="swiper-slide"><img src="gallery/horoscope-reading-bengali-india.webp" alt="Bengali Horoscope Reading – Astrology Consultation Ranaghat" loading="lazy" ></div>
+      <div class="swiper-slide"><img src="gallery/vedic-astrology-ranaghat-myastrology.webp" alt="Vedic Astrology Consultation – MyAstrology Ranaghat" loading="lazy" ></div>
+      <div class="swiper-slide"><img src="gallery/ranaghat-expect-astrology-consultant.webp" alt="Expert Astrology Consultant Ranaghat – Palmistry & Horoscope" loading="lazy" ></div>
+      <div class="swiper-slide"><img src="gallery/vedic-astrologer-dr-prodyut-acharya.webp" alt="Vedic Astrologer Dr. Prodyut Acharya – Astrology Palmistry" loading="lazy" ></div>
     </div>
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
@@ -409,7 +413,7 @@ footer{
   <div class="zodiac-wheel" role="presentation" aria-hidden="true"></div>
 </div>
 
-  <!-- SCROLL BANNER -->
+<!-- SCROLL BANNER (ব্যানার ছবির নিচে) -->
 <div class="scroll-banner" aria-hidden="true">
   <div class="scroll-content">
     <div class="scroll-item"><span>🔮 জ্যোতিষের দার্শনিক আলোকে – প্রেম, বিবাহ, কর্ম ও ব্যবসার অন্তর্দৃষ্টি</span></div>
@@ -466,19 +470,7 @@ footer{
     <div class="pan-head">
       <p>জানুন আপনার আজকের রাশিফল — প্রেম · কর্ম · অর্থ · স্বাস্থ্য, শুভ সংখ্যা, শুভ রং ও শুভ সময়</p>
     </div>
-    <div class="pan-tags">
-      <span>🔯 দৈনিক রাশিফল</span>
-      <span>❤️ প্রেম রাশিফল</span>
-      <span>💼 কর্ম রাশিফল</span>
-      <span>💰 অর্থ রাশিফল</span>
-      <span>🌿 স্বাস্থ্য রাশিফল</span>
-      <span>🔢 শুভ সংখ্যা</span>
-      <span>🎨 শুভ রং</span>
-      <span>⏰ শুভ সময়</span>
-      <span>📅 আজকের পঞ্জিকা</span>
-    </div>
     <div class="pan-cta-wrap">
-      <!-- Rashi tags -->
       <div class="pan-rashi-icons">
         <div class="ri">🔯 দৈনিক রাশিফল</div>
         <div class="ri">❤️ প্রেম রাশিফল</div>
@@ -808,21 +800,15 @@ document.querySelectorAll('.s-slider').forEach(function(slider){
 
   function show(){
     bubble.classList.remove('show');
-
     setTimeout(()=>{
-      bubble.textContent = msgs[m];
+      bubble.textContent = msgs[m % msgs.length];
+      m++;
       bubble.classList.add('show');
-      m = (m + 1) % msgs.length;
-    }, 400);
+    }, 300);
   }
 
-  // প্রথমে দেখাবে
-  show();
-
-  // প্রতি 3 সেকেন্ডে পরিবর্তন হবে
-  setInterval(show, 3000);
+  setTimeout(()=>{ show(); setInterval(show, 3000); }, 1500);
 })();
 </script>
-
 </body>
 </html>
