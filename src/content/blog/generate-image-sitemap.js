@@ -143,4 +143,6 @@ function escapeXml(str) {
   xml += `</urlset>\n`;
   fs.writeFileSync(OUT_FILE, xml, 'utf8');
   console.log(`✅ image-sitemap.xml → pages: ${totalPages}, images: ${totalImages}`);
+
+  
 })();
