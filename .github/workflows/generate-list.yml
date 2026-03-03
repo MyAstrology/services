@@ -23,36 +23,27 @@ jobs:
         with:
           node-version: '18'
 
-      # প্রতিটি কমান্ডের আগে 'cd services' ব্যবহার করে ডিরেক্টরি ঠিক করা হয়েছে
       - name: Install dependencies
-        run: cd services && npm install
+        run: npm install
 
       - name: Generate blog list
-        run: cd services && node src/content/blog/generate-list.js
+        run: node src/content/blog/generate-list.js
 
       - name: Generate blog sitemap
-        run: cd services && node src/content/blog/generate-sitemap.js
+        run: node src/content/blog/generate-sitemap.js
 
       - name: Generate image sitemap
-        run: cd services && node src/content/blog/generate-image-sitemap.js
+        run: node src/content/blog/generate-image-sitemap.js
 
       - name: Generate video sitemap
-        run: cd services && node src/content/blog/generate-video-sitemap.js
+        run: node src/content/blog/generate-video-sitemap.js
 
       - name: Commit and push changes
         run: |
-          cd services
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
-          # এখানে 'services' ফোল্ডারের ভেতর থেকেই ফাইলগুলো অ্যাড করা হচ্ছে
           git add src/content/blog/list.json public/my-sitemap.xml public/image-sitemap.xml public/video-sitemap.xml
-
           git diff --cached --quiet && echo "No changes to commit" && exit 0
-
           git commit -m "Auto-update blog list and sitemaps [skip ci]"
-
-          # রিমোট রিপোজিটরির সাথে সিঙ্ক করা
           git pull --rebase origin main
-
           git push origin main
