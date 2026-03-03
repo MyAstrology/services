@@ -3,10 +3,18 @@ const path = require('path');
 
 const BASE_URL = 'https://astro.myastrology.in';
 const OUT_FILE = path.join(process.cwd(), 'public', 'image-sitemap.xml');
-const IGNORE_DIRS = new Set(['node_modules', '.git', 'dist', '.astro', '.github', 'scripts']);
+
+// ✅ এই ফোল্ডারগুলো scan করবে না
+const IGNORE_DIRS = new Set([
+  'node_modules', '.git', 'dist', '.astro',
+  '.github', 'scripts', 'fonts', 'assets'
+]);
+
+// ✅ এই তিনটি জায়গায় HTML ফাইল খুঁজবে
 const SCAN_DIRS = [
-  path.join(process.cwd(), 'public'),
-  path.join(process.cwd(), 'src'),
+  process.cwd(),                         // root (index.html, astrology.html ইত্যাদি)
+  path.join(process.cwd(), 'public'),    // public ফোল্ডার
+  path.join(process.cwd(), 'src'),       // src ফোল্ডার
 ];
 
 function walkDir(dir, extFilter = ['.html']) {
@@ -62,7 +70,15 @@ function escapeXml(str) {
   console.log('🔎 Scanning for images...');
   const pageMap = new Map();
 
-  const htmlFiles = SCAN_DIRS.flatMap(dir => walkDir(dir, ['.html']));
+  // ✅ Duplicate HTML ফাইল বাদ দেওয়ার জন্য
+  const seenFiles = new Set();
+  const htmlFiles = SCAN_DIRS.flatMap(dir => walkDir(dir, ['.html']))
+    .filter(f => {
+      if (seenFiles.has(f)) return false;
+      seenFiles.add(f);
+      return true;
+    });
+
   console.log(`📄 Found ${htmlFiles.length} HTML files.`);
 
   for (const htmlPath of htmlFiles) {
@@ -71,13 +87,9 @@ function escapeXml(str) {
       const imgs = extractImagesFromHtml(content);
       if (!imgs.length) continue;
 
-      const relPath = path.relative(
-        path.join(process.cwd(), 'public'), htmlPath
-      ).split(path.sep).join('/');
-
-      const pageUrl = relPath.startsWith('..')
-        ? `/${path.relative(process.cwd(), htmlPath).split(path.sep).join('/')}`
-        : `/${relPath}`;
+      const relPath = path.relative(process.cwd(), htmlPath)
+        .split(path.sep).join('/');
+      const pageUrl = `/${relPath}`;
 
       for (const { src, alt } of imgs) {
         const imageUrl = ensureAbsUrl(src);
@@ -90,6 +102,7 @@ function escapeXml(str) {
     }
   }
 
+  // ✅ Blog post-এর ছবি list.json থেকে
   const blogJsonPath = path.join(process.cwd(), 'src/content/blog/list.json');
   if (fs.existsSync(blogJsonPath)) {
     try {
@@ -111,6 +124,7 @@ function escapeXml(str) {
     }
   }
 
+  // ✅ XML তৈরি
   let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
   xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n`;
   xml += `        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n`;
@@ -143,7 +157,4 @@ function escapeXml(str) {
   xml += `</urlset>\n`;
   fs.writeFileSync(OUT_FILE, xml, 'utf8');
   console.log(`✅ image-sitemap.xml → pages: ${totalPages}, images: ${totalImages}`);
-
-  
 })();
-
