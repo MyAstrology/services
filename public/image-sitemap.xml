@@ -2,6 +2,802 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
+    <loc>https://astro.myastrology.in/about.html</loc>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/MyAstrology-Ranghat-logo.png</image:loc>
+      <image:title><![CDATA[MyAstrology – Dr. Prodyut Acharya Logo]]></image:title>
+      <image:caption><![CDATA[MyAstrology – Dr. Prodyut Acharya Logo]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/Best-Astrologer-in-Kolkota.webp</image:loc>
+      <image:title><![CDATA[MyAstrology – Best Astrology and Palmistry Consultation Services in India]]></image:title>
+      <image:caption><![CDATA[MyAstrology – Best Astrology and Palmistry Consultation Services in India]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/astrology-ranaghat-banner4.webp</image:loc>
+      <image:title><![CDATA[Indian Best Astrologer and Palmist Dr. Prodyut Acharya in Kolkata]]></image:title>
+      <image:caption><![CDATA[Indian Best Astrologer and Palmist Dr. Prodyut Acharya in Kolkata]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/astrology-ranaghat-banner1.webp</image:loc>
+      <image:title><![CDATA[Famous Bengali Jyotish and Palmist Dr. Prodyut Acharya in West Bengal]]></image:title>
+      <image:caption><![CDATA[Famous Bengali Jyotish and Palmist Dr. Prodyut Acharya in West Bengal]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/Palmistry-expert.webp</image:loc>
+      <image:title><![CDATA[Jyotish Darshan – Spiritual Astrology Guidance for Career and Relationship by Expert Astrologer]]></image:title>
+      <image:caption><![CDATA[Jyotish Darshan – Spiritual Astrology Guidance for Career and Relationship by Expert Astrologer]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/MyAstrology-Prodyut-Acharya.webp</image:loc>
+      <image:title><![CDATA[Dr. Prodyut Acharya – Expert Horoscope, Palm Reading and Astrology Consultation]]></image:title>
+      <image:caption><![CDATA[Dr. Prodyut Acharya – Expert Horoscope, Palm Reading and Astrology Consultation]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/assist/astrology-certificate1.jpg</image:loc>
+      <image:title><![CDATA[Jyotish Vidyashree Certificate in Astrology – Dr. Prodyut Acharya, ARP]]></image:title>
+      <image:caption><![CDATA[Jyotish Vidyashree Certificate in Astrology – Dr. Prodyut Acharya, ARP]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/assist/astrology-certificate2.jpg</image:loc>
+      <image:title><![CDATA[Jyotish Bharati Diploma in Astrology – Dr. Prodyut Acharya, ARP]]></image:title>
+      <image:caption><![CDATA[Jyotish Bharati Diploma in Astrology – Dr. Prodyut Acharya, ARP]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/assist/astrology-certificate3.jpg</image:loc>
+      <image:title><![CDATA[Vidya Jyotish Acharya MA in Astrology – Dr. Prodyut Acharya, SKAVSA]]></image:title>
+      <image:caption><![CDATA[Vidya Jyotish Acharya MA in Astrology – Dr. Prodyut Acharya, SKAVSA]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/assist/astrology-certificate4.jpg</image:loc>
+      <image:title><![CDATA[Vidya Jyotish Bachaspati MPhil in Astrology – Dr. Prodyut Acharya, SKAVSA]]></image:title>
+      <image:caption><![CDATA[Vidya Jyotish Bachaspati MPhil in Astrology – Dr. Prodyut Acharya, SKAVSA]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/assist/astrology-certificate5.jpg</image:loc>
+      <image:title><![CDATA[Vidya Baridhi PhD in Astrology – Dr. Prodyut Acharya, Gold Medal, SKAVSA]]></image:title>
+      <image:caption><![CDATA[Vidya Baridhi PhD in Astrology – Dr. Prodyut Acharya, Gold Medal, SKAVSA]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/assist/astrology-certificate6.jpg</image:loc>
+      <image:title><![CDATA[Certified Gem Therapist – Dr. Prodyut Acharya, SKAVSA]]></image:title>
+      <image:caption><![CDATA[Certified Gem Therapist – Dr. Prodyut Acharya, SKAVSA]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/assist/astrology-certificate7.jpg</image:loc>
+      <image:title><![CDATA[Maa Sarada Devi Award – South Kolkata Astrology & Vastu Science Academy, presented to Bipul Bala]]></image:title>
+      <image:caption><![CDATA[Maa Sarada Devi Award – South Kolkata Astrology & Vastu Science Academy, presented to Bipul Bala]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/assist/astrology-certificate8.jpg</image:loc>
+      <image:title><![CDATA[Netaji Subhas Chandra Bose Award Certificate – SKAVSA Astrology Conference]]></image:title>
+      <image:caption><![CDATA[Netaji Subhas Chandra Bose Award Certificate – SKAVSA Astrology Conference]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/assist/astrology-certificate10.jpg</image:loc>
+      <image:title><![CDATA[Swami Vivekananda Award – South Kolkata Astrology & Vastu Science Academy for contributions in Jyotish]]></image:title>
+      <image:caption><![CDATA[Swami Vivekananda Award – South Kolkata Astrology & Vastu Science Academy for contributions in Jyotish]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/assist/astrology-certificate11.jpg</image:loc>
+      <image:title><![CDATA[Best of the Best Award 2018 – Prodyut Acharya, SKAVSA Astrology and Jyotishko Magazine]]></image:title>
+      <image:caption><![CDATA[Best of the Best Award 2018 – Prodyut Acharya, SKAVSA Astrology and Jyotishko Magazine]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/assist/astrology-certificate9.jpg</image:loc>
+      <image:title><![CDATA[YouTube Silver Play Button – My Astrology Channel 100K Subscribers Award]]></image:title>
+      <image:caption><![CDATA[YouTube Silver Play Button – My Astrology Channel 100K Subscribers Award]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/assist/astrology-certificate12.jpg</image:loc>
+      <image:title><![CDATA[Gem Therapy Certificate – Prodyut Acharya, SKAVSA Astrology]]></image:title>
+      <image:caption><![CDATA[Gem Therapy Certificate – Prodyut Acharya, SKAVSA Astrology]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/assist/astrology-certificate13.jpg</image:loc>
+      <image:title><![CDATA[Life Membership Certificate – South Kolkata Astrology & Vastu Science Academy (SKAVSA)]]></image:title>
+      <image:caption><![CDATA[Life Membership Certificate – South Kolkata Astrology & Vastu Science Academy (SKAVSA)]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://astro.myastrology.in/astrology.html</loc>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/MyAstrology-Ranghat-logo.png</image:loc>
+      <image:title><![CDATA[MyAstrology Ranaghat Logo]]></image:title>
+      <image:caption><![CDATA[MyAstrology Ranaghat Logo]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/MyAstrology-Prodyut-Acharya.webp</image:loc>
+      <image:title><![CDATA[ড. প্রদ্যুৎ আচার্য — MyAstrology, Ranaghat, West Bengal — Vedic Astrology ও Palmistry বিশেষজ্ঞ]]></image:title>
+      <image:caption><![CDATA[ড. প্রদ্যুৎ আচার্য — MyAstrology, Ranaghat, West Bengal — Vedic Astrology ও Palmistry বিশেষজ্ঞ]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/jyotish-map.jpg</image:loc>
+      <image:title><![CDATA[জন্মকুণ্ডলী মানচিত্র — Vedic Astrology Birth Chart, আত্মার চেতনার প্রতিফলন, Dr. Prodyut Acharya]]></image:title>
+      <image:caption><![CDATA[জন্মকুণ্ডলী মানচিত্র — Vedic Astrology Birth Chart, আত্মার চেতনার প্রতিফলন, Dr. Prodyut Acharya]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/historical-root.jpg</image:loc>
+      <image:title><![CDATA[বৈদিক জ্যোতিষ শাস্ত্রের ঐতিহাসিক শিকড় ও প্রাচীন বেদাঙ্গ গ্রন্থ — Vedic Jyotish History India]]></image:title>
+      <image:caption><![CDATA[বৈদিক জ্যোতিষ শাস্ত্রের ঐতিহাসিক শিকড় ও প্রাচীন বেদাঙ্গ গ্রন্থ — Vedic Jyotish History India]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/philosophy-bengali.jpg</image:loc>
+      <image:title><![CDATA[Prodyut Acharya-এর দার্শনিক ব্যাখ্যায় গ্রহ ও তাদের প্রভাব — Planetary Influences Vedic Astrology]]></image:title>
+      <image:caption><![CDATA[Prodyut Acharya-এর দার্শনিক ব্যাখ্যায় গ্রহ ও তাদের প্রভাব — Planetary Influences Vedic Astrology]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/psychology-astrology.jpg</image:loc>
+      <image:title><![CDATA[Prodyut Acharya]]></image:title>
+      <image:caption><![CDATA[Prodyut Acharya]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/Quantum_Vibration.png</image:loc>
+      <image:title><![CDATA[ভারতীয় জ্যোতিষ ও কোয়ান্টাম কম্পনের সম্পর্ক — Quantum Physics Vedic Astrology Connection]]></image:title>
+      <image:caption><![CDATA[ভারতীয় জ্যোতিষ ও কোয়ান্টাম কম্পনের সম্পর্ক — Quantum Physics Vedic Astrology Connection]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/Vedic_Astrology_chart.png</image:loc>
+      <image:title><![CDATA[জ্যোতিষশাস্ত্রের জন্মকুণ্ডলীর চিত্র — Vedic Astrology Kundali Chart, সম্পর্ক ও কর্ম বিশ্লেষণ]]></image:title>
+      <image:caption><![CDATA[জ্যোতিষশাস্ত্রের জন্মকুণ্ডলীর চিত্র — Vedic Astrology Kundali Chart, সম্পর্ক ও কর্ম বিশ্লেষণ]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/Indian_style.jpg</image:loc>
+      <image:title><![CDATA[জন্মকুণ্ডলীর একটি আলোকচিত্রী মানচিত্র — Indian Astrology Style, Vedic Jyotish Chart]]></image:title>
+      <image:caption><![CDATA[জন্মকুণ্ডলীর একটি আলোকচিত্রী মানচিত্র — Indian Astrology Style, Vedic Jyotish Chart]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/Ancient_Indian_Astrology_Chart.jpg</image:loc>
+      <image:title><![CDATA[প্রাচীন ভারতীয় জ্যোতিষশাস্ত্রের একটি মানচিত্র — Ancient Indian Astrology Chart Vedic]]></image:title>
+      <image:caption><![CDATA[প্রাচীন ভারতীয় জ্যোতিষশাস্ত্রের একটি মানচিত্র — Ancient Indian Astrology Chart Vedic]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://astro.myastrology.in/blog-list.html</loc>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/MyAstrology-Ranghat-logo.png</image:loc>
+      <image:title><![CDATA[MyAstrology]]></image:title>
+      <image:caption><![CDATA[MyAstrology]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/${p.image ||</image:loc>
+      <image:title><![CDATA[${p.title || ]]></image:title>
+      <image:caption><![CDATA[${p.title || ]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://astro.myastrology.in/blog.html</loc>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/MyAstrology-Ranghat-logo.png</image:loc>
+      <image:title><![CDATA[MyAstrology]]></image:title>
+      <image:caption><![CDATA[MyAstrology]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/${p.image||</image:loc>
+      <image:title><![CDATA[${p.title||]]></image:title>
+      <image:caption><![CDATA[${p.title||]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://astro.myastrology.in/gallery.html</loc>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/MyAstrology-Ranghat-logo.png</image:loc>
+      <image:title><![CDATA[MyAstrology Logo]]></image:title>
+      <image:caption><![CDATA[MyAstrology Logo]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/myastrology-nadia-astrology-gallery.webp</image:loc>
+      <image:title><![CDATA[MyAstrology Ranaghat – Astrology & Palmistry by Dr. Prodyut Acharya]]></image:title>
+      <image:caption><![CDATA[MyAstrology Ranaghat – Astrology & Palmistry by Dr. Prodyut Acharya]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/horoscope-reading-bengali-india.webp</image:loc>
+      <image:title><![CDATA[Bengali Horoscope Reading – Astrology Consultation Ranaghat]]></image:title>
+      <image:caption><![CDATA[Bengali Horoscope Reading – Astrology Consultation Ranaghat]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/vedic-astrology-ranaghat-myastrology.webp</image:loc>
+      <image:title><![CDATA[Vedic Astrology Consultation – MyAstrology Ranaghat]]></image:title>
+      <image:caption><![CDATA[Vedic Astrology Consultation – MyAstrology Ranaghat]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/ranaghat-expect-astrology-consultant.webp</image:loc>
+      <image:title><![CDATA[Expert Astrology Consultant Ranaghat – Palmistry & Horoscope]]></image:title>
+      <image:caption><![CDATA[Expert Astrology Consultant Ranaghat – Palmistry & Horoscope]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/vedic-astrologer-dr-prodyut-acharya.webp</image:loc>
+      <image:title><![CDATA[Vedic Astrologer Dr. Prodyut Acharya – Astrology Palmistry]]></image:title>
+      <image:caption><![CDATA[Vedic Astrologer Dr. Prodyut Acharya – Astrology Palmistry]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/ranaghat-horoscope-palm-reading-services.webp</image:loc>
+      <image:title><![CDATA[Ranaghat Horoscope & Palm Reading – MyAstrology]]></image:title>
+      <image:caption><![CDATA[Ranaghat Horoscope & Palm Reading – MyAstrology]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/myastrology-ranaghat-astrology-palmistry.webp</image:loc>
+      <image:title><![CDATA[MyAstrology Ranaghat Astrology & Palmistry Consultation]]></image:title>
+      <image:caption><![CDATA[MyAstrology Ranaghat Astrology & Palmistry Consultation]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/astrologer-best-palmist-dr-prodyut-acharya.webp</image:loc>
+      <image:title><![CDATA[Best Astrologer & Palmist – Dr. Prodyut Acharya]]></image:title>
+      <image:caption><![CDATA[Best Astrologer & Palmist – Dr. Prodyut Acharya]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/astrologer-expert-palmist-nadia.webp</image:loc>
+      <image:title><![CDATA[Expert Palmist Nadia District – Astrology Consultation]]></image:title>
+      <image:caption><![CDATA[Expert Palmist Nadia District – Astrology Consultation]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/astrology-palmistry-consultation-ranaghat.webp</image:loc>
+      <image:title><![CDATA[Astrology & Palmistry Consultation Ranaghat]]></image:title>
+      <image:caption><![CDATA[Astrology & Palmistry Consultation Ranaghat]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/online-astrology-consultation-india.webp</image:loc>
+      <image:title><![CDATA[Online Astrology Consultation India – Dr. Prodyut Acharya]]></image:title>
+      <image:caption><![CDATA[Online Astrology Consultation India – Dr. Prodyut Acharya]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/marriage-matching-astrology-ranaghat.webp</image:loc>
+      <image:title><![CDATA[Marriage Matching Astrology – Ranaghat Kundli]]></image:title>
+      <image:caption><![CDATA[Marriage Matching Astrology – Ranaghat Kundli]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/palm-reading-service-ranaghat.webp</image:loc>
+      <image:title><![CDATA[Palm Reading Service Ranaghat – Hasta Rekha Analysis]]></image:title>
+      <image:caption><![CDATA[Palm Reading Service Ranaghat – Hasta Rekha Analysis]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/vastu-consultant-in-ranaghat.webp</image:loc>
+      <image:title><![CDATA[Vastu Consultant Ranaghat – Dr. Prodyut Acharya]]></image:title>
+      <image:caption><![CDATA[Vastu Consultant Ranaghat – Dr. Prodyut Acharya]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/kundli-matching-online-india.webp</image:loc>
+      <image:title><![CDATA[Kundli Matching Online India – MyAstrology]]></image:title>
+      <image:caption><![CDATA[Kundli Matching Online India – MyAstrology]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/astrology-consultation-ranaghat-dr-prodyut-acharya.webp</image:loc>
+      <image:title><![CDATA[Astrology Consultation Ranaghat – Dr. Prodyut Acharya]]></image:title>
+      <image:caption><![CDATA[Astrology Consultation Ranaghat – Dr. Prodyut Acharya]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/best-astrologer-in-ranaghat-india.webp</image:loc>
+      <image:title><![CDATA[Best Astrologer Ranaghat India – PhD Gold Medalist]]></image:title>
+      <image:caption><![CDATA[Best Astrologer Ranaghat India – PhD Gold Medalist]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/indian-palmistry-consultation-ranaghat.webp</image:loc>
+      <image:title><![CDATA[Indian Palmistry Consultation Ranaghat]]></image:title>
+      <image:caption><![CDATA[Indian Palmistry Consultation Ranaghat]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/myastrology-horoscope-analysis.webp</image:loc>
+      <image:title><![CDATA[MyAstrology Horoscope Analysis – Kundli Reading]]></image:title>
+      <image:caption><![CDATA[MyAstrology Horoscope Analysis – Kundli Reading]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/dr-prodyut-acharya-astrology-palmistry.webp</image:loc>
+      <image:title><![CDATA[Dr. Prodyut Acharya Astrology & Palmistry Expert]]></image:title>
+      <image:caption><![CDATA[Dr. Prodyut Acharya Astrology & Palmistry Expert]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/horoscope-reading-in-bengali-india.webp</image:loc>
+      <image:title><![CDATA[Bengali Horoscope Reading India – Astrology & Kundli]]></image:title>
+      <image:caption><![CDATA[Bengali Horoscope Reading India – Astrology & Kundli]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/nadia-best-astrology-consultant.webp</image:loc>
+      <image:title><![CDATA[Best Astrology Consultant Nadia – Vedic Astrologer]]></image:title>
+      <image:caption><![CDATA[Best Astrology Consultant Nadia – Vedic Astrologer]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/numerology-service-ranaghat-myastrology.webp</image:loc>
+      <image:title><![CDATA[Numerology Service Ranaghat – Name & Life Path Analysis]]></image:title>
+      <image:caption><![CDATA[Numerology Service Ranaghat – Name & Life Path Analysis]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/professional-astrologer-dr-prodyut-acharya.webp</image:loc>
+      <image:title><![CDATA[Professional Astrologer Dr. Prodyut Acharya]]></image:title>
+      <image:caption><![CDATA[Professional Astrologer Dr. Prodyut Acharya]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/myastrology-ranaghat-astrology-gallery.webp</image:loc>
+      <image:title><![CDATA[MyAstrology Ranaghat Gallery – Kundli & Horoscope]]></image:title>
+      <image:caption><![CDATA[MyAstrology Ranaghat Gallery – Kundli & Horoscope]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/astrology-and-palmistry-service-india.webp</image:loc>
+      <image:title><![CDATA[Astrology & Palmistry Service India – Spiritual Guidance]]></image:title>
+      <image:caption><![CDATA[Astrology & Palmistry Service India – Spiritual Guidance]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/gemstone-consultation-dr-prodyut-acharya.webp</image:loc>
+      <image:title><![CDATA[Gemstone Consultation Dr. Prodyut Acharya – Vedic Astrology]]></image:title>
+      <image:caption><![CDATA[Gemstone Consultation Dr. Prodyut Acharya – Vedic Astrology]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/love-relationship-astrology-ranaghat.webp</image:loc>
+      <image:title><![CDATA[Love & Relationship Astrology Ranaghat – Compatibility]]></image:title>
+      <image:caption><![CDATA[Love & Relationship Astrology Ranaghat – Compatibility]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/career-astrology-consultation-india.webp</image:loc>
+      <image:title><![CDATA[Career Astrology Consultation India – Job & Business]]></image:title>
+      <image:caption><![CDATA[Career Astrology Consultation India – Job & Business]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/zodiac-sign-analysis-by-dr-prodyut.webp</image:loc>
+      <image:title><![CDATA[Zodiac Sign Analysis – Dr. Prodyut Acharya]]></image:title>
+      <image:caption><![CDATA[Zodiac Sign Analysis – Dr. Prodyut Acharya]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/myastrology-ranaghat-astrology-palmistry-consultant.webp</image:loc>
+      <image:title><![CDATA[Vedic Astrologer & Palmist – MyAstrology Ranaghat West Bengal]]></image:title>
+      <image:caption><![CDATA[Vedic Astrologer & Palmist – MyAstrology Ranaghat West Bengal]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/ranaghat-top-astrology-consultant.webp</image:loc>
+      <image:title><![CDATA[Top Astrology Consultant Ranaghat – PhD Gold Medalist]]></image:title>
+      <image:caption><![CDATA[Top Astrology Consultant Ranaghat – PhD Gold Medalist]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/best-astrologer-palmist-dr-prodyut-acharya.webp</image:loc>
+      <image:title><![CDATA[Best Astrologer Palmist Dr. Prodyut Acharya Online Consultation]]></image:title>
+      <image:caption><![CDATA[Best Astrologer Palmist Dr. Prodyut Acharya Online Consultation]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/myastrology-ranaghat-horoscope-palm-reading.webp</image:loc>
+      <image:title><![CDATA[MyAstrology Ranaghat Horoscope & Palm Reading]]></image:title>
+      <image:caption><![CDATA[MyAstrology Ranaghat Horoscope & Palm Reading]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/astrology-palmistry-services-best.webp</image:loc>
+      <image:title><![CDATA[Best Astrology & Palmistry Services – MyAstrology India]]></image:title>
+      <image:caption><![CDATA[Best Astrology & Palmistry Services – MyAstrology India]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/palm-reading-service-kolkata.webp</image:loc>
+      <image:title><![CDATA[Palm Reading Service Kolkata – Hasta Rekha Dr. Prodyut Acharya]]></image:title>
+      <image:caption><![CDATA[Palm Reading Service Kolkata – Hasta Rekha Dr. Prodyut Acharya]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/vedic-astrology-consultation-india.webp</image:loc>
+      <image:title><![CDATA[Vedic Astrology Consultation India – PhD Astrologer Gold Medalist]]></image:title>
+      <image:caption><![CDATA[Vedic Astrology Consultation India – PhD Astrologer Gold Medalist]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/marriage-astrology-ranaghat.webp</image:loc>
+      <image:title><![CDATA[Marriage Astrology Ranaghat – Kundli Matching & Compatibility]]></image:title>
+      <image:caption><![CDATA[Marriage Astrology Ranaghat – Kundli Matching & Compatibility]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/astrology-consultant-in-ranaghat.webp</image:loc>
+      <image:title><![CDATA[Astrology Consultant Ranaghat – Horoscope & Spiritual Guidance]]></image:title>
+      <image:caption><![CDATA[Astrology Consultant Ranaghat – Horoscope & Spiritual Guidance]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/gallery/vedic-astrology-predictions-india.webp</image:loc>
+      <image:title><![CDATA[Vedic Astrology Predictions India – Zodiac & Kundli Analysis]]></image:title>
+      <image:caption><![CDATA[Vedic Astrology Predictions India – Zodiac & Kundli Analysis]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://astro.myastrology.in/index.html</loc>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/MyAstrology-Ranghat-logo.png</image:loc>
+      <image:title><![CDATA[MyAstrology Ranaghat Logo]]></image:title>
+      <image:caption><![CDATA[MyAstrology Ranaghat Logo]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/astrology-ranaghat-banner1.webp</image:loc>
+      <image:title><![CDATA[Best Astrologer in Ranaghat Dr. Prodyut Acharya – Vedic Jyotish Palmistry Consultation]]></image:title>
+      <image:caption><![CDATA[Best Astrologer in Ranaghat Dr. Prodyut Acharya – Vedic Jyotish Palmistry Consultation]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/astrology-ranaghat-banner2.webp</image:loc>
+      <image:title><![CDATA[Online Astrology Palmistry India – Love Marriage Career Kundli Matching]]></image:title>
+      <image:caption><![CDATA[Online Astrology Palmistry India – Love Marriage Career Kundli Matching]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/astrology-ranaghat-banner3.webp</image:loc>
+      <image:title><![CDATA[Vedic Astrology Palm Reading – Accurate Horoscope Spiritual Guidance Ranaghat]]></image:title>
+      <image:caption><![CDATA[Vedic Astrology Palm Reading – Accurate Horoscope Spiritual Guidance Ranaghat]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/astrology-ranaghat-banner4.webp</image:loc>
+      <image:title><![CDATA[Indian Astrology Palmistry Vastu Consultation – Ranaghat West Bengal Expert]]></image:title>
+      <image:caption><![CDATA[Indian Astrology Palmistry Vastu Consultation – Ranaghat West Bengal Expert]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/astrology-ranaghat-banner5.webp</image:loc>
+      <image:title><![CDATA[Professional Astrologer Palmist MyAstrology Online Consultation Pan-India]]></image:title>
+      <image:caption><![CDATA[Professional Astrologer Palmist MyAstrology Online Consultation Pan-India]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/Palm Reading Consultation.webp</image:loc>
+      <image:title><![CDATA[Online Palm Reading Consultation Dr Prodyut Acharya Ranaghat West Bengal]]></image:title>
+      <image:caption><![CDATA[Online Palm Reading Consultation Dr Prodyut Acharya Ranaghat West Bengal]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/birth-chart-reading-vedic-astrology.webp</image:loc>
+      <image:title><![CDATA[Horoscope Analysis Birth Chart Reading Vedic Astrology Dr Prodyut Acharya]]></image:title>
+      <image:caption><![CDATA[Horoscope Analysis Birth Chart Reading Vedic Astrology Dr Prodyut Acharya]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/kundli-matching-bengali-astrology.webp</image:loc>
+      <image:title><![CDATA[Kundli Matching Vedic Horoscope Compatibility Marriage Bengali Astrologer]]></image:title>
+      <image:caption><![CDATA[Kundli Matching Vedic Horoscope Compatibility Marriage Bengali Astrologer]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/love-marriage-astrology-specialist.webp</image:loc>
+      <image:title><![CDATA[Love Marriage Problem Solution Astrology Consultation Online India]]></image:title>
+      <image:caption><![CDATA[Love Marriage Problem Solution Astrology Consultation Online India]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/career-astrology-business-success.webp</image:loc>
+      <image:title><![CDATA[Career Business Astrology Consultation Dr Prodyut Acharya Online India]]></image:title>
+      <image:caption><![CDATA[Career Business Astrology Consultation Dr Prodyut Acharya Online India]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/best-gemstone-astrologer-india.webp</image:loc>
+      <image:title><![CDATA[Gemstone Recommendation Planetary Guidance Dr Prodyut Acharya India]]></image:title>
+      <image:caption><![CDATA[Gemstone Recommendation Planetary Guidance Dr Prodyut Acharya India]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/online-astrologer-whatsapp-phone.webp</image:loc>
+      <image:title><![CDATA[Online Astrology Consultation Phone WhatsApp Video Call Pan-India]]></image:title>
+      <image:caption><![CDATA[Online Astrology Consultation Phone WhatsApp Video Call Pan-India]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/shubh-muhurta-panjika-timing.webp</image:loc>
+      <image:title><![CDATA[Auspicious Muhurta Timing Vedic Astrology Panjika]]></image:title>
+      <image:caption><![CDATA[Auspicious Muhurta Timing Vedic Astrology Panjika]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/vastu-consultant-ranaghat-west-bengal.webp</image:loc>
+      <image:title><![CDATA[Vastu Consultation Home Office Shastra Expert Ranaghat West Bengal]]></image:title>
+      <image:caption><![CDATA[Vastu Consultation Home Office Shastra Expert Ranaghat West Bengal]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/vedic-baby-naming-service.webp</image:loc>
+      <image:title><![CDATA[Born Baby Name Namakarana Astrology Vedic Name Selection Dr Prodyut Acharya]]></image:title>
+      <image:caption><![CDATA[Born Baby Name Namakarana Astrology Vedic Name Selection Dr Prodyut Acharya]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/numerological-name-correction.webp</image:loc>
+      <image:title><![CDATA[Name Correction Numerology Astrology Naam Shuddhi Dr Prodyut Acharya]]></image:title>
+      <image:caption><![CDATA[Name Correction Numerology Astrology Naam Shuddhi Dr Prodyut Acharya]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/Best-Astrologer-in-Kolkota.webp</image:loc>
+      <image:title><![CDATA[Dr Prodyut Acharya Best Astrologer Palmist Ranaghat West Bengal]]></image:title>
+      <image:caption><![CDATA[Dr Prodyut Acharya Best Astrologer Palmist Ranaghat West Bengal]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://astro.myastrology.in/palmistry.html</loc>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/MyAstrology-Ranghat-logo.png</image:loc>
+      <image:title><![CDATA[MyAstrology Logo – Dr. Prodyut Acharya]]></image:title>
+      <image:caption><![CDATA[MyAstrology Logo – Dr. Prodyut Acharya]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/astrologer-india-banner1.webp</image:loc>
+      <image:title><![CDATA[MyAstrology – Best Indian Astrologer Dr. Prodyut Acharya]]></image:title>
+      <image:caption><![CDATA[MyAstrology – Best Indian Astrologer Dr. Prodyut Acharya]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/astrologer-india-banner2.webp</image:loc>
+      <image:title><![CDATA[Astrology and Palmistry Consultation – Dr. Prodyut Acharya]]></image:title>
+      <image:caption><![CDATA[Astrology and Palmistry Consultation – Dr. Prodyut Acharya]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/astrologer-india-banner3.webp</image:loc>
+      <image:title><![CDATA[Vedic Astrology and Palm Reading Services – MyAstrology]]></image:title>
+      <image:caption><![CDATA[Vedic Astrology and Palm Reading Services – MyAstrology]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/Online-Astrology-and-Palmistry Consultant.webp</image:loc>
+      <image:title><![CDATA[MyAstrology Ranaghat – Online Astrology and Palmistry]]></image:title>
+      <image:caption><![CDATA[MyAstrology Ranaghat – Online Astrology and Palmistry]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/astrology-and-palmistry.webp</image:loc>
+      <image:title><![CDATA[Professional Astrologer and Palmist Dr. Prodyut Acharya]]></image:title>
+      <image:caption><![CDATA[Professional Astrologer and Palmist Dr. Prodyut Acharya]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/palmistry-line-brain-lobes.webp</image:loc>
+      <image:title><![CDATA[Illustration showing connection between palmistry hand lines and brain lobes in Jyotish]]></image:title>
+      <image:caption><![CDATA[Illustration showing connection between palmistry hand lines and brain lobes in Jyotish]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/Palmistry-colour.webp</image:loc>
+      <image:title><![CDATA[Palm morphology types and the sacred meaning of hand colours in Samudrik Shastra]]></image:title>
+      <image:caption><![CDATA[Palm morphology types and the sacred meaning of hand colours in Samudrik Shastra]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/Palmistry-finger-and-mount.webp</image:loc>
+      <image:title><![CDATA[Fingers and planetary mounts connection — brain and Jyotish in hasta rekha analysis]]></image:title>
+      <image:caption><![CDATA[Fingers and planetary mounts connection — brain and Jyotish in hasta rekha analysis]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/main-six-palm-lines.webp</image:loc>
+      <image:title><![CDATA[Main six palm lines in hasta rekha — spiritual, Jyotish and scientific meaning]]></image:title>
+      <image:caption><![CDATA[Main six palm lines in hasta rekha — spiritual, Jyotish and scientific meaning]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/auspicious-inauspicious-signs.webp</image:loc>
+      <image:title><![CDATA[Auspicious and inauspicious symbols in hasta rekha analysis — Samudrik Shastra]]></image:title>
+      <image:caption><![CDATA[Auspicious and inauspicious symbols in hasta rekha analysis — Samudrik Shastra]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://upload.wikimedia.org/wikipedia/commons/c/c2/F_icon.svg</image:loc>
+      <image:title><![CDATA[Facebook]]></image:title>
+      <image:caption><![CDATA[Facebook]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg</image:loc>
+      <image:title><![CDATA[YouTube]]></image:title>
+      <image:caption><![CDATA[YouTube]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png</image:loc>
+      <image:title><![CDATA[LinkedIn]]></image:title>
+      <image:caption><![CDATA[LinkedIn]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png</image:loc>
+      <image:title><![CDATA[Instagram]]></image:title>
+      <image:caption><![CDATA[Instagram]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg</image:loc>
+      <image:title><![CDATA[WhatsApp]]></image:title>
+      <image:caption><![CDATA[WhatsApp]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://astro.myastrology.in/rashifal.html</loc>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/MyAstrology-Ranghat-logo.png</image:loc>
+      <image:title><![CDATA[MyAstrology Logo – Dr. Prodyut Acharya]]></image:title>
+      <image:caption><![CDATA[MyAstrology Logo – Dr. Prodyut Acharya]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/astrology-ranaghat-banner4.webp</image:loc>
+      <image:title><![CDATA[বৈদিক জ্যোতির্বিজ্ঞান ও রাশিচক্র ব্যানার]]></image:title>
+      <image:caption><![CDATA[বৈদিক জ্যোতির্বিজ্ঞান ও রাশিচক্র ব্যানার]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/chandra-rashi.jpg</image:loc>
+      <image:title><![CDATA[জন্ম রাশি ও চন্দ্র রাশি বিশ্লেষণ – Dr. Prodyut Acharya | Janma Rashi Vedic Astrology]]></image:title>
+      <image:caption><![CDATA[জন্ম রাশি ও চন্দ্র রাশি বিশ্লেষণ – Dr. Prodyut Acharya | Janma Rashi Vedic Astrology]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/mesha-rashi-aries.webp</image:loc>
+      <image:title><![CDATA[মেষ রাশির মানুষের স্বভাব, প্রকৃতি ও ভাগ্য বিশ্লেষণ]]></image:title>
+      <image:caption><![CDATA[মেষ রাশির মানুষের স্বভাব, প্রকৃতি ও ভাগ্য বিশ্লেষণ]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/vrishabha-rashi-taurus.webp</image:loc>
+      <image:title><![CDATA[বৃষ রাশির মানুষের স্বভাব, প্রকৃতি ও ভাগ্য বিশ্লেষণ]]></image:title>
+      <image:caption><![CDATA[বৃষ রাশির মানুষের স্বভাব, প্রকৃতি ও ভাগ্য বিশ্লেষণ]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/mithun-rashi-gemini.webp</image:loc>
+      <image:title><![CDATA[মিথুন রাশির মানুষের স্বভাব, প্রকৃতি ও ভাগ্য বিশ্লেষণ]]></image:title>
+      <image:caption><![CDATA[মিথুন রাশির মানুষের স্বভাব, প্রকৃতি ও ভাগ্য বিশ্লেষণ]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/karka-rashi-cancer.webp</image:loc>
+      <image:title><![CDATA[কর্কট রাশির মানুষের স্বভাব, প্রকৃতি ও ভাগ্য বিশ্লেষণ]]></image:title>
+      <image:caption><![CDATA[কর্কট রাশির মানুষের স্বভাব, প্রকৃতি ও ভাগ্য বিশ্লেষণ]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/simha-rashi-leo.webp</image:loc>
+      <image:title><![CDATA[সিংহ রাশির মানুষের স্বভাব, প্রকৃতি ও ভাগ্য বিশ্লেষণ]]></image:title>
+      <image:caption><![CDATA[সিংহ রাশির মানুষের স্বভাব, প্রকৃতি ও ভাগ্য বিশ্লেষণ]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/kanya-rashi-virgo.webp</image:loc>
+      <image:title><![CDATA[কন্যা রাশির মানুষের স্বভাব, প্রকৃতি ও ভাগ্য বিশ্লেষণ]]></image:title>
+      <image:caption><![CDATA[কন্যা রাশির মানুষের স্বভাব, প্রকৃতি ও ভাগ্য বিশ্লেষণ]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/tula-rashi-libra.webp</image:loc>
+      <image:title><![CDATA[তুলা রাশির মানুষের স্বভাব, প্রকৃতি ও ভাগ্য বিশ্লেষণ]]></image:title>
+      <image:caption><![CDATA[তুলা রাশির মানুষের স্বভাব, প্রকৃতি ও ভাগ্য বিশ্লেষণ]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/vrischika-rashi-scorpio.webp</image:loc>
+      <image:title><![CDATA[বৃশ্চিক রাশির মানুষের স্বভাব, প্রকৃতি ও ভাগ্য বিশ্লেষণ]]></image:title>
+      <image:caption><![CDATA[বৃশ্চিক রাশির মানুষের স্বভাব, প্রকৃতি ও ভাগ্য বিশ্লেষণ]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/dhanu-rashi-sagittarius.webp</image:loc>
+      <image:title><![CDATA[ধনু রাশির মানুষের স্বভাব, প্রকৃতি ও ভাগ্য বিশ্লেষণ]]></image:title>
+      <image:caption><![CDATA[ধনু রাশির মানুষের স্বভাব, প্রকৃতি ও ভাগ্য বিশ্লেষণ]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/makar-rashi-capricorn.webp</image:loc>
+      <image:title><![CDATA[মকর রাশির মানুষের স্বভাব, প্রকৃতি ও ভাগ্য বিশ্লেষণ — Capricorn Zodiac]]></image:title>
+      <image:caption><![CDATA[মকর রাশির মানুষের স্বভাব, প্রকৃতি ও ভাগ্য বিশ্লেষণ — Capricorn Zodiac]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/kumbha-rashi-aquarius.webp</image:loc>
+      <image:title><![CDATA[কুম্ভ রাশির মানুষের স্বভাব, প্রকৃতি ও ভাগ্য বিশ্লেষণ]]></image:title>
+      <image:caption><![CDATA[কুম্ভ রাশির মানুষের স্বভাব, প্রকৃতি ও ভাগ্য বিশ্লেষণ]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/meen-rashi-pisces.webp</image:loc>
+      <image:title><![CDATA[মীন রাশির মানুষের স্বভাব, প্রকৃতি ও ভাগ্য বিশ্লেষণ—দুটি বিপরীতমুখী মাছের প্রতীক ও বৃহস্পতির প্রভাব]]></image:title>
+      <image:caption><![CDATA[মীন রাশির মানুষের স্বভাব, প্রকৃতি ও ভাগ্য বিশ্লেষণ—দুটি বিপরীতমুখী মাছের প্রতীক ও বৃহস্পতির প্রভাব]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://astro.myastrology.in/reviews.html</loc>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/MyAstrology-Ranghat-logo.png</image:loc>
+      <image:title><![CDATA[MyAstrology Logo]]></image:title>
+      <image:caption><![CDATA[MyAstrology Logo]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/astrologer-india-banner3.webp</image:loc>
+      <image:title><![CDATA[ভারতের সেরা জ্যোতিষ ও হস্তরেখা পরামর্শদাতা ড. প্রদ্যুৎ আচার্য]]></image:title>
+      <image:caption><![CDATA[ভারতের সেরা জ্যোতিষ ও হস্তরেখা পরামর্শদাতা ড. প্রদ্যুৎ আচার্য]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg</image:loc>
+      <image:title><![CDATA[WhatsApp]]></image:title>
+      <image:caption><![CDATA[WhatsApp]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg</image:loc>
+      <image:title><![CDATA[Facebook]]></image:title>
+      <image:caption><![CDATA[Facebook]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg</image:loc>
+      <image:title><![CDATA[Instagram]]></image:title>
+      <image:caption><![CDATA[Instagram]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg</image:loc>
+      <image:title><![CDATA[YouTube]]></image:title>
+      <image:caption><![CDATA[YouTube]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/googlemaps.svg</image:loc>
+      <image:title><![CDATA[Google Maps]]></image:title>
+      <image:caption><![CDATA[Google Maps]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://astro.myastrology.in/vastu-science.html</loc>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/MyAstrology-Ranghat-logo.png</image:loc>
+      <image:title><![CDATA[MyAstrology লোগো]]></image:title>
+      <image:caption><![CDATA[MyAstrology লোগো]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/vastu-banner.jpg</image:loc>
+      <image:title><![CDATA[বাস্তু শাস্ত্র বিজ্ঞান — Vastu Science | MyAstrology Dr. Prodyut Acharya Ranaghat West Bengal]]></image:title>
+      <image:caption><![CDATA[বাস্তু শাস্ত্র বিজ্ঞান — Vastu Science | MyAstrology Dr. Prodyut Acharya Ranaghat West Bengal]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/vastu-modern-home.webp</image:loc>
+      <image:title><![CDATA[বাস্তু শাস্ত্র অনুযায়ী শান্তিপূর্ণ ও সমৃদ্ধিশালী আধুনিক গৃহ]]></image:title>
+      <image:caption><![CDATA[বাস্তু শাস্ত্র অনুযায়ী শান্তিপূর্ণ ও সমৃদ্ধিশালী আধুনিক গৃহ]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/vastu-mandala.jpg</image:loc>
+      <image:title><![CDATA[বাস্তু পুরুষ মণ্ডল — প্রাচীন বাস্তু শাস্ত্রের মণ্ডল চিত্র]]></image:title>
+      <image:caption><![CDATA[বাস্তু পুরুষ মণ্ডল — প্রাচীন বাস্তু শাস্ত্রের মণ্ডল চিত্র]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/vastu-benefits.webp</image:loc>
+      <image:title><![CDATA[বাস্তু শাস্ত্র অনুযায়ী গৃহের দিকনির্দেশ ও উপকারিতা — MyAstrology]]></image:title>
+      <image:caption><![CDATA[বাস্তু শাস্ত্র অনুযায়ী গৃহের দিকনির্দেশ ও উপকারিতা — MyAstrology]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/plot-road-vastu.jpg</image:loc>
+      <image:title><![CDATA[বাস্তু শাস্ত্র অনুযায়ী জমির দিক ও রাস্তার অবস্থান — MyAstrology]]></image:title>
+      <image:caption><![CDATA[বাস্তু শাস্ত্র অনুযায়ী জমির দিক ও রাস্তার অবস্থান — MyAstrology]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/vastu-naga-chart.jpg</image:loc>
+      <image:title><![CDATA[MyAstrology মাসভিত্তিক বাস্তু নাগ শয়নদিক চার্ট — বাস্তু শাস্ত্র অনুযায়ী]]></image:title>
+      <image:caption><![CDATA[MyAstrology মাসভিত্তিক বাস্তু নাগ শয়নদিক চার্ট — বাস্তু শাস্ত্র অনুযায়ী]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/vastu-deity-gate.jpg</image:loc>
+      <image:title><![CDATA[Vastu Purusha Mandala – দেবতা ও প্রবেশদ্বারের প্রভাব]]></image:title>
+      <image:caption><![CDATA[Vastu Purusha Mandala – দেবতা ও প্রবেশদ্বারের প্রভাব]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/vastu-floorplan-example.png</image:loc>
+      <image:title><![CDATA[বাস্তু শাস্ত্র অনুযায়ী ফ্লোরপ্ল্যান উদাহরণ — MyAstrology]]></image:title>
+      <image:caption><![CDATA[বাস্তু শাস্ত্র অনুযায়ী ফ্লোরপ্ল্যান উদাহরণ — MyAstrology]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://astro.myastrology.in/vedic-astronomy.html</loc>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/MyAstrology-Ranghat-logo.png</image:loc>
+      <image:title><![CDATA[MyAstrology Logo – বৈদিক জ্যোতিষ ও জ্যোতির্বিজ্ঞান, Dr. Prodyut Acharya]]></image:title>
+      <image:caption><![CDATA[MyAstrology Logo – বৈদিক জ্যোতিষ ও জ্যোতির্বিজ্ঞান, Dr. Prodyut Acharya]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/astrology-ranaghat-banner4.webp</image:loc>
+      <image:title><![CDATA[MyAstrology – বৈদিক জ্যোতির্বিজ্ঞান ও রাশিচক্র ব্যানার]]></image:title>
+      <image:caption><![CDATA[MyAstrology – বৈদিক জ্যোতির্বিজ্ঞান ও রাশিচক্র ব্যানার]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/sky-geocentric-model.jpg</image:loc>
+      <image:title><![CDATA[পৃথিবী স্থির থাকলে আকাশের দৃশ্য – Geocentric Model, বৈদিক জ্যোতির্বিজ্ঞান]]></image:title>
+      <image:caption><![CDATA[পৃথিবী স্থির থাকলে আকাশের দৃশ্য – Geocentric Model, বৈদিক জ্যোতির্বিজ্ঞান]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.astronomynotes.com/history/epicycle-anim.gif</image:loc>
+      <image:title><![CDATA[পৃথিবী কেন্দ্র ধরে সূর্য, চাঁদ, গ্রহদের কক্ষপথ ও Epicycle সহ Retrograde Motion-এর কল্পচিত্র]]></image:title>
+      <image:caption><![CDATA[পৃথিবী কেন্দ্র ধরে সূর্য, চাঁদ, গ্রহদের কক্ষপথ ও Epicycle সহ Retrograde Motion-এর কল্পচিত্র]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/heliocentric-vs-geocentric-diagram.jpg</image:loc>
+      <image:title><![CDATA[Heliocentric ও Geocentric Model তুলনামূলক ডায়াগ্রাম — পৃথিবী ও সূর্যের কেন্দ্র ধরে সৌরমণ্ডলের কক্ষপথের চিত্র]]></image:title>
+      <image:caption><![CDATA[Heliocentric ও Geocentric Model তুলনামূলক ডায়াগ্রাম — পৃথিবী ও সূর্যের কেন্দ্র ধরে সৌরমণ্ডলের কক্ষপথের চিত্র]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/planet-orbit-diagram.jpg</image:loc>
+      <image:title><![CDATA[Elliptical Orbit-এ সূর্যের অবস্থান, Perihelion ও Aphelion পজিশন সহ চিত্র]]></image:title>
+      <image:caption><![CDATA[Elliptical Orbit-এ সূর্যের অবস্থান, Perihelion ও Aphelion পজিশন সহ চিত্র]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://upload.wikimedia.org/wikipedia/commons/a/a0/Synodic_period.gif</image:loc>
+      <image:title><![CDATA[পৃথিবী দ্রুত ঘুরে বাইরের গ্রহকে ওভারটেক করছে — Synodic Period চিত্র]]></image:title>
+      <image:caption><![CDATA[পৃথিবী দ্রুত ঘুরে বাইরের গ্রহকে ওভারটেক করছে — Synodic Period চিত্র]]></image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://astro.myastrology.in/video.html</loc>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/MyAstrology-Ranghat-logo.png</image:loc>
+      <image:title><![CDATA[MyAstrology Logo]]></image:title>
+      <image:caption><![CDATA[MyAstrology Logo]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/banner1.webp</image:loc>
+      <image:title><![CDATA[MyAstrology – Dr. Prodyut Acharya, জ্যোতিষ ও হস্তরেখা বিশেষজ্ঞ, রানাঘাট]]></image:title>
+      <image:caption><![CDATA[MyAstrology – Dr. Prodyut Acharya, জ্যোতিষ ও হস্তরেখা বিশেষজ্ঞ, রানাঘাট]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/astrologer-india-banner3.webp</image:loc>
+      <image:title><![CDATA[বৈদিক জ্যোতিষ ও হস্তরেখা পরামর্শ – MyAstrology]]></image:title>
+      <image:caption><![CDATA[বৈদিক জ্যোতিষ ও হস্তরেখা পরামর্শ – MyAstrology]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/banner3.webp</image:loc>
+      <image:title><![CDATA[Vedic Astrology & Palm Reading – MyAstrology]]></image:title>
+      <image:caption><![CDATA[Vedic Astrology & Palm Reading – MyAstrology]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/banner4.webp</image:loc>
+      <image:title><![CDATA[MyAstrology Ranaghat – জ্যোতিষ, হস্তরেখা ও বাস্তু পরামর্শ]]></image:title>
+      <image:caption><![CDATA[MyAstrology Ranaghat – জ্যোতিষ, হস্তরেখা ও বাস্তু পরামর্শ]]></image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://astro.myastrology.in/images/best-astrology-and-palmistry.webp</image:loc>
+      <image:title><![CDATA[Professional Astrologer Dr. Prodyut Acharya – MyAstrology]]></image:title>
+      <image:caption><![CDATA[Professional Astrologer Dr. Prodyut Acharya – MyAstrology]]></image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://astro.myastrology.in/blog.html?post=ai-yuge-ortho-bhalobasha-bhagya-pradyut-acharya</loc>
     <image:image>
       <image:loc>https://astro.myastrology.in/blog/ai-era-balance.webp</image:loc>
