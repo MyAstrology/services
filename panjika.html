@@ -511,18 +511,20 @@ footer a{color:var(--gold);text-decoration:none;}
 /* Scroll-to-top button */
 #stb{
   position:fixed !important;
-  bottom:5.2rem;right:1.35rem;
-  z-index:9998;
-  width:38px;height:38px;border-radius:50%;
+  bottom:1.2rem;
+  left:1.2rem;
+  right:auto;
+  z-index:10000;
+  width:42px;height:42px;border-radius:50%;
   background:rgba(181,134,13,.88);color:#fff;
   display:none;align-items:center;justify-content:center;
   font-size:.85rem;cursor:pointer;
   box-shadow:0 3px 10px rgba(181,134,13,.4);
-  transform:translateZ(0);
   transition:background .2s,transform .2s;
 }
 #stb.show{display:flex;}
 #stb:hover{background:var(--gold);transform:scale(1.1);}
+
 
 /* WhatsApp float — pulse + bubble */
 .wa-float-wrap{
@@ -1020,8 +1022,11 @@ footer a{color:var(--gold);text-decoration:none;}
   </a>
 </div>
 
-<div id="stb" onclick="window.scrollTo({top:0,behavior:'smooth'})">▲</div>
-
+<!-- নতুন — button ট্যাগ ব্যবহার করুন -->
+<button id="stb" 
+  onclick="window.scrollTo({top:0,behavior:'smooth'})" 
+  aria-label="উপরে যান">▲</button>
+  
 <footer>
   <div class="ftlogo">🪐 MyAstrology</div>
   <div class="ftname">Dr. Prodyut Acharya — Vedic Astrology &amp; Palmistry Consultant</div>
