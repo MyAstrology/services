@@ -63,8 +63,7 @@ body{background:var(--bg);color:var(--txt);font-family:'Baloo Da 2',sans-serif;p
 .topbar{
   position:fixed;top:0;left:0;right:0;z-index:600;
   height:var(--nav-h);
-  background:rgba(253,248,240,.97);
-  backdrop-filter:blur(16px);
+  background:#fdf8f0;
   border-bottom:1px solid var(--border);
   display:flex;align-items:center;justify-content:space-between;
   padding:0 1.2rem;
@@ -309,7 +308,7 @@ body{background:var(--bg);color:var(--txt);font-family:'Baloo Da 2',sans-serif;p
 .dil{font-size:.57rem;color:var(--txt2);text-transform:uppercase;letter-spacing:.1em;}
 .div2{font-family:'Tiro Bangla',serif;font-size:.88rem;color:var(--gold-l);font-weight:600;}
 .dis{font-size:.66rem;color:var(--txt2);}
-.dtimes{display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));gap:.52rem;padding:.42rem 1.2rem;}
+.dtimes{padding:.42rem 1.2rem;}
 .dtime{background:rgba(255,255,255,.5);border:1px solid var(--border);border-radius:10px;padding:.68rem;text-align:center;}
 .dtime.rahu{border-color:rgba(181,32,32,.22);}
 .dtime.shubha{border-color:rgba(37,102,37,.22);}
@@ -379,20 +378,177 @@ footer a{color:var(--gold);text-decoration:none;}
 .ftlinks a:hover{color:var(--gold);}
 .ftdisc{font-size:.66rem;margin-top:.42rem;opacity:.7;}
 
-#stb{position:fixed;bottom:1.2rem;right:1.2rem;z-index:400;width:40px;height:40px;background:rgba(181,134,13,.17);border:1px solid rgba(181,134,13,.33);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.92rem;color:var(--gold);backdrop-filter:blur(8px);}
+/* Eclipse panel */
+.eclipse-box{background:linear-gradient(135deg,rgba(30,0,60,.07),rgba(100,0,0,.05));border:1px solid rgba(120,40,180,.25);border-radius:12px;padding:.85rem 1rem;margin-bottom:.5rem;}
+.eclipse-head{display:flex;align-items:center;gap:.5rem;margin-bottom:.55rem;}
+.eclipse-type{font-family:'Tiro Bangla',serif;font-size:.95rem;color:#7b2fbe;font-weight:700;}
+.eclipse-sub{font-size:.7rem;background:rgba(120,40,180,.1);border:1px solid rgba(120,40,180,.2);color:#7b2fbe;border-radius:20px;padding:.15rem .5rem;}
+.eclipse-visible{font-size:.7rem;color:var(--txt2);margin-bottom:.55rem;font-style:italic;}
+.eclipse-row{display:flex;justify-content:space-between;align-items:center;padding:.22rem 0;border-bottom:1px solid rgba(120,40,180,.08);}
+.eclipse-row:last-child{border-bottom:none;}
+.eclipse-lbl{font-size:.72rem;color:var(--txt2);}
+.eclipse-val{font-family:'Tiro Bangla',serif;font-size:.8rem;color:#5a1a9e;font-weight:600;}
+.eclipse-mag{display:inline-block;background:rgba(120,40,180,.1);border:1px solid rgba(120,40,180,.2);border-radius:20px;padding:.18rem .6rem;font-size:.7rem;color:#7b2fbe;margin-bottom:.4rem;}
+
+/* ══════════════════════════════════
+   Testimonial Section
+   ══════════════════════════════════ */
+.testi-sec{
+  background:#fffdf5;
+  border:1.5px solid rgba(181,134,13,.18);
+  border-radius:18px;
+  margin-bottom:1.3rem;
+  overflow:hidden;
+  box-shadow:0 4px 24px rgba(181,134,13,.07);
+  padding:1.2rem 1.1rem 1rem;
+}
+.testi-hdr{text-align:center;margin-bottom:.9rem;}
+.testi-eyebrow{font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.2rem;}
+.testi-title{font-family:'Tiro Bangla',serif;font-size:1.05rem;font-weight:700;color:var(--gold-d);margin-bottom:.18rem;}
+.testi-sub{font-size:.68rem;color:var(--txt2);}
+.testi-grid{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;margin-bottom:.9rem;}
+.tcard{
+  background:#fff;border:1px solid rgba(181,134,13,.15);
+  border-radius:12px;padding:.7rem .75rem;
+  box-shadow:0 2px 8px rgba(181,134,13,.06);
+}
+.tcard-stars{color:#f39c12;font-size:.75rem;letter-spacing:.1em;margin-bottom:.35rem;}
+.tcard-txt{font-family:'Tiro Bangla',serif;font-size:.72rem;color:var(--txt);line-height:1.65;margin-bottom:.55rem;font-style:italic;}
+.tcard-auth{display:flex;align-items:center;gap:.5rem;}
+.tcard-av{
+  width:28px;height:28px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,#b5860d,#8a5e00);
+  color:#fff;font-size:.72rem;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+}
+.tcard-name{font-size:.7rem;font-weight:700;color:var(--gold-d);}
+.tcard-loc{font-size:.58rem;color:var(--txt2);margin-top:.1rem;}
+.testi-cta{
+  display:flex;align-items:center;justify-content:center;gap:.5rem;
+  background:#25d366;color:#fff;
+  padding:.62rem;border-radius:10px;
+  font-size:.8rem;font-weight:700;text-decoration:none;
+  font-family:'Baloo Da 2',sans-serif;
+  box-shadow:0 3px 12px rgba(37,211,102,.3);
+  transition:transform .18s;
+}
+.testi-cta:hover{background:#1ebe5b;transform:translateY(-1px);}
+.about-sec{
+  background:#fffdf5;
+  border:1.5px solid rgba(181,134,13,.2);
+  border-radius:18px;
+  margin-bottom:1.3rem;
+  overflow:hidden;
+  box-shadow:0 4px 24px rgba(181,134,13,.08);
+}
+.about-topbar{
+  height:5px;
+  background:linear-gradient(90deg,#b5860d,#d4a43a,#8a5e00);
+}
+.about-hdr{
+  display:flex;align-items:center;gap:.9rem;
+  padding:1.1rem 1.2rem .9rem;
+  background:linear-gradient(135deg,rgba(181,134,13,.06),rgba(181,134,13,.02));
+  border-bottom:1px solid rgba(181,134,13,.1);
+}
+.about-avatar{
+  width:54px;height:54px;flex-shrink:0;border-radius:50%;
+  background:linear-gradient(135deg,#b5860d,#6b4000);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.6rem;
+  box-shadow:0 4px 16px rgba(181,134,13,.4);
+}
+.about-eyebrow{font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.18rem;}
+.about-name{font-family:'Tiro Bangla',serif;font-size:1.08rem;font-weight:700;color:var(--gold-d);line-height:1.2;}
+.about-loc{font-size:.67rem;color:var(--txt2);margin-top:.18rem;}
+/* Stats */
+.about-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  padding:.75rem .9rem;gap:.45rem;
+  background:rgba(181,134,13,.03);
+  border-bottom:1px solid rgba(181,134,13,.08);
+}
+.astat{text-align:center;padding:.45rem .25rem;background:#fff;border:1px solid rgba(181,134,13,.14);border-radius:10px;}
+.astat-n{font-family:'Baloo Da 2',sans-serif;font-size:.82rem;font-weight:800;color:var(--gold-d);line-height:1.1;}
+.astat-l{font-size:.55rem;color:var(--txt2);margin-top:.12rem;line-height:1.25;}
+/* Divider */
+.about-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(181,134,13,.2),transparent);margin:0 1rem;}
+/* Services 2-col grid */
+.about-svc-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:.22rem .5rem;
+  padding:.85rem 1.1rem;
+}
+.asvc{display:flex;align-items:center;gap:.45rem;padding:.28rem .3rem;border-radius:7px;transition:background .15s;}
+.asvc:hover{background:rgba(181,134,13,.06);}
+.asvc-ico{font-size:.9rem;flex-shrink:0;width:20px;text-align:center;}
+.asvc span:last-child{font-size:.72rem;color:var(--txt);font-family:'Baloo Da 2',sans-serif;font-weight:500;}
+/* Credentials */
+.about-creds{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:.3rem;padding:.8rem 1.1rem;
+  background:rgba(181,134,13,.03);
+}
+.acred{display:flex;align-items:center;gap:.4rem;}
+.acred-ico{font-size:.85rem;flex-shrink:0;}
+.acred span:last-child{font-size:.67rem;color:var(--txt2);font-weight:600;}
+/* CTA */
+.about-cta{
+  display:flex;gap:.6rem;padding:.9rem 1.1rem 1.1rem;
+}
+.about-btn-wa,.about-btn-bk{
+  flex:1;display:flex;align-items:center;justify-content:center;gap:.4rem;
+  padding:.62rem .7rem;border-radius:10px;
+  font-size:.78rem;font-weight:700;text-decoration:none;
+  font-family:'Baloo Da 2',sans-serif;
+  transition:transform .18s,box-shadow .18s;
+}
+.about-btn-wa{background:#25d366;color:#fff;box-shadow:0 3px 12px rgba(37,211,102,.3);}
+.about-btn-wa:hover{background:#1ebe5b;transform:translateY(-1px);}
+.about-btn-bk{background:linear-gradient(135deg,#b5860d,#8a5e00);color:#fff;box-shadow:0 3px 12px rgba(181,134,13,.3);}
+.about-btn-bk:hover{transform:translateY(-1px);}
+
+/* Scroll-to-top button */
+#stb{
+  position:fixed !important;
+  bottom:5.2rem;right:1.35rem;
+  z-index:9998;
+  width:38px;height:38px;border-radius:50%;
+  background:rgba(181,134,13,.88);color:#fff;
+  display:none;align-items:center;justify-content:center;
+  font-size:.85rem;cursor:pointer;
+  box-shadow:0 3px 10px rgba(181,134,13,.4);
+  transform:translateZ(0);
+  transition:background .2s,transform .2s;
+}
+#stb.show{display:flex;}
+#stb:hover{background:var(--gold);transform:scale(1.1);}
 
 /* WhatsApp float — pulse + bubble */
-.wa-float-wrap{position:fixed;bottom:1.2rem;right:1.2rem;z-index:500;display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;}
+.wa-float-wrap{
+  position:fixed !important;
+  bottom:1.2rem;right:1.2rem;
+  z-index:9999;
+  display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;
+  /* isolate from any parent transform/filter */
+  transform:translateZ(0);
+  will-change:transform;
+}
 .wa-bubble{
+  position:relative;
   background:#fff;color:#1a1a1a;
   border-radius:12px 12px 0 12px;
-  padding:.55rem .85rem;font-size:.78rem;font-weight:600;
+  padding:.45rem .75rem;
+  font-size:.7rem;font-weight:600;
+  line-height:1.3;
   box-shadow:0 4px 18px rgba(0,0,0,.18);
   white-space:nowrap;
   opacity:0;transform:translateY(6px) scale(.95);
   transition:opacity .35s,transform .35s;
   pointer-events:none;
   font-family:'Baloo Da 2',sans-serif;
+  max-width:200px;white-space:normal;
+  text-align:center;
 }
 .wa-bubble::after{content:'';position:absolute;bottom:-7px;right:14px;width:0;height:0;border-left:7px solid transparent;border-top:7px solid #fff;}
 .wa-bubble.show{opacity:1;transform:translateY(0) scale(1);}
@@ -554,6 +710,7 @@ footer a{color:var(--gold);text-decoration:none;}
       <div style="width:56px;height:2.5px;background:linear-gradient(90deg,var(--gold-d),var(--gold));border-radius:2px;"></div>
       <span style="font-size:.79rem;color:var(--txt2);font-family:'Baloo Da 2',sans-serif;">✨ আপনার রাশি নির্বাচন করুন</span>
     </div>
+    <div id="moonBadgeWrap" style="margin-bottom:.6rem;"></div>
     <div class="rg" id="rg"></div>
 
     <div class="rfr" id="rfr">
@@ -569,6 +726,7 @@ footer a{color:var(--gold);text-decoration:none;}
       <div class="rfcg" id="rfcg"></div>
       <div class="rflg" id="rflg"></div>
       <div class="rfcau" id="rfcau"></div>
+      <div id="rfpg"></div>
       <!-- RF inline CTA -->
       <div class="rf-cta">
         <div class="rf-cta-txt">
@@ -722,36 +880,139 @@ footer a{color:var(--gold);text-decoration:none;}
 </div>
   
   
-  <!-- SEO keyword section -->
-  <section style="background:linear-gradient(135deg,rgba(181,134,13,.05),rgba(181,134,13,.02));border:1px solid rgba(181,134,13,.15);border-radius:14px;padding:1.2rem 1.4rem;margin-bottom:1.3rem;">
-    <h2 style="font-family:'Tiro Bangla',serif;font-size:1rem;color:var(--gold-l);margin-bottom:.7rem;display:flex;align-items:center;gap:.5rem;">
-      🔮 Dr. Prodyut Acharya — রানাঘাটের সেরা জ্যোতিষ ও হস্তরেখা বিশেষজ্ঞ
-    </h2>
-    <p style="font-size:.82rem;color:var(--txt2);line-height:1.8;margin-bottom:.6rem;">
-      <strong>বাংলা জ্যোতিষ পরামর্শ</strong> (Bengali Jyotish Consultation), <strong>হস্তরেখা বিচার</strong> (Palmistry Reading),
-      <strong>জন্মকুণ্ডলী বিশ্লেষণ</strong> (Kundali Analysis), <strong>বিবাহ কুণ্ডলী মিলান</strong> (Kundli Matching),
-      <strong>বাস্তু শাস্ত্র</strong> (Vastu Consultation) ও <strong>শুভ মুহূর্ত নির্ধারণ</strong> (Muhurta Selection) —
-      সবই পাবেন Dr. Prodyut Acharya-র কাছে। <strong>রানাঘাট, নদিয়া, কলকাতা</strong> ও সমগ্র ভারতে অনলাইন পরামর্শ উপলব্ধ।
-    </p>
-    <p style="font-size:.82rem;color:var(--txt2);line-height:1.8;margin-bottom:.75rem;">
-      PhD in Vedic Jyotish · ১৫+ বছরের অভিজ্ঞতা · ১৫,০০০+ সন্তুষ্ট গ্রাহক · Google-এ ৫.০ ★ (২০০০+ রিভিউ) ·
-      বাংলা, হিন্দি ও ইংরেজিতে পরামর্শ · WhatsApp ও ফোন কলে উপলব্ধ।
-    </p>
-    <div style="display:flex;flex-wrap:wrap;gap:.45rem;">
-      <span style="background:rgba(181,134,13,.1);border:1px solid rgba(181,134,13,.25);color:var(--gold);border-radius:20px;padding:.22rem .65rem;font-size:.72rem;font-weight:600;">🌙 দৈনিক রাশিফল</span>
-      <span style="background:rgba(181,134,13,.1);border:1px solid rgba(181,134,13,.25);color:var(--gold);border-radius:20px;padding:.22rem .65rem;font-size:.72rem;font-weight:600;">📅 আজকের পঞ্জিকা</span>
-      <span style="background:rgba(181,134,13,.1);border:1px solid rgba(181,134,13,.25);color:var(--gold);border-radius:20px;padding:.22rem .65rem;font-size:.72rem;font-weight:600;">⏰ রাহুকাল আজ</span>
-      <span style="background:rgba(181,134,13,.1);border:1px solid rgba(181,134,13,.25);color:var(--gold);border-radius:20px;padding:.22rem .65rem;font-size:.72rem;font-weight:600;">✨ শুভ মুহূর্ত</span>
-      <span style="background:rgba(181,134,13,.1);border:1px solid rgba(181,134,13,.25);color:var(--gold);border-radius:20px;padding:.22rem .65rem;font-size:.72rem;font-weight:600;">🤚 হস্তরেখা বিচার</span>
-      <span style="background:rgba(181,134,13,.1);border:1px solid rgba(181,134,13,.25);color:var(--gold);border-radius:20px;padding:.22rem .65rem;font-size:.72rem;font-weight:600;">🪐 জন্মকুণ্ডলী</span>
-      <span style="background:rgba(181,134,13,.1);border:1px solid rgba(181,134,13,.25);color:var(--gold);border-radius:20px;padding:.22rem .65rem;font-size:.72rem;font-weight:600;">💍 কুণ্ডলী মিলান</span>
-      <span style="background:rgba(181,134,13,.1);border:1px solid rgba(181,134,13,.25);color:var(--gold);border-radius:20px;padding:.22rem .65rem;font-size:.72rem;font-weight:600;">🏠 বাস্তু শাস্ত্র</span>
-      <span style="background:rgba(181,134,13,.1);border:1px solid rgba(181,134,13,.25);color:var(--gold);border-radius:20px;padding:.22rem .65rem;font-size:.72rem;font-weight:600;">👶 নামকরণ</span>
-      <span style="background:rgba(181,134,13,.1);border:1px solid rgba(181,134,13,.25);color:var(--gold);border-radius:20px;padding:.22rem .65rem;font-size:.72rem;font-weight:600;">💎 রত্নপাথর পরামর্শ</span>
-    </div>
-  </section>
+<!-- About / Profile Section -->
+<section class="about-sec">
 
-<!-- WhatsApp Float Button -->
+  <!-- Top gradient bar -->
+  <div class="about-topbar"></div>
+
+  <!-- Header -->
+  <div class="about-hdr">
+    <div class="about-avatar">🔮</div>
+    <div class="about-hdr-txt">
+      <div class="about-eyebrow">জ্যোতিষ ও হস্তরেখা বিশেষজ্ঞ</div>
+      <div class="about-name">Dr. Prodyut Acharya</div>
+      <div class="about-loc">📍 রানাঘাট, নদিয়া, পশ্চিমবঙ্গ</div>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="about-stats">
+    <div class="astat">
+      <div class="astat-n">১৫+</div>
+      <div class="astat-l">বছরের অভিজ্ঞতা</div>
+    </div>
+    <div class="astat">
+      <div class="astat-n">১৫,০০০+</div>
+      <div class="astat-l">সন্তুষ্ট গ্রাহক</div>
+    </div>
+    <div class="astat">
+      <div class="astat-n">৫.০ ★</div>
+      <div class="astat-l">Google রেটিং</div>
+    </div>
+    <div class="astat">
+      <div class="astat-n">২০০০+</div>
+      <div class="astat-l">রিভিউ</div>
+    </div>
+  </div>
+
+  <!-- Divider -->
+  <div class="about-divider"></div>
+
+  <!-- Services list (2 columns) -->
+  <div class="about-svc-grid">
+    <div class="asvc"><span class="asvc-ico">🌙</span><span>বাংলা জ্যোতিষ পরামর্শ</span></div>
+    <div class="asvc"><span class="asvc-ico">🤚</span><span>হস্তরেখা বিচার</span></div>
+    <div class="asvc"><span class="asvc-ico">🪐</span><span>জন্মকুণ্ডলী বিশ্লেষণ</span></div>
+    <div class="asvc"><span class="asvc-ico">💍</span><span>বিবাহ কুণ্ডলী মিলান</span></div>
+    <div class="asvc"><span class="asvc-ico">🏠</span><span>বাস্তু শাস্ত্র</span></div>
+    <div class="asvc"><span class="asvc-ico">✨</span><span>শুভ মুহূর্ত নির্ধারণ</span></div>
+    <div class="asvc"><span class="asvc-ico">👶</span><span>নামকরণ জ্যোতিষ</span></div>
+    <div class="asvc"><span class="asvc-ico">💎</span><span>রত্নপাথর পরামর্শ</span></div>
+    <div class="asvc"><span class="asvc-ico">📅</span><span>দৈনিক রাশিফল ও পঞ্জিকা</span></div>
+    <div class="asvc"><span class="asvc-ico">⏰</span><span>রাহুকাল ও শুভ মুহূর্ত</span></div>
+  </div>
+
+  <!-- Divider -->
+  <div class="about-divider"></div>
+
+  <!-- Credentials -->
+  <div class="about-creds">
+    <div class="acred"><span class="acred-ico">🎓</span><span>PhD in Vedic Jyotish</span></div>
+    <div class="acred"><span class="acred-ico">🌐</span><span>বাংলা · হিন্দি · English</span></div>
+    <div class="acred"><span class="acred-ico">📱</span><span>WhatsApp ও ফোন কলে উপলব্ধ</span></div>
+    <div class="acred"><span class="acred-ico">🗺️</span><span>রানাঘাট · কলকাতা · সমগ্র ভারত</span></div>
+  </div>
+
+  <!-- CTA -->
+  <div class="about-cta">
+    <a href="https://wa.me/919333122768?text=নমস্কার, আমি পরামর্শ নিতে চাই।" target="_blank" rel="noopener" class="about-btn-wa">
+      <i class="fab fa-whatsapp"></i> WhatsApp করুন
+    </a>
+    <a href="https://rzp.io/rzp/Axo6j2e" target="_blank" rel="noopener" class="about-btn-bk">
+      <i class="fas fa-calendar-check"></i> পরামর্শ বুক করুন
+    </a>
+  </div>
+
+</section>
+
+<!-- Testimonial / Review Section -->
+<section class="testi-sec">
+  <div class="testi-hdr">
+    <div class="testi-eyebrow">সন্তুষ্ট গ্রাহকদের কথা</div>
+    <div class="testi-title">⭐ বিশ্বাসের কারণ</div>
+    <div class="testi-sub">Google-এ ৫.০ ★ রেটিং · ২০০০+ আসল রিভিউ</div>
+  </div>
+  <div class="testi-grid">
+    <div class="tcard">
+      <div class="tcard-stars">★★★★★</div>
+      <div class="tcard-txt">"বিবাহের শুভ মুহূর্ত নির্ধারণে Dr. Acharya-র পরামর্শ অতুলনীয়। সত্যিই জীবন বদলে দেওয়ার অভিজ্ঞতা।"</div>
+      <div class="tcard-auth">
+        <div class="tcard-av">রি</div>
+        <div>
+          <div class="tcard-name">রিয়া চক্রবর্তী</div>
+          <div class="tcard-loc">📍 কলকাতা · Google রিভিউ</div>
+        </div>
+      </div>
+    </div>
+    <div class="tcard">
+      <div class="tcard-stars">★★★★★</div>
+      <div class="tcard-txt">"জন্মকুণ্ডলী বিচারে এত নিখুঁত বিশ্লেষণ আগে কোথাও পাইনি। রাহুকাল ও মুহূর্তের হিসেব একদম সঠিক।"</div>
+      <div class="tcard-auth">
+        <div class="tcard-av">সু</div>
+        <div>
+          <div class="tcard-name">সুব্রত দাস</div>
+          <div class="tcard-loc">📍 রানাঘাট · Google রিভিউ</div>
+        </div>
+      </div>
+    </div>
+    <div class="tcard">
+      <div class="tcard-stars">★★★★★</div>
+      <div class="tcard-txt">"হস্তরেখা দেখে ভবিষ্যৎ যা বললেন তার অনেকটাই মিলে গেছে। অনলাইন পরামর্শে কোনো সমস্যা হয়নি।"</div>
+      <div class="tcard-auth">
+        <div class="tcard-av">প্র</div>
+        <div>
+          <div class="tcard-name">প্রদীপ সাহা</div>
+          <div class="tcard-loc">📍 কৃষ্ণনগর · WhatsApp পরামর্শ</div>
+        </div>
+      </div>
+    </div>
+    <div class="tcard">
+      <div class="tcard-stars">★★★★★</div>
+      <div class="tcard-txt">"বাস্তু পরামর্শের পর ব্যবসায় উন্নতি হয়েছে। Dr. Acharya-র অভিজ্ঞতা ও জ্ঞান অসাধারণ।"</div>
+      <div class="tcard-auth">
+        <div class="tcard-av">মি</div>
+        <div>
+          <div class="tcard-name">মিতালি ঘোষ</div>
+          <div class="tcard-loc">📍 বনগাঁ · Google রিভিউ</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href="https://wa.me/919333122768?text=নমস্কার, আমি পরামর্শ নিতে চাই।" target="_blank" rel="noopener" class="testi-cta">
+    <i class="fab fa-whatsapp"></i> আপনিও পরামর্শ নিন
+  </a>
+</section>
 <div class="wa-float-wrap" id="waWrap">
   <div class="wa-bubble" id="waBubble">🙏 পরামর্শ নিন — WhatsApp করুন!</div>
   <a href="https://wa.me/919333122768?text=নমস্কার, আমি জ্যোতিষ পরামর্শ নিতে চাই।" target="_blank" rel="noopener" class="wa-btn" aria-label="WhatsApp">
@@ -794,9 +1055,47 @@ footer a{color:var(--gold);text-decoration:none;}
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false">
 'use strict';
-// ══════════════════════════════════
-// HAMBURGER NAV
-// ══════════════════════════════════
+/* ████████████████████████████████████████████████████████████████████
+   ██  বাংলা পঞ্জিকা — সম্পূর্ণ কোড সূচি                          ██
+   ██  MyAstrology | Dr. Prodyut Acharya                             ██
+   ████████████████████████████████████████████████████████████████████
+
+   🔧 UTILITY / SETUP
+      SECTION ①  HAMBURGER NAV      — মেনু খোলা/বন্ধ
+      SECTION ②  CONFIG             — LAT/LNG/TZ (অবস্থান পরিবর্তন করুন)
+      SECTION ③  HELPERS            — fmtT, slotT, toBn ইত্যাদি
+
+   📅 পঞ্জিকা ডেটা  ← এখানে বেশিরভাগ আপডেট হবে
+      SECTION ④  BENGALI MONTHS     — বাংলা মাসের তারিখ তালিকা (বছর যোগ করুন)
+      SECTION ⑤  PANJIKA NAMES      — তিথি/নক্ষত্র/যোগ/করণের বাংলা নাম
+      SECTION ⑥  FESTIVAL LIST      — উৎসব ও ব্রতের তালিকা (প্রতি বছর আপডেট)
+      SECTION ⑦  ECLIPSE DATA       — গ্রহণের সময়সূচি ২০২৬–২০২৮ (বছর বাড়ালে যোগ করুন)
+
+   🔭 ASTRONOMY ENGINE  ← সাধারণত পরিবর্তন দরকার নেই
+      SECTION ⑧  ASTRONOMY          — JD, sunL, moonL, sunTimes গণনা
+      SECTION ⑨  TRANSITION ENGINE  — তিথি/নক্ষত্র/যোগ/করণ পরিবর্তনের সময়
+      SECTION ⑩  calcDay()          — মূল পঞ্চাঙ্গ গণনা ফাংশন
+
+   🖥️ UI RENDERING  ← দেখতে পরিবর্তন করতে এখানে আসুন
+      SECTION ⑪  HEADER             — আজকের তারিখ ব্যানার (উপরের চিপস)
+      SECTION ⑫  CALENDAR           — মাসিক ক্যালেন্ডার গ্রিড
+      SECTION ⑬  DETAIL PANEL       — তারিখে ক্লিক করলে বিস্তারিত প্যানেল
+
+   🌟 রাশিফল  ← রাশিফল পরিবর্তন করতে এখানে আসুন
+      SECTION ⑭  RASHI DATA         — ১২ রাশির তথ্য (প্রতীক/অধিপতি/রত্ন)
+      SECTION ⑮  RASHIFAL TEXT DB   — প্রেম/কর্ম/স্বাস্থ্য/আর্থিক বার্তা ভাণ্ডার
+      SECTION ⑯  RASHIFAL RENDER    — রাশিফল UI তৈরি ও score গণনা
+
+   🚀 SECTION ⑰  INIT              — পেজ লোডের সময় প্রথমে চালু হয়
+
+   ⚡ দ্রুত খুঁজে পেতে Ctrl+F → "SECTION ④" লিখুন
+   ████████████████████████████████████████████████████████████████████ */
+
+// ════════════════════════════════════════════════════════
+// SECTION ① — HAMBURGER NAV
+// কাজ: হ্যামবার্গার মেনু টগল করে
+// পরিবর্তন: সাধারণত দরকার নেই
+// ════════════════════════════════════════════════════════
 function toggleNav(){
   document.getElementById('hbg').classList.toggle('open');
   document.getElementById('sideNav').classList.toggle('open');
@@ -809,29 +1108,40 @@ function closeNav(){
 }
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeNav();});
 
-// ══════════════════════════════════
-// CONFIG
-// ══════════════════════════════════
+// ════════════════════════════════════════════════════════
+// SECTION ② — CONFIG (সাইটের অবস্থান ও সময় জোন)
+// কাজ: সূর্যোদয়/সূর্যাস্ত ও রাহুকালের সময় নির্ভর করে এর উপর
+// পরিবর্তন: শহর বদলালে LAT/LNG আপডেট করুন
+//   রানাঘাট: LAT=23.18, LNG=88.56
+//   কলকাতা:  LAT=22.57, LNG=88.36
+//   ঢাকা:    LAT=23.72, LNG=90.41 (TZ=6)
+// ════════════════════════════════════════════════════════
 const TODAY=new Date();
 const LAT=23.18,LNG=88.56,TZ=5.5;
 
-// ══════════════════════════════════
-// HELPERS
-// ══════════════════════════════════
+// ════════════════════════════════════════════════════════
+// SECTION ③ — HELPERS (সহায়ক ফাংশন)
+// কাজ: সময় ফরম্যাট, বাংলা সংখ্যা, রাহুকাল slot গণনা
+// পরিবর্তন: সাধারণত দরকার নেই
+// ════════════════════════════════════════════════════════
 const BD=['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
 const toBn=n=>String(Math.abs(Math.round(n))).replace(/[0-9]/g,d=>BD[+d]);
 const EMS=['January','February','March','April','May','June','July','August','September','October','November','December'];
 const EMSh=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const VDAYS=['রবিবার','সোমবার','মঙ্গলবার','বুধবার','বৃহস্পতিবার','শুক্রবার','শনিবার'];
 const VLORD=['সূর্য','চন্দ্র','মঙ্গল','বুধ','বৃহস্পতি','শুক্র','শনি'];
-function fmtT(h,m){m=Math.round(m||0);if(m>=60){h+=Math.floor(m/60);m=m%60;}if(m<0){h--;m+=60;}h=((h%24)+24)%24;const l=h<6?'রাত':h<12?'সকাল':h<17?'দুপুর':h<20?'সন্ধ্যা':'রাত';const hh=h%12===0?12:h%12;return`${l} ${toBn(hh)}:${String(m).padStart(2,'0').replace(/[0-9]/g,d=>BD[+d])}`;}
+function fmtT(h,m){m=Math.round(m||0);if(m>=60){h+=Math.floor(m/60);m=m%60;}if(m<0){h--;m+=60;}h=((h%24)+24)%24;const l=h>=4.5&&h<6?'ভোর':h<6?'রাত':h<12?'সকাল':h<14?'দুপুর':h<17?'বিকেল':h<20?'সন্ধ্যা':'রাত';const hh=h%12===0?12:h%12;return`${l} ${toBn(hh)}:${String(m).padStart(2,'0').replace(/[0-9]/g,d=>BD[+d])}`;}
 function slotT(rise,set,s){const len=(set-rise)/8,st=rise+len*(s-1),en=st+len;const sh=Math.floor(st),sm=Math.round((st-sh)*60);const eh=Math.floor(en),em=Math.round((en-eh)*60);return`${fmtT(sh,sm)} – ${fmtT(eh,em)}`;}
 function abhiT(rise,set){const n=(rise+set)/2,s=n-24/60,e=n+24/60;return`${fmtT(Math.floor(s),Math.round((s-Math.floor(s))*60))} – ${fmtT(Math.floor(e),Math.round((e-Math.floor(e))*60))}`;}
 function dStr(d){return`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;}
 
-// ══════════════════════════════════
-// BENGALI MONTH STARTS
-// ══════════════════════════════════
+// ════════════════════════════════════════════════════════
+// SECTION ④ — BENGALI MONTH STARTS (বাংলা মাসের শুরুর তারিখ)
+// কাজ: প্রতিটি বাংলা মাস কোন ইংরেজি তারিখে শুরু হয় তা ধরে রাখে
+// পরিবর্তন: নতুন বছর যোগ করতে BMS array-এ entries যোগ করুন
+//   format: {y: বাংলা বছর, m: মাস index (0=বৈশাখ), s: 'YYYY-MM-DD'}
+//   ⚠️ শেষ entry টি পরের বছরের প্রথম দিন হতে হবে
+// ════════════════════════════════════════════════════════
 const BNM_NAMES=['বৈশাখ','জ্যৈষ্ঠ','আষাঢ়','শ্রাবণ','ভাদ্র','আশ্বিন','কার্তিক','অগ্রহায়ণ','পৌষ','মাঘ','ফাল্গুন','চৈত্র'];
 const RITU=['গ্রীষ্ম','গ্রীষ্ম','বর্ষা','বর্ষা','শরৎ','শরৎ','হেমন্ত','হেমন্ত','শীত','শীত','বসন্ত','বসন্ত'];
 const BMS=[
@@ -853,22 +1163,46 @@ function getBnInfo(date){const t=date.getTime();let idx=-1;for(let i=BMS.length-
 function getBnMonthDays(idx){const e=BMS[idx];if(!e||idx+1>=BMS.length)return[];const s=new Date(e.s+'T00:00:00');const nx=new Date(BMS[idx+1].s+'T00:00:00');const days=[];let d=new Date(s),bn=1;while(d<nx){days.push({date:new Date(d),bnDay:bn});d.setDate(d.getDate()+1);bn++;}return days;}
 function findTodayIdx(){const t=TODAY.getTime();for(let i=BMS.length-1;i>=0;i--){if(t>=new Date(BMS[i].s+'T00:00:00').getTime())return i;}return 0;}
 
-// ══════════════════════════════════
-// ASTRONOMY
-// ══════════════════════════════════
+// ════════════════════════════════════════════════════════
+// SECTION ⑧ — ASTRONOMY ENGINE (জ্যোতির্বিদ্যার গণনা)
+// কাজ: সূর্য/চন্দ্রের অবস্থান, সূর্যোদয়/সূর্যাস্ত গণনা
+//   • JD()       — Julian Date রূপান্তর
+//   • sunL()     — সূর্যের দ্রাঘিমাংশ (Tropical)
+//   • moonL()    — চন্দ্রের দ্রাঘিমাংশ (Meeus Ch.47, ৫০+ পদ)
+//   • sunTimes() — সূর্যোদয় ও সূর্যাস্তের সময়
+// পরিবর্তন: সাধারণত দরকার নেই
+// ════════════════════════════════════════════════════════
 function JD(y,m,d){if(m<=2){y--;m+=12;}const A=Math.floor(y/100),B=2-A+Math.floor(A/4);return Math.floor(365.25*(y+4716))+Math.floor(30.6001*(m+1))+d+B-1524.5;}
 function sunL(jd){const n=jd-2451545,L=((280.46+0.9856474*n)%360+360)%360,g=((357.528+0.9856003*n)%360+360)*Math.PI/180;return((L+1.915*Math.sin(g)+0.02*Math.sin(2*g))%360+360)%360;}
 function moonL(jd){const T=(jd-2451545)/36525;const Lp=((218.3164477+481267.88123421*T-0.0015786*T*T)%360+360)%360;const D=((297.8501921+445267.1114034*T-0.0018819*T*T)%360+360)%360;const Ms=((357.5291092+35999.0502909*T)%360+360)%360;const Mp=((134.9633964+477198.8675055*T+0.0087414*T*T)%360+360)%360;const F=((93.2720950+483202.0175233*T-0.0036539*T*T)%360+360)%360;const E=1-0.002516*T;const dr=D*Math.PI/180,msr=Ms*Math.PI/180,mr=Mp*Math.PI/180,fr=F*Math.PI/180;const A1=((119.75+131.849*T)%360+360)*Math.PI/180,A2=((53.09+479264.29*T)%360+360)*Math.PI/180;let sl=6288774*Math.sin(mr)+1274027*Math.sin(2*dr-mr)+658314*Math.sin(2*dr)+213618*Math.sin(2*mr)-185116*E*Math.sin(msr)-114332*Math.sin(2*fr)+58793*Math.sin(2*dr-2*mr)+57066*E*Math.sin(2*dr-msr-mr)+53322*Math.sin(2*dr+mr)+45758*E*Math.sin(2*dr-msr)-40923*E*Math.sin(msr-mr)-34720*Math.sin(dr)-30383*E*Math.sin(msr+mr)+15327*Math.sin(2*dr-2*fr)+10675*Math.sin(4*dr-mr)+10034*Math.sin(3*mr)+8548*Math.sin(4*dr-2*mr)-7888*E*Math.sin(2*dr+msr-mr)-6766*E*Math.sin(2*dr+msr)-5163*Math.sin(dr-mr)+4987*E*Math.sin(dr+msr)+4036*E*Math.sin(2*dr-msr+mr)+3994*Math.sin(2*dr+2*mr)+3861*Math.sin(4*dr)+3665*Math.sin(2*dr-3*mr)-2689*E*Math.sin(msr-2*mr)+2390*E*Math.sin(2*dr-msr-2*mr)-2348*Math.sin(dr+mr)+2236*E*E*Math.sin(2*dr-2*msr)-2120*E*Math.sin(msr+2*mr)+2048*E*E*Math.sin(2*dr-2*msr-mr)-1773*Math.sin(2*dr+mr-2*fr)-1595*Math.sin(2*dr+2*fr)+1215*E*Math.sin(4*dr-msr-mr)-892*Math.sin(3*dr-mr)-810*E*Math.sin(2*dr+msr+mr)+759*E*Math.sin(4*dr-msr-2*mr)+691*E*Math.sin(2*dr+msr-2*mr)+549*Math.sin(4*dr+mr)+537*Math.sin(4*mr)+520*E*Math.sin(4*dr-msr)+299*E*Math.sin(dr+msr-mr)+294*Math.sin(2*dr+3*mr);sl+=3958*Math.sin(A1)+1962*Math.sin(Lp*Math.PI/180-fr)+318*Math.sin(A2);return((Lp+sl/1000000)%360+360)%360;}
+// ── NC Lahiri Ayanamsa (সঠিক) ──
+function lahiriAY(jd){const T=(jd-2451545)/36525;return 23.853056+(50.2564+0.0222*T)/3600*T*100;}
+// ── ধীর গ্রহ (Slow Planets) ──
+function saturnL(jd){const T=(jd-2451545)/36525;const L=((50.077444+1222.113777*T)%360+360)%360;const M=((316.967+1221.552*T)%360+360)*Math.PI/180;return((L+6.3585*Math.sin(M)+0.2204*Math.sin(2*M))%360+360)%360;}
+function jupiterL(jd){const T=(jd-2451545)/36525;const L=((34.351519+3034.905675*T)%360+360)%360;const M=((20.9+3034.9*T)%360+360)*Math.PI/180;return((L+5.5549*Math.sin(M)+0.1683*Math.sin(2*M))%360+360)%360;}
+function rahuL(jd){const T=(jd-2451545)/36525;return((125.0445479-1934.1362608*T)%360+360)%360;}
 function sunTimes(y,m,d){const jd0=JD(y,m,d),n=jd0-2451545+0.5;const L=((280.46646+0.9856474*n)%360+360)%360,g=((357.52911+0.9856003*n)%360+360)*Math.PI/180;const lam=L+1.914602*Math.sin(g)+0.019993*Math.sin(2*g);const eps=23.439*Math.PI/180,lamR=lam*Math.PI/180,sinDec=Math.sin(eps)*Math.sin(lamR),dec=Math.asin(sinDec);const e2=0.016708634,y2=Math.tan(eps/2)**2,lR=L*Math.PI/180;const EoT=4*(y2*Math.sin(2*lR)-2*e2*Math.sin(g)+4*e2*y2*Math.sin(g)*Math.cos(2*lR)-0.5*y2*y2*Math.sin(4*lR)-1.25*e2*e2*Math.sin(2*g))*180/Math.PI;const latR=LAT*Math.PI/180,cosH=(Math.sin(-0.8333*Math.PI/180)-Math.sin(latR)*sinDec)/(Math.cos(latR)*Math.cos(dec));if(Math.abs(cosH)>1)return{rise:6,set:18};const H=Math.acos(Math.min(1,Math.max(-1,cosH)))*180/Math.PI;const noon=(720-4*LNG-EoT)/60+TZ;return{rise:noon-H/15,set:noon+H/15};}
 
-// ══════════════════════════════════
-// PANJIKA DATA
-// ══════════════════════════════════
+// ════════════════════════════════════════════════════════
+// SECTION ⑤ — PANJIKA NAMES (পঞ্চাঙ্গের বাংলা নামের তালিকা)
+// কাজ: তিথি, নক্ষত্র, যোগ, করণের নাম ধরে রাখে
+//   • TNAMES[30]  — ৩০টি তিথির নাম (শুক্ল প্রতিপদ → কৃষ্ণ অমাবস্যা)
+//   • NAKS[27]    — ২৭টি নক্ষত্রের নাম ও অধিপতি গ্রহ
+//   • YOGAS[27]   — ২৭টি যোগের নাম ও শুভ/অশুভ চিহ্ন
+//   • KARANS[11]  — করণের নাম (৭টি চর + ৪টি স্থির)
+// পরিবর্তন: নামের বানান ঠিক করতে এখানে আসুন
+// ════════════════════════════════════════════════════════
 const TNAMES=['প্রতিপদ','দ্বিতীয়া','তৃতীয়া','চতুর্থী','পঞ্চমী','ষষ্ঠী','সপ্তমী','অষ্টমী','নবমী','দশমী','একাদশী','দ্বাদশী','ত্রয়োদশী','চতুর্দশী','পূর্ণিমা','প্রতিপদ','দ্বিতীয়া','তৃতীয়া','চতুর্থী','পঞ্চমী','ষষ্ঠী','সপ্তমী','অষ্টমী','নবমী','দশমী','একাদশী','দ্বাদশী','ত্রয়োদশী','চতুর্দশী','অমাবস্যা'];
 const NAKS=[['অশ্বিনী','কেতু'],['ভরণী','শুক্র'],['কৃত্তিকা','সূর্য'],['রোহিণী','চন্দ্র'],['মৃগশিরা','মঙ্গল'],['আর্দ্রা','রাহু'],['পুনর্বসু','গুরু'],['পুষ্যা','শনি'],['আশ্লেষা','বুধ'],['মঘা','কেতু'],['পূর্বফাল্গুনী','শুক্র'],['উত্তরফাল্গুনী','সূর্য'],['হস্তা','চন্দ্র'],['চিত্রা','মঙ্গল'],['স্বাতী','রাহু'],['বিশাখা','গুরু'],['অনুরাধা','শনি'],['জ্যেষ্ঠা','বুধ'],['মূলা','কেতু'],['পূর্বাষাঢ়া','শুক্র'],['উত্তরাষাঢ়া','সূর্য'],['শ্রবণা','চন্দ্র'],['ধনিষ্ঠা','মঙ্গল'],['শতভিষা','রাহু'],['পূর্বভাদ্র','গুরু'],['উত্তরভাদ্র','শনি'],['রেবতী','বুধ']];
 const YOGAS=[['বিষ্কুম্ভ','✗'],['প্রীতি','✓'],['আয়ুষ্মান','✓'],['সৌভাগ্য','✓'],['শোভন','✓'],['অতিগণ্ড','✗'],['সুকর্মা','✓'],['ধৃতি','✓'],['শূল','✗'],['গণ্ড','✗'],['বৃদ্ধি','✓'],['ধ্রুব','✓'],['ব্যাঘাত','✗'],['হর্ষণ','✓'],['বজ্র','✗'],['সিদ্ধি','✓'],['ব্যতীপাত','✗'],['বরীয়ান','✓'],['পরিঘ','✗'],['শিব','✓'],['সিদ্ধ','✓'],['সাধ্য','✓'],['শুভ','✓'],['শুক্ল','✓'],['ব্রহ্ম','✓'],['ইন্দ্র','✓'],['বৈধৃতি','✗']];
 const KARANS=['বব','বালব','কৌলব','তৈতিল','গর','বণিজ','বিষ্টি','শকুনি','চতুষ্পাদ','নাগ','কিংস্তুঘ্ন'];
-const RS=[7,1,6,4,5,3,2],GS=[6,5,4,3,2,1,7],YS=[5,4,3,2,1,7,6];
+const RS=[4,2,6,5,6,4,3],GS=[6,5,4,3,2,1,7],YS=[5,4,3,2,1,7,6];
+// ════════════════════════════════════════════════════════
+// SECTION ⑥ — FESTIVAL LIST (উৎসব ও ব্রতের তালিকা)
+// কাজ: ক্যালেন্ডার ও detail panel-এ উৎসব দেখায়
+// পরিবর্তন: প্রতি বছর নতুন উৎসব যোগ করুন
+//   format: {d:'YYYY-MM-DD', n:'উৎসবের নাম', i:'🎉'}
+// ════════════════════════════════════════════════════════
 const FESTS=[
   {d:'2025-04-14',n:'পয়লা বৈশাখ – বাংলা নববর্ষ ১৪৩২',i:'🎉'},{d:'2025-04-30',n:'অক্ষয় তৃতীয়া',i:'🌟'},
   {d:'2025-05-12',n:'বুদ্ধ পূর্ণিমা',i:'☸️'},{d:'2025-06-27',n:'রথযাত্রা',i:'🎡'},
@@ -891,31 +1225,370 @@ const FESTS=[
   {d:'2026-10-24',n:'বিজয়াদশমী',i:'🎊'},{d:'2026-11-08',n:'কালীপূজা',i:'🪔'},
   {d:'2026-12-25',n:'বড়দিন',i:'🎄'},
 ];
+// ════════════════════════════════════════════════════════
+// SECTION ⑦ — ECLIPSE DATA (গ্রহণের সময়সূচি ২০২৬–২০২৮)
+// কাজ: গ্রহণের দিনে ক্যালেন্ডারে বেগুনি রঙে দেখায়
+//       detail panel-এ সম্পূর্ণ সময়তালিকা দেখায়
+// পরিবর্তন: নতুন বছরের গ্রহণ যোগ করতে ECLIPSE_DATA array-এ entry যোগ করুন
+//   format: { d:'YYYY-MM-DD', type:'চন্দ্রগ্রহণ', sub:'পূর্ণগ্রাস',
+//             icon:'🌑', visible:'...', grasamana:'১.১০৬',
+//             times:[{l:'গ্রহণ স্পর্শ', t:'দিবা ঘ ৩|২০'}, ...] }
+//   তথ্যসূত্র: বিশুদ্ধ সিদ্ধান্ত পঞ্জিকা / NASA eclipse.gsfc.nasa.gov
+// ════════════════════════════════════════════════════════
+const ECLIPSE_DATA = [
+  // ── ২০২৬ ──
+  {
+    d:'2026-03-03', type:'চন্দ্রগ্রহণ', sub:'পূর্ণগ্রাস',
+    icon:'🌑', visible:'ভারতে সন্ধ্যার পর দৃশ্যমান',
+    grasamana:'১.১০৬',
+    times:[
+      {l:'উপচ্ছায়া প্রবেশ', t:'দিবা ঘ ২|১৩'},
+      {l:'গ্রহণ স্পর্শ',     t:'দিবা ঘ ৩|২০'},
+      {l:'নিমীলন',           t:'সন্ধ্যা ঘ ৪|৩৪'},
+      {l:'গ্রহণ মধ্য',       t:'সন্ধ্যা ঘ ৫|১৫'},
+      {l:'উন্মীলন',          t:'সন্ধ্যা ঘ ৫|৩৩'},
+      {l:'গ্রহণমোক্ষ',       t:'রাত্রি ঘ ৬|৪৮'},
+      {l:'উপচ্ছায়া ত্যাগ',  t:'রাত্রি ঘ ৭|৫৫'},
+    ]
+  },
+  {
+    d:'2026-08-12', type:'সূর্যগ্রহণ', sub:'পূর্ণগ্রাস',
+    icon:'🌞', visible:'ভারতে আংশিক দৃশ্যমান (উত্তর-পশ্চিম)',
+    grasamana:'—',
+    times:[
+      {l:'গ্রহণ স্পর্শ',  t:'দিবা ঘ ১১|৫০'},
+      {l:'গ্রহণ মধ্য',    t:'দিবা ঘ ১৩|২৮'},
+      {l:'গ্রহণমোক্ষ',    t:'দিবা ঘ ১৫|০৭'},
+    ]
+  },
+  {
+    d:'2026-09-28', type:'চন্দ্রগ্রহণ', sub:'আংশিক',
+    icon:'🌕', visible:'ভারতে রাত্রে সম্পূর্ণ দৃশ্যমান',
+    grasamana:'০.০৩',
+    times:[
+      {l:'উপচ্ছায়া প্রবেশ', t:'রাত্রি ঘ ১২|৩২'},
+      {l:'গ্রহণ স্পর্শ',     t:'রাত্রি ঘ ১|৩৪'},
+      {l:'গ্রহণ মধ্য',       t:'রাত্রি ঘ ২|১৪'},
+      {l:'গ্রহণমোক্ষ',       t:'রাত্রি ঘ ২|৫৪'},
+      {l:'উপচ্ছায়া ত্যাগ',  t:'রাত্রি ঘ ৩|৫৬'},
+    ]
+  },
+  // ── ২০২৭ ──
+  {
+    d:'2027-02-20', type:'চন্দ্রগ্রহণ', sub:'পূর্ণগ্রাস',
+    icon:'🌑', visible:'ভারতে সম্পূর্ণ দৃশ্যমান',
+    grasamana:'১.৫১১',
+    times:[
+      {l:'উপচ্ছায়া প্রবেশ', t:'রাত্রি ঘ ১০|৩১'},
+      {l:'গ্রহণ স্পর্শ',     t:'রাত্রি ঘ ১১|৪৪'},
+      {l:'নিমীলন',           t:'রাত্রি ঘ ১২|৫৬'},
+      {l:'গ্রহণ মধ্য',       t:'রাত্রি ঘ ১|৪৭'},
+      {l:'উন্মীলন',          t:'রাত্রি ঘ ২|৩৮'},
+      {l:'গ্রহণমোক্ষ',       t:'রাত্রি ঘ ৩|৫১'},
+      {l:'উপচ্ছায়া ত্যাগ',  t:'রাত্রি ঘ ৫|০৩'},
+    ]
+  },
+  {
+    d:'2027-08-02', type:'সূর্যগ্রহণ', sub:'পূর্ণগ্রাস',
+    icon:'🌞', visible:'ভারতে সংকীর্ণ পথে দৃশ্যমান (মধ্যভারত)',
+    grasamana:'—',
+    times:[
+      {l:'গ্রহণ স্পর্শ',  t:'দিবা ঘ ৯|০৭'},
+      {l:'পূর্ণগ্রাস শুরু', t:'দিবা ঘ ১০|০৭'},
+      {l:'গ্রহণ মধ্য',    t:'দিবা ঘ ১০|৩৮'},
+      {l:'পূর্ণগ্রাস শেষ', t:'দিবা ঘ ১১|০৯'},
+      {l:'গ্রহণমোক্ষ',    t:'দিবা ঘ ১২|১৪'},
+    ]
+  },
+  {
+    d:'2027-08-17', type:'চন্দ্রগ্রহণ', sub:'আংশিক',
+    icon:'🌕', visible:'ভারতে ভোরের দিকে দৃশ্যমান',
+    grasamana:'০.১৪',
+    times:[
+      {l:'উপচ্ছায়া প্রবেশ', t:'রাত্রি ঘ ৩|০২'},
+      {l:'গ্রহণ স্পর্শ',     t:'রাত্রি ঘ ৪|৪১'},
+      {l:'গ্রহণ মধ্য',       t:'ভোর ঘ ৫|৩১'},
+      {l:'গ্রহণমোক্ষ',       t:'ভোর ঘ ৬|২০'},
+      {l:'উপচ্ছায়া ত্যাগ',  t:'ভোর ঘ ৭|৫৯'},
+    ]
+  },
+  // ── ২০২৮ ──
+  {
+    d:'2028-01-12', type:'চন্দ্রগ্রহণ', sub:'আংশিক',
+    icon:'🌕', visible:'ভারতে রাত্রে দৃশ্যমান',
+    grasamana:'০.০৭',
+    times:[
+      {l:'উপচ্ছায়া প্রবেশ', t:'রাত্রি ঘ ৮|২৮'},
+      {l:'গ্রহণ স্পর্শ',     t:'রাত্রি ঘ ৯|৫১'},
+      {l:'গ্রহণ মধ্য',       t:'রাত্রি ঘ ১০|১৫'},
+      {l:'গ্রহণমোক্ষ',       t:'রাত্রি ঘ ১০|৩৯'},
+      {l:'উপচ্ছায়া ত্যাগ',  t:'রাত্রি ঘ ১২|০২'},
+    ]
+  },
+  {
+    d:'2028-07-06', type:'সূর্যগ্রহণ', sub:'পূর্ণগ্রাস',
+    icon:'🌞', visible:'ভারতে দৃশ্যমান নয় (অস্ট্রেলিয়া পথ)',
+    grasamana:'—',
+    times:[
+      {l:'গ্রহণ স্পর্শ', t:'দিবা ঘ ১৩|১১'},
+      {l:'গ্রহণ মধ্য',   t:'দিবা ঘ ১৫|০১'},
+      {l:'গ্রহণমোক্ষ',   t:'দিবা ঘ ১৬|৫০'},
+    ]
+  },
+  {
+    d:'2028-12-31', type:'চন্দ্রগ্রহণ', sub:'পূর্ণগ্রাস',
+    icon:'🌑', visible:'ভারতে সন্ধ্যার পর দৃশ্যমান',
+    grasamana:'১.২৪৬',
+    times:[
+      {l:'উপচ্ছায়া প্রবেশ', t:'সন্ধ্যা ঘ ৫|৩৩'},
+      {l:'গ্রহণ স্পর্শ',     t:'সন্ধ্যা ঘ ৬|৫২'},
+      {l:'নিমীলন',           t:'রাত্রি ঘ ৮|০৪'},
+      {l:'গ্রহণ মধ্য',       t:'রাত্রি ঘ ৮|৫২'},
+      {l:'উন্মীলন',          t:'রাত্রি ঘ ৯|৩৯'},
+      {l:'গ্রহণমোক্ষ',       t:'রাত্রি ঘ ১০|৫২'},
+      {l:'উপচ্ছায়া ত্যাগ',  t:'রাত্রি ঘ ১২|১০'},
+    ]
+  },
+];
+function getEclipse(ds){return ECLIPSE_DATA.filter(e=>e.d===ds);}
 const getFests=ds=>FESTS.filter(f=>f.d===ds);
-function calcDay(date){const y=date.getFullYear(),m=date.getMonth()+1,d=date.getDate(),w=date.getDay();const jd=JD(y,m,d)+0.5;const sl=sunL(jd),ml=moonL(jd);const ay=23.85+(jd-2451545)*(50.3/3600/365.25);const mlS=((ml-ay)%360+360)%360;const diff=((ml-sl)+360)%360;const tN=Math.floor(diff/12)+1;const nI=Math.floor(mlS/(360/27))%27;const yI=Math.floor(((sl+ml)%360)/(360/27))%27;const kI=Math.floor(diff/6)%11;const st=sunTimes(y,m,d);const bn=getBnInfo(date);return{w,bn,tN,tName:TNAMES[tN-1],paksha:tN<=15?'শুক্লপক্ষ':'কৃষ্ণপক্ষ',pakDay:tN<=15?tN:tN-15,nak:NAKS[nI],yoga:YOGAS[yI],karan:KARANS[kI],vara:VDAYS[w],varaL:VLORD[w],st,rahu:slotT(st.rise,st.set,RS[w]),gulika:slotT(st.rise,st.set,GS[w]),yam:slotT(st.rise,st.set,YS[w]),abhi:abhiT(st.rise,st.set),fests:getFests(dStr(date))};}
+// ════════════════════════════════════════════════════════
+// SECTION ⑨ — TRANSITION ENGINE (পঞ্চাঙ্গ পরিবর্তনের সময় গণনা)
+// কাজ: দিনের মধ্যে তিথি/নক্ষত্র/যোগ/করণ কখন বদলায় তা বের করে
+//   • _getTithiIdx()  — তিথির index (0–29)
+//   • _getNakIdx()    — নক্ষত্রের index (0–26)
+//   • _getYogaIdx()   — যোগের index (Sidereal পদ্ধতি)
+//   • _getKaranNum()  — করণ নম্বর (0–59)
+//   • _findTrans()    — 5 মিনিট অন্তর sample নিয়ে পরিবর্তন খোঁজে
+//   • _buildList()    — [{val, endTime}] list তৈরি করে
+// পরিবর্তন: সাধারণত দরকার নেই
+// ════════════════════════════════════════════════════════
+function _getTithiIdx(jd){return Math.floor(((moonL(jd)-sunL(jd)+360)%360)/12)%30;}
+function _getNakIdx(jd){const ay2=lahiriAY(jd);return Math.floor(((moonL(jd)-ay2+360)%360)/(360/27))%27;}
+function _getYogaIdx(jd){const a=lahiriAY(jd);return Math.floor(((sunL(jd)-a+moonL(jd)-a+720)%360)/(360/27))%27;}
+function _getKaranNum(jd){return Math.floor(((moonL(jd)-sunL(jd)+360)%360)/6)%60;}
+function _karanaName(n){const k=((n%60)+60)%60;if(k===0)return KARANS[10];if(k===57)return KARANS[7];if(k===58)return KARANS[8];if(k===59)return KARANS[9];return KARANS[(k-1)%7];}
+function _findTrans(jdStart,jdEnd,getFn,y,m,d){
+  const STEPS=288;const results=[];let prev=getFn(jdStart);
+  for(let i=1;i<=STEPS;i++){
+    const jd=jdStart+(jdEnd-jdStart)*i/STEPS;const cur=getFn(jd);
+    if(cur!==prev){
+      let lo=jdStart+(jdEnd-jdStart)*(i-1)/STEPS,hi=jd;
+      for(let j=0;j<52;j++){if(hi-lo<1/86400/30)break;const mid=(lo+hi)/2;if(getFn(mid)===prev)lo=mid;else hi=mid;}
+      const bnd=(lo+hi)/2;
+      const localH=(bnd-JD(y,m,d))*24+TZ;
+      const hh=((Math.floor(localH)%24)+24)%24;
+      let mm=Math.round((localH-Math.floor(localH))*60);
+      const fh=mm>=60?hh+1:hh,fm=mm>=60?0:mm;
+      results.push({fromIdx:prev,toIdx:cur,time:fmtT(fh,fm)});prev=cur;
+    }
+  }
+  return results;
+}
+function _buildList(startIdx,trans,nameFn){
+  if(!trans.length)return[{val:nameFn(startIdx),endTime:null}];
+  const list=[];let cur=startIdx;
+  for(const t of trans){list.push({val:nameFn(cur),endTime:t.time});cur=t.toIdx;}
+  list.push({val:nameFn(cur),endTime:null});
+  return list;
+}
+
+// ════════════════════════════════════════════════════════
+// SECTION ⑩ — calcDay() (মূল পঞ্চাঙ্গ গণনা ফাংশন)
+// কাজ: একটি তারিখের সব পঞ্চাঙ্গ তথ্য return করে
+//   return: { tithiList, nakList, yogaList, karanList,
+//             vara, st (sunrise/set), rahu, gulika, yam, abhi,
+//             fests, eclipses, bn (বাংলা তারিখ) }
+// পরিবর্তন: সাধারণত দরকার নেই
+// ════════════════════════════════════════════════════════
+function calcDay(date){
+  const y=date.getFullYear(),m=date.getMonth()+1,d=date.getDate(),w=date.getDay();
+  const st=sunTimes(y,m,d);const bn=getBnInfo(date);
+  // Sunrise JD
+  const jdRise=JD(y,m,d)+(st.rise-TZ)/24;
+  // Next sunrise JD
+  const nd=new Date(date);nd.setDate(nd.getDate()+1);
+  const stN=sunTimes(nd.getFullYear(),nd.getMonth()+1,nd.getDate());
+  const jdNext=JD(nd.getFullYear(),nd.getMonth()+1,nd.getDate())+(stN.rise-TZ)/24;
+  // Starting indices at sunrise
+  const tIdx0=_getTithiIdx(jdRise);
+  const nIdx0=_getNakIdx(jdRise);
+  const yIdx0=_getYogaIdx(jdRise);
+  const kNum0=_getKaranNum(jdRise);
+  // Transitions
+  const tTrans=_findTrans(jdRise,jdNext,_getTithiIdx,y,m,d);
+  const nTrans=_findTrans(jdRise,jdNext,_getNakIdx,y,m,d);
+  const yTrans=_findTrans(jdRise,jdNext,_getYogaIdx,y,m,d);
+  const kTrans=_findTrans(jdRise,jdNext,_getKaranNum,y,m,d);
+  // Build lists
+  const tithiList=_buildList(tIdx0,tTrans,idx=>{const i=((idx%30)+30)%30;return{name:TNAMES[i],paksha:i<15?'শুক্লপক্ষ':'কৃষ্ণপক্ষ',pakShort:i<15?'শু':'কৃ',pakDay:i<15?i+1:i-14};});
+  const nakList=_buildList(nIdx0,nTrans,idx=>({name:NAKS[idx%27][0],lord:NAKS[idx%27][1]}));
+  const yogaList=_buildList(yIdx0,yTrans,idx=>({name:YOGAS[idx%27][0],sym:YOGAS[idx%27][1]}));
+  const karanList=_buildList(kNum0,kTrans,kn=>({name:_karanaName(kn)}));
+  // Primary (backward compat)
+  const p=tithiList[0].val;
+  const tN=p.pakDay+(p.paksha==='কৃষ্ণপক্ষ'?15:0);
+  return{w,bn,tN,tName:p.name,paksha:p.paksha,pakDay:p.pakDay,
+    nak:NAKS[nIdx0],yoga:YOGAS[yIdx0],karan:karanList[0].val.name,
+    vara:VDAYS[w],varaL:VLORD[w],st,
+    rahu:slotT(st.rise,st.set,RS[w]),gulika:slotT(st.rise,st.set,GS[w]),
+    yam:slotT(st.rise,st.set,YS[w]),abhi:abhiT(st.rise,st.set),
+    eclipses:getEclipse(dStr(date)),
+    fests:getFests(dStr(date)),
+    tithiList,nakList,yogaList,karanList};
+}
 function moonEmoji(t){if(t===15)return'🌕';if(t===30||t===1)return'🌑';if(t<8)return'🌒';if(t===8)return'🌓';if(t<15)return'🌔';if(t<23)return'🌖';if(t===23)return'🌗';return'🌘';}
 
-// ══════════════════════════════════
-// HEADER
-// ══════════════════════════════════
+// ════════════════════════════════════════════════════════
+// SECTION ⑪ — HEADER RENDER (আজকের তারিখ ব্যানার)
+// কাজ: পেজের উপরে আজকের বাংলা তারিখ ও chip গুলো দেখায়
+// পরিবর্তন: chip-এ কী দেখাবে তা বদলাতে এখানে আসুন
+// ════════════════════════════════════════════════════════
 function renderHeader(){const c=calcDay(TODAY),bn=c.bn;if(!bn)return;document.getElementById('tb-bn').textContent=`${toBn(bn.d)} ${bn.name} ${toBn(bn.y)} বঙ্গাব্দ`;document.getElementById('tb-en').textContent=`${TODAY.getDate()} ${EMS[TODAY.getMonth()]} ${TODAY.getFullYear()} | ${c.vara} | ${bn.ritu} ঋতু`;const rh=Math.floor(c.st.rise),rm=Math.round((c.st.rise-rh)*60);document.getElementById('tb-chips').innerHTML=[c.paksha,c.tName,c.nak[0],`${toBn(rh)}:${String(rm).padStart(2,'0')} উদয়`].map(x=>`<div class="chip">${x}</div>`).join('');}
 
-// ══════════════════════════════════
-// CALENDAR
-// ══════════════════════════════════
+// ════════════════════════════════════════════════════════
+// SECTION ⑫ — CALENDAR RENDER (মাসিক ক্যালেন্ডার)
+// কাজ: বাংলা মাসের ক্যালেন্ডার grid তৈরি করে
+//   • shiftM(±1)    — আগের/পরের মাসে যায়
+//   • renderCal()   — সম্পূর্ণ calendar আবার draw করে
+// পরিবর্তন: cell-এ কী দেখাবে (তিথি/উৎসব) তা বদলাতে এখানে আসুন
+// ════════════════════════════════════════════════════════
 let calIdx=findTodayIdx(),selDate=null;
 function shiftM(d){calIdx=Math.max(0,Math.min(BMS.length-2,calIdx+d));renderCal();}
-function renderCal(){const days=getBnMonthDays(calIdx);if(!days.length)return;const e=BMS[calIdx];const f=days[0].date,l=days[days.length-1].date;const enRange=f.getMonth()===l.getMonth()?`${EMS[f.getMonth()]} ${f.getFullYear()}`:`${EMSh[f.getMonth()]}–${EMSh[l.getMonth()]} ${l.getFullYear()}`;document.getElementById('cmbn').textContent=`${BNM_NAMES[e.m]} ${toBn(e.y)} বঙ্গাব্দ`;document.getElementById('cmen').textContent=enRange;const first=days[0].date.getDay();let h='';for(let i=0;i<first;i++)h+=`<div class="cd ce"></div>`;days.forEach(({date,bnDay})=>{const wd=date.getDay();const isT=date.toDateString()===TODAY.toDateString();const isS=selDate&&date.toDateString()===selDate.toDateString();const c=calcDay(date);const fests=c.fests;const ds_=dStr(date);const enLbl=`${date.getDate()} ${EMSh[date.getMonth()]}`;const tsh=(c.paksha==='শুক্লপক্ষ'?'শু ':'কৃ ')+c.tName;let cls='cd';if(wd===0)cls+=' ds';if(wd===6)cls+=' dsa';if(isT)cls+=' ct';if(isS)cls+=' cs';h+=`<div class="${cls}" onclick="showDetail(new Date('${ds_}'))">${isT?'<div class="tdot"></div>':''}<div class="db">${toBn(bnDay)}</div><div class="de">${enLbl}</div><div class="dti">${tsh}</div>${fests.length?`<div class="df">${fests[0].i} ${fests[0].n}</div>`:''}</div>`;});document.getElementById('cbody').innerHTML=h;}
+function renderCal(){const days=getBnMonthDays(calIdx);if(!days.length)return;const e=BMS[calIdx];const f=days[0].date,l=days[days.length-1].date;const enRange=f.getMonth()===l.getMonth()?`${EMS[f.getMonth()]} ${f.getFullYear()}`:`${EMSh[f.getMonth()]}–${EMSh[l.getMonth()]} ${l.getFullYear()}`;document.getElementById('cmbn').textContent=`${BNM_NAMES[e.m]} ${toBn(e.y)} বঙ্গাব্দ`;document.getElementById('cmen').textContent=enRange;const first=days[0].date.getDay();let h='';for(let i=0;i<first;i++)h+=`<div class="cd ce"></div>`;days.forEach(({date,bnDay})=>{const wd=date.getDay();const isT=date.toDateString()===TODAY.toDateString();const isS=selDate&&date.toDateString()===selDate.toDateString();const c=calcDay(date);const fests=c.fests;const ds_=dStr(date);const enLbl=`${date.getDate()} ${EMSh[date.getMonth()]}`;const tsh=c.tithiList.length>1?`${c.tithiList[0].val.pakShort} ${c.tithiList[0].val.name}/${c.tithiList[1].val.pakShort} ${c.tithiList[1].val.name}`:`${c.tithiList[0].val.pakShort} ${c.tithiList[0].val.name}`;let cls='cd';if(wd===0)cls+=' ds';if(wd===6)cls+=' dsa';if(isT)cls+=' ct';if(isS)cls+=' cs';h+=`<div class="${cls}" onclick="showDetail(new Date('${ds_}'))">${isT?'<div class="tdot"></div>':''}<div class="db">${toBn(bnDay)}</div><div class="de">${enLbl}</div><div class="dti">${tsh}</div>${(c.eclipses&&c.eclipses.length)?`<div class="df" style="color:#7b2fbe;">${c.eclipses[0].icon} ${c.eclipses[0].type}</div>`:fests.length?`<div class="df">${fests[0].i} ${fests[0].n}</div>`:''}</div>`;});document.getElementById('cbody').innerHTML=h;}
 
-// ══════════════════════════════════
-// DETAIL
-// ══════════════════════════════════
-function showDetail(date){if(!(date instanceof Date))date=new Date(date);selDate=date;renderCal();const c=calcDay(date),bn=c.bn;const y=date.getFullYear(),m=date.getMonth(),d=date.getDate();document.getElementById('dtbn').textContent=bn?`${toBn(bn.d)} ${bn.name} ${toBn(bn.y)} বঙ্গাব্দ`:'';document.getElementById('dten').textContent=`${d} ${EMS[m]} ${y} | ${c.vara} | ${bn?bn.ritu+' ঋতু':''}`;document.getElementById('dtmoon').textContent=moonEmoji(c.tN);document.getElementById('dtpaksha').textContent=`${c.paksha} — ${c.tName} (${toBn(c.pakDay)} তিথি)`;document.getElementById('dtvara').textContent=`বার-অধিপতি: ${c.varaL}`;const pct=c.tN<=15?(c.tN/15*100):((30-c.tN)/15*100);document.getElementById('dtprog').style.width=pct+'%';document.getElementById('dtplbl').textContent=c.tN<=15?`পূর্ণিমা পর্যন্ত ${toBn(15-c.tN)} তিথি`:`অমাবস্যা পর্যন্ত ${toBn(30-c.tN)} তিথি`;document.getElementById('dtpan').innerHTML=[{i:'🌙',l:'তিথি',v:c.tName,s:c.paksha},{i:'⭐',l:'নক্ষত্র',v:c.nak[0],s:`অধিপতি: ${c.nak[1]}`},{i:'🌟',l:'যোগ',v:c.yoga[0],s:c.yoga[1]==='✓'?'শুভ যোগ':'অশুভ যোগ'},{i:'🎴',l:'করণ',v:c.karan,s:''},{i:'☀️',l:'বার',v:c.vara,s:`অধিপতি: ${c.varaL}`},{i:'🌿',l:'ঋতু',v:bn?bn.ritu:'—',s:bn?bn.name+' মাস':''},{i:'📅',l:'বিক্রম সম্বত',v:bn?toBn(bn.vikram):'—',s:''},{i:'🕉️',l:'শক সম্বত',v:bn?toBn(bn.saka):'—',s:''},].map(x=>`<div class="di"><div class="dii">${x.i}</div><div class="dil">${x.l}</div><div class="div2">${x.v}</div>${x.s?`<div class="dis">${x.s}</div>`:''}</div>`).join('');const rh=Math.floor(c.st.rise),rm=Math.round((c.st.rise-rh)*60);const sh=Math.floor(c.st.set),sm=Math.round((c.st.set-sh)*60);document.getElementById('dttimes').innerHTML=[{ico:'🌅',cls:'shubha',l:'সূর্যোদয়',v:fmtT(rh,rm)},{ico:'🌇',cls:'',l:'সূর্যাস্ত',v:fmtT(sh,sm)},{ico:'⚡',cls:'rahu',l:'রাহুকাল',v:c.rahu},{ico:'🕯️',cls:'rahu',l:'গুলিকাকাল',v:c.gulika},{ico:'💫',cls:'shubha',l:'অভিজিৎ মুহূর্ত',v:c.abhi},{ico:'🔥',cls:'',l:'যমঘণ্ট',v:c.yam},{ico:'🌄',cls:'shubha',l:'ব্রাহ্ম মুহূর্ত',v:`${fmtT(rh-1,rm)} – ${fmtT(rh,rm)}`},].map(t=>`<div class="dtime ${t.cls}"><div class="dtl">${t.ico} ${t.l}</div><div class="dtv">${t.v}</div></div>`).join('');document.getElementById('dtfests').innerHTML=c.fests.length?c.fests.map(f=>`<div class="fi"><div class="fiico">${f.i}</div><div class="fin">${f.n}</div></div>`).join(''):'<div class="nofest">এই দিনে বিশেষ উৎসব নেই।</div>';const p=document.getElementById('dtp');p.classList.add('show');if(!_initLoad)setTimeout(()=>p.scrollIntoView({behavior:'smooth',block:'start'}),100);}
-function closeD(){document.getElementById('dtp').classList.remove('show');selDate=null;renderCal();}
+// ════════════════════════════════════════════════════════
+// SECTION ⑬ — DETAIL PANEL (দিনের বিস্তারিত প্যানেল)
+// কাজ: তারিখে click করলে পঞ্চাঙ্গ বিস্তারিত দেখায়
+//   • _panItem()       — তিথি/নক্ষত্র/যোগ/করণ transition সহ HTML তৈরি
+//   • _festHtml()      — উৎসব ও গ্রহণের HTML তৈরি
+//   • _brahmaT()       — ব্রাহ্ম মুহূর্তের সময় তৈরি
+//   • showDetail(date) — panel খোলে ও তথ্য দেখায়
+//   • closeD()         — panel বন্ধ করে
+// পরিবর্তন: detail panel-এর layout বদলাতে এখানে আসুন
+// ════════════════════════════════════════════════════════
 
-// ══════════════════════════════════
-// রাশি ডেটা
-// ══════════════════════════════════
+// পঞ্চাঙ্গ item HTML তৈরি (transition সহ)
+function _panItem(ico, label, list, mainFn, subFn) {
+  var rows = '';
+  for (var i = 0; i < list.length; i++) {
+    var x = list[i];
+    var nm = mainFn(x.val);
+    var sb = subFn ? subFn(x.val) : '';
+    var arrow = i > 0 ? '<div style="font-size:.42rem;color:var(--txt2);text-align:center;line-height:1;">&#9660;</div>' : '';
+    var timing = x.endTime
+      ? '<div class="dis" style="font-size:.58rem;">' + x.endTime + ' পর্যন্ত</div>'
+      : '<div class="dis" style="font-size:.55rem;color:var(--green);">&#9654; চলতি</div>';
+    rows += arrow + '<div class="div2">' + nm + '</div>' + (sb ? '<div class="dis">' + sb + '</div>' : '') + timing;
+  }
+  return '<div class="di"><div class="dii">' + ico + '</div><div class="dil">' + label + '</div>' + rows + '</div>';
+}
+
+// উৎসব ও গ্রহণের HTML তৈরি
+function _festHtml(c) {
+  var html = '';
+  if (c.eclipses && c.eclipses.length) {
+    for (var ei = 0; ei < c.eclipses.length; ei++) {
+      var ec = c.eclipses[ei];
+      var trows = '';
+      for (var ti = 0; ti < ec.times.length; ti++) {
+        trows += '<div class="eclipse-row"><span class="eclipse-lbl">' + ec.times[ti].l + '</span><span class="eclipse-val">' + ec.times[ti].t + '</span></div>';
+      }
+      html += '<div class="eclipse-box">'
+        + '<div class="eclipse-head"><span style="font-size:1.4rem;">' + ec.icon + '</span>'
+        + '<span class="eclipse-type">' + ec.type + '</span>'
+        + '<span class="eclipse-sub">' + ec.sub + '</span></div>'
+        + '<div class="eclipse-visible">&#128205; ' + ec.visible + '</div>'
+        + (ec.grasamana !== '&#8212;' ? '<div class="eclipse-mag">&#2455;&#2509;&#2480;&#2494;&#2488;&#2478;&#2494;&#2472;: ' + ec.grasamana + '</div>' : '')
+        + trows + '</div>';
+    }
+  }
+  if (c.fests && c.fests.length) {
+    for (var fi = 0; fi < c.fests.length; fi++) {
+      html += '<div class="fi"><div class="fiico">' + c.fests[fi].i + '</div><div class="fin">' + c.fests[fi].n + '</div></div>';
+    }
+  }
+  if (!html) { html = '<div class="nofest">এই দিনে বিশেষ উৎসব নেই।</div>'; }
+  return html;
+}
+
+// ব্রাহ্ম মুহূর্ত (সূর্যোদয়ের ৯৬–৪৮ মিনিট আগে)
+function _brahmaT(rise) {
+  var b1 = rise - 96 / 60, b2 = rise - 48 / 60;
+  var h1 = Math.floor(b1), m1 = Math.round((b1 - h1) * 60);
+  var h2 = Math.floor(b2), m2 = Math.round((b2 - h2) * 60);
+  return fmtT(h1, m1) + ' \u2013 ' + fmtT(h2, m2);
+}
+
+// গ্রাসমান — symbol fix
+(function() {
+  for (var i = 0; i < ECLIPSE_DATA.length; i++) {
+    if (ECLIPSE_DATA[i].grasamana === '—') { ECLIPSE_DATA[i].grasamana = '&#8212;'; }
+  }
+}());
+
+function showDetail(date) {
+  if (!(date instanceof Date)) { date = new Date(date); }
+  selDate = date;
+  renderCal();
+  var c = calcDay(date), bn = c.bn;
+  var y = date.getFullYear(), mo = date.getMonth(), d = date.getDate();
+  document.getElementById('dtbn').textContent = bn ? toBn(bn.d) + ' ' + bn.name + ' ' + toBn(bn.y) + ' বঙ্গাব্দ' : '';
+  document.getElementById('dten').textContent = d + ' ' + EMS[mo] + ' ' + y + ' | ' + c.vara + ' | ' + (bn ? bn.ritu + ' ঋতু' : '');
+  document.getElementById('dtmoon').textContent = moonEmoji(c.tN);
+  document.getElementById('dtpaksha').textContent = c.paksha + ' \u2014 ' + c.tName + ' (' + toBn(c.pakDay) + ' তিথি)';
+  document.getElementById('dtvara').textContent = 'বার-অধিপতি: ' + c.varaL;
+  var pct = c.tN <= 15 ? (c.tN / 15 * 100) : ((30 - c.tN) / 15 * 100);
+  document.getElementById('dtprog').style.width = pct + '%';
+  document.getElementById('dtplbl').textContent = c.tN <= 15
+    ? 'পূর্ণিমা পর্যন্ত ' + toBn(15 - c.tN) + ' তিথি'
+    : 'অমাবস্যা পর্যন্ত ' + toBn(30 - c.tN) + ' তিথি';
+  var extraItems = [{i:'☀️',l:'বার',v:c.vara,s:'অধিপতি: '+c.varaL},{i:'🌿',l:'ঋতু',v:bn?bn.ritu:'—',s:bn?bn.name+' মাস':''},{i:'📅',l:'বিক্রম সম্বত',v:bn?toBn(bn.vikram):'—',s:''},{i:'🕉️',l:'শক সম্বত',v:bn?toBn(bn.saka):'—',s:''}];
+  var extraHtml = '';
+  for (var xi = 0; xi < extraItems.length; xi++) {
+    var x = extraItems[xi];
+    extraHtml += '<div class="di"><div class="dii">'+x.i+'</div><div class="dil">'+x.l+'</div><div class="div2">'+x.v+'</div>'+(x.s?'<div class="dis">'+x.s+'</div>':'')+'</div>';
+  }
+  document.getElementById('dtpan').innerHTML =
+    _panItem('🌙', 'তিথি', c.tithiList, function(v){ return v.pakShort + ' ' + v.name; }, function(v){ return v.paksha; }) +
+    _panItem('⭐', 'নক্ষত্র', c.nakList, function(v){ return v.name; }, function(v){ return 'অধিপতি: ' + v.lord; }) +
+    _panItem('🌟', 'যোগ', c.yogaList, function(v){ return v.name; }, function(v){ return v.sym === '✓' ? 'শুভ যোগ' : 'অশুভ যোগ'; }) +
+    _panItem('🎴', 'করণ', c.karanList, function(v){ return v.name; }, null) +
+    extraHtml;
+  var rh = Math.floor(c.st.rise), rm = Math.round((c.st.rise - rh) * 60);
+  var sh = Math.floor(c.st.set),  sm = Math.round((c.st.set  - sh) * 60);
+  // Row 1: সূর্যোদয় · সূর্যাস্ত · ব্রাহ্ম মুহূর্ত  → 3 column
+  var row1 = [
+    {ico:'🌅', cls:'shubha', l:'সূর্যোদয়',      v:fmtT(rh, rm)},
+    {ico:'🌇', cls:'',       l:'সূর্যাস্ত',       v:fmtT(sh, sm)},
+    {ico:'🌄', cls:'shubha', l:'ব্রাহ্ম মুহূর্ত',  v:_brahmaT(c.st.rise)}
+  ];
+  // Row 2: রাহুকাল · গুলিকাকাল · অভিজিৎ · যমঘণ্ট → 2 column
+  var row2 = [
+    {ico:'⚡', cls:'rahu',   l:'রাহুকাল',         v:c.rahu},
+    {ico:'🕯️', cls:'rahu',   l:'গুলিকাকাল',       v:c.gulika},
+    {ico:'💫', cls:'shubha', l:'অভিজিৎ মুহূর্ত',  v:c.abhi},
+    {ico:'🔥', cls:'',       l:'যমঘণ্ট',          v:c.yam}
+  ];
+  var mkCard = function(t){ return '<div class="dtime ' + t.cls + '"><div class="dtl">' + t.ico + ' ' + t.l + '</div><div class="dtv">' + t.v + '</div></div>'; };
+  var timesHtml =
+    '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.52rem;margin-bottom:.52rem;">'
+    + row1.map(mkCard).join('') + '</div>'
+    + '<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.52rem;">'
+    + row2.map(mkCard).join('') + '</div>';
+  document.getElementById('dttimes').innerHTML = timesHtml;
+  document.getElementById('dtfests').innerHTML = _festHtml(c);
+  var p = document.getElementById('dtp');
+  p.classList.add('show');
+  if (!_initLoad) { setTimeout(function(){ p.scrollIntoView({behavior:'smooth', block:'start'}); }, 100); }
+}
+function closeD() { document.getElementById('dtp').classList.remove('show'); selDate = null; renderCal(); }
+
+// ════════════════════════════════════════════════════════
+// SECTION ⑭ — RASHI DATA (১২ রাশির তথ্য)
+// কাজ: প্রতিটি রাশির প্রতীক, অধিপতি, রত্ন, রং, সংখ্যা ধরে রাখে
+// পরিবর্তন: তথ্য সংশোধন করতে এখানে আসুন
+// ════════════════════════════════════════════════════════
 const RASHIS=[
   {n:'মেষ',   e:'Aries',      s:'♈',l:'মঙ্গল',el:'অগ্নি', nat:'চর',   gem:'প্রবাল',   col:'লাল',   num:'৯'},
   {n:'বৃষ',   e:'Taurus',     s:'♉',l:'শুক্র', el:'পৃথিবী',nat:'স্থির',gem:'হীরা',     col:'সাদা',  num:'৬'},
@@ -931,54 +1604,385 @@ const RASHIS=[
   {n:'মীন',   e:'Pisces',     s:'♓',l:'গুরু',  el:'জল',    nat:'দ্বিস্বভাব',gem:'পুষ্পরাগ',col:'হলুদ',num:'৩'},
 ];
 
-// ══════════════════════════════════
-// রাশিফল টেক্সট — সম্পূর্ণ ডেটাবেস
-// ══════════════════════════════════
-const RFD={
-  love:['আজ প্রেমের দিক থেকে অত্যন্ত শুভ। হৃদয়ের কথা নিঃসংকোচে প্রিয়জনকে জানান।','সম্পর্কে ছোট মতভেদ হতে পারে — মিষ্টি কথায় মিটিয়ে নিন, ধৈর্য রাখুন।','নতুন পরিচয় হওয়ার সম্ভাবনা। খোলা মনে মিশুন, বিবেচনা করে এগোন।','পারিবারিক সম্পর্কে উষ্ণতা বাড়বে। প্রিয়জনকে বিশেষ সময় দিন।','পুরানো ভুল বোঝাবুঝি মিটে গিয়ে সম্পর্কে নতুন মাধুর্য আসবে।','সঙ্গীর সাথে কোথাও ভ্রমণে যাওয়ার পরিকল্পনা সফল হতে পারে।','অবিবাহিতদের বিয়ের কথাবার্তায় অগ্রগতি হওয়ার যোগ রয়েছে।','আজ প্রিয়জনের কাছ থেকে কোনো মূল্যবান উপহার পেতে পারেন।','দাম্পত্য জীবনে একে অপরের প্রতি শ্রদ্ধা ও বিশ্বাস বাড়বে।','সম্পর্কে নতুন কোনো মোড় আসতে পারে যা আপনাকে আনন্দ দেবে।','কারও প্রতি গোপন ভালো লাগা থাকলে আজ তা প্রকাশ করার সুযোগ পাবেন।','সঙ্গীর স্বাস্থ্যের প্রতি যত্নশীল হোন, তার সমর্থন আপনার মনোবল বাড়াবে।','আজকের দিনটি রোমান্টিক ডিনারের জন্য আদর্শ।','একে অপরের সাথে খোলামেলা আলোচনা করুন, দূরত্ব কমবে।','তৃতীয় কোনো ব্যক্তির কারণে সম্পর্কে যেন ফাটল না ধরে, সতর্ক থাকুন।','ছোট ছোট আনন্দগুলো ভাগ করে নিন, এতে সম্পর্ক গভীর হবে।','পুরানো বন্ধুর সাথে নতুন করে ঘনিষ্ঠতা বাড়তে পারে।','আজ আপনার আকর্ষণীয় ব্যক্তিত্ব অনেককে মুগ্ধ করবে।','প্রিয়জনের আবেগকে বোঝার চেষ্টা করুন, দিনটি ভালো কাটবে।','প্রেমের ক্ষেত্রে বড় কোনো সিদ্ধান্ত নিতে তাড়াহুড়ো করবেন না।','বিচ্ছেদের পথে থাকা সম্পর্কে নতুন আশা দেখা দিতে পারে।','সঙ্গীর পরিবার থেকে কোনো সুখবর আসার সম্ভাবনা রয়েছে।','আজ সোশ্যাল মিডিয়ায় নতুন কারোর সাথে যোগাযোগ হতে পারে।','অতীতের কোনো প্রিয় মানুষের সাথে হঠাৎ দেখা হতে পারে।','একে অপরের প্রতি ছোট ছোট সন্দেহ ত্যাগ করুন, দিনটি শুভ।','দূরত্বে থাকা প্রেমিক-প্রেমিকাদের জন্য দিনটি যোগাযোগের জন্য শুভ।','একসাথে সিনেমা দেখা বা গান শোনার মাধ্যমে সময় কাটান।','প্রেমের বিবাদ আজ মিটে যেতে পারে বন্ধুর মধ্যস্থতায়।','আজ মনের মানুষের পছন্দের খাবার রান্না করুন বা উপহার দিন।','নতুন সম্পর্কের প্রস্তাব আসার প্রবল সম্ভাবনা দেখা দিচ্ছে।','সম্পর্কে স্বচ্ছতা বজায় রাখুন, এতে বিশ্বাস মজবুত হবে।','অভিমান পুষে রাখবেন না, আজই মন খুলে কথা বলুন।','দীর্ঘদিনের কোনো সুপ্ত বাসনা আজ পূরণ হতে পারে।','পারিবারিক কোনো অনুষ্ঠানে প্রিয়জনের সাথে পরিচয় হতে পারে।','সম্পর্কে বড় কোনো সারপ্রাইজ আপনার জন্য অপেক্ষা করছে।','আজকের গ্রহের অবস্থান প্রেমের জন্য অনুকূল।','একে অপরের প্রতি দায়িত্বশীল হোন, ভালোবাসা বাড়বে।','মিষ্টি কথায় সঙ্গীর মন জয় করতে সক্ষম হবেন।','প্রেমের ক্ষেত্রে আত্মবিশ্বাস বজায় রাখুন।','আজ কারোর সাহায্য ছাড়াই প্রেমের সমস্যা মিটে যাবে।','পুরানো সম্পর্কের স্মৃতি আপনাকে আনন্দ দেবে।','জীবনসঙ্গীর পরামর্শ আজ কোনো বড় বিপদ থেকে বাঁচাবে।','রোমান্টিক মেজাজে আজকের দিনটি উপভোগ করুন।','প্রেমের ক্ষেত্রে সততা থাকলে জয় নিশ্চিত।','আজ প্রিয়জনকে সারপ্রাইজ ভিজিট দিতে পারেন।','মান-অভিমান শেষে পুনর্মিলনের যোগ আছে।','আজকের কথোপকথন সম্পর্কের ভবিষ্যৎ মজবুত করবে।','সঙ্গীর সাফল্যে আজ আপনি গর্বিত বোধ করবেন।','সম্পর্কে নতুন কোনো চ্যালেঞ্জ আসলেও তা মোকাবিলা করবেন।','ভালোবাসার মানুষকে নিয়ে কোনো কেনাকাটা করতে যেতে পারেন।','আজকের দিনটি নতুন প্রেমের অঙ্কুরোদগমের জন্য ভালো।','একে অপরের প্রতি গভীর টান অনুভব করবেন।','কথার জাদুতে প্রিয়জনকে মুগ্ধ করার ক্ষমতা থাকবে আজ।','প্রেমের সম্পর্কে পরিবারের বড়দের আশীর্বাদ পাবেন।','আজ একে অপরকে বোঝার বিশেষ সুযোগ তৈরি হবে।','আপনার অনুভূতিগুলো প্রিয়জনের কাছে আজ বেশি গুরুত্ব পাবে।','প্রেমের বিবাদে আজ আপনার পক্ষই ভারী থাকবে।','আজ ছোট কোনো ভ্রমণে সম্পর্ক আরও গভীর হবে।','অচেনা কারোর প্রতি ভালো লাগা তৈরি হতে পারে।','পুরানো চিঠিপত্র বা স্মৃতি আজ মনকে হালকা করবে।','একে অপরের প্রতি শ্রদ্ধাবোধ আজকের মূল চালিকাশক্তি।','নতুন কারোর আবির্ভাবে জীবনে গতি ফিরবে।','দাম্পত্য জীবনে আজ আনন্দের বন্যা বয়ে যেতে পারে।','ভালোবাসার মানুষকে কোনো ছোট উপহার দিয়ে আনন্দ দিন।','আপনার জেদ আজ সম্পর্কের ক্ষতি করতে পারে, নমনীয় হোন।','সঙ্গীর কোনো আবদার আজ পূরণ হতে পারে।','আজকের গোধূলি বেলার সময়টি প্রেমের জন্য চমৎকার।','সম্পর্কে আবেগ ও যুক্তির ভারসাম্য বজায় রাখুন।','আজ প্রেমের ক্ষেত্রে কোনো তাড়াহুড়ো করবেন না।','মনের মানুষের কোনো ভুল আজ ক্ষমা করে দিন।','আজ প্রিয়জনের চোখে নিজেকে নতুনভাবে আবিষ্কার করবেন।','দূরভ্রমণের মাধ্যমে সম্পর্কে সতেজতা ফিরবে।','প্রেমের ক্ষেত্রে গোপন কথা আজ ফাঁস না করাই ভালো।','একে অপরের পছন্দকে গুরুত্ব দিন, শান্তি ফিরবে।','আজকের দিনটি নতুন অঙ্গীকার করার জন্য শুভ।','পারিবারিক চাপে প্রেমের পথে কিছুটা বাধা আসতে পারে।','প্রিয়জনের সাহচর্য আজ সব ক্লান্তি দূর করবে।','আজ আপনার প্রতিটি কথা সঙ্গীর মনে দাগ কাটবে।','সম্পর্কের গভীরতা মাপার দিন আজ নয়, উপভোগ করুন।','প্রেমের ক্ষেত্রে আজ আপনিই প্রথম পদক্ষেপ নিন।','সঙ্গীর বুদ্ধিমত্তা আজ আপনাকে মুগ্ধ করবে।','একে অপরের হাতের ছোঁয়া আজ জাদুর মতো কাজ করবে।','আজকের রাতটি দীর্ঘ আলাপচারিতার জন্য বরাদ্দ রাখুন।','প্রেমের সম্পর্কে কোনো লুকোচুরি করবেন না।','সঙ্গীর বিষণ্ণতা দূর করতে আজ বিশেষ উদ্যোগ নিন।','একে অপরের পরিপূরক হয়ে ওঠার দিন আজ।','আজ প্রেমের ক্ষেত্রে কোনো ঝুঁকি নেওয়া থেকে বিরত থাকুন।','পুরানো প্রেমের প্রস্তাব নতুন করে আসতে পারে।','আজ আপনার ব্যক্তিত্বই আপনার প্রেমের প্রধান হাতিয়ার।','প্রিয়জনের সাথে কাটানো প্রতিটি মুহূর্ত আজ স্মরণীয় হবে।','সম্পর্কে রোমাঞ্চ বজায় রাখতে নতুন কিছু করার চেষ্টা করুন।','আজ আপনার মনের কথা কারোর মাধ্যমে প্রিয়জনের কাছে পৌঁছাবে।','প্রেমের ক্ষেত্রে ধৈর্যশীল হওয়ার ফল আজ পাবেন।','একসাথে সূর্যোদয় বা সূর্যাস্ত দেখা আজ শুভ।','জীবনসঙ্গীর প্রতি কৃতজ্ঞতা প্রকাশ করুন, সুসম্পর্ক থাকবে।','আজ প্রেমের ক্ষেত্রে কোনো মধ্যস্থতাকারীর প্রয়োজন নেই।','মনের মানুষের সান্নিধ্যে আজ আত্মিক শান্তি পাবেন।','আজকের প্রেমের বার্তা আপনার জন্য সৌভাগ্য বয়ে আনবে।','সম্পর্কে বিশ্বাসের মর্যাদা রাখতে শিখুন।','ভালোবাসার জাদুতে আজকের দিনটি রঙিন হয়ে উঠবে।','আজ প্রিয়জনের সাথে মিলে কোনো নতুন শখ শুরু করতে পারেন, সম্পর্ক আরও দৃঢ় হবে।','একে অপরের চোখে চোখ রেখে কথা বলুন — নীরব ভাষাই আজকের সেরা ভাষা।','দীর্ঘ বিরহের পর আজ প্রিয়জনের সাথে মিলনের সুযোগ আসতে পারে।','সম্পর্কে কোনো পুরানো অভিযোগ মিটিয়ে নতুনভাবে শুরু করার এটাই সঠিক সময়।','আজ প্রিয়জনের জন্য কোনো অপ্রত্যাশিত পদক্ষেপ নিলে মন জয় করতে পারবেন।','ভালোবাসার প্রকাশ আজ কথায় নয়, কাজে দেখান — ফল পাবেন।','আজ একে অপরের পরিবারের সাথে সময় কাটানো সম্পর্ককে মজবুত করবে।','প্রেমের পথে কোনো বাধা আজ আপনার প্রতিজ্ঞায় গলে যাবে।','আজ কারো নিঃশব্দ কষ্ট বুঝে সাথে থাকুন — এটাই সত্যিকারের ভালোবাসা।','দুজনে মিলে কোনো ছোট লক্ষ্য ঠিক করুন, সম্পর্কে নতুন গতি আসবে।','আজ প্রিয়জনের পছন্দের জায়গায় অপ্রত্যাশিত ডেটে যেতে পারেন।','সম্পর্কে পরিপক্কতা আনতে আজ নিজের অহং একটু সরিয়ে রাখুন।','আজ প্রিয়জনের ছোট ছোট ইচ্ছেগুলো পূরণ করার চেষ্টা করুন।','ভালোবাসা পরিমাপ করা যায় না — আজ শুধু অনুভব করুন।','আজ দুজনে মিলে পুরানো ছবি দেখুন, স্মৃতি সম্পর্ককে সজীব করে।'],
-  work:['কর্মক্ষেত্রে নতুন সুযোগ আসছে — উদ্যোগী হোন এবং নিজেকে প্রমাণ করুন।','কঠিন সিদ্ধান্তের সময়। সহকর্মীদের পরামর্শ নিয়ে তারপর এগোন।','ব্যবসায়িক আলোচনা ফলপ্রসূ হওয়ার সম্ভাবনা। পুরোনো বকেয়া ফিরতে পারে।','অফিসে কাজের চাপ থাকলেও পদস্থ কর্মকর্তাদের সাহায্য পাবেন।','নতুন কোনো প্রজেক্ট বা ব্যবসার আইডিয়া আজ সফল হতে পারে।','বেকারদের নতুন চাকরির ইন্টারভিউয়ের ডাক আসতে পারে।','চাকরিজীবীদের পদোন্নতি বা বেতন বৃদ্ধির সম্ভাবনা রয়েছে।','আজ সহকর্মীদের সাথে কোনো তর্কে জড়াবেন না, ঠান্ডা মাথায় কাজ করুন।','শেয়ার বাজারে বিনিয়োগ করার আগে বিশেষজ্ঞের পরামর্শ নিন।','দূরভ্রমণে কাজের সূত্রে যেতে হতে পারে, যা লাভদায়ক হবে।','আপনার সৃজনশীল প্রতিভা কর্মক্ষেত্রে বিশেষ স্বীকৃতি পাবে।','ব্যবসায়িক পার্টনারের সাথে সম্পর্ক উন্নয়ন করুন।','অফিসে ফাইল বা নথিপত্র সযত্নে রাখুন, হারানোর ভয় আছে।','কঠোর পরিশ্রমের ফল আজ হাতে পেতে পারেন।','নতুন প্রযুক্তি ব্যবহারের মাধ্যমে কাজে গতি বাড়ান।','উর্ধ্বতন কর্তৃপক্ষের সাথে সুসম্পর্ক বজায় রাখা আজ জরুরি।','শিক্ষার্থীদের জন্য দিনটি পড়াশোনায় মনোযোগ দেওয়ার জন্য শুভ।','আজ বাড়তি আয়ের নতুন কোনো পথ খুলে যেতে পারে।','বিদেশে ব্যবসা বা চাকরির প্রচেষ্টায় সুসংবাদ পেতে পারেন।','ব্যবসায়ীদের জন্য আজ কেনাবেচায় ভালো লাভের যোগ রয়েছে।','নতুন অংশীদারিত্বের জন্য দিনটি বেশ অনুকূল।','কাজের জায়গায় আজ ছোট ভুল বড় আকার নিতে পারে, সতর্ক থাকুন।','অসমাপ্ত কাজগুলো আজ শেষ করার চেষ্টা করুন।','জনসংযোগের কাজে যুক্ত ব্যক্তিদের জন্য আজ সাফল্যের দিন।','অফিসের রাজনীতি থেকে নিজেকে দূরে রাখুন।','আজ আপনার নেতৃত্ব দেওয়ার ক্ষমতা প্রশংসিত হবে।','ব্যবসায় নতুন বিনিয়োগ করার জন্য পরিকল্পনা করতে পারেন।','চাকরির ক্ষেত্রে স্থান পরিবর্তনের সম্ভাবনা দেখা দিচ্ছে।','আজ সহকর্মীদের সাথে টিম-ওয়ার্ক ভালো ফল দেবে।','পুরানো কোনো ব্যবসায়িক চুক্তি আজ পুনরায় কার্যকর হতে পারে।','কম্পিউটার বা অনলাইন কাজে বিশেষ সুবিধা পেতে পারেন।','আজকের দিনে বড় কোনো আর্থিক লেনদেন সতর্কতার সাথে করুন।','কাউকে অন্ধভাবে বিশ্বাস করে ব্যবসার গোপন তথ্য দেবেন না।','সরকারি চাকরির প্রস্তুতি নিচ্ছেন যারা, তাদের জন্য সুখবর আসতে পারে।','নিজের আত্মবিশ্বাসই আজ আপনার উন্নতির চাবিকাঠি।','অফিসে আজ কোনো উপহার বা বোনাস পেতে পারেন।','ব্যবসায় প্রতিদ্বন্দ্বীদের থেকে আজ এক ধাপ এগিয়ে থাকবেন।','বক্তব্য রাখার সময় আজ সংযত ও স্পষ্ট হোন।','গৃহস্থালি বা ভূসম্পত্তি কেনাবেচায় লাভের যোগ আছে।','চাকরিতে আজ কাজের চাপ কম থাকবে, মানসিক শান্তি পাবেন।','আজ আলস্য আপনার উন্নতির পথে বাধা হতে পারে।','পরিকল্পিতভাবে কাজ করলে আজ সব বাধা দূর হবে।','শিল্পী বা লেখকদের জন্য আজ দিনটি অত্যন্ত শুভ।','কাজের প্রয়োজনে আজ শহরের বাইরে যেতে হতে পারে।','ব্যবসা সম্প্রসারণের জন্য ব্যাংক ঋণ মঞ্জুর হতে পারে।','আজ বড় কোনো ঝুঁকি নেওয়া থেকে বিরত থাকাই ভালো।','অফিসে সহকর্মীদের মধ্যে ভুল বোঝাবুঝি মিটে যাবে।','কারিগরি বিদ্যায় যুক্ত ব্যক্তিদের বিশেষ উন্নতির যোগ।','আজ গুরুত্বপূর্ণ কোনো নথিতে সই করার আগে ভালো করে পড়ে নিন।','নতুন কোনো উদ্যোগ নেওয়ার জন্য আজ মানসিক প্রস্তুতি নিন।','খুচরা বিক্রেতাদের জন্য আজ লাভের দিন।','আজ ব্যবসায় ধৈর্য ধরলে বিকেলে ভালো সংবাদ পাবেন।','বসের সুনজরে পড়ার সম্ভাবনা আছে, কাজে মন দিন।','আজ কর্মক্ষেত্রে নিজের মর্যাদা রক্ষা করতে পারবেন।','ব্যবসায় পরিবর্তনের মাধ্যমে আজ আয় বাড়ানো সম্ভব।','চাকরির ইন্টারভিউতে আজ সাফল্যের উজ্জ্বল সম্ভাবনা।','আজ সময়ের কাজ সময়ে শেষ করতে পারবেন।','কর্মক্ষেত্রে কোনো নতুন বন্ধু হতে পারে।','বকেয়া কোনো কাজ আজ সাফল্যের সাথে শেষ হবে।','পরিশ্রমের সুফল হিসেবে আজ ইনক্রিমেন্ট পেতে পারেন।','অনলাইন ব্যবসায়ীদের জন্য আজ অর্ডার বৃদ্ধির যোগ।','আজ কর্মক্ষেত্রে আপনার সুনাম ছড়িয়ে পড়বে।','অফিসে মিটিং-এ আপনার বক্তব্য গুরুত্ব পাবে।','আজকের কঠোর পরিশ্রম ভবিষ্যতে বড় ফল দেবে।','কাজে একটু ধীরস্থির হলে আজ অনেক বেশি ফল পাবেন।','আজ নতুন স্কিল শেখার সুযোগ হাতে এসেছে, সদ্ব্যবহার করুন।','প্রতিযোগিতায় টিকে থাকতে আজ নিজেকে আপডেট রাখুন।','আজ কর্মক্ষেত্রে কারো সাহায্য করলে ভবিষ্যতে বড় উপকার পাবেন।','অফিসের কোনো পুরানো সমস্যার আজ সমাধান হওয়ার যোগ আছে।','ফ্রিল্যান্সারদের জন্য আজ নতুন ক্লায়েন্ট পাওয়ার সম্ভাবনা প্রবল।','আজ মাল্টিটাস্কিং না করে একটি কাজে মনোযোগ দিলে সেরা ফল পাবেন।','আজ অফিসে কোনো নতুন সিস্টেম বা পদ্ধতি গ্রহণে সাহায্য আসবে।','ব্যবসায় একটি সৃজনশীল সমাধান আজ সবার দৃষ্টি আকর্ষণ করবে।','আজ দলনেতার ভূমিকায় আপনি সবার আস্থা অর্জন করবেন।','পুরানো যোগাযোগ নতুন কাজের সুযোগ এনে দিতে পারে আজ।','আজ ব্যবসায়িক পরিকল্পনা কাগজে লিখে রাখুন, বাস্তবে রূপ নেবে।','শিক্ষার্থীরা আজ পরীক্ষার প্রস্তুতিতে বিশেষ সাফল্য পাবেন।','আজ আপনার সততা ও পরিশ্রম কর্তৃপক্ষের নজরে আসবে।','আজকের দিনে নতুন ব্যবসায়িক চুক্তি সইয়ের জন্য শুভ।'],
-  health:['শরীর ও মন ভালো থাকবে। নিয়মিত ব্যায়াম ও সুষম খাবার মেনে চলুন।','হজমের সমস্যা হতে পারে। হালকা খাবার খান, বেশি জল পান করুন।','মাথাব্যথা হতে পারে। পর্যাপ্ত বিশ্রাম নিন এবং স্ক্রিনটাইম কমান।','আজ শক্তি বেশি থাকবে — কাজে লাগান, তবে অতিরিক্ত পরিশ্রম নয়।','মানসিক চাপ থাকলে ধ্যান বা প্রাণায়াম করুন।','হাঁটু বা কোমরে ব্যথা হতে পারে। ভারী কাজ এড়িয়ে চলুন।','রোগ প্রতিরোধ বাড়াতে প্রচুর জল ও ভিটামিনযুক্ত খাবার খান।','আজকের দিনটি ব্যায়াম শুরু করার জন্য অত্যন্ত শুভ।','রাতের ঘুম ভালো না হলে সারাদিন ক্লান্তি অনুভূত হতে পারে।','চোখের সমস্যা দেখা দিতে পারে, বিশেষ করে যারা কম্পিউটার ব্যবহার করেন।','সকালে হাঁটার অভ্যাস আজ আপনাকে সতেজ রাখবে।','বাইরের তেল-ঝাল জাতীয় খাবার এড়িয়ে চলাই বুদ্ধিমানের কাজ হবে।','রক্তচাপ বা সুগারের রোগীদের আজ নিয়মিত পরীক্ষা করা উচিত।','আজ পুরোনো কোনো ব্যাধি থেকে মুক্তি পাওয়ার আশা আছে।','মানসিক প্রশান্তির জন্য আজ কিছুক্ষণ একান্তে সময় কাটান।','দাঁতের বা মাড়ির ব্যথায় আজ কষ্ট পেতে পারেন।','ঠান্ডা লাগা বা জ্বরের উপসর্গ দেখা দিলে অবহেলা করবেন না।','আজকের আবহাওয়া পরিবর্তনের সাথে সাথে সতর্ক থাকুন।','শরীরে জলশূন্যতা হতে পারে, তাই পর্যাপ্ত পানীয় পান করুন।','মদ্যপান বা ধূমপান আজ এড়িয়ে চলুন, লিভারে সমস্যা হতে পারে।','আজকের যোগব্যায়াম আপনার পিঠের ব্যথা কমাতে সাহায্য করবে।','ত্বকের সমস্যায় আজ ঘরোয়া প্রতিকার ভালো ফল দিতে পারে।','অতিরিক্ত চা বা কফি খাওয়া আজ কমিয়ে দিন।','শারীরিক সক্ষমতা বাড়াতে প্রোটিন সমৃদ্ধ খাবার খান।','অনিদ্রা জনিত সমস্যা থেকে মুক্তির পথ খুঁজে পাবেন।','আজ আপনার শরীরে ক্লান্তি ভাব থাকলেও মনে উদ্যম থাকবে।','মানসিক চাপ কমাতে প্রিয় কোনো গান শুনতে পারেন।','শরীরের ওজনের দিকে আজ নজর দিন, ডায়েট শুরু করুন।','আজ আপনার শ্বাস-প্রশ্বাসের ব্যায়াম করা উচিত।','পায়ের পেশিতে টান লাগার সম্ভাবনা আছে, সাবধানে হাঁটুন।','আজ আপনার হজম ক্ষমতা বেশ ভালো থাকবে।','সকালে খালি পেটে হালকা গরম জল খাওয়া আজ লাভজনক হবে।','মানসিক স্বাস্থ্য আজ আপনার কাছে প্রাধান্য পাওয়া উচিত।','আজ আপনার রোগ প্রতিরোধ ক্ষমতা বেশ ভালো থাকবে।','পর্যাপ্ত বিশ্রাম নিলে আজ শরীর তাড়াতাড়ি সেরে উঠবে।','আজ কোনো ভারী শরীরচর্চা না করাই ভালো।','আজ আপনার কিডনির স্বাস্থ্যের প্রতি নজর দেওয়া দরকার।','আজকের দিনে আপনি নিজেকে খুব হালকা ও ফুরফুরে মনে করবেন।','খাবারে মশলার পরিমাণ কমিয়ে দিন, পেট ভালো থাকবে।','শরীরের জয়েন্টে ব্যথার জন্য আজ গরম সেঁক নিতে পারেন।','আজ আপনার শারীরিক অবস্থার অনেক উন্নতি হবে।','দীর্ঘক্ষণ একই জায়গায় বসে থাকবেন না, মাঝে মাঝে হাঁটুন।','রোগমুক্ত থাকার জন্য আজ থেকে হেলদি লাইফস্টাইল শুরু করুন।','মানসিক প্রশান্তি আজ আপনার শরীরের অর্ধেক রোগ সারিয়ে দেবে।','আপনার শরীরই আপনার মন্দির, আজ তার বিশেষ যত্ন নিন।','আজ রোদে বেরোনোর আগে সানস্ক্রিন ও ছাতা ব্যবহার করুন।','আজ প্রকৃতির কাছাকাছি সময় কাটালে মন ও শরীর দুটোই ভালো থাকবে।','আজকের দিনে লবণ ও চিনি কম খাওয়াই আপনার স্বাস্থ্যের জন্য উপকারী।','আজ রাতে ভালো ঘুমের জন্য মোবাইল ফোন দূরে রেখে শুয়ে পড়ুন।','ঘরে তৈরি খাবার আজ আপনাকে সুস্থ ও সতেজ রাখবে।','আজ যোগব্যায়াম ও মেডিটেশনের মিশ্রণে দিন শুরু করুন।','চোখের যত্ন নিন — আজ বেশিক্ষণ স্ক্রিনে তাকানো এড়িয়ে চলুন।','আজ ত্বকে পর্যাপ্ত আর্দ্রতা বজায় রাখুন, ক্রিম বা অ্যালোভেরা লাগান।','আজ নিজের শ্রবণশক্তির প্রতি মনোযোগ দিন, অতিরিক্ত শব্দ এড়ান।','ভিটামিন ডি-র জন্য আজ সকালের হালকা রোদে কিছুক্ষণ কাটান।','আজ হাসি ও ইতিবাচক চিন্তা আপনার সেরা ওষুধ।','আজ আপনার পরিবারের বয়োজ্যেষ্ঠদের স্বাস্থ্যের খোঁজ নিন।','শরীরে কোনো নতুন উপসর্গ দেখা দিলে আজই ডাক্তারের পরামর্শ নিন।','আজ খাবারে বেশি আঁশযুক্ত সবজি ও ফল রাখুন।','অ্যালার্জির সমস্যা থাকলে আজ পরিবেশ সম্পর্কে বিশেষ সতর্ক থাকুন।'],
-  finance:['আর্থিক দিক থেকে শুভ সময়। দীর্ঘমেয়াদী বিনিয়োগে মনোযোগ দিন।','অপ্রয়োজনীয় খরচ বন্ধ করুন। আজ সঞ্চয়ের দিকে মনোনিবেশ করুন।','পুরোনো পাওনা ফিরতে পারে। আর্থিক লেনদেনে সতর্ক থাকুন।','আজ লটারি বা ফাটকা ব্যবসায় লাভ হতে পারে, তবে ঝুঁকি নেবেন না।','বিলাসবহুল দ্রব্য কেনাকাটায় পকেট খালি হতে পারে, সাবধান।','পারিবারিক সম্পত্তির ভাগ পেতে পারেন আজ।','বন্ধুকে ধার দেওয়ার আগে দুবার ভাবুন, টাকা ফেরত পাওয়া কঠিন হতে পারে।','আজ নতুন কোনো আয়ের উৎস খুঁজে পেতে পারেন।','ব্যবসায়িক পাওনাদারদের চাপ আজ বাড়তে পারে।','শেয়ার বাজারে আজ বুদ্ধিমত্তার সাথে বিনিয়োগ করুন।','আজ স্বর্ণ বা সোনা কেনা আপনার জন্য লাভজনক হতে পারে।','পুরানো বীমা বা পলিসি থেকে আজ বড় অংকের টাকা পেতে পারেন।','আর্থিক স্থিতিশীলতা বজায় থাকবে, মানসিক শান্তি পাবেন।','আজ জমি বা ফ্ল্যাট কেনার জন্য দিনটি শুভ।','ব্যাংক সংক্রান্ত কোনো কাজে আজ জটিলতা কাটবে।','অযথা কারোর প্ররোচনায় পড়ে টাকা নষ্ট করবেন না।','আজ আয়ের চেয়ে ব্যয়ের পাল্লা ভারী হতে পারে।','আর্থিক উন্নতিতে কোনো বড় ব্যক্তির সাহায্য পাবেন।','আজ আপনার দীর্ঘদিনের কোনো আর্থিক পরিকল্পনা সফল হবে।','আজ লোন বা ঋণের আবেদন মঞ্জুর হতে পারে।','অপ্রত্যাশিত উৎস থেকে অর্থ লাভ হতে পারে আজ।','আজকের দিনে বড় কোনো বিনিয়োগ এড়িয়ে চলাই ভালো।','ব্যবসায় নতুন অংশীদার আসার ফলে আর্থিক উন্নতি ঘটবে।','সন্তানের ভবিষ্যতের জন্য আজ একটি সঞ্চয় প্রকল্প শুরু করুন।','আর্থিক টানাপোড়েন মিটে গিয়ে মনে স্বস্তি আসবে।','আজ জুয়া বা নেশার বশে টাকা অপচয় করবেন না।','ব্যবসায়িক পাওনা টাকা আদায়ে আজ কঠোর হতে হবে।','মিউচুয়াল ফান্ডে বিনিয়োগের জন্য আজ সেরা দিন।','বিদেশি মুদ্রায় কাজ করেন যারা, তাদের জন্য আজ লাভের দিন।','আজ আপনার আর্থিক বুদ্ধিমত্তা আপনাকে বড় বিপদ থেকে বাঁচাবে।','আজ কাউকে অপরিচিত কারোর প্রস্তাবে বিনিয়োগ করবেন না।','আজকের সঞ্চয় আগামী দিনের আপনার শ্রেষ্ঠ সম্পদ হবে।','ব্যবসায়িক প্রতিযোগিতায় আজ আর্থিক জয় আপনারই হবে।','আজ আপনার আয়ের গ্রাফ উর্ধ্বমুখী থাকবে।','আজকের বিনিয়োগ ভবিষ্যতে আপনাকে রাজকীয় জীবন দেবে।','আজ অর্থনৈতিক সংকট কাটিয়ে উঠতে পরিবারের সমর্থন পাবেন।','আজ ডিজিটাল পেমেন্ট বা ইউপিআই-এর মাধ্যমে আর্থিক কাজ সহজ হবে।','আজ কোনো পুরস্কার বা লটারি জয়ের ক্ষীণ সম্ভাবনা দেখা দিচ্ছে।','আজকের আর্থিক সিদ্ধান্ত নেওয়ার আগে পরিবারের সাথে আলোচনা করুন।','আজ কর বা ট্যাক্স সংক্রান্ত কোনো জটিলতা মিটে যেতে পারে।','অপ্রয়োজনীয় সাবস্ক্রিপশন বাতিল করে আজ কিছু অর্থ বাঁচান।','আজ ক্ষুদ্র সঞ্চয় প্রকল্পে যোগ দেওয়া একটি বুদ্ধিমানের সিদ্ধান্ত।','বিদেশ থেকে অর্থ প্রেরণ বা গ্রহণের জন্য আজ অনুকূল দিন।','আজ অংশীদারিত্বে কাজ করলে আর্থিক ঝুঁকি কমবে ও লাভ বাড়বে।','পুরানো বিনিয়োগ থেকে আজ ভালো রিটার্ন পাওয়ার সম্ভাবনা আছে।','আজ আয়ের নিরিখে ব্যয়ের একটি বার্ষিক পরিকল্পনা তৈরি করুন।'],
-  msg:['আজ আত্মবিশ্বাসের সাথে এগিয়ে যান — সাফল্য আপনার পথ চেয়ে আছে।','ধৈর্যই আজকের সেরা শক্তি। শান্ত থাকলে সব বাধা অতিক্রম হবে।','নতুন কিছু শুরুর জন্য আজ অত্যন্ত শুভ — দ্বিধা ছাড়ুন।','পরিবারের সাথে সময় কাটানো আজ সবচেয়ে বেশি তৃপ্তি দেবে।','সৃজনশীলতা আজ সর্বোচ্চে — এটিকে কাজে লাগান।','যোগাযোগ ও সম্পর্কে আজ বিশেষ গুরুত্ব দিন।','পুরোনো সমস্যার নতুন সমাধান খুঁজে পাবেন আজ।','শুভ গ্রহের প্রভাবে সব কাজে সাফল্য আসবে।','ছোট প্রচেষ্টাই একদিন বড় ফল দেবে — হাল ছাড়বেন না।','নিজের ওপর বিশ্বাস রাখুন — আপনিই পারবেন।','আজকের ছোট একটি হাসি কারোর দিন বদলে দিতে পারে।','পুরানো কোনো শখ আজ নতুন করে শুরু করার জন্য ভালো দিন।','কাউকে সাহায্য করার সুযোগ এলে হাতছাড়া করবেন না।','আজ আপনার ইতিবাচক চিন্তা আপনার চারপাশকে আনন্দিত রাখবে।','বিকেলের দিকে কোনো শুভ সংবাদ পাওয়ার সম্ভাবনা আছে।','নিজের কাজকে ভালোবাসুন, সাফল্য নিজে থেকেই আসবে।','আজকের দিনটি আপনার জন্য নতুন অভিজ্ঞতায় ভরপুর হবে।','একটু বিশ্রাম নিন, নিজেকে সময় দেওয়া আজ খুব জরুরি।','আপনার নম্র ব্যবহার আজ সবার মন জয় করে নেবে।','লক্ষ্যের প্রতি স্থির থাকুন, বিজয় আপনার হবেই।','আজকের দিনে পরিবারের ছোটদের সাথে আনন্দ করুন।','মনের সংকীর্ণতা ত্যাগ করুন, পৃথিবীটা অনেক বড়।','আজ কোনো মহৎ কাজে অংশ নিতে পারেন।','আপনার দক্ষতা আজ জনসমক্ষে প্রশংসিত হবে।','অতীতের কষ্ট ভুলে বর্তমানকে উপভোগ করুন।','আজকের সূর্যোদয় আপনার জীবনে নতুন আশা নিয়ে আসবে।','কারোর প্রতি কৃতজ্ঞতা প্রকাশ করুন, সম্পর্ক ভালো হবে।','নিজের স্বপ্নকে বিশ্বাস করুন, তা পূরণের সময় কাছেই।','আপনার বুদ্ধিমত্তা আজ কঠিন পরিস্থিতি সামলে দেবে।','নতুন বন্ধু তৈরির জন্য আজ চমৎকার একটি দিন।','পুরানো দিনের কোনো ভালো কাজ আজ সুফল বয়ে আনবে।','আজকের কোনো সিদ্ধান্ত আপনার জীবনের মোড় ঘুরিয়ে দিতে পারে।','সৎ পথে উপার্জন আপনার জীবনে স্থায়িত্ব আনবে।','বিকেলে কোনো প্রিয়জনের সাথে সুন্দর সময় কাটবে।','নিজের ওপর নিয়ন্ত্রণ রাখলে আজ জয় সুনিশ্চিত।','শান্ত মনে কাজ করলে আজ সব কঠিন কাজ সহজ হবে।','আজ আপনার মনের কথা প্রিয়জনকে জানানোর সঠিক সময়।','আজকের দিনে ধর্মীয় কাজে মন দিলে শান্তি পাবেন।','আজ একটু ভিন্নভাবে ভাবুন, নতুন দৃষ্টিভঙ্গি আপনার পথ আলো করবে।','প্রকৃতির সান্নিধ্যে কিছুটা সময় কাটান, মন হালকা হবে।','আজ অন্যের জন্য ভালো কিছু করুন, আত্মতৃপ্তি পাবেন।','আপনার জীবনের প্রতিটি অধ্যায়ই মূল্যবান — আজকেরটিও।','আজ একটি ডায়েরি লিখুন, মনের ভার হালকা হবে।','আপনার হাসি আজ আপনার সেরা অলঙ্কার।','জীবনের ছোট সুখগুলো উপভোগ করুন, তাতেই বড় শান্তি।','আজ কোনো নতুন দক্ষতা অর্জনের চেষ্টা শুরু করুন।','পরের জন্য নয়, আজই শুরু করুন — সময় সবচেয়ে মূল্যবান।','আজ আপনার অনুপ্রেরণা হোক অন্য কারোর শক্তির উৎস।','ভুল থেকে শেখার মনোভাব আজ আপনাকে এগিয়ে নিয়ে যাবে।','আজকের ছোট পদক্ষেপই আগামীর বড় যাত্রার শুরু।','জীবনকে উৎসব মনে করুন, প্রতিটি মুহূর্তই বিশেষ।'],
-  caution:['রাহুকালে নতুন কাজ বা যাত্রা শুরু করবেন না।','অচেনা ব্যক্তির সাথে আর্থিক লেনদেন এড়িয়ে চলুন।','মাথা গরম করে সিদ্ধান্ত নেবেন না — পরে অনুতাপ হতে পারে।','গুজবে কান দেবেন না, সত্য যাচাই করুন।','স্বাস্থ্যের ব্যাপারে আজ একটু বেশি সতর্ক থাকুন।','পুরোনো শত্রুতা না জাগানোই ভালো।','যানবাহনে সতর্কতা অবলম্বন করুন।','অনলাইনে লোভনীয় অফার দেখলে সতর্ক থাকুন।','সন্ধ্যার পর অহেতুক বাইরে যাওয়া এড়িয়ে চলুন।','গোপন তথ্য কারও সাথে আজ শেয়ার করবেন না।','রাস্তায় চলাচলের সময় মোবাইল ফোন ব্যবহার থেকে বিরত থাকুন।','অপরিচিত কারোর কাছ থেকে আজ কোনো খাবার গ্রহণ করবেন না।','গুরুত্বপূর্ণ নথিপত্রে সই করার আগে ভালো করে পড়ে নিন।','আজ ধারালো কোনো যন্ত্রপাতি ব্যবহারের সময় অতিরিক্ত সাবধান থাকুন।','বিদ্যুৎ বা ইলেকট্রনিক সরঞ্জাম নিয়ে কাজ করার সময় সতর্ক হোন।','আজ কারোর ব্যক্তিগত বিষয়ে মন্তব্য করা থেকে বিরত থাকুন।','বেশি রাত পর্যন্ত জেগে থাকা স্বাস্থ্যের ক্ষতি করতে পারে।','অপ্রয়োজনীয় বিতর্কে জড়িয়ে নিজের সময় নষ্ট করবেন না।','আজ বিনিয়োগ করার আগে অভিজ্ঞদের পরামর্শ অবশ্যই নিন।','ঘর থেকে বের হওয়ার সময় প্রয়োজনীয় জিনিস সাথে নিতে ভুলবেন না।','বাইরের খোলা খাবার বা জল আজ পরিহার করুন।','আজ কারোর সাথে টাকা নিয়ে বিবাদে জড়াবেন না।','অচেনা নম্বর থেকে আসা কল বা লিঙ্কে ক্লিক করবেন না।','নিজের পাসওয়ার্ড বা পিন নম্বর আজ গোপন রাখুন।','আজ অতিরিক্ত রোদে বেশিক্ষণ থাকবেন না।','গাড়ির চাকা বা ব্রেক চেক না করে দূরে কোথাও যাবেন না।','আজ কারোর জামিনদার হওয়া থেকে বিরত থাকুন।','সামাজিক মাধ্যমে আজ কোনো বিভ্রান্তিকর তথ্য শেয়ার করবেন না।','আবেগপ্রবণ হয়ে আজ কোনো বড় চুক্তি করবেন না।','আজ বন্ধুদের সাথে আড্ডায় মেজাজ হারাবেন না।','ব্যাংকের কোনো তথ্য ফোনে কাউকে দেবেন না।','আজকের দিনে ভ্রমণের সময় ব্যাগ সাবধানে রাখুন।','পুরানো শত্রুরা আজ আপনার ক্ষতি করার চেষ্টা করতে পারে।','অতিরিক্ত আত্মবিশ্বাস আজ আপনার ক্ষতির কারণ হতে পারে।','আজ আইনের বিরুদ্ধ কোনো কাজে লিপ্ত হবেন না।','অপরিচিত জায়গায় একা বেশিক্ষণ থাকবেন না।','আজ লোহা বা কাঁচের জিনিস ব্যবহার করার সময় সাবধান।','অতিরিক্ত পরিশ্রমে আজ অসুস্থ হওয়ার সম্ভাবনা আছে।','আজ কারোর প্ররোচনায় পড়ে আইনি ভুল করবেন না।','আজ বৃষ্টির জমা জলে সাবধানে হাঁটুন, গর্ত থাকতে পারে।','অপরিচিত কারোর প্রস্তাবে আজ কোনো বিনিয়োগ করবেন না।','আজ নিজের গাড়ির কাগজ সাথে রাখুন।','অত্যধিক দুশ্চিন্তায় আজ আপনার কাজ পণ্ড হতে পারে।','আজকের দিনে গুরুজনদের উপদেশ অমান্য করবেন না।','আজ কারোর গীবত বা পরনিন্দা করা থেকে বিরত থাকুন।','আপনার কোনো কাজ আজ গোপন শত্রুর নজরে পড়তে পারে।','অপ্রয়োজনীয় বিলাসিতা আজ আপনার পকেট খালি করতে পারে।','সবশেষে, নিজের ওপর থেকে নিয়ন্ত্রণ হারাবেন না।','আজ সাইবার ক্রাইম বা অনলাইন জালিয়াতি থেকে সতর্ক থাকুন।','আজ পানীয় জলের উৎস নিশ্চিত না হলে পান করবেন না।','অপ্রত্যাশিত ভিজিটরকে বাড়িতে একা প্রবেশ করতে দেবেন না।','আজ দুর্যোগপ্রবণ এলাকায় একা বের হওয়া থেকে বিরত থাকুন।','প্রযুক্তি আসক্তি আজ আপনার উৎপাদনশীলতা নষ্ট করতে পারে।','নতুন ওষুধ খাওয়ার আগে আজ ডাক্তারের পরামর্শ নিন।','আজ অতিরিক্ত ক্যাফেইন গ্রহণ থেকে বিরত থাকুন।','রাতে বাইরে বের হলে সাথে পরিচিত কাউকে নিন।','আজ নিজের ব্যক্তিগত তথ্য সোশ্যাল মিডিয়ায় শেয়ার করবেন না।','আজ অতিরিক্ত ভোজনে পরিপাকে সমস্যা হতে পারে, সাবধান।','বিশ্বাস করার আগে যাচাই করুন, আজ বিভ্রান্তি বেশি।','আজ কারোর মিষ্টি কথায় ফাঁদে পা দেবেন না।'],
-};
+// ════════════════════════════════════════════════════════
+// ════════════════════════════════════════════════════════
+// SECTION ⑮ — CHANDRA GOCHAR DATA (চন্দ্র গোচর ফলাদেশ)
+// কাজ: চন্দ্র যে ভাবে গোচর করছে তার ভিত্তিতে রাশিফল তৈরি করে
+//   আপডেট: random text বদলে সত্যিকারের জ্যোতিষ গণনা
+// পরিবর্তন: বার্তার ভাষা সংশোধন করতে এখানে আসুন
+// ════════════════════════════════════════════════════════
 
+// ১২টি ভাবের গোচর ফল — প্রতিটিতে ৪ category
+var GOCHAR = [
+  null, // placeholder (1-indexed)
+  { // ১ম ভাব — জন্মরাশিতে চন্দ্র (অশুভ)
+    label:'জন্মরাশিতে চন্দ্র', tag:'সতর্কতার দিন', tagCol:'#c0392b', score:[2,2,2,2],
+    summary:'আজ চন্দ্র আপনার জন্মরাশিতে। মানসিক অস্থিরতা ও দ্বন্দ্বের সম্ভাবনা।',
+    love:'মনের মধ্যে সংশয় থাকতে পারে। প্রিয়জনের সাথে বাদানুবাদ এড়িয়ে চলুন। ধৈর্য ধরুন।',
+    work:'কর্মক্ষেত্রে আজ সিদ্ধান্ত নিতে দ্বিধা হতে পারে। গুরুত্বপূর্ণ চুক্তি আজ স্থগিত রাখুন।',
+    health:'শরীরে অবসাদ ও মাথাব্যথার সম্ভাবনা। পর্যাপ্ত জল পান করুন ও বিশ্রাম নিন।',
+    finance:'অযথা খরচ বাড়তে পারে। বড় বিনিয়োগ আজ এড়িয়ে চলুন।',
+    msg:'আজ নিজের ভেতরে তাকান। বাইরের ঘটনার চেয়ে মনের শান্তি বেশি দরকার।',
+    caution:'অপরিচিত কারোর উপর অতিরিক্ত বিশ্বাস রাখবেন না। নিজের স্বাস্থ্যের প্রতি সতর্ক থাকুন।'
+  },
+  { // ২য় ভাব (মিশ্র)
+    label:'দ্বিতীয় ভাবে চন্দ্র', tag:'আর্থিক সতর্কতা', tagCol:'#d35400', score:[3,3,2,2],
+    summary:'চন্দ্র ধন ও পরিবার ভাবে। অর্থের উপর চাপ, পারিবারিক কলহের সম্ভাবনা।',
+    love:'পরিবারের সাথে সম্পর্ক আজ কিছুটা টানাপোড়েনে পড়তে পারে। ধৈর্য রাখুন।',
+    work:'কাজে একটু ধীরগতি থাকতে পারে। পুরোনো কাজ শেষ করুন, নতুন শুরু নয়।',
+    health:'পেট বা হজমে সমস্যা হতে পারে। বাইরের খাবার আজ এড়িয়ে চলুন।',
+    finance:'অর্থের অপচয় সম্ভব। অযথা কেনাকাটা থেকে বিরত থাকুন। ঋণ এড়িয়ে চলুন।',
+    msg:'পরিবারের সাথে মিষ্টি কথায় সম্পর্ক টিকিয়ে রাখুন। আজ অহং ছাড়ুন।',
+    caution:'টাকাপয়সার লেনদেন আজ নথিবদ্ধ করে রাখুন। মুখের কথায় বিশ্বাস করবেন না।'
+  },
+  { // ৩য় ভাব — পরাক্রম (শুভ)
+    label:'তৃতীয় ভাবে চন্দ্র', tag:'সাহস ও সাফল্য', tagCol:'#27ae60', score:[4,5,4,4],
+    summary:'চন্দ্র পরাক্রম ভাবে। সাহস, যোগাযোগ ও ছোট ভ্রমণে বিশেষ সাফল্য।',
+    love:'সঙ্গীর সাথে কোথাও ঘুরতে যাওয়ার পরিকল্পনা আজ সফল হবে। যোগাযোগ মধুর হবে।',
+    work:'কর্মক্ষেত্রে আজ উদ্যোগ নিন — সাফল্য নিশ্চিত। লেখালেখি ও যোগাযোগ সংক্রান্ত কাজে বিশেষ ফল।',
+    health:'শরীরে শক্তি ও উদ্যম বেশি থাকবে। ব্যায়াম বা শরীরচর্চার জন্য আদর্শ দিন।',
+    finance:'ছোট বিনিয়োগে ভালো ফল আসবে। ব্যবসায়িক আলোচনায় লাভ হবে।',
+    msg:'আজ সাহস করে এগিয়ে যান — আপনার পাশে বন্ধু ও পরিবার আছে।',
+    caution:'একটু বেশি উত্তেজিত হয়ে পড়তে পারেন। ঠান্ডা মাথায় সিদ্ধান্ত নিন।'
+  },
+  { // ৪র্থ ভাব — গৃহ (মিশ্র)
+    label:'চতুর্থ ভাবে চন্দ্র', tag:'গৃহ ও পরিবার', tagCol:'#8e44ad', score:[3,2,3,3],
+    summary:'চন্দ্র সুখ ভাবে। পারিবারিক বিষয়ে মনোযোগ দিন। মায়ের স্বাস্থ্যে দৃষ্টি রাখুন।',
+    love:'পরিবার থেকে সম্পর্কে বাধা আসতে পারে। ঘরে থেকে প্রিয়জনকে বিশেষ সময় দিন।',
+    work:'কর্মক্ষেত্রের চেয়ে পরিবারে মন থাকবে। বড় সিদ্ধান্ত আজ এড়িয়ে চলুন।',
+    health:'মায়ের বা বয়োজ্যেষ্ঠদের স্বাস্থ্যে নজর রাখুন। নিজের বুকে বা ফুসফুসে সতর্ক থাকুন।',
+    finance:'সম্পত্তি বা বাড়ি সংক্রান্ত খরচ হতে পারে। হিসেব রাখুন।',
+    msg:'আজ ঘরকে আপনার শক্তির উৎস হতে দিন। পরিবারের সাথে সময় কাটান।',
+    caution:'মানসিক অস্থিরতা থাকতে পারে। একা বড় সিদ্ধান্ত নেবেন না।'
+  },
+  { // ৫ম ভাব — বুদ্ধি/সন্তান (শুভ)
+    label:'পঞ্চম ভাবে চন্দ্র', tag:'বুদ্ধি ও আনন্দ', tagCol:'#27ae60', score:[5,4,4,4],
+    summary:'চন্দ্র বুদ্ধি ভাবে। সৃজনশীলতা ও প্রেমে বিশেষ সাফল্য। সন্তানের সুসংবাদ সম্ভব।',
+    love:'প্রেমে আজ ভরপুর আনন্দ। নতুন পরিচয় বা পুরোনো সম্পর্কে নতুন প্রাণ আসবে।',
+    work:'সৃজনশীল কাজে আজ অসাধারণ ফল পাবেন। নতুন আইডিয়া মাথায় আসবে।',
+    health:'মন ও শরীর দুটোই ভালো থাকবে। বিনোদনে সময় কাটান, উপকার হবে।',
+    finance:'শেয়ার বা লটারি জাতীয় বিষয়ে আজ সামান্য সুযোগ আছে। পরিমিত ঝুঁকি নিন।',
+    msg:'আজ আপনার মেধা ও বুদ্ধিমত্তাই সবচেয়ে বড় সম্পদ। সেটি কাজে লাগান।',
+    caution:'অতিরিক্ত আনন্দে ভেসে না গিয়ে মাথা ঠান্ডা রাখুন।'
+  },
+  { // ৬ষ্ঠ ভাব — শত্রু জয় (শুভ)
+    label:'ষষ্ঠ ভাবে চন্দ্র', tag:'শত্রু পরাজিত', tagCol:'#27ae60', score:[4,4,3,4],
+    summary:'চন্দ্র রিপু ভাবে। শত্রু পরাজিত হবে, কিন্তু স্বাস্থ্যে সতর্কতা প্রয়োজন।',
+    love:'প্রতিদ্বন্দ্বী বা তৃতীয় পক্ষ সম্পর্কে বাধা দিতে পারবে না আজ।',
+    work:'কর্মক্ষেত্রে বিরোধীরা পরাজিত হবে। আইনি বিষয়ে জয়ের সম্ভাবনা।',
+    health:'পেট ও হজমে সমস্যা হতে পারে। ডাক্তারি পরামর্শ নিন যদি দরকার হয়।',
+    finance:'ঋণ পরিশোধে অগ্রগতি হবে। পাওনা টাকা ফেরত আসতে পারে।',
+    msg:'আজ নিজের শক্তির উপর ভরসা রাখুন — বাধা সরে যাবে।',
+    caution:'খাদ্যাভ্যাসে সতর্ক থাকুন। অপরিচিত খাবার এড়িয়ে চলুন।'
+  },
+  { // ৭ম ভাব — দাম্পত্য (মিশ্র)
+    label:'সপ্তম ভাবে চন্দ্র', tag:'সম্পর্কে যত্ন নিন', tagCol:'#d35400', score:[3,3,4,3],
+    summary:'চন্দ্র দাম্পত্য ভাবে। দাম্পত্য সম্পর্কে বিশেষ মনোযোগ দরকার। চুক্তিতে সাবধান।',
+    love:'সঙ্গীর সাথে খোলামেলা কথা বলুন। মান-অভিমান আজ মিটিয়ে নিন।',
+    work:'ব্যবসায়িক অংশীদারের সাথে আলোচনায় সতর্ক থাকুন। চুক্তি মনোযোগ দিয়ে পড়ুন।',
+    health:'কিডনি ও মূত্রাশয়ে সামান্য সমস্যা হতে পারে। প্রচুর জল পান করুন।',
+    finance:'অংশীদারি ব্যবসায় আজ আলোচনা ভালো হবে। তবে তাড়াহুড়ো করবেন না।',
+    msg:'আজ নিজের মতামতের পাশাপাশি অন্যের কথাও শুনুন — দুজনেই সঠিক হতে পারেন।',
+    caution:'একতরফা সিদ্ধান্ত না নিয়ে সঙ্গীর মতামতকে গুরুত্ব দিন।'
+  },
+  { // ৮ম ভাব — অষ্টম (অশুভ)
+    label:'অষ্টম ভাবে চন্দ্র', tag:'কঠিন দিন', tagCol:'#c0392b', score:[2,2,2,2],
+    summary:'চন্দ্র আয়ু ভাবে — সবচেয়ে কঠিন গোচর। গোপন শত্রু ও দুর্ঘটনা থেকে সতর্ক।',
+    love:'সম্পর্কে গোপন তথ্য বা বিশ্বাসঘাতকতার ভয়। আজ আবেগে ভেসে যাবেন না।',
+    work:'কর্মক্ষেত্রে বাধা ও বিপত্তি আসতে পারে। সতর্কভাবে পা ফেলুন।',
+    health:'শারীরিক সমস্যা বাড়তে পারে। বাইক বা গাড়ি চালানোয় বিশেষ সতর্ক থাকুন।',
+    finance:'অর্থহানির ঝুঁকি আছে। টাকা ধার দেবেন না। বিনিয়োগ স্থগিত রাখুন।',
+    msg:'আজ মাথা নিচু রেখে চলুন। ধৈর্য ও বিশ্বাসই আজকের রক্ষাকবচ।',
+    caution:'অপরিচিত জায়গায় যাওয়া এবং বড় ঝুঁকি নেওয়া আজ এড়িয়ে চলুন।'
+  },
+  { // ৯ম ভাব — ভাগ্য (অতি শুভ)
+    label:'নবম ভাবে চন্দ্র', tag:'ভাগ্যের দিন', tagCol:'#27ae60', score:[5,5,5,5],
+    summary:'চন্দ্র ভাগ্য ভাবে — শ্রেষ্ঠ গোচরগুলোর একটি। গুরু ও ধর্মকার্যে বিশেষ আশীর্বাদ।',
+    love:'প্রেম ও দাম্পত্যে আজ ভাগ্যের বাতাস বইছে। দীর্ঘদিনের ইচ্ছা পূরণ হতে পারে।',
+    work:'কর্মক্ষেত্রে উচ্চতর পদে সুযোগ। গুরু বা বসের সহায়তায় বড় অগ্রগতি।',
+    health:'শরীর ও মন দুটোই সতেজ থাকবে। আধ্যাত্মিক অনুশীলনে বিশেষ ফল পাবেন।',
+    finance:'দীর্ঘমেয়াদী বিনিয়োগে আজকের সিদ্ধান্ত শুভ। ভাগ্যের সহায়তায় অর্থলাভ সম্ভব।',
+    msg:'আজ ঈশ্বরকে ধন্যবাদ দিন — আপনার জীবনে অনেক কিছু আছে যার জন্য কৃতজ্ঞ হওয়া উচিত।',
+    caution:'অতিরিক্ত আত্মবিশ্বাসে যেন অহংকার না আসে।'
+  },
+  { // ১০ম ভাব — কর্ম/রাজ্য (শুভ)
+    label:'দশম ভাবে চন্দ্র', tag:'কর্মে সাফল্য', tagCol:'#2980b9', score:[4,5,4,4],
+    summary:'চন্দ্র রাজ্য ভাবে। কর্মক্ষেত্রে বিশেষ সাফল্য ও সমাজে সম্মানবৃদ্ধি।',
+    love:'আজ সঙ্গী আপনার কর্মসাফল্যে গর্বিত বোধ করবে। সম্পর্কে উষ্ণতা বাড়বে।',
+    work:'কর্মক্ষেত্রে আজ আপনার নাম উজ্জ্বল হবে। সরকারি বা উচ্চপদের সুযোগ আসতে পারে।',
+    health:'কাজের চাপে শরীর কিছুটা ক্লান্ত হতে পারে। কাজের মাঝে বিরতি নিন।',
+    finance:'পদোন্নতি বা বেতনবৃদ্ধির খবর আসতে পারে। ব্যবসায় বড় অর্ডার পেতে পারেন।',
+    msg:'আজ আপনার পরিশ্রমের ফল পাওয়ার দিন। আত্মবিশ্বাসী হয়ে এগিয়ে যান।',
+    caution:'সাফল্যের আনন্দে সহকর্মীদের ছোট করবেন না।'
+  },
+  { // ১১তম ভাব — লাভ (অতি শুভ)
+    label:'একাদশ ভাবে চন্দ্র', tag:'অতি শুভ — লাভের দিন', tagCol:'#1e8449', score:[5,5,5,5],
+    summary:'চন্দ্র লাভ ভাবে — সর্বোত্তম গোচর। আয় বৃদ্ধি, বন্ধুলাভ ও ইচ্ছাপূরণের দিন।',
+    love:'দীর্ঘদিনের প্রেমের ইচ্ছা আজ পূরণ হতে পারে। সম্পর্কে নতুন আনন্দের সঞ্চার।',
+    work:'কর্মক্ষেত্রে আয় ও সুযোগ দুটোই বাড়বে। বন্ধুদের সহায়তায় বড় সাফল্য।',
+    health:'শরীর ও মন সতেজ ও শক্তিশালী থাকবে। আনন্দে দিন কাটান।',
+    finance:'আর্থিক লাভের সেরা দিন। পাওনা টাকা ফেরত আসবে। নতুন আয়ের পথ খুলবে।',
+    msg:'আজ সুযোগ এসেছে — হাতছাড়া করবেন না। নিজের উপর বিশ্বাস রাখুন।',
+    caution:'লোভের বশে অতিরিক্ত ঝুঁকি নেবেন না।'
+  },
+  { // ১২তম ভাব — ব্যয় (অশুভ)
+    label:'দ্বাদশ ভাবে চন্দ্র', tag:'ব্যয় ও বিশ্রামের দিন', tagCol:'#7f8c8d', score:[2,2,3,2],
+    summary:'চন্দ্র ব্যয় ভাবে। অর্থ ব্যয় বৃদ্ধি, একাকীত্ব ও আত্মিক সাধনার সময়।',
+    love:'একাকীত্ব অনুভব হতে পারে। প্রিয়জনের সাথে সময় কাটান, মন হালকা হবে।',
+    work:'কাজে আজ বিশেষ উদ্যম পাবেন না। পুরোনো কাজ গুছিয়ে নিন, নতুন শুরু নয়।',
+    health:'ঘুমের সমস্যা হতে পারে। মেডিটেশন বা হালকা যোগব্যায়াম করুন।',
+    finance:'অপ্রত্যাশিত খরচ বাড়বে। হিসেব রাখুন। বড় কেনাকাটা এড়িয়ে চলুন।',
+    msg:'আজ নিজের জন্য সময় রাখুন। আত্মচিন্তায় আগামীর পথ স্পষ্ট হবে।',
+    caution:'বিদেশ ভ্রমণে বা হাসপাতাল সংক্রান্ত খরচের জন্য প্রস্তুত থাকুন।'
+  }
+];
 
-// ══════════════════════════════════
-// রাশিফল রেন্ডার
-// ══════════════════════════════════
-const LCOLS=['লাল','নীল','সবুজ','হলুদ','সাদা','কমলা','বেগুনি','সোনালি','গোলাপি','আকাশি'];
-const LDIRS=['পূর্ব','পশ্চিম','উত্তর','দক্ষিণ','ঈশান','আগ্নেয়'];
-const SB=[[4,3,5,4],[3,4,3,5],[5,5,4,3],[3,3,4,4],[4,5,3,5],[5,4,5,3],[4,3,4,3],[3,4,3,4],[5,5,5,4],[4,3,4,5],[3,4,3,3],[4,4,5,4]];
-function getRF(ri){const W=TODAY.getDay(),D=TODAY.getDate(),M=TODAY.getMonth();const seed=(ri*7+W*3+D+M*2)%7;const sc=i=>Math.min(5,Math.max(1,SB[ri][i]+(seed%3)-1));return{love:{score:sc(0),text:RFD.love[(ri*3+D+M)%RFD.love.length]},work:{score:sc(1),text:RFD.work[(ri*2+W+D)%RFD.work.length]},health:{score:sc(2),text:RFD.health[(ri*4+D+M)%RFD.health.length]},finance:{score:sc(3),text:RFD.finance[(ri+M*2+D)%RFD.finance.length]},msg:RFD.msg[(ri*2+D+W)%RFD.msg.length],caution:RFD.caution[(ri*3+W+D)%RFD.caution.length],lucky:{num:toBn((ri+D*3+W)%9+1),color:LCOLS[(ri*2+D+M)%LCOLS.length],dir:LDIRS[(ri+W)%LDIRS.length],gem:RASHIS[ri].gem,time:W<5?'সকাল ও দুপুর':'বিকাল ও সন্ধ্যা'}};}
+// ════════════════════════════════════════════════════════
+// SECTION ⑯ — RASHIFAL RENDER (রাশিফল UI তৈরি — চন্দ্র গোচর ভিত্তিক)
+// কাজ: আজকের চন্দ্রের সিদ্ধান্ত অনুযায়ী প্রতিটি রাশির ফল দেখায়
+//   • getMoonRashi()  — আজকের চন্দ্র কোন রাশিতে আছে
+//   • getGocharHouse()— প্রতিটি রাশির জন্য চন্দ্র কত নম্বর ভাবে
+//   • getRF(ri)       — গোচর ভিত্তিক score ও বার্তা
+//   • showRF(ri)      — রাশিফল panel দেখায়
+// পরিবর্তন: UI layout বদলাতে এখানে আসুন
+// ════════════════════════════════════════════════════════
 
-let actR=-1;
-function renderRG(){document.getElementById('rg').innerHTML=RASHIS.map((r,i)=>`<div class="rb${i===actR?' act':''}" onclick="showRF(${i})"><div class="rb-s">${r.s}</div><div class="rb-n">${r.n}</div><div class="rb-l">${r.l}</div></div>`).join('');}
+var LCOLS=['লাল','নীল','সবুজ','হলুদ','সাদা','কমলা','বেগুনি','সোনালি','গোলাপি','আকাশি'];
+var LDIRS=['পূর্ব','পশ্চিম','উত্তর','দক্ষিণ','ঈশান','আগ্নেয়'];
 
-function showRF(ri){
-  actR=ri;renderRG();
-  const r=RASHIS[ri],rf=getRF(ri);
-  const stars=s=>'★'.repeat(s)+'☆'.repeat(5-s);
-  const bc=s=>s>=4?'var(--green)':s>=3?'var(--gold)':'var(--red)';
-  const sc=s=>s>=4?'s4':s>=3?'s3':'s2';
-  const over=Math.round((rf.love.score+rf.work.score+rf.health.score+rf.finance.score)/4);
-  const oL=['','কঠিন দিন','সাধারণ','মধ্যম','ভালো দিন','অত্যন্ত শুভ'];
-  const oC=['','r','r','','g','g'];
-  document.getElementById('rfsym').textContent=r.s;
-  document.getElementById('rfn').textContent=`${r.n} রাশি`;
-  document.getElementById('rfs2').textContent=`${r.e} | অধিপতি: ${r.l} | ${r.el} | ${r.nat}`;
-  document.getElementById('rfch').innerHTML=[`<div class="rc ${oC[over]}">⭐ ${oL[over]}</div>`,`<div class="rc">💎 ${r.gem}</div>`,`<div class="rc">🎨 ${r.col}</div>`,`<div class="rc">🔢 ${r.num}</div>`].join('');
-  document.getElementById('rfmsg').innerHTML=`<div class="rfmsg-l">আজকের বিশেষ বার্তা</div><div style="font-size:1.05rem;margin-bottom:.2rem;">🔮</div><div class="rfmsg-t">${rf.msg}</div>`;
-  document.getElementById('rfcg').innerHTML=[{ico:'💑',title:'প্রেম ও সম্পর্ক',data:rf.love},{ico:'💼',title:'কর্ম ও ব্যবসা',data:rf.work},{ico:'🌿',title:'স্বাস্থ্য',data:rf.health},{ico:'💰',title:'আর্থিক অবস্থা',data:rf.finance}].map(c=>`<div class="rfc"><div class="rfch2"><div class="rfci">${c.ico}</div><div class="rfct">${c.title}</div><div class="rfcst ${sc(c.data.score)}">${stars(c.data.score)}</div></div><div class="rfctx">${c.data.text}</div><div class="rfcbar"><div class="rfcfill" style="width:${c.data.score*20}%;background:${bc(c.data.score)}"></div></div></div>`).join('');
-  document.getElementById('rflg').innerHTML=[{i:'🔢',l:'ভাগ্য সংখ্যা',v:rf.lucky.num},{i:'🎨',l:'শুভ রং',v:rf.lucky.color},{i:'🧭',l:'শুভ দিক',v:rf.lucky.dir},{i:'💎',l:'রত্নপাথর',v:rf.lucky.gem},{i:'⏰',l:'শুভ সময়',v:rf.lucky.time},{i:'🌿',l:'তত্ত্ব',v:r.el}].map(x=>`<div class="rfl"><div class="rfli">${x.i}</div><div class="rfll">${x.l}</div><div class="rflv">${x.v}</div></div>`).join('');
-  document.getElementById('rfcau').innerHTML=`<div class="rfcaui">⚠️</div><div><div class="rfcaul">আজকের সতর্কতা</div><div class="rfcaut">${rf.caution}</div></div>`;
-  document.getElementById('rfr').classList.add('show');
-  setTimeout(()=>document.getElementById('rfr').scrollIntoView({behavior:'smooth',block:'nearest'}),200);
+// আজকের চন্দ্র রাশি গণনা
+function getMoonRashi() {
+  var y=TODAY.getFullYear(), m=TODAY.getMonth()+1, d=TODAY.getDate();
+  var jd=JD(y,m,d)+0.5;
+  var ml=moonL(jd);
+  var AY=lahiriAY(jd);
+  var sid=((ml-AY)%360+360)%360;
+  return Math.floor(sid/30); // 0=মেষ ... 11=মীন
 }
 
-// ══════════════════════════════════
-// INIT
-// ══════════════════════════════════
+// সব গ্রহের আজকের রাশি
+function getAllPlanetRashi() {
+  var y=TODAY.getFullYear(), m=TODAY.getMonth()+1, d=TODAY.getDate();
+  var jd=JD(y,m,d)+0.5;
+  var AY=lahiriAY(jd);
+  var sid=function(lng){return Math.floor(((lng-AY)%360+360)%360/30);};
+  var rahu=sid(rahuL(jd));
+  return {
+    sun:    sid(sunL(jd)),
+    moon:   sid(moonL(jd)),
+    saturn: sid(saturnL(jd)),
+    jupiter:sid(jupiterL(jd)),
+    rahu:   rahu,
+    ketu:   (rahu+6)%12
+  };
+}
+
+// রাশি ri-এর জন্য চন্দ্র কত নম্বর ভাবে (1–12)
+function getGocharHouse(ri, moonRashi) {
+  return ((moonRashi - ri + 12) % 12) + 1;
+}
+
+// গ্রহ গোচর ফল — সূর্য (মাসিক), শনি (২.৫ বছরিক), রাহু (দেড় বছরিক), বৃহস্পতি (বার্ষিক)
+var SURYA_GOCHAR = [
+  null,
+  {tag:'সতর্কতার মাস',    col:'#c0392b', txt:'সূর্য জন্মরাশিতে — শরীরে চাপ, নেতাদের সাথে সম্পর্কে সাবধান।'},
+  {tag:'আর্থিক চাপ',      col:'#d35400', txt:'বাকশক্তিতে প্রভাব। অর্থ ব্যয়ে সতর্ক।'},
+  {tag:'শুভ মাস',          col:'#27ae60', txt:'সাহস ও উদ্যোগে সাফল্য। ভ্রাতা-সম্পর্কে ভালো।'},
+  {tag:'মানসিক চাপ',      col:'#8e44ad', txt:'মায়ের স্বাস্থ্যে মনোযোগ। গৃহে অস্থিরতা।'},
+  {tag:'শুভ মাস',          col:'#27ae60', txt:'বুদ্ধিমত্তা ও সন্তানের জন্য শুভ।'},
+  {tag:'শত্রু জয়',         col:'#27ae60', txt:'প্রতিপক্ষ পরাজিত। রোগ থেকে মুক্তির যোগ।'},
+  {tag:'দাম্পত্য মনোযোগ', col:'#d35400', txt:'সঙ্গীর স্বাস্থ্যে নজর রাখুন। চুক্তিতে সাবধান।'},
+  {tag:'কঠিন মাস',        col:'#c0392b', txt:'দুর্ঘটনার ভয়। গোপন শত্রু সক্রিয়। সাবধান।'},
+  {tag:'ভাগ্যশালী মাস',   col:'#27ae60', txt:'ধর্মকার্য ও উচ্চশিক্ষায় সাফল্য।'},
+  {tag:'কর্মসাফল্য',       col:'#2980b9', txt:'পদমর্যাদা বৃদ্ধি। সরকারি কাজে সাফল্য।'},
+  {tag:'লাভের মাস',        col:'#1e8449', txt:'আয় বৃদ্ধি, পুরানো পাওনা ফেরত।'},
+  {tag:'ব্যয়ের মাস',       col:'#7f8c8d', txt:'একাকীত্ব। ধর্মীয় কাজে মনোযোগ দিন।'}
+];
+var SHANI_GOCHAR = [
+  null,
+  {tag:'শনির দৃষ্টি — সতর্ক',  col:'#8e44ad', txt:'জন্মরাশিতে শনি (জন্মশনি) — কঠিন সময়। ধৈর্য রাখুন।'},
+  {tag:'অর্থকষ্ট সম্ভব',        col:'#c0392b', txt:'শনি দ্বিতীয়ে — ব্যয় বৃদ্ধি, পরিবারে চাপ।'},
+  {tag:'শুভ শনি গোচর',         col:'#27ae60', txt:'শনি তৃতীয়ে — পরিশ্রমের ফল মিলবে।'},
+  {tag:'মানসিক চাপ',            col:'#d35400', txt:'শনি চতুর্থে — গৃহ ও কর্মে অস্থিরতা।'},
+  {tag:'সাবধানতা দরকার',        col:'#d35400', txt:'শনি পঞ্চমে — সন্তান ও বিনিয়োগে সতর্ক।'},
+  {tag:'শুভ — ঋণমুক্তি',        col:'#27ae60', txt:'শনি ষষ্ঠে — শত্রু পরাজয়, রোগমুক্তি সম্ভব।'},
+  {tag:'দাম্পত্য চাপ',          col:'#c0392b', txt:'শনি সপ্তমে — সম্পর্কে দূরত্ব, মতভেদ।'},
+  {tag:'অত্যন্ত কঠিন',          col:'#c0392b', txt:'শনি অষ্টমে — স্বাস্থ্য ও অর্থে সংকট।'},
+  {tag:'শুভ শনি',                col:'#27ae60', txt:'শনি নবমে — ভাগ্য ও ধর্মে সহায়তা।'},
+  {tag:'কর্মে সাফল্য',           col:'#2980b9', txt:'শনি দশমে — পরিশ্রমের ফল।'},
+  {tag:'লাভের যোগ',             col:'#1e8449', txt:'শনি একাদশে — আয় বৃদ্ধি।'},
+  {tag:'ব্যয় ও একাকীত্ব',      col:'#7f8c8d', txt:'শনি দ্বাদশে — আর্থিক ব্যয়, আধ্যাত্মিক সময়।'}
+];
+var RAHU_GOCHAR = [
+  null,
+  {tag:'রাহু জন্মরাশিতে',     col:'#7b2fbe', txt:'মানসিক বিভ্রান্তি, অস্বাভাবিক ঘটনা সম্ভব।'},
+  {tag:'অর্থ-বাক্ ব্যাঘাত',   col:'#c0392b', txt:'বাকবিতণ্ডা, অর্থহানি সম্ভব।'},
+  {tag:'শুভ রাহু',              col:'#27ae60', txt:'সাহস ও কর্মশক্তি বৃদ্ধি।'},
+  {tag:'গৃহে অশান্তি',          col:'#d35400', txt:'পারিবারিক মতভেদ, মানসিক চাপ।'},
+  {tag:'বিনিয়োগে সতর্ক',      col:'#d35400', txt:'ফাটকায় ক্ষতি সম্ভব।'},
+  {tag:'শত্রু সক্রিয়',          col:'#d35400', txt:'গোপন শত্রু থেকে সাবধান।'},
+  {tag:'সম্পর্কে জটিলতা',      col:'#8e44ad', txt:'দাম্পত্যে বিভ্রান্তি।'},
+  {tag:'রহস্যময় বিপদ',        col:'#c0392b', txt:'অষ্টমে রাহু — অজানা বিপদ থেকে সতর্ক।'},
+  {tag:'শুভ রাহু',              col:'#27ae60', txt:'আধ্যাত্মিক উন্নতি।'},
+  {tag:'কর্মে সাফল্য',          col:'#2980b9', txt:'দশমে রাহু — উচ্চাকাঙ্ক্ষা পূরণ।'},
+  {tag:'আয়-লাভ সম্ভব',        col:'#1e8449', txt:'একাদশে রাহু — অর্থলাভ।'},
+  {tag:'গোপন ব্যয়',            col:'#7f8c8d', txt:'দ্বাদশে রাহু — গোপন শত্রু, বিদেশযোগ।'}
+];
+
+var _moonRashi = getMoonRashi();
+var _allPlanets = getAllPlanetRashi();
+
+function getRF(ri) {
+  var house = getGocharHouse(ri, _moonRashi);
+  var g = GOCHAR[house];
+  var D=TODAY.getDate(), W=TODAY.getDay(), M=TODAY.getMonth();
+  // Lucky info varies by rashi+date for variety
+  return {
+    house: house,
+    gocharLabel: g.label,
+    tag: g.tag,
+    tagCol: g.tagCol,
+    love:    { score: g.score[0], text: g.love },
+    work:    { score: g.score[1], text: g.work },
+    health:  { score: g.score[2], text: g.health },
+    finance: { score: g.score[3], text: g.finance },
+    msg:     g.msg,
+    caution: g.caution,
+    moonRashi: _moonRashi,
+    lucky: {
+      num:   toBn((ri+D*3+W)%9+1),
+      color: LCOLS[(ri*2+D+M)%LCOLS.length],
+      dir:   LDIRS[(ri+W)%LDIRS.length],
+      gem:   RASHIS[ri].gem,
+      time:  W<5?'সকাল ও দুপুর':'বিকাল ও সন্ধ্যা'
+    }
+  };
+}
+
+var actR=-1;
+var RASHI_NAMES=['মেষ','বৃষ','মিথুন','কর্কট','সিংহ','কন্যা','তুলা','বৃশ্চিক','ধনু','মকর','কুম্ভ','মীন'];
+
+function renderRG() {
+  // Moon badge — outside grid, in its own wrapper
+  var moonBadgeEl = document.getElementById('moonBadgeWrap');
+  if (moonBadgeEl) {
+    moonBadgeEl.innerHTML =
+      '<div style="font-size:.72rem;color:var(--txt2);text-align:center;padding:.38rem .9rem;'
+      + 'background:linear-gradient(90deg,rgba(181,134,13,.06),rgba(181,134,13,.12),rgba(181,134,13,.06));'
+      + 'border-radius:20px;border:1px solid rgba(181,134,13,.2);display:inline-flex;align-items:center;'
+      + 'gap:.4rem;width:100%;justify-content:center;box-sizing:border-box;">'
+      + '🌙 আজ চন্দ্র <strong style="color:var(--gold-d);">' + RASHI_NAMES[_moonRashi] + ' রাশিতে</strong> গোচর করছে'
+      + '</div>';
+  }
+  // Grid — 12 rashi only, clean 4-column
+  document.getElementById('rg').innerHTML =
+    RASHIS.map(function(r,i){
+      var house = getGocharHouse(i, _moonRashi);
+      var g = GOCHAR[house];
+      var dot = house===11||house===9||house===3?' rg-good':house===1||house===8||house===12?' rg-bad':'';
+      return '<div class="rb' + (i===actR?' act':'') + dot + '" onclick="showRF(' + i + ')">'
+        + '<div class="rb-s">' + r.s + '</div>'
+        + '<div class="rb-n">' + r.n + '</div>'
+        + '<div class="rb-l" style="color:' + g.tagCol + ';font-size:.54rem;font-weight:700;">' + g.tag + '</div>'
+        + '</div>';
+    }).join('');
+}
+
+function showRF(ri) {
+  actR=ri; renderRG();
+  var r=RASHIS[ri], rf=getRF(ri);
+  var stars=function(s){return'★'.repeat(s)+'☆'.repeat(5-s);};
+  var bc=function(s){return s>=4?'var(--green)':s>=3?'var(--gold)':'var(--red)';};
+  var sc=function(s){return s>=4?'s4':s>=3?'s3':'s2';};
+  var over=Math.round((rf.love.score+rf.work.score+rf.health.score+rf.finance.score)/4);
+  var oL=['','কঠিন দিন','সাধারণ','মধ্যম','ভালো দিন','অত্যন্ত শুভ'];
+  var oC=['','r','r','','g','g'];
+
+  document.getElementById('rfsym').textContent=r.s;
+  document.getElementById('rfn').textContent=r.n+' রাশি';
+  document.getElementById('rfs2').textContent=r.e+' | অধিপতি: '+r.l+' | '+r.el+' | '+r.nat;
+  document.getElementById('rfch').innerHTML=[
+    '<div class="rc ' + oC[over] + '">⭐ '+oL[over]+'</div>',
+    '<div class="rc" style="background:rgba(181,134,13,.08);border-color:rgba(181,134,13,.25);color:'+rf.tagCol+';">🌙 '+rf.gocharLabel+'</div>',
+    '<div class="rc">💎 '+r.gem+'</div>',
+    '<div class="rc">🎨 '+r.col+'</div>'
+  ].join('');
+
+  // Gochar summary banner
+  document.getElementById('rfmsg').innerHTML=
+    '<div style="background:rgba(181,134,13,.06);border:1px solid rgba(181,134,13,.2);border-radius:10px;padding:.65rem .8rem;margin-bottom:.5rem;">'
+    + '<div style="font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:'+rf.tagCol+';margin-bottom:.3rem;">🌙 চন্দ্র গোচর বিচার — আজকের ফল</div>'
+    + '<div style="font-size:.8rem;color:var(--txt);font-weight:600;margin-bottom:.3rem;">'
+    + 'চন্দ্র <strong style="color:'+rf.tagCol+';">' + rf.gocharLabel + '</strong>'
+    + ' &nbsp;→&nbsp; <span style="background:'+rf.tagCol+';color:#fff;border-radius:20px;padding:.12rem .55rem;font-size:.68rem;">'+rf.tag+'</span>'
+    + '</div>'
+    + '<div class="rfmsg-t">' + rf.msg + '</div>'
+    + '</div>';
+
+  document.getElementById('rfcg').innerHTML=[
+    {ico:'💑',title:'প্রেম ও সম্পর্ক',data:rf.love},
+    {ico:'💼',title:'কর্ম ও ব্যবসা',data:rf.work},
+    {ico:'🌿',title:'স্বাস্থ্য',data:rf.health},
+    {ico:'💰',title:'আর্থিক অবস্থা',data:rf.finance}
+  ].map(function(c){
+    return '<div class="rfc"><div class="rfch2"><div class="rfci">'+c.ico+'</div><div class="rfct">'+c.title+'</div>'
+      +'<div class="rfcst '+sc(c.data.score)+'">'+stars(c.data.score)+'</div></div>'
+      +'<div class="rfctx">'+c.data.text+'</div>'
+      +'<div class="rfcbar"><div class="rfcfill" style="width:'+c.data.score*20+'%;background:'+bc(c.data.score)+'"></div></div></div>';
+  }).join('');
+
+  document.getElementById('rflg').innerHTML=[
+    {i:'🔢',l:'ভাগ্য সংখ্যা',v:rf.lucky.num},
+    {i:'🎨',l:'শুভ রং',v:rf.lucky.color},
+    {i:'🧭',l:'শুভ দিক',v:rf.lucky.dir},
+    {i:'💎',l:'রত্নপাথর',v:rf.lucky.gem},
+    {i:'⏰',l:'শুভ সময়',v:rf.lucky.time},
+    {i:'🌙',l:'চন্দ্র রাশি',v:RASHI_NAMES[rf.moonRashi]}
+  ].map(function(x){
+    return '<div class="rfl"><div class="rfli">'+x.i+'</div><div class="rfll">'+x.l+'</div><div class="rflv">'+x.v+'</div></div>';
+  }).join('');
+
+  document.getElementById('rfcau').innerHTML=
+    '<div class="rfcaui">⚠️</div><div><div class="rfcaul">আজকের সতর্কতা</div><div class="rfcaut">'+rf.caution+'</div></div>';
+
+  // ── গ্রহ গোচর strip (সূর্য · শনি · রাহু · বৃহস্পতি) ──
+  var gp = _allPlanets;
+  var mkPG = function(ico, name, planet, gocharArr) {
+    var h = ((planet - ri + 12) % 12) + 1;
+    var g = gocharArr[h];
+    return '<div style="display:flex;align-items:center;gap:.5rem;padding:.35rem .5rem;'
+      + 'background:rgba(0,0,0,.02);border-radius:8px;border-left:3px solid ' + g.col + ';">'
+      + '<span style="font-size:.9rem;">' + ico + '</span>'
+      + '<div style="flex:1;">'
+      + '<div style="font-size:.58rem;font-weight:700;color:' + g.col + ';letter-spacing:.1em;text-transform:uppercase;">'
+      + name + ' গোচর — ' + g.tag + '</div>'
+      + '<div style="font-size:.68rem;color:var(--txt2);line-height:1.4;">' + g.txt + '</div>'
+      + '</div></div>';
+  };
+  var pgHtml = '<div style="margin-top:.6rem;border:1px solid rgba(181,134,13,.15);border-radius:10px;overflow:hidden;">'
+    + '<div style="font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;'
+    + 'color:var(--gold);padding:.4rem .7rem;background:rgba(181,134,13,.06);border-bottom:1px solid rgba(181,134,13,.1);">'
+    + '🪐 গ্রহ গোচর বিচার (আজকের অবস্থান)</div>'
+    + '<div style="padding:.45rem .5rem;display:flex;flex-direction:column;gap:.35rem;">'
+    + mkPG('☀️', 'সূর্য',     gp.sun,     SURYA_GOCHAR)
+    + mkPG('🪐', 'শনি',       gp.saturn,  SHANI_GOCHAR)
+    + mkPG('☊',  'রাহু',      gp.rahu,    RAHU_GOCHAR)
+    + '</div>'
+    + '<div style="font-size:.58rem;color:var(--txt2);padding:.3rem .7rem;text-align:right;'
+    + 'border-top:1px solid rgba(181,134,13,.08);">'
+    + '☀️ ' + RASHI_NAMES[gp.sun] + ' · 🪐 শনি ' + RASHI_NAMES[gp.saturn]
+    + ' · ☊ রাহু ' + RASHI_NAMES[gp.rahu] + ' · ♃ বৃহস্পতি ' + RASHI_NAMES[gp.jupiter] + '</div>'
+    + '</div>';
+  var pgEl = document.getElementById('rfpg');
+  if (pgEl) pgEl.innerHTML = pgHtml;
+
+  document.getElementById('rfr').classList.add('show');
+  setTimeout(function(){document.getElementById('rfr').scrollIntoView({behavior:'smooth',block:'nearest'});},200);
+}
+// SECTION ⑰ — INIT (পেজ লোড হলে প্রথমে চালু হয়)
+// কাজ: সব component একবার render করে পেজ চালু করে
+// পরিবর্তন: সাধারণত দরকার নেই
+// ════════════════════════════════════════════════════════
 let _initLoad=true;
 try {
   renderHeader();
@@ -1004,6 +2008,16 @@ _initLoad=false;
   }
   setTimeout(show,3000);
   setInterval(show,20000);
+})();
+
+// ══ Scroll-to-top button ══
+(function(){
+  var stb=document.getElementById('stb');
+  if(!stb)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>300){stb.classList.add('show');}
+    else{stb.classList.remove('show');}
+  },{passive:true});
 })();
 </script>
 </body>
