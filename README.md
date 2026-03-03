@@ -1,6 +1,6 @@
 # 🌟 MyAstrology – Vedic Astrology & Palmistry by Dr. Prodyut Acharya
 
-![MyAstrology Banner](https://astro.myastrology.in/images/banner.jpg "MyAstrology – Indian Astrology & Palmistry Banner by Dr. Prodyut Acharya")
+![MyAstrology Banner](https://astro.myastrology.in/gallery/best-astrologer-in-west-bengal-dr-prodyut-acharya.webp "MyAstrology – Indian Astrology & Palmistry Banner by Dr. Prodyut Acharya")
 
 [![GitHub Actions](https://github.com/MyAstrology/services/actions/workflows/generate-list.yml/badge.svg)](https://github.com/MyAstrology/services/actions/workflows/generate-list.yml)
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fastro.myastrology.in&label=Website&color=brightgreen)](https://astro.myastrology.in)
@@ -127,8 +127,8 @@ services/ (GitHub repo root)
 ├── blog-list.html
 ├── gallery.html
 ├── palmistry.html
-├── panjika.html                       ← বাংলা পঞ্জিকা
-├── rashifal.html                      ← দৈনিক রাশিফল
+├── panjika.html                       ← বাংলা পঞ্জিকা ও দৈনিক রাশিফল 
+├── rashifal.html                      
 ├── reviews.html
 ├── vastu-science.html
 ├── vedic-astronomy.html
