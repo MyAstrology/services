@@ -26,6 +26,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Create public directory
+        run: mkdir -p public
+
       - name: Generate blog list
         run: node src/content/blog/generate-list.js
 
