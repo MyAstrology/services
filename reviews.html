@@ -1166,28 +1166,64 @@ footer{
 
 
   <!-- ════════ CTA ════════ -->
-  <div class="cta-sec" role="region" aria-labelledby="cta-h2">
-    <h2 id="cta-h2">🌟 আপনার জীবনের নতুন দিশা এখান থেকেই শুরু হোক</h2>
-    <p>জীবনের প্রতিটি মোড়ে থাকে প্রশ্ন ও নতুন সম্ভাবনার দুয়ার। সঠিক সিদ্ধান্তের জন্য দরকার স্পষ্ট দৃষ্টি আর সঠিক দিকনির্দেশ। ড. প্রদ্যুৎ আচার্যের সঙ্গে কথা বলুন — জ্যোতিষের আলোয় আগামীকে আলোকিত করুন।</p>
-    <div class="cta-btns">
-      <a href="https://wa.me/919333122768"
-         target="_blank" rel="noopener noreferrer"
-         class="cta-wa"
-         aria-label="WhatsApp-এ পরামর্শ নিন"
-         onclick="gtag('event','whatsapp_click',{event_category:'engagement',event_label:'CTA Section'})">
-        <i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp করুন
-      </a>
-      <a href="https://rzp.io/rzp/Axo6j2e"
-         target="_blank" rel="noopener noreferrer"
-         class="cta-book"
-         aria-label="পরামর্শ বুকিং করুন"
-         onclick="gtag('event','booking_click',{event_category:'conversion',event_label:'CTA Section'})">
-        <i class="fas fa-calendar-check" aria-hidden="true"></i> পরামর্শ বুকিং করুন
-      </a>
-    </div>
-  </div>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
-</div><!-- /wrap -->
+<div class="cta-sec" role="region" aria-labelledby="cta-h2">
+  <h2 id="cta-h2">🌟 আপনার জীবনের নতুন দিশা এখান থেকেই শুরু হোক</h2>
+  <p>জীবনের প্রতিটি মোড়ে থাকে প্রশ্ন ও নতুন সম্ভাবনার দুয়ার। সঠিক সিদ্ধান্তের জন্য দরকার স্পষ্ট দৃষ্টি আর সঠিক দিকনির্দেশ। ড. প্রদ্যুৎ আচার্যের সঙ্গে কথা বলুন — জ্যোতিষের আলোয় আগামীকে আলোকিত করুন।</p>
+  
+  <div class="cta-btns">
+    <a href="https://wa.me/919333122768"
+       target="_blank" rel="noopener noreferrer"
+       class="cta-wa"
+       aria-label="WhatsApp-এ পরামর্শ নিন">
+      <i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp করুন
+    </a>
+
+    <button id="rzp-cta-button" class="cta-book" style="cursor:pointer; border:none; font-family:inherit;">
+      <i class="fas fa-calendar-check" aria-hidden="true"></i> পরামর্শ বুকিং করুন
+    </button>
+  </div>
+</div>
+
+<script>
+document.getElementById('rzp-cta-button').onclick = function(e) {
+    var options = {
+        "key": "rzp_live_XXXXXXXXXXXXXX", // আপনার আসল Razorpay Live Key ID এখানে বসান
+        "amount": "100100", // উদাহরণ: ১০০১ টাকা (পয়সা হিসেবে ১০০১*১০০)
+        "currency": "INR",
+        "name": "Dr. Prodyut Acharya",
+        "description": "Astrology Consultation",
+        "handler": function (response) {
+            // পেমেন্ট সফল হলে এই অংশটি কাজ করবে
+            var paymentId = response.razorpay_payment_id;
+            var phoneNumber = "919333122768"; // আপনার নম্বর
+            
+            var message = "নমস্কার ড. প্রদ্যুৎ আচার্য,\n" +
+                          "আমি আপনার সেবার জন্য পেমেন্ট সম্পন্ন করেছি।\n" +
+                          "পেমেন্ট আইডি: " + paymentId + "\n" +
+                          "অনুগ্রহ করে পরবর্তী পদক্ষেপগুলি জানান।";
+            
+            var whatsappUrl = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message);
+            
+            // হোয়াটসঅ্যাপে রিডাইরেক্ট করা
+            window.location.href = whatsappUrl;
+        },
+        "prefill": {
+            "name": "", // কাস্টমার নাম (ঐচ্ছিক)
+            "email": "",
+            "contact": ""
+        },
+        "theme": {
+            "color": "#ff9800"
+        }
+    };
+    var rzp1 = new Razorpay(options);
+    rzp1.open();
+    e.preventDefault();
+}
+</script>
+
 
 
 <!-- ════════ FOOTER ════════ -->
