@@ -1168,64 +1168,78 @@ footer{
   <!-- ════════ CTA ════════ -->
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
-<div class="cta-sec" role="region" aria-labelledby="cta-h2">
-  <h2 id="cta-h2">🌟 আপনার জীবনের নতুন দিশা এখান থেকেই শুরু হোক</h2>
-  <p>জীবনের প্রতিটি মোড়ে থাকে প্রশ্ন ও নতুন সম্ভাবনার দুয়ার। সঠিক সিদ্ধান্তের জন্য দরকার স্পষ্ট দৃষ্টি আর সঠিক দিকনির্দেশ। ড. প্রদ্যুৎ আচার্যের সঙ্গে কথা বলুন — জ্যোতিষের আলোয় আগামীকে আলোকিত করুন।</p>
-  
-  <div class="cta-btns">
-    <a href="https://wa.me/919333122768" class="cta-wa" target="_blank" rel="noopener noreferrer">
-      <i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp করুন
-    </a>
-
-    <button id="rzp-cta-button" class="cta-book" style="cursor:pointer; border:none; font-family:inherit;">
-      <i class="fas fa-calendar-check" aria-hidden="true"></i> পরামর্শ বুকিং করুন
+<div style="text-align: center; margin: 40px auto; font-family: 'Hind Siliguri', sans-serif;">
+    <button id="rzp-cta-button" style="background: linear-gradient(135deg, #ff9800, #e68900); color: white; padding: 15px 35px; border: none; border-radius: 50px; cursor: pointer; font-size: 20px; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: 0.3s;">
+        <i class="fas fa-calendar-check"></i> পরামর্শ বুকিং করুন (₹১০০১)
     </button>
-  </div>
+    <p style="margin-top: 10px; color: #666; font-size: 14px;">পেমেন্ট সফল হলে সরাসরি হোয়াটসঅ্যাপে পাঠানো হবে</p>
 </div>
 
 <script>
-document.getElementById('rzp-cta-button').onclick = function(e) {
-    var options = {
-        "key": "rzp_live_SN8p6DJxPYF", // আপনার আসল Live Key ID এখানে বসান
-        "amount": "100100", // ১০০১ টাকা (পয়সা হিসেবে)
-        "currency": "INR",
-        "name": "Dr. Prodyut Acharya",
-        "description": "Vedic Astrology Consultation",
-        
-        // ৩. পপ-আপের ভেতরে কাস্টমারের তথ্য নেওয়া (Notes)
-        "notes": {
-            "১) নাম": "Customer Name",
-            "২) জন্ম বিবরণ": "Date, Time, Place"
-        },
-        
-        // কাস্টমারকে নাম ও ফোন নম্বর দিতে বাধ্য করা
-        "prefill": {
-            "name": "",
-            "contact": ""
-        },
+document.addEventListener('DOMContentLoaded', function() {
+    const rzpBtn = document.getElementById('rzp-cta-button');
 
-        "handler": function (response) {
-            var paymentId = response.razorpay_payment_id;
-            var phoneNumber = "919333122768";
+    if (rzpBtn) {
+        rzpBtn.onclick = function(e) {
+            e.preventDefault();
             
-            // হোয়াটসঅ্যাপে পাঠানোর জন্য মেসেজ ফরম্যাট
-            var message = "*নতুন পেমেন্ট ও বুকিং কনফার্মেশন*\n\n" +
-                          "পেমেন্ট সফল হয়েছে! ✅\n" +
-                          "পেমেন্ট আইডি: " + paymentId + "\n\n" +
-                          "ড. প্রদ্যুৎ আচার্য,\n" +
-                          "আমি আমার জন্ম বিবরণ ও ছবিগুলো নিচে দিচ্ছি।";
+            // আপনার লাইভ কী এখানে বসাবেন
+            const LIVE_KEY_ID = "rzp_live_SN8p6DJxPYF"; 
+
+            var options = {
+                "key": LIVE_KEY_ID, 
+                "amount": "100100", // ১০০১ টাকা (পয়সা হিসেবে)
+                "currency": "INR",
+                "name": "Dr. Prodyut Acharya",
+                "description": "Vedic Astrology Consultation",
+                
+                // আপনার লোগো (আপনার সাইট থেকে সংগৃহীত সোর্স)
+                "image": "https://astro.myastrology.in/images/bangla-daily-horoscope-ponjika-myastrology.webp", 
+                
+                "handler": function (response) {
+                    // পেমেন্ট সফল হলে পেমেন্ট আইডি সংগ্রহ
+                    var paymentId = response.razorpay_payment_id;
+                    var phoneNumber = "919333122768"; 
+                    
+                    // হোয়াটসঅ্যাপ মেসেজ ফরম্যাট
+                    var message = "*নতুন পেমেন্ট কনফার্মেশন*\n" +
+                                  "--------------------------\n" +
+                                  "👤 *প্রাপক:* ড. প্রদ্যুৎ আচার্য\n" +
+                                  "💰 *পরিমাণ:* ₹১০০১\n" +
+                                  "🆔 *পেমেন্ট আইডি:* " + paymentId + "\n" +
+                                  "--------------------------\n" +
+                                  "নমস্কার, আমি পেমেন্ট করেছি। আমার জন্ম বিবরণ ও ছবি নিচে দিচ্ছি।";
+                    
+                    var whatsappUrl = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message);
+                    
+                    // সরাসরি রিডাইরেক্ট
+                    window.location.href = whatsappUrl;
+                },
+                "prefill": {
+                    "name": "", // কাস্টমার নিজের নাম লিখবে
+                    "contact": "" // কাস্টমার নিজের নম্বর লিখবে
+                },
+                "notes": {
+                    "Service": "Full Birth Chart Reading",
+                    "Location": "Ranaghat, Nadia"
+                },
+                "theme": {
+                    "color": "#ff9800"
+                }
+            };
             
-            var whatsappUrl = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message);
-            window.location.href = whatsappUrl;
-        },
-        "theme": { "color": "#ff9800" }
-    };
-    var rzp1 = new Razorpay(options);
-    rzp1.open();
-    e.preventDefault();
-}
+            var rzp1 = new Razorpay(options);
+            
+            // পেমেন্ট ফেল হলে সতর্কতা
+            rzp1.on('payment.failed', function (response){
+                alert("পেমেন্ট অসম্পূর্ণ: " + response.error.description);
+            });
+
+            rzp1.open();
+        }
+    }
+});
 </script>
-
 
 
 <!-- ════════ FOOTER ════════ -->
