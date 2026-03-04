@@ -923,45 +923,6 @@
       content:"\2726"; color:#f9a825; font-size:.58rem;
       flex-shrink:0; margin-top:4px;
     }
-    .sc-price {
-      display:flex; align-items:baseline; gap:6px; margin-bottom:16px;
-    }
-    .sc-sym { font-size:.88rem; color:rgba(249,168,37,.78); font-weight:600; }
-    .sc-amt {
-      font-family:var(--font-sans); font-size:2.1rem;
-      font-weight:900; color:#f9a825; line-height:1;
-    }
-    .sc-old {
-      font-size:.83rem; color:rgba(200,200,240,.38);
-      text-decoration:line-through; margin-left:4px;
-    }
-    .sc-dur {
-      font-size:.7rem; color:rgba(200,200,240,.5);
-      background:rgba(255,255,255,.07);
-      padding:2px 9px; border-radius:50px; margin-left:4px;
-    }
-    .sc-offer-tag {
-      background: linear-gradient(135deg,rgba(249,168,37,.18),rgba(230,81,0,.18));
-      border: 1px solid rgba(249,168,37,.4);
-      border-radius: 6px; padding: 5px 10px;
-      font-size: .74rem; font-weight: 700;
-      color: #ffd54f; margin-bottom: 14px;
-      text-align: center; letter-spacing: .2px;
-    }
-    .sc-inp {
-      width:100%; box-sizing:border-box; padding:11px 14px;
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(249,168,37,.28);
-      border-radius:8px; color:#fff;
-      font-family:var(--font-sans); font-size:.88rem;
-      margin-bottom:9px; outline:none; transition:border-color .2s;
-    }
-    .sc-inp::placeholder { color:rgba(255,255,255,.37); }
-    .sc-inp:focus { border-color:#f9a825; }
-    .sc-inp.err { border-color:#e65100; animation:inp-shake .35s; }
-    @keyframes inp-shake {
-      0%,100%{transform:translateX(0)} 30%{transform:translateX(-7px)} 70%{transform:translateX(7px)}
-    }
     .sc-btn {
       width:100%; padding:14px 18px;
       background:linear-gradient(135deg,#f9a825,#ffd740);
@@ -1217,7 +1178,7 @@
        ════════════════════════════════════════════════════════ */
     @media print {
       header, nav, .backdrop, .scroll-ticker,
-      .panjika-strip, .cta-box, footer { display: none !important; }
+      .panjika-strip, footer { display: none !important; }
       body { color: #000; background: #fff; font-size: 12pt; }
       a::after { content: " (" attr(href) ")"; font-size: 9pt; color: #555; }
     }
@@ -1231,7 +1192,6 @@
       blockquote { padding: 12px 14px 12px 18px; margin: var(--space-sm) 0; }
       section.content-section { padding: var(--space-md) 14px; }
       .panjika-strip-btn { padding: 10px 18px; font-size: 0.85rem; }
-      .cta-btns { flex-direction: column; align-items: center; }
     }
   
     /* ════ WhatsApp Floating Button + Flash Messages ════ */
@@ -1351,33 +1311,6 @@
     }
 
     /* CTA box */
-    .cta-box {
-      background: linear-gradient(135deg, var(--clr-primary) 0%, var(--clr-primary-light) 100%);
-      color: #fff;
-      border-radius: var(--radius-md);
-      padding: var(--space-lg) var(--space-md);
-      text-align: center;
-      margin-top: var(--space-lg);
-      box-shadow: var(--shadow-gold);
-    }
-    .cta-box h3 { color: var(--clr-gold); font-size: clamp(1.1rem,2.5vw,1.4rem); margin-bottom: 10px; }
-    .cta-box p  { color: rgba(255,255,255,0.88); margin-bottom: var(--space-md); }
-    .cta-btns {
-      display: flex; flex-wrap: wrap; gap: 12px;
-      justify-content: center;
-    }
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 12px 22px; border-radius: 50px;
-      font-family: var(--font-sans); font-weight: 700;
-      font-size: 0.92rem; text-decoration: none; border: none;
-      cursor: pointer; transition: transform .2s, box-shadow .2s;
-      white-space: nowrap;
-    }
-    .btn:hover { transform: translateY(-2px); }
-    .btn-wa  { background: #25D366; color: #fff; box-shadow: 0 4px 14px rgba(37,211,102,.4); }
-    .btn-pay { background: var(--clr-gold); color: #1a1a5e; box-shadow: 0 4px 14px rgba(249,168,37,.4); }
-
     /* Panjika strip */
     .panjika-strip {
       background: linear-gradient(135deg, var(--clr-primary) 0%, #2a2a7e 100%);
@@ -1442,23 +1375,8 @@
       display: block;
     }
 
-    /* Offer banner */
-    .special-offer-bar {
-      background: linear-gradient(90deg, #fff8e1 0%, #fff3cd 100%);
-      border: 1.5px solid #f9a825;
-      border-radius: var(--radius-sm);
-      padding: 10px 18px;
-      font-family: var(--font-sans);
-      font-weight: 600;
-      font-size: 0.92rem;
-      color: #7c4200;
-      text-align: center;
-      margin: 0 0 12px;
-    }
-    .special-offer-bar strong { color: var(--clr-accent); }
-
     /* ════════════════════════════════════════════════════════
-       SPECIAL OFFER BLOCK — Cards
+       SPECIAL OFFER BLOCK — Cards (price comparison)
        ════════════════════════════════════════════════════════ */
     .sc-special-offer {
       background: linear-gradient(135deg, #1a1a5e 0%, #2d2d8f 100%);
@@ -1478,12 +1396,12 @@
     }
     @keyframes offer-shimmer { 0%,100%{opacity:0} 50%{opacity:1} }
     .sc-special-offer--gold { background: linear-gradient(135deg, #7c3800 0%, #c45200 100%); }
-    .sc-offer-flame { font-size:0.78rem; color:rgba(255,255,255,0.8); font-family:var(--font-sans); font-weight:600; margin-bottom:8px; letter-spacing:0.3px; }
+    .sc-offer-flame { font-size:.78rem; color:rgba(255,255,255,0.8); font-family:var(--font-sans); font-weight:600; margin-bottom:8px; }
     .sc-offer-prices { display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:6px; }
     .sc-offer-old { color:rgba(255,255,255,0.45); text-decoration:line-through; font-size:1rem; font-family:var(--font-sans); }
     .sc-offer-arrow { color:var(--clr-gold); font-size:1rem; }
     .sc-offer-new { color:#ffd54f; font-family:var(--font-sans); font-weight:900; font-size:1.35rem; line-height:1; }
-    .sc-offer-save { font-size:0.72rem; color:rgba(255,220,80,0.85); font-family:var(--font-sans); font-weight:600; }
+    .sc-offer-save { font-size:.72rem; color:rgba(255,220,80,0.85); font-family:var(--font-sans); font-weight:600; }
 
     /* ════════════════════════════════════════════════════════
        BOOKING MODAL (Step 1)
@@ -1889,7 +1807,6 @@
 
     <!-- CARD 1: Palm Reading -->
     <div class="sc">
-      <span class="sc-ribbon sc-ribbon--offer">🔥 বিশেষ অফার</span>
       <img class="sc-img"
            src="images/Palm Reading Consultation.webp"
            alt="Online Palm Reading — হাতের রেখা বিচার, Dr. Prodyut Acharya MyAstrology"
@@ -1904,13 +1821,22 @@
         <li>হাতের রেখা অনুযায়ী প্রতিকার পরামর্শ</li>
         <li>বাংলা ও হিন্দি ভাষায়</li>
       </ul>
+      <!-- Special Offer Block -->
+      <div class="sc-special-offer">
+        <div class="sc-offer-flame">🔥 সীমিত সময়ের বিশেষ অফার</div>
+        <div class="sc-offer-prices">
+          <span class="sc-offer-old">&#8377;১৫০১</span>
+          <span class="sc-offer-arrow">→</span>
+          <span class="sc-offer-new">মাত্র &#8377;১০০১</span>
+        </div>
+        <div class="sc-offer-save">আপনি সাশ্রয় করছেন &#8377;৫০০ 💰</div>
+      </div>
       <button class="sc-btn" onclick="openBookModal('palm')">&#128197; এখনই বুক করুন</button>
       <p class="sc-sec">&#128274; Razorpay &bull; UPI / Card / Net Banking</p>
     </div>
 
     <!-- CARD 2: Combo FEATURED -->
     <div class="sc sc-feat">
-      <span class="sc-ribbon">&#128293; বেস্ট অফার</span>
       <img class="sc-img"
            src="images/birth-chart-reading-vedic-astrology.webp"
            alt="জন্মকুণ্ডলী বিচার ও হস্তরেখা — Vedic Astrology Birth Chart, Dr. Prodyut Acharya"
@@ -1925,13 +1851,22 @@
         <li>ফোনে বিস্তারিত আলোচনা &#8212; ৩০ মিনিট</li>
         <li>সমস্ত প্রশ্নের উত্তর ও প্রতিকার</li>
       </ul>
+      <!-- Special Offer Block -->
+      <div class="sc-special-offer sc-special-offer--gold">
+        <div class="sc-offer-flame">⭐ সেরা মূল্যের বিশেষ অফার</div>
+        <div class="sc-offer-prices">
+          <span class="sc-offer-old">&#8377;২০০১</span>
+          <span class="sc-offer-arrow">→</span>
+          <span class="sc-offer-new">মাত্র &#8377;১৫০১</span>
+        </div>
+        <div class="sc-offer-save">আপনি সাশ্রয় করছেন &#8377;৫০০ 💰</div>
+      </div>
       <button class="sc-btn" onclick="openBookModal('combo')">&#128197; এখনই বুক করুন</button>
       <p class="sc-sec">&#128274; Razorpay &bull; UPI / Card / Net Banking</p>
     </div>
 
     <!-- CARD 3: Jyotok -->
     <div class="sc">
-      <span class="sc-ribbon sc-ribbon--offer">💍 বিশেষ ছাড়</span>
       <img class="sc-img"
            src="images/kundli-matching-bengali-astrology.webp"
            alt="যোটোক বিচার — Kundli Matching Bengali Astrology, Dr. Prodyut Acharya MyAstrology"
@@ -1947,6 +1882,16 @@
         <li>যোটোক বিচার PDF + ফোনে ৩০ মিনিট আলোচনা</li>
         <li>দাম্পত্য সুখের প্রতিকার পরামর্শ</li>
       </ul>
+      <!-- Special Offer Block -->
+      <div class="sc-special-offer">
+        <div class="sc-offer-flame">💍 বিবাহ পরামর্শ বিশেষ ছাড়</div>
+        <div class="sc-offer-prices">
+          <span class="sc-offer-old">&#8377;২৫০১</span>
+          <span class="sc-offer-arrow">→</span>
+          <span class="sc-offer-new">মাত্র &#8377;১৫০১</span>
+        </div>
+        <div class="sc-offer-save">আপনি সাশ্রয় করছেন &#8377;১০০০ 💰</div>
+      </div>
       <button class="sc-btn alt" onclick="openBookModal('jyotok')">&#128197; এখনই বুক করুন</button>
       <p class="sc-sec">&#128274; Razorpay &bull; UPI / Card / Net Banking</p>
     </div>
