@@ -891,6 +891,15 @@
       padding:3px 13px; border-radius:50px;
       text-transform:uppercase; letter-spacing:.5px;
     }
+    .sc-ribbon--offer {
+      background: linear-gradient(135deg, #e65100, #bf360c);
+      color: #fff;
+      top: 14px; left: auto; right: 14px;
+      border-radius: 6px;
+      font-size: .7rem;
+      letter-spacing: .3px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
     .sc-icon { font-size:2.3rem; margin-bottom:12px; display:block; }
     .sc-name {
       font-family:var(--font-serif); font-size:1.13rem; font-weight:700;
@@ -1448,6 +1457,186 @@
     }
     .special-offer-bar strong { color: var(--clr-accent); }
 
+    /* ════════════════════════════════════════════════════════
+       SPECIAL OFFER BLOCK — Cards
+       ════════════════════════════════════════════════════════ */
+    .sc-special-offer {
+      background: linear-gradient(135deg, #1a1a5e 0%, #2d2d8f 100%);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin: 14px 0 16px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .sc-special-offer::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent 0%, rgba(249,168,37,0.08) 50%, transparent 100%);
+      animation: offer-shimmer 2.5s ease-in-out infinite;
+    }
+    @keyframes offer-shimmer { 0%,100%{opacity:0} 50%{opacity:1} }
+    .sc-special-offer--gold { background: linear-gradient(135deg, #7c3800 0%, #c45200 100%); }
+    .sc-offer-flame { font-size:0.78rem; color:rgba(255,255,255,0.8); font-family:var(--font-sans); font-weight:600; margin-bottom:8px; letter-spacing:0.3px; }
+    .sc-offer-prices { display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:6px; }
+    .sc-offer-old { color:rgba(255,255,255,0.45); text-decoration:line-through; font-size:1rem; font-family:var(--font-sans); }
+    .sc-offer-arrow { color:var(--clr-gold); font-size:1rem; }
+    .sc-offer-new { color:#ffd54f; font-family:var(--font-sans); font-weight:900; font-size:1.35rem; line-height:1; }
+    .sc-offer-save { font-size:0.72rem; color:rgba(255,220,80,0.85); font-family:var(--font-sans); font-weight:600; }
+
+    /* ════════════════════════════════════════════════════════
+       BOOKING MODAL (Step 1)
+       ════════════════════════════════════════════════════════ */
+    #book-overlay, #rzp-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(8,8,30,0.82);
+      z-index: 9400;
+      align-items: center; justify-content: center;
+      backdrop-filter: blur(6px);
+      opacity: 0; transition: opacity 0.3s ease;
+    }
+    #book-overlay.show, #rzp-overlay.show { opacity: 1; }
+
+    #book-modal {
+      background: #fff; border-radius: 20px;
+      padding: 32px 28px 28px;
+      max-width: 420px; width: 92%;
+      position: relative;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(249,168,37,0.2);
+      transform: translateY(24px) scale(0.97);
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s;
+      opacity: 0;
+    }
+    #book-overlay.show #book-modal { transform: translateY(0) scale(1); opacity: 1; }
+
+    #book-close, #rzp-close {
+      position: absolute; top: 14px; right: 16px;
+      background: #f0f0f8; border: none;
+      width: 32px; height: 32px; border-radius: 50%;
+      font-size: 1rem; cursor: pointer; color: #666;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, color 0.2s; line-height: 1;
+    }
+    #book-close:hover, #rzp-close:hover { background: #e0e0f0; color: #1a1a5e; }
+
+    .bm-header { text-align: center; margin-bottom: 16px; }
+    .bm-logo { height: 52px; width: auto; display: block; margin: 0 auto 8px; }
+    .bm-brand { font-family:var(--font-sans); font-weight:800; font-size:1.1rem; color:var(--clr-primary); }
+    .bm-sub { font-family:var(--font-serif); font-size:0.8rem; color:var(--clr-text-lt); }
+
+    .bm-svc-info {
+      display: flex; align-items: center; justify-content: space-between;
+      background: linear-gradient(135deg, #f8f4ff, #fff8e1);
+      border: 1px solid #e0d4f0; border-radius: 10px;
+      padding: 10px 14px; margin-bottom: 10px;
+    }
+    .bm-svc-name { font-family:var(--font-sans); font-weight:700; font-size:0.92rem; color:var(--clr-primary); }
+    .bm-svc-price { font-family:var(--font-sans); font-weight:900; font-size:1.15rem; color:var(--clr-accent); }
+
+    .bm-offer-badge {
+      background: linear-gradient(90deg, #1a1a5e, #2d2d8f);
+      color: #ffd54f; border-radius: 8px; padding: 7px 14px;
+      font-family:var(--font-sans); font-weight:700; font-size:0.8rem;
+      text-align:center; margin-bottom:18px; letter-spacing:0.2px;
+    }
+
+    .bm-fields { margin-bottom: 16px; }
+    .bm-label { display:block; font-family:var(--font-sans); font-size:0.82rem; font-weight:700; color:var(--clr-primary); margin-bottom:5px; margin-top:12px; }
+    .bm-req { color: var(--clr-accent); }
+    .bm-inp {
+      width: 100%; padding: 13px 16px;
+      border: 2px solid #e8e0f0; border-radius: 10px;
+      font-family:var(--font-sans); font-size:0.95rem; color:var(--clr-text);
+      background: #fafafa; outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s; box-sizing: border-box;
+    }
+    .bm-inp:focus { border-color:var(--clr-primary); box-shadow:0 0 0 3px rgba(26,26,94,0.12); background:#fff; }
+    .bm-inp.bm-err { border-color:#e65100; animation:inp-shake 0.35s; box-shadow:0 0 0 3px rgba(230,81,0,0.12); }
+
+    .bm-phone-wrap {
+      display:flex; align-items:center;
+      border: 2px solid #e8e0f0; border-radius:10px;
+      overflow:hidden; transition:border-color 0.2s,box-shadow 0.2s; background:#fafafa;
+    }
+    .bm-phone-wrap:focus-within { border-color:var(--clr-primary); box-shadow:0 0 0 3px rgba(26,26,94,0.12); background:#fff; }
+    .bm-phone-prefix {
+      background:#f0ecff; padding:0 12px;
+      font-family:var(--font-sans); font-size:0.88rem; font-weight:700; color:var(--clr-primary);
+      border-right:1px solid #e0d4f0; height:48px;
+      display:flex; align-items:center; white-space:nowrap; flex-shrink:0;
+    }
+    .bm-inp-phone { border:none!important; border-radius:0!important; box-shadow:none!important; flex:1; background:transparent; }
+    .bm-inp-phone:focus { background:transparent; box-shadow:none!important; }
+    .bm-hint { font-size:0.72rem; color:var(--clr-text-lt); margin-top:5px; font-family:var(--font-sans); }
+
+    .bm-proceed-btn {
+      width:100%; padding:15px;
+      background:linear-gradient(135deg, var(--clr-primary), #2d2d8f);
+      color:#ffd54f; border:none; border-radius:50px;
+      font-family:var(--font-sans); font-weight:800; font-size:1rem;
+      cursor:pointer; transition:transform 0.2s,box-shadow 0.2s;
+      box-shadow:0 6px 20px rgba(26,26,94,0.35); letter-spacing:0.3px; margin-top:4px;
+    }
+    .bm-proceed-btn:hover { transform:translateY(-2px); box-shadow:0 10px 28px rgba(26,26,94,0.45); }
+    .bm-secure { text-align:center; font-size:0.7rem; color:#999; margin-top:10px; font-family:var(--font-sans); }
+
+    /* ════ SUCCESS MODAL ════ */
+    #rzp-modal {
+      background:#fff; border-radius:22px;
+      padding:38px 28px 32px; max-width:400px; width:92%;
+      text-align:center; position:relative;
+      box-shadow:0 30px 90px rgba(0,0,0,0.5);
+      transform:scale(0.85) translateY(20px);
+      transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s;
+      opacity:0;
+    }
+    #rzp-overlay.show #rzp-modal { transform:scale(1) translateY(0); opacity:1; }
+
+    .success-ring { width:72px; height:72px; margin:0 auto 18px; }
+    .success-checkmark {
+      width:72px; height:72px; border-radius:50%; display:block;
+      stroke-width:2; stroke:#25a244; stroke-miterlimit:10;
+      animation:scale-check 0.3s ease-in-out 0.9s both;
+    }
+    .checkmark-circle {
+      stroke-dasharray:166; stroke-dashoffset:166;
+      stroke-width:2; stroke:#25a244; fill:none;
+      animation:stroke-check 0.6s cubic-bezier(0.65,0,0.45,1) forwards;
+    }
+    .checkmark-check {
+      transform-origin:50% 50%;
+      stroke-dasharray:48; stroke-dashoffset:48;
+      animation:stroke-check 0.3s cubic-bezier(0.65,0,0.45,1) 0.8s forwards;
+    }
+    @keyframes stroke-check { 100%{stroke-dashoffset:0} }
+    @keyframes scale-check { 0%,100%{transform:none} 50%{transform:scale3d(1.1,1.1,1)} }
+
+    .success-title { font-family:var(--font-sans); color:var(--clr-primary); font-size:1.4rem; margin:0 0 8px; }
+    .success-msg { font-size:0.9rem; color:#555; margin-bottom:16px; line-height:1.6; }
+
+    .payment-id-box {
+      background:#f0f0fa; border:1px dashed #c0b8e0; border-radius:10px;
+      padding:10px 16px; margin-bottom:22px;
+      display:flex; align-items:center; justify-content:space-between; gap:8px;
+    }
+    .pid-label { font-size:0.75rem; font-weight:700; color:#888; font-family:var(--font-sans); text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap; }
+    .pid-value { font-family:monospace; font-size:0.8rem; color:var(--clr-primary); word-break:break-all; text-align:right; font-weight:700; }
+
+    .m-wa {
+      display:inline-flex; align-items:center; gap:9px;
+      background:#25D366; color:#fff;
+      padding:14px 32px; border-radius:50px;
+      font-weight:800; font-size:0.96rem;
+      text-decoration:none; border:none;
+      box-shadow:0 4px 18px rgba(37,211,102,.38);
+      transition:transform .2s,box-shadow .2s; font-family:var(--font-sans);
+    }
+    .m-wa:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(37,211,102,.52); border:none; }
+    .success-note { font-size:0.72rem; color:#aaa; margin-top:12px; font-family:var(--font-sans); }
+
+    @keyframes inp-shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
+
     
     button:focus-visible, a:focus-visible { outline: 2px solid #f9a825; }
     
@@ -1700,7 +1889,7 @@
 
     <!-- CARD 1: Palm Reading -->
     <div class="sc">
-      <div class="sc-offer-tag">&#127381; বিশেষ অফার: &#8377;১৫০১ এর জায়গায় মাত্র &#8377;১০০১</div>
+      <span class="sc-ribbon sc-ribbon--offer">🔥 বিশেষ অফার</span>
       <img class="sc-img"
            src="images/Palm Reading Consultation.webp"
            alt="Online Palm Reading — হাতের রেখা বিচার, Dr. Prodyut Acharya MyAstrology"
@@ -1715,21 +1904,13 @@
         <li>হাতের রেখা অনুযায়ী প্রতিকার পরামর্শ</li>
         <li>বাংলা ও হিন্দি ভাষায়</li>
       </ul>
-      <div class="sc-price">
-        <span class="sc-sym">&#8377;</span>
-        <span class="sc-amt">১০০১</span>
-        <span class="sc-old">&#8377;১৫০১</span>
-      </div>
-      <input class="sc-inp" id="nm-palm" type="text" placeholder="আপনার পুরো নাম *" />
-      <input class="sc-inp" id="ph-palm" type="tel"  placeholder="WhatsApp নম্বর *" />
-      <button class="sc-btn" onclick="rzpPay('palm')">&#128197; এখনই বুক করুন</button>
+      <button class="sc-btn" onclick="openBookModal('palm')">&#128197; এখনই বুক করুন</button>
       <p class="sc-sec">&#128274; Razorpay &bull; UPI / Card / Net Banking</p>
     </div>
 
     <!-- CARD 2: Combo FEATURED -->
     <div class="sc sc-feat">
       <span class="sc-ribbon">&#128293; বেস্ট অফার</span>
-      <div class="sc-offer-tag">&#127381; বিশেষ অফার: &#8377;২০০১ এর জায়গায় মাত্র &#8377;১৫০১</div>
       <img class="sc-img"
            src="images/birth-chart-reading-vedic-astrology.webp"
            alt="জন্মকুণ্ডলী বিচার ও হস্তরেখা — Vedic Astrology Birth Chart, Dr. Prodyut Acharya"
@@ -1744,20 +1925,13 @@
         <li>ফোনে বিস্তারিত আলোচনা &#8212; ৩০ মিনিট</li>
         <li>সমস্ত প্রশ্নের উত্তর ও প্রতিকার</li>
       </ul>
-      <div class="sc-price">
-        <span class="sc-sym">&#8377;</span>
-        <span class="sc-amt">১৫০১</span>
-        <span class="sc-old">&#8377;২০০১</span>
-      </div>
-      <input class="sc-inp" id="nm-combo" type="text" placeholder="আপনার পুরো নাম *" />
-      <input class="sc-inp" id="ph-combo" type="tel"  placeholder="WhatsApp নম্বর *" />
-      <button class="sc-btn" onclick="rzpPay('combo')">&#128197; এখনই বুক করুন</button>
+      <button class="sc-btn" onclick="openBookModal('combo')">&#128197; এখনই বুক করুন</button>
       <p class="sc-sec">&#128274; Razorpay &bull; UPI / Card / Net Banking</p>
     </div>
 
     <!-- CARD 3: Jyotok -->
     <div class="sc">
-      <div class="sc-offer-tag">&#127381; বিশেষ অফার: &#8377;২৫০১ এর জায়গায় মাত্র &#8377;১৫০১</div>
+      <span class="sc-ribbon sc-ribbon--offer">💍 বিশেষ ছাড়</span>
       <img class="sc-img"
            src="images/kundli-matching-bengali-astrology.webp"
            alt="যোটোক বিচার — Kundli Matching Bengali Astrology, Dr. Prodyut Acharya MyAstrology"
@@ -1773,56 +1947,214 @@
         <li>যোটোক বিচার PDF + ফোনে ৩০ মিনিট আলোচনা</li>
         <li>দাম্পত্য সুখের প্রতিকার পরামর্শ</li>
       </ul>
-      <div class="sc-price">
-        <span class="sc-sym">&#8377;</span>
-        <span class="sc-amt">১৫০১</span>
-        <span class="sc-old">&#8377;২৫০১</span>
-      </div>
-      <input class="sc-inp" id="nm-jyotok" type="text" placeholder="আপনার পুরো নাম *" />
-      <input class="sc-inp" id="ph-jyotok" type="tel"  placeholder="WhatsApp নম্বর *" />
-      <button class="sc-btn alt" onclick="rzpPay('jyotok')">&#128197; এখনই বুক করুন</button>
+      <button class="sc-btn alt" onclick="openBookModal('jyotok')">&#128197; এখনই বুক করুন</button>
       <p class="sc-sec">&#128274; Razorpay &bull; UPI / Card / Net Banking</p>
     </div>
 
   </div>
 </section>
 
-<!-- Success Modal -->
-<div id="rzp-overlay">
+<!-- ═══════════════════════════════════════════════════════════
+     BOOKING MODAL — নাম ও WhatsApp নম্বর সংগ্রহ
+     ═══════════════════════════════════════════════════════════ -->
+<div id="book-overlay" role="dialog" aria-modal="true" aria-labelledby="book-modal-title">
+  <div id="book-modal">
+    <button id="book-close" onclick="closeBookModal()" aria-label="বন্ধ করুন">&#x2715;</button>
+
+    <!-- Logo + Header -->
+    <div class="bm-header">
+      <img src="images/MyAstrology-Ranghat-logo.png"
+           alt="MyAstrology Logo" class="bm-logo"
+           onerror="this.style.display='none'" />
+      <div class="bm-brand">MyAstrology</div>
+      <div class="bm-sub">ড. প্রদ্যুৎ আচার্য</div>
+    </div>
+
+    <!-- Service Summary -->
+    <div class="bm-svc-info" id="bm-svc-info">
+      <span class="bm-svc-name" id="bm-svc-name">হাতের রেখা বিচার</span>
+      <span class="bm-svc-price" id="bm-svc-price">₹১০০১</span>
+    </div>
+
+    <!-- Offer badge inside modal -->
+    <div class="bm-offer-badge" id="bm-offer-badge">🔥 বিশেষ অফার: ₹১৫০১ এর জায়গায় মাত্র ₹১০০১</div>
+
+    <!-- Form Fields -->
+    <div class="bm-fields">
+      <label class="bm-label" for="bm-name">আপনার পুরো নাম <span class="bm-req">*</span></label>
+      <input class="bm-inp" id="bm-name" type="text"
+             placeholder="যেমন: রাম কুমার দাস"
+             autocomplete="name" />
+
+      <label class="bm-label" for="bm-phone">WhatsApp নম্বর <span class="bm-req">*</span></label>
+      <div class="bm-phone-wrap">
+        <span class="bm-phone-prefix">🇮🇳 +91</span>
+        <input class="bm-inp bm-inp-phone" id="bm-phone" type="tel"
+               placeholder="10 সংখ্যার নম্বর"
+               maxlength="10"
+               autocomplete="tel" />
+      </div>
+      <p class="bm-hint">📲 পরামর্শের বিবরণ এই নম্বরে WhatsApp-এ পাঠানো হবে।</p>
+    </div>
+
+    <!-- Proceed Button -->
+    <button class="bm-proceed-btn" id="bm-proceed-btn" onclick="proceedToRzp()">
+      <span id="bm-btn-text">&#128274; পেমেন্ট করুন</span>
+    </button>
+
+    <p class="bm-secure">🔐 Razorpay দ্বারা সুরক্ষিত &bull; UPI &bull; Card &bull; Net Banking</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SUCCESS MODAL — Payment ID সহ
+     ═══════════════════════════════════════════════════════════ -->
+<div id="rzp-overlay" role="dialog" aria-modal="true" aria-labelledby="rzp-modal-title">
   <div id="rzp-modal">
-    <button id="rzp-close" onclick="closeRzp()">&#x2715;</button>
-    <span class="m-check">&#9989;</span>
-    <h3>পেমেন্ট সম্পন্ন!</h3>
-    <p id="rzp-modal-msg">পেমেন্ট গ্রহণ হয়েছে। WhatsApp-এ আপনার বিবরণ পাঠান।</p>
+    <button id="rzp-close" onclick="closeRzp()" aria-label="বন্ধ করুন">&#x2715;</button>
+
+    <!-- Success animation -->
+    <div class="success-ring">
+      <svg viewBox="0 0 52 52" class="success-checkmark">
+        <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+        <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+      </svg>
+    </div>
+
+    <h3 id="rzp-modal-title" class="success-title">পেমেন্ট সফল! 🎉</h3>
+    <p id="rzp-modal-msg" class="success-msg">পেমেন্ট গ্রহণ হয়েছে।</p>
+
+    <!-- Payment ID display -->
+    <div class="payment-id-box" id="payment-id-box">
+      <span class="pid-label">Payment ID</span>
+      <span class="pid-value" id="pid-value">—</span>
+    </div>
+
+    <!-- WhatsApp CTA -->
     <a id="rzp-wa" href="#" class="m-wa" target="_blank" rel="noopener">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      WhatsApp-এ তথ্য পাঠান
+      WhatsApp-এ বিবরণ পাঠান
     </a>
+    <p class="success-note">পরামর্শের তারিখ ও সময় WhatsApp-এ নিশ্চিত করা হবে।</p>
   </div>
 </div>
 
 <script defer src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
 (function(){
+  'use strict';
+
   var KEY  = 'rzp_live_SN8p6DJxPYFVL1';
   var LOGO = 'https://astro.myastrology.in/images/MyAstrology-Ranghat-logo.png';
   var WA   = '919333122768';
 
+  /* ── Service data ── */
   var SVCS = {
-    palm:   { nm:'nm-palm',   ph:'ph-palm',   amount:100100,
-              label:'হাতের রেখা বিচার' },
-    combo:  { nm:'nm-combo',  ph:'ph-combo',  amount:150100,
-              label:'জন্ম কুণ্ডলী + হস্তরেখা Combo' },
-    jyotok: { nm:'nm-jyotok', ph:'ph-jyotok', amount:150100,
-              label:'যোটোক বিচার' }
+    palm: {
+      label:   'হাতের রেখা বিচার',
+      amount:  100100,   /* paise = ₹1001 */
+      price:   '₹১০০১',
+      oldprice:'₹১৫০১',
+      offer:   '🔥 বিশেষ অফার: ₹১৫০১ এর জায়গায় মাত্র ₹১০০১',
+      saving:  '₹৫০০'
+    },
+    combo: {
+      label:   'জন্ম কুণ্ডলী + হস্তরেখা Combo',
+      amount:  150100,
+      price:   '₹১৫০১',
+      oldprice:'₹২০০১',
+      offer:   '⭐ বিশেষ অফার: ₹২০০১ এর জায়গায় মাত্র ₹১৫০১',
+      saving:  '₹৫০০'
+    },
+    jyotok: {
+      label:   'যোটোক বিচার',
+      amount:  150100,
+      price:   '₹১৫০১',
+      oldprice:'₹২৫০১',
+      offer:   '💍 বিশেষ অফার: ₹২৫০১ এর জায়গায় মাত্র ₹১৫০১',
+      saving:  '₹১০০০'
+    }
   };
 
-  function rzpPay(type) {
+  var _currentType = null;
+
+  /* ════ STEP 1: Open Booking Modal ════ */
+  window.openBookModal = function(type) {
+    _currentType = type;
     var svc = SVCS[type];
-    var nm  = document.getElementById(svc.nm).value.trim();
-    var ph  = document.getElementById(svc.ph).value.trim();
-    if (!nm) { shake(svc.nm); return; }
-    if (!ph) { shake(svc.ph); return; }
+
+    /* Populate modal info */
+    document.getElementById('bm-svc-name').textContent  = svc.label;
+    document.getElementById('bm-svc-price').textContent = svc.price;
+    document.getElementById('bm-offer-badge').textContent = svc.offer;
+
+    /* Clear previous values */
+    document.getElementById('bm-name').value  = '';
+    document.getElementById('bm-phone').value = '';
+    document.getElementById('bm-name').classList.remove('bm-err');
+    document.getElementById('bm-phone').classList.remove('bm-err');
+
+    /* Show modal */
+    var ov = document.getElementById('book-overlay');
+    ov.style.display = 'flex';
+    requestAnimationFrame(function(){
+      ov.classList.add('show');
+    });
+    document.body.style.overflow = 'hidden';
+
+    /* Focus first field */
+    setTimeout(function(){ document.getElementById('bm-name').focus(); }, 300);
+  };
+
+  window.closeBookModal = function() {
+    var ov = document.getElementById('book-overlay');
+    ov.classList.remove('show');
+    setTimeout(function(){ ov.style.display = 'none'; }, 300);
+    document.body.style.overflow = '';
+  };
+
+  /* ════ STEP 2: Validate → Launch Razorpay ════ */
+  window.proceedToRzp = function() {
+    var nm  = document.getElementById('bm-name').value.trim();
+    var ph  = document.getElementById('bm-phone').value.trim();
+    var ok  = true;
+
+    if (!nm) {
+      document.getElementById('bm-name').classList.add('bm-err');
+      document.getElementById('bm-name').focus();
+      ok = false;
+    } else {
+      document.getElementById('bm-name').classList.remove('bm-err');
+    }
+
+    if (!ph || ph.length < 10 || !/^\d{10}$/.test(ph)) {
+      document.getElementById('bm-phone').classList.add('bm-err');
+      if (ok) document.getElementById('bm-phone').focus();
+      ok = false;
+    } else {
+      document.getElementById('bm-phone').classList.remove('bm-err');
+    }
+
+    if (!ok) return;
+
+    var svc = SVCS[_currentType];
+    var fullPhone = '+91' + ph;
+
+    /* Close booking modal */
+    closeBookModal();
+
+    /* Small delay so modal closes smoothly before Razorpay opens */
+    setTimeout(function(){
+      launchRazorpay(nm, fullPhone, svc);
+    }, 320);
+  };
+
+  /* ════ STEP 3: Razorpay Popup ════ */
+  function launchRazorpay(nm, phone, svc) {
+    if (typeof Razorpay === 'undefined') {
+      alert('পেমেন্ট গেটওয়ে লোড হচ্ছে, একটু অপেক্ষা করুন।');
+      return;
+    }
     var rzp = new Razorpay({
       key:         KEY,
       amount:      svc.amount,
@@ -1830,56 +2162,87 @@
       name:        'MyAstrology',
       description: svc.label,
       image:       LOGO,
-      prefill:     { name: nm, contact: ph },
-      notes:       { service: svc.label, customer: nm, whatsapp: ph },
+      prefill:     { name: nm, contact: phone },
+      notes:       { service: svc.label, customer: nm, whatsapp: phone },
       theme:       { color: '#f9a825' },
-      modal:       { backdropclose: false },
+      modal:       { backdropclose: false, escape: false },
       handler: function(res) {
-        showSuccess(nm, ph, svc.label, res.razorpay_payment_id);
+        showSuccess(nm, phone, svc, res.razorpay_payment_id);
       }
     });
-    rzp.on('payment.failed', function() {
-      alert('পেমেন্ট বিফল। আবার চেষ্টা করুন।');
+    rzp.on('payment.failed', function(resp) {
+      alert('পেমেন্ট বিফল হয়েছে। পুনরায় চেষ্টা করুন।\nকারণ: ' + (resp.error.description || ''));
     });
     rzp.open();
   }
 
-  function shake(id) {
-    var el = document.getElementById(id);
-    el.classList.add('err');
-    el.focus();
-    setTimeout(function(){ el.classList.remove('err'); }, 1200);
-  }
+  /* ════ STEP 4: Success Modal ════ */
+  function showSuccess(nm, phone, svc, pid) {
+    var NL = '\n';
 
-  function showSuccess(nm, ph, svc, pid) {
-    var NL   = String.fromCharCode(10);
-    var pray = String.fromCharCode(55357, 56399);
-    var grin = String.fromCharCode(55357, 56842);
-    var msg  = pray + ' আমি ' + svc + '-এর জন্য পেমেন্ট করেছি। আমার বিবরণ নিচে দিচ্ছি ' + grin
-            + NL + NL
-            + 'নাম: ' + nm + NL
-            + 'ফোন: ' + ph + NL
-            + 'সেবা: ' + svc
-            + (pid ? (NL + 'Payment ID: ' + pid) : '');
+    /* Build WhatsApp message */
+    var msg = '🙏 নমস্কার! আমি ' + svc.label + '-এর জন্য পেমেন্ট সম্পন্ন করেছি।' + NL + NL
+            + '👤 নাম: ' + nm + NL
+            + '📱 WhatsApp: ' + phone + NL
+            + '🛎️ সেবা: ' + svc.label + NL
+            + '💰 মূল্য: ' + svc.price + ' (অফার: ' + svc.oldprice + ' → ' + svc.price + ')' + NL
+            + (pid ? ('🆔 Payment ID: ' + pid) : '') + NL + NL
+            + '📋 অনুগ্রহ করে পরামর্শের তারিখ ও সময় জানান। ধন্যবাদ! 🙏';
+
     document.getElementById('rzp-wa').href =
       'https://wa.me/' + WA + '?text=' + encodeURIComponent(msg);
+
+    /* Update modal content */
     document.getElementById('rzp-modal-msg').textContent =
-      nm + ' — পেমেন্ট সফল। WhatsApp বোতামে ক্লিক করুন।';
-    document.getElementById('rzp-overlay').classList.add('show');
+      nm + ' — আপনার পেমেন্ট সফলভাবে গৃহীত হয়েছে।';
+
+    document.getElementById('pid-value').textContent = pid || '—';
+
+    /* Show modal */
+    var ov = document.getElementById('rzp-overlay');
+    ov.style.display = 'flex';
+    requestAnimationFrame(function(){ ov.classList.add('show'); });
+    document.body.style.overflow = 'hidden';
   }
 
-  function closeRzp() {
-    document.getElementById('rzp-overlay').classList.remove('show');
-  }
+  window.closeRzp = function() {
+    var ov = document.getElementById('rzp-overlay');
+    ov.classList.remove('show');
+    setTimeout(function(){ ov.style.display = 'none'; }, 300);
+    document.body.style.overflow = '';
+  };
 
-  document.getElementById('rzp-overlay').addEventListener('click', function(e) {
-    if (e.target === this) { closeRzp(); }
+  /* Close modals on backdrop click */
+  document.getElementById('book-overlay').addEventListener('click', function(e){
+    if (e.target === this) closeBookModal();
+  });
+  document.getElementById('rzp-overlay').addEventListener('click', function(e){
+    if (e.target === this) closeRzp();
   });
 
-  window.rzpPay   = rzpPay;
-  window.closeRzp = closeRzp;
+  /* Escape key */
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') {
+      closeBookModal();
+      closeRzp();
+    }
+  });
+
+  /* Phone: only digits */
+  document.getElementById('bm-phone').addEventListener('input', function(){
+    this.value = this.value.replace(/\D/g,'').slice(0,10);
+  });
+
+  /* Enter key in fields */
+  ['bm-name','bm-phone'].forEach(function(id){
+    document.getElementById(id).addEventListener('keydown', function(e){
+      if (e.key === 'Enter') proceedToRzp();
+    });
+  });
+
 })();
 </script>
+
 
 
 <div class="section-divider"><span>⭐</span></div>
@@ -2348,19 +2711,6 @@
 
   <div class="tagline">✨ প্রকৃত জ্যোতিষীর পথ আলোকিত, যেখানে ভয় বিদায় নেয়, এবং আত্মা মুক্তি পায়। ✨</div>
 
-  <!-- Final CTA -->
-  <div class="cta-box">
-    <h3>🌟 প্রকৃত জ্যোতিষ পরামর্শ নিন</h3>
-    <p>ভয়মুক্ত, দার্শনিক ও বৈজ্ঞানিক Vedic Astrology পরামর্শ — ড. প্রদ্যুৎ আচার্য, MyAstrology, Ranaghat।</p>
-    <div class="cta-btns">
-      <a href="https://wa.me/919333122768?text=আমি%20জ্যোতিষ%20পরামর্শ%20নিতে%20চাই" class="btn btn-wa" target="_blank" rel="noopener">
-        <i class="fab fa-whatsapp"></i> WhatsApp: +91-9333122768
-      </a>
-      <a href="https://pages.razorpay.com/Myastrology" class="btn btn-pay" target="_blank" rel="noopener">
-        <i class="fas fa-credit-card"></i> পেমেন্ট ও বুকিং
-      </a>
-    </div>
-  </div>
 </section>
 
 </main>
