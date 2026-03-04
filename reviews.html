@@ -456,13 +456,13 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   /* Razorpay */
-  var RZP_KEY = 'rzp_live_×××××××××××'; /* ← আপনার live key */
+  var RZP_KEY = 'rzp_live_SN8p6DJxPYFVL1'; /* ← আপনার live key */
   var btn = document.getElementById('rzp-book-btn');
   if (btn) {
     btn.onclick = function() {
       var rzp = new Razorpay({
         key: RZP_KEY,
-        amount: 100100,
+        amount: 100,
         currency: 'INR',
         name: 'Dr. Prodyut Acharya',
         description: 'Astrology / Palmistry Consultation',
