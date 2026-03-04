@@ -12,14 +12,15 @@
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
   <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 
-  <!-- ✅ FIX: Font Awesome — <head>-এ আনা হলো (FOUC সমস্যা দূর) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'" />
+  <!-- ✅ PERF FIX: Font Awesome — non-render-blocking (async CSS load) -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" /></noscript>
 
-  <!-- ✅ FIX: Google Fonts — সঠিকভাবে লোড হচ্ছে এখন -->
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700;800&family=Kalam:wght@400;700&display=swap" rel="stylesheet" />
+  <!-- ✅ PERF: Google Fonts — সর্বনিম্ন প্রয়োজনীয় weight, display=swap -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;700&family=Noto+Sans+Bengali:wght@400;700;800&family=Kalam:wght@400;700&display=swap" rel="stylesheet" />
 
   <!-- Favicon -->
+  <meta name="theme-color" content="#1a1a5e">
   <link rel="icon" type="image/x-icon" href="https://astro.myastrology.in/favicon.ico" />
 
   <!-- ═══════════════════════════════════════════════════════════
@@ -91,6 +92,8 @@
         }
       },
       "mainEntityOfPage": "https://astro.myastrology.in/astrology",
+      "datePublished": "2024-01-15",
+      "dateModified": "2025-07-01",
       "inLanguage": "bn"
     },
     {
@@ -98,8 +101,7 @@
       "@type": "LocalBusiness",
       "name": "MyAstrology – Dr. Prodyut Acharya",
       "url": "https://astro.myastrology.in",
-      "telephone": "+91-9333122768</a></div>
-        <div class="footer-contact-item"><i class="fas fa-envelope"></i><a href="mailto:info@myastrology.in">info@myastrology.in",
+      "telephone": "+91-9333122768",
       "email": "info@myastrology.in",
       "description": "Vedic Astrology, জন্মকুণ্ডলী বিশ্লেষণ, হস্তরেখা — Best Astrologer in West Bengal।",
       "image": "https://astro.myastrology.in/blog/astrology-cover.webp",
@@ -423,7 +425,6 @@
       font-weight: 600;
       color: var(--clr-text);
       border-bottom: 1px solid var(--clr-border-lt);
-      border-bottom-width: 1px;
       text-decoration: none;
       transition: background var(--transition), padding-left var(--transition), color var(--transition);
     }
@@ -810,115 +811,214 @@
       text-shadow: 0 0 12px rgba(249,168,37,0.4);
     }
 
-    /* ════ CTA BOX — Grand Traditional ════ */
-    .cta-box {
-      position: relative;
-      background: linear-gradient(160deg, #0e0e3a 0%, #1a1a5e 45%, #2a1060 100%);
-      border-radius: 8px;
-      padding: 42px 32px 36px;
-      text-align: center;
-      margin: var(--space-lg) 0 var(--space-sm);
-      overflow: hidden;
-      border: 1px solid rgba(249,168,37,0.3);
-      box-shadow: 0 12px 48px rgba(10,0,60,0.35), inset 0 0 60px rgba(249,168,37,0.04);
+    /* ════ SERVICE CARDS ════ */
+    .svc-section {
+      background: linear-gradient(160deg,#060618 0%,#0d0d40 55%,#130726 100%);
+      padding:56px 20px 52px; text-align:center;
+      position:relative; overflow:hidden;
     }
-    /* top ornamental bar */
-    .cta-box::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, transparent, var(--clr-gold), #e65100, var(--clr-gold), transparent);
+    .svc-section::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:4px;
+      background:linear-gradient(90deg,transparent,#f9a825,#e65100,#f9a825,transparent);
     }
-    /* subtle mandala glow behind */
-    .cta-box::after {
-      content: '🔮';
-      position: absolute;
-      top: -18px; right: -18px;
-      font-size: 7rem;
-      opacity: 0.05;
-      pointer-events: none;
-      line-height: 1;
+    .svc-section::after {
+      content:'\u0950'; position:absolute; bottom:-40px; right:-10px;
+      font-size:20rem; opacity:.025; pointer-events:none;
+      color:#f9a825; line-height:1;
     }
-    .cta-ornament {
-      display: block;
-      font-size: 0.72rem;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--clr-gold);
-      margin-bottom: 10px;
-      opacity: 0.85;
+    .svc-hd { margin-bottom:34px; position:relative; }
+    .svc-om {
+      font-size:.62rem; letter-spacing:5px; text-transform:uppercase;
+      color:#f9a825; display:block; margin-bottom:10px; opacity:.88;
     }
-    .cta-box h3 {
-      font-family: var(--font-serif);
-      color: #fff;
-      font-size: clamp(1.25rem, 3vw, 1.75rem);
-      margin: 0 0 8px;
-      line-height: 1.3;
+    .svc-title {
+      font-family:var(--font-serif);
+      font-size:clamp(1.45rem,3.5vw,2.05rem);
+      color:#fff; margin:0 0 10px; font-weight:800; line-height:1.25; display:block;
     }
-    .cta-box h3 span { color: var(--clr-gold); }
-    .cta-box p {
-      color: rgba(220,220,255,0.82);
-      font-size: 0.95rem;
-      margin: 0 0 10px;
-      max-width: 520px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.7;
+    /* Override shimmer for service section heading */
+    .svc-hd h2, .svc-title {
+      background: none !important;
+      -webkit-text-fill-color: inherit !important;
+      animation: none !important;
+      border: none !important;
+      padding: 0 !important;
     }
-    .cta-trust {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin: 16px 0 22px;
+    .svc-title em { color:#f9a825; font-style:normal; }
+    .svc-hd p {
+      color:rgba(210,210,255,.74); font-size:.93rem;
+      max-width:520px; margin:0 auto; line-height:1.75;
     }
-    .cta-trust-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 3px;
+    .svc-trust {
+      display:flex; justify-content:center;
+      gap:28px; flex-wrap:wrap; margin-bottom:38px;
     }
-    .cta-trust-num {
-      font-family: var(--font-sans);
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: var(--clr-gold);
-      line-height: 1;
+    .svc-ti { text-align:center; }
+    .svc-tn {
+      font-family:var(--font-sans); font-size:1.58rem;
+      font-weight:900; color:#f9a825; line-height:1; display:block;
     }
-    .cta-trust-label {
-      font-family: var(--font-sans);
-      font-size: 0.7rem;
-      color: rgba(200,200,230,0.75);
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
+    .svc-tl {
+      font-size:.65rem; color:rgba(200,200,235,.6);
+      text-transform:uppercase; letter-spacing:.8px;
     }
-    .cta-divider {
-      width: 60px;
-      height: 1px;
-      background: rgba(249,168,37,0.35);
-      margin: 0 auto 20px;
+    .svc-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(258px,1fr));
+      gap:20px; max-width:940px; margin:0 auto;
     }
-    .cta-btns { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+    .sc {
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(249,168,37,.2);
+      border-radius:18px; padding:34px 22px 26px;
+      text-align:left; position:relative;
+      transition:transform .28s,box-shadow .28s,border-color .28s;
+      display:flex; flex-direction:column;
+    }
+    .sc:hover {
+      transform:translateY(-6px);
+      box-shadow:0 22px 58px rgba(249,168,37,.22);
+      border-color:rgba(249,168,37,.55);
+    }
+    .sc-feat {
+      border-color:rgba(249,168,37,.42);
+      background:rgba(249,168,37,.055);
+    }
+    .sc-ribbon {
+      position:absolute; top:-13px; left:18px;
+      background:linear-gradient(135deg,#f9a825,#e65100);
+      color:#060618; font-size:.64rem; font-weight:800;
+      padding:3px 13px; border-radius:50px;
+      text-transform:uppercase; letter-spacing:.5px;
+    }
+    .sc-icon { font-size:2.3rem; margin-bottom:12px; display:block; }
+    .sc-name {
+      font-family:var(--font-serif); font-size:1.13rem; font-weight:700;
+      color:#fff; margin:0 0 4px; line-height:1.3;
+    }
+    .sc-sub { font-size:.75rem; color:#f9a825; font-weight:600; margin-bottom:10px; }
+    .sc-desc {
+      font-size:.84rem; color:rgba(210,210,255,.7);
+      line-height:1.7; margin-bottom:13px;
+    }
+    .sc-feats {
+      list-style:none; padding:0; margin:0 0 18px;
+      border-top:1px solid rgba(249,168,37,.14);
+      padding-top:13px; flex:1;
+    }
+    .sc-feats li {
+      font-size:.8rem; color:rgba(205,205,245,.76);
+      padding:4px 0; display:flex; align-items:flex-start; gap:7px;
+    }
+    .sc-feats li::before {
+      content:"\2726"; color:#f9a825; font-size:.58rem;
+      flex-shrink:0; margin-top:4px;
+    }
+    .sc-price {
+      display:flex; align-items:baseline; gap:6px; margin-bottom:16px;
+    }
+    .sc-sym { font-size:.88rem; color:rgba(249,168,37,.78); font-weight:600; }
+    .sc-amt {
+      font-family:var(--font-sans); font-size:2.1rem;
+      font-weight:900; color:#f9a825; line-height:1;
+    }
+    .sc-old {
+      font-size:.83rem; color:rgba(200,200,240,.38);
+      text-decoration:line-through; margin-left:4px;
+    }
+    .sc-dur {
+      font-size:.7rem; color:rgba(200,200,240,.5);
+      background:rgba(255,255,255,.07);
+      padding:2px 9px; border-radius:50px; margin-left:4px;
+    }
+    .sc-offer-tag {
+      background: linear-gradient(135deg,rgba(249,168,37,.18),rgba(230,81,0,.18));
+      border: 1px solid rgba(249,168,37,.4);
+      border-radius: 6px; padding: 5px 10px;
+      font-size: .74rem; font-weight: 700;
+      color: #ffd54f; margin-bottom: 14px;
+      text-align: center; letter-spacing: .2px;
+    }
+    .sc-inp {
+      width:100%; box-sizing:border-box; padding:11px 14px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(249,168,37,.28);
+      border-radius:8px; color:#fff;
+      font-family:var(--font-sans); font-size:.88rem;
+      margin-bottom:9px; outline:none; transition:border-color .2s;
+    }
+    .sc-inp::placeholder { color:rgba(255,255,255,.37); }
+    .sc-inp:focus { border-color:#f9a825; }
+    .sc-inp.err { border-color:#e65100; animation:inp-shake .35s; }
+    @keyframes inp-shake {
+      0%,100%{transform:translateX(0)} 30%{transform:translateX(-7px)} 70%{transform:translateX(7px)}
+    }
+    .sc-btn {
+      width:100%; padding:14px 18px;
+      background:linear-gradient(135deg,#f9a825,#ffd740);
+      color:#060618; border:none; border-radius:50px;
+      font-family:var(--font-sans); font-weight:800; font-size:.93rem;
+      cursor:pointer; transition:transform .2s,box-shadow .2s;
+      display:flex; align-items:center; justify-content:center; gap:8px;
+    }
+    .sc-btn:hover { transform:translateY(-2px); box-shadow:0 8px 26px rgba(249,168,37,.48); }
+    .sc-btn.alt {
+      background:transparent; border:1.5px solid rgba(249,168,37,.45); color:#f9a825;
+    }
+    .sc-btn.alt:hover { background:rgba(249,168,37,.1); border-color:#f9a825; }
+    .sc-sec {
+      text-align:center; font-size:.69rem;
+      color:rgba(200,200,240,.42); margin-top:9px;
+    }
+    /* Success Modal */
+    #rzp-overlay {
+      display:none; position:fixed; inset:0;
+      background:rgba(0,0,0,.78); z-index:9500;
+      align-items:center; justify-content:center;
+      backdrop-filter:blur(5px);
+    }
+    #rzp-overlay.show { display:flex; }
+    #rzp-modal {
+      background:#fff; border-radius:20px;
+      padding:38px 28px 34px; max-width:380px; width:90%;
+      text-align:center; position:relative;
+      box-shadow:0 30px 90px rgba(0,0,0,.5);
+      animation:mpop .32s cubic-bezier(.34,1.56,.64,1);
+    }
+    @keyframes mpop {
+      from{transform:scale(.8) translateY(30px);opacity:0}
+      to  {transform:scale(1) translateY(0);opacity:1}
+    }
+    #rzp-close {
+      position:absolute; top:12px; right:16px;
+      background:none; border:none; font-size:1.3rem;
+      cursor:pointer; color:#aaa; line-height:1;
+    }
+    .m-check { font-size:3.2rem; display:block; margin-bottom:10px; }
+    #rzp-modal h3 {
+      font-family:var(--font-serif); color:#1a1a5e;
+      font-size:1.3rem; margin:0 0 8px;
+    }
+    #rzp-modal-msg {
+      font-size:.9rem; color:#555; margin-bottom:22px; line-height:1.65;
+    }
+    .m-wa {
+      display:inline-flex; align-items:center; gap:9px;
+      background:#25D366; color:#fff;
+      padding:13px 30px; border-radius:50px;
+      font-weight:800; font-size:.96rem;
+      text-decoration:none; border:none;
+      box-shadow:0 4px 18px rgba(37,211,102,.38);
+      transition:transform .2s,box-shadow .2s;
+      font-family:var(--font-sans);
+    }
+    .m-wa:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(37,211,102,.52); }
+    @media(max-width:560px){
+      .svc-grid{grid-template-columns:1fr;}
+      .svc-trust{gap:16px;}
+      .sc{padding:28px 18px 22px;}
+    }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 13px 28px;
-      border-radius: 50px;
-      font-family: var(--font-sans);
-      font-weight: 700;
-      font-size: 0.95rem;
-      cursor: pointer;
-      border: none;
-      text-decoration: none;
-      transition: transform 0.2s, box-shadow 0.2s;
-      letter-spacing: 0.3px;
-    }
-    .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.28); border: none; }
-    .btn-wa  { background: #25D366; color: #fff; box-shadow: 0 4px 14px rgba(37,211,102,0.35); }
-    .btn-pay { background: linear-gradient(135deg, var(--clr-gold), #ffca28); color: var(--clr-primary); box-shadow: 0 4px 14px rgba(249,168,37,0.35); font-weight: 800; }
 
     /* ════ HEADLINE CLASSES — Colorful Shimmer Gradient ════ */
     @keyframes shimmer-sweep {
@@ -939,7 +1039,6 @@
       border-image: linear-gradient(180deg, var(--clr-gold) 0%, #d4880a 50%, #9333ea 100%) 1;
       background: linear-gradient(to right, rgba(249,168,37,.07) 0%, transparent 65%);
       border-radius: 0 8px 8px 0;
-      will-change: background-position;
       backface-visibility: hidden;
     }
 
@@ -1190,6 +1289,209 @@
       50%      { box-shadow: 0 4px 18px rgba(37,211,102,.45), 0 0 0 14px rgba(37,211,102,0); }
     }
 
+    
+    /* ════ PRO ENHANCEMENTS ════ */
+
+    /* Improved blockquote — spiritual/vedic style */
+    blockquote {
+      border-left: 4px solid var(--clr-gold);
+      background: linear-gradient(135deg, var(--clr-bq-bg) 0%, #fff9ec 100%);
+      padding: 18px 22px 18px 28px;
+      margin: var(--space-md) 0;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--clr-primary);
+      font-size: clamp(0.95rem, 1.3vw, 1.05rem);
+      line-height: 1.75;
+      box-shadow: 2px 2px 12px rgba(249,168,37,0.12);
+      position: relative;
+    }
+    blockquote::before {
+      content: '\201C';
+      position: absolute;
+      top: -8px; left: 10px;
+      font-size: 3.5rem;
+      color: var(--clr-gold);
+      opacity: 0.35;
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+
+    /* Section divider — Om ornament */
+    .section-divider {
+      text-align: center;
+      padding: 12px 0;
+      font-size: 1.6rem;
+      opacity: 0.5;
+      letter-spacing: 8px;
+    }
+
+    /* Tagline — enhanced */
+    .tagline {
+      text-align: center;
+      font-family: var(--font-serif);
+      font-size: clamp(0.9rem, 1.5vw, 1rem);
+      color: var(--clr-text-lt);
+      font-style: italic;
+      padding: 16px 20px;
+      margin: var(--space-md) 0 0;
+      border-top: 1px dashed var(--clr-border);
+      border-bottom: 1px dashed var(--clr-border);
+      background: linear-gradient(90deg, transparent, rgba(249,168,37,0.06), transparent);
+    }
+
+    /* CTA box */
+    .cta-box {
+      background: linear-gradient(135deg, var(--clr-primary) 0%, var(--clr-primary-light) 100%);
+      color: #fff;
+      border-radius: var(--radius-md);
+      padding: var(--space-lg) var(--space-md);
+      text-align: center;
+      margin-top: var(--space-lg);
+      box-shadow: var(--shadow-gold);
+    }
+    .cta-box h3 { color: var(--clr-gold); font-size: clamp(1.1rem,2.5vw,1.4rem); margin-bottom: 10px; }
+    .cta-box p  { color: rgba(255,255,255,0.88); margin-bottom: var(--space-md); }
+    .cta-btns {
+      display: flex; flex-wrap: wrap; gap: 12px;
+      justify-content: center;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 22px; border-radius: 50px;
+      font-family: var(--font-sans); font-weight: 700;
+      font-size: 0.92rem; text-decoration: none; border: none;
+      cursor: pointer; transition: transform .2s, box-shadow .2s;
+      white-space: nowrap;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-wa  { background: #25D366; color: #fff; box-shadow: 0 4px 14px rgba(37,211,102,.4); }
+    .btn-pay { background: var(--clr-gold); color: #1a1a5e; box-shadow: 0 4px 14px rgba(249,168,37,.4); }
+
+    /* Panjika strip */
+    .panjika-strip {
+      background: linear-gradient(135deg, var(--clr-primary) 0%, #2a2a7e 100%);
+      padding: 14px 20px;
+    }
+    .panjika-strip-inner {
+      max-width: var(--max-w); margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; flex-wrap: wrap;
+    }
+    .panjika-strip-left { display: flex; align-items: center; gap: 12px; }
+    .panjika-strip-icon { font-size: 1.5rem; }
+    .panjika-strip-title {
+      font-family: var(--font-sans); font-weight: 700;
+      color: var(--clr-gold); font-size: 0.95rem; margin-bottom: 4px;
+    }
+    .panjika-strip-tags {
+      display: flex; flex-wrap: wrap; gap: 6px;
+    }
+    .panjika-strip-tags span {
+      background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.85);
+      padding: 2px 8px; border-radius: 20px; font-size: 0.72rem;
+      font-family: var(--font-sans);
+    }
+    .panjika-strip-btn {
+      background: var(--clr-gold); color: #1a1a5e;
+      padding: 10px 22px; border-radius: 50px;
+      font-family: var(--font-sans); font-weight: 800;
+      font-size: 0.88rem; text-decoration: none; border: none;
+      white-space: nowrap; transition: transform .2s, box-shadow .2s;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .panjika-strip-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(249,168,37,.4); border: none; }
+
+    /* Special offer banner */
+    .offer-banner {
+      background: linear-gradient(90deg, #fff8e1, #fff3cd);
+      border: 1.5px solid #f9a825;
+      border-radius: var(--radius-sm);
+      padding: 10px 16px;
+      display: flex; align-items: center; gap: 10px;
+      margin: 12px 0;
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      color: #5d3c00;
+      font-weight: 600;
+    }
+    .offer-badge {
+      background: var(--clr-accent);
+      color: #fff; padding: 2px 8px;
+      border-radius: 4px; font-size: 0.7rem;
+      font-weight: 800; text-transform: uppercase;
+      letter-spacing: 0.5px; flex-shrink: 0;
+    }
+
+    /* Image captions */
+    .content-section img {
+      width: 100%; height: auto;
+      border-radius: var(--radius-md);
+      margin: var(--space-md) 0 8px;
+      box-shadow: var(--shadow-md);
+      display: block;
+    }
+
+    /* Offer banner */
+    .special-offer-bar {
+      background: linear-gradient(90deg, #fff8e1 0%, #fff3cd 100%);
+      border: 1.5px solid #f9a825;
+      border-radius: var(--radius-sm);
+      padding: 10px 18px;
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: #7c4200;
+      text-align: center;
+      margin: 0 0 12px;
+    }
+    .special-offer-bar strong { color: var(--clr-accent); }
+
+    
+    button:focus-visible, a:focus-visible { outline: 2px solid #f9a825; }
+    
+    /* ── Pro: body links ── */
+    .content-section a:not(.btn) {
+      color: var(--clr-accent);
+      text-decoration: underline;
+      text-decoration-color: rgba(74,79,190,.35);
+      text-underline-offset: 3px;
+      transition: color .2s, text-decoration-color .2s;
+    }
+    .content-section a:not(.btn):hover {
+      color: var(--clr-gold);
+      text-decoration-color: var(--clr-gold);
+    }
+    /* ── Pro: section spacing ── */
+    /* (section.content-section padding defined in LAYOUT block above) */
+    /* ── Pro: blockquote cite style ── */
+    blockquote cite {
+      display: block; font-size: .82rem;
+      margin-top: 8px; color: var(--clr-gold);
+      font-style: normal;
+    }
+    /* ── Pro: selection color ── */
+    ::selection { background: rgba(249,168,37,.28); color: #1a1a5e; }
+    /* ── Pro: scrollbar ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #f0f0f8; }
+    ::-webkit-scrollbar-thumb { background: var(--clr-primary); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--clr-gold); }
+
+        .svc-title { background:none!important; -webkit-text-fill-color:#fff!important; animation:none!important; border:none!important; padding:0!important; color:#fff!important; }
+    .svc-title em { -webkit-text-fill-color:#f9a825!important; color:#f9a825!important; }
+    
+    /* Service card image */
+    .sc-img {
+      width: 100%; height: 165px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 16px;
+      display: block;
+      border: 1px solid rgba(249,168,37,.2);
+    }
+
     </style>
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 </head>
@@ -1375,43 +1677,210 @@
 
   <blockquote>"The stars and planets are the visible symbols of inner psychological forces."</blockquote>
 
-  <p>অতএব, <a href="https://prodyutacharya.blogspot.com/2019/01/Astrology.html" target="_blank" rel="noopener noreferrer">জ্যোতিষ</a> কোনো অলৌকিক বিদ্যা নয়, এটি আত্মদর্শনের এক মাধ্যম, যা আমাদের বর্তমান চেতনার মানচিত্র তৈরি করে। জন্মকুণ্ডলী একটি সম্ভাবনার মানচিত্র, যা আত্মাকে নিজেকে জানার এবং নিজের সম্ভাবনার অভিমুখ নির্ধারণের পথ দেখায়।</p>
+</section>
+  <p>অতএব, <a href="https://prodyutacharya.blogspot.com/2019/01/What-is-astrology.html" target="_blank" rel="noopener noreferrer">জ্যোতিষ শাস্ত্র</a> কেবল ভবিষ্যৎ জানার নয় — এটি আত্মজ্ঞান, চেতনার জাগরণ ও জীবন রূপান্তরের এক মহান বিজ্ঞান।</p>
+</section>
 
-  <img src="images/jyotish-map.jpg"
-       alt="জন্মকুণ্ডলী মানচিত্র — Vedic Astrology Birth Chart, আত্মার চেতনার প্রতিফলন, Dr. Prodyut Acharya"
-       loading="lazy" width="860" height="520" />
+<section class="svc-section" id="service-consult">
 
-  <div class="tagline">✨ নিজেকে জানুন, ভাগ্য নয়—নিজের আলোয় পথ চলুন। ✨</div>
+  <div class="svc-hd">
+    <span class="svc-om">&#x2726; &nbsp; আমাদের সেবাসমূহ &nbsp; &#x2726;</span>
+    <span class="svc-title">বেছে নিন <em>আপনার পরামর্শ</em></span>
+    <p>ড. প্রদ্যুৎ আচার্যের সাথে Vedic Astrology ও Palmistry পরামর্শ &#8212; অনলাইনে, আপনার সুবিধামতো সময়ে</p>
+  </div>
 
-  <div class="cta-box">
-    <span class="cta-ornament">✦ &nbsp; পরামর্শ নিন &nbsp; ✦</span>
-    <h3>জন্মকুণ্ডলী বিশ্লেষণে <span>আগ্রহী?</span></h3>
-    <p>ড. প্রদ্যুৎ আচার্যের সাথে সরাসরি পরামর্শ নিন — Vedic Astrology ও Palmistry-তে ১৫+ বছরের অভিজ্ঞতা। আপনার জীবনের প্রশ্নের উত্তর খুঁজে পান।</p>
-    <div class="cta-trust">
-      <div class="cta-trust-item">
-        <span class="cta-trust-num">১৫+</span>
-        <span class="cta-trust-label">বছর অভিজ্ঞতা</span>
+  <div class="svc-trust">
+    <div class="svc-ti"><span class="svc-tn">১৫+</span><span class="svc-tl">বছর অভিজ্ঞতা</span></div>
+    <div class="svc-ti"><span class="svc-tn">১০০০+</span><span class="svc-tl">সন্তুষ্ট ক্লায়েন্ট</span></div>
+    <div class="svc-ti"><span class="svc-tn">&#11088; ৫.০</span><span class="svc-tl">রেটিং</span></div>
+    <div class="svc-ti"><span class="svc-tn">বাংলা</span><span class="svc-tl">ভাষায় পরামর্শ</span></div>
+  </div>
+
+  <div class="svc-grid">
+
+    <!-- CARD 1: Palm Reading -->
+    <div class="sc">
+      <div class="sc-offer-tag">&#127381; বিশেষ অফার: &#8377;১৫০১ এর জায়গায় মাত্র &#8377;১০০১</div>
+      <img class="sc-img"
+           src="images/Palm Reading Consultation.webp"
+           alt="Online Palm Reading — হাতের রেখা বিচার, Dr. Prodyut Acharya MyAstrology"
+           loading="lazy" width="420" height="165" />
+      <div class="sc-name">হাতের রেখা বিচার</div>
+      <div class="sc-sub">Online Palm Reading &bull; ছবি পাঠান</div>
+      <p class="sc-desc">দুই হাতের ছবি WhatsApp-এ পাঠান &#8212; ৩/৪ ঘণ্টার মধ্যে বিস্তারিত ফোনে জানানো হবে এবং প্রতিকার দেওয়া হবে।</p>
+      <ul class="sc-feats">
+        <li>দুই হাতের সামনে ও পিছনের ছবি পাঠান</li>
+        <li>৩/৪ ঘণ্টার মধ্যে ফোনে বিশ্লেষণ</li>
+        <li>সব প্রশ্নের উত্তর &#8212; সময় ২০ মিনিট</li>
+        <li>হাতের রেখা অনুযায়ী প্রতিকার পরামর্শ</li>
+        <li>বাংলা ও হিন্দি ভাষায়</li>
+      </ul>
+      <div class="sc-price">
+        <span class="sc-sym">&#8377;</span>
+        <span class="sc-amt">১০০১</span>
+        <span class="sc-old">&#8377;১৫০১</span>
       </div>
-      <div class="cta-trust-item">
-        <span class="cta-trust-num">১০০০+</span>
-        <span class="cta-trust-label">সন্তুষ্ট ক্লায়েন্ট</span>
-      </div>
-      <div class="cta-trust-item">
-        <span class="cta-trust-num">⭐⭐⭐⭐⭐</span>
-        <span class="cta-trust-label">রেটিং</span>
-      </div>
+      <input class="sc-inp" id="nm-palm" type="text" placeholder="আপনার পুরো নাম *" />
+      <input class="sc-inp" id="ph-palm" type="tel"  placeholder="WhatsApp নম্বর *" />
+      <button class="sc-btn" onclick="rzpPay('palm')">&#128197; এখনই বুক করুন</button>
+      <p class="sc-sec">&#128274; Razorpay &bull; UPI / Card / Net Banking</p>
     </div>
-    <div class="cta-divider"></div>
-    <div class="cta-btns">
-      <a href="https://wa.me/919333122768?text=নমস্কার!%20জন্মকুণ্ডলী%20বিশ্লেষণ%20করাতে%20চাই।" class="btn btn-wa" target="_blank" rel="noopener">
-        <i class="fab fa-whatsapp"></i> WhatsApp করুন
-      </a>
-      <a href="https://rzp.io/rzp/8LssB8Dh" class="btn btn-pay" target="_blank" rel="noopener">
-        <i class="fas fa-credit-card"></i> এখনই বুক করুন
-      </a>
+
+    <!-- CARD 2: Combo FEATURED -->
+    <div class="sc sc-feat">
+      <span class="sc-ribbon">&#128293; বেস্ট অফার</span>
+      <div class="sc-offer-tag">&#127381; বিশেষ অফার: &#8377;২০০১ এর জায়গায় মাত্র &#8377;১৫০১</div>
+      <img class="sc-img"
+           src="images/birth-chart-reading-vedic-astrology.webp"
+           alt="জন্মকুণ্ডলী বিচার ও হস্তরেখা — Vedic Astrology Birth Chart, Dr. Prodyut Acharya"
+           loading="lazy" width="420" height="165" />
+      <div class="sc-name">জন্ম কুণ্ডলী ও হস্তরেখা</div>
+      <div class="sc-sub">Combo Special &bull; সীমিত সময়ের জন্য</div>
+      <p class="sc-desc">একইসাথে হাতের রেখা ও জন্মকুণ্ডলী বিচার &#8212; সর্বোচ্চ সুবিধা সর্বনিম্ন মূল্যে।</p>
+      <ul class="sc-feats">
+        <li>হাতের রেখার সম্পূর্ণ বিশ্লেষণ ও প্রতিকার</li>
+        <li>৩০/৩৫ পাতার জন্মকুণ্ডলী PDF</li>
+        <li>WhatsApp-এ PDF পাঠানো হবে</li>
+        <li>ফোনে বিস্তারিত আলোচনা &#8212; ৩০ মিনিট</li>
+        <li>সমস্ত প্রশ্নের উত্তর ও প্রতিকার</li>
+      </ul>
+      <div class="sc-price">
+        <span class="sc-sym">&#8377;</span>
+        <span class="sc-amt">১৫০১</span>
+        <span class="sc-old">&#8377;২০০১</span>
+      </div>
+      <input class="sc-inp" id="nm-combo" type="text" placeholder="আপনার পুরো নাম *" />
+      <input class="sc-inp" id="ph-combo" type="tel"  placeholder="WhatsApp নম্বর *" />
+      <button class="sc-btn" onclick="rzpPay('combo')">&#128197; এখনই বুক করুন</button>
+      <p class="sc-sec">&#128274; Razorpay &bull; UPI / Card / Net Banking</p>
     </div>
+
+    <!-- CARD 3: Jyotok -->
+    <div class="sc">
+      <div class="sc-offer-tag">&#127381; বিশেষ অফার: &#8377;২৫০১ এর জায়গায় মাত্র &#8377;১৫০১</div>
+      <img class="sc-img"
+           src="images/kundli-matching-bengali-astrology.webp"
+           alt="যোটোক বিচার — Kundli Matching Bengali Astrology, Dr. Prodyut Acharya MyAstrology"
+           loading="lazy" width="420" height="165" />
+      <div class="sc-name">যোটোক বিচার</div>
+      <div class="sc-sub">Marriage Matching &bull; PDF সহ &bull; বাংলা ও হিন্দি</div>
+      <p class="sc-desc">দাম্পত্য জীবন সুখী রাখতে বিবাহের পূর্বে যোটোক বিচার অত্যন্ত গুরুত্বপূর্ণ। মনের মিলন, মাঙ্গলিক দোষ ও দাম্পত্য সুখ বিশ্লেষণ।</p>
+      <ul class="sc-feats">
+        <li>ছেলে ও মেয়ে উভয়ের কুণ্ডলী মিলন</li>
+        <li>মনের মিলন ও শয্যা সুখ বিশ্লেষণ</li>
+        <li>মাঙ্গলিক দোষ ও গুণ পরীক্ষা</li>
+        <li>৩০/৩৫ পাতার PDF &#8212; WhatsApp-এ পাঠানো হবে</li>
+        <li>যোটোক বিচার PDF + ফোনে ৩০ মিনিট আলোচনা</li>
+        <li>দাম্পত্য সুখের প্রতিকার পরামর্শ</li>
+      </ul>
+      <div class="sc-price">
+        <span class="sc-sym">&#8377;</span>
+        <span class="sc-amt">১৫০১</span>
+        <span class="sc-old">&#8377;২৫০১</span>
+      </div>
+      <input class="sc-inp" id="nm-jyotok" type="text" placeholder="আপনার পুরো নাম *" />
+      <input class="sc-inp" id="ph-jyotok" type="tel"  placeholder="WhatsApp নম্বর *" />
+      <button class="sc-btn alt" onclick="rzpPay('jyotok')">&#128197; এখনই বুক করুন</button>
+      <p class="sc-sec">&#128274; Razorpay &bull; UPI / Card / Net Banking</p>
+    </div>
+
   </div>
 </section>
+
+<!-- Success Modal -->
+<div id="rzp-overlay">
+  <div id="rzp-modal">
+    <button id="rzp-close" onclick="closeRzp()">&#x2715;</button>
+    <span class="m-check">&#9989;</span>
+    <h3>পেমেন্ট সম্পন্ন!</h3>
+    <p id="rzp-modal-msg">পেমেন্ট গ্রহণ হয়েছে। WhatsApp-এ আপনার বিবরণ পাঠান।</p>
+    <a id="rzp-wa" href="#" class="m-wa" target="_blank" rel="noopener">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp-এ তথ্য পাঠান
+    </a>
+  </div>
+</div>
+
+<script defer src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+(function(){
+  var KEY  = 'rzp_live_SN8p6DJxPYFVL1';
+  var LOGO = 'https://astro.myastrology.in/images/MyAstrology-Ranghat-logo.png';
+  var WA   = '919333122768';
+
+  var SVCS = {
+    palm:   { nm:'nm-palm',   ph:'ph-palm',   amount:100100,
+              label:'হাতের রেখা বিচার' },
+    combo:  { nm:'nm-combo',  ph:'ph-combo',  amount:150100,
+              label:'জন্ম কুণ্ডলী + হস্তরেখা Combo' },
+    jyotok: { nm:'nm-jyotok', ph:'ph-jyotok', amount:150100,
+              label:'যোটোক বিচার' }
+  };
+
+  function rzpPay(type) {
+    var svc = SVCS[type];
+    var nm  = document.getElementById(svc.nm).value.trim();
+    var ph  = document.getElementById(svc.ph).value.trim();
+    if (!nm) { shake(svc.nm); return; }
+    if (!ph) { shake(svc.ph); return; }
+    var rzp = new Razorpay({
+      key:         KEY,
+      amount:      svc.amount,
+      currency:    'INR',
+      name:        'MyAstrology',
+      description: svc.label,
+      image:       LOGO,
+      prefill:     { name: nm, contact: ph },
+      notes:       { service: svc.label, customer: nm, whatsapp: ph },
+      theme:       { color: '#f9a825' },
+      modal:       { backdropclose: false },
+      handler: function(res) {
+        showSuccess(nm, ph, svc.label, res.razorpay_payment_id);
+      }
+    });
+    rzp.on('payment.failed', function() {
+      alert('পেমেন্ট বিফল। আবার চেষ্টা করুন।');
+    });
+    rzp.open();
+  }
+
+  function shake(id) {
+    var el = document.getElementById(id);
+    el.classList.add('err');
+    el.focus();
+    setTimeout(function(){ el.classList.remove('err'); }, 1200);
+  }
+
+  function showSuccess(nm, ph, svc, pid) {
+    var NL   = String.fromCharCode(10);
+    var pray = String.fromCharCode(55357, 56399);
+    var grin = String.fromCharCode(55357, 56842);
+    var msg  = pray + ' আমি ' + svc + '-এর জন্য পেমেন্ট করেছি। আমার বিবরণ নিচে দিচ্ছি ' + grin
+            + NL + NL
+            + 'নাম: ' + nm + NL
+            + 'ফোন: ' + ph + NL
+            + 'সেবা: ' + svc
+            + (pid ? (NL + 'Payment ID: ' + pid) : '');
+    document.getElementById('rzp-wa').href =
+      'https://wa.me/' + WA + '?text=' + encodeURIComponent(msg);
+    document.getElementById('rzp-modal-msg').textContent =
+      nm + ' — পেমেন্ট সফল। WhatsApp বোতামে ক্লিক করুন।';
+    document.getElementById('rzp-overlay').classList.add('show');
+  }
+
+  function closeRzp() {
+    document.getElementById('rzp-overlay').classList.remove('show');
+  }
+
+  document.getElementById('rzp-overlay').addEventListener('click', function(e) {
+    if (e.target === this) { closeRzp(); }
+  });
+
+  window.rzpPay   = rzpPay;
+  window.closeRzp = closeRzp;
+})();
+</script>
+
 
 <div class="section-divider"><span>⭐</span></div>
 
@@ -1610,7 +2079,7 @@
   <h3 class="headline-h3">🧠 চেতনা, কম্পন ও ভাগ্যের মানসিক দর্শন: জ্যোতিষ ও বিজ্ঞান</h3>
 
   <blockquote>"If you want to find the secrets of the universe, think in terms of energy, frequency and vibration."</blockquote>
-  <p>— নিকোলাস টেসলা</p>
+  <p>— নিকোলা টেসলা</p>
 
   <p>ভারতীয় জ্যোতিষশাস্ত্রও মানবজীবন ও মহাবিশ্বের কম্পন ও স্পন্দনের মধ্যকার সুক্ষ্ম সম্পর্কের অনুসন্ধানে নিবেদিত।</p>
 
@@ -1811,11 +2280,7 @@
     <li><strong>(২) সহানুভূতি (Karuna):</strong><br>একজন প্রকৃত জ্যোতিষী শ্রোতার মনের অবস্থা উপলব্ধি করেন। তিনি ভয় দেখিয়ে টাকা নেন না; বরং শ্রবণ ও সহানুভূতির মাধ্যমে মানুষকে আত্মার আলোর দিকে নিয়ে যান।</li>
   </ul>
 
-  <p>যেমন কার্ল জং বলেছেন—</p>
-
-  <blockquote>"Astrology represents the summation of all the psychological knowledge of antiquity."</blockquote>
-
-  <p>অর্থাৎ, জ্যোতিষশাস্ত্র এক গভীর মনস্তাত্ত্বিক ভাষা যা হৃদয়ের সঙ্গে কথা বলে।</p>
+  <p>যেমন কার্ল ইউং বলেছেন — জ্যোতিষশাস্ত্র হলো প্রাচীনকালের সমগ্র মনস্তাত্ত্বিক জ্ঞানের প্রতিফলন। একজন প্রকৃত জ্যোতিষী সেই গভীর মনস্তাত্ত্বিক ভাষায় কথা বলেন যা হৃদয়ের সঙ্গে সংযুক্ত।</p>
 
   <ul>
     <li><strong>(৩) আধ্যাত্মিকতা (Adhyatma):</strong><br>জ্যোতিষী বাইরের গ্রহগতি নয়, অন্তরের আলো দেখান। 'বৃহৎ সংহিতা'তে বলা হয়েছে—</li>
