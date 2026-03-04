@@ -1,4 +1,73 @@
 {
-   "error_message" : "You must enable Billing on the Google Cloud Project at https://console.cloud.google.com/project/_/billing/enable Learn more at https://developers.google.com/maps/gmp-get-started",
-   "status" : "REQUEST_DENIED"
+   "html_attributions" : [],
+   "result" : 
+   {
+      "name" : "My Astrology",
+      "rating" : 5,
+      "reviews" : 
+      [
+         {
+            "author_name" : "Rupa Bepari",
+            "author_url" : "https://www.google.com/maps/contrib/104548358133765336224/reviews",
+            "language" : "en",
+            "original_language" : "en",
+            "profile_photo_url" : "https://lh3.googleusercontent.com/a-/ALV-UjWXsUd_vtwYw_Wb09WSMz7iejQbgLzLlutSGEPuNwhi_lVjqLNa=s128-c0x00000000-cc-rp-mo",
+            "rating" : 5,
+            "relative_time_description" : "4 months ago",
+            "text" : "Dr. Prodyut Acharya is one of the best astrologers in India!\nHis astrology and palmistry consultation at MyAstrology Ranaghat is truly life-changing. He explained my horoscope (Janma Kundli) so clearly and gave accurate predictions about my career and marriage. Highly recommended for anyone searching for a genuine astrologer in West Bengal.\" 🌟\n\nKeywords used: best astrologer in India, astrology and palmistry consultation, horoscope prediction, genuine astrologer, Ranaghat",
+            "time" : 1760095004,
+            "translated" : false
+         },
+         {
+            "author_name" : "Hari sankar Barai",
+            "author_url" : "https://www.google.com/maps/contrib/108892881269806468989/reviews",
+            "language" : "en",
+            "original_language" : "en",
+            "profile_photo_url" : "https://lh3.googleusercontent.com/a/ACg8ocJnU3yO8kmkcP9pKpZGLibMCG3Ig_UFZCbSecB4_mSwr8XXzA=s128-c0x00000000-cc-rp-mo",
+            "rating" : 5,
+            "relative_time_description" : "4 months ago",
+            "text" : "MyAstrology Ranaghat — a trusted name in Indian Astrology and Palmistry Consultation, founded by Dr. Prodyut Acharya, one of the most accurate and respected astrologers in India.\nHere, ancient Vedic wisdom meets modern life analysis, helping people discover clarity and purpose through horoscope, palm reading, and astrology-based guidance.\n\nFrom West Bengal to Delhi, Mumbai, Pune, Bangalore, Chennai, and Hyderabad, thousands of clients have found real transformation through personalized birth chart (Janma Kundli) analysis, marriage matching (Kundli Milan), and career or relationship astrology.\n\nEach consultation is conducted with honesty, empathy, and deep astrological insight — focusing on life problems, planetary influences (Graha Dosh), Vastu correction, and gemstone guidance. Whether you seek direction in career, love, marriage, business, or health, MyAstrology Ranaghat brings clarity with authentic Indian astrology and palmistry traditions.\n\n✨ Expert Services Offered:\n\nVedic Astrology & Kundli Reading\n\nPalmistry (Hasta Rekha Shastra)\n\nMarriage Compatibility (Kundli Matching)\n\nCareer, Business & Relationship Guidance\n\nGemstone, Rudraksha & Vastu Consultation\n\nNumerology & Graha Dosh Remedies\n\nMyAstrology Ranaghat – Dr. Prodyut Acharya stands as one of the best astrology and palmistry consultation centres in India, known for accuracy, trust, and genuine results that guide your life towards light and balance.",
+            "time" : 1759982363,
+            "translated" : false
+         },
+         {
+            "author_name" : "Biswajit Sarkar",
+            "author_url" : "https://www.google.com/maps/contrib/107259502562204280852/reviews",
+            "language" : "en",
+            "original_language" : "en",
+            "profile_photo_url" : "https://lh3.googleusercontent.com/a/ACg8ocIzwDELiCes8XrC84WE_yWaw7nE4l37rOrCOgHO1w6V-fXpUg=s128-c0x00000000-cc-rp-mo",
+            "rating" : 5,
+            "relative_time_description" : "a week ago",
+            "text" : "Very good palm reading and astrology services, authentic gemstone recommendations, best astrologer and vastu consultant. I'm very happy 😊",
+            "time" : 1771854583,
+            "translated" : false
+         },
+         {
+            "author_name" : "Sreshtha Ghosh",
+            "author_url" : "https://www.google.com/maps/contrib/107649229966035779229/reviews",
+            "language" : "en",
+            "original_language" : "en",
+            "profile_photo_url" : "https://lh3.googleusercontent.com/a-/ALV-UjUkBL-TZIcsl3zXdbUTImzzxCv4jJLPQetM77pB-ZmbWBKn9gc=s128-c0x00000000-cc-rp-mo",
+            "rating" : 5,
+            "relative_time_description" : "5 months ago",
+            "text" : "I've consulted with  Astrologer Prodyut Acharya (My astrology) and I'm very satisfied with the service. Each and every prediction came out to be real and I was actually relating the prediction with my own life. Everything was just like how I wanted it to be. Astrologer Prodyut Acharya is very kind and helpful and the service was really very good. Anyone can go for it without any doubt. All my queries were solved and treated with care. I would thank my Astrology for this.",
+            "time" : 1758220462,
+            "translated" : false
+         },
+         {
+            "author_name" : "Poli Majhi",
+            "author_url" : "https://www.google.com/maps/contrib/115352683033534991364/reviews",
+            "language" : "en",
+            "original_language" : "en",
+            "profile_photo_url" : "https://lh3.googleusercontent.com/a/ACg8ocJhcMqvKtsdvxChXzg9kNXleJJCTwJC2BY1AvEm14-a8ispDw=s128-c0x00000000-cc-rp-mo",
+            "rating" : 5,
+            "relative_time_description" : "2 weeks ago",
+            "text" : "Very nice experience astrology and palmistry services and help my vastu, thank you sir",
+            "time" : 1771218841,
+            "translated" : false
+         }
+      ],
+      "user_ratings_total" : 122
+   },
+   "status" : "OK"
 }
