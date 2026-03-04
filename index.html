@@ -1051,14 +1051,37 @@ hr.divider{border:none;border-top:1px solid var(--border);max-width:580px;margin
   <div class="reviews-inner">
     <h2>What Our Clients Say</h2>
     <p class="sub">Genuine testimonials from 10,000+ satisfied clients &#8212; 2,000+ verified reviews across Google, JustDial &amp; Facebook.</p>
-    <div class="review-grid">
-      <div class="review-card"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&#8220;I consulted Dr. Prodyut Acharya and I am very satisfied. Each and every prediction came true and I could relate it to my life. He is very kind and helpful. I would recommend MyAstrology without any hesitation.&#8221;</p><div class="reviewer">&#8212; Sreshtha Ghosh</div><small>Source: Google Reviews</small></div>
-      <div class="review-card"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&#8220;Best astrologer in Ranaghat. His horoscope reading was very accurate and gave me the confidence to make important career decisions.&#8221;</p><div class="reviewer">&#8212; A. Banerjee</div><small>Source: Google Reviews</small></div>
-      <div class="review-card"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&#8220;The online astrology consultation was very easy and highly effective. He explained every planet and Dosha with great clarity.&#8221;</p><div class="reviewer">&#8212; R. Saha</div><small>Source: Google Reviews</small></div>
-      <div class="review-card"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&#8220;His palmistry reading was outstanding. Most aspects of my life and health matched perfectly. Very genuine and ethical guidance.&#8221;</p><div class="reviewer">&#8212; M. Ghosh</div><small>Source: Google Reviews</small></div>
-      <div class="review-card"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&#8220;We consulted for marriage matching. The advice was logical, scientific and deeply rooted in Vedic Astrology. Very professional. Thank you Dr. Acharya.&#8221;</p><div class="reviewer">&#8212; P. Choudhury</div><small>Source: Google Reviews</small></div>
-      <div class="review-card"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&#8220;The gemstone consultation was very helpful. The suggested stone has positively affected my health and finances. Truly an experienced and trustworthy astrologer.&#8221;</p><div class="reviewer">&#8212; S. Das</div><small>Source: JustDial</small></div>
+
+    <!-- Google Rating Summary -->
+    <div id="g-rating-summary" style="text-align:center;margin-bottom:28px;display:none">
+      <div style="font-size:52px;font-weight:700;color:var(--gold,#f4a023);line-height:1" id="g-rating-value"></div>
+      <div style="color:#f4a023;font-size:22px;margin:4px 0" id="g-rating-stars"></div>
+      <div style="color:#666;font-size:14px" id="g-rating-count"></div>
     </div>
+
+    <!-- Dynamic Google Reviews Grid -->
+    <div class="review-grid" id="google-review-grid">
+      <!-- Skeleton loaders -->
+      <div class="review-card g-skeleton" style="opacity:.4;pointer-events:none">
+        <div style="height:14px;background:#ddd;border-radius:4px;margin-bottom:10px;width:60%"></div>
+        <div style="height:10px;background:#eee;border-radius:4px;margin-bottom:6px"></div>
+        <div style="height:10px;background:#eee;border-radius:4px;margin-bottom:6px;width:80%"></div>
+        <div style="height:10px;background:#eee;border-radius:4px;width:50%"></div>
+      </div>
+      <div class="review-card g-skeleton" style="opacity:.4;pointer-events:none">
+        <div style="height:14px;background:#ddd;border-radius:4px;margin-bottom:10px;width:60%"></div>
+        <div style="height:10px;background:#eee;border-radius:4px;margin-bottom:6px"></div>
+        <div style="height:10px;background:#eee;border-radius:4px;margin-bottom:6px;width:80%"></div>
+        <div style="height:10px;background:#eee;border-radius:4px;width:50%"></div>
+      </div>
+      <div class="review-card g-skeleton" style="opacity:.4;pointer-events:none">
+        <div style="height:14px;background:#ddd;border-radius:4px;margin-bottom:10px;width:60%"></div>
+        <div style="height:10px;background:#eee;border-radius:4px;margin-bottom:6px"></div>
+        <div style="height:10px;background:#eee;border-radius:4px;margin-bottom:6px;width:80%"></div>
+        <div style="height:10px;background:#eee;border-radius:4px;width:50%"></div>
+      </div>
+    </div>
+
     <div class="reviews-more">
       <a href="https://maps.app.goo.gl/fqRtwbDWnBDx1qet7" target="_blank" rel="noopener">Read 122+ Reviews on Google</a>
       <a href="https://wap.justdial.com/el?source=2&amp;user_type=&amp;docid=9999P3473.3473.180105202517.N2F5" target="_blank" rel="noopener">JustDial Reviews</a>
@@ -1066,6 +1089,79 @@ hr.divider{border:none;border-top:1px solid var(--border);max-width:580px;margin
     </div>
   </div>
 </section>
+
+<script>
+/* ── Google Reviews Widget ── */
+(function () {
+  function renderStars(n) {
+    return '★'.repeat(n) + '☆'.repeat(5 - n);
+  }
+
+  function renderReviews(reviews, grid) {
+    grid.innerHTML = reviews.map(function (r) {
+      var text = r.text || '';
+      var short = text.length > 220 ? text.substring(0, 220) + '…' : text;
+      var photo = r.profile_photo_url
+        ? '<img src="' + r.profile_photo_url + '" alt="' + r.author_name + '" '
+          + 'style="width:42px;height:42px;border-radius:50%;object-fit:cover;flex-shrink:0" '
+          + 'onerror="this.style.display=\'none\'" loading="lazy">'
+        : '';
+      return '<div class="review-card">'
+        + '<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">'
+        + photo
+        + '<div>'
+        + '<div style="font-weight:600;font-size:15px">' + r.author_name + '</div>'
+        + '<div class="stars" style="color:var(--gold,#f4a023);font-size:14px">' + renderStars(r.rating) + '</div>'
+        + '<div style="color:#999;font-size:12px">' + (r.relative_time_description || '') + '</div>'
+        + '</div></div>'
+        + '<p style="margin:0;font-size:14px;line-height:1.65;color:#444">' + short + '</p>'
+        + '</div>';
+    }).join('');
+  }
+
+  /* Fallback hardcoded reviews — shown if API fails */
+  var fallback = [
+    { author_name: 'Sreshtha Ghosh', rating: 5, relative_time_description: 'Google Review',
+      text: 'I consulted Dr. Prodyut Acharya and I am very satisfied. Each and every prediction came true. He is very kind and helpful. I would recommend MyAstrology without any hesitation.' },
+    { author_name: 'A. Banerjee', rating: 5, relative_time_description: 'Google Review',
+      text: 'Best astrologer in Ranaghat. His horoscope reading was very accurate and gave me the confidence to make important career decisions.' },
+    { author_name: 'R. Saha', rating: 5, relative_time_description: 'Google Review',
+      text: 'The online astrology consultation was very easy and highly effective. He explained every planet and Dosha with great clarity.' },
+    { author_name: 'M. Ghosh', rating: 5, relative_time_description: 'Google Review',
+      text: 'His palmistry reading was outstanding. Most aspects of my life and health matched perfectly. Very genuine and ethical guidance.' },
+    { author_name: 'P. Choudhury', rating: 5, relative_time_description: 'Google Review',
+      text: 'We consulted for marriage matching. The advice was logical, scientific and deeply rooted in Vedic Astrology. Very professional.' },
+    { author_name: 'S. Das', rating: 5, relative_time_description: 'JustDial Review',
+      text: 'The gemstone consultation was very helpful. The suggested stone has positively affected my health and finances. Truly an experienced and trustworthy astrologer.' }
+  ];
+
+  var grid = document.getElementById('google-review-grid');
+  var summary = document.getElementById('g-rating-summary');
+
+  fetch('/reviews.json')
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      if (!data.result || !data.result.reviews) throw new Error('no data');
+
+      /* Rating summary */
+      document.getElementById('g-rating-value').textContent = data.result.rating;
+      document.getElementById('g-rating-stars').textContent = renderStars(Math.round(data.result.rating));
+      document.getElementById('g-rating-count').textContent =
+        (data.result.user_ratings_total || '122') + '+ Google Reviews';
+      summary.style.display = 'block';
+
+      /* Reviews */
+      var reviews = data.result.reviews
+        .filter(function (r) { return r.rating >= 4; })
+        .slice(0, 6);
+      renderReviews(reviews, grid);
+    })
+    .catch(function () {
+      /* API failed — show fallback reviews silently */
+      renderReviews(fallback, grid);
+    });
+})();
+</script>
 
 <!-- ═══ FAQ ═══ -->
 <section class="faq" id="faq">
@@ -1089,7 +1185,7 @@ hr.divider{border:none;border-top:1px solid var(--border);max-width:580px;margin
       <h4>MyAstrology</h4>
       <p><i class="fas fa-map-marker-alt"></i>Ranaghat, Nadia, WB &#8211; 741201</p>
       <p><i class="fas fa-phone"></i>+91 93331 22768</p>
-      <p><i class="fas fa-envelope"></i><a href="mailto:info@myastrology.in">info@myastrology.in</a></p>
+      <p><i class="fas fa-envelope"></i><a href="/cdn-cgi/l/email-protection#137a7d757c537e6a726067617c7f7c746a3d7a7d"><span class="__cf_email__" data-cfemail="60090e060f200d19011314120f0c0f07194e090e">[email&#160;protected]</span></a></p>
       <a href="https://wa.me/919333122768" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i>WhatsApp Consultation</a>
       <a href="https://rzp.io/rzp/Axo6j2e" target="_blank" rel="noopener"><i class="fas fa-calendar-check"></i>Book Online</a>
     </div>
@@ -1147,7 +1243,7 @@ hr.divider{border:none;border-top:1px solid var(--border);max-width:580px;margin
 </div>
 
 <!-- ═══ JAVASCRIPT ═══ -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* Nav */
 function toggleNav(){document.getElementById('navMenu').classList.toggle('open')}
 document.addEventListener('click',function(e){
@@ -1220,7 +1316,4 @@ document.addEventListener('click', function(e) {
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"MyAstrology \u2013 Dr. Prodyut Acharya","url":"https://astro.myastrology.in","telephone":"+91-9333122768","address":{"@type":"PostalAddress","streetAddress":"Ranaghat, Nadia","addressLocality":"Ranaghat","addressRegion":"West Bengal","postalCode":"741201","addressCountry":"IN"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5","bestRating":"5","worstRating":"1","reviewCount":"122"},"review":[{"@type":"Review","author":{"@type":"Person","name":"Sreshtha Ghosh"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"I consulted Dr. Prodyut Acharya and I am very satisfied. Each and every prediction came true. He is very kind and helpful.","datePublished":"2025-01-10","publisher":{"@type":"Organization","name":"Google"}},{"@type":"Review","author":{"@type":"Person","name":"A. Banerjee"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"Best astrologer in Ranaghat. His horoscope reading was very accurate and gave me confidence to make important career decisions.","datePublished":"2025-02-14","publisher":{"@type":"Organization","name":"Google"}},{"@type":"Review","author":{"@type":"Person","name":"M. Ghosh"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"His palmistry reading was outstanding. Most aspects of my life and health matched perfectly. Very genuine and ethical guidance.","datePublished":"2025-03-05","publisher":{"@type":"Organization","name":"Google"}},{"@type":"Review","author":{"@type":"Person","name":"P. Choudhury"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"We consulted for marriage matching. The advice was logical, scientific and deeply rooted in Vedic Astrology. Very professional.","datePublished":"2025-04-18","publisher":{"@type":"Organization","name":"Google"}}]}</script>
 
 <!-- ═══ SCHEMA: Services ═══ -->
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Astrology Services by Dr. Prodyut Acharya","url":"https://astro.myastrology.in","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Service","name":"Palm Reading Consultation","url":"https://astro.myastrology.in/palmistry.html","description":"Online palmistry — send palm photos via WhatsApp, detailed report within 3-4 hours plus 20-minute live call.","provider":{"@type":"Person","name":"Dr. Prodyut Acharya"},"areaServed":"India","offers":{"@type":"Offer","price":"1001","priceCurrency":"INR"}}},{"@type":"ListItem","position":2,"item":{"@type":"Service","name":"Horoscope Analysis (Birth Chart Reading)","url":"https://astro.myastrology.in/astrology.html","description":"Vedic birth chart analysis — 35-40 page PDF report with 30-minute phone consultation.","provider":{"@type":"Person","name":"Dr. Prodyut Acharya"},"areaServed":"India","offers":{"@type":"Offer","price":"1501","priceCurrency":"INR"}}},{"@type":"ListItem","position":3,"item":{"@type":"Service","name":"Kundli Matching (Horoscope Compatibility)","url":"https://astro.myastrology.in/astrology.html","description":"Vedic marriage compatibility — Ashtakoot Milan, Mangal Dosha analysis with full written report.","provider":{"@type":"Person","name":"Dr. Prodyut Acharya"},"areaServed":"India","offers":{"@type":"Offer","price":"2001","priceCurrency":"INR"}}},{"@type":"ListItem","position":4,"item":{"@type":"Service","name":"Born Baby Name (Namakarana)","description":"Vedic auspicious newborn name based on Nakshatra, Rashi and birth chart.","provider":{"@type":"Person","name":"Dr. Prodyut Acharya"},"areaServed":"India","offers":{"@type":"Offer","price":"501","priceCurrency":"INR"}}},{"@type":"ListItem","position":5,"item":{"@type":"Service","name":"Name Correction (Naam Shuddhi)","description":"Vedic name correction aligned with Nakshatra and planetary positions to remove life obstacles.","provider":{"@type":"Person","name":"Dr. Prodyut Acharya"},"areaServed":"India","offers":{"@type":"Offer","price":"501","priceCurrency":"INR"}}},{"@type":"ListItem","position":6,"item":{"@type":"Service","name":"Vastu Consultation","url":"https://astro.myastrology.in/vastu-science.html","description":"Online Vastu Dosha analysis for home, flat, shop or office. Send floor plan — remedies provided.","provider":{"@type":"Person","name":"Dr. Prodyut Acharya"},"areaServed":"India"}}]}</script>
-
-</body>
-</html>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Astrology Services by Dr. Prodyut Acharya","url":"https://astro.myastrology.in","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Service","name":"Palm Reading Consultation","url":"https://astro.myastrology.in/palmistry.html","description":"Online palmistry — send palm photos via WhatsApp, detailed report within 3-4 hours plus 20-minute live call.","provider":{"@type":"Person","name":"Dr. Prodyut Acharya"},"areaServed":"India","offers":{"@type":"Offer","price":"1001","priceCurrency":"INR"}}},{"@type":"ListItem","position":2,"item":{"@type":"Service","name":"Horoscope Analysis (Birth Chart Reading)","url":"https://astro.myastrology.in/astrology.html","description":"Vedic birth chart analysis — 35-40 page PDF report with 30-minute phone consultation.","provider":{"@type":"Person","name":"Dr. Prodyut Acharya"},"areaServed":"India","offers":{"@type":"Offer","price":"1501","priceCurrency":"INR"}}},{"@type":"ListItem","position":3,"item":{"@type":"Service","name":"Kundli Matching (Horoscope Compatibility)","url":"https://astro.myastrology.in/astrology.html","description":"Vedic marriage compatibility — Ashtakoot Milan, Mangal Dosha analysis with full written report.","provider":{"@type":"Person","name":"Dr. Prodyut Acharya"},"areaServed":"India","offers":{"@type":"Offer","price":"2001","priceCurrency":"INR"}}},{"@type":"ListItem","position":4,"item":{"@type":"Service","name":"Born Baby Name (Namakarana)","description":"Vedic auspicious newborn name based on Nakshatra, Rashi and birth chart.","provider":{"@type":"Person","name":"Dr. Prodyut Acharya"},"areaServed":"India","offers":{"@type":"Offer","price":"501","priceCurrency":"INR"}}},{"@type":"ListItem","position":5,"item":{"@type":"Service","name":"Name Correction (Naam Shuddhi)","description":"Vedic name correction aligned with Nakshatra and planetary positions to remove life obstacles.","provider":{"@type":"Person","name":"Dr. Prodyut Acharya"},"areaServed":"India","offers":{"@type":"Offer","price":"501","priceCurrency":"INR"}}},{"@type":"ListItem","position":6,"item":{"@type":"Service","name":"Vastu Consultation","url":"https://astro.myastrology.in/va
