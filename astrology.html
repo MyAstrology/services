@@ -25,7 +25,7 @@
   <!-- ═══════════════════════════════════════════════════════════
        SEO: টাইটেল — বাংলা + ইংরেজি কীওয়ার্ড সমৃদ্ধ, ৬০ অক্ষরের মধ্যে
        ═══════════════════════════════════════════════════════════ -->
-  <title>বৈদিক জ্যোতিষ শাস্ত্র ও আত্মজ্ঞান | Vedic Astrology | Dr. Prodyut Acharya</title>
+  <title>বৈদিক জ্যোতিষ শাস্ত্র | Vedic Astrology | Prodyut Acharya</title>
 
   <!-- ✅ SEO: Description — ১৫০–১৬০ অক্ষর, স্বাভাবিক ভাষায়, keyword-natural -->
   <meta name="description" content="জ্যোতিষ শাস্ত্র হলো ভবিষ্যৎ জানার নয়, আত্মজ্ঞানের বিজ্ঞান। Vedic Astrology, জন্মকুণ্ডলী ও হস্তরেখা বিশ্লেষণে অভিজ্ঞ Dr. Prodyut Acharya, MyAstrology, Ranaghat।" />
@@ -98,7 +98,8 @@
       "@type": "LocalBusiness",
       "name": "MyAstrology – Dr. Prodyut Acharya",
       "url": "https://astro.myastrology.in",
-      "telephone": "+91-9333122768",
+      "telephone": "+91-9333122768</a></div>
+        <div class="footer-contact-item"><i class="fas fa-envelope"></i><a href="mailto:info@myastrology.in">info@myastrology.in",
       "email": "info@myastrology.in",
       "description": "Vedic Astrology, জন্মকুণ্ডলী বিশ্লেষণ, হস্তরেখা — Best Astrologer in West Bengal।",
       "image": "https://astro.myastrology.in/blog/astrology-cover.webp",
@@ -519,7 +520,7 @@
     #back-to-top {
       position: fixed;
       bottom: 24px;
-      right: 20px;
+      left: 20px;
       width: 44px;
       height: 44px;
       background: var(--clr-primary);
@@ -543,58 +544,85 @@
     /* ════════════════════════════════════════════════════════
        TABLE OF CONTENTS — card grid
        ════════════════════════════════════════════════════════ */
-    .toc-section { padding-top: var(--space-md); padding-bottom: 0; border-bottom: none; }
+    /* ════ TABLE OF CONTENTS — Traditional Heritage Style ════ */
+    .toc-section {
+      padding-top: 16px;
+      padding-bottom: 16px;
+      border-bottom: none;
+      background: linear-gradient(135deg, #fffbf0 0%, #fff8e6 100%);
+      border-top: 3px double var(--clr-gold);
+      border-bottom: 3px double var(--clr-gold);
+    }
 
-    .toc-label {
-      font-family: var(--font-sans);
-      font-size: 0.78rem;
+    .toc-header {
+      text-align: center;
+      margin-bottom: 14px;
+    }
+    .toc-header-ornament {
+      font-size: 1.2rem;
+      color: var(--clr-gold);
+      letter-spacing: 6px;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .toc-header-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.1rem, 2.5vw, 1.45rem);
       font-weight: 700;
-      letter-spacing: 2px;
+      color: var(--clr-primary);
+      display: block;
+      letter-spacing: 1px;
+    }
+    .toc-header-sub {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      letter-spacing: 3px;
       text-transform: uppercase;
       color: var(--clr-text-lt);
-      margin-bottom: 14px;
+      display: block;
+      margin-top: 4px;
     }
 
     .toc-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 10px;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 8px;
     }
 
     .toc-card {
       display: flex;
       align-items: flex-start;
-      gap: 10px;
-      padding: 12px 14px;
+      gap: 12px;
+      padding: 9px 13px;
       background: #fff;
-      border: 1px solid var(--clr-border-lt);
-      border-radius: var(--radius-sm);
+      border: 1px solid #e8d5a0;
+      border-left: 4px solid var(--clr-gold);
+      border-radius: 4px;
       text-decoration: none;
-      transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
-      border: none;
+      transition: all 0.22s ease;
+      box-shadow: 0 2px 8px rgba(249,168,37,0.07);
     }
     .toc-card:hover {
-      border-color: var(--clr-gold);
-      box-shadow: 0 4px 14px rgba(249,168,37,0.15);
+      border-left-color: var(--clr-accent);
+      box-shadow: 0 5px 18px rgba(249,168,37,0.2);
       transform: translateY(-2px);
-      border: none;
+      background: #fffbf2;
     }
     .toc-num {
-      font-family: var(--font-sans);
-      font-size: 0.72rem;
-      font-weight: 800;
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      font-weight: 700;
       color: var(--clr-gold);
-      letter-spacing: 0.5px;
       flex-shrink: 0;
-      margin-top: 2px;
-      min-width: 22px;
+      min-width: 26px;
+      line-height: 1.4;
     }
     .toc-text {
       font-family: var(--font-sans);
-      font-size: 0.84rem;
+      font-size: 0.82rem;
       font-weight: 600;
       color: var(--clr-primary);
-      line-height: 1.4;
+      line-height: 1.35;
     }
     .toc-card:hover .toc-text { color: var(--clr-accent); }
 
@@ -699,12 +727,16 @@
       position: relative;
       font-size: 1.04rem;
       font-style: italic;
-      color: var(--clr-text-lt);
-      border-left: 4px solid var(--clr-gold);
+      color: #4a2c00;
+      border-left: 5px solid var(--clr-gold);
       margin: var(--space-md) 0;
-      padding: 16px 20px 16px 24px;
-      background: var(--clr-bq-bg);
-      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 18px 22px 18px 28px;
+      background: linear-gradient(135deg, #fffcf0, #fff8e6);
+      border-radius: 0 6px 6px 0;
+      border-right: 1px solid #e8d5a0;
+      border-top: 1px solid #e8d5a0;
+      border-bottom: 1px solid #e8d5a0;
+      box-shadow: 2px 4px 16px rgba(249,168,37,0.1);
     }
     blockquote::before {
       content: '\201C';
@@ -719,22 +751,39 @@
       pointer-events: none;
     }
 
-    /* ════════════════════════════════════════════════════════
-       TAGLINE
-       ════════════════════════════════════════════════════════ */
+    /* ════ TAGLINE — Ornamental Quote Style ════ */
     .tagline {
+      position: relative;
       font-family: var(--font-kalam);
-      font-size: clamp(1.05rem, 2.5vw, 1.4rem);
+      font-size: clamp(1.08rem, 2.5vw, 1.38rem);
       text-align: center;
-      color: var(--clr-accent-dk);
+      color: #5a1e00;
       margin: var(--space-lg) auto var(--space-sm);
-      max-width: 700px;
-      padding: 16px 24px;
-      background: linear-gradient(135deg, var(--clr-gold-light), #fff8e6);
-      border: 1px dashed var(--clr-gold);
-      border-radius: var(--radius-md);
-      letter-spacing: 0.3px;
-      line-height: 1.6;
+      max-width: 680px;
+      padding: 22px 36px;
+      background: linear-gradient(160deg, #fffcf0 0%, #fff8e1 60%, #fef3c7 100%);
+      border-top: 2px solid var(--clr-gold);
+      border-bottom: 2px solid var(--clr-gold);
+      letter-spacing: 0.4px;
+      line-height: 1.75;
+      font-style: italic;
+    }
+    /* decorative corner bars */
+    .tagline::before, .tagline::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-color: var(--clr-gold);
+      border-style: solid;
+    }
+    .tagline::before {
+      top: -3px; left: -3px;
+      border-width: 3px 0 0 3px;
+    }
+    .tagline::after {
+      bottom: -3px; right: -3px;
+      border-width: 0 3px 3px 0;
     }
 
     /* ════════════════════════════════════════════════════════
@@ -743,78 +792,239 @@
     .section-divider {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
       max-width: var(--max-w);
       margin: 0 auto;
-      padding: 0 20px;
+      padding: 8px 20px;
     }
     .section-divider::before,
     .section-divider::after {
       content: '';
       flex: 1;
       height: 1px;
-      background: var(--clr-border);
+      background: linear-gradient(90deg, transparent, var(--clr-gold), transparent);
     }
     .section-divider span {
       color: var(--clr-gold);
-      font-size: 1.1rem;
+      font-size: 1.2rem;
+      text-shadow: 0 0 12px rgba(249,168,37,0.4);
     }
 
-    /* ════════════════════════════════════════════════════════
-       CTA BOX
-       ════════════════════════════════════════════════════════ */
+    /* ════ CTA BOX — Grand Traditional ════ */
     .cta-box {
-      background: linear-gradient(135deg, var(--clr-primary) 0%, var(--clr-primary-light) 100%);
-      border-radius: var(--radius-md);
-      padding: 28px 24px;
+      position: relative;
+      background: linear-gradient(160deg, #0e0e3a 0%, #1a1a5e 45%, #2a1060 100%);
+      border-radius: 8px;
+      padding: 42px 32px 36px;
       text-align: center;
       margin: var(--space-lg) 0 var(--space-sm);
+      overflow: hidden;
+      border: 1px solid rgba(249,168,37,0.3);
+      box-shadow: 0 12px 48px rgba(10,0,60,0.35), inset 0 0 60px rgba(249,168,37,0.04);
+    }
+    /* top ornamental bar */
+    .cta-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--clr-gold), #e65100, var(--clr-gold), transparent);
+    }
+    /* subtle mandala glow behind */
+    .cta-box::after {
+      content: '🔮';
+      position: absolute;
+      top: -18px; right: -18px;
+      font-size: 7rem;
+      opacity: 0.05;
+      pointer-events: none;
+      line-height: 1;
+    }
+    .cta-ornament {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--clr-gold);
+      margin-bottom: 10px;
+      opacity: 0.85;
     }
     .cta-box h3 {
-      color: var(--clr-gold);
-      font-size: 1.2rem;
-      margin: 0 0 10px;
+      font-family: var(--font-serif);
+      color: #fff;
+      font-size: clamp(1.25rem, 3vw, 1.75rem);
+      margin: 0 0 8px;
+      line-height: 1.3;
     }
+    .cta-box h3 span { color: var(--clr-gold); }
     .cta-box p {
-      color: rgba(255,255,255,0.82);
+      color: rgba(220,220,255,0.82);
       font-size: 0.95rem;
-      margin: 0 0 18px;
-      max-width: 500px;
+      margin: 0 0 10px;
+      max-width: 520px;
       margin-left: auto;
       margin-right: auto;
+      line-height: 1.7;
     }
-    .cta-btns { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+    .cta-trust {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 16px 0 22px;
+    }
+    .cta-trust-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+    }
+    .cta-trust-num {
+      font-family: var(--font-sans);
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--clr-gold);
+      line-height: 1;
+    }
+    .cta-trust-label {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      color: rgba(200,200,230,0.75);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .cta-divider {
+      width: 60px;
+      height: 1px;
+      background: rgba(249,168,37,0.35);
+      margin: 0 auto 20px;
+    }
+    .cta-btns { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
 
     .btn {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
-      padding: 12px 26px;
+      gap: 8px;
+      padding: 13px 28px;
       border-radius: 50px;
       font-family: var(--font-sans);
       font-weight: 700;
-      font-size: 0.93rem;
+      font-size: 0.95rem;
       cursor: pointer;
       border: none;
       text-decoration: none;
       transition: transform 0.2s, box-shadow 0.2s;
+      letter-spacing: 0.3px;
     }
-    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.22); border: none; }
-    .btn-wa    { background: #25D366; color: #fff; }
-    .btn-pay   { background: var(--clr-gold); color: var(--clr-primary); }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.28); border: none; }
+    .btn-wa  { background: #25D366; color: #fff; box-shadow: 0 4px 14px rgba(37,211,102,0.35); }
+    .btn-pay { background: linear-gradient(135deg, var(--clr-gold), #ffca28); color: var(--clr-primary); box-shadow: 0 4px 14px rgba(249,168,37,0.35); font-weight: 800; }
 
-    /* ════════════════════════════════════════════════════════
-       HEADLINE CLASSES — ইনলাইন স্টাইল বাদ
-       ════════════════════════════════════════════════════════ */
-    .headline-h1 {
-      border-bottom: 3px solid var(--clr-gold);
-      padding-bottom: 10px;
-      margin-top: var(--space-sm);
+    /* ════ HEADLINE CLASSES — Colorful Shimmer Gradient ════ */
+    @keyframes shimmer-sweep {
+      0%   { background-position: 200% center; }
+      100% { background-position: -200% center; }
     }
-    .headline-h2 { color: var(--clr-primary); }
-    .headline-h2-orange { color: #e67300; margin-top: var(--space-lg); margin-bottom: var(--space-md); }
-    .headline-h3 { color: var(--clr-primary); }
-    .headline-h3-orange { color: #ef6c00; font-weight: 700; margin-top: var(--space-lg); margin-bottom: var(--space-md); }
+    @keyframes bar-grow {
+      from { width: 0; opacity: 0; }
+      to   { width: 100%; opacity: 1; }
+    }
+
+    /* H1 & H2 shared wrapper */
+    .headline-h1, .headline-h2 {
+      position: relative;
+      padding: 20px 0 12px 20px;
+      margin-bottom: 16px;
+      border-left: 5px solid transparent;
+      border-image: linear-gradient(180deg, var(--clr-gold) 0%, #d4880a 50%, #9333ea 100%) 1;
+      background: linear-gradient(to right, rgba(249,168,37,.07) 0%, transparent 65%);
+      border-radius: 0 8px 8px 0;
+      will-change: background-position;
+      backface-visibility: hidden;
+    }
+
+    /* OM ornament above */
+    .headline-h1::before, .headline-h2::before {
+      content: 'º6  OM  º6';
+      display: block;
+      font-size: .54rem;
+      letter-spacing: .34em;
+      background: linear-gradient(90deg, #9333ea, var(--clr-gold), #d4880a, #9333ea);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer-sweep 4s linear infinite;
+      margin-bottom: 6px;
+      font-family: var(--font-sans);
+    }
+
+    /* animated underbar */
+    .headline-h1::after, .headline-h2::after {
+      content: '';
+      display: block;
+      height: 3px;
+      margin-top: 10px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--clr-gold), #9333ea, #3730a3, var(--clr-gold));
+      background-size: 200% auto;
+      animation: shimmer-sweep 5s linear infinite, bar-grow .8s ease-out;
+    }
+
+    /* H1 — deep gold-violet shimmer */
+    .headline-h1 {
+      background: linear-gradient(120deg,
+        #1a1a5e 0%, #4338ca 18%, #c2880a 36%,
+        var(--clr-gold) 50%, #9333ea 65%, #1a1a5e 100%);
+      background-size: 300% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer-sweep 8s linear infinite;
+      font-size: clamp(1.35rem, 3vw, 1.95rem);
+      font-weight: 900;
+      line-height: 1.3;
+    }
+
+    /* H2 — indigo-amber shimmer */
+    .headline-h2 {
+      background: linear-gradient(110deg,
+        #1a1a5e 0%, #4338ca 25%, #b27708 52%, #7c3aed 72%, #1a1a5e 100%);
+      background-size: 280% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer-sweep 9s linear infinite;
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-weight: 800;
+      line-height: 1.3;
+    }
+
+    .headline-h2-orange {
+      color: #c45200;
+      font-weight: 800;
+      margin-top: var(--space-lg);
+      margin-bottom: var(--space-md);
+      font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+    }
+
+    /* H3 — gem-accent with gradient border */
+    .headline-h3 {
+      color: #312e81;
+      border-left: 4px solid transparent;
+      border-image: linear-gradient(180deg, var(--clr-gold), #9333ea) 1;
+      padding-left: 13px;
+      margin: 20px 0 10px;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+    }
+    .headline-h3::before { content: '\25C8 '; color: #d4880a; font-size: .88em; }
+
+    .headline-h3-orange {
+      color: #c45200;
+      font-weight: 700;
+      margin-top: var(--space-lg);
+      margin-bottom: var(--space-md);
+    }
 
     /* ════════════════════════════════════════════════════════
        FOOTER
@@ -915,7 +1125,73 @@
       .panjika-strip-btn { padding: 10px 18px; font-size: 0.85rem; }
       .cta-btns { flex-direction: column; align-items: center; }
     }
-  </style>
+  
+    /* ════ WhatsApp Floating Button + Flash Messages ════ */
+    #wa-float {
+      position: fixed;
+      bottom: 80px;
+      right: 22px;
+      z-index: 900;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+    }
+    /* Flash message bubble */
+    #wa-flash-msg {
+      background: #fff;
+      color: #1a1a5e;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 7px 12px;
+      border-radius: 12px 12px 0 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+      border-left: 3px solid #25D366;
+      white-space: nowrap;
+      max-width: 200px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      opacity: 0;
+      transform: translateY(6px) scale(0.95);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      pointer-events: none;
+    }
+    #wa-flash-msg.show {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    /* WhatsApp circle button */
+    #wa-float a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 56px;
+      background: #25D366;
+      border-radius: 50%;
+      box-shadow: 0 4px 18px rgba(37,211,102,0.45);
+      text-decoration: none;
+      border: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      animation: wa-pulse 2.5s ease-in-out infinite;
+    }
+    #wa-float a:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 24px rgba(37,211,102,0.6);
+      border: none;
+    }
+    #wa-float i {
+      font-size: 1.8rem;
+      color: #fff;
+    }
+    @keyframes wa-pulse {
+      0%,100% { box-shadow: 0 4px 18px rgba(37,211,102,.45), 0 0 0 0 rgba(37,211,102,.4); }
+      50%      { box-shadow: 0 4px 18px rgba(37,211,102,.45), 0 0 0 14px rgba(37,211,102,0); }
+    }
+
+    </style>
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 </head>
 
 <body>
@@ -1006,7 +1282,11 @@
 
 <!-- ═══════════════════════════ সূচিপত্র ═══════════════════════════ -->
 <section class="content-section toc-section">
-  <p class="toc-label">📖 এই পাতায় যা পাবেন</p>
+  <div class="toc-header">
+    <span class="toc-header-ornament">✦ ॐ ✦</span>
+    <span class="toc-header-title">সূচিপত্র</span>
+    <span class="toc-header-sub">এই পাতায় যা পাবেন</span>
+  </div>
   <div class="toc-grid">
     <a href="#jyotish-aloy-atma-jiggasha" class="toc-card">
       <span class="toc-num">০১</span>
@@ -1104,14 +1384,30 @@
   <div class="tagline">✨ নিজেকে জানুন, ভাগ্য নয়—নিজের আলোয় পথ চলুন। ✨</div>
 
   <div class="cta-box">
-    <h3>🔮 জন্মকুণ্ডলী বিশ্লেষণ করাতে চান?</h3>
-    <p>ড. প্রদ্যুৎ আচার্যের সাথে সরাসরি পরামর্শ নিন — Vedic Astrology ও Palmistry-তে ২০+ বছরের অভিজ্ঞতা।</p>
+    <span class="cta-ornament">✦ &nbsp; পরামর্শ নিন &nbsp; ✦</span>
+    <h3>জন্মকুণ্ডলী বিশ্লেষণে <span>আগ্রহী?</span></h3>
+    <p>ড. প্রদ্যুৎ আচার্যের সাথে সরাসরি পরামর্শ নিন — Vedic Astrology ও Palmistry-তে ১৫+ বছরের অভিজ্ঞতা। আপনার জীবনের প্রশ্নের উত্তর খুঁজে পান।</p>
+    <div class="cta-trust">
+      <div class="cta-trust-item">
+        <span class="cta-trust-num">১৫+</span>
+        <span class="cta-trust-label">বছর অভিজ্ঞতা</span>
+      </div>
+      <div class="cta-trust-item">
+        <span class="cta-trust-num">১০০০+</span>
+        <span class="cta-trust-label">সন্তুষ্ট ক্লায়েন্ট</span>
+      </div>
+      <div class="cta-trust-item">
+        <span class="cta-trust-num">⭐⭐⭐⭐⭐</span>
+        <span class="cta-trust-label">রেটিং</span>
+      </div>
+    </div>
+    <div class="cta-divider"></div>
     <div class="cta-btns">
-      <a href="https://wa.me/919333122768?text=আমি%20জন্মকুণ্ডলী%20বিশ্লেষণ%20করাতে%20চাই" class="btn btn-wa" target="_blank" rel="noopener">
+      <a href="https://wa.me/919333122768?text=নমস্কার!%20জন্মকুণ্ডলী%20বিশ্লেষণ%20করাতে%20চাই।" class="btn btn-wa" target="_blank" rel="noopener">
         <i class="fab fa-whatsapp"></i> WhatsApp করুন
       </a>
-      <a href="https://www.myastrology.in" class="btn btn-pay" target="_blank" rel="noopener">
-        <i class="fas fa-calendar-check"></i> এখনই বুক করুন
+      <a href="https://rzp.io/rzp/8LssB8Dh" class="btn btn-pay" target="_blank" rel="noopener">
+        <i class="fas fa-credit-card"></i> এখনই বুক করুন
       </a>
     </div>
   </div>
@@ -1618,7 +1914,15 @@
   <!-- ✅ যোগাযোগ তথ্য — Email footer-এ -->
   <div class="footer-contact">
     <a href="tel:+919333122768"><i class="fas fa-phone"></i> +91-9333122768</a>
-    <a href="/cdn-cgi/l/email-protection#3c55525a537c51455d4f484e5350535b45125552"><i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="660f080009260b1f07151214090a09011f480f08">[email&#160;protected]</span></a>
+    <a id="footer-email-link" href="#"><i class="fas fa-envelope"></i> <span id="footer-email-text">ইমেইল লোড হচ্ছে…</span></a>
+<script>
+(function(){
+  var u='info',d='myastrology.in';
+  var el=document.getElementById('footer-email-link');
+  var tx=document.getElementById('footer-email-text');
+  if(el&&tx){el.href='mailto:'+u+'@'+d; tx.textContent=u+'@'+d;}
+})();
+</script>
     <a href="https://astro.myastrology.in/panjika.html" target="_blank" rel="noopener"><i class="fas fa-calendar-alt"></i> আজকের পঞ্জিকা</a>
   </div>
 
@@ -1711,6 +2015,45 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
+})();
+</script>
+
+
+<!-- WhatsApp Floating Button + Flash Messages -->
+<div id="wa-float" aria-label="WhatsApp-এ যোগাযোগ করুন">
+  <div id="wa-flash-msg">নমস্কার! 🙏 পরামর্শ নিন</div>
+  <a href="https://wa.me/919333122768?text=নমস্কার!%20জ্যোতিষ%20পরামর্শ%20নিতে%20চাই।"
+     target="_blank" rel="noopener" aria-label="WhatsApp করুন">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+</div>
+<script>
+(function(){
+  var msgs = [
+    "🔮 কুণ্ডলী বিশ্লেষণ করুন",
+    "🌟 আজই পরামর্শ নিন",
+    "💬 Online পরামর্শ পান",
+    "✨ ভাগ্য জানতে ক্লিক করুন",
+    "🙏 বিনামূল্যে জিজ্ঞেস করুন",
+    "⭐ ১০০০+ সন্তুষ্ট ক্লায়েন্ট"
+  ];
+  var el = document.getElementById('wa-flash-msg');
+  var i = 0;
+  function showNext() {
+    el.classList.remove('show');
+    setTimeout(function(){
+      el.textContent = msgs[i % msgs.length];
+      el.classList.add('show');
+      i++;
+      setTimeout(function(){
+        el.classList.remove('show');
+      }, 2400);
+    }, 400);
+  }
+  setTimeout(function(){
+    showNext();
+    setInterval(showNext, 3000);
+  }, 2000);
 })();
 </script>
 
