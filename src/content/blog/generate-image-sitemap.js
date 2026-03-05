@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const BASE_URL = 'https://astro.myastrology.in';
+const BASE_URL = 'https://www.myastrology.in';
 const OUT_FILE = path.join(process.cwd(), 'image-sitemap.xml');
 
 // ✅ এই ফোল্ডারগুলো scan করবে না
