@@ -1,8 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const BASE_URL = 'https://astro.myastrology.in';
-const OUTPUT = path.join(process.cwd(), 'public', 'my-sitemap.xml');
+const BASE_URL = 'https://www.myastrology.in';
+const OUTPUT = path.join(process.cwd(), 'sitemap.xml');
 
 // ✅ HTML পেজসমূহ (Static Pages)
 const staticPages = [
