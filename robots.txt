@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 Disallow: /*.xml$
 
-Sitemap: https://astro.myastrology.in/public/sitemap-index.xml
-Sitemap: https://astro.myastrology.in/public/my-sitemap.xml
-Sitemap: https://astro.myastrology.in/public/image-sitemap.xml
-Sitemap: https://astro.myastrology.in/public/video-sitemap.xml
+Sitemap: https://www.myastrology.in/public/sitemap-index.xml
+Sitemap: https://www.myastrology.in/public/sitemap.xml
+Sitemap: https://www.myastrology.in/public/image-sitemap.xml
+Sitemap: https://www.myastrology.in/public/video-sitemap.xml
