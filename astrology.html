@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="bn" dir="ltr">
+<html lang="bn-IN" dir="ltr" translate="no">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google" content="notranslate" />
 
   <!-- ═══════════════════════════════════════════════════════════
        PERFORMANCE: Resource Hints — DNS প্রি-কানেক্ট ও প্রিলোড
@@ -20,20 +21,23 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;700&family=Noto+Sans+Bengali:wght@400;700;800&family=Kalam:wght@400;700&display=swap" rel="stylesheet" />
 
   <!-- Favicon -->
-  <meta name="theme-color" content="#1a1a5e">
-  <link rel="icon" type="image/x-icon" href="https://astro.myastrology.in/favicon.ico" />
+  <meta name="theme-color" content="#0a192f">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
   <!-- ═══════════════════════════════════════════════════════════
        SEO: টাইটেল — বাংলা + ইংরেজি কীওয়ার্ড সমৃদ্ধ, ৬০ অক্ষরের মধ্যে
        ═══════════════════════════════════════════════════════════ -->
-  <title>বৈদিক জ্যোতিষ শাস্ত্র | Vedic Astrology | Prodyut Acharya</title>
+  <title>বৈদিক জ্যোতিষ শাস্ত্র | Vedic Astrology & Jyotish Vidya | Dr. Prodyut Acharya – MyAstrology</title>
 
   <!-- ✅ SEO: Description — ১৫০–১৬০ অক্ষর, স্বাভাবিক ভাষায়, keyword-natural -->
-  <meta name="description" content="জ্যোতিষ শাস্ত্র হলো ভবিষ্যৎ জানার নয়, আত্মজ্ঞানের বিজ্ঞান। Vedic Astrology, জন্মকুণ্ডলী ও হস্তরেখা বিশ্লেষণে অভিজ্ঞ Dr. Prodyut Acharya, MyAstrology, Ranaghat।" />
+  <meta name="description" content="বৈদিক জ্যোতিষ শাস্ত্র ও Jyotish Vidya — ভবিষ্যৎ জানার নয়, আত্মজ্ঞানের বিজ্ঞান। Vedic Jyotish, জন্মকুণ্ডলী বিশ্লেষণ ও হস্তরেখা পরামর্শে অভিজ্ঞ Dr. Prodyut Acharya, MyAstrology, Ranaghat।" />
 
   <!-- ✅ FIX: Keyword Stuffing দূর — মাত্র ১০টি ফোকাসড কীওয়ার্ড
        (Google meta keywords ব্যবহার করে না, তবে Bing করে। অতিরিক্ত keyword Google-এ spam signal) -->
-  <meta name="keywords" content="বৈদিক জ্যোতিষ, জ্যোতিষ শাস্ত্র, Vedic Astrology, জন্মকুণ্ডলী, হস্তরেখা, Best Astrologer West Bengal, Prodyut Acharya, MyAstrology Ranaghat, আজকের রাশিফল, Jyotish" />
+  <meta name="keywords" content="বৈদিক জ্যোতিষ, জ্যোতিষ শাস্ত্র, Jyotish Shastra, Jyotish Vidya, Vedic Astrology, Vedic Jyotish, জন্মকুণ্ডলী, Janam Kundali, হস্তরেখা, Palmistry, Best Astrologer Ranaghat, Bengali Astrologer West Bengal, Online Jyotish Consultation, Prodyut Acharya, MyAstrology, Jyotish Acharya, Rashifal, Horoscope Prediction" />
 
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   <meta name="author" content="Dr. Prodyut Acharya" />
@@ -42,12 +46,12 @@
   <meta name="language" content="Bengali" />
 
   <!-- Canonical -->
-  <link rel="canonical" href="https://astro.myastrology.in/astrology" />
+  <link rel="canonical" href="https://www.myastrology.in/astrology.html" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="বৈদিক জ্যোতিষ শাস্ত্র ও আত্মজ্ঞান | Dr. Prodyut Acharya – MyAstrology" />
-  <meta property="og:description" content="জ্যোতিষ — ভবিষ্যৎ জানার নয়, আত্মজ্ঞান ও জীবন বদলানোর বিজ্ঞান। Vedic Astrology, জন্মকুণ্ডলী ও হস্তরেখা পরামর্শ — ড. প্রদ্যুৎ আচার্য।" />
-  <meta property="og:url" content="https://astro.myastrology.in/astrology" />
+  <meta property="og:title" content="বৈদিক জ্যোতিষ শাস্ত্র ও Jyotish Vidya | Dr. Prodyut Acharya – MyAstrology" />
+  <meta property="og:description" content="জ্যোতিষ — ভবিষ্যৎ জানার নয়, আত্মজ্ঞান ও জীবন বদলানোর বিজ্ঞান। Vedic Jyotish, জন্মকুণ্ডলী, হস্তরেখা পরামর্শ — ড. প্রদ্যুৎ আচার্য, MyAstrology Ranaghat।" />
+  <meta property="og:url" content="https://www.myastrology.in/astrology.html" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="MyAstrology – Dr. Prodyut Acharya" />
   <meta property="og:image" content="https://astro.myastrology.in/blog/astrology-cover.webp" />
@@ -75,7 +79,7 @@
       "author": {
         "@type": "Person",
         "name": "Dr. Prodyut Acharya",
-        "url": "https://astro.myastrology.in/about",
+        "url": "https://www.myastrology.in/about.html",
         "sameAs": [
           "https://www.facebook.com/Dr.ProdyutAcharya",
           "https://x.com/AcharyaProdyut",
@@ -85,22 +89,22 @@
       "publisher": {
         "@type": "Organization",
         "name": "MyAstrology",
-        "url": "https://astro.myastrology.in",
+        "url": "https://www.myastrology.in",
         "logo": {
           "@type": "ImageObject",
           "url": "https://astro.myastrology.in/images/MyAstrology-Ranghat-logo.png"
         }
       },
-      "mainEntityOfPage": "https://astro.myastrology.in/astrology",
+      "mainEntityOfPage": "https://www.myastrology.in/astrology.html",
       "datePublished": "2024-01-15",
-      "dateModified": "2025-07-01",
-      "inLanguage": "bn"
+      "dateModified": "2026-03-06",
+      "inLanguage": "bn-IN"
     },
     {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "MyAstrology – Dr. Prodyut Acharya",
-      "url": "https://astro.myastrology.in",
+      "url": "https://www.myastrology.in",
       "telephone": "+91-9333122768",
       "email": "info@myastrology.in",
       "description": "Vedic Astrology, জন্মকুণ্ডলী বিশ্লেষণ, হস্তরেখা — Best Astrologer in West Bengal।",
@@ -114,7 +118,7 @@
         "postalCode": "741201",
         "addressCountry": "IN"
       },
-      "openingHours": "Mo-Su 09:00-21:00",
+      "openingHours": "Mo-Sa 09:00-20:00",
       "geo": {
         "@type": "GeoCoordinates",
         "latitude": "23.1765",
@@ -153,7 +157,7 @@
           "name": "আজকের রাশিফল ও পঞ্জিকা কোথায় পাব?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "আজকের রাশিফল, প্রেম, কর্ম, অর্থ, স্বাস্থ্য, শুভ সংখ্যা, শুভ রং ও শুভ সময় জানতে ভিজিট করুন: astro.myastrology.in/panjika.html"
+            "text": "আজকের রাশিফল, প্রেম, কর্ম, অর্থ, স্বাস্থ্য, শুভ সংখ্যা, শুভ রং ও শুভ সময় জানতে ভিজিট করুন: www.myastrology.in/panjika.html"
           }
         }
       ]
@@ -290,7 +294,7 @@
     .skip-link:focus { top: 0; }
 
     /* ════════════════════════════════════════════════════════
-       HEADER
+       HEADER — fixed top so hamburger always accessible
        ════════════════════════════════════════════════════════ */
     header {
       display: grid;
@@ -300,11 +304,15 @@
       padding: 8px 18px;
       background: var(--clr-bg-warm);
       border-bottom: 2px solid var(--clr-border);
-      position: sticky;
+      position: fixed;
       top: 0;
+      left: 0;
+      right: 0;
       z-index: 1000;
       box-shadow: var(--shadow-sm);
     }
+    /* Push content below fixed header */
+    body { padding-top: 64px; }
 
     .logo {
       display: flex;
@@ -1600,7 +1608,10 @@
     }
 
     </style>
-  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+  <link rel="sitemap" type="application/xml" href="https://www.myastrology.in/sitemap.xml">
+  <link rel="alternate" hreflang="bn-IN" href="https://www.myastrology.in/astrology.html">
+  <link rel="alternate" hreflang="x-default" href="https://www.myastrology.in/astrology.html">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"হোম","item":"https://www.myastrology.in/"},{"@type":"ListItem","position":2,"name":"জ্যোতিষ শাস্ত্র","item":"https://www.myastrology.in/astrology.html"}]}</script>
 </head>
 
 <body>
@@ -1655,15 +1666,14 @@
   <a href="/vedic-astronomy.html">🌌 জ্যোতির্বিজ্ঞান</a>
   <a href="/palmistry.html">✋ হস্তরেখা</a>
   <a href="/rashifal.html">♈ রাশিফল</a>
-  <a href="https://astro.myastrology.in/panjika.html">📅 দিন পঞ্জিকা</a>
+  <a href="https://www.myastrology.in/panjika.html">📅 দিন পঞ্জিকা</a>
   <a href="/video.html">▶️ ভিডিও</a>
   <a href="vastu-science.html">🏠 বাস্তু শাস্ত্র</a>
   <a href="/gallery.html">🖼️ গ্যালারি</a>
   <a href="/about.html">👤 আমাদের সম্পর্কে</a>
   <a href="/blog-list.html">📝 ব্লগসমূহ</a>
-  <a href="https://www.myastrology.in">🗓️ বুকিং</a>
   <a href="/reviews.html">⭐ রিভিউ</a>
-  <a href="https://wa.me/919333122768">📲 যোগাযোগ</a>
+  <a href="https://wa.me/919333122768" target="_blank" rel="noopener" style="color:#25d366;font-weight:800;">📲 WhatsApp পরামর্শ</a>
 </nav>
 
 <div class="backdrop" id="backdrop" aria-hidden="true"></div>
@@ -1745,7 +1755,7 @@
         </div>
       </div>
     </div>
-    <a href="https://astro.myastrology.in/panjika.html"
+    <a href="https://www.myastrology.in/panjika.html"
        class="panjika-strip-btn"
        target="_blank" rel="noopener noreferrer">
       আজই দেখুন <i class="fas fa-arrow-right"></i>
@@ -1756,13 +1766,13 @@
 <!-- ═══════════════════════════ SECTION 1 ═══════════════════════════ -->
 <section class="content-section">
   <h1 id="jyotish-aloy-atma-jiggasha" class="headline-h1">
-    🔮 জ্যোতিষের আলোয় আত্ম জিজ্ঞাসা ও ভাগ্যের সন্ধান
+    🔮 জ্যোতিষের আলোয় আত্ম জিজ্ঞাসা — Vedic Jyotish ও ভাগ্যের সন্ধান
   </h1>
-  <h2 class="headline-h2">✨ MyAstrology জ্যোতিষ ও হস্তরেখাবিদ্ প্রদ্যুৎ আচার্য</h2>
+  <h2 class="headline-h2">✨ MyAstrology — Jyotish Acharya ও Palmistry বিশেষজ্ঞ ড. প্রদ্যুৎ আচার্য</h2>
 
-  <p>ভারতীয় বৈদিক <a href="https://prodyutacharya.blogspot.com/2019/01/What-is-astrology.html" target="_blank" rel="noopener noreferrer">জ্যোতিষ</a> শুধুমাত্র একটি শাস্ত্র নয় — বরং একটি প্রাচীন জ্ঞানের উৎস, যা শব্দতত্ত্ব থেকে উদ্ভূত, "জ্যোতি + ইষ" অর্থাৎ "আলো" এবং "ঈশ্বর" এর মিলন।</p>
+  <p>ভারতীয় <strong>বৈদিক জ্যোতিষ</strong> বা <strong>Vedic Astrology</strong> শুধুমাত্র একটি শাস্ত্র নয় — বরং একটি প্রাচীন জ্ঞানের উৎস, যা শব্দতত্ত্ব থেকে উদ্ভূত, "জ্যোতি + ইষ" অর্থাৎ "আলো" এবং "ঈশ্বর" এর মিলন। <strong>Jyotish Shastra</strong> বা <strong>Jyotish Vidya</strong> হলো সেই বিদ্যা যা মহাকাশের ছন্দে মানুষের অন্তরের কথা বলে।</p>
 
-  <p>"জ্যোতি" অর্থাৎ আলোর প্রাচীর পেরিয়ে প্রবাহিত চেতনার প্রতীক, আর "ইষ" অর্থ অনুসরণ বা অন্বেষণ। তাই জ্যোতিষ হলো সেই আলো যা চেতনার গভীরে প্রবেশ করে আত্মার গূঢ় ভাষা বোঝার পদ্ধতি।</p>
+  <p>"জ্যোতি" অর্থাৎ আলোর প্রাচীর পেরিয়ে প্রবাহিত চেতনার প্রতীক, আর "ইষ" অর্থ অনুসরণ বা অন্বেষণ। তাই <a href="https://prodyutacharya.blogspot.com/2019/01/What-is-astrology.html" target="_blank" rel="noopener noreferrer">জ্যোতিষ শাস্ত্র</a> হলো সেই আলো যা চেতনার গভীরে প্রবেশ করে আত্মার গূঢ় ভাষা বোঝার পদ্ধতি।</p>
 
   <p>ভারতীয় জ্যোতিষ কখনোই সাধারণ ভবিষ্যৎবাণী নয়; এটি এক প্রজ্ঞার শাস্ত্র — "consciousness revealing system," যা মানুষের আত্মার গন্তব্য নির্ধারণ করে। এটি বলে না তুমি কী পাবে, বরং বলে তুমি কে, কেন এসেছো, এবং তোমার অভিমুখ কোথায়।</p>
 
@@ -1770,9 +1780,9 @@
 
   <p>এই শাস্ত্র ভবিষ্যতকে একটি পরিবর্তনশীল সম্ভাব্য ধারা হিসেবে দেখে, যা নির্ধারিত নয়। বরং আত্মার জ্ঞান ও পূর্বকর্মের সঙ্গে ঐক্যবদ্ধ হয়ে নতুন পথের সন্ধান দেয়।</p>
 
-  <h3 class="headline-h3">🪐 জন্মকুণ্ডলী: আত্মার নিরব চিত্রনাট্য</h3>
+  <h3 class="headline-h3">🪐 জন্মকুণ্ডলী ও Janam Kundali: আত্মার নিরব চিত্রনাট্য</h3>
 
-  <p>জন্মকুণ্ডলী শুধুমাত্র গ্রহ-নক্ষত্রের মানচিত্র নয়, এটি আত্মার 'soul-script', যেখানে প্রতিটি গ্রহ ও রাশি মানুষের মানসিকতা, চরিত্র, সংকল্প এবং জীবনের অভিজ্ঞতার সূক্ষ্ম প্রতিফলন।</p>
+  <p><strong>জন্মকুণ্ডলী</strong> বা <strong>Janam Kundali</strong> বা <strong>Birth Chart</strong> — শুধুমাত্র গ্রহ-নক্ষত্রের মানচিত্র নয়, এটি আত্মার 'soul-script', যেখানে প্রতিটি গ্রহ ও রাশি মানুষের মানসিকতা, চরিত্র, সংকল্প এবং জীবনের অভিজ্ঞতার সূক্ষ্ম প্রতিফলন।</p>
 
   <p>জন্মের মুহূর্তে মহাবিশ্ব একটি নিরব সংকেত পাঠায় — "এই আত্মা এসেছে তার নির্দিষ্ট যাত্রার জন্য।"</p>
 
@@ -1791,16 +1801,16 @@
 <section class="svc-section" id="service-consult">
 
   <div class="svc-hd">
-    <span class="svc-om">&#x2726; &nbsp; আমাদের সেবাসমূহ &nbsp; &#x2726;</span>
-    <span class="svc-title">বেছে নিন <em>আপনার পরামর্শ</em></span>
-    <p>ড. প্রদ্যুৎ আচার্যের সাথে Vedic Astrology ও Palmistry পরামর্শ &#8212; অনলাইনে, আপনার সুবিধামতো সময়ে</p>
+    <span class="svc-om">&#x2726; &nbsp; Online Jyotish Consultation &nbsp; &#x2726;</span>
+    <span class="svc-title">বেছে নিন <em>আপনার Jyotish Poramorsho</em></span>
+    <p>ড. প্রদ্যুৎ আচার্যের সাথে <strong>Vedic Astrology</strong>, <strong>Palmistry</strong> ও <strong>Kundali Analysis</strong> — অনলাইনে, আপনার সুবিধামতো সময়ে &bull; বাংলা ও হিন্দিতে</p>
   </div>
 
   <div class="svc-trust">
     <div class="svc-ti"><span class="svc-tn">১৫+</span><span class="svc-tl">বছর অভিজ্ঞতা</span></div>
-    <div class="svc-ti"><span class="svc-tn">১০০০+</span><span class="svc-tl">সন্তুষ্ট ক্লায়েন্ট</span></div>
+    <div class="svc-ti"><span class="svc-tn">১০,০০০+</span><span class="svc-tl">সন্তুষ্ট ক্লায়েন্ট</span></div>
     <div class="svc-ti"><span class="svc-tn">&#11088; ৫.০</span><span class="svc-tl">রেটিং</span></div>
-    <div class="svc-ti"><span class="svc-tn">বাংলা</span><span class="svc-tl">ভাষায় পরামর্শ</span></div>
+    <div class="svc-ti"><span class="svc-tn">বাংলা ও হিন্দি</span><span class="svc-tl">ভাষায় পরামর্শ</span></div>
   </div>
 
   <div class="svc-grid">
@@ -2195,10 +2205,10 @@
 <!-- ═══════════════════════════ SECTION 2 ═══════════════════════════ -->
 <section class="content-section">
   <h2 id="vedic-jyotish-otputti" class="headline-h2">
-    ⏳ বৈদিক জ্যোতিষ শাস্ত্রের উৎপত্তি ও ঐতিহাসিক শিকড়
+    ⏳ বৈদিক জ্যোতিষ শাস্ত্র ও Vedic Jyotish-এর উৎপত্তি ও ঐতিহাসিক শিকড়
   </h2>
 
-  <p><strong>প্রাচীন ভারতীয় জ্যোতিষের গভীর ধারা</strong></p>
+  <p><strong>প্রাচীন ভারতীয় জ্যোতিষের গভীর ধারা — Jyotish Shastra ও Jyotish Vidya</strong></p>
 
   <p>"কালের ছন্দে যে জাতি তাল মিলিয়ে চলে, সে-ই প্রকৃত সভ্য।" — এই বাণী যেন ভারতীয় সভ্যতার সেই অন্তর্নিহিত দর্শনকে প্রকাশ করে, যা সময় ও মহাবিশ্বের ছন্দময় গতিবিধির সঙ্গে মানিয়ে চলার গুরুত্বের ওপর ভিত্তি করে।</p>
 
@@ -2297,10 +2307,10 @@
 <!-- ═══════════════════════════ SECTION 4 ═══════════════════════════ -->
 <section class="content-section">
   <h2 id="modern-psychology-jyotish" class="headline-h2">
-    ✨ আধুনিক মনোবিজ্ঞান ও জ্যোতিষের মিলন: Prodyut Acharya'র বিশ্লেষণ
+    ✨ আধুনিক মনোবিজ্ঞান ও Vedic Jyotish-এর মিলন: Jyotish Acharya Prodyut Acharya'র বিশ্লেষণ
   </h2>
 
-  <p>মনোবিজ্ঞানী সিগমুন্ড ফ্রয়েড বলেছেন, "মানুষ সচেতন নয় তার অন্তর্জগতের অধিকাংশের প্রতি।" ভারতীয় জ্যোতিষ শাস্ত্র সেই অবচেতন চেতনার অন্ধকারকে আলোর দিশা দেখায়, আত্মার অন্তর্দৃষ্টির পথিকৃৎ হয়।</p>
+  <p>মনোবিজ্ঞানী সিগমুন্ড ফ্রয়েড বলেছেন, "মানুষ সচেতন নয় তার অন্তর্জগতের অধিকাংশের প্রতি।" <strong>ভারতীয় জ্যোতিষ শাস্ত্র</strong> বা <strong>Jyotish Shastra</strong> সেই অবচেতন চেতনার অন্ধকারকে আলোর দিশা দেখায়, আত্মার অন্তর্দৃষ্টির পথিকৃৎ হয়।</p>
 
   <p>এই প্রজ্ঞার আলোয়, একজন প্রফেশনাল Astrologer ও Palmist যেমন <strong>প্রদ্যুৎ আচার্য</strong> আমাদের জীবনের সূক্ষ্ম মানসিক ও আত্মিক পরিস্থিতি উপলব্ধি করতে সাহায্য করেন, যা সহজে অন্য কোনো বিজ্ঞানের মাধ্যমে বোঝা যায় না।</p>
 
@@ -2668,7 +2678,7 @@
 
   <p class="footer-desc">
     তিথি, গ্রহের গতি ও পঞ্জিকার সূক্ষ্ম গণনা শুধু অঙ্ক নয় — এগুলো আমাদের উৎসব ও জীবনের ছন্দের মূল রহস্য।
-    <strong>MyAstrology</strong>-এর জ্যোতিষ ও হস্তরেখাবিদ্ <strong>ড. প্রদ্যুৎ আচার্য</strong> আপনাকে দেবেন বৈজ্ঞানিক যুক্তি ও প্রাচীন জ্ঞানের সমন্বয়ে নির্ভুল ব্যাখ্যা।
+    <strong>MyAstrology</strong>-এর <strong>Vedic Astrology</strong> ও <strong>Palmistry</strong> বিশেষজ্ঞ <strong>ড. প্রদ্যুৎ আচার্য</strong> আপনাকে দেবেন <strong>Online Jyotish Consultation</strong> — বৈজ্ঞানিক যুক্তি ও প্রাচীন জ্ঞানের সমন্বয়ে নির্ভুল ব্যাখ্যা। <em>Best Astrologer in Ranaghat, West Bengal।</em>
   </p>
 
   <!-- ✅ যোগাযোগ তথ্য — Email footer-এ -->
@@ -2683,7 +2693,7 @@
   if(el&&tx){el.href='mailto:'+u+'@'+d; tx.textContent=u+'@'+d;}
 })();
 </script>
-    <a href="https://astro.myastrology.in/panjika.html" target="_blank" rel="noopener"><i class="fas fa-calendar-alt"></i> আজকের পঞ্জিকা</a>
+    <a href="https://www.myastrology.in/panjika.html" target="_blank" rel="noopener"><i class="fas fa-calendar-alt"></i> আজকের পঞ্জিকা</a>
   </div>
 
   <div class="footer-divider"></div>
@@ -2701,7 +2711,7 @@
   <div class="footer-divider"></div>
 
   <div class="footer-copy">
-    <p>© 2025 MyAstrology | ড. প্রদ্যুৎ আচার্য | সকল অধিকার সংরক্ষিত</p>
+    <p>© 2025–2026 MyAstrology | ড. প্রদ্যুৎ আচার্য | সকল অধিকার সংরক্ষিত</p>
     <p>
       প্রামাণিক Vedic Astrology ও হস্তরেখা পরামর্শ | Ranaghat, Nadia, West Bengal, India — 741201
     </p>
@@ -2709,7 +2719,7 @@
       <a href="/about.html">আমাদের সম্পর্কে</a> &nbsp;|&nbsp;
       <a href="/reviews.html">রিভিউ</a> &nbsp;|&nbsp;
       <a href="https://blog.myastrology.in">বাংলা ব্লগ</a> &nbsp;|&nbsp;
-      <a href="https://astro.myastrology.in/panjika.html">পঞ্জিকা</a>
+      <a href="https://www.myastrology.in/panjika.html">পঞ্জিকা</a>
     </p>
   </div>
 </footer>
@@ -2792,10 +2802,12 @@
   var msgs = [
     "🔮 কুণ্ডলী বিশ্লেষণ করুন",
     "🌟 আজই পরামর্শ নিন",
-    "💬 Online পরামর্শ পান",
-    "✨ ভাগ্য জানতে ক্লিক করুন",
-    "🙏 বিনামূল্যে জিজ্ঞেস করুন",
-    "⭐ ১০০০+ সন্তুষ্ট ক্লায়েন্ট"
+    "✋ হস্তরেখা বিচার করুন",
+    "⭐ ১০,০০০+ সন্তুষ্ট ক্লায়েন্ট",
+    "💬 বাংলায় Online পরামর্শ",
+    "🙏 এখনই WhatsApp করুন",
+    "📿 Jyotish Poramorsho নিন",
+    "💍 যোটোক বিচার করুন"
   ];
   var el = document.getElementById('wa-flash-msg');
   var i = 0;
