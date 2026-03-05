@@ -1,8 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const BASE_URL = 'https://astro.myastrology.in';
-const OUT_FILE = path.join(process.cwd(), 'public', 'video-sitemap.xml');
+const BASE_URL = 'https://www.myastrology.in';
+const OUT_FILE = path.join(process.cwd(), 'video-sitemap.xml');
 
 function extractLiteYouTube(html) {
   const videos = [];
