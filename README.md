@@ -33,6 +33,7 @@
 | 📞 | [যোগাযোগ](#-contact) |
 | 👉 | [Consultation বুক করুন](#-book-your-consultation) |
 | 📁 | [Project Structure](#-project-structure) |
+| 📝 | [Blog Posts](#-blog-posts) |
 | 🗺️ | [Sitemaps](#️-sitemaps) |
 | ⚙️ | [Auto-Generated Files](#️-auto-generated-files) |
 | 📌 | [SEO Keywords](#-seo-keywords) |
@@ -71,7 +72,7 @@
 <br/>
 
 | বিষয় | তথ্য |
-|:---:|:---|
+|:---|:---|
 | 📍 অবস্থান | রানাঘাট, নদিয়া, পশ্চিমবঙ্গ |
 | 🎓 বিশেষজ্ঞতা | বৈদিক জ্যোতিষ, হস্তরেখা, বাস্তু, সংখ্যাতত্ত্ব |
 | 🌐 ওয়েবসাইট | [www.myastrology.in](https://www.myastrology.in) |
@@ -115,57 +116,104 @@ MyAstrology/services/   (GitHub repo root)
 │
 ├── 📂 .github/
 │   └── 📂 workflows/
-│       ├── 🔄 fetch-reviews.yml          ← Google Reviews auto-fetch
-│       └── 🔄 generate-list.yml          ← Auto CI/CD pipeline
+│       ├── 🔄 fetch-reviews.yml            ← Google Reviews auto-fetch
+│       └── 🔄 generate-list.yml            ← Auto CI/CD pipeline
 │
 ├── 📂 assets/
 │   └── 📂 css/
-│       └── 🎨 social-share.css
+│       └── 🎨 social-share.css             ← Social share styles
 │
-├── 📂 assist/                             ← Assist resources
-├── 📂 blog/                               ← Blog assets
-├── 📂 fonts/                              ← Custom fonts
-├── 📂 gallery/                            ← Gallery images
-├── 📂 images/                             ← Site images
-│
-├── 📂 public/                             ✅ Sitemap folder
-│   ├── 🗺️ sitemap-index.xml              ✅ Master sitemap index
-│   ├── 📝 my-sitemap.xml                  ✅ Blog post sitemap
-│   ├── 🖼️ image-sitemap.xml              ✅ Image sitemap
-│   └── 🎬 video-sitemap.xml               ✅ Video sitemap
+├── 📂 assist/                              ← Assist resources
+├── 📂 blog/                                ← Blog assets
+├── 📂 fonts/                               ← Custom fonts
+├── 📂 gallery/                             ← Gallery images
+├── 📂 images/                              ← Site images
 │
 ├── 📂 src/
 │   └── 📂 content/
-│       └── 📂 blog/                       ✅ Blog content + generators
-│           ├── ⚙️ generate-list.js        ← Blog list generator
-│           ├── ⚙️ generate-sitemap.js     ← Sitemap generator
-│           ├── ⚙️ generate-image-sitemap.js
-│           ├── ⚙️ generate-video-sitemap.js
-│           ├── 📄 list.json               ← Auto-generated blog list
-│           └── 📝 [*.md blog files]       ← All blog posts
+│       └── 📂 blog/                        ✅ Blog content + generators
+│           ├── ⚙️ generate-list.js         ← Blog list generator
+│           ├── ⚙️ generate-sitemap.js      ← Blog sitemap generator
+│           ├── ⚙️ generate-image-sitemap.js← Image sitemap generator
+│           ├── ⚙️ generate-video-sitemap.js← Video sitemap generator
+│           ├── 📄 list.json                ← Auto-generated blog list
+│           └── 📝 [*.md blog files]        ← 35+ blog posts (বাংলা)
 │
 ├── 🚫 .gitignore
-├── 🔕 .nojekyll                           ← Disables Jekyll on GitHub Pages
-├── ❌ 404.html                            ← Custom 404 page
-├── 🌐 CNAME                               ← Custom domain: www.myastrology.in
+├── 🔕 .nojekyll                            ← Disables Jekyll on GitHub Pages
+├── ❌ 404.html                             ← Custom 404 page
+├── 🌐 CNAME                                ← Custom domain: www.myastrology.in
 ├── 📖 README.md
-├── 🤖 robots.txt                          ✅ Root-এ (SEO এর জন্য জরুরি)
+├── 🤖 robots.txt                           ✅ SEO এর জন্য জরুরি
 ├── 📦 package.json
+├── ⚙️ update_reviews.js                   ← Reviews updater script
+├── 📄 reviews.json                         ← Auto-fetched Google Reviews
 │
-├── 🏠 index.html                          ← Homepage
-├── ℹ️  about.html
-├── 🔮 astrology.html
-├── 📝 blog.html
-├── 📋 blog-list.html
-├── 🖼️ gallery.html
-├── ✋ palmistry.html
-├── 📅 panjika.html                        ← বাংলা পঞ্জিকা ও দৈনিক রাশিফল
-├── ⭐ rashifal.html
-├── ⭐ reviews.html
-├── 🏠 vastu-science.html
-├── 🪐 vedic-astronomy.html
-└── 🎬 video.html
+├── 🗺️ sitemap-index.xml                   ✅ Master sitemap index
+├── 🗺️ sitemap.xml                         ✅ Main sitemap
+├── 🖼️ image-sitemap.xml                   ✅ Image sitemap
+├── 🎬 video-sitemap.xml                    ✅ Video sitemap
+│
+├── 🏠 index.html                           ← Homepage
+├── ℹ️  about.html                          ← About page
+├── 🔮 astrology.html                       ← Astrology services
+├── 📝 blog.html                            ← Blog page
+├── 📋 blog-list.html                       ← Blog listing
+├── 🖼️ gallery.html                        ← Photo gallery
+├── ✋ palmistry.html                       ← Palmistry service
+├── 📅 panjika.html                         ← বাংলা পঞ্জিকা ও দৈনিক রাশিফল
+├── ⭐ rashifal.html                        ← রাশিফল
+├── ⭐ reviews.html                         ← Client reviews
+├── 🔒 privacy-policy.html                  ← Privacy Policy
+├── 📜 terms-of-use.html                    ← Terms of Use
+├── 🏠 vastu-science.html                   ← Vastu science
+├── 🪐 vedic-astronomy.html                 ← Vedic astronomy
+└── 🎬 video.html                           ← Video page
 ```
+
+---
+
+## 📝 Blog Posts
+
+> **35+ বাংলা ব্লগ পোস্ট** `src/content/blog/` ফোল্ডারে রয়েছে
+
+<details>
+<summary>📖 সব Blog Post দেখুন (ক্লিক করুন)</summary>
+
+| # | ফাইল | বিষয় |
+|:---:|:---|:---|
+| 1 | `ai-yuge-ortho-bhalobasha-bhagya-pradyut-acharya.md` | AI যুগে অর্থ, ভালোবাসা ও ভাগ্য |
+| 2 | `artha-anartha-maraka-bhaba-analysis.md` | অর্থ-অনর্থ মারক ভাব বিশ্লেষণ |
+| 3 | `bhagya-jibon-sadhana-pradyut-acharya.md` | ভাগ্য, জীবন ও সাধনা |
+| 4 | `bhalo-manush-howa.md` | ভালো মানুষ হওয়া |
+| 5 | `british-sushanta-full.md` | ব্রিটিশ সুশান্ত |
+| 6 | `childs-hand-lines.md` | শিশুর হাতের রেখা |
+| 7 | `dharma-vs-exploitation.md` | ধর্ম বনাম শোষণ |
+| 8 | `free-astrology-palmistry-dark-side.md` | বিনামূল্যে জ্যোতিষের অন্ধকার দিক |
+| 9 | `geeta-indriya-rath.md` | গীতা ইন্দ্রিয় রথ |
+| 10 | `is-everything-predestined.md` | সব কি পূর্বনির্ধারিত? |
+| 11 | `jonmo-kundali-vs-hasta-rekha.md` | জন্মকুণ্ডলী বনাম হস্তরেখা |
+| 12 | `kolkata-best-astrologer-palmist.md` | কলকাতার সেরা জ্যোতিষী |
+| 13 | `life-fate-astrology-analysis.md` | জীবন ও ভাগ্য বিশ্লেষণ |
+| 14 | `mangalik-yog-bishleshon.md` | মাঙ্গলিক যোগ বিশ্লেষণ |
+| 15 | `nadia-best-astrologer-palmistry-guide.md` | নদিয়ার সেরা জ্যোতিষী গাইড |
+| 16 | `nishthur-satyer-pathe-astrology-hastrikha.md` | নিষ্ঠুর সত্যের পথে |
+| 17 | `palmistry-guide-myastrology-ranaghat-nadia.md` | রানাঘাট হস্তরেখা গাইড |
+| 18 | `palmistry-star-signs.md` | হস্তরেখায় তারার চিহ্ন |
+| 19 | `pitru-dosha-shubho-ashubho-prabhav.md` | পিতৃদোষের শুভাশুভ প্রভাব |
+| 20 | `porichoyer-maya.md` | পরিচয়ের মায়া |
+| 21 | `puraskar-noy-manusher-astha.md` | পুরস্কার নয়, মানুষের আস্থা |
+| 22 | `ranaghat-best-astrologer-palmist.md` | রানাঘাটের সেরা জ্যোতিষী |
+| 23 | `relationship-rage-control-astrology.md` | সম্পর্কে রাগ নিয়ন্ত্রণ |
+| 24 | `success-conscious-effort.md` | সাফল্য ও সচেতন প্রচেষ্টা |
+| 25 | `successful-and-good-person.md` | সফল ও ভালো মানুষ |
+| 26 | `vishwas-prakriti-mannya.md` | বিশ্বাস প্রকৃতি মান্য |
+| 27 | `west-bengal-best-astrologer-palmistry.md` | পশ্চিমবঙ্গের সেরা জ্যোতিষী |
+| 28 | `women-samudrik-shastra.md` | নারীর সামুদ্রিক শাস্ত্র |
+| 29 | `your-fate-in-palmistry-consultation-dr-prodyut-acharya.md` | আপনার ভাগ্য হস্তরেখায় |
+| 30 | `yukti-bigyan-o-biswas-jyotish-darshaner-aloke-satyer-anweshon.md` | যুক্তি, বিজ্ঞান ও বিশ্বাস |
+
+</details>
 
 ---
 
@@ -175,10 +223,11 @@ MyAstrology/services/   (GitHub repo root)
 
 | Sitemap | URL | বিবরণ |
 |:---:|:---|:---|
-| 📋 Index | [sitemap-index.xml](https://www.myastrology.in/public/sitemap-index.xml) | সব sitemap-এর master index |
+| 📋 Index | [sitemap-index.xml](https://www.myastrology.in/sitemap-index.xml) | সব sitemap-এর master index |
+| 🗺️ Main | [sitemap.xml](https://www.myastrology.in/sitemap.xml) | মূল sitemap |
 | 📝 Blog | [my-sitemap.xml](https://www.myastrology.in/public/my-sitemap.xml) | সব blog post |
-| 🖼️ Image | [image-sitemap.xml](https://www.myastrology.in/public/image-sitemap.xml) | সব ছবি |
-| 🎬 Video | [video-sitemap.xml](https://www.myastrology.in/public/video-sitemap.xml) | YouTube videos |
+| 🖼️ Image | [image-sitemap.xml](https://www.myastrology.in/image-sitemap.xml) | সব ছবি |
+| 🎬 Video | [video-sitemap.xml](https://www.myastrology.in/video-sitemap.xml) | YouTube videos |
 
 </div>
 
@@ -191,20 +240,26 @@ MyAstrology/services/   (GitHub repo root)
 | ফাইল | বিবরণ |
 |:---|:---|
 | `src/content/blog/list.json` | সব blog post-এর তালিকা |
-| `public/my-sitemap.xml` | Blog post sitemap |
-| `public/image-sitemap.xml` | Image sitemap |
-| `public/video-sitemap.xml` | Video sitemap |
-| `reviews.json` | Google Reviews (auto-fetched) |
+| `sitemap.xml` | Main sitemap |
+| `image-sitemap.xml` | Image sitemap |
+| `video-sitemap.xml` | Video sitemap |
+| `reviews.json` | Google Reviews (auto-fetched via `fetch-reviews.yml`) |
 
 ### 🔄 CI/CD Workflow
 
 ```
 code push
     └──▶ GitHub Actions trigger
-              ├──▶ generate-list.js         → list.json আপডেট
-              ├──▶ generate-sitemap.js      → my-sitemap.xml আপডেট
-              ├──▶ generate-image-sitemap.js
-              ├──▶ generate-video-sitemap.js
+              │
+              ├── 🔄 generate-list.yml
+              │        ├──▶ generate-list.js          → list.json আপডেট
+              │        ├──▶ generate-sitemap.js        → sitemap.xml আপডেট
+              │        ├──▶ generate-image-sitemap.js  → image-sitemap.xml
+              │        └──▶ generate-video-sitemap.js  → video-sitemap.xml
+              │
+              ├── 🔄 fetch-reviews.yml
+              │        └──▶ update_reviews.js          → reviews.json আপডেট
+              │
               └──▶ auto commit → 🚀 GitHub Pages deploy
                                   └──▶ www.myastrology.in ✅ live!
 ```
@@ -218,10 +273,10 @@ User-agent: *
 Allow: /
 Disallow: /*.xml$
 
-Sitemap: https://www.myastrology.in/public/sitemap-index.xml
-Sitemap: https://www.myastrology.in/public/my-sitemap.xml
-Sitemap: https://www.myastrology.in/public/image-sitemap.xml
-Sitemap: https://www.myastrology.in/public/video-sitemap.xml
+Sitemap: https://www.myastrology.in/sitemap-index.xml
+Sitemap: https://www.myastrology.in/sitemap.xml
+Sitemap: https://www.myastrology.in/image-sitemap.xml
+Sitemap: https://www.myastrology.in/video-sitemap.xml
 ```
 
 ---
@@ -229,10 +284,10 @@ Sitemap: https://www.myastrology.in/public/video-sitemap.xml
 ## 📌 SEO Keywords
 
 **🇬🇧 English:**  
-`Indian Astrology` · `Palmistry` · `Online Horoscope` · `Marriage Problem` · `Career Astrology` · `Vastu` · `Dr. Prodyut Acharya` · `MyAstrology Ranaghat` · `Bengali Astrologer` · `Best Astrologer in India` · `Bengali Palmistry Expert` · `Online Astrology Consultation` · `Vedic Horoscope` · `Kundli Matching` · `Astrology in Bengali`
+`Indian Astrology` · `Palmistry` · `Online Horoscope` · `Marriage Problem` · `Career Astrology` · `Vastu` · `Dr. Prodyut Acharya` · `MyAstrology Ranaghat` · `Bengali Astrologer` · `Best Astrologer in India` · `Bengali Palmistry Expert` · `Online Astrology Consultation` · `Vedic Horoscope` · `Kundli Matching` · `Astrology in Bengali` · `Best Astrologer West Bengal` · `Nadia Astrologer`
 
 **🇧🇩 বাংলা:**  
-`জ্যোতিষ` · `হস্তরেখা` · `রাশিফল` · `বাস্তু` · `কুণ্ডলী` · `গ্রহ শান্তি` · `বাংলা পঞ্জিকা` · `দৈনিক রাশিফল` · `জন্মকুণ্ডলী` · `নামকরণ` · `বিবাহ সামঞ্জস্য` · `ক্যারিয়ার জ্যোতিষ`
+`জ্যোতিষ` · `হস্তরেখা` · `রাশিফল` · `বাস্তু` · `কুণ্ডলী` · `গ্রহ শান্তি` · `বাংলা পঞ্জিকা` · `দৈনিক রাশিফল` · `জন্মকুণ্ডলী` · `নামকরণ` · `বিবাহ সামঞ্জস্য` · `ক্যারিয়ার জ্যোতিষ` · `মাঙ্গলিক যোগ` · `পিতৃদোষ` · `সামুদ্রিক শাস্ত্র`
 
 ---
 
