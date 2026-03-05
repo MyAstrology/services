@@ -1,1 +1,91 @@
-
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  <url>
+    <loc>https://www.myastrology.in/video.html</loc>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/rnmBu1P6Cjs/hqdefault.jpg</video:thumbnail_loc>
+      <video:title><![CDATA[জীবন রেখার অর্থ – MyAstrology]]></video:title>
+      <video:description><![CDATA[জীবন রেখার অর্থ – MyAstrology]]></video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=rnmBu1P6Cjs</video:content_loc>
+      <video:player_loc>https://www.youtube.com/embed/rnmBu1P6Cjs</video:player_loc>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/Zn9vG_TQ3mM/hqdefault.jpg</video:thumbnail_loc>
+      <video:title><![CDATA[মস্তিষ্ক রেখার রহস্য – MyAstrology]]></video:title>
+      <video:description><![CDATA[মস্তিষ্ক রেখার রহস্য – MyAstrology]]></video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=Zn9vG_TQ3mM</video:content_loc>
+      <video:player_loc>https://www.youtube.com/embed/Zn9vG_TQ3mM</video:player_loc>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/isRu1J5Cc5o/hqdefault.jpg</video:thumbnail_loc>
+      <video:title><![CDATA[হৃদয় রেখার বিশ্লেষণ – MyAstrology]]></video:title>
+      <video:description><![CDATA[হৃদয় রেখার বিশ্লেষণ – MyAstrology]]></video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=isRu1J5Cc5o</video:content_loc>
+      <video:player_loc>https://www.youtube.com/embed/isRu1J5Cc5o</video:player_loc>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/UhyPzvXXI4k/hqdefault.jpg</video:thumbnail_loc>
+      <video:title><![CDATA[ভাগ্য রেখার বিশ্লেষণ – MyAstrology]]></video:title>
+      <video:description><![CDATA[ভাগ্য রেখার বিশ্লেষণ – MyAstrology]]></video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=UhyPzvXXI4k</video:content_loc>
+      <video:player_loc>https://www.youtube.com/embed/UhyPzvXXI4k</video:player_loc>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/9UbbdHNTIwo/hqdefault.jpg</video:thumbnail_loc>
+      <video:title><![CDATA[সূর্য রেখা ও সাফল্য – MyAstrology]]></video:title>
+      <video:description><![CDATA[সূর্য রেখা ও সাফল্য – MyAstrology]]></video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=9UbbdHNTIwo</video:content_loc>
+      <video:player_loc>https://www.youtube.com/embed/9UbbdHNTIwo</video:player_loc>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/dQ2dKQvI5ag/hqdefault.jpg</video:thumbnail_loc>
+      <video:title><![CDATA[বিবাহ রেখার গোপন কথা – MyAstrology]]></video:title>
+      <video:description><![CDATA[বিবাহ রেখার গোপন কথা – MyAstrology]]></video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=dQ2dKQvI5ag</video:content_loc>
+      <video:player_loc>https://www.youtube.com/embed/dQ2dKQvI5ag</video:player_loc>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/kzsYbiHE56w/hqdefault.jpg</video:thumbnail_loc>
+      <video:title><![CDATA[সন্তান রেখার ব্যাখ্যা – MyAstrology]]></video:title>
+      <video:description><![CDATA[সন্তান রেখার ব্যাখ্যা – MyAstrology]]></video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=kzsYbiHE56w</video:content_loc>
+      <video:player_loc>https://www.youtube.com/embed/kzsYbiHE56w</video:player_loc>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/2aX76w05BTA/hqdefault.jpg</video:thumbnail_loc>
+      <video:title><![CDATA[স্বাস্থ্য রেখা বিশ্লেষণ – MyAstrology]]></video:title>
+      <video:description><![CDATA[স্বাস্থ্য রেখা বিশ্লেষণ – MyAstrology]]></video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=2aX76w05BTA</video:content_loc>
+      <video:player_loc>https://www.youtube.com/embed/2aX76w05BTA</video:player_loc>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/neW_tsCTGm0/hqdefault.jpg</video:thumbnail_loc>
+      <video:title><![CDATA[সংগ্রামের রেখা – MyAstrology]]></video:title>
+      <video:description><![CDATA[সংগ্রামের রেখা – MyAstrology]]></video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=neW_tsCTGm0</video:content_loc>
+      <video:player_loc>https://www.youtube.com/embed/neW_tsCTGm0</video:player_loc>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/_Sr9aCtaC4U/hqdefault.jpg</video:thumbnail_loc>
+      <video:title><![CDATA[আধ্যাত্মিক চিহ্ন – MyAstrology]]></video:title>
+      <video:description><![CDATA[আধ্যাত্মিক চিহ্ন – MyAstrology]]></video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=_Sr9aCtaC4U</video:content_loc>
+      <video:player_loc>https://www.youtube.com/embed/_Sr9aCtaC4U</video:player_loc>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/tU4CqNIARUY/hqdefault.jpg</video:thumbnail_loc>
+      <video:title><![CDATA[অর্থ ও ধনলাভের রেখা – MyAstrology]]></video:title>
+      <video:description><![CDATA[অর্থ ও ধনলাভের রেখা – MyAstrology]]></video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=tU4CqNIARUY</video:content_loc>
+      <video:player_loc>https://www.youtube.com/embed/tU4CqNIARUY</video:player_loc>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/t0BaeT7wzME/hqdefault.jpg</video:thumbnail_loc>
+      <video:title><![CDATA[হস্তরেখার সম্পূর্ণ পরিচিতি – MyAstrology]]></video:title>
+      <video:description><![CDATA[হস্তরেখার সম্পূর্ণ পরিচিতি – MyAstrology]]></video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=t0BaeT7wzME</video:content_loc>
+      <video:player_loc>https://www.youtube.com/embed/t0BaeT7wzME</video:player_loc>
+    </video:video>
+  </url>
+</urlset>
