@@ -147,11 +147,6 @@ body{background:var(--bg);color:var(--txt);font-family:'Baloo Da 2',sans-serif;p
   border-color:var(--gold);color:var(--gold-l);
 }
 .sidenav a i{width:18px;text-align:center;color:var(--gold);font-size:.9rem;}
-.sidenav a.book-link{
-  background:linear-gradient(135deg,rgba(181,134,13,.12),rgba(181,134,13,.04));
-  border-color:var(--gold);color:var(--gold-l);font-weight:700;
-  margin:.5rem 1rem;border-radius:10px;padding:.75rem 1rem;
-}
 .sidenav a.wa-link{color:#1a9c45;border-color:#25d366;}
 .sidenav a.wa-link:hover{background:rgba(37,211,102,.07);}
 .sidenav-divider{height:1px;background:var(--border);margin:.4rem 1rem;}
@@ -480,22 +475,6 @@ footer a{color:var(--gold);text-decoration:none;}
 .acred{display:flex;align-items:center;gap:.4rem;}
 .acred-ico{font-size:.85rem;flex-shrink:0;}
 .acred span:last-child{font-size:.67rem;color:var(--txt2);font-weight:600;}
-/* CTA */
-.about-cta{
-  display:flex;gap:.6rem;padding:.9rem 1.1rem 1.1rem;
-}
-.about-btn-wa,.about-btn-bk{
-  flex:1;display:flex;align-items:center;justify-content:center;gap:.4rem;
-  padding:.62rem .7rem;border-radius:10px;
-  font-size:.78rem;font-weight:700;text-decoration:none;
-  font-family:'Baloo Da 2',sans-serif;
-  transition:transform .18s,box-shadow .18s;
-}
-.about-btn-wa{background:#25d366;color:#fff;box-shadow:0 3px 12px rgba(37,211,102,.3);}
-.about-btn-wa:hover{background:#1ebe5b;transform:translateY(-1px);}
-.about-btn-bk{background:linear-gradient(135deg,#b5860d,#8a5e00);color:#fff;box-shadow:0 3px 12px rgba(181,134,13,.3);}
-.about-btn-bk:hover{transform:translateY(-1px);}
-
 /* Scroll-to-top button */
 #stb{
   position:fixed !important;
@@ -569,8 +548,6 @@ footer a{color:var(--gold);text-decoration:none;}
 .fts-ig{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285aeb 90%);}
 .fts-tw{background:#000;}
 .fts-li{background:#0077b5;}
-.fts-tg{background:#0088cc;}
-.fts-pi{background:#e60023;}
 
 /* ═══════════════════════════════════
    PAYMENT MODAL
@@ -887,9 +864,6 @@ footer a{color:var(--gold);text-decoration:none;}
   <a href="https://www.myastrology.in/blog.html"><i class="fas fa-pen-nib"></i>Blog</a>
   <a href="https://www.myastrology.in/blog-list.html"><i class="fas fa-list"></i>Blog List</a>
   <div class="sidenav-divider"></div>
-  <a href="https://rzp.io/rzp/Axo6j2e" target="_blank" rel="noopener" class="book-link">
-    <i class="fas fa-calendar-check"></i>Book Consultation
-  </a>
   <a href="https://www.myastrology.in/reviews.html"><i class="fas fa-star-half-alt"></i>Reviews</a>
   <a href="https://wa.me/919333122768" target="_blank" rel="noopener" class="wa-link">
     <i class="fab fa-whatsapp"></i>WhatsApp Chat
@@ -953,9 +927,6 @@ footer a{color:var(--gold);text-decoration:none;}
           <span>Dr. Prodyut Acharya-র সাথে সরাসরি পরামর্শ করুন</span>
         </div>
         <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
-          <a href="https://rzp.io/rzp/Axo6j2e" target="_blank" rel="noopener" class="cta-btn gold" style="font-size:.78rem;padding:.45rem .9rem;">
-            <i class="fas fa-star"></i> পরামর্শ বুক
-          </a>
           <a href="https://wa.me/919333122768" target="_blank" rel="noopener" class="cta-btn wa" style="font-size:.78rem;padding:.45rem .9rem;">
             <i class="fab fa-whatsapp"></i> WhatsApp
           </a>
@@ -1163,15 +1134,7 @@ footer a{color:var(--gold);text-decoration:none;}
     <div class="acred"><span class="acred-ico">🗺️</span><span>রানাঘাট · কলকাতা · সমগ্র ভারত</span></div>
   </div>
 
-  <!-- CTA -->
-  <div class="about-cta">
-    <a href="https://wa.me/919333122768?text=নমস্কার, আমি পরামর্শ নিতে চাই।" target="_blank" rel="noopener" class="about-btn-wa">
-      <i class="fab fa-whatsapp"></i> WhatsApp করুন
-    </a>
-    <a href="https://rzp.io/rzp/Axo6j2e" target="_blank" rel="noopener" class="about-btn-bk">
-      <i class="fas fa-calendar-check"></i> পরামর্শ বুক করুন
-    </a>
-  </div>
+
 
 </section>
 
@@ -1323,8 +1286,6 @@ footer a{color:var(--gold);text-decoration:none;}
     <a href="https://www.instagram.com/myastrology.in" target="_blank" rel="noopener" aria-label="Instagram" class="fts-ig"><i class="fab fa-instagram" aria-hidden="true"></i></a>
     <a href="https://x.com/AcharyaProdyut" target="_blank" rel="noopener" aria-label="X (Twitter)" class="fts-tw"><i class="fab fa-x-twitter" aria-hidden="true"></i></a>
     <a href="https://www.linkedin.com/in/ProdyutAcharya" target="_blank" rel="noopener" aria-label="LinkedIn" class="fts-li"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
-    <a href="https://t.me/myastrology" target="_blank" rel="noopener" aria-label="Telegram" class="fts-tg"><i class="fab fa-telegram-plane" aria-hidden="true"></i></a>
-    <a href="https://www.pinterest.com/myastrology" target="_blank" rel="noopener" aria-label="Pinterest" class="fts-pi"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a>
   </div>
   <div class="ftdisc">
     বিশুদ্ধ সিদ্ধান্ত মতে বাংলা পঞ্জিকা ও দৈনিক রাশিফল — রানাঘাট, নদিয়া, পশ্চিমবঙ্গ<br>
