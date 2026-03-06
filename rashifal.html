@@ -28,7 +28,7 @@
   <!-- Open Graph Meta Tags -->  
   <meta property="og:title" content="বাংলা রাশিফল – ড. প্রদ্যুৎ আচার্য | MyAstrology Ranaghat" />  
   <meta property="og:description" content="দৈনিক রাশিফল, জন্ম রাশি ও জ্যোতিষ শাস্ত্র বিশ্লেষণ – বাংলায়।" />  
-  <meta property="og:image" content="https://astro.myastrology.in/gallery/best-astrologer-in-ranaghat-india.webp" />  
+  <meta property="og:image" content="https://www.myastrology.in/gallery/best-astrologer-in-ranaghat-india.webp" />  
   <meta property="og:image:alt" content="Best Astrologer in Ranaghat – Dr. Prodyut Acharya" />  
   <meta property="og:url" content="https://www.myastrology.in/rashifal.html" />  
   <meta property="og:type" content="website" />  
@@ -37,7 +37,7 @@
   <meta name="twitter:card" content="summary_large_image" />  
   <meta name="twitter:title" content="বাংলা রাশিফল – Dr Prodyut Acharya | MyAstrology Ranaghat" />  
   <meta name="twitter:description" content="বাংলায় দৈনিক রাশিফল, জন্ম রাশি ও বৈদিক জ্যোতিষ বিশ্লেষণ। Dr. প্রদ্যুৎ আচার্যের কাছ থেকে সঠিক ভবিষ্যৎ জানুন।" />  
-  <meta name="twitter:image" content="https://astro.myastrology.in/gallery/best-astrologer-in-ranaghat-india.webp" />  
+  <meta name="twitter:image" content="https://www.myastrology.in/gallery/best-astrologer-in-ranaghat-india.webp" />  
   <meta name="twitter:image:alt" content="Best Astrologer in Ranaghat – Dr. Prodyut Acharya" />  
 
   <!-- Favicon -->    
@@ -83,7 +83,7 @@
     }
   },
   "datePublished": "2025-01-01",
-  "dateModified": "2026-03-06"
+  "dateModified": "2026-03-07"
 }
 </script>
 
@@ -258,7 +258,12 @@ header .logo {
   gap: 10px;
 }
 header .logo img {
-  height: 42px;
+  height: 40px;
+  width: auto;
+}
+@media (max-width: 400px) {
+  header .logo img { height: 32px; }
+  header .logo span { font-size: 13px !important; }
 }
 header .logo span {
   font-weight: bold;
@@ -289,31 +294,45 @@ header .logo span {
 nav.menu {
   display: none;
   flex-direction: column;
-  gap: 14px;
+  gap: 0;
   background: #fff8f2;
   position: absolute;
-  top: 60px;
+  top: 62px;
   left: 0;
   width: 100%;
-  padding: 12px 0;
-  border-top: 1px solid #e2d4c5;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 6px 0 10px;
+  border-top: 2px solid #c9a227;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.13);
   z-index: 999;
+  max-height: calc(100vh - 70px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 nav.menu.show {
   display: flex;
 }
 nav.menu a {
-  padding: 8px 12px;
+  padding: 11px 20px;
   text-decoration: none;
-  color: #444;
-  font-size: 15px;
-  border-radius: 6px;
-  transition: background 0.3s, color 0.3s;
+  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(226,212,197,0.5);
+  transition: background 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
-nav.menu a:hover {
+nav.menu a:last-child { border-bottom: none; }
+nav.menu a:hover, nav.menu a[aria-current="page"] {
   background: #f3e7da;
-  color: #b33;
+  color: #8B1A1A;
+  font-weight: 700;
+}
+nav.menu a[aria-current="page"]::before {
+  content: "▸";
+  color: #c9a227;
+  font-size: 12px;
 }
 
 /* ============================= */
@@ -677,8 +696,8 @@ footer a:hover { color: #ffd700; text-decoration: underline; }
   gap: 10px;
 }
 .wa-btn {
-  width: 52px;
-  height: 52px;
+  width: 46px;
+  height: 46px;
   background: #25D366;
   border-radius: 50%;
   display: flex;
@@ -692,7 +711,7 @@ footer a:hover { color: #ffd700; text-decoration: underline; }
   order: 2;
 }
 .wa-btn:hover { transform: scale(1.08); }
-.wa-btn svg { width: 28px; height: 28px; fill: #fff; }
+.wa-btn svg { width: 24px; height: 24px; fill: #fff; }
 @keyframes wa-pulse {
   0%,100% { box-shadow: 0 4px 18px rgba(37,211,102,0.5); }
   50% { box-shadow: 0 4px 28px rgba(37,211,102,0.85), 0 0 0 8px rgba(37,211,102,0.12); }
@@ -702,18 +721,20 @@ footer a:hover { color: #ffd700; text-decoration: underline; }
   order: 1;
   background: #075e54;
   color: #fff;
-  padding: 9px 14px;
-  border-radius: 16px 16px 4px 16px;
-  font-size: 12.5px;
+  padding: 3px 8px;
+  border-radius: 8px 8px 2px 8px;
+  font-size: 9px;
   font-weight: 600;
-  line-height: 1.35;
-  white-space: nowrap;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.3);
+  line-height: 1.2;
+  white-space: normal;
+  word-break: keep-all;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.18);
   opacity: 0;
-  transform: translateY(8px) scale(0.92);
-  transition: opacity 0.35s ease, transform 0.35s ease;
+  transform: translateY(4px) scale(0.96);
+  transition: opacity 0.3s ease, transform 0.3s ease;
   pointer-events: none;
-  max-width: 230px;
+  max-width: 130px;
+  text-align: right;
 }
 .wa-flash.show {
   opacity: 1;
@@ -947,13 +968,24 @@ footer {
 </style>
 
 </head>  
+
+<style>
+.sp-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+@media (min-width: 640px) {
+  .sp-grid { grid-template-columns: repeat(4, 1fr); }
+}
+</style>
 <body>  
 
 <!-- Scroll Progress Bar -->
 <div class="scroll-progress" id="scrollProgress"></div>
 
 <!-- Back to Top -->
-<a href="#" class="back-to-top" id="backToTop" title="উপরে যান">↑</a>
+<button class="back-to-top" id="backToTop" title="উপরে যান" onclick="window.scrollTo({top:0,behavior:'smooth'});" aria-label="উপরে যান">↑</button>
 
 <!-- Header/Navbar -->  
   <header>  
@@ -984,16 +1016,7 @@ footer {
     </nav>  
   </header>  
 
-  <!-- Social Proof Trust Bar -->
-  <div style="background:linear-gradient(90deg,#8B1A1A,#b33,#8B1A1A);padding:7px 16px;display:flex;flex-wrap:wrap;justify-content:center;gap:16px;font-size:12px;color:#fff;font-weight:600;letter-spacing:0.3px;">
-    <span>⭐ Google 122+ রিভিউ</span>
-    <span style="opacity:0.4;">|</span>
-    <span>📋 JustDial 128+ রিভিউ</span>
-    <span style="opacity:0.4;">|</span>
-    <span>👍 Facebook 26 রিভিউ · 41,004+ ফলোয়ার</span>
-    <span style="opacity:0.4;">|</span>
-    <span>▶ YouTube 2,24,123+ সাবস্ক্রাইবার</span>
-  </div>
+
 
 
   <!-- Banner -->  
@@ -1027,7 +1050,7 @@ footer {
       <a href="#meen-rashi-svabhab-bhagya"><div class="icon">♓</div>মীন<span style="opacity:0.6;font-size:9px;">Pisces</span></a>
       <div class="zodiac-divider"></div>
       <a href="#rashifal-section"><div class="icon">⭐</div>নক্ষত্র<span style="opacity:0.6;font-size:9px;">Nakshatra</span></a>
-      <a href="https://astro.myastrology.in/panjika.html" target="_blank"><div class="icon">📅</div>পঞ্জিকা<span style="opacity:0.6;font-size:9px;">Panjika</span></a>
+      <a href="https://www.myastrology.in/panjika.html" target="_blank"><div class="icon">📅</div>পঞ্জিকা<span style="opacity:0.6;font-size:9px;">Panjika</span></a>
       <a href="https://wa.me/+919333122768" target="_blank"><div class="icon">📞</div>Contact<span style="opacity:0.6;font-size:9px;">WhatsApp</span></a>
     </div>
   </div>  
@@ -1054,7 +1077,7 @@ footer {
         </div>
       </div>
     </div>
-    <a href="https://astro.myastrology.in/panjika.html" target="_blank" rel="noopener noreferrer" class="panjika-cta-btn">
+    <a href="https://www.myastrology.in/panjika.html" target="_blank" rel="noopener noreferrer" class="panjika-cta-btn">
       📅 এখনই দেখুন →
     </a>
   </div>
@@ -1276,7 +1299,7 @@ footer {
 
   <h3>বৃষ রাশির মানুষের স্বভাব ও মানসিক গঠন</h3>
   <p>বৃষরাশির জাতকরা শান্ত, সংযত এবং দৃঢ়চেতা। তাদের মন স্থির ও বিশ্বাসযোগ্য, যা জীবনকে সুশৃঙ্খল রাখে। নতুন উদ্যোগে ধীরগতি হলেও একবার মনস্থির করলে তারা দৃঢ় মনোযোগ দিয়ে লক্ষ্য অর্জন করেন।  
-    তথাপি কিছু <strong>স্বনামধন্য <a href="https://astro.myastrology.in/astrology.html#jyotish-alokmanchitra" target="_blank">
+    তথাপি কিছু <strong>স্বনামধন্য <a href="https://www.myastrology.in/astrology.html#jyotish-alokmanchitra" target="_blank">
 জ্যোতিষ</a> </strong> জন্মকুণ্ডলী বিশ্লেষণে অভিমত প্রকাশ করেছেন যে, একগুঁয়ে স্বভাবের কারণে মাঝে মাঝে এই জাতকরা অপ্রয়োজনীয় জটিলতা সৃষ্টি করতে পারেন, যা জীবনে শিক্ষণীয় অভিজ্ঞতা দেয়।
   </p>
 
@@ -1840,7 +1863,7 @@ href="https://youtu.be/Zn9vG_TQ3mM?si=7Ii6Lbj-zGo5VAYd"target="_blank">হস্
 
   <h3>জ্যোতিষীয় উপদেশ</h3>
   <p>
-    লক্ষ্যপূরণে ধৈর্য ও পরিকল্পনাকে সঙ্গী করুন; নিয়মিত <a href="https://blog.myastrology.in/2025/07/blog-post_21.html" target="_blank">আধ্যাত্মিক সাধনা</a> মনকে দৃঢ় করে। প্রয়োজন হলে একজন অভিজ্ঞ <a href="https://astro.myastrology.in/about.html" style="color:var(--clr-primary);font-weight:600;text-decoration:underline;" title="Dr. Prodyut Acharya — Vedic Astrologer & Palmist">professional astrologer</a> বা দার্শনিক আধ্যাত্মিক গুরুর পরামর্শ নিন। নিজের ধৈর্য ও কুশল-বুদ্ধিকে আয়ত্তে রেখে বাধা অতিক্রম করুন এবং লক্ষ্যে স্থির থাকুন।
+    লক্ষ্যপূরণে ধৈর্য ও পরিকল্পনাকে সঙ্গী করুন; নিয়মিত <a href="https://blog.myastrology.in/2025/07/blog-post_21.html" target="_blank">আধ্যাত্মিক সাধনা</a> মনকে দৃঢ় করে। প্রয়োজন হলে একজন অভিজ্ঞ <a href="https://www.myastrology.in/about.html" style="color:var(--clr-primary);font-weight:600;text-decoration:underline;" title="Dr. Prodyut Acharya — Vedic Astrologer & Palmist">professional astrologer</a> বা দার্শনিক আধ্যাত্মিক গুরুর পরামর্শ নিন। নিজের ধৈর্য ও কুশল-বুদ্ধিকে আয়ত্তে রেখে বাধা অতিক্রম করুন এবং লক্ষ্যে স্থির থাকুন।
   </p>
 
   
@@ -1902,7 +1925,7 @@ href="https://blog.myastrology.in/2025/07/blog-post_16.html?m=1"target="_blank">
 
   <h3>জ্যোতিষীয় উপদেশ</h3>
   <p>
-    জীবনের <a href="https://astro.myastrology.in/astrology.html#bhagya-bazar-chalna" target="_blank">
+    জীবনের <a href="https://www.myastrology.in/astrology.html#bhagya-bazar-chalna" target="_blank">
 ভাগ্যের</a> বাধা অতিক্রমের জন্য নিয়মিত <strong>আধ্যাত্ম দর্শন চর্চা</strong> ও <strong>জীবন দর্শন</strong> নিয়ে মনন গড়ে তুলুন; লক্ষ্য ও পরিকল্পনায় দৃঢ় থাকুন। প্রয়োজন হলে অভিজ্ঞ <strong>পেশাদার জ্যোতিষী</strong> ও দক্ষ <strong>অভিজ্ঞ <a
 href="https://youtu.be/isRu1J5Cc5o?si=ENiCWaZwcMDitf5P"target="_blank">হস্তরেখা </a>বিদ্</strong>—যেমন <strong>প্রদ্যুৎ আচার্য</strong>—এর পরামর্শ গ্রহণ করুন। ধৈর্য, বুদ্ধি ও পরিকল্পনাকে সঙ্গী করে চ্যালেঞ্জগুলিকে সুসংগঠিতভাবে মোকাবিলা করুন।
   </p>
@@ -2126,6 +2149,66 @@ href="https://youtu.be/S3dAI7ZRUcQ?si=mM2dEl8kvfi5_4rm"target="_blank">হস্
 
 
 
+
+
+
+
+<!-- ══ SOCIAL PROOF CARDS ══ -->
+<section style="background:linear-gradient(135deg,#fff8f2 0%,#fdf5ec 100%);padding:44px 16px 40px;border-top:2px solid #f0e5da;border-bottom:2px solid #f0e5da;font-family:var(--font-main);">
+  <div style="max-width:860px;margin:0 auto;">
+
+    <!-- Title -->
+    <div style="text-align:center;margin-bottom:28px;">
+      <div style="display:inline-block;background:#8B1A1A;color:#c9a227;font-size:10px;font-weight:800;letter-spacing:3px;padding:4px 16px;border-radius:20px;margin-bottom:10px;text-transform:uppercase;">Trust &amp; Credibility</div>
+      <h2 style="font-size:clamp(1.1em,3vw,1.6em);color:#2c1a0e;font-weight:900;margin:0;line-height:1.3;">হাজার হাজার মানুষের বিশ্বাস ও ভালোবাসা</h2>
+    </div>
+
+    <!-- Responsive Grid — 2 col on mobile, 4 col on desktop -->
+    <div class="sp-grid">
+
+      <!-- Google -->
+      <div style="background:#fff;border-radius:14px;padding:20px 12px;text-align:center;box-shadow:0 4px 16px rgba(139,26,26,0.08);border:1px solid #f0e5da;">
+        <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#4285F4,#34A853);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:18px;font-weight:900;color:#fff;">G</div>
+        <div style="font-size:28px;font-weight:900;color:#8B1A1A;line-height:1;">122<span style="font-size:15px;color:#c9a227;">+</span></div>
+        <div style="font-size:12px;font-weight:700;color:#333;margin:4px 0 6px;">Google রিভিউ</div>
+        <div style="color:#f5a623;font-size:12px;letter-spacing:1px;">★★★★★</div>
+        <div style="font-size:10px;color:#888;margin-top:3px;">4.9 / 5</div>
+      </div>
+
+      <!-- JustDial -->
+      <div style="background:#fff;border-radius:14px;padding:20px 12px;text-align:center;box-shadow:0 4px 16px rgba(139,26,26,0.08);border:1px solid #f0e5da;">
+        <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#FF6600,#FF8C00);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:14px;color:#fff;font-weight:900;">JD</div>
+        <div style="font-size:28px;font-weight:900;color:#8B1A1A;line-height:1;">128<span style="font-size:15px;color:#c9a227;">+</span></div>
+        <div style="font-size:12px;font-weight:700;color:#333;margin:4px 0 6px;">JustDial রিভিউ</div>
+        <div style="color:#FF6600;font-size:12px;letter-spacing:1px;">★★★★★</div>
+        <div style="font-size:10px;color:#888;margin-top:3px;">Verified Listing</div>
+      </div>
+
+      <!-- Facebook -->
+      <div style="background:#fff;border-radius:14px;padding:20px 12px;text-align:center;box-shadow:0 4px 16px rgba(139,26,26,0.08);border:1px solid #f0e5da;">
+        <div style="width:40px;height:40px;border-radius:50%;background:#1877F2;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:20px;color:#fff;font-weight:900;">f</div>
+        <div style="font-size:22px;font-weight:900;color:#8B1A1A;line-height:1;">41,004<span style="font-size:13px;color:#c9a227;">+</span></div>
+        <div style="font-size:12px;font-weight:700;color:#333;margin:4px 0 6px;">Facebook ফলোয়ার</div>
+        <div style="font-size:10px;color:#888;line-height:1.6;">26টি রিভিউ<br><span style="color:#f5a623;">★★★★★</span></div>
+      </div>
+
+      <!-- YouTube -->
+      <div style="background:#fff;border-radius:14px;padding:20px 12px;text-align:center;box-shadow:0 4px 16px rgba(139,26,26,0.08);border:1px solid #f0e5da;">
+        <div style="width:40px;height:40px;border-radius:50%;background:#FF0000;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:16px;color:#fff;">▶</div>
+        <div style="font-size:17px;font-weight:900;color:#8B1A1A;line-height:1.2;letter-spacing:-0.3px;">২,২৪,১২৩<span style="font-size:12px;color:#c9a227;">+</span></div>
+        <div style="font-size:12px;font-weight:700;color:#333;margin:4px 0 6px;">YouTube সাবস্ক্রাইবার</div>
+        <div style="font-size:10px;color:#888;">Growing Daily 🔴</div>
+      </div>
+
+    </div>
+
+    <p style="text-align:center;color:#999;font-size:12px;margin:22px 0 0;font-style:italic;">
+      ✦ সারা ভারত ও বিদেশ থেকে মানুষ ড. প্রদ্যুৎ আচার্যের উপর আস্থা রাখেন ✦
+    </p>
+  </div>
+</section>
+<!-- ══ END SOCIAL PROOF ══ -->
+
 <!-- FOOTER SECTION: MyAstrology — রাশিফল পাতার জন্য -->
 <footer>
   <div class="ft-top">
@@ -2145,11 +2228,11 @@ href="https://youtu.be/S3dAI7ZRUcQ?si=mM2dEl8kvfi5_4rm"target="_blank">হস্
     <div class="ft-col">
       <div class="ft-heading">দরকারী লিংক</div>
       <ul>
-        <li><a href="https://astro.myastrology.in/about.html">আমাদের সম্পর্কে</a></li>
-        <li><a href="https://astro.myastrology.in/rashifal.html">রাশিফল</a></li>
-        <li><a href="https://astro.myastrology.in/panjika.html">আজকের পঞ্জিকা</a></li>
-        <li><a href="https://astro.myastrology.in/palmistry.html">হস্তরেখা</a></li>
-        <li><a href="https://astro.myastrology.in/astrology.html">জ্যোতিষ শাস্ত্র</a></li>
+        <li><a href="https://www.myastrology.in/about.html">আমাদের সম্পর্কে</a></li>
+        <li><a href="https://www.myastrology.in/rashifal.html">রাশিফল</a></li>
+        <li><a href="https://www.myastrology.in/panjika.html">আজকের পঞ্জিকা</a></li>
+        <li><a href="https://www.myastrology.in/palmistry.html">হস্তরেখা</a></li>
+        <li><a href="https://www.myastrology.in/astrology.html">জ্যোতিষ শাস্ত্র</a></li>
         <li><a href="https://blog.myastrology.in">বাংলা ব্লগ</a></li>
       </ul>
     </div>
@@ -2228,9 +2311,9 @@ window.addEventListener('scroll', function() {
 // WhatsApp Flash Messages
 (function() {
   var msgs = [
-    'জ্যোতিষ পরামর্শ নিন',
+    'জ্যোতিষ পরামর্শ নিন — Dr. Prodyut Acharya',
     'জন্ম কুণ্ডলী বিশ্লেষণ করুন',
-    'পরামর্শ জ্যোতিষীর কাছে',
+    'হস্তরেখা পড়ুন অভিজ্ঞ জ্যোতিষীর কাছে',
     'অনলাইন পরামর্শ সেবা উপলব্ধ',
     'রাশিফল ও পঞ্জিকা দেখুন — MyAstrology'
   ];
@@ -2271,7 +2354,7 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
     <label style="font-size:13px;font-weight:700;color:#333;display:block;margin-bottom:7px;">পরিষেবা নির্বাচন করুন *</label>
     <select id="serviceSelect" style="width:100%;padding:11px 14px;border:1.5px solid #e2d4c5;border-radius:10px;font-size:14px;margin-bottom:14px;background:#fafaf7;color:#333;outline:none;cursor:pointer;">
       <option value="">— পরিষেবা বেছে নিন —</option>
-      <option value="জন্ম কুণ্ডলী বিশ্লেষণ — ₹1,501">জন্ম কুণ্ডলী + হস্তরেখা বিশ্লেষণ — ₹1,501</option>
+      <option value="জন্ম কুণ্ডলী বিশ্লেষণ — ₹1,501">জন্ম কুণ্ডলী বিশ্লেষণ — ₹1,501</option>
       <option value="হস্তরেখা বিশ্লেষণ — ₹1,001">হস্তরেখা বিশ্লেষণ — ₹1,001</option>
       <option value="বিবাহ মিলন কুণ্ডলী — ₹1,501">বিবাহ মিলন কুণ্ডলী — ₹1,501</option>
       <option value="ক্যারিয়ার পরামর্শ — ₹1,001">ক্যারিয়ার পরামর্শ — ₹1,001</option>
