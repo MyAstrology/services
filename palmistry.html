@@ -380,7 +380,7 @@ footer{background:linear-gradient(180deg,#0a1628 0%,#060e1a 100%);border-top:3px
 #_btt.show{opacity:1;transform:translateY(0)}
 #_btt:hover{background:#f9a825;color:#0a192f}
 #_waf{position:fixed;bottom:26px;right:16px;z-index:900;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
-#_wfm{background:#fff;color:#0a192f;font-family:sans-serif;font-size:.76rem;font-weight:700;padding:7px 11px;border-radius:12px 12px 0 12px;box-shadow:0 4px 16px rgba(0,0,0,.18);border-left:3px solid #25D366;width:152px;line-height:1.5;opacity:0;transform:translateY(6px) scale(.95);transition:opacity .4s,transform .4s;pointer-events:none}
+#_wfm{background:#fff;color:#0a192f;font-family:sans-serif;font-size:.74rem;font-weight:700;padding:6px 10px;border-radius:12px 12px 0 12px;box-shadow:0 4px 16px rgba(0,0,0,.18);border-left:3px solid #25D366;width:148px;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:0;transform:translateY(6px) scale(.95);transition:opacity .4s,transform .4s;pointer-events:none}
 #_wfm.on{opacity:1;transform:translateY(0) scale(1)}
 #_waf>a{display:flex;align-items:center;justify-content:center;width:56px;height:56px;background:#25D366;border-radius:50%;box-shadow:0 4px 18px rgba(37,211,102,.45);text-decoration:none;animation:_wap 2.5s ease-in-out infinite}
 #_waf>a i{font-size:1.85rem;color:#fff}
@@ -419,9 +419,9 @@ footer{background:linear-gradient(180deg,#0a1628 0%,#060e1a 100%);border-top:3px
   </a>
   <div class="header-brand">
     <div class="header-brand-name">MyAstrology — হস্তরেখা শাস্ত্র</div>
-    <div class="header-brand-sub">ড. প্রদ্যুৎ আচার্য · Palmistry Expert · রাণাঘাট</div>
+    <div class="header-brand-sub">ড. প্রদ্যুৎ আচার্য · Palmistry Expert</div>
   </div>
-  <button class="menu-toggle" id="menuToggleBtn" aria-label="নেভিগেশন মেনু খুলুন" aria-expanded="false" aria-controls="main-nav">
+  <button class="menu-toggle" id="menuToggleBtn" aria-label="নেভিগেশন মেনু খুলুন" aria-expanded="false" aria-controls="main-nav" onclick="navToggle()">
     <span></span><span></span><span></span>
   </button>
 </header>
@@ -432,7 +432,7 @@ footer{background:linear-gradient(180deg,#0a1628 0%,#060e1a 100%);border-top:3px
 <nav id="main-nav" aria-label="প্রধান নেভিগেশন">
   <div class="nav-head">
     <span class="nav-head-title">🔮 MyAstrology মেনু</span>
-    <button class="nav-close" id="navCloseBtn" aria-label="মেনু বন্ধ করুন">✕</button>
+    <button class="nav-close" id="navCloseBtn" aria-label="মেনু বন্ধ করুন" onclick="navClose()">✕</button>
   </div>
   <a href="https://www.myastrology.in/">🏠 হোম</a>
   <a href="https://www.myastrology.in/astrology.html">⭐ জ্যোতিষ শাস্ত্র</a>
@@ -448,7 +448,7 @@ footer{background:linear-gradient(180deg,#0a1628 0%,#060e1a 100%);border-top:3px
   <a href="reviews.html">⭐ রিভিউ</a>
   <a href="https://wa.me/919333122768?text=নমস্কার%20ড.%20আচার্য%2C%20হস্তরেখা%20বিচারের%20জন্য%20যোগাযোগ%20করছি।" class="nav-wa">📲 WhatsApp পরামর্শ</a>
 </nav>
-<div class="backdrop" id="backdrop" aria-hidden="true"></div>
+<div class="backdrop" id="backdrop" aria-hidden="true" onclick="navClose()"></div>
 
 <!-- ════════════════════════════════
      BANNER SLIDER
@@ -937,7 +937,7 @@ footer{background:linear-gradient(180deg,#0a1628 0%,#060e1a 100%);border-top:3px
       <h4>MyAstrology</h4>
       <p><i class="fas fa-map-marker-alt"></i>রাণাঘাট (Ranaghat), নদিয়া (Nadia), পশ্চিমবঙ্গ — ৭৪১২০১</p>
       <p><i class="fas fa-phone"></i><a href="tel:+919333122768">+91 93331 22768</a></p>
-      <p><i class="fas fa-envelope"></i><a href="mailto:info@myastrology.in">info@myastrology.in</a></p>
+      <p><i class="fas fa-envelope"></i><a href="/cdn-cgi/l/email-protection#0c65626a634c61756d7f787e6360636b75226562"><span class="__cf_email__" data-cfemail="61080f070e210c18001215130e0d0e06184f080f">[email&#160;protected]</span></a></p>
       <a href="https://wa.me/919333122768?text=নমস্কার%20ড.%20আচার্য%2C%20হস্তরেখা%20বিচারের%20জন্য%20যোগাযোগ%20করছি।" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i>WhatsApp পরামর্শ</a>
     </div>
     <div class="footer-col">
@@ -972,7 +972,7 @@ footer{background:linear-gradient(180deg,#0a1628 0%,#060e1a 100%);border-top:3px
     </div>
   </div>
 </footer>
-<script src="https://checkout.razorpay.com/v1/checkout.js" defer></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://checkout.razorpay.com/v1/checkout.js" defer></script>
 <div id="_pb"></div>
 <a href="#" id="_btt" aria-label="উপরে যান">&#8679;</a>
 <div id="_waf">
@@ -993,13 +993,31 @@ footer{background:linear-gradient(180deg,#0a1628 0%,#060e1a 100%);border-top:3px
   </div>
 </div>
 <script>
-(function(){
-var h=document.getElementById('_ham'),n=document.getElementById('_nav');
-if(h&&n){
-  h.addEventListener('click',function(e){e.stopPropagation();var o=n.classList.toggle('open');h.setAttribute('aria-expanded',String(o));});
-  document.addEventListener('click',function(e){if(n.classList.contains('open')&&!n.contains(e.target)&&e.target!==h){n.classList.remove('open');h.setAttribute('aria-expanded','false');}});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'){n.classList.remove('open');h.setAttribute('aria-expanded','false');}});
+function navToggle(){
+  var n=document.getElementById('main-nav'),
+      h=document.getElementById('menuToggleBtn'),
+      bd=document.getElementById('backdrop');
+  if(!n||!h)return;
+  var isOpen=n.classList.contains('open');
+  if(isOpen){navClose();}
+  else{
+    n.classList.add('open');
+    h.setAttribute('aria-expanded','true');
+    if(bd){bd.classList.add('show');bd.removeAttribute('aria-hidden');}
+  }
 }
+function navClose(){
+  var n=document.getElementById('main-nav'),
+      h=document.getElementById('menuToggleBtn'),
+      bd=document.getElementById('backdrop');
+  if(n)n.classList.remove('open');
+  if(h)h.setAttribute('aria-expanded','false');
+  if(bd){bd.classList.remove('show');bd.setAttribute('aria-hidden','true');}
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')navClose();});
+</script>
+<script>
+(function(){
 var pb=document.getElementById('_pb'),bt=document.getElementById('_btt');
 window.addEventListener('scroll',function(){
   var s=document.documentElement,tot=s.scrollHeight-s.clientHeight;
@@ -1008,10 +1026,10 @@ window.addEventListener('scroll',function(){
 },{passive:true});
 if(bt)bt.addEventListener('click',function(e){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});});
 var msgs=[
-  '\u{1F52E} \u099C\u09CD\u09AF\u09CB\u09A4\u09BF\u09B7 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6 \u09A8\u09BF\u09A8!',
-  '\u270B \u09B9\u09B8\u09CD\u09A4\u09B0\u09C7\u0996\u09BE \u09AC\u09BF\u099A\u09BE\u09B0 \u09A2\u09E7\u09E6\u09E6\u09E7',
-  '\u{1F48D} \u09AF\u09CB\u099F\u09CB\u0995 \u09AC\u09BF\u099A\u09BE\u09B0 \u0995\u09B0\u09C1\u09A8',
-  '\u2B50 \u09E8\u09ED\u09EC+ \u09EB-\u09A4\u09BE\u09B0\u09BE \u09B0\u09BF\u09AD\u09BF\u0989',
+  '\u{1F52E} \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6 \u09A8\u09BF\u09A8!',
+  '\u270B \u09B9\u09B8\u09CD\u09A4\u09B0\u09C7\u0996\u09BE \u20B9\u09E7,\u09E6\u09E6\u09E7',
+  '\u{1F48D} \u09AF\u09CB\u099F\u09CB\u0995 \u20B9\u09E7,\u09EB\u09E6\u09E7',
+  '\u2B50 \u09E8\u09ED\u09EC+ \u09AB-\u09A4\u09BE\u09B0\u09BE \u09B0\u09BF\u09AD\u09BF\u0989',
   '\u{1F4C5} \u09B0\u09BE\u09B6\u09BF\u09AB\u09B2 \u09A6\u09C7\u0996\u09C1\u09A8'
 ];
 var mi=0,fm=document.getElementById('_wfm');
@@ -1019,18 +1037,18 @@ if(fm){function sm(){fm.textContent=msgs[mi++%msgs.length];fm.classList.add('on'
 })();
 var _rS='',_rA=100100;
 var _svcCat={
-  palm:    {label:'\u09B9\u09BE\u09A4\u09C7\u09B0 \u09B0\u09C7\u0996\u09BE \u09AC\u09BF\u099A\u09BE\u09B0',amt:100100,offer:'\u{1F525} \u09AC\u09BF\u09B6\u09C7\u09B7 \u0985\u09AB\u09BE\u09B0: \u09B8\u09BE\u09B6\u09CD\u09B0\u09AF\u09BC \u09A2\u09EB\u09E6\u09E6 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u09A2\u09E7\u09E6\u09E6\u09E7'},
-  combo:   {label:'\u099C\u09A8\u09CD\u09AE \u0995\u09C1\u09A3\u09CD\u09A1\u09B2\u09C0 + \u09B9\u09B8\u09CD\u09A4\u09B0\u09C7\u0996\u09BE Combo',amt:150100,offer:'\u2B50 \u09B8\u09C7\u09B0\u09BE \u0985\u09AB\u09BE\u09B0: \u09B8\u09BE\u09B6\u09CD\u09B0\u09AF\u09BC \u09A2\u09EB\u09E6\u09E6 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u09A2\u09E7\u09EB\u09E6\u09E7'},
-  jyotok:  {label:'\u09AF\u09CB\u099F\u09CB\u0995 \u09AC\u09BF\u099A\u09BE\u09B0',amt:150100,offer:'\u{1F48D} \u09AC\u09BF\u09AC\u09BE\u09B9 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6: \u09B8\u09BE\u09B6\u09CD\u09B0\u09AF\u09BC \u09A2\u09E7\u09E6\u09E6\u09E6 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u09A2\u09E7\u09EB\u09E6\u09E7'},
-  kundali: {label:'\u099C\u09A8\u09CD\u09AE\u0995\u09C1\u09A3\u09CD\u09A1\u09B2\u09C0 \u09AC\u09BF\u099A\u09BE\u09B0',amt:200100,offer:'\u{1F52E} \u09AC\u09BF\u09B6\u09C7\u09B7 \u0985\u09AB\u09BE\u09B0 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u09A2\u09E8\u09E6\u09E6\u09E7'},
-  vastu:   {label:'\u09AC\u09BE\u09B8\u09CD\u09A4\u09C1 \u09B6\u09BE\u09B8\u09CD\u09A4\u09CD\u09B0 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6',amt:200100,offer:'\u{1F3E0} \u09AC\u09BE\u09B8\u09CD\u09A4\u09C1 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6 \u2192 \u09A2\u09E8\u09E6\u09E6\u09E7+'},
-  gemstone:{label:'\u09B0\u09A4\u09CD\u09A8\u09AA\u09BE\u09A5\u09B0 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6',amt:100100,offer:'\u{1F48E} \u09B0\u09A4\u09CD\u09A8\u09AA\u09BE\u09A5\u09B0 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u09A2\u09E7\u09E6\u09E6\u09E7'},
-  muhurta: {label:'\u09B6\u09C1\u09AD \u09AE\u09C1\u09B9\u09C2\u09B0\u09CD\u09A4 \u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8',amt:50100,offer:'\u2728 \u09B6\u09C1\u09AD \u09AE\u09C1\u09B9\u09C2\u09B0\u09CD\u09A4 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u09A2\u09EB\u09E6\u09E7'},
-  name:    {label:'\u09A8\u09AC\u099C\u09BE\u09A4\u0995\u09C7\u09B0 \u09A8\u09BE\u09AE \u09B0\u09BE\u0996\u09BE',amt:50100,offer:'\u{1F476} \u09A8\u09BE\u09AE \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u09A2\u09EB\u09E6\u09E7'},
-  namefix: {label:'\u09A8\u09BE\u09AE \u09B8\u0982\u09B6\u09CB\u09A7\u09A8 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6',amt:100100,offer:'\u270F\uFE0F \u09A8\u09BE\u09AE \u09B8\u0982\u09B6\u09CB\u09A7\u09A8 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u09A2\u09E7\u09E6\u09E6\u09E7'},
-  career:  {label:'\u0995\u09CD\u09AF\u09BE\u09B0\u09BF\u09AF\u09BC\u09BE\u09B0 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6',amt:100100,offer:'\u{1F4BC} \u0995\u09CD\u09AF\u09BE\u09B0\u09BF\u09AF\u09BC\u09BE\u09B0 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u09A2\u09E7\u09E6\u09E6\u09E7'},
-  love:    {label:'\u09AA\u09CD\u09B0\u09C7\u09AE \u09B0 \u09AC\u09BF\u09AC\u09BE\u09B9 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6',amt:100100,offer:'\u2764\uFE0F \u09AA\u09CD\u09B0\u09C7\u09AE \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u09A2\u09E7\u09E6\u09E6\u09E7'},
-  consult: {label:'\u0985\u09A8\u09B2\u09BE\u0987\u09A8 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6',amt:100100,offer:'\u{1F310} \u0985\u09A8\u09B2\u09BE\u0987\u09A8 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u09A2\u09E7\u09E6\u09E6\u09E7'}
+  palm:    {label:'\u09B9\u09BE\u09A4\u09C7\u09B0 \u09B0\u09C7\u0996\u09BE \u09AC\u09BF\u099A\u09BE\u09B0',amt:100100,offer:'\u{1F525} \u09AC\u09BF\u09B6\u09C7\u09B7 \u0985\u09AB\u09BE\u09B0: \u09B8\u09BE\u09B6\u09CD\u09B0\u09AF\u09BC \u20B9\u09EB\u09E6\u09E6 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u20B9\u09E7,\u09E6\u09E6\u09E7'},
+  combo:   {label:'\u099C\u09A8\u09CD\u09AE \u0995\u09C1\u09A3\u09CD\u09A1\u09B2\u09C0 + \u09B9\u09B8\u09CD\u09A4\u09B0\u09C7\u0996\u09BE Combo',amt:150100,offer:'\u2B50 \u09B8\u09C7\u09B0\u09BE \u0985\u09AB\u09BE\u09B0: \u09B8\u09BE\u09B6\u09CD\u09B0\u09AF\u09BC \u20B9\u09EB\u09E6\u09E6 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u20B9\u09E7,\u09EB\u09E6\u09E7'},
+  jyotok:  {label:'\u09AF\u09CB\u099F\u09CB\u0995 \u09AC\u09BF\u099A\u09BE\u09B0',amt:150100,offer:'\u{1F48D} \u09AC\u09BF\u09AC\u09BE\u09B9 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6: \u09B8\u09BE\u09B6\u09CD\u09B0\u09AF\u09BC \u20B9\u09E7,\u09E6\u09E6\u09E6 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u20B9\u09E7,\u09EB\u09E6\u09E7'},
+  kundali: {label:'\u099C\u09A8\u09CD\u09AE\u0995\u09C1\u09A3\u09CD\u09A1\u09B2\u09C0 \u09AC\u09BF\u099A\u09BE\u09B0',amt:200100,offer:'\u{1F52E} \u09AC\u09BF\u09B6\u09C7\u09B7 \u0985\u09AB\u09BE\u09B0 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u20B9\u09E8,\u09E6\u09E6\u09E7'},
+  vastu:   {label:'\u09AC\u09BE\u09B8\u09CD\u09A4\u09C1 \u09B6\u09BE\u09B8\u09CD\u09A4\u09CD\u09B0 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6',amt:200100,offer:'\u{1F3E0} \u09AC\u09BE\u09B8\u09CD\u09A4\u09C1 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6 \u2192 \u20B9\u09E8,\u09E6\u09E6\u09E7+'},
+  gemstone:{label:'\u09B0\u09A4\u09CD\u09A8\u09AA\u09BE\u09A5\u09B0 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6',amt:100100,offer:'\u{1F48E} \u09B0\u09A4\u09CD\u09A8\u09AA\u09BE\u09A5\u09B0 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u20B9\u09E7,\u09E6\u09E6\u09E7'},
+  muhurta: {label:'\u09B6\u09C1\u09AD \u09AE\u09C1\u09B9\u09C2\u09B0\u09CD\u09A4 \u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8',amt:50100,offer:'\u2728 \u09B6\u09C1\u09AD \u09AE\u09C1\u09B9\u09C2\u09B0\u09CD\u09A4 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u20B9\u09EB\u09E6\u09E7'},
+  name:    {label:'\u09A8\u09AC\u099C\u09BE\u09A4\u0995\u09C7\u09B0 \u09A8\u09BE\u09AE \u09B0\u09BE\u0996\u09BE',amt:50100,offer:'\u{1F476} \u09A8\u09BE\u09AE \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u20B9\u09EB\u09E6\u09E7'},
+  namefix: {label:'\u09A8\u09BE\u09AE \u09B8\u0982\u09B6\u09CB\u09A7\u09A8 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6',amt:100100,offer:'\u270F\uFE0F \u09A8\u09BE\u09AE \u09B8\u0982\u09B6\u09CB\u09A7\u09A8 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u20B9\u09E7,\u09E6\u09E6\u09E7'},
+  career:  {label:'\u0995\u09CD\u09AF\u09BE\u09B0\u09BF\u09AF\u09BC\u09BE\u09B0 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6',amt:100100,offer:'\u{1F4BC} \u0995\u09CD\u09AF\u09BE\u09B0\u09BF\u09AF\u09BC\u09BE\u09B0 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u20B9\u09E7,\u09E6\u09E6\u09E7'},
+  love:    {label:'\u09AA\u09CD\u09B0\u09C7\u09AE \u09B0 \u09AC\u09BF\u09AC\u09BE\u09B9 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6',amt:100100,offer:'\u2764\uFE0F \u09AA\u09CD\u09B0\u09C7\u09AE \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u20B9\u09E7,\u09E6\u09E6\u09E7'},
+  consult: {label:'\u0985\u09A8\u09B2\u09BE\u0987\u09A8 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6',amt:100100,offer:'\u{1F310} \u0985\u09A8\u09B2\u09BE\u0987\u09A8 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u20B9\u09E7,\u09E6\u09E6\u09E7'}
 };
 function _oRzp(key,customAmt){
   var svc=_svcCat[key]||{label:key,amt:customAmt||100100,offer:''};
@@ -1064,15 +1082,10 @@ function _dRzp(){
       _cRzp();
       if(typeof gtag!=='undefined')gtag('event','booking_paid',{event_category:'conversion',event_label:svcName,value:amt/100});
       var amtDisp=String(Math.floor(amt/100));
-      var waMsg='\u{1F64F} \u0986\u09AE\u09BF '+svcName+' \u098F\u09B0 \u099C\u09A8\u09CD\u09AF \u09A2'+amtDisp+' \u09AA\u09C7\u09AE\u09C7\u09A8\u09CD\u099F \u0995\u09B0\u09C7\u099B\u09BF\u0964 \u0986\u09AE\u09BE\u09B0 \u09AA\u09CD\u09B0\u09AF\u09BC\u09CB\u099C\u09A8\u09C0\u09AF\u09BC \u09AC\u09BF\u09AC\u09B0\u09A3 \u09A8\u09BF\u099A\u09C7 \u09A6\u09BF\u099A\u09CD\u099B\u09BF\u0964\n\n\u09A8\u09BE\u09AE: '+nm+'\nWhatsApp: +91'+ph+'\nPayment ID: '+r.razorpay_payment_id+'\n\n\u0985\u09A8\u09C1\u0997\u09CD\u09B0\u09B9 \u0995\u09B0\u09C7 \u09AA\u09B0\u09AC\u09B0\u09CD\u09A4\u09C0 \u09AA\u09A6\u0995\u09CD\u09B7\u09C7\u09AA \u099C\u09BE\u09A8\u09BE\u09A8\u0964 \u09A7\u09A8\u09CD\u09AF\u09AC\u09BE\u09A6 \u{1F64F}';
+      var waMsg='\u{1F64F} \u0986\u09AE\u09BF '+svcName+' \u098F\u09B0 \u099C\u09A8\u09CD\u09AF \u20B9'+amtDisp+' \u09AA\u09C7\u09AE\u09C7\u09A8\u09CD\u099F \u0995\u09B0\u09C7\u099B\u09BF\u0964 \u0986\u09AE\u09BE\u09B0 \u09AA\u09CD\u09B0\u09AF\u09BC\u09CB\u099C\u09A8\u09C0\u09AF\u09BC \u09AC\u09BF\u09AC\u09B0\u09A3 \u09A8\u09BF\u099A\u09C7 \u09A6\u09BF\u099A\u09CD\u099B\u09BF\u0964\n\n\u09A8\u09BE\u09AE: '+nm+'\nWhatsApp: +91'+ph+'\nPayment ID: '+r.razorpay_payment_id+'\n\n\u0985\u09A8\u09C1\u0997\u09CD\u09B0\u09B9 \u0995\u09B0\u09C7 \u09AA\u09B0\u09AC\u09B0\u09CD\u09A4\u09C0 \u09AA\u09A6\u0995\u09CD\u09B7\u09C7\u09AA \u099C\u09BE\u09A8\u09BE\u09A8\u0964 \u09A7\u09A8\u09CD\u09AF\u09AC\u09BE\u09A6 \u{1F64F}';
       setTimeout(function(){window.open('https://wa.me/919333122768?text='+encodeURIComponent(waMsg),'_blank');},400);
     },
     modal:{ondismiss:function(){}}
   };
   var rzp=new Razorpay(opts);
-  rzp.on('payment.failed',function(r){alert('\u09AA\u09C7\u09AE\u09C7\u09A8\u09CD\u099F \u09AC\u09CD\u09AF\u09B0\u09CD\u09A5\u0964\n\u0995\u09BE\u09B0\u09A3: '+(r.error.description||'\u0985\u099C\u09BE\u09A8\u09BE \u09A4\u09CD\u09B0\u09C1\u099F\u09BF')+'\n\u0986\u09AC\u09BE\u09B0 \u099A\u09C7\u09B7\u09CD\u099F\u09BE \u0995\u09B0\u09C1\u09A8\u0964');});
-  rzp.open();
-}
-</script>
-</body>
-</html>
+  rzp.on('payment.failed',function(r){alert('\u09AA\u09C7\u09AE\u09C7\u09A8\u09CD\u099F \u09AC\u09CD\u09AF\u09B0\u09CD\u09A5\u0964\n\u0995\u09BE\u09B0\u09
