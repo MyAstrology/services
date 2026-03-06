@@ -20,7 +20,7 @@
   <meta property="og:image" content="https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png">
   <meta property="og:image:alt" content="MyAstrology – Dr. Prodyut Acharya, রানাঘাট">
   <meta property="og:url" content="https://www.myastrology.in/about.html">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="profile">
   <meta property="og:locale" content="bn_IN">
   <meta property="og:site_name" content="MyAstrology">
 
@@ -56,6 +56,7 @@
   {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
+    "@id": "https://www.myastrology.in/#organization",
     "name": "MyAstrology – Dr. Prodyut Acharya",
     "url": "https://www.myastrology.in",
     "logo": "https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png",
@@ -63,8 +64,6 @@
     "telephone": "+91-9333122768",
     "email": "info@myastrology.in",
     "description": "MyAstrology – Vedic Astrology & Palmistry Services by Dr. Prodyut Acharya in Ranaghat, West Bengal. Expert in Kundli, Palmistry, Numerology, Vastu & Gemstone Consultation.",
-    "telephone": "+91-9333122768",
-    "email": "info@myastrology.in",
     "priceRange": "₹501–₹1501",
     "openingHours": "Mo-Su 09:00-21:00",
     "aggregateRating": {
@@ -102,6 +101,7 @@
   {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": "https://www.myastrology.in/about.html#person",
     "name": "Dr. Prodyut Acharya",
     "jobTitle": "Vedic Astrologer, Palmist, Numerologist & Vastu Expert",
     "description": "Gold Medalist PhD Astrologer and Palmist. Expert in Vedic Jyotish, Palmistry, Kundli Analysis, Numerology, Gemstone Therapy, and Vastu Shastra.",
@@ -126,7 +126,42 @@
   }
   </script>
 
-  <!-- ✅ Google Analytics -->
+  <!-- ✅ JSON-LD Schema: BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.myastrology.in/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "আমাদের সম্পর্কে – Dr. Prodyut Acharya",
+        "item": "https://www.myastrology.in/about.html"
+      }
+    ]
+  }
+  </script>
+
+  <!-- ✅ JSON-LD Schema: WebPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "@id": "https://www.myastrology.in/about.html#webpage",
+    "url": "https://www.myastrology.in/about.html",
+    "name": "ড. প্রদ্যুৎ আচার্য – বৈদিক জ্যোতিষ ও হস্তরেখা বিশেষজ্ঞ | MyAstrology রানাঘাট",
+    "description": "ড. প্রদ্যুৎ আচার্য — রানাঘাটের PhD স্বর্ণপদকপ্রাপ্ত বৈদিক জ্যোতিষ ও হস্তরেখা বিশেষজ্ঞ। Google ১২২+ ও JustDial ১২৮+ যাচাইকৃত ৫★ রিভিউ।",
+    "isPartOf": { "@id": "https://www.myastrology.in/#organization" },
+    "about": { "@id": "https://www.myastrology.in/about.html#person" },
+    "inLanguage": ["bn-IN", "en"]
+  }
+  </script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-S7BQGLP211"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -161,6 +196,22 @@
      RESET & BASE
   ============================================= */
   *, *::before, *::after { box-sizing: border-box; }
+
+  /* Skip to content - Accessibility */
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    background: var(--clr-navy);
+    color: var(--clr-gold-light);
+    padding: 8px 16px;
+    z-index: 9999;
+    font-size: 0.9rem;
+    text-decoration: none;
+    border-radius: 0 0 8px 0;
+    transition: top 0.2s;
+  }
+  .skip-link:focus { top: 0; }
 
   body {
     margin: 0;
@@ -198,8 +249,18 @@
     padding: 4px 8px;
     border-radius: 4px;
     transition: background var(--transition);
+    background: transparent;
+    border: none;
+    color: #fff;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    min-height: 36px;
   }
   .hamburger:hover { background: rgba(255,255,255,0.1); }
+  .hamburger:focus-visible { outline: 2px solid var(--clr-gold-light); outline-offset: 2px; }
 
   .logo-text {
     font-size: 20px;
@@ -409,21 +470,19 @@
 
   .about-section h1      { color: var(--clr-maroon); font-size: clamp(1.6rem, 4vw, 2.3rem); }
   .section h2            { font-size: clamp(1.4rem, 3.5vw, 2rem); }
-  .astrology-section h2  { color: var(--clr-purple); }
   .philosophy-section h2 { color: var(--clr-violet); }
   .professional-section h2 { color: var(--clr-gold); }
   .closing-section h2    { color: var(--clr-maroon); }
-  .awards-section h2     { color: var(--clr-maroon); font-size: clamp(1.5rem, 3.5vw, 2.5rem); margin-bottom: 15px; }
+  .award-section h2     { color: var(--clr-maroon); font-size: clamp(1.5rem, 3.5vw, 2.5rem); margin-bottom: 15px; }
 
   /* Links */
   .section a                  { text-decoration: none; border-bottom: 1px dotted; transition: opacity 0.2s; }
   .section a:hover            { opacity: 0.75; }
   .about-section a            { color: var(--clr-maroon); }
-  .astrology-section a        { color: var(--clr-purple); }
   .philosophy-section a       { color: var(--clr-violet); }
   .professional-section a     { color: var(--clr-gold); }
   .closing-section a          { color: var(--clr-maroon); }
-  .awards-section a           { color: inherit; }
+  .award-section a           { color: inherit; }
 
   /* Blockquotes */
   .section blockquote {
@@ -445,11 +504,10 @@
     margin-top: 32px;
   }
   .about-section      .philosophical-tagline { color: var(--clr-maroon); }
-  .astrology-section  .philosophical-tagline { color: var(--clr-purple); }
   .philosophy-section .philosophical-tagline { color: var(--clr-violet); }
   .professional-section .philosophical-tagline { color: var(--clr-gold); }
   .closing-section    .philosophical-tagline { color: var(--clr-maroon); }
-  .awards-section     .philosophical-tagline { color: var(--clr-maroon); }
+  .award-section      .philosophical-tagline { color: var(--clr-maroon); }
 
   /* =============================================
      SECTION DIVIDER
@@ -466,8 +524,7 @@
      CARDS (Academic & Award)
   ============================================= */
   .card,
-  .award-card,
-  .academic-card {
+  .award-card {
     background: var(--clr-bg);
     border-radius: var(--radius);
     padding: 20px;
@@ -491,7 +548,6 @@
   .card-title.violet { color: #884EA0; }
 
   .card img,
-  .academic-card img,
   .award-card img {
     width: 100%;
     border-radius: 10px;
@@ -508,8 +564,7 @@
   }
 
   .card p,
-  .award-card p,
-  .academic-card p {
+  .award-card p {
     font-size: 0.72rem;
     line-height: 1.6;
     color: #333;
@@ -529,7 +584,7 @@
   }
 
   /* Awards */
-  .awards-section .awards-container {
+  .award-section .awards-container {
     max-width: 1100px;
     margin: auto;
     text-align: center;
@@ -564,11 +619,13 @@
     font-family: var(--font-body);
   }
 
-  footer h2 {
+  footer h2,
+  .footer-heading {
     font-size: 1.2rem;
     margin-bottom: 10px;
     color: var(--clr-gold-light);
     font-family: var(--font-cinzel);
+    font-weight: 700;
   }
 
   .footer-tagline {
@@ -867,13 +924,18 @@
     .award-grid,
     .academic-cards { grid-template-columns: 1fr; }
   }
+
+  /* Font Awesome fallback for to-top button */
+  .to-top-btn .fa-chevron-up ~ .totop-fallback { display: none; }
+  .to-top-btn .totop-fallback { font-size: 18px; font-weight: 700; line-height: 1; }
   </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link">মূল বিষয়বস্তুতে যান</a>
 
 <!-- ✅ HEADER -->
 <header class="header" role="banner">
-  <div class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation" role="button" aria-expanded="false" id="hamburger-btn">☰</div>
+  <button class="hamburger" aria-label="নেভিগেশন মেনু খুলুন" aria-expanded="false" id="hamburger-btn" type="button">☰</button>
   <div class="logo-text">MyAstrology</div>
   <img src="images/MyAstrology-Ranghat-logo.png" alt="MyAstrology – Dr. Prodyut Acharya Logo" class="logo-on-banner" width="40" height="40">
 </header>
@@ -898,6 +960,7 @@
 </nav>
 
 <!-- ✅ BANNER SLIDER -->
+<main id="main-content">
 <div class="banner-slider" role="img" aria-label="MyAstrology service banners">
   <img src="images/Best-Astrologer-in-Kolkota.webp" alt="MyAstrology – Best Astrology and Palmistry Consultation Services in India" class="active" width="1200" height="450">
   <img src="images/astrology-ranaghat-banner4.webp" alt="Indian Best Astrologer and Palmist Dr. Prodyut Acharya in Kolkata" loading="lazy" width="1200" height="450">
@@ -1109,7 +1172,7 @@
 
     <div class="award-card">
       <h3 class="award-title" style="color:#8B0000;">Maa Sarada Devi Award</h3>
-      <img src="assist/astrology-certificate7.jpg" alt="Maa Sarada Devi Award – South Kolkata Astrology & Vastu Science Academy, presented to Bipul Bala" loading="lazy">
+      <img src="assist/astrology-certificate7.jpg" alt="Maa Sarada Devi Award – South Kolkata Astrology & Vastu Science Academy, presented to Dr. Prodyut Acharya" loading="lazy">
       <span class="award-sub">Awarded for contributions in propagating and modernizing Jyotish, Vastu, Tantra &amp; Meditation.</span>
       <p>Presented during the Astrological Conference at Sujata Sadan, Kolkata, on 12–13 January 2019 by <strong>South Kolkata Astrology &amp; Vastu Science Academy</strong> in recognition of dedicated participation and efforts towards spiritual sciences.</p>
     </div>
@@ -1260,15 +1323,16 @@
   </div>
 </section>
 
+</main>
 <!-- ✅ FOOTER -->
 <footer role="contentinfo">
-  <h2>📲 Connect with MyAstrology</h2>
+  <p class="footer-heading">📲 Connect with MyAstrology</p>
   <p class="footer-tagline">
     Follow Dr. Prodyut Acharya for daily astrology tips, palmistry insights, Vedic wisdom, and Jyotish guidance.
   </p>
 
-  <a href="mailto:info@myastrology.in" class="footer-email" aria-label="Email MyAstrology">
-    <i class="fas fa-envelope" aria-hidden="true"></i> info@myastrology.in
+  <a href="/cdn-cgi/l/email-protection#1970777f76597460786a6d6b7675767e60377077" class="footer-email" aria-label="Email MyAstrology">
+    <i class="fas fa-envelope" aria-hidden="true"></i> <span class="__cf_email__" data-cfemail="84edeae2ebc4e9fde5f7f0f6ebe8ebe3fdaaedea">[email&#160;protected]</span>
   </a>
 
   <div class="footer-social" role="list" aria-label="Social media links">
@@ -1297,7 +1361,7 @@
 
 <!-- ✅ SCROLL TO TOP BUTTON -->
 <button id="toTop" class="to-top-btn" aria-label="উপরে যান" title="উপরে যান">
-  <i class="fas fa-chevron-up"></i>
+  <i class="fas fa-chevron-up" aria-hidden="true"></i><span class="totop-fallback">↑</span>
 </button>
 
 <!-- ✅ WHATSAPP FLOATING BUTTON -->
@@ -1308,90 +1372,110 @@
   </a>
 </div>
 
+
 <!-- ✅ JAVASCRIPT -->
-<script>
-  /* ----- Navigation Toggle ----- */
-  function toggleMenu() {
-    const menu = document.getElementById('menu');
-    const btn  = document.getElementById('hamburger-btn');
-    const isOpen = menu.classList.contains('menu-open');
-    menu.classList.toggle('menu-open', !isOpen);
-    menu.style.display = isOpen ? 'none' : 'flex';
-    btn.setAttribute('aria-expanded', String(!isOpen));
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script data-cfasync="false">
+document.addEventListener('DOMContentLoaded', function () {
+
+  /* ── Navigation ── */
+  var btn  = document.getElementById('hamburger-btn');
+  var menu = document.getElementById('menu');
+
+  function closeMenu() {
+    menu.style.display = 'none';
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-label', 'নেভিগেশন মেনু খুলুন');
+    btn.textContent = '\u2630';
+  }
+  function openMenu() {
+    menu.style.display = 'flex';
+    btn.setAttribute('aria-expanded', 'true');
+    btn.setAttribute('aria-label', 'নেভিগেশন মেনু বন্ধ করুন');
+    btn.textContent = '\u2715';
   }
 
-  /* Close menu on outside click */
-  document.addEventListener('click', function(e) {
-    const menu = document.getElementById('menu');
-    const btn  = document.getElementById('hamburger-btn');
+  btn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    menu.style.display === 'flex' ? closeMenu() : openMenu();
+  });
+
+  document.addEventListener('click', function (e) {
     if (menu.style.display === 'flex' && !menu.contains(e.target) && !btn.contains(e.target)) {
-      menu.style.display = 'none';
-      menu.classList.remove('menu-open');
-      btn.setAttribute('aria-expanded', 'false');
+      closeMenu();
     }
   });
 
-  /* Close menu when a nav link is clicked */
-  document.querySelectorAll('#menu a').forEach(function(a) {
-    a.addEventListener('click', function() {
-      const menu = document.getElementById('menu');
-      const btn  = document.getElementById('hamburger-btn');
-      menu.style.display = 'none';
-      menu.classList.remove('menu-open');
-      btn.setAttribute('aria-expanded', 'false');
-    });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && menu.style.display === 'flex') {
+      closeMenu();
+      btn.focus();
+    }
   });
 
-  /* Scroll-to-top button */
-  const toTop = document.getElementById('toTop');
-  window.addEventListener('scroll', function() {
+  menu.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', closeMenu);
+  });
+
+  /* ── Scroll to Top ── */
+  var toTop = document.getElementById('toTop');
+  window.addEventListener('scroll', function () {
     toTop.classList.toggle('visible', window.scrollY > 300);
   });
-  toTop.addEventListener('click', function() {
+  toTop.addEventListener('click', function () {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  /* ----- Banner Slider ----- */
-  (function() {
-    let current = 0;
-    const imgs = document.querySelectorAll('.banner-slider img');
+  /* ── Banner Slider ── */
+  (function () {
+    var current = 0;
+    var imgs = document.querySelectorAll('.banner-slider img');
     if (!imgs.length) return;
-    setInterval(() => {
+    setInterval(function () {
       imgs[current].classList.remove('active');
       current = (current + 1) % imgs.length;
       imgs[current].classList.add('active');
     }, 4500);
   })();
 
-  /* ----- Rashifal Star Generator ----- */
-  (function() {
-    const container = document.getElementById('rashifal-stars');
+  /* ── Rashifal Stars ── */
+  (function () {
+    var container = document.getElementById('rashifal-stars');
     if (!container) return;
-    for (let i = 0; i < 30; i++) {
-      const s = document.createElement('span');
-      s.style.cssText = `
-        left:${Math.random()*100}%;
-        top:${Math.random()*100}%;
-        animation-delay:${(Math.random()*3).toFixed(2)}s;
-        animation-duration:${(2+Math.random()*2).toFixed(2)}s;
-      `;
+    for (var i = 0; i < 30; i++) {
+      var s = document.createElement('span');
+      s.style.left   = (Math.random() * 100) + '%';
+      s.style.top    = (Math.random() * 100) + '%';
+      s.style.animationDelay    = (Math.random() * 3).toFixed(2) + 's';
+      s.style.animationDuration = (2 + Math.random() * 2).toFixed(2) + 's';
       container.appendChild(s);
     }
   })();
 
-  /* ----- WhatsApp Flash Messages (every 3 seconds) ----- */
-  (function() {
-    const messages = [
-      '🔮 পরামর্শ নিন জ্যোতিষীর কাছে',
-      '⭐ আজকের রাশিফল জানুন',
-      '📞 অনলাইন কনসালটেশন উপলব্ধ',
-      '🌙 জ্যোতিষ • হস্তরেখা • বাস্তু',
-      '💬 WhatsApp-এ কথা বলুন'
+  /* ── WhatsApp Flash Messages ── */
+  (function () {
+    var messages = [
+      '\uD83D\uDD2E \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6 \u09A8\u09BF\u09A8 \u099C\u09CD\u09AF\u09CB\u09A4\u09BF\u09B7\u09C0\u09B0 \u0995\u09BE\u099B\u09C7',
+      '\u2B50 \u0986\u099C\u0995\u09C7\u09B0 \u09B0\u09BE\u09B6\u09BF\u09AB\u09B2 \u099C\u09BE\u09A8\u09C1\u09A8',
+      '\uD83D\uDCDE \u0985\u09A8\u09B2\u09BE\u0987\u09A8 \u0995\u09A8\u09B8\u09BE\u09B2\u09CD\u099F\u09C7\u09B6\u09A8 \u0989\u09AA\u09B2\u09AC\u09CD\u09A7',
+      '\uD83C\uDF19 \u099C\u09CD\u09AF\u09CB\u09A4\u09BF\u09B7 \u2022 \u09B9\u09B8\u09CD\u09A4\u09B0\u09C7\u0996\u09BE \u2022 \u09AC\u09BE\u09B8\u09CD\u09A4\u09C1'
     ];
-    const el = document.getElementById('wa-flash-msg');
-    let idx  = 0;
-    let timer;
+    var el = document.getElementById('wa-flash-msg');
+    if (!el) return;
+    var idx = 0;
+    function showNext() {
+      el.classList.remove('visible');
+      setTimeout(function () {
+        el.textContent = messages[idx % messages.length];
+        idx++;
+        el.classList.add('visible');
+      }, 400);
+    }
+    showNext();
+    setInterval(showNext, 3000);
+  })();
 
-    function showMsg() {
-      el.textContent = messages[idx];
-      el.classLis
+});
+</script>
+</body>
+</html>
