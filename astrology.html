@@ -30,14 +30,14 @@
   <!-- ═══════════════════════════════════════════════════════════
        SEO: টাইটেল — বাংলা + ইংরেজি কীওয়ার্ড সমৃদ্ধ, ৬০ অক্ষরের মধ্যে
        ═══════════════════════════════════════════════════════════ -->
-  <title>বৈদিক জ্যোতিষ শাস্ত্র | Vedic Astrology & Jyotish Vidya | Dr. Prodyut Acharya – MyAstrology</title>
+  <title>বৈদিক জ্যোতিষ শাস্ত্র | Vedic Jyotish | Dr. Prodyut Acharya</title>
 
   <!-- ✅ SEO: Description — ১৫০–১৬০ অক্ষর, স্বাভাবিক ভাষায়, keyword-natural -->
   <meta name="description" content="বৈদিক জ্যোতিষ শাস্ত্র ও Jyotish Vidya — ভবিষ্যৎ জানার নয়, আত্মজ্ঞানের বিজ্ঞান। Vedic Jyotish, জন্মকুণ্ডলী বিশ্লেষণ ও হস্তরেখা পরামর্শে অভিজ্ঞ Dr. Prodyut Acharya, MyAstrology, Ranaghat।" />
 
   <!-- ✅ FIX: Keyword Stuffing দূর — মাত্র ১০টি ফোকাসড কীওয়ার্ড
        (Google meta keywords ব্যবহার করে না, তবে Bing করে। অতিরিক্ত keyword Google-এ spam signal) -->
-  <meta name="keywords" content="বৈদিক জ্যোতিষ, জ্যোতিষ শাস্ত্র, Jyotish Shastra, Jyotish Vidya, Vedic Astrology, Vedic Jyotish, জন্মকুণ্ডলী, Janam Kundali, হস্তরেখা, Palmistry, Best Astrologer Ranaghat, Bengali Astrologer West Bengal, Online Jyotish Consultation, Prodyut Acharya, MyAstrology, Jyotish Acharya, Rashifal, Horoscope Prediction" />
+  <meta name="keywords" content="বৈদিক জ্যোতিষ, Vedic Astrology, Jyotish Shastra, জন্মকুণ্ডলী, Janam Kundali, হস্তরেখা, Palmistry, Best Astrologer Ranaghat, Online Jyotish Consultation, Prodyut Acharya" />
 
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   <meta name="author" content="Dr. Prodyut Acharya" />
@@ -65,7 +65,7 @@
   <meta name="twitter:site" content="@AcharyaProdyut" />
   <meta name="twitter:title" content="বৈদিক জ্যোতিষ শাস্ত্র | Vedic Astrology | Dr. Prodyut Acharya" />
   <meta name="twitter:description" content="জ্যোতিষ — আত্মজ্ঞান ও জীবন বদলানোর বিজ্ঞান। ড. প্রদ্যুৎ আচার্য, MyAstrology।" />
-  <meta name="twitter:image" content="https://www.myastrology.in/blog/jyotish-cover.webp" />
+  <meta name="twitter:image" content="https://www.myastrology.in/blog/astrology-cover.webp" />
 
   <!-- Article Schema (content page-এর জন্য LocalBusiness-এর চেয়ে উপযুক্ত) -->
   <script type="application/ld+json">
@@ -92,7 +92,7 @@
         "url": "https://www.myastrology.in",
         "logo": {
           "@type": "ImageObject",
-          "url": "images/MyAstrology-Ranghat-logo.png"
+          "url": "https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png"
         }
       },
       "mainEntityOfPage": "https://www.myastrology.in/astrology.html",
@@ -112,24 +112,49 @@
       "priceRange": "₹500–₹2000",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Ranaghat",
+        "streetAddress": "Ranaghat Town",
         "addressLocality": "Ranaghat",
         "addressRegion": "West Bengal",
         "postalCode": "741201",
         "addressCountry": "IN"
       },
-      "openingHours": "Mo-Sa 09:00-20:00",
+      "openingHours": "Mo-Sa 09:00-21:00",
       "geo": {
         "@type": "GeoCoordinates",
         "latitude": "23.1765",
         "longitude": "88.5667"
       },
       "areaServed": ["Ranaghat", "Nadia", "West Bengal", "India"],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "276",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
       "sameAs": [
         "https://www.facebook.com/Dr.ProdyutAcharya",
         "https://www.instagram.com/myastrology.in",
         "https://youtube.com/@myastrology",
         "https://x.com/AcharyaProdyut"
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "হোম",
+          "item": "https://www.myastrology.in"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "বৈদিক জ্যোতিষ শাস্ত্র",
+          "item": "https://www.myastrology.in/astrology.html"
+        }
       ]
     },
     {
@@ -224,6 +249,76 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ════════════════════════════════════════════════════════
+       REVIEWS & SOCIAL PROOF
+       ════════════════════════════════════════════════════════ */
+    .review-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: var(--space-lg);
+    }
+    .review-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      background: var(--clr-bg-warm);
+      border: 1.5px solid var(--clr-border);
+      border-radius: var(--radius-md);
+      padding: 14px 20px;
+      min-width: 120px;
+      box-shadow: var(--shadow-sm);
+    }
+    .review-badge-icon { font-size: 1.4rem; }
+    .review-badge-stars { color: var(--clr-gold); font-size: 0.85rem; letter-spacing: 1px; }
+    .review-badge-count { font-family: var(--font-sans); font-weight: 800; font-size: 1.1rem; color: var(--clr-primary); }
+    .review-badge-platform { font-family: var(--font-sans); font-size: 0.75rem; color: var(--clr-text-lt); font-weight: 600; }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 18px;
+      margin-top: var(--space-md);
+    }
+    .testimonial-card {
+      background: #fff;
+      border: 1.5px solid var(--clr-border-lt);
+      border-left: 4px solid var(--clr-gold);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      box-shadow: var(--shadow-sm);
+    }
+    .testimonial-stars { color: var(--clr-gold); font-size: 1rem; margin-bottom: 8px; }
+    .testimonial-text {
+      font-family: var(--font-serif);
+      font-size: 0.95rem;
+      color: var(--clr-text-md);
+      line-height: 1.7;
+      margin-bottom: 12px;
+      font-style: italic;
+    }
+    .testimonial-author {
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--clr-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .testimonial-source {
+      background: var(--clr-bg-warm);
+      border: 1px solid var(--clr-border);
+      border-radius: 20px;
+      padding: 2px 10px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--clr-text-lt);
+    }
 
     html { scroll-behavior: smooth; font-size: 16px; }
 
@@ -1611,7 +1706,6 @@
   <link rel="sitemap" type="application/xml" href="https://www.myastrology.in/sitemap.xml">
   <link rel="alternate" hreflang="bn-IN" href="https://www.myastrology.in/astrology.html">
   <link rel="alternate" hreflang="x-default" href="https://www.myastrology.in/astrology.html">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"হোম","item":"https://www.myastrology.in/"},{"@type":"ListItem","position":2,"name":"জ্যোতিষ শাস্ত্র","item":"https://www.myastrology.in/astrology.html"}]}</script>
 </head>
 
 <body>
@@ -1797,8 +1891,8 @@
 
   <blockquote>"The stars and planets are the visible symbols of inner psychological forces."</blockquote>
 
-</section>
   <p>অতএব, <a href="https://prodyutacharya.blogspot.com/2019/01/What-is-astrology.html" target="_blank" rel="noopener noreferrer">জ্যোতিষ শাস্ত্র</a> কেবল ভবিষ্যৎ জানার নয় — এটি আত্মজ্ঞান, চেতনার জাগরণ ও জীবন রূপান্তরের এক মহান বিজ্ঞান।</p>
+
 </section>
 
 <section class="svc-section" id="service-consult">
@@ -2559,6 +2653,79 @@
 
 <div class="section-divider"><span>✨</span></div>
 
+<!-- ═══════════════════════════ REVIEWS & SOCIAL PROOF ═══════════════════════════ -->
+<section class="content-section review-section" id="reviews-social-proof">
+
+  <h2 class="headline-h2" style="text-align:center;">⭐ ক্লায়েন্টদের অভিজ্ঞতা ও বিশ্বাস</h2>
+  <p style="text-align:center; color:var(--clr-text-lt); margin-bottom:var(--space-md);">১০,০০০+ সন্তুষ্ট ক্লায়েন্ট — সারা ভারত ও বিদেশ থেকে পরামর্শ নিয়েছেন</p>
+
+  <!-- Review Badges -->
+  <div class="review-badges">
+    <div class="review-badge">
+      <span class="review-badge-icon">🌐</span>
+      <span class="review-badge-stars">★★★★★</span>
+      <span class="review-badge-count">১২২+ রিভিউ</span>
+      <span class="review-badge-platform">Google</span>
+    </div>
+    <div class="review-badge">
+      <span class="review-badge-icon">📋</span>
+      <span class="review-badge-stars">★★★★★</span>
+      <span class="review-badge-count">১২৮+ রিভিউ</span>
+      <span class="review-badge-platform">JustDial</span>
+    </div>
+    <div class="review-badge">
+      <span class="review-badge-icon">📘</span>
+      <span class="review-badge-stars">★★★★★</span>
+      <span class="review-badge-count">২৬ রিভিউ</span>
+      <span class="review-badge-platform">Facebook</span>
+    </div>
+    <div class="review-badge">
+      <span class="review-badge-icon">▶️</span>
+      <span class="review-badge-stars">🔴</span>
+      <span class="review-badge-count">২,২৪,১২৩+</span>
+      <span class="review-badge-platform">YouTube Subscribers</span>
+    </div>
+    <div class="review-badge">
+      <span class="review-badge-icon">👥</span>
+      <span class="review-badge-stars">📘</span>
+      <span class="review-badge-count">৪১,০০৪+</span>
+      <span class="review-badge-platform">Facebook Followers</span>
+    </div>
+  </div>
+
+  <!-- Testimonials -->
+  <div class="testimonial-grid">
+
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"ড. প্রদ্যুৎ আচার্য আমার জীবনের সবচেয়ে কঠিন সময়ে সঠিক দিকনির্দেশনা দিয়েছেন। জন্মকুণ্ডলী বিশ্লেষণ এতটাই নির্ভুল ছিল যে আমি অবাক হয়ে গিয়েছিলাম।"</p>
+      <div class="testimonial-author">— সুমিত্রা দেবী, কলকাতা <span class="testimonial-source">Google Review</span></div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"হাতের রেখা দেখে এমন অনেক কথা বললেন যা শুধু আমিই জানতাম। অনলাইনে পরামর্শ নেওয়াটা খুবই সহজ ছিল। সত্যিকারের জ্ঞানী মানুষ।"</p>
+      <div class="testimonial-author">— রাজীব চক্রবর্তী, দিল্লি <span class="testimonial-source">JustDial Review</span></div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"যোটোক বিচার করিয়ে বিবাহ করেছি, আজ দাম্পত্য জীবন সুখী। ড. আচার্যের পরামর্শ না নিলে হয়তো বড় ভুল করতাম। আন্তরিক ধন্যবাদ।"</p>
+      <div class="testimonial-author">— প্রিয়া সরকার, রানাঘাট <span class="testimonial-source">Facebook Review</span></div>
+    </div>
+
+  </div>
+
+  <div style="text-align:center; margin-top:var(--space-md);">
+    <a href="https://www.myastrology.in/reviews.html" class="sc-btn" style="display:inline-block; padding:12px 32px; font-size:1rem;">
+      সমস্ত রিভিউ দেখুন <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
+
+</section>
+
+<div class="section-divider"><span>✨</span></div>
+
 <!-- ═══════════════════════════ SECTION 8 ═══════════════════════════ -->
 <section class="content-section">
   <h2 id="bhagya-bazar-chalna" class="headline-h2">
@@ -2837,6 +3004,4 @@
 </script>
 
 </body>
-  <a href="https://www.myastrology.in/privacy-policy.html"><i class="fas fa-shield-alt"></i>Privacy Policy</a>
-  <a href="https://www.myastrology.in/terms-of-use.html"><i class="fas fa-file-alt"></i>Terms of Use</a>
 </html>
