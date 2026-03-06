@@ -1,622 +1,1074 @@
 <!DOCTYPE html>
 <html lang="bn-IN" dir="ltr" translate="no">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="Dr. Prodyut Acharya">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google" content="notranslate" />
 
+  <!-- ═══ PERFORMANCE: Resource Hints ═══ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 
-<!-- ✅ Google Analytics -->       
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S7BQGLP211">
-  
-  
-  <!-- FontAwesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Font Awesome — non-render-blocking -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" /></noscript>
 
-  <!-- SEO Meta Tags -->
-  <title>Vedic Astronomy – রাশিচক্র, সূর্য-চন্দ্র বছর ও তিথি</title>
-  <meta name="keywords" content="vedic astronomy, বৈদিক জ্যোতির্বিজ্ঞান, jyotish, জ্যোতিষ, রাশিচক্র, zodiac, nakshatra, নক্ষত্র, তিথি, tithi, solar year, lunar year, geocentric model, heliocentric model, Dr Prodyut Acharya, MyAstrology, Ranaghat, রানাঘাট, Nadia, West Bengal">
-  <meta name="description" content="রাশিচক্র, সূর্য ও চন্দ্র বছরের পার্থক্য, তিথি গণনা ও বৈদিক জ্যোতির্বিজ্ঞান নিয়ে বিস্তারিত ব্যাখ্যা। ড. প্রদ্যুৎ আচার্য – MyAstrology.in">
-  <link rel="canonical" href="https://www.myastrology.in/vedic-astronomy.html">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;700&family=Noto+Sans+Bengali:wght@400;700;800&display=swap" rel="stylesheet" />
 
-  <!-- ✅ Open Graph for Facebook -->
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="Vedic Astronomy – রাশিচক্র, সূর্য-চন্দ্র বছর ও তিথি">
-  <meta property="og:description" content="রাশিচক্র, সূর্য ও চন্দ্র বছরের পার্থক্য, তিথি গণনা ও বৈদিক জ্যোতির্বিজ্ঞান নিয়ে বিস্তারিত ব্যাখ্যা। ড. প্রদ্যুৎ আচার্য – MyAstrology.in">
-  <meta property="og:url" content="https://www.myastrology.in/vedic-astronomy.html">
-  <meta property="og:image" content="https://www.myastrology.in/images/astrologer-india-banner1.webp">
-  <meta property="og:site_name" content="MyAstrology.in">
+  <!-- Favicon & PWA -->
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="theme-color" content="#0a192f" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-  <!-- ✅ Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Vedic Astronomy – রাশিচক্র, সূর্য-চন্দ্র বছর ও তিথি">
-  <meta name="twitter:description" content="রাশিচক্র, সূর্য ও চন্দ্র বছরের পার্থক্য, তিথি গণনা ও বৈদিক জ্যোতির্বিজ্ঞান নিয়ে বিস্তারিত ব্যাখ্যা। ড. প্রদ্যুৎ আচার্য – MyAstrology.in">
-  <meta name="twitter:image" content="https://www.myastrology.in/images/astrologer-india-banner1.webp">
-  <meta name="twitter:site" content="@AcharyaProdyut">
+  <!-- Hero image preload -->
+  <link rel="preload" as="image" href="images/astrology-ranaghat-banner4.webp" />
 
-  <!-- ✅ Favicon -->
-  
+  <!-- ═══ SEO: Title — ৫৮ অক্ষর ═══ -->
+  <title>বৈদিক জ্যোতির্বিজ্ঞান | Vedic Astronomy | Dr. Prodyut Acharya</title>
 
+  <!-- SEO Meta -->
+  <meta name="description" content="রাশিচক্র, সূর্য ও চন্দ্র বছরের পার্থক্য, তিথি গণনা ও বৈদিক জ্যোতির্বিজ্ঞানের বিজ্ঞানসম্মত ব্যাখ্যা। ড. প্রদ্যুৎ আচার্য — MyAstrology, Ranaghat।" />
+  <meta name="keywords" content="বৈদিক জ্যোতির্বিজ্ঞান, Vedic Astronomy, রাশিচক্র, Nakshatra, তিথি, Tithi, সূর্য বৎসর, চন্দ্র বৎসর, Geocentric Model, Prodyut Acharya" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="author" content="Dr. Prodyut Acharya" />
+  <meta name="geo.region" content="IN-WB" />
+  <meta name="geo.placename" content="Ranaghat, Nadia, West Bengal" />
+  <meta name="geo.position" content="23.1676690;88.5808191" />
+  <meta name="ICBM" content="23.1676690, 88.5808191" />
+  <meta name="msvalidate.01" content="984EF24A6EC23EFF015DCA989DAAD547" />
+  <meta name="language" content="Bengali" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://www.myastrology.in/vedic-astronomy.html" />
+
+  <!-- hreflang -->
+  <link rel="alternate" hreflang="bn-IN" href="https://www.myastrology.in/vedic-astronomy.html" />
+  <link rel="alternate" hreflang="x-default" href="https://www.myastrology.in/vedic-astronomy.html" />
+
+  <!-- Sitemap -->
+  <link rel="sitemap" type="application/xml" href="https://www.myastrology.in/sitemap.xml" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="বৈদিক জ্যোতির্বিজ্ঞান | Vedic Astronomy | Dr. Prodyut Acharya" />
+  <meta property="og:description" content="রাশিচক্র, সূর্য ও চন্দ্র বছরের পার্থক্য, তিথি গণনা ও বৈদিক জ্যোতির্বিজ্ঞানের বিজ্ঞানসম্মত ব্যাখ্যা। ড. প্রদ্যুৎ আচার্য — MyAstrology, Ranaghat।" />
+  <meta property="og:url" content="https://www.myastrology.in/vedic-astronomy.html" />
+  <meta property="og:site_name" content="MyAstrology – Dr. Prodyut Acharya" />
+  <meta property="og:image" content="https://www.myastrology.in/images/astrologer-india-banner1.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="MyAstrology — Vedic Astronomy by Dr. Prodyut Acharya" />
+  <meta property="og:locale" content="bn_IN" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@AcharyaProdyut" />
+  <meta name="twitter:title" content="বৈদিক জ্যোতির্বিজ্ঞান | Vedic Astronomy | Dr. Prodyut Acharya" />
+  <meta name="twitter:description" content="রাশিচক্র, সূর্য ও চন্দ্র বছরের পার্থক্য, তিথি গণনা ও বৈদিক জ্যোতির্বিজ্ঞান। ড. প্রদ্যুৎ আচার্য — MyAstrology।" />
+  <meta name="twitter:image" content="https://www.myastrology.in/images/astrologer-india-banner1.webp" />
+
+  <!-- ═══ SCHEMA MARKUP ═══ -->
   <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "MyAstrology – Dr. Prodyut Acharya",
-  "alternateName": "Best Astrologer & Palmist in Ranaghat",
-  "url": "https://www.myastrology.in/",
-  "logo": "https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png",
-  "image": "https://www.myastrology.in/images/MyAstrology-Prodyut-Acharya.webp",
-  "description": "Expert Indian Astrology, Palmistry, Horoscope & Kundli Consultation by Dr. Prodyut Acharya in Ranaghat, West Bengal.",
-  "slogan": "Empowering lives through ancient wisdom & modern insight",
-  "telephone": "+91-9333122768",
-  "priceRange": "₹1000-₹2500",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Ranaghat, Nadia",
-    "addressLocality": "Ranaghat",
-    "addressRegion": "West Bengal",
-    "postalCode": "741201",
-    "addressCountry": "IN"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": "23.1765",
-    "longitude": "88.5667"
-  },
-  "openingHoursSpecification": [
+  [
     {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday"
-      ],
-      "opens": "09:00",
-      "closes": "21:00"
-    }
-  ],
-  "areaServed": {
-    "@type": "GeoCircle",
-    "geoMidpoint": {
-      "@type": "GeoCoordinates",
-      "latitude": "23.1765",
-      "longitude": "88.5667"
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "বৈদিক জ্যোতির্বিজ্ঞান: রাশিচক্র, সূর্য-চন্দ্র বছর ও তিথি",
+      "description": "রাশিচক্র, সূর্য ও চন্দ্র বছরের পার্থক্য, তিথি গণনা ও বৈদিক জ্যোতির্বিজ্ঞানের বিজ্ঞানসম্মত ব্যাখ্যা।",
+      "image": "https://www.myastrology.in/images/astrologer-india-banner1.webp",
+      "author": {
+        "@type": "Person",
+        "name": "Dr. Prodyut Acharya",
+        "url": "https://www.myastrology.in/about.html",
+        "sameAs": [
+          "https://www.facebook.com/Dr.ProdyutAcharya",
+          "https://x.com/AcharyaProdyut",
+          "https://prodyutacharya.blogspot.com"
+        ]
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "MyAstrology",
+        "url": "https://www.myastrology.in",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png"
+        }
+      },
+      "mainEntityOfPage": "https://www.myastrology.in/vedic-astronomy.html",
+      "datePublished": "2024-01-15",
+      "dateModified": "2026-03-06",
+      "inLanguage": "bn-IN"
     },
-    "geoRadius": "150"
-  },
-  "sameAs": [
-    "https://www.facebook.com/Dr.ProdyutAcharya",
-    "https://www.instagram.com/myastrology.in",
-    "https://youtube.com/@myastrology",
-    "https://x.com/AcharyaProdyut"
-  ],
-  "knowsAbout": [
-    "Indian Astrology",
-    "Palmistry",
-    "Vedic Horoscope",
-    "Kundli Analysis",
-    "Vastu Consultation"
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "MyAstrology – Dr. Prodyut Acharya",
+      "alternateName": "Best Astrologer & Palmist in Ranaghat",
+      "url": "https://www.myastrology.in",
+      "telephone": "+91-9333122768",
+      "email": "info@myastrology.in",
+      "description": "Expert Indian Astrology, Palmistry, Horoscope & Kundli Consultation by Dr. Prodyut Acharya in Ranaghat, West Bengal.",
+      "slogan": "Empowering lives through ancient wisdom & modern insight",
+      "priceRange": "₹500–₹2500",
+      "image": "https://www.myastrology.in/images/MyAstrology-Prodyut-Acharya.webp",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Ranaghat Town",
+        "addressLocality": "Ranaghat",
+        "addressRegion": "West Bengal",
+        "postalCode": "741201",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "23.1765",
+        "longitude": "88.5667"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+          "opens": "09:00",
+          "closes": "21:00"
+        }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "276",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "areaServed": ["Ranaghat", "Nadia", "West Bengal", "India"],
+      "sameAs": [
+        "https://www.facebook.com/Dr.ProdyutAcharya",
+        "https://www.instagram.com/myastrology.in",
+        "https://youtube.com/@myastrology",
+        "https://x.com/AcharyaProdyut"
+      ],
+      "knowsAbout": ["Indian Astrology","Palmistry","Vedic Horoscope","Kundli Analysis","Vastu Consultation","Vedic Astronomy"]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"হোম","item":"https://www.myastrology.in"},
+        {"@type":"ListItem","position":2,"name":"বৈদিক জ্যোতির্বিজ্ঞান","item":"https://www.myastrology.in/vedic-astronomy.html"}
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Vedic Astronomy বা বৈদিক জ্যোতির্বিজ্ঞান কী?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Vedic Astronomy বা বৈদিক জ্যোতির্বিজ্ঞান হলো প্রাচীন ভারতীয় জ্যোতিষের সেই অংশ যেখানে সূর্য, চন্দ্র, গ্রহ-নক্ষত্রের গতি বৈজ্ঞানিকভাবে গণনা করা হয়। এটি আধুনিক অ্যাস্ট্রোনমির সাথে মিল রেখে রাশিচক্র, তিথি ও পঞ্জিকার ভিত্তি গঠন করে।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "সূর্য বছর ও চন্দ্র বছরের পার্থক্য কী?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Solar Year বা সূর্য বছর ৩৬৫.২৪ দিন, Lunar Year বা চন্দ্র বছর ৩৫৪.৩৬ দিন। প্রতি বছর প্রায় ১১ দিন পার্থক্য হয়, যা ৩ বছরে ৩০ দিন জমে — এই পার্থক্য পূরণ করতে হিন্দু পঞ্জিকায় অধিমাস যোগ করা হয়।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "তিথি কীভাবে গণনা করা হয়?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "তিথি গণনা হয় সূর্য ও চাঁদের দ্রাঘিমার পার্থক্য দিয়ে। সূত্র: তিথি সংখ্যা = (চাঁদের দ্রাঘিমা – সূর্যের দ্রাঘিমা) ÷ ১২°। এক পূর্ণ চন্দ্রচক্রে ৩০টি তিথি হয়।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Ranaghat-এ বৈদিক জ্যোতিষ পরামর্শ কোথায় পাব?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "রানাঘাট, নদিয়া, পশ্চিমবঙ্গে MyAstrology-তে ড. প্রদ্যুৎ আচার্য অনলাইন ও সরাসরি পরামর্শ দেন। ফোন/WhatsApp: +91-9333122768। ওয়েবসাইট: www.myastrology.in"
+          }
+        }
+      ]
+    }
   ]
-}
-</script>
+  </script>
 
+  <!-- ═══ Google Analytics 4 — সঠিকভাবে closed ═══ -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S7BQGLP211"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-S7BQGLP211', { page_path: '/vedic-astronomy' });
+  </script>
 
+  <!-- Razorpay — একবারই, defer সহ -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js" defer></script>
 
-<style>
-.scroll-banner {  
-  background: #fff;  
-  padding: 15px 0;  
-  overflow: hidden;  
-  border-top: 2px solid #eee;  
-  border-bottom: 2px solid #eee;  
-  font-size: 1.6rem;  
-  font-weight: 600;  
-  color: #222;  
-  font-family: 'Segoe UI', sans-serif;  
-}  
-  
-.scroll-text {  
-  display: inline-block;  
-  white-space: nowrap;  
-  padding-left: 100%;  
-  animation: scroll-left 15s linear infinite;  
-}  
-  
-@keyframes scroll-left {  
-  0% { transform: translateX(0); }  
-  100% { transform: translateX(-100%); }  
-}
-    body {  
-      margin: 0;  
-      font-family: 'Noto Serif Bengali', serif;  
-    }  
-    /* Header */
-header {
-  background: #fff;
-  border-bottom: 2px solid #ddd;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px 16px;
-  flex-wrap: wrap;
-}
+  <style>
+    /* ════════════════════════════════════════════
+       DESIGN SYSTEM — CSS Variables
+       ════════════════════════════════════════════ */
+    :root {
+      --clr-primary:       #0a192f;
+      --clr-primary-lt:    #0e1e38;
+      --clr-gold:          #b8860b;
+      --clr-gold-lt:       #f0d060;
+      --clr-gold-bg:       #fffbf0;
+      --clr-accent:        #c0392b;
+      --clr-green:         #006400;
+      --clr-text:          #222;
+      --clr-text-md:       #444;
+      --clr-text-lt:       #666;
+      --clr-border:        #e8d5a0;
+      --clr-border-lt:     #f3e9d2;
+      --clr-bg:            #fffef7;
+      --clr-bg-warm:       #fff8e1;
+      --clr-bg-section:    #fff;
+      --clr-wa:            #25D366;
+      --font-serif:  'Noto Serif Bengali', Georgia, serif;
+      --font-sans:   'Noto Sans Bengali', Arial, sans-serif;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,.07);
+      --shadow-md: 0 4px 18px rgba(0,0,0,.1);
+      --transition: .25s ease;
+      --max-w: 950px;
+      --nav-h: 62px;
+    }
 
-/* Hide nav by default */
-nav {
-  display: none;
-  flex-direction: column;
-  width: 100%;
-  background: #fff;
-  border-top: 1px solid #ddd;
-}
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-serif);
+      background: var(--clr-bg);
+      color: var(--clr-text);
+      line-height: 1.85;
+      -webkit-font-smoothing: antialiased;
+      padding-top: var(--nav-h);
+    }
 
-nav a {
-  text-decoration: none;
-  color: #222;
-  font-weight: bold;
-  font-size: 0.95rem;
-  padding: 6px 10px;
-  border-radius: 4px;
-  transition: background 0.3s;
-}
+    /* ════ SKIP LINK ════ */
+    .skip-link {
+      position: absolute; top: -60px; left: 16px;
+      background: var(--clr-primary); color: #fff;
+      padding: 10px 20px; border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+      font-family: var(--font-sans); font-size: .9rem; font-weight: 600;
+      z-index: 9999; transition: top .3s;
+    }
+    .skip-link:focus { top: 0; }
 
-nav a:hover {
-  background: #f2f2f2;
-}
+    /* ════ PROGRESS BAR ════ */
+    #_pb {
+      position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+      background: linear-gradient(90deg, var(--clr-gold), #e65100);
+      z-index: 9999; transition: width .1s; pointer-events: none;
+    }
 
-/* Show nav when active */
-nav.active {
-  display: flex;
-}
+    /* ════ HEADER ════ */
+    #_hdr {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      height: var(--nav-h);
+      display: flex; align-items: center; gap: 10px; padding: 0 18px;
+      background: var(--clr-primary);
+      border-bottom: 2px solid var(--clr-gold);
+      box-shadow: 0 2px 20px rgba(0,0,0,.5);
+      font-family: var(--font-sans);
+    }
+    #_ham {
+      background: rgba(255,255,255,.07); border: 1.5px solid rgba(184,134,11,.4);
+      cursor: pointer; color: var(--clr-gold-lt); font-size: 1.25rem;
+      width: 42px; height: 42px; display: flex; align-items: center;
+      justify-content: center; border-radius: 7px; flex-shrink: 0;
+      transition: background var(--transition); font-family: inherit;
+    }
+    #_ham:hover { background: rgba(184,134,11,.22); }
+    #_ham:focus { outline: 2px solid var(--clr-gold-lt); outline-offset: 2px; }
+    #_hbrand {
+      font-size: 1.1rem; font-weight: 700; color: var(--clr-gold-lt);
+      letter-spacing: .04em; flex: 1; text-align: center;
+    }
+    #_hlogo {
+      width: 44px; height: 44px; border-radius: 7px;
+      object-fit: contain; flex-shrink: 0;
+    }
 
-/* Menu toggle should always be visible */
+    /* ════ OFF-CANVAS NAV ════ */
+    #_nav {
+      display: none; flex-direction: column;
+      position: fixed; top: var(--nav-h); left: 0; right: 0;
+      background: var(--clr-primary-lt);
+      border-top: 2px solid var(--clr-gold);
+      z-index: 999; max-height: 82vh; overflow-y: auto;
+      box-shadow: 0 12px 30px rgba(0,0,0,.5);
+    }
+    #_nav.open { display: flex; }
+    #_nav a {
+      color: #b0c4dc; padding: 12px 22px;
+      font-family: var(--font-sans); font-size: .92rem; font-weight: 600;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      text-decoration: none; display: flex; align-items: center; gap: 10px;
+      transition: background var(--transition), color var(--transition);
+    }
+    #_nav a i { width: 18px; color: var(--clr-gold); font-size: .88rem; flex-shrink: 0; }
+    #_nav a:hover, #_nav a.cur { background: rgba(184,134,11,.15); color: var(--clr-gold-lt); }
+    #_nav a.n-wa { background: rgba(37,211,102,.08); color: #4ee07a; }
+    #_nav a.n-wa:hover { background: rgba(37,211,102,.18); }
+    #_nav a.n-bk { background: rgba(184,134,11,.16); color: #f9d44a; font-weight: 700; }
+    #_nav a.n-bk:hover { background: rgba(184,134,11,.28); }
 
-/* Remove media query so hamburger shows on desktop too */
-    @media (max-width: 900px) {  
-      nav {  
-        display: none;  
-        flex-direction: column;  
-        width: 100%;  
-        background: #fff;  
-        border-top: 1px solid #ddd;  
-      }  
-      nav.active {  
-        display: flex;  
-      }  
-        
-    }  
-    /* Banner */  
-    .banner img {  
-      width: 100%;  
-      height: auto;  
-      display: block;  
-    }  
-  </style>  
-<link rel="icon" href="images/favicon.ico" type="image/x-icon">
-<link rel="apple-touch-icon" sizes="180x180" href="images/favicon.ico">
-<meta name="google" content="notranslate">
-<meta name="geo.region" content="IN-WB">
-<meta name="geo.placename" content="Ranaghat, Nadia, West Bengal">
-<meta name="geo.position" content="23.1676690;88.5808191">
-<meta name="ICBM" content="23.1676690, 88.5808191">
-<meta name="msvalidate.01" content="984EF24A6EC23EFF015DCA989DAAD547">
-<link rel="alternate" hreflang="bn-IN" href="https://www.myastrology.in/vedic-astronomy.html">
-<link rel="alternate" hreflang="x-default" href="https://www.myastrology.in/vedic-astronomy.html">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"হোম","item":"https://www.myastrology.in/"},{"@type":"ListItem","position":2,"name":"জ্যোতির্বিজ্ঞান","item":"https://www.myastrology.in/vedic-astronomy.html"}]}</script>
-<style>
-/* ═══ UNIVERSAL NAV ═══ */
-:root{--_nh:64px}
-#_hdr{position:sticky;top:0;z-index:1000;display:flex;align-items:center;gap:10px;padding:0 16px;height:var(--_nh);background:#0a192f;box-shadow:0 2px 20px rgba(0,0,0,.5);border-bottom:2px solid #b8860b;font-family:'Baloo Da 2',sans-serif;}
-#_ham{background:rgba(255,255,255,.07);border:1.5px solid rgba(184,134,11,.4);cursor:pointer;color:#f0d060;font-size:1.25rem;width:42px;height:42px;display:flex;align-items:center;justify-content:center;border-radius:7px;flex-shrink:0;transition:background .2s;}
-#_ham:hover{background:rgba(184,134,11,.22)}
-#_hbrand{font-size:1.1rem;font-weight:700;color:#f0d060;letter-spacing:.04em;flex:1;text-align:center;}
-#_hlogo{width:44px;height:44px;border-radius:7px;object-fit:contain;flex-shrink:0;}
-#_nav{display:none;flex-direction:column;position:fixed;top:var(--_nh);left:0;right:0;background:#0e1e38;border-top:2px solid #b8860b;z-index:999;max-height:82vh;overflow-y:auto;box-shadow:0 12px 30px rgba(0,0,0,.5);}
-#_nav.open{display:flex}
-#_nav a{color:#b0c4dc;padding:12px 22px;font-size:.92rem;font-weight:600;border-bottom:1px solid rgba(255,255,255,.06);text-decoration:none;display:flex;align-items:center;gap:10px;transition:background .18s,color .18s;}
-#_nav a i{width:18px;color:#b8860b;opacity:.85;font-size:.88rem;flex-shrink:0;}
-#_nav a:hover,#_nav a.cur{background:rgba(184,134,11,.15);color:#f0d060;}
-#_nav a.n-wa{background:rgba(37,211,102,.08);color:#4ee07a;}
-#_nav a.n-wa:hover{background:rgba(37,211,102,.18);}
-#_nav a.n-bk{background:rgba(184,134,11,.16);color:#f9d44a;font-weight:700;}
-#_nav a.n-bk:hover{background:rgba(184,134,11,.28);}
-/* ═══ UTILITIES ═══ */
-#_pb{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#f9a825,#e65100);z-index:9999;transition:width .1s;pointer-events:none;}
-#_btt{position:fixed;bottom:24px;left:16px;width:44px;height:44px;background:#1a1a5e;color:#f9a825;border:2px solid rgba(249,168,37,.4);border-radius:50%;font-size:1.35rem;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.25);opacity:0;transform:translateY(12px);transition:opacity .3s,transform .3s;z-index:800;text-decoration:none;cursor:pointer;}
-#_btt.show{opacity:1;transform:translateY(0);}
-#_btt:hover{background:#f9a825;color:#1a1a5e;}
-/* ═══ WA FLOAT ═══ */
-#_waf{position:fixed;bottom:24px;right:16px;z-index:900;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
-#_wfm{background:#fff;color:#1a1a5e;font-family:sans-serif;font-size:.75rem;font-weight:700;padding:7px 10px;border-radius:12px 12px 0 12px;box-shadow:0 4px 16px rgba(0,0,0,.18);border-left:3px solid #25D366;width:146px;line-height:1.45;opacity:0;transform:translateY(6px) scale(.95);transition:opacity .4s,transform .4s;pointer-events:none;}
-#_wfm.on{opacity:1;transform:translateY(0) scale(1);}
-#_waf>a{display:flex;align-items:center;justify-content:center;width:56px;height:56px;background:#25D366;border-radius:50%;box-shadow:0 4px 18px rgba(37,211,102,.45);text-decoration:none;animation:_wap 2.5s ease-in-out infinite;}
-#_waf>a i{font-size:1.85rem;color:#fff;}
-@keyframes _wap{0%,100%{box-shadow:0 4px 18px rgba(37,211,102,.45),0 0 0 0 rgba(37,211,102,.4)}50%{box-shadow:0 4px 18px rgba(37,211,102,.45),0 0 0 14px rgba(37,211,102,0)}}
-/* ═══ RAZORPAY MODAL ═══ */
-#_rzpO{display:none;position:fixed;inset:0;background:rgba(0,0,0,.68);z-index:9000;align-items:center;justify-content:center;padding:20px;}
-#_rzpO.open{display:flex}
-#_rzpM{background:#fff;border-radius:14px;padding:32px 26px;max-width:420px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.35);border-top:5px solid #b8860b;position:relative;}
-#_rzpM h3{font-size:1.22rem;font-weight:700;color:#0a192f;margin:0 0 4px;}
-#_rzpSvc{font-size:.83rem;color:#b8860b;font-weight:600;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #e8d5a0;}
-.rzp-f{margin-bottom:13px;}
-.rzp-f label{display:block;font-size:.81rem;font-weight:600;color:#555;margin-bottom:5px;}
-.rzp-f input{width:100%;padding:10px 12px;border:1.5px solid #ddd;border-radius:7px;font-size:.93rem;transition:border-color .2s;outline:none;box-sizing:border-box;}
-.rzp-f input:focus{border-color:#b8860b;}
-#_rzpBtn{width:100%;background:#b8860b;color:#fff;border:none;padding:13px;border-radius:8px;font-size:.97rem;font-weight:700;cursor:pointer;margin-top:4px;transition:background .2s;}
-#_rzpBtn:hover{background:#9a700a}
-#_rzpX{position:absolute;top:12px;right:14px;background:none;border:none;font-size:1.4rem;cursor:pointer;color:#999;line-height:1;}
-#_rzpX:hover{color:#c00}
-#_rzpSec{text-align:center;font-size:.72rem;color:#aaa;margin-top:10px;}
-</style>
-<script src="https://checkout.razorpay.com/v1/checkout.js" defer></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Vedic Astronomy কী?","acceptedAnswer":{"@type":"Answer","text":"Vedic Astronomy বা বৈদিক জ্যোতির্বিজ্ঞান হলো প্রাচীন ভারতীয় জ্যোতিষের সেই অংশ যেখানে সূর্য, চন্দ্র, গ্রহ-নক্ষত্রের গতি গণনা করা হয়। Ranaghat-এর MyAstrology-তে ড. প্রদ্যুৎ আচার্য বিস্তারিত ব্যাখ্যা করেন।"}},{"@type":"Question","name":"সূর্য বছর ও চন্দ্র বছরের পার্থক্য?","acceptedAnswer":{"@type":"Answer","text":"Solar Year ৩৬৫.২৫ দিন, Lunar Year ৩৫৪ দিন। প্রতি বছর ১১ দিন পার্থক্য, অধিমাস দিয়ে পূরণ করা হয়।"}},{"@type":"Question","name":"Ranaghat-এ বৈদিক জ্যোতিষ পরামর্শ কোথায়?","acceptedAnswer":{"@type":"Answer","text":"রানাঘাট, নদিয়া, পশ্চিমবঙ্গে MyAstrology-তে ড. প্রদ্যুৎ আচার্য। ফোন: +91 93331 22768"}}]}</script>
-<style id="_univCss">
-#_pb{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#f9a825,#e65100);z-index:9999;transition:width .1s;pointer-events:none}
-#_btt{position:fixed;bottom:26px;left:16px;width:44px;height:44px;background:#0a192f;color:#f9a825;border:2px solid rgba(249,168,37,.4);border-radius:50%;font-size:1.3rem;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(0,0,0,.28);opacity:0;transform:translateY(12px);transition:opacity .3s,transform .3s;z-index:800;text-decoration:none;cursor:pointer}
-#_btt.show{opacity:1;transform:translateY(0)}
-#_btt:hover{background:#f9a825;color:#0a192f}
-#_waf{position:fixed;bottom:26px;right:16px;z-index:900;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
-#_wfm{background:#fff;color:#0a192f;font-family:sans-serif;font-size:.76rem;font-weight:700;padding:7px 11px;border-radius:12px 12px 0 12px;box-shadow:0 4px 16px rgba(0,0,0,.18);border-left:3px solid #25D366;width:152px;line-height:1.5;opacity:0;transform:translateY(6px) scale(.95);transition:opacity .4s,transform .4s;pointer-events:none}
-#_wfm.on{opacity:1;transform:translateY(0) scale(1)}
-#_waf>a{display:flex;align-items:center;justify-content:center;width:56px;height:56px;background:#25D366;border-radius:50%;box-shadow:0 4px 18px rgba(37,211,102,.45);text-decoration:none;animation:_wap 2.5s ease-in-out infinite}
-#_waf>a i{font-size:1.85rem;color:#fff}
-@keyframes _wap{0%,100%{box-shadow:0 4px 18px rgba(37,211,102,.45),0 0 0 0 rgba(37,211,102,.4)}50%{box-shadow:0 4px 18px rgba(37,211,102,.45),0 0 0 14px rgba(37,211,102,0)}}
-#_rzpO{display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:9200;align-items:center;justify-content:center;padding:16px}
-#_rzpO.open{display:flex}
-#_rzpM{background:#fff;border-radius:16px;padding:28px 24px 22px;max-width:420px;width:100%;box-shadow:0 24px 72px rgba(0,0,0,.4);border-top:5px solid #b8860b;position:relative;max-height:94vh;overflow-y:auto}
-#_rzpLogo{text-align:center;margin-bottom:10px}
-#_rzpLogo img{height:52px;width:auto;margin:0 auto;display:block}
-#_rzpTitle{font-size:1.12rem;font-weight:700;color:#0a192f;margin:0 0 3px;text-align:center;font-family:Georgia,serif}
-#_rzpSvc{font-size:.88rem;color:#b8860b;font-weight:700;text-align:center;padding-bottom:10px;border-bottom:1px solid #e8d5a0;margin-bottom:4px}
-#_rzpOffer{font-size:.82rem;color:#444;text-align:center;margin:6px 0 14px;background:#fffbf0;border-radius:6px;padding:7px 10px;border:1px solid #f3e5c0;min-height:28px}
-.rzp-f{margin-bottom:13px}
-.rzp-f label{display:block;font-size:.82rem;font-weight:600;color:#444;margin-bottom:5px}
-.rzp-f input{width:100%;padding:11px 13px;border:1.5px solid #ddd;border-radius:8px;font-size:.95rem;transition:border-color .2s;outline:none;box-sizing:border-box;font-family:inherit}
-.rzp-f input:focus{border-color:#b8860b;box-shadow:0 0 0 3px rgba(184,134,11,.12)}
-#_rzpBtn{width:100%;background:linear-gradient(135deg,#0a192f,#1a3a5c);color:#ffd700;border:none;padding:14px;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;margin-top:4px;transition:opacity .2s,transform .2s;letter-spacing:.03em;font-family:inherit}
-#_rzpBtn:hover{opacity:.88;transform:translateY(-1px)}
-#_rzpSec{text-align:center;font-size:.72rem;color:#aaa;margin-top:10px}
-#_rzpX{position:absolute;top:10px;right:12px;background:none;border:none;font-size:1.5rem;cursor:pointer;color:#999;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%}
-#_rzpX:hover{color:#c00;background:#f5f5f5}
-</style>
-</head>  
+    /* ════ BANNER ════ */
+    .banner img {
+      width: 100%; height: auto; max-height: 420px;
+      object-fit: cover; display: block;
+    }
+
+    /* ════ SCROLL TICKER ════ */
+    .scroll-ticker {
+      background: var(--clr-primary); padding: 10px 0;
+      overflow: hidden; white-space: nowrap;
+    }
+    .scroll-ticker span {
+      display: inline-block; padding-left: 100%;
+      animation: ticker 22s linear infinite;
+      font-family: var(--font-sans); font-weight: 600;
+      font-size: .95rem; color: var(--clr-gold-lt); letter-spacing: .3px;
+    }
+    .scroll-ticker span:hover { animation-play-state: paused; }
+    @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-100%)} }
+
+    /* ════ LAYOUT ════ */
+    .content-wrap {
+      max-width: var(--max-w); margin: 0 auto; padding: 0 18px;
+    }
+    .content-section {
+      max-width: var(--max-w); margin: 0 auto 0;
+      padding: 32px 20px;
+      background: var(--clr-bg-section);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 18px;
+    }
+    .section-divider {
+      text-align: center; padding: 10px 0; color: var(--clr-gold);
+      font-size: 1.4rem; letter-spacing: 8px;
+    }
+
+    /* ════ TYPOGRAPHY ════ */
+    h1, h2, h3, h4 { font-family: var(--font-sans); color: var(--clr-primary); line-height: 1.35; font-weight: 700; }
+    h1 { font-size: clamp(1.4rem, 3.5vw, 2rem); margin: 0 0 1rem; text-align: center; color: var(--clr-accent); }
+    h2 { font-size: clamp(1.15rem, 2.5vw, 1.65rem); margin: 1.8rem 0 .8rem; color: var(--clr-accent); }
+    h2.h2-green { color: var(--clr-green); }
+    h2.h2-dark { color: #8B0000; }
+    h3 { font-size: clamp(1rem, 2vw, 1.2rem); margin: 1.4rem 0 .5rem; color: var(--clr-text-md); }
+    p { font-size: clamp(.98rem, 1.4vw, 1.05rem); margin-bottom: .9rem; color: var(--clr-text-md); }
+    strong { color: var(--clr-primary); font-weight: 700; }
+    a { color: var(--clr-accent); text-decoration: none; font-weight: 600; }
+    a:hover { text-decoration: underline; }
+    ul, ol { padding-left: 1.5rem; margin-bottom: .9rem; }
+    li { margin-bottom: .45rem; font-size: 1.02rem; color: var(--clr-text-md); }
+    blockquote {
+      background: #f9f9f9; border-left: 4px solid var(--clr-accent);
+      padding: 12px 16px; font-style: italic; margin: 1rem 0;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      color: var(--clr-text-md);
+    }
+    pre {
+      background: #f4f4f4; padding: 12px; border-radius: var(--radius-sm);
+      font-size: .93rem; overflow-x: auto; margin: .8rem 0;
+    }
+    figure { text-align: center; margin: 20px 0; }
+    figure img { max-width: 100%; border-radius: var(--radius-sm); }
+    figcaption { color: var(--clr-text-lt); font-size: .88rem; margin-top: 6px; }
+    .src-note { font-size: .84rem; color: #555; }
+
+    /* ════ TABLE ════ */
+    .tbl-wrap { overflow-x: auto; margin: 1rem 0; }
+    table { border-collapse: collapse; width: 100%; font-size: .93rem; }
+    th { background: #f5f5f5; text-align: left; font-family: var(--font-sans); font-weight: 700; color: var(--clr-primary); }
+    th, td { border: 1px solid #ccc; padding: 9px 10px; vertical-align: top; }
+    tr:nth-child(even) { background: #fafafa; }
+
+    /* ════ TABLE OF CONTENTS ════ */
+    .toc-section {
+      max-width: var(--max-w); margin: 18px auto;
+      padding: 20px; background: linear-gradient(135deg, #fffbf0, #fff8e6);
+      border-top: 3px double var(--clr-gold);
+      border-bottom: 3px double var(--clr-gold);
+      border-radius: var(--radius-md);
+    }
+    .toc-title {
+      text-align: center; font-family: var(--font-serif);
+      font-size: clamp(1.05rem, 2.5vw, 1.35rem); font-weight: 700;
+      color: var(--clr-primary); margin-bottom: 16px;
+    }
+    .toc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px,1fr));
+      gap: 8px;
+    }
+    .toc-card {
+      display: flex; align-items: flex-start; gap: 8px;
+      background: #fff; border: 1.5px solid var(--clr-border);
+      border-radius: var(--radius-sm); padding: 10px 12px;
+      text-decoration: none; transition: background var(--transition), border-color var(--transition);
+    }
+    .toc-card:hover { background: var(--clr-bg-warm); border-color: var(--clr-gold); text-decoration: none; }
+    .toc-num {
+      font-family: var(--font-sans); font-weight: 800; font-size: .78rem;
+      color: var(--clr-gold); flex-shrink: 0; padding-top: 2px;
+    }
+    .toc-text {
+      font-family: var(--font-sans); font-size: .82rem; font-weight: 600;
+      color: var(--clr-primary); line-height: 1.3;
+    }
+
+    /* ════ AUTHOR BIO ════ */
+    .author-line {
+      text-align: center; font-style: italic; color: var(--clr-text-lt);
+      font-size: .92rem; margin-bottom: 1.5rem;
+    }
+
+    /* ════ PANJIKA STRIP ════ */
+    .panjika-strip {
+      max-width: var(--max-w); margin: 18px auto;
+      background: linear-gradient(135deg, var(--clr-primary), var(--clr-primary-lt));
+      border-radius: var(--radius-md); padding: 14px 20px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 14px; flex-wrap: wrap;
+      border: 1.5px solid var(--clr-gold);
+    }
+    .panjika-strip-left { display: flex; align-items: center; gap: 12px; }
+    .panjika-strip-icon { font-size: 1.8rem; flex-shrink: 0; }
+    .panjika-strip-title {
+      font-family: var(--font-sans); font-weight: 700;
+      font-size: .97rem; color: var(--clr-gold-lt); margin-bottom: 4px;
+    }
+    .panjika-strip-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .panjika-strip-tags span {
+      background: rgba(255,255,255,.1); color: rgba(255,255,255,.8);
+      border-radius: 20px; padding: 2px 8px; font-size: .72rem;
+      font-family: var(--font-sans); font-weight: 600;
+    }
+    .panjika-strip-btn {
+      background: var(--clr-gold); color: var(--clr-primary);
+      font-family: var(--font-sans); font-weight: 800; font-size: .9rem;
+      padding: 10px 22px; border-radius: 50px; text-decoration: none;
+      white-space: nowrap; transition: background var(--transition);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .panjika-strip-btn:hover { background: var(--clr-gold-lt); text-decoration: none; }
+
+    /* ════ SERVICE SECTION ════ */
+    .svc-section {
+      max-width: var(--max-w); margin: 18px auto;
+      background: linear-gradient(135deg, #0a192f 0%, #122340 100%);
+      border-radius: var(--radius-lg); padding: 30px 20px;
+      border: 2px solid var(--clr-gold);
+    }
+    .svc-hd { text-align: center; margin-bottom: 22px; }
+    .svc-om {
+      display: block; font-size: .8rem; letter-spacing: 3px;
+      color: var(--clr-gold-lt); font-family: var(--font-sans); margin-bottom: 8px;
+    }
+    .svc-title {
+      font-family: var(--font-sans); font-size: clamp(1.1rem, 2.5vw, 1.45rem);
+      font-weight: 800; color: #fff; margin-bottom: 8px; display: block;
+    }
+    .svc-title em { color: var(--clr-gold-lt); font-style: normal; }
+    .svc-hd p { color: rgba(255,255,255,.75); font-size: .9rem; font-family: var(--font-sans); }
+    .svc-trust {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      justify-content: center; margin-bottom: 22px;
+    }
+    .svc-ti {
+      display: flex; flex-direction: column; align-items: center;
+      background: rgba(255,255,255,.06); border: 1px solid rgba(184,134,11,.3);
+      border-radius: var(--radius-sm); padding: 10px 16px; min-width: 100px;
+    }
+    .svc-tn { font-family: var(--font-sans); font-weight: 800; font-size: 1.1rem; color: var(--clr-gold-lt); }
+    .svc-tl { font-family: var(--font-sans); font-size: .72rem; color: rgba(255,255,255,.6); margin-top: 2px; }
+    .svc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 16px; }
+    .sc {
+      background: #fff; border-radius: var(--radius-md); overflow: hidden;
+      box-shadow: var(--shadow-md); display: flex; flex-direction: column;
+      border-top: 3px solid var(--clr-gold);
+    }
+    .sc-img { width: 100%; height: 150px; object-fit: cover; display: block; }
+    .sc-name {
+      font-family: var(--font-sans); font-weight: 800; font-size: 1rem;
+      color: var(--clr-primary); padding: 14px 16px 4px;
+    }
+    .sc-sub { font-family: var(--font-sans); font-size: .75rem; color: var(--clr-gold); padding: 0 16px 10px; font-weight: 700; }
+    .sc-desc { font-size: .9rem; color: var(--clr-text-md); padding: 0 16px; line-height: 1.6; }
+    .sc-feats { list-style: none; padding: 8px 16px 0; margin: 0; }
+    .sc-feats li { font-size: .82rem; color: var(--clr-text-md); padding: 3px 0 3px 18px; position: relative; }
+    .sc-feats li::before { content: "✓"; position: absolute; left: 0; color: #27ae60; font-weight: 700; }
+    .sc-offer {
+      margin: 12px 16px;
+      background: linear-gradient(135deg, #fffbf0, #fff3e0);
+      border: 1.5px dashed var(--clr-gold);
+      border-radius: var(--radius-sm); padding: 10px 14px;
+    }
+    .sc-offer-tag { font-family: var(--font-sans); font-size: .75rem; font-weight: 700; color: var(--clr-accent); margin-bottom: 4px; }
+    .sc-offer-prices { display: flex; align-items: center; gap: 8px; }
+    .sc-offer-old { font-size: .85rem; color: #999; text-decoration: line-through; font-family: var(--font-sans); }
+    .sc-offer-new { font-size: 1.1rem; font-weight: 800; color: var(--clr-primary); font-family: var(--font-sans); }
+    .sc-offer-save { font-size: .75rem; color: #27ae60; font-weight: 700; font-family: var(--font-sans); margin-top: 3px; }
+    .sc-btn {
+      display: block; margin: 12px 16px; text-align: center;
+      background: linear-gradient(135deg, var(--clr-primary), #1a3a5c);
+      color: var(--clr-gold-lt); font-family: var(--font-sans); font-weight: 800;
+      font-size: .92rem; padding: 12px; border-radius: var(--radius-sm);
+      cursor: pointer; border: none; width: calc(100% - 32px);
+      transition: opacity var(--transition); letter-spacing: .02em;
+    }
+    .sc-btn:hover { opacity: .88; }
+    .sc-sec { text-align: center; font-size: .7rem; color: #999; padding: 4px 16px 14px; font-family: var(--font-sans); }
+    .sc.sc-feat { border-top: 3px solid #f9a825; position: relative; }
+    .sc-badge {
+      position: absolute; top: -1px; right: 16px;
+      background: #f9a825; color: #0a192f;
+      font-family: var(--font-sans); font-size: .68rem; font-weight: 800;
+      padding: 3px 10px; border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+    }
+
+    /* ════ REVIEWS SECTION ════ */
+    .reviews-section {
+      max-width: var(--max-w); margin: 18px auto;
+      padding: 28px 20px;
+      background: var(--clr-bg-warm);
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--clr-border);
+    }
+    .reviews-title {
+      text-align: center; font-family: var(--font-sans); font-weight: 800;
+      font-size: clamp(1.1rem, 2.5vw, 1.45rem); color: var(--clr-primary);
+      margin-bottom: 6px;
+    }
+    .reviews-sub { text-align: center; color: var(--clr-text-lt); font-size: .88rem; margin-bottom: 20px; font-family: var(--font-sans); }
+    .review-badges { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 22px; }
+    .review-badge {
+      display: flex; flex-direction: column; align-items: center; gap: 3px;
+      background: #fff; border: 1.5px solid var(--clr-border);
+      border-radius: var(--radius-sm); padding: 12px 18px; min-width: 110px;
+      box-shadow: var(--shadow-sm);
+    }
+    .rb-icon { font-size: 1.3rem; }
+    .rb-stars { color: var(--clr-gold); font-size: .82rem; }
+    .rb-count { font-family: var(--font-sans); font-weight: 800; font-size: 1rem; color: var(--clr-primary); }
+    .rb-platform { font-family: var(--font-sans); font-size: .7rem; color: var(--clr-text-lt); font-weight: 600; }
+    .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(255px,1fr)); gap: 14px; margin-bottom: 20px; }
+    .tcard {
+      background: #fff; border-left: 4px solid var(--clr-gold);
+      border-radius: var(--radius-sm); padding: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+    .tcard-stars { color: var(--clr-gold); font-size: .88rem; margin-bottom: 6px; }
+    .tcard-text { font-style: italic; font-size: .92rem; color: var(--clr-text-md); line-height: 1.65; margin-bottom: 10px; }
+    .tcard-author { font-family: var(--font-sans); font-size: .78rem; font-weight: 700; color: var(--clr-primary); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .tcard-src {
+      background: var(--clr-bg-warm); border: 1px solid var(--clr-border);
+      border-radius: 20px; padding: 2px 8px; font-size: .68rem;
+      color: var(--clr-text-lt); font-weight: 600;
+    }
+    .reviews-cta { text-align: center; }
+    .btn-outline {
+      display: inline-block; border: 2px solid var(--clr-primary);
+      color: var(--clr-primary); font-family: var(--font-sans); font-weight: 700;
+      font-size: .9rem; padding: 10px 28px; border-radius: 50px;
+      text-decoration: none; transition: background var(--transition), color var(--transition);
+    }
+    .btn-outline:hover { background: var(--clr-primary); color: #fff; text-decoration: none; }
+
+    /* ════ CTA CALLOUT BOX ════ */
+    .cta-box {
+      max-width: var(--max-w); margin: 18px auto;
+      background: linear-gradient(135deg, #FFF8F0, #FFF3E0);
+      border: 2px solid var(--clr-gold); border-radius: var(--radius-lg);
+      padding: 26px 22px; text-align: center;
+    }
+    .cta-box h2 { color: #B22222; text-align: center; font-size: clamp(1.1rem, 2.5vw, 1.4rem); margin-bottom: 10px; }
+    .cta-box p { color: #333; font-size: 1rem; margin-bottom: 16px; }
+    .cta-btns { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+    .btn-wa {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--clr-wa); color: #fff;
+      font-family: var(--font-sans); font-weight: 700; font-size: .97rem;
+      padding: 13px 28px; border-radius: 50px; text-decoration: none;
+      transition: opacity var(--transition);
+    }
+    .btn-wa:hover { opacity: .88; text-decoration: none; }
+    .btn-book {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, var(--clr-primary), #1a3a5c);
+      color: var(--clr-gold-lt);
+      font-family: var(--font-sans); font-weight: 700; font-size: .97rem;
+      padding: 13px 28px; border-radius: 50px; text-decoration: none;
+      cursor: pointer; border: none; transition: opacity var(--transition);
+    }
+    .btn-book:hover { opacity: .88; text-decoration: none; }
+    .cta-note { color: #666; font-size: .85rem; margin-top: 12px; }
+
+    /* ════ BACK TO TOP ════ */
+    #_btt {
+      position: fixed; bottom: 24px; left: 16px;
+      width: 44px; height: 44px; background: var(--clr-primary);
+      color: var(--clr-gold); border: 2px solid rgba(249,168,37,.4);
+      border-radius: 50%; font-size: 1.35rem;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,.25);
+      opacity: 0; transform: translateY(12px);
+      transition: opacity .3s, transform .3s; z-index: 800;
+      text-decoration: none; cursor: pointer;
+    }
+    #_btt.show { opacity: 1; transform: translateY(0); }
+    #_btt:hover { background: var(--clr-gold); color: var(--clr-primary); }
+
+    /* ════ WA FLOAT ════ */
+    #_waf {
+      position: fixed; bottom: 26px; right: 16px;
+      z-index: 900; display: flex; flex-direction: column;
+      align-items: flex-end; gap: 8px;
+    }
+    #_wfm {
+      background: #fff; color: var(--clr-primary);
+      font-family: var(--font-sans); font-size: .76rem; font-weight: 700;
+      padding: 7px 11px; border-radius: 12px 12px 0 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.18); border-left: 3px solid var(--clr-wa);
+      width: 152px; line-height: 1.5;
+      opacity: 0; transform: translateY(6px) scale(.95);
+      transition: opacity .4s, transform .4s; pointer-events: none;
+    }
+    #_wfm.on { opacity: 1; transform: translateY(0) scale(1); }
+    #_waf > a {
+      display: flex; align-items: center; justify-content: center;
+      width: 56px; height: 56px; background: var(--clr-wa);
+      border-radius: 50%; box-shadow: 0 4px 18px rgba(37,211,102,.45);
+      text-decoration: none; animation: waPulse 2.5s ease-in-out infinite;
+    }
+    #_waf > a i { font-size: 1.85rem; color: #fff; }
+    @keyframes waPulse {
+      0%,100%{ box-shadow: 0 4px 18px rgba(37,211,102,.45), 0 0 0 0 rgba(37,211,102,.4) }
+      50%{ box-shadow: 0 4px 18px rgba(37,211,102,.45), 0 0 0 14px rgba(37,211,102,0) }
+    }
+
+    /* ════ RAZORPAY MODAL ════ */
+    #_rzpO {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,.72); z-index: 9200;
+      align-items: center; justify-content: center; padding: 16px;
+    }
+    #_rzpO.open { display: flex; }
+    #_rzpM {
+      background: #fff; border-radius: 16px; padding: 28px 24px 22px;
+      max-width: 420px; width: 100%;
+      box-shadow: 0 24px 72px rgba(0,0,0,.4);
+      border-top: 5px solid var(--clr-gold); position: relative;
+      max-height: 94vh; overflow-y: auto;
+    }
+    #_rzpLogo { text-align: center; margin-bottom: 10px; }
+    #_rzpLogo img { height: 52px; width: auto; margin: 0 auto; display: block; }
+    #_rzpTitle {
+      font-size: 1.12rem; font-weight: 700; color: var(--clr-primary);
+      margin: 0 0 3px; text-align: center; font-family: Georgia, serif;
+    }
+    #_rzpSvc { font-size: .88rem; color: var(--clr-gold); font-weight: 700; text-align: center; padding-bottom: 10px; border-bottom: 1px solid #e8d5a0; margin-bottom: 4px; }
+    #_rzpOffer { font-size: .82rem; color: #444; text-align: center; margin: 6px 0 14px; background: #fffbf0; border-radius: 6px; padding: 7px 10px; border: 1px solid #f3e5c0; min-height: 28px; }
+    .rzp-f { margin-bottom: 13px; }
+    .rzp-f label { display: block; font-size: .82rem; font-weight: 600; color: #444; margin-bottom: 5px; font-family: var(--font-sans); }
+    .rzp-f input {
+      width: 100%; padding: 11px 13px; border: 1.5px solid #ddd;
+      border-radius: 8px; font-size: .95rem;
+      transition: border-color var(--transition); outline: none;
+      box-sizing: border-box; font-family: inherit;
+    }
+    .rzp-f input:focus { border-color: var(--clr-gold); box-shadow: 0 0 0 3px rgba(184,134,11,.12); }
+    #_rzpBtn {
+      width: 100%; background: linear-gradient(135deg, var(--clr-primary), #1a3a5c);
+      color: #ffd700; border: none; padding: 14px; border-radius: 10px;
+      font-size: 1rem; font-weight: 700; cursor: pointer; margin-top: 4px;
+      transition: opacity .2s, transform .2s; font-family: inherit;
+    }
+    #_rzpBtn:hover { opacity: .88; transform: translateY(-1px); }
+    #_rzpSec { text-align: center; font-size: .72rem; color: #aaa; margin-top: 10px; }
+    #_rzpX {
+      position: absolute; top: 10px; right: 12px; background: none; border: none;
+      font-size: 1.5rem; cursor: pointer; color: #999;
+      width: 32px; height: 32px; display: flex; align-items: center;
+      justify-content: center; border-radius: 50%;
+    }
+    #_rzpX:hover { color: #c00; background: #f5f5f5; }
+
+    /* ════ FOOTER ════ */
+    footer {
+      background: var(--clr-primary); color: rgba(255,255,255,.8);
+      padding: 40px 20px 24px; font-family: var(--font-sans);
+      margin-top: 24px;
+    }
+    .footer-inner { max-width: 960px; margin: 0 auto; }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px; margin-bottom: 28px;
+    }
+    .footer-col-title {
+      font-size: .82rem; font-weight: 800; color: var(--clr-gold-lt);
+      letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px;
+      padding-bottom: 8px; border-bottom: 1px solid rgba(184,134,11,.3);
+    }
+    .footer-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .footer-brand img { height: 44px; width: auto; border-radius: 8px; }
+    .footer-brand-name { font-weight: 800; font-size: 1.05rem; color: var(--clr-gold-lt); line-height: 1.2; }
+    .footer-brand-sub { font-size: .72rem; color: rgba(255,255,255,.5); }
+    .footer-desc { font-size: .84rem; color: rgba(255,255,255,.65); line-height: 1.7; margin-bottom: 14px; }
+    .footer-links { list-style: none; padding: 0; }
+    .footer-links li { margin-bottom: 8px; }
+    .footer-links a {
+      color: rgba(255,255,255,.65); font-size: .84rem; text-decoration: none;
+      display: flex; align-items: center; gap: 7px;
+      transition: color var(--transition);
+    }
+    .footer-links a i { color: var(--clr-gold); font-size: .78rem; width: 14px; }
+    .footer-links a:hover { color: var(--clr-gold-lt); text-decoration: none; }
+    .footer-contact-item {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 10px;
+    }
+    .footer-contact-item i { color: var(--clr-gold); font-size: 1rem; width: 18px; flex-shrink: 0; }
+    .footer-contact-item span { font-size: .84rem; color: rgba(255,255,255,.7); }
+    .footer-contact-item a { color: rgba(255,255,255,.85); font-size: .84rem; text-decoration: none; font-weight: 600; }
+    .footer-contact-item a:hover { color: var(--clr-gold-lt); }
+    .footer-social { display: flex; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+    .footer-social a {
+      width: 38px; height: 38px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      border: 1.5px solid rgba(255,255,255,.15); font-size: 1rem;
+      text-decoration: none; transition: background var(--transition), border-color var(--transition);
+    }
+    .footer-social a:hover { background: rgba(184,134,11,.2); border-color: var(--clr-gold); text-decoration: none; }
+    .footer-social .fs-wa { color: var(--clr-wa); }
+    .footer-social .fs-fb { color: #3b5998; }
+    .footer-social .fs-yt { color: #FF0000; }
+    .footer-social .fs-ig { color: #E4405F; }
+    .footer-social .fs-x  { color: #1DA1F2; }
+    .footer-social .fs-li { color: #0077b5; }
+    .footer-social .fs-bl { color: #ff8b00; }
+    .footer-divider { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 20px 0; }
+    .footer-bottom {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      align-items: center; justify-content: space-between;
+    }
+    .footer-copy { font-size: .78rem; color: rgba(255,255,255,.45); }
+    .footer-legal { display: flex; gap: 14px; flex-wrap: wrap; }
+    .footer-legal a { font-size: .78rem; color: rgba(255,255,255,.45); text-decoration: none; }
+    .footer-legal a:hover { color: var(--clr-gold-lt); }
+    .footer-rating {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(184,134,11,.12); border: 1px solid rgba(184,134,11,.25);
+      border-radius: 20px; padding: 5px 14px;
+    }
+    .footer-rating-stars { color: var(--clr-gold); font-size: .9rem; }
+    .footer-rating-text { font-size: .75rem; color: rgba(255,255,255,.6); }
+
+    /* ════ RESPONSIVE ════ */
+    @media (max-width: 600px) {
+      .svc-grid { grid-template-columns: 1fr; }
+      .toc-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
 <body>
+
+<!-- Skip Link -->
+<a class="skip-link" href="#main-content">মূল বিষয়বস্তুতে যান</a>
+
+<!-- Progress Bar -->
+<div id="_pb" role="progressbar" aria-label="পড়ার অগ্রগতি"></div>
+
+<!-- ════ HEADER ════ -->
 <header id="_hdr">
   <button id="_ham" aria-label="মেনু খুলুন" aria-expanded="false">&#9776;</button>
   <span id="_hbrand">MyAstrology</span>
-  <img id="_hlogo" src="images/MyAstrology-Ranghat-logo.png" alt="MyAstrology" width="44" height="44" loading="eager">
+  <a href="index.html">
+    <img id="_hlogo" src="images/MyAstrology-Ranghat-logo.png" alt="MyAstrology Logo" width="44" height="44" loading="eager" />
+  </a>
 </header>
+
+<!-- ════ OFF-CANVAS NAV ════ -->
 <nav id="_nav" aria-label="মূল নেভিগেশন">
-<a href="index.html"><i class="fas fa-home"></i>হোম</a>
-<a href="astrology.html"><i class="fas fa-star"></i>জ্যোতিষ শাস্ত্র</a>
-<a href="vedic-astronomy.html"class=" cur"><i class="fas fa-moon"></i>জ্যোতির্বিজ্ঞান</a>
-<a href="palmistry.html"><i class="fas fa-hand-paper"></i>হস্তরেখা বিচার</a>
-<a href="rashifal.html"><i class="fas fa-circle-notch"></i>রাশিফল ২০২৬</a>
-<a href="panjika.html"><i class="fas fa-calendar-alt"></i>বাংলা পঞ্জিকা</a>
-<a href="vastu-science.html"><i class="fas fa-building"></i>বাস্তু শাস্ত্র</a>
-<a href="video.html"><i class="fas fa-play-circle"></i>ভিডিও</a>
-<a href="gallery.html"><i class="fas fa-images"></i>গ্যালারি</a>
-<a href="about.html"><i class="fas fa-user"></i>আমাদের সম্পর্কে</a>
-<a href="blog-list.html"><i class="fas fa-list"></i>ব্লগ তালিকা</a>
-<a href="reviews.html"><i class="fas fa-star-half-alt"></i>রিভিউ</a>
-<a href="privacy-policy.html"><i class="fas fa-lock"></i>গোপনীয়তা নীতি</a>
-<a href="terms-of-use.html"><i class="fas fa-file-alt"></i>ব্যবহারের শর্ত</a>
-<a href="astrology.html"class="n-bk"><i class="fas fa-calendar-check"></i>📅 পরামর্শ বুক করুন</a>
-<a href="https://wa.me/919333122768?text=%F0%9F%99%8F+%E0%A6%A8%E0%A6%AE%E0%A6%B8%E0%A7%8D%E0%A6%95%E0%A6%BE%E0%A6%B0"class="n-wa" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i>WhatsApp পরামর্শ</a>
-</nav>  
+  <a href="index.html"><i class="fas fa-home"></i>হোম</a>
+  <a href="astrology.html"><i class="fas fa-star"></i>জ্যোতিষ শাস্ত্র</a>
+  <a href="vedic-astronomy.html" class="cur"><i class="fas fa-moon"></i>জ্যোতির্বিজ্ঞান</a>
+  <a href="palmistry.html"><i class="fas fa-hand-paper"></i>হস্তরেখা বিচার</a>
+  <a href="rashifal.html"><i class="fas fa-circle-notch"></i>রাশিফল ২০২৬</a>
+  <a href="panjika.html"><i class="fas fa-calendar-alt"></i>বাংলা পঞ্জিকা</a>
+  <a href="vastu-science.html"><i class="fas fa-building"></i>বাস্তু শাস্ত্র</a>
+  <a href="video.html"><i class="fas fa-play-circle"></i>ভিডিও</a>
+  <a href="gallery.html"><i class="fas fa-images"></i>গ্যালারি</a>
+  <a href="about.html"><i class="fas fa-user"></i>আমাদের সম্পর্কে</a>
+  <a href="blog-list.html"><i class="fas fa-list"></i>ব্লগ তালিকা</a>
+  <a href="reviews.html"><i class="fas fa-star-half-alt"></i>রিভিউ</a>
+  <a href="privacy-policy.html"><i class="fas fa-lock"></i>গোপনীয়তা নীতি</a>
+  <a href="terms-of-use.html"><i class="fas fa-file-alt"></i>ব্যবহারের শর্ত</a>
+  <a href="astrology.html" class="n-bk"><i class="fas fa-calendar-check"></i>📅 পরামর্শ বুক করুন</a>
+  <a href="https://wa.me/919333122768?text=%F0%9F%99%8F+%E0%A6%A8%E0%A6%AE%E0%A6%B8%E0%A7%8D%E0%A6%95%E0%A6%BE%E0%A6%B0" class="n-wa" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i>WhatsApp পরামর্শ</a>
+</nav>
 
-  
+<!-- ════ HERO BANNER ════ -->
+<div class="banner">
+  <img src="images/astrology-ranaghat-banner4.webp"
+       alt="MyAstrology – বৈদিক জ্যোতির্বিজ্ঞান ও রাশিচক্র — Dr. Prodyut Acharya, Ranaghat"
+       width="1200" height="420" loading="eager" />
+</div>
 
-   
-  
+<!-- ════ SCROLL TICKER ════ -->
+<div class="scroll-ticker" aria-hidden="true">
+  <span>🌟 ভাগ্যের রহস্য উন্মোচনে প্রস্তুত? ড. প্রদ্যুৎ আচার্য — MyAstrology &nbsp;|&nbsp; 🌙 বৈদিক জ্যোতির্বিজ্ঞান, রাশিচক্র, তিথি &nbsp;|&nbsp; ☎ +91-9333122768 &nbsp;|&nbsp; ⭐ ২৭৬+ রিভিউ &nbsp;|&nbsp; 📲 WhatsApp পরামর্শ</span>
+</div>
 
+<!-- ════ MAIN CONTENT ════ -->
+<main id="main-content">
 
-  
-<!-- Banner Section -->  
-<div class="banner">  
-  <img src="images/astrology-ranaghat-banner4.webp" alt="MyAstrology – বৈদিক জ্যোতির্বিজ্ঞান ও রাশিচক্র ব্যানার">  
-</div>  
-    
-<section class="scroll-banner">  
-  <div class="scroll-text">  
-    🌟 ভাগ্যের রহস্য উন্মোচনে প্রস্তুত? আমি ড. প্রদ্যুৎ আচার্য — MyAstrology, যেখানে প্রতিটি পরামর্শ হয় আপনার ভবিষ্যতের সঠিক চাবিকাঠি। 🔑✨  
-  </div>  
-</section>  
-  
+<!-- ════ TABLE OF CONTENTS ════ -->
+<section class="toc-section">
+  <div class="toc-title">✦ ॐ ✦ &nbsp; সূচিপত্র &nbsp; ✦ ॐ ✦</div>
+  <div class="toc-grid">
+    <a href="#sec-intro" class="toc-card"><span class="toc-num">০১</span><span class="toc-text">ভূমিকা ও মহাকাশের রহস্য</span></a>
+    <a href="#sec-geocentric" class="toc-card"><span class="toc-num">০২</span><span class="toc-text">Geocentric Model ও Retrograde</span></a>
+    <a href="#sec-helio-vs-geo" class="toc-card"><span class="toc-num">০৩</span><span class="toc-text">Heliocentric বনাম Geocentric</span></a>
+    <a href="#sec-helio-period" class="toc-card"><span class="toc-num">০৪</span><span class="toc-text">গ্রহের কক্ষপথকাল</span></a>
+    <a href="#sec-synodic" class="toc-card"><span class="toc-num">০৫</span><span class="toc-text">Synodic Period ও গ্রহের গতি</span></a>
+    <a href="#sec-zodiac" class="toc-card"><span class="toc-num">০৬</span><span class="toc-text">রাশিচক্র ও গ্রহের প্রদক্ষিণ</span></a>
+    <a href="#sec-solar-lunar" class="toc-card"><span class="toc-num">০৭</span><span class="toc-text">সূর্য ও চন্দ্র বৎসরের পার্থক্য</span></a>
+    <a href="#sec-tithi" class="toc-card"><span class="toc-num">০৮</span><span class="toc-text">চন্দ্র তিথি ও হিন্দু উৎসব</span></a>
+  </div>
+</section>
 
-<!-- আপনার বাকী কন্টেন্ট এখানে থাকবে -->
+<!-- ════ PANJIKA STRIP ════ -->
+<div class="panjika-strip">
+  <div class="panjika-strip-left">
+    <span class="panjika-strip-icon">🌟</span>
+    <div>
+      <div class="panjika-strip-title">আজকের রাশিফল ও দিন পঞ্জিকা</div>
+      <div class="panjika-strip-tags">
+        <span>❤️ প্রেম</span><span>💼 কর্ম</span><span>💰 অর্থ</span>
+        <span>🌿 স্বাস্থ্য</span><span>🔢 শুভ সংখ্যা</span><span>⏰ শুভ সময়</span>
+      </div>
+    </div>
+  </div>
+  <a href="https://www.myastrology.in/panjika.html" class="panjika-strip-btn" target="_blank" rel="noopener noreferrer">
+    আজই দেখুন <i class="fas fa-arrow-right"></i>
+  </a>
+</div>
 
-<!-- 🌌 Content Card Section -->
-<section style="max-width:900px; margin:auto; background:#fff; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); padding:20px; font-family:'Noto Serif Bengali', serif; line-height:1.8; color:#222;">
+<!-- ════ SECTION 1: ভূমিকা ════ -->
+<section class="content-section" id="sec-intro">
 
-  <h1 style="text-align:center; font-size:1.8rem; color:#800000; margin-bottom:15px;">
-    বৈদিক জ্যোতির্বিজ্ঞান: যদি পৃথিবী থেমে যেত — মহাকাশের রহস্য
+  <h1>🌌 বৈদিক জ্যোতির্বিজ্ঞান: যদি পৃথিবী থেমে যেত — মহাকাশের রহস্য</h1>
+  <p class="author-line">✍ লেখক: ড. প্রদ্যুৎ আচার্য – MyAstrology, Astrologer &amp; Palmist, Ranaghat</p>
 
-  </h1>
+  <h2>ভূমিকা ও কৌতূহলী প্রশ্ন — Vedic Astronomy</h2>
+  <p>আমরা সকলেই জানি—মহাকাশে কিছুই স্থির নয়। সৌরমণ্ডল যেন এক বিশাল সঙ্গীতানুষ্ঠান, যেখানে প্রতিটি গ্রহ তার নিজস্ব ছন্দে তালে মেতে নাচছে। সূর্যকে কেন্দ্র করে পৃথিবীর অবিরাম ঘূর্ণন, চাঁদের ধীরলয়ে প্রদক্ষিণ, আর নক্ষত্রদের নীরব জ্বলজ্বলে উপস্থিতি—সবই মিলিয়ে যেন এক মহাজাগতিক কাব্য।</p>
+  <p>কিন্তু ভাবুন তো—যদি একদিন এই নাট্যমঞ্চের মূলে থাকা পৃথিবীকে আমরা একেবারে থামিয়ে দিই? যদি সে আর ঘুরে না, না প্রদক্ষিণ করে? তাহলে আকাশের দৃশ্য কি আগের মতোই থাকবে, নাকি বদলে যাবে প্রতিটি গ্রহ-নক্ষত্রের নৃত্যের ধারা? এ প্রশ্ন শুধু বৈজ্ঞানিক নয়, <a href="https://blog.myastrology.in/2025/07/myastrology-sartre-marcus-aurelius.html" target="_blank" rel="noopener">গভীর দার্শনিক</a>ও — কারণ এতে লুকিয়ে আছে আমরা "বাস্তব" বলে যা দেখি তার আসল রূপ।</p>
 
-  <p style="text-align:center; font-style:italic; color:#555; margin-bottom:25px;">
-    ✍ লেখক: প্রদ্যুৎ আচার্য – MyAstrology, Astrologer & Palmist
-  </p>
+  <h2>সৌরমণ্ডল ও পৃথিবী-চন্দ্র সম্পর্ক</h2>
+  <p>সৌরমণ্ডলের কেন্দ্রে অবস্থান করছে সূর্য—এক দীপ্তিমান মহাশক্তির গোলক, যার মহাকর্ষে আবদ্ধ রয়েছে আটটি গ্রহ, অসংখ্য উপগ্রহ ও নক্ষত্রখচিত ধূলিকণা। পৃথিবী প্রতি বছর সূর্যের চারদিকে ঘুরে আসে প্রায় ৩৬৫ দিন ৫ ঘণ্টা ৪৮ মিনিটে—যা আমাদের "সূর্য বৎসর"। চাঁদ, আমাদের নিকটতম মহাজাগতিক সঙ্গী, পৃথিবীর চারদিকে এক চক্কর দেয় প্রায় ২৭.৩ দিনে, কিন্তু পূর্ণিমা থেকে পূর্ণিমা যেতে সময় লাগে প্রায় ২৯.৫ দিন—এটাই "সিনোডিক <a href="https://bangla.myastrology.in/2018/02/Bengali-astrology.html" target="_blank" rel="noopener">মাস</a>"।</p>
 
-  <h2 style="color:#444; margin-top:20px;">ভূমিকা ও কৌতূহলী প্রশ্ন - Vedic Astronomy</h2>
-  <p>আমরা সকলেই জানি—মহাকাশে কিছুই স্থির নয়। সৌরমণ্ডল যেন এক বিশাল সঙ্গীতানুষ্ঠান, যেখানে প্রতিটি গ্রহ তার নিজস্ব ছন্দে তালে মেতে নাচছে। সূর্যকে কেন্দ্র করে পৃথিবীর অবিরাম ঘূর্ণন, চাঁদের ধীরলয়ে প্রদক্ষিণ, আর নক্ষত্রদের নীরব জ্বলজ্বলে উপস্থিতি—সবই মিলিয়ে যেন এক মহাজাগতিক কাব্য।</p>
-
-  <p>কিন্তু ভাবুন তো—যদি একদিন এই নাট্যমঞ্চের মূলে থাকা পৃথিবীকে আমরা একেবারে থামিয়ে দিই? যদি সে আর ঘুরে না, না প্রদক্ষিণ করে? তাহলে আকাশের দৃশ্য কি আগের মতোই থাকবে, নাকি বদলে যাবে প্রতিটি গ্রহ-নক্ষত্রের নৃত্যের ধারা? এ প্রশ্ন শুধু বৈজ্ঞানিক নয়, গভীর <a href="https://blog.myastrology.in/2025/07/myastrology-sartre-marcus-aurelius.html" target="_blank">
-দার্শনিক
-</a>
-    ও—কারণ এতে লুকিয়ে আছে আমরা "বাস্তব" বলে যা দেখি তার আসল রূপ।</p>
-
-  <h2 style="color:#444; margin-top:20px;">সৌরমণ্ডল ও পৃথিবী-চন্দ্র সম্পর্ক</h2>
-  <p>সৌরমণ্ডলের কেন্দ্রে অবস্থান করছে সূর্য—এক দীপ্তিমান মহাশক্তির গোলক, যার মহাকর্ষে আবদ্ধ রয়েছে আটটি গ্রহ, অসংখ্য উপগ্রহ ও নক্ষত্রখচিত ধূলিকণা। পৃথিবী প্রতি বছর সূর্যের চারদিকে ঘুরে আসে প্রায় ৩৬৫ দিন ৫ ঘণ্টা ৪৮ মিনিটে—যা আমাদের "সূর্য বৎসর"। চাঁদ, আমাদের নিকটতম মহাজাগতিক সঙ্গী, পৃথিবীর চারদিকে প্রদক্ষিণ অর্থাৎ এক চক্কর দেয় প্রায় ২৭.৩ দিনে, কিন্তু পূর্ণিমা থেকে পূর্ণিমা যেতে সময় লাগে প্রায় ২৯.৫ দিন—এটাই "সিনোডিক <a href="https://bangla.myastrology.in/2018/02/Bengali-astrology.html" target="_blank">
-মাস
-</a>"।</p>
-
-  <h2 style="color:#444; margin-top:20px;">যদি পৃথিবী স্থির থাকত? – Geocentric Model</h2>
-  <figure style="text-align:center; margin:20px 0;">
-    <img src="images/sky-geocentric-model.jpg" alt="পৃথিবী স্থির থাকলে আকাশের দৃশ্য – Geocentric Model, বৈদিক জ্যোতির্বিজ্ঞান" style="max-width:100%; border-radius:8px;">
-    <figcaption style="color:#666; font-size:0.9rem; margin-top:8px;">পৃথিবী স্থির থাকলে আকাশের কাল্পনিক দৃশ্য</figcaption>
+  <h2>যদি পৃথিবী স্থির থাকত? — Geocentric Model</h2>
+  <figure>
+    <img src="images/sky-geocentric-model.jpg"
+         alt="পৃথিবী স্থির থাকলে আকাশের দৃশ্য – Geocentric Model, বৈদিক জ্যোতির্বিজ্ঞান"
+         loading="lazy" width="860" height="480" />
+    <figcaption>পৃথিবী স্থির থাকলে আকাশের কাল্পনিক দৃশ্য — Geocentric Model</figcaption>
   </figure>
-
-  <p>পৃথিবীকে যদি আমরা স্থির ধরি, তবে সূর্য, চাঁদ ও সমস্ত গ্রহ-নক্ষত্র যেন প্রতিদিন আকাশে তার চারপাশে ঘুরছে বলে মনে হবে। এ দৃশ্য প্রাচীন ভারতীয় জ্যোতির্বিদরা পৃথিবী-কেন্দ্রিক মডেল (Geocentric Model) দিয়ে ব্যাখ্যা করতেন। সূর্যসিদ্ধান্ত ও আর্যভটীয়-এর পাতায় আমরা পাই আকাশের এমন এক মানচিত্র, যেখানে সূর্য প্রতিদিন পূর্ব থেকে উঠে পশ্চিমে ডোবে, চাঁদ রাশিচক্রে দ্রুত ছুটে যাবে, আর মঙ্গল, বৃহস্পতি, শনি—সবাই তাদের নিজস্ব পথ ধরে ধীরে ধীরে অগ্রসর হবে।</p>
-
-  <p>আধুনিক বিজ্ঞান আমাদের বলেছে, আসলে পৃথিবীই ঘুরছে—কিন্তু দার্শনিকভাবে দেখলে, এই পার্থক্য আমাদের শেখায় যে "দৃষ্টি" ও "বাস্তবতা" সবসময় একই নয়। আমরা যা দেখি, তা হয়তো এক ভ্রম, কিন্তু সেই ভ্রমও আমাদের চিন্তা ও কল্পনার দরজা খুলে দেয়।</p>
+  <p>পৃথিবীকে যদি আমরা স্থির ধরি, তবে সূর্য, চাঁদ ও সমস্ত গ্রহ-নক্ষত্র যেন প্রতিদিন আকাশে তার চারপাশে ঘুরছে বলে মনে হবে। এ দৃশ্য প্রাচীন ভারতীয় জ্যোতির্বিদরা পৃথিবী-কেন্দ্রিক মডেল (Geocentric Model) দিয়ে ব্যাখ্যা করতেন। সূর্যসিদ্ধান্ত ও আর্যভটীয়-এর পাতায় আমরা পাই আকাশের এমন এক মানচিত্র, যেখানে সূর্য প্রতিদিন পূর্ব থেকে উঠে পশ্চিমে ডোবে।</p>
+  <p>আধুনিক বিজ্ঞান আমাদের বলেছে, আসলে পৃথিবীই ঘুরছে — কিন্তু দার্শনিকভাবে দেখলে, এই পার্থক্য আমাদের শেখায় যে "দৃষ্টি" ও "বাস্তবতা" সবসময় একই নয়।</p>
 
 </section>
 
-<!-- 🌌 Section 2: পৃথিবী স্থির ধরে মহাকাশের দৃশ্য -->
-<section style="max-width:950px; margin:auto; background:#fff; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); padding:25px; font-family:'Noto Serif Bengali', serif; line-height:1.9; color:#222;">
+<div class="section-divider">✦ &nbsp; 🌌 &nbsp; ✦</div>
 
-  <h2 style="color:#800000; text-align:center; margin-bottom:20px;">
-    পৃথিবী স্থির ধরে মহাকাশের দৃশ্য — Geocentric Model, Apparent Motion ও Retrograde Motion
-  </h2>
+<!-- ════ SECTION 2: Geocentric ════ -->
+<section class="content-section" id="sec-geocentric">
 
-  <!-- Geocentric Model -->
-  <h3 style="color:#444;">Geocentric Model-এর ধারণা</h3>
+  <h2 class="h2-dark">পৃথিবী স্থির ধরে মহাকাশের দৃশ্য — Geocentric Model, Apparent Motion ও Retrograde Motion</h2>
+
+  <h3>Geocentric Model-এর ধারণা</h3>
   <p>মানুষের আকাশ পর্যবেক্ষণের ইতিহাসে এক সময়ে সবচেয়ে জনপ্রিয় মডেল ছিল <strong>Geocentric Model</strong> — অর্থাৎ পৃথিবী মহাবিশ্বের কেন্দ্র, আর সূর্য, চাঁদ, গ্রহ ও নক্ষত্র সবাই পৃথিবীর চারপাশে ঘুরছে।</p>
   <p>এই ধারণা গ্রিক জ্যোতির্বিদ <strong>ক্লডিয়াস টলেমি (Claudius Ptolemy)</strong>-এর <em>Almagest</em> গ্রন্থে অত্যন্ত বিশদভাবে বর্ণিত হয়েছে। ভারতীয় জ্যোতির্বিজ্ঞানেও, বিশেষ করে <em>সূর্যসিদ্ধান্ত</em> ও <em>আর্যভটীয়</em> গ্রন্থে, পৃথিবী-কেন্দ্রিক পর্যবেক্ষণের বর্ণনা পাওয়া যায়।</p>
-  <p>এই মডেলে প্রতিদিন সূর্য, চাঁদ, গ্রহ, এমনকি পুরো নক্ষত্রপটকেও মনে হয় পূর্ব থেকে পশ্চিম দিকে ঘুরছে — যা আসলে পর্যবেক্ষকের দৃষ্টিকোণ থেকে সৃষ্ট একটি ধারণা।</p>
 
-  <!-- Apparent Motion -->
-  <h3 style="color:#444;">আপাত গতি (Apparent Motion)</h3>
+  <h3>আপাত গতি (Apparent Motion)</h3>
   <p>আমরা আকাশের দিকে তাকিয়ে যে গতি দেখি, তা আসলে <strong>আপাত গতি</strong> — বাস্তব গতি নয়, বরং পর্যবেক্ষকের দৃষ্টিকোণ থেকে দেখা গতি।</p>
   <p><strong>উদাহরণ:</strong> আপনি যদি চলন্ত গাড়িতে বসে পাশের মাঠ দেখেন, মনে হবে গাছগুলো পিছনে চলে যাচ্ছে। বাস্তবে গাছ স্থির, আপনি এগোচ্ছেন।</p>
-  <p>Geocentric Model-এ ঠিক এইভাবেই মনে হয় — সূর্য, চাঁদ, গ্রহ ও নক্ষত্র সবাই আমাদের চারপাশে ঘুরছে, যদিও বাস্তবে পৃথিবী নিজেই ঘুরছে।</p>
 
-  <!-- Retrograde Motion -->
-  <h3 style="color:#444;">Retrograde Motion — গ্রহের পিছনে চলা বক্র গতি</h3>
-  <p>সবচেয়ে রহস্যময় ও কৌতূহল উদ্দীপক ঘটনা হলো <strong>Retrograde Motion</strong> — যেখানে দেখা যায়, কোনো গ্রহ কিছুদিনের জন্য উল্টো দিকে চলছে। এই ঘটনা বিশেষ করে মঙ্গল, বৃহস্পতি ও শনির মতো বাইরের গ্রহের ক্ষেত্রে বেশি দেখা যায়।</p>
-  <p>Geocentric Model এই ঘটনাকে ব্যাখ্যা করেছিল <strong>Epicycle</strong> (ছোট বৃত্ত) ও <strong>Deferent</strong> (বড় বৃত্ত)-এর ধারণা দিয়ে। অর্থাৎ, গ্রহ একটি বড় বৃত্ত বরাবর ঘোরার পাশাপাশি একটি ছোট বৃত্তেও ঘোরে, যার ফলে মাঝে মাঝে উল্টো দিকে চলা মনে হয়।</p>
-  <p><strong>উদাহরণ:</strong> ভাবুন, আপনি দৌড় প্রতিযোগিতায় আছেন এবং পাশের লেনে ধীরে চলা একজনকে ওভারটেক করলেন। ওভারটেক করার মুহূর্তে মনে হবে — সে আপনার তুলনায় কিছুক্ষণের জন্য পিছনে যাচ্ছে। আকাশে বাইরের গ্রহদের Retrograde Motion ঠিক এরকমই দেখায়।</p>
+  <h3>Retrograde Motion — গ্রহের পিছনে চলা বক্র গতি</h3>
+  <p>সবচেয়ে রহস্যময় ঘটনা হলো <strong>Retrograde Motion</strong> — যেখানে দেখা যায়, কোনো গ্রহ কিছুদিনের জন্য উল্টো দিকে চলছে। এই ঘটনা বিশেষ করে মঙ্গল, বৃহস্পতি ও শনির মতো বাইরের গ্রহের ক্ষেত্রে বেশি দেখা যায়।</p>
+  <p>Geocentric Model এই ঘটনাকে ব্যাখ্যা করেছিল <strong>Epicycle</strong> (ছোট বৃত্ত) ও <strong>Deferent</strong> (বড় বৃত্ত)-এর ধারণা দিয়ে।</p>
+  <p><strong>উদাহরণ:</strong> ভাবুন, আপনি দৌড় প্রতিযোগিতায় আছেন এবং পাশের লেনে ধীরে চলা একজনকে ওভারটেক করলেন। ওভারটেক করার মুহূর্তে মনে হবে সে পিছনে যাচ্ছে — আকাশে বাইরের গ্রহদের Retrograde Motion ঠিক এরকমই দেখায়।</p>
 
-  <!-- Diagram -->
-  <figure style="text-align:center; margin:25px 0;">
-    <img src="https://www.astronomynotes.com/history/epicycle-anim.gif" alt="পৃথিবী কেন্দ্র ধরে সূর্য, চাঁদ, গ্রহদের কক্ষপথ ও Epicycle সহ Retrograde Motion-এর কল্পচিত্র" style="max-width:100%; border-radius:8px;">
-    <figcaption style="color:#666; font-size:0.9rem; margin-top:8px;">
-      Geocentric Model-এ Epicycle ও Retrograde Motion-এর কল্পচিত্র
-    </figcaption>
+  <figure>
+    <img src="https://www.astronomynotes.com/history/epicycle-anim.gif"
+         alt="Geocentric Model-এ Epicycle ও Retrograde Motion-এর কল্পচিত্র — পৃথিবী কেন্দ্র ধরে গ্রহের বক্র গতি"
+         loading="lazy" width="480" height="360" style="max-width:100%;" />
+    <figcaption>Geocentric Model-এ Epicycle ও Retrograde Motion-এর কল্পচিত্র</figcaption>
   </figure>
 
-  <p style="font-size:0.85rem; color:#555;">
-    <strong>ছবির সূত্র:</strong> NASA ও ISRO-এর প্রকাশিত সৌরজগতের গ্রাফিক্স অথবা স্বতন্ত্র ইলাস্ট্রেশন।
-  </p>
+  <p class="src-note"><strong>সূত্র:</strong> NASA ও ISRO-এর প্রকাশিত সৌরজগতের গ্রাফিক্স।</p>
 
 </section>
 
+<div class="section-divider">✦ &nbsp; 🌍 &nbsp; ✦</div>
 
+<!-- ════ SECTION 3: Helio vs Geo ════ -->
+<section class="content-section" id="sec-helio-vs-geo">
 
-<!-- 🌍 Section 3: সূর্য-কেন্দ্রিক বনাম পৃথিবী-কেন্দ্রিক গণনা -->
-<section style="max-width:950px; margin:auto; background:#fff; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); padding:25px; font-family:'Noto Serif Bengali', serif; line-height:1.9; color:#222;">
+  <h2 class="h2-dark">সূর্য-কেন্দ্রিক বনাম পৃথিবী-কেন্দ্রিক গণনা — Heliocentric ও Geocentric তুলনা</h2>
 
-  <h2 style="color:#800000; text-align:center; margin-bottom:20px;">
-    সূর্য-কেন্দ্রিক বনাম পৃথিবী-কেন্দ্রিক গণনা — Heliocentric ও Geocentric তুলনা
-  </h2>
+  <h3>১. Heliocentric বনাম Geocentric — মৌলিক ধারণা</h3>
+  <p><strong>Heliocentric Model:</strong> ১৫৪৩ সালে <strong>নিকোলাস কপারনিকাস</strong> তাঁর বই <em>De revolutionibus orbium coelestium</em>-এ প্রস্তাব করেন যে, সূর্য সৌরমণ্ডলের কেন্দ্র এবং সমস্ত গ্রহ (পৃথিবীসহ) সূর্যের চারদিকে ঘোরে।</p>
+  <p><strong>Geocentric Model:</strong> প্রাচীন গ্রিস ও ভারতীয় জ্যোতির্বিজ্ঞানে জনপ্রিয় ছিল। পৃথিবীকে স্থির ধরে সূর্য, চাঁদ ও গ্রহদের পৃথিবীর চারপাশে ঘুরতে দেখা যায়।</p>
 
-  <!-- 1. মৌলিক ধারণা -->
-  <h3 style="color:#444;">১. Heliocentric বনাম Geocentric — মৌলিক ধারণা</h3>
-  <p><strong>Heliocentric Model:</strong> ১৫৪৩ সালে <strong>নিকোলাস কপারনিকাস (Nicolaus Copernicus)</strong> তাঁর বই <em>De revolutionibus orbium coelestium</em>-এ প্রস্তাব করেন যে, সূর্য সৌরমণ্ডলের কেন্দ্র এবং সমস্ত গ্রহ (পৃথিবীসহ) সূর্যের চারদিকে ঘোরে। পৃথিবী প্রতিদিন নিজ অক্ষে ঘোরে (Rotation) এবং বছরে একবার সূর্যের চারদিকে ঘোরে (Revolution)।</p>
-  <p><strong>Geocentric Model:</strong> প্রাচীন গ্রিস ও ভারতীয় জ্যোতির্বিজ্ঞানে জনপ্রিয় ছিল। পৃথিবীকে স্থির ধরে সূর্য, চাঁদ ও গ্রহদের পৃথিবীর চারপাশে ঘুরতে দেখা যায়। গ্রিক জ্যোতির্বিদ <strong>Claudius Ptolemy</strong>-এর <em>Almagest</em> ও ভারতীয় <em>সূর্যসিদ্ধান্ত</em>-এ এর বিশদ বর্ণনা রয়েছে।</p>
-
-  <!-- 2. সময় ও গতির পার্থক্য -->
-  <h3 style="color:#444;">২. সময় ও গতির পার্থক্য — দুই মডেলের দৃষ্টিতে</h3>
-  <p><strong>Geocentric Model</strong>-এ গ্রহদের আপাত গতি বোঝাতে “Epicycle” এবং “Deferent” ধারণা ব্যবহার করা হয়।</p>
-  <p><strong>Heliocentric Model</strong>-এ গ্রহের গতি ব্যাখ্যা করা হয় সরল কক্ষপথ দিয়ে, যেখানে <strong>জোহানেস কেপলার (Johannes Kepler)</strong>-এর তিনটি সূত্র প্রযোজ্য:</p>
-  <ul style="padding-left:20px;">
+  <h3>২. সময় ও গতির পার্থক্য</h3>
+  <p><strong>Geocentric Model</strong>-এ গ্রহদের আপাত গতি বোঝাতে "Epicycle" এবং "Deferent" ধারণা ব্যবহার করা হয়।</p>
+  <p><strong>Heliocentric Model</strong>-এ গ্রহের গতি ব্যাখ্যা করা হয় সরল কক্ষপথ দিয়ে, যেখানে <strong>জোহানেস কেপলার</strong>-এর তিনটি সূত্র প্রযোজ্য:</p>
+  <ul>
     <li>কক্ষপথ উপবৃত্তাকার (Elliptical Orbit)</li>
     <li>সমান সময়ে সমান ক্ষেত্রফল অতিক্রম (Equal Areas in Equal Time)</li>
     <li>কক্ষপথের সময়ের বর্গ ∝ দূরত্বের ঘন (T² ∝ R³)</li>
   </ul>
 
-  <!-- 3. কোনটি বৈজ্ঞানিকভাবে সঠিক -->
-  <h3 style="color:#444;">৩. কোনটি বৈজ্ঞানিকভাবে সঠিক?</h3>
-  <p>আধুনিক জ্যোতির্বিজ্ঞান, <strong>ISRO</strong> ও <strong>NASA</strong>-এর সব গবেষণা <strong>Heliocentric Model</strong>-এর উপর ভিত্তি করে। পর্যবেক্ষণ ও গণনা পুরোপুরি মিলেছে। স্যাটেলাইট, স্পেস প্রোব ও গ্রহ মিশনের সঠিক পথ নির্ধারণ শুধুমাত্র সূর্য-কেন্দ্রিক পদ্ধতিতেই সম্ভব। Geocentric Model পর্যবেক্ষণ-ভিত্তিক হলেও প্রকৃত গতি বোঝায় না।</p>
+  <h3>৩. কোনটি বৈজ্ঞানিকভাবে সঠিক?</h3>
+  <p>আধুনিক জ্যোতির্বিজ্ঞান, <strong>ISRO</strong> ও <strong>NASA</strong>-এর সব গবেষণা <strong>Heliocentric Model</strong>-এর উপর ভিত্তি করে। স্যাটেলাইট, স্পেস প্রোব ও গ্রহ মিশনের সঠিক পথ নির্ধারণ শুধুমাত্র সূর্য-কেন্দ্রিক পদ্ধতিতেই সম্ভব।</p>
 
-  <!-- 4. তুলনামূলক টেবিল -->
-  <h3 style="color:#444;">৪. তুলনামূলক টেবিল</h3>
-  <div style="overflow-x:auto;">
-    <table style="border-collapse:collapse; width:100%; font-size:0.95rem;">
+  <h3>৪. তুলনামূলক টেবিল</h3>
+  <div class="tbl-wrap">
+    <table>
       <thead>
-        <tr style="background:#f5f5f5; text-align:left;">
-          <th style="border:1px solid #ccc; padding:8px;">বিষয়</th>
-          <th style="border:1px solid #ccc; padding:8px;">Geocentric Model</th>
-          <th style="border:1px solid #ccc; padding:8px;">Heliocentric Model</th>
-        </tr>
+        <tr><th>বিষয়</th><th>Geocentric Model</th><th>Heliocentric Model</th></tr>
       </thead>
       <tbody>
-        <tr>
-          <td style="border:1px solid #ccc; padding:8px;">কেন্দ্র</td>
-          <td style="border:1px solid #ccc; padding:8px;">পৃথিবী</td>
-          <td style="border:1px solid #ccc; padding:8px;">সূর্য</td>
-        </tr>
-        <tr>
-          <td style="border:1px solid #ccc; padding:8px;">জটিলতা</td>
-          <td style="border:1px solid #ccc; padding:8px;">বেশি (Epicycle, Deferent প্রয়োজন)</td>
-          <td style="border:1px solid #ccc; padding:8px;">কম (কক্ষপথ + কেপলারের সূত্র)</td>
-        </tr>
-        <tr>
-          <td style="border:1px solid #ccc; padding:8px;">সঠিকতা</td>
-          <td style="border:1px solid #ccc; padding:8px;">সীমিত (শুধু চাক্ষুষ মিল)</td>
-          <td style="border:1px solid #ccc; padding:8px;">উচ্চ (গাণিতিক ও পর্যবেক্ষণ মিল)</td>
-        </tr>
-        <tr>
-          <td style="border:1px solid #ccc; padding:8px;">পর্যবেক্ষণ</td>
-          <td style="border:1px solid #ccc; padding:8px;">চাক্ষুষভাবে সহজ</td>
-          <td style="border:1px solid #ccc; padding:8px;">টেলিস্কোপ/মডেল প্রয়োজন</td>
-        </tr>
-        <tr>
-          <td style="border:1px solid #ccc; padding:8px;">আধুনিক ব্যবহার</td>
-          <td style="border:1px solid #ccc; padding:8px;">নেই</td>
-          <td style="border:1px solid #ccc; padding:8px;">সব মহাকাশ গবেষণা ও মিশন</td>
-        </tr>
-        <tr>
-          <td style="border:1px solid #ccc; padding:8px;">প্রস্তাবক</td>
-          <td style="border:1px solid #ccc; padding:8px;">টলেমি, সূর্যসিদ্ধান্ত</td>
-          <td style="border:1px solid #ccc; padding:8px;">কপারনিকাস, কেপলার, গ্যালিলিও</td>
-        </tr>
+        <tr><td>কেন্দ্র</td><td>পৃথিবী</td><td>সূর্য</td></tr>
+        <tr><td>জটিলতা</td><td>বেশি (Epicycle, Deferent প্রয়োজন)</td><td>কম (কক্ষপথ + কেপলারের সূত্র)</td></tr>
+        <tr><td>সঠিকতা</td><td>সীমিত (শুধু চাক্ষুষ মিল)</td><td>উচ্চ (গাণিতিক ও পর্যবেক্ষণ মিল)</td></tr>
+        <tr><td>পর্যবেক্ষণ</td><td>চাক্ষুষভাবে সহজ</td><td>টেলিস্কোপ/মডেল প্রয়োজন</td></tr>
+        <tr><td>আধুনিক ব্যবহার</td><td>নেই</td><td>সব মহাকাশ গবেষণা ও মিশন</td></tr>
+        <tr><td>প্রস্তাবক</td><td>টলেমি, সূর্যসিদ্ধান্ত</td><td>কপারনিকাস, কেপলার, গ্যালিলিও</td></tr>
       </tbody>
     </table>
   </div>
 
-  <!-- Diagram -->
-  <figure style="text-align:center; margin:25px 0;">
-    <img src="images/heliocentric-vs-geocentric-diagram.jpg" alt="Heliocentric ও Geocentric Model তুলনামূলক ডায়াগ্রাম — পৃথিবী ও সূর্যের কেন্দ্র ধরে সৌরমণ্ডলের কক্ষপথের চিত্র" style="max-width:100%; border-radius:8px;">
-    <figcaption style="color:#666; font-size:0.9rem; margin-top:8px;">
-      সূর্য-কেন্দ্রিক ও পৃথিবী-কেন্দ্রিক মডেলের তুলনামূলক চিত্র
-    </figcaption>
+  <figure>
+    <img src="images/heliocentric-vs-geocentric-diagram.jpg"
+         alt="Heliocentric ও Geocentric Model তুলনামূলক ডায়াগ্রাম — পৃথিবী ও সূর্যের কেন্দ্র ধরে সৌরমণ্ডলের কক্ষপথের চিত্র"
+         loading="lazy" width="860" height="480" />
+    <figcaption>সূর্য-কেন্দ্রিক ও পৃথিবী-কেন্দ্রিক মডেলের তুলনামূলক চিত্র</figcaption>
   </figure>
 
-  <p style="font-size:0.85rem; color:#555;">
-    <strong>সূত্র:</strong> Copernicus (1543) — <em>De revolutionibus orbium coelestium</em>, Claudius Ptolemy — <em>Almagest</em>, ISRO & NASA Solar System Graphics
-  </p>
+  <p class="src-note"><strong>সূত্র:</strong> Copernicus (1543) — <em>De revolutionibus orbium coelestium</em>, Claudius Ptolemy — <em>Almagest</em>, ISRO &amp; NASA Solar System Graphics</p>
 
 </section>
 
+<div class="section-divider">✦ &nbsp; 🌞 &nbsp; ✦</div>
 
+<!-- ════ SECTION 4: Heliocentric Period ════ -->
+<section class="content-section" id="sec-helio-period">
 
-<!-- 🌞 Section 4: সূর্য-কেন্দ্রিক গ্রহের গতি ও সময় (Heliocentric Period) -->
-<section style="max-width:950px; margin:auto; background:#fff; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); padding:25px; font-family:'Noto Serif Bengali', serif; line-height:1.9; color:#222;">
+  <h2 class="h2-dark">🌞 সূর্য-কেন্দ্রিক গ্রহের গতি ও সময় (Heliocentric Period)</h2>
 
-  <h2 style="color:#800000; text-align:center; margin-bottom:20px;">
-    🌞 সূর্য-কেন্দ্রিক গ্রহের গতি ও সময় (Heliocentric Period)
-  </h2>
-
-  <!-- 1. Heliocentric Period কী -->
-  <h3 style="color:#444;">১. Heliocentric Period কী?</h3>
+  <h3>১. Heliocentric Period কী?</h3>
   <p>ভাবুন, আপনি সূর্যের উপর দাঁড়িয়ে আছেন। চারপাশে <strong>বুধ</strong>, <strong>শুক্র</strong>, <strong>পৃথিবী</strong>, <strong>মঙ্গল</strong>, <strong>বৃহস্পতি</strong>… সব গ্রহ তাদের নিজ নিজ পথে ঘুরছে।</p>
   <p><strong>Heliocentric Period</strong> মানে হলো — কোনো গ্রহ সূর্যের চারদিকে একবার পূর্ণ ঘুরে আসতে যত সময় নেয়।</p>
-  <p>পৃথিবীর জন্য এটি ১ বছর বা প্রায় ৩৬৫ দিন। কিন্তু প্রতিটি গ্রহের এই সময় আলাদা, কারণ সূর্য থেকে তাদের দূরত্ব ভিন্ন।</p>
 
-  <!-- 2. Kepler's Third Law -->
-  <h3 style="color:#444;">২. Kepler’s Third Law – খুব সহজ ভাষায়</h3>
+  <h3>২. Kepler's Third Law — সহজ ভাষায়</h3>
   <p>জ্যোতির্বিদ <strong>Johannes Kepler</strong> ৪০০ বছর আগে বলেছিলেন —</p>
-  <blockquote style="background:#f9f9f9; border-left:4px solid #c00; padding:10px; font-style:italic;">
-    "গ্রহ যত দূরে, তার ঘুরতে তত বেশি সময় লাগে।"
-  </blockquote>
+  <blockquote>"গ্রহ যত দূরে, তার ঘুরতে তত বেশি সময় লাগে।"</blockquote>
   <p>তাঁর তৃতীয় সূত্র:</p>
-  <pre style="background:#f4f4f4; padding:10px; border-radius:6px;">T² ∝ R³</pre>
-  <ul style="padding-left:20px;">
+  <pre>T² ∝ R³</pre>
+  <ul>
     <li><strong>T</strong> = একবার ঘুরতে সময় (পৃথিবীর বছর হিসেবে)</li>
     <li><strong>R</strong> = সূর্য থেকে গড় দূরত্ব (AU — Astronomical Unit)</li>
     <li>১ AU = পৃথিবী থেকে সূর্যের গড় দূরত্ব (~১৪৯.৬ মিলিয়ন কিমি)</li>
   </ul>
 
-  <!-- Example -->
-  <h4 style="color:#555;">সহজ উদাহরণ:</h4>
-  <p>পৃথিবী → R = 1 AU, T = 1 বছর</p>
-  <p>মঙ্গল (Mars) → R = 1.524 AU</p>
-  <p>গণনা:</p>
+  <h4 style="color:#555; margin:1rem 0 .5rem;">সহজ উদাহরণ — মঙ্গল গ্রহ:</h4>
+  <p>পৃথিবী → R = 1 AU, T = 1 বছর &nbsp;|&nbsp; মঙ্গল (Mars) → R = 1.524 AU</p>
   <ol>
     <li>R³ = 1.524³ ≈ 3.54</li>
     <li>T² = 3.54 ⇒ T = √3.54 ≈ 1.88 বছর</li>
   </ol>
   <p>অর্থাৎ, মঙ্গল সূর্যকে একবার ঘুরতে প্রায় <strong>১ বছর ১১ মাস</strong> সময় নেয়।</p>
 
-  <!-- 3. NASA Fact Sheet Table -->
-  <h3 style="color:#444;">৩. NASA Planetary Fact Sheet – গ্রহের কক্ষপথকাল</h3>
-  <div style="overflow-x:auto;">
-    <table style="border-collapse:collapse; width:100%; font-size:0.95rem;">
+  <h3>৩. NASA Planetary Fact Sheet — গ্রহের কক্ষপথকাল</h3>
+  <div class="tbl-wrap">
+    <table>
       <thead>
-        <tr style="background:#f5f5f5; text-align:left;">
-          <th style="border:1px solid #ccc; padding:8px;">গ্রহ (Planet)</th>
-          <th style="border:1px solid #ccc; padding:8px;">দূরত্ব (AU)</th>
-          <th style="border:1px solid #ccc; padding:8px;">কক্ষপথকাল (বছর)</th>
-          <th style="border:1px solid #ccc; padding:8px;">দিন</th>
-        </tr>
+        <tr><th>গ্রহ</th><th>দূরত্ব (AU)</th><th>কক্ষপথকাল (বছর)</th><th>দিন</th></tr>
       </thead>
       <tbody>
-        <tr><td style="border:1px solid #ccc; padding:8px;">Mercury (বুধ)</td><td style="border:1px solid #ccc; padding:8px;">0.387</td><td style="border:1px solid #ccc; padding:8px;">0.241</td><td style="border:1px solid #ccc; padding:8px;">88</td></tr>
-        <tr><td style="border:1px solid #ccc; padding:8px;">Venus (শুক্র)</td><td style="border:1px solid #ccc; padding:8px;">0.723</td><td style="border:1px solid #ccc; padding:8px;">0.615</td><td style="border:1px solid #ccc; padding:8px;">225</td></tr>
-        <tr><td style="border:1px solid #ccc; padding:8px;">Earth (পৃথিবী)</td><td style="border:1px solid #ccc; padding:8px;">1.000</td><td style="border:1px solid #ccc; padding:8px;">1.000</td><td style="border:1px solid #ccc; padding:8px;">365</td></tr>
-        <tr><td style="border:1px solid #ccc; padding:8px;">Mars (মঙ্গল)</td><td style="border:1px solid #ccc; padding:8px;">1.524</td><td style="border:1px solid #ccc; padding:8px;">1.88</td><td style="border:1px solid #ccc; padding:8px;">687</td></tr>
-        <tr><td style="border:1px solid #ccc; padding:8px;">Jupiter (বৃহস্পতি)</td><td style="border:1px solid #ccc; padding:8px;">5.203</td><td style="border:1px solid #ccc; padding:8px;">11.86</td><td style="border:1px solid #ccc; padding:8px;">4,332</td></tr>
-        <tr><td style="border:1px solid #ccc; padding:8px;">Saturn (শনি)</td><td style="border:1px solid #ccc; padding:8px;">9.537</td><td style="border:1px solid #ccc; padding:8px;">29.46</td><td style="border:1px solid #ccc; padding:8px;">10,759</td></tr>
-        <tr><td style="border:1px solid #ccc; padding:8px;">Uranus (ইউরেনাস)</td><td style="border:1px solid #ccc; padding:8px;">19.191</td><td style="border:1px solid #ccc; padding:8px;">84.01</td><td style="border:1px solid #ccc; padding:8px;">30,687</td></tr>
-        <tr><td style="border:1px solid #ccc; padding:8px;">Neptune (নেপচুন)</td><td style="border:1px solid #ccc; padding:8px;">30.07</td><td style="border:1px solid #ccc; padding:8px;">164.8</td><td style="border:1px solid #ccc; padding:8px;">60,190</td></tr>
+        <tr><td>Mercury (বুধ)</td><td>0.387</td><td>0.241</td><td>88</td></tr>
+        <tr><td>Venus (শুক্র)</td><td>0.723</td><td>0.615</td><td>225</td></tr>
+        <tr><td>Earth (পৃথিবী)</td><td>1.000</td><td>1.000</td><td>365</td></tr>
+        <tr><td>Mars (মঙ্গল)</td><td>1.524</td><td>1.88</td><td>687</td></tr>
+        <tr><td>Jupiter (বৃহস্পতি)</td><td>5.203</td><td>11.86</td><td>4,332</td></tr>
+        <tr><td>Saturn (শনি)</td><td>9.537</td><td>29.46</td><td>10,759</td></tr>
+        <tr><td>Uranus (ইউরেনাস)</td><td>19.191</td><td>84.01</td><td>30,687</td></tr>
+        <tr><td>Neptune (নেপচুন)</td><td>30.07</td><td>164.8</td><td>60,190</td></tr>
       </tbody>
     </table>
   </div>
 
-  <!-- 4. কক্ষপথের আকার -->
-  <h3 style="color:#444;">৪. কক্ষপথের আকার – চিত্র ব্যাখ্যা</h3>
+  <h3>৪. কক্ষপথের আকার</h3>
   <p>সব গ্রহ উপবৃত্তাকার (<strong>Elliptical</strong>) কক্ষপথে ঘোরে, যেখানে সূর্য থাকে উপবৃত্তের এক ফোকাসে।</p>
-  <ul style="padding-left:20px;">
+  <ul>
     <li><strong>Perihelion</strong> (সূর্যের কাছাকাছি) → গ্রহ দ্রুত চলে</li>
     <li><strong>Aphelion</strong> (সূর্য থেকে দূরে) → গ্রহ ধীরে চলে</li>
   </ul>
-  <p><strong>Kepler’s 2nd Law</strong> বলছে — গ্রহ সমান সময়ে সমান ক্ষেত্রফল অতিক্রম করে।</p>
-  <figure style="text-align:center; margin:20px 0;">
-    <img src="images/planet-orbit-diagram.jpg" alt="Elliptical Orbit-এ সূর্যের অবস্থান, Perihelion ও Aphelion পজিশন সহ চিত্র" style="max-width:100%; border-radius:8px;">
-    <figcaption style="color:#666; font-size:0.9rem; margin-top:8px;">
-      উপবৃত্তাকার কক্ষপথে সূর্যের অবস্থান ও গ্রহের গতি পরিবর্তন
-    </figcaption>
+  <figure>
+    <img src="images/planet-orbit-diagram.jpg"
+         alt="Elliptical Orbit-এ সূর্যের অবস্থান, Perihelion ও Aphelion পজিশন সহ চিত্র"
+         loading="lazy" width="860" height="480" />
+    <figcaption>উপবৃত্তাকার কক্ষপথে সূর্যের অবস্থান ও গ্রহের গতি পরিবর্তন</figcaption>
   </figure>
 
-  <!-- 5. কেন দরকার -->
-  <h3 style="color:#444;">৫. কেন এই সময় জানা দরকার?</h3>
-  <ul style="padding-left:20px;">
-    <li>মহাকাশযান পাঠানোর সঠিক সময় নির্ধারণ</li>
-    <li>গ্রহের অবস্থান ও ঋতু গণনা</li>
-    <li>জ্যোতিষশাস্ত্রে গ্রহের সঠিক অবস্থান নির্ধারণ</li>
-  </ul>
-
-  <p style="font-size:0.85rem; color:#555;">
-    <strong>সূত্র:</strong> Johannes Kepler — <em>Harmonices Mundi</em> (1619), NASA — Solar System Exploration, ISRO — Space Science Data
-  </p>
+  <p class="src-note"><strong>সূত্র:</strong> Johannes Kepler — <em>Harmonices Mundi</em> (1619), NASA — Solar System Exploration, ISRO — Space Science Data</p>
 
 </section>
 
+<div class="section-divider">✦ &nbsp; 🌍 &nbsp; ✦</div>
 
-<!-- 🌍 Section: পৃথিবী-কেন্দ্রিক গ্রহের গতি ও সময় (Synodic Period) -->
-<section style="max-width:950px; margin:auto; background:#fff; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); padding:25px; font-family:'Noto Serif Bengali', serif; line-height:1.9; color:#222;">
+<!-- ════ SECTION 5: Synodic Period ════ -->
+<section class="content-section" id="sec-synodic">
 
-  <h2 style="color:#006400; text-align:center; margin-bottom:20px;">
-    🌍 পৃথিবী-কেন্দ্রিক গ্রহের গতি ও সময় (Synodic Period)
-  </h2>
+  <h2 class="h2-green">🌍 পৃথিবী-কেন্দ্রিক গ্রহের গতি ও সময় (Synodic Period)</h2>
 
-  <!-- 1. Synodic Period কী -->
-  <h3 style="color:#444;">১. Synodic Period কী?</h3>
-  <p>ভাবুন, আপনি পৃথিবীতে দাঁড়িয়ে আকাশ দেখছেন। কোনো গ্রহ কখনো সূর্যের একপাশে, কখনো অন্যপাশে দেখা যায়। <strong>Synodic Period</strong> মানে হলো —</p>
-  <blockquote style="background:#f9f9f9; border-left:4px solid #c00; padding:10px; font-style:italic;">
-    "পৃথিবী থেকে দেখা কোনো গ্রহের একই অবস্থানে (যেমন Opposition বা Conjunction) ফিরে আসতে যত সময় লাগে।"
-  </blockquote>
-  <p>পার্থক্য মনে রাখুন:</p>
-  <ul style="padding-left:20px;">
+  <h3>১. Synodic Period কী?</h3>
+  <p>ভাবুন, আপনি পৃথিবীতে দাঁড়িয়ে আকাশ দেখছেন। <strong>Synodic Period</strong> মানে হলো —</p>
+  <blockquote>"পৃথিবী থেকে দেখা কোনো গ্রহের একই অবস্থানে (যেমন Opposition বা Conjunction) ফিরে আসতে যত সময় লাগে।"</blockquote>
+  <ul>
     <li><strong>Heliocentric Period</strong> → সূর্যের দৃষ্টিতে গ্রহের একবার ঘোরা</li>
-    <li><strong>Synodic Period</strong> → পৃথিবীর দৃষ্টিতে গ্রহের একবার “পুনরায় দেখা”</li>
+    <li><strong>Synodic Period</strong> → পৃথিবীর দৃষ্টিতে গ্রহের একবার "পুনরায় দেখা"</li>
   </ul>
 
-  <!-- 2. Example -->
-  <h3 style="color:#444;">২. উদাহরণ – মঙ্গল গ্রহ</h3>
-  <p>Heliocentric Period (Tₘ) = 1.88 বছর<br>
-     পৃথিবীর Period (Tₑ) = 1 বছর</p>
-  <p>সূত্র:</p>
-  <pre style="background:#f4f4f4; padding:10px; border-radius:6px;">
-1/S = | (1/Tₑ) - (1/Tₘ) |
-  </pre>
-  <p>গণনা:</p>
+  <h3>২. উদাহরণ — মঙ্গল গ্রহ</h3>
+  <p>Heliocentric Period (Tₘ) = 1.88 বছর | পৃথিবীর Period (Tₑ) = 1 বছর</p>
+  <pre>1/S = | (1/Tₑ) - (1/Tₘ) |</pre>
   <ol>
     <li>1/Tₑ = 1</li>
     <li>1/Tₘ = 1 / 1.88 ≈ 0.532</li>
@@ -625,466 +1077,610 @@ nav.active {
   </ol>
   <p>অর্থাৎ, পৃথিবী থেকে মঙ্গলকে একই অবস্থানে ফিরতে দেখতে প্রায় <strong>২ বছর ৫০ দিন</strong> লাগে।</p>
 
-  <!-- 3. কেন পার্থক্য হয় -->
-  <h3 style="color:#444;">৩. কেন পার্থক্য হয়? – Relative Motion</h3>
-  <p>মূল কারণ হলো <strong>Relative Speed</strong> বা আপেক্ষিক গতি। সূর্যকে কেন্দ্র ধরে সব গ্রহ আলাদা গতিতে ঘুরছে। পৃথিবীও চলমান, তাই পৃথিবী থেকে গ্রহগুলির গতি কখনো “মিলিত” (ভেতরের গ্রহ), কখনো “বিয়োগ” (বাইরের গ্রহ) আকারে দেখা যায়।</p>
-  <ul style="padding-left:20px;">
-    <li><strong>বাইরের গ্রহ</strong> (Mars, Jupiter, Saturn…) → পৃথিবী দ্রুত ঘোরে, তাই বারবার “ওভারটেক” করে।</li>
-    <li><strong>ভেতরের গ্রহ</strong> (Mercury, Venus) → তারা দ্রুত ঘোরে, তাই বারবার পৃথিবীকে “ওভারটেক” করে।</li>
-  </ul>
-
-  <!-- 4. NASA Table -->
-  <h3 style="color:#444;">৪. বাইরের ও ভেতরের গ্রহ – Synodic Period তুলনা (NASA Data)</h3>
-  <div style="overflow-x:auto;">
-    <table style="border-collapse:collapse; width:100%; font-size:0.95rem;">
+  <h3>৩. গ্রহের Synodic Period টেবিল</h3>
+  <div class="tbl-wrap">
+    <table>
       <thead>
-        <tr style="background:#f5f5f5; text-align:left;">
-          <th style="border:1px solid #ccc; padding:8px;">গ্রহ (Planet)</th>
-          <th style="border:1px solid #ccc; padding:8px;">Heliocentric Period (T, বছর)</th>
-          <th style="border:1px solid #ccc; padding:8px;">Synodic Period (S, বছর)</th>
-          <th style="border:1px solid #ccc; padding:8px;">দিন</th>
-        </tr>
+        <tr><th>গ্রহ</th><th>Heliocentric Period (বছর)</th><th>Synodic Period (দিন)</th></tr>
       </thead>
       <tbody>
-        <tr><td style="border:1px solid #ccc; padding:8px;">Mercury (বুধ)</td><td style="border:1px solid #ccc; padding:8px;">0.241</td><td style="border:1px solid #ccc; padding:8px;">0.317</td><td style="border:1px solid #ccc; padding:8px;">116</td></tr>
-        <tr><td style="border:1px solid #ccc; padding:8px;">Venus (শুক্র)</td><td style="border:1px solid #ccc; padding:8px;">0.615</td><td style="border:1px solid #ccc; padding:8px;">1.60</td><td style="border:1px solid #ccc; padding:8px;">584</td></tr>
-        <tr><td style="border:1px solid #ccc; padding:8px;">Mars (মঙ্গল)</td><td style="border:1px solid #ccc; padding:8px;">1.88</td><td style="border:1px solid #ccc; padding:8px;">2.136</td><td style="border:1px solid #ccc; padding:8px;">780</td></tr>
-        <tr><td style="border:1px solid #ccc; padding:8px;">Jupiter (বৃহস্পতি)</td><td style="border:1px solid #ccc; padding:8px;">11.86</td><td style="border:1px solid #ccc; padding:8px;">1.092</td><td style="border:1px solid #ccc; padding:8px;">399</td></tr>
-        <tr><td style="border:1px solid #ccc; padding:8px;">Saturn (শনি)</td><td style="border:1px solid #ccc; padding:8px;">29.46</td><td style="border:1px solid #ccc; padding:8px;">1.035</td><td style="border:1px solid #ccc; padding:8px;">378</td></tr>
+        <tr><td>বুধ (Mercury)</td><td>0.241</td><td>116</td></tr>
+        <tr><td>শুক্র (Venus)</td><td>0.615</td><td>584</td></tr>
+        <tr><td>মঙ্গল (Mars)</td><td>1.88</td><td>780</td></tr>
+        <tr><td>বৃহস্পতি (Jupiter)</td><td>11.86</td><td>399</td></tr>
+        <tr><td>শনি (Saturn)</td><td>29.46</td><td>378</td></tr>
+        <tr><td>ইউরেনাস (Uranus)</td><td>84.01</td><td>370</td></tr>
+        <tr><td>নেপচুন (Neptune)</td><td>164.8</td><td>368</td></tr>
       </tbody>
     </table>
   </div>
 
-  <!-- 5. Retrograde Motion -->
-  <h3 style="color:#444;">৫. Retrograde Motion ও Synodic Period</h3>
-  <p>বাইরের গ্রহ যখন পৃথিবী “ওভারটেক” করে, তখন আকাশে তারা কিছুদিনের জন্য পেছনে চলা (<strong>Retrograde</strong>) মনে হয়।</p>
-  <p>এই “পেছনে যাওয়া” সময় Synodic Periodের অংশ। উদাহরণস্বরূপ, মঙ্গল প্রায় ৭২ দিন Retrograde থাকে, যা প্রতি ৭৮০ দিনে (তার Synodic Period) একবার ঘটে।</p>
-
-  <!-- 6. Diagram -->
-  <h3 style="color:#444;">৬. চিত্র ধারণা</h3>
-  <figure style="text-align:center; margin:20px 0;">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Synodic_period.gif" alt="পৃথিবী দ্রুত ঘুরে বাইরের গ্রহকে ওভারটেক করছে — Synodic Period চিত্র" style="max-width:100%; border-radius:8px;">
-    <figcaption style="color:#666; font-size:0.9rem; margin-top:8px;">
-      পৃথিবী ও বাইরের গ্রহের আপেক্ষিক গতি (Relative Motion) দ্বারা Synodic Period
-    </figcaption>
-  </figure>
-
-  <!-- 7. ব্যবহার -->
-  <h3 style="color:#444;">৭. ব্যবহার ও গুরুত্ব</h3>
-  <ul style="padding-left:20px;">
-    <li>জ্যোতির্বিদ্যার পর্যবেক্ষণ পরিকল্পনা</li>
-    <li>গ্রহের দর্শনীয় সময় পূর্বাভাস</li>
-    <li>জ্যোতিষশাস্ত্রে গ্রহের সঠিক অবস্থান নির্ধারণ</li>
-  </ul>
-
-  <p style="font-size:0.85rem; color:#555;">
-    <strong>সূত্র:</strong> NASA — Solar System Dynamics, ISRO Space Applications Centre, Jean Meeus — <em>Astronomical Algorithms</em>
-  </p>
-
-</section>
-
-
-<!-- ♈ Section: রাশিচক্র ও গ্রহের প্রদক্ষিণ সময় -->
-<section style="max-width:950px; margin:auto; background:#fff; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); padding:25px; font-family:'Noto Serif Bengali', serif; line-height:1.9; color:#222;">
-
-  <h2 style="color:#8B0000; text-align:center; margin-bottom:20px;">
-    ♈ রাশিচক্র ও গ্রহের প্রদক্ষিণ সময়
-  </h2>
-
-  <!-- 1. রাশিচক্র -->
-  <h3 style="color:#444;">১. রাশিচক্র (Zodiac) ও গ্রহের গতি পথ</h3>
-  <p><strong>রাশিচক্র</strong> হল আকাশের ৩৬০° একটি কাল্পনিক বৃত্ত, যা ১২টি সমান ভাগে বিভক্ত — প্রতিটি ৩০° করে। প্রতিটি ভাগ একটি রাশি নামে পরিচিত (মেষ ♈ থেকে মীন ♓ পর্যন্ত)।</p>
-  <p>সূর্য, চন্দ্র ও গ্রহগুলো এই বৃত্ত বরাবরই চলে, যাকে আমরা <strong>ক্রান্তিবৃত্ত</strong> (<a href="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Ecliptic_with_earth_and_sun_animation.gif/960px-Ecliptic_with_earth_and_sun_animation.gif" target="_blank" rel="noopener">Ecliptic</a>) বলি।</p>
-
-  <!-- 2. Sidereal vs Synodic -->
-  <h3 style="color:#444;">২. Sidereal Period বনাম Synodic Period</h3>
-  <div style="overflow-x:auto;">
-    <table style="border-collapse:collapse; width:100%; font-size:0.95rem;">
-      <thead>
-        <tr style="background:#f5f5f5; text-align:left;">
-          <th style="border:1px solid #ccc; padding:8px;">পরিভাষা</th>
-          <th style="border:1px solid #ccc; padding:8px;">অর্থ</th>
-          <th style="border:1px solid #ccc; padding:8px;">গণনার ভিত্তি</th>
-          <th style="border:1px solid #ccc; padding:8px;">উদাহরণ</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td style="border:1px solid #ccc; padding:8px;">Sidereal Period</td>
-          <td style="border:1px solid #ccc; padding:8px;">কোনো গ্রহের স্থির নক্ষত্রের তুলনায় একবার প্রদক্ষিণের সময়</td>
-          <td style="border:1px solid #ccc; padding:8px;">নক্ষত্র পট</td>
-          <td style="border:1px solid #ccc; padding:8px;">মঙ্গল: 687 দিন</td>
-        </tr>
-        <tr>
-          <td style="border:1px solid #ccc; padding:8px;">Synodic Period</td>
-          <td style="border:1px solid #ccc; padding:8px;">পৃথিবী থেকে দেখা একই অবস্থানে ফিরে আসার সময়</td>
-          <td style="border:1px solid #ccc; padding:8px;">পৃথিবী ও গ্রহের আপেক্ষিক গতি</td>
-          <td style="border:1px solid #ccc; padding:8px;">মঙ্গল: 780 দিন</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <p><strong>Sidereal Period</strong> = “আসল” একবার ঘোরা (প্রকৃত কক্ষপথকাল)<br>
-     <strong>Synodic Period</strong> = “আমাদের চোখে” একবার ফিরে আসা (আপেক্ষিক অবস্থানকাল)</p>
-
-  <!-- 3. রাশি অনুযায়ী সময় -->
-  <h3 style="color:#444;">৩. রাশিচক্র অনুযায়ী সময় গণনা</h3>
-  <p>বৈদিক জ্যোতিষে প্রতিটি গ্রহকে একটি রাশি পার হতে যত সময় লাগে তা তার Sidereal Period এর উপর নির্ভর করে। নিচের টেবিলটি গড় মান (Heliocentric data) অনুসারে:</p>
-  
-  <div style="overflow-x:auto;">
-    <table style="border-collapse:collapse; width:100%; font-size:0.95rem;">
-      <thead>
-        <tr style="background:#f5f5f5; text-align:left;">
-          <th style="border:1px solid #ccc; padding:8px;">গ্রহ</th>
-          <th style="border:1px solid #ccc; padding:8px;">Sidereal Period (দিন)</th>
-          <th style="border:1px solid #ccc; padding:8px;">১ রাশি পার হতে সময়</th>
-          <th style="border:1px solid #ccc; padding:8px;">পুরো রাশিচক্র (১২ রাশি)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td style="border:1px solid #ccc; padding:8px;">চন্দ্র 🌙</td><td style="border:1px solid #ccc; padding:8px;">27.3</td><td style="border:1px solid #ccc; padding:8px;">~2.25 দিন</td><td style="border:1px solid #ccc; padding:8px;">27.3 দিন</td></tr>
-        <tr><td style="border:1px solid #ccc; padding:8px;">বুধ ☿</td><td style="border:1px solid #ccc; padding:8px;">88</td><td style="border:1px solid #ccc; padding:8px;">~7.33 দিন</td><td style="border:1px solid #ccc; padding:8px;">88 দিন</td></tr>
-        <tr><td style="border:1px solid #ccc; padding:8px;">শুক্র ♀</td><td style="border:1px solid #ccc; padding:8px;">225</td><td style="border:1px solid #ccc; padding:8px;">~18.75 দিন</td><td style="border:1px solid #ccc; padding:8px;">225 দিন</td></tr>
-        <tr><td style="border:1px solid #ccc; padding:8px;">সূর্য ☀</td><td style="border:1px solid #ccc; padding:8px;">365.25</td><td style="border:1px solid #ccc; padding:8px;">~30.44 দিন</td><td style="border:1px solid #ccc; padding:8px;">365.25 দিন</td></tr>
-        <tr><td style="border:1px solid #ccc; padding:8px;">মঙ্গল ♂</td><td style="border:1px solid #ccc; padding:8px;">687</td><td style="border:1px solid #ccc; padding:8px;">~57.25 দিন</td><td style="border:1px solid #ccc; padding:8px;">687 দিন</td></tr>
-        <tr><td style="border:1px solid #ccc; padding:8px;">বৃহস্পতি ♃</td><td style="border:1px solid #ccc; padding:8px;">4333</td><td style="border:1px solid #ccc; padding:8px;">~361 দিন</td><td style="border:1px solid #ccc; padding:8px;">12 বছর</td></tr>
-        <tr><td style="border:1px solid #ccc; padding:8px;">শনি ♄</td><td style="border:1px solid #ccc; padding:8px;">10759</td><td style="border:1px solid #ccc; padding:8px;">~898 দিন</td><td style="border:1px solid #ccc; padding:8px;">29.46 বছর</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- 4. পার্থক্য -->
-  <h3 style="color:#444;">৪. সূর্য-কেন্দ্রিক ও পৃথিবী-কেন্দ্রিক পার্থক্যের কারণ</h3>
-  <ul style="padding-left:20px;">
-    <li>🔸 <strong>Heliocentric</strong> → গ্রহের প্রকৃত কক্ষপথ ও সময় (Sidereal Period) নির্ধারণ হয়, আধুনিক জ্যোতির্বিজ্ঞান এই পদ্ধতি ব্যবহার করে।</li>
-    <li>🔸 <strong>Geocentric</strong> → পর্যবেক্ষক পৃথিবীতে থাকায় Synodic Period মাপা হয়, যেখানে Retrograde ও Stationary আপাত পরিবর্তন দেখা যায়।</li>
-  </ul>
-
-  <!-- 5. উদাহরণ -->
-  <h3 style="color:#444;">৫. উদাহরণ – বৃহস্পতির ক্ষেত্রে</h3>
-  <p><strong>Sidereal Period</strong> → 11.86 বছর (সূর্য-কেন্দ্রিক)<br>
-     <strong>Synodic Period</strong> → 1.092 বছর (~399 দিন, পৃথিবী থেকে দেখা)</p>
-  <p>মানে, বৃহস্পতি আবার একই রাশিতে ফিরতে ~12 বছর লাগে, কিন্তু পৃথিবী থেকে নির্দিষ্ট অবস্থান মিলতে বছরে একবারের মতো দেখা যায়।</p>
-
-  <!-- 6. প্রয়োগ -->
-  <h3 style="color:#444;">৬. Vedic Astrology-তে প্রয়োগ</h3>
-  <p>বৈদিক জ্যোতিষে:</p>
-  <ul style="padding-left:20px;">
+  <h3>৪. Vedic Astrology-তে প্রয়োগ</h3>
+  <ul>
     <li>গ্রহের রাশি পরিবর্তন (Transits) পূর্বাভাসে Sidereal Time গুরুত্বপূর্ণ।</li>
     <li>তিথি, নক্ষত্র, যোগ, করণ ইত্যাদি দৈনিক পঞ্জিকা তৈরিতে Geocentric Position ব্যবহার হয়।</li>
-    <li>উদাহরণ: শনি প্রায় ২.৫ বছর এক রাশিতে থাকে, তাই “শনি সাড়ে সাতি” গণনায় রাশি ও ডিগ্রির সঠিক অবস্থান জরুরি।</li>
+    <li>শনি প্রায় ২.৫ বছর এক রাশিতে থাকে, তাই "শনি সাড়ে সাতি" গণনায় রাশি ও ডিগ্রির সঠিক অবস্থান জরুরি।</li>
   </ul>
 
-  <p style="font-size:0.85rem; color:#555;">
-    <strong>সূত্র:</strong> 
-     <a href="https://www.isro.gov.in/" target="_blank" rel="noopener">ISRO</a>, 
-    <a href="https://aa.usno.navy.mil/" target="_blank" rel="noopener">US Naval Observatory</a>
-  </p>
+  <p class="src-note"><strong>সূত্র:</strong> <a href="https://www.isro.gov.in/" target="_blank" rel="noopener">ISRO</a>, <a href="https://aa.usno.navy.mil/" target="_blank" rel="noopener">US Naval Observatory</a>, NASA Solar System Dynamics</p>
 
 </section>
 
+<div class="section-divider">✦ &nbsp; ♈ &nbsp; ✦</div>
 
-<!-- 🌞🌙 সূর্য বৎসর ও চন্দ্র বৎসরের পার্থক্য -->
-<section style="max-width:900px; margin:auto; background:#fff; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); padding:25px; font-family:'Noto Serif Bengali', serif; line-height:1.9; color:#222;">
+<!-- ════ SECTION 6: Zodiac ════ -->
+<section class="content-section" id="sec-zodiac">
 
-  <h2 style="color:#8B0000; text-align:center; margin-bottom:20px;">
-    🌞 সূর্য বৎসর ও 🌙 চন্দ্র বৎসরের পার্থক্য
-  </h2>
+  <h2 class="h2-dark">♈ রাশিচক্র ও গ্রহের প্রদক্ষিণ সময়</h2>
 
-  <!-- 1. সূর্য বৎসর -->
-  <h3 style="color:#444;">১. সূর্য বৎসরের সংজ্ঞা (Solar Year)</h3>
-  <p><strong>সূর্য বৎসর</strong> হলো পৃথিবী সূর্যের চারদিকে একবার পূর্ণ প্রদক্ষিণ করতে যে সময় নেয়।</p>
-  <ul style="padding-left:20px;">
-    <li>সময়: <strong>৩৬৫ দিন ৫ ঘণ্টা ৪৮ মিনিট ৪৬ সেকেন্ড</strong></li>
-    <li>দিন হিসাবে: <strong>৩৬৫.২৪২২ দিন</strong></li>
-    <li>এই হিসাব পৃথিবীর কক্ষপথের গতি বা Tropical Year থেকে নেওয়া হয়।</li>
-    <li>আধুনিক <a href="https://bn.m.wikipedia.org/wiki/%E0%A6%AA%E0%A7%83%E0%A6%A5%E0%A6%BF%E0%A6%AC%E0%A7%80%E0%A6%B0_%E0%A6%AC%E0%A6%BE%E0%A6%B0%E0%A7%8D%E0%A6%B7%E0%A6%BF%E0%A6%95_%E0%A6%97%E0%A6%A4%E0%A6%BF" target="_blank" rel="noopener">গ্রেগরিয়ান ক্যালেন্ডার</a> এই সময় অনুসরণ করে।</li>
-  </ul>
+  <h3>১. রাশিচক্র (Zodiac) ও গ্রহের গতি পথ</h3>
+  <p><strong>রাশিচক্র</strong> হল আকাশের ৩৬০° একটি কাল্পনিক বৃত্ত, যা ১২টি সমান ভাগে বিভক্ত — প্রতিটি ৩০° করে। প্রতিটি ভাগ একটি রাশি নামে পরিচিত (মেষ ♈ থেকে মীন ♓ পর্যন্ত)।</p>
+  <p>সূর্য, চন্দ্র ও গ্রহগুলো এই বৃত্ত বরাবরই চলে, যাকে আমরা <strong>ক্রান্তিবৃত্ত</strong> (<a href="https://en.wikipedia.org/wiki/Ecliptic" target="_blank" rel="noopener">Ecliptic</a>) বলি।</p>
 
-  <!-- 2. চন্দ্র বৎসর -->
-  <h3 style="color:#444;">২. চন্দ্র বৎসরের সংজ্ঞা (Lunar Year)</h3>
-  <p><strong>চন্দ্র বৎসর</strong> হলো চাঁদের এক পূর্ণ চক্র (নতুন চাঁদ থেকে নতুন চাঁদ) গড়ে ১২ বার সম্পন্ন হওয়ার মোট সময়।</p>
-  <ul style="padding-left:20px;">
-    <li>এক চন্দ্র মাসের গড় দৈর্ঘ্য (Synodic Month): <strong>২৯ দিন ১২ ঘণ্টা ৪৪ মিনিট ৩ সেকেন্ড</strong></li>
-    <li>১২টি চন্দ্র মাসের মোট সময়: <strong>৩৫৪ দিন ৮ ঘণ্টা ৪৮ মিনিট ৩৬ সেকেন্ড</strong></li>
-    <li>দিন হিসাবে: <strong>প্রায় ৩৫৪.৩৬ দিন</strong></li>
-      </ul>
-  <p>অর্থাৎ, চন্দ্র বছর সূর্য বছরের তুলনায় প্রায় <strong>১০ দিন ২১ ঘণ্টা ছোট</strong>।</p>
-
-  <!-- 3. পার্থক্যের টেবিল -->
-  <h3 style="color:#444;">৩. সময়ের পার্থক্য – টেবিল</h3>
-  <div style="overflow-x:auto;">
-    <table style="border-collapse:collapse; width:100%; font-size:0.95rem;">
+  <h3>২. Sidereal Period বনাম Synodic Period</h3>
+  <div class="tbl-wrap">
+    <table>
       <thead>
-        <tr style="background:#f5f5f5; text-align:left;">
-          <th style="border:1px solid #ccc; padding:8px;">বছর প্রকার</th>
-          <th style="border:1px solid #ccc; padding:8px;">দিন</th>
-          <th style="border:1px solid #ccc; padding:8px;">ঘণ্টা</th>
-          <th style="border:1px solid #ccc; padding:8px;">মিনিট</th>
-          <th style="border:1px solid #ccc; padding:8px;">সেকেন্ড</th>
-          <th style="border:1px solid #ccc; padding:8px;">সূর্য বছরের তুলনায় পার্থক্য</th>
-        </tr>
+        <tr><th>পরিভাষা</th><th>অর্থ</th><th>গণনার ভিত্তি</th><th>উদাহরণ</th></tr>
       </thead>
       <tbody>
-        <tr>
-          <td style="border:1px solid #ccc; padding:8px;">সূর্য বৎসর</td>
-          <td style="border:1px solid #ccc; padding:8px;">365</td>
-          <td style="border:1px solid #ccc; padding:8px;">5</td>
-          <td style="border:1px solid #ccc; padding:8px;">48</td>
-          <td style="border:1px solid #ccc; padding:8px;">46</td>
-          <td style="border:1px solid #ccc; padding:8px;">—</td>
-        </tr>
-        <tr>
-          <td style="border:1px solid #ccc; padding:8px;">চন্দ্র বৎসর</td>
-          <td style="border:1px solid #ccc; padding:8px;">354</td>
-          <td style="border:1px solid #ccc; padding:8px;">8</td>
-          <td style="border:1px solid #ccc; padding:8px;">48</td>
-          <td style="border:1px solid #ccc; padding:8px;">36</td>
-          <td style="border:1px solid #ccc; padding:8px;">~১০ দিন ২১ ঘণ্টা ছোট</td>
-        </tr>
+        <tr><td>Sidereal Period</td><td>স্থির নক্ষত্রের তুলনায় একবার প্রদক্ষিণের সময়</td><td>নক্ষত্র পট</td><td>মঙ্গল: 687 দিন</td></tr>
+        <tr><td>Synodic Period</td><td>পৃথিবী থেকে একই অবস্থানে ফিরে আসার সময়</td><td>পৃথিবী ও গ্রহের আপেক্ষিক গতি</td><td>মঙ্গল: 780 দিন</td></tr>
       </tbody>
     </table>
   </div>
 
-  <!-- 4. বৈজ্ঞানিক কারণ -->
-  <h3 style="color:#444;">৪. বৈজ্ঞানিক কারণ</h3>
-  <ul style="padding-left:20px;">
+  <h3>৩. রাশিচক্র অনুযায়ী সময় গণনা</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr><th>গ্রহ</th><th>Sidereal Period (দিন)</th><th>১ রাশি পার হতে সময়</th><th>পুরো রাশিচক্র</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>চন্দ্র 🌙</td><td>27.3</td><td>~2.25 দিন</td><td>27.3 দিন</td></tr>
+        <tr><td>বুধ ☿</td><td>88</td><td>~7.33 দিন</td><td>88 দিন</td></tr>
+        <tr><td>শুক্র ♀</td><td>225</td><td>~18.75 দিন</td><td>225 দিন</td></tr>
+        <tr><td>সূর্য ☀</td><td>365.25</td><td>~30.44 দিন</td><td>365.25 দিন</td></tr>
+        <tr><td>মঙ্গল ♂</td><td>687</td><td>~57.25 দিন</td><td>687 দিন</td></tr>
+        <tr><td>বৃহস্পতি ♃</td><td>4333</td><td>~361 দিন</td><td>12 বছর</td></tr>
+        <tr><td>শনি ♄</td><td>10759</td><td>~898 দিন</td><td>29.46 বছর</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="src-note"><strong>সূত্র:</strong> <a href="https://www.isro.gov.in/" target="_blank" rel="noopener">ISRO</a>, <a href="https://aa.usno.navy.mil/" target="_blank" rel="noopener">US Naval Observatory</a></p>
+
+</section>
+
+<div class="section-divider">✦ &nbsp; 🌞🌙 &nbsp; ✦</div>
+
+<!-- ════ SECTION 7: Solar vs Lunar ════ -->
+<section class="content-section" id="sec-solar-lunar">
+
+  <h2 class="h2-dark">🌞 সূর্য বৎসর ও 🌙 চন্দ্র বৎসরের পার্থক্য</h2>
+
+  <h3>১. সূর্য বৎসরের সংজ্ঞা (Solar Year)</h3>
+  <p><strong>সূর্য বৎসর</strong> হলো পৃথিবী সূর্যের চারদিকে একবার পূর্ণ প্রদক্ষিণ করতে যে সময় নেয়।</p>
+  <ul>
+    <li>সময়: <strong>৩৬৫ দিন ৫ ঘণ্টা ৪৮ মিনিট ৪৬ সেকেন্ড</strong></li>
+    <li>দিন হিসাবে: <strong>৩৬৫.২৪২২ দিন</strong></li>
+    <li>আধুনিক <a href="https://bn.m.wikipedia.org/wiki/%E0%A6%97%E0%A7%8D%E0%A6%B0%E0%A7%87%E0%A6%97%E0%A6%B0%E0%A6%BF%E0%A6%AF%E0%A6%BC%E0%A6%BE%E0%A6%A8_%E0%A6%AA%E0%A6%9E%E0%A7%8D%E0%A6%9C%E0%A6%BF%E0%A6%95%E0%A6%BE" target="_blank" rel="noopener">গ্রেগরিয়ান ক্যালেন্ডার</a> এই সময় অনুসরণ করে।</li>
+  </ul>
+
+  <h3>২. চন্দ্র বৎসরের সংজ্ঞা (Lunar Year)</h3>
+  <p><strong>চন্দ্র বৎসর</strong> হলো চাঁদের এক পূর্ণ চক্র ১২ বার সম্পন্ন হওয়ার মোট সময়।</p>
+  <ul>
+    <li>এক চন্দ্র মাসের গড় দৈর্ঘ্য (Synodic Month): <strong>২৯ দিন ১২ ঘণ্টা ৪৪ মিনিট ৩ সেকেন্ড</strong></li>
+    <li>১২টি চন্দ্র মাসের মোট সময়: <strong>প্রায় ৩৫৪.৩৬ দিন</strong></li>
+  </ul>
+  <p>অর্থাৎ, চন্দ্র বছর সূর্য বছরের তুলনায় প্রায় <strong>১০ দিন ২১ ঘণ্টা ছোট</strong>।</p>
+
+  <h3>৩. সময়ের পার্থক্য — টেবিল</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr><th>বছর প্রকার</th><th>দিন</th><th>ঘণ্টা</th><th>মিনিট</th><th>সেকেন্ড</th><th>পার্থক্য</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>সূর্য বৎসর</td><td>365</td><td>5</td><td>48</td><td>46</td><td>—</td></tr>
+        <tr><td>চন্দ্র বৎসর</td><td>354</td><td>8</td><td>48</td><td>36</td><td>~১০ দিন ২১ ঘণ্টা ছোট</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>৪. বৈজ্ঞানিক কারণ</h3>
+  <ul>
     <li>☀️ <strong>সূর্য বৎসর</strong> নির্ভর করে পৃথিবীর <a href="https://en.m.wikipedia.org/wiki/Tropical_year" target="_blank" rel="noopener">সূর্যের চারদিকে কক্ষপথে</a> একবার ঘোরার উপর।</li>
     <li>🌙 <strong>চন্দ্র বৎসর</strong> নির্ভর করে চাঁদের <a href="https://en.m.wikipedia.org/wiki/Orbit_of_the_Moon" target="_blank" rel="noopener">পৃথিবীর চারদিকে ঘোরা</a> ও সূর্যের সাথে আপেক্ষিক অবস্থান পরিবর্তনের উপর।</li>
-    <li>পৃথিবীর কক্ষপথ চলমান হওয়ায় চাঁদের চক্র ও সূর্য বৎসরের সময় মিলে যায় না।</li>
   </ul>
 
-  <!-- 5. অধিমাস -->
-  <h3 style="color:#444;">৫. অধিমাস বা মলমাসের ভূমিকা</h3>
-  <p>চন্দ্র বছর সূর্য বছরের চেয়ে ছোট হওয়ায়, <a href="https://bangla.myastrology.in/2018/02/blog-post_17.html" target="_blank" rel="noopener">হিন্দু পঞ্জিকায়</a> প্রায় ৩ বছরে একবার অতিরিক্ত মাস যোগ করা হয়, যাকে <strong>অধিমাস</strong> বা <strong>মলমাস</strong> বলা হয়।</p>
-  <p>এর ফলে উৎসব ও ঋতুর সামঞ্জস্য থাকে — যেমন, দুর্গাপূজা সবসময় শরৎ ঋতুতেই আসে।</p>
+  <h3>৫. অধিমাস বা মলমাসের ভূমিকা</h3>
+  <p>চন্দ্র বছর সূর্য বছরের চেয়ে ছোট হওয়ায়, <a href="https://bangla.myastrology.in/2018/02/blog-post_17.html" target="_blank" rel="noopener">হিন্দু পঞ্জিকায়</a> প্রায় ৩ বছরে একবার অতিরিক্ত মাস যোগ করা হয়, যাকে <strong>অধিমাস</strong> বা <strong>মলমাস</strong> বলা হয়। এর ফলে উৎসব ও ঋতুর সামঞ্জস্য থাকে — যেমন, দুর্গাপূজা সবসময় শরৎ ঋতুতেই আসে।</p>
 
 </section>
 
+<div class="section-divider">✦ &nbsp; 🌙 &nbsp; ✦</div>
 
-<!-- 🌙 চন্দ্র তিথি ও হিন্দু উৎসবের তারিখ পরিবর্তন -->
-<section style="max-width:950px; margin:auto; background:#fff; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); padding:25px; font-family:'Noto Serif Bengali', serif; line-height:1.9; color:#222;">
+<!-- ════ SECTION 8: Tithi ════ -->
+<section class="content-section" id="sec-tithi">
 
-  <h2 style="color:#8B0000; text-align:center; margin-bottom:20px;">
-    🌙 চন্দ্র তিথি ও হিন্দু উৎসবের তারিখ পরিবর্তন
-  </h2>
+  <h2 class="h2-dark">🌙 চন্দ্র তিথি ও হিন্দু উৎসবের তারিখ পরিবর্তন</h2>
 
-  <!-- 1. তিথি কী -->
-  <h3 style="color:#444;">১. তিথি কী?</h3>
-  <p><strong>তিথি</strong> হলো চাঁদের সূর্যের সাথে আপেক্ষিক কৌণিক দূরত্ব (Angular Distance) ১২° বাড়তে যত সময় লাগে।</p>
-  <ul style="padding-left:20px;">
-    <li>এক পূর্ণ চন্দ্রচক্রে <strong>৩০টি তিথি</strong> হয় — শুক্লপক্ষ (নতুন চাঁদ → পূর্ণিমা) ১৫টি এবং কৃষ্ণপক্ষ (পূর্ণিমা → নতুন চাঁদ) ১৫টি।</li>
-    <li>একেক তিথির দৈর্ঘ্য সমান নয় — <strong>২৩ ঘণ্টা ৩৭ মিনিট</strong> থেকে <strong>২৫ ঘণ্টা</strong> পর্যন্ত হতে পারে।</li>
-    <li>তিথি সবসময় সূর্যোদয় থেকে সূর্যোদয় পর্যন্ত মেলে না, তাই উৎসবের গ্রেগরিয়ান তারিখ পরিবর্তিত হয়।</li>
+  <h3>১. তিথি কী?</h3>
+  <p><strong>তিথি</strong> হলো চাঁদের সূর্যের সাথে আপেক্ষিক কৌণিক দূরত্ব (Angular Distance) ১২° বাড়তে যত সময় লাগে।</p>
+  <ul>
+    <li>এক পূর্ণ চন্দ্রচক্রে <strong>৩০টি তিথি</strong> হয় — শুক্লপক্ষ ১৫টি এবং কৃষ্ণপক্ষ ১৫টি।</li>
+    <li>একেক তিথির দৈর্ঘ্য সমান নয় — <strong>২৩ ঘণ্টা ৩৭ মিনিট</strong> থেকে <strong>২৫ ঘণ্টা</strong> পর্যন্ত হতে পারে।</li>
+    <li>তিথি সবসময় সূর্যোদয় থেকে সূর্যোদয় পর্যন্ত মেলে না, তাই উৎসবের গ্রেগরিয়ান তারিখ পরিবর্তিত হয়।</li>
   </ul>
 
-  <!-- 2. কেন তিথি পরিবর্তন হয় -->
-  <h3 style="color:#444;">২. কেন তিথি পরিবর্তন হয়?</h3>
-  <ul style="padding-left:20px;">
-    <li>চাঁদের কক্ষপথ উপবৃত্তাকার, তাই তার গতি কখনও বেশি, কখনও কম হয়।</li>
-    <li>পৃথিবীর কক্ষপথের কারণে সূর্য ও চাঁদের আপেক্ষিক অবস্থান প্রতিদিন সমান হারে বদলায় না।</li>
-    <li>ফলে একটি তিথি কখনও একদিনের মধ্যে শেষ হয়ে যায়, আবার কখনও দুই দিনে ভাগ হয়ে যায়।</li>
-    <li>এই কারণেই দুর্গাপূজা, দীপাবলি, জন্মাষ্টমী প্রভৃতি উৎসব প্রতি বছর ভিন্ন তারিখে হয়।</li>
+  <h3>২. কেন তিথি পরিবর্তন হয়?</h3>
+  <ul>
+    <li>চাঁদের কক্ষপথ উপবৃত্তাকার, তাই তার গতি কখনও বেশি, কখনও কম হয়।</li>
+    <li>পৃথিবীর কক্ষপথের কারণে সূর্য ও চাঁদের আপেক্ষিক অবস্থান প্রতিদিন সমান হারে বদলায় না।</li>
+    <li>এই কারণেই দুর্গাপূজা, দীপাবলি, জন্মাষ্টমী প্রভৃতি উৎসব প্রতি বছর ভিন্ন তারিখে হয়।</li>
   </ul>
 
-  <!-- 3. Hindu Panchang গণনার নীতি -->
-  <h3 style="color:#444;">৩. হিন্দু পঞ্জিকা গণনার নীতি</h3>
-  <p>হিন্দু পঞ্জিকা <strong>চন্দ্র-সূর্যসিদ্ধ (Lunisolar)</strong> পদ্ধতিতে তৈরি হয়।</p>
-  <ul style="padding-left:20px;">
-    <li>মাস গণনা: নতুন চাঁদ (অমাবস্যা) বা পূর্ণিমা থেকে শুরু হয় — দুই ধরনের পঞ্জিকা প্রচলিত (অমান্ত ও পূর্ণিমান্ত)।</li>
-    <li>তিথি গণনা হয় সূর্য ও চাঁদের <a href="https://panchang.astrosage.com/" target="_blank" rel="noopener">দ্রাঘিমা (Longitude)</a> পার্থক্য দিয়ে।</li>
-  </ul>
-  <p><strong>সূত্র:</strong></p>
-  <pre style="background:#f8f8f8; padding:10px; border-radius:8px;">তিথি সংখ্যা = (চাঁদের দ্রাঘিমা – সূর্যের দ্রাঘিমা) ÷ 12°</pre>
-  <p>যখন এই পার্থক্য ১২°, ২৪°, ৩৬° … হয়, তখন নতুন তিথি শুরু হয়।</p>
+  <h3>৩. হিন্দু পঞ্জিকা গণনার নীতি</h3>
+  <p>হিন্দু পঞ্জিকা <strong>চন্দ্র-সূর্যসিদ্ধ (Lunisolar)</strong> পদ্ধতিতে তৈরি হয়।</p>
+  <p><strong>তিথি গণনার সূত্র:</strong></p>
+  <pre>তিথি সংখ্যা = (চাঁদের দ্রাঘিমা – সূর্যের দ্রাঘিমা) ÷ 12°</pre>
+  <p>যখন এই পার্থক্য ১২°, ২৪°, ৩৬° … হয়, তখন নতুন তিথি শুরু হয়।</p>
 
-  <!-- 4. অধিমাস -->
-  <h3 style="color:#444;">৪. অধিমাস বা মলমাস কীভাবে যোগ হয়</h3>
-  <ul style="padding-left:20px;">
-    <li>এক চন্দ্র বছর = প্রায় ৩৫৪ দিন</li>
-    <li>এক সূর্য বছর = প্রায় ৩৬৫ দিন</li>
-    <li>পার্থক্য = প্রায় ১১ দিন</li>
+  <h3>৪. অধিমাস বা মলমাস কীভাবে যোগ হয়</h3>
+  <ul>
+    <li>এক চন্দ্র বছর = প্রায় ৩৫৪ দিন</li>
+    <li>এক সূর্য বছর = প্রায় ৩৬৫ দিন</li>
+    <li>পার্থক্য = প্রায় ১১ দিন — এই পার্থক্য জমে তিন বছরে প্রায় ৩০ দিন হয়।</li>
   </ul>
-  <p>এই পার্থক্য জমে তিন বছরে প্রায় ৩০ দিন হয়।</p>
-  <p>যখন কোনও মাসে <strong>দুটি অমাবস্যা</strong> পড়ে কিন্তু মাঝখানে <strong>সূর্য সংক্রান্তি</strong> হয় না, তখন সেই মাসকে <strong>অধিমাস</strong> বলা হয়।</p>
-  <p>অধিমাসে কোনও বড় উৎসব হয় না, তবে ধর্মীয় অনুশীলন ও দানপুণ্যের জন্য শুভ ধরা হয়।</p>
-  <p>অধিমাস যোগের মাধ্যমে চন্দ্র ক্যালেন্ডার আবার সূর্য ক্যালেন্ডারের সাথে মেলানো হয়।</p>
+  <p>যখন কোনও মাসে <strong>দুটি অমাবস্যা</strong> পড়ে কিন্তু মাঝখানে <strong>সূর্য সংক্রান্তি</strong> হয় না, তখন সেই মাসকে <strong>অধিমাস</strong> বলা হয়।</p>
 
-  <!-- 5. উদাহরণ -->
-  <h3 style="color:#444;">৫. বাস্তব উদাহরণ</h3>
-  <p>যদি কোনও বছরে দুর্গাপূজা অক্টোবরে হয়, পরের বছরে তা সেপ্টেম্বর বা নভেম্বরেও হতে পারে — সবটাই তিথি ও সূর্যের আপেক্ষিক অবস্থানের উপর নির্ভর করে।</p>
-  <p>২০২০ সালে <strong>আশ্বিন মাসে</strong> অধিমাস হয়েছিল, তাই সেই বছরের কিছু উৎসব পরের বছরে এক মাস পিছিয়ে গিয়েছিল।</p>
+  <h3>৫. বাস্তব উদাহরণ</h3>
+  <p>যদি কোনও বছরে দুর্গাপূজা অক্টোবরে হয়, পরের বছরে তা সেপ্টেম্বর বা নভেম্বরেও হতে পারে — সবটাই তিথি ও সূর্যের আপেক্ষিক অবস্থানের উপর নির্ভর করে।</p>
+  <p>২০২০ সালে <strong>আশ্বিন মাসে</strong> অধিমাস হয়েছিল, তাই সেই বছরের কিছু উৎসব পরের বছরে এক মাস পিছিয়ে গিয়েছিল।</p>
 
 </section>
 
+<div class="section-divider">✦ &nbsp; ⭐ &nbsp; ✦</div>
 
-<section style="max-width:850px; margin:auto; background:#FFF8F0; border:2px solid #FFD89B; border-radius:14px; padding:22px; text-align:center; font-family:'Noto Serif Bengali', serif; line-height:1.7;">
-  <h2 style="color:#B22222; margin-bottom:10px;">🌟 জেনে রাখুন আরও গভীর সত্য</h2>
-  <p style="color:#333; font-size:1.05rem; margin-bottom:18px;">
-    তিথি, গ্রহের গতি ও পঞ্জিকার সূক্ষ্ম গণনা শুধু অঙ্ক নয় – এগুলো আমাদের উৎসব ও জীবনের ছন্দের মূল রহস্য।  
-    <strong>MyAstrology</strong> – জ্যোতিষ ও হস্তরেখাবিদ্ <strong>ড. প্রদ্যুৎ আচার্য</strong> আপনাকে দেবেন  
+<!-- ════ SERVICE BOOKING SECTION ════ -->
+<section class="svc-section" id="service-consult">
+  <div class="svc-hd">
+    <span class="svc-om">✦ &nbsp; Online Jyotish Consultation &nbsp; ✦</span>
+    <span class="svc-title">বেছে নিন <em>আপনার Jyotish Poramorsho</em></span>
+    <p>ড. প্রদ্যুৎ আচার্যের সাথে Vedic Astrology, Palmistry ও Kundali Analysis — অনলাইনে, আপনার সুবিধামতো সময়ে • বাংলা ও হিন্দিতে</p>
+  </div>
+
+  <div class="svc-trust">
+    <div class="svc-ti"><span class="svc-tn">১৫+</span><span class="svc-tl">বছর অভিজ্ঞতা</span></div>
+    <div class="svc-ti"><span class="svc-tn">১০,০০০+</span><span class="svc-tl">সন্তুষ্ট ক্লায়েন্ট</span></div>
+    <div class="svc-ti"><span class="svc-tn">⭐ ৪.৯</span><span class="svc-tl">গড় রেটিং</span></div>
+    <div class="svc-ti"><span class="svc-tn">২৭৬+</span><span class="svc-tl">রিভিউ</span></div>
+  </div>
+
+  <div class="svc-grid">
+    <!-- Palm Reading -->
+    <div class="sc">
+      <img class="sc-img" src="images/Palm Reading Consultation.webp"
+           alt="Online Palm Reading — হাতের রেখা বিচার, Dr. Prodyut Acharya MyAstrology"
+           loading="lazy" width="420" height="150" />
+      <div class="sc-name">হাতের রেখা বিচার</div>
+      <div class="sc-sub">Online Palm Reading • ছবি পাঠান</div>
+      <p class="sc-desc">দুই হাতের ছবি WhatsApp-এ পাঠান — ৩/৪ ঘণ্টার মধ্যে বিস্তারিত ফোনে জানানো হবে।</p>
+      <ul class="sc-feats">
+        <li>দুই হাতের সামনে ও পিছনের ছবি পাঠান</li>
+        <li>৩/৪ ঘণ্টার মধ্যে ফোনে বিশ্লেষণ</li>
+        <li>হাতের রেখা অনুযায়ী প্রতিকার পরামর্শ</li>
+        <li>বাংলা ও হিন্দি ভাষায়</li>
+      </ul>
+      <div class="sc-offer">
+        <div class="sc-offer-tag">🔥 সীমিত সময়ের বিশেষ অফার</div>
+        <div class="sc-offer-prices">
+          <span class="sc-offer-old">₹১৫০১</span>
+          <span class="sc-offer-new">মাত্র ₹১০০১</span>
+        </div>
+        <div class="sc-offer-save">আপনি সাশ্রয় করছেন ₹৫০০ 💰</div>
+      </div>
+      <button class="sc-btn" onclick="_oRzp('palm')">📅 এখনই বুক করুন</button>
+      <p class="sc-sec">🔒 Razorpay • UPI / Card / Net Banking</p>
+    </div>
+
+    <!-- Combo -->
+    <div class="sc sc-feat">
+      <span class="sc-badge">⭐ সেরা অফার</span>
+      <img class="sc-img" src="images/birth-chart-reading-vedic-astrology.webp"
+           alt="জন্মকুণ্ডলী বিচার ও হস্তরেখা Combo — Vedic Astrology Birth Chart, Dr. Prodyut Acharya"
+           loading="lazy" width="420" height="150" />
+      <div class="sc-name">জন্ম কুণ্ডলী ও হস্তরেখা</div>
+      <div class="sc-sub">Combo Special • সীমিত সময়ের জন্য</div>
+      <p class="sc-desc">একইসাথে হাতের রেখা ও জন্মকুণ্ডলী বিচার — সর্বোচ্চ সুবিধা সর্বনিম্ন মূল্যে।</p>
+      <ul class="sc-feats">
+        <li>হাতের রেখার সম্পূর্ণ বিশ্লেষণ ও প্রতিকার</li>
+        <li>৩০/৩৫ পাতার জন্মকুণ্ডলী PDF</li>
+        <li>WhatsApp-এ PDF পাঠানো হবে</li>
+        <li>ফোনে বিস্তারিত আলোচনা — ৩০ মিনিট</li>
+      </ul>
+      <div class="sc-offer">
+        <div class="sc-offer-tag">⭐ সেরা মূল্যের বিশেষ অফার</div>
+        <div class="sc-offer-prices">
+          <span class="sc-offer-old">₹২০০১</span>
+          <span class="sc-offer-new">মাত্র ₹১৫০১</span>
+        </div>
+        <div class="sc-offer-save">আপনি সাশ্রয় করছেন ₹৫০০ 💰</div>
+      </div>
+      <button class="sc-btn" onclick="_oRzp('combo')">📅 এখনই বুক করুন</button>
+      <p class="sc-sec">🔒 Razorpay • UPI / Card / Net Banking</p>
+    </div>
+
+    <!-- Jyotok -->
+    <div class="sc">
+      <img class="sc-img" src="images/kundli-matching-bengali-astrology.webp"
+           alt="যোটোক বিচার — Kundli Matching Bengali Astrology, Dr. Prodyut Acharya MyAstrology"
+           loading="lazy" width="420" height="150" />
+      <div class="sc-name">যোটোক বিচার</div>
+      <div class="sc-sub">Marriage Matching • PDF সহ • বাংলা ও হিন্দি</div>
+      <p class="sc-desc">দাম্পত্য জীবন সুখী রাখতে বিবাহের পূর্বে যোটোক বিচার অত্যন্ত গুরুত্বপূর্ণ।</p>
+      <ul class="sc-feats">
+        <li>ছেলে ও মেয়ে উভয়ের কুণ্ডলী মিলন</li>
+        <li>মাঙ্গলিক দোষ ও গুণ পরীক্ষা</li>
+        <li>৩০/৩৫ পাতার PDF — WhatsApp-এ পাঠানো হবে</li>
+        <li>দাম্পত্য সুখের প্রতিকার পরামর্শ</li>
+      </ul>
+      <div class="sc-offer">
+        <div class="sc-offer-tag">💍 বিবাহ পরামর্শ বিশেষ ছাড়</div>
+        <div class="sc-offer-prices">
+          <span class="sc-offer-old">₹২৫০১</span>
+          <span class="sc-offer-new">মাত্র ₹১৫০১</span>
+        </div>
+        <div class="sc-offer-save">আপনি সাশ্রয় করছেন ₹১০০০ 💰</div>
+      </div>
+      <button class="sc-btn" onclick="_oRzp('jyotok')">📅 এখনই বুক করুন</button>
+      <p class="sc-sec">🔒 Razorpay • UPI / Card / Net Banking</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider">✦ &nbsp; ⭐ &nbsp; ✦</div>
+
+<!-- ════ REVIEWS SECTION ════ -->
+<section class="reviews-section" id="reviews">
+  <h2 class="reviews-title">⭐ ক্লায়েন্টদের অভিজ্ঞতা ও বিশ্বাস</h2>
+  <p class="reviews-sub">১০,০০০+ সন্তুষ্ট ক্লায়েন্ট — সারা ভারত ও বিদেশ থেকে পরামর্শ নিয়েছেন</p>
+
+  <div class="review-badges">
+    <div class="review-badge"><span class="rb-icon">🌐</span><span class="rb-stars">★★★★★</span><span class="rb-count">১২২+ রিভিউ</span><span class="rb-platform">Google</span></div>
+    <div class="review-badge"><span class="rb-icon">📋</span><span class="rb-stars">★★★★★</span><span class="rb-count">১২৮+ রিভিউ</span><span class="rb-platform">JustDial</span></div>
+    <div class="review-badge"><span class="rb-icon">📘</span><span class="rb-stars">★★★★★</span><span class="rb-count">২৬ রিভিউ</span><span class="rb-platform">Facebook</span></div>
+    <div class="review-badge"><span class="rb-icon">▶️</span><span class="rb-stars">🔴</span><span class="rb-count">২,২৪,১২৩+</span><span class="rb-platform">YouTube</span></div>
+    <div class="review-badge"><span class="rb-icon">👥</span><span class="rb-stars">📘</span><span class="rb-count">৪১,০০৪+</span><span class="rb-platform">FB Followers</span></div>
+  </div>
+
+  <div class="testimonial-grid">
+    <div class="tcard">
+      <div class="tcard-stars">★★★★★</div>
+      <p class="tcard-text">"ড. প্রদ্যুৎ আচার্য আমার জীবনের সবচেয়ে কঠিন সময়ে সঠিক দিকনির্দেশনা দিয়েছেন। জন্মকুণ্ডলী বিশ্লেষণ এতটাই নির্ভুল ছিল যে আমি অবাক হয়ে গিয়েছিলাম।"</p>
+      <div class="tcard-author">— সুমিত্রা দেবী, কলকাতা <span class="tcard-src">Google Review</span></div>
+    </div>
+    <div class="tcard">
+      <div class="tcard-stars">★★★★★</div>
+      <p class="tcard-text">"হাতের রেখা দেখে এমন অনেক কথা বললেন যা শুধু আমিই জানতাম। অনলাইনে পরামর্শ নেওয়াটা খুবই সহজ ছিল। সত্যিকারের জ্ঞানী মানুষ।"</p>
+      <div class="tcard-author">— রাজীব চক্রবর্তী, দিল্লি <span class="tcard-src">JustDial Review</span></div>
+    </div>
+    <div class="tcard">
+      <div class="tcard-stars">★★★★★</div>
+      <p class="tcard-text">"যোটোক বিচার করিয়ে বিবাহ করেছি, আজ দাম্পত্য জীবন সুখী। ড. আচার্যের পরামর্শ না নিলে হয়তো বড় ভুল করতাম।"</p>
+      <div class="tcard-author">— প্রিয়া সরকার, রানাঘাট <span class="tcard-src">Facebook Review</span></div>
+    </div>
+  </div>
+
+  <div class="reviews-cta">
+    <a href="https://www.myastrology.in/reviews.html" class="btn-outline">সমস্ত রিভিউ দেখুন <i class="fas fa-arrow-right"></i></a>
+  </div>
+</section>
+
+<div class="section-divider">✦ &nbsp; 🙏 &nbsp; ✦</div>
+
+<!-- ════ CTA BOX ════ -->
+<div class="cta-box">
+  <h2>🌟 জেনে রাখুন আরও গভীর সত্য</h2>
+  <p>
+    তিথি, গ্রহের গতি ও পঞ্জিকার সূক্ষ্ম গণনা শুধু অঙ্ক নয় — এগুলো আমাদের উৎসব ও জীবনের ছন্দের মূল রহস্য।
+    <strong>MyAstrology</strong>-এর বিশেষজ্ঞ <strong>ড. প্রদ্যুৎ আচার্য</strong> আপনাকে দেবেন
     বৈজ্ঞানিক যুক্তি ও প্রাচীন জ্ঞানের সমন্বয়ে নির্ভুল ব্যাখ্যা।
+    <em>Best Astrologer in Ranaghat, West Bengal।</em>
   </p>
+  <div class="cta-btns">
+    <a href="https://wa.me/919333122768?text=আমি%20জ্যোতিষ%20ও%20পঞ্জিকা%20পরামর্শ%20নিতে%20চাই" class="btn-wa" target="_blank" rel="noopener">
+      <i class="fab fa-whatsapp"></i> WhatsApp-এ যোগাযোগ
+    </a>
+    <button class="btn-book" onclick="_oRzp('combo')">
+      <i class="fas fa-calendar-check"></i> এখনই বুক করুন
+    </button>
+  </div>
+  <p class="cta-note">🔒 নিরাপদ অনলাইন পেমেন্ট | Razorpay | UPI • Card • Net Banking</p>
+</div>
 
-  <!-- WhatsApp Button -->
-  <a href="https://wa.me/919333122768?text=আমি%20জ্যোতিষ%20ও%20পঞ্জিকা%20পরামর্শ%20নিতে%20চাই" 
-     style="display:inline-block; background:#25D366; color:#fff; padding:15px 30px; border-radius:50px; text-decoration:none; font-weight:bold; margin:6px; font-size:1rem;">
-     📲 WhatsApp এ যোগাযোগ করুন
-  </a>
+</main>
 
-  <!-- Razorpay Payment Button -->
-  <a href="https://pages.razorpay.com/Myastrology" 
-     style="display:inline-block; background:#FF6B00; color:#fff; padding:15px 30px; border-radius:50px; text-decoration:none; font-weight:bold; margin:6px; font-size:1rem;">
-     💳 এখনই পেমেন্ট করুন
-  </a>
+<!-- ════ FOOTER ════ -->
+<footer role="contentinfo">
+  <div class="footer-inner">
+    <div class="footer-grid">
 
-  <p style="color:#666; font-size:0.9rem; margin-top:12px;">
-    🔒 নিরাপদ অনলাইন পেমেন্ট | 📞 সরাসরি ফোন/হোয়াটসঅ্যাপ পরামর্শ
-  </p>
-</section>
+      <!-- Brand Column -->
+      <div>
+        <div class="footer-brand">
+          <img src="images/MyAstrology-Ranghat-logo.png" alt="MyAstrology Logo" height="44" width="auto" loading="lazy" />
+          <div>
+            <div class="footer-brand-name">MyAstrology</div>
+            <div class="footer-brand-sub">Dr. Prodyut Acharya</div>
+          </div>
+        </div>
+        <p class="footer-desc">বৈদিক জ্যোতির্বিজ্ঞান, জ্যোতিষ শাস্ত্র ও হস্তরেখায় ১৫+ বছরের অভিজ্ঞতা। প্রামাণিক Vedic Astrology পরামর্শ — Ranaghat, West Bengal, India।</p>
+        <div class="footer-rating">
+          <span class="footer-rating-stars">★★★★★</span>
+          <span class="footer-rating-text">৪.৯ রেটিং · ২৭৬+ রিভিউ</span>
+        </div>
+      </div>
 
-<footer style="
-  background: #e7dcf5;
-  color: #330000;
-  padding: 25px 15px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  text-align: center;
-">
-  <p style="margin: 0 0 10px 0; font-weight: 600; font-size: 16px;">
-    © 2025 MyAstrology | সকল অধিকার সংরক্ষিত
-  </p>
-  <p style="margin: 0 0 20px 0; font-size: 14px;">
-    আপনার জীবন এবং ভাগ্যের জন্য প্রামাণিক জ্যোতিষ ও হস্তরেখা পরামর্শ
-  </p>
+      <!-- Quick Links -->
+      <div>
+        <div class="footer-col-title">পেজ তালিকা</div>
+        <ul class="footer-links">
+          <li><a href="index.html"><i class="fas fa-home"></i>হোম</a></li>
+          <li><a href="astrology.html"><i class="fas fa-star"></i>জ্যোতিষ শাস্ত্র</a></li>
+          <li><a href="vedic-astronomy.html"><i class="fas fa-moon"></i>বৈদিক জ্যোতির্বিজ্ঞান</a></li>
+          <li><a href="palmistry.html"><i class="fas fa-hand-paper"></i>হস্তরেখা</a></li>
+          <li><a href="rashifal.html"><i class="fas fa-circle-notch"></i>রাশিফল ২০২৬</a></li>
+          <li><a href="panjika.html"><i class="fas fa-calendar-alt"></i>বাংলা পঞ্জিকা</a></li>
+          <li><a href="vastu-science.html"><i class="fas fa-building"></i>বাস্তু শাস্ত্র</a></li>
+          <li><a href="blog-list.html"><i class="fas fa-blog"></i>ব্লগ</a></li>
+          <li><a href="reviews.html"><i class="fas fa-star-half-alt"></i>রিভিউ</a></li>
+          <li><a href="about.html"><i class="fas fa-user"></i>আমাদের সম্পর্কে</a></li>
+        </ul>
+      </div>
 
-  <div style="
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    font-size: 26px;
-  ">
-    <a href="https://wa.me/919333122768" target="_blank" style="color: #25D366; transition: transform 0.3s;" title="WhatsApp" aria-label="WhatsApp">
-      <i class="fab fa-whatsapp"></i>
-    </a>
-    <a href="https://www.facebook.com/Dr.ProdyutAcharya" target="_blank" style="color: #3b5998; transition: transform 0.3s;" title="Facebook" aria-label="Facebook">
-      <i class="fab fa-facebook-f"></i>
-    </a>
-    <a href="https://youtube.com/@myastrology?si=ymMvEDdBnj65kqWX" target="_blank" style="color: #FF0000; transition: transform 0.3s;" title="YouTube" aria-label="YouTube">
-      <i class="fab fa-youtube"></i>
-    </a>
-    <a href="https://www.instagram.com/myastrology.in" target="_blank" style="color: #E4405F; transition: transform 0.3s;" title="Instagram" aria-label="Instagram">
-      <i class="fab fa-instagram"></i>
-    </a>
-    <a href="https://x.com/AcharyaProdyut?t=ProR_oGYrQtQRP-DjsliFw&s=09" target="_blank" style="color: #1DA1F2; transition: transform 0.3s;" title="X (Twitter)" aria-label="X (Twitter)">
-      <i class="fab fa-twitter"></i>
-    </a>
-    <a href="https://www.linkedin.com/in/ProdyutAcharya" target="_blank" style="color: #0077b5; transition: transform 0.3s;" title="LinkedIn" aria-label="LinkedIn">
-      <i class="fab fa-linkedin-in"></i>
-    </a>
+      <!-- Contact Column -->
+      <div>
+        <div class="footer-col-title">যোগাযোগ</div>
+        <div class="footer-contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Ranaghat, Nadia, West Bengal — 741201</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-phone"></i>
+          <a href="tel:+919333122768">+91-9333122768</a>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fab fa-whatsapp"></i>
+          <a href="https://wa.me/919333122768" target="_blank" rel="noopener">WhatsApp পরামর্শ</a>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-envelope"></i>
+          <a href="mailto:info@myastrology.in">info@myastrology.in</a>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-clock"></i>
+          <span>সকাল ৯টা — রাত ৯টা (প্রতিদিন)</span>
+        </div>
+
+        <div class="footer-col-title" style="margin-top:16px;">সোশ্যাল মিডিয়া</div>
+        <div class="footer-social" role="list" aria-label="সোশ্যাল মিডিয়া">
+          <a href="https://wa.me/919333122768" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="fs-wa" role="listitem"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.facebook.com/Dr.ProdyutAcharya" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="fs-fb" role="listitem"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://youtube.com/@myastrology" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="fs-yt" role="listitem"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.instagram.com/myastrology.in" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="fs-ig" role="listitem"><i class="fab fa-instagram"></i></a>
+          <a href="https://x.com/AcharyaProdyut" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" class="fs-x" role="listitem"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://www.linkedin.com/in/ProdyutAcharya" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="fs-li" role="listitem"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://prodyutacharya.blogspot.com" target="_blank" rel="noopener noreferrer" aria-label="Blog" class="fs-bl" role="listitem"><i class="fab fa-blogger"></i></a>
+        </div>
+      </div>
+
+    </div>
+
+    <hr class="footer-divider" />
+
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025–2026 MyAstrology | ড. প্রদ্যুৎ আচার্য | সকল অধিকার সংরক্ষিত</p>
+      <div class="footer-legal">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-of-use.html">Terms of Use</a>
+        <a href="about.html">About Us</a>
+        <a href="reviews.html">Reviews</a>
+      </div>
+    </div>
   </div>
 </footer>
-<script src="https://checkout.razorpay.com/v1/checkout.js" defer></script>
-<div id="_pb"></div>
+
+<!-- ════ UTILITIES ════ -->
 <a href="#" id="_btt" aria-label="উপরে যান">&#8679;</a>
+
 <div id="_waf">
   <div id="_wfm"></div>
-  <a href="https://wa.me/919333122768?text=%F0%9F%99%8F+%E0%A6%A8%E0%A6%AE%E0%A6%B8%E0%A7%8D%E0%A6%95%E0%A6%BE%E0%A6%B0" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  <a href="https://wa.me/919333122768?text=%F0%9F%99%8F+%E0%A6%A8%E0%A6%AE%E0%A6%B8%E0%A7%8D%E0%A6%95%E0%A6%BE%E0%A6%B0"
+     target="_blank" rel="noopener" aria-label="WhatsApp-এ যোগাযোগ করুন">
+    <i class="fab fa-whatsapp"></i>
+  </a>
 </div>
-<div id="_rzpO" onclick="if(event.target===this)_cRzp()">
+
+<!-- ════ RAZORPAY MODAL ════ -->
+<div id="_rzpO" role="dialog" aria-modal="true" aria-labelledby="_rzpTitle"
+     onclick="if(event.target===this)_cRzp()">
   <div id="_rzpM">
-    <button id="_rzpX" onclick="_cRzp()">&times;</button>
-    <div id="_rzpLogo"><img src="images/MyAstrology-Ranghat-logo.png" alt="MyAstrology" onerror="this.style.display='none'"></div>
+    <button id="_rzpX" onclick="_cRzp()" aria-label="বন্ধ করুন">&times;</button>
+    <div id="_rzpLogo">
+      <img src="images/MyAstrology-Ranghat-logo.png" alt="MyAstrology" onerror="this.style.display='none'" />
+    </div>
     <h3 id="_rzpTitle">🔐 পরামর্শ বুকিং</h3>
     <div id="_rzpSvc">সেবা নির্বাচিত হয়নি</div>
     <div id="_rzpOffer"></div>
-    <div class="rzp-f"><label>আপনার পুরো নাম <span style="color:#c00">*</span></label><input type="text" id="_rzpNm" placeholder="সম্পূর্ণ নাম লিখুন" autocomplete="name"></div>
-    <div class="rzp-f"><label>WhatsApp / ফোন নম্বর <span style="color:#c00">*</span></label><input type="tel" id="_rzpPh" placeholder="১০ সংখ্যার নম্বর" maxlength="10" autocomplete="tel"></div>
+    <div class="rzp-f">
+      <label for="_rzpNm">আপনার পুরো নাম <span style="color:#c00">*</span></label>
+      <input type="text" id="_rzpNm" placeholder="সম্পূর্ণ নাম লিখুন" autocomplete="name" />
+    </div>
+    <div class="rzp-f">
+      <label for="_rzpPh">WhatsApp / ফোন নম্বর <span style="color:#c00">*</span></label>
+      <input type="tel" id="_rzpPh" placeholder="১০ সংখ্যার নম্বর" maxlength="10" autocomplete="tel" />
+    </div>
     <button id="_rzpBtn" onclick="_dRzp()">🔐 নিরাপদ পেমেন্ট করুন</button>
-    <div id="_rzpSec">🔒 Razorpay &nbsp;&middot;&nbsp; UPI &middot; Card &middot; Net Banking</div>
+    <div id="_rzpSec">🔒 Razorpay &nbsp;·&nbsp; UPI · Card · Net Banking</div>
   </div>
 </div>
+
+<!-- ════ SCRIPTS ════ -->
 <script>
 (function(){
-var h=document.getElementById('_ham'),n=document.getElementById('_nav');
-if(h&&n){
-  h.addEventListener('click',function(e){e.stopPropagation();var o=n.classList.toggle('open');h.setAttribute('aria-expanded',String(o));});
-  document.addEventListener('click',function(e){if(n.classList.contains('open')&&!n.contains(e.target)&&e.target!==h){n.classList.remove('open');h.setAttribute('aria-expanded','false');}});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'){n.classList.remove('open');h.setAttribute('aria-expanded','false');}});
-}
-var pb=document.getElementById('_pb'),bt=document.getElementById('_btt');
-window.addEventListener('scroll',function(){
-  var s=document.documentElement,tot=s.scrollHeight-s.clientHeight;
-  if(pb)pb.style.width=(tot>0?(s.scrollTop/tot*100):0)+'%';
-  if(bt)bt.classList.toggle('show',s.scrollTop>400);
-},{passive:true});
-if(bt)bt.addEventListener('click',function(e){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});});
-var msgs=[
-  '\u{1F52E} \u099C\u09CD\u09AF\u09CB\u09A4\u09BF\u09B7 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6 \u09A8\u09BF\u09A8!',
-  '\u270B \u09B9\u09B8\u09CD\u09A4\u09B0\u09C7\u0996\u09BE \u09AC\u09BF\u099A\u09BE\u09B0 \u09A2\u09E7\u09E6\u09E6\u09E7',
-  '\u{1F48D} \u09AF\u09CB\u099F\u09CB\u0995 \u09AC\u09BF\u099A\u09BE\u09B0 \u0995\u09B0\u09C1\u09A8',
-  '\u2B50 \u09E8\u09ED\u09EC+ \u09EB-\u09A4\u09BE\u09B0\u09BE \u09B0\u09BF\u09AD\u09BF\u0989',
-  '\u{1F4C5} \u09B0\u09BE\u09B6\u09BF\u09AB\u09B2 \u09A6\u09C7\u0996\u09C1\u09A8'
-];
-var mi=0,fm=document.getElementById('_wfm');
-if(fm){function sm(){fm.textContent=msgs[mi++%msgs.length];fm.classList.add('on');setTimeout(function(){fm.classList.remove('on');},3500);}setTimeout(sm,2500);setInterval(sm,7000);}
+  'use strict';
+
+  /* ── Nav Toggle ── */
+  var h = document.getElementById('_ham');
+  var n = document.getElementById('_nav');
+  if (h && n) {
+    h.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var o = n.classList.toggle('open');
+      h.setAttribute('aria-expanded', String(o));
+      h.setAttribute('aria-label', o ? 'মেনু বন্ধ করুন' : 'মেনু খুলুন');
+    });
+    document.addEventListener('click', function(e) {
+      if (n.classList.contains('open') && !n.contains(e.target) && e.target !== h) {
+        n.classList.remove('open');
+        h.setAttribute('aria-expanded', 'false');
+        h.setAttribute('aria-label', 'মেনু খুলুন');
+      }
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        n.classList.remove('open');
+        h.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  /* ── Progress Bar + Back to Top ── */
+  var pb = document.getElementById('_pb');
+  var bt = document.getElementById('_btt');
+  window.addEventListener('scroll', function() {
+    var s = document.documentElement;
+    var tot = s.scrollHeight - s.clientHeight;
+    if (pb) pb.style.width = (tot > 0 ? (s.scrollTop / tot * 100) : 0) + '%';
+    if (bt) bt.classList.toggle('show', s.scrollTop > 400);
+  }, { passive: true });
+  if (bt) bt.addEventListener('click', function(e) {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  /* ── WhatsApp Flash Messages ── */
+  var msgs = [
+    '🔮 জ্যোতিষ পরামর্শ নিন!',
+    '✋ হস্তরেখা বিচার ₹১০০১',
+    '💍 যোটোক বিচার করুন',
+    '⭐ ২৭৬+ ৫-তারা রিভিউ',
+    '📅 রাশিফল দেখুন',
+    '🙏 এখনই WhatsApp করুন'
+  ];
+  var mi = 0, fm = document.getElementById('_wfm');
+  if (fm) {
+    function sm() {
+      fm.textContent = msgs[mi++ % msgs.length];
+      fm.classList.add('on');
+      setTimeout(function() { fm.classList.remove('on'); }, 3500);
+    }
+    setTimeout(sm, 2500);
+    setInterval(sm, 7000);
+  }
+
 })();
-var _rS='',_rA=100100;
-var _svcCat={
-  palm:    {label:'\u09B9\u09BE\u09A4\u09C7\u09B0 \u09B0\u09C7\u0996\u09BE \u09AC\u09BF\u099A\u09BE\u09B0',amt:100100,offer:'\u{1F525} \u09AC\u09BF\u09B6\u09C7\u09B7 \u0985\u09AB\u09BE\u09B0: \u09B8\u09BE\u09B6\u09CD\u09B0\u09AF\u09BC \u09A2\u09EB\u09E6\u09E6 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u09A2\u09E7\u09E6\u09E6\u09E7'},
-  combo:   {label:'\u099C\u09A8\u09CD\u09AE \u0995\u09C1\u09A3\u09CD\u09A1\u09B2\u09C0 + \u09B9\u09B8\u09CD\u09A4\u09B0\u09C7\u0996\u09BE Combo',amt:150100,offer:'\u2B50 \u09B8\u09C7\u09B0\u09BE \u0985\u09AB\u09BE\u09B0: \u09B8\u09BE\u09B6\u09CD\u09B0\u09AF\u09BC \u09A2\u09EB\u09E6\u09E6 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u09A2\u09E7\u09EB\u09E6\u09E7'},
-  jyotok:  {label:'\u09AF\u09CB\u099F\u09CB\u0995 \u09AC\u09BF\u099A\u09BE\u09B0',amt:150100,offer:'\u{1F48D} \u09AC\u09BF\u09AC\u09BE\u09B9 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6: \u09B8\u09BE\u09B6\u09CD\u09B0\u09AF\u09BC \u09A2\u09E7\u09E6\u09E6\u09E6 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u09A2\u09E7\u09EB\u09E6\u09E7'},
-  kundali: {label:'\u099C\u09A8\u09CD\u09AE\u0995\u09C1\u09A3\u09CD\u09A1\u09B2\u09C0 \u09AC\u09BF\u099A\u09BE\u09B0',amt:200100,offer:'\u{1F52E} \u09AC\u09BF\u09B6\u09C7\u09B7 \u0985\u09AB\u09BE\u09B0 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u09A2\u09E8\u09E6\u09E6\u09E7'},
-  vastu:   {label:'\u09AC\u09BE\u09B8\u09CD\u09A4\u09C1 \u09B6\u09BE\u09B8\u09CD\u09A4\u09CD\u09B0 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6',amt:200100,offer:'\u{1F3E0} \u09AC\u09BE\u09B8\u09CD\u09A4\u09C1 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6 \u2192 \u09A2\u09E8\u09E6\u09E6\u09E7+'},
-  gemstone:{label:'\u09B0\u09A4\u09CD\u09A8\u09AA\u09BE\u09A5\u09B0 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6',amt:100100,offer:'\u{1F48E} \u09B0\u09A4\u09CD\u09A8\u09AA\u09BE\u09A5\u09B0 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u09A2\u09E7\u09E6\u09E6\u09E7'},
-  muhurta: {label:'\u09B6\u09C1\u09AD \u09AE\u09C1\u09B9\u09C2\u09B0\u09CD\u09A4 \u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8',amt:50100,offer:'\u2728 \u09B6\u09C1\u09AD \u09AE\u09C1\u09B9\u09C2\u09B0\u09CD\u09A4 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u09A2\u09EB\u09E6\u09E7'},
-  name:    {label:'\u09A8\u09AC\u099C\u09BE\u09A4\u0995\u09C7\u09B0 \u09A8\u09BE\u09AE \u09B0\u09BE\u0996\u09BE',amt:50100,offer:'\u{1F476} \u09A8\u09BE\u09AE \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u09A2\u09EB\u09E6\u09E7'},
-  namefix: {label:'\u09A8\u09BE\u09AE \u09B8\u0982\u09B6\u09CB\u09A7\u09A8 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6',amt:100100,offer:'\u270F\uFE0F \u09A8\u09BE\u09AE \u09B8\u0982\u09B6\u09CB\u09A7\u09A8 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u09A2\u09E7\u09E6\u09E6\u09E7'},
-  career:  {label:'\u0995\u09CD\u09AF\u09BE\u09B0\u09BF\u09AF\u09BC\u09BE\u09B0 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6',amt:100100,offer:'\u{1F4BC} \u0995\u09CD\u09AF\u09BE\u09B0\u09BF\u09AF\u09BC\u09BE\u09B0 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u09A2\u09E7\u09E6\u09E6\u09E7'},
-  love:    {label:'\u09AA\u09CD\u09B0\u09C7\u09AE \u09B0 \u09AC\u09BF\u09AC\u09BE\u09B9 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6',amt:100100,offer:'\u2764\uFE0F \u09AA\u09CD\u09B0\u09C7\u09AE \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u09A2\u09E7\u09E6\u09E6\u09E7'},
-  consult: {label:'\u0985\u09A8\u09B2\u09BE\u0987\u09A8 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6',amt:100100,offer:'\u{1F310} \u0985\u09A8\u09B2\u09BE\u0987\u09A8 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u09A2\u09E7\u09E6\u09E6\u09E7'}
+
+/* ── Razorpay Integration ── */
+var _rS = '', _rA = 100100;
+var _svcCat = {
+  palm:    { label: 'হাতের রেখা বিচার',              amt: 100100, offer: '🔥 বিশেষ অফার: ₹১৫০১ → মাত্র ₹১০০১ (সাশ্রয় ₹৫০০)' },
+  combo:   { label: 'জন্ম কুণ্ডলী + হস্তরেখা Combo', amt: 150100, offer: '⭐ সেরা অফার: ₹২০০১ → মাত্র ₹১৫০১ (সাশ্রয় ₹৫০০)' },
+  jyotok:  { label: 'যোটোক বিচার',                   amt: 150100, offer: '💍 বিবাহ পরামর্শ: ₹২৫০১ → মাত্র ₹১৫০১ (সাশ্রয় ₹১০০০)' },
+  kundali: { label: 'জন্মকুণ্ডলী বিচার',              amt: 200100, offer: '🔮 বিশেষ অফার → মাত্র ₹২০০১' },
+  vastu:   { label: 'বাস্তু শাস্ত্র পরামর্শ',          amt: 200100, offer: '🏠 বাস্তু পরামর্শ → ₹২০০১+' },
+  gemstone:{ label: 'রত্নপাথর পরামর্শ',               amt: 100100, offer: '💎 রত্নপাথর পরামর্শ → মাত্র ₹১০০১' },
+  muhurta: { label: 'শুভ মুহূর্ত নির্বাচন',            amt: 50100,  offer: '✨ শুভ মুহূর্ত → মাত্র ₹৫০১' },
+  name:    { label: 'নবজাতকের নাম রাখা',              amt: 50100,  offer: '🍼 নাম পরামর্শ → মাত্র ₹৫০১' },
+  career:  { label: 'ক্যারিয়ার পরামর্শ',              amt: 100100, offer: '💼 ক্যারিয়ার পরামর্শ → মাত্র ₹১০০১' },
+  consult: { label: 'অনলাইন পরামর্শ',                amt: 100100, offer: '🌐 অনলাইন পরামর্শ → মাত্র ₹১০০১' }
 };
-function _oRzp(key,customAmt){
-  var svc=_svcCat[key]||{label:key,amt:customAmt||100100,offer:''};
-  if(customAmt)svc={label:svc.label||key,amt:customAmt,offer:svc.offer||''};
-  _rS=svc.label;_rA=svc.amt;
-  var e=document.getElementById('_rzpSvc');if(e)e.textContent=svc.label;
-  var o=document.getElementById('_rzpOffer');if(o)o.textContent=svc.offer;
-  var nm=document.getElementById('_rzpNm'),ph=document.getElementById('_rzpPh');
-  if(nm)nm.value='';if(ph)ph.value='';
-  var ov=document.getElementById('_rzpO');
-  if(ov){ov.classList.add('open');if(nm)setTimeout(function(){nm.focus();},80);}
+
+function _oRzp(key, customAmt) {
+  var svc = _svcCat[key] || { label: key, amt: customAmt || 100100, offer: '' };
+  if (customAmt) svc = { label: svc.label || key, amt: customAmt, offer: svc.offer || '' };
+  _rS = svc.label; _rA = svc.amt;
+  var e = document.getElementById('_rzpSvc'); if (e) e.textContent = svc.label;
+  var o = document.getElementById('_rzpOffer'); if (o) o.textContent = svc.offer;
+  var nm = document.getElementById('_rzpNm'), ph = document.getElementById('_rzpPh');
+  if (nm) nm.value = ''; if (ph) ph.value = '';
+  var ov = document.getElementById('_rzpO');
+  if (ov) { ov.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  if (nm) setTimeout(function() { nm.focus(); }, 80);
 }
-function _cRzp(){var o=document.getElementById('_rzpO');if(o)o.classList.remove('open');}
-function _dRzp(){
-  var nm=((document.getElementById('_rzpNm')||{}).value||'').trim();
-  var ph=((document.getElementById('_rzpPh')||{}).value||'').trim();
-  if(!nm){alert('\u0985\u09A8\u09C1\u0997\u09CD\u09B0\u09B9 \u0995\u09B0\u09C7 \u0986\u09AA\u09A8\u09BE\u09B0 \u09AA\u09C1\u09B0\u09CB \u09A8\u09BE\u09AE \u09B2\u09BF\u0996\u09C1\u09A8\u0964');document.getElementById('_rzpNm').focus();return;}
-  if(!/^[6-9]\d{9}$/.test(ph)){alert('\u09B8\u09A0\u09BF\u0995 \u09E7\u09E6 \u09B8\u0982\u0996\u09CD\u09AF\u09BE\u09B0 \u09AE\u09CB\u09AC\u09BE\u0987\u09B2 \u09A8\u09AE\u09CD\u09AC\u09B0 \u09A6\u09BF\u09A8 (6-9 \u09A6\u09BF\u09AF\u09BC\u09C7 \u09B6\u09C1\u09B0\u09C1)\u0964');document.getElementById('_rzpPh').focus();return;}
-  if(typeof Razorpay==='undefined'){alert('Payment system not loaded. Please refresh.');return;}
-  var amt=_rA,svcName=_rS;
-  var opts={
-    key:'rzp_live_SN8p6DJxPYFVL1',
-    amount:amt,currency:'INR',
-    name:'MyAstrology',
-    description:svcName,
-    image:'https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png',
-    prefill:{name:nm,contact:'+91'+ph},
-    notes:{service:svcName,customer_name:nm,phone:ph},
-    theme:{color:'#b8860b'},
-    handler:function(r){
+
+function _cRzp() {
+  var o = document.getElementById('_rzpO');
+  if (o) { o.classList.remove('open'); document.body.style.overflow = ''; }
+}
+
+function _dRzp() {
+  var nm = ((document.getElementById('_rzpNm') || {}).value || '').trim();
+  var ph = ((document.getElementById('_rzpPh') || {}).value || '').trim();
+  if (!nm) {
+    alert('অনুগ্রহ করে আপনার পুরো নাম লিখুন।');
+    document.getElementById('_rzpNm').focus(); return;
+  }
+  if (!/^[6-9]\d{9}$/.test(ph)) {
+    alert('সঠিক ১০ সংখ্যার মোবাইল নম্বর দিন (6-9 দিয়ে শুরু)।');
+    document.getElementById('_rzpPh').focus(); return;
+  }
+  if (typeof Razorpay === 'undefined') {
+    alert('Payment system not loaded. Please refresh.');
+    return;
+  }
+  var amt = _rA, svcName = _rS;
+  var opts = {
+    key: 'rzp_live_SN8p6DJxPYFVL1',
+    amount: amt, currency: 'INR',
+    name: 'MyAstrology',
+    description: svcName,
+    image: 'https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png',
+    prefill: { name: nm, contact: '+91' + ph },
+    notes: { service: svcName, customer_name: nm, phone: ph },
+    theme: { color: '#b8860b' },
+    handler: function(r) {
       _cRzp();
-      if(typeof gtag!=='undefined')gtag('event','booking_paid',{event_category:'conversion',event_label:svcName,value:amt/100});
-      var amtDisp=String(Math.floor(amt/100));
-      var waMsg='\u{1F64F} \u0986\u09AE\u09BF '+svcName+' \u098F\u09B0 \u099C\u09A8\u09CD\u09AF \u09A2'+amtDisp+' \u09AA\u09C7\u09AE\u09C7\u09A8\u09CD\u099F \u0995\u09B0\u09C7\u099B\u09BF\u0964 \u0986\u09AE\u09BE\u09B0 \u09AA\u09CD\u09B0\u09AF\u09BC\u09CB\u099C\u09A8\u09C0\u09AF\u09BC \u09AC\u09BF\u09AC\u09B0\u09A3 \u09A8\u09BF\u099A\u09C7 \u09A6\u09BF\u099A\u09CD\u099B\u09BF\u0964\n\n\u09A8\u09BE\u09AE: '+nm+'\nWhatsApp: +91'+ph+'\nPayment ID: '+r.razorpay_payment_id+'\n\n\u0985\u09A8\u09C1\u0997\u09CD\u09B0\u09B9 \u0995\u09B0\u09C7 \u09AA\u09B0\u09AC\u09B0\u09CD\u09A4\u09C0 \u09AA\u09A6\u0995\u09CD\u09B7\u09C7\u09AA \u099C\u09BE\u09A8\u09BE\u09A8\u0964 \u09A7\u09A8\u09CD\u09AF\u09AC\u09BE\u09A6 \u{1F64F}';
-      setTimeout(function(){window.open('https://wa.me/919333122768?text='+encodeURIComponent(waMsg),'_blank');},400);
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'booking_paid', { event_category: 'conversion', event_label: svcName, value: amt / 100 });
+      }
+      var amtDisp = String(Math.floor(amt / 100));
+      var waMsg = '🙏 আমি ' + svcName + '-এর জন্য ₹' + amtDisp + ' পেমেন্ট করেছি।\n\n'
+                + '👤 নাম: ' + nm + '\n'
+                + '📱 WhatsApp: +91' + ph + '\n'
+                + '🛎️ সেবা: ' + svcName + '\n'
+                + '🆔 Payment ID: ' + r.razorpay_payment_id + '\n\n'
+                + 'অনুগ্রহ করে পরবর্তী পদক্ষেপ জানান। ধন্যবাদ 🙏';
+      setTimeout(function() {
+        window.open('https://wa.me/919333122768?text=' + encodeURIComponent(waMsg), '_blank');
+      }, 400);
     },
-    modal:{ondismiss:function(){}}
+    modal: { ondismiss: function() {} }
   };
-  var rzp=new Razorpay(opts);
-  rzp.on('payment.failed',function(r){alert('\u09AA\u09C7\u09AE\u09C7\u09A8\u09CD\u099F \u09AC\u09CD\u09AF\u09B0\u09CD\u09A5\u0964\n\u0995\u09BE\u09B0\u09A3: '+(r.error.description||'\u0985\u099C\u09BE\u09A8\u09BE \u09A4\u09CD\u09B0\u09C1\u099F\u09BF')+'\n\u0986\u09AC\u09BE\u09B0 \u099A\u09C7\u09B7\u09CD\u099F\u09BE \u0995\u09B0\u09C1\u09A8\u0964');});
+  var rzp = new Razorpay(opts);
+  rzp.on('payment.failed', function(r) {
+    alert('পেমেন্ট ব্যর্থ হয়েছে।\nকারণ: ' + (r.error.description || 'অজানা ত্রুটি') + '\nআবার চেষ্টা করুন।');
+  });
   rzp.open();
 }
+
+/* Escape key closes modal */
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') _cRzp();
+});
 </script>
+
 </body>
 </html>
