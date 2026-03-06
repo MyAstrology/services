@@ -55,12 +55,11 @@
 </script>
 
 <!-- Favicon -->
-<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/x-icon" href="images/favicon.ico">
 
 <!-- Preconnect -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="dns-prefetch" href="https://checkout.razorpay.com">
 <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 
 <!-- Fonts — Bengali optimised, non-blocking -->
@@ -76,8 +75,6 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S7BQGLP211',{page_path:'/palmistry'});</script>
 
 <!-- Razorpay — defer -->
-<script defer src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
 <!-- Hero image preload -->
 <link rel="preload" as="image" href="images/palmistry-line-brain-lobes.webp">
 
@@ -193,10 +190,6 @@ nav#main-nav a.nav-wa{color:#25d366;font-weight:800}
 /* ════════════════════════════════════════════════════
    BREADCRUMB
    ════════════════════════════════════════════════════ */
-.breadcrumb{max-width:var(--max-w);margin:14px auto 0;padding:0 20px;font-size:.82rem;color:var(--clr-text-lt)}
-.breadcrumb a{color:var(--clr-maroon);border:none;font-weight:600}
-.breadcrumb a:hover{color:var(--clr-maroon-dk);border:none}
-.breadcrumb span{margin:0 5px}
 
 /* ════════════════════════════════════════════════════
    PANJIKA / RASHIFAL STRIP
@@ -227,7 +220,6 @@ nav#main-nav a.nav-wa{color:#25d366;font-weight:800}
    ════════════════════════════════════════════════════ */
 section.content-section{max-width:var(--max-w);margin:0 auto;padding:2.5rem 20px;border-bottom:1px solid var(--clr-border-lt)}
 section.content-section:last-of-type{border-bottom:none}
-.section-divider{text-align:center;padding:8px 0;font-size:1.3rem;color:var(--clr-gold-deep);border:none;background:none;max-width:var(--max-w);margin:0 auto}
 
 /* ── Tables ── */
 .table-wrap{overflow-x:auto;max-width:100%;margin:12px 0 1rem}
@@ -292,10 +284,6 @@ table tbody tr:hover{background:var(--clr-maroon-lt);transition:background .2s}
 /* ════════════════════════════════════════════════════
    BOOKING MODAL — Step 1
    ════════════════════════════════════════════════════ */
-#book-overlay{display:none;position:fixed;inset:0;background:rgba(8,14,30,.82);z-index:9400;align-items:center;justify-content:center;backdrop-filter:blur(6px);opacity:0;transition:opacity .3s ease;padding:16px}
-#book-overlay.show{opacity:1}
-#book-modal{background:#fff;border-radius:var(--radius-lg);padding:28px 24px 24px;max-width:420px;width:100%;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 0 1px rgba(201,168,76,.2);transform:translateY(24px) scale(.97);transition:transform .35s cubic-bezier(.34,1.56,.64,1),opacity .3s;opacity:0}
-#book-overlay.show #book-modal{transform:translateY(0) scale(1);opacity:1}
 #book-close{position:absolute;top:14px;right:16px;background:#f0f0f8;border:none;width:32px;height:32px;border-radius:50%;font-size:1rem;cursor:pointer;color:#666;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s;line-height:1}
 #book-close:hover{background:#e0e0f0;color:var(--clr-primary)}
 .bm-header{text-align:center;margin-bottom:14px}
@@ -324,10 +312,6 @@ table tbody tr:hover{background:var(--clr-maroon-lt);transition:background .2s}
 /* ════════════════════════════════════════════════════
    SUCCESS MODAL — Step 2
    ════════════════════════════════════════════════════ */
-#rzp-overlay{display:none;position:fixed;inset:0;background:rgba(8,14,30,.82);z-index:9500;align-items:center;justify-content:center;backdrop-filter:blur(6px);opacity:0;transition:opacity .3s ease;padding:16px}
-#rzp-overlay.show{opacity:1}
-#rzp-modal{background:#fff;border-radius:var(--radius-lg);padding:32px 24px 28px;max-width:400px;width:100%;text-align:center;position:relative;box-shadow:0 30px 90px rgba(0,0,0,.5);transform:scale(.85) translateY(20px);transition:transform .4s cubic-bezier(.34,1.56,.64,1),opacity .3s;opacity:0}
-#rzp-overlay.show #rzp-modal{transform:scale(1) translateY(0);opacity:1}
 #rzp-close{position:absolute;top:14px;right:16px;background:#f0f0f8;border:none;width:32px;height:32px;border-radius:50%;font-size:1rem;cursor:pointer;color:#666;display:flex;align-items:center;justify-content:center;line-height:1}
 .success-ring{width:72px;height:72px;margin:0 auto 16px}
 .success-checkmark{width:72px;height:72px;border-radius:50%;display:block;stroke-width:2;stroke:#25a244;stroke-miterlimit:10;animation:sc-scale .3s ease-in-out .9s both}
@@ -388,7 +372,36 @@ footer{background:linear-gradient(180deg,#0a1628 0%,#060e1a 100%);border-top:3px
 @media(max-width:860px){.footer-grid{grid-template-columns:1fr 1fr}.footer-col{padding:0 0 24px!important}}
 @media(max-width:680px){.toc-grid{grid-template-columns:1fr}.svc-grid{grid-template-columns:1fr}}
 @media(max-width:600px){.panjika-inner{padding:22px 16px 26px}.footer-grid{grid-template-columns:1fr}.footer-bottom{flex-direction:column;text-align:center}.toc-section{padding:20px 16px}}
-@media(max-width:480px){#book-modal,#rzp-modal{padding:24px 16px 20px}}
+@media(max-width:480px){#book-modal,}
+</style>
+<style id="_univCss">
+#_pb{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#f9a825,#e65100);z-index:9999;transition:width .1s;pointer-events:none}
+#_btt{position:fixed;bottom:26px;left:16px;width:44px;height:44px;background:#0a192f;color:#f9a825;border:2px solid rgba(249,168,37,.4);border-radius:50%;font-size:1.3rem;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(0,0,0,.28);opacity:0;transform:translateY(12px);transition:opacity .3s,transform .3s;z-index:800;text-decoration:none;cursor:pointer}
+#_btt.show{opacity:1;transform:translateY(0)}
+#_btt:hover{background:#f9a825;color:#0a192f}
+#_waf{position:fixed;bottom:26px;right:16px;z-index:900;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+#_wfm{background:#fff;color:#0a192f;font-family:sans-serif;font-size:.76rem;font-weight:700;padding:7px 11px;border-radius:12px 12px 0 12px;box-shadow:0 4px 16px rgba(0,0,0,.18);border-left:3px solid #25D366;width:152px;line-height:1.5;opacity:0;transform:translateY(6px) scale(.95);transition:opacity .4s,transform .4s;pointer-events:none}
+#_wfm.on{opacity:1;transform:translateY(0) scale(1)}
+#_waf>a{display:flex;align-items:center;justify-content:center;width:56px;height:56px;background:#25D366;border-radius:50%;box-shadow:0 4px 18px rgba(37,211,102,.45);text-decoration:none;animation:_wap 2.5s ease-in-out infinite}
+#_waf>a i{font-size:1.85rem;color:#fff}
+@keyframes _wap{0%,100%{box-shadow:0 4px 18px rgba(37,211,102,.45),0 0 0 0 rgba(37,211,102,.4)}50%{box-shadow:0 4px 18px rgba(37,211,102,.45),0 0 0 14px rgba(37,211,102,0)}}
+#_rzpO{display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:9200;align-items:center;justify-content:center;padding:16px}
+#_rzpO.open{display:flex}
+#_rzpM{background:#fff;border-radius:16px;padding:28px 24px 22px;max-width:420px;width:100%;box-shadow:0 24px 72px rgba(0,0,0,.4);border-top:5px solid #b8860b;position:relative;max-height:94vh;overflow-y:auto}
+#_rzpLogo{text-align:center;margin-bottom:10px}
+#_rzpLogo img{height:52px;width:auto;margin:0 auto;display:block}
+#_rzpTitle{font-size:1.12rem;font-weight:700;color:#0a192f;margin:0 0 3px;text-align:center;font-family:Georgia,serif}
+#_rzpSvc{font-size:.88rem;color:#b8860b;font-weight:700;text-align:center;padding-bottom:10px;border-bottom:1px solid #e8d5a0;margin-bottom:4px}
+#_rzpOffer{font-size:.82rem;color:#444;text-align:center;margin:6px 0 14px;background:#fffbf0;border-radius:6px;padding:7px 10px;border:1px solid #f3e5c0;min-height:28px}
+.rzp-f{margin-bottom:13px}
+.rzp-f label{display:block;font-size:.82rem;font-weight:600;color:#444;margin-bottom:5px}
+.rzp-f input{width:100%;padding:11px 13px;border:1.5px solid #ddd;border-radius:8px;font-size:.95rem;transition:border-color .2s;outline:none;box-sizing:border-box;font-family:inherit}
+.rzp-f input:focus{border-color:#b8860b;box-shadow:0 0 0 3px rgba(184,134,11,.12)}
+#_rzpBtn{width:100%;background:linear-gradient(135deg,#0a192f,#1a3a5c);color:#ffd700;border:none;padding:14px;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;margin-top:4px;transition:opacity .2s,transform .2s;letter-spacing:.03em;font-family:inherit}
+#_rzpBtn:hover{opacity:.88;transform:translateY(-1px)}
+#_rzpSec{text-align:center;font-size:.72rem;color:#aaa;margin-top:10px}
+#_rzpX{position:absolute;top:10px;right:12px;background:none;border:none;font-size:1.5rem;cursor:pointer;color:#999;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%}
+#_rzpX:hover{color:#c00;background:#f5f5f5}
 </style>
 </head>
 
@@ -425,14 +438,14 @@ footer{background:linear-gradient(180deg,#0a1628 0%,#060e1a 100%);border-top:3px
   <a href="https://www.myastrology.in/astrology.html">⭐ জ্যোতিষ শাস্ত্র</a>
   <a href="https://www.myastrology.in/palmistry.html" aria-current="page">✋ হস্তরেখা বিচার</a>
   <a href="https://www.myastrology.in/panjika.html">📅 রাশিফল ও পঞ্জিকা</a>
-  <a href="/vedic-astronomy.html">🔭 জ্যোতির্বিজ্ঞান</a>
-  <a href="/rashifal.html">♈ দৈনন্দিন রাশিফল</a>
-  <a href="/video.html">🎬 ভিডিও</a>
+  <a href="vedic-astronomy.html">🔭 জ্যোতির্বিজ্ঞান</a>
+  <a href="rashifal.html">♈ দৈনন্দিন রাশিফল</a>
+  <a href="video.html">🎬 ভিডিও</a>
   <a href="vastu-science.html">🏛️ বাস্তু শাস্ত্র</a>
-  <a href="/gallery.html">🖼️ গ্যালারি</a>
-  <a href="/about.html">👤 আমাদের সম্পর্কে</a>
-  <a href="/blog-list.html">📝 ব্লগ</a>
-  <a href="/reviews.html">⭐ রিভিউ</a>
+  <a href="gallery.html">🖼️ গ্যালারি</a>
+  <a href="about.html">👤 আমাদের সম্পর্কে</a>
+  <a href="blog-list.html">📝 ব্লগ</a>
+  <a href="reviews.html">⭐ রিভিউ</a>
   <a href="https://wa.me/919333122768?text=নমস্কার%20ড.%20আচার্য%2C%20হস্তরেখা%20বিচারের%20জন্য%20যোগাযোগ%20করছি।" class="nav-wa">📲 WhatsApp পরামর্শ</a>
 </nav>
 <div class="backdrop" id="backdrop" aria-hidden="true"></div>
@@ -509,7 +522,7 @@ footer{background:linear-gradient(180deg,#0a1628 0%,#060e1a 100%);border-top:3px
 
   <p>
     প্রথম নিঃশ্বাস থেকেই মানুষ জীবনের অর্থ ও উদ্দেশ্য খুঁজে চলেছে — আকাশের তারায়, মন্দিরের নীরবতায় এবং হাতের তালুতে খোদাই করা পবিত্র রেখাগুলিতে।
-    <strong>MyAstrology, রাণাঘাট, পশ্চিমবঙ্গ</strong>-এ আমরা
+    <strong>MyAstrology, রাণাঘাট (Ranaghat), পশ্চিমবঙ্গ (West Bengal)</strong>-এ আমরা
     <strong><a href="https://prodyutacharya.blogspot.com/2025/07/blog-post_7.html" target="_blank" rel="noopener">হস্তরেখা শাস্ত্র ও বৈদিক জ্যোতিষকে</a></strong>
     <em>জ্যোতিষ বিদ্যা</em>র দুটি পরিপূরক স্তম্ভ হিসেবে সমন্বিত করি।
     <strong>হস্তরেখা বিচার (Hasta Rekha), সামুদ্রিক শাস্ত্র (Samudrik Shastra)</strong> ও <strong>Palm Reading</strong>-এর মাধ্যমে প্রেম, বিবাহ, কর্ম ও জীবনের সঠিক পথের সন্ধান দেওয়া হয়।
@@ -531,7 +544,7 @@ footer{background:linear-gradient(180deg,#0a1628 0%,#060e1a 100%);border-top:3px
 
   <h3>আধুনিক বিজ্ঞান ও মস্তিষ্ক–হাতের সংযোগ</h3>
   <p>
-    <strong>Penfield</strong>, <strong>Sperry</strong> ও <strong>Ramachandran</strong>-এর গবেষণা হাত ও মস্তিষ্কের মধ্যে গভীর নিউরোলজিক্যাল সম্পর্ক প্রকাশ করেছে — যা আবেগ, চিন্তার ধরন ও সিদ্ধান্ত গ্রহণকে প্রভাবিত করে।
+    <strong>Penfield</strong>, <strong>Sperry</strong> ও <strong>Ramachandran</strong>-এর গবেষণা হাত ও মস্তিষ্কের মধ্যে গভীর নিউরোলজিক্যাল (Neurological) সম্পর্ক প্রকাশ করেছে — যা আবেগ, চিন্তার ধরন ও সিদ্ধান্ত গ্রহণকে প্রভাবিত করে।
     এই বৈজ্ঞানিক প্রমাণ প্রাচীন সেই অন্তর্দৃষ্টির সাথে মিলে যায় যে হস্তরেখা শাস্ত্র — জ্ঞান ও নিষ্ঠার সাথে চর্চা করলে — শুধু ভবিষ্যদ্বাণী নয়, মানব অস্তিত্বের একটি <a href="https://prodyutacharya.blogspot.com/2025/07/Palmistryneuroscience.html" target="_blank" rel="noopener">বৈজ্ঞানিক ও আধ্যাত্মিক অন্বেষণ</a>।
   </p>
 
@@ -552,7 +565,7 @@ footer{background:linear-gradient(180deg,#0a1628 0%,#060e1a 100%);border-top:3px
      ════════════════════════════════ -->
 <section class="content-section" aria-labelledby="palmistry-neuro">
   <h2 id="palmistry-neuro">
-    🌺 হাত ও মনের রহস্য — হস্তরেখা শাস্ত্র ও নিউরোসায়েন্সের মেলবন্ধন
+    🌺 হাত ও মনের রহস্য — হস্তরেখা শাস্ত্র ও নিউরোসায়েন্স (Neuroscience)-এর মেলবন্ধন
   </h2>
 
   <img src="images/palmistry-line-brain-lobes.webp" alt="হস্তরেখা ও মস্তিষ্কের সংযোগ — Palmistry brain lobes, জ্যোতিষ নিউরোসায়েন্স বিজ্ঞান" class="img-full" loading="lazy">
@@ -804,7 +817,7 @@ footer{background:linear-gradient(180deg,#0a1628 0%,#060e1a 100%);border-top:3px
   <div class="svc-hd">
     <span class="svc-om">✦ &nbsp; আমাদের হস্তরেখা সেবাসমূহ &nbsp; ✦</span>
     <span class="svc-title">বেছে নিন <em>আপনার পরামর্শ</em></span>
-    <p>ড. প্রদ্যুৎ আচার্যের সাথে হস্তরেখা বিচার ও Vedic Jyotish পরামর্শ — অনলাইনে, আপনার সুবিধামতো সময়ে</p>
+    <p>ড. প্রদ্যুৎ আচার্য (Dr. Prodyut Acharya)-এর সাথে হস্তরেখা বিচার ও Vedic Jyotish পরামর্শ — অনলাইনে, আপনার সুবিধামতো সময়ে</p>
   </div>
 
   <div class="svc-trust">
@@ -840,7 +853,7 @@ footer{background:linear-gradient(180deg,#0a1628 0%,#060e1a 100%);border-top:3px
           </div>
           <div class="sc-offer-save">আপনি সাশ্রয় করছেন ₹৫০০ 💰</div>
         </div>
-        <button class="sc-btn" onclick="openBookModal('palm')">📅 এখনই বুক করুন</button>
+        <button class="sc-btn" onclick="_oRzp('palm')">📅 এখনই বুক করুন</button>
         <p class="sc-sec">🔒 Razorpay · UPI / Card / Net Banking</p>
       </div>
     </div>
@@ -854,7 +867,7 @@ footer{background:linear-gradient(180deg,#0a1628 0%,#060e1a 100%);border-top:3px
         <p class="sc-desc">একইসাথে হাতের রেখা ও জন্মকুণ্ডলী বিচার — সর্বোচ্চ সুবিধা সর্বনিম্ন মূল্যে।</p>
         <ul class="sc-feats">
           <li>সম্পূর্ণ হস্তরেখা বিশ্লেষণ ও প্রতিকার</li>
-          <li>৩০/৩৫ পাতার জন্মকুণ্ডলী PDF রিপোর্ট</li>
+          <li>৩০/৩৫ পাতার জন্মকুণ্ডলী (Kundali) PDF রিপোর্ট</li>
           <li>WhatsApp-এ PDF পাঠানো হবে</li>
           <li>ফোনে বিস্তারিত আলোচনা — ৩০ মিনিট</li>
           <li>সমস্ত প্রশ্নের উত্তর ও জ্যোতিষ প্রতিকার</li>
@@ -868,7 +881,7 @@ footer{background:linear-gradient(180deg,#0a1628 0%,#060e1a 100%);border-top:3px
           </div>
           <div class="sc-offer-save">আপনি সাশ্রয় করছেন ₹৫০০ 💰</div>
         </div>
-        <button class="sc-btn" onclick="openBookModal('combo')">📅 এখনই বুক করুন</button>
+        <button class="sc-btn" onclick="_oRzp('combo')">📅 এখনই বুক করুন</button>
         <p class="sc-sec">🔒 Razorpay · UPI / Card / Net Banking</p>
       </div>
     </div>
@@ -907,7 +920,7 @@ footer{background:linear-gradient(180deg,#0a1628 0%,#060e1a 100%);border-top:3px
       <li><strong>হাতের ছবি তুলুন:</strong> দুই হাতের সামনে (হাতের তালু) ও পিছনের স্পষ্ট ছবি তুলুন — সমস্ত রেখা, চিহ্ন ও ত্বকের গঠন সম্পূর্ণ দৃশ্যমান হওয়া নিশ্চিত করুন।</li>
       <li><strong>জন্মের বিবরণ শেয়ার করুন:</strong> পুরো নাম, জন্ম তারিখ, সময় ও জন্মস্থান দিন। সঠিক জন্মসময় জানা না থাকলে উল্লেখ করুন।</li>
       <li><strong>পেমেন্ট সম্পন্ন করুন:</strong> উপরের বাটনে ক্লিক করে নিরাপদে পেমেন্ট করুন। পেমেন্টের পর <a href="https://wa.me/919333122768" target="_blank" rel="noopener">WhatsApp</a>-এ ছবি ও বিবরণ পাঠান।</li>
-      <li><strong>ব্যক্তিগত পাঠ পান:</strong> নির্ধারিত সময়ে, ড. প্রদ্যুৎ আচার্য ব্যক্তিগতভাবে বিস্তারিত দার্শনিক, জ্যোতিষীয় ও বৈজ্ঞানিক বিশ্লেষণ প্রদান করবেন — প্রতিকার ও জীবনপথের নির্দেশনা সহ।</li>
+      <li><strong>ব্যক্তিগত পাঠ পান:</strong> নির্ধারিত সময়ে, ড. প্রদ্যুৎ আচার্য (Dr. Prodyut Acharya) ব্যক্তিগতভাবে বিস্তারিত দার্শনিক, জ্যোতিষীয় ও বৈজ্ঞানিক বিশ্লেষণ প্রদান করবেন — প্রতিকার ও জীবনপথের নির্দেশনা সহ।</li>
     </ol>
   </div>
 
@@ -922,7 +935,7 @@ footer{background:linear-gradient(180deg,#0a1628 0%,#060e1a 100%);border-top:3px
   <div class="footer-grid">
     <div class="footer-col">
       <h4>MyAstrology</h4>
-      <p><i class="fas fa-map-marker-alt"></i>রাণাঘাট, নদিয়া, পশ্চিমবঙ্গ — ৭৪১২০১</p>
+      <p><i class="fas fa-map-marker-alt"></i>রাণাঘাট (Ranaghat), নদিয়া (Nadia), পশ্চিমবঙ্গ — ৭৪১২০১</p>
       <p><i class="fas fa-phone"></i><a href="tel:+919333122768">+91 93331 22768</a></p>
       <p><i class="fas fa-envelope"></i><a href="mailto:info@myastrology.in">info@myastrology.in</a></p>
       <a href="https://wa.me/919333122768?text=নমস্কার%20ড.%20আচার্য%2C%20হস্তরেখা%20বিচারের%20জন্য%20যোগাযোগ%20করছি।" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i>WhatsApp পরামর্শ</a>
@@ -934,14 +947,14 @@ footer{background:linear-gradient(180deg,#0a1628 0%,#060e1a 100%);border-top:3px
       <a href="https://www.myastrology.in/astrology.html">কুণ্ডলী মিলন</a>
       <a href="vastu-science.html">বাস্তু শাস্ত্র</a>
       <a href="https://www.myastrology.in/panjika.html">রাশিফল ও পঞ্জিকা</a>
-      <a href="/reviews.html">সমস্ত রিভিউ</a>
+      <a href="reviews.html">সমস্ত রিভিউ</a>
     </div>
     <div class="footer-col">
       <h4>তথ্য</h4>
-      <a href="/about.html">ড. আচার্য সম্পর্কে</a>
-      <a href="/blog-list.html">ব্লগসমূহ</a>
+      <a href="about.html">ড. আচার্য সম্পর্কে</a>
+      <a href="blog-list.html">ব্লগসমূহ</a>
       <a href="https://bangla.myastrology.in" target="_blank" rel="noopener">বাংলা ব্লগ</a>
-      <a href="/gallery.html">গ্যালারি</a>
+      <a href="gallery.html">গ্যালারি</a>
       <a href="privacy-policy.html">Privacy Policy</a>
       <a href="terms-of-use.html">Terms of Use</a>
     </div>
@@ -959,259 +972,107 @@ footer{background:linear-gradient(180deg,#0a1628 0%,#060e1a 100%);border-top:3px
     </div>
   </div>
 </footer>
-
-<!-- ════════════════════════════════
-     FLOATING WHATSAPP
-     ════════════════════════════════ -->
-<div id="wa-float" aria-label="WhatsApp-এ যোগাযোগ করুন">
-  <div id="wa-flash-msg"></div>
-  <a href="https://wa.me/919333122768?text=নমস্কার%20ড.%20আচার্য%2C%20হস্তরেখা%20বিচারের%20জন্য%20যোগাযোগ%20করছি।"
-     target="_blank" rel="noopener" aria-label="WhatsApp-এ ড. আচার্যের সাথে যোগাযোগ করুন">
-    <i class="fab fa-whatsapp"></i>
-  </a>
+<script src="https://checkout.razorpay.com/v1/checkout.js" defer></script>
+<div id="_pb"></div>
+<a href="#" id="_btt" aria-label="উপরে যান">&#8679;</a>
+<div id="_waf">
+  <div id="_wfm"></div>
+  <a href="https://wa.me/919333122768?text=%F0%9F%99%8F+%E0%A6%A8%E0%A6%AE%E0%A6%B8%E0%A7%8D%E0%A6%95%E0%A6%BE%E0%A6%B0" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
 </div>
-
-<!-- Back to Top -->
-<button id="back-to-top" aria-label="উপরে যান" title="উপরে যান">
-  <i class="fas fa-chevron-up"></i>
-</button>
-
-<!-- ════════════════════════════════
-     BOOKING MODAL — Step 1
-     ════════════════════════════════ -->
-<div id="book-overlay" role="dialog" aria-modal="true" aria-labelledby="book-modal-title">
-  <div id="book-modal">
-    <button id="book-close" onclick="closeBookModal()" aria-label="বন্ধ করুন">✕</button>
-    <div class="bm-header">
-      <img src="images/MyAstrology-Ranghat-logo.png" alt="MyAstrology Logo" class="bm-logo" onerror="this.style.display='none'">
-      <div class="bm-brand" id="book-modal-title">MyAstrology</div>
-      <div class="bm-sub">ড. প্রদ্যুৎ আচার্য — হস্তরেখা বিশেষজ্ঞ</div>
-    </div>
-    <div class="bm-svc-info">
-      <span class="bm-svc-name" id="bm-svc-name">হাতের রেখা বিচার</span>
-      <span class="bm-svc-price" id="bm-svc-price">₹১০০১</span>
-    </div>
-    <div class="bm-offer-badge" id="bm-offer-badge">🔥 বিশেষ অফার: ₹১৫০১ এর জায়গায় মাত্র ₹১০০১</div>
-    <div>
-      <label class="bm-label" for="bm-name">আপনার পুরো নাম <span class="bm-req">*</span></label>
-      <input class="bm-inp" id="bm-name" type="text" placeholder="যেমন: রাম কুমার দাস" autocomplete="name">
-      <label class="bm-label" for="bm-phone">WhatsApp নম্বর <span class="bm-req">*</span></label>
-      <div class="bm-phone-wrap">
-        <span class="bm-phone-prefix">🇮🇳 +91</span>
-        <input class="bm-inp bm-inp-phone" id="bm-phone" type="tel" placeholder="10 সংখ্যার নম্বর" maxlength="10" autocomplete="tel">
-      </div>
-      <p class="bm-hint">📲 পরামর্শের বিবরণ এই নম্বরে WhatsApp-এ পাঠানো হবে।</p>
-    </div>
-    <button class="bm-proceed-btn" onclick="proceedToRzp()">🔒 পেমেন্ট করুন</button>
-    <p class="bm-secure">🔐 Razorpay দ্বারা সুরক্ষিত · UPI · Card · Net Banking</p>
+<div id="_rzpO" onclick="if(event.target===this)_cRzp()">
+  <div id="_rzpM">
+    <button id="_rzpX" onclick="_cRzp()">&times;</button>
+    <div id="_rzpLogo"><img src="images/MyAstrology-Ranghat-logo.png" alt="MyAstrology" onerror="this.style.display='none'"></div>
+    <h3 id="_rzpTitle">🔐 পরামর্শ বুকিং</h3>
+    <div id="_rzpSvc">সেবা নির্বাচিত হয়নি</div>
+    <div id="_rzpOffer"></div>
+    <div class="rzp-f"><label>আপনার পুরো নাম <span style="color:#c00">*</span></label><input type="text" id="_rzpNm" placeholder="সম্পূর্ণ নাম লিখুন" autocomplete="name"></div>
+    <div class="rzp-f"><label>WhatsApp / ফোন নম্বর <span style="color:#c00">*</span></label><input type="tel" id="_rzpPh" placeholder="১০ সংখ্যার নম্বর" maxlength="10" autocomplete="tel"></div>
+    <button id="_rzpBtn" onclick="_dRzp()">🔐 নিরাপদ পেমেন্ট করুন</button>
+    <div id="_rzpSec">🔒 Razorpay &nbsp;&middot;&nbsp; UPI &middot; Card &middot; Net Banking</div>
   </div>
 </div>
-
-<!-- ════════════════════════════════
-     SUCCESS MODAL — Step 2
-     ════════════════════════════════ -->
-<div id="rzp-overlay" role="dialog" aria-modal="true" aria-labelledby="rzp-modal-title">
-  <div id="rzp-modal">
-    <button id="rzp-close" onclick="closeRzp()" aria-label="বন্ধ করুন">✕</button>
-    <div class="success-ring">
-      <svg viewBox="0 0 52 52" class="success-checkmark">
-        <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
-        <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
-      </svg>
-    </div>
-    <h3 id="rzp-modal-title" class="success-title">পেমেন্ট সফল! 🎉</h3>
-    <p id="rzp-modal-msg" class="success-msg">আপনার হস্তরেখা পরামর্শ বুক হয়েছে।</p>
-    <div class="payment-id-box">
-      <span class="pid-label">Payment ID</span>
-      <span class="pid-value" id="pid-value">—</span>
-    </div>
-    <a id="rzp-wa" href="#" class="m-wa" target="_blank" rel="noopener">
-      <i class="fab fa-whatsapp"></i>&nbsp;WhatsApp-এ বিবরণ পাঠান
-    </a>
-    <p class="success-note">পরামর্শের তারিখ ও সময় WhatsApp-এ নিশ্চিত করা হবে।</p>
-  </div>
-</div>
-
-<!-- ════════════════════════════════
-     SCRIPTS
-     ════════════════════════════════ -->
 <script>
 (function(){
-  'use strict';
-
-  /* ── Service data ── */
-  var KEY  = 'rzp_live_SN8p6DJxPYFVL1';
-  var LOGO = 'https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png';
-  var WA   = '919333122768';
-
-  var SVCS = {
-    palm: { label:'হাতের রেখা বিচার (Palm Reading)', amount:100100, price:'₹১০০১', oldprice:'₹১৫০১', offer:'🔥 বিশেষ অফার: ₹১৫০১ এর জায়গায় মাত্র ₹১০০১' },
-    combo:{ label:'হস্তরেখা + জন্মকুণ্ডলী Combo',   amount:150100, price:'₹১৫০১', oldprice:'₹২০০১', offer:'⭐ বিশেষ অফার: ₹২০০১ এর জায়গায় মাত্র ₹১৫০১' }
-  };
-  var _type = null;
-
-  /* ── STEP 1: Open Booking Modal ── */
-  window.openBookModal = function(type){
-    _type = type;
-    var s = SVCS[type];
-    document.getElementById('bm-svc-name').textContent    = s.label;
-    document.getElementById('bm-svc-price').textContent   = s.price;
-    document.getElementById('bm-offer-badge').textContent = s.offer;
-    document.getElementById('bm-name').value  = '';
-    document.getElementById('bm-phone').value = '';
-    document.getElementById('bm-name').classList.remove('bm-err');
-    document.getElementById('bm-phone').classList.remove('bm-err');
-    var ov = document.getElementById('book-overlay');
-    ov.style.display = 'flex';
-    requestAnimationFrame(function(){ ov.classList.add('show'); });
-    document.body.style.overflow = 'hidden';
-    setTimeout(function(){ document.getElementById('bm-name').focus(); }, 300);
-  };
-
-  window.closeBookModal = function(){
-    var ov = document.getElementById('book-overlay');
-    ov.classList.remove('show');
-    setTimeout(function(){ ov.style.display='none'; }, 300);
-    document.body.style.overflow = '';
-  };
-
-  /* ── STEP 2: Validate → Razorpay ── */
-  window.proceedToRzp = function(){
-    var nm = document.getElementById('bm-name').value.trim();
-    var ph = document.getElementById('bm-phone').value.trim();
-    var ok = true;
-    if(!nm){document.getElementById('bm-name').classList.add('bm-err');document.getElementById('bm-name').focus();ok=false;}
-    else{document.getElementById('bm-name').classList.remove('bm-err');}
-    if(!ph||ph.length<10||!/^\d{10}$/.test(ph)){
-      document.getElementById('bm-phone').classList.add('bm-err');
-      if(ok)document.getElementById('bm-phone').focus();ok=false;
-    }else{document.getElementById('bm-phone').classList.remove('bm-err');}
-    if(!ok) return;
-    var svc = SVCS[_type];
-    closeBookModal();
-    setTimeout(function(){ launchRzp(nm, '+91'+ph, svc); }, 320);
-  };
-
-  /* ── STEP 3: Razorpay ── */
-  function launchRzp(nm, phone, svc){
-    if(typeof Razorpay==='undefined'){alert('পেমেন্ট গেটওয়ে লোড হচ্ছে, একটু অপেক্ষা করুন।');return;}
-    var rzp = new Razorpay({
-      key:KEY, amount:svc.amount, currency:'INR',
-      name:'MyAstrology', description:svc.label, image:LOGO,
-      prefill:{name:nm, contact:phone},
-      notes:{service:svc.label, customer:nm, whatsapp:phone},
-      theme:{color:'#c9a84c'},
-      modal:{backdropclose:false, escape:false},
-      handler:function(res){ showSuccess(nm, phone, svc, res.razorpay_payment_id); }
-    });
-    rzp.on('payment.failed',function(resp){
-      alert('পেমেন্ট বিফল হয়েছে। পুনরায় চেষ্টা করুন।\nকারণ: '+(resp.error.description||''));
-    });
-    rzp.open();
-  }
-
-  /* ── STEP 4: Success Modal ── */
-  function showSuccess(nm, phone, svc, pid){
-    var NL='\n';
-    var msg='🙏 নমস্কার! আমি '+svc.label+'-এর জন্য পেমেন্ট সম্পন্ন করেছি।'+NL+NL
-           +'👤 নাম: '+nm+NL
-           +'📱 WhatsApp: '+phone+NL
-           +'✋ সেবা: '+svc.label+NL
-           +'💰 মূল্য: '+svc.price+' (অফার: '+svc.oldprice+' → '+svc.price+')'+NL
-           +(pid?'🆔 Payment ID: '+pid:'')+NL+NL
-           +'📸 এখন দুই হাতের সামনে ও পিছনের ছবি পাঠাচ্ছি।'+NL
-           +'📋 অনুগ্রহ করে পরামর্শের তারিখ ও সময় জানান। ধন্যবাদ! 🙏';
-    document.getElementById('rzp-wa').href='https://wa.me/'+WA+'?text='+encodeURIComponent(msg);
-    document.getElementById('rzp-modal-msg').textContent=nm+' — আপনার পেমেন্ট সফলভাবে গৃহীত হয়েছে। ✅';
-    document.getElementById('pid-value').textContent=pid||'—';
-    var ov=document.getElementById('rzp-overlay');
-    ov.style.display='flex';
-    requestAnimationFrame(function(){ov.classList.add('show');});
-    document.body.style.overflow='hidden';
-    if(typeof gtag!=='undefined') gtag('event','booking_paid',{event_category:'conversion',event_label:svc.label,value:svc.amount/100});
-  }
-
-  window.closeRzp = function(){
-    var ov=document.getElementById('rzp-overlay');
-    ov.classList.remove('show');
-    setTimeout(function(){ov.style.display='none';},300);
-    document.body.style.overflow='';
-  };
-
-  document.getElementById('book-overlay').addEventListener('click',function(e){if(e.target===this)closeBookModal();});
-  document.getElementById('rzp-overlay').addEventListener('click',function(e){if(e.target===this)closeRzp();});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeBookModal();closeRzp();}});
-  document.getElementById('bm-phone').addEventListener('input',function(){this.value=this.value.replace(/\D/g,'').slice(0,10);});
-  ['bm-name','bm-phone'].forEach(function(id){
-    document.getElementById(id).addEventListener('keydown',function(e){if(e.key==='Enter')proceedToRzp();});
-  });
-
+var h=document.getElementById('_ham'),n=document.getElementById('_nav');
+if(h&&n){
+  h.addEventListener('click',function(e){e.stopPropagation();var o=n.classList.toggle('open');h.setAttribute('aria-expanded',String(o));});
+  document.addEventListener('click',function(e){if(n.classList.contains('open')&&!n.contains(e.target)&&e.target!==h){n.classList.remove('open');h.setAttribute('aria-expanded','false');}});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){n.classList.remove('open');h.setAttribute('aria-expanded','false');}});
+}
+var pb=document.getElementById('_pb'),bt=document.getElementById('_btt');
+window.addEventListener('scroll',function(){
+  var s=document.documentElement,tot=s.scrollHeight-s.clientHeight;
+  if(pb)pb.style.width=(tot>0?(s.scrollTop/tot*100):0)+'%';
+  if(bt)bt.classList.toggle('show',s.scrollTop>400);
+},{passive:true});
+if(bt)bt.addEventListener('click',function(e){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});});
+var msgs=[
+  '\u{1F52E} \u099C\u09CD\u09AF\u09CB\u09A4\u09BF\u09B7 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6 \u09A8\u09BF\u09A8!',
+  '\u270B \u09B9\u09B8\u09CD\u09A4\u09B0\u09C7\u0996\u09BE \u09AC\u09BF\u099A\u09BE\u09B0 \u09A2\u09E7\u09E6\u09E6\u09E7',
+  '\u{1F48D} \u09AF\u09CB\u099F\u09CB\u0995 \u09AC\u09BF\u099A\u09BE\u09B0 \u0995\u09B0\u09C1\u09A8',
+  '\u2B50 \u09E8\u09ED\u09EC+ \u09EB-\u09A4\u09BE\u09B0\u09BE \u09B0\u09BF\u09AD\u09BF\u0989',
+  '\u{1F4C5} \u09B0\u09BE\u09B6\u09BF\u09AB\u09B2 \u09A6\u09C7\u0996\u09C1\u09A8'
+];
+var mi=0,fm=document.getElementById('_wfm');
+if(fm){function sm(){fm.textContent=msgs[mi++%msgs.length];fm.classList.add('on');setTimeout(function(){fm.classList.remove('on');},3500);}setTimeout(sm,2500);setInterval(sm,7000);}
 })();
-
-/* ════ Nav Toggle ════ */
-(function(){
-  var btn=document.getElementById('menuToggleBtn'),nav=document.getElementById('main-nav'),
-      cBtn=document.getElementById('navCloseBtn'),bd=document.getElementById('backdrop');
-  function open(){nav.classList.add('open');bd.classList.add('show');btn.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';}
-  function close(){nav.classList.remove('open');bd.classList.remove('show');btn.setAttribute('aria-expanded','false');document.body.style.overflow='';}
-  btn.addEventListener('click',function(){nav.classList.contains('open')?close():open();});
-  cBtn.addEventListener('click',close);bd.addEventListener('click',close);
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
-})();
-
-/* ════ Banner Slider ════ */
-(function(){
-  var imgs=document.querySelectorAll('.banner img'),cur=0;
-  if(!imgs.length) return;
-  setInterval(function(){imgs[cur].classList.remove('active');cur=(cur+1)%imgs.length;imgs[cur].classList.add('active');},4200);
-})();
-
-/* ════ Progress Bar + Back to Top ════ */
-(function(){
-  var bar=document.getElementById('progress-bar'),btt=document.getElementById('back-to-top');
-  window.addEventListener('scroll',function(){
-    var st=window.scrollY,dh=document.documentElement.scrollHeight-document.documentElement.clientHeight;
-    if(bar&&dh>0) bar.style.width=Math.min(100,(st/dh)*100)+'%';
-    if(btt){st>400?btt.classList.add('visible'):btt.classList.remove('visible');}
-  },{passive:true});
-  if(btt) btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
-})();
-
-/* ════ Rotating WA Flash Messages (same as index.html) ════ */
-(function(){
-  var msgs=[
-    '🔮 কুণ্ডলী বিশ্লেষণ করুন',
-    '🌟 আজই পরামর্শ নিন',
-    '✋ হস্তরেখা বিচার করুন',
-    '⭐ ১০,০০০+ সন্তুষ্ট গ্রাহক',
-    '💬 বাংলায় Online পরামর্শ',
-    '🙏 এখনই WhatsApp করুন',
-    '📿 Jyotish পরামর্শ নিন',
-    '💍 যোটোক বিচার করুন'
-  ];
-  var idx=0,el=document.getElementById('wa-flash-msg');
-  if(!el) return;
-  function show(){
-    el.classList.remove('show');
-    setTimeout(function(){
-      el.textContent=msgs[idx];
-      el.classList.add('show');
-      idx=(idx+1)%msgs.length;
-      setTimeout(function(){el.classList.remove('show');},2400);
-    },400);
-  }
-  setTimeout(function(){show();setInterval(show,3000);},2000);
-})();
-
-/* ════ GA4 Tracking ════ */
-document.addEventListener('click',function(e){
-  var a=e.target.closest('a');
-  if(!a||typeof gtag==='undefined') return;
-  var href=a.getAttribute('href')||'';
-  if(href.includes('wa.me')) gtag('event','whatsapp_click',{event_category:'engagement',event_label:a.innerText.trim()||'WhatsApp'});
-  if(href.startsWith('tel:')) gtag('event','phone_click',{event_category:'engagement'});
-  if(href.startsWith('mailto:')) gtag('event','email_click',{event_category:'engagement'});
-});
+var _rS='',_rA=100100;
+var _svcCat={
+  palm:    {label:'\u09B9\u09BE\u09A4\u09C7\u09B0 \u09B0\u09C7\u0996\u09BE \u09AC\u09BF\u099A\u09BE\u09B0',amt:100100,offer:'\u{1F525} \u09AC\u09BF\u09B6\u09C7\u09B7 \u0985\u09AB\u09BE\u09B0: \u09B8\u09BE\u09B6\u09CD\u09B0\u09AF\u09BC \u09A2\u09EB\u09E6\u09E6 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u09A2\u09E7\u09E6\u09E6\u09E7'},
+  combo:   {label:'\u099C\u09A8\u09CD\u09AE \u0995\u09C1\u09A3\u09CD\u09A1\u09B2\u09C0 + \u09B9\u09B8\u09CD\u09A4\u09B0\u09C7\u0996\u09BE Combo',amt:150100,offer:'\u2B50 \u09B8\u09C7\u09B0\u09BE \u0985\u09AB\u09BE\u09B0: \u09B8\u09BE\u09B6\u09CD\u09B0\u09AF\u09BC \u09A2\u09EB\u09E6\u09E6 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u09A2\u09E7\u09EB\u09E6\u09E7'},
+  jyotok:  {label:'\u09AF\u09CB\u099F\u09CB\u0995 \u09AC\u09BF\u099A\u09BE\u09B0',amt:150100,offer:'\u{1F48D} \u09AC\u09BF\u09AC\u09BE\u09B9 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6: \u09B8\u09BE\u09B6\u09CD\u09B0\u09AF\u09BC \u09A2\u09E7\u09E6\u09E6\u09E6 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u09A2\u09E7\u09EB\u09E6\u09E7'},
+  kundali: {label:'\u099C\u09A8\u09CD\u09AE\u0995\u09C1\u09A3\u09CD\u09A1\u09B2\u09C0 \u09AC\u09BF\u099A\u09BE\u09B0',amt:200100,offer:'\u{1F52E} \u09AC\u09BF\u09B6\u09C7\u09B7 \u0985\u09AB\u09BE\u09B0 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u09A2\u09E8\u09E6\u09E6\u09E7'},
+  vastu:   {label:'\u09AC\u09BE\u09B8\u09CD\u09A4\u09C1 \u09B6\u09BE\u09B8\u09CD\u09A4\u09CD\u09B0 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6',amt:200100,offer:'\u{1F3E0} \u09AC\u09BE\u09B8\u09CD\u09A4\u09C1 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6 \u2192 \u09A2\u09E8\u09E6\u09E6\u09E7+'},
+  gemstone:{label:'\u09B0\u09A4\u09CD\u09A8\u09AA\u09BE\u09A5\u09B0 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6',amt:100100,offer:'\u{1F48E} \u09B0\u09A4\u09CD\u09A8\u09AA\u09BE\u09A5\u09B0 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u09A2\u09E7\u09E6\u09E6\u09E7'},
+  muhurta: {label:'\u09B6\u09C1\u09AD \u09AE\u09C1\u09B9\u09C2\u09B0\u09CD\u09A4 \u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8',amt:50100,offer:'\u2728 \u09B6\u09C1\u09AD \u09AE\u09C1\u09B9\u09C2\u09B0\u09CD\u09A4 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u09A2\u09EB\u09E6\u09E7'},
+  name:    {label:'\u09A8\u09AC\u099C\u09BE\u09A4\u0995\u09C7\u09B0 \u09A8\u09BE\u09AE \u09B0\u09BE\u0996\u09BE',amt:50100,offer:'\u{1F476} \u09A8\u09BE\u09AE \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u09A2\u09EB\u09E6\u09E7'},
+  namefix: {label:'\u09A8\u09BE\u09AE \u09B8\u0982\u09B6\u09CB\u09A7\u09A8 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6',amt:100100,offer:'\u270F\uFE0F \u09A8\u09BE\u09AE \u09B8\u0982\u09B6\u09CB\u09A7\u09A8 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u09A2\u09E7\u09E6\u09E6\u09E7'},
+  career:  {label:'\u0995\u09CD\u09AF\u09BE\u09B0\u09BF\u09AF\u09BC\u09BE\u09B0 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6',amt:100100,offer:'\u{1F4BC} \u0995\u09CD\u09AF\u09BE\u09B0\u09BF\u09AF\u09BC\u09BE\u09B0 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u09A2\u09E7\u09E6\u09E6\u09E7'},
+  love:    {label:'\u09AA\u09CD\u09B0\u09C7\u09AE \u09B0 \u09AC\u09BF\u09AC\u09BE\u09B9 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6',amt:100100,offer:'\u2764\uFE0F \u09AA\u09CD\u09B0\u09C7\u09AE \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u09A2\u09E7\u09E6\u09E6\u09E7'},
+  consult: {label:'\u0985\u09A8\u09B2\u09BE\u0987\u09A8 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6',amt:100100,offer:'\u{1F310} \u0985\u09A8\u09B2\u09BE\u0987\u09A8 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6 \u2192 \u09AE\u09BE\u09A4\u09CD\u09B0 \u09A2\u09E7\u09E6\u09E6\u09E7'}
+};
+function _oRzp(key,customAmt){
+  var svc=_svcCat[key]||{label:key,amt:customAmt||100100,offer:''};
+  if(customAmt)svc={label:svc.label||key,amt:customAmt,offer:svc.offer||''};
+  _rS=svc.label;_rA=svc.amt;
+  var e=document.getElementById('_rzpSvc');if(e)e.textContent=svc.label;
+  var o=document.getElementById('_rzpOffer');if(o)o.textContent=svc.offer;
+  var nm=document.getElementById('_rzpNm'),ph=document.getElementById('_rzpPh');
+  if(nm)nm.value='';if(ph)ph.value='';
+  var ov=document.getElementById('_rzpO');
+  if(ov){ov.classList.add('open');if(nm)setTimeout(function(){nm.focus();},80);}
+}
+function _cRzp(){var o=document.getElementById('_rzpO');if(o)o.classList.remove('open');}
+function _dRzp(){
+  var nm=((document.getElementById('_rzpNm')||{}).value||'').trim();
+  var ph=((document.getElementById('_rzpPh')||{}).value||'').trim();
+  if(!nm){alert('\u0985\u09A8\u09C1\u0997\u09CD\u09B0\u09B9 \u0995\u09B0\u09C7 \u0986\u09AA\u09A8\u09BE\u09B0 \u09AA\u09C1\u09B0\u09CB \u09A8\u09BE\u09AE \u09B2\u09BF\u0996\u09C1\u09A8\u0964');document.getElementById('_rzpNm').focus();return;}
+  if(!/^[6-9]\d{9}$/.test(ph)){alert('\u09B8\u09A0\u09BF\u0995 \u09E7\u09E6 \u09B8\u0982\u0996\u09CD\u09AF\u09BE\u09B0 \u09AE\u09CB\u09AC\u09BE\u0987\u09B2 \u09A8\u09AE\u09CD\u09AC\u09B0 \u09A6\u09BF\u09A8 (6-9 \u09A6\u09BF\u09AF\u09BC\u09C7 \u09B6\u09C1\u09B0\u09C1)\u0964');document.getElementById('_rzpPh').focus();return;}
+  if(typeof Razorpay==='undefined'){alert('Payment system not loaded. Please refresh.');return;}
+  var amt=_rA,svcName=_rS;
+  var opts={
+    key:'rzp_live_SN8p6DJxPYFVL1',
+    amount:amt,currency:'INR',
+    name:'MyAstrology',
+    description:svcName,
+    image:'https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png',
+    prefill:{name:nm,contact:'+91'+ph},
+    notes:{service:svcName,customer_name:nm,phone:ph},
+    theme:{color:'#b8860b'},
+    handler:function(r){
+      _cRzp();
+      if(typeof gtag!=='undefined')gtag('event','booking_paid',{event_category:'conversion',event_label:svcName,value:amt/100});
+      var amtDisp=String(Math.floor(amt/100));
+      var waMsg='\u{1F64F} \u0986\u09AE\u09BF '+svcName+' \u098F\u09B0 \u099C\u09A8\u09CD\u09AF \u09A2'+amtDisp+' \u09AA\u09C7\u09AE\u09C7\u09A8\u09CD\u099F \u0995\u09B0\u09C7\u099B\u09BF\u0964 \u0986\u09AE\u09BE\u09B0 \u09AA\u09CD\u09B0\u09AF\u09BC\u09CB\u099C\u09A8\u09C0\u09AF\u09BC \u09AC\u09BF\u09AC\u09B0\u09A3 \u09A8\u09BF\u099A\u09C7 \u09A6\u09BF\u099A\u09CD\u099B\u09BF\u0964\n\n\u09A8\u09BE\u09AE: '+nm+'\nWhatsApp: +91'+ph+'\nPayment ID: '+r.razorpay_payment_id+'\n\n\u0985\u09A8\u09C1\u0997\u09CD\u09B0\u09B9 \u0995\u09B0\u09C7 \u09AA\u09B0\u09AC\u09B0\u09CD\u09A4\u09C0 \u09AA\u09A6\u0995\u09CD\u09B7\u09C7\u09AA \u099C\u09BE\u09A8\u09BE\u09A8\u0964 \u09A7\u09A8\u09CD\u09AF\u09AC\u09BE\u09A6 \u{1F64F}';
+      setTimeout(function(){window.open('https://wa.me/919333122768?text='+encodeURIComponent(waMsg),'_blank');},400);
+    },
+    modal:{ondismiss:function(){}}
+  };
+  var rzp=new Razorpay(opts);
+  rzp.on('payment.failed',function(r){alert('\u09AA\u09C7\u09AE\u09C7\u09A8\u09CD\u099F \u09AC\u09CD\u09AF\u09B0\u09CD\u09A5\u0964\n\u0995\u09BE\u09B0\u09A3: '+(r.error.description||'\u0985\u099C\u09BE\u09A8\u09BE \u09A4\u09CD\u09B0\u09C1\u099F\u09BF')+'\n\u0986\u09AC\u09BE\u09B0 \u099A\u09C7\u09B7\u09CD\u099F\u09BE \u0995\u09B0\u09C1\u09A8\u0964');});
+  rzp.open();
+}
 </script>
 </body>
 </html>
