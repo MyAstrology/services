@@ -35,84 +35,383 @@
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-  <!-- JSON-LD Schema -->
+  <!-- Schema 1: Organization (with AggregateRating) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Blog",
-    "name": "MyAstrology Blog",
-    "url": "https://www.myastrology.in/blog-list.html",
-    "description": "MyAstrology – Expert Astrology & Palmistry Blog by Dr. Prodyut Acharya. Horoscope, Palmistry, Gemstone, Vastu & Life Guidance.",
-    "inLanguage": "bn",
-    "publisher": {
-      "@type": "Organization",
-      "name": "MyAstrology",
-      "url": "https://www.myastrology.in",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png"
-      },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "email": "info@myastrology.in",
-        "contactType": "customer support"
-      }
+    "@type": "ProfessionalService",
+    "@id": "https://www.myastrology.in/#organization",
+    "name": "MyAstrology",
+    "url": "https://www.myastrology.in",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png",
+      "width": 200, "height": 200
     },
-    "author": {
-      "@type": "Person",
-      "name": "Dr. Prodyut Acharya",
-      "jobTitle": "Astrologer & Palmist",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Ranaghat",
-        "addressRegion": "West Bengal",
-        "addressCountry": "IN"
-      }
+    "image": "https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png",
+    "telephone": "+919333122768",
+    "email": "info@myastrology.in",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Ranaghat",
+      "addressRegion": "West Bengal",
+      "postalCode": "741201",
+      "addressCountry": "IN"
     },
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "4.9",
       "bestRating": "5",
+      "worstRating": "1",
       "ratingCount": "250",
       "reviewCount": "250"
     },
     "sameAs": [
       "https://www.facebook.com/Dr.ProdyutAcharya",
       "https://www.instagram.com/myastrology.in",
-      "https://youtube.com/@myastrology"
-    ],
-    "blogPost": [
+      "https://youtube.com/@myastrology",
+      "https://www.linkedin.com/in/ProdyutAcharya"
+    ]
+  }
+  </script>
+
+  <!-- Schema 2: Person / Author (E-E-A-T) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "https://www.myastrology.in/#author",
+    "name": "Dr. Prodyut Acharya",
+    "alternateName": "ড. প্রদ্যুৎ আচার্য",
+    "url": "https://www.myastrology.in/about.html",
+    "image": "https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png",
+    "jobTitle": ["Astrologer", "Palmist", "Vastu Consultant"],
+    "worksFor": { "@id": "https://www.myastrology.in/#organization" },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Ranaghat",
+      "addressRegion": "West Bengal",
+      "addressCountry": "IN"
+    },
+    "sameAs": [
+      "https://www.facebook.com/Dr.ProdyutAcharya",
+      "https://www.instagram.com/myastrology.in",
+      "https://youtube.com/@myastrology",
+      "https://www.linkedin.com/in/ProdyutAcharya"
+    ]
+  }
+  </script>
+
+  <!-- Schema 3: Blog CollectionPage with BlogPosting list -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "https://www.myastrology.in/blog-list.html#page",
+    "name": "জ্যোতিষ ব্লগ তালিকা — MyAstrology",
+    "url": "https://www.myastrology.in/blog-list.html",
+    "description": "MyAstrology ব্লগ — হস্তরেখা, রাশিফল, রত্নপাথর, বাস্তু ও জ্যোতিষ শাস্ত্র বিষয়ক সমস্ত প্রবন্ধ। All Astrology Blog Posts by Dr. Prodyut Acharya.",
+    "inLanguage": "bn",
+    "publisher": { "@id": "https://www.myastrology.in/#organization" },
+    "author":    { "@id": "https://www.myastrology.in/#author" },
+    "mainEntity": {
+      "@type": "Blog",
+      "@id": "https://www.myastrology.in/blog.html#blog",
+      "name": "MyAstrology জ্যোতিষ ব্লগ",
+      "url": "https://www.myastrology.in/blog.html",
+      "blogPost": [
+        {
+          "@type": "BlogPosting",
+          "headline": "AI যুগে অর্থ, ভালোবাসা আর ভাগ্য — প্রদ্যুৎ আচার্যের দার্শনিক দিশা",
+          "url": "https://www.myastrology.in/blog.html?post=ai-yuge-ortho-bhalobasha-bhagya-pradyut-acharya",
+          "image": "https://www.myastrology.in/blog/ai-era-balance.webp",
+          "author": { "@id": "https://www.myastrology.in/#author" },
+          "publisher": { "@id": "https://www.myastrology.in/#organization" },
+          "inLanguage": "bn"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "অর্থ, অনর্থ ও মারক ভাবের বিশ্লেষণ",
+          "url": "https://www.myastrology.in/blog.html?post=artha-anartha-maraka-bhaba-analysis",
+          "image": "https://www.myastrology.in/blog/artha-anartha-maraka-bhaba-analysis.webp",
+          "author": { "@id": "https://www.myastrology.in/#author" },
+          "publisher": { "@id": "https://www.myastrology.in/#organization" },
+          "inLanguage": "bn"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "ভাগ্য, জীবন ও সাধনার পথ: MyAstrology প্রদ্যুৎ আচার্যের দার্শনিক বিশ্লেষণ",
+          "url": "https://www.myastrology.in/blog.html?post=bhagya-jibon-sadhana-pradyut-acharya",
+          "image": "https://www.myastrology.in/blog/bhagya-jibon-sadhana.webp",
+          "author": { "@id": "https://www.myastrology.in/#author" },
+          "publisher": { "@id": "https://www.myastrology.in/#organization" },
+          "inLanguage": "bn"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "ভালো মানুষ হওয়া — চেতনার পথে নিজেকে খুঁজে পাওয়া",
+          "url": "https://www.myastrology.in/blog.html?post=bhalo-manush-howa",
+          "image": "https://www.myastrology.in/blog/bhalo-manush.webp",
+          "author": { "@id": "https://www.myastrology.in/#author" },
+          "publisher": { "@id": "https://www.myastrology.in/#organization" },
+          "inLanguage": "bn"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "✨ হাতে কেন থাকে রহস্যময় ও পরিবর্তনশীল রেখা? — হস্তরেখা ও জ্যোতিষ বিশ্লেষণ",
+          "url": "https://www.myastrology.in/blog.html?post=childs-hand-lines",
+          "image": "https://www.myastrology.in/blog/kundali-vs-palm-reading.webp",
+          "author": { "@id": "https://www.myastrology.in/#author" },
+          "publisher": { "@id": "https://www.myastrology.in/#organization" },
+          "inLanguage": "bn"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "ধর্ম নাকি শোষণ? সত্য ধর্মের দার্শনিক বিশ্লেষণ",
+          "url": "https://www.myastrology.in/blog.html?post=dharma-vs-exploitation",
+          "image": "https://www.myastrology.in/blog/dharma-vs-exploitation.webp",
+          "author": { "@id": "https://www.myastrology.in/#author" },
+          "publisher": { "@id": "https://www.myastrology.in/#organization" },
+          "inLanguage": "bn"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "বিনামূল্যে জ্যোতিষ পরামর্শ ও হস্তরেখা বিচারের অন্ধকার দিক",
+          "url": "https://www.myastrology.in/blog.html?post=free-astrology-palmistry-dark-side",
+          "image": "https://www.myastrology.in/blog/free-astrology-palmistry.webp",
+          "author": { "@id": "https://www.myastrology.in/#author" },
+          "publisher": { "@id": "https://www.myastrology.in/#organization" },
+          "inLanguage": "bn"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "গীতার দার্শনিক কথা: ইন্দ্রিয় রথ ও মনের সারথি",
+          "url": "https://www.myastrology.in/blog.html?post=geeta-indriya-rath",
+          "image": "https://www.myastrology.in/blog/jyotish-satya-anweshon.webp",
+          "author": { "@id": "https://www.myastrology.in/#author" },
+          "publisher": { "@id": "https://www.myastrology.in/#organization" },
+          "inLanguage": "bn"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "সবকিছু কি পূর্বনির্ধারিত? — জ্যোতিষ ও হস্তরেখা বিশ্লেষণ",
+          "url": "https://www.myastrology.in/blog.html?post=is-everything-predestined",
+          "image": "https://www.myastrology.in/blog/predestination-astrology.webp",
+          "author": { "@id": "https://www.myastrology.in/#author" },
+          "publisher": { "@id": "https://www.myastrology.in/#organization" },
+          "inLanguage": "bn"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "জন্মকুণ্ডলী না হস্তরেখা — কোনটি বেশি নির্ভুল?",
+          "url": "https://www.myastrology.in/blog.html?post=jonmo-kundali-vs-hasta-rekha",
+          "image": "https://www.myastrology.in/blog/kundali-vs-palm-reading.webp",
+          "author": { "@id": "https://www.myastrology.in/#author" },
+          "publisher": { "@id": "https://www.myastrology.in/#organization" },
+          "inLanguage": "bn"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "কলকাতার সেরা জ্যোতিষী ও হস্তরেখাবিদ: জীবন সমস্যার দার্শনিক সমাধান",
+          "url": "https://www.myastrology.in/blog.html?post=kolkata-best-astrologer-palmist",
+          "image": "https://www.myastrology.in/blog/kolkata-astrologer-palmist.webp",
+          "author": { "@id": "https://www.myastrology.in/#author" },
+          "publisher": { "@id": "https://www.myastrology.in/#organization" },
+          "inLanguage": "bn"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "জীবন ভাগ্য, কর্মফল এবং এক নতুন নকশা: দার্শনিক ও আধ্যাত্মিক বিশ্লেষণ",
+          "url": "https://www.myastrology.in/blog.html?post=life-fate-astrology-analysis",
+          "image": "https://www.myastrology.in/blog/life-fate-astrology.webp",
+          "author": { "@id": "https://www.myastrology.in/#author" },
+          "publisher": { "@id": "https://www.myastrology.in/#organization" },
+          "inLanguage": "bn"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "মাঙ্গলিক যোগের পূর্ণাঙ্গ বিশ্লেষণ: ভয় নয়, অভ্যন্তরের যোদ্ধার শক্তি",
+          "url": "https://www.myastrology.in/blog.html?post=mangalik-yog-bishleshon",
+          "image": "https://www.myastrology.in/blog/mangalik-yog.webp",
+          "author": { "@id": "https://www.myastrology.in/#author" },
+          "publisher": { "@id": "https://www.myastrology.in/#organization" },
+          "inLanguage": "bn"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "নদীয়ার সেরা জ্যোতিষী ও হস্তরেখাবিদ: ভাগ্য পরিবর্তনের পথপ্রদর্শক",
+          "url": "https://www.myastrology.in/blog.html?post=nadia-best-astrologer-palmistry-guide",
+          "image": "https://www.myastrology.in/blog/nadia-astrologer.webp",
+          "author": { "@id": "https://www.myastrology.in/#author" },
+          "publisher": { "@id": "https://www.myastrology.in/#organization" },
+          "inLanguage": "bn"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "পিতৃদোষ — শুভ ও অশুভ প্রভাব বিশ্লেষণ",
+          "url": "https://www.myastrology.in/blog.html?post=pitru-dosha-shubho-ashubho-prabhav",
+          "image": "https://www.myastrology.in/blog/pitri-dosha.webp",
+          "author": { "@id": "https://www.myastrology.in/#author" },
+          "publisher": { "@id": "https://www.myastrology.in/#organization" },
+          "inLanguage": "bn"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "রানাঘাটের সেরা জ্যোতিষী ও হস্তরেখা বিশেষজ্ঞ",
+          "url": "https://www.myastrology.in/blog.html?post=ranaghat-best-astrologer-palmist",
+          "image": "https://www.myastrology.in/blog/ranaghat-astrologer.webp",
+          "author": { "@id": "https://www.myastrology.in/#author" },
+          "publisher": { "@id": "https://www.myastrology.in/#organization" },
+          "inLanguage": "bn"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "সফলতার পথে সচেতন প্রচেষ্টার ভূমিকা",
+          "url": "https://www.myastrology.in/blog.html?post=success-conscious-effort",
+          "image": "https://www.myastrology.in/blog/success-conscious-effort.webp",
+          "author": { "@id": "https://www.myastrology.in/#author" },
+          "publisher": { "@id": "https://www.myastrology.in/#organization" },
+          "inLanguage": "bn"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "পশ্চিমবঙ্গের সেরা জ্যোতিষী ও হস্তরেখা বিশেষজ্ঞ",
+          "url": "https://www.myastrology.in/blog.html?post=west-Bengal-best-astrologer-palmistry",
+          "image": "https://www.myastrology.in/blog/west-bengal-astrologer.webp",
+          "author": { "@id": "https://www.myastrology.in/#author" },
+          "publisher": { "@id": "https://www.myastrology.in/#organization" },
+          "inLanguage": "bn"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "নারীর সামুদ্রিক শাস্ত্র — হস্তরেখায় নারীজীবনের রহস্য",
+          "url": "https://www.myastrology.in/blog.html?post=women-samudrik-shastra",
+          "image": "https://www.myastrology.in/blog/samudrik-shastra-women.webp",
+          "author": { "@id": "https://www.myastrology.in/#author" },
+          "publisher": { "@id": "https://www.myastrology.in/#organization" },
+          "inLanguage": "bn"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "যুক্তি, বিজ্ঞান ও বিশ্বাস — জ্যোতিষ দর্শনের আলোকে সত্যের সন্ধান",
+          "url": "https://www.myastrology.in/blog.html?post=yukti-bigyan-o-biswas-jyotish-darshaner-aloke-satyer-anweshon",
+          "image": "https://www.myastrology.in/blog/jyotish-satya-anweshon.webp",
+          "author": { "@id": "https://www.myastrology.in/#author" },
+          "publisher": { "@id": "https://www.myastrology.in/#organization" },
+          "inLanguage": "bn"
+        }        ,
+        {
+          "@type": "BlogPosting",
+          "headline": "ব্রিটিশ সুশান্তের জীবন ও কর্মফল — জ্যোতিষ দর্শনের আলোকে বিশ্লেষণ",
+          "url": "https://www.myastrology.in/blog.html?post=british-sushanta-full",
+          "image": "https://www.myastrology.in/blog/british-sushanta.webp",
+          "author": { "@id": "https://www.myastrology.in/#author" },
+          "publisher": { "@id": "https://www.myastrology.in/#organization" },
+          "inLanguage": "bn"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "নিষ্ঠুর সত্যের পথে জ্যোতিষ ও হস্তরেখা — কঠিন সত্যের মুখোমুখি",
+          "url": "https://www.myastrology.in/blog.html?post=nishthur-satyer-pathe-astrology-hastrikha",
+          "image": "https://www.myastrology.in/blog/jyotish-satya-anweshon.webp",
+          "author": { "@id": "https://www.myastrology.in/#author" },
+          "publisher": { "@id": "https://www.myastrology.in/#organization" },
+          "inLanguage": "bn"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "হস্তরেখা বিশেষজ্ঞ পরামর্শ — MyAstrology রানাঘাট নদীয়া",
+          "url": "https://www.myastrology.in/blog.html?post=palmistry-guide-myastrology-ranaghat-nadia",
+          "image": "https://www.myastrology.in/blog/palmistry-guide.webp",
+          "author": { "@id": "https://www.myastrology.in/#author" },
+          "publisher": { "@id": "https://www.myastrology.in/#organization" },
+          "inLanguage": "bn"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "হস্তরেখায় তারার চিহ্ন — ভাগ্য, প্রতিভা ও বিশেষ শক্তির ইঙ্গিত",
+          "url": "https://www.myastrology.in/blog.html?post=palmistry-star-signs",
+          "image": "https://www.myastrology.in/blog/palmistry-star-signs.webp",
+          "author": { "@id": "https://www.myastrology.in/#author" },
+          "publisher": { "@id": "https://www.myastrology.in/#organization" },
+          "inLanguage": "bn"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "পরিচয়ের মায়া — আত্মপরিচয় ও সমাজের দার্শনিক বিশ্লেষণ",
+          "url": "https://www.myastrology.in/blog.html?post=porichoyer-maya",
+          "image": "https://www.myastrology.in/blog/shadow-truth-self-awareness.webp",
+          "author": { "@id": "https://www.myastrology.in/#author" },
+          "publisher": { "@id": "https://www.myastrology.in/#organization" },
+          "inLanguage": "bn"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "পুরস্কার নয়, মানুষের আস্থাই আসল সাফল্য",
+          "url": "https://www.myastrology.in/blog.html?post=puraskar-noy-manusher-astha",
+          "image": "https://www.myastrology.in/blog/puraskar-noy-manusher-astha.webp",
+          "author": { "@id": "https://www.myastrology.in/#author" },
+          "publisher": { "@id": "https://www.myastrology.in/#organization" },
+          "inLanguage": "bn"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "সম্পর্কে রাগ নিয়ন্ত্রণ — জ্যোতিষ ও মনোবিজ্ঞানের আলোকে সমাধান",
+          "url": "https://www.myastrology.in/blog.html?post=relationship-rage-control-astrology",
+          "image": "https://www.myastrology.in/blog/astrology-relationship.webp",
+          "author": { "@id": "https://www.myastrology.in/#author" },
+          "publisher": { "@id": "https://www.myastrology.in/#organization" },
+          "inLanguage": "bn"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "সফল ও ভালো মানুষ হওয়ার দার্শনিক পথ",
+          "url": "https://www.myastrology.in/blog.html?post=successful-and-good-person",
+          "image": "https://www.myastrology.in/blog/success-good-person.webp",
+          "author": { "@id": "https://www.myastrology.in/#author" },
+          "publisher": { "@id": "https://www.myastrology.in/#organization" },
+          "inLanguage": "bn"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "বিশ্বাস, প্রকৃতি ও মান্যতা — জীবনের আধ্যাত্মিক ভিত্তি",
+          "url": "https://www.myastrology.in/blog.html?post=vishwas-prakriti-mannya",
+          "image": "https://www.myastrology.in/blog/vishwas-prakriti-mannya.webp",
+          "author": { "@id": "https://www.myastrology.in/#author" },
+          "publisher": { "@id": "https://www.myastrology.in/#organization" },
+          "inLanguage": "bn"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "হাতের রেখায় আপনার ভাগ্য — ড. প্রদ্যুৎ আচার্যের পরামর্শ নিন",
+          "url": "https://www.myastrology.in/blog.html?post=your-fate-in-palmistry-consultation-dr-prodyut-acharya",
+          "image": "https://www.myastrology.in/blog/palmistry-astrology-consultation.webp",
+          "author": { "@id": "https://www.myastrology.in/#author" },
+          "publisher": { "@id": "https://www.myastrology.in/#organization" },
+          "inLanguage": "bn"
+        }
+      ]
+    }
+  }
+  </script>
+
+  <!-- Schema 4: BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
       {
-        "@type": "BlogPosting",
-        "headline": "গীতা ইন্দ্রিয় রথ",
-        "url": "https://www.myastrology.in/blog.html?post=geeta-indriya-rath",
-        "description": "গীতা অনুসারে আমাদের ইন্দ্রিয় ও মন কিভাবে নিয়ন্ত্রণ করা যায়।",
-        "author": { "@type": "Person", "name": "Dr. Prodyut Acharya" },
-        "publisher": { "@type": "Organization", "name": "MyAstrology" }
+        "@type": "ListItem",
+        "position": 1,
+        "name": "হোম",
+        "item": "https://www.myastrology.in/"
       },
       {
-        "@type": "BlogPosting",
-        "headline": "ভালো মানুষ হওয়া",
-        "url": "https://www.myastrology.in/blog.html?post=bhalo-manush-howa",
-        "description": "জীবনে সত্যি ভালো মানুষ হওয়ার দার্শনিক ও বাস্তব দিক।",
-        "author": { "@type": "Person", "name": "Dr. Prodyut Acharya" },
-        "publisher": { "@type": "Organization", "name": "MyAstrology" }
-      },
-      {
-        "@type": "BlogPosting",
-        "headline": "Child's Hand Lines",
-        "url": "https://www.myastrology.in/blog.html?post=childs-hand-lines",
-        "description": "শিশুর হাতের রেখা ও তার মাধ্যমে ভবিষ্যতের দিকনির্দেশনা।",
-        "author": { "@type": "Person", "name": "Dr. Prodyut Acharya" },
-        "publisher": { "@type": "Organization", "name": "MyAstrology" }
-      },
-      {
-        "@type": "BlogPosting",
-        "headline": "Success Through Conscious Effort",
-        "url": "https://www.myastrology.in/blog.html?post=success-conscious-effort",
-        "description": "সচেতন প্রচেষ্টার মাধ্যমে সফলতার পথ।",
-        "author": { "@type": "Person", "name": "Dr. Prodyut Acharya" },
-        "publisher": { "@type": "Organization", "name": "MyAstrology" }
+        "@type": "ListItem",
+        "position": 2,
+        "name": "জ্যোতিষ ব্লগ তালিকা",
+        "item": "https://www.myastrology.in/blog-list.html"
       }
     ]
   }
@@ -608,13 +907,13 @@
   </div>
   <a href="#" onclick="_oRzp('consult');return false;" class="ft-cta">পরামর্শ বুক করুন</a>
   <br>
-  <a href="mailto:info@myastrology.in" class="ft-email"><i class="fas fa-envelope"></i> info@myastrology.in</a>
+  <a href="/cdn-cgi/l/email-protection#f0999e969fb09d89918384829f9c9f9789de999e" class="ft-email"><i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="afc6c1c9c0efc2d6cedcdbddc0c3c0c8d681c6c1">[email&#160;protected]</span></a>
   <hr class="ft-hr">
   <p class="ft-copy">© 2026 MyAstrology, Ranaghat, Nadia, West Bengal. All Rights Reserved.</p>
 </footer>
 
 <!-- ═══ SCRIPTS ═══ -->
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script>
 /* ── DOM ── */
@@ -788,13 +1087,4 @@ function _dRzp(){
 
 /* Back to Top */
 const _btt = document.getElementById('btt');
-if (_btt) {
-  window.addEventListener('scroll', () => {
-    _btt.classList.toggle('show', window.scrollY > 320);
-  }, {passive:true});
-  _btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
-}
-
-</script>
-</body>
-</html>
+if (_b
