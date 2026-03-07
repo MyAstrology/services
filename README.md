@@ -286,7 +286,7 @@ Sitemap: https://www.myastrology.in/video-sitemap.xml
 **🇬🇧 English:**  
 `Indian Astrology` · `Palmistry` · `Online Horoscope` · `Marriage Problem` · `Career Astrology` · `Vastu` · `Dr. Prodyut Acharya` · `MyAstrology Ranaghat` · `Bengali Astrologer` · `Best Astrologer in India` · `Bengali Palmistry Expert` · `Online Astrology Consultation` · `Vedic Horoscope` · `Kundli Matching` · `Astrology in Bengali` · `Best Astrologer West Bengal` · `Nadia Astrologer`
 
-**🇧🇩 বাংলা:**  
+**🇮🇳 বাংলা:**  
 `জ্যোতিষ` · `হস্তরেখা` · `রাশিফল` · `বাস্তু` · `কুণ্ডলী` · `গ্রহ শান্তি` · `বাংলা পঞ্জিকা` · `দৈনিক রাশিফল` · `জন্মকুণ্ডলী` · `নামকরণ` · `বিবাহ সামঞ্জস্য` · `ক্যারিয়ার জ্যোতিষ` · `মাঙ্গলিক যোগ` · `পিতৃদোষ` · `সামুদ্রিক শাস্ত্র`
 
 ---
