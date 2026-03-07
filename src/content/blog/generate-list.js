@@ -1,26 +1,37 @@
-const fs = require('fs');
+const fs   = require('fs');
 const path = require('path');
 const matter = require('gray-matter');
 
 const blogDir = path.join(process.cwd(), 'src', 'content', 'blog');
-const rootDir = process.cwd(); // সitemap মূল ডিরেক্টরিতে সেভ করার জন্য
+const rootDir = process.cwd(); // sitemap রুট ডিরেক্টরিতে সেভ করার জন্য
 
 const files = fs.readdirSync(blogDir).filter(f => f.endsWith('.md'));
 
 const posts = files.map(file => {
   const content = fs.readFileSync(path.join(blogDir, file), 'utf-8');
   const { data } = matter(content);
+
+  const slug = data?.slug || file.replace('.md', '');
+
+  // ছবির পথ: frontmatter-এ image থাকলে সেটা, না হলে slug থেকে auto-derive
+  const image = data?.image
+    ? data.image
+    : `/blog/${slug}.webp`;
+
   return {
-    slug: data?.slug || file.replace('.md', ''),
-    title: data?.title || 'No Title',
-    date: data?.date || new Date().toISOString().split('T')[0] // তারিখের জন্য
+    slug,
+    title:       data?.title       || 'No Title',
+    description: data?.description || '',
+    date:        data?.date        || new Date().toISOString().split('T')[0],
+    image,
+    tags:        data?.tags        || [],
   };
 });
 
 // ১. list.json তৈরি
 fs.writeFileSync(path.join(blogDir, 'list.json'), JSON.stringify(posts, null, 2));
 
-// ২. সitemap তৈরি (বাড়তি স্পেস ছাড়া)
+// ২. Sitemap তৈরি (বাড়তি স্পেস ছাড়া)
 const baseUrl = 'https://www.myastrology.in';
 const urls = posts.map(post => `  <url>
     <loc>${baseUrl}/blog.html?post=${post.slug}</loc>
@@ -29,7 +40,7 @@ const urls = posts.map(post => `  <url>
     <priority>0.8</priority>
   </url>`).join('\n');
 
-// একদম শুরু থেকে কোড শুরু হচ্ছে (কোনো এন্টার বা স্পেস নেই)
+// একদম শুরু থেকে কোড হচ্ছে (কোনো এলাইন বা স্পেস নেই)
 const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
