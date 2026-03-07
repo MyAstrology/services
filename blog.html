@@ -474,7 +474,7 @@ footer{background:var(--navy);color:#e8e0f0;padding:48px 24px 28px;text-align:ce
     <a href="https://www.linkedin.com/in/ProdyutAcharya" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" style="color:#0a66c2"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
   </nav>
   <button class="ft-cta" type="button" onclick="openBooking()">পরামর্শ বুক করুন</button><br>
-  <a href="/cdn-cgi/l/email-protection#86efe8e0e9c6ebffe7f5f2f4e9eae9e1ffa8efe8" class="ft-email"><i class="fas fa-envelope" aria-hidden="true"></i> <span class="__cf_email__" data-cfemail="82ebece4edc2effbe3f1f6f0edeeede5fbacebec">[email&#160;protected]</span></a>
+  <a href="mailto:info@myastrology.in" class="ft-email"><i class="fas fa-envelope" aria-hidden="true"></i> info@myastrology.in</a>
   <hr class="ft-hr">
   <nav style="display:flex;flex-wrap:wrap;justify-content:center;gap:7px 18px;margin-bottom:16px;" aria-label="ফুটার লিংক">
     <a href="https://www.myastrology.in/" style="color:#a0a0b8;font-size:12px;transition:.25s ease">হোম</a>
@@ -495,7 +495,8 @@ footer{background:var(--navy);color:#e8e0f0;padding:48px 24px 28px;text-align:ce
 </footer>
 
 <!-- Marked.js for Markdown parsing -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<!-- Marked.js -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
 <script data-cfasync="false">
 /* ── FALLBACK POSTS — image paths match actual /blog/ folder on GitHub ── */
@@ -617,10 +618,10 @@ function loadPost(slug) {
         var title = fm.title || 'MyAstrology ব্লগ';
         var desc = fm.description || 'ড. প্রদ্যুৎ আচার্যের জ্যোতিষ ব্লগ – হস্তরেখা, রাশিফল ও বৈদিক জ্যোতিষ।';
         var url = 'https://www.myastrology.in/blog.html?post=' + slug;
-        var img = fm.image || '';
+        var img = (fm.image || '').replace('https://astro.myastrology.in','https://www.myastrology.in');
         updateMeta(title, desc, url, img);
         ptEl.textContent = title;
-        if (fm.image) { piEl.src = fm.image; piEl.alt = title + ' – MyAstrology ব্লগ, ড. প্রদ্যুৎ আচার্য রানাঘাট'; piEl.style.display = 'block'; }
+        if (img) { piEl.src = img; piEl.alt = title + ' – MyAstrology ব্লগ, ড. প্রদ্যুৎ আচার্য রানাঘাট'; piEl.style.display = 'block'; }
         if (typeof marked !== 'undefined') {
           ctEl.innerHTML = marked.parse(text);
         } else {
@@ -815,4 +816,12 @@ function proceedPayment(){
 }
 function redirectWhatsApp(){
   var d=_pd;
-  var msg='🙏 আমি *'+d.service+'* পরিষেবার জন্য *₹'+d.price+'* পেমেন্ট করেছি।\n\nনাম: '+d.name+'\nমোবাইল: +91'+d.phone+(d.paymentId?'\nPayment ID: '+d.paymentId:'')+'\n\nঅনুগ্রহ করে পরামর্শের সময় নির্ধারণ করুন। �
+  var msg='🙏 আমি *'+d.service+'* পরিষেবার জন্য *₹'+d.price+'* পেমেন্ট করেছি।\n\nনাম: '+d.name+'\nমোবাইল: +91'+d.phone+(d.paymentId?'\nPayment ID: '+d.paymentId:'')+'\n\nঅনুগ্রহ করে পরামর্শের সময় নির্ধারণ করুন। 🙏';
+  var url='https://wa.me/919333122768?text='+encodeURIComponent(msg);
+  window.open(url,'_blank');
+  closeBooking();
+}
+function showPayErr(m){var e=document.getElementById('payErr');e.textContent=m;e.style.display='block';}
+</script>
+</body>
+</html>
