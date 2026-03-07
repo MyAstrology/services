@@ -190,20 +190,33 @@ footer{background:var(--navy);color:#e8e0f0;padding:48px 24px 28px;text-align:ce
 
 
 /* PANJIKA CTA */
-.panjika{margin:42px 0 32px;background:linear-gradient(135deg,#160d36,#2b1760,#0e0e2a);border-radius:18px;padding:28px 24px 22px;text-align:center;box-shadow:0 10px 40px rgba(20,8,50,.28);position:relative;overflow:hidden;border:1px solid rgba(201,146,42,.20)}
-.panjika::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:radial-gradient(circle,rgba(201,146,42,.12),transparent 70%);pointer-events:none}
-.panjika::after{content:'✦';position:absolute;top:14px;right:20px;font-size:22px;color:rgba(232,188,90,.22)}
-.panj-eyebrow{font-size:9.5px;letter-spacing:2.5px;color:var(--gold);text-transform:uppercase;font-weight:700;margin-bottom:8px}
-.panj-title{font-size:20px;font-weight:800;color:#ffe87a;margin-bottom:8px;text-shadow:0 0 20px rgba(255,220,80,.35)}
-.panj-sub{font-size:12.5px;color:#bbaedd;line-height:1.65;margin-bottom:18px}
-.panj-btn{display:inline-block;background:linear-gradient(90deg,#b8791c,#e8bc5a,#b8791c);background-size:200%;color:#1a0a00;font-weight:800;font-size:13px;padding:10px 32px;border-radius:30px;box-shadow:0 4px 16px rgba(184,121,28,.40);transition:var(--ease);letter-spacing:.3px}
+.panjika{margin:32px 0 24px;background:linear-gradient(135deg,#160d36,#2b1760,#0e0e2a);border-radius:16px;padding:18px 20px 16px;text-align:center;box-shadow:0 8px 30px rgba(20,8,50,.25);position:relative;overflow:hidden;border:1px solid rgba(201,146,42,.20)}
+.panjika::before{content:'';position:absolute;top:-30px;right:-30px;width:120px;height:120px;background:radial-gradient(circle,rgba(201,146,42,.10),transparent 70%);pointer-events:none}
+.panjika::after{content:'✦';position:absolute;top:10px;right:16px;font-size:18px;color:rgba(232,188,90,.18)}
+.panj-eyebrow{font-size:9px;letter-spacing:2.5px;color:var(--gold);text-transform:uppercase;font-weight:700;margin-bottom:5px}
+.panj-title{font-size:17px;font-weight:800;color:#ffe87a;margin-bottom:5px;text-shadow:0 0 16px rgba(255,220,80,.30)}
+.panj-sub{font-size:11.5px;color:#bbaedd;line-height:1.55;margin-bottom:12px}
+.panj-btn{display:inline-block;background:linear-gradient(90deg,#b8791c,#e8bc5a,#b8791c);background-size:200%;color:#1a0a00;font-weight:800;font-size:12px;padding:8px 26px;border-radius:28px;box-shadow:0 3px 12px rgba(184,121,28,.35);transition:var(--ease);letter-spacing:.3px}
 .panj-btn:hover{background-position:right;transform:translateY(-2px);color:#1a0a00}
-.panj-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:7px;margin-top:16px}
-.panj-tag{background:rgba(255,255,255,.07);color:#d4c8f0;font-size:10.5px;padding:4px 11px;border-radius:20px;border:1px solid rgba(255,255,255,.12);transition:var(--ease)}
+.panj-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:5px;margin-top:10px}
+.panj-tag{background:rgba(255,255,255,.07);color:#d4c8f0;font-size:10px;padding:3px 9px;border-radius:20px;border:1px solid rgba(255,255,255,.12);transition:var(--ease)}
 .panj-tag:hover{background:rgba(255,255,255,.14);color:#ffe87a}
+/* SOCIAL PROOF */
+.social-proof{padding:20px 16px 4px;max-width:1020px;margin:0 auto}
+.sp-inner{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.sp-card{background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:14px 12px;text-align:center;box-shadow:var(--sh-sm);transition:var(--ease);border-top:3px solid transparent}
+.sp-card:hover{transform:translateY(-3px);box-shadow:var(--sh)}
+.sp-google{border-top-color:#EA4335}
+.sp-jd{border-top-color:#FF6600}
+.sp-yt{border-top-color:#FF0000}
+.sp-fb{border-top-color:#1877F2}
+.sp-icon{font-size:22px;margin-bottom:6px}
+.sp-num{font-size:1.15rem;font-weight:800;color:var(--navy);line-height:1.1;margin-bottom:3px}
+.sp-lbl{font-size:11px;font-weight:700;color:var(--txt-mid)}
+.sp-sub{font-size:10px;color:var(--txt-lt);margin-top:3px}
 /* RESPONSIVE */
 @media(max-width:900px){.desk-nav,.hdr-div{display:none}.ham{display:flex}.btn-book{display:none}}
-@media(max-width:600px){:root{--hdr-h:58px}header{padding:0 14px}.logo-name{font-size:15px}.logo-tag{display:none}.card-grid{grid-template-columns:1fr}#srch-bar{padding:12px 14px}.page-heading h1{font-size:21px}}
+@media(max-width:600px){:root{--hdr-h:58px}header{padding:0 14px}.logo-name{font-size:15px}.logo-tag{display:none}.card-grid{grid-template-columns:1fr}#srch-bar{padding:12px 14px}.page-heading h1{font-size:21px}.sp-inner{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
@@ -298,12 +311,8 @@ footer{background:var(--navy);color:#e8e0f0;padding:48px 24px 28px;text-align:ce
     <h1>জ্যোতিষ ব্লগ তালিকা</h1>
     <p>ড. প্রদ্যুৎ আচার্যের সমস্ত প্রবন্ধ একসাথে</p>
   </div>
-  <div id="search-result-info"></div>
-  <div id="blog-container" class="card-grid">
-    <div class="empty-state"><div class="icon">📖</div><p>প্রবন্ধ লোড হচ্ছে...</p></div>
-  </div>
 
-  <!-- Panjika CTA -->
+  <!-- ✦ Panjika CTA — page উপরে -->
   <section class="panjika" aria-label="আজকের রাশিফল ও পঞ্জিকা">
     <div class="panj-eyebrow">আজকের জ্যোতিষ</div>
     <div class="panj-title">🪐 রাশিফল ও দিন পঞ্জিকা</div>
@@ -311,9 +320,7 @@ footer{background:var(--navy);color:#e8e0f0;padding:48px 24px 28px;text-align:ce
       জানুন আপনার আজকের রাশিফল · প্রেম · কর্ম · অর্থ · স্বাস্থ্য<br>
       শুভ সংখ্যা · শুভ রং · শুভ সময়
     </div>
-    <a href="https://www.myastrology.in/panjika.html" class="panj-btn" aria-label="আজকের রাশিফল ও পঞ্জিকা দেখুন">
-      পঞ্জিকা ও রাশিফল দেখুন →
-    </a>
+    <a href="https://www.myastrology.in/panjika.html" class="panj-btn" aria-label="আজকের রাশিফল ও পঞ্জিকা দেখুন">পঞ্জিকা ও রাশিফল দেখুন →</a>
     <div class="panj-tags" aria-label="রাশিচক্র">
       <span class="panj-tag">♈ মেষ</span><span class="panj-tag">♉ বৃষ</span>
       <span class="panj-tag">♊ মিথুন</span><span class="panj-tag">♋ কর্কট</span>
@@ -322,7 +329,47 @@ footer{background:var(--navy);color:#e8e0f0;padding:48px 24px 28px;text-align:ce
       <span class="panj-tag">♐ ধনু</span><span class="panj-tag">♑ মকর</span>
       <span class="panj-tag">♒ কুম্ভ</span><span class="panj-tag">♓ মীন</span>
     </div>
+    <div style="margin-top:14px">
+      <button type="button" onclick="openBooking()" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(90deg,#1e3a8a,#2d5dd4);color:#fff;font-weight:800;font-size:12px;padding:9px 28px;border-radius:28px;border:none;cursor:pointer;font-family:inherit;box-shadow:0 4px 14px rgba(30,58,138,.35);transition:.25s ease" aria-label="পরামর্শ বুক করুন">📞 পরামর্শ বুক করুন</button>
+    </div>
   </section>
+
+  <div id="search-result-info"></div>
+
+  <!-- SOCIAL PROOF CARDS -->
+  <section class="social-proof" aria-label="আমাদের বিশ্বাসযোগ্যতা">
+    <div class="sp-inner">
+      <div class="sp-card sp-google">
+        <div class="sp-icon" aria-hidden="true">⭐</div>
+        <div class="sp-num">১২২+</div>
+        <div class="sp-lbl">Google Reviews</div>
+        <div class="sp-sub">★5.0 Verified</div>
+      </div>
+      <div class="sp-card sp-jd">
+        <div class="sp-icon" aria-hidden="true">✅</div>
+        <div class="sp-num">১২৮+</div>
+        <div class="sp-lbl">JustDial Reviews</div>
+        <div class="sp-sub">★5.0 Verified</div>
+      </div>
+      <div class="sp-card sp-yt">
+        <div class="sp-icon" aria-hidden="true">▶️</div>
+        <div class="sp-num">২,২৪,১২৪+</div>
+        <div class="sp-lbl">YouTube Subscribers</div>
+        <div class="sp-sub">@myastrology</div>
+      </div>
+      <div class="sp-card sp-fb">
+        <div class="sp-icon" aria-hidden="true">👍</div>
+        <div class="sp-num">৪১,০১৫+</div>
+        <div class="sp-lbl">Facebook Followers</div>
+        <div class="sp-sub">Dr.ProdyutAcharya</div>
+      </div>
+    </div>
+  </section>
+
+  <div id="blog-container" class="card-grid">
+    <div class="empty-state"><div class="icon">📖</div><p>প্রবন্ধ লোড হচ্ছে...</p></div>
+  </div>
+
 </main>
 
 <!-- PAYMENT MODAL -->
@@ -404,11 +451,15 @@ footer{background:var(--navy);color:#e8e0f0;padding:48px 24px 28px;text-align:ce
   <button class="ft-cta" type="button" onclick="openBooking()">পরামর্শ বুক করুন</button><br>
   <a href="mailto:info@myastrology.in" class="ft-email"><i class="fas fa-envelope" aria-hidden="true"></i> info@myastrology.in</a>
   <hr class="ft-hr">
-  <p class="ft-copy">&copy; <span id="yr"></span> MyAstrology, Ranaghat, Nadia, West Bengal. All Rights Reserved.</p>
+  <nav class="ft-links" aria-label="পেজ লিংক">
+    <a href="https://www.myastrology.in/privacy-policy.html" style="color:#888;font-size:12px;margin:0 8px">Privacy Policy</a>·
+    <a href="https://www.myastrology.in/terms-of-use.html" style="color:#888;font-size:12px;margin:0 8px">Terms of Use</a>
+  </nav>
+  <p class="ft-copy">&copy; 2026 MyAstrology, Ranaghat, Nadia, West Bengal. All Rights Reserved.</p>
 </footer>
 
 <!-- SCRIPTS -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script async src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script async src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script data-cfasync="false">
 /* year */
 (function(){var e=document.getElementById('yr');if(e)e.textContent=new Date().getFullYear();})();
@@ -591,13 +642,3 @@ function redirectWhatsApp(){
     +'\n\nনাম: '+d.name
     +'\nমোবাইল: +91'+d.phone
     +(d.paymentId?'\nPayment ID: '+d.paymentId:'')
-    +'\n\nঅনুগ্রহ করে পরামর্শের সময় নির্ধারণ করুন। 🙏';
-  window.open('https://wa.me/919333122768?text='+encodeURIComponent(msg),'_blank');
-  closeBooking();
-}
-function showPayErr(msg){
-  var e=document.getElementById('payErr');e.textContent=msg;e.style.display='block';
-}
-</script>
-</body>
-</html>
