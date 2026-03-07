@@ -655,7 +655,7 @@
       font-family: var(--font-sans); font-size: .76rem; font-weight: 700;
       padding: 7px 11px; border-radius: 12px 12px 0 12px;
       box-shadow: 0 4px 16px rgba(0,0,0,.18); border-left: 3px solid var(--clr-wa);
-      width: 152px; line-height: 1.5;
+      width: 130px; line-height: 1.5;
       opacity: 0; transform: translateY(6px) scale(.95);
       transition: opacity .4s, transform .4s; pointer-events: none;
     }
@@ -1574,12 +1574,12 @@
 
   /* ── WhatsApp Flash Messages ── */
   var msgs = [
-    '🔮 জ্যোতিষ পরামর্শ নিন!',
-    '✋ হস্তরেখা বিচার ₹১০০১',
-    '💍 যোটোক বিচার করুন',
-    '⭐ ২৭৬+ ৫-তারা রিভিউ',
+    '🔮 পরামর্শ নিন!',
+    '✋ হস্তরেখা ₹১০০১',
+    '💍 যোটোক বিচার',
+    '⭐ ২৭৬+ রিভিউ',
     '📅 রাশিফল দেখুন',
-    '🙏 এখনই WhatsApp করুন'
+    '🙏 WhatsApp করুন'
   ];
   var mi = 0, fm = document.getElementById('_wfm');
   if (fm) {
@@ -1671,4 +1671,10 @@ function _dRzp() {
     modal: { ondismiss: function() {} }
   };
   var rzp = new Razorpay(opts);
-  rzp.on('payment.failed', function(
+  rzp.on('payment.failed', function( resp){ alert('পেমেন্ট ব্যর্থ। আবার চেষ্টা করুন।'); });
+  rzp.open();
+}
+
+</script>
+</body>
+</html>
