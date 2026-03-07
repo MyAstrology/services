@@ -93,9 +93,6 @@
       <image:loc>https://www.myastrology.in/${p.image || </image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.myastrology.in/${p.image||</image:loc>
-    </image:image>
-    <image:image>
       <image:loc>https://www.myastrology.in/gallery/myastrology-nadia-astrology-gallery.webp</image:loc>
     </image:image>
     <image:image>
