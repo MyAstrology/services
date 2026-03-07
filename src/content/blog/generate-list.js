@@ -3,7 +3,7 @@ const path = require('path');
 const matter = require('gray-matter');
 
 const blogDir = path.join(process.cwd(), 'src', 'content', 'blog');
-const rootDir = process.cwd(); // sitemap রুট ডিরেক্টরিতে সেভ করার জন্য
+const rootDir = process.cwd();
 
 const files = fs.readdirSync(blogDir).filter(f => f.endsWith('.md'));
 
@@ -13,10 +13,12 @@ const posts = files.map(file => {
 
   const slug = data?.slug || file.replace('.md', '');
 
-  // ছবির পথ: frontmatter-এ image থাকলে সেটা, না হলে slug থেকে auto-derive
-  const image = data?.image
-    ? data.image
-    : `/blog/${slug}.webp`;
+  // ✅ FIX: astro.myastrology.in → www.myastrology.in
+  const rawImage = data?.image || `/blog/${slug}.webp`;
+  const image = rawImage.replace(
+    'https://astro.myastrology.in',
+    'https://www.myastrology.in'
+  );
 
   return {
     slug,
@@ -31,7 +33,7 @@ const posts = files.map(file => {
 // ১. list.json তৈরি
 fs.writeFileSync(path.join(blogDir, 'list.json'), JSON.stringify(posts, null, 2));
 
-// ২. Sitemap তৈরি (বাড়তি স্পেস ছাড়া)
+// ২. Sitemap তৈরি
 const baseUrl = 'https://www.myastrology.in';
 const urls = posts.map(post => `  <url>
     <loc>${baseUrl}/blog.html?post=${post.slug}</loc>
@@ -40,7 +42,6 @@ const urls = posts.map(post => `  <url>
     <priority>0.8</priority>
   </url>`).join('\n');
 
-// একদম শুরু থেকে কোড হচ্ছে (কোনো এলাইন বা স্পেস নেই)
 const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
