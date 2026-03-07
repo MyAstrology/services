@@ -337,12 +337,9 @@
       width: 100%; overflow: hidden;
     }
     .banner img {
-      width: 100% !important;
-      height: auto !important;
+      width: 100%;
+      height: auto;
       display: block;
-      aspect-ratio: 16 / 5;
-      object-fit: cover;
-      object-position: center top;
     }
 
     /* ════ SCROLL TICKER ════ */
@@ -360,9 +357,6 @@
     @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-100%)} }
 
     /* ════ LAYOUT ════ */
-    .content-wrap {
-      max-width: var(--max-w); margin: 0 auto; padding: 0 18px;
-    }
     .content-section {
       max-width: var(--max-w); margin: 0 auto 0;
       padding: 32px 20px;
@@ -516,11 +510,8 @@
       border-top: 3px solid var(--clr-gold);
     }
     .sc-img {
-      width: 100% !important;
-      height: auto !important;
-      aspect-ratio: 16 / 7;
-      object-fit: cover;
-      object-position: center;
+      width: 100%;
+      height: auto;
       display: block;
     }
     .sc-name {
@@ -803,7 +794,6 @@
       .svc-grid { grid-template-columns: 1fr; }
       .toc-grid { grid-template-columns: 1fr 1fr; }
       .footer-grid { grid-template-columns: 1fr; }
-      .banner img { aspect-ratio: 4 / 3; }
     }
   </style>
 </head>
@@ -1469,7 +1459,7 @@
         </div>
         <div class="footer-contact-item">
           <i class="fas fa-envelope"></i>
-          <a href="mailto:info@myastrology.in">info@myastrology.in</a>
+          <a href="/cdn-cgi/l/email-protection#e0898e868fa08d99819394928f8c8f8799ce898e"><span class="__cf_email__" data-cfemail="2841464e47684551495b5c5a4744474f51064146">[email&#160;protected]</span></a>
         </div>
         <div class="footer-contact-item">
           <i class="fas fa-clock"></i>
@@ -1539,7 +1529,7 @@
 </div>
 
 <!-- ════ SCRIPTS ════ -->
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 (function(){
   'use strict';
 
@@ -1681,12 +1671,4 @@ function _dRzp() {
     modal: { ondismiss: function() {} }
   };
   var rzp = new Razorpay(opts);
-  rzp.on('payment.failed', function(r) {
-    alert('পেমেন্ট ব্যর্থ হয়েছে।\nকারণ: ' + (r.error && r.error.description ? r.error.description : 'অজানা ত্রুটি'));
-  });
-  rzp.open();
-}
-</script>
-
-</body>
-</html>
+  rzp.on('payment.failed', function(
