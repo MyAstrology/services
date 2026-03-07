@@ -143,4 +143,4 @@ twitter_image: "https://www.myastrology.in/blog/nirmal-villa-philosophy.webp"
 
 আপনার জন্মকুষ্ঠী বিশ্লেষণ ও জীবন পরামর্শের জন্য আজই যোগাযোগ করুন।
 
-**[astro.myastrology.in](https://astro.myastrology.in)**
+**[www.myastrology.in](https://www.myastrology.in)**
