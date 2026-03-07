@@ -333,9 +333,16 @@
     #_nav a.n-bk:hover { background: rgba(184,134,11,.28); }
 
     /* ════ BANNER ════ */
+    .banner {
+      width: 100%; overflow: hidden;
+    }
     .banner img {
-      width: 100%; height: 420px;
-      object-fit: cover; object-position: center; display: block;
+      width: 100%;
+      height: auto;
+      display: block;
+      aspect-ratio: 16 / 5;
+      object-fit: cover;
+      object-position: center top;
     }
 
     /* ════ SCROLL TICKER ════ */
@@ -508,7 +515,14 @@
       box-shadow: var(--shadow-md); display: flex; flex-direction: column;
       border-top: 3px solid var(--clr-gold);
     }
-    .sc-img { width: 100%; height: 150px; object-fit: cover; display: block; }
+    .sc-img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 7;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
     .sc-name {
       font-family: var(--font-sans); font-weight: 800; font-size: 1rem;
       color: var(--clr-primary); padding: 14px 16px 4px;
@@ -789,6 +803,7 @@
       .svc-grid { grid-template-columns: 1fr; }
       .toc-grid { grid-template-columns: 1fr 1fr; }
       .footer-grid { grid-template-columns: 1fr; }
+      .banner img { aspect-ratio: 4 / 3; }
     }
   </style>
 </head>
