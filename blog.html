@@ -30,38 +30,110 @@
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
+  <!-- Schema 1: Organization (with AggregateRating) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Blog",
-    "name": "MyAstrology Blog",
-    "url": "https://www.myastrology.in/blog.html",
-    "description": "জ্যোতিষ, হস্তরেখা, রত্নপাথর ও জীবনের দর্শন বিষয়ক প্রামাণিক প্রবন্ধ। Authentic articles on Indian Astrology, Palmistry, Horoscope, Gemstone & Vastu by Dr. Prodyut Acharya.",
-    "inLanguage": "bn",
-    "publisher": {
-      "@type": "Organization",
-      "name": "MyAstrology",
-      "url": "https://www.myastrology.in",
-      "logo": { "@type": "ImageObject", "url": "https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png" },
-      "contactPoint": { "@type": "ContactPoint", "email": "info@myastrology.in", "contactType": "customer support" }
+    "@type": "ProfessionalService",
+    "@id": "https://www.myastrology.in/#organization",
+    "name": "MyAstrology",
+    "url": "https://www.myastrology.in",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png",
+      "width": 200, "height": 200
     },
-    "author": {
-      "@type": "Person",
-      "name": "Dr. Prodyut Acharya",
-      "jobTitle": "Astrologer & Palmist",
-      "address": { "@type": "PostalAddress", "addressLocality": "Ranaghat", "addressRegion": "West Bengal", "addressCountry": "IN" }
+    "image": "https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png",
+    "telephone": "+919333122768",
+    "email": "info@myastrology.in",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Ranaghat",
+      "addressRegion": "West Bengal",
+      "postalCode": "741201",
+      "addressCountry": "IN"
     },
-    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.myastrology.in/blog.html" },
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "4.9", "bestRating": "5",
-      "ratingCount": "250", "reviewCount": "250"
+      "ratingValue": "4.9",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "250",
+      "reviewCount": "250"
     },
     "sameAs": [
       "https://www.facebook.com/Dr.ProdyutAcharya",
       "https://www.instagram.com/myastrology.in",
       "https://youtube.com/@myastrology",
       "https://www.linkedin.com/in/ProdyutAcharya"
+    ]
+  }
+  </script>
+
+  <!-- Schema 2: Person / Author (E-E-A-T) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "https://www.myastrology.in/#author",
+    "name": "Dr. Prodyut Acharya",
+    "alternateName": "ড. প্রদ্যুৎ আচার্য",
+    "url": "https://www.myastrology.in/about.html",
+    "image": "https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png",
+    "jobTitle": ["Astrologer", "Palmist", "Vastu Consultant"],
+    "worksFor": { "@id": "https://www.myastrology.in/#organization" },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Ranaghat",
+      "addressRegion": "West Bengal",
+      "addressCountry": "IN"
+    },
+    "sameAs": [
+      "https://www.facebook.com/Dr.ProdyutAcharya",
+      "https://www.instagram.com/myastrology.in",
+      "https://youtube.com/@myastrology",
+      "https://www.linkedin.com/in/ProdyutAcharya"
+    ]
+  }
+  </script>
+
+  <!-- Schema 3: Blog -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "@id": "https://www.myastrology.in/blog.html#blog",
+    "name": "MyAstrology জ্যোতিষ ব্লগ",
+    "url": "https://www.myastrology.in/blog.html",
+    "description": "জ্যোতিষ, হস্তরেখা, রত্নপাথর ও জীবনের দর্শন বিষয়ক প্রামাণিক প্রবন্ধ। Authentic articles on Indian Astrology, Palmistry, Horoscope, Gemstone & Vastu by Dr. Prodyut Acharya.",
+    "inLanguage": "bn",
+    "publisher": { "@id": "https://www.myastrology.in/#organization" },
+    "author":    { "@id": "https://www.myastrology.in/#author" },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.myastrology.in/blog.html"
+    }
+  }
+  </script>
+
+  <!-- Schema 4: BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "হোম",
+        "item": "https://www.myastrology.in/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "জ্যোতিষ ব্লগ",
+        "item": "https://www.myastrology.in/blog.html"
+      }
     ]
   }
   </script>
@@ -695,13 +767,13 @@
   </div>
   <a href="#" onclick="_oRzp('consult');return false;" class="ft-cta">পরামর্শ বুক করুন</a>
   <br>
-  <a href="mailto:info@myastrology.in" class="ft-email"><i class="fas fa-envelope"></i> info@myastrology.in</a>
+  <a href="/cdn-cgi/l/email-protection#e881868e87a88591899b9c9a8784878f91c68186" class="ft-email"><i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="6801060e07280511091b1c1a0704070f11460106">[email&#160;protected]</span></a>
   <hr class="ft-hr">
   <p class="ft-copy">© 2026 MyAstrology, Ranaghat, Nadia, West Bengal. All Rights Reserved.</p>
 </footer>
 
 <!-- ═══ SCRIPTS ═══ -->
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script>
 const ham        = document.getElementById('ham');
@@ -925,7 +997,7 @@ function _dRzp() {
       _cRzp();
       if (typeof gtag !== 'undefined') gtag('event','booking_paid',{event_category:'conversion',event_label:svcName,value:Math.floor(amt/100)});
       var amtRs = String(Math.floor(amt/100));
-      var waText = '\u{1F64F} \u0986\u09AE\u09BF ' + svcName + ' \u098F\u09B0 \u099C\u09A8\u09CD\u09AF \u20B9' + amtRs + ' \u099F\u09BE\u0995\u09BE \u09AA\u09C7\u09AE\u09C7\u09A8\u09CD\u099F \u0995\u09B0\u09C7\u099B\u09BF\u0964 \u0986\u09AE\u09BE\u09B0 \u09AA\u09CD\u09B0\u09AF\u09BC\u09CB\u099C\u09A8\u09C0\u09AF\u09BC \u09AC\u09BF\u09AC\u09B0\u09A3 \u09A8\u09BF\u099A\u09C7 \u09A6\u09BF\u099A\u09CD\u099B\u09BF\u0964\n\n\u09A8\u09BE\u09AE: ' + custName + '\n\u09AB\u09CB\u09A8: +91' + custPhone + '\nPayment ID: ' + response.razorpay_payment_id + '\n\n\u0985\u09A8\u09C1\u0997\u09CD\u09B0\u09B9 \u0995\u09B0\u09C7 \u09AA\u09B0\u09AC\u09B0\u09CD\u09A4\u09C0 \u09AA\u09A6\u0995\u09CD\u09B7\u09C7\u09AA \u099C\u09BE\u09A8\u09BE\u09A8\u0964 \u09A7\u09A8\u09CD\u09AF\u09AC\u09BE\u09A6 \u{1F64F}';
+      var waText = '\u{1F64F} \u0986\u09AE\u09BF ' + svcName + ' \u098F\u09B0 \u099C\u09A8\u09CD\u09AF ₹' + amtRs + ' \u099F\u09BE\u0995\u09BE \u09AA\u09C7\u09AE\u09C7\u09A8\u09CD\u099F \u0995\u09B0\u09C7\u099B\u09BF\u0964 \u0986\u09AE\u09BE\u09B0 \u09AA\u09CD\u09B0\u09AF\u09BC\u09CB\u099C\u09A8\u09C0\u09AF\u09BC \u09AC\u09BF\u09AC\u09B0\u09A3 \u09A8\u09BF\u099A\u09C7 \u09A6\u09BF\u099A\u09CD\u099B\u09BF\u0964\n\n\u09A8\u09BE\u09AE: ' + custName + '\n\u09AB\u09CB\u09A8: +91' + custPhone + '\nPayment ID: ' + response.razorpay_payment_id + '\n\n\u0985\u09A8\u09C1\u0997\u09CD\u09B0\u09B9 \u0995\u09B0\u09C7 \u09AA\u09B0\u09AC\u09B0\u09CD\u09A4\u09C0 \u09AA\u09A6\u0995\u09CD\u09B7\u09C7\u09AA \u099C\u09BE\u09A8\u09BE\u09A8\u0964 \u09A7\u09A8\u09CD\u09AF\u09AC\u09BE\u09A6 \u{1F64F}';
       setTimeout(function(){ window.open('https://wa.me/919333122768?text=' + encodeURIComponent(waText), '_blank'); }, 400);
     }
   };
@@ -946,13 +1018,4 @@ if (rp) {
 }
 /* Back to Top */
 const _btt = document.getElementById('btt');
-if (_btt) {
-  window.addEventListener('scroll', () => {
-    _btt.classList.toggle('show', window.scrollY > 320);
-  }, {passive:true});
-  _btt.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
-}
-
-</script>
-</body>
-</html>
+if (_b
