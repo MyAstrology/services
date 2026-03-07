@@ -89,4 +89,4 @@ twitter_image: "https://www.myastrology.in/blog/pradip-philosophy-emptiness.webp
 
 *— Dr. Prodyut Acharya*
 *জ্যোতিষী, হস্তরেখাবিদ, দার্শনিক চিন্তাবিদ*
-*[astro.myastrology.in](https://astro.myastrology.in)*
+*[www.myastrology.in](https://www.myastrology.in)*
