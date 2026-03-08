@@ -54,7 +54,7 @@
   <meta property="og:url" content="https://www.myastrology.in/astrology.html" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="MyAstrology – Dr. Prodyut Acharya" />
-  <meta property="og:image" content="https://www.myastrology.in/blog/astrology-cover.webp" />
+  <meta property="og:image" content="https://www.myastrology.in/images/astrology-ranaghat-banner1.webp" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="MyAstrology — Vedic Astrology by Dr. Prodyut Acharya" />
@@ -65,7 +65,7 @@
   <meta name="twitter:site" content="@AcharyaProdyut" />
   <meta name="twitter:title" content="বৈদিক জ্যোতিষ শাস্ত্র | Vedic Astrology | Dr. Prodyut Acharya" />
   <meta name="twitter:description" content="জ্যোতিষ — আত্মজ্ঞান ও জীবন বদলানোর বিজ্ঞান। ড. প্রদ্যুৎ আচার্য, MyAstrology।" />
-  <meta name="twitter:image" content="https://www.myastrology.in/blog/astrology-cover.webp" />
+  <meta name="twitter:image" content="https://www.myastrology.in/images/astrology-ranaghat-banner1.webp" />
 
   <!-- Article Schema (content page-এর জন্য LocalBusiness-এর চেয়ে উপযুক্ত) -->
   <script type="application/ld+json">
@@ -75,7 +75,7 @@
       "@type": "Article",
       "headline": "বৈদিক জ্যোতিষ শাস্ত্র ও আত্মজ্ঞান — Vedic Astrology",
       "description": "জ্যোতিষ শাস্ত্র হলো ভবিষ্যৎ জানার নয়, আত্মজ্ঞান ও জীবন রূপান্তরের বিজ্ঞান।",
-      "image": "https://www.myastrology.in/blog/astrology-cover.webp",
+      "image": "https://www.myastrology.in/images/astrology-ranaghat-banner1.webp",
       "author": {
         "@type": "Person",
         "name": "Dr. Prodyut Acharya",
@@ -108,26 +108,26 @@
       "telephone": "+91-9333122768",
       "email": "info@myastrology.in",
       "description": "Vedic Astrology, জন্মকুণ্ডলী বিশ্লেষণ, হস্তরেখা — Best Astrologer in West Bengal।",
-      "image": "https://www.myastrology.in/blog/astrology-cover.webp",
+      "image": "https://www.myastrology.in/images/astrology-ranaghat-banner1.webp",
       "priceRange": "₹500–₹2000",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Ranaghat Town",
         "addressLocality": "Ranaghat",
         "addressRegion": "West Bengal",
-        "postalCode": "741201",
+        "postalCode": "741202",
         "addressCountry": "IN"
       },
-      "openingHours": "Mo-Sa 09:00-21:00",
+      "openingHours": "Mo-Su 09:00-23:00",
       "geo": {
         "@type": "GeoCoordinates",
-        "latitude": "23.1765",
-        "longitude": "88.5667"
+        "latitude": "23.167639",
+        "longitude": "88.580889"
       },
       "areaServed": ["Ranaghat", "Nadia", "West Bengal", "India"],
       "aggregateRating": {
         "@type": "AggregateRating",
-        "ratingValue": "4.9",
+        "ratingValue": "5.0",
         "reviewCount": "276",
         "bestRating": "5",
         "worstRating": "1"
@@ -249,6 +249,7 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { overflow-x: clip; }
 
     /* ════════════════════════════════════════════════════════
        REVIEWS & SOCIAL PROOF
@@ -623,11 +624,11 @@
        ════════════════════════════════════════════════════════ */
     #back-to-top {
       position: fixed;
-      bottom: 24px;
-      left: 20px;
+      bottom: 22px;
+      left: 18px;
       width: 44px;
       height: 44px;
-      background: var(--clr-primary);
+      background: transparent;
       color: var(--clr-gold);
       border: none;
       border-radius: 50%;
@@ -636,14 +637,13 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.22);
+      
       opacity: 0;
       transform: translateY(14px);
       transition: opacity 0.3s, transform 0.3s;
       z-index: 800;
     }
     #back-to-top.visible { opacity: 1; transform: translateY(0); }
-    #back-to-top:hover { background: var(--clr-primary-light); }
 
     /* ════════════════════════════════════════════════════════
        TABLE OF CONTENTS — card grid
@@ -1313,14 +1313,14 @@
       background: #fff;
       color: #1a1a5e;
       font-family: var(--font-sans);
-      font-size: 0.78rem;
+      font-size: 0.70rem;
       font-weight: 600;
-      padding: 7px 12px;
+      padding: 5px 9px;
       border-radius: 12px 12px 0 12px;
       box-shadow: 0 4px 16px rgba(0,0,0,0.18);
       border-left: 3px solid #25D366;
       white-space: nowrap;
-      max-width: 200px;
+      max-width: 160px;
       overflow: hidden;
       text-overflow: ellipsis;
       opacity: 0;
@@ -1337,8 +1337,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 56px;
-      height: 56px;
+      width: 44px;
+      height: 44px;
       background: #25D366;
       border-radius: 50%;
       box-shadow: 0 4px 18px rgba(37,211,102,0.45);
@@ -1353,7 +1353,7 @@
       border: none;
     }
     #wa-float i {
-      font-size: 1.8rem;
+      font-size: 1.4rem;
       color: #fff;
     }
     @keyframes wa-pulse {
@@ -1714,9 +1714,7 @@
 <div id="progress-bar" role="progressbar" aria-label="পড়ার অগ্রগতি"></div>
 
 <!-- Back to Top -->
-<button id="back-to-top" aria-label="উপরে যান" title="উপরে যান">
-  <i class="fas fa-chevron-up"></i>
-</button>
+<button id="back-to-top" aria-label="উপরে যান" title="উপরে যান">⬆</button>
 
 <!-- Skip Link -->
 <a href="#main-content" class="skip-link">মূল বিষয়বস্তুতে যান (Skip to content)</a>
@@ -1768,6 +1766,7 @@
   <a href="https://www.myastrology.in/blog-list.html">📝 ব্লগসমূহ</a>
     <a href="https://www.myastrology.in/blog.html">✍️ ব্লগ</a>
   <a href="https://www.myastrology.in/reviews.html">⭐ রিভিউ</a>
+  <a href="https://www.myastrology.in/contact.html">📍 যোগাযোগ</a>
   <a href="https://www.myastrology.in/privacy-policy.html"><i class="fas fa-shield-alt"></i>Privacy Policy</a>
   <a href="https://www.myastrology.in/terms-of-use.html"><i class="fas fa-file-alt"></i>Terms of Use</a>
   <a href="https://wa.me/919333122768" target="_blank" rel="noopener" style="color:#25d366;font-weight:800;">📲 WhatsApp পরামর্শ</a>
@@ -1962,11 +1961,11 @@
       <div class="sc-special-offer sc-special-offer--gold">
         <div class="sc-offer-flame">⭐ সেরা মূল্যের বিশেষ অফার</div>
         <div class="sc-offer-prices">
-          <span class="sc-offer-old">&#8377;২০০১</span>
+          <span class="sc-offer-old">&#8377;৩০০১</span>
           <span class="sc-offer-arrow">→</span>
-          <span class="sc-offer-new">মাত্র &#8377;১৫০১</span>
+          <span class="sc-offer-new">মাত্র &#8377;২০০১</span>
         </div>
-        <div class="sc-offer-save">আপনি সাশ্রয় করছেন &#8377;৫০০ 💰</div>
+        <div class="sc-offer-save">আপনি সাশ্রয় করছেন &#8377;১০০০ 💰</div>
       </div>
       <button class="sc-btn" onclick="openBookModal('combo')">&#128197; এখনই বুক করুন</button>
       <p class="sc-sec">&#128274; Razorpay &bull; UPI / Card / Net Banking</p>
@@ -1995,7 +1994,7 @@
         <div class="sc-offer-prices">
           <span class="sc-offer-old">&#8377;২৫০১</span>
           <span class="sc-offer-arrow">→</span>
-          <span class="sc-offer-new">মাত্র &#8377;১৫০১</span>
+          <span class="sc-offer-new">মাত্র &#8377;২০০১</span>
         </div>
         <div class="sc-offer-save">আপনি সাশ্রয় করছেন &#8377;১০০০ 💰</div>
       </div>
@@ -2112,16 +2111,16 @@
     },
     combo: {
       label:   'জন্ম কুণ্ডলী + হস্তরেখা Combo',
-      amount:  150100,
-      price:   '₹১৫০১',
-      oldprice:'₹২০০১',
+      amount:  200100,
+      price:   '₹২০০১',
+      oldprice:'₹৩০০১',
       offer:   '⭐ বিশেষ অফার: ₹২০০১ এর জায়গায় মাত্র ₹১৫০১',
       saving:  '₹৫০০'
     },
     jyotok: {
       label:   'যোটোক বিচার',
-      amount:  150100,
-      price:   '₹১৫০১',
+      amount:  200100,
+      price:   '₹২০০১',
       oldprice:'₹২৫০১',
       offer:   '💍 বিশেষ অফার: ₹২৫০১ এর জায়গায় মাত্র ₹১৫০১',
       saving:  '₹১০০০'
@@ -2682,13 +2681,13 @@
     <div class="review-badge">
       <span class="review-badge-icon">▶️</span>
       <span class="review-badge-stars">🔴</span>
-      <span class="review-badge-count">২,২৪,১২৩+</span>
+      <span class="review-badge-count">২,২৪,১৫০+</span>
       <span class="review-badge-platform">YouTube Subscribers</span>
     </div>
     <div class="review-badge">
       <span class="review-badge-icon">👥</span>
       <span class="review-badge-stars">📘</span>
-      <span class="review-badge-count">৪১,০০৪+</span>
+      <span class="review-badge-count">৪১,০৫০+</span>
       <span class="review-badge-platform">Facebook Followers</span>
     </div>
   </div>
@@ -2854,15 +2853,7 @@
   <!-- ✅ যোগাযোগ তথ্য — Email footer-এ -->
   <div class="footer-contact">
     <a href="tel:+919333122768"><i class="fas fa-phone"></i> +91-9333122768</a>
-    <a id="footer-email-link" href="#"><i class="fas fa-envelope"></i> <span id="footer-email-text">ইমেইল লোড হচ্ছে…</span></a>
-<script>
-(function(){
-  var u='info',d='myastrology.in';
-  var el=document.getElementById('footer-email-link');
-  var tx=document.getElementById('footer-email-text');
-  if(el&&tx){el.href='mailto:'+u+'@'+d; tx.textContent=u+'@'+d;}
-})();
-</script>
+    <a href="mailto:info@myastrology.in"><i class="fas fa-envelope"></i> info@myastrology.in</a>
     <a href="https://www.myastrology.in/panjika.html" target="_blank" rel="noopener"><i class="fas fa-calendar-alt"></i> আজকের পঞ্জিকা</a>
   </div>
 
@@ -2883,7 +2874,7 @@
   <div class="footer-copy">
     <p>© 2025–2026 MyAstrology | ড. প্রদ্যুৎ আচার্য | সকল অধিকার সংরক্ষিত</p>
     <p>
-      প্রামাণিক Vedic Astrology ও হস্তরেখা পরামর্শ | Ranaghat, Nadia, West Bengal, India — 741201
+      প্রামাণিক Vedic Astrology ও হস্তরেখা পরামর্শ | Ranaghat, Nadia, West Bengal, India — 741202
     </p>
     <p style="margin-top:8px;">
       <a href="https://www.myastrology.in/about.html">আমাদের সম্পর্কে</a> &nbsp;|&nbsp;
