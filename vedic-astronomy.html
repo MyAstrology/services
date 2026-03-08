@@ -126,7 +126,7 @@
         "streetAddress": "Ranaghat Town",
         "addressLocality": "Ranaghat",
         "addressRegion": "West Bengal",
-        "postalCode": "741201",
+        "postalCode": "741202",
         "addressCountry": "IN"
       },
       "geo": {
@@ -139,7 +139,7 @@
           "@type": "OpeningHoursSpecification",
           "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
           "opens": "09:00",
-          "closes": "21:00"
+          "closes": "23:00"
         }
       ],
       "aggregateRating": {
@@ -253,6 +253,7 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { overflow-x: clip; }
     html { scroll-behavior: smooth; font-size: 16px; }
     body {
       font-family: var(--font-serif);
@@ -631,12 +632,12 @@
 
     /* ════ BACK TO TOP ════ */
     #_btt {
-      position: fixed; bottom: 24px; left: 16px;
-      width: 44px; height: 44px; background: var(--clr-primary);
-      color: var(--clr-gold); border: 2px solid rgba(249,168,37,.4);
-      border-radius: 50%; font-size: 1.35rem;
+      position: fixed; bottom: 22px; left: 18px;
+      width: 44px; height: 44px; background: transparent;
+      color: var(--clr-gold); border: none;
+      border-radius: 50%; font-size: 1.4rem;
       display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 16px rgba(0,0,0,.25);
+      box-shadow: none;
       opacity: 0; transform: translateY(12px);
       transition: opacity .3s, transform .3s; z-index: 800;
       text-decoration: none; cursor: pointer;
@@ -652,21 +653,21 @@
     }
     #_wfm {
       background: #fff; color: var(--clr-primary);
-      font-family: var(--font-sans); font-size: .76rem; font-weight: 700;
-      padding: 7px 11px; border-radius: 12px 12px 0 12px;
+      font-family: var(--font-sans); font-size: .68rem; font-weight: 700;
+      padding: 5px 9px; border-radius: 10px 10px 0 10px;
       box-shadow: 0 4px 16px rgba(0,0,0,.18); border-left: 3px solid var(--clr-wa);
-      width: 130px; line-height: 1.5;
+      width: 120px; line-height: 1.4;
       opacity: 0; transform: translateY(6px) scale(.95);
       transition: opacity .4s, transform .4s; pointer-events: none;
     }
     #_wfm.on { opacity: 1; transform: translateY(0) scale(1); }
     #_waf > a {
       display: flex; align-items: center; justify-content: center;
-      width: 56px; height: 56px; background: var(--clr-wa);
+      width: 44px; height: 44px; background: var(--clr-wa);
       border-radius: 50%; box-shadow: 0 4px 18px rgba(37,211,102,.45);
       text-decoration: none; animation: waPulse 2.5s ease-in-out infinite;
     }
-    #_waf > a i { font-size: 1.85rem; color: #fff; }
+    #_waf > a i { font-size: 1.4rem; color: #fff; }
     @keyframes waPulse {
       0%,100%{ box-shadow: 0 4px 18px rgba(37,211,102,.45), 0 0 0 0 rgba(37,211,102,.4) }
       50%{ box-shadow: 0 4px 18px rgba(37,211,102,.45), 0 0 0 14px rgba(37,211,102,0) }
@@ -830,6 +831,7 @@
   <a href="reviews.html"><i class="fas fa-star-half-alt"></i>রিভিউ</a>
   <a href="privacy-policy.html"><i class="fas fa-lock"></i>গোপনীয়তা নীতি</a>
   <a href="terms-of-use.html"><i class="fas fa-file-alt"></i>ব্যবহারের শর্ত</a>
+  <a href="contact.html"><i class="fas fa-address-card"></i>যোগাযোগ</a>
   <a href="astrology.html" class="n-bk"><i class="fas fa-calendar-check"></i>📅 পরামর্শ বুক করুন</a>
   <a href="https://wa.me/919333122768?text=%F0%9F%99%8F+%E0%A6%A8%E0%A6%AE%E0%A6%B8%E0%A7%8D%E0%A6%95%E0%A6%BE%E0%A6%B0" class="n-wa" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i>WhatsApp পরামর্শ</a>
 </nav>
@@ -1353,8 +1355,8 @@
   <div class="review-badges">
     <div class="review-badge"><span class="rb-icon">🌐</span><span class="rb-stars">★★★★★</span><span class="rb-count">১২২+ রিভিউ</span><span class="rb-platform">Google</span></div>
     <div class="review-badge"><span class="rb-icon">📋</span><span class="rb-stars">★★★★★</span><span class="rb-count">১২৮+ রিভিউ</span><span class="rb-platform">JustDial</span></div>
-    <div class="review-badge"><span class="rb-icon">▶️</span><span class="rb-stars">🔴</span><span class="rb-count">২,২৪,১২৭+</span><span class="rb-platform">YouTube</span></div>
-    <div class="review-badge"><span class="rb-icon">👥</span><span class="rb-stars">📘</span><span class="rb-count">৪১,০২০+</span><span class="rb-platform">FB Followers</span></div>
+    <div class="review-badge"><span class="rb-icon">▶️</span><span class="rb-stars">🔴</span><span class="rb-count">২,২৪,১৫০+</span><span class="rb-platform">YouTube</span></div>
+    <div class="review-badge"><span class="rb-icon">👥</span><span class="rb-stars">📘</span><span class="rb-count">৪১,০৫০+</span><span class="rb-platform">FB Followers</span></div>
   </div>
 
   <div class="testimonial-grid">
@@ -1447,7 +1449,7 @@
         <div class="footer-col-title">যোগাযোগ</div>
         <div class="footer-contact-item">
           <i class="fas fa-map-marker-alt"></i>
-          <span>Ranaghat, Nadia, West Bengal — 741201</span>
+          <span>Ranaghat, Nadia, West Bengal — 741202</span>
         </div>
         <div class="footer-contact-item">
           <i class="fas fa-phone"></i>
@@ -1459,11 +1461,11 @@
         </div>
         <div class="footer-contact-item">
           <i class="fas fa-envelope"></i>
-          <a href="/cdn-cgi/l/email-protection#e0898e868fa08d99819394928f8c8f8799ce898e"><span class="__cf_email__" data-cfemail="2841464e47684551495b5c5a4744474f51064146">[email&#160;protected]</span></a>
+          <a href="mailto:info@myastrology.in">info@myastrology.in</a>
         </div>
         <div class="footer-contact-item">
           <i class="fas fa-clock"></i>
-          <span>সকাল ৯টা — রাত ৯টা (প্রতিদিন)</span>
+          <span>সকাল ৯টা — রাত ১১টা (প্রতিদিন)</span>
         </div>
 
         <div class="footer-col-title" style="margin-top:16px;">সোশ্যাল মিডিয়া</div>
@@ -1494,7 +1496,7 @@
 </footer>
 
 <!-- ════ UTILITIES ════ -->
-<a href="#" id="_btt" aria-label="উপরে যান">&#8679;</a>
+<button id="_btt" aria-label="উপরে যান" title="উপরে যান">&#8679;</button>
 
 <div id="_waf">
   <div id="_wfm"></div>
@@ -1529,7 +1531,7 @@
 </div>
 
 <!-- ════ SCRIPTS ════ -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 (function(){
   'use strict';
 
@@ -1567,8 +1569,7 @@
     if (pb) pb.style.width = (tot > 0 ? (s.scrollTop / tot * 100) : 0) + '%';
     if (bt) bt.classList.toggle('show', s.scrollTop > 400);
   }, { passive: true });
-  if (bt) bt.addEventListener('click', function(e) {
-    e.preventDefault();
+  if (bt) bt.addEventListener('click', function() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
