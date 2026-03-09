@@ -469,25 +469,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
   /* Year */
   var y = new Date().getFullYear();
-  var e1=document.getElementById('_yr'), e2=document.getElementById('_yr2');
-  if(e1) e1.textContent = y-1;
+  var e1 = document.getElementById('_yr');
+  var e2 = document.getElementById('_yr2');
+  if(e1) e1.textContent = y - 1;
   if(e2) e2.textContent = y;
 
-  /* Progress bar + Back-to-top */
+  /* Progress bar + BTT */
   var pb = document.getElementById('_pb');
   var bt = document.getElementById('_btt');
   window.addEventListener('scroll', function(){
     var s = document.documentElement;
     var tot = s.scrollHeight - s.clientHeight;
-    if(pb) pb.style.width = (tot > 0 ? (s.scrollTop/tot*100) : 0) + '%';
-    if(bt) bt.classList.toggle('show', s.scrollTop > 360);
-  }, {passive:true});
+    if(pb) pb.style.width = (tot > 0 ? (s.scrollTop / tot * 100) : 0) + '%';
+    if(bt) bt.classList.toggle('show', s.scrollTop > 300);
+  }, {passive: true});
   if(bt) bt.addEventListener('click', function(e){
     e.preventDefault();
-    window.scrollTo({top:0, behavior:'smooth'});
+    window.scrollTo({top: 0, behavior: 'smooth'});
   });
 
-  /* ── Hamburger menu ── */
+  /* Hamburger */
   var h = document.getElementById('_ham');
   var n = document.getElementById('_nav');
   if(h && n){
@@ -499,64 +500,91 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('click', function(e){
       if(n.classList.contains('open') && !n.contains(e.target) && e.target !== h){
         n.classList.remove('open');
-        h.setAttribute('aria-expanded','false');
+        h.setAttribute('aria-expanded', 'false');
       }
     });
     document.addEventListener('keydown', function(e){
       if(e.key === 'Escape'){
         n.classList.remove('open');
-        h.setAttribute('aria-expanded','false');
-        h.focus();
+        h.setAttribute('aria-expanded', 'false');
       }
     });
   }
 
-  /* WA float messages */
+  /* WA Flash Messages */
   var wfm = document.getElementById('_wfm');
   if(wfm){
     var msgs = [
-      '🔮 জ্যোতিষ পরামর্শ নিন!',
-      '✋ হস্তরেখা বিচার হোক',
-      '⭐ ১০,০০০+ সন্তুষ্ট গ্রাহক',
-      '🏠 বাস্তু পরামর্শ নিন',
-      '💎 রত্নপাথর পরামর্শ',
-      '📞 +91 93331 22768'
+      '\u{1F52E} \u099C\u09CD\u09AF\u09CB\u09A4\u09BF\u09B7 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6 \u09A8\u09BF\u09A8!',
+      '\u270B \u09B9\u09B8\u09CD\u09A4\u09B0\u09C7\u0996\u09BE \u09AC\u09BF\u099A\u09BE\u09B0 \u09B9\u09CB\u0995',
+      '\u2B50 \u09E7\u09E6,\u09E6\u09E6\u09E6+ \u09B8\u09A8\u09CD\u09A4\u09C1\u09B7\u09CD\u099F \u0997\u09CD\u09B0\u09BE\u09B9\u0995',
+      '\u{1F3E0} \u09AC\u09BE\u09B8\u09CD\u09A4\u09C1 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6 \u09A8\u09BF\u09A8',
+      '\u{1F48E} \u09B0\u09A4\u09CD\u09A8\u09AA\u09BE\u09A5\u09B0 \u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6',
+      '\u{1F4DE} +91 93331 22768'
     ];
     var mi = 0;
     function tick(){
-      wfm.textContent = msgs[mi % msgs.length]; mi++;
+      wfm.textContent = msgs[mi % msgs.length];
+      mi++;
       wfm.classList.add('on');
       setTimeout(function(){ wfm.classList.remove('on'); }, 2600);
       setTimeout(tick, 4800);
     }
-    setTimeout(tick, 2400);
+    setTimeout(tick, 1500);
   }
 
-  /* FAQ accordion */
+  /* FAQ Accordion */
   document.querySelectorAll('.faq-q').forEach(function(btn){
     btn.addEventListener('click', function(){
       var ans = this.nextElementSibling;
       var was = this.getAttribute('aria-expanded') === 'true';
       document.querySelectorAll('.faq-q').forEach(function(b){
-        b.setAttribute('aria-expanded','false');
+        b.setAttribute('aria-expanded', 'false');
         var a = b.nextElementSibling;
         if(a) a.classList.remove('open');
       });
-      if(!was){ this.setAttribute('aria-expanded','true'); if(ans) ans.classList.add('open'); }
+      if(!was){
+        this.setAttribute('aria-expanded', 'true');
+        if(ans) ans.classList.add('open');
+      }
     });
   });
 
-  /* Booking form */
+  /* Booking Form */
   var fsend = document.getElementById('f-send');
   if(fsend){
     fsend.addEventListener('click', function(){
-      var nm  = (document.getElementById('f-nm')  ||{value:''}).value.trim();
-      var ph  = (document.getElementById('f-ph')  ||{value:''}).value.trim();
-      var svc = (document.getElementById('f-svc') ||{value:''}).value;
-      var md  = (document.getElementById('f-mode')||{value:''}).value;
-      var mg  = (document.getElementById('f-msg') ||{value:''}).value.trim();
-      if(nm.length < 2){ var en=document.getElementById('f-nm'); if(en)en.focus(); return; }
-      if(!/^[0-9]{10}$/.test(ph)){ var ep=document.getElementById('f-ph'); if(ep)ep.focus(); return; }
-      if(!svc){ var es=document.getElementById('f-svc'); if(es)es.focus(); return; }
-      var txt = '🙏 নমস্কার ড. আচার্য,\n\n📋 বিষয়: '+svc+'\n👤 নাম: '+nm+'\n📱 মোবাইল: +91 '+ph+'\n🖥 মাধ্যম: '+md+(mg?'\n💬 বার্তা: '+mg:'')+'\n\nপরামর্শের সময় নির্ধারণ করে দিন। ধন্যবাদ।';
-      var fok = document.getElement
+      var nm  = (document.getElementById('f-nm')   || {value:''}).value.trim();
+      var ph  = (document.getElementById('f-ph')   || {value:''}).value.trim();
+      var svc = (document.getElementById('f-svc')  || {value:''}).value;
+      var md  = (document.getElementById('f-mode') || {value:''}).value;
+      var mg  = (document.getElementById('f-msg')  || {value:''}).value.trim();
+      if(nm.length < 2){ var en = document.getElementById('f-nm'); if(en) en.focus(); return; }
+      if(!/^[0-9]{10}$/.test(ph)){ var ep = document.getElementById('f-ph'); if(ep) ep.focus(); return; }
+      if(!svc){ var es = document.getElementById('f-svc'); if(es) es.focus(); return; }
+      var txt = '\u{1F64F} \u09A8\u09AE\u09B8\u09CD\u0995\u09BE\u09B0 \u09A1. \u0986\u099A\u09BE\u09B0\u09CD\u09AF,\n\n'
+        + '\u{1F4CB} \u09AC\u09BF\u09B7\u09AF\u09BC: ' + svc + '\n'
+        + '\u{1F464} \u09A8\u09BE\u09AE: ' + nm + '\n'
+        + '\u{1F4F1} \u09AE\u09CB\u09AC\u09BE\u0987\u09B2: +91 ' + ph + '\n'
+        + '\u{1F5A5} \u09AE\u09BE\u09A7\u09CD\u09AF\u09AE: ' + md
+        + (mg ? '\n\u{1F4AC} \u09AC\u09BE\u09B0\u09CD\u09A4\u09BE: ' + mg : '')
+        + '\n\n\u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6\u09C7\u09B0 \u09B8\u09AE\u09AF\u09BC \u09A8\u09BF\u09B0\u09CD\u09A7\u09BE\u09B0\u09A3 \u0995\u09B0\u09C7 \u09A6\u09BF\u09A8\u0964 \u09A7\u09A8\u09CD\u09AF\u09AC\u09BE\u09A6\u0964';
+      var fok = document.getElementById('f-ok');
+      if(fok) fok.style.display = 'block';
+      setTimeout(function(){
+        window.open('https://wa.me/919333122768?text=' + encodeURIComponent(txt), '_blank');
+      }, 500);
+    });
+  }
+
+});
+
+function svcWA(svc, pr){
+  var txt = '\u{1F64F} \u09A8\u09AE\u09B8\u09CD\u0995\u09BE\u09B0 \u09A1. \u0986\u099A\u09BE\u09B0\u09CD\u09AF,\n\n'
+    + '\u{1F4CB} \u09B8\u09C7\u09AC\u09BE: ' + svc + ' \u2014 ' + pr + '\n\n'
+    + '\u09AA\u09B0\u09BE\u09AE\u09B0\u09CD\u09B6\u09C7\u09B0 \u09B8\u09AE\u09AF\u09BC \u09A8\u09BF\u09B0\u09CD\u09A7\u09BE\u09B0\u09A3 \u0995\u09B0\u09C7 \u09A6\u09BF\u09A8\u0964 \u09A7\u09A8\u09CD\u09AF\u09AC\u09BE\u09A6\u0964';
+  window.open('https://wa.me/919333122768?text=' + encodeURIComponent(txt), '_blank');
+}
+</script>
+</body>
+</html>
