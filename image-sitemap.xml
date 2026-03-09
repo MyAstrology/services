@@ -93,9 +93,6 @@
       <image:loc>https://www.myastrology.in/images/Ancient_Indian_Astrology_Chart.jpg</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.myastrology.in/images/astrology-and-palmistry.webp</image:loc>
-    </image:image>
-    <image:image>
       <image:loc>https://www.myastrology.in/images/astrologer-india-banner1.webp</image:loc>
     </image:image>
     <image:image>
@@ -259,6 +256,9 @@
     </image:image>
     <image:image>
       <image:loc>https://www.myastrology.in/images/astrologer-india-banner2.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.myastrology.in/images/astrology-and-palmistry.webp</image:loc>
     </image:image>
     <image:image>
       <image:loc>https://www.myastrology.in/images/Online-Astrology-and-Palmistry Consultant.webp</image:loc>
