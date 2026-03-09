@@ -1,39 +1,68 @@
-const fs = require('fs');
+'use strict';
+
+const fs   = require('fs');
 const path = require('path');
 
 const BASE_URL = 'https://www.myastrology.in';
-const OUTPUT = path.join(process.cwd(), 'sitemap.xml');
+const OUTPUT   = path.join(process.cwd(), 'sitemap.xml');
+const TODAY    = new Date().toISOString().split('T')[0];
 
-// ✅ HTML পেজসমূহ (Static Pages)
-const staticPages = [
-  { url: `${BASE_URL}/`,                    lastmod: '2025-08-30', changefreq: 'weekly',  priority: 1.0  },
-  { url: `${BASE_URL}/index.html`,          lastmod: '2025-08-30', changefreq: 'weekly',  priority: 1.0  },
-  { url: `${BASE_URL}/astrology.html`,      lastmod: '2025-08-30', changefreq: 'monthly', priority: 0.85 },
-  { url: `${BASE_URL}/palmistry.html`,      lastmod: '2025-08-30', changefreq: 'monthly', priority: 0.85 },
-  { url: `${BASE_URL}/rashifal.html`,       lastmod: '2025-08-30', changefreq: 'monthly', priority: 0.85 },
-  { url: `${BASE_URL}/vastu-science.html`,  lastmod: '2025-08-30', changefreq: 'monthly', priority: 0.80 },
-  { url: `${BASE_URL}/vedic-astronomy.html`,lastmod: '2025-08-30', changefreq: 'monthly', priority: 0.80 },
-  { url: `${BASE_URL}/panjika.html`,        lastmod: '2025-08-30', changefreq: 'daily',   priority: 0.85 },
-  { url: `${BASE_URL}/video.html`,          lastmod: '2025-08-30', changefreq: 'monthly', priority: 0.80 },
-  { url: `${BASE_URL}/gallery.html`,        lastmod: '2025-08-30', changefreq: 'monthly', priority: 0.80 },
-  { url: `${BASE_URL}/about.html`,          lastmod: '2025-08-30', changefreq: 'yearly',  priority: 0.70 },
-  { url: `${BASE_URL}/blog-list.html`,      lastmod: '2025-08-30', changefreq: 'daily',   priority: 0.90 },
-  { url: `${BASE_URL}/blog.html`,           lastmod: '2025-08-30', changefreq: 'daily',   priority: 0.90 },
-  { url: `${BASE_URL}/reviews.html`,        lastmod: '2025-08-30', changefreq: 'daily',   priority: 0.90 },
-];
+// ✅ প্রতিটি পেজের priority ও changefreq নিয়ম
+// নতুন পেজ এখানে না থাকলে DEFAULT নিয়মে চলবে — manually যোগ করতে হবে না
+const PAGE_CONFIG = {
+  'index.html':            { priority: 1.00, changefreq: 'weekly'  },
+  'astrology.html':        { priority: 0.95, changefreq: 'monthly' },
+  'palmistry.html':        { priority: 0.95, changefreq: 'monthly' },
+  'rashifal.html':         { priority: 0.90, changefreq: 'monthly' },
+  'vastu-science.html':    { priority: 0.90, changefreq: 'monthly' },
+  'vedic-astronomy.html':  { priority: 0.85, changefreq: 'monthly' },
+  'panjika.html':          { priority: 0.92, changefreq: 'daily'   },
+  'blog-list.html':        { priority: 0.92, changefreq: 'daily'   },
+  'blog.html':             { priority: 0.90, changefreq: 'daily'   },
+  'reviews.html':          { priority: 0.90, changefreq: 'daily'   },
+  'video.html':            { priority: 0.82, changefreq: 'monthly' },
+  'gallery.html':          { priority: 0.80, changefreq: 'monthly' },
+  'about.html':            { priority: 0.75, changefreq: 'yearly'  },
+  'content.html':          { priority: 0.75, changefreq: 'monthly' },
+  'contact.html':          { priority: 0.72, changefreq: 'yearly'  },
+  'privacy-policy.html':   { priority: 0.30, changefreq: 'yearly'  },
+  'terms-of-use.html':     { priority: 0.30, changefreq: 'yearly'  },
+};
 
-// ✅ Blog Posts (list.json থেকে auto-generate)
+// ✅ sitemap-এ আসবে না এমন ফাইল
+const EXCLUDE = new Set(['404.html', 'offline.html', 'error.html', 'test.html', 'draft.html']);
+
+// ✅ HTML পেজসমূহ — root folder স্বয়ংক্রিয় scan করে (নতুন পেজ আপনা-আপনি যুক্ত হবে)
+function scanStaticPages() {
+  const DEFAULT = { priority: 0.65, changefreq: 'monthly' };
+
+  return fs.readdirSync(process.cwd())
+    .filter(f => f.endsWith('.html') && !EXCLUDE.has(f))
+    .sort()
+    .flatMap(file => {
+      const cfg = PAGE_CONFIG[file] || DEFAULT;
+
+      // index.html → canonical '/' মাত্র একটি entry (duplicate নয়)
+      if (file === 'index.html') {
+        return [{ url: `${BASE_URL}/`, lastmod: TODAY, ...cfg }];
+      }
+
+      return [{ url: `${BASE_URL}/${file}`, lastmod: TODAY, ...cfg }];
+    });
+}
+
+// ✅ Blog Posts — list.json থেকে auto-generate (আগের মতোই)
 function readBlogPosts() {
   const blogPath = path.join(process.cwd(), 'src/content/blog/list.json');
   try {
     const posts = JSON.parse(fs.readFileSync(blogPath, 'utf8'));
     return posts.map(post => ({
-      url: `${BASE_URL}/blog.html?post=${post.slug}`,
-      lastmod: post.date
-        ? new Date(post.date).toISOString().split('T')[0]
-        : new Date().toISOString().split('T')[0],
+      url:        `${BASE_URL}/blog.html?post=${post.slug}`,
+      lastmod:    post.date
+                    ? new Date(post.date).toISOString().split('T')[0]
+                    : TODAY,
       changefreq: 'monthly',
-      priority: 0.85
+      priority:   0.80,
     }));
   } catch (err) {
     console.warn('list.json read failed:', err.message);
@@ -41,18 +70,22 @@ function readBlogPosts() {
   }
 }
 
-// ✅ Static + Blog একসাথে
-const allUrls = [...staticPages, ...readBlogPosts()];
+// ✅ Static + Blog একসাথে, priority অনুযায়ী sort
+const staticPages = scanStaticPages();
+const blogPosts   = readBlogPosts();
+const allUrls     = [...staticPages, ...blogPosts]
+                      .sort((a, b) => b.priority - a.priority);
 
+// ✅ XML তৈরি
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${allUrls.map(p => `  <url>
     <loc>${p.url}</loc>
     <lastmod>${p.lastmod}</lastmod>
     <changefreq>${p.changefreq}</changefreq>
-    <priority>${p.priority}</priority>
+    <priority>${p.priority.toFixed(2)}</priority>
   </url>`).join('\n')}
 </urlset>`;
 
 fs.writeFileSync(OUTPUT, xml, 'utf8');
-console.log(`✅ Total URLs: ${allUrls.length} (${staticPages.length} static + ${allUrls.length - staticPages.length} blog posts)`);
+console.log(`✅ Total URLs: ${allUrls.length} (${staticPages.length} static + ${blogPosts.length} blog posts)`);
