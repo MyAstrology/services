@@ -2,13 +2,13 @@
 
 const fs   = require('fs');
 const path = require('path');
+const https = require('https');
 
 const BASE_URL = 'https://www.myastrology.in';
 const OUTPUT   = path.join(process.cwd(), 'sitemap.xml');
 const TODAY    = new Date().toISOString().split('T')[0];
 
 // ✅ প্রতিটি পেজের priority ও changefreq নিয়ম
-// নতুন পেজ এখানে না থাকলে DEFAULT নিয়মে চলবে — manually যোগ করতে হবে না
 const PAGE_CONFIG = {
   'index.html':            { priority: 1.00, changefreq: 'weekly'  },
   'astrology.html':        { priority: 0.95, changefreq: 'monthly' },
@@ -32,26 +32,22 @@ const PAGE_CONFIG = {
 // ✅ sitemap-এ আসবে না এমন ফাইল
 const EXCLUDE = new Set(['404.html', 'offline.html', 'error.html', 'test.html', 'draft.html']);
 
-// ✅ HTML পেজসমূহ — root folder স্বয়ংক্রিয় scan করে (নতুন পেজ আপনা-আপনি যুক্ত হবে)
+// ✅ HTML পেজসমূহ — root folder স্বয়ংক্রিয় scan
 function scanStaticPages() {
   const DEFAULT = { priority: 0.65, changefreq: 'monthly' };
-
   return fs.readdirSync(process.cwd())
     .filter(f => f.endsWith('.html') && !EXCLUDE.has(f))
     .sort()
     .flatMap(file => {
       const cfg = PAGE_CONFIG[file] || DEFAULT;
-
-      // index.html → canonical '/' মাত্র একটি entry (duplicate নয়)
       if (file === 'index.html') {
         return [{ url: `${BASE_URL}/`, lastmod: TODAY, ...cfg }];
       }
-
       return [{ url: `${BASE_URL}/${file}`, lastmod: TODAY, ...cfg }];
     });
 }
 
-// ✅ Blog Posts — list.json থেকে auto-generate (আগের মতোই)
+// ✅ Blog Posts — list.json থেকে auto-generate
 function readBlogPosts() {
   const blogPath = path.join(process.cwd(), 'src/content/blog/list.json');
   try {
@@ -88,4 +84,29 @@ ${allUrls.map(p => `  <url>
 </urlset>`;
 
 fs.writeFileSync(OUTPUT, xml, 'utf8');
-console.log(`✅ Total URLs: ${allUrls.length} (${staticPages.length} static + ${blogPosts.length} blog posts)`);
+console.log(`✅ Sitemap generated: ${allUrls.length} URLs (${staticPages.length} static + ${blogPosts.length} blog posts)`);
+
+// ================================================================
+// ✅ Google Ping — sitemap generate হলেই Google notify হবে
+// ================================================================
+function pingGoogle() {
+  const sitemapUrl = encodeURIComponent(`${BASE_URL}/sitemap.xml`);
+  const pingUrl = `https://www.google.com/ping?sitemap=${sitemapUrl}`;
+
+  return new Promise((resolve) => {
+    https.get(pingUrl, (res) => {
+      if (res.statusCode === 200) {
+        console.log('✅ Google ping সফল — sitemap জমা দেওয়া হয়েছে।');
+      } else {
+        console.warn(`⚠️  Google ping response: HTTP ${res.statusCode}`);
+      }
+      resolve();
+    }).on('error', (err) => {
+      // CI environment-এ network না থাকলে নীরবে skip করবে
+      console.warn(`⚠️  Google ping skip (network unavailable): ${err.message}`);
+      resolve();
+    });
+  });
+}
+
+pingGoogle();
