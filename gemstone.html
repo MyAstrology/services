@@ -28,8 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" media="print" onload="this.media='all'"/>
-<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/></noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 <script src="https://checkout.razorpay.com/v1/checkout.js" defer></script>
 
 <script type="application/ld+json">
@@ -111,20 +110,29 @@ img{max-width:100%;display:block}
 .main-wrap{max-width:var(--max-w);margin:0 auto;padding:32px 16px 48px}
 
 /* TOC */
+
+
 /* COMPACT PILL NAV */
-.toc-wrap{margin-bottom:22px;padding:11px 14px;background:rgba(12,27,51,.6);border-radius:9px;border:1px solid rgba(201,162,39,.18)}
-.toc-label{font-size:.7rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.toc-wrap{margin-bottom:22px;padding:11px 14px;background:rgba(12,27,51,.55);border-radius:9px;border:1px solid rgba(201,162,39,.18)}
+.toc-label{font-size:.66rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;display:flex;align-items:center;gap:7px}
 .toc-label::after{content:"";flex:1;height:1px;background:rgba(201,162,39,.2)}
-.toc-row{display:flex;flex-wrap:wrap;gap:7px}
-.toc-pill{display:inline-flex;align-items:center;gap:5px;padding:5px 13px;border-radius:30px;font-size:.72rem;font-weight:600;color:#8dadd4;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);text-decoration:none;transition:background .18s,color .18s,border-color .18s;white-space:nowrap}
+.toc-row{display:flex;flex-wrap:wrap;gap:5px}
+.toc-pill{display:inline-flex;align-items:center;gap:4px;padding:4px 11px;border-radius:30px;font-size:.7rem;font-weight:600;color:#8dadd4;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);text-decoration:none;transition:background .18s,color .18s;white-space:nowrap}
 .toc-pill:hover{background:rgba(201,162,39,.15);color:var(--gold2);border-color:rgba(201,162,39,.4)}
-/* CERT BADGE */
-.cert-strip{background:linear-gradient(135deg,#07101f,#1a2d58);border-radius:12px;padding:16px 20px;margin-bottom:28px;border:1px solid rgba(201,162,39,.3);display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-.cert-icon{font-size:2rem;flex-shrink:0}
+/* CERT STRIP */
+.cert-strip{background:linear-gradient(135deg,#07101f,#1a2d58);border-radius:12px;padding:14px 18px;margin-bottom:22px;border:1px solid rgba(201,162,39,.3);display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.cert-icon{font-size:1.75rem;flex-shrink:0;padding-top:2px}
 .cert-text{flex:1;min-width:200px}
-.cert-text strong{display:block;font-family:var(--fh);color:var(--gold2);font-size:.88rem;margin-bottom:3px}
-.cert-text span{font-size:.76rem;color:#8dadd4;line-height:1.5}
-.cert-badge-pill{display:inline-flex;align-items:center;gap:5px;background:rgba(201,162,39,.15);border:1px solid rgba(201,162,39,.4);color:var(--gold2);font-size:.65rem;font-weight:700;padding:3px 10px;border-radius:20px;margin-top:6px;letter-spacing:.04em}
+.cert-text strong{display:block;font-family:var(--fh);color:var(--gold2);font-size:.85rem;margin-bottom:4px}
+.cert-text p{font-size:.74rem;color:#8dadd4;line-height:1.6;margin:0}
+.cert-badge{display:inline-flex;align-items:center;gap:4px;background:rgba(201,162,39,.12);border:1px solid rgba(201,162,39,.3);color:var(--gold2);font-size:.62rem;font-weight:700;padding:2px 8px;border-radius:20px;margin-top:6px;margin-right:4px}
+/* BTT */
+#btt{position:fixed;bottom:22px;left:18px;background:rgba(12,27,51,.75);border:1.5px solid var(--gold);color:var(--gold2);font-size:1.1rem;cursor:pointer;z-index:997;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity .3s,transform .3s;box-shadow:0 2px 10px rgba(0,0,0,.3);outline:none}
+#btt.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+#btt:hover{color:#fff}
+/* GRAHA CARD IMG */
+.graha-icon{width:80px;height:80px;margin:0 auto 10px;display:block;object-fit:cover;border-radius:50%;border:2px solid rgba(201,162,39,.3);background:#f5f0e8}
+.graha-icon-fb{font-size:2rem;margin-bottom:7px;display:block}
 
 /* INTRO ESSAY */
 .intro-essay{background:#fff;border-radius:14px;padding:28px;box-shadow:var(--shadow);margin-bottom:36px;border-left:4px solid var(--gold)}
@@ -313,7 +321,7 @@ img{max-width:100%;display:block}
 <a href="#main-content" class="sr-only">মূল বিষয়বস্তুতে যান</a>
 
 <header class="site-header">
-  <button class="ham" onclick="toggleNav()" aria-label="মেনু খুলুন"><i class="fas fa-bars"></i></button>
+  <button class="ham" id="hamBtn" aria-label="মেনু খুলুন"><i class="fas fa-bars"></i></button>
   <span class="header-brand">MyAstrology</span>
   <img src="images/MyAstrology-Ranghat-logo.png" alt="MyAstrology Logo" class="header-logo" width="42" height="42" loading="eager"/>
 </header>
@@ -334,14 +342,14 @@ img{max-width:100%;display:block}
   <a href="https://www.myastrology.in/blog-list.html"><i class="fas fa-blog"></i>ব্লগ</a>
   <a href="https://www.myastrology.in/contact.html"><i class="fas fa-address-card"></i>যোগাযোগ</a>
   <a href="https://www.myastrology.in/content.html"><i class="fas fa-th-list"></i>সমস্ত সেবা</a>
-  <a href="https://www.myastrology.in/panjika.html"><i class="fas fa-calendar-check"></i>পঞ্জিকা অ্যাপ</a>
   <a href="https://wa.me/919333122768" target="_blank" rel="noopener" style="color:#4ade80;font-weight:700"><i class="fab fa-whatsapp"></i>WhatsApp পরামর্শ</a>
 </nav>
 <div class="nav-overlay" id="navOverlay" onclick="closeNav()"></div>
 
 
 
-<section class="gem-hero" style="background-image:url('images/gemstone-banner.webp');background-size:cover;background-position:center;background-blend-mode:overlay">
+
+<section class="gem-hero">
   <div class="gem-hero-eyebrow">💎 বৈদিক জ্যোতিষ &nbsp;·&nbsp; বৈজ্ঞানিক ব্যাখ্যা &nbsp;·&nbsp; দার্শনিক দৃষ্টিভঙ্গি &nbsp;·&nbsp; প্রাচীন শাস্ত্র</div>
   <h1>গ্রহ-রত্ন ও রুদ্রাক্ষ<br><em>বৈদিক জ্যোতিষের বৈজ্ঞানিক দৃষ্টিভঙ্গি</em></h1>
   <p class="gem-hero-sub">জন্মকুণ্ডলী দেখে রত্ন নির্বাচন — কোন গ্রহের জন্য কোন রত্ন পরতে হয়, রত্ন পরার নিয়ম, কোন আঙুলে পরতে হয়, কত রতিতে পরা উচিত — সম্পূর্ণ শাস্ত্রসম্মত গাইড।</p>
@@ -351,59 +359,43 @@ img{max-width:100%;display:block}
   </div>
 </section>
 
-<div class="ticker" aria-hidden="true">
-  <span class="ticker-inner">&#9679; গ্রহ রত্ন পরামর্শ — কুণ্ডলী না দেখে রত্ন পরা কখনো উচিত নয় &nbsp;|&nbsp; কোন রাশিতে কোন রত্নপাথর — বিশেষজ্ঞের কাছে জানুন &nbsp;|&nbsp; ড. প্রদ্যুৎ আচার্য · PhD in Vedic Jyotish · Gold Medal &nbsp;|&nbsp; ২৭৬+ পাঁচতারা রিভিউ &nbsp;|&nbsp; +91 93331 22768 &nbsp;|&nbsp; রাণাঘাট · সারা ভারতে অনলাইন পরামর্শ &#9679;</span>
-</div>
-
 <main id="main-content">
 <div class="main-wrap">
 
-<!-- CERT STRIP + COMPACT NAV -->
+<!-- CERT STRIP -->
 <div class="cert-strip">
   <div class="cert-icon">🏅</div>
   <div class="cert-text">
     <strong>Gem Therapist Certificate — SKAVSA, Kolkata</strong>
     <p>South Kolkata Astrology &amp; Vastu Science Academy (SKAVSA) কর্তৃক ড. প্রদ্যুৎ আচার্যকে <em>Gem Therapist Upadhi</em> প্রদান। Gemology, রত্নের গঠন, Diamond, Coral, Pearl সহ ১৪টি বিষয়ে প্রশিক্ষণ সম্পন্ন। Date: 15 August 2017 · Tapan Theatre, Kolkata</p>
-    <div>
-      <span class="cert-badge-pill">🎓 Gem Therapist Upadhi</span>
-      <span class="cert-badge-pill">✅ SKAVSA Certified · 2017</span>
-      <span class="cert-badge-pill">🔬 W.B. Govt. Regd.</span>
-    </div>
+    <div><span class="cert-badge">🎓 Gem Therapist Upadhi</span><span class="cert-badge">✅ SKAVSA Certified · 2017</span><span class="cert-badge">🔬 W.B. Govt. Regd.</span></div>
   </div>
 </div>
+<!-- COMPACT PILL NAV -->
 <nav class="toc-wrap" aria-label="সূচিপত্র">
-  <div class="toc-label"><i class="fas fa-compass" style="color:var(--gold)"></i> দ্রুত নেভিগেশন — বিষয়ক্রম</div>
+  <div class="toc-label"><i class="fas fa-compass" style="color:var(--gold)"></i> দ্রুত নেভিগেশন</div>
   <div class="toc-row">
     <span style="font-size:.62rem;font-weight:700;color:var(--gold);align-self:center;white-space:nowrap;margin-right:2px">⚡ গ্রহ-রত্ন</span>
-    <a class="toc-pill" href="#ruby">🔴 মাণিক্য</a>
-    <a class="toc-pill" href="#pearl">🤍 মুক্তা</a>
-    <a class="toc-pill" href="#coral">🟠 প্রবাল</a>
-    <a class="toc-pill" href="#emerald">💚 পান্না</a>
-    <a class="toc-pill" href="#yellow-sapphire">💛 পুখরাজ</a>
-    <a class="toc-pill" href="#diamond">💎 হীরা</a>
-    <a class="toc-pill" href="#blue-sapphire">🔵 নীলকান্তমণি</a>
-    <a class="toc-pill" href="#gomed">🟤 গোমেদ</a>
+    <a class="toc-pill" href="#ruby">🔴 মাণিক্য</a><a class="toc-pill" href="#pearl">🤍 মুক্তা</a>
+    <a class="toc-pill" href="#coral">🟠 প্রবাল</a><a class="toc-pill" href="#emerald">💚 পান্না</a>
+    <a class="toc-pill" href="#yellow-sapphire">💛 পুখরাজ</a><a class="toc-pill" href="#diamond">💎 হীরা</a>
+    <a class="toc-pill" href="#blue-sapphire">🔵 নীলকান্তমণি</a><a class="toc-pill" href="#gomed">🟤 গোমেদ</a>
     <a class="toc-pill" href="#catseye">🟡 লহসুনিয়া</a>
   </div>
-  <div class="toc-row" style="margin-top:6px">
+  <div class="toc-row" style="margin-top:5px">
     <span style="font-size:.62rem;font-weight:700;color:#9b59d0;align-self:center;white-space:nowrap;margin-right:2px">📿 রুদ্রাক্ষ</span>
-    <a class="toc-pill" href="#rudraksha-intro">পরিচিতি</a>
-    <a class="toc-pill" href="#rudraksha-1-2">১–২ মুখী</a>
-    <a class="toc-pill" href="#rudraksha-3-5">৩–৫ মুখী</a>
-    <a class="toc-pill" href="#rudraksha-6-9">৬–৯ মুখী</a>
-    <a class="toc-pill" href="#rudraksha-10-14">১০–১৪ মুখী</a>
-    <a class="toc-pill" href="#rudraksha-niyam">পরার নিয়ম</a>
-    <span style="font-size:.62rem;font-weight:700;color:#0d9488;align-self:center;white-space:nowrap;margin-left:6px;margin-right:2px">🌿 উপরত্ন</span>
-    <a class="toc-pill" href="#moonstone">Moonstone</a>
-    <a class="toc-pill" href="#amethyst">Amethyst</a>
-    <a class="toc-pill" href="#citrine">Citrine</a>
-    <a class="toc-pill" href="#lapis">Lapis</a>
-    <a class="toc-pill" href="#peridot">Peridot</a>
-    <a class="toc-pill" href="#red-garnet">Garnet</a>
+    <a class="toc-pill" href="#rudraksha-intro">পরিচিতি</a><a class="toc-pill" href="#rudraksha-1-2">১–২ মুখী</a>
+    <a class="toc-pill" href="#rudraksha-3-5">৩–৫ মুখী</a><a class="toc-pill" href="#rudraksha-6-9">৬–৯ মুখী</a>
+    <a class="toc-pill" href="#rudraksha-10-14">১০–১৪ মুখী</a><a class="toc-pill" href="#rudraksha-niyam">পরার নিয়ম</a>
+    <span style="font-size:.62rem;font-weight:700;color:#0d9488;align-self:center;white-space:nowrap;margin-left:5px;margin-right:2px">🌿 উপরত্ন</span>
+    <a class="toc-pill" href="#moonstone">Moonstone</a><a class="toc-pill" href="#amethyst">Amethyst</a>
+    <a class="toc-pill" href="#citrine">Citrine</a><a class="toc-pill" href="#lapis">Lapis</a>
+    <a class="toc-pill" href="#peridot">Peridot</a><a class="toc-pill" href="#red-garnet">Garnet</a>
     <a class="toc-pill" href="#blue-topaz">Blue Topaz</a>
     <a class="toc-pill" href="#ratna-niyam" style="border-color:rgba(201,162,39,.3);color:var(--gold)">📋 রত্ন পরার নিয়ম</a>
   </div>
 </nav>
+
 
 <!-- INTRO ESSAY -->
 <div class="intro-essay">
@@ -417,15 +409,15 @@ img{max-width:100%;display:block}
 <h2 class="sec-title">নয় গ্রহের রত্নপাথর — দ্রুত পরিচয়</h2>
 <p class="sec-sub">কোন রাশিতে কোন রত্নপাথর পরবেন — নিচের card-এ ক্লিক করে বিস্তারিত পড়ুন</p>
 <div class="graha-grid">
-  <a class="graha-card" href="#ruby"><span class="graha-icon">🔴</span><div class="graha-planet">☀ সূর্য</div><div class="graha-gem-name">মাণিক্য (চুনি)</div><div class="graha-gem-en">Ruby · Corundum</div></a>
-  <a class="graha-card" href="#pearl"><span class="graha-icon">🤍</span><div class="graha-planet">🌙 চন্দ্র</div><div class="graha-gem-name">মুক্তা (মতি)</div><div class="graha-gem-en">Pearl · Nacre</div></a>
-  <a class="graha-card" href="#coral"><span class="graha-icon">🟠</span><div class="graha-planet">♂ মঙ্গল</div><div class="graha-gem-name">প্রবাল (মুঙ্গা)</div><div class="graha-gem-en">Red Coral · Corallium</div></a>
-  <a class="graha-card" href="#emerald"><span class="graha-icon">💚</span><div class="graha-planet">☿ বুধ</div><div class="graha-gem-name">পান্না</div><div class="graha-gem-en">Emerald · Beryl</div></a>
-  <a class="graha-card" href="#yellow-sapphire"><span class="graha-icon">💛</span><div class="graha-planet">♃ বৃহস্পতি</div><div class="graha-gem-name">পুখরাজ</div><div class="graha-gem-en">Yellow Sapphire</div></a>
-  <a class="graha-card" href="#diamond"><span class="graha-icon">💎</span><div class="graha-planet">♀ শুক্র</div><div class="graha-gem-name">হীরা / সাদা পোখরাজ</div><div class="graha-gem-en">Diamond / White Topaz</div></a>
-  <a class="graha-card" href="#blue-sapphire"><span class="graha-icon">🔵</span><div class="graha-planet">♄ শনি</div><div class="graha-gem-name">নীলকান্তমণি</div><div class="graha-gem-en">Blue Sapphire · Neelam</div></a>
-  <a class="graha-card" href="#gomed"><span class="graha-icon">🟤</span><div class="graha-planet">☊ রাহু</div><div class="graha-gem-name">গোমেদ</div><div class="graha-gem-en">Hessonite Garnet</div></a>
-  <a class="graha-card" href="#catseye"><span class="graha-icon">🟡</span><div class="graha-planet">☋ কেতু</div><div class="graha-gem-name">লহসুনিয়া (বৈদূর্য)</div><div class="graha-gem-en">Cat's Eye · Chrysoberyl</div></a>
+  <a class="graha-card" href="#ruby"><img class="graha-icon" src="images/gems/ruby-manikya.webp" alt="মাণিক্য (চুনি) — Ruby" width="80" height="80" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/><span class="graha-icon-fb" style="display:none">🔴</span><div class="graha-planet">☀ সূর্য</div><div class="graha-gem-name">মাণিক্য (চুনি)</div><div class="graha-gem-en">Ruby · Corundum</div></a>
+  <a class="graha-card" href="#pearl"><img class="graha-icon" src="images/gems/pearl-mukta.webp" alt="মুক্তা — Pearl" width="80" height="80" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/><span class="graha-icon-fb" style="display:none">🤍</span><div class="graha-planet">🌙 চন্দ্র</div><div class="graha-gem-name">মুক্তা (মতি)</div><div class="graha-gem-en">Pearl · Nacre</div></a>
+  <a class="graha-card" href="#coral"><img class="graha-icon" src="images/gems/coral-prabal.webp" alt="প্রবাল — Red Coral" width="80" height="80" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/><span class="graha-icon-fb" style="display:none">🟠</span><div class="graha-planet">♂ মঙ্গল</div><div class="graha-gem-name">প্রবাল (মুঙ্গা)</div><div class="graha-gem-en">Red Coral · Corallium</div></a>
+  <a class="graha-card" href="#emerald"><img class="graha-icon" src="images/gems/emerald-panna.webp" alt="পান্না — Emerald" width="80" height="80" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/><span class="graha-icon-fb" style="display:none">💚</span><div class="graha-planet">☿ বুধ</div><div class="graha-gem-name">পান্না</div><div class="graha-gem-en">Emerald · Beryl</div></a>
+  <a class="graha-card" href="#yellow-sapphire"><img class="graha-icon" src="images/gems/yellow-sapphire-pukhraj.webp" alt="পুখরাজ — Yellow Sapphire" width="80" height="80" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/><span class="graha-icon-fb" style="display:none">💛</span><div class="graha-planet">♃ বৃহস্পতি</div><div class="graha-gem-name">পুখরাজ</div><div class="graha-gem-en">Yellow Sapphire</div></a>
+  <a class="graha-card" href="#diamond"><img class="graha-icon" src="images/gems/diamond-heera.webp" alt="হীরা — Diamond" width="80" height="80" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/><span class="graha-icon-fb" style="display:none">💎</span><div class="graha-planet">♀ শুক্র</div><div class="graha-gem-name">হীরা / সাদা পোখরাজ</div><div class="graha-gem-en">Diamond / White Topaz</div></a>
+  <a class="graha-card" href="#blue-sapphire"><img class="graha-icon" src="images/gems/blue-sapphire-neelam.webp" alt="নীলকান্তমণি — Blue Sapphire" width="80" height="80" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/><span class="graha-icon-fb" style="display:none">🔵</span><div class="graha-planet">♄ শনি</div><div class="graha-gem-name">নীলকান্তমণি</div><div class="graha-gem-en">Blue Sapphire · Neelam</div></a>
+  <a class="graha-card" href="#gomed"><img class="graha-icon" src="images/gems/gomed-rahu.webp" alt="গোমেদ — Hessonite" width="80" height="80" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/><span class="graha-icon-fb" style="display:none">🟤</span><div class="graha-planet">☊ রাহু</div><div class="graha-gem-name">গোমেদ</div><div class="graha-gem-en">Hessonite Garnet</div></a>
+  <a class="graha-card" href="#catseye"><img class="graha-icon" src="images/gems/catseye-lehsunia.webp" alt="লহসুনিয়া — Cat's Eye" width="80" height="80" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/><span class="graha-icon-fb" style="display:none">🟡</span><div class="graha-planet">☋ কেতু</div><div class="graha-gem-name">লহসুনিয়া (বৈদূর্য)</div><div class="graha-gem-en">Cat's Eye · Chrysoberyl</div></a>
 </div>
 
 <!-- ══════════════════════════════════
@@ -1519,7 +1511,7 @@ img{max-width:100%;display:block}
       <h4>MyAstrology</h4>
       <p><i class="fas fa-map-marker-alt"></i>রাণাঘাট, নদিয়া, পশ্চিমবঙ্গ — ৭৪১২০২</p>
       <p><i class="fas fa-phone"></i>+91 93331 22768</p>
-      <p><i class="fas fa-envelope"></i><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ea83848c85aa87938b999e988586858d93c48384">[email&#160;protected]</a></p>
+      <p><i class="fas fa-envelope"></i>info@myastrology.in</p>
       <a href="https://wa.me/919333122768" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i>WhatsApp পরামর্শ</a>
       <a href="https://www.myastrology.in/astrology.html"><i class="fas fa-calendar-check"></i>অনলাইন বুকিং</a>
     </div>
@@ -1529,6 +1521,7 @@ img{max-width:100%;display:block}
       <a href="https://www.myastrology.in/astrology.html">জন্মকুণ্ডলী বিশ্লেষণ</a>
       <a href="https://www.myastrology.in/astrology.html">কুণ্ডলী মিলন</a>
       <a href="https://www.myastrology.in/vastu-science.html">বাস্তু শাস্ত্র</a>
+  <a href="https://www.myastrology.in/content.html"><i class="fas fa-th-list"></i>সমস্ত সেবা</a>
       <a href="https://www.myastrology.in/gemstone.html">রত্নপাথর পরামর্শ</a>
       <a href="https://www.myastrology.in/rashifal.html">দৈনন্দিন রাশিফল</a>
       <a href="https://www.myastrology.in/panjika.html">পঞ্জিকা</a>
@@ -1611,17 +1604,35 @@ img{max-width:100%;display:block}
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-var RZP_KEY='rzp_live_SN8p6DJxPYFVL1';
-var _pName='',_pPhone='';
-function toggleNav(){var n=document.getElementById('navMenu'),o=document.getElementById('navOverlay');n.classList.toggle('open');o.classList.toggle('open');}
-function closeNav(){document.getElementById('navMenu').classList.remove('open');document.getElementById('navOverlay').classList.remove('open');}
-document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeNav();closePay();}});
-var btt=document.getElementById('btt');
-window.addEventListener('scroll',function(){btt.classList.toggle('visible',window.scrollY>300);},{passive:true});
-btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+<script data-cfasync="false">
+/* ── nav ── */
+(function(){
+  function toggleNav(){var n=document.getElementById('navMenu'),o=document.getElementById('navOverlay');if(n)n.classList.toggle('open');if(o)o.classList.toggle('open');}
+  function closeNav(){var n=document.getElementById('navMenu'),o=document.getElementById('navOverlay');if(n)n.classList.remove('open');if(o)o.classList.remove('open');}
+  window.toggleNav=toggleNav; window.closeNav=closeNav;
+  document.addEventListener('DOMContentLoaded',function(){
+    var btn=document.getElementById('hamBtn');
+    if(btn)btn.addEventListener('click',function(e){e.stopPropagation();toggleNav();});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeNav();if(window.closePay)closePay();}});
+    document.addEventListener('click',function(e){var n=document.getElementById('navMenu'),b=document.getElementById('hamBtn');if(n&&n.classList.contains('open')&&!n.contains(e.target)&&e.target!==b)closeNav();});
+  });
+})();
+/* ── BTT ── */
+(function(){
+  function initBtt(){
+    var b=document.getElementById('btt');
+    if(!b)return;
+    function chk(){b.classList.toggle('visible',window.scrollY>300);}
+    window.addEventListener('scroll',chk,{passive:true});
+    chk();
+    b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',initBtt);}else{initBtt();}
+})();
+/* ── WA flash ── */
 setTimeout(function(){var b=document.getElementById('waBubble');if(b)b.classList.add('show');},2200);
 setTimeout(function(){var b=document.getElementById('waBubble');if(b)b.classList.remove('show');},6000);
+/* ── tabs ── */
 function showTab(btn,panelId){
   var body=btn.closest('.gem-body');
   body.querySelectorAll('.gem-tab').forEach(function(t){t.classList.remove('active');});
@@ -1629,6 +1640,9 @@ function showTab(btn,panelId){
   btn.classList.add('active');
   var p=document.getElementById(panelId);if(p)p.classList.add('active');
 }
+/* ── payment ── */
+var RZP_KEY='rzp_live_SN8p6DJxPYFVL1';
+var _pName='',_pPhone='';
 function openPay(){document.getElementById('payOverlay').classList.add('open');document.getElementById('payForm').style.display='block';document.getElementById('paySuccess').style.display='none';document.body.style.overflow='hidden';}
 function closePay(){document.getElementById('payOverlay').classList.remove('open');document.body.style.overflow='';}
 function startPayment(){
@@ -1653,4 +1667,14 @@ function startPayment(){
       var msg='নমস্কার ড. আচার্য, রত্নপাথর পরামর্শ বুক করেছি।%0A নাম: '+encodeURIComponent(_pName)+'%0A WhatsApp: +91'+_pPhone+'%0A Payment ID: '+pid;
       document.getElementById('payWaLink').href='https://wa.me/919333122768?text='+msg;
     },
-    modal:{ondismiss:function(){btn.disabled=false;btn.textContent='🔒 পেমেন্টে এগিয়ে যা�
+    modal:{ondismiss:function(){btn.disabled=false;btn.textContent='🔒 পেমেন্টে এগিয়ে যান — ₹১০০১';}}
+  };
+  var rzp=new Razorpay(opt);rzp.open();
+}
+window.showTab=showTab;
+window.openPay=openPay;
+window.closePay=closePay;
+window.startPayment=startPayment;
+</script>
+</body>
+</html>
