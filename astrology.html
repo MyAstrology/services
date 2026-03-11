@@ -109,10 +109,10 @@
       "email": "info@myastrology.in",
       "description": "Vedic Astrology, জন্মকুণ্ডলী বিশ্লেষণ, হস্তরেখা — Best Astrologer in West Bengal।",
       "image": "https://www.myastrology.in/images/astrology-ranaghat-banner1.webp",
-      "priceRange": "₹500–₹2000",
+      "priceRange": "₹501–₹2001",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Ranaghat Town",
+        "streetAddress": "Nasra Magur Khali, Tut Bagan, Post Nasra, Ranaghat",
         "addressLocality": "Ranaghat",
         "addressRegion": "West Bengal",
         "postalCode": "741202",
@@ -191,13 +191,7 @@
   </script>
 
   <!-- ✅ FIX: Google Analytics — সম্পূর্ণ ও সঠিক initialization -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S7BQGLP211"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-S7BQGLP211', { page_path: '/astrology' });
-  </script>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MVVL8XBD');</script>
 
   <!-- PERFORMANCE: Hero image preload -->
   <link rel="preload" as="image" href="images/MyAstrology-Prodyut-Acharya.webp" />
@@ -328,6 +322,7 @@
       background: var(--clr-bg);
       color: var(--clr-text);
       line-height: 1.78;
+      padding-top: 64px;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
     }
@@ -408,7 +403,6 @@
       box-shadow: var(--shadow-sm);
     }
     /* Push content below fixed header */
-    body { padding-top: 64px; }
 
     .logo {
       display: flex;
@@ -593,11 +587,6 @@
     /* ════════════════════════════════════════════════════════
        LAYOUT
        ════════════════════════════════════════════════════════ */
-    .container {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 0 20px;
-    }
     section.content-section {
       max-width: var(--max-w);
       margin: 0 auto;
@@ -626,18 +615,17 @@
       position: fixed;
       bottom: 22px;
       left: 18px;
-      width: 44px;
-      height: 44px;
-      background: transparent;
+      width: 40px;
+      height: 40px;
+      background: rgba(249,168,37,0.15);
       color: var(--clr-gold);
-      border: none;
+      border: 1px solid rgba(249,168,37,0.3);
       border-radius: 50%;
-      font-size: 1.1rem;
+      font-size: 1rem;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      
       opacity: 0;
       transform: translateY(14px);
       transition: opacity 0.3s, transform 0.3s;
@@ -781,24 +769,7 @@
       border-radius: 50px;
       white-space: nowrap;
     }
-    .panjika-strip-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      background: var(--clr-gold);
-      color: var(--clr-primary);
-      font-family: var(--font-sans);
-      font-weight: 800;
-      font-size: 0.88rem;
-      padding: 9px 20px;
-      border-radius: 50px;
-      text-decoration: none;
-      border: none;
-      white-space: nowrap;
-      flex-shrink: 0;
-      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 3px 12px rgba(249,168,37,0.3);
-    }
+    
     .panjika-strip-btn:hover {
       background: #ffca28;
       transform: translateY(-1px);
@@ -808,7 +779,7 @@
     }
     @media (max-width: 520px) {
       .panjika-strip-inner { flex-direction: column; align-items: flex-start; }
-      .panjika-strip-btn { align-self: stretch; justify-content: center; }
+      
       .toc-grid { grid-template-columns: 1fr 1fr; }
     }
 
@@ -827,21 +798,7 @@
     /* ════════════════════════════════════════════════════════
        BLOCKQUOTE
        ════════════════════════════════════════════════════════ */
-    blockquote {
-      position: relative;
-      font-size: 1.04rem;
-      font-style: italic;
-      color: #4a2c00;
-      border-left: 5px solid var(--clr-gold);
-      margin: var(--space-md) 0;
-      padding: 18px 22px 18px 28px;
-      background: linear-gradient(135deg, #fffcf0, #fff8e6);
-      border-radius: 0 6px 6px 0;
-      border-right: 1px solid #e8d5a0;
-      border-top: 1px solid #e8d5a0;
-      border-bottom: 1px solid #e8d5a0;
-      box-shadow: 2px 4px 16px rgba(249,168,37,0.1);
-    }
+    
     blockquote::before {
       content: '\201C';
       position: absolute;
@@ -987,22 +944,6 @@
       border-color:rgba(249,168,37,.42);
       background:rgba(249,168,37,.055);
     }
-    .sc-ribbon {
-      position:absolute; top:-13px; left:18px;
-      background:linear-gradient(135deg,#f9a825,#e65100);
-      color:#060618; font-size:.64rem; font-weight:800;
-      padding:3px 13px; border-radius:50px;
-      text-transform:uppercase; letter-spacing:.5px;
-    }
-    .sc-ribbon--offer {
-      background: linear-gradient(135deg, #e65100, #bf360c);
-      color: #fff;
-      top: 14px; left: auto; right: 14px;
-      border-radius: 6px;
-      font-size: .7rem;
-      letter-spacing: .3px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-    }
     .sc-icon { font-size:2.3rem; margin-bottom:12px; display:block; }
     .sc-name {
       font-family:var(--font-serif); font-size:1.13rem; font-weight:700;
@@ -1040,6 +981,7 @@
     }
     .sc-btn.alt:hover { background:rgba(249,168,37,.1); border-color:#f9a825; }
     .sc-sec {
+      padding-right: 0;
       text-align:center; font-size:.69rem;
       color:rgba(200,200,240,.42); margin-top:9px;
     }
@@ -1067,7 +1009,6 @@
       background:none; border:none; font-size:1.3rem;
       cursor:pointer; color:#aaa; line-height:1;
     }
-    .m-check { font-size:3.2rem; display:block; margin-bottom:10px; }
     #rzp-modal h3 {
       font-family:var(--font-serif); color:#1a1a5e;
       font-size:1.3rem; margin:0 0 8px;
@@ -1089,9 +1030,9 @@
     @media(max-width:560px){
       .svc-grid{grid-template-columns:1fr;}
       .svc-trust{gap:16px;}
-      .sc{padding:28px 18px 22px;}
+      .sc{padding:24px 14px 20px;}
+      .svc-section{padding:40px 14px 44px;}
     }
-
 
     /* ════ HEADLINE CLASSES — Colorful Shimmer Gradient ════ */
     @keyframes shimmer-sweep {
@@ -1292,17 +1233,17 @@
     @media (max-width: 600px) {
       header { padding: 8px 14px; }
       .logo img { height: 40px; }
-      blockquote { padding: 12px 14px 12px 18px; margin: var(--space-sm) 0; }
+      
       section.content-section { padding: var(--space-md) 14px; }
-      .panjika-strip-btn { padding: 10px 18px; font-size: 0.85rem; }
+      
     }
   
     /* ════ WhatsApp Floating Button + Flash Messages ════ */
     #wa-float {
       position: fixed;
-      bottom: 80px;
-      right: 22px;
-      z-index: 900;
+      bottom: 22px;
+      right: 18px;
+      z-index: 850;
       display: flex;
       flex-direction: column;
       align-items: flex-end;
@@ -1449,18 +1390,6 @@
     .panjika-strip-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(249,168,37,.4); border: none; }
 
     /* Special offer banner */
-    .offer-banner {
-      background: linear-gradient(90deg, #fff8e1, #fff3cd);
-      border: 1.5px solid #f9a825;
-      border-radius: var(--radius-sm);
-      padding: 10px 16px;
-      display: flex; align-items: center; gap: 10px;
-      margin: 12px 0;
-      font-family: var(--font-sans);
-      font-size: 0.9rem;
-      color: #5d3c00;
-      font-weight: 600;
-    }
     .offer-badge {
       background: var(--clr-accent);
       color: #fff; padding: 2px 8px;
@@ -1702,13 +1631,24 @@
       border: 1px solid rgba(249,168,37,.2);
     }
 
-    </style>
+    
+    /* ── Utility classes (added fixes) ── */
+    .text-center { text-align: center; }
+    .text-muted { color: var(--clr-text-lt); }
+    .mb-md { margin-bottom: var(--space-md); }
+    .mt-md { margin-top: var(--space-md); }
+    .headline-h3--lg { font-size: clamp(1.1rem, 2.5vw, 1.5rem); margin-top: var(--space-lg); }
+    .footer-tagline { font-size: 1.1rem; font-weight: 700; color: var(--clr-gold); margin-bottom: var(--space-sm); }
+    .footer-links-row { margin-top: 8px; }
+    .nav-wa-link { color: #25d366 !important; font-weight: 800; }
+</style>
   <link rel="sitemap" type="application/xml" href="https://www.myastrology.in/sitemap.xml">
   <link rel="alternate" hreflang="bn-IN" href="https://www.myastrology.in/astrology.html">
   <link rel="alternate" hreflang="x-default" href="https://www.myastrology.in/astrology.html">
 </head>
 
 <body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVVL8XBD" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- Reading Progress Bar -->
 <div id="progress-bar" role="progressbar" aria-label="পড়ার অগ্রগতি"></div>
@@ -1750,26 +1690,24 @@
 <!-- Off-canvas Nav -->
 <nav id="main-nav" role="navigation" aria-label="প্রধান নেভিগেশন">
   <div class="nav-head">
-    <span class="nav-head-title">📋 মেনু</span>
+    <span class="nav-head-title">🔮 MyAstrology মেনু</span>
     <button class="nav-close" id="navCloseBtn" aria-label="মেনু বন্ধ করুন">✕</button>
   </div>
   <a href="https://www.myastrology.in/">🏠 হোম</a>
   <a href="https://www.myastrology.in/astrology.html" aria-current="page">🔮 জ্যোতিষ শাস্ত্র</a>
-  <a href="https://www.myastrology.in/vedic-astronomy.html">🌌 জ্যোতির্বিজ্ঞান</a>
-  <a href="https://www.myastrology.in/palmistry.html">✋ হস্তরেখা</a>
+  <a href="https://www.myastrology.in/palmistry.html">✋ হস্তরেখা বিচার</a>
+  <a href="https://www.myastrology.in/gemstone.html">💎 রত্নপাথর পরামর্শ</a>
+  <a href="https://www.myastrology.in/vastu-science.html">🏛️ বাস্তু শাস্ত্র</a>
+  <a href="https://www.myastrology.in/vedic-astronomy.html">🔭 জ্যোতির্বিজ্ঞান</a>
   <a href="https://www.myastrology.in/rashifal.html">♈ রাশিফল</a>
-  <a href="https://www.myastrology.in/panjika.html">📅 দিন পঞ্জিকা</a>
-  <a href="https://www.myastrology.in/video.html">▶️ ভিডিও</a>
-  <a href="https://www.myastrology.in/vastu-science.html">🏠 বাস্তু শাস্ত্র</a>
+  <a href="https://www.myastrology.in/panjika.html">📅 বাংলা পঞ্জিকা</a>
+  <a href="https://www.myastrology.in/video.html">🎬 ভিডিও</a>
   <a href="https://www.myastrology.in/gallery.html">🖼️ গ্যালারি</a>
-  <a href="https://www.myastrology.in/about.html">👤 আমাদের সম্পর্কে</a>
-  <a href="https://www.myastrology.in/blog-list.html">📝 ব্লগসমূহ</a>
-    <a href="https://www.myastrology.in/blog.html">✍️ ব্লগ</a>
   <a href="https://www.myastrology.in/reviews.html">⭐ রিভিউ</a>
+  <a href="https://www.myastrology.in/blog-list.html">📋 ব্লগ</a>
+  <a href="https://www.myastrology.in/about.html">👤 আমাদের সম্পর্কে</a>
   <a href="https://www.myastrology.in/contact.html">📍 যোগাযোগ</a>
-  <a href="https://www.myastrology.in/privacy-policy.html"><i class="fas fa-shield-alt"></i>Privacy Policy</a>
-  <a href="https://www.myastrology.in/terms-of-use.html"><i class="fas fa-file-alt"></i>Terms of Use</a>
-  <a href="https://wa.me/919333122768" target="_blank" rel="noopener" style="color:#25d366;font-weight:800;">📲 WhatsApp পরামর্শ</a>
+  <a href="https://wa.me/919333122768?text=%F0%9F%99%8F+%E0%A6%A8%E0%A6%AE%E0%A6%B8%E0%A7%8D%E0%A6%95%E0%A6%BE%E0%A6%B0%2C+%E0%A6%9C%E0%A7%8D%E0%A6%AF%E0%A7%8B%E0%A6%A4%E0%A6%BF%E0%A6%B7+%E0%A6%AA%E0%A6%B0%E0%A6%BE%E0%A6%AE%E0%A6%B0%E0%A7%8D%E0%A6%B6+%E0%A6%9A%E0%A6%BE%E0%A6%87%E0%A5%A4" target="_blank" rel="noopener">📲 WhatsApp পরামর্শ</a>
 </nav>
 
 <div class="backdrop" id="backdrop" aria-hidden="true"></div>
@@ -1862,9 +1800,9 @@
 <!-- ═══════════════════════════ SECTION 1 ═══════════════════════════ -->
 <section class="content-section">
   <h1 id="jyotish-aloy-atma-jiggasha" class="headline-h1">
-    🔮 জ্যোতিষের আলোয় আত্ম জিজ্ঞাসা — Vedic Jyotish ও ভাগ্যের সন্ধান
+    জ্যোতিষের আলোয় আত্ম জিজ্ঞাসা — Vedic Jyotish ও ভাগ্যের সন্ধান
   </h1>
-  <h2 class="headline-h2">✨ MyAstrology — Jyotish Acharya ও Palmistry বিশেষজ্ঞ ড. প্রদ্যুৎ আচার্য</h2>
+  <h2 class="headline-h2">MyAstrology — Jyotish Acharya ও Palmistry বিশেষজ্ঞ ড. প্রদ্যুৎ আচার্য</h2>
 
   <p>ভারতীয় <strong>বৈদিক জ্যোতিষ</strong> বা <strong>Vedic Astrology</strong> শুধুমাত্র একটি শাস্ত্র নয় — বরং একটি প্রাচীন জ্ঞানের উৎস, যা শব্দতত্ত্ব থেকে উদ্ভূত, "জ্যোতি + ইষ" অর্থাৎ "আলো" এবং "ঈশ্বর" এর মিলন। <strong>Jyotish Shastra</strong> বা <strong>Jyotish Vidya</strong> হলো সেই বিদ্যা যা মহাকাশের ছন্দে মানুষের অন্তরের কথা বলে।</p>
 
@@ -2554,7 +2492,7 @@
 
   <p>এই ভাষা বুঝে নিজেকে এবং সম্পর্ককে গভীরভাবে উপলব্ধি করাই আত্মোন্নয়নের মূলধারা। তাই জ্যোতিষ এক প্রকার চিকিৎসা, যা ভুল পথে চলা আত্মাকে সঠিক পথে ফিরিয়ে আনে।</p>
 
-  <h3 class="headline-h3" style="font-size: clamp(1.1rem, 2.5vw, 1.5rem); margin-top: var(--space-lg);">🕉️ কর্ম, স্বাস্থ্য ও আত্মবিকাশে জ্যোতিষের ভূমিকা: ঋষিদের প্রজ্ঞার আলোকস্তম্ভ</h3>
+  <h3 class="headline-h3 headline-h3--lg">🕉️ কর্ম, স্বাস্থ্য ও আত্মবিকাশে জ্যোতিষের ভূমিকা: ঋষিদের প্রজ্ঞার আলোকস্তম্ভ</h3>
 
   <p>কর্ম শুধুমাত্র অর্থোপার্জনের মাধ্যম নয়, বরং আত্মার অভিযাত্রার এক অংশ। জন্মছকের দশম ভাব ও দশাধিপতি আমাদের কর্মসংক্রান্ত বোধ ও দায়িত্বের নির্দেশক।</p>
 
@@ -2655,8 +2593,8 @@
 <!-- ═══════════════════════════ REVIEWS & SOCIAL PROOF ═══════════════════════════ -->
 <section class="content-section review-section" id="reviews-social-proof">
 
-  <h2 class="headline-h2" style="text-align:center;">⭐ ক্লায়েন্টদের অভিজ্ঞতা ও বিশ্বাস</h2>
-  <p style="text-align:center; color:var(--clr-text-lt); margin-bottom:var(--space-md);">১০,০০০+ সন্তুষ্ট ক্লায়েন্ট — সারা ভারত ও বিদেশ থেকে পরামর্শ নিয়েছেন</p>
+  <h2 class="headline-h2 text-center">⭐ ক্লায়েন্টদের অভিজ্ঞতা ও বিশ্বাস</h2>
+  <p class="text-center text-muted mb-md">১০,০০০+ সন্তুষ্ট ক্লায়েন্ট — সারা ভারত ও বিদেশ থেকে পরামর্শ নিয়েছেন</p>
 
   <!-- Review Badges -->
   <div class="review-badges">
@@ -2715,8 +2653,8 @@
 
   </div>
 
-  <div style="text-align:center; margin-top:var(--space-md);">
-    <a href="https://www.myastrology.in/reviews.html" class="sc-btn" style="display:inline-block; padding:12px 32px; font-size:1rem;">
+  <div class="text-center mt-md">
+    <a href="https://www.myastrology.in/reviews.html" class="sc-btn">
       সমস্ত রিভিউ দেখুন <i class="fas fa-arrow-right"></i>
     </a>
   </div>
@@ -2843,7 +2781,7 @@
      FOOTER
      ════════════════════════════════════════════════════ -->
 <footer role="contentinfo">
-  <h2>🌟 জেনে রাখুন আরও গভীর সত্য</h2>
+  <p class="footer-tagline">🌟 জেনে রাখুন আরও গভীর সত্য</p>
 
   <p class="footer-desc">
     তিথি, গ্রহের গতি ও পঞ্জিকার সূক্ষ্ম গণনা শুধু অঙ্ক নয় — এগুলো আমাদের উৎসব ও জীবনের ছন্দের মূল রহস্য।
@@ -2853,7 +2791,7 @@
   <!-- ✅ যোগাযোগ তথ্য — Email footer-এ -->
   <div class="footer-contact">
     <a href="tel:+919333122768"><i class="fas fa-phone"></i> +91-9333122768</a>
-    <a href="mailto:info@myastrology.in"><i class="fas fa-envelope"></i> info@myastrology.in</a>
+    <a href="/cdn-cgi/l/email-protection#bed7d0d8d1fed3c7dfcdcaccd1d2d1d9c790d7d0"><i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="10797e767f507d69716364627f7c7f77693e797e">[email&#160;protected]</span></a>
     <a href="https://www.myastrology.in/panjika.html" target="_blank" rel="noopener"><i class="fas fa-calendar-alt"></i> আজকের পঞ্জিকা</a>
   </div>
 
@@ -2876,13 +2814,12 @@
     <p>
       প্রামাণিক Vedic Astrology ও হস্তরেখা পরামর্শ | Ranaghat, Nadia, West Bengal, India — 741202
     </p>
-    <p style="margin-top:8px;">
+    <p class="footer-links-row">
       <a href="https://www.myastrology.in/about.html">আমাদের সম্পর্কে</a> &nbsp;|&nbsp;
       <a href="https://www.myastrology.in/reviews.html">রিভিউ</a> &nbsp;|&nbsp;
       <a href="https://blog.myastrology.in">বাংলা ব্লগ</a> &nbsp;|&nbsp;
       <a href="https://www.myastrology.in/panjika.html">পঞ্জিকা</a> &nbsp;|&nbsp;
-  <a href="https://www.myastrology.in/blog.html">ব্লগ</a> &nbsp;|&nbsp;
-  <a href="https://www.myastrology.in/blog-list.html">ব্লগসমূহ</a> &nbsp;|&nbsp;
+  <a href="https://www.myastrology.in/blog-list.html">ব্লগ</a> &nbsp;|&nbsp;
   <a href="https://www.myastrology.in/privacy-policy.html">Privacy Policy</a> &nbsp;|&nbsp;
   <a href="https://www.myastrology.in/terms-of-use.html">Terms of Use</a>
     </p>
@@ -2893,7 +2830,7 @@
      JAVASCRIPT — Nav Toggle (সম্পূর্ণ ও সঠিক)
      ════════════════════════════════════════════════════ -->
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 (function () {
   'use strict';
 
@@ -2962,8 +2899,11 @@
     <i class="fab fa-whatsapp"></i>
   </a>
 </div>
+
 <script>
 (function(){
+  var el = document.getElementById('wa-flash-msg');
+  if(!el) return;
   var msgs = [
     "🔮 কুণ্ডলী বিশ্লেষণ করুন",
     "🌟 আজই পরামর্শ নিন",
@@ -2972,27 +2912,21 @@
     "💬 বাংলায় Online পরামর্শ",
     "🙏 এখনই WhatsApp করুন",
     "📿 Jyotish Poramorsho নিন",
-    "💍 যোটোক বিচার করুন"
+    "💍 বিবাহ পরামর্শ নিন"
   ];
-  var el = document.getElementById('wa-flash-msg');
-  var i = 0;
+  var idx = 0;
   function showNext() {
     el.classList.remove('show');
     setTimeout(function(){
-      el.textContent = msgs[i % msgs.length];
+      el.textContent = msgs[idx % msgs.length];
+      idx++;
       el.classList.add('show');
-      i++;
-      setTimeout(function(){
-        el.classList.remove('show');
-      }, 2400);
+      setTimeout(function(){ el.classList.remove('show'); }, 3000);
     }, 400);
   }
-  setTimeout(function(){
-    showNext();
-    setInterval(showNext, 3000);
-  }, 2000);
+  showNext();
+  setInterval(showNext, 5000);
 })();
 </script>
-
 </body>
 </html>
