@@ -1,48 +1,166 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn-IN" translate="no">
 <head>
   <meta charset="UTF-8">
-  <title>Page Not Found</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MVVL8XBD');</script>
+  <!-- End Google Tag Manager -->
+  <title>পেজটি পাওয়া যায়নি (404) | MyAstrology</title>
+  <meta name="description" content="এই পেজটি বিদ্যমান নেই। MyAstrology-র হোমপেজে ফিরে যান অথবা WhatsApp-এ সাহায্য নিন।">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://www.myastrology.in/">
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"></noscript>
   <style>
+    :root {
+      --navy: #0a192f;
+      --gold: #b8860b;
+      --gold3: #ffd700;
+      --cream: #fafaf6;
+      --red: #780b0b;
+      --white: #ffffff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
     body {
-      background-color: #fdf6e3;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Georgia, sans-serif;
+      background: linear-gradient(160deg, #0a192f 0%, #0f2545 50%, #0a192f 100%);
+      color: var(--white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 20px;
       text-align: center;
-      padding: 100px;
-      color: #333;
     }
+    .logo-wrap { margin-bottom: 28px; }
+    .logo-wrap img { width: 72px; height: 72px; border-radius: 12px; border: 2px solid rgba(184,134,11,.5); }
+    .brand { font-size: 1.1rem; font-weight: 700; color: var(--gold3); margin-top: 8px; letter-spacing: .06em; }
+
+    .error-code {
+      font-size: clamp(5rem, 20vw, 9rem);
+      font-weight: 900;
+      line-height: 1;
+      background: linear-gradient(135deg, var(--gold), #ffd700, var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+      letter-spacing: -4px;
+    }
+    .ornament { font-size: 1.6rem; color: rgba(255,215,0,.4); letter-spacing: 10px; margin-bottom: 18px; }
     h1 {
-      font-size: 50px;
+      font-size: clamp(1.2rem, 4vw, 1.7rem);
+      color: rgba(255,255,255,.92);
+      margin-bottom: 12px;
+      line-height: 1.4;
+      font-weight: 700;
     }
-    p {
-      font-size: 20px;
-      margin: 20px 0;
+    .sub {
+      font-size: .95rem;
+      color: rgba(255,255,255,.6);
+      max-width: 480px;
+      margin: 0 auto 32px;
+      line-height: 1.75;
     }
-    a {
-      color: #007acc;
-      text-decoration: none;
-      font-weight: bold;
+    .quote {
+      font-style: italic;
+      font-size: .9rem;
+      color: rgba(255,215,0,.65);
+      margin-bottom: 32px;
+      padding: 12px 20px;
+      border: 1px solid rgba(184,134,11,.25);
+      border-radius: 8px;
+      max-width: 420px;
+      background: rgba(255,255,255,.03);
     }
-    .button {
-      display: inline-block;
-      margin-top: 30px;
+    .btn-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 32px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       padding: 12px 24px;
-      background-color: #25D366;
-      color: white;
-      font-size: 18px;
-      border-radius: 6px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: .9rem;
       text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
     }
-    .button:hover {
-      background-color: #1ebe5d;
+    .btn:hover { transform: translateY(-3px); }
+    .btn-home { background: linear-gradient(135deg, #b8860b, #ffd700); color: #0a192f; box-shadow: 0 4px 18px rgba(184,134,11,.4); }
+    .btn-wa { background: #25d366; color: #fff; box-shadow: 0 4px 18px rgba(37,211,102,.4); }
+    .quick-links { margin-top: 8px; }
+    .quick-links p { font-size: .8rem; color: rgba(255,255,255,.45); margin-bottom: 12px; letter-spacing: .08em; text-transform: uppercase; }
+    .link-row { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .link-row a {
+      color: rgba(255,215,0,.7);
+      font-size: .82rem;
+      text-decoration: none;
+      padding: 4px 12px;
+      border: 1px solid rgba(184,134,11,.25);
+      border-radius: 20px;
+      transition: background .2s, color .2s;
     }
+    .link-row a:hover { background: rgba(184,134,11,.15); color: #ffd700; }
+    @media (max-width: 400px) { .error-code { letter-spacing: -2px; } }
   </style>
 </head>
 <body>
-  <h1>404 - Page Not Found</h1>
-  <p>Sorry! The page you’re looking for doesn't exist.</p>
-  <p><a href="/">← Back to Homepage</a></p>
-  <p>Need help? Chat with us on WhatsApp:</p>
-  <a class="button" href="https://wa.me/919333122768" target="_blank">Chat on WhatsApp</a>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVVL8XBD"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+  <div class="logo-wrap">
+    <img src="images/MyAstrology-Ranghat-logo.png" alt="MyAstrology Logo">
+    <div class="brand">MyAstrology</div>
+  </div>
+
+  <div class="error-code">404</div>
+  <div class="ornament" aria-hidden="true">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+  <h1>পেজটি খুঁজে পাওয়া যায়নি</h1>
+  <p class="sub">
+    আপনি যে পেজটি খুঁজছেন, সেটি সরানো হয়েছে, নাম পরিবর্তিত হয়েছে, বা এই মুহূর্তে উপলব্ধ নেই।<br>
+    চিন্তা করবেন না — নিচের বোতামে ক্লিক করে ফিরে যান।
+  </p>
+
+  <div class="quote">
+    "পথ হারানো মানেই শেষ নয় — এটি অনেক সময় নতুন পথ খোঁজার শুরু।"<br>
+    <small style="color:rgba(255,215,0,.5)">— ড. প্রদ্যুৎ আচার্য, MyAstrology</small>
+  </div>
+
+  <div class="btn-row">
+    <a href="https://www.myastrology.in/" class="btn btn-home">
+      <i class="fas fa-home"></i> হোমপেজে ফিরুন
+    </a>
+    <a href="https://wa.me/919333122768?text=নমস্কার%20ড.%20আচার্য%2C%20আমি%20সাহায্য%20চাইছি।" target="_blank" rel="noopener" class="btn btn-wa">
+      <i class="fab fa-whatsapp"></i> WhatsApp করুন
+    </a>
+  </div>
+
+  <div class="quick-links">
+    <p>জনপ্রিয় পেজসমূহ</p>
+    <div class="link-row">
+      <a href="https://www.myastrology.in/astrology.html">জ্যোতিষ</a>
+      <a href="https://www.myastrology.in/palmistry.html">হস্তরেখা</a>
+      <a href="https://www.myastrology.in/gemstone.html">রত্নপাথর</a>
+      <a href="https://www.myastrology.in/rashifal.html">রাশিফল</a>
+      <a href="https://www.myastrology.in/panjika.html">পঞ্জিকা</a>
+      <a href="https://www.myastrology.in/vastu-science.html">বাস্তু</a>
+      <a href="https://www.myastrology.in/reviews.html">রিভিউ</a>
+      <a href="https://www.myastrology.in/contact.html">যোগাযোগ</a>
+    </div>
+  </div>
+
 </body>
 </html>
