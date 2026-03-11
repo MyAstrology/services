@@ -1,5 +1,4 @@
 
-```javascript
 const fs=require('fs'),path=require('path');
 const BLOG_DIR=path.join(__dirname,'src/content/blog');
 const OUTPUT_DIR=path.join(__dirname,'blog');
@@ -141,4 +140,4 @@ files.forEach(file=>{
   console.log(`OK: blog/${slug}.html`);
 });
 console.log(`Total: ${count} files generated`);
-```
+
