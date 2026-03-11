@@ -65,14 +65,14 @@
   --max-w:1100px;--radius:10px;--shadow:0 4px 18px rgba(0,0,0,.10);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;overflow-x:hidden;max-width:100%}
-body{font-family:var(--fb);background:var(--cream);color:var(--text);line-height:1.75;overflow-x:hidden;max-width:100vw}
+html{scroll-behavior:smooth;overflow-x:clip;max-width:100%}
+body{font-family:var(--fb);background:var(--cream);color:var(--text);line-height:1.75;overflow-x:clip;max-width:100vw;padding-top:62px}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
 
 /* HEADER */
-.site-header{position:sticky;top:0;z-index:900;display:flex;align-items:center;gap:12px;padding:0 20px;height:62px;background:var(--navy);box-shadow:0 2px 18px rgba(0,0,0,.5);border-bottom:2px solid var(--gold)}
+.site-header{position:fixed;width:100%;top:0;z-index:900;display:flex;align-items:center;gap:12px;padding:0 20px;height:62px;background:var(--navy);box-shadow:0 2px 18px rgba(0,0,0,.5);border-bottom:2px solid var(--gold)}
 .ham{background:none;border:none;color:var(--gold2);font-size:1.5rem;cursor:pointer;padding:8px;border-radius:6px;transition:background .2s;flex-shrink:0}
 .ham:hover{background:rgba(255,255,255,.1)}
 .header-brand{font-family:var(--fh);font-size:1.15rem;font-weight:700;color:var(--gold2);letter-spacing:.5px;flex:1;text-align:center}
@@ -144,10 +144,9 @@ img{max-width:100%;display:block}
 /* GRAHA CARD IMG */
 .graha-icon{width:80px;height:80px;margin:0 auto 10px;display:block;object-fit:cover;border-radius:50%;border:2px solid rgba(201,162,39,.3);background:#f5f0e8}
 .graha-icon-fb{font-size:2rem;margin-bottom:7px;display:block}
-/* BTT */
-#btt{position:fixed;bottom:22px;left:18px;background:rgba(12,27,51,.75);border:1.5px solid var(--gold);color:var(--gold2);font-size:1.1rem;cursor:pointer;z-index:997;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity .3s,transform .3s;box-shadow:0 2px 10px rgba(0,0,0,.3);outline:none}
+
 #btt.visible{opacity:1;transform:translateY(0);pointer-events:auto}
-#btt{font-size:1.2rem;font-style:normal}
+
 #btt:hover{color:#fff}
 /* INTRO ESSAY */
 .intro-essay{background:#fff;border-radius:14px;padding:28px;box-shadow:var(--shadow);margin-bottom:36px;border-left:4px solid var(--gold)}
@@ -289,18 +288,16 @@ img{max-width:100%;display:block}
 .s-yt{background:#FF0000;color:#fff!important}.s-ig{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285AEB 90%);color:#fff!important}
 .s-tw{background:#000;color:#fff!important}.s-li{background:#0077B5;color:#fff!important}
 
-/* WA FLOAT */
-.wa-float{position:fixed;bottom:20px;right:18px;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+
 .wa-bubble{background:#fff;color:#555;font-size:.57rem;font-weight:600;padding:3px 8px;border-radius:8px 8px 2px 8px;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.14);opacity:0;transform:translateY(6px) scale(.95);transition:opacity .35s,transform .35s;max-width:120px;border:1px solid #ebebeb}
 .wa-bubble.show{opacity:1;transform:translateY(0) scale(1)}
 .wa-btn-float{width:44px;height:44px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:#fff;cursor:pointer;box-shadow:0 4px 18px rgba(37,211,102,.5);animation:waPulse 2.4s infinite;text-decoration:none}
 .wa-btn-float:hover{background:#1ebe5d;animation:none;transform:scale(1.08)}
 @keyframes waPulse{0%,100%{box-shadow:0 4px 18px rgba(37,211,102,.5)}50%{box-shadow:0 4px 30px rgba(37,211,102,.8)}}
 
-/* BTT */
-#btt{position:fixed;bottom:22px;left:18px;background:transparent;border:none;color:var(--gold2);font-size:1.8rem;cursor:pointer;z-index:997;line-height:1;opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity .3s,transform .3s;padding:0;box-shadow:none;outline:none}
+
 #btt.visible{opacity:1;transform:translateY(0);pointer-events:auto}
-#btt{font-size:1.2rem;font-style:normal}
+
 #btt:hover{color:#fff}
 
 /* PAYMENT MODAL */
@@ -536,13 +533,11 @@ h2.sec-title,h3.sec-title{font-family:var(--fh)!important;font-size:clamp(1.05re
 .fcta-btn-p:hover{transform:translateY(-2px)}
 .fcta-btn-wa{display:inline-flex;align-items:center;gap:8px;border:2px solid #25d366;color:#128c7e;background:#fff;padding:10px 18px;border-radius:50px;font-weight:700;font-size:.88rem;text-decoration:none;transition:all .2s}
 .fcta-btn-wa:hover{background:#25d366;color:#fff}
-/* ════ BTT ════ */
-#btt{position:fixed;bottom:22px;left:18px;background:rgba(12,27,51,.85);border:1.5px solid var(--gold);color:var(--gold2);font-size:.88rem;cursor:pointer;z-index:997;width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity .3s,transform .3s;box-shadow:0 2px 12px rgba(0,0,0,.38);outline:none;padding:0;line-height:1}
+
 #btt.visible{opacity:1;transform:translateY(0);pointer-events:auto}
 #btt{font-size:1.2rem;font-style:normal}
 #btt:hover{background:var(--navy);color:#fff}
-/* ════ WA FLOAT ════ */
-.wa-float{position:fixed;bottom:76px;right:16px;z-index:996;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+
 .wa-bubble{background:var(--navy);color:var(--gold2);font-size:.78rem;font-weight:700;padding:6px 14px;border-radius:20px;border:1px solid rgba(201,162,39,.3);opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s;pointer-events:none;white-space:nowrap}
 .wa-bubble.show{opacity:1;transform:translateY(0)}
 .wa-btn-float{width:52px;height:52px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.5rem;box-shadow:0 4px 16px rgba(37,211,102,.45);text-decoration:none;transition:transform .2s}
@@ -550,7 +545,7 @@ h2.sec-title,h3.sec-title{font-family:var(--fh)!important;font-size:clamp(1.05re
 @media(max-width:480px){.fcta-btns,.final-btns,.cta-btns{flex-direction:column;align-items:stretch}}
 @media(max-width:480px){.fcta-btn-p,.fcta-btn-wa{width:100%;justify-content:center}}
 
-body.nav-open{overflow:hidden}
+body.nav-open{overflow-y:hidden}
 
 .nav-section-label{font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.18em;color:var(--gold);padding:10px 18px 5px;opacity:.85;border-top:1px solid rgba(201,162,39,.12);margin-top:4px}
 .nav-section-label:first-child{border-top:none;margin-top:0}
@@ -648,7 +643,7 @@ body.nav-open{overflow:hidden}
 .s-tw{background:#000!important}
 
 /* ══ WA FLOAT (44px) ══ */
-.wa-float{position:fixed;bottom:20px;right:18px;z-index:9998;display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.wa-float{position:fixed;bottom:20px;right:18px;z-index:996;display:flex;flex-direction:column;align-items:flex-end;gap:6px}
 .wa-bubble{background:#fff;color:#075e54;font-size:.72rem;font-weight:700;padding:6px 12px;border-radius:16px 16px 4px 16px;box-shadow:0 3px 12px rgba(0,0,0,.14);opacity:0;transform:translateX(8px);transition:opacity .35s,transform .35s;pointer-events:none;white-space:nowrap;border:1px solid rgba(37,211,102,.2)}
 .wa-bubble.show{opacity:1;transform:translateX(0)}
 .wa-btn-float{width:44px;height:44px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:#fff;cursor:pointer;box-shadow:0 4px 18px rgba(37,211,102,.5);animation:waPulse 2.4s infinite;text-decoration:none}
@@ -678,6 +673,10 @@ body.nav-open{overflow:hidden}
 .mcta1-trust{display:flex;flex-wrap:wrap;justify-content:center;gap:7px 14px;color:#4a6a8a;font-size:.72rem}
 .mcta1-trust span{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);padding:3px 10px;border-radius:16px}
 
+
+/* ── nav open: hide floating buttons behind nav ── */
+body.nav-open .wa-float,
+body.nav-open #btt{display:none!important}
 </style>
 </head>
 <body>
@@ -692,23 +691,29 @@ body.nav-open{overflow:hidden}
 </header>
 
 <nav class="nav" id="navMenu" aria-label="মূল নেভিগেশন">
-  <a href="https://www.myastrology.in/">🏠 হোম</a>
-  <a href="https://www.myastrology.in/astrology.html">🔮 জ্যোতিষ শাস্ত্র</a>
-  <a href="https://www.myastrology.in/palmistry.html">✋ হস্তরেখা বিচার</a>
-  <a href="https://www.myastrology.in/gemstone.html" aria-current="page">💎 রত্নপাথর পরামর্শ</a>
-  <a href="https://www.myastrology.in/vastu-science.html">🏠 বাস্তু শাস্ত্র</a>
-  <a href="https://www.myastrology.in/vedic-astronomy.html">🔭 জ্যোতির্বিজ্ঞান</a>
-  <a href="https://www.myastrology.in/rashifal.html">♈ রাশিফল</a>
-  <a href="https://www.myastrology.in/panjika.html">📅 পঞ্জিকা</a>
-  <a href="https://www.myastrology.in/video.html">▶️ ভিডিও</a>
-  <a href="https://www.myastrology.in/gallery.html">🖼️ গ্যালারি</a>
-  <a href="https://www.myastrology.in/reviews.html">⭐ রিভিউ</a>
-  <a href="https://www.myastrology.in/blog-list.html">📋 ব্লগ</a>
-  <a href="https://www.myastrology.in/about.html">👤 আমাদের সম্পর্কে</a>
-  <a href="https://www.myastrology.in/contact.html">📞 যোগাযোগ</a>
-  <a href="https://wa.me/919333122768" target="_blank" rel="noopener" class="nav-wa-link">📲 WhatsApp পরামর্শ</a>
+  <div class="nav-section-label">🏠 মূল পাতা</div>
+  <a href="index.html">🏠 হোম</a>
+  <a href="about.html">👤 আমাদের সম্পর্কে</a>
+  <a href="contact.html">📞 যোগাযোগ</a>
+  <a href="privacy-policy.html">🔒 Privacy Policy</a>
+  <a href="terms-of-use.html">📄 Terms of Use</a>
+  <div class="nav-section-label">⭐ জ্যোতিষ ও পরামর্শ</div>
+  <a href="astrology.html">⭐ জ্যোতিষ শাস্ত্র</a>
+  <a href="gemstone.html" aria-current="page">💎 গ্রহ-রত্ন পরামর্শ</a>
+  <a href="palmistry.html">🖐 হস্তরেখা</a>
+  <a href="rashifal.html">♈ রাশিফল</a>
+  <a href="panjika.html">📅 পঞ্জিকা</a>
+  <a href="vastu-science.html">🏛 বাস্তু শাস্ত্র</a>
+  <a href="vedic-astronomy.html">🌙 জ্যোতির্বিজ্ঞান</a>
+  <div class="nav-section-label">📚 ব্লগ ও মিডিয়া</div>
+  <a href="blog.html">📝 ব্লগ</a>
+  <a href="gallery.html">🖼 গ্যালারি</a>
+  <a href="reviews.html">⭐ রিভিউ</a>
+  <a href="video.html">▶️ ভিডিও</a>
+  <a href="https://wa.me/919333122768" target="_blank" rel="noopener" class="nav-wa-link">💬 WhatsApp পরামর্শ</a>
 </nav>
 <div class="nav-overlay" id="navOverlay" onclick="closeNav()"></div>
+</div>
 
 
 
@@ -2238,31 +2243,31 @@ body.nav-open{overflow:hidden}
       <h4>MyAstrology</h4>
       <p><i class="fas fa-map-marker-alt"></i>রাণাঘাট, নদিয়া, পশ্চিমবঙ্গ — ৭৪১২০২</p>
       <p><i class="fas fa-phone"></i><a href="tel:+919333122768">+91 93331 22768</a></p>
-      <p><i class="fas fa-envelope"></i><a href="/cdn-cgi/l/email-protection#2841464e47684551495b5c5a4744474f51064146"><span class="__cf_email__" data-cfemail="e68f888089a68b9f87959294898a89819fc88f88">[email&#160;protected]</span></a></p>
+      <p><i class="fas fa-envelope"></i><a href="/cdn-cgi/l/email-protection#31585f575e715c48504245435e5d5e56481f585f"><span class="__cf_email__" data-cfemail="2e474048416e43574f5d5a5c4142414957004740">[email&#160;protected]</span></a></p>
       <a href="https://wa.me/919333122768" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i>WhatsApp পরামর্শ</a>
-      <a href="https://www.myastrology.in/astrology.html"><i class="fas fa-calendar-check"></i>অনলাইন বুকিং</a>
+      <a href="https://www.myastrology.in/astrology"><i class="fas fa-calendar-check"></i>অনলাইন বুকিং</a>
     </div>
     <div class="footer-col">
       <h4>সেবাসমূহ</h4>
-      <a href="https://www.myastrology.in/palmistry.html">হস্তরেখা বিচার</a>
-      <a href="https://www.myastrology.in/astrology.html">জন্মকুণ্ডলী বিশ্লেষণ</a>
-      <a href="https://www.myastrology.in/vastu-science.html">বাস্তু শাস্ত্র</a>
-      <a href="https://www.myastrology.in/gemstone.html">রত্নপাথর পরামর্শ</a>
-      <a href="https://www.myastrology.in/rashifal.html">দৈনন্দিন রাশিফল</a>
-      <a href="https://www.myastrology.in/panjika.html">পঞ্জিকা</a>
-      <a href="https://www.myastrology.in/vedic-astronomy.html">বৈদিক জ্যোতির্বিজ্ঞান</a>
+      <a href="https://www.myastrology.in/palmistry">হস্তরেখা বিচার</a>
+      <a href="https://www.myastrology.in/astrology">জন্মকুণ্ডলী বিশ্লেষণ</a>
+      <a href="https://www.myastrology.in/vastu-science">বাস্তু শাস্ত্র</a>
+      <a href="https://www.myastrology.in/gemstone">রত্নপাথর পরামর্শ</a>
+      <a href="https://www.myastrology.in/rashifal">দৈনন্দিন রাশিফল</a>
+      <a href="https://www.myastrology.in/panjika">পঞ্জিকা</a>
+      <a href="https://www.myastrology.in/vedic-astronomy">বৈদিক জ্যোতির্বিজ্ঞান</a>
       <a href="https://wa.me/919333122768?text=%E0%A6%A8%E0%A6%BE%E0%A6%AE%E0%A6%95%E0%A6%B0%E0%A6%A3।"><i class="fab fa-whatsapp"></i>নবজাতকের নামকরণ</a>
     </div>
     <div class="footer-col">
       <h4>তথ্য</h4>
-      <a href="https://www.myastrology.in/about.html">ড. আচার্য সম্পর্কে</a>
-      <a href="https://www.myastrology.in/blog-list.html">ব্লগ সমূহ</a>
-      <a href="https://www.myastrology.in/gallery.html">গ্যালারি</a>
-      <a href="https://www.myastrology.in/reviews.html">সমস্ত রিভিউ</a>
-      <a href="https://www.myastrology.in/video.html">ভিডিও</a>
-      <a href="https://www.myastrology.in/privacy-policy.html">Privacy Policy</a>
-      <a href="https://www.myastrology.in/terms-of-use.html">Terms of Use</a>
-      <a href="https://www.myastrology.in/contact.html">যোগাযোগ</a>
+      <a href="https://www.myastrology.in/about-us">ড. আচার্য সম্পর্কে</a>
+      <a href="https://www.myastrology.in/blog">ব্লগ সমূহ</a>
+      <a href="https://www.myastrology.in/gallery">গ্যালারি</a>
+      <a href="https://www.myastrology.in/reviews">সমস্ত রিভিউ</a>
+      <a href="https://www.myastrology.in/video">ভিডিও</a>
+      <a href="https://www.myastrology.in/privacy-policy">Privacy Policy</a>
+      <a href="https://www.myastrology.in/terms-of-use">Terms of Use</a>
+      <a href="https://www.myastrology.in/contact-us">যোগাযোগ</a>
     </div>
     <div class="footer-col">
       <h4>সেবা এলাকা</h4>
@@ -2272,8 +2277,8 @@ body.nav-open{overflow:hidden}
   </div>
   <div class="footer-bottom">
     <p>&#169; 2026 MyAstrology &nbsp;&middot;&nbsp; ড. প্রদ্যুৎ আচার্য, PhD in Vedic Jyotish &nbsp;&middot;&nbsp; রাণাঘাট, পশ্চিমবঙ্গ &nbsp;&middot;&nbsp;
-      <a href="https://www.myastrology.in/about.html" style="color:#5a7a9a;border-bottom:1px solid #3d5570">About</a> &nbsp;&middot;&nbsp;
-      <a href="https://www.myastrology.in/privacy-policy.html" style="color:#5a7a9a;border-bottom:1px solid #3d5570">Privacy Policy</a>
+      <a href="https://www.myastrology.in/about-us" style="color:#5a7a9a;border-bottom:1px solid #3d5570">About</a> &nbsp;&middot;&nbsp;
+      <a href="https://www.myastrology.in/privacy-policy" style="color:#5a7a9a;border-bottom:1px solid #3d5570">Privacy Policy</a>
     </p>
     <div class="social-row">
       <a href="https://wa.me/919333122768" target="_blank" rel="noopener" class="s-wa" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
@@ -2345,4 +2350,14 @@ function startPayment(){
       var msg='নমস্কার ড. আচার্য, রত্নপাথর পরামর্শ বুক করেছি।%0Aনাম: '+encodeURIComponent(_pName)+'%0AWhatsApp: +91'+_pPhone+'%0APayment ID: '+pid;
       document.getElementById('payWaLink').href='https://wa.me/919333122768?text='+msg;
     },
-    modal:{ondismiss:function(){btn.disabled=false;btn.textContent='🔒 
+    modal:{ondismiss:function(){btn.disabled=false;btn.textContent='🔒 নিরাপদ পেমেন্ট করুন';}},
+  };
+  var rzp=new Razorpay(opt);
+  rzp.on('payment.failed',function(r){btn.disabled=false;btn.textContent='🔒 নিরাপদ পেমেন্ট করুন';alert('পেমেন্ট ব্যর্থ। আবার চেষ্টা করুন।');});
+  rzp.open();
+}
+document.getElementById('payOverlay').addEventListener('click',function(e){if(e.target===this)closePay();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closePay();});
+</script>
+</body>
+</html>
