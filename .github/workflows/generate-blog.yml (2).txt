@@ -1,0 +1,49 @@
+name: Generate Static Blog Posts
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/content/blog/**.md'
+      - 'generate-posts.js'
+      - 'src/content/blog/generate-list.js'
+      - 'src/content/blog/generate-sitemap.js'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate blog HTML files
+        run: node generate-posts.js
+
+      - name: Update blog list
+        run: node src/content/blog/generate-list.js
+
+      - name: Update sitemaps
+        run: |
+          node src/content/blog/generate-sitemap.js
+          if [ -f src/content/blog/generate-image-sitemap.js ]; then node src/content/blog/generate-image-sitemap.js; fi
+          if [ -f src/content/blog/generate-video-sitemap.js ]; then node src/content/blog/generate-video-sitemap.js; fi
+
+      - name: Commit generated files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add blog/*.html src/content/blog/list.json sitemap*.xml image-sitemap.xml video-sitemap.xml
+          git diff --staged --quiet || git commit -m "Auto-generate blog posts & sitemaps [skip ci]"
+          git push
