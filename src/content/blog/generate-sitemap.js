@@ -53,7 +53,7 @@ function readBlogPosts() {
   try {
     const posts = JSON.parse(fs.readFileSync(blogPath, 'utf8'));
     return posts.map(post => ({
-      url:        `${BASE_URL}/blog.html?post=${post.slug}`,
+      url:        `${BASE_URL}/blog/${post.slug}.html`,
       lastmod:    post.date
                     ? new Date(post.date).toISOString().split('T')[0]
                     : TODAY,
