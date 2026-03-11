@@ -87,13 +87,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;overflow-x:clip;max-width:100%}
 body{
-  overflow-x:clip;max-width:100vw;font-family:var(--fb);color:var(--text);background:var(--cream);line-height:1.75;-webkit-font-smoothing:antialiased}
+  overflow-x:clip;max-width:100vw;font-family:var(--fb);color:var(--text);background:var(--cream);line-height:1.75;-webkit-font-smoothing:antialiased  padding-top:66px;
+}
 img{max-width:100%;height:auto;display:block}
 a{text-decoration:none;color:inherit}
 h1,h2,h3,h4{font-family:var(--fh);line-height:1.3}
 
 /* HEADER */
-.site-header{position:sticky;top:0;z-index:900;display:flex;align-items:center;gap:12px;padding:0 20px;height:66px;background:var(--navy);box-shadow:0 2px 18px rgba(0,0,0,.5);border-bottom:2px solid var(--gold);}
+.site-header{position:fixed;width:100%;top:0;z-index:900;display:flex;align-items:center;gap:12px;padding:0 20px;height:66px;background:var(--navy);box-shadow:0 2px 18px rgba(0,0,0,.5);border-bottom:2px solid var(--gold);}
 .ham{background:rgba(255,255,255,.06);border:1.5px solid rgba(184,134,11,.45);cursor:pointer;color:var(--gold-lt);font-size:1.25rem;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:7px;flex-shrink:0;transition:background .2s;}
 .ham:hover{background:rgba(184,134,11,.18)}
 .header-brand{font-family:var(--fh);font-size:1.18rem;font-weight:700;color:var(--gold-lt);letter-spacing:.05em;flex:1;text-align:center;}
@@ -408,7 +409,10 @@ hr.divider{border:none;border-top:1px solid var(--border);max-width:580px;margin
     .btn-wa-card:hover{background:#1ebe5d}
     .btn-wa-card i{font-size:1rem}
 
-    </style>
+    
+body.nav-open{overflow-y:hidden}
+body.nav-open .wa-float,body.nav-open #btt{display:none!important}
+</style>
 </head>
 <body>
   
@@ -1138,7 +1142,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h4>MyAstrology</h4>
       <p><i class="fas fa-map-marker-alt"></i>রাণাঘাট, নদিয়া, পশ্চিমবঙ্গ — ৭৪১২০২</p>
       <p><i class="fas fa-phone"></i>+91 93331 22768</p>
-      <p><i class="fas fa-envelope"></i><a href="/cdn-cgi/l/email-protection#462f282029062b3f27353234292a29213f682f28"><span class="__cf_email__" data-cfemail="b6dfd8d0d9f6dbcfd7c5c2c4d9dad9d1cf98dfd8">[email&#160;protected]</span></a></p>
+      <p><i class="fas fa-envelope"></i><a href="mailto:info@myastrology.in">info@myastrology.in</a></p>
       <a href="https://wa.me/919333122768" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i>WhatsApp পরামর্শ</a>
       <a href="https://www.myastrology.in/astrology.html"><i class="fas fa-calendar-check"></i>অনলাইন বুকিং</a>
     </div>
@@ -1248,14 +1252,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <!-- JAVASCRIPT -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 /* ── Nav ── */
 function toggleNav(){
   var nav=document.getElementById('navMenu');
   var ov=document.getElementById('navOverlay');
   nav.classList.toggle('open');
   ov.classList.toggle('open');
-  document.body.style.overflow=nav.classList.contains('open')?'hidden':'';
+  document.body.classList.toggle('nav-open',nav.classList.contains('open'));
 }
 function closeNav(){
   document.getElementById('navMenu').classList.remove('open');
@@ -1454,3 +1458,4 @@ document.addEventListener('click', function(e) {
 </script>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Astrology Services by Dr. Prodyut Acharya","url":"https://www.myastrology.in","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Service","name":"হস্তরেখা বিচার (Palm Reading)","url":"https://www.myastrology.in/palmistry.html","description":"অনলাইন হস্তরেখা — দুই হাতের ছবি WhatsApp-ে পাঠান, ৩-৪ ঘণ্টায় বিশ্লেষণ ও ২০ মিনিটের ফোন কল।","provider":{"@type":"Person","name":"Dr. Prodyut Acharya"},"areaServed":"India","offers":{"@type":"Offer","price":"1001","priceCurrency":"INR"}}},{"@type":"ListItem","position":2,"item":{"@type":"Service","name":"জন্মকুণ্ডলী বিচার (Birth Chart)","url":"https://www.myastrology.in/astrology.html","description":"বৈদিক জন্মকুণ্ডলী — ৩০-৩৫ পাতার PDF রিপোর্ট ও ৩০ মিনিটের ফোন পরামর্শ।","provider":{"@type":"Person","name":"Dr. Prodyut Acharya"},"areaServed":"India","offers":{"@type":"Offer","price":"1501","priceCurrency":"INR"}}},{"@type":"ListItem","position":3,"item":{"@type":"Service","name":"জন্মকুণ্ডলী + হস্তরেখা বিচার","url":"https://www.myastrology.in/astrology.html","description":"কুণ্ডলী ও হস্তরেখার সম্মিলিত বিশ্লেষণ — ৩০-৩৫ পাতার PDF ও ৩০ মিনিটের ফোন পরামর্শ।","provider":{"@type":"Person","name":"Dr. Prodyut Acharya"},"areaServed":"India","offers":{"@type":"Offer","price":"2001","priceCurrency":"INR"}}},{"@type":"ListItem","position":4,"item":{"@type":"Service","name":"যোটোক বিচার (Kundli Matching)","url":"https://www.myastrology.in/astrology.html","description":"বৈদিক বিবাহ সামঞ্জস্য — অষ্টকূট মিলন, মাঙ্গলিক দোষ বিশ্লেষণ সহ সম্পূর্ণ রিপোর্ট।","provider":{"@type":"Person","name":"Dr. Prodyut Acharya"},"areaServed":"India","offers":{"@type":"Offer","price":"2001","priceCurrency":"INR"}}},{"@type":"ListItem","position":5,"item":{"@type":"Service","name":"নামকরণ (Born Baby Name)","description":"নক্ষত্র, রাশি ও জন্মকুণ্ডলী অনুয
+</html>
