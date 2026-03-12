@@ -15,47 +15,37 @@ const LOGO_IMG     = `${SITE_URL}/images/MyAstrology-Ranghat-logo.png`;
 
 // ── Frontmatter parser ─────────────────────────────────────────────
 function parseFrontmatter(content) {
-  const meta = { title: '', description: '', date: '', image: '', tags: [] };
+  const meta = { title:'', description:'', date:'', image:'', tags:[] };
   const match = content.match(/^---\n([\s\S]*?)\n---/);
   if (!match) return meta;
-
   const lines = match[1].split('\n');
   let inTags = false;
-
   lines.forEach(line => {
     if (/^tags\s*:/.test(line)) { inTags = true; return; }
     if (inTags) {
       if (/^\s{2,}-\s+/.test(line)) {
-        meta.tags.push(line.replace(/^\s+-\s+/, '').replace(/^["']|["']$/g, '').trim());
+        meta.tags.push(line.replace(/^\s+-\s+/,'').replace(/^["']|["']$/g,'').trim());
         return;
       }
       inTags = false;
     }
-
-    const colonIdx = line.indexOf(':');
-    if (colonIdx === -1) return;
-    const key = line.slice(0, colonIdx).trim();
-    const val = line.slice(colonIdx + 1).trim().replace(/^["']|["']$/g, '');
-
+    const ci = line.indexOf(':');
+    if (ci === -1) return;
+    const key = line.slice(0, ci).trim();
+    const val = line.slice(ci+1).trim().replace(/^["']|["']$/g,'');
     if (key === 'title')       meta.title       = val;
     if (key === 'description') meta.description = val;
     if (key === 'date')        meta.date        = val;
     if (key === 'image')       meta.image       = val;
-
     if (key === 'tags' && val.includes('[')) {
-      meta.tags = val
-        .replace(/[\[\]]/g, '')
-        .split(',')
-        .map(t => t.trim().replace(/^["']|["']$/g, ''))
-        .filter(Boolean);
+      meta.tags = val.replace(/[\[\]]/g,'').split(',')
+        .map(t => t.trim().replace(/^["']|["']$/g,'')).filter(Boolean);
     }
   });
-
   return meta;
 }
 
 // ── Image URL normalizer ───────────────────────────────────────────
-// FIX: default path এখন /images/ — আগে /blog/ ছিল যা ভুল ছিল
 function normalizeImage(img, slug) {
   if (!img) return `${SITE_URL}/images/${slug}.webp`;
   return img
@@ -63,111 +53,81 @@ function normalizeImage(img, slug) {
     .replace('http://astro.myastrology.in',  SITE_URL);
 }
 
-// ── Safe JSON string escape ────────────────────────────────────────
+// ── Safe JSON string ───────────────────────────────────────────────
 function jsonStr(s) {
-  return (s || '')
-    .replace(/\\/g,        '\\\\')
-    .replace(/"/g,         '\\"')
-    .replace(/\n/g,        '\\n')
-    .replace(/\r/g,        '\\r')
-    .replace(/<\/script>/gi, '<\\/script>');
+  return (s||'')
+    .replace(/\\/g,'\\\\').replace(/"/g,'\\"')
+    .replace(/\n/g,'\\n').replace(/\r/g,'\\r')
+    .replace(/<\/script>/gi,'<\\/script>');
 }
 
 // ── Markdown → HTML ────────────────────────────────────────────────
 function markdownToHtml(raw) {
   let md = raw.replace(/^---[\s\S]*?---\n?/, '');
-  const blocks = md.split(/\n{2,}/);
-  const html   = [];
-
-  blocks.forEach(block => {
+  const html = [];
+  md.split(/\n{2,}/).forEach(block => {
     block = block.trim();
     if (!block) return;
-
-    // ── HR ──
-    if (/^---+$/.test(block)) {
-      html.push('<hr>');
-      return;
-    }
-
-    // ── Raw HTML block ──
+    // HR
+    if (/^---+$/.test(block)) { html.push('<hr>'); return; }
+    // Raw HTML
     if (/^<(div|section|article|figure|table|ul|ol|blockquote|hr|h[1-6]|p\s)/i.test(block)) {
-      html.push(block);
-      return;
+      html.push(block); return;
     }
-
-    // ── Headings — FIX: <span id="..."> anchor সহ ──
+    // Headings
     if (/^#{1,6}\s/.test(block)) {
-      const hBlock = block
-        .replace(/^###### (.+)$/gm, '<h6>$1</h6>')
-        .replace(/^##### (.+)$/gm,  '<h5>$1</h5>')
-        .replace(/^#### (.+)$/gm,   '<h4>$1</h4>')
-        .replace(/^### (.+)$/gm,    '<h3>$1</h3>')
-        .replace(/^## (.+)$/gm,     '<h2>$1</h2>')
-        .replace(/^# (.+)$/gm,      '<h1>$1</h1>');
-      html.push(hBlock);
-      return;
+      html.push(block
+        .replace(/^######\s(.+)$/gm,'<h6>$1</h6>')
+        .replace(/^#####\s(.+)$/gm, '<h5>$1</h5>')
+        .replace(/^####\s(.+)$/gm,  '<h4>$1</h4>')
+        .replace(/^###\s(.+)$/gm,   '<h3>$1</h3>')
+        .replace(/^##\s(.+)$/gm,    '<h2>$1</h2>')
+        .replace(/^#\s(.+)$/gm,     '<h1>$1</h1>')
+      ); return;
     }
-
-    // ── Blockquote ──
+    // Blockquote
     if (/^>\s/.test(block)) {
-      const inner = block.replace(/^>\s?/gm, '').trim();
-      html.push(`<blockquote>${applyInline(inner)}</blockquote>`);
+      html.push(`<blockquote>${applyInline(block.replace(/^>\s?/gm,'').trim())}</blockquote>`);
       return;
     }
-
-    // ── Table — NEW: markdown table support ──
+    // Table
     if (/^\|.+\|/.test(block)) {
       const rows = block.split('\n').filter(r => r.trim());
-      const isHeader = rows.length > 1 && /^\|[-\s|:]+\|$/.test(rows[1]);
-      let tableHtml = '<div class="table-wrap"><table>\n';
-
+      const isHdr = rows.length > 1 && /^\|[-\s|:]+\|$/.test(rows[1]);
+      let t = '<div class="tbl-wrap"><table>\n';
       rows.forEach((row, i) => {
-        if (isHeader && i === 1) return; // separator row skip
-        const cells = row.split('|').map(c => c.trim()).filter(c => c !== '');
-        const tag   = (isHeader && i === 0) ? 'th' : 'td';
-        tableHtml += '<tr>' + cells.map(c => `<${tag}>${applyInline(c)}</${tag}>`).join('') + '</tr>\n';
+        if (isHdr && i === 1) return;
+        const cells = row.split('|').map(c=>c.trim()).filter(c=>c!=='');
+        const tag = (isHdr && i===0) ? 'th' : 'td';
+        t += '<tr>' + cells.map(c=>`<${tag}>${applyInline(c)}</${tag}>`).join('') + '</tr>\n';
       });
-
-      tableHtml += '</table></div>';
-      html.push(tableHtml);
-      return;
+      html.push(t + '</table></div>'); return;
     }
-
-    // ── Unordered list ──
+    // UL
     if (/^\s*[-*]\s/.test(block)) {
-      const items = block
-        .split('\n')
-        .filter(l => /^\s*[-*]\s/.test(l))
-        .map(l => `<li>${applyInline(l.replace(/^\s*[-*]\s/, ''))}</li>`)
-        .join('\n');
-      html.push(`<ul>\n${items}\n</ul>`);
+      html.push('<ul>\n' + block.split('\n')
+        .filter(l=>/^\s*[-*]\s/.test(l))
+        .map(l=>`<li>${applyInline(l.replace(/^\s*[-*]\s/,''))}</li>`).join('\n') + '\n</ul>');
       return;
     }
-
-    // ── Ordered list ──
+    // OL
     if (/^\s*\d+\.\s/.test(block)) {
-      const items = block
-        .split('\n')
-        .filter(l => /^\s*\d+\.\s/.test(l))
-        .map(l => `<li>${applyInline(l.replace(/^\s*\d+\.\s/, ''))}</li>`)
-        .join('\n');
-      html.push(`<ol>\n${items}\n</ol>`);
+      html.push('<ol>\n' + block.split('\n')
+        .filter(l=>/^\s*\d+\.\s/.test(l))
+        .map(l=>`<li>${applyInline(l.replace(/^\s*\d+\.\s/,''))}</li>`).join('\n') + '\n</ol>');
       return;
     }
-
-    // ── Paragraph ──
-    const para = applyInline(block.replace(/\n/g, '<br>'));
-    html.push(`<p>${para}</p>`);
+    // Paragraph
+    html.push(`<p>${applyInline(block.replace(/\n/g,'<br>'))}</p>`);
   });
-
   return html.join('\n');
 }
 
-function applyInline(text) {
-  return text
-    .replace(/\*\*(.+?)\*\*/g,      '<strong>$1</strong>')
-    .replace(/\*(.+?)\*/g,          '<em>$1</em>')
-    .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>');
+function applyInline(t) {
+  return t
+    .replace(/\*\*(.+?)\*\*/g,     '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g,         '<em>$1</em>')
+    .replace(/\[(.+?)\]\((.+?)\)/g,'<a href="$2">$1</a>');
 }
 
 // ── Date formatter (Bengali) ───────────────────────────────────────
@@ -175,9 +135,7 @@ function formatDate(d) {
   if (!d) return '';
   const dt = new Date(d);
   if (isNaN(dt)) return d;
-  return dt.toLocaleDateString('bn-IN', {
-    year: 'numeric', month: 'long', day: 'numeric'
-  });
+  return dt.toLocaleDateString('bn-IN', { year:'numeric', month:'long', day:'numeric' });
 }
 
 // ── HTML builder ───────────────────────────────────────────────────
@@ -185,8 +143,7 @@ function buildHtml(meta, body, slug) {
   const pageUrl  = `${SITE_URL}/blog/${slug}.html`;
   const ogImage  = normalizeImage(meta.image, slug);
   const tagsHtml = meta.tags.length
-    ? meta.tags.map(t => `<span class="tag">${t}</span>`).join(' ')
-    : '';
+    ? meta.tags.map(t=>`<span class="tag">${t}</span>`).join(' ') : '';
 
   return `<!DOCTYPE html>
 <html lang="bn-IN" translate="no">
@@ -198,7 +155,6 @@ function buildHtml(meta, body, slug) {
 <meta name="author" content="Dr. Prodyut Acharya">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <link rel="canonical" href="${pageUrl}">
-
 <meta property="og:title"       content="${meta.title}">
 <meta property="og:description" content="${meta.description}">
 <meta property="og:url"         content="${pageUrl}">
@@ -206,480 +162,408 @@ function buildHtml(meta, body, slug) {
 <meta property="og:image"       content="${ogImage}">
 <meta property="og:image:alt"   content="${meta.title}">
 <meta property="og:locale"      content="bn_IN">
-<meta property="og:site_name"   content="MyAstrology – Dr. Prodyut Acharya">
-
+<meta property="og:site_name"   content="MyAstrology \u2013 Dr. Prodyut Acharya">
 <meta name="twitter:card"        content="summary_large_image">
 <meta name="twitter:title"       content="${meta.title}">
 <meta name="twitter:description" content="${meta.description}">
 <meta name="twitter:image"       content="${ogImage}">
-<meta name="twitter:image:alt"   content="${meta.title}">
-
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline":      "${jsonStr(meta.title)}",
-  "description":   "${jsonStr(meta.description)}",
-  "datePublished": "${meta.date}",
-  "dateModified":  "${meta.date}",
-  "image":         "${jsonStr(ogImage)}",
-  "url":           "${pageUrl}",
-  "author": {
-    "@type": "Person",
-    "name":  "Dr. Prodyut Acharya",
-    "url":   "${SITE_URL}/about.html"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name":  "MyAstrology",
-    "logo":  { "@type": "ImageObject", "url": "${DEFAULT_IMG}" }
-  }
-}
+{"@context":"https://schema.org","@type":"BlogPosting",
+"headline":"${jsonStr(meta.title)}","description":"${jsonStr(meta.description)}",
+"datePublished":"${meta.date}","dateModified":"${meta.date}",
+"image":"${jsonStr(ogImage)}","url":"${pageUrl}",
+"author":{"@type":"Person","name":"Dr. Prodyut Acharya","url":"${SITE_URL}/about.html"},
+"publisher":{"@type":"Organization","name":"MyAstrology",
+"logo":{"@type":"ImageObject","url":"${DEFAULT_IMG}"}}}
 </script>
-
 <script async src="https://www.googletagmanager.com/gtag/js?id=${GA_ID}"></script>
-<script>
-window.dataLayer=window.dataLayer||[];
-function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());
-gtag('config','${GA_ID}');
-</script>
-
-<link rel="icon"       type="image/x-icon" href="${SITE_URL}/images/favicon.ico">
-<link rel="apple-touch-icon"               href="${SITE_URL}/images/favicon.ico">
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');</script>
+<link rel="icon" type="image/x-icon" href="${SITE_URL}/images/favicon.ico">
+<link rel="apple-touch-icon"         href="${SITE_URL}/images/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&display=swap">
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Playfair+Display:wght@700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"></noscript>
 <style>
-:root {
-  --primary: #8B4513;
-  --accent:  #D4AF37;
-  --bg:      #FFF9F0;
-  --text:    #2C1810;
-  --muted:   #6B4C3B;
-  --border:  #E8D5B7;
+:root{
+  --navy:#0a192f;--navy2:#0e1e38;--navy3:#112240;
+  --gold:#b8860b;--gold2:#c8950c;--gold3:#ffd700;
+  --gold-lt:#fff4ca;--gold-bg:#fdf8ed;
+  --bg:#FFF9F0;--tx:#2C1810;--mu:#6B4C3B;--bd:#E8D5B7;
+  --fh:'Playfair Display',Georgia,serif;
 }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Serif Bengali',serif;background:var(--bg);color:var(--tx);line-height:1.9;font-size:1.05rem;padding-top:66px;}
+img{max-width:100%;height:auto;display:block;}
+a{text-decoration:none;color:inherit;}
 
-body {
-  font-family: 'Noto Serif Bengali', serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.9;
-  font-size: 1.05rem;
-}
+/* ── Skip link ── */
+.skip-link{position:absolute;top:-40px;left:0;background:var(--navy);color:var(--gold-lt);padding:8px 14px;z-index:9999;font-size:.85rem;transition:top .2s;}
+.skip-link:focus{top:0;}
 
-/* ── Header ── */
-.site-header {
-  background: var(--primary);
-  padding: 0 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 60px;
-  position: sticky;
-  top: 0;
-  z-index: 200;
-  box-shadow: 0 2px 8px rgba(0,0,0,.35);
+/* ════════════════════════
+   HEADER — index.html exact
+   ════════════════════════ */
+.site-header{
+  position:fixed;width:100%;top:0;z-index:900;
+  display:flex;align-items:center;gap:12px;
+  padding:0 20px;height:66px;
+  background:var(--navy);
+  box-shadow:0 2px 18px rgba(0,0,0,.5);
+  border-bottom:2px solid var(--gold);
 }
-.site-header .logo img {
-  height: 38px;
-  width: auto;
-  display: block;
+/* হ্যামবার্গার — বাঁয়ে */
+.ham{
+  background:rgba(255,255,255,.06);
+  border:1.5px solid rgba(184,134,11,.45);
+  cursor:pointer;color:var(--gold-lt);
+  font-size:1.25rem;width:44px;height:44px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:7px;flex-shrink:0;transition:background .2s;
 }
-.site-header nav a {
-  color: #ffffffcc;
-  text-decoration: none;
-  margin-left: 14px;
-  font-size: .85rem;
-  transition: color .2s;
-  white-space: nowrap;
+.ham:hover{background:rgba(184,134,11,.18);}
+/* Brand — মাঝে */
+.header-brand{
+  font-family:var(--fh);font-size:1.18rem;font-weight:700;
+  color:var(--gold-lt);letter-spacing:.05em;flex:1;text-align:center;
 }
-.site-header nav a:hover,
-.site-header nav a.active { color: var(--accent); }
-.site-header nav a.wa-btn {
-  background: #25D366;
-  color: #fff;
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-weight: 700;
-  margin-left: 16px;
+/* Logo — ডানে */
+.header-logo{
+  width:46px;height:46px;border-radius:8px;
+  object-fit:contain;background:var(--navy);
+  padding:2px;flex-shrink:0;
 }
 
-/* ── Hamburger ── */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 6px;
+/* ════════════════════════
+   NAV — full-width dropdown
+   ════════════════════════ */
+.nav{
+  display:none;flex-direction:column;
+  position:fixed;top:66px;left:0;right:0;
+  background:var(--navy2);border-top:2px solid var(--gold);
+  z-index:899;max-height:82vh;overflow-y:auto;
+  box-shadow:0 10px 30px rgba(0,0,0,.45);
 }
-.hamburger span {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background: #fff;
-  border-radius: 2px;
-  transition: all .3s;
+.nav.open{display:flex;}
+.nav-overlay{display:none;position:fixed;inset:0;top:66px;background:rgba(0,0,0,.45);z-index:898;}
+.nav-overlay.open{display:block;}
+.nav a{
+  color:#b0c4dc;padding:12px 22px;
+  font-size:.93rem;font-weight:600;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  transition:background .2s,color .2s;
 }
+.nav a i{width:20px;margin-right:9px;color:var(--gold3);opacity:.85;}
+.nav a:hover{background:rgba(184,134,11,.12);color:var(--gold-lt);}
+.nav a.wa-nav{color:#4ade80;font-weight:700;}
+body.nav-open{overflow-y:hidden;}
+body.nav-open .wa-float,body.nav-open #back-to-top{display:none!important;}
 
-/* ── Mobile nav drawer ── */
-.mobile-nav {
-  display: none;
-  position: fixed;
-  top: 60px;
-  right: 0;
-  width: 230px;
-  background: var(--primary);
-  box-shadow: -4px 4px 16px rgba(0,0,0,.3);
-  z-index: 199;
-  padding: 10px 0;
-  border-radius: 0 0 0 12px;
-}
-.mobile-nav.open { display: block; }
-.mobile-nav a {
-  display: block;
-  color: #ffffffcc;
-  text-decoration: none;
-  padding: 10px 22px;
-  font-size: .9rem;
-  border-bottom: 1px solid rgba(255,255,255,.08);
-  transition: background .2s;
-}
-.mobile-nav a:hover { background: rgba(255,255,255,.1); color: var(--accent); }
-.mobile-nav a.wa-btn {
-  color: #25D366;
-  font-weight: 700;
-}
+/* ════════════
+   MAIN
+   ════════════ */
+main{max-width:780px;margin:0 auto;padding:32px 18px 60px;}
 
-/* ── Main ── */
-main { max-width: 780px; margin: 0 auto; padding: 36px 20px 60px; }
-
-.back-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--primary);
-  text-decoration: none;
-  font-size: .88rem;
-  margin-bottom: 24px;
-  opacity: .8;
+.back-link{
+  display:inline-flex;align-items:center;gap:6px;
+  color:var(--gold);text-decoration:none;font-size:.87rem;
+  margin-bottom:22px;opacity:.8;
 }
-.back-link:hover { opacity: 1; text-decoration: underline; }
+.back-link:hover{opacity:1;text-decoration:underline;}
+.back-link i{font-size:.8rem;}
 
 /* ── Post header ── */
-.post-header {
-  margin-bottom: 28px;
-  border-bottom: 2px solid var(--border);
-  padding-bottom: 22px;
+.post-header{margin-bottom:26px;border-bottom:2px solid var(--bd);padding-bottom:20px;}
+.post-header h1{
+  font-family:var(--fh);
+  font-size:clamp(1.4rem,4vw,1.9rem);
+  color:#1a2e48;line-height:1.35;margin-bottom:12px;
 }
-.post-header h1 {
-  font-size: clamp(1.45rem, 4vw, 1.95rem);
-  color: var(--primary);
-  line-height: 1.4;
-  margin-bottom: 12px;
+.post-meta{font-size:.83rem;color:var(--mu);margin-bottom:10px;display:flex;flex-wrap:wrap;gap:5px 14px;}
+.post-meta i{color:var(--gold);margin-right:4px;}
+.tags{margin-top:10px;}
+.tag{
+  display:inline-block;background:var(--gold-bg);
+  color:var(--gold);font-size:.76rem;font-weight:700;
+  padding:3px 10px;border-radius:20px;
+  border:1px solid rgba(184,134,11,.28);
+  margin:2px 3px 2px 0;
 }
-.post-meta {
-  font-size: .84rem;
-  color: var(--muted);
-  margin-bottom: 12px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 16px;
-}
-.tags { margin-top: 10px; }
-.tag {
-  display: inline-block;
-  background: #f5ead8;
-  color: var(--primary);
-  font-size: .78rem;
-  padding: 3px 10px;
-  border-radius: 20px;
-  margin: 2px 3px 2px 0;
-}
-.featured-img {
-  width: 100%;
-  max-height: 400px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  display: block;
+.featured-img{
+  width:100%;max-height:400px;object-fit:cover;
+  border-radius:10px;margin-bottom:18px;display:block;
+  border-top:4px solid var(--gold);
 }
 
 /* ── Post body ── */
-.post-body h1,
-.post-body h2 {
-  color: var(--primary);
-  margin: 30px 0 12px;
-  font-size: 1.35rem;
-  border-left: 4px solid var(--accent);
-  padding-left: 12px;
-  line-height: 1.4;
+.post-body h2{
+  font-family:var(--fh);
+  color:#1a2e48;margin:28px 0 12px;font-size:1.35rem;
+  border-left:4px solid var(--gold);padding-left:12px;line-height:1.4;
 }
-.post-body h3 {
-  color: var(--primary);
-  margin: 22px 0 8px;
-  font-size: 1.1rem;
-  padding-left: 4px;
+.post-body h3{
+  font-family:var(--fh);
+  color:#1a2e48;margin:22px 0 8px;font-size:1.1rem;padding-left:4px;
 }
-.post-body h4, .post-body h5, .post-body h6 {
-  color: var(--muted);
-  margin: 16px 0 6px;
+.post-body h4,.post-body h5,.post-body h6{color:var(--mu);margin:16px 0 6px;}
+.post-body p{margin-bottom:16px;}
+.post-body hr{border:none;border-top:1px solid var(--bd);margin:26px 0;}
+.post-body blockquote{
+  border-left:4px solid var(--gold);padding:12px 18px;
+  background:var(--gold-bg);margin:20px 0;font-style:italic;
+  color:var(--mu);border-radius:0 8px 8px 0;
+  font-family:var(--fh);
 }
-.post-body p   { margin-bottom: 16px; }
-.post-body hr  { border: none; border-top: 1px solid var(--border); margin: 26px 0; }
-.post-body blockquote {
-  border-left: 4px solid var(--accent);
-  padding: 12px 18px;
-  background: #fdf4e7;
-  margin: 20px 0;
-  font-style: italic;
-  color: var(--muted);
-  border-radius: 0 8px 8px 0;
-}
-.post-body a   { color: var(--primary); }
-.post-body ul  { margin: 10px 0 16px 22px; }
-.post-body ol  { margin: 10px 0 16px 22px; }
-.post-body li  { margin-bottom: 7px; }
-.post-body strong { color: var(--text); }
-.post-body img { max-width: 100%; border-radius: 8px; margin: 14px 0; }
+.post-body a{color:#123d87;border-bottom:1px dotted;}
+.post-body ul,.post-body ol{margin:10px 0 16px 22px;}
+.post-body li{margin-bottom:7px;}
+.post-body strong{color:var(--tx);}
+.post-body img{max-width:100%;border-radius:8px;margin:14px 0;}
 
 /* ── Table ── */
-.table-wrap {
-  overflow-x: auto;
-  margin: 18px 0 22px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-}
-.table-wrap table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: .92rem;
-}
-.table-wrap th {
-  background: var(--primary);
-  color: #fff;
-  padding: 10px 14px;
-  text-align: left;
-  font-weight: 600;
-}
-.table-wrap td {
-  padding: 9px 14px;
-  border-bottom: 1px solid var(--border);
-  vertical-align: top;
-}
-.table-wrap tr:nth-child(even) td { background: #fdf5e8; }
-.table-wrap tr:last-child td { border-bottom: none; }
+.tbl-wrap{overflow-x:auto;margin:16px 0 20px;border-radius:8px;border:1px solid var(--bd);}
+.tbl-wrap table{width:100%;border-collapse:collapse;font-size:.9rem;}
+.tbl-wrap th{background:var(--navy);color:var(--gold-lt);padding:10px 14px;text-align:left;font-weight:600;font-family:var(--fh);}
+.tbl-wrap td{padding:9px 14px;border-bottom:1px solid var(--bd);vertical-align:top;}
+.tbl-wrap tr:nth-child(even) td{background:var(--gold-bg);}
+.tbl-wrap tr:last-child td{border-bottom:none;}
 
-/* ── Panjika widget strip ── */
-.panjika-strip {
-  background: linear-gradient(135deg, #5a3200, var(--primary));
-  color: #fff;
-  border-radius: 10px;
-  padding: 14px 18px;
-  margin: 32px 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px;
+/* ── Panjika / Rashifal strip ── */
+.pjk-strip{
+  background:linear-gradient(135deg,#0d1547,#0a0f3d,#12122a);
+  border-radius:12px;padding:16px 20px;margin:32px 0;
+  border:1.5px solid rgba(255,180,0,.3);
+  box-shadow:0 8px 32px rgba(0,0,0,.35);
+  text-align:center;
 }
-.panjika-strip p {
-  margin: 0;
-  font-size: .92rem;
-  opacity: .92;
+.pjk-strip h3{
+  font-family:var(--fh);color:#f5b800;font-size:1rem;
+  margin:0 0 6px;text-shadow:0 2px 10px rgba(255,180,0,.4);
 }
-.panjika-strip strong { color: var(--accent); }
-.panjika-strip a {
-  display: inline-block;
-  background: var(--accent);
-  color: #2C1810;
-  padding: 8px 18px;
-  border-radius: 20px;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: .88rem;
-  white-space: nowrap;
+.pjk-strip p{color:#8a9fc8;font-size:.84rem;margin:0 0 12px;line-height:1.5;}
+.pjk-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-bottom:12px;}
+.pjk-tags a{
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);
+  color:#c8d8f0;font-size:.76rem;font-weight:600;
+  padding:4px 10px;border-radius:50px;text-decoration:none;
+  transition:.2s;
 }
+.pjk-tags a:hover{background:rgba(255,180,0,.12);color:#f5d080;border-color:rgba(255,180,0,.4);}
+.pjk-btn{
+  display:inline-block;
+  background:linear-gradient(135deg,#f5b800,#e8a200);
+  color:#1a0e00;font-weight:800;font-size:.9rem;
+  padding:8px 30px;border-radius:50px;text-decoration:none;
+  box-shadow:0 4px 16px rgba(245,184,0,.45);transition:all .3s;
+}
+.pjk-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(245,184,0,.6);}
 
 /* ── CTA box ── */
-.cta-box {
-  background: linear-gradient(135deg, var(--primary), #6B3410);
-  color: #fff;
-  border-radius: 14px;
-  padding: 28px 22px;
-  margin: 40px 0 20px;
-  text-align: center;
+.cta-box{
+  background:linear-gradient(135deg,var(--navy),var(--navy2));
+  border-top:2px solid var(--gold);
+  color:#fff;border-radius:14px;padding:28px 22px;margin:38px 0 20px;text-align:center;
+  box-shadow:0 8px 32px rgba(0,0,0,.3);
 }
-.cta-box h3  { color: var(--accent); margin-bottom: 8px; font-size: 1.15rem; }
-.cta-box p   { margin-bottom: 16px; opacity: .9; font-size: .92rem; }
-.cta-box .btn-wa {
-  display: inline-block;
-  background: #25D366;
-  color: #fff;
-  padding: 11px 24px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 700;
-  margin: 5px;
-  font-size: .92rem;
+.cta-box h3{font-family:var(--fh);color:var(--gold-lt);margin-bottom:8px;font-size:1.15rem;}
+.cta-box p{margin-bottom:16px;opacity:.85;font-size:.9rem;}
+.cta-box strong{color:var(--gold3);}
+.btn-wa-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  background:#25D366;color:#fff;
+  padding:11px 24px;border-radius:50px;font-weight:800;
+  margin:5px;font-size:.9rem;text-decoration:none;
+  box-shadow:0 4px 16px rgba(37,211,102,.4);transition:all .2s;
 }
-.cta-box .btn-pay {
-  display: inline-block;
-  background: var(--accent);
-  color: #2C1810;
-  padding: 11px 24px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 700;
-  margin: 5px;
-  font-size: .92rem;
+.btn-wa-cta:hover{background:#1ebe5d;transform:translateY(-2px);}
+.btn-pay-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,var(--gold-lt),#ffe88a);
+  color:#5a1f0a;
+  padding:11px 24px;border-radius:50px;font-weight:800;
+  margin:5px;font-size:.9rem;text-decoration:none;
+  border:2px solid rgba(184,134,11,.4);transition:all .2s;
 }
+.btn-pay-cta:hover{transform:translateY(-2px);}
 
 /* ── Author bio ── */
-.author-bio {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  background: #f9f5eb;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 16px 18px;
-  margin: 0 0 22px;
+.author-bio{
+  display:flex;align-items:flex-start;gap:14px;
+  background:var(--gold-bg);border:1px solid var(--bd);
+  border-radius:10px;padding:16px 18px;margin:0 0 20px;
 }
-.author-bio .icon { font-size: 2.6rem; line-height: 1; }
-.author-bio h4 { margin: 0 0 3px; color: #5a3e00; font-size: .96rem; }
-.author-bio .sub { font-size: .83rem; color: #7a5c00; margin: 0 0 6px; }
-.author-bio p { font-size: .87rem; color: #5a3e00; line-height: 1.6; margin: 0; }
-.author-bio a { color: var(--accent); font-weight: 600; }
+.author-bio .ico{font-size:2.5rem;line-height:1;flex-shrink:0;}
+.author-bio h4{font-family:var(--fh);margin:0 0 3px;color:#1a2e48;font-size:.95rem;}
+.author-bio .sub{font-size:.8rem;color:var(--gold);margin:0 0 5px;font-weight:600;}
+.author-bio p{font-size:.86rem;color:var(--mu);line-height:1.65;margin:0;}
+.author-bio a{color:var(--gold);font-weight:600;border-bottom:1px dotted;}
 
 /* ── Related posts ── */
-.related-posts {
-  background: #f9f5eb;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 14px 18px;
+.related{
+  background:var(--gold-bg);border:1px solid var(--bd);
+  border-radius:10px;padding:14px 18px;
 }
-.related-posts h4 { margin: 0 0 8px; color: #5a3e00; font-size: .92rem; }
-.related-posts a  { display: block; color: var(--primary); font-size: .9rem; line-height: 2; text-decoration: none; }
-.related-posts a:hover { text-decoration: underline; }
+.related h4{font-family:var(--fh);margin:0 0 10px;color:#1a2e48;font-size:.92rem;}
+.related a{
+  display:flex;align-items:center;gap:8px;
+  color:#123d87;font-size:.88rem;line-height:2;
+}
+.related a i{color:var(--gold);font-size:.78rem;}
+.related a:hover{color:var(--gold);}
 
-/* ── Footer ── */
-.site-footer {
-  background: var(--primary);
-  color: #ffffffaa;
-  padding: 28px 20px;
-  margin-top: 50px;
+/* ════════════════════════════════════
+   FOOTER — index.html exact
+   ════════════════════════════════════ */
+.site-footer{
+  background:linear-gradient(180deg,#0a1628 0%,#060e1a 100%);
+  border-top:3px solid var(--gold);
+  color:#6888a8;
+  margin-top:50px;
 }
-.footer-inner {
-  max-width: 780px;
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: space-between;
-  align-items: flex-start;
+.footer-grid{
+  display:grid;
+  grid-template-columns:1.6fr 1fr 1fr 1.1fr;
+  gap:0;max-width:1080px;margin:0 auto;
+  padding:44px 24px 36px;
+  border-bottom:1px solid rgba(255,255,255,.05);
 }
-.footer-brand img { height: 34px; margin-bottom: 8px; }
-.footer-brand p   { font-size: .82rem; opacity: .75; max-width: 220px; }
-.footer-links h5  { color: var(--accent); font-size: .85rem; margin: 0 0 8px; }
-.footer-links a   {
-  display: block;
-  color: #ffffffaa;
-  text-decoration: none;
-  font-size: .83rem;
-  line-height: 2;
+.footer-col{padding:0 28px 0 0;border-right:1px solid rgba(255,255,255,.05);}
+.footer-col:first-child{padding-left:0;}
+.footer-col:last-child{padding-right:0;border-right:none;}
+.footer-col + .footer-col{padding-left:28px;}
+.footer-col h4{
+  font-family:var(--fh);color:var(--gold);
+  font-size:.8rem;letter-spacing:.13em;text-transform:uppercase;
+  margin-bottom:18px;padding-bottom:10px;
+  border-bottom:1px solid rgba(184,134,11,.25);
 }
-.footer-links a:hover { color: var(--accent); }
-.footer-bottom {
-  text-align: center;
-  margin-top: 22px;
-  padding-top: 16px;
-  border-top: 1px solid rgba(255,255,255,.15);
-  font-size: .8rem;
-  opacity: .65;
-  max-width: 780px;
-  margin-left: auto;
-  margin-right: auto;
+.footer-col p,.footer-col a{
+  font-size:.82rem;color:#8aabcb;
+  display:block;margin-bottom:8px;
+  transition:color .2s;line-height:1.65;
 }
+.footer-col a:hover{color:var(--gold-lt);}
+.footer-col i{width:15px;margin-right:7px;opacity:.75;color:var(--gold);font-size:.78rem;}
+.footer-bottom{
+  max-width:1080px;margin:0 auto;padding:22px 24px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px;flex-wrap:wrap;
+}
+.footer-bottom p{font-size:.76rem;color:#3d5570;}
+.footer-bottom a{color:#5a7a9a;border-bottom:1px solid #3d5570;}
+.social-row{display:flex;gap:8px;flex-wrap:wrap;}
+.social-row a{
+  width:38px;height:38px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;color:#fff;
+  transition:transform .2s,filter .2s;filter:brightness(.8);
+}
+.social-row a:hover{transform:translateY(-3px);filter:brightness(1);}
+.s-wa{background:#25d366;}.s-fb{background:#1877f2;}.s-yt{background:#ff0000;}
+.s-ig{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285aeb 90%);}
+.s-tw{background:#14171a;}.s-li{background:#0077b5;}
 
-/* ── WhatsApp float ── */
-.whatsapp-float {
-  position: fixed;
-  bottom: 22px;
-  left: 18px;
-  z-index: 999;
+/* ════════════════════
+   FLOATING WHATSAPP — ডানে
+   ════════════════════ */
+.wa-float{position:fixed;bottom:26px;right:22px;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+.wa-bubble{
+  background:#fff;border-radius:8px;padding:6px 10px;
+  font-size:.72rem;font-weight:600;color:#111;
+  box-shadow:0 4px 20px rgba(0,0,0,.2);
+  max-width:150px;text-align:center;display:none;
+  font-family:'Noto Serif Bengali',serif;
 }
-.whatsapp-float a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 52px;
-  height: 52px;
-  background: #25D366;
-  border-radius: 50%;
-  box-shadow: 0 4px 14px rgba(0,0,0,.25);
-  text-decoration: none;
-  transition: transform .2s;
+.wa-bubble.show{display:block;animation:popIn .4s ease;}
+.wa-btn-fl{
+  width:44px;height:44px;border-radius:50%;
+  background:#25d366;display:flex;align-items:center;
+  justify-content:center;font-size:1.3rem;color:#fff;
+  cursor:pointer;text-decoration:none;
+  box-shadow:0 4px 20px rgba(37,211,102,.5);
+  animation:waPulse 2.4s infinite;
 }
-.whatsapp-float a:hover { transform: scale(1.1); }
-.whatsapp-float svg { width: 28px; height: 28px; fill: #fff; }
+.wa-btn-fl:hover{background:#1ebe5d;animation:none;transform:scale(1.07);}
+@keyframes waPulse{
+  0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.5);}
+  50%{box-shadow:0 4px 34px rgba(37,211,102,.8),0 0 0 8px rgba(37,211,102,.1);}
+}
+@keyframes popIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
 
-/* ── Responsive ── */
-@media (max-width: 680px) {
-  .site-header nav { display: none; }
-  .hamburger       { display: flex; }
-  main             { padding: 20px 14px 48px; }
-  .panjika-strip   { flex-direction: column; text-align: center; }
-  .footer-inner    { flex-direction: column; }
+/* ════════════════
+   BACK TO TOP — বাঁয়ে
+   ════════════════ */
+#back-to-top{
+  position:fixed;bottom:22px;left:18px;
+  width:44px;height:44px;
+  background:transparent;color:var(--gold3);
+  border:none;border-radius:50%;font-size:1.1rem;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  opacity:0;transform:translateY(14px);
+  transition:opacity .3s,transform .3s;z-index:800;
+}
+#back-to-top.visible{opacity:1;transform:translateY(0);}
+#back-to-top:hover{background:var(--navy2);}
+
+/* ════════════════
+   RESPONSIVE
+   ════════════════ */
+@media(max-width:860px){
+  .footer-grid{grid-template-columns:1fr 1fr;gap:0;}
+  .footer-col{border-right:none;padding:0 0 24px 0!important;}
+  .footer-col + .footer-col{padding-left:0!important;}
+}
+@media(max-width:480px){
+  .footer-grid{grid-template-columns:1fr;}
+  .footer-bottom{flex-direction:column;text-align:center;}
+  .pjk-tags{gap:4px;}
+}
+@media(max-width:600px){
+  main{padding:20px 14px 48px;}
 }
 </style>
 </head>
 <body>
 
-<!-- ── HEADER ──────────────────────────────────────────────── -->
+<a class="skip-link" href="#main-content">মূল বিষয়বস্তুতে যান</a>
+
+<!-- ══ HEADER ══════════════════════════════════════════════ -->
 <header class="site-header">
-  <a class="logo" href="${SITE_URL}">
-    <img src="${LOGO_IMG}" alt="MyAstrology – Dr. Prodyut Acharya">
-  </a>
-
-  <nav>
-    <a href="${SITE_URL}/">হোম</a>
-    <a href="${SITE_URL}/astrology.html">জ্যোতিষ</a>
-    <a href="${SITE_URL}/palmistry.html">হস্তরেখা</a>
-    <a href="${SITE_URL}/rashifal.html">রাশিফল</a>
-    <a href="${SITE_URL}/panjika.html">পঞ্জিকা</a>
-    <a href="${SITE_URL}/blog-list.html" class="active">ব্লগ</a>
-    <a href="${SITE_URL}/contact.html">যোগাযোগ</a>
-    <a href="https://wa.me/${WA_NUMBER}" class="wa-btn">💬 WhatsApp</a>
-  </nav>
-
-  <button class="hamburger" id="ham" aria-label="মেনু" onclick="toggleNav()">
-    <span></span><span></span><span></span>
+  <button class="ham" onclick="toggleNav()" aria-label="মেনু খুলুন">
+    <i class="fas fa-bars"></i>
   </button>
+  <span class="header-brand">MyAstrology</span>
+  <img src="${LOGO_IMG}" alt="MyAstrology Ranaghat Logo" class="header-logo" width="46" height="46" loading="eager">
 </header>
 
-<!-- ── MOBILE NAV ───────────────────────────────────────────── -->
-<nav class="mobile-nav" id="mobileNav">
-  <a href="${SITE_URL}/">হোম</a>
-  <a href="${SITE_URL}/astrology.html">জ্যোতিষ শাস্ত্র</a>
-  <a href="${SITE_URL}/palmistry.html">হস্তরেখা বিচার</a>
-  <a href="${SITE_URL}/gemstone.html">রত্নপাথর পরামর্শ</a>
-  <a href="${SITE_URL}/vastu-science.html">বাস্তু শাস্ত্র</a>
-  <a href="${SITE_URL}/rashifal.html">রাশিফল</a>
-  <a href="${SITE_URL}/panjika.html">বাংলা পঞ্জিকা</a>
-  <a href="${SITE_URL}/blog-list.html">ব্লগ</a>
-  <a href="${SITE_URL}/reviews.html">রিভিউ</a>
-  <a href="${SITE_URL}/about.html">আমাদের সম্পর্কে</a>
-  <a href="${SITE_URL}/contact.html">যোগাযোগ</a>
-  <a href="https://wa.me/${WA_NUMBER}" class="wa-btn">💬 WhatsApp পরামর্শ</a>
+<!-- ══ NAV ═════════════════════════════════════════════════ -->
+<nav class="nav" id="navMenu" aria-label="মূল নেভিগেশন">
+  <a href="${SITE_URL}/"><i class="fas fa-home"></i>হোম</a>
+  <a href="${SITE_URL}/astrology.html"><i class="fas fa-star"></i>জ্যোতিষ শাস্ত্র</a>
+  <a href="${SITE_URL}/palmistry.html"><i class="fas fa-hand-paper"></i>হস্তরেখা</a>
+  <a href="${SITE_URL}/gemstone.html"><i class="fas fa-gem"></i>রত্নপাথর পরামর্শ</a>
+  <a href="${SITE_URL}/vastu-science.html"><i class="fas fa-building"></i>বাস্তু শাস্ত্র</a>
+  <a href="${SITE_URL}/vedic-astronomy.html"><i class="fas fa-moon"></i>জ্যোতির্বিজ্ঞান</a>
+  <a href="${SITE_URL}/rashifal.html"><i class="fas fa-circle-notch"></i>রাশিফল</a>
+  <a href="${SITE_URL}/panjika.html"><i class="fas fa-calendar-alt"></i>পঞ্জিকা</a>
+  <a href="${SITE_URL}/video.html"><i class="fas fa-play-circle"></i>ভিডিও</a>
+  <a href="${SITE_URL}/gallery.html"><i class="fas fa-images"></i>গ্যালারি</a>
+  <a href="${SITE_URL}/reviews.html"><i class="fas fa-star-half-alt"></i>রিভিউ</a>
+  <a href="${SITE_URL}/blog-list.html"><i class="fas fa-blog"></i>ব্লগ</a>
+  <a href="${SITE_URL}/about.html"><i class="fas fa-user"></i>আমাদের সম্পর্কে</a>
+  <a href="${SITE_URL}/contact.html"><i class="fas fa-address-card"></i>যোগাযোগ</a>
+  <a href="https://wa.me/${WA_NUMBER}" target="_blank" rel="noopener" class="wa-nav">
+    <i class="fab fa-whatsapp"></i>📲 WhatsApp পরামর্শ
+  </a>
 </nav>
+<div class="nav-overlay" id="navOverlay" onclick="closeNav()"></div>
 
-<!-- ── MAIN ─────────────────────────────────────────────────── -->
-<main>
-  <a class="back-link" href="${SITE_URL}/blog-list.html">← সব পোস্ট দেখুন</a>
+<!-- ══ MAIN ════════════════════════════════════════════════ -->
+<main id="main-content">
+  <a class="back-link" href="${SITE_URL}/blog-list.html">
+    <i class="fas fa-arrow-left"></i> সব পোস্ট দেখুন
+  </a>
 
   <article>
     <div class="post-header">
@@ -690,8 +574,8 @@ main { max-width: 780px; margin: 0 auto; padding: 36px 20px 60px; }
            onerror="this.style.display='none'">
       <h1>${meta.title}</h1>
       <div class="post-meta">
-        <span>✍️ Dr. Prodyut Acharya</span>
-        <span>📅 ${formatDate(meta.date)}</span>
+        <span><i class="fas fa-user-edit"></i>Dr. Prodyut Acharya</span>
+        <span><i class="fas fa-calendar-alt"></i>${formatDate(meta.date)}</span>
       </div>
       ${tagsHtml ? `<div class="tags">${tagsHtml}</div>` : ''}
     </div>
@@ -701,24 +585,37 @@ main { max-width: 780px; margin: 0 auto; padding: 36px 20px 60px; }
     </div>
   </article>
 
-  <!-- আজকের রাশিফল ও পঞ্জিকা strip -->
-  <div class="panjika-strip">
-    <p>🪐 <strong>আজকের রাশিফল ও দিন পঞ্জিকা</strong> দেখুন — তিথি, নক্ষত্র, রাহুকাল ও শুভ মুহূর্ত।</p>
-    <a href="${SITE_URL}/panjika.html">এখনই দেখুন →</a>
+  <!-- আজকের রাশিফল ও পঞ্জিকা -->
+  <div class="pjk-strip">
+    <h3><i class="fas fa-moon"></i> আজকের রাশিফল ও দিন পঞ্জিকা</h3>
+    <p>জানুন আজকের রাশিফল, প্রেম, কর্ম, অর্থ, স্বাস্থ্য, শুভ সংখ্যা, শুভ রং ও শুভ সময়।</p>
+    <div class="pjk-tags">
+      <a href="${SITE_URL}/panjika.html">❤️ প্রেম</a>
+      <a href="${SITE_URL}/panjika.html">💼 কর্ম</a>
+      <a href="${SITE_URL}/panjika.html">💰 অর্থ</a>
+      <a href="${SITE_URL}/panjika.html">🌿 স্বাস্থ্য</a>
+      <a href="${SITE_URL}/panjika.html">🔢 শুভ সংখ্যা</a>
+      <a href="${SITE_URL}/panjika.html">⏰ শুভ সময়</a>
+    </div>
+    <a class="pjk-btn" href="${SITE_URL}/panjika.html">এখনই দেখুন →</a>
   </div>
 
   <!-- CTA -->
   <div class="cta-box">
     <h3>🔮 ব্যক্তিগত পরামর্শ নিন</h3>
-    <p>জন্মকুণ্ডলী বিচার · হস্তরেখা বিশ্লেষণ · জীবনপথের দিশা<br>
-       <strong>Dr. Prodyut Acharya</strong> — PhD Gold Medalist, Ranaghat</p>
-    <a class="btn-wa"  href="https://wa.me/${WA_NUMBER}">💬 WhatsApp করুন</a>
-    <a class="btn-pay" href="${RAZORPAY_URL}">📅 পরামর্শ বুক করুন</a>
+    <p>জন্মকুণ্ডলী বিচার · হস্তরেখা বিশ্লেষণ · যোটোক মিলন<br>
+       <strong>Dr. Prodyut Acharya</strong> — PhD Gold Medalist · রানাঘাট, পশ্চিমবঙ্গ</p>
+    <a class="btn-wa-cta" href="https://wa.me/${WA_NUMBER}?text=%E0%A6%A8%E0%A6%AE%E0%A6%B8%E0%A7%8D%E0%A6%95%E0%A6%BE%E0%A6%B0%20%E0%A6%A1.%20%E0%A6%86%E0%A6%9A%E0%A6%BE%E0%A6%B0%E0%A7%8D%E0%A6%AF%2C%20%E0%A6%86%E0%A6%AE%E0%A6%BF%20%E0%A6%AA%E0%A6%B0%E0%A6%BE%E0%A6%AE%E0%A6%B0%E0%A7%8D%E0%A6%B6%20%E0%A6%A8%E0%A6%BF%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87%E0%A5%A4" target="_blank" rel="noopener">
+      <i class="fab fa-whatsapp"></i> WhatsApp করুন
+    </a>
+    <a class="btn-pay-cta" href="${RAZORPAY_URL}" target="_blank" rel="noopener">
+      <i class="fas fa-calendar-check"></i> পরামর্শ বুক করুন
+    </a>
   </div>
 
   <!-- Author bio -->
   <div class="author-bio">
-    <div class="icon">🧑‍🎓</div>
+    <div class="ico">🧑‍🎓</div>
     <div>
       <h4>Dr. Prodyut Acharya</h4>
       <p class="sub">PhD Gold Medalist · জ্যোতিষী ও হস্তরেখাবিদ · রানাঘাট, নদিয়া</p>
@@ -729,70 +626,147 @@ main { max-width: 780px; margin: 0 auto; padding: 36px 20px 60px; }
   </div>
 
   <!-- Related posts -->
-  <div class="related-posts">
-    <h4>🔗 আরও পড়ুন</h4>
-    <a href="${SITE_URL}/blog-list.html">সব ব্লগ পোস্ট দেখুন →</a>
-    <a href="${SITE_URL}/rashifal.html">আজকের রাশিফল →</a>
-    <a href="${SITE_URL}/panjika.html">বাংলা পঞ্জিকা →</a>
+  <div class="related">
+    <h4><i class="fas fa-book-open" style="color:var(--gold);margin-right:6px;"></i>আরও পড়ুন</h4>
+    <a href="${SITE_URL}/blog-list.html"><i class="fas fa-chevron-right"></i>সব ব্লগ পোস্ট দেখুন</a>
+    <a href="${SITE_URL}/rashifal.html"><i class="fas fa-chevron-right"></i>আজকের রাশিফল</a>
+    <a href="${SITE_URL}/panjika.html"><i class="fas fa-chevron-right"></i>বাংলা পঞ্জিকা</a>
+    <a href="${SITE_URL}/astrology.html"><i class="fas fa-chevron-right"></i>জ্যোতিষ পরামর্শ</a>
   </div>
 </main>
 
-<!-- ── FOOTER ────────────────────────────────────────────────── -->
+<!-- ══ FOOTER ══════════════════════════════════════════════ -->
 <footer class="site-footer">
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <img src="${LOGO_IMG}" alt="MyAstrology">
-      <p>Dr. Prodyut Acharya<br>রানাঘাট, নদিয়া, পশ্চিমবঙ্গ</p>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>MyAstrology</h4>
+      <p><i class="fas fa-map-marker-alt"></i>রাণাঘাট, নদিয়া, পশ্চিমবঙ্গ — ৭৪১২০২</p>
+      <p><i class="fas fa-phone"></i>+91 93331 22768</p>
+      <p><i class="fas fa-envelope"></i>info@myastrology.in</p>
+      <a href="https://wa.me/${WA_NUMBER}" target="_blank" rel="noopener">
+        <i class="fab fa-whatsapp"></i>WhatsApp পরামর্শ
+      </a>
+      <a href="${SITE_URL}/astrology.html">
+        <i class="fas fa-calendar-check"></i>অনলাইন বুকিং
+      </a>
     </div>
-    <div class="footer-links">
-      <h5>সেবাসমূহ</h5>
-      <a href="${SITE_URL}/astrology.html">জ্যোতিষ শাস্ত্র</a>
+    <div class="footer-col">
+      <h4>সেবাসমূহ</h4>
       <a href="${SITE_URL}/palmistry.html">হস্তরেখা বিচার</a>
-      <a href="${SITE_URL}/gemstone.html">রত্নপাথর পরামর্শ</a>
+      <a href="${SITE_URL}/astrology.html">জন্মকুণ্ডলী বিশ্লেষণ</a>
+      <a href="${SITE_URL}/astrology.html">কুণ্ডলী মিলন</a>
       <a href="${SITE_URL}/vastu-science.html">বাস্তু শাস্ত্র</a>
+      <a href="${SITE_URL}/gemstone.html">রত্নপাথর পরামর্শ</a>
+      <a href="${SITE_URL}/rashifal.html">দৈনন্দিন রাশিফল</a>
+      <a href="${SITE_URL}/panjika.html">পঞ্জিকা</a>
     </div>
-    <div class="footer-links">
-      <h5>দরকারি লিঙ্ক</h5>
-      <a href="${SITE_URL}/rashifal.html">রাশিফল</a>
-      <a href="${SITE_URL}/panjika.html">বাংলা পঞ্জিকা</a>
-      <a href="${SITE_URL}/blog-list.html">ব্লগ</a>
+    <div class="footer-col">
+      <h4>তথ্য</h4>
+      <a href="${SITE_URL}/about.html">ড. আচার্য সম্পর্কে</a>
+      <a href="${SITE_URL}/blog-list.html">ব্লগ সমূহ</a>
+      <a href="${SITE_URL}/gallery.html">গ্যালারি</a>
+      <a href="${SITE_URL}/reviews.html">সমস্ত রিভিউ</a>
+      <a href="${SITE_URL}/vedic-astronomy.html">জ্যোতির্বিজ্ঞান</a>
       <a href="${SITE_URL}/contact.html">যোগাযোগ</a>
+      <a href="${SITE_URL}/privacy-policy.html">Privacy Policy</a>
+      <a href="${SITE_URL}/terms-of-use.html">Terms of Use</a>
     </div>
-    <div class="footer-links">
-      <h5>যোগাযোগ</h5>
-      <a href="https://wa.me/${WA_NUMBER}">💬 WhatsApp</a>
-      <a href="${SITE_URL}/contact.html">📧 ইমেইল</a>
-      <a href="${SITE_URL}/reviews.html">⭐ রিভিউ</a>
+    <div class="footer-col">
+      <h4>সেবা এলাকা</h4>
+      <p>রাণাঘাট &middot; নদিয়া &middot; কলকাতা &middot; পশ্চিমবঙ্গ &middot; উত্তরবঙ্গ &middot; ঝাড়খণ্ড &middot; ত্রিপুরা &middot; আসাম &middot; দিল্লি &middot; মুম্বাই &middot; সারা ভারতে অনলাইন</p>
+      <p style="margin-top:10px;font-size:.78rem;color:var(--gold);letter-spacing:.04em">&#9654; পরামর্শ শুধুমাত্র বাংলা ও হিন্দিতে</p>
     </div>
   </div>
   <div class="footer-bottom">
-    &copy; 2025 MyAstrology – Dr. Prodyut Acharya |
-    <a href="${SITE_URL}" style="color:var(--accent)">myastrology.in</a> |
-    Ranaghat, Nadia, West Bengal
+    <p>&#169; 2026 MyAstrology &nbsp;&middot;&nbsp; ড. প্রদ্যুৎ আচার্য, PhD in Vedic Jyotish &nbsp;&middot;&nbsp; রাণাঘাট, পশ্চিমবঙ্গ &nbsp;&middot;&nbsp;
+      <a href="${SITE_URL}/about.html">About</a> &nbsp;&middot;&nbsp;
+      <a href="${SITE_URL}/privacy-policy.html">Privacy Policy</a> &nbsp;&middot;&nbsp;
+      <a href="${SITE_URL}/terms-of-use.html">Terms of Use</a>
+    </p>
+    <div class="social-row">
+      <a href="https://wa.me/${WA_NUMBER}" target="_blank" rel="noopener" class="s-wa" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://www.facebook.com/Dr.ProdyutAcharya" target="_blank" rel="noopener" class="s-fb" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://youtube.com/@myastrology" target="_blank" rel="noopener" class="s-yt" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="https://www.instagram.com/myastrology.in" target="_blank" rel="noopener" class="s-ig" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://x.com/AcharyaProdyut" target="_blank" rel="noopener" class="s-tw" aria-label="X Twitter"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://www.linkedin.com/in/ProdyutAcharya" target="_blank" rel="noopener" class="s-li" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    </div>
   </div>
 </footer>
 
-<!-- ── WhatsApp float (বাঁয়ে) ──────────────────────────────── -->
-<div class="whatsapp-float">
-  <a href="https://wa.me/${WA_NUMBER}" aria-label="WhatsApp">
-    <svg viewBox="0 0 24 24">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.847L.057 23.5l5.797-1.522A11.93 11.93 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zM12 22c-1.885 0-3.651-.51-5.17-1.402l-.37-.22-3.44.903.92-3.35-.24-.384A9.955 9.955 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
-    </svg>
+<!-- ══ FLOATING WHATSAPP — ডানে, rotating flash messages ══ -->
+<div class="wa-float" id="waFloat">
+  <div class="wa-bubble" id="waBubble"></div>
+  <a href="https://wa.me/${WA_NUMBER}?text=%E0%A6%A8%E0%A6%AE%E0%A6%B8%E0%A7%8D%E0%A6%95%E0%A6%BE%E0%A6%B0%20%E0%A6%A1.%20%E0%A6%86%E0%A6%9A%E0%A6%BE%E0%A6%B0%E0%A7%8D%E0%A6%AF%2C%20%E0%A6%86%E0%A6%AE%E0%A6%BF%20%E0%A6%8F%E0%A6%95%E0%A6%9F%E0%A6%BF%20%E0%A6%AA%E0%A6%B0%E0%A6%BE%E0%A6%AE%E0%A6%B0%E0%A7%8D%E0%A6%B6%20%E0%A6%AC%E0%A7%81%E0%A6%95%20%E0%A6%95%E0%A6%B0%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87%E0%A5%A4"
+     target="_blank" rel="noopener" class="wa-btn-fl" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
   </a>
 </div>
 
+<!-- ══ BACK TO TOP — বাঁয়ে ══ -->
+<button id="back-to-top" aria-label="উপরে যান" title="উপরে যান">⬆</button>
+
 <script>
-function toggleNav() {
-  document.getElementById('mobileNav').classList.toggle('open');
+/* ── Nav toggle ── */
+function toggleNav(){
+  var n=document.getElementById('navMenu'),o=document.getElementById('navOverlay');
+  var open=n.classList.toggle('open');
+  o.classList.toggle('open',open);
+  document.body.classList.toggle('nav-open',open);
 }
-// বাইরে click করলে nav বন্ধ
-document.addEventListener('click', function(e) {
-  const nav = document.getElementById('mobileNav');
-  const ham = document.getElementById('ham');
-  if (nav.classList.contains('open') && !nav.contains(e.target) && !ham.contains(e.target)) {
-    nav.classList.remove('open');
+function closeNav(){
+  document.getElementById('navMenu').classList.remove('open');
+  document.getElementById('navOverlay').classList.remove('open');
+  document.body.classList.remove('nav-open');
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeNav();});
+
+/* ── Rotating WhatsApp Flash Messages ── */
+(function(){
+  var msgs=[
+    '🔮 কুণ্ডলী বিশ্লেষণ করুন',
+    '🌟 আজই পরামর্শ নিন',
+    '✋ হস্তরেখা বিচার করুন',
+    '⭐ ১০,০০০+ সন্তুষ্ট গ্রাহক',
+    '💬 বাংলায় Online পরামর্শ',
+    '🙏 এখনই WhatsApp করুন',
+    '📿 Jyotish পরামর্শ নিন',
+    '💍 যোটোক বিচার করুন'
+  ];
+  var idx=0,bubble=document.getElementById('waBubble');
+  if(!bubble)return;
+  function showMsg(){
+    bubble.style.display='block';
+    bubble.textContent=msgs[idx];
+    bubble.classList.add('show');
+    setTimeout(function(){
+      bubble.classList.remove('show');
+      setTimeout(function(){bubble.style.display='none';},400);
+    },4000);
+    idx=(idx+1)%msgs.length;
   }
+  setTimeout(function(){showMsg();setInterval(showMsg,6000);},2500);
+})();
+
+/* ── Back To Top ── */
+(function(){
+  var btn=document.getElementById('back-to-top');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>400)btn.classList.add('visible');
+    else btn.classList.remove('visible');
+  },{passive:true});
+  btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+})();
+
+/* ── GA4 click tracking ── */
+document.addEventListener('click',function(e){
+  var a=e.target.closest('a');if(!a)return;
+  var href=a.getAttribute('href')||'';
+  if(href.includes('wa.me')&&typeof gtag!=='undefined')
+    gtag('event','whatsapp_click',{event_category:'engagement',event_label:a.innerText.trim()||'WhatsApp'});
+  if(href.startsWith('tel:')&&typeof gtag!=='undefined')
+    gtag('event','phone_click',{event_category:'engagement'});
 });
 </script>
 
@@ -812,15 +786,12 @@ files.forEach(file => {
   const fmStart = raw.indexOf('---');
   const content = fmStart > 0 ? raw.slice(fmStart) : raw;
   const meta    = parseFrontmatter(content);
-
-  if (!meta.title) meta.title = slug.replace(/-/g, ' ');
-
+  if (!meta.title) meta.title = slug.replace(/-/g,' ');
   const body = markdownToHtml(content);
   const html = buildHtml(meta, body, slug);
-
   fs.writeFileSync(path.join(OUTPUT_DIR, `${slug}.html`), html, 'utf8');
   count++;
-  console.log(`✅ blog/${slug}.html`);
+  console.log(`\u2705 blog/${slug}.html`);
 });
 
-console.log(`\n📝 মোট: ${count}টি HTML ফাইল তৈরি হয়েছে`);
+console.log(`\n\uD83D\uDCDD \u09AE\u09CB\u099F: ${count}\u099F\u09BF HTML \u09AB\u09BE\u0987\u09B2 \u09A4\u09C8\u09B0\u09BF \u09B9\u09AF\u09BC\u09C7\u099B\u09C7`);
