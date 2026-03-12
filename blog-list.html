@@ -11,7 +11,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>জ্যোতিষ ব্লগ তালিকা | ড. প্রদ্যুৎ আচার্য | MyAstrology Ranaghat</title>
-<meta name="description" content="MyAstrology ব্লগ তালিকা – হস্তরেখা, রাশিফল, রত্নপাথর, বাস্তু ও বৈদিক জ্যোতিষ বিষয়ক ৩০+ প্রামাণিক বাংলা প্রবন্ধ পড়ুন ড. প্রদ্যুৎ আচার্যের লেখনীতে। Ranaghat, Nadia, West Bengal.">
+<meta name="description" content="MyAstrology ব্লগ তালিকা – হস্তরেখা, রাশিফল, রত্নপাথর, বাস্তু ও বৈদিক জ্যোতিষ বিষয়ক ৩৪+ প্রামাণিক বাংলা প্রবন্ধ পড়ুন ড. প্রদ্যুৎ আচার্যের লেখনীতে। Ranaghat, Nadia, West Bengal.">
 <meta name="keywords" content="ড. প্রদ্যুৎ আচার্য জ্যোতিষ ব্লগ, MyAstrology Ranaghat blog, বৈদিক জ্যোতিষ বাংলা, হস্তরেখা বিশ্লেষণ বাংলা, রাশিফল, best astrologer Nadia, jyotish blog Bengali Ranaghat">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 <meta name="author" content="Dr. Prodyut Acharya">
@@ -25,7 +25,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:site_name" content="MyAstrology – Dr. Prodyut Acharya">
 <meta property="og:locale" content="bn_IN">
 <meta property="og:title" content="জ্যোতিষ ব্লগ তালিকা | ড. প্রদ্যুৎ আচার্য | MyAstrology Ranaghat">
-<meta property="og:description" content="হস্তরেখা, রাশিফল, রত্নপাথর ও বাস্তু বিষয়ক ৩০+ প্রামাণিক প্রবন্ধ পড়ুন MyAstrology ব্লগে।">
+<meta property="og:description" content="হস্তরেখা, রাশিফল, রত্নপাথর ও বাস্তু বিষয়ক ৩৪+ প্রামাণিক প্রবন্ধ পড়ুন MyAstrology ব্লগে।">
 <meta property="og:image" content="https://www.myastrology.in/images/astrology-ranaghat-banner4.webp">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -169,8 +169,18 @@ header{position:fixed;top:0;left:0;width:100%;height:var(--hdr-h);z-index:1000;b
 .card-link{font-size:12.5px;font-weight:700;color:var(--red);display:inline-flex;align-items:center;gap:5px}
 .card-link i{font-size:10px;transition:transform .2s}
 .blog-card:hover .card-link i{transform:translateX(4px)}
+.card-meta{display:flex;align-items:center;gap:10px;font-size:11px;color:var(--txt-lt);margin-bottom:8px}
+.card-meta span{display:inline-flex;align-items:center;gap:3px}
 .empty-state{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--txt-lt)}
 .empty-state .icon{font-size:48px;margin-bottom:14px}
+
+/* ── PAGINATION ── */
+.pagination{display:flex;justify-content:center;align-items:center;gap:8px;padding:10px 0 36px;flex-wrap:wrap}
+.pg-btn{background:var(--white);border:1.5px solid var(--border);color:var(--txt-mid);font-size:13px;font-weight:600;width:38px;height:38px;border-radius:10px;cursor:pointer;transition:var(--ease);font-family:inherit;display:flex;align-items:center;justify-content:center}
+.pg-btn:hover{border-color:var(--red);color:var(--red)}
+.pg-btn.active{background:var(--red);border-color:var(--red);color:#fff}
+.pg-btn:disabled{opacity:.4;cursor:not-allowed}
+.pg-info{font-size:12px;color:var(--txt-lt);padding:0 6px}
 
 /* ── SOCIAL PROOF ── */
 .sp-wrap{padding:0 0 48px}
@@ -479,6 +489,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="empty-state"><div class="icon">📖</div><p>প্রবন্ধ লোড হচ্ছে...</p></div>
     </div>
 
+    <!-- PAGINATION -->
+    <div id="pagination" class="pagination"></div>
+
     <!-- 5) SOCIAL PROOF -->
     <section class="sp-wrap" aria-label="পাঠক ও অনুসরণকারী">
       <div class="sp-label">আমাদের পাঠক ও অনুসরণকারী</div>
@@ -657,6 +670,8 @@ var FALLBACK_POSTS=[
 var _posts=[];
 var _activeCat='all';
 var _searchQ='';
+var _currentPage=1;
+var _perPage=9;
 
 (function(){
   /* Read URL query */
@@ -676,6 +691,41 @@ var _searchQ='';
            (post.tags&&post.tags.some(function(t){return t.toLowerCase().includes(q);}));
   }
 
+  /* Reading time — description শব্দ সংখ্যা থেকে আনুমানিক */
+  function readingTime(post){
+    var words=((post.title||'')+' '+(post.description||'')).split(/\s+/).length;
+    var mins=Math.max(2,Math.ceil(words/60));
+    return mins+'–'+(mins+1)+' মিনিট';
+  }
+
+  /* তারিখ বাংলায় */
+  function formatDate(dateStr){
+    if(!dateStr)return '';
+    var months=['জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
+    var d=new Date(dateStr);
+    if(isNaN(d))return '';
+    return d.getDate()+' '+months[d.getMonth()]+' '+d.getFullYear();
+  }
+
+  /* Pagination render */
+  function renderPagination(total,currentPage){
+    var pg=document.getElementById('pagination');
+    var totalPages=Math.ceil(total/_perPage);
+    if(totalPages<=1){pg.innerHTML='';return;}
+    var html='';
+    html+='<button class="pg-btn" onclick="goPage('+currentPage+',-1)" '+(currentPage===1?'disabled':'')+'>&#8592;</button>';
+    for(var i=1;i<=totalPages;i++){
+      if(i===1||i===totalPages||Math.abs(i-currentPage)<=1){
+        html+='<button class="pg-btn'+(i===currentPage?' active':'')+'" onclick="goPage('+i+',0)">'+i+'</button>';
+      } else if(Math.abs(i-currentPage)===2){
+        html+='<span class="pg-info">…</span>';
+      }
+    }
+    html+='<button class="pg-btn" onclick="goPage('+currentPage+',1)" '+(currentPage===totalPages?'disabled':'')+'>&#8594;</button>';
+    html+='<span class="pg-info">মোট '+total+'টি প্রবন্ধ</span>';
+    pg.innerHTML=html;
+  }
+
   function render(list,query){
     var ib=document.getElementById('search-result-info');
     var ct=document.getElementById('blog-container');
@@ -684,13 +734,21 @@ var _searchQ='';
       :'';
     if(!list.length){
       ct.innerHTML='<div class="empty-state"><div class="icon">🔍</div><p>কোনো প্রবন্ধ পাওয়া যায়নি।</p></div>';
+      document.getElementById('pagination').innerHTML='';
       return;
     }
-    ct.innerHTML=list.map(function(post){
+    /* pagination slice */
+    var totalPages=Math.ceil(list.length/_perPage);
+    if(_currentPage>totalPages)_currentPage=1;
+    var start=(_currentPage-1)*_perPage;
+    var pageList=list.slice(start,start+_perPage);
+
+    ct.innerHTML=pageList.map(function(post){
       var cat=(post.tags&&post.tags[0])||'প্রবন্ধ';
       var imgAlt=(post.title||'MyAstrology ব্লগ')+' – ড. প্রদ্যুৎ আচার্য, জ্যোতিষী রানাঘাট';
-      /* image path: list.json may give 'blog/x.webp' or '/blog/x.webp' — keep as-is */
       var imgSrc=post.image||'';
+      var dateStr=formatDate(post.date||post.pubDate||'');
+      var rt=readingTime(post);
       return '<article itemscope itemtype="https://schema.org/BlogPosting">'
         +'<a href="blog.html?post='+(post.slug||'')+'" class="blog-card" itemprop="url">'
         +'<div class="card-img-wrap">'
@@ -702,15 +760,31 @@ var _searchQ='';
         +'<span class="card-cat">'+cat+'</span>'
         +'</div>'
         +'<div class="card-body">'
+        +'<div class="card-meta">'
+        +(dateStr?'<span>📅 '+dateStr+'</span>':'')
+        +'<span>⏱️ '+rt+'</span>'
+        +'</div>'
         +'<h2 itemprop="headline">'+(post.title||'শিরোনাম নেই')+'</h2>'
         +'<p itemprop="description">'+(post.description||'')+'</p>'
         +'<span class="card-link">আরও পড়ুন <i class="fas fa-arrow-right"></i></span>'
         +'</div></a></article>';
     }).join('');
+
+    renderPagination(list.length,_currentPage);
   }
+
+  /* Global page navigation */
+  window._filteredList=[];
+  window.goPage=function(page,delta){
+    _currentPage=page+delta;
+    render(window._filteredList,_searchQ);
+    document.getElementById('main-content').scrollIntoView({behavior:'smooth'});
+  };
 
   function renderFiltered(){
     var filtered=_posts.filter(function(p){return matchCat(p)&&matchSearch(p,_searchQ);});
+    window._filteredList=filtered;
+    _currentPage=1;
     render(filtered,_searchQ);
   }
 
