@@ -8,6 +8,7 @@ const BASE_URL = 'https://www.myastrology.in';
 const ROOT     = process.cwd();
 const TODAY    = new Date().toISOString().split('T')[0];
 
+// ✅ FIX: gemstone.html যোগ করা হয়েছে
 const PAGE_CONFIG = {
   'index.html':           { priority: 1.00, changefreq: 'weekly'  },
   'astrology.html':       { priority: 0.95, changefreq: 'monthly' },
@@ -21,6 +22,7 @@ const PAGE_CONFIG = {
   'reviews.html':         { priority: 0.90, changefreq: 'daily'   },
   'video.html':           { priority: 0.82, changefreq: 'monthly' },
   'gallery.html':         { priority: 0.80, changefreq: 'monthly' },
+  'gemstone.html':        { priority: 0.80, changefreq: 'monthly' },
   'about.html':           { priority: 0.75, changefreq: 'yearly'  },
   'contact.html':         { priority: 0.72, changefreq: 'yearly'  },
   'privacy-policy.html':  { priority: 0.30, changefreq: 'yearly'  },
@@ -81,4 +83,3 @@ https.get(pingUrl, res => {
 }).on('error', err => {
   console.warn(`Google ping skip: ${err.message}`);
 });
-
