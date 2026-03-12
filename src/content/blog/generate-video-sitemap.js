@@ -49,3 +49,4 @@ function extractLiteYouTube(html) {
   fs.writeFileSync(OUT_FILE, xml, 'utf8');
   console.log(`✅ public/video-sitemap.xml → ${videos.length} videos`);
 })();
+
