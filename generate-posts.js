@@ -4,17 +4,16 @@ const fs   = require('fs');
 const path = require('path');
 
 // ── Constants ──────────────────────────────────────────────────────
-const BLOG_DIR    = path.join(__dirname, 'src', 'content', 'blog');
-const OUTPUT_DIR  = path.join(__dirname, 'blog');
-const SITE_URL    = 'https://www.myastrology.in';
-const GA_ID       = 'G-S7BQGLP211';
-const WA_NUMBER   = '919333122768';
+const BLOG_DIR     = path.join(__dirname, 'src', 'content', 'blog');
+const OUTPUT_DIR   = path.join(__dirname, 'blog');
+const SITE_URL     = 'https://www.myastrology.in';
+const GA_ID        = 'G-S7BQGLP211';
+const WA_NUMBER    = '919333122768';
 const RAZORPAY_URL = 'https://pages.razorpay.com/pl_PSd8AAe189ECFo/view';
-const DEFAULT_IMG = `${SITE_URL}/images/MyAstrology-Ranghat-logo.png`;
+const DEFAULT_IMG  = `${SITE_URL}/images/MyAstrology-Ranghat-logo.png`;
+const LOGO_IMG     = `${SITE_URL}/images/MyAstrology-Ranghat-logo.png`;
 
 // ── Frontmatter parser ─────────────────────────────────────────────
-// Reads: title, description, date, image, tags
-// Extra fields (slug, keywords, etc.) are safely ignored
 function parseFrontmatter(content) {
   const meta = { title: '', description: '', date: '', image: '', tags: [] };
   const match = content.match(/^---\n([\s\S]*?)\n---/);
@@ -24,19 +23,13 @@ function parseFrontmatter(content) {
   let inTags = false;
 
   lines.forEach(line => {
-    // tags: multiline array format
     if (/^tags\s*:/.test(line)) { inTags = true; return; }
     if (inTags) {
       if (/^\s{2,}-\s+/.test(line)) {
         meta.tags.push(line.replace(/^\s+-\s+/, '').replace(/^["']|["']$/g, '').trim());
         return;
       }
-      // inline array format: tags: ["a","b"]
-      if (/^\s*\[/.test(line) || line.includes('[')) {
-        inTags = false;
-      } else {
-        inTags = false;
-      }
+      inTags = false;
     }
 
     const colonIdx = line.indexOf(':');
@@ -49,7 +42,6 @@ function parseFrontmatter(content) {
     if (key === 'date')        meta.date        = val;
     if (key === 'image')       meta.image       = val;
 
-    // inline tags: ["a","b","c"]
     if (key === 'tags' && val.includes('[')) {
       meta.tags = val
         .replace(/[\[\]]/g, '')
@@ -63,9 +55,9 @@ function parseFrontmatter(content) {
 }
 
 // ── Image URL normalizer ───────────────────────────────────────────
-// astro.myastrology.in → www.myastrology.in
+// FIX: default path এখন /images/ — আগে /blog/ ছিল যা ভুল ছিল
 function normalizeImage(img, slug) {
-  if (!img) return `${SITE_URL}/blog/${slug}.webp`;
+  if (!img) return `${SITE_URL}/images/${slug}.webp`;
   return img
     .replace('https://astro.myastrology.in', SITE_URL)
     .replace('http://astro.myastrology.in',  SITE_URL);
@@ -82,14 +74,8 @@ function jsonStr(s) {
 }
 
 // ── Markdown → HTML ────────────────────────────────────────────────
-// FIX 1: --- → <hr>
-// FIX 2: HTML blocks not wrapped in <p>
-// FIX 3: consecutive <li> wrapped in <ul>
 function markdownToHtml(raw) {
-  // Remove frontmatter
   let md = raw.replace(/^---[\s\S]*?---\n?/, '');
-
-  // Split into blocks by blank lines
   const blocks = md.split(/\n{2,}/);
   const html   = [];
 
@@ -103,14 +89,13 @@ function markdownToHtml(raw) {
       return;
     }
 
-    // ── Raw HTML block — pass through unchanged ──
-    // Covers <div>, <blockquote style=...>, <ol>, <ul>, <table>, <figure>
+    // ── Raw HTML block ──
     if (/^<(div|section|article|figure|table|ul|ol|blockquote|hr|h[1-6]|p\s)/i.test(block)) {
       html.push(block);
       return;
     }
 
-    // ── Headings ──
+    // ── Headings — FIX: <span id="..."> anchor সহ ──
     if (/^#{1,6}\s/.test(block)) {
       const hBlock = block
         .replace(/^###### (.+)$/gm, '<h6>$1</h6>')
@@ -123,12 +108,28 @@ function markdownToHtml(raw) {
       return;
     }
 
-    // ── Blockquote (markdown style) ──
+    // ── Blockquote ──
     if (/^>\s/.test(block)) {
-      const inner = block
-        .replace(/^>\s?/gm, '')
-        .trim();
+      const inner = block.replace(/^>\s?/gm, '').trim();
       html.push(`<blockquote>${applyInline(inner)}</blockquote>`);
+      return;
+    }
+
+    // ── Table — NEW: markdown table support ──
+    if (/^\|.+\|/.test(block)) {
+      const rows = block.split('\n').filter(r => r.trim());
+      const isHeader = rows.length > 1 && /^\|[-\s|:]+\|$/.test(rows[1]);
+      let tableHtml = '<div class="table-wrap"><table>\n';
+
+      rows.forEach((row, i) => {
+        if (isHeader && i === 1) return; // separator row skip
+        const cells = row.split('|').map(c => c.trim()).filter(c => c !== '');
+        const tag   = (isHeader && i === 0) ? 'th' : 'td';
+        tableHtml += '<tr>' + cells.map(c => `<${tag}>${applyInline(c)}</${tag}>`).join('') + '</tr>\n';
+      });
+
+      tableHtml += '</table></div>';
+      html.push(tableHtml);
       return;
     }
 
@@ -162,12 +163,11 @@ function markdownToHtml(raw) {
   return html.join('\n');
 }
 
-// Inline markdown: bold, italic, links
 function applyInline(text) {
   return text
-    .replace(/\*\*(.+?)\*\*/g,     '<strong>$1</strong>')
-    .replace(/\*(.+?)\*/g,         '<em>$1</em>')
-    .replace(/\[(.+?)\]\((.+?)\)/g,'<a href="$2">$1</a>');
+    .replace(/\*\*(.+?)\*\*/g,      '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g,          '<em>$1</em>')
+    .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>');
 }
 
 // ── Date formatter (Bengali) ───────────────────────────────────────
@@ -245,10 +245,10 @@ gtag('js',new Date());
 gtag('config','${GA_ID}');
 </script>
 
-<link rel="icon"        type="image/x-icon" href="${SITE_URL}/images/favicon.ico">
-<link rel="apple-touch-icon"                href="${SITE_URL}/images/favicon.ico">
-<link rel="preconnect"  href="https://fonts.googleapis.com">
-<link rel="stylesheet"  href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&display=swap">
+<link rel="icon"       type="image/x-icon" href="${SITE_URL}/images/favicon.ico">
+<link rel="apple-touch-icon"               href="${SITE_URL}/images/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&display=swap">
 
 <style>
 :root {
@@ -272,35 +272,90 @@ body {
 /* ── Header ── */
 .site-header {
   background: var(--primary);
-  padding: 14px 20px;
+  padding: 0 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px;
+  height: 60px;
   position: sticky;
   top: 0;
-  z-index: 100;
-  box-shadow: 0 2px 8px rgba(0,0,0,.3);
+  z-index: 200;
+  box-shadow: 0 2px 8px rgba(0,0,0,.35);
 }
-.site-header a.logo {
-  color: #fff;
-  text-decoration: none;
-  font-size: 1.25rem;
-  font-weight: 700;
+.site-header .logo img {
+  height: 38px;
+  width: auto;
+  display: block;
 }
-.site-header a.logo span { color: var(--accent); }
 .site-header nav a {
   color: #ffffffcc;
   text-decoration: none;
-  margin-left: 18px;
-  font-size: .9rem;
+  margin-left: 14px;
+  font-size: .85rem;
   transition: color .2s;
+  white-space: nowrap;
 }
-.site-header nav a:hover { color: var(--accent); }
+.site-header nav a:hover,
+.site-header nav a.active { color: var(--accent); }
+.site-header nav a.wa-btn {
+  background: #25D366;
+  color: #fff;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-weight: 700;
+  margin-left: 16px;
+}
+
+/* ── Hamburger ── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 6px;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: all .3s;
+}
+
+/* ── Mobile nav drawer ── */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 60px;
+  right: 0;
+  width: 230px;
+  background: var(--primary);
+  box-shadow: -4px 4px 16px rgba(0,0,0,.3);
+  z-index: 199;
+  padding: 10px 0;
+  border-radius: 0 0 0 12px;
+}
+.mobile-nav.open { display: block; }
+.mobile-nav a {
+  display: block;
+  color: #ffffffcc;
+  text-decoration: none;
+  padding: 10px 22px;
+  font-size: .9rem;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  transition: background .2s;
+}
+.mobile-nav a:hover { background: rgba(255,255,255,.1); color: var(--accent); }
+.mobile-nav a.wa-btn {
+  color: #25D366;
+  font-weight: 700;
+}
 
 /* ── Main ── */
-main { max-width: 780px; margin: 0 auto; padding: 40px 20px 60px; }
+main { max-width: 780px; margin: 0 auto; padding: 36px 20px 60px; }
 
 .back-link {
   display: inline-flex;
@@ -308,27 +363,28 @@ main { max-width: 780px; margin: 0 auto; padding: 40px 20px 60px; }
   gap: 6px;
   color: var(--primary);
   text-decoration: none;
-  font-size: .9rem;
-  margin-bottom: 28px;
+  font-size: .88rem;
+  margin-bottom: 24px;
+  opacity: .8;
 }
-.back-link:hover { text-decoration: underline; }
+.back-link:hover { opacity: 1; text-decoration: underline; }
 
 /* ── Post header ── */
 .post-header {
-  margin-bottom: 32px;
+  margin-bottom: 28px;
   border-bottom: 2px solid var(--border);
-  padding-bottom: 24px;
+  padding-bottom: 22px;
 }
 .post-header h1 {
-  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-size: clamp(1.45rem, 4vw, 1.95rem);
   color: var(--primary);
   line-height: 1.4;
   margin-bottom: 12px;
 }
 .post-meta {
-  font-size: .85rem;
+  font-size: .84rem;
   color: var(--muted);
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   display: flex;
   flex-wrap: wrap;
   gap: 6px 16px;
@@ -345,7 +401,7 @@ main { max-width: 780px; margin: 0 auto; padding: 40px 20px 60px; }
 }
 .featured-img {
   width: 100%;
-  max-height: 420px;
+  max-height: 400px;
   object-fit: cover;
   border-radius: 10px;
   margin-bottom: 20px;
@@ -356,90 +412,212 @@ main { max-width: 780px; margin: 0 auto; padding: 40px 20px 60px; }
 .post-body h1,
 .post-body h2 {
   color: var(--primary);
-  margin: 32px 0 12px;
-  font-size: 1.45rem;
+  margin: 30px 0 12px;
+  font-size: 1.35rem;
   border-left: 4px solid var(--accent);
   padding-left: 12px;
   line-height: 1.4;
 }
 .post-body h3 {
   color: var(--primary);
-  margin: 24px 0 8px;
-  font-size: 1.2rem;
+  margin: 22px 0 8px;
+  font-size: 1.1rem;
+  padding-left: 4px;
 }
 .post-body h4, .post-body h5, .post-body h6 {
   color: var(--muted);
-  margin: 18px 0 6px;
+  margin: 16px 0 6px;
 }
-.post-body p   { margin-bottom: 18px; }
-.post-body hr  { border: none; border-top: 1px solid var(--border); margin: 28px 0; }
+.post-body p   { margin-bottom: 16px; }
+.post-body hr  { border: none; border-top: 1px solid var(--border); margin: 26px 0; }
 .post-body blockquote {
   border-left: 4px solid var(--accent);
-  padding: 12px 20px;
+  padding: 12px 18px;
   background: #fdf4e7;
-  margin: 22px 0;
+  margin: 20px 0;
   font-style: italic;
   color: var(--muted);
   border-radius: 0 8px 8px 0;
 }
 .post-body a   { color: var(--primary); }
-.post-body ul  { margin: 12px 0 18px 24px; }
-.post-body ol  { margin: 12px 0 18px 24px; }
+.post-body ul  { margin: 10px 0 16px 22px; }
+.post-body ol  { margin: 10px 0 16px 22px; }
 .post-body li  { margin-bottom: 7px; }
 .post-body strong { color: var(--text); }
-.post-body img {
-  max-width: 100%;
+.post-body img { max-width: 100%; border-radius: 8px; margin: 14px 0; }
+
+/* ── Table ── */
+.table-wrap {
+  overflow-x: auto;
+  margin: 18px 0 22px;
   border-radius: 8px;
-  margin: 16px 0;
+  border: 1px solid var(--border);
+}
+.table-wrap table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .92rem;
+}
+.table-wrap th {
+  background: var(--primary);
+  color: #fff;
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 600;
+}
+.table-wrap td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.table-wrap tr:nth-child(even) td { background: #fdf5e8; }
+.table-wrap tr:last-child td { border-bottom: none; }
+
+/* ── Panjika widget strip ── */
+.panjika-strip {
+  background: linear-gradient(135deg, #5a3200, var(--primary));
+  color: #fff;
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin: 32px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.panjika-strip p {
+  margin: 0;
+  font-size: .92rem;
+  opacity: .92;
+}
+.panjika-strip strong { color: var(--accent); }
+.panjika-strip a {
+  display: inline-block;
+  background: var(--accent);
+  color: #2C1810;
+  padding: 8px 18px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: .88rem;
+  white-space: nowrap;
 }
 
 /* ── CTA box ── */
 .cta-box {
   background: linear-gradient(135deg, var(--primary), #6B3410);
   color: #fff;
-  border-radius: 12px;
-  padding: 28px 24px;
-  margin: 44px 0 20px;
+  border-radius: 14px;
+  padding: 28px 22px;
+  margin: 40px 0 20px;
   text-align: center;
 }
-.cta-box h3  { color: var(--accent); margin-bottom: 10px; font-size: 1.2rem; }
-.cta-box p   { margin-bottom: 18px; opacity: .9; }
-.cta-box a {
+.cta-box h3  { color: var(--accent); margin-bottom: 8px; font-size: 1.15rem; }
+.cta-box p   { margin-bottom: 16px; opacity: .9; font-size: .92rem; }
+.cta-box .btn-wa {
   display: inline-block;
-  background: var(--accent);
-  color: #2C1810;
-  padding: 12px 28px;
+  background: #25D366;
+  color: #fff;
+  padding: 11px 24px;
   border-radius: 8px;
   text-decoration: none;
   font-weight: 700;
-  margin: 6px;
-  transition: opacity .2s;
+  margin: 5px;
+  font-size: .92rem;
 }
-.cta-box a:hover { opacity: .85; }
+.cta-box .btn-pay {
+  display: inline-block;
+  background: var(--accent);
+  color: #2C1810;
+  padding: 11px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  margin: 5px;
+  font-size: .92rem;
+}
+
+/* ── Author bio ── */
+.author-bio {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: #f9f5eb;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin: 0 0 22px;
+}
+.author-bio .icon { font-size: 2.6rem; line-height: 1; }
+.author-bio h4 { margin: 0 0 3px; color: #5a3e00; font-size: .96rem; }
+.author-bio .sub { font-size: .83rem; color: #7a5c00; margin: 0 0 6px; }
+.author-bio p { font-size: .87rem; color: #5a3e00; line-height: 1.6; margin: 0; }
+.author-bio a { color: var(--accent); font-weight: 600; }
+
+/* ── Related posts ── */
+.related-posts {
+  background: #f9f5eb;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 18px;
+}
+.related-posts h4 { margin: 0 0 8px; color: #5a3e00; font-size: .92rem; }
+.related-posts a  { display: block; color: var(--primary); font-size: .9rem; line-height: 2; text-decoration: none; }
+.related-posts a:hover { text-decoration: underline; }
 
 /* ── Footer ── */
 .site-footer {
   background: var(--primary);
   color: #ffffffaa;
-  text-align: center;
-  padding: 22px 20px;
-  font-size: .85rem;
+  padding: 28px 20px;
+  margin-top: 50px;
 }
-.site-footer a { color: var(--accent); text-decoration: none; }
+.footer-inner {
+  max-width: 780px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.footer-brand img { height: 34px; margin-bottom: 8px; }
+.footer-brand p   { font-size: .82rem; opacity: .75; max-width: 220px; }
+.footer-links h5  { color: var(--accent); font-size: .85rem; margin: 0 0 8px; }
+.footer-links a   {
+  display: block;
+  color: #ffffffaa;
+  text-decoration: none;
+  font-size: .83rem;
+  line-height: 2;
+}
+.footer-links a:hover { color: var(--accent); }
+.footer-bottom {
+  text-align: center;
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,.15);
+  font-size: .8rem;
+  opacity: .65;
+  max-width: 780px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 /* ── WhatsApp float ── */
 .whatsapp-float {
   position: fixed;
-  bottom: 24px;
-  right: 20px;
+  bottom: 22px;
+  left: 18px;
   z-index: 999;
 }
 .whatsapp-float a {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 54px;
-  height: 54px;
+  width: 52px;
+  height: 52px;
   background: #25D366;
   border-radius: 50%;
   box-shadow: 0 4px 14px rgba(0,0,0,.25);
@@ -447,27 +625,59 @@ main { max-width: 780px; margin: 0 auto; padding: 40px 20px 60px; }
   transition: transform .2s;
 }
 .whatsapp-float a:hover { transform: scale(1.1); }
-.whatsapp-float svg { width: 30px; height: 30px; fill: #fff; }
+.whatsapp-float svg { width: 28px; height: 28px; fill: #fff; }
 
-@media (max-width: 600px) {
+/* ── Responsive ── */
+@media (max-width: 680px) {
   .site-header nav { display: none; }
-  main { padding: 24px 16px 48px; }
+  .hamburger       { display: flex; }
+  main             { padding: 20px 14px 48px; }
+  .panjika-strip   { flex-direction: column; text-align: center; }
+  .footer-inner    { flex-direction: column; }
 }
 </style>
 </head>
 <body>
 
+<!-- ── HEADER ──────────────────────────────────────────────── -->
 <header class="site-header">
-  <a class="logo" href="${SITE_URL}">My<span>Astrology</span></a>
+  <a class="logo" href="${SITE_URL}">
+    <img src="${LOGO_IMG}" alt="MyAstrology – Dr. Prodyut Acharya">
+  </a>
+
   <nav>
-    <a href="${SITE_URL}">হোম</a>
+    <a href="${SITE_URL}/">হোম</a>
     <a href="${SITE_URL}/astrology.html">জ্যোতিষ</a>
     <a href="${SITE_URL}/palmistry.html">হস্তরেখা</a>
-    <a href="${SITE_URL}/blog-list.html">ব্লগ</a>
-    <a href="https://wa.me/${WA_NUMBER}">WhatsApp</a>
+    <a href="${SITE_URL}/rashifal.html">রাশিফল</a>
+    <a href="${SITE_URL}/panjika.html">পঞ্জিকা</a>
+    <a href="${SITE_URL}/blog-list.html" class="active">ব্লগ</a>
+    <a href="${SITE_URL}/contact.html">যোগাযোগ</a>
+    <a href="https://wa.me/${WA_NUMBER}" class="wa-btn">💬 WhatsApp</a>
   </nav>
+
+  <button class="hamburger" id="ham" aria-label="মেনু" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </button>
 </header>
 
+<!-- ── MOBILE NAV ───────────────────────────────────────────── -->
+<nav class="mobile-nav" id="mobileNav">
+  <a href="${SITE_URL}/">হোম</a>
+  <a href="${SITE_URL}/astrology.html">জ্যোতিষ শাস্ত্র</a>
+  <a href="${SITE_URL}/palmistry.html">হস্তরেখা বিচার</a>
+  <a href="${SITE_URL}/gemstone.html">রত্নপাথর পরামর্শ</a>
+  <a href="${SITE_URL}/vastu-science.html">বাস্তু শাস্ত্র</a>
+  <a href="${SITE_URL}/rashifal.html">রাশিফল</a>
+  <a href="${SITE_URL}/panjika.html">বাংলা পঞ্জিকা</a>
+  <a href="${SITE_URL}/blog-list.html">ব্লগ</a>
+  <a href="${SITE_URL}/reviews.html">রিভিউ</a>
+  <a href="${SITE_URL}/about.html">আমাদের সম্পর্কে</a>
+  <a href="${SITE_URL}/contact.html">যোগাযোগ</a>
+  <a href="https://wa.me/${WA_NUMBER}" class="wa-btn">💬 WhatsApp পরামর্শ</a>
+</nav>
+
+<!-- ── MAIN ─────────────────────────────────────────────────── -->
 <main>
   <a class="back-link" href="${SITE_URL}/blog-list.html">← সব পোস্ট দেখুন</a>
 
@@ -491,21 +701,78 @@ main { max-width: 780px; margin: 0 auto; padding: 40px 20px 60px; }
     </div>
   </article>
 
+  <!-- আজকের রাশিফল ও পঞ্জিকা strip -->
+  <div class="panjika-strip">
+    <p>🪐 <strong>আজকের রাশিফল ও দিন পঞ্জিকা</strong> দেখুন — তিথি, নক্ষত্র, রাহুকাল ও শুভ মুহূর্ত।</p>
+    <a href="${SITE_URL}/panjika.html">এখনই দেখুন →</a>
+  </div>
+
+  <!-- CTA -->
   <div class="cta-box">
     <h3>🔮 ব্যক্তিগত পরামর্শ নিন</h3>
-    <p>Dr. Prodyut Acharya-র সাথে সরাসরি কথা বলুন।</p>
-    <a href="https://wa.me/${WA_NUMBER}">💬 WhatsApp করুন</a>
-    <a href="${RAZORPAY_URL}">📅 পরামর্শ বুক করুন</a>
+    <p>জন্মকুণ্ডলী বিচার · হস্তরেখা বিশ্লেষণ · জীবনপথের দিশা<br>
+       <strong>Dr. Prodyut Acharya</strong> — PhD Gold Medalist, Ranaghat</p>
+    <a class="btn-wa"  href="https://wa.me/${WA_NUMBER}">💬 WhatsApp করুন</a>
+    <a class="btn-pay" href="${RAZORPAY_URL}">📅 পরামর্শ বুক করুন</a>
+  </div>
+
+  <!-- Author bio -->
+  <div class="author-bio">
+    <div class="icon">🧑‍🎓</div>
+    <div>
+      <h4>Dr. Prodyut Acharya</h4>
+      <p class="sub">PhD Gold Medalist · জ্যোতিষী ও হস্তরেখাবিদ · রানাঘাট, নদিয়া</p>
+      <p>১৫+ বছরের অভিজ্ঞতায় হাজারো জন্মকুণ্ডলী ও হস্তরেখা বিশ্লেষণ করেছেন।
+         বৈদিক জ্যোতিষ, হস্তরেখা ও দার্শনিক দৃষ্টিভঙ্গির সমন্বয়ে জীবনের দিকনির্দেশনা দেন।
+         <a href="${SITE_URL}/about.html">→ আরও জানুন</a></p>
+    </div>
+  </div>
+
+  <!-- Related posts -->
+  <div class="related-posts">
+    <h4>🔗 আরও পড়ুন</h4>
+    <a href="${SITE_URL}/blog-list.html">সব ব্লগ পোস্ট দেখুন →</a>
+    <a href="${SITE_URL}/rashifal.html">আজকের রাশিফল →</a>
+    <a href="${SITE_URL}/panjika.html">বাংলা পঞ্জিকা →</a>
   </div>
 </main>
 
+<!-- ── FOOTER ────────────────────────────────────────────────── -->
 <footer class="site-footer">
-  <p>&copy; 2025 MyAstrology – Dr. Prodyut Acharya |
-     <a href="${SITE_URL}">myastrology.in</a> |
-     Ranaghat, Nadia, West Bengal
-  </p>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="${LOGO_IMG}" alt="MyAstrology">
+      <p>Dr. Prodyut Acharya<br>রানাঘাট, নদিয়া, পশ্চিমবঙ্গ</p>
+    </div>
+    <div class="footer-links">
+      <h5>সেবাসমূহ</h5>
+      <a href="${SITE_URL}/astrology.html">জ্যোতিষ শাস্ত্র</a>
+      <a href="${SITE_URL}/palmistry.html">হস্তরেখা বিচার</a>
+      <a href="${SITE_URL}/gemstone.html">রত্নপাথর পরামর্শ</a>
+      <a href="${SITE_URL}/vastu-science.html">বাস্তু শাস্ত্র</a>
+    </div>
+    <div class="footer-links">
+      <h5>দরকারি লিঙ্ক</h5>
+      <a href="${SITE_URL}/rashifal.html">রাশিফল</a>
+      <a href="${SITE_URL}/panjika.html">বাংলা পঞ্জিকা</a>
+      <a href="${SITE_URL}/blog-list.html">ব্লগ</a>
+      <a href="${SITE_URL}/contact.html">যোগাযোগ</a>
+    </div>
+    <div class="footer-links">
+      <h5>যোগাযোগ</h5>
+      <a href="https://wa.me/${WA_NUMBER}">💬 WhatsApp</a>
+      <a href="${SITE_URL}/contact.html">📧 ইমেইল</a>
+      <a href="${SITE_URL}/reviews.html">⭐ রিভিউ</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2025 MyAstrology – Dr. Prodyut Acharya |
+    <a href="${SITE_URL}" style="color:var(--accent)">myastrology.in</a> |
+    Ranaghat, Nadia, West Bengal
+  </div>
 </footer>
 
+<!-- ── WhatsApp float (বাঁয়ে) ──────────────────────────────── -->
 <div class="whatsapp-float">
   <a href="https://wa.me/${WA_NUMBER}" aria-label="WhatsApp">
     <svg viewBox="0 0 24 24">
@@ -514,6 +781,20 @@ main { max-width: 780px; margin: 0 auto; padding: 40px 20px 60px; }
     </svg>
   </a>
 </div>
+
+<script>
+function toggleNav() {
+  document.getElementById('mobileNav').classList.toggle('open');
+}
+// বাইরে click করলে nav বন্ধ
+document.addEventListener('click', function(e) {
+  const nav = document.getElementById('mobileNav');
+  const ham = document.getElementById('ham');
+  if (nav.classList.contains('open') && !nav.contains(e.target) && !ham.contains(e.target)) {
+    nav.classList.remove('open');
+  }
+});
+</script>
 
 </body>
 </html>`;
@@ -528,7 +809,6 @@ let count = 0;
 files.forEach(file => {
   const slug    = file.replace('.md', '');
   const raw     = fs.readFileSync(path.join(BLOG_DIR, file), 'utf8');
-  // Strip any lines before the first '---' (e.g. "💾 ফাইলের নাম:" lines)
   const fmStart = raw.indexOf('---');
   const content = fmStart > 0 ? raw.slice(fmStart) : raw;
   const meta    = parseFrontmatter(content);
