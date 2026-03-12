@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
@@ -14,7 +14,7 @@
       <video:thumbnail_loc>https://img.youtube.com/vi/ZNLmnTAfhes/hqdefault.jpg</video:thumbnail_loc>
       <video:title><![CDATA[প্রবাসী বাঙালির হাতের বিচার – MyAstrology]]></video:title>
       <video:description><![CDATA[প্রবাসী বাঙালির হাতের বিচার – MyAstrology]]></video:description>
-      <video:content_loc>https://www.youtube.com/watch?v=ZNLmnTAfhes</video:content_loc>
+      <video:content_loc>https://www.youtube.com/watch?v=ZNLmnTAfhes</video:contentloc>
       <video:player_loc>https://www.youtube.com/embed/ZNLmnTAfhes</video:player_loc>
     </video:video>
     <video:video>
