@@ -2,13 +2,11 @@
 
 const fs   = require('fs');
 const path = require('path');
-const https = require('https');
 
 const BASE_URL = 'https://www.myastrology.in';
 const ROOT     = process.cwd();
 const TODAY    = new Date().toISOString().split('T')[0];
 
-// ✅ FIX: gemstone.html যোগ করা হয়েছে
 const PAGE_CONFIG = {
   'index.html':           { priority: 1.00, changefreq: 'weekly'  },
   'astrology.html':       { priority: 0.95, changefreq: 'monthly' },
@@ -33,7 +31,7 @@ const EXCLUDE = new Set([
   '404.html','offline.html','error.html','test.html','draft.html'
 ]);
 
-// ── Static pages (root folder) ─────────────────────────────────────
+// ── Static pages ───────────────────────────────────────────────────
 const staticPages = fs.readdirSync(ROOT)
   .filter(f => f.endsWith('.html') && !EXCLUDE.has(f))
   .sort()
@@ -43,7 +41,7 @@ const staticPages = fs.readdirSync(ROOT)
     return { url, lastmod: TODAY, ...cfg };
   });
 
-// ── Blog posts (blog/ folder — static HTML files) ──────────────────
+// ── Blog posts ─────────────────────────────────────────────────────
 const blogDir = path.join(ROOT, 'blog');
 let blogPages = [];
 if (fs.existsSync(blogDir)) {
@@ -74,13 +72,4 @@ ${allUrls.map(p => `  <url>
 </urlset>`;
 
 fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), xml, 'utf8');
-console.log(`Sitemap OK: ${allUrls.length} URLs (${staticPages.length} static + ${blogPages.length} blog posts)`);
-
-// ── Google Ping ────────────────────────────────────────────────────
-const pingUrl = `https://www.google.com/ping?sitemap=${encodeURIComponent(BASE_URL + '/sitemap.xml')}`;
-https.get(pingUrl, res => {
-  console.log(`Google ping: HTTP ${res.statusCode}`);
-}).on('error', err => {
-  console.warn(`Google ping skip: ${err.message}`);
-});
-
+console.log(`✅ sitemap.xml → ${allUrls.length} URLs (${staticPages.length} static + ${blogPages.length} blog)`);
