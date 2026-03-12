@@ -527,7 +527,10 @@ let count = 0;
 
 files.forEach(file => {
   const slug    = file.replace('.md', '');
-  const content = fs.readFileSync(path.join(BLOG_DIR, file), 'utf8');
+  const raw     = fs.readFileSync(path.join(BLOG_DIR, file), 'utf8');
+  // Strip any lines before the first '---' (e.g. "💾 ফাইলের নাম:" lines)
+  const fmStart = raw.indexOf('---');
+  const content = fmStart > 0 ? raw.slice(fmStart) : raw;
   const meta    = parseFrontmatter(content);
 
   if (!meta.title) meta.title = slug.replace(/-/g, ' ');
