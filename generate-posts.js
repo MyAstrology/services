@@ -1,9 +1,9 @@
-
 const fs=require('fs'),path=require('path');
 const BLOG_DIR=path.join(__dirname,'src/content/blog');
 const OUTPUT_DIR=path.join(__dirname,'blog');
 const SITE_URL='https://www.myastrology.in';
 const GA_ID='G-S7BQGLP211';
+const DEFAULT_OG_IMAGE=`${SITE_URL}/images/MyAstrology-Ranghat-logo.png`;
 
 function parseFrontmatter(content){
   const match=content.match(/^---\n([\s\S]*?)\n---/);
@@ -21,8 +21,27 @@ function parseFrontmatter(content){
   return meta;
 }
 
+// ✅ FIX: image URL normalize — astro.myastrology.in → www.myastrology.in
+function normalizeImageUrl(img,slug){
+  if(!img)return `${SITE_URL}/blog/${slug}.webp`;
+  return img
+    .replace('https://astro.myastrology.in','https://www.myastrology.in')
+    .replace('http://astro.myastrology.in','https://www.myastrology.in');
+}
+
+// ✅ FIX: safe JSON string — escapes ", \, newline, </script> injection
+function jsonStr(s){
+  return (s||'')
+    .replace(/\\/g,'\\\\')
+    .replace(/"/g,'\\"')
+    .replace(/\n/g,'\\n')
+    .replace(/\r/g,'\\r')
+    .replace(/<\/script>/gi,'<\\/script>');
+}
+
+// ✅ FIX: <li> items wrapped in <ul>
 function markdownToHtml(md){
-  return md
+  const lines=md
     .replace(/^---[\s\S]*?---\n?/,'')
     .replace(/^### (.+)$/gm,'<h3>$1</h3>')
     .replace(/^## (.+)$/gm,'<h2>$1</h2>')
@@ -31,7 +50,12 @@ function markdownToHtml(md){
     .replace(/\*(.+?)\*/g,'<em>$1</em>')
     .replace(/^> (.+)$/gm,'<blockquote>$1</blockquote>')
     .replace(/^\- (.+)$/gm,'<li>$1</li>')
-    .replace(/\[(.+?)\]\((.+?)\)/g,'<a href="$2">$1</a>')
+    .replace(/\[(.+?)\]\((.+?)\)/g,'<a href="$2">$1</a>');
+
+  // wrap consecutive <li> tags with <ul>
+  const wrapped=lines.replace(/(<li>[\s\S]*?<\/li>)(\n<li>[\s\S]*?<\/li>)*/g,match=>`<ul>${match}</ul>`);
+
+  return wrapped
     .split(/\n{2,}/)
     .map(block=>{
       block=block.trim();
@@ -50,21 +74,47 @@ function formatDate(d){
 
 function buildHtml(meta,body,slug){
   const url=`${SITE_URL}/blog/${slug}.html`;
+  const ogImage=normalizeImageUrl(meta.image,slug);
+
+  // ✅ FIX: lang="bn-IN" (consistent with all other pages)
   return `<!DOCTYPE html>
-<html lang="bn">
+<html lang="bn-IN" translate="no">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>${meta.title} | MyAstrology</title>
 <meta name="description" content="${meta.description}">
+<meta name="author" content="Dr. Prodyut Acharya">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <link rel="canonical" href="${url}">
+
+<!-- ✅ Open Graph — og:image যোগ করা হয়েছে -->
 <meta property="og:title" content="${meta.title}">
 <meta property="og:description" content="${meta.description}">
 <meta property="og:url" content="${url}">
 <meta property="og:type" content="article">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"${meta.title.replace(/"/g,'\\"')}","description":"${meta.description.replace(/"/g,'\\"')}","datePublished":"${meta.date}","author":{"@type":"Person","name":"Dr. Prodyut Acharya","url":"${SITE_URL}/about"},"url":"${url}"}</script>
+<meta property="og:image" content="${ogImage}">
+<meta property="og:image:alt" content="${meta.title}">
+<meta property="og:locale" content="bn_IN">
+<meta property="og:site_name" content="MyAstrology – Dr. Prodyut Acharya">
+
+<!-- ✅ Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${meta.title}">
+<meta name="twitter:description" content="${meta.description}">
+<meta name="twitter:image" content="${ogImage}">
+<meta name="twitter:image:alt" content="${meta.title}">
+
+<!-- ✅ Schema — jsonStr() দিয়ে safe escape -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"${jsonStr(meta.title)}","description":"${jsonStr(meta.description)}","datePublished":"${meta.date}","image":"${jsonStr(ogImage)}","author":{"@type":"Person","name":"Dr. Prodyut Acharya","url":"${SITE_URL}/about.html"},"publisher":{"@type":"Organization","name":"MyAstrology","logo":{"@type":"ImageObject","url":"${DEFAULT_OG_IMAGE}"}},"url":"${url}"}</script>
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=${GA_ID}"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');</script>
+
+<!-- ✅ Favicon -->
+<link rel="icon" type="image/x-icon" href="${SITE_URL}/images/favicon.ico">
+<link rel="apple-touch-icon" href="${SITE_URL}/images/favicon.ico">
+
 <style>
 :root{--primary:#8B4513;--accent:#D4AF37;--bg:#FFF9F0;--text:#2C1810;--muted:#6B4C3B;--border:#E8D5B7;}
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -77,11 +127,16 @@ main{max-width:780px;margin:0 auto;padding:40px 20px 60px;}
 .post-header{margin-bottom:32px;border-bottom:2px solid var(--border);padding-bottom:24px;}
 .post-header h1{font-size:clamp(1.5rem,4vw,2rem);color:var(--primary);line-height:1.4;margin-bottom:12px;}
 .post-meta{font-size:.85rem;color:var(--muted);margin-bottom:12px;}
+/* ✅ Featured image style */
+.featured-img{width:100%;max-height:420px;object-fit:cover;border-radius:10px;margin-bottom:20px;display:block;}
 .post-body h2{color:var(--primary);margin:28px 0 10px;font-size:1.4rem;border-left:4px solid var(--accent);padding-left:12px;}
 .post-body h3{color:var(--primary);margin:20px 0 8px;}
 .post-body p{margin-bottom:18px;}
 .post-body blockquote{border-left:4px solid var(--accent);padding:10px 20px;background:#fdf4e7;margin:20px 0;font-style:italic;color:var(--muted);}
 .post-body a{color:var(--primary);}
+/* ✅ ul/li style */
+.post-body ul{margin:12px 0 18px 24px;}
+.post-body li{margin-bottom:6px;}
 .cta-box{background:linear-gradient(135deg,var(--primary),#6B3410);color:#fff;border-radius:12px;padding:28px 24px;margin:40px 0;text-align:center;}
 .cta-box h3{color:var(--accent);margin-bottom:10px;}
 .cta-box p{margin-bottom:18px;opacity:.9;}
@@ -107,6 +162,8 @@ footer a{color:var(--accent);text-decoration:none;}
 <a class="back-link" href="${SITE_URL}/blog-list.html">← সব পোস্ট দেখুন</a>
 <article>
 <div class="post-header">
+<!-- ✅ Featured image — meta.image থেকে স্বয়ংক্রিয় -->
+<img class="featured-img" src="${ogImage}" alt="${meta.title}" loading="lazy" onerror="this.style.display='none'">
 <h1>${meta.title}</h1>
 <div class="post-meta"><span>✍️ Dr. Prodyut Acharya</span> &nbsp; <span>📅 ${formatDate(meta.date)}</span></div>
 </div>
@@ -140,4 +197,3 @@ files.forEach(file=>{
   console.log(`OK: blog/${slug}.html`);
 });
 console.log(`Total: ${count} files generated`);
-
