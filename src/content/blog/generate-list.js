@@ -7,7 +7,12 @@ const blogDir = path.join(process.cwd(), 'src', 'content', 'blog');
 const files = fs.readdirSync(blogDir).filter(f => f.endsWith('.md'));
 
 const posts = files.map(file => {
-  const content = fs.readFileSync(path.join(blogDir, file), 'utf-8');
+  const raw = fs.readFileSync(path.join(blogDir, file), 'utf-8');
+
+  // Strip any lines before the first '---' (e.g. "💾 ফাইলের নাম:" lines)
+  const fmStart = raw.indexOf('---');
+  const content = fmStart > 0 ? raw.slice(fmStart) : raw;
+
   const { data } = matter(content);
 
   const slug = data?.slug || file.replace('.md', '');
