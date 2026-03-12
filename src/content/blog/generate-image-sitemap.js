@@ -82,6 +82,7 @@ function escapeXml(str) {
   allImages.forEach(img => {
     xml += `\n    <image:image>\n      <image:loc>${escapeXml(img)}</image:loc>\n    </image:image>`;
   });
+  
 
   xml += `\n  </url>\n</urlset>`;
 
