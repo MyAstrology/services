@@ -3,7 +3,6 @@ const path = require('path');
 const matter = require('gray-matter');
 
 const blogDir = path.join(process.cwd(), 'src', 'content', 'blog');
-const rootDir = process.cwd();
 
 const files = fs.readdirSync(blogDir).filter(f => f.endsWith('.md'));
 
@@ -30,28 +29,11 @@ const posts = files.map(file => {
   };
 });
 
-// ১. list.json তৈরি
-fs.writeFileSync(path.join(blogDir, 'list.json'), JSON.stringify(posts, null, 2));
+// ✅ list.json তৈরি (date descending — নতুন পোস্ট আগে)
+const sorted = posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+fs.writeFileSync(path.join(blogDir, 'list.json'), JSON.stringify(sorted, null, 2));
+console.log(`✅ list.json updated — ${sorted.length} posts`);
 
-// ২. Sitemap তৈরি
-const baseUrl = 'https://www.myastrology.in';
-const urls = posts.map(post => `  <url>
-    <loc>${baseUrl}/blog.html?post=${post.slug}</loc>
-    <lastmod>${post.date}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>`).join('\n');
-
-const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>${baseUrl}/</loc>
-    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-${urls}
-</urlset>`.trim();
-
-fs.writeFileSync(path.join(rootDir, 'sitemap.xml'), sitemapContent);
-console.log('✅ list.json and sitemap.xml updated successfully!');
+// ✅ NOTE: sitemap.xml generation এখান থেকে সরানো হয়েছে।
+// generate-sitemap.js সম্পূর্ণ sitemap তৈরি করে (static + blog উভয়)।
+// দুটো আলাদা স্ক্রিপ্ট একই ফাইল overwrite করত — এটি সেই conflict দূর করে।
