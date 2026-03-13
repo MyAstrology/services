@@ -526,8 +526,8 @@ h2.sec-title,h3.sec-title{font-family:var(--fh)!important;font-size:clamp(1.05re
 .fcta-trust{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
 .fcta-trust span{font-size:.67rem;font-weight:600;color:#555;background:#f5f0e8;border:1px solid #e0d5c0;padding:3px 10px;border-radius:20px}
 .fcta-btns{display:flex;flex-wrap:wrap;gap:10px}
-.fcta-btn-p{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#07101f;padding:12px 22px;border-radius:50px;font-weight:800;font-size:.88rem;box-shadow:0 4px 18px rgba(201,162,39,.45);border:none;cursor:pointer;font-family:var(--fb);transition:transform .2s}
-.fcta-btn-p:hover{transform:translateY(-2px)}
+.btn-book-cta{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#07101f;padding:12px 22px;border-radius:50px;font-weight:800;font-size:.88rem;box-shadow:0 4px 18px rgba(201,162,39,.45);border:none;cursor:pointer;font-family:var(--fb);transition:transform .2s}
+.btn-book-cta:hover{transform:translateY(-2px)}
 .fcta-btn-wa{display:inline-flex;align-items:center;gap:8px;border:2px solid #25d366;color:#128c7e;background:#fff;padding:10px 18px;border-radius:50px;font-weight:700;font-size:.88rem;text-decoration:none;transition:all .2s}
 .fcta-btn-wa:hover{background:#25d366;color:#fff}
 
@@ -540,7 +540,7 @@ h2.sec-title,h3.sec-title{font-family:var(--fh)!important;font-size:clamp(1.05re
 .wa-btn-float{width:52px;height:52px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.5rem;box-shadow:0 4px 16px rgba(37,211,102,.45);text-decoration:none;transition:transform .2s}
 .wa-btn-float:hover{transform:scale(1.1)}
 @media(max-width:480px){.fcta-btns,.final-btns,.cta-btns{flex-direction:column;align-items:stretch}}
-@media(max-width:480px){.fcta-btn-p,.fcta-btn-wa{width:100%;justify-content:center}}
+@media(max-width:480px){.btn-book-cta,.fcta-btn-wa{width:100%;justify-content:center}}
 
 body.nav-open{overflow-y:hidden}
 
@@ -1673,7 +1673,7 @@ body.nav-open #btt{opacity:0!important;pointer-events:none!important}
 <!-- MOONSTONE -->
 <div class="upa-card" id="moonstone">
   <div class="upa-card-top">
-    <div class="upa-card-img" style="overflow:hidden"><img src="gallery/moonstone-upa-ratna.webp" alt="মুনস্টোন উপরত্ন Moonstone Upa Ratna Gemstone Vedic Astrology" loading="lazy"/></div>
+    <div class="upa-card-img"><img src="gallery/moonstone-upa-ratna.webp" alt="মুনস্টোন উপরত্ন Moonstone Upa Ratna Gemstone Vedic Astrology" loading="lazy"/></div>
     <div class="upa-card-info">
       <span class="upa-card-badge">🌙 চন্দ্রের উপরত্ন</span>
       <h3 class="upa-card-title">চন্দ্রকান্তমণি (Moonstone)</h3>
@@ -1710,7 +1710,7 @@ body.nav-open #btt{opacity:0!important;pointer-events:none!important}
 <!-- SUNSTONE -->
 <div class="upa-card" id="sunstone">
   <div class="upa-card-top">
-    <div class="upa-card-img" style="overflow:hidden"><img src="gallery/turquoise-upa-ratna.webp" alt="সানস্টোন উপরত্ন Sunstone Gemstone Benefits Vedic Astrology" loading="lazy"/></div>
+    <div class="upa-card-img"><img src="gallery/turquoise-upa-ratna.webp" alt="সানস্টোন উপরত্ন Sunstone Gemstone Benefits Vedic Astrology" loading="lazy"/></div>
     <div class="upa-card-info">
       <span class="upa-card-badge">☀ সূর্যের উপরত্ন</span>
       <h3 class="upa-card-title">সানস্টোন (Sunstone)</h3>
@@ -1747,7 +1747,7 @@ body.nav-open #btt{opacity:0!important;pointer-events:none!important}
 <!-- AMETHYST -->
 <div class="upa-card" id="amethyst">
   <div class="upa-card-top">
-    <div class="upa-card-img" style="overflow:hidden"><img src="gallery/amethyst-upa-ratna.webp" alt="অ্যামিথিস্ট উপরত্ন Amethyst Gemstone Benefits Vedic Jyotish" loading="lazy"/></div>
+    <div class="upa-card-img"><img src="gallery/amethyst-upa-ratna.webp" alt="অ্যামিথিস্ট উপরত্ন Amethyst Gemstone Benefits Vedic Jyotish" loading="lazy"/></div>
     <div class="upa-card-info">
       <span class="upa-card-badge">♄ শনির উপরত্ন</span>
       <h3 class="upa-card-title">অ্যামেথিস্ট (Amethyst)</h3>
@@ -1784,7 +1784,7 @@ body.nav-open #btt{opacity:0!important;pointer-events:none!important}
 <!-- CITRINE -->
 <div class="upa-card" id="citrine">
   <div class="upa-card-top">
-    <div class="upa-card-img" style="overflow:hidden"><img src="gallery/tourmaline-upa-ratna.webp" alt="সিট্রিন উপরত্ন Citrine Crystal Benefits Vedic Gemology" loading="lazy"/></div>
+    <div class="upa-card-img"><img src="gallery/tourmaline-upa-ratna.webp" alt="সিট্রিন উপরত্ন Citrine Crystal Benefits Vedic Gemology" loading="lazy"/></div>
     <div class="upa-card-info">
       <span class="upa-card-badge">♃ বৃহস্পতির উপরত্ন</span>
       <h3 class="upa-card-title">সিট্রিন (Citrine)</h3>
@@ -1821,7 +1821,7 @@ body.nav-open #btt{opacity:0!important;pointer-events:none!important}
 <!-- LAPIS LAZULI -->
 <div class="upa-card" id="lapis">
   <div class="upa-card-top">
-    <div class="upa-card-img" style="overflow:hidden"><img src="gallery/jade-upa-ratna.webp" alt="ল্যাপিস লাজুলি উপরত্ন Lapis Lazuli Benefits Vedic Astrology" loading="lazy"/></div>
+    <div class="upa-card-img"><img src="gallery/jade-upa-ratna.webp" alt="ল্যাপিস লাজুলি উপরত্ন Lapis Lazuli Benefits Vedic Astrology" loading="lazy"/></div>
     <div class="upa-card-info">
       <span class="upa-card-badge">☿ বুধ · ♄ শনির উপরত্ন</span>
       <h3 class="upa-card-title">লাপিস লাজুলি (Lapis Lazuli)</h3>
@@ -1858,7 +1858,7 @@ body.nav-open #btt{opacity:0!important;pointer-events:none!important}
 <!-- PERIDOT -->
 <div class="upa-card" id="peridot">
   <div class="upa-card-top">
-    <div class="upa-card-img" style="overflow:hidden"><img src="gallery/peridot-upa-ratna.webp" alt="পেরিকোট উপরত্ন Peridot Gemstone Benefits Vedic Jyotish" loading="lazy"/></div>
+    <div class="upa-card-img"><img src="gallery/peridot-upa-ratna.webp" alt="পেরিকোট উপরত্ন Peridot Gemstone Benefits Vedic Jyotish" loading="lazy"/></div>
     <div class="upa-card-info">
       <span class="upa-card-badge">♀ শুক্রের উপরত্ন</span>
       <h3 class="upa-card-title">পেরিডট (Peridot)</h3>
@@ -1895,7 +1895,7 @@ body.nav-open #btt{opacity:0!important;pointer-events:none!important}
 <!-- RED GARNET -->
 <div class="upa-card" id="red-garnet">
   <div class="upa-card-top">
-    <div class="upa-card-img" style="overflow:hidden"><img src="gallery/garnet-upa-ratna.webp" alt="গার্নেট উপরত্ন Red Garnet Gemstone Benefits Vedic Astrology" loading="lazy"/></div>
+    <div class="upa-card-img"><img src="gallery/garnet-upa-ratna.webp" alt="গার্নেট উপরত্ন Red Garnet Gemstone Benefits Vedic Astrology" loading="lazy"/></div>
     <div class="upa-card-info">
       <span class="upa-card-badge">♂ মঙ্গলের উপরত্ন</span>
       <h3 class="upa-card-title">লাল গার্নেট (Red Garnet)</h3>
@@ -1932,7 +1932,7 @@ body.nav-open #btt{opacity:0!important;pointer-events:none!important}
 <!-- BLUE TOPAZ -->
 <div class="upa-card" id="blue-topaz">
   <div class="upa-card-top">
-    <div class="upa-card-img" style="overflow:hidden"><img src="gallery/opal-upa-ratna.webp" alt="ব্লু টোপাজ উপরত্ন Blue Topaz Gemstone Benefits Vedic" loading="lazy"/></div>
+    <div class="upa-card-img"><img src="gallery/blue-topaz-upa-ratna.webp" alt="ব্লু টোপাজ উপরত্ন Blue Topaz Gemstone Benefits Vedic" loading="lazy"/></div>
     <div class="upa-card-info">
       <span class="upa-card-badge">♄ শনি · ☋ কেতুর উপরত্ন</span>
       <h3 class="upa-card-title">ব্লু টোপাজ (Blue Topaz)</h3>
@@ -1969,7 +1969,7 @@ body.nav-open #btt{opacity:0!important;pointer-events:none!important}
 
 <div class="upa-card" id="opal">
   <div class="upa-card-top">
-    <div class="upa-card-img" style="overflow:hidden"><img src="gallery/opal-upa-ratna.webp" alt="ওপাল উপরত্ন Opal Upa Ratna Ketu Vedic Astrology" width="100" height="130" loading="lazy"/></div>
+    <div class="upa-card-img"><img src="gallery/opal-upa-ratna.webp" alt="ওপাল উপরত্ন Opal Upa Ratna Ketu Vedic Astrology" loading="lazy"/></div>
     <div class="upa-card-info">
       <span class="upa-card-badge">☋ কেতুর উপরত্ন</span>
       <h3 class="upa-card-title">ওপাল (Opal)</h3>
@@ -1983,31 +1983,47 @@ body.nav-open #btt{opacity:0!important;pointer-events:none!important}
     <button class="upa-tab" onclick="showUpaTab(this,'opal-skt')">শাস্ত্র</button>
     <button class="upa-tab" onclick="showUpaTab(this,'opal-buy')">সংগ্রহ</button>
   </div>
-  <div class="upa-panel active" id="opal-sam">
-    <p>কেতুর উপরত্ন হিসেবে ওপাল — লেহ্সুনিয়া (Chrysoberyl Cat's Eye)-এর সাশ্রয়ী ও সুন্দর বিকল্প। রঙধনুর মতো বর্ণময় এই পাথর আধ্যাত্মিক উন্নতি, মোক্ষমার্গ ও অন্তর্দৃষ্টি বৃদ্ধি করে। কেতুর মহাদশায় বিশেষ ফলদায়ক।</p>
-    <p>কার পরা উচিত? — কেতু মহাদশায় যারা আছেন, আধ্যাত্মিক সাধনায় আগ্রহী, ও যাদের কুণ্ডলীতে কেতু দুর্বল বা কষ্টদায়ক।</p>
-    <div class="cert-badges"><span class="cert-badge">🌈 Opal · SiO₂·nH₂O</span><span class="cert-badge">Mohs 5.5–6.5</span><span class="cert-badge">রং · বহুবর্ণ</span><span class="cert-badge">অস্ট্রেলিয়া · Ethiopia</span></div>
-  </div>
-  <div class="upa-panel" id="opal-jyo">
-    <p><strong>পারাশর মত:</strong> কেতুর রত্ন বৈদূর্য (Cat's Eye) — ওপাল তার সাশ্রয়ী বিকল্প হিসেবে স্বীকৃত।</p>
-    <p>কেতু লগ্নেশ বা যোগকারক হলে ওপাল বিশেষ উপকারী। দ্বাদশ ভাব বা মোক্ষ স্থানে কেতু থাকলে ওপাল আধ্যাত্মিক উন্নতি ঘটায়। — বৃহৎ পারাশর হোরাশাস্ত্র, অধ্যায় ৮৩।</p>
-  </div>
-  <div class="upa-panel" id="opal-wear">
-    <div class="wear-table">
-      <div class="wear-item"><div class="wear-label">ধাতু</div><div class="wear-value">রুপা বা পঞ্চধাতু</div></div>
-      <div class="wear-item"><div class="wear-label">আঙুল</div><div class="wear-value">মধ্যমা (Middle Finger) — ডান হাত</div></div>
-      <div class="wear-item"><div class="wear-label">দিন ও সময়</div><div class="wear-value">শনিবার দুপুরে বা সন্ধ্যায়</div></div>
-      <div class="wear-item"><div class="wear-label">ন্যূনতম রতি</div><div class="wear-value">৫–৭ রতি (Carat)</div></div>
-      <div class="wear-item"><div class="wear-label">মন্ত্র</div><div class="wear-value">ওঁ কেং কেতবে নমঃ (১০৮ বার)</div></div>
+  <div class="upa-panels">
+    <div class="upa-panel active" id="opal-sam">
+      <div class="upa-sci-grid">
+        <div class="upa-sci-item"><div class="upa-sci-lbl">রাসায়নিক</div><div class="upa-sci-val">SiO₂·nH₂O — Hydrated Silica</div></div>
+        <div class="upa-sci-item"><div class="upa-sci-lbl">Mohs</div><div class="upa-sci-val">5.5 – 6.5</div></div>
+        <div class="upa-sci-item"><div class="upa-sci-lbl">রং</div><div class="upa-sci-val">🌈 বহুবর্ণ (Play of Color)</div></div>
+        <div class="upa-sci-item"><div class="upa-sci-lbl">সেরা উৎস</div><div class="upa-sci-val">Australia · Ethiopia</div></div>
+      </div>
+      <p>কেতুর উপরত্ন হিসেবে ওপাল — লেহ্সুনিয়া (Cat's Eye)-এর সাশ্রয়ী ও বর্ণময় বিকল্প। রঙধনুর মতো আভাময় এই পাথর আধ্যাত্মিক উন্নতি, মোক্ষমার্গ ও অন্তর্দৃষ্টি বৃদ্ধি করে।</p>
+      <p>কার পরা উচিত? — কেতু মহাদশায় যারা আছেন, আধ্যাত্মিক সাধনায় আগ্রহী, ও যাদের কুণ্ডলীতে কেতু দুর্বল বা কষ্টদায়ক।</p>
+      <p class="upa-kw">🔍 "কেতুর উপরত্ন কি" · "ওপাল রত্নের উপকারিতা" · "লহসুনিয়ার বিকল্প"</p>
     </div>
-  </div>
-  <div class="upa-panel" id="opal-skt">
-    <div class="uni-shastra">স্কন্দপুরাণ: "কেতুরত্নং বৈদূর্যঞ্চ সর্বসিদ্ধিপ্রদায়কম্ — মোক্ষমার্গে বিশেষেণ ধারয়েদ্যো নরঃ সদা।"</div>
-  </div>
-  <div class="upa-panel" id="opal-buy">
-    <p>ওপাল কেনার সময় Australian বা Ethiopian প্রাকৃতিক ওপাল নিন। Synthetic বা Glass-filled ওপাল এড়িয়ে চলুন। Lab Certificate সহ নিন।</p>
-    <div class="cert-badges"><span class="cert-badge">🌈 Natural Certified</span><span class="cert-badge">✅ Australian/Ethiopian</span></div>
-    <button class="fcta-btn-p" onclick="_oRzp('gem')">💎 পরামর্শ নিন — ₹১০০১</button>
+    <div class="upa-panel" id="opal-jyo">
+      <p><strong>পারাশর মত:</strong> "কেতোস্তু বৈদূর্যং রত্নম্" — কেতুর মূল রত্ন বৈদূর্য (Cat's Eye)। ওপাল তার বর্ণময় ও সাশ্রয়ী বিকল্প হিসেবে শাস্ত্রীয়ভাবে গ্রহণযোগ্য।</p>
+      <p><strong>শুভ লগ্ন:</strong> ধনু · মীন · বৃশ্চিক লগ্নে কেতু যোগকারক হলে বিশেষ উপকারী। কেতুর মহাদশায় (৭ বছর) দ্রুত ফল।</p>
+      <p><strong>বিশেষ ক্ষেত্র:</strong> দ্বাদশ ভাব বা মোক্ষ স্থানে কেতু থাকলে ওপাল আধ্যাত্মিক উন্নতি ঘটায়। দীর্ঘমেয়াদি রোগ, অজানা ভয় ও আধ্যাত্মিক সাধনায় সহায়ক।</p>
+    </div>
+    <div class="upa-panel" id="opal-wear">
+      <div class="upa-wear-grid">
+        <div class="upa-wear-item"><span class="upa-wear-lbl">ধাতু</span><span>রুপা বা পঞ্চধাতু</span></div>
+        <div class="upa-wear-item"><span class="upa-wear-lbl">আঙুল</span><span>মধ্যমা — ডান হাত</span></div>
+        <div class="upa-wear-item"><span class="upa-wear-lbl">দিন ও সময়</span><span>শনিবার দুপুরে বা সন্ধ্যায়</span></div>
+        <div class="upa-wear-item"><span class="upa-wear-lbl">ন্যূনতম রতি</span><span>৫–৭ রতি (Carat)</span></div>
+        <div class="upa-wear-item"><span class="upa-wear-lbl">শোধন</span><span>গঙ্গাজল বা কাঁচা দুধে ১ ঘণ্টা</span></div>
+        <div class="upa-wear-item"><span class="upa-wear-lbl">মন্ত্র</span><span>ওঁ কেং কেতবে নমঃ · ১০৮ বার</span></div>
+      </div>
+    </div>
+    <div class="upa-panel" id="opal-skt">
+      <div class="uni-shastra">স্কন্দপুরাণ: "কেতুরত্নং বৈদূর্যঞ্চ সর্বসিদ্ধিপ্রদায়কম্ — মোক্ষমার্গে বিশেষেণ ধারয়েদ্যো নরঃ সদা।"</div>
+      <p style="font-size:.82rem;color:#555;margin-top:10px">বিশেষ নোট: ওপালের বহুবর্ণ আভা কেতুর রহস্যময় প্রকৃতির প্রতীক। আধ্যাত্মিক সাধকদের জন্য এটি বিশেষ অনুকূল।</p>
+    </div>
+    <div class="upa-panel" id="opal-buy">
+      <p>Australian Black Opal বা Ethiopian Welo Opal সেরা মানের। <strong>Doublet বা Triplet Opal</strong> কিনবেন না — শুধু Solid Natural Opal নিন। Synthetic বা Glass-filled এড়িয়ে চলুন।</p>
+      <ul class="upa-warn-list">
+        <li>Australian Black Opal সবচেয়ে মূল্যবান ও শক্তিশালী</li>
+        <li>Ethiopian Opal সাশ্রয়ী ও সহজলভ্য — ভালো বিকল্প</li>
+        <li>Lab Certificate সহ নিন — Govt. Registered Gem Lab থেকে</li>
+        <li>Opal পানিতে দ্রবীভূত হয় না, কিন্তু শুষ্ক হলে ফাটতে পারে</li>
+      </ul>
+      <button class="upa-tab" style="background:linear-gradient(135deg,var(--gold),var(--gold2));color:#07101f;border-radius:20px;padding:9px 20px;margin-top:10px;font-weight:800;cursor:pointer;border:none" onclick="openPay()">💎 রত্নপাথর পরামর্শ নিন — ₹১০০১</button>
+    </div>
   </div>
 </div>
 </div>
@@ -2406,7 +2422,7 @@ body.nav-open #btt{opacity:0!important;pointer-events:none!important}
       
     </div>
     <div class="fcta-btns">
-      <button class="fcta-btn-p" onclick="openPay()"><i class="fas fa-gem"></i> রত্নপাথর পরামর্শ — ₹১০০১</button>
+      <button class="btn-book-cta" onclick="openPay()"><i class="fas fa-gem"></i> রত্নপাথর পরামর্শ — ₹১০০১</button>
       <a href="https://wa.me/919333122768?text=%E0%A6%A8%E0%A6%AE%E0%A6%B8%E0%A7%8D%E0%A6%95%E0%A6%BE%E0%A6%B0%20%E0%A6%A1.%20%E0%A6%86%E0%A6%9A%E0%A6%BE%E0%A6%B0%E0%A7%8D%E0%A6%AF%2C%20%E0%A6%B0%E0%A6%A4%E0%A7%8D%E0%A6%A8%20%E0%A6%AA%E0%A6%B0%E0%A6%BE%E0%A6%AE%E0%A6%B0%E0%A7%8D%E0%A6%B6" target="_blank" rel="noopener" class="fcta-btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp করুন</a>
     </div>
   </div>
