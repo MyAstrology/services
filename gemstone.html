@@ -417,7 +417,7 @@ img{max-width:100%;display:block}
 
 /* rudraksha 2-col grid on desktop */
 .rudra-uni-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-bottom:8px}
-@media(min-width:700px){.rudra-uni-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:768px){.rudra-uni-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:480px){.rudra-uni-grid{grid-template-columns:1fr}}
 
 /* uparatna 2-col grid on desktop */
@@ -571,15 +571,14 @@ body.nav-open{overflow-y:hidden}
 
 /* ══ 3-COL DESKTOP GRIDS ══ */
 .gem-grid-3{display:grid;grid-template-columns:1fr;gap:24px;margin:0}
-@media(min-width:980px){
-  .gem-grid-3{grid-template-columns:repeat(3,1fr);align-items:start}
+@media(min-width:768px){.gem-grid-3{grid-template-columns:repeat(3,1fr);align-items:start}
   .gem-grid-3 .gem-section{margin-bottom:0}
   .gem-grid-3 .gem-tab{font-size:.6rem;padding:4px 6px}
 }
 .upa-grid-3{display:grid;grid-template-columns:1fr;gap:20px;margin-top:8px}
-@media(min-width:980px){.upa-grid-3{grid-template-columns:repeat(3,1fr);align-items:start}}
+@media(min-width:768px){.upa-grid-3{grid-template-columns:repeat(3,1fr);align-items:start}}
 .rudra-uni-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:6px}
-@media(min-width:700px){.rudra-uni-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:768px){.rudra-uni-grid{grid-template-columns:repeat(3,1fr)}}
 
 /* ══ UPA-CARD (gem-section style) ══ */
 .upa-card{background:#fff;border-radius:14px;overflow:hidden;border:1px solid #e5dece;box-shadow:0 2px 14px rgba(0,0,0,.09);display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
@@ -677,6 +676,10 @@ body.nav-open{overflow-y:hidden}
 /* ── nav open: hide floating buttons behind nav ── */
 body.nav-open .wa-float,
 body.nav-open #btt{display:none!important}
+
+@media(max-width:767px){
+  .gem-grid-3,.upa-grid-3,.rudra-uni-grid{grid-template-columns:1fr!important}
+}
 </style>
 </head>
 <body>
@@ -1914,9 +1917,8 @@ body.nav-open #btt{display:none!important}
 </div>
 
 <!-- RUDRAKSHA 1-2 -->
-<h3 class="sec-title" id="rudraksha-1-2" style="margin-top:32px;font-size:1.1rem">১ ও ২ মুখী রুদ্রাক্ষ</h3>
 <div class="rudra-uni-grid">
-  <div class="uni-card">
+<div class="uni-card">
     <div class="uni-img-col"><img src="gallery/ek-mukhi-rudraksha-original.webp" alt="এক মুখী রুদ্রাক্ষ Ek Mukhi Rudraksha Benefits Shiva Ranaghat" width="200" height="120" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">১ মুখী</div>
@@ -1925,7 +1927,7 @@ body.nav-open #btt{display:none!important}
       <div class="uni-shastra">শিবমহাপুরাণ: "একং রুদ্রাক্ষমালাং তু যো বিভর্তি শুচিঃ সদা — তস্য সর্বে কামদা দেবাঃ প্রসীদন্তি ন সংশয়ঃ"</div>
     </div>
   </div>
-  <div class="uni-card">
+<div class="uni-card">
     <div class="uni-img-col"><img src="gallery/do-mukhi-rudraksha-bead.webp" alt="দুই মুখী রুদ্রাক্ষ Do Mukhi Rudraksha Benefits Ardhanarishvara" width="200" height="120" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">২ মুখী</div>
@@ -1934,12 +1936,7 @@ body.nav-open #btt{display:none!important}
       <div class="uni-shastra">দেবীভাগবত: "দ্বিমুখং চার্ধনারীশং তদ্ধারণাৎ পশুপতির্নরঃ"</div>
     </div>
   </div>
-</div>
-
-<!-- RUDRAKSHA 3-5 -->
-<h3 class="sec-title" id="rudraksha-3-5" style="margin-top:28px;font-size:1.1rem">৩, ৪ ও ৫ মুখী রুদ্রাক্ষ</h3>
-<div class="rudra-uni-grid">
-  <div class="uni-card">
+<div class="uni-card">
     <div class="uni-img-col"><img src="gallery/tin-mukhi-rudraksha-original.webp" alt="তিন মুখী রুদ্রাক্ষ Teen Mukhi Rudraksha Benefits Agni" width="200" height="120" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">৩ মুখী</div>
@@ -1948,7 +1945,7 @@ body.nav-open #btt{display:none!important}
       <div class="uni-shastra">শিবপুরাণ: "ত্রিমুখং ত্রিপুরারিঞ্চ ত্রিকালং ব্রহ্মপুত্রকম্"</div>
     </div>
   </div>
-  <div class="uni-card">
+<div class="uni-card">
     <div class="uni-img-col"><img src="gallery/char-mukhi-rudraksha-bead.webp" alt="চার মুখী রুদ্রাক্ষ Char Mukhi Rudraksha Benefits Brahma" width="200" height="120" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">৪ মুখী</div>
@@ -1957,7 +1954,7 @@ body.nav-open #btt{display:none!important}
       <div class="uni-shastra">পদ্মপুরাণ: "চতুর্মুখং ব্রহ্মরূপং ধারয়েদ্যো নরঃ সদা"</div>
     </div>
   </div>
-  <div class="uni-card">
+<div class="uni-card">
     <div class="uni-img-col"><img src="gallery/panch-mukhi-rudraksha-original.webp" alt="পাঁচ মুখী রুদ্রাক্ষ Panch Mukhi Rudraksha Benefits Kalagni" width="200" height="120" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">৫ মুখী</div>
@@ -1966,12 +1963,7 @@ body.nav-open #btt{display:none!important}
       <div class="uni-shastra">অথর্বশিরোপনিষদ: "পঞ্চমুখং মহাদেবং সর্বপাপহরং শুভম্"</div>
     </div>
   </div>
-</div>
-
-<!-- RUDRAKSHA 6-9 -->
-<h3 class="sec-title" id="rudraksha-6-9" style="margin-top:28px;font-size:1.1rem">৬ থেকে ৯ মুখী রুদ্রাক্ষ</h3>
-<div class="rudra-uni-grid">
-  <div class="uni-card">
+<div class="uni-card">
     <div class="uni-img-col"><img src="gallery/choy-mukhi-rudraksha-bead.webp" alt="ছয় মুখী রুদ্রাক্ষ Choy Mukhi Rudraksha Benefits Kartikeya" width="200" height="120" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">৬ মুখী</div>
@@ -1980,7 +1972,7 @@ body.nav-open #btt{display:none!important}
       <div class="uni-shastra">শিবমহাপুরাণ: "ষণ্মুখং কার্তিকেয়ঞ্চ ষড়্গুণৈঃ সহিতং শুভম্"</div>
     </div>
   </div>
-  <div class="uni-card">
+<div class="uni-card">
     <div class="uni-img-col"><img src="gallery/sat-mukhi-rudraksha-original.webp" alt="সাত মুখী রুদ্রাক্ষ Sat Mukhi Rudraksha Benefits Mahalakshmi" width="200" height="120" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">৭ মুখী</div>
@@ -1989,7 +1981,7 @@ body.nav-open #btt{display:none!important}
       <div class="uni-shastra">পদ্মপুরাণ: "সপ্তমুখং মহালক্ষ্মীং সপ্তর্ষিং সপ্তসাগরম্"</div>
     </div>
   </div>
-  <div class="uni-card">
+<div class="uni-card">
     <div class="uni-img-col"><img src="gallery/aat-mukhi-rudraksha-bead.webp" alt="আট মুখী রুদ্রাক্ষ Aat Mukhi Rudraksha Benefits Ganesha" width="200" height="120" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">৮ মুখী</div>
@@ -1998,7 +1990,7 @@ body.nav-open #btt{display:none!important}
       <div class="uni-shastra">শিবপুরাণ: "অষ্টমুখং গণেশঞ্চ সর্বসিদ্ধিপ্রদায়কম্"</div>
     </div>
   </div>
-  <div class="uni-card">
+<div class="uni-card">
     <div class="uni-img-col"><img src="gallery/noy-mukhi-rudraksha-original.webp" alt="নয় মুখী রুদ্রাক্ষ Noy Mukhi Rudraksha Benefits Durga" width="200" height="120" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">৯ মুখী</div>
@@ -2007,12 +1999,7 @@ body.nav-open #btt{display:none!important}
       <div class="uni-shastra">দেবীভাগবত: "নবমুখং মহাদেবী নবদুর্গা স্বরূপিণী"</div>
     </div>
   </div>
-</div>
-
-<!-- RUDRAKSHA 10-14 -->
-<h3 class="sec-title" id="rudraksha-10-14" style="margin-top:28px;font-size:1.1rem">১০ থেকে ১৪ মুখী রুদ্রাক্ষ</h3>
-<div class="rudra-uni-grid">
-  <div class="uni-card">
+<div class="uni-card">
     <div class="uni-img-col"><img src="gallery/dosh-mukhi-rudraksha-bead.webp" alt="দশ মুখী রুদ্রাক্ষ Dosh Mukhi Rudraksha Benefits Vishnu" width="200" height="120" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">১০ মুখী</div>
@@ -2021,7 +2008,7 @@ body.nav-open #btt{display:none!important}
       <div class="uni-shastra">স্কন্দপুরাণ: "দশমুখং দশভুজং দশদিক্পালপূজিতম্"</div>
     </div>
   </div>
-  <div class="uni-card">
+<div class="uni-card">
     <div class="uni-img-col"><img src="gallery/egaro-mukhi-rudraksha-original.webp" alt="এগারো মুখী রুদ্রাক্ষ Egaro Mukhi Rudraksha Benefits" width="200" height="120" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">১১ মুখী</div>
@@ -2030,7 +2017,7 @@ body.nav-open #btt{display:none!important}
       <div class="uni-shastra">শিবমহাপুরাণ: "একাদশমুখং রুদ্রং একাদশরুদ্রস্বরূপম্"</div>
     </div>
   </div>
-  <div class="uni-card">
+<div class="uni-card">
     <div class="uni-img-col"><img src="gallery/baro-mukhi-rudraksha-bead.webp" alt="বারো মুখী রুদ্রাক্ষ Baro Mukhi Rudraksha Benefits Surya" width="200" height="120" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">১২ মুখী</div>
@@ -2039,7 +2026,7 @@ body.nav-open #btt{display:none!important}
       <div class="uni-shastra">পদ্মপুরাণ: "দ্বাদশমুখং দ্বাদশাদিত্যস্বরূপং তেজোনিধিম্"</div>
     </div>
   </div>
-  <div class="uni-card">
+<div class="uni-card">
     <div class="uni-img-col"><img src="gallery/tero-mukhi-rudraksha-original.webp" alt="তেরো মুখী রুদ্রাক্ষ Tero Mukhi Rudraksha Benefits Kamadeva" width="200" height="120" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">১৩ মুখী</div>
@@ -2048,7 +2035,7 @@ body.nav-open #btt{display:none!important}
       <div class="uni-shastra">শিবপুরাণ: "ত্রয়োদশমুখং বিশ্বে বিশ্বেদেবাঃ প্রতিষ্ঠিতাঃ"</div>
     </div>
   </div>
-  <div class="uni-card">
+<div class="uni-card">
     <div class="uni-img-col"><img src="gallery/choddo-mukhi-rudraksha-bead.webp" alt="চৌদ্দ মুখী রুদ্রাক্ষ Choddo Mukhi Rudraksha Benefits Hanuman" width="200" height="120" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">১৪ মুখী</div>
@@ -2057,30 +2044,7 @@ body.nav-open #btt{display:none!important}
       <div class="uni-shastra">দেবীভাগবত: "চতুর্দশমুখং দেবং মহেশ্বরমনাময়ম্ — তৃতীয়নেত্রজাতঞ্চ সর্বসিদ্ধিপ্রদায়কম্"</div>
     </div>
   </div>
-</div>
-
-<!-- RUDRAKSHA 13-15 -->
-<h3 class="sec-title" id="rudraksha-13-15" style="margin-top:28px;font-size:1.1rem">১৩, ১৪ ও ১৫ মুখী রুদ্রাক্ষ</h3>
-<div class="rudra-uni-grid">
-  <div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/tero-mukhi-rudraksha-bead.webp" alt="তেরো মুখী রুদ্রাক্ষ Tero Mukhi Rudraksha Benefits Indra" width="200" height="120" loading="lazy"/></div>
-    <div class="uni-body rudra-body">
-      <div class="rudra-face uni-title">১৩ মুখী</div>
-      <div class="rudra-graha uni-badge">♀ শুক্র / ইন্দ্র / কামদেব</div>
-      <p><strong>তেরো মুখী রুদ্রাক্ষ কার জন্য:</strong> প্রেম, বিবাহ ও ঐশ্বর্য প্রাপ্তিতে। ইন্দ্রের আশীর্বাদে সমস্ত সুখ-সম্পদ লাভ। শুক্রের দুর্বলতায় বিবাহে বিলম্ব হলে ১৩ মুখী বিশেষ ফলদায়ক।</p>
-      <div class="uni-shastra">পদ্মপুরাণ: "ত্রয়োদশমুখং দেবং ইন্দ্রং কামফলপ্রদম্"</div>
-    </div>
-  </div>
-  <div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/chodo-mukhi-rudraksha-bead.webp" alt="চোদ্দ মুখী রুদ্রাক্ষ Chodo Mukhi Rudraksha Benefits Shiva Hanuman" width="200" height="120" loading="lazy"/></div>
-    <div class="uni-body rudra-body">
-      <div class="rudra-face uni-title">১৪ মুখী</div>
-      <div class="rudra-graha uni-badge">♄ শনি / হনুমান / মহাদেব</div>
-      <p><strong>চোদ্দ মুখী রুদ্রাক্ষ কি কাজ করে:</strong> 'দেবমণি' নামে পরিচিত — সর্বোচ্চ সুরক্ষা প্রদান। শনির সাড়েসাতি ও ঢৈয়্যায় অত্যন্ত কার্যকর। ষষ্ঠ ইন্দ্রিয়ের জাগরণে ও intuition বৃদ্ধিতে।</p>
-      <div class="uni-shastra">শিবমহাপুরাণ: "চতুর্দশমুখং রুদ্রং সর্বসিদ্ধিপ্রদায়কম্"</div>
-    </div>
-  </div>
-  <div class="uni-card">
+<div class="uni-card">
     <div class="uni-img-col"><img src="gallery/ponero-mukhi-rudraksha-bead.webp" alt="পনেরো মুখী রুদ্রাক্ষ Ponero Mukhi Rudraksha Benefits Pashupatinath" width="200" height="120" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">১৫ মুখী</div>
@@ -2090,8 +2054,6 @@ body.nav-open #btt{display:none!important}
     </div>
   </div>
 </div>
-
-<!-- RUDRAKSHA NIYAM -->
 <div class="rudra-intro" id="rudraksha-niyam" style="margin-top:24px">
   <h3 style="font-family:var(--fh);color:var(--navy);font-size:1.05rem;margin-bottom:14px">📜 রুদ্রাক্ষ পরার নিয়ম, কোন দিনে পরা উচিত ও আসল-নকল পরীক্ষা</h3>
   <p><strong>রুদ্রাক্ষ কীভাবে পরতে হয়:</strong> প্রথমে রুদ্রাক্ষ গঙ্গাজল বা কাঁচা দুধে ধুয়ে নিন। সোমবার সকালে স্নান করে শিবের সামনে রেখে "ওঁ নমঃ শিবায়" ১০৮ বার জপ করুন। তারপর ধারণ করুন।</p>
@@ -2243,7 +2205,7 @@ body.nav-open #btt{display:none!important}
       <h4>MyAstrology</h4>
       <p><i class="fas fa-map-marker-alt"></i>রাণাঘাট, নদিয়া, পশ্চিমবঙ্গ — ৭৪১২০২</p>
       <p><i class="fas fa-phone"></i><a href="tel:+919333122768">+91 93331 22768</a></p>
-      <p><i class="fas fa-envelope"></i><a href="/cdn-cgi/l/email-protection#31585f575e715c48504245435e5d5e56481f585f"><span class="__cf_email__" data-cfemail="2e474048416e43574f5d5a5c4142414957004740">[email&#160;protected]</span></a></p>
+      <p><i class="fas fa-envelope"></i><a href="mailto:info@myastrology.in">info@myastrology.in</a></p>
       <a href="https://wa.me/919333122768" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i>WhatsApp পরামর্শ</a>
       <a href="https://www.myastrology.in/astrology"><i class="fas fa-calendar-check"></i>অনলাইন বুকিং</a>
     </div>
@@ -2302,7 +2264,7 @@ body.nav-open #btt{display:none!important}
 <!-- BTT -->
 <button id="btt" aria-label="উপরে যান" title="উপরে যান">&#8679;</button>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false">
+<script data-cfasync="false">
 /* ── NAV ── */
 (function(){
   function toggleNav(){var n=document.getElementById('navMenu'),o=document.getElementById('navOverlay');if(!n)return;var x=n.classList.contains('open');n.classList.toggle('open',!x);if(o)o.classList.toggle('open',!x);document.body.classList.toggle('nav-open',!x);}
@@ -2335,8 +2297,8 @@ function showTab(btn,pid){var body=btn.closest('.gem-body');if(!body)return;body
 function showUpaTab(btn,pid){var card=btn.closest('.upa-card');if(!card)return;card.querySelectorAll('.upa-tab').forEach(function(t){t.classList.remove('active');});card.querySelectorAll('.upa-panel').forEach(function(p){p.classList.remove('active');});btn.classList.add('active');var p=document.getElementById(pid);if(p)p.classList.add('active');}
 /* ── PAYMENT ── */
 var _pName='',_pPhone='';
-function openPay(){document.getElementById('payOverlay').classList.add('open');document.getElementById('payForm').style.display='block';document.getElementById('paySuccess').style.display='none';document.body.style.overflow='hidden';}
-function closePay(){document.getElementById('payOverlay').classList.remove('open');document.body.style.overflow='';}
+function openPay(){document.getElementById('payOverlay').classList.add('open');document.getElementById('payForm').style.display='block';document.getElementById('paySuccess').style.display='none';document.body.classList.add('nav-open');}
+function closePay(){document.getElementById('payOverlay').classList.remove('open');document.body.classList.remove('nav-open');}
 function startPayment(){
   _pName=document.getElementById('payName').value.trim();
   _pPhone=document.getElementById('payPhone').value.trim();
