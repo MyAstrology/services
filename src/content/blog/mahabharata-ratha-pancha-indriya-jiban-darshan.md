@@ -2,7 +2,7 @@
 title: "পাঁচটি পাগলা ঘোড়া আর একজন সারথি — জীবন নিয়ন্ত্রণের রহস্য"
 description: "মহাভারতের রথচিত্রে লুকিয়ে আছে জীবনের গভীরতম সত্য। পঞ্চইন্দ্রিয়কে বশে না রাখলে কী হয়? মন ও বুদ্ধি দিয়ে জীবন পরিচালনার বৈদিক পথ জানুন।"
 date: "2026-03-13"
-image: "https://www.myastrology.in/images/mahabharata-ratha-pancha-indriya-jiban-darshan.webp"
+image: "https://www.myastrology.in/images/mahabharata-ratha-pancha-indriya.webp"
 slug: "mahabharata-ratha-pancha-indriya-jiban-darshan"
 author:
   name: "Dr Prodyut Acharya"
@@ -28,6 +28,7 @@ twitter_title: "পাঁচটি ঘোড়া আর একজন সার
 twitter_description: "কৃষ্ণের রথচিত্রে লুকানো জীবনের সবচেয়ে গুরুত্বপূর্ণ শিক্ষা। পঞ্চইন্দ্রিয় ও মনের এই দ্বন্দ্ব চেনেন কি?"
 twitter_image: "https://www.myastrology.in/images/mahabharata-ratha-pancha-indriya.webp"
 ---
+
 
 <h1 style="text-align:center;">পাঁচটি পাগলা ঘোড়া আর একজন সারথি<br>— মহাভারতের রথচিত্রে জীবনের গভীরতম পাঠ</h1>
 
