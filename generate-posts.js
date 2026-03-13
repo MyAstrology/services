@@ -10,17 +10,22 @@ const LOGO_IMG='https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png';
 const FALLBACK_IMG=LOGO_IMG;
 
 function parseFrontmatter(content){
-  const meta={title:'',description:'',date:'',image:'',slug:'',tags:[],keywords:''};
+  const meta={title:'',description:'',date:'',date_modified:'',image:'',image_alt:'',slug:'',tags:[],categories:[],keywords:'',og_title:'',og_description:'',twitter_title:'',twitter_description:''};
   const match=content.match(/^---\n([\s\S]*?)\n---/);
   if(!match)return meta;
   const lines=match[1].split('\n');
-  let inTags=false,inAuthor=false;
+  let inTags=false,inCategories=false,inAuthor=false;
   lines.forEach(line=>{
-    if(/^tags\s*:/.test(line)){inTags=true;inAuthor=false;return;}
-    if(/^author\s*:/.test(line)){inAuthor=true;inTags=false;return;}
+    if(/^tags\s*:/.test(line)){inTags=true;inCategories=false;inAuthor=false;return;}
+    if(/^categories\s*:/.test(line)){inCategories=true;inTags=false;inAuthor=false;return;}
+    if(/^author\s*:/.test(line)){inAuthor=true;inTags=false;inCategories=false;return;}
     if(inTags){
       if(/^\s{2,}-\s+/.test(line)){meta.tags.push(line.replace(/^\s+-\s+/,'').replace(/^["']|["']$/g,'').trim());return;}
       if(/^\S/.test(line))inTags=false;else return;
+    }
+    if(inCategories){
+      if(/^\s{2,}-\s+/.test(line)){meta.categories.push(line.replace(/^\s+-\s+/,'').replace(/^["']|["']$/g,'').trim());return;}
+      if(/^\S/.test(line))inCategories=false;else return;
     }
     if(inAuthor){if(/^\s+\w/.test(line))return;else inAuthor=false;}
     const ci=line.indexOf(':');if(ci===-1)return;
@@ -28,10 +33,17 @@ function parseFrontmatter(content){
     if(key==='title')meta.title=val;
     if(key==='description')meta.description=val;
     if(key==='date')meta.date=val;
+    if(key==='date_modified')meta.date_modified=val;
     if(key==='image')meta.image=val;
+    if(key==='image_alt')meta.image_alt=val;
     if(key==='slug')meta.slug=val;
     if(key==='keywords')meta.keywords=val;
+    if(key==='og_title')meta.og_title=val;
+    if(key==='og_description')meta.og_description=val;
+    if(key==='twitter_title')meta.twitter_title=val;
+    if(key==='twitter_description')meta.twitter_description=val;
     if(key==='tags'&&val.includes('['))meta.tags=val.replace(/[\[\]]/g,'').split(',').map(t=>t.trim().replace(/^["']|["']$/g,'')).filter(Boolean);
+    if(key==='categories'&&val.includes('['))meta.categories=val.replace(/[\[\]]/g,'').split(',').map(t=>t.trim().replace(/^["']|["']$/g,'')).filter(Boolean);
   });
   return meta;
 }
@@ -281,16 +293,23 @@ main{max-width:780px;margin:0 auto;padding:18px 18px 60px;}
 function buildHtml(meta,body,slug){
   const pageUrl=SITE_URL+'/blog/'+slug+'.html';
   const img=normalizeImage(meta.image,slug);
+  const imgAlt=meta.image_alt||meta.title;
   const dateStr=fmtDate(meta.date);
   const mins=readMins(body);
   const tags=meta.tags.length?meta.tags.map(t=>'<span class="tag">'+t+'</span>').join(' '):'';
   const kw=meta.keywords||meta.tags.join(', ');
   const iso=isoDate(meta.date);
+  const isoModified=meta.date_modified||iso;
+  const articleSection=meta.categories.length?meta.categories[0]:'জীবন দর্শন';
+  const ogTitle=meta.og_title||meta.title;
+  const ogDesc=meta.og_description||meta.description;
+  const twTitle=meta.twitter_title||meta.title;
+  const twDesc=meta.twitter_description||meta.description;
 
   const schema=JSON.stringify([
     {"@context":"https://schema.org","@type":"BlogPosting",
      headline:meta.title,description:meta.description,
-     datePublished:iso,dateModified:iso,
+     datePublished:iso,dateModified:isoModified,
      image:{"@type":"ImageObject",url:img,width:1200,height:630},
      url:pageUrl,inLanguage:'bn-IN',timeRequired:'PT'+mins+'M',
      author:{"@type":"Person",name:'Dr. Prodyut Acharya',url:'https://www.myastrology.in/about.html'},
@@ -317,24 +336,25 @@ ${kw?`<meta name="keywords" content="${kw}">`:'  '}
 <link rel="canonical" href="${pageUrl}">
 <link rel="alternate" hreflang="bn" href="${pageUrl}">
 <link rel="alternate" hreflang="x-default" href="${pageUrl}">
-<meta property="og:title" content="${meta.title}">
-<meta property="og:description" content="${meta.description}">
+<meta property="og:title" content="${ogTitle}">
+<meta property="og:description" content="${ogDesc}">
 <meta property="og:url" content="${pageUrl}">
 <meta property="og:type" content="article">
 <meta property="og:image" content="${img}">
-<meta property="og:image:alt" content="${meta.title}">
+<meta property="og:image:alt" content="${imgAlt}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="bn_IN">
 <meta property="og:site_name" content="MyAstrology – Dr. Prodyut Acharya">
 <meta property="article:published_time" content="${iso}T00:00:00+05:30">
+<meta property="article:modified_time" content="${isoModified}T00:00:00+05:30">
 <meta property="article:author" content="Dr. Prodyut Acharya">
-<meta property="article:section" content="Astrology">
+<meta property="article:section" content="${articleSection}">
 ${meta.tags.length?`<meta property="article:tag" content="${meta.tags.join(',')}">`:''}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@AcharyaProdyut">
-<meta name="twitter:title" content="${meta.title}">
-<meta name="twitter:description" content="${meta.description}">
+<meta name="twitter:title" content="${twTitle}">
+<meta name="twitter:description" content="${twDesc}">
 <meta name="twitter:image" content="${img}">
 <script type="application/ld+json">${schema}<\/script>
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MVVL8XBD');</script>
@@ -386,7 +406,7 @@ ${CSS_BLOCK}
     <meta itemprop="datePublished" content="${iso}">
     <meta itemprop="author" content="Dr. Prodyut Acharya">
     <div class="post-header">
-      <img class="featured-img" src="${img}" alt="${meta.title}" loading="eager" itemprop="image" onerror="this.src='https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png'">
+      <img class="featured-img" src="${img}" alt="${imgAlt}" loading="eager" itemprop="image" onerror="this.src='https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png'">
       <h1 itemprop="headline">${meta.title}</h1>
       <div class="post-meta">
         <span><i class="fas fa-user-edit"></i>Dr. Prodyut Acharya</span>
@@ -474,7 +494,7 @@ ${body}
       <div class="ftr-col">
         <h4>সেবা এলাকা</h4>
         <div class="ftr-area-tags">
-          <span>রাণাঘাট</span><span>নদিয়া</span><span>কলকাতা</span><span>পশ্জিমবঙ্গ</span><span>উত্তরবঙ্গ</span><span>ঝাড়খণ্ড</span><span>ত্রিপুরা</span><span>আসাম</span><span>দিল্লি</span><span>মুম্বাই</span>
+          <span>রাণাঘাট</span><span>নদিয়া</span><span>কলকাতা</span><span>পশ্চিমবঙ্গ</span><span>উত্তরবঙ্গ</span><span>ঝাড়খণ্ড</span><span>ত্রিপুরা</span><span>আসাম</span><span>দিল্লি</span><span>মুম্বাই</span>
           <span class="ftr-area-all">সারা ভারত অনলাইন</span>
         </div>
         <p class="ftr-lang-note"><i class="fas fa-language"></i>পরামর্শ বাংলা ও হিন্দিতে</p>
@@ -492,7 +512,7 @@ ${body}
     </div>
   </div>
   <div class="ftr-bottom">
-    <p>&copy; 2026 MyAstrology &bull; ড. প্রদ্যুৎ আচার্য, PhD in Vedic Jyotish &bull; রাণাঘাট, পশ্জিমবঙ্গ</p>
+    <p>&copy; 2026 MyAstrology &bull; ড. প্রদ্যুৎ আচার্য, PhD in Vedic Jyotish &bull; রাণাঘাট, পশ্চিমবঙ্গ</p>
     <div class="ftr-bottom-links">
       <a href="https://www.myastrology.in/about.html">About</a>
       <a href="https://www.myastrology.in/privacy-policy.html">Privacy Policy</a>
