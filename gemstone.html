@@ -809,10 +809,139 @@ body.nav-open #btt{opacity:0!important;pointer-events:none!important}
 .upa-card-img{overflow:hidden;position:relative}
 .upa-card-img img{position:absolute!important;top:0!important;left:0!important;width:100%!important;height:100%!important;object-fit:cover!important;display:block!important}
 
-/* ══ RUDRAKSHA CARD HEIGHT ══ */
-.rudra-uni-grid .uni-card{display:flex;flex-direction:column}
-.rudra-uni-grid .uni-img-col{height:180px;min-height:0;flex-shrink:0}
-@media(min-width:700px){.rudra-uni-grid .uni-img-col{height:160px}}
+/* ══════════════════════════════════
+   RUDRAKSHA CARDS — সম্পূর্ণ নতুন CSS
+   ══════════════════════════════════ */
+
+/* Outer grid — desktop 3 col, mobile 1 col */
+.rudra-uni-grid{
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  gap:16px;
+  margin-bottom:8px;
+}
+@media(min-width:700px){
+  .rudra-uni-grid{grid-template-columns:repeat(3,1fr)!important}
+}
+
+/* Card — flex column (image top, body below) */
+.rudra-uni-grid .uni-card{
+  display:flex!important;
+  flex-direction:column!important;
+  grid-template-columns:none!important;
+  margin-bottom:0!important;
+  border-radius:14px;
+  overflow:hidden;
+  border:1px solid #ece4d4;
+  background:#fff;
+  box-shadow:0 4px 18px rgba(0,0,0,.09);
+  transition:box-shadow .25s,transform .22s;
+}
+.rudra-uni-grid .uni-card:hover{
+  box-shadow:0 10px 32px rgba(0,0,0,.14);
+  transform:translateY(-3px);
+  border-color:rgba(201,162,39,.38);
+}
+
+/* Image container — fixed height, full width */
+.rudra-uni-grid .uni-img-col{
+  width:100%!important;
+  height:170px!important;
+  min-height:0!important;
+  flex-shrink:0!important;
+  position:relative!important;
+  overflow:hidden!important;
+  background:linear-gradient(135deg,#0c1b33,#1a3060)!important;
+  display:block!important;
+}
+@media(min-width:700px){
+  .rudra-uni-grid .uni-img-col{height:155px!important}
+}
+
+/* Image — absolute fill */
+.rudra-uni-grid .uni-img-col img{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  display:block!important;
+  transition:transform .4s;
+}
+.rudra-uni-grid .uni-card:hover .uni-img-col img{
+  transform:scale(1.04);
+}
+
+/* Body — flex grow */
+.rudra-uni-grid .uni-body{
+  grid-column:auto!important;
+  flex:1!important;
+  padding:14px 16px 16px!important;
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+/* Title */
+.rudra-body .uni-title{
+  font-family:var(--fh);
+  font-size:1.1rem!important;
+  font-weight:700;
+  color:var(--navy);
+  line-height:1.2;
+}
+
+/* Badge */
+.rudra-body .uni-badge{
+  background:rgba(75,0,130,.1)!important;
+  border-color:rgba(75,0,130,.25)!important;
+  color:var(--purple)!important;
+  font-size:.65rem!important;
+  font-weight:700;
+  padding:3px 10px;
+  border-radius:16px;
+  align-self:flex-start;
+}
+
+/* Description paragraph */
+.rudra-body p{
+  font-size:.85rem!important;
+  color:#333;
+  line-height:1.75;
+  margin:0!important;
+  flex:1;
+}
+
+/* Shastra quote */
+.rudra-uni-grid .uni-shastra{
+  font-size:.7rem!important;
+  color:var(--purple);
+  font-style:italic;
+  padding:7px 11px;
+  border-radius:6px;
+  background:rgba(75,0,130,.05);
+  border-left:2px solid var(--purple);
+  line-height:1.55;
+}
+
+/* Extra info pills */
+.rudra-extra{
+  display:flex;
+  flex-wrap:wrap;
+  gap:4px;
+  margin-top:2px;
+}
+.rudra-info-pill{
+  font-size:.6rem!important;
+  font-weight:700;
+  background:rgba(75,0,130,.07);
+  border:1px solid rgba(75,0,130,.18);
+  color:var(--purple);
+  padding:2px 8px;
+  border-radius:12px;
+  white-space:nowrap;
+  line-height:1.6;
+}
 
 /* ══ GEM GRID 3 — image fit in card header ══ */
 .gem-grid-3 .gem-img-col{height:180px!important;min-height:0!important;width:100%!important}
@@ -976,7 +1105,7 @@ body.nav-open #btt{opacity:0!important;pointer-events:none!important}
 
 <!-- INTRO ESSAY -->
 <div class="intro-essay">
-  <p>পারাশর হোরা শাস্ত্রের ৮৩তম অধ্যায়ে বলা হয়েছে — <em>"গ্রহাণাং রশ্মিভিঃ সর্বং জগৎ ব্যাপ্তং চরাচরম্"</em> — সমস্ত চরাচর জগৎ গ্রহের রশ্মি দ্বারা ব্যাপ্ত। প্রতিটি গ্রহ নির্দিষ্ট তরঙ্গদৈর্ঘ্যের আলোকরশ্মি বিকিরণ করে। রত্নপাথর সেই রশ্মিকে শোষণ ও বিচ্ছুরণ করে মানবদেহে প্রেরণ করে।</p>
+  <p>পরাশর হোরা শাস্ত্রের ৮৩তম অধ্যায়ে বলা হয়েছে — <em>"গ্রহাণাং রশ্মিভিঃ সর্বং জগৎ ব্যাপ্তং চরাচরম্"</em> — সমস্ত চরাচর জগৎ গ্রহের রশ্মি দ্বারা ব্যাপ্ত। প্রতিটি গ্রহ নির্দিষ্ট তরঙ্গদৈর্ঘ্যের আলোকরশ্মি বিকিরণ করে। রত্নপাথর সেই রশ্মিকে শোষণ ও বিচ্ছুরণ করে মানবদেহে প্রেরণ করে।</p>
   <p>আধুনিক mineralogy নিশ্চিত করেছে — প্রতিটি ক্রিস্টালের নিজস্ব <strong>piezoelectric property</strong> ও <strong>electromagnetic resonance</strong> আছে। Ruby-র Chromium আয়ন নির্দিষ্ট wavelength-এর আলো শোষণ করে ও নির্গত করে। Emerald-এর Beryl matrix বুধের সবুজ রশ্মির সাথে সামঞ্জস্যপূর্ণ বলে হাজার বছর ধরে বিশ্বাস করা হয়।</p>
   <blockquote>"রত্ন কোনো যাদুমন্ত্র নয় — এটি একটি cosmic antenna যা আপনার সংকল্পকে নির্দিষ্ট গ্রহীয় তরঙ্গদৈর্ঘ্যে tune করে দেয়। কিন্তু এই antenna সঠিক হওয়া চাই — ভুল রত্ন ভুল সংকেত পাঠায়।" — ড. প্রদ্যুৎ আচার্য</blockquote>
   <p><strong>গুরুত্বপূর্ণ:</strong> এই পেজ সম্পূর্ণ শিক্ষামূলক। <strong>আমরা রত্নপাথর বিক্রি করি না।</strong> জন্মকুণ্ডলী দেখে রত্ন নির্বাচন কীভাবে করবেন — সেই পরামর্শ দেওয়াই আমাদের কাজ। কোন গ্রহের জন্য কোন রত্ন পরতে হয় — কুণ্ডলী বিশ্লেষণ ছাড়া এই প্রশ্নের উত্তর দেওয়া সম্ভব নয়।</p>
@@ -2148,7 +2277,7 @@ body.nav-open #btt{opacity:0!important;pointer-events:none!important}
 
 <!-- RUDRAKSHA 1-2 -->
 <h3 class="sec-title" id="rudraksha-cards" style="margin-top:32px">📿 রুদ্রাক্ষ — ১ থেকে ১৫ মুখী</h3>
-<div class="rudra-uni-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+<div class="rudra-uni-grid">
 <div class="uni-card">
     <div class="uni-img-col"><img src="gallery/1-mukhi-rudraksha-original.webp" alt="এক মুখী রুদ্রাক্ষ Ek Mukhi Rudraksha Benefits Shiva Ranaghat" loading="lazy"/></div>
     <div class="uni-body rudra-body">
