@@ -809,74 +809,66 @@ body.nav-open #btt{opacity:0!important;pointer-events:none!important}
 .upa-card-img{overflow:hidden;position:relative}
 .upa-card-img img{position:absolute!important;top:0!important;left:0!important;width:100%!important;height:100%!important;object-fit:cover!important;display:block!important}
 
-/* ══════════════════════════════════
-   RUDRAKSHA CARDS — সম্পূর্ণ নতুন CSS
-   ══════════════════════════════════ */
+/* ══════════════════════════════════════════
+   RUDRAKSHA CARDS — সম্পূর্ণ স্বাধীন CSS
+   (.uni-card থেকে আলাদা .rudra-card class)
+   ══════════════════════════════════════════ */
 
-/* Outer grid — desktop 3 col, mobile 1 col */
+/* Grid */
 .rudra-uni-grid{
-  display:grid!important;
-  grid-template-columns:1fr!important;
+  display:grid;
+  grid-template-columns:1fr;
   gap:16px;
   margin-bottom:8px;
 }
 @media(min-width:700px){
-  .rudra-uni-grid{grid-template-columns:repeat(3,1fr)!important}
+  .rudra-uni-grid{grid-template-columns:repeat(3,1fr)}
 }
 
-/* Card — flex column (image top, body below) */
-.rudra-uni-grid .uni-card{
-  display:flex!important;
-  flex-direction:column!important;
-  grid-template-columns:none!important;
-  margin-bottom:0!important;
+/* Card — সম্পূর্ণ নতুন, uni-card-এর কোনো dependency নেই */
+.rudra-card{
+  display:flex;
+  flex-direction:column;
+  background:#fff;
   border-radius:14px;
   overflow:hidden;
   border:1px solid #ece4d4;
-  background:#fff;
   box-shadow:0 4px 18px rgba(0,0,0,.09);
-  transition:box-shadow .25s,transform .22s;
+  transition:box-shadow .25s,transform .22s,border-color .22s;
 }
-.rudra-uni-grid .uni-card:hover{
+.rudra-card:hover{
   box-shadow:0 10px 32px rgba(0,0,0,.14);
   transform:translateY(-3px);
   border-color:rgba(201,162,39,.38);
 }
 
-/* Image container — fixed height, full width */
-.rudra-uni-grid .uni-img-col{
-  width:100%!important;
-  height:170px!important;
-  min-height:0!important;
-  flex-shrink:0!important;
-  position:relative!important;
-  overflow:hidden!important;
-  background:linear-gradient(135deg,#0c1b33,#1a3060)!important;
-  display:block!important;
+/* Image wrapper */
+.rudra-img{
+  width:100%;
+  height:170px;
+  flex-shrink:0;
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(135deg,#0c1b33,#1a3060);
 }
 @media(min-width:700px){
-  .rudra-uni-grid .uni-img-col{height:155px!important}
+  .rudra-img{height:158px}
 }
-
-/* Image — absolute fill */
-.rudra-uni-grid .uni-img-col img{
-  position:absolute!important;
-  inset:0!important;
-  width:100%!important;
-  height:100%!important;
-  object-fit:cover!important;
-  display:block!important;
+.rudra-img img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
   transition:transform .4s;
 }
-.rudra-uni-grid .uni-card:hover .uni-img-col img{
-  transform:scale(1.04);
-}
+.rudra-card:hover .rudra-img img{transform:scale(1.04)}
 
-/* Body — flex grow */
-.rudra-uni-grid .uni-body{
-  grid-column:auto!important;
-  flex:1!important;
-  padding:14px 16px 16px!important;
+/* Body */
+.rudra-body{
+  flex:1;
+  padding:14px 15px 15px;
   display:flex;
   flex-direction:column;
   gap:7px;
@@ -885,54 +877,57 @@ body.nav-open #btt{opacity:0!important;pointer-events:none!important}
 /* Title */
 .rudra-body .uni-title{
   font-family:var(--fh);
-  font-size:1.1rem!important;
+  font-size:1.05rem;
   font-weight:700;
   color:var(--navy);
   line-height:1.2;
 }
 
-/* Badge */
+/* Graha badge */
 .rudra-body .uni-badge{
-  background:rgba(75,0,130,.1)!important;
-  border-color:rgba(75,0,130,.25)!important;
-  color:var(--purple)!important;
-  font-size:.65rem!important;
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  background:rgba(75,0,130,.09);
+  border:1px solid rgba(75,0,130,.22);
+  color:var(--purple);
+  font-size:.63rem;
   font-weight:700;
   padding:3px 10px;
   border-radius:16px;
   align-self:flex-start;
+  letter-spacing:.04em;
 }
 
-/* Description paragraph */
+/* Description */
 .rudra-body p{
-  font-size:.85rem!important;
+  font-size:.84rem;
   color:#333;
   line-height:1.75;
-  margin:0!important;
+  margin:0;
   flex:1;
 }
 
-/* Shastra quote */
-.rudra-uni-grid .uni-shastra{
-  font-size:.7rem!important;
+/* Shastra */
+.rudra-body .uni-shastra{
+  font-size:.69rem;
   color:var(--purple);
   font-style:italic;
   padding:7px 11px;
-  border-radius:6px;
+  border-radius:0 6px 6px 0;
   background:rgba(75,0,130,.05);
   border-left:2px solid var(--purple);
   line-height:1.55;
 }
 
-/* Extra info pills */
+/* Extra pills */
 .rudra-extra{
   display:flex;
   flex-wrap:wrap;
   gap:4px;
-  margin-top:2px;
 }
 .rudra-info-pill{
-  font-size:.6rem!important;
+  font-size:.6rem;
   font-weight:700;
   background:rgba(75,0,130,.07);
   border:1px solid rgba(75,0,130,.18);
@@ -940,7 +935,7 @@ body.nav-open #btt{opacity:0!important;pointer-events:none!important}
   padding:2px 8px;
   border-radius:12px;
   white-space:nowrap;
-  line-height:1.6;
+  line-height:1.65;
 }
 
 /* ══ GEM GRID 3 — image fit in card header ══ */
@@ -1105,7 +1100,7 @@ body.nav-open #btt{opacity:0!important;pointer-events:none!important}
 
 <!-- INTRO ESSAY -->
 <div class="intro-essay">
-  <p>পরাশর হোরা শাস্ত্রের ৮৩তম অধ্যায়ে বলা হয়েছে — <em>"গ্রহাণাং রশ্মিভিঃ সর্বং জগৎ ব্যাপ্তং চরাচরম্"</em> — সমস্ত চরাচর জগৎ গ্রহের রশ্মি দ্বারা ব্যাপ্ত। প্রতিটি গ্রহ নির্দিষ্ট তরঙ্গদৈর্ঘ্যের আলোকরশ্মি বিকিরণ করে। রত্নপাথর সেই রশ্মিকে শোষণ ও বিচ্ছুরণ করে মানবদেহে প্রেরণ করে।</p>
+  <p>পারাশর হোরা শাস্ত্রের ৮৩তম অধ্যায়ে বলা হয়েছে — <em>"গ্রহাণাং রশ্মিভিঃ সর্বং জগৎ ব্যাপ্তং চরাচরম্"</em> — সমস্ত চরাচর জগৎ গ্রহের রশ্মি দ্বারা ব্যাপ্ত। প্রতিটি গ্রহ নির্দিষ্ট তরঙ্গদৈর্ঘ্যের আলোকরশ্মি বিকিরণ করে। রত্নপাথর সেই রশ্মিকে শোষণ ও বিচ্ছুরণ করে মানবদেহে প্রেরণ করে।</p>
   <p>আধুনিক mineralogy নিশ্চিত করেছে — প্রতিটি ক্রিস্টালের নিজস্ব <strong>piezoelectric property</strong> ও <strong>electromagnetic resonance</strong> আছে। Ruby-র Chromium আয়ন নির্দিষ্ট wavelength-এর আলো শোষণ করে ও নির্গত করে। Emerald-এর Beryl matrix বুধের সবুজ রশ্মির সাথে সামঞ্জস্যপূর্ণ বলে হাজার বছর ধরে বিশ্বাস করা হয়।</p>
   <blockquote>"রত্ন কোনো যাদুমন্ত্র নয় — এটি একটি cosmic antenna যা আপনার সংকল্পকে নির্দিষ্ট গ্রহীয় তরঙ্গদৈর্ঘ্যে tune করে দেয়। কিন্তু এই antenna সঠিক হওয়া চাই — ভুল রত্ন ভুল সংকেত পাঠায়।" — ড. প্রদ্যুৎ আচার্য</blockquote>
   <p><strong>গুরুত্বপূর্ণ:</strong> এই পেজ সম্পূর্ণ শিক্ষামূলক। <strong>আমরা রত্নপাথর বিক্রি করি না।</strong> জন্মকুণ্ডলী দেখে রত্ন নির্বাচন কীভাবে করবেন — সেই পরামর্শ দেওয়াই আমাদের কাজ। কোন গ্রহের জন্য কোন রত্ন পরতে হয় — কুণ্ডলী বিশ্লেষণ ছাড়া এই প্রশ্নের উত্তর দেওয়া সম্ভব নয়।</p>
@@ -2278,135 +2273,135 @@ body.nav-open #btt{opacity:0!important;pointer-events:none!important}
 <!-- RUDRAKSHA 1-2 -->
 <h3 class="sec-title" id="rudraksha-cards" style="margin-top:32px">📿 রুদ্রাক্ষ — ১ থেকে ১৫ মুখী</h3>
 <div class="rudra-uni-grid">
-<div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/1-mukhi-rudraksha-original.webp" alt="এক মুখী রুদ্রাক্ষ Ek Mukhi Rudraksha Benefits Shiva Ranaghat" loading="lazy"/></div>
-    <div class="uni-body rudra-body">
+<div class="rudra-card">
+    <div class="rudra-img"><img src="gallery/1-mukhi-rudraksha-original.webp" alt="এক মুখী রুদ্রাক্ষ Ek Mukhi Rudraksha Benefits Shiva Ranaghat" loading="lazy"/></div>
+    <div class="rudra-body">
       <div class="rudra-face uni-title">১ মুখী</div>
       <div class="rudra-graha uni-badge">☀ সূর্য / পরমশিব</div>
       <p><strong>এক মুখী রুদ্রাক্ষের উপকারিতা:</strong> সবচেয়ে বিরল ও মূল্যবান। আত্মজ্ঞান, মোক্ষ ও নেতৃত্বের জন্য। সূর্যের দুর্বলতায় বিশেষ উপকারী। কাজু আকৃতির নেপালি ১ মুখী সত্যিকারের বিরল।</p>
       <div class="uni-shastra">শিবমহাপুরাণ: "একং রুদ্রাক্ষমালাং তু যো বিভর্তি শুচিঃ সদা — তস্য সর্বে কামদা দেবাঃ প্রসীদন্তি ন সংশয়ঃ"</div><div class="rudra-extra"><span class="rudra-info-pill">🌟 অত্যন্ত বিরল</span><span class="rudra-info-pill">📿 পরার দিন: সোমবার</span><span class="rudra-info-pill">💛 ধাতু: সোনা</span><span class="rudra-info-pill">🧘 নেপালি কাজু আকৃতি সেরা</span></div></div>
     </div>
   </div>
-<div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/2-mukhi-rudraksha-original.webp" alt="দুই মুখী রুদ্রাক্ষ Do Mukhi Rudraksha Benefits Ardhanarishvara" loading="lazy"/></div>
-    <div class="uni-body rudra-body">
+<div class="rudra-card">
+    <div class="rudra-img"><img src="gallery/2-mukhi-rudraksha-original.webp" alt="দুই মুখী রুদ্রাক্ষ Do Mukhi Rudraksha Benefits Ardhanarishvara" loading="lazy"/></div>
+    <div class="rudra-body">
       <div class="rudra-face uni-title">২ মুখী</div>
       <div class="rudra-graha uni-badge">🌙 চন্দ্র / অর্ধনারীশ্বর</div>
       <p><strong>দুই মুখী রুদ্রাক্ষ কি কাজ করে:</strong> দাম্পত্য সম্পর্ক উন্নতি, মানসিক শান্তি ও চন্দ্রের শক্তিবর্ধনে। শিব ও শক্তির একতার প্রতীক। বিবাহিত দম্পতির জন্য বিশেষ শুভ।</p>
       <div class="uni-shastra">দেবীভাগবত: "দ্বিমুখং চার্ধনারীশং তদ্ধারণাৎ পশুপতির্নরঃ"</div><div class="rudra-extra"><span class="rudra-info-pill">💑 বিবাহিতদের জন্য</span><span class="rudra-info-pill">📿 পরার দিন: সোমবার</span><span class="rudra-info-pill">🥈 ধাতু: রুপা</span><span class="rudra-info-pill">☯ শিব-শক্তির প্রতীক</span></div></div>
     </div>
   </div>
-<div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/3-mukhi-rudraksha-original.webp" alt="তিন মুখী রুদ্রাক্ষ Teen Mukhi Rudraksha Benefits Agni" loading="lazy"/></div>
-    <div class="uni-body rudra-body">
+<div class="rudra-card">
+    <div class="rudra-img"><img src="gallery/3-mukhi-rudraksha-original.webp" alt="তিন মুখী রুদ্রাক্ষ Teen Mukhi Rudraksha Benefits Agni" loading="lazy"/></div>
+    <div class="rudra-body">
       <div class="rudra-face uni-title">৩ মুখী</div>
       <div class="rudra-graha uni-badge">♂ মঙ্গল / অগ্নি / ত্রিনেত্র</div>
       <p><strong>তিন মুখী রুদ্রাক্ষের উপকারিতা:</strong> আত্মবিশ্বাস বৃদ্ধি, মঙ্গলের কুপ্রভাব কমায়। পূর্বজন্মের পাপক্ষয়ে ও ব্যক্তিত্ব উন্নয়নে। ব্রহ্মা-বিষ্ণু-মহেশ্বরের একত্রিত শক্তির প্রতীক।</p>
       <div class="uni-shastra">শিবপুরাণ: "ত্রিমুখং ত্রিপুরারিঞ্চ ত্রিকালং ব্রহ্মপুত্রকম্"</div><div class="rudra-extra"><span class="rudra-info-pill">🔥 আত্মবিশ্বাস বর্ধক</span><span class="rudra-info-pill">📿 পরার দিন: মঙ্গলবার</span><span class="rudra-info-pill">💛 ধাতু: সোনা/তামা</span><span class="rudra-info-pill">😓 হীনমন্যতা দূর করে</span></div>
     </div>
   </div>
-<div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/4-mukhi-rudraksha-original.webp" alt="চার মুখী রুদ্রাক্ষ Char Mukhi Rudraksha Benefits Brahma" loading="lazy"/></div>
-    <div class="uni-body rudra-body">
+<div class="rudra-card">
+    <div class="rudra-img"><img src="gallery/4-mukhi-rudraksha-original.webp" alt="চার মুখী রুদ্রাক্ষ Char Mukhi Rudraksha Benefits Brahma" loading="lazy"/></div>
+    <div class="rudra-body">
       <div class="rudra-face uni-title">৪ মুখী</div>
       <div class="rudra-graha uni-badge">☿ বুধ / ব্রহ্মা / চতুর্মুখ</div>
       <p><strong>চার মুখী রুদ্রাক্ষ কার জন্য:</strong> বুদ্ধি, স্মৃতি ও বাকশক্তির উন্নতি। ছাত্র, শিক্ষক ও বক্তাদের জন্য বিশেষ উপকারী। বুধের দুর্বলতায় অত্যন্ত কার্যকর। চার বেদের প্রতীক।</p>
       <div class="uni-shastra">পদ্মপুরাণ: "চতুর্মুখং ব্রহ্মরূপং ধারয়েদ্যো নরঃ সদা"</div><div class="rudra-extra"><span class="rudra-info-pill">📚 ছাত্রদের জন্য</span><span class="rudra-info-pill">📿 পরার দিন: বুধবার</span><span class="rudra-info-pill">💛 ধাতু: সোনা/রুপা</span><span class="rudra-info-pill">🧠 স্মৃতিশক্তি বর্ধক</span></div></div>
     </div>
   </div>
-<div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/5-mukhi-rudraksha-original.webp" alt="পাঁচ মুখী রুদ্রাক্ষ Panch Mukhi Rudraksha Benefits Kalagni" loading="lazy"/></div>
-    <div class="uni-body rudra-body">
+<div class="rudra-card">
+    <div class="rudra-img"><img src="gallery/5-mukhi-rudraksha-original.webp" alt="পাঁচ মুখী রুদ্রাক্ষ Panch Mukhi Rudraksha Benefits Kalagni" loading="lazy"/></div>
+    <div class="rudra-body">
       <div class="rudra-face uni-title">৫ মুখী</div>
       <div class="rudra-graha uni-badge">♃ বৃহস্পতি / পঞ্চমুখী শিব</div>
       <p><strong>পাঁচ মুখী রুদ্রাক্ষ পরার উপকারিতা:</strong> সর্বশুভ — সবাই পরতে পারেন। কোনো লগ্ন বা রাশিতে ক্ষতি নেই। বৃহস্পতির শক্তিবর্ধনে সর্বোত্তম। <strong>গবেষণায় প্রমাণিত</strong> — রক্তচাপ ও heart rate নিয়ন্ত্রণে সাহায্য করে।</p>
       <div class="uni-shastra">অথর্বশিরোপনিষদ: "পঞ্চমুখং মহাদেবং সর্বপাপহরং শুভম্"</div><div class="rudra-extra"><span class="rudra-info-pill">✅ সবার জন্য নিরাপদ</span><span class="rudra-info-pill">📿 পরার দিন: সোমবার</span><span class="rudra-info-pill">💛 যেকোনো ধাতু</span><span class="rudra-info-pill">❤️ BP নিয়ন্ত্রণে বৈজ্ঞানিক প্রমাণ</span></div></div>
     </div>
   </div>
-<div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/6-mukhi-rudraksha-original.webp" alt="ছয় মুখী রুদ্রাক্ষ Choy Mukhi Rudraksha Benefits Kartikeya" loading="lazy"/></div>
-    <div class="uni-body rudra-body">
+<div class="rudra-card">
+    <div class="rudra-img"><img src="gallery/6-mukhi-rudraksha-original.webp" alt="ছয় মুখী রুদ্রাক্ষ Choy Mukhi Rudraksha Benefits Kartikeya" loading="lazy"/></div>
+    <div class="rudra-body">
       <div class="rudra-face uni-title">৬ মুখী</div>
       <div class="rudra-graha uni-badge">♀ শুক্র / কার্তিক / সুব্রহ্মণ্য</div>
       <p><strong>ছয় মুখী রুদ্রাক্ষ কার জন্য শুভ:</strong> প্রেম, সৌন্দর্য ও সৃষ্টিশীলতায়। শুক্রের নেতিবাচক প্রভাব কমায়। শিল্পী, সংগীতজ্ঞ ও প্রেমিক-প্রেমিকাদের জন্য বিশেষ উপকারী।</p>
       <div class="uni-shastra">শিবমহাপুরাণ: "ষণ্মুখং কার্তিকেয়ঞ্চ ষড়্গুণৈঃ সহিতং শুভম্"</div><div class="rudra-extra"><span class="rudra-info-pill">🎨 শিল্পীদের জন্য</span><span class="rudra-info-pill">📿 পরার দিন: শুক্রবার</span><span class="rudra-info-pill">💛 ধাতু: সোনা</span><span class="rudra-info-pill">💃 প্রেম ও সৌন্দর্যে</span></div></div>
     </div>
   </div>
-<div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/7-mukhi-rudraksha-original.webp" alt="সাত মুখী রুদ্রাক্ষ Sat Mukhi Rudraksha Benefits Mahalakshmi" loading="lazy"/></div>
-    <div class="uni-body rudra-body">
+<div class="rudra-card">
+    <div class="rudra-img"><img src="gallery/7-mukhi-rudraksha-original.webp" alt="সাত মুখী রুদ্রাক্ষ Sat Mukhi Rudraksha Benefits Mahalakshmi" loading="lazy"/></div>
+    <div class="rudra-body">
       <div class="rudra-face uni-title">৭ মুখী</div>
       <div class="rudra-graha uni-badge">♄ শনি / অনন্ত / সপ্তঋষি</div>
       <p><strong>সাত মুখী রুদ্রাক্ষ শনির জন্য ভালো কি:</strong> হ্যাঁ, অত্যন্ত ভালো। <strong>কোন রুদ্রাক্ষ ধন বৃদ্ধি করে?</strong> — ৭ মুখী রুদ্রাক্ষ। দারিদ্র্যনাশ, ব্যবসায় উন্নতি ও শনির সাড়েসাতিতে রক্ষাকবচ।</p>
       <div class="uni-shastra">পদ্মপুরাণ: "সপ্তমুখং মহালক্ষ্মীং সপ্তর্ষিং সপ্তসাগরম্"</div><div class="rudra-extra"><span class="rudra-info-pill">💰 ধনবর্ধক</span><span class="rudra-info-pill">📿 পরার দিন: শনিবার</span><span class="rudra-info-pill">🥈 ধাতু: রুপা</span><span class="rudra-info-pill">🛡 শনির সাড়েসাতিতে রক্ষা</span></div></div>
     </div>
   </div>
-<div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/8-mukhi-rudraksha-original.webp" alt="আট মুখী রুদ্রাক্ষ Aat Mukhi Rudraksha Benefits Ganesha" loading="lazy"/></div>
-    <div class="uni-body rudra-body">
+<div class="rudra-card">
+    <div class="rudra-img"><img src="gallery/8-mukhi-rudraksha-original.webp" alt="আট মুখী রুদ্রাক্ষ Aat Mukhi Rudraksha Benefits Ganesha" loading="lazy"/></div>
+    <div class="rudra-body">
       <div class="rudra-face uni-title">৮ মুখী</div>
       <div class="rudra-graha uni-badge">☊ রাহু / গণেশ / অষ্টবসু</div>
       <p><strong>আট মুখী রুদ্রাক্ষের ফল:</strong> রাহুর বিভ্রম থেকে মুক্তি। গণেশের আশীর্বাদে সকল বাধা অপসারণ। অদৃশ্য শত্রু প্রতিরোধে ও কালসর্প দোষ শান্তিতে বিশেষ উপকারী।</p>
       <div class="uni-shastra">শিবপুরাণ: "অষ্টমুখং গণেশঞ্চ সর্বসিদ্ধিপ্রদায়কম্"</div><div class="rudra-extra"><span class="rudra-info-pill">🐍 কালসর্প দোষে</span><span class="rudra-info-pill">📿 পরার দিন: বুধবার</span><span class="rudra-info-pill">💛 ধাতু: অষ্টধাতু</span><span class="rudra-info-pill">👁 অদৃশ্য শত্রু প্রতিরোধ</span></div></div>
     </div>
   </div>
-<div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/9-mukhi-rudraksha-original.webp" alt="নয় মুখী রুদ্রাক্ষ Noy Mukhi Rudraksha Benefits Durga" loading="lazy"/></div>
-    <div class="uni-body rudra-body">
+<div class="rudra-card">
+    <div class="rudra-img"><img src="gallery/9-mukhi-rudraksha-original.webp" alt="নয় মুখী রুদ্রাক্ষ Noy Mukhi Rudraksha Benefits Durga" loading="lazy"/></div>
+    <div class="rudra-body">
       <div class="rudra-face uni-title">৯ মুখী</div>
       <div class="rudra-graha uni-badge">☋ কেতু / দুর্গা / নবদুর্গা</div>
       <p><strong>নয় মুখী রুদ্রাক্ষের উপকারিতা:</strong> শক্তি, সাহস ও কেতুর দুর্দশা প্রশমনে। মা দুর্গার আশীর্বাদ। দীর্ঘমেয়াদি রোগ ও অজানা ভয় থেকে মুক্তিতে। নয় দুর্গার শক্তির প্রতীক।</p>
       <div class="uni-shastra">দেবীভাগবত: "নবমুখং মহাদেবী নবদুর্গা স্বরূপিণী"</div><div class="rudra-extra"><span class="rudra-info-pill">🦁 সাহস বর্ধক</span><span class="rudra-info-pill">📿 পরার দিন: মঙ্গলবার</span><span class="rudra-info-pill">🥈 ধাতু: রুপা/অষ্টধাতু</span><span class="rudra-info-pill">😨 অজানা ভয় দূর করে</span></div></div>
     </div>
   </div>
-<div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/10-mukhi-rudraksha-original.webp" alt="দশ মুখী রুদ্রাক্ষ Dosh Mukhi Rudraksha Benefits Vishnu" loading="lazy"/></div>
-    <div class="uni-body rudra-body">
+<div class="rudra-card">
+    <div class="rudra-img"><img src="gallery/10-mukhi-rudraksha-original.webp" alt="দশ মুখী রুদ্রাক্ষ Dosh Mukhi Rudraksha Benefits Vishnu" loading="lazy"/></div>
+    <div class="rudra-body">
       <div class="rudra-face uni-title">১০ মুখী</div>
       <div class="rudra-graha uni-badge">বিষ্ণু / দশ দিক / দশাবতার</div>
       <p><strong>দশ মুখী রুদ্রাক্ষ কার জন্য:</strong> দশ দিকের সুরক্ষা প্রদান। নেতিবাচক শক্তি, কুনজর ও কালো জাদু থেকে রক্ষা। বিষ্ণুর দশাবতারের শক্তির আধার।</p>
       <div class="uni-shastra">স্কন্দপুরাণ: "দশমুখং দশভুজং দশদিক্পালপূজিতম্"</div><div class="rudra-extra"><span class="rudra-info-pill">🔟 দশদিকের সুরক্ষা</span><span class="rudra-info-pill">📿 পরার দিন: সোমবার</span><span class="rudra-info-pill">💛 ধাতু: সোনা</span><span class="rudra-info-pill">🧿 কুনজর প্রতিরোধ</span></div></div>
     </div>
   </div>
-<div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/11-mukhi-rudraksha-original.webp" alt="এগারো মুখী রুদ্রাক্ষ Egaro Mukhi Rudraksha Benefits" loading="lazy"/></div>
-    <div class="uni-body rudra-body">
+<div class="rudra-card">
+    <div class="rudra-img"><img src="gallery/11-mukhi-rudraksha-original.webp" alt="এগারো মুখী রুদ্রাক্ষ Egaro Mukhi Rudraksha Benefits" loading="lazy"/></div>
+    <div class="rudra-body">
       <div class="rudra-face uni-title">১১ মুখী</div>
       <div class="rudra-graha uni-badge">একাদশ রুদ্র / হনুমান</div>
       <p><strong>এগারো মুখী রুদ্রাক্ষ কি কাজ করে:</strong> ধ্যান, সাধনা ও আধ্যাত্মিক গভীরতায়। যোগীদের ও সাধকদের পছন্দের রুদ্রাক্ষ। সাহস ও বিজয়ের শক্তি প্রদান করে।</p>
       <div class="uni-shastra">শিবমহাপুরাণ: "একাদশমুখং রুদ্রং একাদশরুদ্রস্বরূপম্"</div><div class="rudra-extra"><span class="rudra-info-pill">🧘 যোগ সাধকদের জন্য</span><span class="rudra-info-pill">📿 পরার দিন: মঙ্গলবার</span><span class="rudra-info-pill">💛 ধাতু: সোনা</span><span class="rudra-info-pill">💪 সাহস ও বিজয়</span></div></div>
     </div>
   </div>
-<div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/12-mukhi-rudraksha-original.webp" alt="বারো মুখী রুদ্রাক্ষ Baro Mukhi Rudraksha Benefits Surya" loading="lazy"/></div>
-    <div class="uni-body rudra-body">
+<div class="rudra-card">
+    <div class="rudra-img"><img src="gallery/12-mukhi-rudraksha-original.webp" alt="বারো মুখী রুদ্রাক্ষ Baro Mukhi Rudraksha Benefits Surya" loading="lazy"/></div>
+    <div class="rudra-body">
       <div class="rudra-face uni-title">১২ মুখী</div>
       <div class="rudra-graha uni-badge">☀ সূর্য / দ্বাদশ আদিত্য / বিষ্ণু</div>
       <p><strong>বারো মুখী রুদ্রাক্ষ সূর্যের জন্য কি:</strong> হ্যাঁ, অত্যন্ত উপকারী। নেতৃত্ব, আত্মবিশ্বাস ও সৌরশক্তি বৃদ্ধিতে। ব্যবসায়ী ও প্রশাসকদের জন্য বিশেষ কার্যকর।</p>
       <div class="uni-shastra">পদ্মপুরাণ: "দ্বাদশমুখং দ্বাদশাদিত্যস্বরূপং তেজোনিধিম্"</div><div class="rudra-extra"><span class="rudra-info-pill">☀ সৌরশক্তি বর্ধক</span><span class="rudra-info-pill">📿 পরার দিন: রবিবার</span><span class="rudra-info-pill">💛 ধাতু: সোনা</span><span class="rudra-info-pill">👑 নেতৃত্বদানকারীদের জন্য</span></div></div>
     </div>
   </div>
-<div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/13-mukhi-rudraksha-original.webp" alt="তেরো মুখী রুদ্রাক্ষ Tero Mukhi Rudraksha Benefits Kamadeva" loading="lazy"/></div>
-    <div class="uni-body rudra-body">
+<div class="rudra-card">
+    <div class="rudra-img"><img src="gallery/13-mukhi-rudraksha-original.webp" alt="তেরো মুখী রুদ্রাক্ষ Tero Mukhi Rudraksha Benefits Kamadeva" loading="lazy"/></div>
+    <div class="rudra-body">
       <div class="rudra-face uni-title">১৩ মুখী</div>
       <div class="rudra-graha uni-badge">♀ ইন্দ্র / বিশ্বেদেব / শুক্র</div>
       <p><strong>তেরো মুখী রুদ্রাক্ষ কার জন্য শুভ:</strong> ইচ্ছাপূরণ ও সৌভাগ্যের জন্য। শুক্রের সাথে যুক্ত — প্রেম, বিবাহ ও সৌন্দর্যে শুভ। অত্যন্ত বিরল — সংগ্রহ করা কঠিন।</p>
       <div class="uni-shastra">শিবপুরাণ: "ত্রয়োদশমুখং বিশ্বে বিশ্বেদেবাঃ প্রতিষ্ঠিতাঃ"</div><div class="rudra-extra"><span class="rudra-info-pill">💫 ইচ্ছাপূরণ</span><span class="rudra-info-pill">📿 পরার দিন: শুক্রবার</span><span class="rudra-info-pill">💛 ধাতু: সোনা</span><span class="rudra-info-pill">💍 বিবাহে বিলম্ব দূর</span></div></div>
     </div>
   </div>
-<div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/14-mukhi-rudraksha-original.webp" alt="চৌদ্দ মুখী রুদ্রাক্ষ Choddo Mukhi Rudraksha Benefits Hanuman" loading="lazy"/></div>
-    <div class="uni-body rudra-body">
+<div class="rudra-card">
+    <div class="rudra-img"><img src="gallery/14-mukhi-rudraksha-original.webp" alt="চৌদ্দ মুখী রুদ্রাক্ষ Choddo Mukhi Rudraksha Benefits Hanuman" loading="lazy"/></div>
+    <div class="rudra-body">
       <div class="rudra-face uni-title">১৪ মুখী</div>
       <div class="rudra-graha uni-badge">♄ শনি / মহেশ্বর / তৃতীয় নেত্র</div>
       <p><strong>চৌদ্দ মুখী রুদ্রাক্ষের উপকারিতা:</strong> সর্বোচ্চ মূল্যবান রুদ্রাক্ষ। তৃতীয় নেত্র জাগ্রত করে — অন্তর্দৃষ্টি ও দিব্যজ্ঞান লাভে। শনির সাথে যুক্ত — কর্মক্ষেত্রে অসাধারণ সাফল্য।</p>
       <div class="uni-shastra">দেবীভাগবত: "চতুর্দশমুখং দেবং মহেশ্বরমনাময়ম্ — তৃতীয়নেত্রজাতঞ্চ সর্বসিদ্ধিপ্রদায়কম্"</div><div class="rudra-extra"><span class="rudra-info-pill">👁 তৃতীয় নেত্র জাগ্রত</span><span class="rudra-info-pill">📿 পরার দিন: শনিবার</span><span class="rudra-info-pill">💛 ধাতু: সোনা</span><span class="rudra-info-pill">🔮 দিব্যজ্ঞান লাভ</span></div></div>
     </div>
   </div>
-<div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/15-mukhi-rudraksha-original.webp" alt="পনেরো মুখী রুদ্রাক্ষ Ponero Mukhi Rudraksha Benefits Pashupatinath" loading="lazy"/></div>
-    <div class="uni-body rudra-body">
+<div class="rudra-card">
+    <div class="rudra-img"><img src="gallery/15-mukhi-rudraksha-original.webp" alt="পনেরো মুখী রুদ্রাক্ষ Ponero Mukhi Rudraksha Benefits Pashupatinath" loading="lazy"/></div>
+    <div class="rudra-body">
       <div class="rudra-face uni-title">১৫ মুখী</div>
       <div class="rudra-graha uni-badge">♄♀ শনি-শুক্র / পশুপতিনাথ</div>
       <p><strong>পনেরো মুখী রুদ্রাক্ষ বিশেষত্ব:</strong> অত্যন্ত দুর্লভ ও মূল্যবান। পশুপতিনাথের স্বরূপ। ব্যবসায়িক সাফল্য, সম্পদ বৃদ্ধি ও আধ্যাত্মিক উন্নতিতে। নেতৃত্বদানকারীদের জন্য বিশেষ উপকারী।</p>
