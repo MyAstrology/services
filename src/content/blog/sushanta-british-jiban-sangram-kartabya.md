@@ -2,8 +2,8 @@
 title: "যে মেধাবী ছেলেটি ক্লাস সিক্সেই থেমে গেল — সুশান্তের গল্প"
 description: "পরীক্ষায় সে সবসময় প্রথম, কিন্তু ক্লাস সিক্সেই স্কুল ছাড়তে হলো। পনেরো বছর পর দেখা হলো কাঠের দোকানে। এই গল্প শুধু সুশান্তের নয়।"
 date: "2026-03-13"
-image: ""
-slug: "sushanta-british-jiban-sangram-kartabya"https://www.myastrology.in/images/sushanta-british-jiban-golpo.webp
+image: "https://www.myastrology.in/images/sushanta-british-jiban-golpo.webp"
+slug: "sushanta-british-jiban-sangram-kartabya"
 author:
   name: "Dr Prodyut Acharya"
   bio: "জ্যোতিষী, হস্তরেখাবিদ, দার্শনিক চিন্তাবিদ ও ভাগ্য উন্নতির পরামর্শদাতা।"
