@@ -145,9 +145,9 @@ img{max-width:100%;display:block}
 .graha-icon{width:80px;height:80px;margin:0 auto 10px;display:block;object-fit:cover;border-radius:50%;border:2px solid rgba(201,162,39,.3);background:#f5f0e8}
 .graha-icon-fb{font-size:2rem;margin-bottom:7px;display:block}
 
-#btt.visible{opacity:1;transform:translateY(0);pointer-events:auto}
 
-#btt:hover{color:#fff}
+
+
 /* INTRO ESSAY */
 .intro-essay{background:#fff;border-radius:14px;padding:28px;box-shadow:var(--shadow);margin-bottom:36px;border-left:4px solid var(--gold)}
 .intro-essay p{color:#333;font-size:.94rem;margin-bottom:14px;line-height:1.85}
@@ -169,7 +169,7 @@ img{max-width:100%;display:block}
 /* GEM SECTION */
 .gem-section{background:#fff;border-radius:14px;box-shadow:var(--shadow);margin-bottom:32px;overflow:hidden;border:1px solid #ece4d4}
 .gem-section-header{display:grid;grid-template-columns:180px 1fr;gap:0;align-items:stretch}
-@media(max-width:600px){}
+@media(max-width:600px){.gem-section-header{grid-template-columns:1fr}}
 .gem-img-col{background:linear-gradient(135deg,#0c1b33,#1a3060);position:relative;overflow:hidden;min-height:210px}
 .gem-img-col img{width:100%;height:100%;object-fit:cover;opacity:.88;transition:opacity .3s}
 .gem-img-col:hover img{opacity:1}
@@ -296,9 +296,9 @@ img{max-width:100%;display:block}
 @keyframes waPulse{0%,100%{box-shadow:0 4px 18px rgba(37,211,102,.5)}50%{box-shadow:0 4px 30px rgba(37,211,102,.8)}}
 
 
-#btt.visible{opacity:1;transform:translateY(0);pointer-events:auto}
 
-#btt:hover{color:#fff}
+
+
 
 /* PAYMENT MODAL */
 .pay-overlay{display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.65);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:16px}
@@ -416,7 +416,8 @@ img{max-width:100%;display:block}
 .uni-kw{font-size:.77rem;color:var(--muted);font-style:italic;background:#f8f5ee;padding:8px 12px;border-radius:6px;margin-top:8px}
 
 /* rudraksha 2-col grid on desktop */
-.rudra-uni-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-bottom:8px}
+
+
 
 
 /* uparatna 2-col grid on desktop */
@@ -440,7 +441,8 @@ img{max-width:100%;display:block}
 /* override old gem-section grid to use same 180px */
 .gem-section{background:#fff;border-radius:14px;box-shadow:var(--shadow);margin-bottom:28px;overflow:hidden;border:1px solid #ece4d4;transition:box-shadow .25s,border-color .25s}
 .gem-section:hover{box-shadow:0 10px 32px rgba(0,0,0,.13);border-color:rgba(201,162,39,.4)}
-@media(max-width:600px){}
+.gem-section-header{display:grid;grid-template-columns:180px 1fr;align-items:stretch}
+@media(max-width:600px){.gem-section-header{grid-template-columns:1fr}}
 .gem-img-col{background:linear-gradient(135deg,#0c1b33,#1a3060);overflow:hidden;min-height:210px;position:relative}
 .gem-img-col img{width:100%;height:100%;object-fit:cover;opacity:.88;transition:opacity .3s}
 .gem-img-col:hover img{opacity:1}
@@ -530,9 +532,9 @@ h2.sec-title,h3.sec-title{font-family:var(--fh)!important;font-size:clamp(1.05re
 .fcta-btn-wa{display:inline-flex;align-items:center;gap:8px;border:2px solid #25d366;color:#128c7e;background:#fff;padding:10px 18px;border-radius:50px;font-weight:700;font-size:.88rem;text-decoration:none;transition:all .2s}
 .fcta-btn-wa:hover{background:#25d366;color:#fff}
 
-#btt.visible{opacity:1;transform:translateY(0);pointer-events:auto}
-#btt{font-size:1.2rem;font-style:normal}
-#btt:hover{background:var(--navy);color:#fff}
+
+
+
 
 .wa-bubble{background:var(--navy);color:var(--gold2);font-size:.78rem;font-weight:700;padding:6px 14px;border-radius:20px;border:1px solid rgba(201,162,39,.3);opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s;pointer-events:none;white-space:nowrap}
 .wa-bubble.show{opacity:1;transform:translateY(0)}
@@ -567,10 +569,16 @@ body.nav-open{overflow-y:hidden}
 
 /* ══ 3-COL DESKTOP GRIDS ══ */
 .gem-grid-3{display:grid;grid-template-columns:1fr;gap:24px;margin:0}
-
+@media(min-width:700px){
+  .gem-grid-3{grid-template-columns:repeat(3,1fr);align-items:start}
+  .gem-grid-3 .gem-section{margin-bottom:0}
+  .gem-grid-3 .gem-tab{font-size:.6rem;padding:4px 6px}
+}
 .upa-grid-3{display:grid;grid-template-columns:1fr;gap:20px;margin-top:8px}
-@media(min-width:700px){.upa-grid-3{grid-template-columns:repeat(3,1fr);align-items:start}}
-.rudra-uni-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:6px}
+
+
+
+
 /* ══ UPA-CARD (gem-section style) ══ */
 .upa-card{background:#fff;border-radius:14px;overflow:hidden;border:1px solid #e5dece;box-shadow:0 2px 14px rgba(0,0,0,.09);display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
 .upa-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.13)}
@@ -641,9 +649,9 @@ body.nav-open{overflow-y:hidden}
 @keyframes waPulse{0%,100%{box-shadow:0 4px 18px rgba(37,211,102,.5)}50%{box-shadow:0 4px 30px rgba(37,211,102,.8)}}
 
 /* ══ BTT ══ */
-#btt{position:fixed;bottom:22px;left:18px;background:transparent;border:none;color:var(--gold2,#e8c44a);font-size:1.8rem;cursor:pointer;z-index:997;line-height:1;opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity .3s,transform .3s;padding:0;box-shadow:none;outline:none}
-#btt.visible{opacity:1;transform:translateY(0);pointer-events:auto}
-#btt:hover{color:#fff}
+
+
+
 
 /* ══ MID-CTA-1 ══ */
 .mid-cta-1{background:linear-gradient(135deg,#07101f 0%,#0f2040 50%,#1a3a6b 100%);padding:48px 24px;text-align:center;position:relative;overflow:hidden;margin:0}
@@ -666,107 +674,54 @@ body.nav-open{overflow-y:hidden}
 
 /* ── nav open: hide floating buttons behind nav ── */
 body.nav-open .wa-float,
-body.nav-open #btt{display:none!important}
+body.nav-open 
 
-/* ══════════════════════════════════════════════
-   MASTER 3-COL GRID RULES — DESKTOP ≥700px
-═══════════════════════════════════════════════ */
+/* BTT — back to top */
+#btt{position:fixed;bottom:22px;left:18px;background:transparent;border:none;
+  color:#000;font-size:2rem;cursor:pointer;z-index:997;line-height:1;
+  opacity:0;transform:translateY(10px);pointer-events:none;
+  transition:opacity .3s,transform .3s;padding:0;width:32px;height:32px;
+  display:flex;align-items:center;justify-content:center}
+#btt.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+#btt:hover{color:#333;transform:translateY(-2px)}
 
-/* Navaratna: 9 cards → 3×3 */
+/* ════ MASTER 3-COL GRID — DESKTOP ≥700px ════ */
 .gem-grid-3{display:grid;grid-template-columns:1fr;gap:20px;margin:0}
-
-/* Uparatna: 9 cards → 3×3 */
 .upa-grid-3{display:grid;grid-template-columns:1fr;gap:20px;margin-top:8px}
-
-/* Rudraksha: 15 cards → 3×5 */
 .rudra-uni-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:6px}
 
 @media(min-width:700px){
-  .gem-grid-3{grid-template-columns:repeat(3,1fr);align-items:start;gap:20px}
+  /* Navaratna 3×3 */
+  .gem-grid-3{grid-template-columns:repeat(3,1fr);align-items:start}
   .gem-grid-3 .gem-section{margin-bottom:0}
-  .gem-grid-3 .gem-tab{font-size:.6rem;padding:4px 6px}
+  .gem-grid-3 .gem-section-header{display:flex!important;flex-direction:column!important}
+  .gem-grid-3 .gem-img-col{width:100%!important;height:180px!important;min-height:0!important}
+  .gem-grid-3 .gem-img-col img{width:100%!important;height:100%!important;object-fit:cover!important}
+  .gem-grid-3 .gem-header-text{padding:12px 14px 10px}
+  .gem-grid-3 .gem-h2{font-size:.95rem}
+  .gem-grid-3 .gem-tagline{font-size:.78rem}
+  .gem-grid-3 .gem-tab{font-size:.58rem;padding:4px 6px}
+  .gem-grid-3 .gem-meta-pills{gap:3px}
+  .gem-grid-3 .gem-pill{font-size:.58rem;padding:2px 6px}
 
-  .upa-grid-3{grid-template-columns:repeat(3,1fr);align-items:start;gap:20px}
+  /* Uparatna 3×3 */
+  .upa-grid-3{grid-template-columns:repeat(3,1fr);align-items:start}
+  .upa-card-top{grid-template-columns:100px 1fr}
 
-  .rudra-uni-grid{grid-template-columns:repeat(3,1fr);gap:14px}
-
-  /* Inside 3-col grid: gem card image stacks on top */
-  .gem-grid-3 .gem-section-header{grid-template-columns:1fr}
-  .gem-grid-3 .gem-img-col{height:160px;min-height:0}
+  /* Rudraksha 3×5 */
+  .rudra-uni-grid{grid-template-columns:repeat(3,1fr)}
+  .uni-card{break-inside:avoid}
 }
 
 @media(max-width:699px){
-  .gem-grid-3,.upa-grid-3,.rudra-uni-grid{grid-template-columns:1fr !important}
+  .gem-grid-3,.upa-grid-3,.rudra-uni-grid{grid-template-columns:1fr!important}
 }
 
-/* ══════════════════════════════════════════════
-   CERTIFICATE SHOWCASE — BEAUTIFUL
-═══════════════════════════════════════════════ */
-.cert-showcase{background:linear-gradient(135deg,#0a1730 0%,#122040 50%,#0a1730 100%);padding:48px 20px;margin:40px 0;border-radius:18px;box-shadow:0 8px 40px rgba(10,23,48,.35)}
-.cs-header{text-align:center;margin-bottom:36px}
-.cs-header-ey{font-size:.78rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
-.cs-header-h{font-family:var(--fh);font-size:clamp(1.4rem,3vw,2rem);color:#fff;margin:0 0 10px}
-.cs-header-sub{font-size:.88rem;color:rgba(255,255,255,.7);max-width:520px;margin:0 auto}
-.cs-grid{display:grid;grid-template-columns:1fr;gap:28px;max-width:1000px;margin:0 auto}
-@media(min-width:700px){.cs-grid{grid-template-columns:1fr 1fr}}
+/* ═══ IMAGE FIT — all cards ═══ */
+.gem-img-col img,.gem-img-col{object-fit:cover;width:100%;display:block}
+.upa-card-img img{width:100%;height:100%;object-fit:cover;display:block}
+.uni-img-col img{width:100%;height:100%;object-fit:cover;display:block}
 
-/* Certificate card */
-.cs-cert-card{background:rgba(255,255,255,.05);border:1px solid rgba(201,162,39,.35);border-radius:16px;overflow:hidden;backdrop-filter:blur(4px);transition:transform .3s,box-shadow .3s}
-.cs-cert-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(201,162,39,.25)}
-.cs-cert-img-wrap{position:relative;overflow:hidden}
-.cs-cert-img{width:100%;height:auto;display:block;filter:brightness(0.95) contrast(1.05)}
-.cs-cert-badge-ov{position:absolute;bottom:12px;left:12px;background:linear-gradient(135deg,#c9a227,#f0c040);color:#0a1730;font-size:.72rem;font-weight:800;padding:5px 14px;border-radius:20px;letter-spacing:.06em;text-transform:uppercase}
-.cs-cert-shine{position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);animation:certShine 3s ease-in-out infinite 1s}
-@keyframes certShine{0%{left:-100%}50%{left:150%}100%{left:150%}}
-.cs-cert-body{padding:22px 22px 24px}
-.cs-cert-title-row{display:flex;align-items:center;gap:12px;margin-bottom:12px}
-.cs-cert-icon-lg{font-size:1.8rem;flex-shrink:0}
-.cs-cert-title{font-family:var(--fh);font-size:1.05rem;color:#fff;margin:0;line-height:1.35}
-.cs-cert-title span{font-size:.85rem;color:var(--gold);font-family:var(--fb)}
-.cs-cert-desc{font-size:.83rem;color:rgba(255,255,255,.78);line-height:1.6;margin:0 0 12px}
-.cs-cert-meta{display:flex;flex-wrap:wrap;gap:10px;font-size:.75rem;color:rgba(255,255,255,.6);margin-bottom:14px}
-.cs-cert-pills{display:flex;flex-wrap:wrap;gap:8px}
-.cs-pill{font-size:.72rem;font-weight:700;padding:4px 12px;border-radius:20px;letter-spacing:.04em}
-.cs-pill.gold{background:rgba(201,162,39,.2);border:1px solid rgba(201,162,39,.5);color:var(--gold)}
-.cs-pill.green{background:rgba(40,167,69,.15);border:1px solid rgba(40,167,69,.4);color:#6fcf97}
-.cs-pill.blue{background:rgba(52,144,220,.15);border:1px solid rgba(52,144,220,.4);color:#90caf9}
-
-/* Credentials list */
-.cs-creds-wrap{display:flex;flex-direction:column;gap:16px;justify-content:center}
-.cs-cred-item{display:flex;align-items:flex-start;gap:16px;background:rgba(255,255,255,.05);border:1px solid rgba(201,162,39,.2);border-radius:12px;padding:16px 18px;transition:background .2s,border-color .2s}
-.cs-cred-item:hover{background:rgba(201,162,39,.08);border-color:rgba(201,162,39,.45)}
-.cs-cred-icon{font-size:1.5rem;flex-shrink:0;width:38px;text-align:center}
-.cs-cred-title{font-size:.9rem;font-weight:700;color:#fff;margin-bottom:3px}
-.cs-cred-sub{font-size:.78rem;color:rgba(255,255,255,.62);line-height:1.45}
-
-
-/* ══ NAVARATNA 3-COL CARD FIX ══ */
-@media(min-width:700px){
-  .gem-grid-3 .gem-section-header{
-    display:flex !important;
-    flex-direction:column !important;
-  }
-  .gem-grid-3 .gem-img-col{
-    width:100% !important;
-    min-height:160px !important;
-    max-height:200px;
-  }
-  .gem-grid-3 .gem-header-text{
-    padding:14px 16px 10px;
-  }
-  .gem-grid-3 .gem-h2{
-    font-size:1rem;
-  }
-  .gem-grid-3 .gem-meta-pills{
-    display:flex;flex-wrap:wrap;gap:4px;
-  }
-  .gem-grid-3 .gem-pill{
-    font-size:.6rem;padding:3px 7px;
-  }
-  .gem-grid-3 .gem-tab{
-    font-size:.6rem;padding:5px 7px;
-  }
-}
 </style>
 </head>
 <body>
@@ -920,7 +875,7 @@ body.nav-open #btt{display:none!important}
 <div class="gem-grid-3">
 <div class="gem-section">
   <div class="gem-section-header">
-    <div class="gem-img-col"><img src="gallery/ruby-manikya-gemstone.webp" alt="মাণিক্য চুনি রত্ন Ruby Gemstone Vedic Astrology Sun Graha Benefits" width="160" height="200" loading="lazy"/></div>
+    <div class="gem-img-col"><img src="gallery/ruby-manikya-gemstone.webp" alt="মাণিক্য চুনি রত্ন Ruby Gemstone Vedic Astrology Sun Graha Benefits" loading="lazy"/></div>
     <div class="gem-header-text">
       <div class="gem-badge">☀ সূর্য গ্রহ · আত্মকারক</div>
       <h3 class="gem-h2">মাণিক্য — আত্মা ও নেতৃত্বের রত্ন</h3>
@@ -996,7 +951,7 @@ body.nav-open #btt{display:none!important}
 <p class="sec-sub">চন্দ্র গ্রহের রত্ন কি? মুক্তা রত্ন কার জন্য ভালো? — Pearl · জৈব রত্ন · Nacre গঠন · লগ্ন: কর্কট</p>
 <div class="gem-section">
   <div class="gem-section-header">
-    <div class="gem-img-col"><img src="gallery/natural-pearl-mukta.webp" alt="মুক্তা মতি রত্ন Natural Pearl Moon Graha Benefits Vedic Jyotish" width="160" height="200" loading="lazy"/></div>
+    <div class="gem-img-col"><img src="gallery/natural-pearl-mukta.webp" alt="মুক্তা মতি রত্ন Natural Pearl Moon Graha Benefits Vedic Jyotish" loading="lazy"/></div>
     <div class="gem-header-text">
       <div class="gem-badge">🌙 চন্দ্র গ্রহ · মনোকারক</div>
       <h3 class="gem-h2">মুক্তা — মনের শান্তি ও মাতৃভক্তির রত্ন</h3>
@@ -1067,7 +1022,7 @@ body.nav-open #btt{display:none!important}
 <p class="sec-sub">মঙ্গলের রত্ন কি? লাল প্রবাল রত্নের উপকারিতা — Red Coral · Corallium rubrum · মঙ্গল দোষ নিরাময়</p>
 <div class="gem-section">
   <div class="gem-section-header">
-    <div class="gem-img-col"><img src="gallery/red-coral-prabal.webp" alt="প্রবাল মুঙ্গা রত্ন Red Coral Mars Graha Benefits Vedic Astrology" width="160" height="200" loading="lazy"/></div>
+    <div class="gem-img-col"><img src="gallery/red-coral-prabal.webp" alt="প্রবাল মুঙ্গা রত্ন Red Coral Mars Graha Benefits Vedic Astrology" loading="lazy"/></div>
     <div class="gem-header-text">
       <div class="gem-badge">♂ মঙ্গল গ্রহ · শক্তিকারক</div>
       <h3 class="gem-h2">প্রবাল — শক্তি, সাহস ও মঙ্গল দোষ নিরাময়</h3>
@@ -1139,7 +1094,7 @@ body.nav-open #btt{display:none!important}
 <p class="sec-sub">বুধ গ্রহের রত্ন কি? পান্না রত্ন কাদের পরা উচিত? — Emerald · Beryl পরিবার · Mohs: 7.5–8.0</p>
 <div class="gem-section">
   <div class="gem-section-header">
-    <div class="gem-img-col"><img src="gallery/emerald-panna-stone.webp" alt="পান্না রত্ন Emerald Stone Mercury Budh Graha Benefits Vedic" width="160" height="200" loading="lazy"/></div>
+    <div class="gem-img-col"><img src="gallery/emerald-panna-stone.webp" alt="পান্না রত্ন Emerald Stone Mercury Budh Graha Benefits Vedic" loading="lazy"/></div>
     <div class="gem-header-text">
       <div class="gem-badge">☿ বুধ গ্রহ · বুদ্ধিকারক</div>
       <h3 class="gem-h2">পান্না — বুদ্ধি, যোগাযোগ ও ব্যবসার রত্ন</h3>
@@ -1211,7 +1166,7 @@ body.nav-open #btt{display:none!important}
 <p class="sec-sub">বৃহস্পতির রত্ন কি? পোখরাজ রত্ন কার জন্য শুভ? — Yellow Sapphire · Corundum · শুভ সংখ্যা: ৩</p>
 <div class="gem-section">
   <div class="gem-section-header">
-    <div class="gem-img-col"><img src="gallery/yellow-sapphire-pukhraj.webp" alt="পুখরাজ রত্ন Yellow Sapphire Jupiter Brihaspati Graha Benefits" width="160" height="200" loading="lazy"/></div>
+    <div class="gem-img-col"><img src="gallery/yellow-sapphire-pukhraj.webp" alt="পুখরাজ রত্ন Yellow Sapphire Jupiter Brihaspati Graha Benefits" loading="lazy"/></div>
     <div class="gem-header-text">
       <div class="gem-badge">♃ বৃহস্পতি গ্রহ · গুরু</div>
       <h3 class="gem-h2">পুখরাজ — জ্ঞান, সমৃদ্ধি ও বিবাহসুখের রত্ন</h3>
@@ -1283,7 +1238,7 @@ body.nav-open #btt{display:none!important}
 <p class="sec-sub">শুক্র গ্রহের রত্ন কি? হীরা রত্ন কার জন্য শুভ? — Diamond / White Topaz · Mohs: 10.0 / 8.0</p>
 <div class="gem-section">
   <div class="gem-section-header">
-    <div class="gem-img-col"><img src="gallery/diamond-heera-stone.webp" alt="হীরা রত্ন Diamond Venus Shukra Graha Benefits Vedic Astrology" width="160" height="200" loading="lazy"/></div>
+    <div class="gem-img-col"><img src="gallery/diamond-heera-stone.webp" alt="হীরা রত্ন Diamond Venus Shukra Graha Benefits Vedic Astrology" loading="lazy"/></div>
     <div class="gem-header-text">
       <div class="gem-badge">♀ শুক্র গ্রহ · সৌন্দর্যকারক</div>
       <h3 class="gem-h2">হীরা — প্রেম, সৌন্দর্য ও সমৃদ্ধির রত্ন</h3>
@@ -1356,7 +1311,7 @@ body.nav-open #btt{display:none!important}
 <p class="sec-sub">শনি খারাপ হলে কোন রত্ন পরতে হবে? শনির জন্য নীলা রত্ন কীভাবে পরতে হয়? — Blue Sapphire (Neelam) · সবচেয়ে শক্তিশালী রত্ন</p>
 <div class="gem-section">
   <div class="gem-section-header">
-    <div class="gem-img-col"><img src="gallery/blue-sapphire-neelam.webp" alt="নীলকান্তমণি নীলম রত্ন Blue Sapphire Saturn Shani Benefits" width="160" height="200" loading="lazy"/></div>
+    <div class="gem-img-col"><img src="gallery/blue-sapphire-neelam.webp" alt="নীলকান্তমণি নীলম রত্ন Blue Sapphire Saturn Shani Benefits" loading="lazy"/></div>
     <div class="gem-header-text">
       <div class="gem-badge">♄ শনি গ্রহ · কর্মফলদাতা</div>
       <h3 class="gem-h2">নীলকান্তমণি — ন্যায়, কর্ম ও পরীক্ষার রত্ন</h3>
@@ -1430,7 +1385,7 @@ body.nav-open #btt{display:none!important}
 <p class="sec-sub">রাহুর রত্ন কি? গোমেদ রত্ন কাদের জন্য? — Hessonite Garnet · Grossular পরিবার · রাহুর দশায় বিশেষ</p>
 <div class="gem-section">
   <div class="gem-section-header">
-    <div class="gem-img-col"><img src="gallery/hessonite-gomed-stone.webp" alt="গোমেদ রত্ন Hessonite Gomed Rahu Graha Benefits Vedic Astrology" width="160" height="200" loading="lazy"/></div>
+    <div class="gem-img-col"><img src="gallery/hessonite-gomed-stone.webp" alt="গোমেদ রত্ন Hessonite Gomed Rahu Graha Benefits Vedic Astrology" loading="lazy"/></div>
     <div class="gem-header-text">
       <div class="gem-badge">☊ রাহু ছায়াগ্রহ · বিভ্রমকারক</div>
       <h3 class="gem-h2">গোমেদ — রাহুর অদৃশ্য শক্তির রত্ন</h3>
@@ -1499,7 +1454,7 @@ body.nav-open #btt{display:none!important}
 <p class="sec-sub">কেতুর রত্ন কি? বৈদুর্য বা ক্যাটস আই রত্নের উপকারিতা — Cat's Eye · Chrysoberyl · মোক্ষকারক</p>
 <div class="gem-section">
   <div class="gem-section-header">
-    <div class="gem-img-col"><img src="gallery/cats-eye-lehsunia.webp" alt="লহসুনিয়া বৈদুর্য রত্ন Cats Eye Ketu Graha Benefits Vedic" width="160" height="200" loading="lazy"/></div>
+    <div class="gem-img-col"><img src="gallery/cats-eye-lehsunia.webp" alt="লহসুনিয়া বৈদুর্য রত্ন Cats Eye Ketu Graha Benefits Vedic" loading="lazy"/></div>
     <div class="gem-header-text">
       <div class="gem-badge">☋ কেতু ছায়াগ্রহ · মোক্ষকারক</div>
       <h3 class="gem-h2">লহসুনিয়া — মোক্ষ ও আধ্যাত্মিকতার রত্ন</h3>
@@ -1613,7 +1568,7 @@ body.nav-open #btt{display:none!important}
 <!-- MOONSTONE -->
 <div class="upa-card" id="moonstone">
   <div class="upa-card-top">
-    <div class="upa-card-img"><img src="gallery/moonstone-upa-ratna.webp" alt="মুনস্টোন উপরত্ন Moonstone Upa Ratna Gemstone Vedic Astrology" width="130" height="150" loading="lazy"/></div>
+    <div class="upa-card-img"><img src="gallery/moonstone-upa-ratna.webp" alt="মুনস্টোন উপরত্ন Moonstone Upa Ratna Gemstone Vedic Astrology" loading="lazy"/></div>
     <div class="upa-card-info">
       <span class="upa-card-badge">🌙 চন্দ্রের উপরত্ন</span>
       <h3 class="upa-card-title">চন্দ্রকান্তমণি (Moonstone)</h3>
@@ -1650,7 +1605,7 @@ body.nav-open #btt{display:none!important}
 <!-- SUNSTONE -->
 <div class="upa-card" id="sunstone">
   <div class="upa-card-top">
-    <div class="upa-card-img"><img src="gallery/turquoise-upa-ratna.webp" alt="সানস্টোন উপরত্ন Sunstone Gemstone Benefits Vedic Astrology" width="130" height="150" loading="lazy"/></div>
+    <div class="upa-card-img"><img src="gallery/turquoise-upa-ratna.webp" alt="সানস্টোন উপরত্ন Sunstone Gemstone Benefits Vedic Astrology" loading="lazy"/></div>
     <div class="upa-card-info">
       <span class="upa-card-badge">☀ সূর্যের উপরত্ন</span>
       <h3 class="upa-card-title">সানস্টোন (Sunstone)</h3>
@@ -1687,7 +1642,7 @@ body.nav-open #btt{display:none!important}
 <!-- AMETHYST -->
 <div class="upa-card" id="amethyst">
   <div class="upa-card-top">
-    <div class="upa-card-img"><img src="gallery/amethyst-upa-ratna.webp" alt="অ্যামিথিস্ট উপরত্ন Amethyst Gemstone Benefits Vedic Jyotish" width="130" height="150" loading="lazy"/></div>
+    <div class="upa-card-img"><img src="gallery/amethyst-upa-ratna.webp" alt="অ্যামিথিস্ট উপরত্ন Amethyst Gemstone Benefits Vedic Jyotish" loading="lazy"/></div>
     <div class="upa-card-info">
       <span class="upa-card-badge">♄ শনির উপরত্ন</span>
       <h3 class="upa-card-title">অ্যামেথিস্ট (Amethyst)</h3>
@@ -1724,7 +1679,7 @@ body.nav-open #btt{display:none!important}
 <!-- CITRINE -->
 <div class="upa-card" id="citrine">
   <div class="upa-card-top">
-    <div class="upa-card-img"><img src="gallery/tourmaline-upa-ratna.webp" alt="সিট্রিন উপরত্ন Citrine Crystal Benefits Vedic Gemology" width="130" height="150" loading="lazy"/></div>
+    <div class="upa-card-img"><img src="gallery/tourmaline-upa-ratna.webp" alt="সিট্রিন উপরত্ন Citrine Crystal Benefits Vedic Gemology" loading="lazy"/></div>
     <div class="upa-card-info">
       <span class="upa-card-badge">♃ বৃহস্পতির উপরত্ন</span>
       <h3 class="upa-card-title">সিট্রিন (Citrine)</h3>
@@ -1761,7 +1716,7 @@ body.nav-open #btt{display:none!important}
 <!-- LAPIS LAZULI -->
 <div class="upa-card" id="lapis">
   <div class="upa-card-top">
-    <div class="upa-card-img"><img src="gallery/jade-upa-ratna.webp" alt="ল্যাপিস লাজুলি উপরত্ন Lapis Lazuli Benefits Vedic Astrology" width="130" height="150" loading="lazy"/></div>
+    <div class="upa-card-img"><img src="gallery/jade-upa-ratna.webp" alt="ল্যাপিস লাজুলি উপরত্ন Lapis Lazuli Benefits Vedic Astrology" loading="lazy"/></div>
     <div class="upa-card-info">
       <span class="upa-card-badge">☿ বুধ · ♄ শনির উপরত্ন</span>
       <h3 class="upa-card-title">লাপিস লাজুলি (Lapis Lazuli)</h3>
@@ -1798,7 +1753,7 @@ body.nav-open #btt{display:none!important}
 <!-- PERIDOT -->
 <div class="upa-card" id="peridot">
   <div class="upa-card-top">
-    <div class="upa-card-img"><img src="gallery/peridot-upa-ratna.webp" alt="পেরিকোট উপরত্ন Peridot Gemstone Benefits Vedic Jyotish" width="130" height="150" loading="lazy"/></div>
+    <div class="upa-card-img"><img src="gallery/peridot-upa-ratna.webp" alt="পেরিকোট উপরত্ন Peridot Gemstone Benefits Vedic Jyotish" loading="lazy"/></div>
     <div class="upa-card-info">
       <span class="upa-card-badge">♀ শুক্রের উপরত্ন</span>
       <h3 class="upa-card-title">পেরিডট (Peridot)</h3>
@@ -1835,7 +1790,7 @@ body.nav-open #btt{display:none!important}
 <!-- RED GARNET -->
 <div class="upa-card" id="red-garnet">
   <div class="upa-card-top">
-    <div class="upa-card-img"><img src="gallery/garnet-upa-ratna.webp" alt="গার্নেট উপরত্ন Red Garnet Gemstone Benefits Vedic Astrology" width="130" height="150" loading="lazy"/></div>
+    <div class="upa-card-img"><img src="gallery/garnet-upa-ratna.webp" alt="গার্নেট উপরত্ন Red Garnet Gemstone Benefits Vedic Astrology" loading="lazy"/></div>
     <div class="upa-card-info">
       <span class="upa-card-badge">♂ মঙ্গলের উপরত্ন</span>
       <h3 class="upa-card-title">লাল গার্নেট (Red Garnet)</h3>
@@ -1872,7 +1827,7 @@ body.nav-open #btt{display:none!important}
 <!-- BLUE TOPAZ -->
 <div class="upa-card" id="blue-topaz">
   <div class="upa-card-top">
-    <div class="upa-card-img"><img src="gallery/opal-upa-ratna.webp" alt="ব্লু টোপাজ উপরত্ন Blue Topaz Gemstone Benefits Vedic" width="130" height="150" loading="lazy"/></div>
+    <div class="upa-card-img"><img src="gallery/opal-upa-ratna.webp" alt="ব্লু টোপাজ উপরত্ন Blue Topaz Gemstone Benefits Vedic" loading="lazy"/></div>
     <div class="upa-card-info">
       <span class="upa-card-badge">♄ শনি · ☋ কেতুর উপরত্ন</span>
       <h3 class="upa-card-title">ব্লু টোপাজ (Blue Topaz)</h3>
@@ -1906,48 +1861,50 @@ body.nav-open #btt{display:none!important}
     </div>
   </div>
 </div>
-</div><div class="upa-card" id="turquoise">
+
+<div class="upa-card" id="opal">
   <div class="upa-card-top">
-    <div class="upa-card-img"><img src="gallery/turquoise-upa-ratna.webp" alt="ফিরোজা টার্কোয়েজ উপরত্ন Turquoise Upa Ratna Vedic Astrology" width="130" height="150" loading="lazy"/></div>
+    <div class="upa-card-img"><img src="gallery/opal-upa-ratna.webp" alt="ওপাল উপরত্ন Opal Upa Ratna Ketu Vedic Astrology" width="100" height="130" loading="lazy"/></div>
     <div class="upa-card-info">
-      <span class="upa-card-badge">☊ রাহুর উপরত্ন</span>
-      <h3 class="upa-card-title">ফিরোজা (Turquoise)</h3>
-      <p class="upa-card-tagline">হেসোনাইটের সাশ্রয়ী বিকল্প — সুরক্ষা ও সাহসের পাথর</p>
+      <span class="upa-card-badge">☋ কেতুর উপরত্ন</span>
+      <h3 class="upa-card-title">ওপাল (Opal)</h3>
+      <p class="upa-card-tagline">লেহ্সুনিয়ার সাশ্রয়ী বিকল্প — আধ্যাত্মিকতা ও মুক্তির পাথর</p>
     </div>
   </div>
   <div class="upa-tabs">
-    <button class="upa-tab active" onclick="showUpaTab(this,'turquoise-sam')">সামগ্রিক</button>
-    <button class="upa-tab" onclick="showUpaTab(this,'turquoise-jyo')">জ্যোতিষিক</button>
-    <button class="upa-tab" onclick="showUpaTab(this,'turquoise-wear')">পরিধান</button>
-    <button class="upa-tab" onclick="showUpaTab(this,'turquoise-skt')">সংস্কৃত</button>
-    <button class="upa-tab" onclick="showUpaTab(this,'turquoise-buy')">সংগ্রহ</button>
+    <button class="upa-tab active" onclick="showUpaTab(this,'opal-sam')">সামগ্রিক</button>
+    <button class="upa-tab" onclick="showUpaTab(this,'opal-jyo')">জ্যোতিষিক</button>
+    <button class="upa-tab" onclick="showUpaTab(this,'opal-wear')">পরিধান</button>
+    <button class="upa-tab" onclick="showUpaTab(this,'opal-skt')">শাস্ত্র</button>
+    <button class="upa-tab" onclick="showUpaTab(this,'opal-buy')">সংগ্রহ</button>
   </div>
-  <div class="upa-panel active" id="turquoise-sam">
-    <p>রাহুর উপরত্ন হিসেবে ফিরোজা বা টার্কোয়েজ — গোমেদের সাশ্রয়ী বিকল্প। নীলাভ-সবুজ এই পাথর মানসিক সুরক্ষা, সাহস ও আত্মবিশ্বাস বৃদ্ধি করে। রাহুর দশা বা অন্তর্দশায় বিশেষ ফলদায়ক।</p>
-    <p>কার পরা উচিত? — রাহু মহাদশায় যারা আছেন, হঠাৎ বিপদ-আপদ বা অজ্ঞাত ভয়ের শিকার, ও যাদের কুণ্ডলীতে রাহু দুর্বল।</p>
-    <div class="cert-badges"><span class="cert-badge">🔵 Turquoise · CuAl₆(PO₄)₄(OH)₈</span><span class="cert-badge">Mohs 5–6</span><span class="cert-badge">রং · নীলাভ-সবুজ</span><span class="cert-badge">ইরান · তিব্বত</span></div>
+  <div class="upa-panel active" id="opal-sam">
+    <p>কেতুর উপরত্ন হিসেবে ওপাল — লেহ্সুনিয়া (Chrysoberyl Cat's Eye)-এর সাশ্রয়ী ও সুন্দর বিকল্প। রঙধনুর মতো বর্ণময় এই পাথর আধ্যাত্মিক উন্নতি, মোক্ষমার্গ ও অন্তর্দৃষ্টি বৃদ্ধি করে। কেতুর মহাদশায় বিশেষ ফলদায়ক।</p>
+    <p>কার পরা উচিত? — কেতু মহাদশায় যারা আছেন, আধ্যাত্মিক সাধনায় আগ্রহী, ও যাদের কুণ্ডলীতে কেতু দুর্বল বা কষ্টদায়ক।</p>
+    <div class="cert-badges"><span class="cert-badge">🌈 Opal · SiO₂·nH₂O</span><span class="cert-badge">Mohs 5.5–6.5</span><span class="cert-badge">রং · বহুবর্ণ</span><span class="cert-badge">অস্ট্রেলিয়া · Ethiopia</span></div>
   </div>
-  <div class="upa-panel" id="turquoise-jyo">
-    <p><strong>পারাশর মত:</strong> রাহুর রত্ন গোমেদ — ফিরোজা তার সাশ্রয়ী ও কার্যকর বিকল্প।</p>
-    <p>রাহু লগ্নেশ বা যোগকারক হলে ফিরোজা বিশেষ উপকারী। ষষ্ঠ, অষ্টম বা দ্বাদশে রাহু থাকলে সতর্কতার সাথে পরতে হবে।</p>
+  <div class="upa-panel" id="opal-jyo">
+    <p><strong>পারাশর মত:</strong> কেতুর রত্ন বৈদূর্য (Cat's Eye) — ওপাল তার সাশ্রয়ী বিকল্প হিসেবে স্বীকৃত।</p>
+    <p>কেতু লগ্নেশ বা যোগকারক হলে ওপাল বিশেষ উপকারী। দ্বাদশ ভাব বা মোক্ষ স্থানে কেতু থাকলে ওপাল আধ্যাত্মিক উন্নতি ঘটায়। — বৃহৎ পারাশর হোরাশাস্ত্র, অধ্যায় ৮৩।</p>
   </div>
-  <div class="upa-panel" id="turquoise-wear">
+  <div class="upa-panel" id="opal-wear">
     <div class="wear-table">
       <div class="wear-item"><div class="wear-label">ধাতু</div><div class="wear-value">রুপা বা পঞ্চধাতু</div></div>
       <div class="wear-item"><div class="wear-label">আঙুল</div><div class="wear-value">মধ্যমা (Middle Finger) — ডান হাত</div></div>
-      <div class="wear-item"><div class="wear-label">দিন ও সময়</div><div class="wear-value">শনিবার বা বুধবার সন্ধ্যায়</div></div>
+      <div class="wear-item"><div class="wear-label">দিন ও সময়</div><div class="wear-value">শনিবার দুপুরে বা সন্ধ্যায়</div></div>
       <div class="wear-item"><div class="wear-label">ন্যূনতম রতি</div><div class="wear-value">৫–৭ রতি (Carat)</div></div>
-      <div class="wear-item"><div class="wear-label">মন্ত্র</div><div class="wear-value">ওঁ রাং রাহবে নমঃ (১০৮ বার)</div></div>
+      <div class="wear-item"><div class="wear-label">মন্ত্র</div><div class="wear-value">ওঁ কেং কেতবে নমঃ (১০৮ বার)</div></div>
     </div>
   </div>
-  <div class="upa-panel" id="turquoise-skt">
-    <div class="uni-shastra">স্কন্দপুরাণ: "হরিন্মণিং রাহুরত্নং ধারয়েৎ সর্বসিদ্ধয়ে" — রাহুর পাথর ধারণে সর্বসিদ্ধি লাভ হয়।</div>
+  <div class="upa-panel" id="opal-skt">
+    <div class="uni-shastra">স্কন্দপুরাণ: "কেতুরত্নং বৈদূর্যঞ্চ সর্বসিদ্ধিপ্রদায়কম্ — মোক্ষমার্গে বিশেষেণ ধারয়েদ্যো নরঃ সদা।"</div>
   </div>
-  <div class="upa-panel" id="turquoise-buy">
-    <p>ফিরোজা কেনার সময় প্রাকৃতিক ও ভেজালমুক্ত পাথর নিশ্চিত করুন। ইরানি ও তিব্বতি ফিরোজা সেরা। Lab Certificate সহ নিন।</p>
-    <div class="cert-badges"><span class="cert-badge">🔵 Natural Certified</span><span class="cert-badge">✅ Untreated</span></div>
+  <div class="upa-panel" id="opal-buy">
+    <p>ওপাল কেনার সময় Australian বা Ethiopian প্রাকৃতিক ওপাল নিন। Synthetic বা Glass-filled ওপাল এড়িয়ে চলুন। Lab Certificate সহ নিন।</p>
+    <div class="cert-badges"><span class="cert-badge">🌈 Natural Certified</span><span class="cert-badge">✅ Australian/Ethiopian</span></div>
     <button class="fcta-btn-p" onclick="_oRzp('gem')">💎 পরামর্শ নিন — ₹১০০১</button>
   </div>
+</div>
 </div>
 <!-- /.upa-grid-3 -->
 
@@ -1980,36 +1937,26 @@ body.nav-open #btt{display:none!important}
   <div class="cs-header">
     <div class="cs-header-ey">🏅 সার্টিফিকেশন ও স্বীকৃতি</div>
     <h2 class="cs-header-h">বিশ্বাসযোগ্যতা যাচাই করুন</h2>
-    <p class="cs-header-sub">ড. প্রদ্যুৎ আচার্য — SKAVSA সার্টিফাইড Gem Therapist ও PhD (Gold Medal) জ্যোতিষাচার্য</p>
   </div>
   <div class="cs-grid">
-    <!-- Certificate Card -->
     <div class="cs-cert-card">
       <div class="cs-cert-img-wrap">
         <img src="assist/astrology-certificate12.jpg"
              alt="Dr. Prodyut Acharya SKAVSA Gem Therapist Certificate Kolkata Vedic Gemology Expert West Bengal"
              class="cs-cert-img" loading="lazy" width="280" height="200"/>
-        <div class="cs-cert-badge-ov">🎓 SKAVSA Certified</div>
-        <div class="cs-cert-shine"></div>
+        <div class="cs-cert-badge-ov">🎓 SKAVSA</div>
       </div>
       <div class="cs-cert-body">
-        <div class="cs-cert-title-row">
-          <span class="cs-cert-icon-lg">🏆</span>
-          <h3 class="cs-cert-title">Gem Therapist Upadhi<br/><span>SKAVSA, Kolkata</span></h3>
-        </div>
-        <p class="cs-cert-desc">South Kolkata Astrology &amp; Vastu Science Academy কর্তৃক ড. প্রদ্যুৎ আচার্যকে Gem Therapist Upadhi প্রদান। Gemology, Diamond, Coral, Pearl সহ বিস্তারিত প্রশিক্ষণ।</p>
-        <div class="cs-cert-meta">
-          <span>📅 15 August 2017</span>
-          <span>🏛 Tapan Theatre, Kolkata</span>
-        </div>
+        <h3 class="cs-cert-title">Gem Therapist Upadhi — SKAVSA, Kolkata</h3>
+        <p class="cs-cert-desc">South Kolkata Astrology &amp; Vastu Science Academy (SKAVSA) কর্তৃক ড. প্রদ্যুৎ আচার্যকে Gem Therapist Upadhi প্রদান। Gemology, Diamond, Coral, Pearl সহ বিস্তারিত প্রশিক্ষণ সম্পন্ন।</p>
+        <div class="cs-cert-meta">📅 15 August 2017 · Tapan Theatre, Kolkata</div>
         <div class="cs-cert-pills">
-          <span class="cs-pill gold">🎓 Gem Therapist</span>
-          <span class="cs-pill green">✅ SKAVSA 2017</span>
-          <span class="cs-pill blue">🏛 W.B. Govt. Regd.</span>
+          <span>🎓 Gem Therapist</span>
+          <span>✅ SKAVSA 2017</span>
+          <span>🏛 W.B. Govt. Regd.</span>
         </div>
       </div>
     </div>
-    <!-- Credentials -->
     <div class="cs-creds-wrap">
       <div class="cs-cred-item">
         <div class="cs-cred-icon">🏆</div>
@@ -2019,7 +1966,7 @@ body.nav-open #btt{display:none!important}
         </div>
       </div>
       <div class="cs-cred-item">
-        <div class="cs-cred-icon">⏳</div>
+        <div class="cs-cred-icon">📅</div>
         <div>
           <div class="cs-cred-title">১৫+ বছরের অভিজ্ঞতা</div>
           <div class="cs-cred-sub">রত্নপাথর পরামর্শে বিশেষজ্ঞতা · রানাঘাট, নদিয়া</div>
@@ -2039,17 +1986,9 @@ body.nav-open #btt{display:none!important}
           <div class="cs-cred-sub">বাংলা ও হিন্দিতে · WhatsApp, Phone, Video Call</div>
         </div>
       </div>
-      <div class="cs-cred-item">
-        <div class="cs-cred-icon">⭐</div>
-        <div>
-          <div class="cs-cred-title">১০,০০০+ সন্তুষ্ট ক্লায়েন্ট</div>
-          <div class="cs-cred-sub">Google · JustDial · Facebook-এ ২৭৬+ রিভিউ</div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
-
 
 
 <h2 class="sec-title" id="rudraksha-intro">📿 রুদ্রাক্ষ — শিবের অশ্রু, মানবের রক্ষাকবচ</h2>
@@ -2068,7 +2007,7 @@ body.nav-open #btt{display:none!important}
 <h3 class="sec-title" id="rudraksha-cards" style="margin-top:32px">📿 রুদ্রাক্ষ — ১ থেকে ১৫ মুখী</h3>
 <div class="rudra-uni-grid">
 <div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/ek-mukhi-rudraksha-original.webp" alt="এক মুখী রুদ্রাক্ষ Ek Mukhi Rudraksha Benefits Shiva Ranaghat" width="200" height="120" loading="lazy"/></div>
+    <div class="uni-img-col"><img src="gallery/ek-mukhi-rudraksha-original.webp" alt="এক মুখী রুদ্রাক্ষ Ek Mukhi Rudraksha Benefits Shiva Ranaghat" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">১ মুখী</div>
       <div class="rudra-graha uni-badge">☀ সূর্য / পরমশিব</div>
@@ -2077,7 +2016,7 @@ body.nav-open #btt{display:none!important}
     </div>
   </div>
 <div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/do-mukhi-rudraksha-bead.webp" alt="দুই মুখী রুদ্রাক্ষ Do Mukhi Rudraksha Benefits Ardhanarishvara" width="200" height="120" loading="lazy"/></div>
+    <div class="uni-img-col"><img src="gallery/do-mukhi-rudraksha-bead.webp" alt="দুই মুখী রুদ্রাক্ষ Do Mukhi Rudraksha Benefits Ardhanarishvara" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">২ মুখী</div>
       <div class="rudra-graha uni-badge">🌙 চন্দ্র / অর্ধনারীশ্বর</div>
@@ -2086,7 +2025,7 @@ body.nav-open #btt{display:none!important}
     </div>
   </div>
 <div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/tin-mukhi-rudraksha-original.webp" alt="তিন মুখী রুদ্রাক্ষ Teen Mukhi Rudraksha Benefits Agni" width="200" height="120" loading="lazy"/></div>
+    <div class="uni-img-col"><img src="gallery/tin-mukhi-rudraksha-original.webp" alt="তিন মুখী রুদ্রাক্ষ Teen Mukhi Rudraksha Benefits Agni" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">৩ মুখী</div>
       <div class="rudra-graha uni-badge">♂ মঙ্গল / অগ্নি / ত্রিনেত্র</div>
@@ -2095,7 +2034,7 @@ body.nav-open #btt{display:none!important}
     </div>
   </div>
 <div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/char-mukhi-rudraksha-bead.webp" alt="চার মুখী রুদ্রাক্ষ Char Mukhi Rudraksha Benefits Brahma" width="200" height="120" loading="lazy"/></div>
+    <div class="uni-img-col"><img src="gallery/char-mukhi-rudraksha-bead.webp" alt="চার মুখী রুদ্রাক্ষ Char Mukhi Rudraksha Benefits Brahma" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">৪ মুখী</div>
       <div class="rudra-graha uni-badge">☿ বুধ / ব্রহ্মা / চতুর্মুখ</div>
@@ -2104,7 +2043,7 @@ body.nav-open #btt{display:none!important}
     </div>
   </div>
 <div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/panch-mukhi-rudraksha-original.webp" alt="পাঁচ মুখী রুদ্রাক্ষ Panch Mukhi Rudraksha Benefits Kalagni" width="200" height="120" loading="lazy"/></div>
+    <div class="uni-img-col"><img src="gallery/panch-mukhi-rudraksha-original.webp" alt="পাঁচ মুখী রুদ্রাক্ষ Panch Mukhi Rudraksha Benefits Kalagni" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">৫ মুখী</div>
       <div class="rudra-graha uni-badge">♃ বৃহস্পতি / পঞ্চমুখী শিব</div>
@@ -2113,7 +2052,7 @@ body.nav-open #btt{display:none!important}
     </div>
   </div>
 <div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/choy-mukhi-rudraksha-bead.webp" alt="ছয় মুখী রুদ্রাক্ষ Choy Mukhi Rudraksha Benefits Kartikeya" width="200" height="120" loading="lazy"/></div>
+    <div class="uni-img-col"><img src="gallery/choy-mukhi-rudraksha-bead.webp" alt="ছয় মুখী রুদ্রাক্ষ Choy Mukhi Rudraksha Benefits Kartikeya" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">৬ মুখী</div>
       <div class="rudra-graha uni-badge">♀ শুক্র / কার্তিক / সুব্রহ্মণ্য</div>
@@ -2122,7 +2061,7 @@ body.nav-open #btt{display:none!important}
     </div>
   </div>
 <div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/sat-mukhi-rudraksha-original.webp" alt="সাত মুখী রুদ্রাক্ষ Sat Mukhi Rudraksha Benefits Mahalakshmi" width="200" height="120" loading="lazy"/></div>
+    <div class="uni-img-col"><img src="gallery/sat-mukhi-rudraksha-original.webp" alt="সাত মুখী রুদ্রাক্ষ Sat Mukhi Rudraksha Benefits Mahalakshmi" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">৭ মুখী</div>
       <div class="rudra-graha uni-badge">♄ শনি / অনন্ত / সপ্তঋষি</div>
@@ -2131,7 +2070,7 @@ body.nav-open #btt{display:none!important}
     </div>
   </div>
 <div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/aat-mukhi-rudraksha-bead.webp" alt="আট মুখী রুদ্রাক্ষ Aat Mukhi Rudraksha Benefits Ganesha" width="200" height="120" loading="lazy"/></div>
+    <div class="uni-img-col"><img src="gallery/aat-mukhi-rudraksha-bead.webp" alt="আট মুখী রুদ্রাক্ষ Aat Mukhi Rudraksha Benefits Ganesha" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">৮ মুখী</div>
       <div class="rudra-graha uni-badge">☊ রাহু / গণেশ / অষ্টবসু</div>
@@ -2140,7 +2079,7 @@ body.nav-open #btt{display:none!important}
     </div>
   </div>
 <div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/noy-mukhi-rudraksha-original.webp" alt="নয় মুখী রুদ্রাক্ষ Noy Mukhi Rudraksha Benefits Durga" width="200" height="120" loading="lazy"/></div>
+    <div class="uni-img-col"><img src="gallery/noy-mukhi-rudraksha-original.webp" alt="নয় মুখী রুদ্রাক্ষ Noy Mukhi Rudraksha Benefits Durga" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">৯ মুখী</div>
       <div class="rudra-graha uni-badge">☋ কেতু / দুর্গা / নবদুর্গা</div>
@@ -2149,7 +2088,7 @@ body.nav-open #btt{display:none!important}
     </div>
   </div>
 <div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/dosh-mukhi-rudraksha-bead.webp" alt="দশ মুখী রুদ্রাক্ষ Dosh Mukhi Rudraksha Benefits Vishnu" width="200" height="120" loading="lazy"/></div>
+    <div class="uni-img-col"><img src="gallery/dosh-mukhi-rudraksha-bead.webp" alt="দশ মুখী রুদ্রাক্ষ Dosh Mukhi Rudraksha Benefits Vishnu" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">১০ মুখী</div>
       <div class="rudra-graha uni-badge">বিষ্ণু / দশ দিক / দশাবতার</div>
@@ -2158,7 +2097,7 @@ body.nav-open #btt{display:none!important}
     </div>
   </div>
 <div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/egaro-mukhi-rudraksha-original.webp" alt="এগারো মুখী রুদ্রাক্ষ Egaro Mukhi Rudraksha Benefits" width="200" height="120" loading="lazy"/></div>
+    <div class="uni-img-col"><img src="gallery/egaro-mukhi-rudraksha-original.webp" alt="এগারো মুখী রুদ্রাক্ষ Egaro Mukhi Rudraksha Benefits" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">১১ মুখী</div>
       <div class="rudra-graha uni-badge">একাদশ রুদ্র / হনুমান</div>
@@ -2167,7 +2106,7 @@ body.nav-open #btt{display:none!important}
     </div>
   </div>
 <div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/baro-mukhi-rudraksha-bead.webp" alt="বারো মুখী রুদ্রাক্ষ Baro Mukhi Rudraksha Benefits Surya" width="200" height="120" loading="lazy"/></div>
+    <div class="uni-img-col"><img src="gallery/baro-mukhi-rudraksha-bead.webp" alt="বারো মুখী রুদ্রাক্ষ Baro Mukhi Rudraksha Benefits Surya" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">১২ মুখী</div>
       <div class="rudra-graha uni-badge">☀ সূর্য / দ্বাদশ আদিত্য / বিষ্ণু</div>
@@ -2176,7 +2115,7 @@ body.nav-open #btt{display:none!important}
     </div>
   </div>
 <div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/tero-mukhi-rudraksha-original.webp" alt="তেরো মুখী রুদ্রাক্ষ Tero Mukhi Rudraksha Benefits Kamadeva" width="200" height="120" loading="lazy"/></div>
+    <div class="uni-img-col"><img src="gallery/tero-mukhi-rudraksha-original.webp" alt="তেরো মুখী রুদ্রাক্ষ Tero Mukhi Rudraksha Benefits Kamadeva" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">১৩ মুখী</div>
       <div class="rudra-graha uni-badge">♀ ইন্দ্র / বিশ্বেদেব / শুক্র</div>
@@ -2185,7 +2124,7 @@ body.nav-open #btt{display:none!important}
     </div>
   </div>
 <div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/choddo-mukhi-rudraksha-bead.webp" alt="চৌদ্দ মুখী রুদ্রাক্ষ Choddo Mukhi Rudraksha Benefits Hanuman" width="200" height="120" loading="lazy"/></div>
+    <div class="uni-img-col"><img src="gallery/choddo-mukhi-rudraksha-bead.webp" alt="চৌদ্দ মুখী রুদ্রাক্ষ Choddo Mukhi Rudraksha Benefits Hanuman" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">১৪ মুখী</div>
       <div class="rudra-graha uni-badge">♄ শনি / মহেশ্বর / তৃতীয় নেত্র</div>
@@ -2194,7 +2133,7 @@ body.nav-open #btt{display:none!important}
     </div>
   </div>
 <div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/ponero-mukhi-rudraksha-bead.webp" alt="পনেরো মুখী রুদ্রাক্ষ Ponero Mukhi Rudraksha Benefits Pashupatinath" width="200" height="120" loading="lazy"/></div>
+    <div class="uni-img-col"><img src="gallery/ponero-mukhi-rudraksha-bead.webp" alt="পনেরো মুখী রুদ্রাক্ষ Ponero Mukhi Rudraksha Benefits Pashupatinath" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">১৫ মুখী</div>
       <div class="rudra-graha uni-badge">♄♀ শনি-শুক্র / পশুপতিনাথ</div>
@@ -2356,7 +2295,7 @@ body.nav-open #btt{display:none!important}
       <h4>MyAstrology</h4>
       <p><i class="fas fa-map-marker-alt"></i>রাণাঘাট, নদিয়া, পশ্চিমবঙ্গ — ৭৪১২০২</p>
       <p><i class="fas fa-phone"></i><a href="tel:+919333122768">+91 93331 22768</a></p>
-      <p><i class="fas fa-envelope"></i><a href="/cdn-cgi/l/email-protection#86efe8e0e9c6ebffe7f5f2f4e9eae9e1ffa8efe8"><span class="__cf_email__" data-cfemail="a4cdcac2cbe4c9ddc5d7d0d6cbc8cbc3dd8acdca">[email&#160;protected]</span></a></p>
+      <p><i class="fas fa-envelope"></i><a href="mailto:info@myastrology.in">info@myastrology.in</a></p>
       <a href="https://wa.me/919333122768" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i>WhatsApp পরামর্শ</a>
       <a href="https://www.myastrology.in/astrology"><i class="fas fa-calendar-check"></i>অনলাইন বুকিং</a>
     </div>
@@ -2413,9 +2352,9 @@ body.nav-open #btt{display:none!important}
 </div>
 
 <!-- BTT -->
-<button id="btt" aria-label="উপরে যান" title="উপরে যান">&#8679;</button>
+<button id="btt" aria-label="উপরে যান" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false">
+<script data-cfasync="false">
 /* ── NAV ── */
 (function(){
   function toggleNav(){var n=document.getElementById('navMenu'),o=document.getElementById('navOverlay');if(!n)return;var x=n.classList.contains('open');n.classList.toggle('open',!x);if(o)o.classList.toggle('open',!x);document.body.classList.toggle('nav-open',!x);}
