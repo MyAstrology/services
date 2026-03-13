@@ -567,11 +567,7 @@ body.nav-open{overflow-y:hidden}
 
 /* ══ 3-COL DESKTOP GRIDS ══ */
 .gem-grid-3{display:grid;grid-template-columns:1fr;gap:24px;margin:0}
-@media(min-width:700px){
-  .gem-grid-3{grid-template-columns:repeat(3,1fr);align-items:start}
-  .gem-grid-3 .gem-section{margin-bottom:0}
-  .gem-grid-3 .gem-tab{font-size:.6rem;padding:4px 6px}
-}
+
 .upa-grid-3{display:grid;grid-template-columns:1fr;gap:20px;margin-top:8px}
 @media(min-width:700px){.upa-grid-3{grid-template-columns:repeat(3,1fr);align-items:start}}
 .rudra-uni-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:6px}
@@ -743,6 +739,34 @@ body.nav-open #btt{display:none!important}
 .cs-cred-title{font-size:.9rem;font-weight:700;color:#fff;margin-bottom:3px}
 .cs-cred-sub{font-size:.78rem;color:rgba(255,255,255,.62);line-height:1.45}
 
+
+/* ══ NAVARATNA 3-COL CARD FIX ══ */
+@media(min-width:700px){
+  .gem-grid-3 .gem-section-header{
+    display:flex !important;
+    flex-direction:column !important;
+  }
+  .gem-grid-3 .gem-img-col{
+    width:100% !important;
+    min-height:160px !important;
+    max-height:200px;
+  }
+  .gem-grid-3 .gem-header-text{
+    padding:14px 16px 10px;
+  }
+  .gem-grid-3 .gem-h2{
+    font-size:1rem;
+  }
+  .gem-grid-3 .gem-meta-pills{
+    display:flex;flex-wrap:wrap;gap:4px;
+  }
+  .gem-grid-3 .gem-pill{
+    font-size:.6rem;padding:3px 7px;
+  }
+  .gem-grid-3 .gem-tab{
+    font-size:.6rem;padding:5px 7px;
+  }
+}
 </style>
 </head>
 <body>
@@ -2332,7 +2356,7 @@ body.nav-open #btt{display:none!important}
       <h4>MyAstrology</h4>
       <p><i class="fas fa-map-marker-alt"></i>রাণাঘাট, নদিয়া, পশ্চিমবঙ্গ — ৭৪১২০২</p>
       <p><i class="fas fa-phone"></i><a href="tel:+919333122768">+91 93331 22768</a></p>
-      <p><i class="fas fa-envelope"></i><a href="mailto:info@myastrology.in">info@myastrology.in</a></p>
+      <p><i class="fas fa-envelope"></i><a href="/cdn-cgi/l/email-protection#86efe8e0e9c6ebffe7f5f2f4e9eae9e1ffa8efe8"><span class="__cf_email__" data-cfemail="a4cdcac2cbe4c9ddc5d7d0d6cbc8cbc3dd8acdca">[email&#160;protected]</span></a></p>
       <a href="https://wa.me/919333122768" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i>WhatsApp পরামর্শ</a>
       <a href="https://www.myastrology.in/astrology"><i class="fas fa-calendar-check"></i>অনলাইন বুকিং</a>
     </div>
@@ -2391,7 +2415,7 @@ body.nav-open #btt{display:none!important}
 <!-- BTT -->
 <button id="btt" aria-label="উপরে যান" title="উপরে যান">&#8679;</button>
 
-<script data-cfasync="false">
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false">
 /* ── NAV ── */
 (function(){
   function toggleNav(){var n=document.getElementById('navMenu'),o=document.getElementById('navOverlay');if(!n)return;var x=n.classList.contains('open');n.classList.toggle('open',!x);if(o)o.classList.toggle('open',!x);document.body.classList.toggle('nav-open',!x);}
