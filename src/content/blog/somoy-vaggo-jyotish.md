@@ -1,59 +1,32 @@
 ---
-title: "সময়, ভাগ্য ও জ্যোতিষের রহস্য"
-description: "সময় মানুষের জীবনের সবচেয়ে শক্তিশালী উপাদান। জ্যোতিষ বিদ্যার মাধ্যমে সময়ের প্রকৃতি ও গ্রহ নক্ষত্রের প্রভাব বিশ্লেষণ করে জীবনের সঠিক সিদ্ধান্ত নেওয়ার পথ খুঁজে পাওয়া যায়।"
-
-slug: "somoy-vaggo-jyotish"
-
-image: "https://www.myastrology.in/blog/time-astrology.webp"
-
-date: "2026-03-10"
-
-author:
-  name: "Dr Prodyut Acharya"
-  bio: "জ্যোতিষী, হস্তরেখাবিদ, দার্শনিক চিন্তাবিদ ও ভাগ্য উন্নতির পরামর্শদাতা।"
-  profile_url: "https://www.myastrology.in"
-
+title: "সময়, ভাগ্য ও জ্যোতিষের রহস্য — জীবন বদলে দেওয়া দর্শন"
+description: "জীবনে কেন কখনো সব ঠিক হয়, কখনো সব ভেঙে পড়ে? সময়, ভাগ্য ও পুরুষার্থের এই চিরন্তন দ্বন্দ্বে জ্যোতিষ কী বলে — বৈদিক দর্শন ও আধুনিক চিন্তার আলোয় একটি গভীর বিশ্লেষণ।"
+date: "2026-03-13"
+date_modified: "2026-03-13"
+image: "/images/somoy-vaggo-jyotish-rohosyo.webp"
+image_alt: "সময়, ভাগ্য ও জ্যোতিষ — কালচক্র ও গ্রহের প্রতীকী চিত্র"
+slug: "somoy-vaggo-jyotish-rohosyo-jibon-dorshon"
 categories:
-  - "Astrology"
-
+  - "জ্যোতিষ দর্শন"
 tags:
-  - "প্রদ্যুত আচার্য"
-  - "MyAstrology Ranaghat"
-  - "জ্যোতিষী ও হস্তরেখাবিদ"
-  - "vedic astrology"
-  - "time and destiny"
-  - "future prediction"
-  - "সময় ও ভাগ্য"
-  - "দার্শনিক জ্যোতিষ"
-
-keywords: "সময় ও ভাগ্য, vedic astrology, time and destiny, horoscope analysis, জ্যোতিষ বিদ্যা, প্রদ্যুত আচার্য, MyAstrology Ranaghat"
-
-canonical_url: "https://www.myastrology.in/blog.html?post=somoy-vaggo-jyotish"
-
-featured: true
-reading_time: "7 min"
-
-og_title: "সময়, ভাগ্য ও জ্যোতিষের রহস্য — Dr Prodyut Acharya"
-og_description: "সময়ের রহস্য, কালচক্র, ভাগ্য বনাম পুরুষার্থ — বৈদিক জ্যোতিষ ও দর্শনের আলোয় বিশ্লেষণ।"
-og_image: "https://www.myastrology.in/blog/time-astrology.webp"
-
-twitter_card: "summary_large_image"
-twitter_title: "সময়, ভাগ্য ও জ্যোতিষ — Dr Prodyut Acharya"
-twitter_description: "সময়ের পরিবর্তন, গ্রহ নক্ষত্রের প্রভাব ও জীবনে সঠিক পদক্ষেপ নিয়ে দার্শনিক বিশ্লেষণ।"
-twitter_image: "https://www.myastrology.in/blog/time-astrology.webp"
+  - "সময়ের গুরুত্ব"
+  - "ভাগ্য ও পুরুষার্থ"
+  - "জ্যোতিষ শাস্ত্র"
+  - "কালচক্র"
+  - "জীবনের উদ্দেশ্য"
+  - "দুঃসময় কাটানোর উপায়"
+keywords: "সময়ের গুরুত্ব, ভাগ্য বনাম পরিশ্রম, জ্যোতিষ কী, জীবনে দুঃসময় এলে করণীয়, কালচক্র বৈদিক, গ্রহের প্রভাব মানুষের জীবনে, জ্যোতিষ বিজ্ঞান না বিশ্বাস, সঠিক সময়ে সিদ্ধান্ত নেওয়া"
+og_title: "সময়, ভাগ্য ও জ্যোতিষের রহস্য — যা জানলে জীবন বদলে যায়"
+og_description: "সময় কেন মহা বলবান? ভাগ্য কি পূর্বনির্ধারিত? গ্রহ কীভাবে মনকে প্রভাবিত করে? বৈদিক দর্শন ও জ্যোতিষের গভীরে একটি অসাধারণ যাত্রা।"
+twitter_title: "জীবনে ভালো-খারাপ সময় কেন আসে? সময় ও ভাগ্যের রহস্য জানুন"
+twitter_description: "কালচক্র, গ্রহের প্রভাব ও পুরুষার্থ — বৈদিক দর্শনের আলোয় সময় ও জ্যোতিষের অসাধারণ বিশ্লেষণ।"
 ---
 
-<h1 align="center">সময়, ভাগ্য ও জ্যোতিষের রহস্য</h1>
+<h1 style="text-align:center;">সময়, ভাগ্য ও জ্যোতিষের রহস্য</h1>
 
-<p align="center" style="color:#888;font-size:15px;">
-✍️ <b>Dr Prodyut Acharya</b> &nbsp;|&nbsp; 📅 ১০ মার্চ ২০২৬ &nbsp;|&nbsp; ⏱️ ৭ মিনিট
-</p>
-
-<hr style="border:none;border-top:2px solid #d4a017;margin:10px 0 25px;">
-
-<blockquote style="font-size:19px;font-style:italic;background:#fffbf0;padding:18px 22px;border-left:5px solid #d4a017;border-radius:0 8px 8px 0;margin:0 0 28px;">
-জগতে সময় মহা বলবান — আর এই সময়কে বোঝার একমাত্র উপায় জ্যোতিষ।
-</blockquote>
+<div style="background:#fff8dc;border-left:5px solid #d4a017;border-radius:0 8px 8px 0;padding:16px 22px;margin:20px 0;font-style:italic;font-size:17px;">
+📜 <b>জগতে সময় মহা বলবান — আর এই সময়কে বোঝার একমাত্র উপায় জ্যোতিষ।</b>
+</div>
 
 মানুষের জীবন সময়ের স্রোতের সাথে অবিরাম পরিবর্তিত হয়। সুখ, দুঃখ, সাফল্য, ব্যর্থতা — সবকিছুই সময়ের পরিবর্তনের সাথে সম্পর্কিত। তাই প্রাচীন শাস্ত্রে বলা হয়েছে —
 
@@ -236,21 +209,7 @@ twitter_image: "https://www.myastrology.in/blog/time-astrology.webp"
 
 ---
 
-<div style="background:linear-gradient(135deg,#fff8dc,#fef3c7);border:1px solid #d4a017;padding:24px;border-radius:12px;margin-top:35px;text-align:center;">
-
-<p style="font-size:15px;color:#555;margin:0 0 4px;">✨ জ্যোতিষী ও হস্তরেখাবিদ</p>
-
-<h3 style="margin:0 0 6px;color:#7a5c00;">Dr Prodyut Acharya</h3>
-
-<p style="margin:0 0 4px;color:#666;font-size:14px;">PhD Gold Medalist &nbsp;|&nbsp; রানাঘাট, নদিয়া, পশ্চিমবঙ্গ</p>
-<p style="margin:0 0 16px;color:#888;font-size:13px;">জ্যোতিষী, হস্তরেখাবিদ, দার্শনিক চিন্তাবিদ ও ভাগ্য উন্নতির পরামর্শদাতা</p>
-
-<a href="https://www.myastrology.in" style="background:#b8860b;color:white;padding:10px 22px;text-decoration:none;border-radius:8px;font-weight:bold;display:inline-block;margin:4px;">
-🌐 Official Website
-</a>
-&nbsp;
-<a href="https://wa.me/919333122768" style="background:#25d366;color:white;padding:10px 22px;text-decoration:none;border-radius:8px;font-weight:bold;display:inline-block;margin:4px;">
-💬 WhatsApp পরামর্শ
-</a>
-
+<div class="author-note" style="background:#fdf8ed;border-left:4px solid #b8860b;padding:16px 20px;border-radius:0 10px 10px 0;margin-top:28px;font-size:.9rem;color:#6B4C3B;line-height:1.8;">
+<strong style="color:#1a2e48;display:block;margin-bottom:6px;">🔮 আপনার সময় ও ভাগ্য বিশ্লেষণ</strong>
+আপনার জীবনে এই মুহূর্তে কোন গ্রহের প্রভাব সবচেয়ে বেশি? কুণ্ডলী বিশ্লেষণের মাধ্যমে আপনার সময়ের গতিপ্রকৃতি জানতে <a href="https://www.myastrology.in/astrology.html" style="color:#b8860b;font-weight:600;">ড. প্রদ্যুৎ আচার্যের সাথে পরামর্শ করুন</a> — রানাঘাট, নদিয়া অথবা অনলাইনে।
 </div>
