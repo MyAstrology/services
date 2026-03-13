@@ -722,6 +722,46 @@ body.nav-open
 .upa-card-img img{width:100%;height:100%;object-fit:cover;display:block}
 .uni-img-col img{width:100%;height:100%;object-fit:cover;display:block}
 
+
+/* ══ MOBILE: override inline grid styles ══ */
+@media(max-width:699px){
+  .gem-grid-3[style]{grid-template-columns:1fr!important}
+  .upa-grid-3[style]{grid-template-columns:1fr!important}
+  .rudra-uni-grid[style]{grid-template-columns:1fr!important}
+}
+
+/* ══ GEM-SECTION: card header vertical layout in 3-col ══ */
+.gem-grid-3 .gem-section-header{
+  display:flex!important;
+  flex-direction:column!important;
+}
+.gem-grid-3 .gem-img-col{
+  width:100%!important;
+  height:180px!important;
+  min-height:0!important;
+  min-width:0!important;
+}
+.gem-grid-3 .gem-img-col img{
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+}
+
+/* ══ IMAGE SIZING — all cards ══ */
+.gem-img-col,.gem-img-col img,
+.upa-card-img,.upa-card-img img,
+.uni-img-col,.uni-img-col img{
+  display:block;width:100%;
+}
+.gem-img-col,.uni-img-col{
+  overflow:hidden;position:relative;
+}
+.gem-img-col img,.upa-card-img img,.uni-img-col img{
+  height:100%;object-fit:cover;
+}
+/* Remove any hardcoded fixed widths */
+.upa-card-top{display:grid;grid-template-columns:110px 1fr}
+
 </style>
 </head>
 <body>
@@ -836,7 +876,7 @@ body.nav-open
       <span class="qnav-en">Cat's Eye</span>
     </a>
     <a class="qnav-card" href="#rudraksha-intro">
-      <img src="gallery/ek-mukhi-rudraksha-original.webp" alt="রুদ্রাক্ষ Rudraksha 1-15 Mukhi" class="qnav-img" loading="eager" onerror="this.style.display='none'"/>
+      <img src="gallery/1-mukhi-rudraksha-original.webp" alt="রুদ্রাক্ষ Rudraksha 1-15 Mukhi" class="qnav-img" loading="eager" onerror="this.style.display='none'"/>
       <span class="qnav-planet">📿 শিব</span>
       <span class="qnav-bn">রুদ্রাক্ষ</span>
       <span class="qnav-en">1–15 মুখী</span>
@@ -872,7 +912,7 @@ body.nav-open
 <h2 class="sec-title" id="ruby">মাণিক্য (চুনি) — সূর্যের রত্নপাথর</h2>
 <p class="sec-sub">সূর্যের রত্ন কোনটি? সূর্যের রত্ন হলো মাণিক্য বা চুনি (Ruby) · Corundum পরিবার · Mohs: 9.0 · লগ্ন: সিংহ</p>
 
-<div class="gem-grid-3">
+<div class="gem-grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start">
 <div class="gem-section">
   <div class="gem-section-header">
     <div class="gem-img-col"><img src="gallery/ruby-manikya-gemstone.webp" alt="মাণিক্য চুনি রত্ন Ruby Gemstone Vedic Astrology Sun Graha Benefits" loading="lazy"/></div>
@@ -1564,7 +1604,7 @@ body.nav-open
 <h2 class="sec-title" id="uparatna" style="margin-top:8px">🌿 উপরত্ন — মূল রত্নের সাশ্রয়ী ও কার্যকর বিকল্প</h2>
 <p class="sec-sub">মূল নবরত্নের সাশ্রয়ী বিকল্প হিসেবে উপরত্ন ব্যবহার করা যায় — একই গ্রহীয় তরঙ্গ, কম মূল্য</p>
 
-<div class="upa-grid-3">
+<div class="upa-grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start">
 <!-- MOONSTONE -->
 <div class="upa-card" id="moonstone">
   <div class="upa-card-top">
@@ -2005,9 +2045,9 @@ body.nav-open
 
 <!-- RUDRAKSHA 1-2 -->
 <h3 class="sec-title" id="rudraksha-cards" style="margin-top:32px">📿 রুদ্রাক্ষ — ১ থেকে ১৫ মুখী</h3>
-<div class="rudra-uni-grid">
+<div class="rudra-uni-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
 <div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/ek-mukhi-rudraksha-original.webp" alt="এক মুখী রুদ্রাক্ষ Ek Mukhi Rudraksha Benefits Shiva Ranaghat" loading="lazy"/></div>
+    <div class="uni-img-col"><img src="gallery/1-mukhi-rudraksha-original.webp" alt="এক মুখী রুদ্রাক্ষ Ek Mukhi Rudraksha Benefits Shiva Ranaghat" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">১ মুখী</div>
       <div class="rudra-graha uni-badge">☀ সূর্য / পরমশিব</div>
@@ -2016,7 +2056,7 @@ body.nav-open
     </div>
   </div>
 <div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/do-mukhi-rudraksha-bead.webp" alt="দুই মুখী রুদ্রাক্ষ Do Mukhi Rudraksha Benefits Ardhanarishvara" loading="lazy"/></div>
+    <div class="uni-img-col"><img src="gallery/2-mukhi-rudraksha-original.webp" alt="দুই মুখী রুদ্রাক্ষ Do Mukhi Rudraksha Benefits Ardhanarishvara" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">২ মুখী</div>
       <div class="rudra-graha uni-badge">🌙 চন্দ্র / অর্ধনারীশ্বর</div>
@@ -2025,7 +2065,7 @@ body.nav-open
     </div>
   </div>
 <div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/tin-mukhi-rudraksha-original.webp" alt="তিন মুখী রুদ্রাক্ষ Teen Mukhi Rudraksha Benefits Agni" loading="lazy"/></div>
+    <div class="uni-img-col"><img src="gallery/3-mukhi-rudraksha-original.webp" alt="তিন মুখী রুদ্রাক্ষ Teen Mukhi Rudraksha Benefits Agni" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">৩ মুখী</div>
       <div class="rudra-graha uni-badge">♂ মঙ্গল / অগ্নি / ত্রিনেত্র</div>
@@ -2034,7 +2074,7 @@ body.nav-open
     </div>
   </div>
 <div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/char-mukhi-rudraksha-bead.webp" alt="চার মুখী রুদ্রাক্ষ Char Mukhi Rudraksha Benefits Brahma" loading="lazy"/></div>
+    <div class="uni-img-col"><img src="gallery/4-mukhi-rudraksha-original.webp" alt="চার মুখী রুদ্রাক্ষ Char Mukhi Rudraksha Benefits Brahma" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">৪ মুখী</div>
       <div class="rudra-graha uni-badge">☿ বুধ / ব্রহ্মা / চতুর্মুখ</div>
@@ -2043,7 +2083,7 @@ body.nav-open
     </div>
   </div>
 <div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/panch-mukhi-rudraksha-original.webp" alt="পাঁচ মুখী রুদ্রাক্ষ Panch Mukhi Rudraksha Benefits Kalagni" loading="lazy"/></div>
+    <div class="uni-img-col"><img src="gallery/5-mukhi-rudraksha-original.webp" alt="পাঁচ মুখী রুদ্রাক্ষ Panch Mukhi Rudraksha Benefits Kalagni" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">৫ মুখী</div>
       <div class="rudra-graha uni-badge">♃ বৃহস্পতি / পঞ্চমুখী শিব</div>
@@ -2052,7 +2092,7 @@ body.nav-open
     </div>
   </div>
 <div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/choy-mukhi-rudraksha-bead.webp" alt="ছয় মুখী রুদ্রাক্ষ Choy Mukhi Rudraksha Benefits Kartikeya" loading="lazy"/></div>
+    <div class="uni-img-col"><img src="gallery/6-mukhi-rudraksha-original.webp" alt="ছয় মুখী রুদ্রাক্ষ Choy Mukhi Rudraksha Benefits Kartikeya" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">৬ মুখী</div>
       <div class="rudra-graha uni-badge">♀ শুক্র / কার্তিক / সুব্রহ্মণ্য</div>
@@ -2061,7 +2101,7 @@ body.nav-open
     </div>
   </div>
 <div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/sat-mukhi-rudraksha-original.webp" alt="সাত মুখী রুদ্রাক্ষ Sat Mukhi Rudraksha Benefits Mahalakshmi" loading="lazy"/></div>
+    <div class="uni-img-col"><img src="gallery/7-mukhi-rudraksha-original.webp" alt="সাত মুখী রুদ্রাক্ষ Sat Mukhi Rudraksha Benefits Mahalakshmi" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">৭ মুখী</div>
       <div class="rudra-graha uni-badge">♄ শনি / অনন্ত / সপ্তঋষি</div>
@@ -2070,7 +2110,7 @@ body.nav-open
     </div>
   </div>
 <div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/aat-mukhi-rudraksha-bead.webp" alt="আট মুখী রুদ্রাক্ষ Aat Mukhi Rudraksha Benefits Ganesha" loading="lazy"/></div>
+    <div class="uni-img-col"><img src="gallery/8-mukhi-rudraksha-original.webp" alt="আট মুখী রুদ্রাক্ষ Aat Mukhi Rudraksha Benefits Ganesha" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">৮ মুখী</div>
       <div class="rudra-graha uni-badge">☊ রাহু / গণেশ / অষ্টবসু</div>
@@ -2079,7 +2119,7 @@ body.nav-open
     </div>
   </div>
 <div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/noy-mukhi-rudraksha-original.webp" alt="নয় মুখী রুদ্রাক্ষ Noy Mukhi Rudraksha Benefits Durga" loading="lazy"/></div>
+    <div class="uni-img-col"><img src="gallery/9-mukhi-rudraksha-original.webp" alt="নয় মুখী রুদ্রাক্ষ Noy Mukhi Rudraksha Benefits Durga" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">৯ মুখী</div>
       <div class="rudra-graha uni-badge">☋ কেতু / দুর্গা / নবদুর্গা</div>
@@ -2088,7 +2128,7 @@ body.nav-open
     </div>
   </div>
 <div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/dosh-mukhi-rudraksha-bead.webp" alt="দশ মুখী রুদ্রাক্ষ Dosh Mukhi Rudraksha Benefits Vishnu" loading="lazy"/></div>
+    <div class="uni-img-col"><img src="gallery/10-mukhi-rudraksha-original.webp" alt="দশ মুখী রুদ্রাক্ষ Dosh Mukhi Rudraksha Benefits Vishnu" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">১০ মুখী</div>
       <div class="rudra-graha uni-badge">বিষ্ণু / দশ দিক / দশাবতার</div>
@@ -2097,7 +2137,7 @@ body.nav-open
     </div>
   </div>
 <div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/egaro-mukhi-rudraksha-original.webp" alt="এগারো মুখী রুদ্রাক্ষ Egaro Mukhi Rudraksha Benefits" loading="lazy"/></div>
+    <div class="uni-img-col"><img src="gallery/11-mukhi-rudraksha-original.webp" alt="এগারো মুখী রুদ্রাক্ষ Egaro Mukhi Rudraksha Benefits" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">১১ মুখী</div>
       <div class="rudra-graha uni-badge">একাদশ রুদ্র / হনুমান</div>
@@ -2106,7 +2146,7 @@ body.nav-open
     </div>
   </div>
 <div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/baro-mukhi-rudraksha-bead.webp" alt="বারো মুখী রুদ্রাক্ষ Baro Mukhi Rudraksha Benefits Surya" loading="lazy"/></div>
+    <div class="uni-img-col"><img src="gallery/12-mukhi-rudraksha-original.webp" alt="বারো মুখী রুদ্রাক্ষ Baro Mukhi Rudraksha Benefits Surya" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">১২ মুখী</div>
       <div class="rudra-graha uni-badge">☀ সূর্য / দ্বাদশ আদিত্য / বিষ্ণু</div>
@@ -2115,7 +2155,7 @@ body.nav-open
     </div>
   </div>
 <div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/tero-mukhi-rudraksha-original.webp" alt="তেরো মুখী রুদ্রাক্ষ Tero Mukhi Rudraksha Benefits Kamadeva" loading="lazy"/></div>
+    <div class="uni-img-col"><img src="gallery/13-mukhi-rudraksha-original.webp" alt="তেরো মুখী রুদ্রাক্ষ Tero Mukhi Rudraksha Benefits Kamadeva" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">১৩ মুখী</div>
       <div class="rudra-graha uni-badge">♀ ইন্দ্র / বিশ্বেদেব / শুক্র</div>
@@ -2124,7 +2164,7 @@ body.nav-open
     </div>
   </div>
 <div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/choddo-mukhi-rudraksha-bead.webp" alt="চৌদ্দ মুখী রুদ্রাক্ষ Choddo Mukhi Rudraksha Benefits Hanuman" loading="lazy"/></div>
+    <div class="uni-img-col"><img src="gallery/14-mukhi-rudraksha-original.webp" alt="চৌদ্দ মুখী রুদ্রাক্ষ Choddo Mukhi Rudraksha Benefits Hanuman" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">১৪ মুখী</div>
       <div class="rudra-graha uni-badge">♄ শনি / মহেশ্বর / তৃতীয় নেত্র</div>
@@ -2133,7 +2173,7 @@ body.nav-open
     </div>
   </div>
 <div class="uni-card">
-    <div class="uni-img-col"><img src="gallery/ponero-mukhi-rudraksha-bead.webp" alt="পনেরো মুখী রুদ্রাক্ষ Ponero Mukhi Rudraksha Benefits Pashupatinath" loading="lazy"/></div>
+    <div class="uni-img-col"><img src="gallery/15-mukhi-rudraksha-original.webp" alt="পনেরো মুখী রুদ্রাক্ষ Ponero Mukhi Rudraksha Benefits Pashupatinath" loading="lazy"/></div>
     <div class="uni-body rudra-body">
       <div class="rudra-face uni-title">১৫ মুখী</div>
       <div class="rudra-graha uni-badge">♄♀ শনি-শুক্র / পশুপতিনাথ</div>
@@ -2295,7 +2335,7 @@ body.nav-open
       <h4>MyAstrology</h4>
       <p><i class="fas fa-map-marker-alt"></i>রাণাঘাট, নদিয়া, পশ্চিমবঙ্গ — ৭৪১২০২</p>
       <p><i class="fas fa-phone"></i><a href="tel:+919333122768">+91 93331 22768</a></p>
-      <p><i class="fas fa-envelope"></i><a href="mailto:info@myastrology.in">info@myastrology.in</a></p>
+      <p><i class="fas fa-envelope"></i><a href="/cdn-cgi/l/email-protection#c3aaada5ac83aebaa2b0b7b1acafaca4baedaaad"><span class="__cf_email__" data-cfemail="cfa6a1a9a08fa2b6aebcbbbda0a3a0a8b6e1a6a1">[email&#160;protected]</span></a></p>
       <a href="https://wa.me/919333122768" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i>WhatsApp পরামর্শ</a>
       <a href="https://www.myastrology.in/astrology"><i class="fas fa-calendar-check"></i>অনলাইন বুকিং</a>
     </div>
@@ -2354,7 +2394,7 @@ body.nav-open
 <!-- BTT -->
 <button id="btt" aria-label="উপরে যান" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
-<script data-cfasync="false">
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false">
 /* ── NAV ── */
 (function(){
   function toggleNav(){var n=document.getElementById('navMenu'),o=document.getElementById('navOverlay');if(!n)return;var x=n.classList.contains('open');n.classList.toggle('open',!x);if(o)o.classList.toggle('open',!x);document.body.classList.toggle('nav-open',!x);}
