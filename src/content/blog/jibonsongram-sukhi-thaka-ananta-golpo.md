@@ -1,23 +1,15 @@
 ---
-title: "অনন্তের গল্প: দুর্ভাগ্যকে যে জয় করেছিল নীরব সহিষ্ণুতায়"
-description: "বারো বছরের অনন্ত — চায়ের দোকানের ছোট্ট কর্মচারী। জীবন তাকে সব কেড়ে নিয়েছে, তবু তার চোখে নেই কোনো অভিযোগ। তার সহজ কথার ভেতরে লুকিয়ে আছে এমন দর্শন, যা বড় বড় পণ্ডিতও খুঁজে পান না।"
-
-slug: "ananta-philosophy-acceptance-wisdom-child"
-
-image: "https://www.myastrology.in/images/ananta-philosophy-acceptance.webp"
-
+title: "অনন্তের গল্প: কষ্টের মাঝেও যে শিশু শিখিয়েছিল সুখী থাকার পথ"
+description: "বাবা নেই, স্কুল নেই, তবু অভিযোগ নেই — বারো বছরের অনন্তের জীবন দেখে বুঝলাম, দুঃখ আসলে ভাগ্যের দোষ নয়। জীবনসংগ্রামে যারা ক্লান্ত, এই সত্যি গল্প তাদের জন্য।"
 date: "2026-03-08"
-
+image: "https://www.myastrology.in/images/ananta-philosophy-acceptance.webp"
+slug: "jibonsongram-sukhi-thaka-ananta-golpo"
 author:
   name: "Dr Prodyut Acharya"
   bio: "জ্যোতিষী, হস্তরেখাবিদ, দার্শনিক চিন্তাবিদ ও ভাগ্য উন্নতির পরামর্শদাতা।"
   profile_url: "https://www.myastrology.in"
-
 categories:
   - "জীবন দর্শন"
-  - "আধ্যাত্মিকতা"
-  - "অনুপ্রেরণা"
-
 tags:
   - "প্রদ্যুত আচার্য"
   - "MyAstrology Ranaghat"
@@ -27,28 +19,23 @@ tags:
   - "জীবনসংগ্রাম"
   - "সহিষ্ণুতা"
   - "কর্মফল"
-
-keywords: "অনন্তের গল্প, শিশুর দর্শন, গ্রহণ ও প্রশান্তি, জীবনসংগ্রাম, দারিদ্র্য ও সাহস, দুর্ভাগ্য জয়, সহিষ্ণুতার শক্তি, জীবন দর্শন বাংলা, অনুপ্রেরণার গল্প"
-
-canonical_url: "https://www.myastrology.in/blog.html?post=ananta-philosophy-acceptance-wisdom-child"
-
+keywords: "কষ্টের মাঝে সুখী থাকার উপায়, দুঃখ কাটিয়ে ওঠার পথ, জীবনসংগ্রামের গল্প, অভাবের মধ্যে মানসিক শান্তি, জীবন দর্শন বাংলা, অনুপ্রেরণার সত্যি গল্প, শিশুর প্রজ্ঞা"
+canonical_url: "https://www.myastrology.in/blog/ananta-philosophy-acceptance-wisdom-child.html"
 featured: true
-reading_time: "15 min"
-
-og_title: "অনন্তের গল্প: দুর্ভাগ্যকে যে জয় করেছিল নীরব সহিষ্ণুতায়"
-og_description: "বারো বছরের এক চা-বিক্রেতা শিশুর মুখে যে দর্শন শুনেছিলাম — তা আজও ভোলা যায় না। Dr. Prodyut Acharya-র কলমে অনন্তের অসাধারণ জীবনগাথা।"
+reading_time: "7 min"
+og_title: "কষ্টের মাঝেও সুখী থাকা যায় — বারো বছরের অনন্ত শিখিয়েছিল"
+og_description: "বাবা নেই, স্কুল নেই, তবু মুখে হাসি। চায়ের দোকানের ছোট্ট অনন্তের কথা আজও ভুলতে পারিনি। Dr. Prodyut Acharya-র কলমে একটি সত্যি গল্প।"
 og_image: "https://www.myastrology.in/blog/ananta-philosophy-acceptance.webp"
-
 twitter_card: "summary_large_image"
-twitter_title: "বারো বছরের অনন্ত: যে শিশু দুর্ভাগ্যকে পরাজিত করেছিল"
-twitter_description: "পাখি কি জলে সাঁতার কাটতে চাইলে দুঃখ পায়? বারো বছরের অনন্তের এই প্রশ্নে লুকিয়ে আছে জীবনের গভীরতম সত্য।"
+twitter_title: "জীবনে সব হারিয়েও সুখী থাকা যায়? বারো বছরের অনন্ত বলেছিল — হ্যাঁ"
+twitter_description: "পাখি কি জলে সাঁতার না পারলে দুঃখ পায়? অনন্তের এই একটা প্রশ্ন আমার জীবন বদলে দিয়েছিল।"
 twitter_image: "https://www.myastrology.in/blog/ananta-philosophy-acceptance.webp"
 ---
 
-<h1 align="center">অনন্তের গল্প: দুর্ভাগ্যকে যে জয় করেছিল নীরব সহিষ্ণুতায়</h1>
+<h1 style="text-align:center;">অনন্তের গল্প: কষ্টের মাঝেও যে শিশু শিখিয়েছিল সুখী থাকার পথ</h1>
 
-<p align="center" style="color:#888;font-size:15px;">
-✍️ <b>Dr Prodyut Acharya</b> &nbsp;|&nbsp; 📅 ৮ মার্চ ২০২৬ &nbsp;|&nbsp; ⏱️ ১৫ মিনিট
+<p style="text-align:center;color:#888;font-size:15px;">
+✍️ <b>Dr Prodyut Acharya</b> &nbsp;|&nbsp; 📅 ৮ মার্চ ২০২৬ &nbsp;|&nbsp; ⏱️ ৭ মিনিট
 </p>
 
 <hr style="border:none;border-top:2px solid #d4a017;margin:10px 0 25px;">
@@ -56,17 +43,6 @@ twitter_image: "https://www.myastrology.in/blog/ananta-philosophy-acceptance.web
 <blockquote style="font-size:19px;font-style:italic;background:#fffbf0;padding:18px 22px;border-left:5px solid #d4a017;border-radius:0 8px 8px 0;margin:0 0 28px;">
 দুর্ভাগ্যের আঘাত নয়, বরং দৃষ্টিভঙ্গিই চিরকাল স্থির করে দেয় মানুষের সুখ বা দুঃখকে।
 </blockquote>
-
-<div style="background:#f9f5eb;border:1px solid #e8d9a0;border-radius:10px;padding:18px 22px;margin:0 0 30px;">
-<b style="font-size:16px;">📋 বিষয়সূচি</b>
-<ol style="margin:10px 0 0;padding-left:20px;line-height:2.2;">
-<li><a href="#nirmom-vaggo" style="color:#b8860b;text-decoration:none;">নির্মম ভাগ্য, অক্ষত হাসি</a></li>
-<li><a href="#pakhi-mach" style="color:#b8860b;text-decoration:none;">পাখি ও মাছের দর্শন</a></li>
-<li><a href="#bokhateder" style="color:#b8860b;text-decoration:none;">বখাটেদের শূন্যতা</a></li>
-<li><a href="#gaan-boidyo" style="color:#b8860b;text-decoration:none;">গানে বুড়ো মাইগে খায়, বৈদ্যের বুড়ো দোতলায় যায়</a></li>
-<li><a href="#biday" style="color:#b8860b;text-decoration:none;">বিদায়ের পর যা থেকে গেল</a></li>
-</ol>
-</div>
 
 চায়ের দোকানে কাজ করা ছোট্ট ছেলেটির নাম অনন্ত। বয়স তার বারো। চার বছর আগে বাবা মারা গেছেন। একটি ছোট বোন আছে, বয়স আট। সংসারে তারা তিনজন — মা, বোন আর অনন্ত। মা লোকের বাড়ি কাজ করেন; বোন পড়ে সরকারি স্কুলে, ক্লাস টু-তে।
 
@@ -180,32 +156,19 @@ twitter_image: "https://www.myastrology.in/blog/ananta-philosophy-acceptance.web
 
 > **"দুর্ভাগ্যের আঘাত নয়, বরং দৃষ্টিভঙ্গিই চিরকাল স্থির করে দেয় মানুষের সুখ বা দুঃখকে।"**
 
-
+---
 
 <div style="background:#f5f5f5;border-radius:10px;padding:16px 20px;margin:25px 0;font-size:14px;">
 <b>🔗 এই সিরিজের অন্যান্য পোস্ট:</b><br>
-• <a href="https://www.myastrology.in/blog.html?post=pradip-philosophy-emptiness-success-failure" style="color:#b8860b;">প্রদীপের গল্প: প্রাপ্তির মাঝেও যে শূন্যতা ভরে না</a><br>
-• <a href="https://www.myastrology.in/blog.html?post=nirmal-villa-philosophy-loneliness-life-meaning" style="color:#b8860b;">নির্মল ভিলার গল্প: অর্থ, একাকীত্ব ও জীবনের শেষ সত্য</a><br>
-• <a href="https://www.myastrology.in/blog.html?post=somoy-vaggo-jyotish" style="color:#b8860b;">সময়, ভাগ্য ও জ্যোতিষের রহস্য</a>
+• <a href="https://www.myastrology.in/blog/pradip-philosophy-emptiness-success-failure.html" style="color:#b8860b;">প্রদীপের গল্প: প্রাপ্তির মাঝেও যে শূন্যতা ভরে না</a><br>
+• <a href="https://www.myastrology.in/blog/nirmal-villa-philosophy-loneliness-life-meaning.html" style="color:#b8860b;">নির্মল ভিলার গল্প: অর্থ, একাকীত্ব ও জীবনের শেষ সত্য</a><br>
+• <a href="https://www.myastrology.in/blog/somoy-vaggo-jyotish.html" style="color:#b8860b;">সময়, ভাগ্য ও জ্যোতিষের রহস্য</a>
 </div>
 
 ---
 
-<div style="background:linear-gradient(135deg,#fff8dc,#fef3c7);border:1px solid #d4a017;padding:24px;border-radius:12px;margin-top:35px;text-align:center;">
-
-<p style="font-size:15px;color:#555;margin:0 0 4px;">✨ জ্যোতিষী ও হস্তরেখাবিদ</p>
-
-<h3 style="margin:0 0 6px;color:#7a5c00;">Dr Prodyut Acharya</h3>
-
-<p style="margin:0 0 4px;color:#666;font-size:14px;">PhD Gold Medalist &nbsp;|&nbsp; রানাঘাট, নদিয়া, পশ্চিমবঙ্গ</p>
-<p style="margin:0 0 16px;color:#888;font-size:13px;">জ্যোতিষী, হস্তরেখাবিদ, দার্শনিক চিন্তাবিদ ও ভাগ্য উন্নতির পরামর্শদাতা</p>
-
-<a href="https://www.myastrology.in" style="background:#b8860b;color:white;padding:10px 22px;text-decoration:none;border-radius:8px;font-weight:bold;display:inline-block;margin:4px;">
-🌐 Official Website
-</a>
-&nbsp;
-<a href="https://wa.me/919333122768" style="background:#25d366;color:white;padding:10px 22px;text-decoration:none;border-radius:8px;font-weight:bold;display:inline-block;margin:4px;">
-💬 WhatsApp পরামর্শ
-</a>
-
+<div style="background:linear-gradient(135deg,#fff8dc,#fef3c7);border:1px solid #d4a017;padding:20px 24px;border-radius:12px;margin-top:30px;">
+<p style="margin:0 0 2px;font-size:13px;color:#888;">✍️ লেখক পরিচিতি</p>
+<h4 style="margin:0 0 4px;color:#7a5c00;font-size:1rem;">Dr Prodyut Acharya</h4>
+<p style="margin:0;color:#666;font-size:13px;line-height:1.7;">জ্যোতিষী, হস্তরেখাবিদ, দার্শনিক চিন্তাবিদ ও ভাগ্য উন্নতির পরামর্শদাতা। রানাঘাট, নদিয়া, পশ্চিমবঙ্গ। &nbsp;<a href="https://www.myastrology.in" style="color:#b8860b;font-weight:600;">myastrology.in</a></p>
 </div>
