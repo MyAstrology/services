@@ -747,20 +747,22 @@ body.nav-open
   object-fit:cover!important;
 }
 
-/* ══ IMAGE SIZING — all cards ══ */
-.gem-img-col,.gem-img-col img,
-.upa-card-img,.upa-card-img img,
-.uni-img-col,.uni-img-col img{
-  display:block;width:100%;
-}
-.gem-img-col,.uni-img-col{
-  overflow:hidden;position:relative;
-}
-.gem-img-col img,.upa-card-img img,.uni-img-col img{
-  height:100%;object-fit:cover;
-}
 /* Remove any hardcoded fixed widths */
 .upa-card-top{display:grid;grid-template-columns:110px 1fr}
+
+
+/* ══════ DEFINITIVE IMAGE FIT ══════ */
+/* All gem card images */
+.gem-img-col{overflow:hidden;position:relative;background:linear-gradient(135deg,#0c1b33,#152845)}
+.gem-img-col img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block}
+
+/* All upa card images */
+.upa-card-img{overflow:hidden}
+.upa-card-img img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* All rudraksha/uni card images */
+.uni-img-col{overflow:hidden;position:relative}
+.uni-img-col img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0}
 
 </style>
 </head>
@@ -914,8 +916,8 @@ body.nav-open
 
 <div class="gem-grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start">
 <div class="gem-section">
-  <div class="gem-section-header">
-    <div class="gem-img-col"><img src="gallery/ruby-manikya-gemstone.webp" alt="মাণিক্য চুনি রত্ন Ruby Gemstone Vedic Astrology Sun Graha Benefits" loading="lazy"/></div>
+  <div class="gem-section-header" style="display:flex!important;flex-direction:column!important">
+    <div class="gem-img-col" style="width:100%!important;min-width:0!important;height:180px;min-height:0!important"><img src="gallery/ruby-manikya-gemstone.webp" alt="মাণিক্য চুনি রত্ন Ruby Gemstone Vedic Astrology Sun Graha Benefits" loading="lazy"/></div>
     <div class="gem-header-text">
       <div class="gem-badge">☀ সূর্য গ্রহ · আত্মকারক</div>
       <h3 class="gem-h2">মাণিক্য — আত্মা ও নেতৃত্বের রত্ন</h3>
@@ -990,8 +992,8 @@ body.nav-open
 <h2 class="sec-title" id="pearl">মুক্তা (মতি) — চন্দ্রের রত্নপাথর</h2>
 <p class="sec-sub">চন্দ্র গ্রহের রত্ন কি? মুক্তা রত্ন কার জন্য ভালো? — Pearl · জৈব রত্ন · Nacre গঠন · লগ্ন: কর্কট</p>
 <div class="gem-section">
-  <div class="gem-section-header">
-    <div class="gem-img-col"><img src="gallery/natural-pearl-mukta.webp" alt="মুক্তা মতি রত্ন Natural Pearl Moon Graha Benefits Vedic Jyotish" loading="lazy"/></div>
+  <div class="gem-section-header" style="display:flex!important;flex-direction:column!important">
+    <div class="gem-img-col" style="width:100%!important;min-width:0!important;height:180px;min-height:0!important"><img src="gallery/natural-pearl-mukta.webp" alt="মুক্তা মতি রত্ন Natural Pearl Moon Graha Benefits Vedic Jyotish" loading="lazy"/></div>
     <div class="gem-header-text">
       <div class="gem-badge">🌙 চন্দ্র গ্রহ · মনোকারক</div>
       <h3 class="gem-h2">মুক্তা — মনের শান্তি ও মাতৃভক্তির রত্ন</h3>
@@ -1061,8 +1063,8 @@ body.nav-open
 <h2 class="sec-title" id="coral">প্রবাল (মুঙ্গা) — মঙ্গলের রত্নপাথর</h2>
 <p class="sec-sub">মঙ্গলের রত্ন কি? লাল প্রবাল রত্নের উপকারিতা — Red Coral · Corallium rubrum · মঙ্গল দোষ নিরাময়</p>
 <div class="gem-section">
-  <div class="gem-section-header">
-    <div class="gem-img-col"><img src="gallery/red-coral-prabal.webp" alt="প্রবাল মুঙ্গা রত্ন Red Coral Mars Graha Benefits Vedic Astrology" loading="lazy"/></div>
+  <div class="gem-section-header" style="display:flex!important;flex-direction:column!important">
+    <div class="gem-img-col" style="width:100%!important;min-width:0!important;height:180px;min-height:0!important"><img src="gallery/red-coral-prabal.webp" alt="প্রবাল মুঙ্গা রত্ন Red Coral Mars Graha Benefits Vedic Astrology" loading="lazy"/></div>
     <div class="gem-header-text">
       <div class="gem-badge">♂ মঙ্গল গ্রহ · শক্তিকারক</div>
       <h3 class="gem-h2">প্রবাল — শক্তি, সাহস ও মঙ্গল দোষ নিরাময়</h3>
@@ -1133,8 +1135,8 @@ body.nav-open
 <h2 class="sec-title" id="emerald">পান্না — বুধের রত্নপাথর</h2>
 <p class="sec-sub">বুধ গ্রহের রত্ন কি? পান্না রত্ন কাদের পরা উচিত? — Emerald · Beryl পরিবার · Mohs: 7.5–8.0</p>
 <div class="gem-section">
-  <div class="gem-section-header">
-    <div class="gem-img-col"><img src="gallery/emerald-panna-stone.webp" alt="পান্না রত্ন Emerald Stone Mercury Budh Graha Benefits Vedic" loading="lazy"/></div>
+  <div class="gem-section-header" style="display:flex!important;flex-direction:column!important">
+    <div class="gem-img-col" style="width:100%!important;min-width:0!important;height:180px;min-height:0!important"><img src="gallery/emerald-panna-stone.webp" alt="পান্না রত্ন Emerald Stone Mercury Budh Graha Benefits Vedic" loading="lazy"/></div>
     <div class="gem-header-text">
       <div class="gem-badge">☿ বুধ গ্রহ · বুদ্ধিকারক</div>
       <h3 class="gem-h2">পান্না — বুদ্ধি, যোগাযোগ ও ব্যবসার রত্ন</h3>
@@ -1205,8 +1207,8 @@ body.nav-open
 <h2 class="sec-title" id="yellow-sapphire">পুখরাজ — বৃহস্পতির রত্নপাথর</h2>
 <p class="sec-sub">বৃহস্পতির রত্ন কি? পোখরাজ রত্ন কার জন্য শুভ? — Yellow Sapphire · Corundum · শুভ সংখ্যা: ৩</p>
 <div class="gem-section">
-  <div class="gem-section-header">
-    <div class="gem-img-col"><img src="gallery/yellow-sapphire-pukhraj.webp" alt="পুখরাজ রত্ন Yellow Sapphire Jupiter Brihaspati Graha Benefits" loading="lazy"/></div>
+  <div class="gem-section-header" style="display:flex!important;flex-direction:column!important">
+    <div class="gem-img-col" style="width:100%!important;min-width:0!important;height:180px;min-height:0!important"><img src="gallery/yellow-sapphire-pukhraj.webp" alt="পুখরাজ রত্ন Yellow Sapphire Jupiter Brihaspati Graha Benefits" loading="lazy"/></div>
     <div class="gem-header-text">
       <div class="gem-badge">♃ বৃহস্পতি গ্রহ · গুরু</div>
       <h3 class="gem-h2">পুখরাজ — জ্ঞান, সমৃদ্ধি ও বিবাহসুখের রত্ন</h3>
@@ -1277,8 +1279,8 @@ body.nav-open
 <h2 class="sec-title" id="diamond">হীরা / সাদা পোখরাজ — শুক্রের রত্নপাথর</h2>
 <p class="sec-sub">শুক্র গ্রহের রত্ন কি? হীরা রত্ন কার জন্য শুভ? — Diamond / White Topaz · Mohs: 10.0 / 8.0</p>
 <div class="gem-section">
-  <div class="gem-section-header">
-    <div class="gem-img-col"><img src="gallery/diamond-heera-stone.webp" alt="হীরা রত্ন Diamond Venus Shukra Graha Benefits Vedic Astrology" loading="lazy"/></div>
+  <div class="gem-section-header" style="display:flex!important;flex-direction:column!important">
+    <div class="gem-img-col" style="width:100%!important;min-width:0!important;height:180px;min-height:0!important"><img src="gallery/diamond-heera-stone.webp" alt="হীরা রত্ন Diamond Venus Shukra Graha Benefits Vedic Astrology" loading="lazy"/></div>
     <div class="gem-header-text">
       <div class="gem-badge">♀ শুক্র গ্রহ · সৌন্দর্যকারক</div>
       <h3 class="gem-h2">হীরা — প্রেম, সৌন্দর্য ও সমৃদ্ধির রত্ন</h3>
@@ -1350,8 +1352,8 @@ body.nav-open
 <h2 class="sec-title" id="blue-sapphire">নীলকান্তমণি — শনির রত্নপাথর</h2>
 <p class="sec-sub">শনি খারাপ হলে কোন রত্ন পরতে হবে? শনির জন্য নীলা রত্ন কীভাবে পরতে হয়? — Blue Sapphire (Neelam) · সবচেয়ে শক্তিশালী রত্ন</p>
 <div class="gem-section">
-  <div class="gem-section-header">
-    <div class="gem-img-col"><img src="gallery/blue-sapphire-neelam.webp" alt="নীলকান্তমণি নীলম রত্ন Blue Sapphire Saturn Shani Benefits" loading="lazy"/></div>
+  <div class="gem-section-header" style="display:flex!important;flex-direction:column!important">
+    <div class="gem-img-col" style="width:100%!important;min-width:0!important;height:180px;min-height:0!important"><img src="gallery/blue-sapphire-neelam.webp" alt="নীলকান্তমণি নীলম রত্ন Blue Sapphire Saturn Shani Benefits" loading="lazy"/></div>
     <div class="gem-header-text">
       <div class="gem-badge">♄ শনি গ্রহ · কর্মফলদাতা</div>
       <h3 class="gem-h2">নীলকান্তমণি — ন্যায়, কর্ম ও পরীক্ষার রত্ন</h3>
@@ -1424,8 +1426,8 @@ body.nav-open
 <h2 class="sec-title" id="gomed">গোমেদ — রাহুর রত্নপাথর</h2>
 <p class="sec-sub">রাহুর রত্ন কি? গোমেদ রত্ন কাদের জন্য? — Hessonite Garnet · Grossular পরিবার · রাহুর দশায় বিশেষ</p>
 <div class="gem-section">
-  <div class="gem-section-header">
-    <div class="gem-img-col"><img src="gallery/hessonite-gomed-stone.webp" alt="গোমেদ রত্ন Hessonite Gomed Rahu Graha Benefits Vedic Astrology" loading="lazy"/></div>
+  <div class="gem-section-header" style="display:flex!important;flex-direction:column!important">
+    <div class="gem-img-col" style="width:100%!important;min-width:0!important;height:180px;min-height:0!important"><img src="gallery/hessonite-gomed-stone.webp" alt="গোমেদ রত্ন Hessonite Gomed Rahu Graha Benefits Vedic Astrology" loading="lazy"/></div>
     <div class="gem-header-text">
       <div class="gem-badge">☊ রাহু ছায়াগ্রহ · বিভ্রমকারক</div>
       <h3 class="gem-h2">গোমেদ — রাহুর অদৃশ্য শক্তির রত্ন</h3>
@@ -1493,8 +1495,8 @@ body.nav-open
 <h2 class="sec-title" id="catseye">লহসুনিয়া (বৈদূর্য) — কেতুর রত্নপাথর</h2>
 <p class="sec-sub">কেতুর রত্ন কি? বৈদুর্য বা ক্যাটস আই রত্নের উপকারিতা — Cat's Eye · Chrysoberyl · মোক্ষকারক</p>
 <div class="gem-section">
-  <div class="gem-section-header">
-    <div class="gem-img-col"><img src="gallery/cats-eye-lehsunia.webp" alt="লহসুনিয়া বৈদুর্য রত্ন Cats Eye Ketu Graha Benefits Vedic" loading="lazy"/></div>
+  <div class="gem-section-header" style="display:flex!important;flex-direction:column!important">
+    <div class="gem-img-col" style="width:100%!important;min-width:0!important;height:180px;min-height:0!important"><img src="gallery/cats-eye-lehsunia.webp" alt="লহসুনিয়া বৈদুর্য রত্ন Cats Eye Ketu Graha Benefits Vedic" loading="lazy"/></div>
     <div class="gem-header-text">
       <div class="gem-badge">☋ কেতু ছায়াগ্রহ · মোক্ষকারক</div>
       <h3 class="gem-h2">লহসুনিয়া — মোক্ষ ও আধ্যাত্মিকতার রত্ন</h3>
@@ -1608,7 +1610,7 @@ body.nav-open
 <!-- MOONSTONE -->
 <div class="upa-card" id="moonstone">
   <div class="upa-card-top">
-    <div class="upa-card-img"><img src="gallery/moonstone-upa-ratna.webp" alt="মুনস্টোন উপরত্ন Moonstone Upa Ratna Gemstone Vedic Astrology" loading="lazy"/></div>
+    <div class="upa-card-img" style="overflow:hidden"><img src="gallery/moonstone-upa-ratna.webp" alt="মুনস্টোন উপরত্ন Moonstone Upa Ratna Gemstone Vedic Astrology" loading="lazy"/></div>
     <div class="upa-card-info">
       <span class="upa-card-badge">🌙 চন্দ্রের উপরত্ন</span>
       <h3 class="upa-card-title">চন্দ্রকান্তমণি (Moonstone)</h3>
@@ -1645,7 +1647,7 @@ body.nav-open
 <!-- SUNSTONE -->
 <div class="upa-card" id="sunstone">
   <div class="upa-card-top">
-    <div class="upa-card-img"><img src="gallery/turquoise-upa-ratna.webp" alt="সানস্টোন উপরত্ন Sunstone Gemstone Benefits Vedic Astrology" loading="lazy"/></div>
+    <div class="upa-card-img" style="overflow:hidden"><img src="gallery/turquoise-upa-ratna.webp" alt="সানস্টোন উপরত্ন Sunstone Gemstone Benefits Vedic Astrology" loading="lazy"/></div>
     <div class="upa-card-info">
       <span class="upa-card-badge">☀ সূর্যের উপরত্ন</span>
       <h3 class="upa-card-title">সানস্টোন (Sunstone)</h3>
@@ -1682,7 +1684,7 @@ body.nav-open
 <!-- AMETHYST -->
 <div class="upa-card" id="amethyst">
   <div class="upa-card-top">
-    <div class="upa-card-img"><img src="gallery/amethyst-upa-ratna.webp" alt="অ্যামিথিস্ট উপরত্ন Amethyst Gemstone Benefits Vedic Jyotish" loading="lazy"/></div>
+    <div class="upa-card-img" style="overflow:hidden"><img src="gallery/amethyst-upa-ratna.webp" alt="অ্যামিথিস্ট উপরত্ন Amethyst Gemstone Benefits Vedic Jyotish" loading="lazy"/></div>
     <div class="upa-card-info">
       <span class="upa-card-badge">♄ শনির উপরত্ন</span>
       <h3 class="upa-card-title">অ্যামেথিস্ট (Amethyst)</h3>
@@ -1719,7 +1721,7 @@ body.nav-open
 <!-- CITRINE -->
 <div class="upa-card" id="citrine">
   <div class="upa-card-top">
-    <div class="upa-card-img"><img src="gallery/tourmaline-upa-ratna.webp" alt="সিট্রিন উপরত্ন Citrine Crystal Benefits Vedic Gemology" loading="lazy"/></div>
+    <div class="upa-card-img" style="overflow:hidden"><img src="gallery/tourmaline-upa-ratna.webp" alt="সিট্রিন উপরত্ন Citrine Crystal Benefits Vedic Gemology" loading="lazy"/></div>
     <div class="upa-card-info">
       <span class="upa-card-badge">♃ বৃহস্পতির উপরত্ন</span>
       <h3 class="upa-card-title">সিট্রিন (Citrine)</h3>
@@ -1756,7 +1758,7 @@ body.nav-open
 <!-- LAPIS LAZULI -->
 <div class="upa-card" id="lapis">
   <div class="upa-card-top">
-    <div class="upa-card-img"><img src="gallery/jade-upa-ratna.webp" alt="ল্যাপিস লাজুলি উপরত্ন Lapis Lazuli Benefits Vedic Astrology" loading="lazy"/></div>
+    <div class="upa-card-img" style="overflow:hidden"><img src="gallery/jade-upa-ratna.webp" alt="ল্যাপিস লাজুলি উপরত্ন Lapis Lazuli Benefits Vedic Astrology" loading="lazy"/></div>
     <div class="upa-card-info">
       <span class="upa-card-badge">☿ বুধ · ♄ শনির উপরত্ন</span>
       <h3 class="upa-card-title">লাপিস লাজুলি (Lapis Lazuli)</h3>
@@ -1793,7 +1795,7 @@ body.nav-open
 <!-- PERIDOT -->
 <div class="upa-card" id="peridot">
   <div class="upa-card-top">
-    <div class="upa-card-img"><img src="gallery/peridot-upa-ratna.webp" alt="পেরিকোট উপরত্ন Peridot Gemstone Benefits Vedic Jyotish" loading="lazy"/></div>
+    <div class="upa-card-img" style="overflow:hidden"><img src="gallery/peridot-upa-ratna.webp" alt="পেরিকোট উপরত্ন Peridot Gemstone Benefits Vedic Jyotish" loading="lazy"/></div>
     <div class="upa-card-info">
       <span class="upa-card-badge">♀ শুক্রের উপরত্ন</span>
       <h3 class="upa-card-title">পেরিডট (Peridot)</h3>
@@ -1830,7 +1832,7 @@ body.nav-open
 <!-- RED GARNET -->
 <div class="upa-card" id="red-garnet">
   <div class="upa-card-top">
-    <div class="upa-card-img"><img src="gallery/garnet-upa-ratna.webp" alt="গার্নেট উপরত্ন Red Garnet Gemstone Benefits Vedic Astrology" loading="lazy"/></div>
+    <div class="upa-card-img" style="overflow:hidden"><img src="gallery/garnet-upa-ratna.webp" alt="গার্নেট উপরত্ন Red Garnet Gemstone Benefits Vedic Astrology" loading="lazy"/></div>
     <div class="upa-card-info">
       <span class="upa-card-badge">♂ মঙ্গলের উপরত্ন</span>
       <h3 class="upa-card-title">লাল গার্নেট (Red Garnet)</h3>
@@ -1867,7 +1869,7 @@ body.nav-open
 <!-- BLUE TOPAZ -->
 <div class="upa-card" id="blue-topaz">
   <div class="upa-card-top">
-    <div class="upa-card-img"><img src="gallery/opal-upa-ratna.webp" alt="ব্লু টোপাজ উপরত্ন Blue Topaz Gemstone Benefits Vedic" loading="lazy"/></div>
+    <div class="upa-card-img" style="overflow:hidden"><img src="gallery/opal-upa-ratna.webp" alt="ব্লু টোপাজ উপরত্ন Blue Topaz Gemstone Benefits Vedic" loading="lazy"/></div>
     <div class="upa-card-info">
       <span class="upa-card-badge">♄ শনি · ☋ কেতুর উপরত্ন</span>
       <h3 class="upa-card-title">ব্লু টোপাজ (Blue Topaz)</h3>
@@ -1904,7 +1906,7 @@ body.nav-open
 
 <div class="upa-card" id="opal">
   <div class="upa-card-top">
-    <div class="upa-card-img"><img src="gallery/opal-upa-ratna.webp" alt="ওপাল উপরত্ন Opal Upa Ratna Ketu Vedic Astrology" width="100" height="130" loading="lazy"/></div>
+    <div class="upa-card-img" style="overflow:hidden"><img src="gallery/opal-upa-ratna.webp" alt="ওপাল উপরত্ন Opal Upa Ratna Ketu Vedic Astrology" width="100" height="130" loading="lazy"/></div>
     <div class="upa-card-info">
       <span class="upa-card-badge">☋ কেতুর উপরত্ন</span>
       <h3 class="upa-card-title">ওপাল (Opal)</h3>
@@ -2335,7 +2337,7 @@ body.nav-open
       <h4>MyAstrology</h4>
       <p><i class="fas fa-map-marker-alt"></i>রাণাঘাট, নদিয়া, পশ্চিমবঙ্গ — ৭৪১২০২</p>
       <p><i class="fas fa-phone"></i><a href="tel:+919333122768">+91 93331 22768</a></p>
-      <p><i class="fas fa-envelope"></i><a href="/cdn-cgi/l/email-protection#c3aaada5ac83aebaa2b0b7b1acafaca4baedaaad"><span class="__cf_email__" data-cfemail="cfa6a1a9a08fa2b6aebcbbbda0a3a0a8b6e1a6a1">[email&#160;protected]</span></a></p>
+      <p><i class="fas fa-envelope"></i><a href="mailto:info@myastrology.in">info@myastrology.in</a></p>
       <a href="https://wa.me/919333122768" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i>WhatsApp পরামর্শ</a>
       <a href="https://www.myastrology.in/astrology"><i class="fas fa-calendar-check"></i>অনলাইন বুকিং</a>
     </div>
@@ -2394,7 +2396,7 @@ body.nav-open
 <!-- BTT -->
 <button id="btt" aria-label="উপরে যান" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false">
+<script data-cfasync="false">
 /* ── NAV ── */
 (function(){
   function toggleNav(){var n=document.getElementById('navMenu'),o=document.getElementById('navOverlay');if(!n)return;var x=n.classList.contains('open');n.classList.toggle('open',!x);if(o)o.classList.toggle('open',!x);document.body.classList.toggle('nav-open',!x);}
