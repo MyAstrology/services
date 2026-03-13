@@ -2,7 +2,7 @@
 title: "পাঁচটি পাগলা ঘোড়া আর একজন সারথি — জীবন নিয়ন্ত্রণের রহস্য"
 description: "মহাভারতের রথচিত্রে লুকিয়ে আছে জীবনের গভীরতম সত্য। পঞ্চইন্দ্রিয়কে বশে না রাখলে কী হয়? মন ও বুদ্ধি দিয়ে জীবন পরিচালনার বৈদিক পথ জানুন।"
 date: "2026-03-13"
-image: "https://www.myastrology.in/images/mahabharata-ratha-pancha-indriya.webp"
+image: "https://www.myastrology.in/images/mahabharata-ratha-pancha-indriya-jiban-darshan.webp"
 slug: "mahabharata-ratha-pancha-indriya-jiban-darshan"
 author:
   name: "Dr Prodyut Acharya"
