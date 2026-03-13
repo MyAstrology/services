@@ -169,7 +169,7 @@ img{max-width:100%;display:block}
 /* GEM SECTION */
 .gem-section{background:#fff;border-radius:14px;box-shadow:var(--shadow);margin-bottom:32px;overflow:hidden;border:1px solid #ece4d4}
 .gem-section-header{display:grid;grid-template-columns:180px 1fr;gap:0;align-items:stretch}
-@media(max-width:600px){.gem-section-header{grid-template-columns:1fr}}
+@media(max-width:600px){}
 .gem-img-col{background:linear-gradient(135deg,#0c1b33,#1a3060);position:relative;overflow:hidden;min-height:210px}
 .gem-img-col img{width:100%;height:100%;object-fit:cover;opacity:.88;transition:opacity .3s}
 .gem-img-col:hover img{opacity:1}
@@ -417,8 +417,7 @@ img{max-width:100%;display:block}
 
 /* rudraksha 2-col grid on desktop */
 .rudra-uni-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-bottom:8px}
-@media(min-width:768px){.rudra-uni-grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:480px){.rudra-uni-grid{grid-template-columns:1fr}}
+
 
 /* uparatna 2-col grid on desktop */
 .upa-uni-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:8px}
@@ -441,8 +440,7 @@ img{max-width:100%;display:block}
 /* override old gem-section grid to use same 180px */
 .gem-section{background:#fff;border-radius:14px;box-shadow:var(--shadow);margin-bottom:28px;overflow:hidden;border:1px solid #ece4d4;transition:box-shadow .25s,border-color .25s}
 .gem-section:hover{box-shadow:0 10px 32px rgba(0,0,0,.13);border-color:rgba(201,162,39,.4)}
-.gem-section-header{display:grid;grid-template-columns:180px 1fr;align-items:stretch}
-@media(max-width:600px){.gem-section-header{grid-template-columns:1fr}}
+@media(max-width:600px){}
 .gem-img-col{background:linear-gradient(135deg,#0c1b33,#1a3060);overflow:hidden;min-height:210px;position:relative}
 .gem-img-col img{width:100%;height:100%;object-fit:cover;opacity:.88;transition:opacity .3s}
 .gem-img-col:hover img{opacity:1}
@@ -482,6 +480,7 @@ h2.sec-title::after,h3.sec-title::after{display:none}
 
 /* rudraksha grid — rudra-uni-grid is per-group, no heading inside */
 /* Each rudra-uni-grid already 2-col */
+
 
 /* Legacy upa class overrides */
 .uni-card [style="display:contents"] { display: contents; }
@@ -568,15 +567,14 @@ body.nav-open{overflow-y:hidden}
 
 /* ══ 3-COL DESKTOP GRIDS ══ */
 .gem-grid-3{display:grid;grid-template-columns:1fr;gap:24px;margin:0}
-@media(min-width:768px){.gem-grid-3{grid-template-columns:repeat(3,1fr);align-items:start}
+@media(min-width:700px){
+  .gem-grid-3{grid-template-columns:repeat(3,1fr);align-items:start}
   .gem-grid-3 .gem-section{margin-bottom:0}
   .gem-grid-3 .gem-tab{font-size:.6rem;padding:4px 6px}
 }
 .upa-grid-3{display:grid;grid-template-columns:1fr;gap:20px;margin-top:8px}
-@media(min-width:768px){.upa-grid-3{grid-template-columns:repeat(3,1fr);align-items:start}}
+@media(min-width:700px){.upa-grid-3{grid-template-columns:repeat(3,1fr);align-items:start}}
 .rudra-uni-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:6px}
-@media(min-width:768px){.rudra-uni-grid{grid-template-columns:repeat(3,1fr)}}
-
 /* ══ UPA-CARD (gem-section style) ══ */
 .upa-card{background:#fff;border-radius:14px;overflow:hidden;border:1px solid #e5dece;box-shadow:0 2px 14px rgba(0,0,0,.09);display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
 .upa-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.13)}
@@ -674,9 +672,77 @@ body.nav-open{overflow-y:hidden}
 body.nav-open .wa-float,
 body.nav-open #btt{display:none!important}
 
-@media(max-width:767px){
-  .gem-grid-3,.upa-grid-3,.rudra-uni-grid{grid-template-columns:1fr!important}
+/* ══════════════════════════════════════════════
+   MASTER 3-COL GRID RULES — DESKTOP ≥700px
+═══════════════════════════════════════════════ */
+
+/* Navaratna: 9 cards → 3×3 */
+.gem-grid-3{display:grid;grid-template-columns:1fr;gap:20px;margin:0}
+
+/* Uparatna: 9 cards → 3×3 */
+.upa-grid-3{display:grid;grid-template-columns:1fr;gap:20px;margin-top:8px}
+
+/* Rudraksha: 15 cards → 3×5 */
+.rudra-uni-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:6px}
+
+@media(min-width:700px){
+  .gem-grid-3{grid-template-columns:repeat(3,1fr);align-items:start;gap:20px}
+  .gem-grid-3 .gem-section{margin-bottom:0}
+  .gem-grid-3 .gem-tab{font-size:.6rem;padding:4px 6px}
+
+  .upa-grid-3{grid-template-columns:repeat(3,1fr);align-items:start;gap:20px}
+
+  .rudra-uni-grid{grid-template-columns:repeat(3,1fr);gap:14px}
+
+  /* Inside 3-col grid: gem card image stacks on top */
+  .gem-grid-3 .gem-section-header{grid-template-columns:1fr}
+  .gem-grid-3 .gem-img-col{height:160px;min-height:0}
 }
+
+@media(max-width:699px){
+  .gem-grid-3,.upa-grid-3,.rudra-uni-grid{grid-template-columns:1fr !important}
+}
+
+/* ══════════════════════════════════════════════
+   CERTIFICATE SHOWCASE — BEAUTIFUL
+═══════════════════════════════════════════════ */
+.cert-showcase{background:linear-gradient(135deg,#0a1730 0%,#122040 50%,#0a1730 100%);padding:48px 20px;margin:40px 0;border-radius:18px;box-shadow:0 8px 40px rgba(10,23,48,.35)}
+.cs-header{text-align:center;margin-bottom:36px}
+.cs-header-ey{font-size:.78rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.cs-header-h{font-family:var(--fh);font-size:clamp(1.4rem,3vw,2rem);color:#fff;margin:0 0 10px}
+.cs-header-sub{font-size:.88rem;color:rgba(255,255,255,.7);max-width:520px;margin:0 auto}
+.cs-grid{display:grid;grid-template-columns:1fr;gap:28px;max-width:1000px;margin:0 auto}
+@media(min-width:700px){.cs-grid{grid-template-columns:1fr 1fr}}
+
+/* Certificate card */
+.cs-cert-card{background:rgba(255,255,255,.05);border:1px solid rgba(201,162,39,.35);border-radius:16px;overflow:hidden;backdrop-filter:blur(4px);transition:transform .3s,box-shadow .3s}
+.cs-cert-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(201,162,39,.25)}
+.cs-cert-img-wrap{position:relative;overflow:hidden}
+.cs-cert-img{width:100%;height:auto;display:block;filter:brightness(0.95) contrast(1.05)}
+.cs-cert-badge-ov{position:absolute;bottom:12px;left:12px;background:linear-gradient(135deg,#c9a227,#f0c040);color:#0a1730;font-size:.72rem;font-weight:800;padding:5px 14px;border-radius:20px;letter-spacing:.06em;text-transform:uppercase}
+.cs-cert-shine{position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);animation:certShine 3s ease-in-out infinite 1s}
+@keyframes certShine{0%{left:-100%}50%{left:150%}100%{left:150%}}
+.cs-cert-body{padding:22px 22px 24px}
+.cs-cert-title-row{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.cs-cert-icon-lg{font-size:1.8rem;flex-shrink:0}
+.cs-cert-title{font-family:var(--fh);font-size:1.05rem;color:#fff;margin:0;line-height:1.35}
+.cs-cert-title span{font-size:.85rem;color:var(--gold);font-family:var(--fb)}
+.cs-cert-desc{font-size:.83rem;color:rgba(255,255,255,.78);line-height:1.6;margin:0 0 12px}
+.cs-cert-meta{display:flex;flex-wrap:wrap;gap:10px;font-size:.75rem;color:rgba(255,255,255,.6);margin-bottom:14px}
+.cs-cert-pills{display:flex;flex-wrap:wrap;gap:8px}
+.cs-pill{font-size:.72rem;font-weight:700;padding:4px 12px;border-radius:20px;letter-spacing:.04em}
+.cs-pill.gold{background:rgba(201,162,39,.2);border:1px solid rgba(201,162,39,.5);color:var(--gold)}
+.cs-pill.green{background:rgba(40,167,69,.15);border:1px solid rgba(40,167,69,.4);color:#6fcf97}
+.cs-pill.blue{background:rgba(52,144,220,.15);border:1px solid rgba(52,144,220,.4);color:#90caf9}
+
+/* Credentials list */
+.cs-creds-wrap{display:flex;flex-direction:column;gap:16px;justify-content:center}
+.cs-cred-item{display:flex;align-items:flex-start;gap:16px;background:rgba(255,255,255,.05);border:1px solid rgba(201,162,39,.2);border-radius:12px;padding:16px 18px;transition:background .2s,border-color .2s}
+.cs-cred-item:hover{background:rgba(201,162,39,.08);border-color:rgba(201,162,39,.45)}
+.cs-cred-icon{font-size:1.5rem;flex-shrink:0;width:38px;text-align:center}
+.cs-cred-title{font-size:.9rem;font-weight:700;color:#fff;margin-bottom:3px}
+.cs-cred-sub{font-size:.78rem;color:rgba(255,255,255,.62);line-height:1.45}
+
 </style>
 </head>
 <body>
@@ -1816,7 +1882,50 @@ body.nav-open #btt{display:none!important}
     </div>
   </div>
 </div>
-</div><!-- /.upa-grid-3 -->
+</div><div class="upa-card" id="turquoise">
+  <div class="upa-card-top">
+    <div class="upa-card-img"><img src="gallery/turquoise-upa-ratna.webp" alt="ফিরোজা টার্কোয়েজ উপরত্ন Turquoise Upa Ratna Vedic Astrology" width="130" height="150" loading="lazy"/></div>
+    <div class="upa-card-info">
+      <span class="upa-card-badge">☊ রাহুর উপরত্ন</span>
+      <h3 class="upa-card-title">ফিরোজা (Turquoise)</h3>
+      <p class="upa-card-tagline">হেসোনাইটের সাশ্রয়ী বিকল্প — সুরক্ষা ও সাহসের পাথর</p>
+    </div>
+  </div>
+  <div class="upa-tabs">
+    <button class="upa-tab active" onclick="showUpaTab(this,'turquoise-sam')">সামগ্রিক</button>
+    <button class="upa-tab" onclick="showUpaTab(this,'turquoise-jyo')">জ্যোতিষিক</button>
+    <button class="upa-tab" onclick="showUpaTab(this,'turquoise-wear')">পরিধান</button>
+    <button class="upa-tab" onclick="showUpaTab(this,'turquoise-skt')">সংস্কৃত</button>
+    <button class="upa-tab" onclick="showUpaTab(this,'turquoise-buy')">সংগ্রহ</button>
+  </div>
+  <div class="upa-panel active" id="turquoise-sam">
+    <p>রাহুর উপরত্ন হিসেবে ফিরোজা বা টার্কোয়েজ — গোমেদের সাশ্রয়ী বিকল্প। নীলাভ-সবুজ এই পাথর মানসিক সুরক্ষা, সাহস ও আত্মবিশ্বাস বৃদ্ধি করে। রাহুর দশা বা অন্তর্দশায় বিশেষ ফলদায়ক।</p>
+    <p>কার পরা উচিত? — রাহু মহাদশায় যারা আছেন, হঠাৎ বিপদ-আপদ বা অজ্ঞাত ভয়ের শিকার, ও যাদের কুণ্ডলীতে রাহু দুর্বল।</p>
+    <div class="cert-badges"><span class="cert-badge">🔵 Turquoise · CuAl₆(PO₄)₄(OH)₈</span><span class="cert-badge">Mohs 5–6</span><span class="cert-badge">রং · নীলাভ-সবুজ</span><span class="cert-badge">ইরান · তিব্বত</span></div>
+  </div>
+  <div class="upa-panel" id="turquoise-jyo">
+    <p><strong>পারাশর মত:</strong> রাহুর রত্ন গোমেদ — ফিরোজা তার সাশ্রয়ী ও কার্যকর বিকল্প।</p>
+    <p>রাহু লগ্নেশ বা যোগকারক হলে ফিরোজা বিশেষ উপকারী। ষষ্ঠ, অষ্টম বা দ্বাদশে রাহু থাকলে সতর্কতার সাথে পরতে হবে।</p>
+  </div>
+  <div class="upa-panel" id="turquoise-wear">
+    <div class="wear-table">
+      <div class="wear-item"><div class="wear-label">ধাতু</div><div class="wear-value">রুপা বা পঞ্চধাতু</div></div>
+      <div class="wear-item"><div class="wear-label">আঙুল</div><div class="wear-value">মধ্যমা (Middle Finger) — ডান হাত</div></div>
+      <div class="wear-item"><div class="wear-label">দিন ও সময়</div><div class="wear-value">শনিবার বা বুধবার সন্ধ্যায়</div></div>
+      <div class="wear-item"><div class="wear-label">ন্যূনতম রতি</div><div class="wear-value">৫–৭ রতি (Carat)</div></div>
+      <div class="wear-item"><div class="wear-label">মন্ত্র</div><div class="wear-value">ওঁ রাং রাহবে নমঃ (১০৮ বার)</div></div>
+    </div>
+  </div>
+  <div class="upa-panel" id="turquoise-skt">
+    <div class="uni-shastra">স্কন্দপুরাণ: "হরিন্মণিং রাহুরত্নং ধারয়েৎ সর্বসিদ্ধয়ে" — রাহুর পাথর ধারণে সর্বসিদ্ধি লাভ হয়।</div>
+  </div>
+  <div class="upa-panel" id="turquoise-buy">
+    <p>ফিরোজা কেনার সময় প্রাকৃতিক ও ভেজালমুক্ত পাথর নিশ্চিত করুন। ইরানি ও তিব্বতি ফিরোজা সেরা। Lab Certificate সহ নিন।</p>
+    <div class="cert-badges"><span class="cert-badge">🔵 Natural Certified</span><span class="cert-badge">✅ Untreated</span></div>
+    <button class="fcta-btn-p" onclick="_oRzp('gem')">💎 পরামর্শ নিন — ₹১০০১</button>
+  </div>
+</div>
+<!-- /.upa-grid-3 -->
 
 
 
@@ -1847,26 +1956,36 @@ body.nav-open #btt{display:none!important}
   <div class="cs-header">
     <div class="cs-header-ey">🏅 সার্টিফিকেশন ও স্বীকৃতি</div>
     <h2 class="cs-header-h">বিশ্বাসযোগ্যতা যাচাই করুন</h2>
+    <p class="cs-header-sub">ড. প্রদ্যুৎ আচার্য — SKAVSA সার্টিফাইড Gem Therapist ও PhD (Gold Medal) জ্যোতিষাচার্য</p>
   </div>
   <div class="cs-grid">
+    <!-- Certificate Card -->
     <div class="cs-cert-card">
       <div class="cs-cert-img-wrap">
         <img src="assist/astrology-certificate12.jpg"
              alt="Dr. Prodyut Acharya SKAVSA Gem Therapist Certificate Kolkata Vedic Gemology Expert West Bengal"
              class="cs-cert-img" loading="lazy" width="280" height="200"/>
-        <div class="cs-cert-badge-ov">🎓 SKAVSA</div>
+        <div class="cs-cert-badge-ov">🎓 SKAVSA Certified</div>
+        <div class="cs-cert-shine"></div>
       </div>
       <div class="cs-cert-body">
-        <h3 class="cs-cert-title">Gem Therapist Upadhi — SKAVSA, Kolkata</h3>
-        <p class="cs-cert-desc">South Kolkata Astrology &amp; Vastu Science Academy (SKAVSA) কর্তৃক ড. প্রদ্যুৎ আচার্যকে Gem Therapist Upadhi প্রদান। Gemology, Diamond, Coral, Pearl সহ বিস্তারিত প্রশিক্ষণ সম্পন্ন।</p>
-        <div class="cs-cert-meta">📅 15 August 2017 · Tapan Theatre, Kolkata</div>
+        <div class="cs-cert-title-row">
+          <span class="cs-cert-icon-lg">🏆</span>
+          <h3 class="cs-cert-title">Gem Therapist Upadhi<br/><span>SKAVSA, Kolkata</span></h3>
+        </div>
+        <p class="cs-cert-desc">South Kolkata Astrology &amp; Vastu Science Academy কর্তৃক ড. প্রদ্যুৎ আচার্যকে Gem Therapist Upadhi প্রদান। Gemology, Diamond, Coral, Pearl সহ বিস্তারিত প্রশিক্ষণ।</p>
+        <div class="cs-cert-meta">
+          <span>📅 15 August 2017</span>
+          <span>🏛 Tapan Theatre, Kolkata</span>
+        </div>
         <div class="cs-cert-pills">
-          <span>🎓 Gem Therapist</span>
-          <span>✅ SKAVSA 2017</span>
-          <span>🏛 W.B. Govt. Regd.</span>
+          <span class="cs-pill gold">🎓 Gem Therapist</span>
+          <span class="cs-pill green">✅ SKAVSA 2017</span>
+          <span class="cs-pill blue">🏛 W.B. Govt. Regd.</span>
         </div>
       </div>
     </div>
+    <!-- Credentials -->
     <div class="cs-creds-wrap">
       <div class="cs-cred-item">
         <div class="cs-cred-icon">🏆</div>
@@ -1876,7 +1995,7 @@ body.nav-open #btt{display:none!important}
         </div>
       </div>
       <div class="cs-cred-item">
-        <div class="cs-cred-icon">📅</div>
+        <div class="cs-cred-icon">⏳</div>
         <div>
           <div class="cs-cred-title">১৫+ বছরের অভিজ্ঞতা</div>
           <div class="cs-cred-sub">রত্নপাথর পরামর্শে বিশেষজ্ঞতা · রানাঘাট, নদিয়া</div>
@@ -1896,9 +2015,17 @@ body.nav-open #btt{display:none!important}
           <div class="cs-cred-sub">বাংলা ও হিন্দিতে · WhatsApp, Phone, Video Call</div>
         </div>
       </div>
+      <div class="cs-cred-item">
+        <div class="cs-cred-icon">⭐</div>
+        <div>
+          <div class="cs-cred-title">১০,০০০+ সন্তুষ্ট ক্লায়েন্ট</div>
+          <div class="cs-cred-sub">Google · JustDial · Facebook-এ ২৭৬+ রিভিউ</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
+
 
 
 <h2 class="sec-title" id="rudraksha-intro">📿 রুদ্রাক্ষ — শিবের অশ্রু, মানবের রক্ষাকবচ</h2>
@@ -1914,6 +2041,7 @@ body.nav-open #btt{display:none!important}
 </div>
 
 <!-- RUDRAKSHA 1-2 -->
+<h3 class="sec-title" id="rudraksha-cards" style="margin-top:32px">📿 রুদ্রাক্ষ — ১ থেকে ১৫ মুখী</h3>
 <div class="rudra-uni-grid">
 <div class="uni-card">
     <div class="uni-img-col"><img src="gallery/ek-mukhi-rudraksha-original.webp" alt="এক মুখী রুদ্রাক্ষ Ek Mukhi Rudraksha Benefits Shiva Ranaghat" width="200" height="120" loading="lazy"/></div>
@@ -2051,6 +2179,8 @@ body.nav-open #btt{display:none!important}
     </div>
   </div>
 </div>
+
+<!-- RUDRAKSHA NIYAM -->
 <div class="rudra-intro" id="rudraksha-niyam" style="margin-top:24px">
   <h3 style="font-family:var(--fh);color:var(--navy);font-size:1.05rem;margin-bottom:14px">📜 রুদ্রাক্ষ পরার নিয়ম, কোন দিনে পরা উচিত ও আসল-নকল পরীক্ষা</h3>
   <p><strong>রুদ্রাক্ষ কীভাবে পরতে হয়:</strong> প্রথমে রুদ্রাক্ষ গঙ্গাজল বা কাঁচা দুধে ধুয়ে নিন। সোমবার সকালে স্নান করে শিবের সামনে রেখে "ওঁ নমঃ শিবায়" ১০৮ বার জপ করুন। তারপর ধারণ করুন।</p>
@@ -2202,7 +2332,7 @@ body.nav-open #btt{display:none!important}
       <h4>MyAstrology</h4>
       <p><i class="fas fa-map-marker-alt"></i>রাণাঘাট, নদিয়া, পশ্চিমবঙ্গ — ৭৪১২০২</p>
       <p><i class="fas fa-phone"></i><a href="tel:+919333122768">+91 93331 22768</a></p>
-      <p><i class="fas fa-envelope"></i><a href="/cdn-cgi/l/email-protection#c8a1a6aea788a5b1a9bbbcbaa7a4a7afb1e6a1a6"><span class="__cf_email__" data-cfemail="274e494148674a5e46545355484b48405e094e49">[email&#160;protected]</span></a></p>
+      <p><i class="fas fa-envelope"></i><a href="mailto:info@myastrology.in">info@myastrology.in</a></p>
       <a href="https://wa.me/919333122768" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i>WhatsApp পরামর্শ</a>
       <a href="https://www.myastrology.in/astrology"><i class="fas fa-calendar-check"></i>অনলাইন বুকিং</a>
     </div>
@@ -2261,7 +2391,7 @@ body.nav-open #btt{display:none!important}
 <!-- BTT -->
 <button id="btt" aria-label="উপরে যান" title="উপরে যান">&#8679;</button>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false">
+<script data-cfasync="false">
 /* ── NAV ── */
 (function(){
   function toggleNav(){var n=document.getElementById('navMenu'),o=document.getElementById('navOverlay');if(!n)return;var x=n.classList.contains('open');n.classList.toggle('open',!x);if(o)o.classList.toggle('open',!x);document.body.classList.toggle('nav-open',!x);}
@@ -2294,8 +2424,8 @@ function showTab(btn,pid){var body=btn.closest('.gem-body');if(!body)return;body
 function showUpaTab(btn,pid){var card=btn.closest('.upa-card');if(!card)return;card.querySelectorAll('.upa-tab').forEach(function(t){t.classList.remove('active');});card.querySelectorAll('.upa-panel').forEach(function(p){p.classList.remove('active');});btn.classList.add('active');var p=document.getElementById(pid);if(p)p.classList.add('active');}
 /* ── PAYMENT ── */
 var _pName='',_pPhone='';
-function openPay(){document.getElementById('payOverlay').classList.add('open');document.getElementById('payForm').style.display='block';document.getElementById('paySuccess').style.display='none';document.body.classList.add('nav-open');}
-function closePay(){document.getElementById('payOverlay').classList.remove('open');document.body.classList.remove('nav-open');}
+function openPay(){document.getElementById('payOverlay').classList.add('open');document.getElementById('payForm').style.display='block';document.getElementById('paySuccess').style.display='none';document.body.style.overflow='hidden';}
+function closePay(){document.getElementById('payOverlay').classList.remove('open');document.body.style.overflow='';}
 function startPayment(){
   _pName=document.getElementById('payName').value.trim();
   _pPhone=document.getElementById('payPhone').value.trim();
