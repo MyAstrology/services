@@ -492,7 +492,6 @@ h2.sec-title::after,h3.sec-title::after{display:none}
 /* ════ HERO IMAGE ════ */
 .gem-hero{width:100%;overflow:hidden;display:block;background:#07101f;line-height:0;font-size:0;border-bottom:3px solid var(--gold)}
 .gem-hero-img{width:100%;height:auto;max-height:420px;object-fit:cover;display:block}
-}
 .gem-hero-inner{display:none!important}
 /* ════ PANJIKA TEASER ════ */
 .panjika-teaser{background:linear-gradient(135deg,#f8f4ec,#fff9f0)!important;border-radius:16px!important;padding:24px 22px 22px!important;margin:0 0 26px!important;border:1px solid rgba(201,162,39,.25)!important;box-shadow:0 3px 18px rgba(201,162,39,.1)!important;text-align:left!important;position:relative;overflow:hidden}
@@ -552,7 +551,6 @@ body.nav-open{overflow-y:hidden}
 /* Hero fallback (shows when image absent) */
 .gem-hero{width:100%;overflow:hidden;display:block;background:#07101f;line-height:0;font-size:0;border-bottom:3px solid var(--gold)}
 .gem-hero-img{width:100%;height:auto;max-height:420px;object-fit:cover;display:block}
-}
 
 .gem-hero-
 
@@ -674,7 +672,7 @@ body.nav-open{overflow-y:hidden}
 
 /* ── nav open: hide floating buttons behind nav ── */
 body.nav-open .wa-float,
-body.nav-open 
+body.nav-open #btt{opacity:0!important;pointer-events:none!important}
 
 /* BTT — back to top */
 #btt{position:fixed;bottom:22px;left:18px;background:transparent;border:none;
@@ -764,7 +762,89 @@ body.nav-open
 .uni-img-col{overflow:hidden;position:relative}
 .uni-img-col img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0}
 
+
+/* ══════════════════════════════════════
+   CERT-SHOWCASE-V2 — Beautiful Card Design
+   ══════════════════════════════════════ */
+.cert-showcase-v2{background:linear-gradient(145deg,#07101f 0%,#0e2040 50%,#162a55 100%);padding:48px 24px 52px;margin:40px 0;position:relative;overflow:hidden}
+.cert-showcase-v2::before{content:"💎";position:absolute;font-size:14rem;opacity:.03;top:50%;right:2%;transform:translateY(-50%);pointer-events:none}
+.csv2-eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);text-align:center;margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:10px}
+.csv2-eyebrow::before,.csv2-eyebrow::after{content:"";display:inline-block;width:30px;height:1px;background:var(--gold);opacity:.5}
+.csv2-title{font-family:var(--fh);font-size:clamp(1.25rem,3vw,1.8rem);color:#fff;text-align:center;font-weight:700;margin-bottom:8px}
+.csv2-sub{text-align:center;color:#7a9ab8;font-size:.84rem;margin-bottom:36px;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.65}
+.csv2-grid{display:grid;grid-template-columns:1fr;gap:24px;max-width:1000px;margin:0 auto}
+@media(min-width:700px){.csv2-grid{grid-template-columns:300px 1fr}}
+/* Certificate Card */
+.csv2-cert-card{background:rgba(255,255,255,.04);border:1px solid rgba(201,162,39,.3);border-radius:18px;overflow:hidden;position:relative;transition:transform .25s,box-shadow .25s}
+.csv2-cert-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(201,162,39,.15)}
+.csv2-cert-ribbon{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#07101f;font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:6px 18px;text-align:center}
+.csv2-cert-img-wrap{position:relative;overflow:hidden;height:200px;background:#0a1828}
+.csv2-cert-img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transition:transform .4s}
+.csv2-cert-card:hover .csv2-cert-img{transform:scale(1.05)}
+.csv2-cert-glow{position:absolute;inset:0;background:linear-gradient(0deg,rgba(201,162,39,.18) 0%,transparent 60%);pointer-events:none}
+.csv2-cert-info{padding:18px 18px 20px}
+.csv2-cert-name{font-family:var(--fh);font-size:1rem;font-weight:700;color:var(--gold2);margin-bottom:4px}
+.csv2-cert-org{font-size:.78rem;color:#8dadd4;margin-bottom:8px;line-height:1.5}
+.csv2-cert-date{font-size:.72rem;color:#5a7a9a;margin-bottom:12px}
+.csv2-cert-tags{display:flex;flex-wrap:wrap;gap:5px}
+.csv2-cert-tags span{background:rgba(201,162,39,.12);border:1px solid rgba(201,162,39,.25);color:var(--gold2);font-size:.62rem;font-weight:700;padding:3px 9px;border-radius:16px}
+/* Credentials Grid */
+.csv2-cred-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-content:start}
+@media(max-width:500px){.csv2-cred-grid{grid-template-columns:1fr}}
+.csv2-cred-card{background:rgba(255,255,255,.04);border:1px solid rgba(201,162,39,.18);border-radius:13px;padding:16px 14px;display:flex;align-items:flex-start;gap:12px;transition:border-color .2s,background .2s}
+.csv2-cred-card:hover{border-color:rgba(201,162,39,.45);background:rgba(201,162,39,.06)}
+.csv2-cred-icon-wrap{font-size:1.5rem;flex-shrink:0;line-height:1;margin-top:2px}
+.csv2-cred-title{font-family:var(--fh);font-size:.82rem;font-weight:700;color:#d4e8ff;margin-bottom:4px}
+.csv2-cred-desc{font-size:.73rem;color:#5a7a9a;line-height:1.5}
+
+/* ══ RUDRAKSHA EXTRA INFO PILLS ══ */
+.rudra-extra{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.rudra-info-pill{font-size:.62rem;font-weight:700;background:rgba(75,0,130,.08);border:1px solid rgba(75,0,130,.2);color:var(--purple);padding:2px 8px;border-radius:14px;white-space:nowrap}
+
+/* ══ IMAGE FIT — universal definitive rules ══ */
+.gem-img-col{overflow:hidden;position:relative;background:linear-gradient(135deg,#0c1b33,#152845)}
+.gem-img-col img{position:absolute!important;top:0!important;left:0!important;width:100%!important;height:100%!important;object-fit:cover!important;display:block!important}
+.uni-img-col{overflow:hidden;position:relative;min-height:200px}
+.uni-img-col img{position:absolute!important;top:0!important;left:0!important;width:100%!important;height:100%!important;object-fit:cover!important;display:block!important}
+.upa-card-img{overflow:hidden;position:relative}
+.upa-card-img img{position:absolute!important;top:0!important;left:0!important;width:100%!important;height:100%!important;object-fit:cover!important;display:block!important}
+
+/* ══ RUDRAKSHA CARD HEIGHT ══ */
+.rudra-uni-grid .uni-card{display:flex;flex-direction:column}
+.rudra-uni-grid .uni-img-col{height:180px;min-height:0;flex-shrink:0}
+@media(min-width:700px){.rudra-uni-grid .uni-img-col{height:160px}}
+
+/* ══ GEM GRID 3 — image fit in card header ══ */
+.gem-grid-3 .gem-img-col{height:180px!important;min-height:0!important;width:100%!important}
+
+/* ══ UPA CARD image ══ */
+.upa-card-top{display:grid;grid-template-columns:120px 1fr;gap:0;min-height:120px}
+.upa-card-img{position:relative;min-height:120px;overflow:hidden;background:#0c1b33}
+@media(max-width:500px){.upa-card-top{grid-template-columns:100px 1fr}}
+
+/* ══ MID-CTA-2 ══ */
+.mid-cta-2{background:linear-gradient(135deg,#0e2244 0%,#162a55 50%,#0a1628 100%);padding:44px 24px;text-align:center;margin:0;position:relative;overflow:hidden}
+.mid-cta-2::before{content:"🌿";position:absolute;font-size:10rem;opacity:.04;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.mcta2-inner{max-width:640px;margin:0 auto;position:relative;z-index:1}
+.mcta2-icon{font-size:2.5rem;margin-bottom:10px}
+.mcta2-ey{font-size:.66rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.mcta2-h{font-family:var(--fh);font-size:clamp(1.1rem,3vw,1.55rem);color:#fff;font-weight:700;margin:0 0 10px;line-height:1.3}
+.mcta2-p{color:#8dadd4;font-size:.86rem;line-height:1.7;margin:0 0 20px}
+.mcta2-features{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 16px;margin-bottom:22px;color:#6a8aaa;font-size:.77rem}
+.mcta2-btns{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.mcta2-btn-p{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#07101f;border:none;padding:12px 24px;border-radius:30px;font-size:.87rem;font-weight:800;cursor:pointer;transition:transform .2s;font-family:var(--fb)}
+.mcta2-btn-p:hover{transform:translateY(-2px)}
+.mcta2-btn-wa{background:#25d366;color:#fff;padding:12px 20px;border-radius:30px;font-size:.87rem;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:transform .2s}
+.mcta2-btn-wa:hover{transform:translateY(-2px)}
+
+/* ══ RUDRA-INTRO ══ */
+.rudra-intro{background:#fff;border-radius:14px;padding:24px 24px 20px;box-shadow:var(--shadow);margin-bottom:28px;border-left:4px solid var(--purple)}
+.rudra-intro p{font-size:.9rem;color:#333;line-height:1.87;margin-bottom:12px}
+.rudra-intro blockquote{margin:14px 0;padding:12px 18px;background:rgba(75,0,130,.05);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;font-style:italic;color:var(--purple);font-size:.88rem}
+.rudra-intro ul li{font-size:.88rem;color:#333;line-height:1.8}
 </style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S7BQGLP211"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S7BQGLP211');</script>
 </head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVVL8XBD" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -800,7 +880,6 @@ body.nav-open
   <a href="https://wa.me/919333122768" target="_blank" rel="noopener" class="nav-wa-link">💬 WhatsApp পরামর্শ</a>
 </nav>
 <div class="nav-overlay" id="navOverlay" onclick="closeNav()"></div>
-</div>
 
 
 
@@ -989,9 +1068,7 @@ body.nav-open
 </div>
 
 <!-- PEARL -->
-<h2 class="sec-title" id="pearl">মুক্তা (মতি) — চন্দ্রের রত্নপাথর</h2>
-<p class="sec-sub">চন্দ্র গ্রহের রত্ন কি? মুক্তা রত্ন কার জন্য ভালো? — Pearl · জৈব রত্ন · Nacre গঠন · লগ্ন: কর্কট</p>
-<div class="gem-section">
+<div class="gem-section" id="pearl">
   <div class="gem-section-header" style="display:flex!important;flex-direction:column!important">
     <div class="gem-img-col" style="width:100%!important;min-width:0!important;height:180px;min-height:0!important"><img src="gallery/natural-pearl-mukta.webp" alt="মুক্তা মতি রত্ন Natural Pearl Moon Graha Benefits Vedic Jyotish" loading="lazy"/></div>
     <div class="gem-header-text">
@@ -1060,9 +1137,7 @@ body.nav-open
 </div>
 
 <!-- RED CORAL -->
-<h2 class="sec-title" id="coral">প্রবাল (মুঙ্গা) — মঙ্গলের রত্নপাথর</h2>
-<p class="sec-sub">মঙ্গলের রত্ন কি? লাল প্রবাল রত্নের উপকারিতা — Red Coral · Corallium rubrum · মঙ্গল দোষ নিরাময়</p>
-<div class="gem-section">
+<div class="gem-section" id="coral">
   <div class="gem-section-header" style="display:flex!important;flex-direction:column!important">
     <div class="gem-img-col" style="width:100%!important;min-width:0!important;height:180px;min-height:0!important"><img src="gallery/red-coral-prabal.webp" alt="প্রবাল মুঙ্গা রত্ন Red Coral Mars Graha Benefits Vedic Astrology" loading="lazy"/></div>
     <div class="gem-header-text">
@@ -1132,9 +1207,7 @@ body.nav-open
 
 
 <!-- EMERALD -->
-<h2 class="sec-title" id="emerald">পান্না — বুধের রত্নপাথর</h2>
-<p class="sec-sub">বুধ গ্রহের রত্ন কি? পান্না রত্ন কাদের পরা উচিত? — Emerald · Beryl পরিবার · Mohs: 7.5–8.0</p>
-<div class="gem-section">
+<div class="gem-section" id="emerald">
   <div class="gem-section-header" style="display:flex!important;flex-direction:column!important">
     <div class="gem-img-col" style="width:100%!important;min-width:0!important;height:180px;min-height:0!important"><img src="gallery/emerald-panna-stone.webp" alt="পান্না রত্ন Emerald Stone Mercury Budh Graha Benefits Vedic" loading="lazy"/></div>
     <div class="gem-header-text">
@@ -1204,9 +1277,7 @@ body.nav-open
 
 
 <!-- YELLOW SAPPHIRE -->
-<h2 class="sec-title" id="yellow-sapphire">পুখরাজ — বৃহস্পতির রত্নপাথর</h2>
-<p class="sec-sub">বৃহস্পতির রত্ন কি? পোখরাজ রত্ন কার জন্য শুভ? — Yellow Sapphire · Corundum · শুভ সংখ্যা: ৩</p>
-<div class="gem-section">
+<div class="gem-section" id="yellow-sapphire">
   <div class="gem-section-header" style="display:flex!important;flex-direction:column!important">
     <div class="gem-img-col" style="width:100%!important;min-width:0!important;height:180px;min-height:0!important"><img src="gallery/yellow-sapphire-pukhraj.webp" alt="পুখরাজ রত্ন Yellow Sapphire Jupiter Brihaspati Graha Benefits" loading="lazy"/></div>
     <div class="gem-header-text">
@@ -1276,9 +1347,7 @@ body.nav-open
 
 
 <!-- DIAMOND -->
-<h2 class="sec-title" id="diamond">হীরা / সাদা পোখরাজ — শুক্রের রত্নপাথর</h2>
-<p class="sec-sub">শুক্র গ্রহের রত্ন কি? হীরা রত্ন কার জন্য শুভ? — Diamond / White Topaz · Mohs: 10.0 / 8.0</p>
-<div class="gem-section">
+<div class="gem-section" id="diamond">
   <div class="gem-section-header" style="display:flex!important;flex-direction:column!important">
     <div class="gem-img-col" style="width:100%!important;min-width:0!important;height:180px;min-height:0!important"><img src="gallery/diamond-heera-stone.webp" alt="হীরা রত্ন Diamond Venus Shukra Graha Benefits Vedic Astrology" loading="lazy"/></div>
     <div class="gem-header-text">
@@ -1349,9 +1418,7 @@ body.nav-open
 
 
 <!-- BLUE SAPPHIRE -->
-<h2 class="sec-title" id="blue-sapphire">নীলকান্তমণি — শনির রত্নপাথর</h2>
-<p class="sec-sub">শনি খারাপ হলে কোন রত্ন পরতে হবে? শনির জন্য নীলা রত্ন কীভাবে পরতে হয়? — Blue Sapphire (Neelam) · সবচেয়ে শক্তিশালী রত্ন</p>
-<div class="gem-section">
+<div class="gem-section" id="blue-sapphire">
   <div class="gem-section-header" style="display:flex!important;flex-direction:column!important">
     <div class="gem-img-col" style="width:100%!important;min-width:0!important;height:180px;min-height:0!important"><img src="gallery/blue-sapphire-neelam.webp" alt="নীলকান্তমণি নীলম রত্ন Blue Sapphire Saturn Shani Benefits" loading="lazy"/></div>
     <div class="gem-header-text">
@@ -1423,9 +1490,7 @@ body.nav-open
 
 
 <!-- GOMED -->
-<h2 class="sec-title" id="gomed">গোমেদ — রাহুর রত্নপাথর</h2>
-<p class="sec-sub">রাহুর রত্ন কি? গোমেদ রত্ন কাদের জন্য? — Hessonite Garnet · Grossular পরিবার · রাহুর দশায় বিশেষ</p>
-<div class="gem-section">
+<div class="gem-section" id="gomed">
   <div class="gem-section-header" style="display:flex!important;flex-direction:column!important">
     <div class="gem-img-col" style="width:100%!important;min-width:0!important;height:180px;min-height:0!important"><img src="gallery/hessonite-gomed-stone.webp" alt="গোমেদ রত্ন Hessonite Gomed Rahu Graha Benefits Vedic Astrology" loading="lazy"/></div>
     <div class="gem-header-text">
@@ -1492,9 +1557,7 @@ body.nav-open
 
 
 <!-- CATSEYE -->
-<h2 class="sec-title" id="catseye">লহসুনিয়া (বৈদূর্য) — কেতুর রত্নপাথর</h2>
-<p class="sec-sub">কেতুর রত্ন কি? বৈদুর্য বা ক্যাটস আই রত্নের উপকারিতা — Cat's Eye · Chrysoberyl · মোক্ষকারক</p>
-<div class="gem-section">
+<div class="gem-section" id="catseye">
   <div class="gem-section-header" style="display:flex!important;flex-direction:column!important">
     <div class="gem-img-col" style="width:100%!important;min-width:0!important;height:180px;min-height:0!important"><img src="gallery/cats-eye-lehsunia.webp" alt="লহসুনিয়া বৈদুর্য রত্ন Cats Eye Ketu Graha Benefits Vedic" loading="lazy"/></div>
     <div class="gem-header-text">
@@ -1974,61 +2037,83 @@ body.nav-open
 </section>
 
 
-<!-- CERT STRIP -->
-<section class="cert-showcase" aria-label="শংসাপত্র ও অভিজ্ঞতা">
-  <div class="cs-header">
-    <div class="cs-header-ey">🏅 সার্টিফিকেশন ও স্বীকৃতি</div>
-    <h2 class="cs-header-h">বিশ্বাসযোগ্যতা যাচাই করুন</h2>
-  </div>
-  <div class="cs-grid">
-    <div class="cs-cert-card">
-      <div class="cs-cert-img-wrap">
+<!-- CERT STRIP — REDESIGNED -->
+<section class="cert-showcase-v2" aria-label="শংসাপত্র ও অভিজ্ঞতা" id="certification">
+  <div class="csv2-eyebrow">🏅 সার্টিফিকেশন ও স্বীকৃতি</div>
+  <h2 class="csv2-title">বিশ্বাসযোগ্যতা যাচাই করুন</h2>
+  <p class="csv2-sub">ড. প্রদ্যুৎ আচার্য — SKAVSA সার্টিফাইড Gem Therapist, Vedic Jyotish PhD (Gold Medal), রানাঘাট, নদিয়া</p>
+
+  <div class="csv2-grid">
+
+    <!-- Certificate Card -->
+    <div class="csv2-cert-card">
+      <div class="csv2-cert-ribbon">🎓 SKAVSA Certified</div>
+      <div class="csv2-cert-img-wrap">
         <img src="assist/astrology-certificate12.jpg"
-             alt="Dr. Prodyut Acharya SKAVSA Gem Therapist Certificate Kolkata Vedic Gemology Expert West Bengal"
-             class="cs-cert-img" loading="lazy" width="280" height="200"/>
-        <div class="cs-cert-badge-ov">🎓 SKAVSA</div>
+             alt="Dr. Prodyut Acharya SKAVSA Gem Therapist Certificate Kolkata"
+             class="csv2-cert-img" loading="lazy"/>
+        <div class="csv2-cert-glow"></div>
       </div>
-      <div class="cs-cert-body">
-        <h3 class="cs-cert-title">Gem Therapist Upadhi — SKAVSA, Kolkata</h3>
-        <p class="cs-cert-desc">South Kolkata Astrology &amp; Vastu Science Academy (SKAVSA) কর্তৃক ড. প্রদ্যুৎ আচার্যকে Gem Therapist Upadhi প্রদান। Gemology, Diamond, Coral, Pearl সহ বিস্তারিত প্রশিক্ষণ সম্পন্ন।</p>
-        <div class="cs-cert-meta">📅 15 August 2017 · Tapan Theatre, Kolkata</div>
-        <div class="cs-cert-pills">
-          <span>🎓 Gem Therapist</span>
-          <span>✅ SKAVSA 2017</span>
+      <div class="csv2-cert-info">
+        <div class="csv2-cert-name">Gem Therapist Upadhi</div>
+        <div class="csv2-cert-org">South Kolkata Astrology &amp; Vastu Science Academy</div>
+        <div class="csv2-cert-date">📅 15 August 2017 · Tapan Theatre, Kolkata</div>
+        <div class="csv2-cert-tags">
+          <span>✅ Gemology</span>
+          <span>💎 Diamond</span>
+          <span>🔴 Coral</span>
+          <span>🌕 Pearl</span>
           <span>🏛 W.B. Govt. Regd.</span>
         </div>
       </div>
     </div>
-    <div class="cs-creds-wrap">
-      <div class="cs-cred-item">
-        <div class="cs-cred-icon">🏆</div>
-        <div>
-          <div class="cs-cred-title">PhD in Vedic Jyotish — Gold Medal</div>
-          <div class="cs-cred-sub">জ্যোতিষ শাস্ত্রে সর্বোচ্চ ডিগ্রি ও Gold Medal বিজয়ী</div>
+
+    <!-- Credential Cards -->
+    <div class="csv2-cred-grid">
+      <div class="csv2-cred-card">
+        <div class="csv2-cred-icon-wrap">🏆</div>
+        <div class="csv2-cred-content">
+          <div class="csv2-cred-title">PhD — Gold Medal</div>
+          <div class="csv2-cred-desc">Vedic Jyotish-এ সর্বোচ্চ ডিগ্রি ও Gold Medal বিজয়ী</div>
         </div>
       </div>
-      <div class="cs-cred-item">
-        <div class="cs-cred-icon">📅</div>
-        <div>
-          <div class="cs-cred-title">১৫+ বছরের অভিজ্ঞতা</div>
-          <div class="cs-cred-sub">রত্নপাথর পরামর্শে বিশেষজ্ঞতা · রানাঘাট, নদিয়া</div>
+      <div class="csv2-cred-card">
+        <div class="csv2-cred-icon-wrap">📅</div>
+        <div class="csv2-cred-content">
+          <div class="csv2-cred-title">১৫+ বছরের অভিজ্ঞতা</div>
+          <div class="csv2-cred-desc">রত্নপাথর পরামর্শে বিশেষজ্ঞতা · রানাঘাট, নদিয়া</div>
         </div>
       </div>
-      <div class="cs-cred-item">
-        <div class="cs-cred-icon">💎</div>
-        <div>
-          <div class="cs-cred-title">SKAVSA Certified Gem Therapist</div>
-          <div class="cs-cred-sub">Gemology, Diamond, Coral, Pearl বিশেষজ্ঞতা</div>
+      <div class="csv2-cred-card">
+        <div class="csv2-cred-icon-wrap">💎</div>
+        <div class="csv2-cred-content">
+          <div class="csv2-cred-title">SKAVSA Gem Therapist</div>
+          <div class="csv2-cred-desc">Diamond, Coral, Pearl, Emerald বিশেষজ্ঞতা</div>
         </div>
       </div>
-      <div class="cs-cred-item">
-        <div class="cs-cred-icon">🌍</div>
-        <div>
-          <div class="cs-cred-title">সারা ভারতে অনলাইন পরামর্শ</div>
-          <div class="cs-cred-sub">বাংলা ও হিন্দিতে · WhatsApp, Phone, Video Call</div>
+      <div class="csv2-cred-card">
+        <div class="csv2-cred-icon-wrap">🌍</div>
+        <div class="csv2-cred-content">
+          <div class="csv2-cred-title">সারা ভারতে পরামর্শ</div>
+          <div class="csv2-cred-desc">বাংলা · হিন্দি · WhatsApp · Video Call</div>
+        </div>
+      </div>
+      <div class="csv2-cred-card">
+        <div class="csv2-cred-icon-wrap">⭐</div>
+        <div class="csv2-cred-content">
+          <div class="csv2-cred-title">৫.০ রেটিং · ২৭৬+ রিভিউ</div>
+          <div class="csv2-cred-desc">Google · Facebook · YouTube-এ যাচাইকৃত রিভিউ</div>
+        </div>
+      </div>
+      <div class="csv2-cred-card">
+        <div class="csv2-cred-icon-wrap">🔒</div>
+        <div class="csv2-cred-content">
+          <div class="csv2-cred-title">Lab Certified পরামর্শ</div>
+          <div class="csv2-cred-desc">Govt. Registered Lab থেকে certified রত্ন নির্বাচন</div>
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -2054,7 +2139,7 @@ body.nav-open
       <div class="rudra-face uni-title">১ মুখী</div>
       <div class="rudra-graha uni-badge">☀ সূর্য / পরমশিব</div>
       <p><strong>এক মুখী রুদ্রাক্ষের উপকারিতা:</strong> সবচেয়ে বিরল ও মূল্যবান। আত্মজ্ঞান, মোক্ষ ও নেতৃত্বের জন্য। সূর্যের দুর্বলতায় বিশেষ উপকারী। কাজু আকৃতির নেপালি ১ মুখী সত্যিকারের বিরল।</p>
-      <div class="uni-shastra">শিবমহাপুরাণ: "একং রুদ্রাক্ষমালাং তু যো বিভর্তি শুচিঃ সদা — তস্য সর্বে কামদা দেবাঃ প্রসীদন্তি ন সংশয়ঃ"</div>
+      <div class="uni-shastra">শিবমহাপুরাণ: "একং রুদ্রাক্ষমালাং তু যো বিভর্তি শুচিঃ সদা — তস্য সর্বে কামদা দেবাঃ প্রসীদন্তি ন সংশয়ঃ"</div><div class="rudra-extra"><span class="rudra-info-pill">🌟 অত্যন্ত বিরল</span><span class="rudra-info-pill">📿 পরার দিন: সোমবার</span><span class="rudra-info-pill">💛 ধাতু: সোনা</span><span class="rudra-info-pill">🧘 নেপালি কাজু আকৃতি সেরা</span></div></div>
     </div>
   </div>
 <div class="uni-card">
@@ -2063,7 +2148,7 @@ body.nav-open
       <div class="rudra-face uni-title">২ মুখী</div>
       <div class="rudra-graha uni-badge">🌙 চন্দ্র / অর্ধনারীশ্বর</div>
       <p><strong>দুই মুখী রুদ্রাক্ষ কি কাজ করে:</strong> দাম্পত্য সম্পর্ক উন্নতি, মানসিক শান্তি ও চন্দ্রের শক্তিবর্ধনে। শিব ও শক্তির একতার প্রতীক। বিবাহিত দম্পতির জন্য বিশেষ শুভ।</p>
-      <div class="uni-shastra">দেবীভাগবত: "দ্বিমুখং চার্ধনারীশং তদ্ধারণাৎ পশুপতির্নরঃ"</div>
+      <div class="uni-shastra">দেবীভাগবত: "দ্বিমুখং চার্ধনারীশং তদ্ধারণাৎ পশুপতির্নরঃ"</div><div class="rudra-extra"><span class="rudra-info-pill">💑 বিবাহিতদের জন্য</span><span class="rudra-info-pill">📿 পরার দিন: সোমবার</span><span class="rudra-info-pill">🥈 ধাতু: রুপা</span><span class="rudra-info-pill">☯ শিব-শক্তির প্রতীক</span></div></div>
     </div>
   </div>
 <div class="uni-card">
@@ -2072,7 +2157,7 @@ body.nav-open
       <div class="rudra-face uni-title">৩ মুখী</div>
       <div class="rudra-graha uni-badge">♂ মঙ্গল / অগ্নি / ত্রিনেত্র</div>
       <p><strong>তিন মুখী রুদ্রাক্ষের উপকারিতা:</strong> আত্মবিশ্বাস বৃদ্ধি, মঙ্গলের কুপ্রভাব কমায়। পূর্বজন্মের পাপক্ষয়ে ও ব্যক্তিত্ব উন্নয়নে। ব্রহ্মা-বিষ্ণু-মহেশ্বরের একত্রিত শক্তির প্রতীক।</p>
-      <div class="uni-shastra">শিবপুরাণ: "ত্রিমুখং ত্রিপুরারিঞ্চ ত্রিকালং ব্রহ্মপুত্রকম্"</div>
+      <div class="uni-shastra">শিবপুরাণ: "ত্রিমুখং ত্রিপুরারিঞ্চ ত্রিকালং ব্রহ্মপুত্রকম্"</div><div class="rudra-extra"><span class="rudra-info-pill">🔥 আত্মবিশ্বাস বর্ধক</span><span class="rudra-info-pill">📿 পরার দিন: মঙ্গলবার</span><span class="rudra-info-pill">💛 ধাতু: সোনা/তামা</span><span class="rudra-info-pill">😓 হীনমন্যতা দূর করে</span></div>
     </div>
   </div>
 <div class="uni-card">
@@ -2081,7 +2166,7 @@ body.nav-open
       <div class="rudra-face uni-title">৪ মুখী</div>
       <div class="rudra-graha uni-badge">☿ বুধ / ব্রহ্মা / চতুর্মুখ</div>
       <p><strong>চার মুখী রুদ্রাক্ষ কার জন্য:</strong> বুদ্ধি, স্মৃতি ও বাকশক্তির উন্নতি। ছাত্র, শিক্ষক ও বক্তাদের জন্য বিশেষ উপকারী। বুধের দুর্বলতায় অত্যন্ত কার্যকর। চার বেদের প্রতীক।</p>
-      <div class="uni-shastra">পদ্মপুরাণ: "চতুর্মুখং ব্রহ্মরূপং ধারয়েদ্যো নরঃ সদা"</div>
+      <div class="uni-shastra">পদ্মপুরাণ: "চতুর্মুখং ব্রহ্মরূপং ধারয়েদ্যো নরঃ সদা"</div><div class="rudra-extra"><span class="rudra-info-pill">📚 ছাত্রদের জন্য</span><span class="rudra-info-pill">📿 পরার দিন: বুধবার</span><span class="rudra-info-pill">💛 ধাতু: সোনা/রুপা</span><span class="rudra-info-pill">🧠 স্মৃতিশক্তি বর্ধক</span></div></div>
     </div>
   </div>
 <div class="uni-card">
@@ -2090,7 +2175,7 @@ body.nav-open
       <div class="rudra-face uni-title">৫ মুখী</div>
       <div class="rudra-graha uni-badge">♃ বৃহস্পতি / পঞ্চমুখী শিব</div>
       <p><strong>পাঁচ মুখী রুদ্রাক্ষ পরার উপকারিতা:</strong> সর্বশুভ — সবাই পরতে পারেন। কোনো লগ্ন বা রাশিতে ক্ষতি নেই। বৃহস্পতির শক্তিবর্ধনে সর্বোত্তম। <strong>গবেষণায় প্রমাণিত</strong> — রক্তচাপ ও heart rate নিয়ন্ত্রণে সাহায্য করে।</p>
-      <div class="uni-shastra">অথর্বশিরোপনিষদ: "পঞ্চমুখং মহাদেবং সর্বপাপহরং শুভম্"</div>
+      <div class="uni-shastra">অথর্বশিরোপনিষদ: "পঞ্চমুখং মহাদেবং সর্বপাপহরং শুভম্"</div><div class="rudra-extra"><span class="rudra-info-pill">✅ সবার জন্য নিরাপদ</span><span class="rudra-info-pill">📿 পরার দিন: সোমবার</span><span class="rudra-info-pill">💛 যেকোনো ধাতু</span><span class="rudra-info-pill">❤️ BP নিয়ন্ত্রণে বৈজ্ঞানিক প্রমাণ</span></div></div>
     </div>
   </div>
 <div class="uni-card">
@@ -2099,7 +2184,7 @@ body.nav-open
       <div class="rudra-face uni-title">৬ মুখী</div>
       <div class="rudra-graha uni-badge">♀ শুক্র / কার্তিক / সুব্রহ্মণ্য</div>
       <p><strong>ছয় মুখী রুদ্রাক্ষ কার জন্য শুভ:</strong> প্রেম, সৌন্দর্য ও সৃষ্টিশীলতায়। শুক্রের নেতিবাচক প্রভাব কমায়। শিল্পী, সংগীতজ্ঞ ও প্রেমিক-প্রেমিকাদের জন্য বিশেষ উপকারী।</p>
-      <div class="uni-shastra">শিবমহাপুরাণ: "ষণ্মুখং কার্তিকেয়ঞ্চ ষড়্গুণৈঃ সহিতং শুভম্"</div>
+      <div class="uni-shastra">শিবমহাপুরাণ: "ষণ্মুখং কার্তিকেয়ঞ্চ ষড়্গুণৈঃ সহিতং শুভম্"</div><div class="rudra-extra"><span class="rudra-info-pill">🎨 শিল্পীদের জন্য</span><span class="rudra-info-pill">📿 পরার দিন: শুক্রবার</span><span class="rudra-info-pill">💛 ধাতু: সোনা</span><span class="rudra-info-pill">💃 প্রেম ও সৌন্দর্যে</span></div></div>
     </div>
   </div>
 <div class="uni-card">
@@ -2108,7 +2193,7 @@ body.nav-open
       <div class="rudra-face uni-title">৭ মুখী</div>
       <div class="rudra-graha uni-badge">♄ শনি / অনন্ত / সপ্তঋষি</div>
       <p><strong>সাত মুখী রুদ্রাক্ষ শনির জন্য ভালো কি:</strong> হ্যাঁ, অত্যন্ত ভালো। <strong>কোন রুদ্রাক্ষ ধন বৃদ্ধি করে?</strong> — ৭ মুখী রুদ্রাক্ষ। দারিদ্র্যনাশ, ব্যবসায় উন্নতি ও শনির সাড়েসাতিতে রক্ষাকবচ।</p>
-      <div class="uni-shastra">পদ্মপুরাণ: "সপ্তমুখং মহালক্ষ্মীং সপ্তর্ষিং সপ্তসাগরম্"</div>
+      <div class="uni-shastra">পদ্মপুরাণ: "সপ্তমুখং মহালক্ষ্মীং সপ্তর্ষিং সপ্তসাগরম্"</div><div class="rudra-extra"><span class="rudra-info-pill">💰 ধনবর্ধক</span><span class="rudra-info-pill">📿 পরার দিন: শনিবার</span><span class="rudra-info-pill">🥈 ধাতু: রুপা</span><span class="rudra-info-pill">🛡 শনির সাড়েসাতিতে রক্ষা</span></div></div>
     </div>
   </div>
 <div class="uni-card">
@@ -2117,7 +2202,7 @@ body.nav-open
       <div class="rudra-face uni-title">৮ মুখী</div>
       <div class="rudra-graha uni-badge">☊ রাহু / গণেশ / অষ্টবসু</div>
       <p><strong>আট মুখী রুদ্রাক্ষের ফল:</strong> রাহুর বিভ্রম থেকে মুক্তি। গণেশের আশীর্বাদে সকল বাধা অপসারণ। অদৃশ্য শত্রু প্রতিরোধে ও কালসর্প দোষ শান্তিতে বিশেষ উপকারী।</p>
-      <div class="uni-shastra">শিবপুরাণ: "অষ্টমুখং গণেশঞ্চ সর্বসিদ্ধিপ্রদায়কম্"</div>
+      <div class="uni-shastra">শিবপুরাণ: "অষ্টমুখং গণেশঞ্চ সর্বসিদ্ধিপ্রদায়কম্"</div><div class="rudra-extra"><span class="rudra-info-pill">🐍 কালসর্প দোষে</span><span class="rudra-info-pill">📿 পরার দিন: বুধবার</span><span class="rudra-info-pill">💛 ধাতু: অষ্টধাতু</span><span class="rudra-info-pill">👁 অদৃশ্য শত্রু প্রতিরোধ</span></div></div>
     </div>
   </div>
 <div class="uni-card">
@@ -2126,7 +2211,7 @@ body.nav-open
       <div class="rudra-face uni-title">৯ মুখী</div>
       <div class="rudra-graha uni-badge">☋ কেতু / দুর্গা / নবদুর্গা</div>
       <p><strong>নয় মুখী রুদ্রাক্ষের উপকারিতা:</strong> শক্তি, সাহস ও কেতুর দুর্দশা প্রশমনে। মা দুর্গার আশীর্বাদ। দীর্ঘমেয়াদি রোগ ও অজানা ভয় থেকে মুক্তিতে। নয় দুর্গার শক্তির প্রতীক।</p>
-      <div class="uni-shastra">দেবীভাগবত: "নবমুখং মহাদেবী নবদুর্গা স্বরূপিণী"</div>
+      <div class="uni-shastra">দেবীভাগবত: "নবমুখং মহাদেবী নবদুর্গা স্বরূপিণী"</div><div class="rudra-extra"><span class="rudra-info-pill">🦁 সাহস বর্ধক</span><span class="rudra-info-pill">📿 পরার দিন: মঙ্গলবার</span><span class="rudra-info-pill">🥈 ধাতু: রুপা/অষ্টধাতু</span><span class="rudra-info-pill">😨 অজানা ভয় দূর করে</span></div></div>
     </div>
   </div>
 <div class="uni-card">
@@ -2135,7 +2220,7 @@ body.nav-open
       <div class="rudra-face uni-title">১০ মুখী</div>
       <div class="rudra-graha uni-badge">বিষ্ণু / দশ দিক / দশাবতার</div>
       <p><strong>দশ মুখী রুদ্রাক্ষ কার জন্য:</strong> দশ দিকের সুরক্ষা প্রদান। নেতিবাচক শক্তি, কুনজর ও কালো জাদু থেকে রক্ষা। বিষ্ণুর দশাবতারের শক্তির আধার।</p>
-      <div class="uni-shastra">স্কন্দপুরাণ: "দশমুখং দশভুজং দশদিক্পালপূজিতম্"</div>
+      <div class="uni-shastra">স্কন্দপুরাণ: "দশমুখং দশভুজং দশদিক্পালপূজিতম্"</div><div class="rudra-extra"><span class="rudra-info-pill">🔟 দশদিকের সুরক্ষা</span><span class="rudra-info-pill">📿 পরার দিন: সোমবার</span><span class="rudra-info-pill">💛 ধাতু: সোনা</span><span class="rudra-info-pill">🧿 কুনজর প্রতিরোধ</span></div></div>
     </div>
   </div>
 <div class="uni-card">
@@ -2144,7 +2229,7 @@ body.nav-open
       <div class="rudra-face uni-title">১১ মুখী</div>
       <div class="rudra-graha uni-badge">একাদশ রুদ্র / হনুমান</div>
       <p><strong>এগারো মুখী রুদ্রাক্ষ কি কাজ করে:</strong> ধ্যান, সাধনা ও আধ্যাত্মিক গভীরতায়। যোগীদের ও সাধকদের পছন্দের রুদ্রাক্ষ। সাহস ও বিজয়ের শক্তি প্রদান করে।</p>
-      <div class="uni-shastra">শিবমহাপুরাণ: "একাদশমুখং রুদ্রং একাদশরুদ্রস্বরূপম্"</div>
+      <div class="uni-shastra">শিবমহাপুরাণ: "একাদশমুখং রুদ্রং একাদশরুদ্রস্বরূপম্"</div><div class="rudra-extra"><span class="rudra-info-pill">🧘 যোগ সাধকদের জন্য</span><span class="rudra-info-pill">📿 পরার দিন: মঙ্গলবার</span><span class="rudra-info-pill">💛 ধাতু: সোনা</span><span class="rudra-info-pill">💪 সাহস ও বিজয়</span></div></div>
     </div>
   </div>
 <div class="uni-card">
@@ -2153,7 +2238,7 @@ body.nav-open
       <div class="rudra-face uni-title">১২ মুখী</div>
       <div class="rudra-graha uni-badge">☀ সূর্য / দ্বাদশ আদিত্য / বিষ্ণু</div>
       <p><strong>বারো মুখী রুদ্রাক্ষ সূর্যের জন্য কি:</strong> হ্যাঁ, অত্যন্ত উপকারী। নেতৃত্ব, আত্মবিশ্বাস ও সৌরশক্তি বৃদ্ধিতে। ব্যবসায়ী ও প্রশাসকদের জন্য বিশেষ কার্যকর।</p>
-      <div class="uni-shastra">পদ্মপুরাণ: "দ্বাদশমুখং দ্বাদশাদিত্যস্বরূপং তেজোনিধিম্"</div>
+      <div class="uni-shastra">পদ্মপুরাণ: "দ্বাদশমুখং দ্বাদশাদিত্যস্বরূপং তেজোনিধিম্"</div><div class="rudra-extra"><span class="rudra-info-pill">☀ সৌরশক্তি বর্ধক</span><span class="rudra-info-pill">📿 পরার দিন: রবিবার</span><span class="rudra-info-pill">💛 ধাতু: সোনা</span><span class="rudra-info-pill">👑 নেতৃত্বদানকারীদের জন্য</span></div></div>
     </div>
   </div>
 <div class="uni-card">
@@ -2162,7 +2247,7 @@ body.nav-open
       <div class="rudra-face uni-title">১৩ মুখী</div>
       <div class="rudra-graha uni-badge">♀ ইন্দ্র / বিশ্বেদেব / শুক্র</div>
       <p><strong>তেরো মুখী রুদ্রাক্ষ কার জন্য শুভ:</strong> ইচ্ছাপূরণ ও সৌভাগ্যের জন্য। শুক্রের সাথে যুক্ত — প্রেম, বিবাহ ও সৌন্দর্যে শুভ। অত্যন্ত বিরল — সংগ্রহ করা কঠিন।</p>
-      <div class="uni-shastra">শিবপুরাণ: "ত্রয়োদশমুখং বিশ্বে বিশ্বেদেবাঃ প্রতিষ্ঠিতাঃ"</div>
+      <div class="uni-shastra">শিবপুরাণ: "ত্রয়োদশমুখং বিশ্বে বিশ্বেদেবাঃ প্রতিষ্ঠিতাঃ"</div><div class="rudra-extra"><span class="rudra-info-pill">💫 ইচ্ছাপূরণ</span><span class="rudra-info-pill">📿 পরার দিন: শুক্রবার</span><span class="rudra-info-pill">💛 ধাতু: সোনা</span><span class="rudra-info-pill">💍 বিবাহে বিলম্ব দূর</span></div></div>
     </div>
   </div>
 <div class="uni-card">
@@ -2171,7 +2256,7 @@ body.nav-open
       <div class="rudra-face uni-title">১৪ মুখী</div>
       <div class="rudra-graha uni-badge">♄ শনি / মহেশ্বর / তৃতীয় নেত্র</div>
       <p><strong>চৌদ্দ মুখী রুদ্রাক্ষের উপকারিতা:</strong> সর্বোচ্চ মূল্যবান রুদ্রাক্ষ। তৃতীয় নেত্র জাগ্রত করে — অন্তর্দৃষ্টি ও দিব্যজ্ঞান লাভে। শনির সাথে যুক্ত — কর্মক্ষেত্রে অসাধারণ সাফল্য।</p>
-      <div class="uni-shastra">দেবীভাগবত: "চতুর্দশমুখং দেবং মহেশ্বরমনাময়ম্ — তৃতীয়নেত্রজাতঞ্চ সর্বসিদ্ধিপ্রদায়কম্"</div>
+      <div class="uni-shastra">দেবীভাগবত: "চতুর্দশমুখং দেবং মহেশ্বরমনাময়ম্ — তৃতীয়নেত্রজাতঞ্চ সর্বসিদ্ধিপ্রদায়কম্"</div><div class="rudra-extra"><span class="rudra-info-pill">👁 তৃতীয় নেত্র জাগ্রত</span><span class="rudra-info-pill">📿 পরার দিন: শনিবার</span><span class="rudra-info-pill">💛 ধাতু: সোনা</span><span class="rudra-info-pill">🔮 দিব্যজ্ঞান লাভ</span></div></div>
     </div>
   </div>
 <div class="uni-card">
@@ -2180,7 +2265,7 @@ body.nav-open
       <div class="rudra-face uni-title">১৫ মুখী</div>
       <div class="rudra-graha uni-badge">♄♀ শনি-শুক্র / পশুপতিনাথ</div>
       <p><strong>পনেরো মুখী রুদ্রাক্ষ বিশেষত্ব:</strong> অত্যন্ত দুর্লভ ও মূল্যবান। পশুপতিনাথের স্বরূপ। ব্যবসায়িক সাফল্য, সম্পদ বৃদ্ধি ও আধ্যাত্মিক উন্নতিতে। নেতৃত্বদানকারীদের জন্য বিশেষ উপকারী।</p>
-      <div class="uni-shastra">অথর্বশিরোপনিষদ: "পঞ্চদশমুখং পশুপতিং সর্বার্থসাধকম্"</div>
+      <div class="uni-shastra">অথর্বশিরোপনিষদ: "পঞ্চদশমুখং পশুপতিং সর্বার্থসাধকম্"</div><div class="rudra-extra"><span class="rudra-info-pill">💎 অত্যন্ত দুর্লভ</span><span class="rudra-info-pill">📿 পরার দিন: সোমবার</span><span class="rudra-info-pill">💛 ধাতু: সোনা</span><span class="rudra-info-pill">📈 সম্পদ বৃদ্ধি</span></div></div>
     </div>
   </div>
 </div>
@@ -2337,7 +2422,7 @@ body.nav-open
       <h4>MyAstrology</h4>
       <p><i class="fas fa-map-marker-alt"></i>রাণাঘাট, নদিয়া, পশ্চিমবঙ্গ — ৭৪১২০২</p>
       <p><i class="fas fa-phone"></i><a href="tel:+919333122768">+91 93331 22768</a></p>
-      <p><i class="fas fa-envelope"></i><a href="mailto:info@myastrology.in">info@myastrology.in</a></p>
+      <p><i class="fas fa-envelope"></i><a href="/cdn-cgi/l/email-protection#d6bfb8b0b996bbafb7a5a2a4b9bab9b1aff8bfb8"><span class="__cf_email__" data-cfemail="751c1b131a35180c140601071a191a120c5b1c1b">[email&#160;protected]</span></a></p>
       <a href="https://wa.me/919333122768" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i>WhatsApp পরামর্শ</a>
       <a href="https://www.myastrology.in/astrology"><i class="fas fa-calendar-check"></i>অনলাইন বুকিং</a>
     </div>
@@ -2396,7 +2481,7 @@ body.nav-open
 <!-- BTT -->
 <button id="btt" aria-label="উপরে যান" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
-<script data-cfasync="false">
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false">
 /* ── NAV ── */
 (function(){
   function toggleNav(){var n=document.getElementById('navMenu'),o=document.getElementById('navOverlay');if(!n)return;var x=n.classList.contains('open');n.classList.toggle('open',!x);if(o)o.classList.toggle('open',!x);document.body.classList.toggle('nav-open',!x);}
@@ -2447,11 +2532,11 @@ function startPayment(){
     modal:{ondismiss:function(){btn.disabled=false;btn.textContent='🔒 নিরাপদ পেমেন্ট করুন';}},
   };
   var rzp=new Razorpay(opt);
-  rzp.on('payment.failed',function(r){btn.disabled=false;btn.textContent='🔒 নিরাপদ পেমেন্ট করুন';alert('পেমেন্ট ব্যর্থ। আবার চেষ্টা করুন।');});
+  rzp.on('payment.failed',function(r){btn.disabled=false;btn.textContent='🔒 নিরাপদ পেমেন্ট করুন';alert('পেমেন্ট ব্যর্থ হয়েছে। আবার চেষ্টা করুন।');});
   rzp.open();
 }
-document.getElementById('payOverlay').addEventListener('click',function(e){if(e.target===this)closePay();});
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closePay();});
+/* ── FALLBACK PAYMENT ── */
+function fallbackPay(){window.open('https://pages.razorpay.com/myastrology','_blank');}
 </script>
 </body>
 </html>
