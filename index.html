@@ -87,7 +87,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;overflow-x:clip;max-width:100%}
 body{
-  overflow-x:clip;max-width:100vw;font-family:var(--fb);color:var(--text);background:var(--cream);line-height:1.75;-webkit-font-smoothing:antialiased  padding-top:66px;
+  overflow-x:clip;max-width:100vw;font-family:var(--fb);color:var(--text);background:var(--cream);line-height:1.75;-webkit-font-smoothing:antialiased;padding-top:66px;
 }
 img{max-width:100%;height:auto;display:block}
 a{text-decoration:none;color:inherit}
@@ -116,8 +116,10 @@ h1,h2,h3,h4{font-family:var(--fh);line-height:1.3}
 
 /* BANNER */
 .banner-images{background:#000;overflow:hidden;position:relative;width:100%}
-.banner-images img{display:none;width:100%;object-fit:cover;}
+.banner-images img{display:none;width:100%;height:220px;object-fit:cover;object-position:center top;}
 .banner-images img.active{display:block}
+@media(min-width:600px){.banner-images img{height:340px;}}
+@media(min-width:960px){.banner-images img{height:460px;object-position:center center;}}
 
 /* HERO */
 .hero{position:relative;overflow:hidden;background:linear-gradient(165deg,#f9f4ee 0%,#edf3fc 60%,#f2eef8 100%);text-align:center;padding:30px 24px 22px;border-bottom:1px solid #ddd5c0;}
@@ -973,6 +975,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="region-card"><h4>রাণাঘাট, নদিয়া</h4><p>প্রেম, ক্যারিয়ার ও পরিবারের জন্য ব্যক্তিগত ও অনলাইন হস্তরেখা ও জ্যোতিষ পথনির্দেশনা।</p></div>
       <div class="region-card"><h4>কলকাতা ও পশ্চিমবঙ্গ</h4><p>ঐতিহ্যবাহী বাংলা জ্যোতিষ ও প্রতিকার পরামর্শ — ব্যক্তিগতভাবে বা ফোনে।</p></div>
       <div class="region-card"><h4>সারা ভারতে অনলাইন</h4><p>কুণ্ডলী সংশোধন, হস্তরেখা পথনির্দেশনা ও মন্ত্র সমাধান সারা ভারতে।</p></div>
+      <div class="region-card"><h4>WhatsApp / ভিডিও কল</h4><p>ঘরে বসেই ফোন বা WhatsApp-এ সরাসরি ড. আচার্যের সাথে পরামর্শ করুন — সারা ভারত ও বিদেশ থেকে।</p></div>
     </div>
     <div class="tagline" style="margin-top:28px">&#8220;আপনার হাত নিয়তির খাঁচা নয় — এটি সচেত পছন্দের একটি ক্যানভাস। তারারা বাধ্য করে না; তারা পরামর্শ দেয়।&#8221; — ড. প্রদ্যুৎ আচার্য, MyAstrology</div>
   </div>
@@ -1072,7 +1075,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       var short = text.length > 220 ? text.substring(0, 220) + '…' : text;
       var photo = r.profile_photo_url
         ? '<img src="' + r.profile_photo_url + '" alt="' + r.author_name + '" style="width:42px;height:42px;border-radius:50%;object-fit:cover;flex-shrink:0" onerror="this.style.display=\'none\'" loading="lazy">'
-        : '';
+        : '<div style="width:42px;height:42px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.1rem;flex-shrink:0">' + r.author_name.charAt(0) + '</div>';
       return '<div class="review-card">'
         + '<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">'
         + photo
@@ -1085,16 +1088,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         + '</div>';
     }).join('');
   }
+  /* ৬টি প্রকৃত Google / JustDial রিভিউ */
   var fallback = [
-    { author_name: 'Sreshtha Ghosh', rating: 5, relative_time_description: 'Google Review', text: 'I consulted Dr. Prodyut Acharya and I am very satisfied. Each and every prediction came true. He is very kind and helpful. I would recommend MyAstrology without any hesitation.' },
-    { author_name: 'A. Banerjee', rating: 5, relative_time_description: 'Google Review', text: 'Best astrologer in Ranaghat. His horoscope reading was very accurate and gave me the confidence to make important career decisions. Highly recommended.' },
-    { author_name: 'R. Saha', rating: 5, relative_time_description: 'Google Review', text: 'The online astrology consultation was very easy and highly effective. He explained every planet and Dosha with great clarity. Very satisfied.' },
-    { author_name: 'M. Ghosh', rating: 5, relative_time_description: 'Google Review', text: 'His palmistry reading was outstanding. Most aspects of my life and health matched perfectly. Very genuine and ethical guidance.' },
-    { author_name: 'P. Choudhury', rating: 5, relative_time_description: 'Google Review', text: 'We consulted for marriage matching. The advice was logical, scientific and deeply rooted in Vedic Astrology. Very professional and accurate.' },
-    { author_name: 'Rabi Karmakar', rating: 5, relative_time_description: 'JustDial Review', text: 'তিন বছর পর বুঝলাম ড. আচার্যের প্রতিটি জ্যোতিষ পূর্বাভাসই সঠিক ছিল। সৎ ও নিষ্ঠাবান পরামর্শদাতা। আমি আমার পরিবারের সবাইকে পাঠাই।' }
+    { author_name: 'Rupa Bepari', rating: 5, relative_time_description: 'Google Review', text: 'Dr. Prodyut Acharya is one of the best astrologers in India! His astrology and palmistry consultation at MyAstrology Ranaghat is truly life-changing. He explained my horoscope (Janma Kundli) so clearly and gave accurate predictions that matched my life exactly. Highly recommended!' },
+    { author_name: 'Hari Sankar Barai', rating: 5, relative_time_description: 'Google Review', text: 'MyAstrology Ranaghat — a trusted name in Indian Astrology and Palmistry Consultation, founded by Dr. Prodyut Acharya, one of the most accurate and respected astrologers in India. Here, ancient Vedic wisdom meets modern insight. Truly exceptional service.' },
+    { author_name: 'Sreshtha Ghosh', rating: 5, relative_time_description: 'Google Review', text: "I've consulted with Astrologer Prodyut Acharya (My astrology) and I'm very satisfied with the service. Each and every prediction came out to be real and I was actually relating the prediction with my own life. Everything was incredibly accurate. Strongly recommended!" },
+    { author_name: 'Subash Roy', rating: 5, relative_time_description: 'Google Review', text: 'Accurate Astrology Consultation in Ranaghat – Highly Recommended! I recently had a wonderful experience with My Astrology Ranaghat. The astrologer is highly knowledgeable, professional, and truly gifted. He took the time to listen and gave deep, accurate insights into my life.' },
+    { author_name: 'Ganesh Das', rating: 5, relative_time_description: 'Google Review', text: 'Best astrologer in West Bengal. Very nice astrology and palmistry service, very good suggestion. I am very happy with the consultation and would definitely come back. His predictions were spot on and advice very practical.' },
+    { author_name: 'Rabi Karmakar', rating: 5, relative_time_description: 'JustDial Review', text: 'তিন বছর পর বুঝলাম ড. আচার্যের প্রতিটি জ্যোতিষ পূর্বাভাসই সঠিক ছিল। সৎ ও নিষ্ঠাবান পরামর্শদাতা। আমি আমার পরিবারের সবাইকে পাঠাই। সত্যিকারের বিশ্বস্ত জ্যোতিষী।' }
   ];
   var grid = document.getElementById('google-review-grid');
   var summary = document.getElementById('g-rating-summary');
+  /* সরাসরি ৬টি রিভিউ দেখাও; /reviews.json থেকে আরও ভালো ডেটা এলে সেটি ব্যবহার করো */
+  renderReviews(fallback, grid);
   fetch('/reviews.json')
     .then(function (r) { return r.json(); })
     .then(function (data) {
@@ -1103,10 +1109,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       document.getElementById('g-rating-stars').textContent = renderStars(Math.round(data.result.rating));
       document.getElementById('g-rating-count').textContent = (data.result.user_ratings_total || '122') + '+ Google Reviews';
       summary.style.display = 'block';
-      var reviews = data.result.reviews.filter(function (r) { return r.rating >= 4; }).slice(0, 6);
-      renderReviews(reviews, grid);
+      var apiReviews = data.result.reviews.filter(function (r) { return r.rating >= 4; });
+      /* API থেকে ৬টি না পেলে fallback দিয়ে পূরণ করো */
+      if (apiReviews.length >= 6) {
+        renderReviews(apiReviews.slice(0, 6), grid);
+      } else if (apiReviews.length > 0) {
+        var combined = apiReviews.concat(fallback).slice(0, 6);
+        renderReviews(combined, grid);
+      }
     })
-    .catch(function () { renderReviews(fallback, grid); });
+    .catch(function () { /* fallback ইতিমধ্যে render হয়েছে */ });
 })();
 </script>
 
@@ -1142,7 +1154,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h4>MyAstrology</h4>
       <p><i class="fas fa-map-marker-alt"></i>রাণাঘাট, নদিয়া, পশ্চিমবঙ্গ — ৭৪১২০২</p>
       <p><i class="fas fa-phone"></i>+91 93331 22768</p>
-      <p><i class="fas fa-envelope"></i><a href="/cdn-cgi/l/email-protection#026b6c646d426f7b637176706d6e6d657b2c6b6c"><span class="__cf_email__" data-cfemail="ec85828a83ac81958d9f989e8380838b95c28582">[email&#160;protected]</span></a></p>
+      <p><i class="fas fa-envelope"></i><a href="mailto:info@myastrology.in">info@myastrology.in</a></p>
       <a href="https://wa.me/919333122768" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i>WhatsApp পরামর্শ</a>
       <a href="https://www.myastrology.in/astrology.html"><i class="fas fa-calendar-check"></i>অনলাইন বুকিং</a>
     </div>
