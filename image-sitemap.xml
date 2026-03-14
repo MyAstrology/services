@@ -267,7 +267,13 @@
       <image:loc>https://www.myastrology.in/gallery/emerald-panna-stone.webp</image:loc>
     </image:image>
     <image:image>
+      <image:loc>https://www.myastrology.in/gallery/yellow-sapphire-pokhraj.webp</image:loc>
+    </image:image>
+    <image:image>
       <image:loc>https://www.myastrology.in/gallery/diamond-heera-stone.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.myastrology.in/gallery/blue-sapphire-nelam.webp</image:loc>
     </image:image>
     <image:image>
       <image:loc>https://www.myastrology.in/gallery/hessonite-gomed-stone.webp</image:loc>
@@ -660,9 +666,6 @@
       <image:loc>https://www.myastrology.in/gallery/best-astrologer-in-west-bengal-dr-prodyut-acharya.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.myastrology.in/gallery/blue-sapphire-nelam.webp</image:loc>
-    </image:image>
-    <image:image>
       <image:loc>https://www.myastrology.in/gallery/expert-astrologer-palmist-nadia.webp</image:loc>
     </image:image>
     <image:image>
@@ -670,9 +673,6 @@
     </image:image>
     <image:image>
       <image:loc>https://www.myastrology.in/gallery/panna.webp.webp</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.myastrology.in/gallery/yellow-sapphire-pokhraj.webp</image:loc>
     </image:image>
   </url>
 </urlset>
