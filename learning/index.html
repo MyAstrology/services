@@ -3,81 +3,203 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Learning Hub | MyAstrology</title>
-  <meta name="description" content="জ্যোতিষ, জীবনদর্শন, মানসিক শক্তি ও দিকনির্দেশনা শেখার কেন্দ্র। MyAstrology Learning Hub।">
-  <meta name="robots" content="index, follow">
-
-  <link rel="canonical" href="https://www.myastrology.in/learning/">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Learning Hub | MyAstrology">
-  <meta property="og:description" content="জ্ঞান অর্জন করুন, বিশ্বাস গড়ুন এবং সঠিক দিকনির্দেশনা নিন।">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.myastrology.in/learning/">
-
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "name": "MyAstrology Learning Hub",
-    "url": "https://www.myastrology.in/learning/",
-    "description": "জ্ঞান ও দিকনির্দেশনার কেন্দ্র।",
-    "inLanguage": "bn",
-    "publisher": {
-      "@type": "Organization",
-      "name": "MyAstrology",
-      "url": "https://www.myastrology.in/"
+  <title>Learning Hub - MyAstrology</title>
+  <meta name="description" content="জ্যোতিষ, জীবনদর্শন ও আত্মউন্নয়নের সম্পূর্ণ শিক্ষা কেন্দ্র।">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Noto Serif Bengali', serif;
+      background: linear-gradient(135deg, #f8f4ff 0%, #fff9f0 100%);
+      color: #2c1810;
+      line-height: 1.8;
+      padding: 20px;
     }
-  }
-  </script>
-
+    .container { max-width: 1000px; margin: 0 auto; }
+    header {
+      text-align: center;
+      padding: 60px 20px 40px;
+      background: linear-gradient(135deg, #0a192f 0%, #0e1e38 100%);
+      color: white;
+      border-radius: 15px;
+      margin-bottom: 50px;
+      box-shadow: 0 10px 40px rgba(0,0,0,.2);
+    }
+    header h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+    }
+    header p {
+      font-size: 1.2em;
+      opacity: 0.9;
+      color: #b8860b;
+    }
+    
+    .cluster {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 30px;
+      border-left: 5px solid #b8860b;
+      box-shadow: 0 4px 15px rgba(0,0,0,.08);
+    }
+    
+    .cluster h2 {
+      color: #1a2e48;
+      margin-bottom: 20px;
+      font-size: 1.8em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .cluster ul {
+      list-style: none;
+      margin-left: 0;
+    }
+    
+    .cluster li {
+      padding: 10px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .cluster li:last-child {
+      border-bottom: none;
+    }
+    
+    .cluster a {
+      color: #123d87;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color .3s;
+    }
+    
+    .cluster a:hover {
+      color: #b8860b;
+      text-decoration: underline;
+    }
+    
+    .level-badge {
+      display: inline-block;
+      background: #fdf8ed;
+      color: #b8860b;
+      padding: 3px 10px;
+      border-radius: 15px;
+      font-size: 0.8em;
+      margin-left: 10px;
+      font-weight: 600;
+    }
+  </style>
 </head>
-
 <body>
 
-<header style="text-align:center;padding:50px 20px;">
-  <h1>Learning Hub</h1>
-  <p>জ্ঞান → বিশ্বাস → উন্নতি</p>
-</header>
+<div class="container">
+  <header>
+    <h1>📚 Learning Hub</h1>
+    <p>জ্ঞান → বিশ্বাস → উন্নতি</p>
+  </header>
 
-<main>
-
-  <section>
-    <h2>📘 জ্যোতিষ ভিত্তি</h2>
+  <!-- BEGINNER TRACK -->
+  <div class="cluster">
+    <h2>🟢 শুরু করুন (Beginner)</h2>
     <ul>
-      <li><a href="/blog/">সকল ব্লগ পোস্ট</a></li>
-      <li><a href="/services/">আমাদের সেবা</a></li>
+      <li>
+        <a href="/blog/jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na.html">
+          জ্যোতিষ কি কুসংস্কার? বিজ্ঞান যা বলতে পারে না
+        </a>
+        <span class="level-badge">স্তর ১</span>
+      </li>
+      <li>
+        <a href="/blog/hath-rekha-atmounnayan.html">
+          হাতের রেখায় কি সত্যিই লেখা থাকে জীবনের পথ?
+        </a>
+        <span class="level-badge">স্তর ১</span>
+      </li>
+      <li>
+        <a href="/blog/jibone-safal-howar-7-chabikaathi-jyotish.html">
+          জীবনে সফল হওয়ার ৭টি গোপন চাবিকাঠি
+        </a>
+        <span class="level-badge">স্তর ১</span>
+      </li>
     </ul>
-  </section>
+  </div>
 
-  <section>
-    <h2>🧠 জীবন ও মানসিক উন্নয়ন</h2>
+  <!-- ASTROLOGY CLUSTER -->
+  <div class="cluster">
+    <h2>⭐ জ্যোতিষ শাস্ত্র</h2>
     <ul>
-      <li><a href="/blog/">ব্যক্তিগত উন্নয়ন বিষয়ক লেখা</a></li>
-      <li><a href="/blog/">মানসিক শক্তি সম্পর্কিত পোস্ট</a></li>
+      <li>
+        <a href="/blog/mangal-grah-antar-yoddha.html">
+          মঙ্গল গ্রহ — অন্তরের যোদ্ধার গল্প
+        </a>
+        <span class="level-badge">গ্রহ প্রভাব</span>
+      </li>
+      <li>
+        <a href="/blog/pitru-dosh-binod-golpo.html">
+          পিতৃদোষ নিরসনের সম্পূর্ণ গাইড
+        </a>
+        <span class="level-badge">দোষ প্রতিকার</span>
+      </li>
+      <li>
+        <a href="/blog/janmakundali-o-hastrekha-jiban-manchitra.html">
+          জন্মকুণ্ডলী ও হস্তরেখা একসাথে
+        </a>
+        <span class="level-badge">মধ্যম স্তর</span>
+      </li>
     </ul>
-  </section>
+  </div>
 
-  <section>
-    <h2>🌍 লোকাল জ্ঞান</h2>
+  <!-- PALMISTRY CLUSTER -->
+  <div class="cluster">
+    <h2>✋ হস্তরেখা শাস্ত্র</h2>
     <ul>
-      <li><a href="/blog/">রানাঘাট সম্পর্কিত কনটেন্ট</a></li>
-      <li><a href="/blog/">নদীয়া ও পশ্চিমবঙ্গ ভিত্তিক তথ্য</a></li>
+      <li>
+        <a href="/blog/hasta-rekha-jivan-manchitra.html">
+          হস্তরেখা — মানুষের হাতে লেখা জীবনের মানচিত্র
+        </a>
+        <span class="level-badge">ভূমিকা</span>
+      </li>
+      <li>
+        <a href="/blog/hath-chinho-porichoy.html">
+          হাতে কোন চিহ্ন কী বলে
+        </a>
+        <span class="level-badge">বিশেষ চিহ্ন</span>
+      </li>
+      <li>
+        <a href="/blog/star-chinho-hastrekha.html">
+          হাতে স্টার চিহ্ন — কোথায় থাকলে কী বলে
+        </a>
+        <span class="level-badge">বিশেষ চিহ্ন</span>
+      </li>
     </ul>
-  </section>
+  </div>
 
-  <section>
-    <h2>❓ সাধারণ প্রশ্ন</h2>
-    <p>ভবিষ্যতে এখানে FAQ যোগ করা হবে।</p>
-  </section>
+  <!-- PHILOSOPHY CLUSTER -->
+  <div class="cluster">
+    <h2>🧠 জীবন দর্শন ও মানসিক উন্নয়ন</h2>
+    <ul>
+      <li>
+        <a href="/blog/bhalo-manush-haoar-satyi-path.html">
+          ভালো মানুষ হওয়ার সত্যিকারের পথ
+        </a>
+        <span class="level-badge">আত্মোন্নয়ন</span>
+      </li>
+      <li>
+        <a href="/blog/porisram-kore-keno-safalta-ashe-na-bhagya-rahasya.html">
+          পরিশ্রম করেও কেন সফলতা আসে না
+        </a>
+        <span class="level-badge">জীবন দর্শন</span>
+      </li>
+      <li>
+        <a href="/blog/somoyer-rahasya-jyotish-darshan.html">
+          সময় কেন জীবনের সবচেয়ে বড় শক্তি
+        </a>
+        <span class="level-badge">দর্শন</span>
+      </li>
+    </ul>
+  </div>
 
-</main>
-
-<footer style="text-align:center;margin-top:60px;padding:20px;">
-  <p>© MyAstrology</p>
-</footer>
+</div>
 
 </body>
 </html>
