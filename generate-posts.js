@@ -9,6 +9,18 @@ const RZP_KEY='rzp_live_SN8p6DJxPYFVL1';
 const LOGO_IMG='https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png';
 const FALLBACK_IMG=LOGO_IMG;
 
+// ── RELATED POSTS MAPPING ────────────────────
+const RELATED_POSTS_PATH = path.join(__dirname, 'src/data/related-posts.json');
+let relatedPostsMap = {};
+if(fs.existsSync(RELATED_POSTS_PATH)) {
+  try {
+    relatedPostsMap = JSON.parse(fs.readFileSync(RELATED_POSTS_PATH, 'utf8'));
+  } catch(e) {
+    console.warn('⚠️ related-posts.json not found, skipping related posts');
+  }
+}
+
+
 function parseFrontmatter(content){
   const meta={title:'',description:'',date:'',date_modified:'',image:'',image_alt:'',slug:'',tags:[],categories:[],keywords:'',og_title:'',og_description:'',twitter_title:'',twitter_description:''};
   const match=content.match(/^---\n([\s\S]*?)\n---/);
