@@ -2,6 +2,12 @@
   "name": "myastrology",
   "version": "1.0.0",
   "private": true,
+  "scripts": {
+    "generate-list": "node src/content/blog/generate-list.js",
+    "generate-related": "node generate-related-posts.js",
+    "generate-posts": "node generate-posts.js",
+    "build": "npm run generate-list && npm run generate-related && npm run generate-posts"
+  },
   "dependencies": {
     "gray-matter": "^4.0.3"
   }
