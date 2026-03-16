@@ -301,6 +301,44 @@ main{max-width:780px;margin:0 auto;padding:18px 18px 60px;}
 
 </style>`;
 
+// ── BUILD RELATED POSTS HTML ────────────────────
+function buildRelatedPostsHTML(currentSlug, allPostsList) {
+  const relatedSlugs = relatedPostsMap[currentSlug] || [];
+  if (relatedSlugs.length === 0) return '';
+  
+  // সব posts-���র মধ্থেকে related slugs খুঁজুন
+  const relatedPosts = allPostsList.filter(p => relatedSlugs.includes(p.slug)).slice(0, 3);
+  
+  if (relatedPosts.length === 0) return '';
+  
+  let html = `
+    <div style="background:var(--gold-bg);border:1px solid var(--bd);border-radius:var(--r);padding:20px 18px;margin:30px 0;margin-top:40px;">
+      <h3 style="font-family:var(--fh);color:#1a2e48;margin:0 0 15px;font-size:1rem;display:flex;align-items:center;gap:8px;">
+        <span>📖</span> সম্পর্কিত পোস্ট
+      </h3>
+      <ul style="list-style:none;margin:0;padding:0;">
+  `;
+  
+  relatedPosts.forEach(post => {
+    const postDate = fmtDate(post.date);
+    html += `
+      <li style="padding:12px 0;border-bottom:1px solid rgba(0,0,0,.05);transition:all .2s;">
+        <a href="/blog/${post.slug}.html" style="color:var(--blue);text-decoration:none;font-weight:500;display:block;padding:4px 0;">${post.title}</a>
+        <div style="font-size:.75rem;color:var(--mu);margin-top:4px;">${postDate}</div>
+      </li>
+    `;
+  });
+  
+  html += `
+      </ul>
+    </div>
+  `;
+  
+  return html;
+}
+
+
+
 // ── buildHtml ──────────────────────────────────────────────────────
 function buildHtml(meta,body,slug){
   const pageUrl=SITE_URL+'/blog/'+slug+'.html';
@@ -672,6 +710,17 @@ document.addEventListener('click',function(e){var a=e.target.closest('a');if(!a)
 // ── MAIN ──────────────────────────────────────────────────────────
 if(!fs.existsSync(OUTPUT_DIR))fs.mkdirSync(OUTPUT_DIR,{recursive:true});
 const files=fs.readdirSync(BLOG_DIR).filter(f=>f.endsWith('.md'));
+
+// সব posts-এর list তৈরি করুন (HTML generate এর জন্য)
+const allPosts = [];
+files.forEach(file=>{
+  const raw=fs.readFileSync(path.join(BLOG_DIR,file),'utf8');
+  const meta=parseFrontmatter(raw);
+  const slug=meta.slug||file.replace(/\.md$/,'');
+  if(!meta.title)meta.title=slug.replace(/-/g,' ');
+  allPosts.push({slug, title: meta.title, date: meta.date});
+});
+
 let count=0;
 files.forEach(file=>{
   const raw=fs.readFileSync(path.join(BLOG_DIR,file),'utf8');
@@ -679,7 +728,16 @@ files.forEach(file=>{
   const slug=meta.slug||file.replace(/\.md$/,'');
   if(!meta.title)meta.title=slug.replace(/-/g,' ');
   const body=markdownToHtml(raw);
-  const html=buildHtml(meta,body,slug)+getScripts()+'</body>\n</html>';
+  
+  // buildHtml কে call করুন (এটি ইতিমধ্যে return করে)
+  let html = buildHtml(meta,body,slug);
+  
+  // </article> এর আগে related posts যোগ করুন
+  const relatedPostsHTML = buildRelatedPostsHTML(slug, allPosts);
+  html = html.replace('</article>', relatedPostsHTML + '\n  </article>');
+  
+  // Final HTML লেখুন
+  html = html + getScripts()+'</body>\n</html>';
   fs.writeFileSync(path.join(OUTPUT_DIR,slug+'.html'),html,'utf8');
   count++;
   console.log('\u2705 blog/'+slug+'.html');
