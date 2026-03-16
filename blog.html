@@ -632,23 +632,36 @@ function loadPost(slug) {
           text = text.replace(fmM[0], '');
         }
         var title = fm.title || 'MyAstrology ব্লগ';
-        var desc = fm.description || 'ড. প্রদ্যুৎ আচার্যের জ্যোতিষ ব্লগ – হস্তরেখা, রাশিফল ও বৈদিক জ্যোতিষ।';
-        var url = 'https://www.myastrology.in/blog.html?post=' + slug;
-        var img = (fm.image || '').replace('https://astro.myastrology.in','https://www.myastrology.in');
-        updateMeta(title, desc, url, img);
-        ptEl.textContent = title;
-        if (img) { piEl.src = img; piEl.alt = title + ' – MyAstrology ব্লগ, ড. প্রদ্যুৎ আচার্য রানাঘাট'; piEl.style.display = 'block'; }
-        if (typeof marked !== 'undefined') {
-          ctEl.innerHTML = marked.parse(text);
-        } else {
-          var s = document.createElement('script');
-          s.src = 'https://cdn.jsdelivr.net/npm/marked/marked.min.js';
-          s.onload = function() { ctEl.innerHTML = marked.parse(text); injectShare(); };
-          document.head.appendChild(s);
-          return;
-        }
-        injectShare();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+var desc = fm.description || 'ড. প্রদ্যুৎ আচার্যের জ্যোতিষ ব্লগ – হস্তরেখা, রাশিফল ও বৈদিক জ্যোতিষ।';
+var url = 'https://www.myastrology.in/blog.html?post=' + slug;
+
+var img = fm.image || '';
+
+updateMeta(title, desc, url, img);
+
+ptEl.textContent = title;
+
+if (img) {
+  piEl.src = img;
+  piEl.alt = title + ' – MyAstrology ব্লগ, ড. প্রদ্যুৎ আচার্য রানাঘাট';
+  piEl.style.display = 'block';
+}
+
+if (typeof marked !== 'undefined') {
+  ctEl.innerHTML = marked.parse(text);
+} else {
+  var s = document.createElement('script');
+  s.src = 'https://cdn.jsdelivr.net/npm/marked/marked.min.js';
+  s.onload = function() {
+    ctEl.innerHTML = marked.parse(text);
+    injectShare();
+  };
+  document.head.appendChild(s);
+  return;
+}
+
+injectShare();
+window.scrollTo({ top: 0, behavior: 'smooth' });
       })
       .catch(function() { tryMdFetch(paths, idx2 + 1); });
   }
