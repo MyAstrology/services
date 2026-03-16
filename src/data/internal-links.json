@@ -1,0 +1,15 @@
+// src/data/internal-links.json
+{
+  "mangal-grah-antar-yoddha": {
+    "relatedByTag": [
+      "rager-prem-somparka-phatal",
+      "nijeke-chena-andhakarer-path"
+    ],
+    "relatedByPillar": [
+      "jibone-safal-howar-7-chabikaathi-jyotish",
+      "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na"
+    ],
+    "manualLinks": []
+  },
+  // ... সকল পোস্টের জন্য এমনভাবে
+}
