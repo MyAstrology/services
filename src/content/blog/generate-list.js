@@ -17,19 +17,14 @@ const posts = files.map(file => {
 
   const slug = data?.slug || file.replace('.md', '');
 
-  // ✅ FIX: astro.myastrology.in → www.myastrology.in
   const rawImage = data?.image || `/blog/${slug}.webp`;
-  const image = rawImage.replace(
-    'https://astro.myastrology.in',
-    'https://www.myastrology.in'
-  );
 
   return {
     slug,
     title:       data?.title       || 'No Title',
     description: data?.description || '',
     date:        data?.date        || new Date().toISOString().split('T')[0],
-    image,
+    image: rawImage,
     tags:        data?.tags        || [],
   };
 });
@@ -39,6 +34,5 @@ const sorted = posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 fs.writeFileSync(path.join(blogDir, 'list.json'), JSON.stringify(sorted, null, 2));
 console.log(`✅ list.json updated — ${sorted.length} posts`);
 
-// ✅ NOTE: sitemap.xml generation এখান থেকে সরানো হয়েছে।
+// ✅ NOTE: sitemap.xml generation এখান থেকে সরানো হয়েছে。
 // generate-sitemap.js সম্পূর্ণ sitemap তৈরি করে (static + blog উভয়)।
-// দুটো আলাদা স্ক্রিপ্ট একই ফাইল overwrite করত — এটি সেই conflict দূর করে।
