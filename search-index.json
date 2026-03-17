@@ -1,0 +1,43 @@
+// generate-search-index.js
+const fs = require('fs');
+const path = require('path');
+
+const blogList = JSON.parse(fs.readFileSync('src/content/blog/list.json'));
+const searchIndex = [];
+
+// ব্লগ পোস্ট যোগ করুন
+blogList.forEach(post => {
+  searchIndex.push({
+    type: 'blog',
+    title: post.title,
+    description: post.description,
+    url: `/blog/${post.slug}.html`,
+    tags: post.tags || [],
+    date: post.date,
+    content: post.content || '' // মার্কডাউন কন্টেন্ট
+  });
+});
+
+// অন্যান্য পেজ যোগ করুন (astrology, palmistry etc.)
+const pages = [
+  { title: 'জ্যোতিষ শাস্ত্র', url: '/astrology.html', description: 'বৈদিক জ্যোতিষ, জন্মকুণ্ডলী, গ্রহ দোষ', category: 'service' },
+  { title: 'হস্তরেখা', url: '/palmistry.html', description: 'হাতের রেখা বিচার, হস্তরেখা শিক্ষা', category: 'service' },
+  { title: 'রত্নপাথর', url: '/gemstone.html', description: 'গ্রহ অনুযায়ী রত্নপাথর পরামর্শ', category: 'service' },
+  { title: 'বাস্তু শাস্ত্র', url: '/vastu-science.html', description: 'বাড়ি-অফিসের বাস্তু সমাধান', category: 'service' },
+  { title: 'রাশিফল', url: '/rashifal.html', description: '১২ রাশির স্বভাব, প্রকৃতি ও ভাগ্য', category: 'rashifal' },
+  { title: 'বাংলা পঞ্জিকা', url: '/panjika.html', description: 'তিথি, নক্ষত্র, যোগ, করণ', category: 'panjika' },
+  { title: 'লার্নিং হাব', url: '/learning/', description: 'জ্যোতিষ ও হস্তরেখা শিক্ষা', category: 'learning' }
+];
+
+pages.forEach(page => {
+  searchIndex.push({
+    type: 'page',
+    title: page.title,
+    description: page.description,
+    url: page.url,
+    category: page.category
+  });
+});
+
+fs.writeFileSync('search-index.json', JSON.stringify(searchIndex, null, 2));
+console.log(`✅ Search index created with ${searchIndex.length} entries`);
