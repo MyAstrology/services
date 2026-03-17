@@ -1,0 +1,703 @@
+{
+  "mangal-grah-antar-yoddha": {
+    "cluster": "জ্যোতিষ",
+    "parent": "শারীরিক জ্যোতিষ",
+    "confidence": 1,
+    "allScores": {
+      "জ্যোতিষ": {
+        "score": 14,
+        "matches": 14,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "গল্প": {
+        "score": 1.6,
+        "matches": 2,
+        "parent": "সাহিত্য"
+      }
+    }
+  },
+  "pitru-dosh-binod-golpo": {
+    "cluster": "জ্যোতিষ",
+    "parent": "শারীরিক জ্যোতিষ",
+    "confidence": 1,
+    "allScores": {
+      "জ্যোতিষ": {
+        "score": 9,
+        "matches": 9,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "সাফল্য": {
+        "score": 1.8,
+        "matches": 2,
+        "parent": "ব্যবহারিক জীবন"
+      },
+      "গল্প": {
+        "score": 0.8,
+        "matches": 1,
+        "parent": "সাহিত্য"
+      }
+    }
+  },
+  "bishas-ki-kusanskar-prakriti-manush-jyotish": {
+    "cluster": "জ্যোতিষ",
+    "parent": "শারীরিক জ্যোতিষ",
+    "confidence": 0.6,
+    "allScores": {
+      "জ্যোতিষ": {
+        "score": 3,
+        "matches": 3,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জীবন দর্শন": {
+        "score": 2,
+        "matches": 2,
+        "parent": "আধ্যাত্মিক"
+      },
+      "বিজ্ঞান": {
+        "score": 0.8,
+        "matches": 1,
+        "parent": "শিক্ষা"
+      }
+    }
+  },
+  "hath-chinho-porichoy": {
+    "cluster": "হস্তরেখা",
+    "parent": "শারীরিক জ্যোতিষ",
+    "confidence": 1,
+    "allScores": {
+      "হস্তরেখা": {
+        "score": 7,
+        "matches": 7,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জীবন দর্শন": {
+        "score": 1,
+        "matches": 1,
+        "parent": "আধ্যাত্মিক"
+      }
+    }
+  },
+  "hath-rekha-atmounnayan": {
+    "cluster": "হস্তরেখা",
+    "parent": "শারীরিক জ্যোতিষ",
+    "confidence": 0.8,
+    "allScores": {
+      "হস্তরেখা": {
+        "score": 4,
+        "matches": 4,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জীবন দর্শন": {
+        "score": 1,
+        "matches": 1,
+        "parent": "আধ্যাত্মিক"
+      },
+      "সাফল্য": {
+        "score": 0.9,
+        "matches": 1,
+        "parent": "ব্যবহারিক জীবন"
+      }
+    }
+  },
+  "jibone-safal-howar-7-chabikaathi-jyotish": {
+    "cluster": "সাফল্য",
+    "parent": "ব্যবহারিক জীবন",
+    "confidence": 0.72,
+    "allScores": {
+      "জ্যোতিষ": {
+        "score": 1,
+        "matches": 1,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জীবন দর্শন": {
+        "score": 2,
+        "matches": 2,
+        "parent": "আধ্যাত্মিক"
+      },
+      "সাফল্য": {
+        "score": 3.6,
+        "matches": 4,
+        "parent": "ব্যবহারিক জীবন"
+      }
+    }
+  },
+  "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na": {
+    "cluster": "জ্যোতিষ",
+    "parent": "শারীরিক জ্যোতিষ",
+    "confidence": 0.8,
+    "allScores": {
+      "জ্যোতিষ": {
+        "score": 4,
+        "matches": 4,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জীবন দর্শন": {
+        "score": 2,
+        "matches": 2,
+        "parent": "আধ্যাত্মিক"
+      },
+      "বিজ্ঞান": {
+        "score": 2.4000000000000004,
+        "matches": 3,
+        "parent": "শিক্ষা"
+      }
+    }
+  },
+  "mukhoser-alore-porichoy-naitikota-sankat": {
+    "cluster": "জ্যোতিষ",
+    "parent": "শারীরিক জ্যোতিষ",
+    "confidence": 0.4,
+    "allScores": {
+      "জ্যোতিষ": {
+        "score": 2,
+        "matches": 2,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "সাফল্য": {
+        "score": 0.9,
+        "matches": 1,
+        "parent": "ব্যবহারিক জীবন"
+      }
+    }
+  },
+  "nijeke-chena-andhakarer-path": {
+    "cluster": "জ্যোতিষ",
+    "parent": "শারীরিক জ্যোতিষ",
+    "confidence": 0.4,
+    "allScores": {
+      "জ্যোতিষ": {
+        "score": 2,
+        "matches": 2,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জীবন দর্শন": {
+        "score": 1,
+        "matches": 1,
+        "parent": "আধ্যাত্মিক"
+      },
+      "গল্প": {
+        "score": 0.8,
+        "matches": 1,
+        "parent": "সাহিত্য"
+      }
+    }
+  },
+  "nirmal-villa-satya-dhar-mitra": {
+    "cluster": "জ্যোতিষ",
+    "parent": "শারীরিক জ্যোতিষ",
+    "confidence": 0.4,
+    "allScores": {
+      "জ্যোতিষ": {
+        "score": 2,
+        "matches": 2,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "সাফল্য": {
+        "score": 0.9,
+        "matches": 1,
+        "parent": "ব্যবহারিক জীবন"
+      },
+      "সম্পর্ক": {
+        "score": 0.9,
+        "matches": 1,
+        "parent": "ব্যবহারিক জীবন"
+      },
+      "গল্প": {
+        "score": 0.8,
+        "matches": 1,
+        "parent": "সাহিত্য"
+      }
+    }
+  },
+  "hasta-rekha-jivan-manchitra": {
+    "cluster": "হস্তরেখা",
+    "parent": "শারীরিক জ্যোতিষ",
+    "confidence": 1,
+    "allScores": {
+      "হস্তরেখা": {
+        "score": 7,
+        "matches": 7,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জীবন দর্শন": {
+        "score": 1,
+        "matches": 1,
+        "parent": "আধ্যাত্মিক"
+      }
+    }
+  },
+  "pradip-byarthata-manoshik-shanti": {
+    "cluster": "জীবন দর্শন",
+    "parent": "আধ্যাত্মিক",
+    "confidence": 0.6,
+    "allScores": {
+      "জ্যোতিষ": {
+        "score": 1,
+        "matches": 1,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জীবন দর্শন": {
+        "score": 3,
+        "matches": 3,
+        "parent": "আধ্যাত্মিক"
+      },
+      "সাফল্য": {
+        "score": 1.8,
+        "matches": 2,
+        "parent": "ব্যবহারিক জীবন"
+      },
+      "গল্প": {
+        "score": 1.6,
+        "matches": 2,
+        "parent": "সাহিত্য"
+      }
+    }
+  },
+  "prodyut-acharya-jyotish-palmist-journey-ranaghat": {
+    "cluster": "জ্যোতিষ",
+    "parent": "শারীরিক জ্যোতিষ",
+    "confidence": 0.4,
+    "allScores": {
+      "হস্তরেখা": {
+        "score": 1,
+        "matches": 1,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জ্যোতিষ": {
+        "score": 2,
+        "matches": 2,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "গল্প": {
+        "score": 1.6,
+        "matches": 2,
+        "parent": "সাহিত্য"
+      }
+    }
+  },
+  "rager-prem-somparka-phatal": {
+    "cluster": "সম্পর্ক",
+    "parent": "ব্যবহারিক জীবন",
+    "confidence": 1,
+    "allScores": {
+      "জ্যোতিষ": {
+        "score": 2,
+        "matches": 2,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "সম্পর্ক": {
+        "score": 6.300000000000001,
+        "matches": 7,
+        "parent": "ব্যবহারিক জীবন"
+      },
+      "গল্প": {
+        "score": 1.6,
+        "matches": 2,
+        "parent": "সাহিত্য"
+      }
+    }
+  },
+  "safal-manush-sukhi-noy-porichoy-shantir-dwondwo": {
+    "cluster": "জীবন দর্শন",
+    "parent": "আধ্যাত্মিক",
+    "confidence": 0.8,
+    "allScores": {
+      "জ্যোতিষ": {
+        "score": 1,
+        "matches": 1,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জীবন দর্শন": {
+        "score": 4,
+        "matches": 4,
+        "parent": "আধ্যাত্মিক"
+      },
+      "সাফল্য": {
+        "score": 0.9,
+        "matches": 1,
+        "parent": "ব্যবহারিক জীবন"
+      }
+    }
+  },
+  "star-chinho-hastrekha": {
+    "cluster": "হস্তরেখা",
+    "parent": "শারীরিক জ্যোতিষ",
+    "confidence": 1,
+    "allScores": {
+      "হস্তরেখা": {
+        "score": 5,
+        "matches": 5,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জ্যোতিষ": {
+        "score": 2,
+        "matches": 2,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জীবন দর্শন": {
+        "score": 1,
+        "matches": 1,
+        "parent": "আধ্যাত্মিক"
+      }
+    }
+  },
+  "bhalo-manush-haoar-satyi-path": {
+    "cluster": "জীবন দর্শন",
+    "parent": "আধ্যাত্মিক",
+    "confidence": 0.4,
+    "allScores": {
+      "জীবন দর্শন": {
+        "score": 2,
+        "matches": 2,
+        "parent": "আধ্যাত্মিক"
+      },
+      "সাফল্য": {
+        "score": 0.9,
+        "matches": 1,
+        "parent": "ব্যবহারিক জীবন"
+      }
+    }
+  },
+  "dharma-ki-prokrit-artha-gita-buddha-darshan": {
+    "cluster": "জীবন দর্শন",
+    "parent": "আধ্যাত্মিক",
+    "confidence": 1,
+    "allScores": {
+      "জীবন দর্শন": {
+        "score": 8,
+        "matches": 8,
+        "parent": "আধ্যাত্মিক"
+      }
+    }
+  },
+  "janma-kundali-hasta-mudra-rahasya": {
+    "cluster": "জ্যোতিষ",
+    "parent": "শারীরিক জ্যোতিষ",
+    "confidence": 1,
+    "allScores": {
+      "জ্যোতিষ": {
+        "score": 6,
+        "matches": 6,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জীবন দর্শন": {
+        "score": 1,
+        "matches": 1,
+        "parent": "আধ্যাত্মিক"
+      },
+      "গল্প": {
+        "score": 0.8,
+        "matches": 1,
+        "parent": "সাহিত্য"
+      },
+      "বিজ্ঞান": {
+        "score": 0.8,
+        "matches": 1,
+        "parent": "শিক্ষা"
+      }
+    }
+  },
+  "janmakundali-o-hastrekha-jiban-manchitra": {
+    "cluster": "জ্যোতিষ",
+    "parent": "শারীরিক জ্যোতিষ",
+    "confidence": 1,
+    "allScores": {
+      "হস্তরেখা": {
+        "score": 5,
+        "matches": 5,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জ্যোতিষ": {
+        "score": 6,
+        "matches": 6,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "বিজ্ঞান": {
+        "score": 0.8,
+        "matches": 1,
+        "parent": "শিক্ষা"
+      }
+    }
+  },
+  "jibone-sob-kichu-biruddhe-gele-ki-korben": {
+    "cluster": "জ্যোতিষ",
+    "parent": "শারীরিক জ্যোতিষ",
+    "confidence": 0.8,
+    "allScores": {
+      "জ্যোতিষ": {
+        "score": 4,
+        "matches": 4,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জীবন দর্শন": {
+        "score": 3,
+        "matches": 3,
+        "parent": "আধ্যাত্মিক"
+      },
+      "সাফল্য": {
+        "score": 1.8,
+        "matches": 2,
+        "parent": "ব্যবহারিক জীবন"
+      }
+    }
+  },
+  "kanaklata-jiban-sangram-saktir-golpo": {
+    "cluster": "গল্প",
+    "parent": "সাহিত্য",
+    "confidence": 0.96,
+    "allScores": {
+      "জীবন দর্শন": {
+        "score": 1,
+        "matches": 1,
+        "parent": "আধ্যাত্মিক"
+      },
+      "গল্প": {
+        "score": 4.8,
+        "matches": 6,
+        "parent": "সাহিত্য"
+      }
+    }
+  },
+  "mahabharata-ratha-pancha-indriya-jiban-darshan": {
+    "cluster": "জীবন দর্শন",
+    "parent": "আধ্যাত্মিক",
+    "confidence": 0.6,
+    "allScores": {
+      "জীবন দর্শন": {
+        "score": 3,
+        "matches": 3,
+        "parent": "আধ্যাত্মিক"
+      }
+    }
+  },
+  "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya": {
+    "cluster": "জীবন দর্শন",
+    "parent": "আধ্যাত্মিক",
+    "confidence": 1,
+    "allScores": {
+      "জ্যোতিষ": {
+        "score": 1,
+        "matches": 1,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জীবন দর্শন": {
+        "score": 8,
+        "matches": 8,
+        "parent": "আধ্যাত্মিক"
+      },
+      "সাফল্য": {
+        "score": 1.8,
+        "matches": 2,
+        "parent": "ব্যবহারিক জীবন"
+      }
+    }
+  },
+  "samudrik-shastra-nari-noy-sattva-bichar": {
+    "cluster": "হস্তরেখা",
+    "parent": "শারীরিক জ্যোতিষ",
+    "confidence": 0.6,
+    "allScores": {
+      "হস্তরেখা": {
+        "score": 3,
+        "matches": 3,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জ্যোতিষ": {
+        "score": 1,
+        "matches": 1,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জীবন দর্শন": {
+        "score": 1,
+        "matches": 1,
+        "parent": "আধ্যাত্মিক"
+      },
+      "বিজ্ঞান": {
+        "score": 0.8,
+        "matches": 1,
+        "parent": "শিক্ষা"
+      }
+    }
+  },
+  "shishu-hath-rekha-pesa-jyotish-rahasya": {
+    "cluster": "হস্তরেখা",
+    "parent": "শারীরিক জ্যোতিষ",
+    "confidence": 1,
+    "allScores": {
+      "হস্তরেখা": {
+        "score": 7,
+        "matches": 7,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "সাফল্য": {
+        "score": 1.8,
+        "matches": 2,
+        "parent": "ব্যবহারিক জীবন"
+      }
+    }
+  },
+  "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha": {
+    "cluster": "জীবন দর্শন",
+    "parent": "আধ্যাত্মিক",
+    "confidence": 1,
+    "allScores": {
+      "জ্যোতিষ": {
+        "score": 2,
+        "matches": 2,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জীবন দর্শন": {
+        "score": 9,
+        "matches": 9,
+        "parent": "আধ্যাত্মিক"
+      },
+      "বিজ্ঞান": {
+        "score": 0.8,
+        "matches": 1,
+        "parent": "শিক্ষা"
+      }
+    }
+  },
+  "somoyer-rahasya-jyotish-darshan": {
+    "cluster": "জ্যোতিষ",
+    "parent": "শারীরিক জ্যোতিষ",
+    "confidence": 0.6,
+    "allScores": {
+      "জ্যোতিষ": {
+        "score": 3,
+        "matches": 3,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জীবন দর্শন": {
+        "score": 3,
+        "matches": 3,
+        "parent": "আধ্যাত্মিক"
+      }
+    }
+  },
+  "sushanta-british-jiban-sangram-kartabya": {
+    "cluster": "গল্প",
+    "parent": "সাহিত্য",
+    "confidence": 0.64,
+    "allScores": {
+      "জীবন দর্শন": {
+        "score": 2,
+        "matches": 2,
+        "parent": "আধ্যাত্মিক"
+      },
+      "সাফল্য": {
+        "score": 0.9,
+        "matches": 1,
+        "parent": "ব্যবহারিক জীবন"
+      },
+      "গল্প": {
+        "score": 3.2,
+        "matches": 4,
+        "parent": "সাহিত্য"
+      },
+      "বিজ্ঞান": {
+        "score": 0.8,
+        "matches": 1,
+        "parent": "শিক্ষা"
+      }
+    }
+  },
+  "tripto-maner-shanti-arun-pradip-golpo": {
+    "cluster": "জীবন দর্শন",
+    "parent": "আধ্যাত্মিক",
+    "confidence": 0.6,
+    "allScores": {
+      "জীবন দর্শন": {
+        "score": 3,
+        "matches": 3,
+        "parent": "আধ্যাত্মিক"
+      },
+      "সাফল্য": {
+        "score": 0.9,
+        "matches": 1,
+        "parent": "ব্যবহারিক জীবন"
+      },
+      "গল্প": {
+        "score": 1.6,
+        "matches": 2,
+        "parent": "সাহিত্য"
+      }
+    }
+  },
+  "jibonsongram-sukhi-thaka-ananta-golpo": {
+    "cluster": "জীবন দর্শন",
+    "parent": "আধ্যাত্মিক",
+    "confidence": 1,
+    "allScores": {
+      "হস্তরেখা": {
+        "score": 1,
+        "matches": 1,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জ্যোতিষ": {
+        "score": 3,
+        "matches": 3,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জীবন দর্শন": {
+        "score": 5,
+        "matches": 5,
+        "parent": "আধ্যাত্মিক"
+      },
+      "গল্প": {
+        "score": 3.2,
+        "matches": 4,
+        "parent": "সাহিত্য"
+      }
+    }
+  },
+  "ai-yuge-ortho-bhalobasha-bhagya-pradyut-acharya": {
+    "cluster": "জীবন দর্শন",
+    "parent": "আধ্যাত্মিক",
+    "confidence": 1,
+    "allScores": {
+      "জ্যোতিষ": {
+        "score": 2,
+        "matches": 2,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জীবন দর্শন": {
+        "score": 9,
+        "matches": 9,
+        "parent": "আধ্যাত্মিক"
+      },
+      "সম্পর্ক": {
+        "score": 1.8,
+        "matches": 2,
+        "parent": "ব্যবহারিক জীবন"
+      }
+    }
+  },
+  "artha-anartha-maraka-bhaba-analysis": {
+    "cluster": "জ্যোতিষ",
+    "parent": "শারীরিক জ্যোতিষ",
+    "confidence": 1,
+    "allScores": {
+      "হস্তরেখা": {
+        "score": 1,
+        "matches": 1,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জ্যোতিষ": {
+        "score": 5,
+        "matches": 5,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "গল্প": {
+        "score": 0.8,
+        "matches": 1,
+        "parent": "সাহিত্য"
+      },
+      "বিজ্ঞান": {
+        "score": 0.8,
+        "matches": 1,
+        "parent": "শিক্ষা"
+      }
+    }
+  }
+}

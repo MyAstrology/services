@@ -1,15 +1,1038 @@
-// src/data/internal-links.json
 {
   "mangal-grah-antar-yoddha": {
-    "relatedByTag": [
-      "rager-prem-somparka-phatal",
-      "nijeke-chena-andhakarer-path"
-    ],
+    "relatedByTag": [],
     "relatedByPillar": [
-      "jibone-safal-howar-7-chabikaathi-jyotish",
-      "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na"
+      "prodyut-acharya-jyotish-palmist-journey-ranaghat",
+      "nijeke-chena-andhakarer-path",
+      "janma-kundali-hasta-mudra-rahasya"
     ],
+    "relatedByCluster": [
+      "prodyut-acharya-jyotish-palmist-journey-ranaghat",
+      "nijeke-chena-andhakarer-path",
+      "janma-kundali-hasta-mudra-rahasya"
+    ],
+    "topRelated": [
+      {
+        "slug": "prodyut-acharya-jyotish-palmist-journey-ranaghat",
+        "score": 0.3954040404040404
+      },
+      {
+        "slug": "nijeke-chena-andhakarer-path",
+        "score": 0.3952020202020202
+      },
+      {
+        "slug": "janma-kundali-hasta-mudra-rahasya",
+        "score": 0.3907291666666667
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 1,
     "manualLinks": []
   },
-  // ... সকল পোস্টের জন্য এমনভাবে
+  "pitru-dosh-binod-golpo": {
+    "relatedByTag": [
+      "jibone-sob-kichu-biruddhe-gele-ki-korben",
+      "nirmal-villa-satya-dhar-mitra"
+    ],
+    "relatedByPillar": [
+      "somoyer-rahasya-jyotish-darshan",
+      "prodyut-acharya-jyotish-palmist-journey-ranaghat",
+      "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na"
+    ],
+    "relatedByCluster": [
+      "jibone-sob-kichu-biruddhe-gele-ki-korben",
+      "nirmal-villa-satya-dhar-mitra",
+      "somoyer-rahasya-jyotish-darshan"
+    ],
+    "topRelated": [
+      {
+        "slug": "jibone-sob-kichu-biruddhe-gele-ki-korben",
+        "score": 0.40132882882882887
+      },
+      {
+        "slug": "nirmal-villa-satya-dhar-mitra",
+        "score": 0.40065656565656566
+      },
+      {
+        "slug": "somoyer-rahasya-jyotish-darshan",
+        "score": 0.39676470588235296
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 1,
+    "manualLinks": []
+  },
+  "bishas-ki-kusanskar-prakriti-manush-jyotish": {
+    "relatedByTag": [
+      "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
+      "janma-kundali-hasta-mudra-rahasya"
+    ],
+    "relatedByPillar": [
+      "somoyer-rahasya-jyotish-darshan",
+      "prodyut-acharya-jyotish-palmist-journey-ranaghat",
+      "mukhoser-alore-porichoy-naitikota-sankat"
+    ],
+    "relatedByCluster": [
+      "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
+      "janma-kundali-hasta-mudra-rahasya",
+      "somoyer-rahasya-jyotish-darshan"
+    ],
+    "topRelated": [
+      {
+        "slug": "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
+        "score": 0.4268406593406593
+      },
+      {
+        "slug": "janma-kundali-hasta-mudra-rahasya",
+        "score": 0.4062992831541219
+      },
+      {
+        "slug": "somoyer-rahasya-jyotish-darshan",
+        "score": 0.395515873015873
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 0.6,
+    "manualLinks": []
+  },
+  "hath-chinho-porichoy": {
+    "relatedByTag": [
+      "star-chinho-hastrekha",
+      "hasta-rekha-jivan-manchitra",
+      "hath-rekha-atmounnayan"
+    ],
+    "relatedByPillar": [
+      "shishu-hath-rekha-pesa-jyotish-rahasya",
+      "samudrik-shastra-nari-noy-sattva-bichar",
+      "mukhoser-alore-porichoy-naitikota-sankat"
+    ],
+    "relatedByCluster": [
+      "star-chinho-hastrekha",
+      "hasta-rekha-jivan-manchitra",
+      "hath-rekha-atmounnayan"
+    ],
+    "topRelated": [
+      {
+        "slug": "star-chinho-hastrekha",
+        "score": 0.5034564393939394
+      },
+      {
+        "slug": "hasta-rekha-jivan-manchitra",
+        "score": 0.444551282051282
+      },
+      {
+        "slug": "hath-rekha-atmounnayan",
+        "score": 0.4208333333333333
+      }
+    ],
+    "cluster": "হস্তরেখা",
+    "confidence": 1,
+    "manualLinks": []
+  },
+  "hath-rekha-atmounnayan": {
+    "relatedByTag": [
+      "hasta-rekha-jivan-manchitra",
+      "hath-chinho-porichoy"
+    ],
+    "relatedByPillar": [
+      "shishu-hath-rekha-pesa-jyotish-rahasya",
+      "samudrik-shastra-nari-noy-sattva-bichar",
+      "star-chinho-hastrekha"
+    ],
+    "relatedByCluster": [
+      "hasta-rekha-jivan-manchitra",
+      "hath-chinho-porichoy",
+      "shishu-hath-rekha-pesa-jyotish-rahasya"
+    ],
+    "topRelated": [
+      {
+        "slug": "hasta-rekha-jivan-manchitra",
+        "score": 0.46285714285714286
+      },
+      {
+        "slug": "hath-chinho-porichoy",
+        "score": 0.4208333333333333
+      },
+      {
+        "slug": "shishu-hath-rekha-pesa-jyotish-rahasya",
+        "score": 0.39055555555555554
+      }
+    ],
+    "cluster": "হস্তরেখা",
+    "confidence": 0.8,
+    "manualLinks": []
+  },
+  "jibone-safal-howar-7-chabikaathi-jyotish": {
+    "relatedByTag": [],
+    "relatedByPillar": [
+      "rager-prem-somparka-phatal"
+    ],
+    "relatedByCluster": [],
+    "topRelated": [
+      {
+        "slug": "rager-prem-somparka-phatal",
+        "score": 0.2977777777777778
+      },
+      {
+        "slug": "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
+        "score": 0.22315488565488567
+      },
+      {
+        "slug": "bhalo-manush-haoar-satyi-path",
+        "score": 0.2056419234360411
+      }
+    ],
+    "cluster": "সাফল্য",
+    "confidence": 0.72,
+    "manualLinks": []
+  },
+  "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na": {
+    "relatedByTag": [
+      "bishas-ki-kusanskar-prakriti-manush-jyotish",
+      "janma-kundali-hasta-mudra-rahasya",
+      "jibone-sob-kichu-biruddhe-gele-ki-korben"
+    ],
+    "relatedByPillar": [
+      "janmakundali-o-hastrekha-jiban-manchitra",
+      "somoyer-rahasya-jyotish-darshan",
+      "mukhoser-alore-porichoy-naitikota-sankat"
+    ],
+    "relatedByCluster": [
+      "bishas-ki-kusanskar-prakriti-manush-jyotish",
+      "janma-kundali-hasta-mudra-rahasya",
+      "jibone-sob-kichu-biruddhe-gele-ki-korben"
+    ],
+    "topRelated": [
+      {
+        "slug": "bishas-ki-kusanskar-prakriti-manush-jyotish",
+        "score": 0.4268406593406593
+      },
+      {
+        "slug": "janma-kundali-hasta-mudra-rahasya",
+        "score": 0.4095634920634921
+      },
+      {
+        "slug": "jibone-sob-kichu-biruddhe-gele-ki-korben",
+        "score": 0.40694444444444444
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 0.8,
+    "manualLinks": []
+  },
+  "mukhoser-alore-porichoy-naitikota-sankat": {
+    "relatedByTag": [],
+    "relatedByPillar": [
+      "somoyer-rahasya-jyotish-darshan",
+      "bishas-ki-kusanskar-prakriti-manush-jyotish",
+      "prodyut-acharya-jyotish-palmist-journey-ranaghat"
+    ],
+    "relatedByCluster": [
+      "somoyer-rahasya-jyotish-darshan",
+      "bishas-ki-kusanskar-prakriti-manush-jyotish",
+      "prodyut-acharya-jyotish-palmist-journey-ranaghat"
+    ],
+    "topRelated": [
+      {
+        "slug": "somoyer-rahasya-jyotish-darshan",
+        "score": 0.39426151761517614
+      },
+      {
+        "slug": "bishas-ki-kusanskar-prakriti-manush-jyotish",
+        "score": 0.3913461538461539
+      },
+      {
+        "slug": "prodyut-acharya-jyotish-palmist-journey-ranaghat",
+        "score": 0.3913461538461539
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 0.4,
+    "manualLinks": []
+  },
+  "nijeke-chena-andhakarer-path": {
+    "relatedByTag": [],
+    "relatedByPillar": [
+      "mangal-grah-antar-yoddha",
+      "prodyut-acharya-jyotish-palmist-journey-ranaghat",
+      "pitru-dosh-binod-golpo"
+    ],
+    "relatedByCluster": [
+      "mangal-grah-antar-yoddha",
+      "prodyut-acharya-jyotish-palmist-journey-ranaghat",
+      "pitru-dosh-binod-golpo"
+    ],
+    "topRelated": [
+      {
+        "slug": "mangal-grah-antar-yoddha",
+        "score": 0.3952020202020202
+      },
+      {
+        "slug": "prodyut-acharya-jyotish-palmist-journey-ranaghat",
+        "score": 0.3920634920634921
+      },
+      {
+        "slug": "pitru-dosh-binod-golpo",
+        "score": 0.38706349206349205
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 0.4,
+    "manualLinks": []
+  },
+  "nirmal-villa-satya-dhar-mitra": {
+    "relatedByTag": [
+      "pitru-dosh-binod-golpo"
+    ],
+    "relatedByPillar": [
+      "somoyer-rahasya-jyotish-darshan",
+      "prodyut-acharya-jyotish-palmist-journey-ranaghat",
+      "jibone-sob-kichu-biruddhe-gele-ki-korben"
+    ],
+    "relatedByCluster": [
+      "pitru-dosh-binod-golpo",
+      "somoyer-rahasya-jyotish-darshan",
+      "prodyut-acharya-jyotish-palmist-journey-ranaghat"
+    ],
+    "topRelated": [
+      {
+        "slug": "pitru-dosh-binod-golpo",
+        "score": 0.40065656565656566
+      },
+      {
+        "slug": "somoyer-rahasya-jyotish-darshan",
+        "score": 0.39261904761904765
+      },
+      {
+        "slug": "prodyut-acharya-jyotish-palmist-journey-ranaghat",
+        "score": 0.3911111111111111
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 0.4,
+    "manualLinks": []
+  },
+  "hasta-rekha-jivan-manchitra": {
+    "relatedByTag": [
+      "hath-rekha-atmounnayan",
+      "hath-chinho-porichoy",
+      "samudrik-shastra-nari-noy-sattva-bichar"
+    ],
+    "relatedByPillar": [
+      "star-chinho-hastrekha",
+      "shishu-hath-rekha-pesa-jyotish-rahasya",
+      "janmakundali-o-hastrekha-jiban-manchitra"
+    ],
+    "relatedByCluster": [
+      "hath-rekha-atmounnayan",
+      "hath-chinho-porichoy",
+      "samudrik-shastra-nari-noy-sattva-bichar"
+    ],
+    "topRelated": [
+      {
+        "slug": "hath-rekha-atmounnayan",
+        "score": 0.46285714285714286
+      },
+      {
+        "slug": "hath-chinho-porichoy",
+        "score": 0.444551282051282
+      },
+      {
+        "slug": "samudrik-shastra-nari-noy-sattva-bichar",
+        "score": 0.4347484984984985
+      }
+    ],
+    "cluster": "হস্তরেখা",
+    "confidence": 1,
+    "manualLinks": []
+  },
+  "pradip-byarthata-manoshik-shanti": {
+    "relatedByTag": [
+      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
+      "dharma-ki-prokrit-artha-gita-buddha-darshan"
+    ],
+    "relatedByPillar": [
+      "mahabharata-ratha-pancha-indriya-jiban-darshan",
+      "bhalo-manush-haoar-satyi-path",
+      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo"
+    ],
+    "relatedByCluster": [
+      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
+      "dharma-ki-prokrit-artha-gita-buddha-darshan",
+      "mahabharata-ratha-pancha-indriya-jiban-darshan"
+    ],
+    "topRelated": [
+      {
+        "slug": "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
+        "score": 0.4463510101010101
+      },
+      {
+        "slug": "dharma-ki-prokrit-artha-gita-buddha-darshan",
+        "score": 0.43069444444444444
+      },
+      {
+        "slug": "mahabharata-ratha-pancha-indriya-jiban-darshan",
+        "score": 0.39781045751633987
+      }
+    ],
+    "cluster": "জীবন দর্শন",
+    "confidence": 0.6,
+    "manualLinks": []
+  },
+  "prodyut-acharya-jyotish-palmist-journey-ranaghat": {
+    "relatedByTag": [],
+    "relatedByPillar": [
+      "mangal-grah-antar-yoddha",
+      "nijeke-chena-andhakarer-path",
+      "bishas-ki-kusanskar-prakriti-manush-jyotish"
+    ],
+    "relatedByCluster": [
+      "mangal-grah-antar-yoddha",
+      "nijeke-chena-andhakarer-path",
+      "bishas-ki-kusanskar-prakriti-manush-jyotish"
+    ],
+    "topRelated": [
+      {
+        "slug": "mangal-grah-antar-yoddha",
+        "score": 0.3954040404040404
+      },
+      {
+        "slug": "nijeke-chena-andhakarer-path",
+        "score": 0.3920634920634921
+      },
+      {
+        "slug": "bishas-ki-kusanskar-prakriti-manush-jyotish",
+        "score": 0.3920454545454546
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 0.4,
+    "manualLinks": []
+  },
+  "rager-prem-somparka-phatal": {
+    "relatedByTag": [],
+    "relatedByPillar": [
+      "jibone-safal-howar-7-chabikaathi-jyotish"
+    ],
+    "relatedByCluster": [],
+    "topRelated": [
+      {
+        "slug": "jibone-safal-howar-7-chabikaathi-jyotish",
+        "score": 0.2977777777777778
+      },
+      {
+        "slug": "pradip-byarthata-manoshik-shanti",
+        "score": 0.20472222222222222
+      },
+      {
+        "slug": "prodyut-acharya-jyotish-palmist-journey-ranaghat",
+        "score": 0.19675099206349206
+      }
+    ],
+    "cluster": "সম্পর্ক",
+    "confidence": 1,
+    "manualLinks": []
+  },
+  "safal-manush-sukhi-noy-porichoy-shantir-dwondwo": {
+    "relatedByTag": [
+      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
+      "bhalo-manush-haoar-satyi-path"
+    ],
+    "relatedByPillar": [
+      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
+      "dharma-ki-prokrit-artha-gita-buddha-darshan",
+      "mahabharata-ratha-pancha-indriya-jiban-darshan"
+    ],
+    "relatedByCluster": [
+      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
+      "bhalo-manush-haoar-satyi-path",
+      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha"
+    ],
+    "topRelated": [
+      {
+        "slug": "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
+        "score": 0.4144986240110079
+      },
+      {
+        "slug": "bhalo-manush-haoar-satyi-path",
+        "score": 0.40755255255255257
+      },
+      {
+        "slug": "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
+        "score": 0.39910660660660663
+      }
+    ],
+    "cluster": "জীবন দর্শন",
+    "confidence": 0.8,
+    "manualLinks": []
+  },
+  "star-chinho-hastrekha": {
+    "relatedByTag": [
+      "hath-chinho-porichoy"
+    ],
+    "relatedByPillar": [
+      "hasta-rekha-jivan-manchitra",
+      "samudrik-shastra-nari-noy-sattva-bichar",
+      "shishu-hath-rekha-pesa-jyotish-rahasya"
+    ],
+    "relatedByCluster": [
+      "hath-chinho-porichoy",
+      "hasta-rekha-jivan-manchitra",
+      "samudrik-shastra-nari-noy-sattva-bichar"
+    ],
+    "topRelated": [
+      {
+        "slug": "hath-chinho-porichoy",
+        "score": 0.5034564393939394
+      },
+      {
+        "slug": "hasta-rekha-jivan-manchitra",
+        "score": 0.3866666666666667
+      },
+      {
+        "slug": "samudrik-shastra-nari-noy-sattva-bichar",
+        "score": 0.38176767676767676
+      }
+    ],
+    "cluster": "হস্তরেখা",
+    "confidence": 1,
+    "manualLinks": []
+  },
+  "bhalo-manush-haoar-satyi-path": {
+    "relatedByTag": [
+      "dharma-ki-prokrit-artha-gita-buddha-darshan",
+      "mahabharata-ratha-pancha-indriya-jiban-darshan",
+      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
+      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo"
+    ],
+    "relatedByPillar": [
+      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
+      "pradip-byarthata-manoshik-shanti",
+      "jibonsongram-sukhi-thaka-ananta-golpo"
+    ],
+    "relatedByCluster": [
+      "dharma-ki-prokrit-artha-gita-buddha-darshan",
+      "mahabharata-ratha-pancha-indriya-jiban-darshan",
+      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya"
+    ],
+    "topRelated": [
+      {
+        "slug": "dharma-ki-prokrit-artha-gita-buddha-darshan",
+        "score": 0.47628083491461104
+      },
+      {
+        "slug": "mahabharata-ratha-pancha-indriya-jiban-darshan",
+        "score": 0.4541666666666667
+      },
+      {
+        "slug": "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
+        "score": 0.4126736111111111
+      }
+    ],
+    "cluster": "জীবন দর্শন",
+    "confidence": 0.4,
+    "manualLinks": []
+  },
+  "dharma-ki-prokrit-artha-gita-buddha-darshan": {
+    "relatedByTag": [
+      "bhalo-manush-haoar-satyi-path",
+      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
+      "mahabharata-ratha-pancha-indriya-jiban-darshan",
+      "pradip-byarthata-manoshik-shanti"
+    ],
+    "relatedByPillar": [
+      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
+      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
+      "jibonsongram-sukhi-thaka-ananta-golpo"
+    ],
+    "relatedByCluster": [
+      "bhalo-manush-haoar-satyi-path",
+      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
+      "mahabharata-ratha-pancha-indriya-jiban-darshan"
+    ],
+    "topRelated": [
+      {
+        "slug": "bhalo-manush-haoar-satyi-path",
+        "score": 0.47628083491461104
+      },
+      {
+        "slug": "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
+        "score": 0.4632352941176471
+      },
+      {
+        "slug": "mahabharata-ratha-pancha-indriya-jiban-darshan",
+        "score": 0.45394736842105265
+      }
+    ],
+    "cluster": "জীবন দর্শন",
+    "confidence": 1,
+    "manualLinks": []
+  },
+  "janma-kundali-hasta-mudra-rahasya": {
+    "relatedByTag": [
+      "janmakundali-o-hastrekha-jiban-manchitra",
+      "somoyer-rahasya-jyotish-darshan",
+      "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
+      "bishas-ki-kusanskar-prakriti-manush-jyotish"
+    ],
+    "relatedByPillar": [
+      "mangal-grah-antar-yoddha",
+      "mukhoser-alore-porichoy-naitikota-sankat",
+      "prodyut-acharya-jyotish-palmist-journey-ranaghat"
+    ],
+    "relatedByCluster": [
+      "janmakundali-o-hastrekha-jiban-manchitra",
+      "somoyer-rahasya-jyotish-darshan",
+      "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na"
+    ],
+    "topRelated": [
+      {
+        "slug": "janmakundali-o-hastrekha-jiban-manchitra",
+        "score": 0.4632352941176471
+      },
+      {
+        "slug": "somoyer-rahasya-jyotish-darshan",
+        "score": 0.44999999999999996
+      },
+      {
+        "slug": "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
+        "score": 0.4095634920634921
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 1,
+    "manualLinks": []
+  },
+  "janmakundali-o-hastrekha-jiban-manchitra": {
+    "relatedByTag": [
+      "janma-kundali-hasta-mudra-rahasya",
+      "somoyer-rahasya-jyotish-darshan"
+    ],
+    "relatedByPillar": [
+      "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
+      "jibone-sob-kichu-biruddhe-gele-ki-korben",
+      "bishas-ki-kusanskar-prakriti-manush-jyotish"
+    ],
+    "relatedByCluster": [
+      "janma-kundali-hasta-mudra-rahasya",
+      "somoyer-rahasya-jyotish-darshan",
+      "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na"
+    ],
+    "topRelated": [
+      {
+        "slug": "janma-kundali-hasta-mudra-rahasya",
+        "score": 0.4632352941176471
+      },
+      {
+        "slug": "somoyer-rahasya-jyotish-darshan",
+        "score": 0.4089414414414414
+      },
+      {
+        "slug": "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
+        "score": 0.39944444444444444
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 1,
+    "manualLinks": []
+  },
+  "jibone-sob-kichu-biruddhe-gele-ki-korben": {
+    "relatedByTag": [
+      "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
+      "somoyer-rahasya-jyotish-darshan",
+      "pitru-dosh-binod-golpo",
+      "janma-kundali-hasta-mudra-rahasya"
+    ],
+    "relatedByPillar": [
+      "janmakundali-o-hastrekha-jiban-manchitra",
+      "mukhoser-alore-porichoy-naitikota-sankat",
+      "bishas-ki-kusanskar-prakriti-manush-jyotish"
+    ],
+    "relatedByCluster": [
+      "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
+      "somoyer-rahasya-jyotish-darshan",
+      "pitru-dosh-binod-golpo"
+    ],
+    "topRelated": [
+      {
+        "slug": "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
+        "score": 0.40694444444444444
+      },
+      {
+        "slug": "somoyer-rahasya-jyotish-darshan",
+        "score": 0.4061111111111111
+      },
+      {
+        "slug": "pitru-dosh-binod-golpo",
+        "score": 0.40132882882882887
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 0.8,
+    "manualLinks": []
+  },
+  "kanaklata-jiban-sangram-saktir-golpo": {
+    "relatedByTag": [
+      "sushanta-british-jiban-sangram-kartabya"
+    ],
+    "relatedByPillar": [],
+    "relatedByCluster": [
+      "sushanta-british-jiban-sangram-kartabya"
+    ],
+    "topRelated": [
+      {
+        "slug": "sushanta-british-jiban-sangram-kartabya",
+        "score": 0.4827380952380953
+      },
+      {
+        "slug": "jibonsongram-sukhi-thaka-ananta-golpo",
+        "score": 0.21161046555783397
+      },
+      {
+        "slug": "prodyut-acharya-jyotish-palmist-journey-ranaghat",
+        "score": 0.2067408245349422
+      }
+    ],
+    "cluster": "গল্প",
+    "confidence": 0.96,
+    "manualLinks": []
+  },
+  "mahabharata-ratha-pancha-indriya-jiban-darshan": {
+    "relatedByTag": [
+      "bhalo-manush-haoar-satyi-path",
+      "dharma-ki-prokrit-artha-gita-buddha-darshan",
+      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya"
+    ],
+    "relatedByPillar": [
+      "pradip-byarthata-manoshik-shanti",
+      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
+      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo"
+    ],
+    "relatedByCluster": [
+      "bhalo-manush-haoar-satyi-path",
+      "dharma-ki-prokrit-artha-gita-buddha-darshan",
+      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya"
+    ],
+    "topRelated": [
+      {
+        "slug": "bhalo-manush-haoar-satyi-path",
+        "score": 0.4541666666666667
+      },
+      {
+        "slug": "dharma-ki-prokrit-artha-gita-buddha-darshan",
+        "score": 0.45394736842105265
+      },
+      {
+        "slug": "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
+        "score": 0.40245726495726497
+      }
+    ],
+    "cluster": "জীবন দর্শন",
+    "confidence": 0.6,
+    "manualLinks": []
+  },
+  "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya": {
+    "relatedByTag": [
+      "dharma-ki-prokrit-artha-gita-buddha-darshan",
+      "pradip-byarthata-manoshik-shanti",
+      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
+      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo"
+    ],
+    "relatedByPillar": [
+      "jibonsongram-sukhi-thaka-ananta-golpo",
+      "ai-yuge-ortho-bhalobasha-bhagya-pradyut-acharya"
+    ],
+    "relatedByCluster": [
+      "dharma-ki-prokrit-artha-gita-buddha-darshan",
+      "pradip-byarthata-manoshik-shanti",
+      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha"
+    ],
+    "topRelated": [
+      {
+        "slug": "dharma-ki-prokrit-artha-gita-buddha-darshan",
+        "score": 0.4632352941176471
+      },
+      {
+        "slug": "pradip-byarthata-manoshik-shanti",
+        "score": 0.4463510101010101
+      },
+      {
+        "slug": "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
+        "score": 0.43000000000000005
+      }
+    ],
+    "cluster": "জীবন দর্শন",
+    "confidence": 1,
+    "manualLinks": []
+  },
+  "samudrik-shastra-nari-noy-sattva-bichar": {
+    "relatedByTag": [
+      "hasta-rekha-jivan-manchitra"
+    ],
+    "relatedByPillar": [
+      "shishu-hath-rekha-pesa-jyotish-rahasya",
+      "star-chinho-hastrekha",
+      "hath-chinho-porichoy"
+    ],
+    "relatedByCluster": [
+      "hasta-rekha-jivan-manchitra",
+      "shishu-hath-rekha-pesa-jyotish-rahasya",
+      "star-chinho-hastrekha"
+    ],
+    "topRelated": [
+      {
+        "slug": "hasta-rekha-jivan-manchitra",
+        "score": 0.4347484984984985
+      },
+      {
+        "slug": "shishu-hath-rekha-pesa-jyotish-rahasya",
+        "score": 0.38749999999999996
+      },
+      {
+        "slug": "star-chinho-hastrekha",
+        "score": 0.38176767676767676
+      }
+    ],
+    "cluster": "হস্তরেখা",
+    "confidence": 0.6,
+    "manualLinks": []
+  },
+  "shishu-hath-rekha-pesa-jyotish-rahasya": {
+    "relatedByTag": [],
+    "relatedByPillar": [
+      "hath-chinho-porichoy",
+      "hath-rekha-atmounnayan",
+      "samudrik-shastra-nari-noy-sattva-bichar"
+    ],
+    "relatedByCluster": [
+      "hath-chinho-porichoy",
+      "hath-rekha-atmounnayan",
+      "samudrik-shastra-nari-noy-sattva-bichar"
+    ],
+    "topRelated": [
+      {
+        "slug": "hath-chinho-porichoy",
+        "score": 0.3991269841269841
+      },
+      {
+        "slug": "hath-rekha-atmounnayan",
+        "score": 0.39055555555555554
+      },
+      {
+        "slug": "samudrik-shastra-nari-noy-sattva-bichar",
+        "score": 0.38749999999999996
+      }
+    ],
+    "cluster": "হস্তরেখা",
+    "confidence": 1,
+    "manualLinks": []
+  },
+  "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha": {
+    "relatedByTag": [
+      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya"
+    ],
+    "relatedByPillar": [
+      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
+      "dharma-ki-prokrit-artha-gita-buddha-darshan",
+      "bhalo-manush-haoar-satyi-path"
+    ],
+    "relatedByCluster": [
+      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
+      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
+      "dharma-ki-prokrit-artha-gita-buddha-darshan"
+    ],
+    "topRelated": [
+      {
+        "slug": "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
+        "score": 0.43000000000000005
+      },
+      {
+        "slug": "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
+        "score": 0.39910660660660663
+      },
+      {
+        "slug": "dharma-ki-prokrit-artha-gita-buddha-darshan",
+        "score": 0.3965909090909091
+      }
+    ],
+    "cluster": "জীবন দর্শন",
+    "confidence": 1,
+    "manualLinks": []
+  },
+  "somoyer-rahasya-jyotish-darshan": {
+    "relatedByTag": [
+      "janma-kundali-hasta-mudra-rahasya",
+      "janmakundali-o-hastrekha-jiban-manchitra",
+      "jibone-sob-kichu-biruddhe-gele-ki-korben"
+    ],
+    "relatedByPillar": [
+      "pitru-dosh-binod-golpo",
+      "bishas-ki-kusanskar-prakriti-manush-jyotish",
+      "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na"
+    ],
+    "relatedByCluster": [
+      "janma-kundali-hasta-mudra-rahasya",
+      "janmakundali-o-hastrekha-jiban-manchitra",
+      "jibone-sob-kichu-biruddhe-gele-ki-korben"
+    ],
+    "topRelated": [
+      {
+        "slug": "janma-kundali-hasta-mudra-rahasya",
+        "score": 0.44999999999999996
+      },
+      {
+        "slug": "janmakundali-o-hastrekha-jiban-manchitra",
+        "score": 0.4089414414414414
+      },
+      {
+        "slug": "jibone-sob-kichu-biruddhe-gele-ki-korben",
+        "score": 0.4061111111111111
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 0.6,
+    "manualLinks": []
+  },
+  "sushanta-british-jiban-sangram-kartabya": {
+    "relatedByTag": [
+      "kanaklata-jiban-sangram-saktir-golpo"
+    ],
+    "relatedByPillar": [],
+    "relatedByCluster": [
+      "kanaklata-jiban-sangram-saktir-golpo"
+    ],
+    "topRelated": [
+      {
+        "slug": "kanaklata-jiban-sangram-saktir-golpo",
+        "score": 0.4827380952380953
+      },
+      {
+        "slug": "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
+        "score": 0.25
+      },
+      {
+        "slug": "prodyut-acharya-jyotish-palmist-journey-ranaghat",
+        "score": 0.20910130718954248
+      }
+    ],
+    "cluster": "গল্প",
+    "confidence": 0.64,
+    "manualLinks": []
+  },
+  "tripto-maner-shanti-arun-pradip-golpo": {
+    "relatedByTag": [],
+    "relatedByPillar": [
+      "pradip-byarthata-manoshik-shanti",
+      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
+      "jibonsongram-sukhi-thaka-ananta-golpo"
+    ],
+    "relatedByCluster": [
+      "pradip-byarthata-manoshik-shanti",
+      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
+      "jibonsongram-sukhi-thaka-ananta-golpo"
+    ],
+    "topRelated": [
+      {
+        "slug": "pradip-byarthata-manoshik-shanti",
+        "score": 0.34051587301587305
+      },
+      {
+        "slug": "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
+        "score": 0.3203968253968254
+      },
+      {
+        "slug": "jibonsongram-sukhi-thaka-ananta-golpo",
+        "score": 0.31654040404040407
+      }
+    ],
+    "cluster": "জীবন দর্শন",
+    "confidence": 0.6,
+    "manualLinks": []
+  },
+  "jibonsongram-sukhi-thaka-ananta-golpo": {
+    "relatedByTag": [],
+    "relatedByPillar": [
+      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
+      "bhalo-manush-haoar-satyi-path",
+      "pradip-byarthata-manoshik-shanti"
+    ],
+    "relatedByCluster": [
+      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
+      "bhalo-manush-haoar-satyi-path",
+      "pradip-byarthata-manoshik-shanti"
+    ],
+    "topRelated": [
+      {
+        "slug": "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
+        "score": 0.3790444803714298
+      },
+      {
+        "slug": "bhalo-manush-haoar-satyi-path",
+        "score": 0.37196969696969695
+      },
+      {
+        "slug": "pradip-byarthata-manoshik-shanti",
+        "score": 0.3702777777777778
+      }
+    ],
+    "cluster": "জীবন দর্শন",
+    "confidence": 1,
+    "manualLinks": []
+  },
+  "ai-yuge-ortho-bhalobasha-bhagya-pradyut-acharya": {
+    "relatedByTag": [],
+    "relatedByPillar": [
+      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
+      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
+      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo"
+    ],
+    "relatedByCluster": [
+      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
+      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
+      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo"
+    ],
+    "topRelated": [
+      {
+        "slug": "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
+        "score": 0.30674603174603177
+      },
+      {
+        "slug": "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
+        "score": 0.25294294294294295
+      },
+      {
+        "slug": "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
+        "score": 0.25222222222222224
+      }
+    ],
+    "cluster": "জীবন দর্শন",
+    "confidence": 1,
+    "manualLinks": []
+  },
+  "artha-anartha-maraka-bhaba-analysis": {
+    "relatedByTag": [],
+    "relatedByPillar": [],
+    "relatedByCluster": [
+      "jibone-sob-kichu-biruddhe-gele-ki-korben",
+      "janma-kundali-hasta-mudra-rahasya",
+      "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na"
+    ],
+    "topRelated": [
+      {
+        "slug": "jibone-sob-kichu-biruddhe-gele-ki-korben",
+        "score": 0.22653846153846155
+      },
+      {
+        "slug": "janma-kundali-hasta-mudra-rahasya",
+        "score": 0.21705128205128207
+      },
+      {
+        "slug": "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
+        "score": 0.21539682539682542
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 1,
+    "manualLinks": []
+  }
 }
