@@ -1,10 +1,22 @@
-name: Generate Blog & Sitemaps
+name: Generate Blog & Related Posts
 
 on:
   push:
     branches:
       - main
+    paths:
+      - 'src/content/blog/**'
+      - 'generate-*.js'
+      - 'src/data/*.json'
+  schedule:
+    # Run every 6 hours
+    - cron: '0 */6 * * *'
   workflow_dispatch:
+    inputs:
+      force_generate:
+        description: 'Force regenerate all'
+        type: boolean
+        default: false
 
 concurrency:
   group: git-push
@@ -27,67 +39,184 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: npm install gray-matter --no-package-lock
+        run: |
+          npm install gray-matter@^4.0.3
+          echo "✅ Dependencies installed"
 
       - name: Create required directories
-        run: mkdir -p blog
-
-      - name: "\U0001F4DD Generate blog HTML files"
         run: |
+          mkdir -p blog
+          mkdir -p src/data
+          echo "✅ Directories created"
+
+      - name: "\U0001F4DD Generate blog list"
+        run: |
+          echo "📋 Generating list.json..."
+          node src/content/blog/generate-list.js
+          echo "✅ list.json generated"
+
+      - name: "\U0001F517 Generate related posts (AI-like analysis)"
+        run: |
+          echo "🔗 Generating related posts and clusters..."
+          node generate-related-posts.js
+          echo "✅ related-posts.json generated"
+          echo "✅ internal-links.json generated"
+          echo "✅ clusters.json generated"
+          echo "✅ stats.json generated"
+
+      - name: "\U0001F4D1 Generate blog HTML files"
+        run: |
+          echo "📝 Generating blog HTML files..."
+          START_TIME=$(date +%s)
           node generate-posts.js
-          echo "blog/ ফাইল সংখ্যা: $(ls blog/*.html 2>/dev/null | wc -l)"
-
-      - name: "\U0001F4CB Generate list.json"
-        run: node src/content/blog/generate-list.js
-
-      - name: "\U0001F5FA️ Generate sitemap.xml"
-        run: node src/content/blog/generate-sitemap.js
-
-      - name: "\U0001F5BC️ Generate image-sitemap.xml"
-        run: node src/content/blog/generate-image-sitemap.js
-
-      - name: "\U0001F4FA Generate video-sitemap.xml"
-        run: node src/content/blog/generate-video-sitemap.js
-
-      - name: "\U0001F4CB System Checklist"
-        run: |
-          echo "====== সিস্টেম চেকলিস্ট ======"
-          [ -f sitemap.xml ]       && echo "✅ sitemap.xml"        || echo "❌ sitemap.xml নেই"
-          [ -f image-sitemap.xml ] && echo "✅ image-sitemap.xml"  || echo "❌ image-sitemap.xml নেই"
-          [ -f video-sitemap.xml ] && echo "✅ video-sitemap.xml"  || echo "❌ video-sitemap.xml নেই"
-          [ -f src/content/blog/list.json ] && echo "✅ list.json" || echo "❌ list.json নেই"
+          END_TIME=$(date +%s)
+          DURATION=$((END_TIME - START_TIME))
           BLOG_COUNT=$(ls blog/*.html 2>/dev/null | wc -l)
-          [ "$BLOG_COUNT" -gt "0" ] && echo "✅ blog/ HTML: ${BLOG_COUNT}টি" || echo "❌ blog/ HTML নেই"
+          echo "✅ ${BLOG_COUNT} HTML files generated in ${DURATION}s"
+
+      - name: "\U0001F5FA️ Generate sitemaps"
+        run: |
+          echo "🗺️ Generating sitemaps..."
+          
+          # Check if sitemap generators exist
+          if [ -f src/content/blog/generate-sitemap.js ]; then
+            node src/content/blog/generate-sitemap.js
+            echo "✅ sitemap.xml generated"
+          else
+            echo "⚠️ generate-sitemap.js not found"
+          fi
+          
+          if [ -f src/content/blog/generate-image-sitemap.js ]; then
+            node src/content/blog/generate-image-sitemap.js
+            echo "✅ image-sitemap.xml generated"
+          else
+            echo "⚠️ generate-image-sitemap.js not found"
+          fi
+          
+          if [ -f src/content/blog/generate-video-sitemap.js ]; then
+            node src/content/blog/generate-video-sitemap.js
+            echo "✅ video-sitemap.xml generated"
+          else
+            echo "⚠️ generate-video-sitemap.js not found"
+          fi
+
+      - name: "\U0001F50D System Health Check"
+        run: |
+          echo "====== 📊 সিস্টেম চেকলিস্ট ======"
+          
+          # Check sitemaps
+          [ -f sitemap.xml ] && SITEMAP_SIZE=$(stat -c%s sitemap.xml 2>/dev/null || stat -f%z sitemap.xml 2>/dev/null) && echo "✅ sitemap.xml ($(($SITEMAP_SIZE/1024))KB)" || echo "❌ sitemap.xml নেই"
+          [ -f image-sitemap.xml ] && IMG_SIZE=$(stat -c%s image-sitemap.xml 2>/dev/null || stat -f%z image-sitemap.xml 2>/dev/null) && echo "✅ image-sitemap.xml ($(($IMG_SIZE/1024))KB)" || echo "❌ image-sitemap.xml নেই"
+          [ -f video-sitemap.xml ] && VIDEO_SIZE=$(stat -c%s video-sitemap.xml 2>/dev/null || stat -f%z video-sitemap.xml 2>/dev/null) && echo "✅ video-sitemap.xml ($(($VIDEO_SIZE/1024))KB)" || echo "❌ video-sitemap.xml নেই"
+          
+          # Check data files
+          echo ""
+          echo "📁 Data files:"
+          [ -f src/data/related-posts.json ] && RP_COUNT=$(jq '. | length' src/data/related-posts.json 2>/dev/null || echo "?") && echo "✅ related-posts.json (${RP_COUNT} entries)" || echo "❌ related-posts.json নেই"
+          [ -f src/data/internal-links.json ] && IL_COUNT=$(jq '. | length' src/data/internal-links.json 2>/dev/null || echo "?") && echo "✅ internal-links.json (${IL_COUNT} entries)" || echo "❌ internal-links.json নেই"
+          [ -f src/data/clusters.json ] && CL_COUNT=$(jq '. | length' src/data/clusters.json 2>/dev/null || echo "?") && echo "✅ clusters.json (${CL_COUNT} entries)" || echo "❌ clusters.json নেই"
+          [ -f src/data/stats.json ] && ST_SIZE=$(stat -c%s src/data/stats.json 2>/dev/null || stat -f%z src/data/stats.json 2>/dev/null) && echo "✅ stats.json ($(($ST_SIZE/1024))KB)" || echo "❌ stats.json নেই"
+          
+          # Check blog posts
+          echo ""
+          echo "📝 Blog posts:"
+          BLOG_COUNT=$(ls blog/*.html 2>/dev/null | wc -l)
+          if [ "$BLOG_COUNT" -gt "0" ]; then
+            echo "✅ ${BLOG_COUNT} HTML files in blog/"
+            FIRST_FILE=$(ls blog/*.html 2>/dev/null | head -1)
+            if [ -n "$FIRST_FILE" ]; then
+              FILE_SIZE=$(stat -c%s "$FIRST_FILE" 2>/dev/null || stat -f%z "$FIRST_FILE" 2>/dev/null)
+              echo "   Sample: $(basename $FIRST_FILE) ($(($FILE_SIZE/1024))KB)"
+            fi
+          else
+            echo "❌ No HTML files in blog/"
+          fi
+          
+          # Check list.json
+          echo ""
+          if [ -f src/content/blog/list.json ]; then
+            LIST_COUNT=$(jq '. | length' src/content/blog/list.json 2>/dev/null || echo "?")
+            echo "✅ list.json (${LIST_COUNT} entries)"
+          else
+            echo "❌ list.json নেই"
+          fi
+          
           echo "================================"
 
-      - name: Commit and push
+      - name: "\U0001F4C8 Generate stats report"
+        run: |
+          echo "====== 📈 জেনারেশন রিপোর্ট ======"
+          echo "⏰ Time: $(date '+%Y-%m-%d %H:%M:%S UTC')"
+          
+          if [ -f src/data/stats.json ]; then
+            TOTAL_POSTS=$(jq '.totalPosts // 0' src/data/stats.json)
+            TOTAL_LINKS=$(jq '.totalLinks // 0' src/data/stats.json)
+            AVG_LINKS=$(jq '.avgLinksPerPost // 0' src/data/stats.json)
+            NO_LINKS=$(jq '.postsWithNoLinks // 0' src/data/stats.json)
+            
+            echo "📊 Stats from stats.json:"
+            echo "   📝 Total posts: $TOTAL_POSTS"
+            echo "   🔗 Total links: $TOTAL_LINKS"
+            echo "   📈 Avg links/post: $AVG_LINKS"
+            echo "   ⚠️ Posts with no links: $NO_LINKS"
+            
+            echo ""
+            echo "📊 Cluster distribution:"
+            jq -r '.clusters | to_entries | sort_by(-.value) | .[] | "   \(.key): \(.value) posts"' src/data/stats.json | head -10
+            
+            echo ""
+            echo "🏷️ Top tags:"
+            jq -r '.tagsFrequency | to_entries | sort_by(-.value) | .[] | "   \(.key): \(.value) times"' src/data/stats.json | head -10
+          else
+            echo "⚠️ stats.json not available"
+          fi
+          echo "================================"
+
+      - name: Commit and push changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
+          # Add all generated files
           git add -f blog/
           git add src/content/blog/list.json
-          git add sitemap.xml image-sitemap.xml video-sitemap.xml
+          git add src/data/*.json
+          git add sitemap.xml image-sitemap.xml video-sitemap.xml 2>/dev/null || true
 
+          # Count changes
           BLOG_COUNT=$(git diff --staged --name-only | grep '^blog/' | wc -l | tr -d ' ')
+          DATA_COUNT=$(git diff --staged --name-only | grep '^src/data/' | wc -l | tr -d ' ')
           SITEMAP_COUNT=$(git diff --staged --name-only | grep 'sitemap' | wc -l | tr -d ' ')
           LIST_CHANGED=$(git diff --staged --name-only | grep 'list.json' | wc -l | tr -d ' ')
 
           if git diff --staged --quiet; then
-            echo "ℹ️ কোনো পরিবর্তন নেই"
+            echo "ℹ️ No changes to commit"
             exit 0
           fi
 
-          MSG=""
-          [ "$BLOG_COUNT"    -gt "0" ] && MSG="${MSG}📝 blog/ ${BLOG_COUNT}টি HTML | "
+          # Build commit message
+          MSG="🤖 Auto-update: "
+          [ "$BLOG_COUNT"    -gt "0" ] && MSG="${MSG}📝 ${BLOG_COUNT} blog | "
+          [ "$DATA_COUNT"    -gt "0" ] && MSG="${MSG}📊 ${DATA_COUNT} data | "
           [ "$LIST_CHANGED"  -gt "0" ] && MSG="${MSG}📋 list.json | "
-          [ "$SITEMAP_COUNT" -gt "0" ] && MSG="${MSG}🗺️ sitemap | "
-          [ -z "$MSG" ]                && MSG="🤖 auto-update | "
+          [ "$SITEMAP_COUNT" -gt "0" ] && MSG="${MSG}🗺️ sitemaps | "
           MSG=$(echo "$MSG" | sed 's/ | $//')
 
           git commit -m "${MSG} [skip ci]"
+          
+          # Pull before push to avoid conflicts
           git pull --rebase origin main
           git push origin main
-          echo "✅ Push সম্পন্ন: ${MSG}"
+          
+          echo "✅ Push completed: ${MSG}"
+
+      - name: "\U0001F680 Deployment Summary"
+        if: always()
+        run: |
+          echo "====== 🚀 Deployment Summary ======"
+          echo "✅ GitHub Action completed successfully"
+          echo "📅 $(date '+%Y-%m-%d %H:%M:%S UTC')"
+          echo "===================================="
