@@ -1,129 +1,466 @@
 'use strict';
-const fs=require('fs'),path=require('path');
-const BLOG_DIR=path.join(__dirname,'src','content','blog');
-const OUTPUT_DIR=path.join(__dirname,'blog');
-const SITE_URL='https://www.myastrology.in';
-const GA_ID='G-S7BQGLP211';
-const WA_NUMBER='919333122768';
-const RZP_KEY='rzp_live_SN8p6DJxPYFVL1';
-const LOGO_IMG='https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png';
-const FALLBACK_IMG=LOGO_IMG;
+const fs = require('fs');
+const path = require('path');
 
-// ── RELATED POSTS MAPPING ────────────────────
+// ============================================
+// কনফিগারেশন ও কনস্ট্যান্ট
+// ============================================
+const BLOG_DIR = path.join(__dirname, 'src', 'content', 'blog');
+const OUTPUT_DIR = path.join(__dirname, 'blog');
+const SITE_URL = 'https://www.myastrology.in';
+const GA_ID = 'G-S7BQGLP211';
+const WA_NUMBER = '919333122768';
+const RZP_KEY = 'rzp_live_SN8p6DJxPYFVL1';
+const LOGO_IMG = 'https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png';
+const FALLBACK_IMG = LOGO_IMG;
+
+// ============================================
+// ডাটা ফাইল পাথ
+// ============================================
 const RELATED_POSTS_PATH = path.join(__dirname, 'src/data/related-posts.json');
+const INTERNAL_LINKS_PATH = path.join(__dirname, 'src/data/internal-links.json');
+const CLUSTERS_PATH = path.join(__dirname, 'src/data/clusters.json');
+const BLOG_LIST_PATH = path.join(__dirname, 'src/content/blog/list.json');
+
+// ============================================
+// ডাটা ম্যাপ লোড করুন
+// ============================================
 let relatedPostsMap = {};
-if(fs.existsSync(RELATED_POSTS_PATH)) {
+let internalLinksMap = {};
+let clustersMap = {};
+
+// সম্পর্কিত পোস্ট লোড
+if (fs.existsSync(RELATED_POSTS_PATH)) {
   try {
     relatedPostsMap = JSON.parse(fs.readFileSync(RELATED_POSTS_PATH, 'utf8'));
-  } catch(e) {
-    console.warn('⚠️ related-posts.json not found, skipping related posts');
+    console.log('✅ Related posts data loaded');
+  } catch (e) {
+    console.warn('⚠️ related-posts.json not found or invalid');
   }
 }
 
+// ইন্টারনাল লিংক লোড
+if (fs.existsSync(INTERNAL_LINKS_PATH)) {
+  try {
+    internalLinksMap = JSON.parse(fs.readFileSync(INTERNAL_LINKS_PATH, 'utf8'));
+    console.log('✅ Internal links data loaded');
+  } catch (e) {
+    console.warn('⚠️ internal-links.json not found or invalid');
+  }
+}
 
-function parseFrontmatter(content){
-  const meta={title:'',description:'',date:'',date_modified:'',image:'',image_alt:'',slug:'',tags:[],categories:[],keywords:'',og_title:'',og_description:'',twitter_title:'',twitter_description:''};
-  const match=content.match(/^---\n([\s\S]*?)\n---/);
-  if(!match)return meta;
-  const lines=match[1].split('\n');
-  let inTags=false,inCategories=false,inAuthor=false;
-  lines.forEach(line=>{
-    if(/^tags\s*:/.test(line)){inTags=true;inCategories=false;inAuthor=false;return;}
-    if(/^categories\s*:/.test(line)){inCategories=true;inTags=false;inAuthor=false;return;}
-    if(/^author\s*:/.test(line)){inAuthor=true;inTags=false;inCategories=false;return;}
-    if(inTags){
-      if(/^\s{2,}-\s+/.test(line)){meta.tags.push(line.replace(/^\s+-\s+/,'').replace(/^["']|["']$/g,'').trim());return;}
-      if(/^\S/.test(line))inTags=false;else return;
+// ক্লাস্টার ডাটা লোড
+if (fs.existsSync(CLUSTERS_PATH)) {
+  try {
+    clustersMap = JSON.parse(fs.readFileSync(CLUSTERS_PATH, 'utf8'));
+    console.log('✅ Clusters data loaded');
+  } catch (e) {
+    console.warn('⚠️ clusters.json not found or invalid');
+  }
+}
+
+// ব্লগ লিস্ট লোড
+let blogList = [];
+if (fs.existsSync(BLOG_LIST_PATH)) {
+  try {
+    blogList = JSON.parse(fs.readFileSync(BLOG_LIST_PATH, 'utf8'));
+    console.log(`✅ Blog list loaded with ${blogList.length} posts`);
+  } catch (e) {
+    console.warn('⚠️ blog list not found or invalid');
+  }
+}
+
+// ============================================
+// টপিক ক্লাউড জেনারেটর
+// ============================================
+let topicCloudHTML = '';
+function generateTopicCloud() {
+  if (topicCloudHTML) return topicCloudHTML;
+  if (Object.keys(clustersMap).length === 0) return '';
+  
+  const topics = {};
+  Object.values(clustersMap).forEach(c => {
+    if (c && c.cluster) {
+      topics[c.cluster] = (topics[c.cluster] || 0) + 1;
     }
-    if(inCategories){
-      if(/^\s{2,}-\s+/.test(line)){meta.categories.push(line.replace(/^\s+-\s+/,'').replace(/^["']|["']$/g,'').trim());return;}
-      if(/^\S/.test(line))inCategories=false;else return;
-    }
-    if(inAuthor){if(/^\s+\w/.test(line))return;else inAuthor=false;}
-    const ci=line.indexOf(':');if(ci===-1)return;
-    const key=line.slice(0,ci).trim(),val=line.slice(ci+1).trim().replace(/^["']|["']$/g,'');
-    if(key==='title')meta.title=val;
-    if(key==='description')meta.description=val;
-    if(key==='date')meta.date=val;
-    if(key==='date_modified')meta.date_modified=val;
-    if(key==='image')meta.image=val;
-    if(key==='image_alt')meta.image_alt=val;
-    if(key==='slug')meta.slug=val;
-    if(key==='keywords')meta.keywords=val;
-    if(key==='og_title')meta.og_title=val;
-    if(key==='og_description')meta.og_description=val;
-    if(key==='twitter_title')meta.twitter_title=val;
-    if(key==='twitter_description')meta.twitter_description=val;
-    if(key==='tags'&&val.includes('['))meta.tags=val.replace(/[\[\]]/g,'').split(',').map(t=>t.trim().replace(/^["']|["']$/g,'')).filter(Boolean);
-    if(key==='categories'&&val.includes('['))meta.categories=val.replace(/[\[\]]/g,'').split(',').map(t=>t.trim().replace(/^["']|["']$/g,'')).filter(Boolean);
   });
+  
+  const sortedTopics = Object.entries(topics)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 10);
+  
+  if (sortedTopics.length === 0) return '';
+  
+  let html = `
+    <div class="topic-cloud" style="margin: 30px 0; padding: 20px; background: var(--gold-bg); border-radius: var(--r); border: 1px solid var(--bd);">
+      <h4 style="font-family: var(--fh); color: var(--navy); margin-bottom: 15px; text-align: center; font-size: 1.2rem;">
+        <i class="fas fa-tags" style="color: var(--gold); margin-right: 8px;"></i> জনপ্রিয় বিষয়
+      </h4>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;">
+  `;
+  
+  sortedTopics.forEach(([topic, count]) => {
+    const fontSize = 0.85 + (count * 0.02);
+    html += `
+      <a href="/learning/#${encodeURIComponent(topic)}" style="background: white; color: var(--navy); padding: 6px 14px; border-radius: 25px; text-decoration: none; font-size: ${fontSize}rem; border: 1px solid var(--gold); box-shadow: var(--shadow); transition: all 0.2s;">
+        ${topic} <span style="color: var(--gold); font-weight: 700;">(${count})</span>
+      </a>
+    `;
+  });
+  
+  html += `
+      </div>
+    </div>
+  `;
+  
+  topicCloudHTML = html;
+  return html;
+}
+
+// ============================================
+// ফ্রন্টম্যাটার পার্সার
+// ============================================
+function parseFrontmatter(content) {
+  const meta = {
+    title: '', description: '', date: '', date_modified: '',
+    image: '', image_alt: '', slug: '', tags: [], categories: [],
+    keywords: '', og_title: '', og_description: '',
+    twitter_title: '', twitter_description: ''
+  };
+  
+  const match = content.match(/^---\n([\s\S]*?)\n---/);
+  if (!match) return meta;
+  
+  const lines = match[1].split('\n');
+  let inTags = false, inCategories = false, inAuthor = false;
+  
+  lines.forEach(line => {
+    if (/^tags\s*:/.test(line)) { inTags = true; inCategories = false; inAuthor = false; return; }
+    if (/^categories\s*:/.test(line)) { inCategories = true; inTags = false; inAuthor = false; return; }
+    if (/^author\s*:/.test(line)) { inAuthor = true; inTags = false; inCategories = false; return; }
+    
+    if (inTags) {
+      if (/^\s{2,}-\s+/.test(line)) {
+        meta.tags.push(line.replace(/^\s+-\s+/, '').replace(/^["']|["']$/g, '').trim());
+        return;
+      }
+      if (/^\S/.test(line)) inTags = false; else return;
+    }
+    
+    if (inCategories) {
+      if (/^\s{2,}-\s+/.test(line)) {
+        meta.categories.push(line.replace(/^\s+-\s+/, '').replace(/^["']|["']$/g, '').trim());
+        return;
+      }
+      if (/^\S/.test(line)) inCategories = false; else return;
+    }
+    
+    if (inAuthor) {
+      if (/^\s+\w/.test(line)) return; else inAuthor = false;
+    }
+    
+    const ci = line.indexOf(':');
+    if (ci === -1) return;
+    
+    const key = line.slice(0, ci).trim();
+    let val = line.slice(ci + 1).trim().replace(/^["']|["']$/g, '');
+    
+    const fieldMap = {
+      'title': 'title', 'description': 'description', 'date': 'date',
+      'date_modified': 'date_modified', 'image': 'image', 'image_alt': 'image_alt',
+      'slug': 'slug', 'keywords': 'keywords', 'og_title': 'og_title',
+      'og_description': 'og_description', 'twitter_title': 'twitter_title',
+      'twitter_description': 'twitter_description'
+    };
+    
+    if (fieldMap[key]) {
+      meta[fieldMap[key]] = val;
+    }
+    
+    if (key === 'tags' && val.includes('[')) {
+      meta.tags = val.replace(/[\[\]]/g, '').split(',').map(t => t.trim().replace(/^["']|["']$/g, '')).filter(Boolean);
+    }
+    if (key === 'categories' && val.includes('[')) {
+      meta.categories = val.replace(/[\[\]]/g, '').split(',').map(t => t.trim().replace(/^["']|["']$/g, '')).filter(Boolean);
+    }
+  });
+  
   return meta;
 }
 
-function normalizeImage(img,slug){
-  if(!img)return SITE_URL+'/images/'+slug+'.webp';
-  img=img.replace(/https?:\/\/astro\.myastrology\.in/g,SITE_URL);
-  if(img.startsWith('/images/'))img=SITE_URL+img;
+// ============================================
+// ইমেজ নরমালাইজার
+// ============================================
+function normalizeImage(img, slug) {
+  if (!img) return SITE_URL + '/images/' + slug + '.webp';
+  img = img.replace(/https?:\/\/astro\.myastrology\.in/g, SITE_URL);
+  if (img.startsWith('/images/')) img = SITE_URL + img;
   return img;
 }
 
-function jss(s){return(s||'').replace(/\\/g,'\\\\').replace(/"/g,'\\"').replace(/\n/g,'\\n').replace(/<\/script>/gi,'<\\/script>');}
-
-function applyInline(t){
+// ============================================
+// মার্কডাউন টু এইচটিএমএল কনভার্টার
+// ============================================
+function applyInline(t) {
   return t
-    .replace(/\*\*\*(.+?)\*\*\*/g,'<strong><em>$1</em></strong>')
-    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
-    .replace(/\*(.+?)\*/g,'<em>$1</em>')
-    .replace(/`(.+?)`/g,'<code>$1</code>')
-    .replace(/\[(.+?)\]\((.+?)\)/g,'<a href="$2">$1</a>');
+    .replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>')
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    .replace(/`(.+?)`/g, '<code>$1</code>')
+    .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>');
 }
 
-function markdownToHtml(raw){
-  let md=raw;
-  const fs2=raw.indexOf('---');
-  if(fs2!==-1){const fe=raw.indexOf('\n---',fs2+3);if(fe!==-1)md=raw.slice(fe+4);}
-  const html=[];
-  md.split(/\n{2,}/).forEach(block=>{
-    block=block.trim();if(!block)return;
-    if(/^---+$/.test(block)){html.push('<hr>');return;}
-    if(/^<(div|section|article|figure|table|ul|ol|blockquote|hr|h[1-6]|p[\s>])/i.test(block)){html.push(block);return;}
-    if(/^#{1,6}\s/.test(block)){html.push(block
-      .replace(/^######\s(.+)$/gm,'<h6>$1</h6>')
-      .replace(/^#####\s(.+)$/gm,'<h5>$1</h5>')
-      .replace(/^####\s(.+)$/gm,'<h4>$1</h4>')
-      .replace(/^###\s(.+)$/gm,'<h3>$1</h3>')
-      .replace(/^##\s(.+)$/gm,'<h2>$1</h2>')
-      .replace(/^#\s(.+)$/gm,'<h2>$1</h2>'));return;}
-    if(/^>\s/.test(block)){html.push('<blockquote>'+applyInline(block.split('\n').map(l=>l.replace(/^>\s?/,'')).join('\n').trim())+'</blockquote>');return;}
-    if(/^\|.+\|/.test(block)){
-      const rows=block.split('\n').filter(r=>r.trim());
-      const isHdr=rows.length>1&&/^\|[\s\-:|]+\|$/.test(rows[1]);
-      let t='<div class="tbl-wrap"><table>\n';
-      rows.forEach((row,i)=>{
-        if(isHdr&&i===1)return;
-        const cells=row.split('|').slice(1,-1).map(c=>c.trim());
-        const tag=(isHdr&&i===0)?'th':'td';
-        t+='<tr>'+cells.map(c=>'<'+tag+'>'+applyInline(c)+'</'+tag+'>').join('')+'</tr>\n';
-      });
-      html.push(t+'</table></div>');return;
+function markdownToHtml(raw) {
+  let md = raw;
+  const fs2 = raw.indexOf('---');
+  if (fs2 !== -1) {
+    const fe = raw.indexOf('\n---', fs2 + 3);
+    if (fe !== -1) md = raw.slice(fe + 4);
+  }
+  
+  const html = [];
+  md.split(/\n{2,}/).forEach(block => {
+    block = block.trim();
+    if (!block) return;
+    
+    // Horizontal rule
+    if (/^---+$/.test(block)) {
+      html.push('<hr>');
+      return;
     }
-    if(/^\s*[-*]\s/.test(block)){html.push('<ul>\n'+block.split('\n').filter(l=>/^\s*[-*]\s/.test(l)).map(l=>'<li>'+applyInline(l.replace(/^\s*[-*]\s/,''))+'</li>').join('\n')+'\n</ul>');return;}
-    if(/^\s*\d+\.\s/.test(block)){html.push('<ol>\n'+block.split('\n').filter(l=>/^\s*\d+\.\s/.test(l)).map(l=>'<li>'+applyInline(l.replace(/^\s*\d+\.\s/,''))+'</li>').join('\n')+'\n</ol>');return;}
-    html.push('<p>'+applyInline(block.replace(/\n/g,' '))+'</p>');
+    
+    // Raw HTML
+    if (/^<(div|section|article|figure|table|ul|ol|blockquote|hr|h[1-6]|p[\s>])/i.test(block)) {
+      html.push(block);
+      return;
+    }
+    
+    // Headings
+    if (/^#{1,6}\s/.test(block)) {
+      html.push(block
+        .replace(/^######\s(.+)$/gm, '<h6>$1</h6>')
+        .replace(/^#####\s(.+)$/gm, '<h5>$1</h5>')
+        .replace(/^####\s(.+)$/gm, '<h4>$1</h4>')
+        .replace(/^###\s(.+)$/gm, '<h3>$1</h3>')
+        .replace(/^##\s(.+)$/gm, '<h2>$1</h2>')
+        .replace(/^#\s(.+)$/gm, '<h2>$1</h2>'));
+      return;
+    }
+    
+    // Blockquote
+    if (/^>\s/.test(block)) {
+      html.push('<blockquote>' + applyInline(block.split('\n').map(l => l.replace(/^>\s?/, '')).join('\n').trim()) + '</blockquote>');
+      return;
+    }
+    
+    // Tables
+    if (/^\|.+\|/.test(block)) {
+      const rows = block.split('\n').filter(r => r.trim());
+      const isHdr = rows.length > 1 && /^\|[\s\-:|]+\|$/.test(rows[1]);
+      let t = '<div class="tbl-wrap"><table>\n';
+      rows.forEach((row, i) => {
+        if (isHdr && i === 1) return;
+        const cells = row.split('|').slice(1, -1).map(c => c.trim());
+        const tag = (isHdr && i === 0) ? 'th' : 'td';
+        t += '<tr>' + cells.map(c => '<' + tag + '>' + applyInline(c) + '</' + tag + '>').join('') + '</tr>\n';
+      });
+      html.push(t + '</table></div>');
+      return;
+    }
+    
+    // Unordered list
+    if (/^\s*[-*]\s/.test(block)) {
+      html.push('<ul>\n' + block.split('\n').filter(l => /^\s*[-*]\s/.test(l)).map(l => '<li>' + applyInline(l.replace(/^\s*[-*]\s/, '')) + '</li>').join('\n') + '\n</ul>');
+      return;
+    }
+    
+    // Ordered list
+    if (/^\s*\d+\.\s/.test(block)) {
+      html.push('<ol>\n' + block.split('\n').filter(l => /^\s*\d+\.\s/.test(l)).map(l => '<li>' + applyInline(l.replace(/^\s*\d+\.\s/, '')) + '</li>').join('\n') + '\n</ol>');
+      return;
+    }
+    
+    // Paragraph
+    html.push('<p>' + applyInline(block.replace(/\n/g, ' ')) + '</p>');
   });
+  
   return html.join('\n');
 }
 
-function fmtDate(d){if(!d)return'';const dt=new Date(d+'T00:00:00');return isNaN(dt)?d:dt.toLocaleDateString('bn-IN',{year:'numeric',month:'long',day:'numeric'});}
-function isoDate(d){return d||new Date().toISOString().slice(0,10);}
-function readMins(html){const wc=html.replace(/<[^>]+>/g,'').split(/\s+/).filter(Boolean).length;return Math.max(1,Math.round(wc/200));}
+// ============================================
+// ডেট ফরম্যাটার
+// ============================================
+function fmtDate(d) {
+  if (!d) return '';
+  const dt = new Date(d + 'T00:00:00');
+  return isNaN(dt) ? d : dt.toLocaleDateString('bn-IN', {
+    year: 'numeric', month: 'long', day: 'numeric'
+  });
+}
 
-// ── CSS ──────────────────────────────────────────────────────────
+function isoDate(d) {
+  return d || new Date().toISOString().slice(0, 10);
+}
+
+function readMins(html) {
+  const wc = html.replace(/<[^>]+>/g, '').split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(wc / 200));
+}
+
+// ============================================
+// অ্যাডভান্সড রিলেটেড পোস্ট এইচটিএমএল জেনারেটর
+// ============================================
+function buildRelatedPostsHTML(currentSlug, allPostsList) {
+  // Try internal links first
+  const internalData = internalLinksMap[currentSlug];
+  let relatedSlugs = [];
+  
+  if (internalData) {
+    relatedSlugs = [
+      ...(internalData.relatedByTag || []),
+      ...(internalData.relatedByPillar || []),
+      ...(internalData.relatedByCluster || [])
+    ];
+  } else {
+    relatedSlugs = relatedPostsMap[currentSlug] || [];
+  }
+  
+  // Remove duplicates and limit to 4
+  relatedSlugs = [...new Set(relatedSlugs)].slice(0, 4);
+  
+  if (relatedSlugs.length === 0) return '';
+  
+  // Get full post data
+  const relatedPosts = allPostsList
+    .filter(p => relatedSlugs.includes(p.slug))
+    .slice(0, 4);
+  
+  if (relatedPosts.length === 0) return '';
+  
+  // Get current post cluster
+  const currentCluster = clustersMap[currentSlug]?.cluster || '';
+  
+  let html = `
+    <div class="related-posts-enhanced" style="background: var(--gold-bg); border: 1px solid var(--bd); border-radius: var(--r); padding: 25px; margin: 40px 0; border-left: 4px solid var(--gold); box-shadow: var(--shadow);">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+        <h3 style="font-family: var(--fh); color: #1a2e48; margin: 0; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
+          <i class="fas fa-book-open" style="color: var(--gold); font-size: 1.4rem;"></i>
+          <span>আরও পড়ুন</span>
+        </h3>
+        ${currentCluster ? `
+          <span style="background: var(--navy); color: var(--gold-lt); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">
+            <i class="fas fa-tag" style="margin-right: 4px;"></i> ${currentCluster}
+          </span>
+        ` : ''}
+      </div>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px;">
+  `;
+  
+  relatedPosts.forEach(post => {
+    const postDate = fmtDate(post.date);
+    const postCluster = clustersMap[post.slug]?.cluster || '';
+    const isSameCluster = postCluster === currentCluster;
+    
+    html += `
+      <a href="/blog/${post.slug}.html" class="related-card" style="text-decoration: none; color: inherit; background: white; border-radius: var(--r); padding: 18px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); transition: all 0.3s; display: block; border: 1px solid ${isSameCluster ? 'var(--gold)' : 'var(--bd)'}; position: relative; overflow: hidden;">
+        ${isSameCluster ? '<div style="position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--gold);"></div>' : ''}
+        <div style="font-weight: 600; color: var(--blue); margin-bottom: 10px; font-size: 1rem; line-height: 1.5; padding-left: ${isSameCluster ? '8px' : '0'};">
+          ${post.title}
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: var(--mu);">
+          <span><i class="far fa-calendar-alt" style="color: var(--gold); margin-right: 4px;"></i> ${postDate}</span>
+          ${postCluster ? `<span><i class="fas fa-layer-group" style="color: var(--gold); margin-right: 4px;"></i> ${postCluster}</span>` : ''}
+        </div>
+      </a>
+    `;
+  });
+  
+  html += `
+      </div>
+      
+      <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; border-top: 1px dashed var(--bd); padding-top: 15px;">
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+          <a href="/blog-list.html" style="color: var(--gold); font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 5px;">
+            <i class="fas fa-list"></i> সব পোস্ট দেখুন
+          </a>
+          <a href="/learning/" style="color: var(--navy); font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 5px;">
+            <i class="fas fa-graduation-cap"></i> লার্নিং হাব
+          </a>
+        </div>
+        <div style="font-size: 0.75rem; color: var(--mu);">
+          <i class="fas fa-info-circle" style="color: var(--gold);"></i> সম্পর্কিত পোস্ট
+        </div>
+      </div>
+    </div>
+  `;
+  
+  return html;
+}
+
+// ============================================
+// সাইডবার রিলেটেড পোস্ট জেনারেটর
+// ============================================
+function buildSidebarRelatedHTML(currentSlug) {
+  const internalData = internalLinksMap[currentSlug];
+  if (!internalData) return '';
+  
+  const relatedSlugs = [
+    ...(internalData.relatedByTag || []),
+    ...(internalData.relatedByCluster || [])
+  ].slice(0, 5);
+  
+  if (relatedSlugs.length === 0) return '';
+  
+  const relatedPosts = blogList.filter(p => relatedSlugs.includes(p.slug));
+  if (relatedPosts.length === 0) return '';
+  
+  let html = `
+    <div class="sidebar-widget" style="background: white; border-radius: var(--r); padding: 20px; margin-bottom: 30px; border: 1px solid var(--bd); box-shadow: var(--shadow);">
+      <h4 style="font-family: var(--fh); color: var(--navy); margin: 0 0 15px 0; padding-bottom: 10px; border-bottom: 2px solid var(--gold); display: flex; align-items: center; gap: 8px;">
+        <i class="fas fa-link" style="color: var(--gold);"></i> সম্পর্কিত পোস্ট
+      </h4>
+      <ul style="list-style: none; padding: 0; margin: 0;">
+  `;
+  
+  relatedPosts.forEach(post => {
+    html += `
+      <li style="margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px dashed #f0f0f0;">
+        <a href="/blog/${post.slug}.html" style="text-decoration: none; color: var(--blue); font-weight: 500; display: flex; align-items: flex-start; gap: 8px; line-height: 1.4;">
+          <i class="fas fa-chevron-right" style="color: var(--gold); font-size: 0.7rem; margin-top: 4px; flex-shrink: 0;"></i>
+          <span>${post.title}</span>
+        </a>
+      </li>
+    `;
+  });
+  
+  html += `
+      </ul>
+      <a href="/blog-list.html" style="display: block; text-align: center; margin-top: 15px; color: var(--gold); font-size: 0.85rem; font-weight: 600;">
+        সব পোস্ট দেখুন →
+      </a>
+    </div>
+  `;
+  
+  return html;
+}
+
+// ============================================
+// সিএসএস ব্লক
+// ============================================
 const CSS_BLOCK = `<style>
-:root{--navy:#0a192f;--navy2:#0e1e38;--gold:#b8860b;--gold3:#ffd700;--gold-lt:#fff4ca;--gold-bg:#fdf8ed;--bg:#FFF9F0;--tx:#2C1810;--mu:#6B4C3B;--bd:#E8D5B7;--red:#780b0b;--blue:#123d87;--fh:'Playfair Display',Georgia,serif;--fb:'Noto Serif Bengali','Segoe UI',sans-serif;--r:10px;--shadow:0 4px 28px rgba(0,0,0,.09);}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;overflow-x:clip;}
+:root{
+  --navy:#0a192f;--navy2:#0e1e38;--gold:#b8860b;--gold3:#ffd700;
+  --gold-lt:#fff4ca;--gold-bg:#fdf8ed;--bg:#FFF9F0;--tx:#2C1810;
+  --mu:#6B4C3B;--bd:#E8D5B7;--red:#780b0b;--blue:#123d87;
+  --fh:'Playfair Display',Georgia,serif;--fb:'Noto Serif Bengali','Segoe UI',sans-serif;
+  --r:10px;--shadow:0 4px 28px rgba(0,0,0,.09);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;overflow-x:clip;}
 body{font-family:var(--fb);background:var(--bg);color:var(--tx);line-height:1.9;font-size:1.05rem;padding-top:66px;overflow-x:clip;}
-img{max-width:100%;height:auto;display:block;}a{text-decoration:none;color:inherit;}
+img{max-width:100%;height:auto;display:block;}
+a{text-decoration:none;color:inherit;}
 .skip-link{position:absolute;top:-40px;left:0;background:var(--navy);color:var(--gold-lt);padding:8px 14px;z-index:9999;font-size:.85rem;transition:top .2s;}.skip-link:focus{top:0;}
 .site-header{position:fixed;width:100%;top:0;z-index:900;display:flex;align-items:center;gap:12px;padding:0 20px;height:66px;background:var(--navy);box-shadow:0 2px 18px rgba(0,0,0,.5);border-bottom:2px solid var(--gold);}
 .ham{background:rgba(255,255,255,.06);border:1.5px solid rgba(184,134,11,.45);cursor:pointer;color:var(--gold-lt);font-size:1.25rem;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:7px;flex-shrink:0;transition:background .2s;}.ham:hover{background:rgba(184,134,11,.18);}
@@ -298,79 +635,46 @@ main{max-width:780px;margin:0 auto;padding:18px 18px 60px;}
 @media(max-width:860px){.ftr-mid-inner{grid-template-columns:1fr 1fr;}.ftr-col{border-right:none;padding:0 0 22px 0!important;}.ftr-col+.ftr-col{padding-left:0!important;}}
 @media(max-width:540px){.ftr-mid-inner{grid-template-columns:1fr;}.ftr-svc-cards{grid-template-columns:repeat(2,1fr);}.ftr-bottom{flex-direction:column;text-align:center;}}
 @media(max-width:600px){main{padding:14px 14px 48px;}.post-header h1{font-size:1.4rem;}}
-
 </style>`;
 
-// ── BUILD RELATED POSTS HTML ────────────────────
-function buildRelatedPostsHTML(currentSlug, allPostsList) {
-  const relatedSlugs = relatedPostsMap[currentSlug] || [];
-  if (relatedSlugs.length === 0) return '';
-  
-  // সব posts-���র মধ্থেকে related slugs খুঁজুন
-  const relatedPosts = allPostsList.filter(p => relatedSlugs.includes(p.slug)).slice(0, 3);
-  
-  if (relatedPosts.length === 0) return '';
-  
-  let html = `
-    <div style="background:var(--gold-bg);border:1px solid var(--bd);border-radius:var(--r);padding:20px 18px;margin:30px 0;margin-top:40px;">
-      <h3 style="font-family:var(--fh);color:#1a2e48;margin:0 0 15px;font-size:1rem;display:flex;align-items:center;gap:8px;">
-        <span>📖</span> সম্পর্কিত পোস্ট
-      </h3>
-      <ul style="list-style:none;margin:0;padding:0;">
-  `;
-  
-  relatedPosts.forEach(post => {
-    const postDate = fmtDate(post.date);
-    html += `
-      <li style="padding:12px 0;border-bottom:1px solid rgba(0,0,0,.05);transition:all .2s;">
-        <a href="/blog/${post.slug}.html" style="color:var(--blue);text-decoration:none;font-weight:500;display:block;padding:4px 0;">${post.title}</a>
-        <div style="font-size:.75rem;color:var(--mu);margin-top:4px;">${postDate}</div>
-      </li>
-    `;
-  });
-  
-  html += `
-      </ul>
-    </div>
-  `;
-  
-  return html;
-}
+// ============================================
+// buildHtml ফাংশন
+// ============================================
+function buildHtml(meta, body, slug) {
+  const pageUrl = SITE_URL + '/blog/' + slug + '.html';
+  const img = normalizeImage(meta.image, slug);
+  const imgAlt = meta.image_alt || meta.title;
+  const dateStr = fmtDate(meta.date);
+  const mins = readMins(body);
+  const tags = meta.tags.length ? meta.tags.map(t => '<span class="tag">' + t + '</span>').join(' ') : '';
+  const kw = meta.keywords || meta.tags.join(', ');
+  const iso = isoDate(meta.date);
+  const isoModified = meta.date_modified || iso;
+  const articleSection = meta.categories.length ? meta.categories[0] : 'জীবন দর্শন';
+  const ogTitle = meta.og_title || meta.title;
+  const ogDesc = meta.og_description || meta.description;
+  const twTitle = meta.twitter_title || meta.title;
+  const twDesc = meta.twitter_description || meta.description;
 
-
-
-// ── buildHtml ──────────────────────────────────────────────────────
-function buildHtml(meta,body,slug){
-  const pageUrl=SITE_URL+'/blog/'+slug+'.html';
-  const img=normalizeImage(meta.image,slug);
-  const imgAlt=meta.image_alt||meta.title;
-  const dateStr=fmtDate(meta.date);
-  const mins=readMins(body);
-  const tags=meta.tags.length?meta.tags.map(t=>'<span class="tag">'+t+'</span>').join(' '):'';
-  const kw=meta.keywords||meta.tags.join(', ');
-  const iso=isoDate(meta.date);
-  const isoModified=meta.date_modified||iso;
-  const articleSection=meta.categories.length?meta.categories[0]:'জীবন দর্শন';
-  const ogTitle=meta.og_title||meta.title;
-  const ogDesc=meta.og_description||meta.description;
-  const twTitle=meta.twitter_title||meta.title;
-  const twDesc=meta.twitter_description||meta.description;
-
-  const schema=JSON.stringify([
-    {"@context":"https://schema.org","@type":"BlogPosting",
-     headline:meta.title,description:meta.description,
-     datePublished:iso,dateModified:isoModified,
-     image:{"@type":"ImageObject",url:img,width:1200,height:630},
-     url:pageUrl,inLanguage:'bn-IN',timeRequired:'PT'+mins+'M',
-     author:{"@type":"Person",name:'Dr. Prodyut Acharya',url:'https://www.myastrology.in/about.html'},
-     publisher:{"@type":"Organization",name:'MyAstrology',logo:{"@type":"ImageObject",url:'https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png'}},
-     mainEntityOfPage:{"@type":"WebPage","@id":pageUrl}},
-    {"@context":"https://schema.org","@type":"BreadcrumbList",
-     itemListElement:[
-       {"@type":"ListItem",position:1,name:'হোম',item:'https://www.myastrology.in'},
-       {"@type":"ListItem",position:2,name:'ব্লগ',item:'https://www.myastrology.in/blog-list.html'},
-       {"@type":"ListItem",position:3,name:meta.title,item:pageUrl}
-     ]}
+  const schema = JSON.stringify([
+    {
+      "@context": "https://schema.org", "@type": "BlogPosting",
+      headline: meta.title, description: meta.description,
+      datePublished: iso, dateModified: isoModified,
+      image: { "@type": "ImageObject", url: img, width: 1200, height: 630 },
+      url: pageUrl, inLanguage: 'bn-IN', timeRequired: 'PT' + mins + 'M',
+      author: { "@type": "Person", name: 'Dr. Prodyut Acharya', url: 'https://www.myastrology.in/about.html' },
+      publisher: { "@type": "Organization", name: 'MyAstrology', logo: { "@type": "ImageObject", url: 'https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png' } },
+      mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl }
+    },
+    {
+      "@context": "https://schema.org", "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: 'হোম', item: 'https://www.myastrology.in' },
+        { "@type": "ListItem", position: 2, name: 'ব্লগ', item: 'https://www.myastrology.in/blog-list.html' },
+        { "@type": "ListItem", position: 3, name: meta.title, item: pageUrl }
+      ]
+    }
   ]);
 
   return `<!DOCTYPE html>
@@ -380,7 +684,7 @@ function buildHtml(meta,body,slug){
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>${meta.title} | MyAstrology — ড. প্রদ্যুৎ আচার্য</title>
 <meta name="description" content="${meta.description}">
-${kw?`<meta name="keywords" content="${kw}">`:'  '}
+${kw ? `<meta name="keywords" content="${kw}">` : '  '}
 <meta name="author" content="Dr. Prodyut Acharya">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <link rel="canonical" href="${pageUrl}">
@@ -400,13 +704,13 @@ ${kw?`<meta name="keywords" content="${kw}">`:'  '}
 <meta property="article:modified_time" content="${isoModified}T00:00:00+05:30">
 <meta property="article:author" content="Dr. Prodyut Acharya">
 <meta property="article:section" content="${articleSection}">
-${meta.tags.length?`<meta property="article:tag" content="${meta.tags.join(',')}">`:''}
+${meta.tags.length ? `<meta property="article:tag" content="${meta.tags.join(',')}">` : ''}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@AcharyaProdyut">
 <meta name="twitter:title" content="${twTitle}">
 <meta name="twitter:description" content="${twDesc}">
 <meta name="twitter:image" content="${img}">
-<script type="application/ld+json">${schema}<\/script>
+<script type="application/ld+json">${schema}</script>
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MVVL8XBD');</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-S7BQGLP211"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S7BQGLP211');</script>
@@ -460,10 +764,10 @@ ${CSS_BLOCK}
       <h1 itemprop="headline">${meta.title}</h1>
       <div class="post-meta">
         <span><i class="fas fa-user-edit"></i>Dr. Prodyut Acharya</span>
-        ${dateStr?`<span><i class="fas fa-calendar-alt"></i>${dateStr}</span>`:''}
+        ${dateStr ? `<span><i class="fas fa-calendar-alt"></i>${dateStr}</span>` : ''}
         <span><i class="fas fa-clock"></i>${mins} মিনিট পড়ন</span>
       </div>
-      ${tags?`<div class="tags">${tags}</div>`:''}
+      ${tags ? `<div class="tags">${tags}</div>` : ''}
     </div>
     <div class="post-body" itemprop="articleBody">
 ${body}
@@ -570,7 +874,8 @@ ${body}
     </div>
   </div>
 </footer>
-<!-- SERVICE SELECTOR -->
+
+<!-- SERVICE SELECTOR MODAL -->
 <div id="svc-overlay" role="dialog" aria-modal="true" aria-labelledby="svcTitle">
   <div id="svc-modal">
     <button class="bm-close-x" onclick="closeSvc()" aria-label="বন্ধ">&times;</button>
@@ -611,6 +916,7 @@ ${body}
     <p class="bm-secure-note"><i class="fas fa-lock" style="color:var(--gold);margin-right:4px"></i>Razorpay দ্বারা সুরক্ষিত &bull; UPI &bull; Card &bull; Net Banking</p>
   </div>
 </div>
+
 <!-- BOOKING MODAL -->
 <div id="book-overlay" role="dialog" aria-modal="true" aria-labelledby="bookModalTitle">
   <div id="book-modal">
@@ -634,6 +940,7 @@ ${body}
     <p class="bm-secure-note"><i class="fas fa-lock" style="color:var(--gold);margin-right:4px"></i>Razorpay দ্বারা সুরক্ষিত &bull; UPI &bull; Card &bull; Net Banking</p>
   </div>
 </div>
+
 <!-- SUCCESS MODAL -->
 <div id="rzp-success-overlay" role="dialog" aria-modal="true">
   <div id="rzp-success-modal">
@@ -651,6 +958,7 @@ ${body}
     <p class="success-note">এই WhatsApp লিঙ্কে Payment ID সহ তথ্য পাঠান।</p>
   </div>
 </div>
+
 <div class="wa-float" id="waFloat">
   <div class="wa-bubble" id="waBubble"></div>
   <a href="https://wa.me/919333122768?text=%E0%A6%A8%E0%A6%AE%E0%A6%B8%E0%A7%8D%E0%A6%95%E0%A6%BE%E0%A6%B0%20%E0%A6%A1.%20%E0%A6%86%E0%A6%9A%E0%A6%BE%E0%A6%B0%E0%A7%8D%E0%A6%AF%2C%20%E0%A6%AA%E0%A6%B0%E0%A6%BE%E0%A6%AE%E0%A6%B0%E0%A7%8D%E0%A6%B6%20%E0%A6%A8%E0%A6%BF%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87%E0%A5%A4" target="_blank" rel="noopener" class="wa-btn-fl" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
@@ -659,7 +967,10 @@ ${body}
 `;
 }
 
-function getScripts(){
+// ============================================
+// জাভাস্ক্রিপ্ট স্ক্রিপ্ট জেনারেটর
+// ============================================
+function getScripts() {
   return `
 <script defer src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script data-cfasync="false">
@@ -677,7 +988,7 @@ var _svc={label:'',amount:0,price:'',oldprice:''};var WA_NUM='919333122768';var 
 function openRzp(label,amount,key,price,oldprice){
   _svc={label:label,amount:amount,price:price||'',oldprice:oldprice||''};
   document.getElementById('bmSvcName').textContent=label;
-  document.getElementById('bmSvcPrice').textContent=price?'\u20b9'+price:'';
+  document.getElementById('bmSvcPrice').textContent=price?'₹'+price:'';
   document.getElementById('bmName').value='';
   document.getElementById('bmPhone').value='';
   document.getElementById('bmName').classList.remove('err');
@@ -688,8 +999,8 @@ function openRzp(label,amount,key,price,oldprice){
   setTimeout(function(){document.getElementById('bmName').focus();},350);
 }
 function closeBooking(){var ov=document.getElementById('book-overlay');ov.classList.remove('show');setTimeout(function(){ov.style.display='none';},300);document.body.style.overflow='';}
-function proceedToRazorpay(){var name=document.getElementById('bmName').value.trim();var phone=document.getElementById('bmPhone').value.replace(/\\D/g,'').slice(0,10);var ne=document.getElementById('bmName'),pe=document.getElementById('bmPhone');ne.classList.remove('err');pe.classList.remove('err');var ok=true;if(!name){ne.classList.add('err');ne.focus();ok=false;}else if(!phone||phone.length<10){pe.classList.add('err');pe.focus();ok=false;}if(!ok)return;if(typeof Razorpay==='undefined'){alert('\u09aa\u09c7\u09ae\u09c7\u09a8\u09cd\u099f \u0997\u09c7\u099f\u0993\u09af\u09bc\u09c7 \u09b2\u09cb\u09a1 \u09b9\u099a\u09cd\u099b\u09c7, \u098f\u0995\u099f\u09c1 \u0985\u09aa\u09c7\u0995\u09cd\u09b7\u09be \u0995\u09b0\u09c1\u09a8\u0964');return;}new Razorpay({key:RZP_KEY,amount:_svc.amount,currency:'INR',name:'MyAstrology',description:_svc.label,image:RZP_LOGO,prefill:{name:name,contact:'+91'+phone},notes:{service:_svc.label,customer:name,whatsapp:phone},theme:{color:'#b8860b'},modal:{backdropclose:false,escape:false},handler:function(res){closeBooking();if(typeof gtag!=='undefined')gtag('event','booking_paid',{event_category:'conversion',event_label:_svc.label,value:_svc.amount/100});showSuccess(name,phone,res.razorpay_payment_id);}}).open();}
-function showSuccess(name,phone,pid){var NL=String.fromCharCode(10);var msg='\ud83d\ude4f \u09a8\u09ae\u09b8\u09cd\u0995\u09be\u09b0! \u0986\u09ae\u09bf '+_svc.label+'-\u098f\u09b0 \u099c\u09a8\u09cd\u09af \u09aa\u09c7\u09ae\u09c7\u09a8\u09cd\u099f \u09b8\u09ae\u09cd\u09aa\u09a8\u09cd\u09a8 \u0995\u09b0\u09c7\u099b\u09bf\u0964'+NL+NL+'\ud83d\udc64 \u09a8\u09be\u09ae: '+name+NL+'\ud83d\udcf1 WhatsApp: +91'+phone+NL+'\ud83d\uded2 \u09b8\u09c7\u09ac\u09be: '+_svc.label+NL+(_svc.price?'\ud83d\udcb0 \u09ae\u09c2\u09b2\u09cd\u09af: \u20b9'+_svc.price+NL:'')+(pid?'\ud83c\udd94 Payment ID: '+pid:'')+NL+NL+'\ud83d\udccb \u09aa\u09b0\u09be\u09ae\u09b0\u09cd\u09b6\u09c7\u09b0 \u09a4\u09be\u09b0\u09bf\u0996 \u0993 \u09b8\u09ae\u09af\u09bc \u099c\u09be\u09a8\u09be\u09a8\u0964 \u09a7\u09a8\u09cd\u09af\u09ac\u09be\u09a6! \ud83d\ude4f';document.getElementById('successWaBtn').href='https://wa.me/'+WA_NUM+'?text='+encodeURIComponent(msg);document.getElementById('successMsg').textContent=name+' \u2014 \u0986\u09aa\u09a8\u09be\u09b0 \u09aa\u09c7\u09ae\u09c7\u09a8\u09cd\u099f \u09b8\u09ab\u09b2\u09ad\u09be\u09ac\u09c7 \u0997\u09c3\u09b9\u09c0\u09a4 \u09b9\u09af\u09bc\u09c7\u099b\u09c7\u0964 \u2705';document.getElementById('successPid').textContent=pid||'\u2014';var ov=document.getElementById('rzp-success-overlay');ov.style.display='flex';requestAnimationFrame(function(){ov.classList.add('show');});document.body.style.overflow='hidden';}
+function proceedToRazorpay(){var name=document.getElementById('bmName').value.trim();var phone=document.getElementById('bmPhone').value.replace(/\\D/g,'').slice(0,10);var ne=document.getElementById('bmName'),pe=document.getElementById('bmPhone');ne.classList.remove('err');pe.classList.remove('err');var ok=true;if(!name){ne.classList.add('err');ne.focus();ok=false;}else if(!phone||phone.length<10){pe.classList.add('err');pe.focus();ok=false;}if(!ok)return;if(typeof Razorpay==='undefined'){alert('পেমেন্ট গেটওয়ে লোড হচ্ছে, একটু অপেক্ষা করুন।');return;}new Razorpay({key:RZP_KEY,amount:_svc.amount,currency:'INR',name:'MyAstrology',description:_svc.label,image:RZP_LOGO,prefill:{name:name,contact:'+91'+phone},notes:{service:_svc.label,customer:name,whatsapp:phone},theme:{color:'#b8860b'},modal:{backdropclose:false,escape:false},handler:function(res){closeBooking();if(typeof gtag!=='undefined')gtag('event','booking_paid',{event_category:'conversion',event_label:_svc.label,value:_svc.amount/100});showSuccess(name,phone,res.razorpay_payment_id);}}).open();}
+function showSuccess(name,phone,pid){var NL=String.fromCharCode(10);var msg='🙏 নমস্কার! আমি '+_svc.label+'-এর জন্য পেমেন্ট সম্পন্ন করেছি。'+NL+NL+'👤 নাম: '+name+NL+'📱 WhatsApp: +91'+phone+NL+'🛎️ সেবা: '+_svc.label+NL+(_svc.price?'💰 মূল্য: ₹'+_svc.price+NL:'')+(pid?'🆔 Payment ID: '+pid:'')+NL+NL+'📋 অনুগ্রহ করে পরামর্শের তারিখ ও সময় জানান。 ধন্যবাদ! 🙏';document.getElementById('successWaBtn').href='https://wa.me/'+WA_NUM+'?text='+encodeURIComponent(msg);document.getElementById('successMsg').textContent=name+' — আপনার পেমেন্ট সফলভাবে গৃহীত হয়েছে। ✅';document.getElementById('successPid').textContent=pid||'—';var ov=document.getElementById('rzp-success-overlay');ov.style.display='flex';requestAnimationFrame(function(){ov.classList.add('show');});document.body.style.overflow='hidden';}
 function closeSuccess(){var ov=document.getElementById('rzp-success-overlay');ov.classList.remove('show');setTimeout(function(){ov.style.display='none';},300);document.body.style.overflow='';}
 document.getElementById('svc-overlay').addEventListener('click',function(e){if(e.target===this)closeSvc();});
 document.getElementById('book-overlay').addEventListener('click',function(e){if(e.target===this)closeBooking();});
@@ -698,7 +1009,7 @@ document.getElementById('rzp-success-overlay').addEventListener('click',function
 document.getElementById('bmPhone').addEventListener('input',function(){this.value=this.value.replace(/\\D/g,'').slice(0,10);});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeSvc();closeBooking();closeSuccess();closeNav();}});
 
-(function(){var msgs=['\ud83d\udd2e \u0995\u09c1\u09a3\u09cd\u09a1\u09b2\u09c0 \u09ac\u09bf\u09b6\u09cd\u09b2\u09c7\u09b7\u09a3 \u0995\u09b0\u09c1\u09a8','\ud83c\udf1f \u0986\u099c\u0987 \u09aa\u09b0\u09be\u09ae\u09b0\u09cd\u09b6 \u09a8\u09bf\u09a8','\u270b \u09b9\u09b8\u09cd\u09a4\u09b0\u09c7\u0996\u09be \u09ac\u09bf\u099a\u09be\u09b0 \u0995\u09b0\u09c1\u09a8','\u2b50 \u09e7\u09e6,\u09e6\u09e6\u09e6+ \u09b8\u09a8\u09cd\u09a4\u09c1\u09b7\u09cd\u099f \u0997\u09cd\u09b0\u09be\u09b9\u0995','\ud83d\udcac \u09ac\u09be\u0982\u09b2\u09be\u09af\u09bc Online \u09aa\u09b0\u09be\u09ae\u09b0\u09cd\u09b6','\ud83d\ude4f \u098f\u0996\u09a8\u0987 WhatsApp \u0995\u09b0\u09c1\u09a8','\ud83d\udcbf Jyotish \u09aa\u09b0\u09be\u09ae\u09b0\u09cd\u09b6 \u09a8\u09bf\u09a8','\ud83d\udc8d \u09af\u09cb\u099f\u09cb\u0995 \u09ac\u09bf\u099a\u09be\u09b0 \u0995\u09b0\u09c1\u09a8'];var idx=0,b=document.getElementById('waBubble');if(!b)return;function sm(){b.style.display='block';b.textContent=msgs[idx];b.classList.add('show');setTimeout(function(){b.classList.remove('show');setTimeout(function(){b.style.display='none';},400);},4000);idx=(idx+1)%msgs.length;}setTimeout(function(){sm();setInterval(sm,6000);},2500);})();
+(function(){var msgs=['🔮 কুণ্ডলী বিশ্লেষণ করুন','🌟 আজই পরামর্শ নিন','✋ হস্তরেখা বিচার করুন','⭐ ১০,০০০+ সন্তুষ্ট গ্রাহক','💬 বাংলায় Online পরামর্শ','🙏 এখনই WhatsApp করুন','📿 Jyotish পরামর্শ নিন','💍 যোটোক বিচার করুন'];var idx=0,b=document.getElementById('waBubble');if(!b)return;function sm(){b.style.display='block';b.textContent=msgs[idx];b.classList.add('show');setTimeout(function(){b.classList.remove('show');setTimeout(function(){b.style.display='none';},400);},4000);idx=(idx+1)%msgs.length;}setTimeout(function(){sm();setInterval(sm,6000);},2500);})();
 
 (function(){var btn=document.getElementById('back-to-top');if(!btn)return;window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>400);},{passive:true});btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();
 
@@ -707,39 +1018,56 @@ document.addEventListener('click',function(e){var a=e.target.closest('a');if(!a)
 `;
 }
 
-// ── MAIN ──────────────────────────────────────────────────────────
-if(!fs.existsSync(OUTPUT_DIR))fs.mkdirSync(OUTPUT_DIR,{recursive:true});
-const files=fs.readdirSync(BLOG_DIR).filter(f=>f.endsWith('.md'));
+// ============================================
+// মেইন ফাংশন
+// ============================================
+if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
-// সব posts-এর list তৈরি করুন (HTML generate এর জন্য)
+const files = fs.readdirSync(BLOG_DIR).filter(f => f.endsWith('.md'));
+
+// সব পোস্টের লিস্ট তৈরি করুন
 const allPosts = [];
-files.forEach(file=>{
-  const raw=fs.readFileSync(path.join(BLOG_DIR,file),'utf8');
-  const meta=parseFrontmatter(raw);
-  const slug=meta.slug||file.replace(/\.md$/,'');
-  if(!meta.title)meta.title=slug.replace(/-/g,' ');
-  allPosts.push({slug, title: meta.title, date: meta.date});
+files.forEach(file => {
+  const raw = fs.readFileSync(path.join(BLOG_DIR, file), 'utf8');
+  const meta = parseFrontmatter(raw);
+  const slug = meta.slug || file.replace(/\.md$/, '');
+  if (!meta.title) meta.title = slug.replace(/-/g, ' ');
+  allPosts.push({ slug, title: meta.title, date: meta.date });
 });
 
-let count=0;
-files.forEach(file=>{
-  const raw=fs.readFileSync(path.join(BLOG_DIR,file),'utf8');
-  const meta=parseFrontmatter(raw);
-  const slug=meta.slug||file.replace(/\.md$/,'');
-  if(!meta.title)meta.title=slug.replace(/-/g,' ');
-  const body=markdownToHtml(raw);
+let count = 0;
+files.forEach(file => {
+  const raw = fs.readFileSync(path.join(BLOG_DIR, file), 'utf8');
+  const meta = parseFrontmatter(raw);
+  const slug = meta.slug || file.replace(/\.md$/, '');
+  if (!meta.title) meta.title = slug.replace(/-/g, ' ');
+  const body = markdownToHtml(raw);
   
-  // buildHtml কে call করুন (এটি ইতিমধ্যে return করে)
-  let html = buildHtml(meta,body,slug);
+  // HTML বিল্ড করুন
+  let html = buildHtml(meta, body, slug);
   
-  // </article> এর আগে related posts যোগ করুন
-  const relatedPostsHTML = buildRelatedPostsHTML(slug, allPosts);
-  html = html.replace('</article>', relatedPostsHTML + '\n  </article>');
+  // অ্যাডভান্সড রিলেটেড পোস্ট যোগ করুন
+  const enhancedRelatedHTML = buildRelatedPostsHTML(slug, allPosts);
+  if (enhancedRelatedHTML) {
+    if (html.includes('</article>')) {
+      html = html.replace('</article>', enhancedRelatedHTML + '\n  </article>');
+    } else {
+      html = html.replace('</main>', enhancedRelatedHTML + '\n</main>');
+    }
+  }
   
-  // Final HTML লেখুন
-  html = html + getScripts()+'</body>\n</html>';
-  fs.writeFileSync(path.join(OUTPUT_DIR,slug+'.html'),html,'utf8');
+  // টপিক ক্লাউড যোগ করুন (ঐচ্ছিক)
+  // const topicCloud = generateTopicCloud();
+  // if (topicCloud && html.includes('</main>')) {
+  //   html = html.replace('</main>', topicCloud + '\n</main>');
+  // }
+  
+  // ফাইনাল HTML
+  html = html + getScripts() + '</body>\n</html>';
+  
+  fs.writeFileSync(path.join(OUTPUT_DIR, slug + '.html'), html, 'utf8');
   count++;
-  console.log('\u2705 blog/'+slug+'.html');
+  console.log('✅ blog/' + slug + '.html');
 });
-console.log('\n\ud83d\udcdd \u09ae\u09cb\u099f: '+count+'\u099f\u09bf HTML \u09ab\u09be\u0987\u09b2 \u09a4\u09c8\u09b0\u09bf \u09b9\u09af\u09bc\u09c7\u099b\u09c7');
+
+console.log('\n📝 মোট: ' + count + ' টি HTML ফাইল তৈরি হয়েছে');
