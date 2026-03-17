@@ -2,33 +2,190 @@
 const fs = require('fs');
 const path = require('path');
 
-const BLOG_LIST_PATH = path.join(__dirname, 'src/content/blog/list.json');
-const RELATED_OUTPUT_PATH = path.join(__dirname, 'src/data/related-posts.json');
-const INTERNAL_LINKS_OUTPUT_PATH = path.join(__dirname, 'src/data/internal-links.json');
-const CLUSTERS_PATH = path.join(__dirname, 'src/data/clusters.json'); // নতুন
+// ============================================
+// কনফিগারেশন
+// ============================================
+const CONFIG = {
+  BLOG_LIST_PATH: path.join(__dirname, 'src/content/blog/list.json'),
+  RELATED_OUTPUT_PATH: path.join(__dirname, 'src/data/related-posts.json'),
+  INTERNAL_LINKS_OUTPUT_PATH: path.join(__dirname, 'src/data/internal-links.json'),
+  CLUSTER_OUTPUT_PATH: path.join(__dirname, 'src/data/clusters.json'),
+  STATS_OUTPUT_PATH: path.join(__dirname, 'src/data/stats.json'),
+  
+  // থ্রেশহোল্ড সেটিংস
+  THRESHOLDS: {
+    MIN_RELEVANCE: 0.15,
+    STRONG_RELEVANCE: 0.4,
+    MEDIUM_RELEVANCE: 0.25,
+    MAX_RELATED_POSTS: 8,
+    MAX_TAG_LINKS: 4,
+    MAX_PILLAR_LINKS: 3,
+    MAX_CLUSTER_LINKS: 3
+  },
+  
+  // ওয়েটেজ (ওজন)
+  WEIGHTS: {
+    TAG: 0.35,
+    TITLE: 0.20,
+    DESCRIPTION: 0.15,
+    CLUSTER: 0.20,
+    RECENCY: 0.10
+  }
+};
 
-// ১. ট্যাগ সিমিলারিটি (আপনার已有的)
-function calculateTagSimilarity(post1, post2) {
-  const tags1 = new Set((post1.tags || []).map(t => t.toLowerCase()));
-  const tags2 = new Set((post2.tags || []).map(t => t.toLowerCase()));
-  
-  const intersection = [...tags1].filter(tag => tags2.has(tag)).length;
-  const union = new Set([...tags1, ...tags2]).size;
-  
-  return union === 0 ? 0 : intersection / union;
+// ============================================
+// ক্লাস্টার ম্যাপিং (AI-লাইক ক্যাটেগোরাইজেশন)
+// ============================================
+const CLUSTER_KEYWORDS = {
+  'হস্তরেখা': {
+    keywords: ['হস্তরেখা', 'হাতের রেখা', 'জীবনরেখা', 'হাতের চিহ্ন', 'স্টার চিহ্ন', 'ক্রস চিহ্ন', 'সামুদ্রিক শাস্ত্র', 'হস্তরেখা বিচার', 'পামিস্ট্রি', 'হাত দেখা', 'রেখা বিচার'],
+    weight: 1.0,
+    parent: 'শারীরিক জ্যোতিষ'
+  },
+  'জ্যোতিষ': {
+    keywords: ['জ্যোতিষ', 'গ্রহ', 'মঙ্গল', 'শনি', 'বৃহস্পতি', 'রাহু', 'কেতু', 'কুণ্ডলী', 'জন্মকুণ্ডলী', 'কুণ্ডলী মিলন', 'যোটোক', 'দোষ', 'মাঙ্গলিক', 'পিতৃদোষ', 'কালসর্প', 'গ্রহদশা', 'গ্রহের প্রভাব'],
+    weight: 1.0,
+    parent: 'শারীরিক জ্যোতিষ'
+  },
+  'জীবন দর্শন': {
+    keywords: ['জীবন দর্শন', 'দর্শন', 'জীবনের অর্থ', 'আত্মউন্নয়ন', 'আত্মসচেতনতা', 'মানসিক শান্তি', 'সুখ', 'দুঃখ', 'কর্ম', 'ভাগ্য', 'নিয়তি', 'স্বাধীন ইচ্ছা', 'গীতা', 'বুদ্ধ', 'ধ্যান'],
+    weight: 1.0,
+    parent: 'আধ্যাত্মিক'
+  },
+  'সাফল্য': {
+    keywords: ['সফলতা', 'সাফল্য', 'ব্যর্থতা', 'ক্যারিয়ার', 'পেশা', 'চাকরি', 'ব্যবসা', 'উন্নতি', 'অগ্রগতি', 'লক্ষ্য', 'উদ্দেশ্য'],
+    weight: 0.9,
+    parent: 'ব্যবহারিক জীবন'
+  },
+  'সম্পর্ক': {
+    keywords: ['সম্পর্ক', 'প্রেম', 'বিয়ে', 'পরিবার', 'রাগ', 'ক্রোধ', 'ভালোবাসা', 'দাম্পত্য', 'স্বামী-স্ত্রী', 'বিবাহ', 'যোটোক'],
+    weight: 0.9,
+    parent: 'ব্যবহারিক জীবন'
+  },
+  'গল্প': {
+    keywords: ['গল্প', 'জীবনী', 'জীবনসংগ্রাম', 'সত্য গল্প', 'অনুপ্রেরণা', 'উদাহরণ', 'কাহিনী', 'বাস্তব ঘটনা'],
+    weight: 0.8,
+    parent: 'সাহিত্য'
+  },
+  'বিজ্ঞান': {
+    keywords: ['বিজ্ঞান', 'বৈজ্ঞানিক', 'গবেষণা', 'তত্ত্ব', 'প্রমাণ', 'যুক্তি', 'পরীক্ষা', 'নিউরোসায়েন্স', 'মস্তিষ্ক'],
+    weight: 0.8,
+    parent: 'শিক্ষা'
+  }
+};
+
+// ============================================
+// হেল্পার ফাংশন: টেক্সট ক্লিনিং
+// ============================================
+function cleanText(text) {
+  if (!text) return '';
+  return text
+    .toLowerCase()
+    .replace(/[^\u0980-\u09FF\u0041-\u005A\u0061-\u007A\s]/g, ' ') // শুধু বাংলা ও ইংরেজি অক্ষর রাখে
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
-// ২. নতুন: টাইটেল সিমিলারিটি
-function calculateTitleSimilarity(title1, title2) {
-  if (!title1 || !title2) return 0;
+// ============================================
+// AI-লাইক ক্লাস্টার ডিটেকশন
+// ============================================
+function detectClusterAIStyle(tags, title, description) {
+  const textForAnalysis = [
+    ...(tags || []).map(t => t.toLowerCase()),
+    cleanText(title || ''),
+    cleanText(description || '')
+  ].join(' ').toLowerCase();
   
-  const words1 = new Set(title1.toLowerCase().split(/\s+/));
-  const words2 = new Set(title2.toLowerCase().split(/\s+/));
+  const clusterScores = {};
   
-  // সাধারণ শব্দ বাদ দিন (stop words)
-  const stopWords = new Set(['এর', 'তে', 'কে', 'ও', 'এবং', 'বা', 'করে', 'হয়ে']);
-  const filtered1 = [...words1].filter(w => !stopWords.has(w) && w.length > 2);
-  const filtered2 = [...words2].filter(w => !stopWords.has(w) && w.length > 2);
+  // প্রতিটি ক্লাস্টারের জন্য স্কোর ক্যালকুলেট করুন
+  for (const [cluster, data] of Object.entries(CLUSTER_KEYWORDS)) {
+    let score = 0;
+    let matches = 0;
+    
+    data.keywords.forEach(keyword => {
+      const regex = new RegExp(keyword.toLowerCase(), 'g');
+      const count = (textForAnalysis.match(regex) || []).length;
+      if (count > 0) {
+        matches += count;
+        score += count * data.weight;
+      }
+    });
+    
+    if (matches > 0) {
+      clusterScores[cluster] = {
+        score: score,
+        matches: matches,
+        parent: data.parent
+      };
+    }
+  }
+  
+  // সর্বোচ্চ স্কোরের ক্লাস্টার খুঁজুন
+  let bestCluster = 'অন্যান্য';
+  let bestScore = 0;
+  let bestParent = 'অন্যান্য';
+  
+  for (const [cluster, data] of Object.entries(clusterScores)) {
+    if (data.score > bestScore) {
+      bestScore = data.score;
+      bestCluster = cluster;
+      bestParent = data.parent;
+    }
+  }
+  
+  return {
+    cluster: bestCluster,
+    parent: bestParent,
+    confidence: bestScore > 0 ? Math.min(1, bestScore / 10) : 0,
+    allScores: clusterScores
+  };
+}
+
+// ============================================
+// অ্যাডভান্সড ট্যাগ সিমিলারিটি
+// ============================================
+function calculateAdvancedTagSimilarity(tags1, tags2) {
+  if (!tags1 || !tags2 || tags1.length === 0 || tags2.length === 0) return 0;
+  
+  const normalized1 = tags1.map(t => cleanText(t));
+  const normalized2 = tags2.map(t => cleanText(t));
+  
+  let matchScore = 0;
+  let totalPossible = 0;
+  
+  // এক্স্যাক্ট ম্যাচ
+  normalized1.forEach(t1 => {
+    normalized2.forEach(t2 => {
+      totalPossible++;
+      if (t1 === t2) {
+        matchScore += 1;
+      } else if (t1.includes(t2) || t2.includes(t1)) {
+        matchScore += 0.5;
+      }
+    });
+  });
+  
+  return totalPossible > 0 ? matchScore / totalPossible : 0;
+}
+
+// ============================================
+// টাইটেল ও ডেসক্রিপশন সিমিলারিটি
+// ============================================
+function calculateTextSimilarity(text1, text2) {
+  if (!text1 || !text2) return 0;
+  
+  const words1 = new Set(cleanText(text1).split(/\s+/).filter(w => w.length > 2));
+  const words2 = new Set(cleanText(text2).split(/\s+/).filter(w => w.length > 2));
+  
+  // বাংলা স্টপ ওয়ার্ডস
+  const stopWords = new Set([
+    'এই', 'ওই', 'সেই', 'কোন', 'কিছু', 'জন্য', 'কাছে', 'পরে', 'আগে',
+    'থেকে', 'দিয়ে', 'করে', 'হয়ে', 'এবং', 'অথবা', 'কিন্তু', 'তবে'
+  ]);
+  
+  const filtered1 = [...words1].filter(w => !stopWords.has(w));
+  const filtered2 = [...words2].filter(w => !stopWords.has(w));
   
   const intersection = filtered1.filter(w => filtered2.includes(w)).length;
   const union = new Set([...filtered1, ...filtered2]).size;
@@ -36,175 +193,272 @@ function calculateTitleSimilarity(title1, title2) {
   return union === 0 ? 0 : intersection / union;
 }
 
-// ৩. নতুন: ক্লাস্টার সিমিলারিটি
-function calculateClusterSimilarity(post1, post2, clusters) {
-  if (!clusters || !post1.cluster || !post2.cluster) return 0;
-  
-  // একই ক্লাস্টার হলে বেশি স্কোর
-  if (post1.cluster === post2.cluster) return 0.5;
-  
-  // সম্পর্কিত ক্লাস্টার চেক করুন
-  const cluster1 = clusters.find(c => c.name === post1.cluster);
-  const cluster2 = clusters.find(c => c.name === post2.cluster);
-  
-  if (cluster1 && cluster2) {
-    // যদি একই মূল বিষয় হয় (যেমন: হস্তরেখার সব উপবিভাগ)
-    if (cluster1.parent === cluster2.parent) return 0.3;
-  }
-  
+// ============================================
+// ক্লাস্টার সিমিলারিটি
+// ============================================
+function calculateClusterSimilarity(cluster1, cluster2) {
+  if (!cluster1 || !cluster2) return 0;
+  if (cluster1.cluster === cluster2.cluster) return 1.0;
+  if (cluster1.parent === cluster2.parent) return 0.6;
   return 0;
 }
 
-// ৪. নতুন: কন্টেন্ট লেংথ সিমিলারি
-function calculateContentLengthSimilarity(post1, post2) {
-  const len1 = post1.contentLength || 1000;
-  const len2 = post2.contentLength || 1000;
-  
-  const ratio = Math.min(len1, len2) / Math.max(len1, len2);
-  return ratio * 0.1; // 10% weight
+// ============================================
+// রিসেন্সি ক্যালকুলেশন
+// ============================================
+function calculateRecencyScore(date1, date2) {
+  try {
+    const d1 = new Date(date1);
+    const d2 = new Date(date2);
+    if (isNaN(d1) || isNaN(d2)) return 0;
+    
+    const diffDays = Math.abs(d1 - d2) / (1000 * 60 * 60 * 24);
+    return Math.max(0, 1 - (diffDays / 180)); // 6 মাসের মধ্যে
+  } catch (e) {
+    return 0;
+  }
 }
 
-// ৫. আপডেটেড রেলেভেন্স ক্যালকুলেশন
-function calculateRelevance(currentPost, candidatePost, clusters) {
-  const tagSim = calculateTagSimilarity(currentPost, candidatePost);
-  const titleSim = calculateTitleSimilarity(currentPost.title, candidatePost.title);
-  const clusterSim = calculateClusterSimilarity(currentPost, candidatePost, clusters);
-  const lengthSim = calculateContentLengthSimilarity(currentPost, candidatePost);
+// ============================================
+// মেইন রেলেভেন্স ক্যালকুলেশন
+// ============================================
+function calculateComprehensiveRelevance(post1, post2) {
+  // 1. ট্যাগ সিমিলারিটি
+  const tagSim = calculateAdvancedTagSimilarity(post1.tags, post2.tags);
   
-  // ডেট বুস্ট
-  const currentDate = new Date(currentPost.date);
-  const candidateDate = new Date(candidatePost.date);
-  const dateDiff = Math.abs(currentDate - candidateDate);
-  const daysDiff = dateDiff / (1000 * 60 * 60 * 24);
-  const recencyBoost = Math.max(0, 1 - (daysDiff / 365)) * 0.15;
+  // 2. টাইটেল সিমিলারিটি
+  const titleSim = calculateTextSimilarity(post1.title, post2.title);
   
-  // ওয়েটেড স্কোর
+  // 3. ডেসক্রিপশন সিমিলারিটি
+  const descSim = calculateTextSimilarity(post1.description, post2.description);
+  
+  // 4. ক্লাস্টার সিমিলারিটি
+  const cluster1 = detectClusterAIStyle(post1.tags, post1.title, post1.description);
+  const cluster2 = detectClusterAIStyle(post2.tags, post2.title, post2.description);
+  const clusterSim = calculateClusterSimilarity(cluster1, cluster2);
+  
+  // 5. রিসেন্সি স্কোর
+  const recencyScore = calculateRecencyScore(post1.date, post2.date);
+  
+  // ওয়েটেড টোটাল স্কোর
   const totalScore = 
-    (tagSim * 0.4) +      // 40% ট্যাগ
-    (titleSim * 0.25) +    // 25% টাইটেল
-    (clusterSim * 0.2) +    // 20% ক্লাস্টার
-    (lengthSim * 0.1) +     // 10% কন্টেন্ট লেংথ
-    recencyBoost;           // 15% পর্যন্ত বুস্ট
+    (tagSim * CONFIG.WEIGHTS.TAG) +
+    (titleSim * CONFIG.WEIGHTS.TITLE) +
+    (descSim * CONFIG.WEIGHTS.DESCRIPTION) +
+    (clusterSim * CONFIG.WEIGHTS.CLUSTER) +
+    (recencyScore * CONFIG.WEIGHTS.RECENCY);
   
-  return totalScore;
+  return {
+    score: Math.min(1, totalScore),
+    components: {
+      tag: tagSim,
+      title: titleSim,
+      description: descSim,
+      cluster: clusterSim,
+      recency: recencyScore
+    }
+  };
 }
 
-// ৬. মেইন ফাংশন আপডেট
-function generateRelatedAndInternalLinks() {
+// ============================================
+// স্ট্যাটিস্টিক্স জেনারেট
+// ============================================
+function generateStatistics(blogList, internalLinks) {
+  const stats = {
+    totalPosts: blogList.length,
+    clusters: {},
+    parentClusters: {},
+    tagsFrequency: {},
+    avgLinksPerPost: 0,
+    totalLinks: 0,
+    postsWithNoLinks: 0,
+    topRelatedPosts: []
+  };
+  
+  // ক্লাস্টার এবং ট্যাগ ফ্রিকোয়েন্সি
+  blogList.forEach(post => {
+    const cluster = detectClusterAIStyle(post.tags, post.title, post.description);
+    
+    // ক্লাস্টার কাউন্ট
+    stats.clusters[cluster.cluster] = (stats.clusters[cluster.cluster] || 0) + 1;
+    stats.parentClusters[cluster.parent] = (stats.parentClusters[cluster.parent] || 0) + 1;
+    
+    // ট্যাগ ফ্রিকোয়েন্সি
+    (post.tags || []).forEach(tag => {
+      stats.tagsFrequency[tag] = (stats.tagsFrequency[tag] || 0) + 1;
+    });
+  });
+  
+  // লিংক স্ট্যাটিস্টিক্স
+  Object.values(internalLinks).forEach(post => {
+    const linksCount = 
+      (post.relatedByTag?.length || 0) + 
+      (post.relatedByPillar?.length || 0) + 
+      (post.relatedByCluster?.length || 0);
+    
+    stats.totalLinks += linksCount;
+    if (linksCount === 0) stats.postsWithNoLinks++;
+  });
+  
+  stats.avgLinksPerPost = (stats.totalLinks / blogList.length).toFixed(2);
+  
+  return stats;
+}
+
+// ============================================
+// মেইন জেনারেশন ফাংশন
+// ============================================
+function generateAdvancedRelatedAndInternalLinks() {
+  console.log('\n' + '='.repeat(70));
+  console.log('🚀 MyAstrology অ্যাডভান্সড রিলেটেড পোস্ট জেনারেটর');
+  console.log('='.repeat(70));
+  
   try {
     // ব্লগ লিস্ট পড়ুন
-    const blogList = JSON.parse(fs.readFileSync(BLOG_LIST_PATH, 'utf8'));
-    
-    // ক্লাস্টার পড়ুন (যদি থাকে)
-    let clusters = [];
-    if (fs.existsSync(CLUSTERS_PATH)) {
-      clusters = JSON.parse(fs.readFileSync(CLUSTERS_PATH, 'utf8')).clusters || [];
+    console.log('\n📂 ব্লগ লিস্ট পড়া হচ্ছে...');
+    if (!fs.existsSync(CONFIG.BLOG_LIST_PATH)) {
+      throw new Error(`ব্লগ লিস্ট পাওয়া যায়নি: ${CONFIG.BLOG_LIST_PATH}`);
     }
     
+    const blogList = JSON.parse(fs.readFileSync(CONFIG.BLOG_LIST_PATH, 'utf8'));
+    console.log(`✅ ${blogList.length} টি পোস্ট পাওয়া গেছে\n`);
+    
+    // আউটপুট ডাটা স্ট্রাকচার
     const relatedPosts = {};
     const internalLinks = {};
+    const clusterData = {};
     
-    // প্রতিটি পোস্টের জন্য
+    // প্রতিটি পোস্টের জন্য ক্লাস্টার ডিটেক্ট করুন
+    console.log('🔍 ক্লাস্টার বিশ্লেষণ চলছে...');
+    blogList.forEach(post => {
+      const clusterInfo = detectClusterAIStyle(post.tags, post.title, post.description);
+      clusterData[post.slug] = clusterInfo;
+    });
+    
+    // রিলেটেড পোস্ট জেনারেট করুন
+    console.log('🔗 রিলেটেড পোস্ট বিশ্লেষণ চলছে...');
+    
     blogList.forEach((post, index) => {
       const otherPosts = blogList.filter((_, i) => i !== index);
       
-      // রেলেভেন্ট পোস্ট খুঁজুন
-      const related = otherPosts
-        .map(candidate => ({
+      // প্রতিটি পোস্টের জন্য রেলেভেন্স স্কোর ক্যালকুলেট করুন
+      const scoredPosts = otherPosts.map(candidate => {
+        const relevance = calculateComprehensiveRelevance(post, candidate);
+        return {
           slug: candidate.slug,
           title: candidate.title,
-          cluster: candidate.cluster,
-          relevance: calculateRelevance(post, candidate, clusters)
-        }))
-        .filter(r => r.relevance > 0.1) // মিনিমাম থ্রেশহোল্ড
+          cluster: clusterData[candidate.slug].cluster,
+          relevance: relevance.score,
+          components: relevance.components
+        };
+      });
+      
+      // ফিল্টার এবং সর্ট করুন
+      const validPosts = scoredPosts
+        .filter(p => p.relevance > CONFIG.THRESHOLDS.MIN_RELEVANCE)
         .sort((a, b) => b.relevance - a.relevance);
       
-      // টপ ৬ রিলেটেড পোস্ট
-      const topRelated = related.slice(0, 6);
-      relatedPosts[post.slug] = topRelated.map(r => r.slug);
+      // টপ রিলেটেড পোস্ট
+      const topRelated = validPosts.slice(0, CONFIG.THRESHOLDS.MAX_RELATED_POSTS);
+      relatedPosts[post.slug] = topRelated.map(p => p.slug);
       
-      // স্ট্রংলি রিলেটেড (ট্যাগ বা ক্লাস্টার ভিত্তিক)
+      // স্ট্রংলি রিলেটেড
       const stronglyRelated = topRelated
-        .filter(r => r.relevance > 0.5)
-        .map(r => r.slug);
+        .filter(p => p.relevance > CONFIG.THRESHOLDS.STRONG_RELEVANCE)
+        .map(p => p.slug);
       
       // মিডলি রিলেটেড
       const midRelated = topRelated
-        .filter(r => r.relevance > 0.3 && r.relevance <= 0.5)
-        .map(r => r.slug);
+        .filter(p => p.relevance > CONFIG.THRESHOLDS.MEDIUM_RELEVANCE && 
+                    p.relevance <= CONFIG.THRESHOLDS.STRONG_RELEVANCE)
+        .map(p => p.slug);
       
+      // একই ক্লাস্টারের পোস্ট
+      const currentCluster = clusterData[post.slug].cluster;
+      const sameCluster = topRelated
+        .filter(p => p.cluster === currentCluster)
+        .map(p => p.slug);
+      
+      // ইন্টারনাল লিংক স্ট্রাকচার তৈরি
       internalLinks[post.slug] = {
-        relatedByTag: stronglyRelated.slice(0, 4),
-        relatedByPillar: midRelated.slice(0, 3),
-        relatedByCluster: topRelated
-          .filter(r => r.cluster === post.cluster)
-          .map(r => r.slug)
-          .slice(0, 3),
+        relatedByTag: stronglyRelated.slice(0, CONFIG.THRESHOLDS.MAX_TAG_LINKS),
+        relatedByPillar: midRelated.slice(0, CONFIG.THRESHOLDS.MAX_PILLAR_LINKS),
+        relatedByCluster: sameCluster.slice(0, CONFIG.THRESHOLDS.MAX_CLUSTER_LINKS),
+        topRelated: topRelated.slice(0, 3).map(p => ({
+          slug: p.slug,
+          score: p.relevance
+        })),
+        cluster: currentCluster,
+        confidence: clusterData[post.slug].confidence,
         manualLinks: []
       };
       
-      console.log(`✅ ${post.slug}:`);
-      console.log(`   - Strongly related: ${stronglyRelated.length}`);
-      console.log(`   - Mid related: ${midRelated.length}`);
-      console.log(`   - Top relevance: ${topRelated[0]?.relevance.toFixed(2) || 0}`);
+      // প্রিন্ট প্রোগ্রেস
+      if (index < 5 || index % 10 === 0) {
+        console.log(`  📝 ${post.slug.substring(0, 30).padEnd(30)} | ক্লাস্টার: ${currentCluster.padEnd(15)} | রিলেটেড: ${topRelated.length}`);
+      }
     });
     
+    // ডাটা ডিরেক্টরি চেক/ক্রিয়েট
+    const dataDir = path.join(__dirname, 'src/data');
+    if (!fs.existsSync(dataDir)) {
+      fs.mkdirSync(dataDir, { recursive: true });
+    }
+    
     // JSON ফাইল সেভ করুন
-    fs.writeFileSync(RELATED_OUTPUT_PATH, JSON.stringify(relatedPosts, null, 2), 'utf8');
-    fs.writeFileSync(INTERNAL_LINKS_OUTPUT_PATH, JSON.stringify(internalLinks, null, 2), 'utf8');
+    console.log('\n💾 ফাইল সেভ করা হচ্ছে...');
     
-    // রিপোর্ট
-    console.log('\n' + '='.repeat(50));
+    fs.writeFileSync(CONFIG.RELATED_OUTPUT_PATH, JSON.stringify(relatedPosts, null, 2), 'utf8');
+    console.log(`  ✅ related-posts.json (${Object.keys(relatedPosts).length} entries)`);
+    
+    fs.writeFileSync(CONFIG.INTERNAL_LINKS_OUTPUT_PATH, JSON.stringify(internalLinks, null, 2), 'utf8');
+    console.log(`  ✅ internal-links.json (${Object.keys(internalLinks).length} entries)`);
+    
+    fs.writeFileSync(CONFIG.CLUSTER_OUTPUT_PATH, JSON.stringify(clusterData, null, 2), 'utf8');
+    console.log(`  ✅ clusters.json (${Object.keys(clusterData).length} entries)`);
+    
+    // স্ট্যাটিস্টিক্স জেনারেট এবং সেভ
+    const stats = generateStatistics(blogList, internalLinks);
+    fs.writeFileSync(CONFIG.STATS_OUTPUT_PATH, JSON.stringify(stats, null, 2), 'utf8');
+    console.log(`  ✅ stats.json\n`);
+    
+    // ফাইনাল রিপোর্ট
+    console.log('='.repeat(70));
     console.log('📊 জেনারেশন রিপোর্ট');
-    console.log('='.repeat(50));
-    console.log(`📝 মোট পোস্ট: ${Object.keys(relatedPosts).length}`);
-    console.log(`📁 related-posts.json: ${RELATED_OUTPUT_PATH}`);
-    console.log(`📁 internal-links.json: ${INTERNAL_LINKS_OUTPUT_PATH}`);
+    console.log('='.repeat(70));
     
-    // স্ট্যাটিস্টিক্স
-    const totalLinks = Object.values(internalLinks).reduce((acc, post) => {
-      return acc + 
-        (post.relatedByTag?.length || 0) + 
-        (post.relatedByPillar?.length || 0) + 
-        (post.relatedByCluster?.length || 0);
-    }, 0);
+    console.log(`📝 মোট পোস্ট: ${stats.totalPosts}`);
+    console.log(`🔗 মোট জেনারেটেড লিংক: ${stats.totalLinks}`);
+    console.log(`📈 গড় লিংক প্রতি পোস্ট: ${stats.avgLinksPerPost}`);
+    console.log(`⚠️  লিংকবিহীন পোস্ট: ${stats.postsWithNoLinks}`);
     
-    console.log(`🔗 মোট জেনারেটেড লিংক: ${totalLinks}`);
-    console.log(`📈 গড় লিংক প্রতি পোস্ট: ${(totalLinks / Object.keys(internalLinks).length).toFixed(1)}`);
+    console.log('\n📊 ক্লাস্টার ওয়াইজ পোস্ট:');
+    Object.entries(stats.clusters)
+      .sort((a, b) => b[1] - a[1])
+      .forEach(([cluster, count]) => {
+        console.log(`   ${cluster.padEnd(15)} : ${count} টি পোস্ট`);
+      });
+    
+    console.log('\n📊 জনপ্রিয় ট্যাগ (টপ ১০):');
+    Object.entries(stats.tagsFrequency)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 10)
+      .forEach(([tag, count]) => {
+        console.log(`   ${tag.padEnd(20)} : ${count} বার`);
+      });
+    
+    console.log('\n' + '='.repeat(70));
+    console.log('✨ জেনারেশন সম্পন্ন হয়েছে!');
+    console.log('='.repeat(70));
     
   } catch (error) {
-    console.error('❌ Error:', error.message);
+    console.error('\n❌ এরর:', error.message);
+    console.error(error.stack);
     process.exit(1);
   }
 }
 
-// স্ক্রিপ্ট রান করুন
-generateRelatedAndInternalLinks();
-
-// ৭. নতুন: ভ্যালিডেশন ফাংশন
-function validateInternalLinks() {
-  const internalLinks = JSON.parse(fs.readFileSync(INTERNAL_LINKS_OUTPUT_PATH, 'utf8'));
-  const blogList = JSON.parse(fs.readFileSync(BLOG_LIST_PATH, 'utf8'));
-  const validSlugs = new Set(blogList.map(p => p.slug));
-  
-  let invalidCount = 0;
-  
-  Object.entries(internalLinks).forEach(([slug, links]) => {
-    const allLinks = [
-      ...(links.relatedByTag || []),
-      ...(links.relatedByPillar || []),
-      ...(links.relatedByCluster || [])
-    ];
-    
-    allLinks.forEach(link => {
-      if (!validSlugs.has(link)) {
-        console.warn(`⚠️ Invalid slug found: ${link} in ${slug}`);
-        invalidCount++;
-      }
-    });
-  });
-  
-  if (invalidCount === 0) {
-    console.log('✅ All internal links are valid!');
-  }
-}
+// ============================================
+// স্ক্রিপ্ট এক্সিকিউট
+// ============================================
+generateAdvancedRelatedAndInternalLinks();
