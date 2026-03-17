@@ -6,9 +6,17 @@
     "generate-list": "node src/content/blog/generate-list.js",
     "generate-related": "node generate-related-posts.js",
     "generate-posts": "node generate-posts.js",
-    "build": "npm run generate-list && npm run generate-related && npm run generate-posts"
+    "generate-all": "npm run generate-list && npm run generate-related && npm run generate-posts",
+    "build": "npm run generate-all",
+    "watch": "node watch.js",
+    "watch-simple": "node auto-generate.js",
+    "deploy": "npm run build && git add . && git commit -m \"Auto-build: $(date)\" && git push"
   },
   "dependencies": {
     "gray-matter": "^4.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "chokidar": "^3.5.3"
   }
 }
