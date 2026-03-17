@@ -1,3 +1,5 @@
+
+```markdown
 <div align="center">
 
 # 🌟 **MyAstrology**
@@ -114,3 +116,233 @@
 ---
 
 ## 📁 **Project Structure**
+
+```
+
+MyAstrology/services/
+│
+├── 📂 .github/workflows/
+│   ├── 🔄 generate-blog.yml        # Main CI/CD pipeline
+│   └── 🔄 fetch-reviews.yml        # Google Reviews auto-fetch
+│
+├── 📂 assets/                       # CSS, images etc.
+├── 📂 blog/                          # Generated HTML files
+├── 📂 gallery/                        # Gallery images
+├── 📂 images/                         # Site images
+├── 📂 learning/                       # Learning Hub
+│
+├── 📂 src/
+│   └── 📂 content/blog/
+│       ├── 📄 list.json              # Auto-generated blog list
+│       ├── ⚙️ generate-list.js       # Blog list generator
+│       ├── ⚙️ generate-sitemap.js    # Sitemap generator
+│       └── 📝 35+ .md files          # Blog posts (বাংলা)
+│
+├── 📂 src/data/
+│   ├── 📊 clusters.json              # Auto-generated clusters
+│   ├── 🔗 internal-links.json        # Related posts data
+│   ├── 🔗 related-posts.json         # Related posts slugs
+│   └── 📈 stats.json                 # Generation statistics
+│
+├── 📄 *.html                          # Main pages (index, about, etc.)
+├── 📦 package.json                    # Dependencies
+├── 🔒 package-lock.json                # Lock file
+├── 🤖 robots.txt                       # SEO
+├── 🗺️ sitemap.xml                      # Main sitemap
+├── 🖼️ image-sitemap.xml                # Image sitemap
+├── 🎬 video-sitemap.xml                # Video sitemap
+└── 📖 README.md                        # This file
+
+```
+
+---
+
+## 📝 **Blog Posts**
+
+> **৩৫+ বাংলা ব্লগ পোস্ট** নিয়মিত প্রকাশিত হচ্ছে। প্রতিটি পোস্ট **AI-লাইক অ্যানালাইসিস** এর মাধ্যমে ক্লাস্টার ও সম্পর্কিত পোস্ট চিহ্নিত করা হয়।
+
+<details>
+<summary>📖 সম্পূর্ণ ব্লগ তালিকা দেখুন (ক্লিক করুন)</summary>
+
+| # | স্লাগ | বিষয় |
+|:---:|:---|:---|
+| 1 | `ai-yuge-ortho-bhalobasha-bhagya-pradyut-acharya` | AI যুগে অর্থ, ভালোবাসা ও ভাগ্য |
+| 2 | `artha-anartha-maraka-bhaba-analysis` | অর্থ-অনর্থ মারক ভাব বিশ্লেষণ |
+| 3 | `bhalo-manush-haoar-satyi-path` | ভালো মানুষ হওয়ার সত্য পথ |
+| 4 | `dharma-ki-prokrit-artha-gita-buddha-darshan` | ধর্মের প্রকৃত অর্থ |
+| 5 | `hasta-rekha-jivan-manchitra` | হস্তরেখা – জীবনের মানচিত্র |
+| 6 | `hath-chinho-porichoy` | হাতে কোন চিহ্ন কী বলে |
+| 7 | `hath-rekha-atmounnayan` | হাতের রেখায় আত্মউন্নয়ন |
+| 8 | `janma-kundali-hasta-mudra-rahasya` | জন্মকুণ্ডলী ও হস্তমুদ্রা |
+| 9 | `janmakundali-o-hastrekha-jiban-manchitra` | জন্মকুণ্ডলী ও হস্তরেখা একসাথে |
+| 10 | `jibone-safal-howar-7-chabikaathi-jyotish` | সফল হওয়ার ৭ চাবিকাঠি |
+| 11 | `jibone-sob-kichu-biruddhe-gele-ki-korben` | সব কিছু বিরুদ্ধে গেলে |
+| 12 | `jibonsongram-sukhi-thaka-ananta-golpo` | অনন্তের গল্প |
+| 13 | `jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na` | জ্যোতিষ কি কুসংস্কার? |
+| 14 | `kanaklata-jiban-sangram-saktir-golpo` | কনকলতার গল্প |
+| 15 | `mahabharata-ratha-pancha-indriya-jiban-darshan` | মহাভারতের রথ ও জীবন দর্শন |
+| 16 | `mangal-grah-antar-yoddha` | মঙ্গল গ্রহ – অন্তরের যোদ্ধা |
+| 17 | `mukhoser-alore-porichoy-naitikota-sankat` | মুখোশের আড়ালে কে? |
+| 18 | `nijeke-chena-andhakarer-path` | নিজেকে চেনার পথ |
+| 19 | `nirmal-villa-satya-dhar-mitra` | বৃদ্ধ বয়সের একাকীত্ব |
+| 20 | `pitru-dosh-binod-golpo` | পিতৃদোষের গল্প |
+| 21 | `porisram-kore-keno-safalta-ashe-na-bhagya-rahasya` | পরিশ্রমেও সফলতা না পাওয়ার কারণ |
+| 22 | `pradip-byarthata-manoshik-shanti` | ব্যর্থতা থেকে শিক্ষা |
+| 23 | `prodyut-acharya-jyotish-palmist-journey-ranaghat` | ড. আচার্যের যাত্রা |
+| 24 | `rager-prem-somparka-phatal` | রাগ ও সম্পর্ক |
+| 25 | `safal-manush-sukhi-noy-porichoy-shantir-dwondwo` | সফল মানুষ কেন সুখী নয় |
+| 26 | `samudrik-shastra-nari-noy-sattva-bichar` | সামুদ্রিক শাস্ত্রে নারী |
+| 27 | `shishu-hath-rekha-pesa-jyotish-rahasya` | শিশুর হাতের রেখা ও পেশা |
+| 28 | `sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha` | নিয়তি ও স্বাধীন ইচ্ছা |
+| 29 | `somoyer-rahasya-jyotish-darshan` | সময়ের রহস্য |
+| 30 | `star-chinho-hastrekha` | হাতে স্টার চিহ্ন |
+| 31 | `sushanta-british-jiban-sangram-kartabya` | সুশান্তের গল্প |
+| 32 | `tripto-maner-shanti-arun-pradip-golpo` | তৃপ্তি ও মানসিক শান্তি |
+| 33 | `stri-r-bicched-er-por-o-mone-pore-chanchal-er-golpo` | চঞ্চলের গল্প (নতুন) |
+
+</details>
+
+---
+
+## 🔄 **Automation System**
+
+প্রতি **push** বা **schedule** (প্রতি ৩ ঘণ্টা) এ GitHub Actions স্বয়ংক্রিয়ভাবে:
+
+```mermaid
+graph TD
+    A[Git Push] --> B[GitHub Actions Trigger]
+    B --> C[generate-list.js]
+    B --> D[generate-related-posts.js]
+    B --> E[generate-posts.js]
+    B --> F[generate-sitemap.js]
+    C --> G[list.json]
+    D --> H[clusters.json]
+    D --> I[internal-links.json]
+    D --> J[related-posts.json]
+    D --> K[stats.json]
+    E --> L[HTML Files in blog/]
+    F --> M[sitemap.xml]
+    F --> N[image-sitemap.xml]
+    F --> O[video-sitemap.xml]
+    L --> P[Git Commit & Push]
+    M --> P
+    N --> P
+    O --> P
+    P --> Q[GitHub Pages Deploy]
+    Q --> R[www.myastrology.in]
+```
+
+জেনারেটেড ফাইলের পরিসংখ্যান:
+
+· 📝 মোট পোস্ট: ৩৩টি (ক্রমবর্ধমান)
+· 🔗 মোট ইন্টারনাল লিংক: ~২৫০+
+· 📊 ক্লাস্টার: ৭টি (হস্তরেখা, জ্যোতিষ, জীবন দর্শন, সাফল্য, সম্পর্ক, গল্প, বিজ্ঞান)
+· 🗺️ সাইটম্যাপ: ৩টি (main, image, video)
+
+---
+
+🗺️ Sitemaps
+
+<div align="center">
+
+সাইটম্যাপ URL আপডেট
+📋 Index sitemap-index.xml অটো
+🗺️ Main sitemap.xml অটো
+🖼️ Image image-sitemap.xml অটো
+🎬 Video video-sitemap.xml অটো
+
+</div>
+
+---
+
+⚙️ Auto-Generated Files
+
+ফাইল অবস্থান বিবরণ
+list.json src/content/blog/list.json সব পোস্টের তালিকা
+clusters.json src/data/clusters.json AI-ডিটেক্টেড ক্লাস্টার
+internal-links.json src/data/internal-links.json সম্পর্কিত পোস্টের ডাটা
+related-posts.json src/data/related-posts.json সম্পর্কিত পোস্ট স্লাগ
+stats.json src/data/stats.json জেনারেশন পরিসংখ্যান
+reviews.json reviews.json Google Reviews (অটো-ফেচ)
+
+---
+
+🤖 robots.txt
+
+```txt
+User-agent: *
+Allow: /
+Disallow: /*.xml$
+
+Sitemap: https://www.myastrology.in/sitemap-index.xml
+Sitemap: https://www.myastrology.in/sitemap.xml
+Sitemap: https://www.myastrology.in/image-sitemap.xml
+Sitemap: https://www.myastrology.in/video-sitemap.xml
+```
+
+---
+
+📌 SEO Keywords
+
+🇬🇧 English Keywords:
+Indian Astrology · Palmistry · Online Horoscope · Marriage Problem Solution · Career Astrology · Vastu Shastra · Dr. Prodyut Acharya · MyAstrology Ranaghat · Bengali Astrologer · Best Astrologer in India · Online Astrology Consultation · Vedic Horoscope · Kundli Matching · Astrology in Bengali · Best Astrologer West Bengal · Nadia Astrologer · Palm Reading Online · Gemstone Advice · Name Correction Astrology
+
+🇮🇳 বাংলা কীওয়ার্ড:
+জ্যোতিষ · হস্তরেখা · রাশিফল · বাস্তু · কুণ্ডলী · গ্রহ শান্তি · বাংলা পঞ্জিকা · দৈনিক রাশিফল · জন্মকুণ্ডলী · নামকরণ · বিবাহ সামঞ্জস্য · ক্যারিয়ার জ্যোতিষ · মাঙ্গলিক যোগ · পিতৃদোষ · সামুদ্রিক শাস্ত্র · রত্নপাথর পরামর্শ · অনলাইন জ্যোতিষী · রাণাঘাটের সেরা জ্যোতিষী
+
+---
+
+📊 GitHub Actions Status
+
+ওয়ার্কফ্লো স্ট্যাটাস বিবরণ
+Generate Blog https://github.com/MyAstrology/services/actions/workflows/generate-blog.yml/badge.svg Main CI/CD
+Fetch Reviews https://github.com/MyAstrology/services/actions/workflows/fetch-reviews.yml/badge.svg Google Reviews auto-fetch
+
+---
+
+🚀 Quick Deploy
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/MyAstrology/services.git
+cd services
+
+# 2. Install dependencies
+npm install
+
+# 3. Generate all files locally
+npm run generate-all
+
+# 4. Run locally (if you have a server)
+# or just open index.html in browser
+
+# 5. Push to GitHub (auto-deploys)
+git add .
+git commit -m "Update content"
+git push
+```
+
+---
+
+📄 License
+
+© ২০২৬ MyAstrology – ড. প্রদ্যুৎ আচার্য। সর্বস্বত্ব সংরক্ষিত।
+
+---
+
+<div align="center">
+
+🌟 বিশ্বাস করুন তারার ওপর, নয় নিজের ওপর – দুটোই আসলে এক! 🌟
+
+🌐 www.myastrology.in · 📱 +91 93331 22768 · 💬 WhatsApp
+
+---
+
+⭐ এই প্রোজেক্ট ভালো লাগলে একটি Star দিন! ⭐
+https://img.shields.io/github/stars/MyAstrology/services?style=social
+
+</div>
+```
+
+---
+
