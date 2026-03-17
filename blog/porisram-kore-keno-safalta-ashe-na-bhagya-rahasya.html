@@ -41,10 +41,18 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"></noscript>
 <style>
-:root{--navy:#0a192f;--navy2:#0e1e38;--gold:#b8860b;--gold3:#ffd700;--gold-lt:#fff4ca;--gold-bg:#fdf8ed;--bg:#FFF9F0;--tx:#2C1810;--mu:#6B4C3B;--bd:#E8D5B7;--red:#780b0b;--blue:#123d87;--fh:'Playfair Display',Georgia,serif;--fb:'Noto Serif Bengali','Segoe UI',sans-serif;--r:10px;--shadow:0 4px 28px rgba(0,0,0,.09);}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;overflow-x:clip;}
+:root{
+  --navy:#0a192f;--navy2:#0e1e38;--gold:#b8860b;--gold3:#ffd700;
+  --gold-lt:#fff4ca;--gold-bg:#fdf8ed;--bg:#FFF9F0;--tx:#2C1810;
+  --mu:#6B4C3B;--bd:#E8D5B7;--red:#780b0b;--blue:#123d87;
+  --fh:'Playfair Display',Georgia,serif;--fb:'Noto Serif Bengali','Segoe UI',sans-serif;
+  --r:10px;--shadow:0 4px 28px rgba(0,0,0,.09);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;overflow-x:clip;}
 body{font-family:var(--fb);background:var(--bg);color:var(--tx);line-height:1.9;font-size:1.05rem;padding-top:66px;overflow-x:clip;}
-img{max-width:100%;height:auto;display:block;}a{text-decoration:none;color:inherit;}
+img{max-width:100%;height:auto;display:block;}
+a{text-decoration:none;color:inherit;}
 .skip-link{position:absolute;top:-40px;left:0;background:var(--navy);color:var(--gold-lt);padding:8px 14px;z-index:9999;font-size:.85rem;transition:top .2s;}.skip-link:focus{top:0;}
 .site-header{position:fixed;width:100%;top:0;z-index:900;display:flex;align-items:center;gap:12px;padding:0 20px;height:66px;background:var(--navy);box-shadow:0 2px 18px rgba(0,0,0,.5);border-bottom:2px solid var(--gold);}
 .ham{background:rgba(255,255,255,.06);border:1.5px solid rgba(184,134,11,.45);cursor:pointer;color:var(--gold-lt);font-size:1.25rem;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:7px;flex-shrink:0;transition:background .2s;}.ham:hover{background:rgba(184,134,11,.18);}
@@ -219,7 +227,6 @@ main{max-width:780px;margin:0 auto;padding:18px 18px 60px;}
 @media(max-width:860px){.ftr-mid-inner{grid-template-columns:1fr 1fr;}.ftr-col{border-right:none;padding:0 0 22px 0!important;}.ftr-col+.ftr-col{padding-left:0!important;}}
 @media(max-width:540px){.ftr-mid-inner{grid-template-columns:1fr;}.ftr-svc-cards{grid-template-columns:repeat(2,1fr);}.ftr-bottom{flex-direction:column;text-align:center;}}
 @media(max-width:600px){main{padding:14px 14px 48px;}.post-header h1{font-size:1.4rem;}}
-
 </style>
 </head>
 <body>
@@ -344,7 +351,6 @@ main{max-width:780px;margin:0 auto;padding:18px 18px 60px;}
 <p style="margin:0;color:#666;font-size:13px;line-height:1.7;">জ্যোতিষী, হস্তরেখাবিদ, দার্শনিক চিন্তাবিদ ও ভাগ্য উন্নতির পরামর্শদাতা। রানাঘাট, নদিয়া, পশ্চিমবঙ্গ। &nbsp;<a href="https://www.myastrology.in" style="color:#b8860b;font-weight:600;">myastrology.in</a></p>
 </div>
     </div>
-  
   </article>
   <div class="pjk-strip">
     <h3>🌙 আজকের রাশিফল ও দিন পঞ্জিকা</h3>
@@ -447,7 +453,8 @@ main{max-width:780px;margin:0 auto;padding:18px 18px 60px;}
     </div>
   </div>
 </footer>
-<!-- SERVICE SELECTOR -->
+
+<!-- SERVICE SELECTOR MODAL -->
 <div id="svc-overlay" role="dialog" aria-modal="true" aria-labelledby="svcTitle">
   <div id="svc-modal">
     <button class="bm-close-x" onclick="closeSvc()" aria-label="বন্ধ">&times;</button>
@@ -488,6 +495,7 @@ main{max-width:780px;margin:0 auto;padding:18px 18px 60px;}
     <p class="bm-secure-note"><i class="fas fa-lock" style="color:var(--gold);margin-right:4px"></i>Razorpay দ্বারা সুরক্ষিত &bull; UPI &bull; Card &bull; Net Banking</p>
   </div>
 </div>
+
 <!-- BOOKING MODAL -->
 <div id="book-overlay" role="dialog" aria-modal="true" aria-labelledby="bookModalTitle">
   <div id="book-modal">
@@ -511,6 +519,7 @@ main{max-width:780px;margin:0 auto;padding:18px 18px 60px;}
     <p class="bm-secure-note"><i class="fas fa-lock" style="color:var(--gold);margin-right:4px"></i>Razorpay দ্বারা সুরক্ষিত &bull; UPI &bull; Card &bull; Net Banking</p>
   </div>
 </div>
+
 <!-- SUCCESS MODAL -->
 <div id="rzp-success-overlay" role="dialog" aria-modal="true">
   <div id="rzp-success-modal">
@@ -528,6 +537,7 @@ main{max-width:780px;margin:0 auto;padding:18px 18px 60px;}
     <p class="success-note">এই WhatsApp লিঙ্কে Payment ID সহ তথ্য পাঠান।</p>
   </div>
 </div>
+
 <div class="wa-float" id="waFloat">
   <div class="wa-bubble" id="waBubble"></div>
   <a href="https://wa.me/919333122768?text=%E0%A6%A8%E0%A6%AE%E0%A6%B8%E0%A7%8D%E0%A6%95%E0%A6%BE%E0%A6%B0%20%E0%A6%A1.%20%E0%A6%86%E0%A6%9A%E0%A6%BE%E0%A6%B0%E0%A7%8D%E0%A6%AF%2C%20%E0%A6%AA%E0%A6%B0%E0%A6%BE%E0%A6%AE%E0%A6%B0%E0%A7%8D%E0%A6%B6%20%E0%A6%A8%E0%A6%BF%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87%E0%A5%A4" target="_blank" rel="noopener" class="wa-btn-fl" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
@@ -562,7 +572,7 @@ function openRzp(label,amount,key,price,oldprice){
 }
 function closeBooking(){var ov=document.getElementById('book-overlay');ov.classList.remove('show');setTimeout(function(){ov.style.display='none';},300);document.body.style.overflow='';}
 function proceedToRazorpay(){var name=document.getElementById('bmName').value.trim();var phone=document.getElementById('bmPhone').value.replace(/\D/g,'').slice(0,10);var ne=document.getElementById('bmName'),pe=document.getElementById('bmPhone');ne.classList.remove('err');pe.classList.remove('err');var ok=true;if(!name){ne.classList.add('err');ne.focus();ok=false;}else if(!phone||phone.length<10){pe.classList.add('err');pe.focus();ok=false;}if(!ok)return;if(typeof Razorpay==='undefined'){alert('পেমেন্ট গেটওয়ে লোড হচ্ছে, একটু অপেক্ষা করুন।');return;}new Razorpay({key:RZP_KEY,amount:_svc.amount,currency:'INR',name:'MyAstrology',description:_svc.label,image:RZP_LOGO,prefill:{name:name,contact:'+91'+phone},notes:{service:_svc.label,customer:name,whatsapp:phone},theme:{color:'#b8860b'},modal:{backdropclose:false,escape:false},handler:function(res){closeBooking();if(typeof gtag!=='undefined')gtag('event','booking_paid',{event_category:'conversion',event_label:_svc.label,value:_svc.amount/100});showSuccess(name,phone,res.razorpay_payment_id);}}).open();}
-function showSuccess(name,phone,pid){var NL=String.fromCharCode(10);var msg='🙏 নমস্কার! আমি '+_svc.label+'-এর জন্য পেমেন্ট সম্পন্ন করেছি।'+NL+NL+'👤 নাম: '+name+NL+'📱 WhatsApp: +91'+phone+NL+'🛒 সেবা: '+_svc.label+NL+(_svc.price?'💰 মূল্য: ₹'+_svc.price+NL:'')+(pid?'🆔 Payment ID: '+pid:'')+NL+NL+'📋 পরামর্শের তারিখ ও সময় জানান। ধন্যবাদ! 🙏';document.getElementById('successWaBtn').href='https://wa.me/'+WA_NUM+'?text='+encodeURIComponent(msg);document.getElementById('successMsg').textContent=name+' — আপনার পেমেন্ট সফলভাবে গৃহীত হয়েছে। ✅';document.getElementById('successPid').textContent=pid||'—';var ov=document.getElementById('rzp-success-overlay');ov.style.display='flex';requestAnimationFrame(function(){ov.classList.add('show');});document.body.style.overflow='hidden';}
+function showSuccess(name,phone,pid){var NL=String.fromCharCode(10);var msg='🙏 নমস্কার! আমি '+_svc.label+'-এর জন্য পেমেন্ট সম্পন্ন করেছি。'+NL+NL+'👤 নাম: '+name+NL+'📱 WhatsApp: +91'+phone+NL+'🛎️ সেবা: '+_svc.label+NL+(_svc.price?'💰 মূল্য: ₹'+_svc.price+NL:'')+(pid?'🆔 Payment ID: '+pid:'')+NL+NL+'📋 অনুগ্রহ করে পরামর্শের তারিখ ও সময় জানান。 ধন্যবাদ! 🙏';document.getElementById('successWaBtn').href='https://wa.me/'+WA_NUM+'?text='+encodeURIComponent(msg);document.getElementById('successMsg').textContent=name+' — আপনার পেমেন্ট সফলভাবে গৃহীত হয়েছে। ✅';document.getElementById('successPid').textContent=pid||'—';var ov=document.getElementById('rzp-success-overlay');ov.style.display='flex';requestAnimationFrame(function(){ov.classList.add('show');});document.body.style.overflow='hidden';}
 function closeSuccess(){var ov=document.getElementById('rzp-success-overlay');ov.classList.remove('show');setTimeout(function(){ov.style.display='none';},300);document.body.style.overflow='';}
 document.getElementById('svc-overlay').addEventListener('click',function(e){if(e.target===this)closeSvc();});
 document.getElementById('book-overlay').addEventListener('click',function(e){if(e.target===this)closeBooking();});
@@ -571,7 +581,7 @@ document.getElementById('rzp-success-overlay').addEventListener('click',function
 document.getElementById('bmPhone').addEventListener('input',function(){this.value=this.value.replace(/\D/g,'').slice(0,10);});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeSvc();closeBooking();closeSuccess();closeNav();}});
 
-(function(){var msgs=['🔮 কুণ্ডলী বিশ্লেষণ করুন','🌟 আজই পরামর্শ নিন','✋ হস্তরেখা বিচার করুন','⭐ ১০,০০০+ সন্তুষ্ট গ্রাহক','💬 বাংলায় Online পরামর্শ','🙏 এখনই WhatsApp করুন','💿 Jyotish পরামর্শ নিন','💍 যোটোক বিচার করুন'];var idx=0,b=document.getElementById('waBubble');if(!b)return;function sm(){b.style.display='block';b.textContent=msgs[idx];b.classList.add('show');setTimeout(function(){b.classList.remove('show');setTimeout(function(){b.style.display='none';},400);},4000);idx=(idx+1)%msgs.length;}setTimeout(function(){sm();setInterval(sm,6000);},2500);})();
+(function(){var msgs=['🔮 কুণ্ডলী বিশ্লেষণ করুন','🌟 আজই পরামর্শ নিন','✋ হস্তরেখা বিচার করুন','⭐ ১০,০০০+ সন্তুষ্ট গ্রাহক','💬 বাংলায় Online পরামর্শ','🙏 এখনই WhatsApp করুন','📿 Jyotish পরামর্শ নিন','💍 যোটোক বিচার করুন'];var idx=0,b=document.getElementById('waBubble');if(!b)return;function sm(){b.style.display='block';b.textContent=msgs[idx];b.classList.add('show');setTimeout(function(){b.classList.remove('show');setTimeout(function(){b.style.display='none';},400);},4000);idx=(idx+1)%msgs.length;}setTimeout(function(){sm();setInterval(sm,6000);},2500);})();
 
 (function(){var btn=document.getElementById('back-to-top');if(!btn)return;window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>400);},{passive:true});btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();
 
