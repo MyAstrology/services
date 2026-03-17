@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MVVL8XBD');</script>
+  <!-- End Google Tag Manager -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, follow"> <!-- সার্চ ইঞ্জিনে যাবে না -->
+  <meta name="theme-color" content="#0a192f">
+  <meta name="author" content="Dr. Prodyut Acharya">
+  
+  <title>অনুসন্ধান ফলাফল - MyAstrology | ড. প্রদ্যুৎ আচার্য</title>
+  <meta name="description" content="MyAstrology Learning Hub-এ আপনার খোঁজা বিষয়ের ফলাফল। জ্যোতিষ, হস্তরেখা, দর্শন ও আরও অনেক কিছু।">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="অনুসন্ধান ফলাফল - MyAstrology Learning Hub">
+  <meta property="og:description" content="আপনার খোঁজা বিষয়ের সম্পর্কিত পোস্ট ও শিক্ষা উপকরণ">
+  <meta property="og:image" content="https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png">
+  <meta property="og:url" content="https://www.myastrology.in/search.html">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+  <link rel="canonical" href="https://www.myastrology.in/search.html">
+  
+  <!-- ফন্ট ও আইকন -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    /* ===== রুট ভেরিয়েবল (মূল সাইটের মতো) ===== */
+    :root {
+      --navy: #0a192f;
+      --navy2: #0e1e38;
+      --gold: #b8860b;
+      --gold2: #c8950c;
+      --gold3: #ffd700;
+      --gold-lt: #fff4ca;
+      --gold-bg: #fdf8ed;
+      --cream: #fafaf6;
+      --text: #181825;
+      --muted: #464662;
+      --blue: #123d87;
+      --border: #ddd0b5;
+      --shadow: 0 4px 28px rgba(0,0,0,.09);
+      --r: 10px;
+      --fh: 'Playfair Display', Georgia, serif;
+      --fb: 'Source Sans 3', sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: var(--fb);
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.7;
+      padding-top: 66px;
+    }
+
+    /* ===== হেডার (মূল সাইটের মতো) ===== */
+    .site-header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 900;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 20px;
+      height: 66px;
+      background: var(--navy);
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .ham {
+      background: rgba(255,255,255,.06);
+      border: 1.5px solid rgba(184,134,11,.45);
+      cursor: pointer;
+      color: var(--gold-lt);
+      font-size: 1.25rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 7px;
+    }
+
+    .header-brand {
+      font-family: var(--fh);
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: var(--gold-lt);
+      flex: 1;
+      text-align: center;
+    }
+
+    .header-logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 8px;
+      object-fit: contain;
+      background: var(--navy);
+      padding: 2px;
+    }
+
+    /* ===== নেভিগেশন (মূল সাইটের মতো) ===== */
+    .nav {
+      display: none;
+      flex-direction: column;
+      position: fixed;
+      top: 66px;
+      left: 0;
+      right: 0;
+      background: var(--navy2);
+      border-top: 2px solid var(--gold);
+      z-index: 899;
+      max-height: 82vh;
+      overflow-y: auto;
+    }
+    .nav.open { display: flex; }
+    .nav-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      top: 66px;
+      background: rgba(0,0,0,.45);
+      z-index: 898;
+    }
+    .nav-overlay.open { display: block; }
+    .nav a {
+      color: #b0c4dc;
+      padding: 12px 22px;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav a:hover {
+      background: rgba(184,134,11,.12);
+      color: var(--gold-lt);
+    }
+
+    /* ===== ব্রেডক্রাম্ব ===== */
+    .breadcrumb {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 10px 18px;
+      font-size: .85rem;
+      color: var(--muted);
+    }
+    .breadcrumb a { color: var(--gold); }
+
+    /* ===== মূল কন্টেন্ট ===== */
+    main {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 0 20px 50px;
+    }
+
+    .search-header {
+      background: white;
+      border-radius: var(--r);
+      padding: 30px;
+      margin-bottom: 30px;
+      border-left: 4px solid var(--gold);
+      box-shadow: var(--shadow);
+    }
+
+    .search-header h1 {
+      font-family: var(--fh);
+      color: var(--navy);
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .search-query {
+      background: var(--gold-bg);
+      color: var(--gold);
+      padding: 5px 15px;
+      border-radius: 30px;
+      font-weight: 700;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .search-box {
+      display: flex;
+      gap: 10px;
+      background: white;
+      border-radius: 50px;
+      border: 2px solid var(--border);
+      overflow: hidden;
+      margin-top: 20px;
+    }
+    .search-box input {
+      flex: 1;
+      padding: 15px 20px;
+      border: none;
+      font-size: 1rem;
+      outline: none;
+    }
+    .search-box button {
+      background: var(--gold);
+      color: white;
+      border: none;
+      padding: 0 30px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .result-stats {
+      color: var(--muted);
+      margin: 20px 0;
+      font-size: 0.9rem;
+    }
+
+    .result-card {
+      background: white;
+      border-radius: var(--r);
+      padding: 25px;
+      margin-bottom: 20px;
+      border-left: 3px solid var(--gold);
+      box-shadow: var(--shadow);
+      transition: transform 0.2s;
+    }
+    .result-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    .result-card h2 {
+      font-family: var(--fh);
+      color: var(--blue);
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+    .result-card a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .result-card a:hover h2 {
+      color: var(--gold);
+    }
+
+    .result-meta {
+      display: flex;
+      gap: 15px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-bottom: 10px;
+    }
+    .result-meta i {
+      color: var(--gold);
+      margin-right: 5px;
+    }
+
+    .result-desc {
+      color: var(--text);
+      line-height: 1.7;
+      margin-bottom: 15px;
+    }
+
+    .result-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .result-tag {
+      background: var(--gold-bg);
+      color: var(--gold);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 60px 20px;
+      background: white;
+      border-radius: var(--r);
+    }
+    .no-results i {
+      font-size: 4rem;
+      color: var(--gold);
+      opacity: 0.5;
+      margin-bottom: 20px;
+    }
+    .no-results h2 {
+      font-family: var(--fh);
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .no-results p {
+      color: var(--muted);
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .suggestions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+    .suggestion-tag {
+      background: white;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 8px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .suggestion-tag:hover {
+      background: var(--gold);
+      color: white;
+    }
+
+    /* ===== ফুটার ===== */
+    .site-footer {
+      background: linear-gradient(180deg, #0a1628 0%, #060e1a 100%);
+      border-top: 3px solid var(--gold);
+      color: #6888a8;
+      margin-top: 50px;
+      padding: 40px 20px 20px;
+    }
+    .footer-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .search-header { padding: 20px; }
+      .result-card { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVVL8XBD"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- ===== হেডার ===== -->
+<header class="site-header">
+  <button class="ham" onclick="toggleNav()" aria-label="মেনু"><i class="fas fa-bars"></i></button>
+  <span class="header-brand">MyAstrology</span>
+  <img src="images/MyAstrology-Ranghat-logo.png" alt="MyAstrology Logo" class="header-logo">
+</header>
+
+<!-- ===== নেভিগেশন ===== -->
+<nav class="nav" id="navMenu">
+  <a href="https://www.myastrology.in/">🏠 হোম</a>
+  <a href="https://www.myastrology.in/astrology.html">🔮 জ্যোতিষ শাস্ত্র</a>
+  <a href="https://www.myastrology.in/palmistry.html">✋ হস্তরেখা</a>
+  <a href="https://www.myastrology.in/learning/">📚 লার্নিং হাব</a>
+  <a href="https://www.myastrology.in/rashifal.html">♈ রাশিফল</a>
+  <a href="https://www.myastrology.in/panjika.html">📅 পঞ্জিকা</a>
+  <a href="https://www.myastrology.in/contact.html">📍 যোগাযোগ</a>
+</nav>
+<div class="nav-overlay" id="navOverlay" onclick="closeNav()"></div>
+
+<!-- ===== ব্রেডক্রাম্ব ===== -->
+<div class="breadcrumb">
+  <a href="https://www.myastrology.in/">হোম</a> › 
+  <a href="https://www.myastrology.in/learning/">লার্নিং হাব</a> › 
+  <span>অনুসন্ধান</span>
+</div>
+
+<!-- ===== মূল কন্টেন্ট ===== -->
+<main>
+  <div class="search-header">
+    <h1>📚 লার্নিং হাব - অনুসন্ধান</h1>
+    <p>আপনার প্রয়োজনীয় জ্যোতিষ, হস্তরেখা ও দর্শন বিষয় খুঁজুন</p>
+    
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="যেমন: হস্তরেখা, মঙ্গল দোষ, কুণ্ডলী মিলন..." value="">
+      <button onclick="searchNow()"><i class="fas fa-search"></i> খুঁজুন</button>
+    </div>
+  </div>
+
+  <div id="searchResults">
+    <!-- ফলাফল জাভাস্ক্রিপ্ট দিয়ে দেখানো হবে -->
+  </div>
+</main>
+
+<!-- ===== ফুটার ===== -->
+<footer class="site-footer">
+  <div class="footer-content">
+    <p>© 2026 MyAstrology - ড. প্রদ্যুৎ আচার্য</p>
+    <p><a href="https://www.myastrology.in">www.myastrology.in</a></p>
+  </div>
+</footer>
+
+<!-- ===== জাভাস্ক্রিপ্ট ===== -->
+<script>
+// নেভিগেশন ফাংশন
+function toggleNav() {
+  document.getElementById('navMenu').classList.toggle('open');
+  document.getElementById('navOverlay').classList.toggle('open');
+}
+function closeNav() {
+  document.getElementById('navMenu').classList.remove('open');
+  document.getElementById('navOverlay').classList.remove('open');
+}
+
+// ব্লগ পোস্টের ডাটা (list.json থেকে নেওয়া)
+const blogPosts = [
+  // এই অংশটি generate-posts.js অটো জেনারেট করবে
+  // এখানে list.json এর ডাটা আসবে
+];
+
+// URL থেকে কোয়েরি পড়া
+function getQueryParam() {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get('q') || '';
+}
+
+// সার্চ ফাংশন
+function performSearch(query) {
+  if (!query) return [];
+  
+  query = query.toLowerCase();
+  return blogPosts.filter(post => {
+    return (
+      (post.title && post.title.toLowerCase().includes(query)) ||
+      (post.description && post.description.toLowerCase().includes(query)) ||
+      (post.tags && post.tags.some(tag => tag.toLowerCase().includes(query))) ||
+      (post.keywords && post.keywords.toLowerCase().includes(query))
+    );
+  });
+}
+
+// ফলাফল দেখানো
+function displayResults() {
+  const query = getQueryParam();
+  document.getElementById('searchInput').value = query;
+  
+  const results = performSearch(query);
+  const container = document.getElementById('searchResults');
+  
+  if (!query) {
+    container.innerHTML = `
+      <div class="no-results">
+        <i class="fas fa-search"></i>
+        <h2>কী খুঁজতে চান?</h2>
+        <p>উপরে আপনার প্রয়োজনীয় বিষয় লিখুন</p>
+        <div class="suggestions">
+          <a href="?q=হস্তরেখা" class="suggestion-tag">✋ হস্তরেখা</a>
+          <a href="?q=মঙ্গল দোষ" class="suggestion-tag">🔥 মঙ্গল দোষ</a>
+          <a href="?q=কুণ্ডলী মিলন" class="suggestion-tag">💍 কুণ্ডলী মিলন</a>
+          <a href="?q=জীবন দর্শন" class="suggestion-tag">🧠 জীবন দর্শন</a>
+        </div>
+      </div>
+    `;
+    return;
+  }
+  
+  if (results.length === 0) {
+    container.innerHTML = `
+      <div class="no-results">
+        <i class="fas fa-frown"></i>
+        <h2>"${query}" এর কোনো ফলাফল পাওয়া যায়নি</h2>
+        <p>অনুগ্রহ করে অন্য কীওয়ার্ড দিয়ে খুঁজুন</p>
+        <div class="suggestions">
+          <a href="?q=হস্তরেখা" class="suggestion-tag">✋ হস্তরেখা</a>
+          <a href="?q=মঙ্গল" class="suggestion-tag">🔥 মঙ্গল</a>
+          <a href="?q=পিতৃদোষ" class="suggestion-tag">👴 পিতৃদোষ</a>
+        </div>
+      </div>
+    `;
+    return;
+  }
+  
+  let html = `<div class="result-stats">${results.length}টি ফলাফল পাওয়া গেছে</div>`;
+  
+  results.forEach(post => {
+    html += `
+      <div class="result-card">
+        <h2><a href="/blog/${post.slug}.html">${post.title}</a></h2>
+        <div class="result-meta">
+          <span><i class="far fa-calendar-alt"></i> ${post.date || ''}</span>
+          <span><i class="far fa-clock"></i> ${post.reading_time || '৫'} মিনিট</span>
+        </div>
+        <div class="result-desc">${post.description || ''}</div>
+        <div class="result-tags">
+          ${(post.tags || []).map(tag => `<span class="result-tag">#${tag}</span>`).join('')}
+        </div>
+      </div>
+    `;
+  });
+  
+  container.innerHTML = html;
+}
+
+// সার্চ বাটন
+function searchNow() {
+  const query = document.getElementById('searchInput').value.trim();
+  if (query) {
+    window.location.href = `?q=${encodeURIComponent(query)}`;
+  }
+}
+
+// এন্টার কী
+document.getElementById('searchInput').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') searchNow();
+});
+
+// পেজ লোড হলে ফলাফল দেখাও
+displayResults();
+</script>
+</body>
+</html>
