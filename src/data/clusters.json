@@ -1,4 +1,36 @@
 {
+  "stri-r-bicched-er-por-o-mone-pore-chanchal-er-golpo": {
+    "cluster": "জীবন দর্শন",
+    "parent": "আধ্যাত্মিক",
+    "confidence": 0.6,
+    "allScores": {
+      "জ্যোতিষ": {
+        "score": 1,
+        "matches": 1,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জীবন দর্শন": {
+        "score": 3,
+        "matches": 3,
+        "parent": "আধ্যাত্মিক"
+      },
+      "সাফল্য": {
+        "score": 0.9,
+        "matches": 1,
+        "parent": "ব্যবহারিক জীবন"
+      },
+      "সম্পর্ক": {
+        "score": 0.9,
+        "matches": 1,
+        "parent": "ব্যবহারিক জীবন"
+      },
+      "গল্প": {
+        "score": 1.6,
+        "matches": 2,
+        "parent": "সাহিত্য"
+      }
+    }
+  },
   "mangal-grah-antar-yoddha": {
     "cluster": "জ্যোতিষ",
     "parent": "শারীরিক জ্যোতিষ",

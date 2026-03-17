@@ -1,4 +1,34 @@
 {
+  "stri-r-bicched-er-por-o-mone-pore-chanchal-er-golpo": {
+    "relatedByTag": [],
+    "relatedByPillar": [
+      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
+      "pradip-byarthata-manoshik-shanti",
+      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha"
+    ],
+    "relatedByCluster": [
+      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
+      "pradip-byarthata-manoshik-shanti",
+      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha"
+    ],
+    "topRelated": [
+      {
+        "slug": "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
+        "score": 0.3943055555555556
+      },
+      {
+        "slug": "pradip-byarthata-manoshik-shanti",
+        "score": 0.3863492063492064
+      },
+      {
+        "slug": "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
+        "score": 0.3789473684210526
+      }
+    ],
+    "cluster": "জীবন দর্শন",
+    "confidence": 0.6,
+    "manualLinks": []
+  },
   "mangal-grah-antar-yoddha": {
     "relatedByTag": [],
     "relatedByPillar": [
@@ -354,7 +384,7 @@
     "relatedByPillar": [
       "mahabharata-ratha-pancha-indriya-jiban-darshan",
       "bhalo-manush-haoar-satyi-path",
-      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo"
+      "stri-r-bicched-er-por-o-mone-pore-chanchal-er-golpo"
     ],
     "relatedByCluster": [
       "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
@@ -440,8 +470,8 @@
     ],
     "relatedByPillar": [
       "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
-      "dharma-ki-prokrit-artha-gita-buddha-darshan",
-      "mahabharata-ratha-pancha-indriya-jiban-darshan"
+      "stri-r-bicched-er-por-o-mone-pore-chanchal-er-golpo",
+      "dharma-ki-prokrit-artha-gita-buddha-darshan"
     ],
     "relatedByCluster": [
       "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
@@ -508,7 +538,7 @@
     "relatedByPillar": [
       "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
       "pradip-byarthata-manoshik-shanti",
-      "jibonsongram-sukhi-thaka-ananta-golpo"
+      "stri-r-bicched-er-por-o-mone-pore-chanchal-er-golpo"
     ],
     "relatedByCluster": [
       "dharma-ki-prokrit-artha-gita-buddha-darshan",
@@ -543,7 +573,7 @@
     "relatedByPillar": [
       "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
       "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
-      "jibonsongram-sukhi-thaka-ananta-golpo"
+      "stri-r-bicched-er-por-o-mone-pore-chanchal-er-golpo"
     ],
     "relatedByCluster": [
       "bhalo-manush-haoar-satyi-path",
@@ -739,8 +769,8 @@
       "safal-manush-sukhi-noy-porichoy-shantir-dwondwo"
     ],
     "relatedByPillar": [
-      "jibonsongram-sukhi-thaka-ananta-golpo",
-      "ai-yuge-ortho-bhalobasha-bhagya-pradyut-acharya"
+      "stri-r-bicched-er-por-o-mone-pore-chanchal-er-golpo",
+      "jibonsongram-sukhi-thaka-ananta-golpo"
     ],
     "relatedByCluster": [
       "dharma-ki-prokrit-artha-gita-buddha-darshan",
