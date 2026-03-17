@@ -4,87 +4,202 @@ on:
   push:
     branches:
       - main
+      - master
     paths:
       - 'src/content/blog/**'
       - 'generate-*.js'
       - 'src/data/*.json'
+      - 'package.json'
+      - 'package-lock.json'
   schedule:
-    # Run every 6 hours
-    - cron: '0 */6 * * *'
+    # Run every 4 hours (আগে ছিল ৬ ঘণ্টা)
+    - cron: '0 */4 * * *'
   workflow_dispatch:
     inputs:
       force_generate:
-        description: 'Force regenerate all'
+        description: '🔨 Force regenerate all files'
+        type: boolean
+        default: false
+      skip_commit:
+        description: '⏭️ Skip commit (test only)'
         type: boolean
         default: false
 
+# পরিবেশ ভেরিয়েবল
+env:
+  NODE_VERSION: '20'
+  CACHE_PATH: ~/.npm
+  BLOG_DIR: blog
+  DATA_DIR: src/data
+
 concurrency:
-  group: git-push
-  cancel-in-progress: false
+  group: git-push-${{ github.ref }}
+  cancel-in-progress: true  # একাধিক রান থাকলে আগেরটা বাতিল
 
 permissions:
   contents: write
+  actions: read
 
 jobs:
-  build:
+  validate:
     runs-on: ubuntu-latest
+    timeout-minutes: 2
+    outputs:
+      should_run: ${{ steps.check.outputs.should_run }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+          
+      - name: Check for changes
+        id: check
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "should_run=true" >> $GITHUB_OUTPUT
+            echo "✅ Manual trigger - running"
+          elif [ "${{ github.event_name }}" == "schedule" ]; then
+            echo "should_run=true" >> $GITHUB_OUTPUT
+            echo "✅ Schedule trigger - running"
+          else
+            # Check if relevant files changed
+            CHANGED_FILES=$(git diff --name-only HEAD^ HEAD)
+            if echo "$CHANGED_FILES" | grep -E "src/content/blog/|generate-|src/data/|package.json"; then
+              echo "should_run=true" >> $GITHUB_OUTPUT
+              echo "✅ Relevant files changed - running"
+            else
+              echo "should_run=false" >> $GITHUB_OUTPUT
+              echo "⏭️ No relevant changes - skipping"
+            fi
+          fi
+
+  build:
+    needs: validate
+    if: needs.validate.outputs.should_run == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
+          ref: ${{ github.head_ref || github.ref_name }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
+          cache-dependency-path: package-lock.json
+
+      - name: 📦 Cache node modules
+        uses: actions/cache@v3
+        id: npm-cache
+        with:
+          path: ${{ env.CACHE_PATH }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - name: Install dependencies
         run: |
-          npm install gray-matter@^4.0.3
+          if [ -f package-lock.json ]; then
+            echo "📦 Using package-lock.json (ci)"
+            npm ci --no-audit --no-fund
+          else
+            echo "📦 Installing dependencies (install)"
+            npm install --no-audit --no-fund
+            # Generate package-lock.json for future runs
+            npm install --package-lock-only
+          fi
           echo "✅ Dependencies installed"
-
+          
       - name: Create required directories
         run: |
-          mkdir -p blog
-          mkdir -p src/data
-          echo "✅ Directories created"
+          mkdir -p ${{ env.BLOG_DIR }}
+          mkdir -p ${{ env.DATA_DIR }}
+          echo "✅ Directories created: ${{ env.BLOG_DIR }}/, ${{ env.DATA_DIR }}/"
 
-      - name: "\U0001F4DD Generate blog list"
+      - name: 📋 Generate blog list
+        id: generate-list
         run: |
           echo "📋 Generating list.json..."
-          node src/content/blog/generate-list.js
-          echo "✅ list.json generated"
+          if [ -f src/content/blog/generate-list.js ]; then
+            node src/content/blog/generate-list.js
+            echo "✅ list.json generated"
+          else
+            echo "⚠️ generate-list.js not found"
+          fi
 
-      - name: "\U0001F517 Generate related posts (AI-like analysis)"
+      - name: 🔗 Generate related posts (AI-like analysis)
+        id: generate-related
         run: |
           echo "🔗 Generating related posts and clusters..."
-          node generate-related-posts.js
-          echo "✅ related-posts.json generated"
-          echo "✅ internal-links.json generated"
-          echo "✅ clusters.json generated"
-          echo "✅ stats.json generated"
+          START_TIME=$(date +%s%N)
+          
+          if [ -f generate-related-posts.js ]; then
+            node generate-related-posts.js
+            
+            # Check if files were created
+            echo "📊 Generated files:"
+            for file in related-posts.json internal-links.json clusters.json stats.json; do
+              if [ -f "src/data/$file" ]; then
+                SIZE=$(stat -c%s "src/data/$file" 2>/dev/null || stat -f%z "src/data/$file" 2>/dev/null)
+                COUNT=$(jq '. | length' "src/data/$file" 2>/dev/null || echo "N/A")
+                echo "  ✅ $file (${COUNT} entries, $(($SIZE/1024))KB)"
+              else
+                echo "  ❌ $file not found"
+              fi
+            done
+          else
+            echo "⚠️ generate-related-posts.js not found"
+          fi
+          
+          END_TIME=$(date +%s%N)
+          DURATION=$(( ($END_TIME - $START_TIME) / 1000000 ))
+          echo "⏱️ Time: ${DURATION}ms"
+          echo "time_ms=${DURATION}" >> $GITHUB_OUTPUT
 
-      - name: "\U0001F4D1 Generate blog HTML files"
+      - name: 📄 Generate blog HTML files
+        id: generate-posts
         run: |
           echo "📝 Generating blog HTML files..."
           START_TIME=$(date +%s)
-          node generate-posts.js
+          
+          if [ -f generate-posts.js ]; then
+            node generate-posts.js
+            BLOG_COUNT=$(ls ${{ env.BLOG_DIR }}/*.html 2>/dev/null | wc -l)
+            echo "✅ ${BLOG_COUNT} HTML files generated"
+            echo "blog_count=${BLOG_COUNT}" >> $GITHUB_OUTPUT
+            
+            # Show sample if any
+            if [ "$BLOG_COUNT" -gt "0" ]; then
+              FIRST_FILE=$(ls ${{ env.BLOG_DIR }}/*.html 2>/dev/null | head -1)
+              echo "📄 Sample: $(basename $FIRST_FILE)"
+            fi
+          else
+            echo "⚠️ generate-posts.js not found"
+            echo "blog_count=0" >> $GITHUB_OUTPUT
+          fi
+          
           END_TIME=$(date +%s)
           DURATION=$((END_TIME - START_TIME))
-          BLOG_COUNT=$(ls blog/*.html 2>/dev/null | wc -l)
-          echo "✅ ${BLOG_COUNT} HTML files generated in ${DURATION}s"
+          echo "⏱️ Time: ${DURATION}s"
+          echo "duration=${DURATION}" >> $GITHUB_OUTPUT
 
-      - name: "\U0001F5FA️ Generate sitemaps"
+      - name: 🗺️ Generate sitemaps
         run: |
           echo "🗺️ Generating sitemaps..."
           
           # Check if sitemap generators exist
+          SITEMAP_COUNT=0
+          
           if [ -f src/content/blog/generate-sitemap.js ]; then
             node src/content/blog/generate-sitemap.js
             echo "✅ sitemap.xml generated"
+            SITEMAP_COUNT=$((SITEMAP_COUNT + 1))
           else
             echo "⚠️ generate-sitemap.js not found"
           fi
@@ -92,6 +207,7 @@ jobs:
           if [ -f src/content/blog/generate-image-sitemap.js ]; then
             node src/content/blog/generate-image-sitemap.js
             echo "✅ image-sitemap.xml generated"
+            SITEMAP_COUNT=$((SITEMAP_COUNT + 1))
           else
             echo "⚠️ generate-image-sitemap.js not found"
           fi
@@ -99,124 +215,178 @@ jobs:
           if [ -f src/content/blog/generate-video-sitemap.js ]; then
             node src/content/blog/generate-video-sitemap.js
             echo "✅ video-sitemap.xml generated"
+            SITEMAP_COUNT=$((SITEMAP_COUNT + 1))
           else
             echo "⚠️ generate-video-sitemap.js not found"
           fi
+          
+          echo "✅ Generated ${SITEMAP_COUNT} sitemaps"
 
-      - name: "\U0001F50D System Health Check"
+      - name: 🔍 System Health Check
         run: |
           echo "====== 📊 সিস্টেম চেকলিস্ট ======"
           
+          # Colors for output
+          RED='\033[0;31m'
+          GREEN='\033[0;32m'
+          YELLOW='\033[1;33m'
+          NC='\033[0m'
+          
+          # Function to check file
+          check_file() {
+            if [ -f "$1" ]; then
+              SIZE=$(stat -c%s "$1" 2>/dev/null || stat -f%z "$1" 2>/dev/null)
+              if [ "$SIZE" -gt "0" ]; then
+                echo -e "${GREEN}✅${NC} $2 ($(($SIZE/1024))KB)"
+                return 0
+              else
+                echo -e "${YELLOW}⚠️${NC} $2 (empty file)"
+                return 1
+              fi
+            else
+              echo -e "${RED}❌${NC} $2 নেই"
+              return 1
+            fi
+          }
+          
           # Check sitemaps
-          [ -f sitemap.xml ] && SITEMAP_SIZE=$(stat -c%s sitemap.xml 2>/dev/null || stat -f%z sitemap.xml 2>/dev/null) && echo "✅ sitemap.xml ($(($SITEMAP_SIZE/1024))KB)" || echo "❌ sitemap.xml নেই"
-          [ -f image-sitemap.xml ] && IMG_SIZE=$(stat -c%s image-sitemap.xml 2>/dev/null || stat -f%z image-sitemap.xml 2>/dev/null) && echo "✅ image-sitemap.xml ($(($IMG_SIZE/1024))KB)" || echo "❌ image-sitemap.xml নেই"
-          [ -f video-sitemap.xml ] && VIDEO_SIZE=$(stat -c%s video-sitemap.xml 2>/dev/null || stat -f%z video-sitemap.xml 2>/dev/null) && echo "✅ video-sitemap.xml ($(($VIDEO_SIZE/1024))KB)" || echo "❌ video-sitemap.xml নেই"
+          check_file "sitemap.xml" "sitemap.xml"
+          check_file "image-sitemap.xml" "image-sitemap.xml"
+          check_file "video-sitemap.xml" "video-sitemap.xml"
           
           # Check data files
           echo ""
           echo "📁 Data files:"
-          [ -f src/data/related-posts.json ] && RP_COUNT=$(jq '. | length' src/data/related-posts.json 2>/dev/null || echo "?") && echo "✅ related-posts.json (${RP_COUNT} entries)" || echo "❌ related-posts.json নেই"
-          [ -f src/data/internal-links.json ] && IL_COUNT=$(jq '. | length' src/data/internal-links.json 2>/dev/null || echo "?") && echo "✅ internal-links.json (${IL_COUNT} entries)" || echo "❌ internal-links.json নেই"
-          [ -f src/data/clusters.json ] && CL_COUNT=$(jq '. | length' src/data/clusters.json 2>/dev/null || echo "?") && echo "✅ clusters.json (${CL_COUNT} entries)" || echo "❌ clusters.json নেই"
-          [ -f src/data/stats.json ] && ST_SIZE=$(stat -c%s src/data/stats.json 2>/dev/null || stat -f%z src/data/stats.json 2>/dev/null) && echo "✅ stats.json ($(($ST_SIZE/1024))KB)" || echo "❌ stats.json নেই"
+          check_file "src/data/related-posts.json" "related-posts.json"
+          check_file "src/data/internal-links.json" "internal-links.json"
+          check_file "src/data/clusters.json" "clusters.json"
+          check_file "src/data/stats.json" "stats.json"
           
           # Check blog posts
           echo ""
           echo "📝 Blog posts:"
-          BLOG_COUNT=$(ls blog/*.html 2>/dev/null | wc -l)
+          BLOG_COUNT=$(ls ${{ env.BLOG_DIR }}/*.html 2>/dev/null | wc -l)
           if [ "$BLOG_COUNT" -gt "0" ]; then
-            echo "✅ ${BLOG_COUNT} HTML files in blog/"
-            FIRST_FILE=$(ls blog/*.html 2>/dev/null | head -1)
-            if [ -n "$FIRST_FILE" ]; then
-              FILE_SIZE=$(stat -c%s "$FIRST_FILE" 2>/dev/null || stat -f%z "$FIRST_FILE" 2>/dev/null)
-              echo "   Sample: $(basename $FIRST_FILE) ($(($FILE_SIZE/1024))KB)"
-            fi
+            echo -e "${GREEN}✅${NC} ${BLOG_COUNT} HTML files in ${{ env.BLOG_DIR }}/"
+            TOTAL_SIZE=$(du -sb ${{ env.BLOG_DIR }} 2>/dev/null | cut -f1)
+            echo "   Total size: $(($TOTAL_SIZE/1024/1024))MB"
           else
-            echo "❌ No HTML files in blog/"
+            echo -e "${RED}❌${NC} No HTML files in ${{ env.BLOG_DIR }}/"
           fi
           
           # Check list.json
           echo ""
           if [ -f src/content/blog/list.json ]; then
-            LIST_COUNT=$(jq '. | length' src/content/blog/list.json 2>/dev/null || echo "?")
-            echo "✅ list.json (${LIST_COUNT} entries)"
+            LIST_COUNT=$(jq '. | length' src/content/blog/list.json 2>/dev/null || echo "0")
+            echo -e "${GREEN}✅${NC} list.json (${LIST_COUNT} entries)"
           else
-            echo "❌ list.json নেই"
+            echo -e "${RED}❌${NC} list.json নেই"
           fi
           
           echo "================================"
 
-      - name: "\U0001F4C8 Generate stats report"
+      - name: 📊 Generate enhanced stats report
+        if: success() || failure()
         run: |
           echo "====== 📈 জেনারেশন রিপোর্ট ======"
           echo "⏰ Time: $(date '+%Y-%m-%d %H:%M:%S UTC')"
+          echo "🔄 Trigger: ${{ github.event_name }}"
           
           if [ -f src/data/stats.json ]; then
-            TOTAL_POSTS=$(jq '.totalPosts // 0' src/data/stats.json)
-            TOTAL_LINKS=$(jq '.totalLinks // 0' src/data/stats.json)
-            AVG_LINKS=$(jq '.avgLinksPerPost // 0' src/data/stats.json)
-            NO_LINKS=$(jq '.postsWithNoLinks // 0' src/data/stats.json)
-            
-            echo "📊 Stats from stats.json:"
-            echo "   📝 Total posts: $TOTAL_POSTS"
-            echo "   🔗 Total links: $TOTAL_LINKS"
-            echo "   📈 Avg links/post: $AVG_LINKS"
-            echo "   ⚠️ Posts with no links: $NO_LINKS"
-            
-            echo ""
-            echo "📊 Cluster distribution:"
-            jq -r '.clusters | to_entries | sort_by(-.value) | .[] | "   \(.key): \(.value) posts"' src/data/stats.json | head -10
-            
-            echo ""
-            echo "🏷️ Top tags:"
-            jq -r '.tagsFrequency | to_entries | sort_by(-.value) | .[] | "   \(.key): \(.value) times"' src/data/stats.json | head -10
+            # Pretty print stats
+            echo "📊 Statistics from stats.json:"
+            jq -r '
+              "   📝 Total posts: \(.totalPosts // 0)",
+              "   🔗 Total links: \(.totalLinks // 0)",
+              "   📈 Avg links/post: \(.avgLinksPerPost // 0)",
+              "   ⚠️ Posts with no links: \(.postsWithNoLinks // 0)",
+              "",
+              "📊 Cluster distribution:",
+              (.clusters | to_entries | sort_by(-.value) | .[] | "   \(.key): \(.value) posts"),
+              "",
+              "🏷️ Top 10 tags:",
+              (.tagsFrequency | to_entries | sort_by(-.value) | .[0:10] | .[] | "   \(.key): \(.value) times")
+            ' src/data/stats.json
           else
             echo "⚠️ stats.json not available"
           fi
+          
+          echo ""
+          echo "⏱️ Performance:"
+          echo "   Related posts generation: ${{ steps.generate-related.outputs.time_ms }}ms"
+          echo "   HTML generation: ${{ steps.generate-posts.outputs.duration }}s"
+          echo "   Blog count: ${{ steps.generate-posts.outputs.blog_count }} files"
+          
           echo "================================"
 
       - name: Commit and push changes
+        if: success() && github.event.inputs.skip_commit != 'true'
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Add all generated files
-          git add -f blog/
-          git add src/content/blog/list.json
-          git add src/data/*.json
+          # Add all generated files (force add even if in .gitignore)
+          git add -f ${{ env.BLOG_DIR }}/ 2>/dev/null || true
+          git add src/content/blog/list.json 2>/dev/null || true
+          git add ${{ env.DATA_DIR }}/*.json 2>/dev/null || true
           git add sitemap.xml image-sitemap.xml video-sitemap.xml 2>/dev/null || true
 
           # Count changes
-          BLOG_COUNT=$(git diff --staged --name-only | grep '^blog/' | wc -l | tr -d ' ')
-          DATA_COUNT=$(git diff --staged --name-only | grep '^src/data/' | wc -l | tr -d ' ')
-          SITEMAP_COUNT=$(git diff --staged --name-only | grep 'sitemap' | wc -l | tr -d ' ')
-          LIST_CHANGED=$(git diff --staged --name-only | grep 'list.json' | wc -l | tr -d ' ')
-
-          if git diff --staged --quiet; then
+          CHANGED_FILES=$(git diff --staged --name-only | wc -l | tr -d ' ')
+          
+          if [ "$CHANGED_FILES" -eq "0" ]; then
             echo "ℹ️ No changes to commit"
             exit 0
           fi
 
+          # Get detailed counts
+          BLOG_COUNT=$(git diff --staged --name-only | grep "^${{ env.BLOG_DIR }}/" | wc -l | tr -d ' ')
+          DATA_COUNT=$(git diff --staged --name-only | grep "^${{ env.DATA_DIR }}/" | wc -l | tr -d ' ')
+          SITEMAP_COUNT=$(git diff --staged --name-only | grep "sitemap" | wc -l | tr -d ' ')
+          LIST_CHANGED=$(git diff --staged --name-only | grep "list.json" | wc -l | tr -d ' ')
+
           # Build commit message
-          MSG="🤖 Auto-update: "
-          [ "$BLOG_COUNT"    -gt "0" ] && MSG="${MSG}📝 ${BLOG_COUNT} blog | "
-          [ "$DATA_COUNT"    -gt "0" ] && MSG="${MSG}📊 ${DATA_COUNT} data | "
-          [ "$LIST_CHANGED"  -gt "0" ] && MSG="${MSG}📋 list.json | "
-          [ "$SITEMAP_COUNT" -gt "0" ] && MSG="${MSG}🗺️ sitemaps | "
-          MSG=$(echo "$MSG" | sed 's/ | $//')
+          COMMIT_MSG="🤖 Auto-update: "
+          [ "$BLOG_COUNT" -gt "0" ] && COMMIT_MSG="${COMMIT_MSG}📝 ${BLOG_COUNT} blog | "
+          [ "$DATA_COUNT" -gt "0" ] && COMMIT_MSG="${COMMIT_MSG}📊 ${DATA_COUNT} data | "
+          [ "$LIST_CHANGED" -gt "0" ] && COMMIT_MSG="${COMMIT_MSG}📋 list.json | "
+          [ "$SITEMAP_COUNT" -gt "0" ] && COMMIT_MSG="${COMMIT_MSG}🗺️ ${SITEMAP_COUNT} sitemaps | "
+          COMMIT_MSG=$(echo "$COMMIT_MSG" | sed 's/ | $//')
 
-          git commit -m "${MSG} [skip ci]"
-          
-          # Pull before push to avoid conflicts
-          git pull --rebase origin main
-          git push origin main
-          
-          echo "✅ Push completed: ${MSG}"
+          # Add timestamp for scheduled runs
+          if [ "${{ github.event_name }}" == "schedule" ]; then
+            COMMIT_MSG="${COMMIT_MSG} (scheduled)"
+          fi
 
-      - name: "\U0001F680 Deployment Summary"
+          git commit -m "${COMMIT_MSG} [skip ci]"
+          
+          # Pull with rebase to avoid conflicts
+          git pull --rebase origin ${{ github.ref_name }}
+          git push origin ${{ github.ref_name }}
+          
+          echo "✅ Push completed: ${COMMIT_MSG} (${CHANGED_FILES} files)"
+
+      - name: 🚀 Deployment Summary
         if: always()
         run: |
           echo "====== 🚀 Deployment Summary ======"
-          echo "✅ GitHub Action completed successfully"
+          if [ "${{ job.status }}" == "success" ]; then
+            echo "✅ GitHub Action completed successfully"
+          else
+            echo "❌ GitHub Action failed"
+          fi
           echo "📅 $(date '+%Y-%m-%d %H:%M:%S UTC')"
+          echo "🔗 View logs: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           echo "===================================="
+
+      - name: 📤 Upload artifacts (for debugging)
+        if: failure() || github.event.inputs.force_generate == 'true'
+        uses: actions/upload-artifact@v3
+        with:
+          name: generated-files
+          path: |
+            ${{ env.BLOG_DIR }}/
+            ${{ env.DATA_DIR }}/
+            sitemap*.xml
+            src/content/blog/list.json
+          retention-days: 7
