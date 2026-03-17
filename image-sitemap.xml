@@ -423,45 +423,6 @@
       <image:loc>https://www.google.com/favicon.ico</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://www.myastrology.in/images/chandra-rashi.webp</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.myastrology.in/images/mesha-rashi-aries.webp</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.myastrology.in/images/vrishabha-rashi-taurus.webp</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.myastrology.in/images/mithun-rashi-gemini.webp</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.myastrology.in/images/karka-rashi-cancer.webp</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.myastrology.in/images/simha-rashi-leo.webp</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.myastrology.in/images/kanya-rashi-virgo.webp</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.myastrology.in/images/tula-rashi-libra.webp</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.myastrology.in/images/vrischika-rashi-scorpio.webp</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.myastrology.in/images/dhanu-rashi-sagittarius.webp</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.myastrology.in/images/makar-rashi-capricorn.webp</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.myastrology.in/images/kumbha-rashi-aquarius.webp</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.myastrology.in/images/meen-rashi-pisces.webp</image:loc>
-    </image:image>
-    <image:image>
       <image:loc>https://www.myastrology.in/images/vastu-consultant-in-ranaghat.webp</image:loc>
     </image:image>
     <image:image>
@@ -546,6 +507,9 @@
       <image:loc>https://www.myastrology.in/images/chandra-rashi.jpg</image:loc>
     </image:image>
     <image:image>
+      <image:loc>https://www.myastrology.in/images/dhanu-rashi-sagittarius.webp</image:loc>
+    </image:image>
+    <image:image>
       <image:loc>https://www.myastrology.in/images/dharma-ki-prokrit-artha-darshan.webp</image:loc>
     </image:image>
     <image:image>
@@ -582,13 +546,34 @@
       <image:loc>https://www.myastrology.in/images/kanaklata-jiban-sangram.webp</image:loc>
     </image:image>
     <image:image>
+      <image:loc>https://www.myastrology.in/images/kanya-rashi-virgo.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.myastrology.in/images/karka-rashi-cancer.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.myastrology.in/images/kumbha-rashi-aquarius.webp</image:loc>
+    </image:image>
+    <image:image>
       <image:loc>https://www.myastrology.in/images/love-marriage-astrology-specialist.webp</image:loc>
     </image:image>
     <image:image>
       <image:loc>https://www.myastrology.in/images/mahabharata-ratha-pancha-indriya.webp</image:loc>
     </image:image>
     <image:image>
+      <image:loc>https://www.myastrology.in/images/makar-rashi-capricorn.webp</image:loc>
+    </image:image>
+    <image:image>
       <image:loc>https://www.myastrology.in/images/mangal-grah-antar-yoddha.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.myastrology.in/images/meen-rashi-pisces.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.myastrology.in/images/mesha-rashi-aries.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.myastrology.in/images/mithun-rashi-gemini.webp</image:loc>
     </image:image>
     <image:image>
       <image:loc>https://www.myastrology.in/images/mukhoser-sthayitwo-naitikota.webp</image:loc>
@@ -636,6 +621,9 @@
       <image:loc>https://www.myastrology.in/images/shishu-hath-rekha-pesa-rahasya.webp</image:loc>
     </image:image>
     <image:image>
+      <image:loc>https://www.myastrology.in/images/simha-rashi-leo.webp</image:loc>
+    </image:image>
+    <image:image>
       <image:loc>https://www.myastrology.in/images/somoyer-rahasya.webp</image:loc>
     </image:image>
     <image:image>
@@ -643,6 +631,15 @@
     </image:image>
     <image:image>
       <image:loc>https://www.myastrology.in/images/sushanta-british-jiban-golpo.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.myastrology.in/images/tula-rashi-libra.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.myastrology.in/images/vrischika-rashi-scorpio.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.myastrology.in/images/vrishabha-rashi-taurus.webp</image:loc>
     </image:image>
     <image:image>
       <image:loc>https://www.myastrology.in/gallery/astrologer-prodyut-acharya.webp</image:loc>
