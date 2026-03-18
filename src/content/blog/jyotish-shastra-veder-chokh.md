@@ -1,38 +1,34 @@
-
 ---
-
 title: "জ্যোতিষ শাস্ত্র কি ভাগ্য পরিবর্তন করে? জানুন সঠিক উত্তর"
 description: "বেদের চক্ষু জ্যোতিষ শাস্ত্র। এই প্রাচীন বিদ্যা কিভাবে আপনার ভাগ্য নিজে গড়তে সাহায্য করে, তা জানুন ড. প্রদ্যুত আচার্যের বিশ্লেষণে।"
 date: "2026-03-20"
 image: "https://www.myastrology.in/images/jyotish-shastra-veder-chokh.webp"
 slug: "jyotish-shastra-veder-chokh"
 author:
-name: "Dr. Prodyut Acharya"
-bio: "জ্যোতিষী, হস্তরেখাবিদ ও দার্শনিক চিন্তাবিদ। ১৫+ বছরের অভিজ্ঞতায় হাজারো মানুষের জীবন বিশ্লেষণ করেছেন।"
-profile_url: "https://www.myastrology.in/about.html"
+  name: "Dr. Prodyut Acharya"
+  bio: "জ্যোতিষী, হস্তরেখাবিদ ও দার্শনিক চিন্তাবিদ। ১৫+ বছরের অভিজ্ঞতায় হাজারো মানুষের জীবন বিশ্লেষণ করেছেন।"
+  profile_url: "https://www.myastrology.in/about.html"
 categories:
-
-· "জ্যোতিষ"
-· "জীবন দর্শন"
-  tags:
-· "প্রদ্যুত আচার্য"
-· "MyAstrology Ranaghat"
-· "জ্যোতিষ শাস্ত্র কি"
-· "বেদের অঙ্গ"
-· "ভাগ্য ও কর্ম"
-· "গ্রহ দোষের সমাধান"
-  keywords: "জ্যোতিষ শাস্ত্রের গুরুত্ব, বেদ ও জ্যোতিষ, ভাগ্য কি পরিবর্তন করা যায়, কর্ম ও জ্যোতিষ, গ্রহের প্রভাব, ড. প্রদ্যুত আচার্য"
-  canonical_url: "https://www.myastrology.in/blog/jyotish-shastra-veder-chokh.html"
-  featured: true
-  reading_time: "১১ মিনিট"
-  og_title: "জ্যোতিষ শাস্ত্র: ভাগ্যের লেখা কি বদলায়?"
-  og_description: "অনেকে বলেন জ্যোতিষ ভাগ্য দেখায়। কিন্তু ড. আচার্য বলছেন, জ্যোতিষ দেখায় পথ। কীভাবে নিজের ভাগ্য নিজে গড়বেন, জানুন এখানে।"
-  og_image: "https://www.myastrology.in/images/jyotish-shastra-veder-chokh-og.webp"
-  twitter_card: "summary_large_image"
-  twitter_title: "জ্যোতিষ শাস্ত্র ভাগ্য পরিবর্তন করে না, তৈরি করে"
-  twitter_description: "প্রাচীন জ্যোতিষ শাস্ত্র আপনার জীবন বদলে দিতে পারে, যদি আপনি এর সঠিক অর্থ জানেন। পড়ুন ড. আচার্যের মতামত।"
-  twitter_image: "https://www.myastrology.in/images/jyotish-shastra-veder-chokh-twitter.webp"
-
+  - "জ্যোতিষ"
+  - "জীবন দর্শন"
+tags:
+  - "প্রদ্যুত আচার্য"
+  - "MyAstrology Ranaghat"
+  - "জ্যোতিষ শাস্ত্র কি"
+  - "বেদের অঙ্গ"
+  - "ভাগ্য ও কর্ম"
+  - "গ্রহ দোষের সমাধান"
+keywords: "জ্যোতিষ শাস্ত্রের গুরুত্ব, বেদ ও জ্যোতিষ, ভাগ্য কি পরিবর্তন করা যায়, কর্ম ও জ্যোতিষ, গ্রহের প্রভাব"
+canonical_url: "https://www.myastrology.in/blog/jyotish-shastra-veder-chokh.html"
+featured: true
+reading_time: "১১ মিনিট"
+og_title: "জ্যোতিষ শাস্ত্র: ভাগ্যের লেখা কি বদলায়?"
+og_description: "অনেকে বলেন জ্যোতিষ ভাগ্য দেখায়। কিন্তু ড. আচার্য বলছেন, জ্যোতিষ দেখায় পথ। কীভাবে নিজের ভাগ্য নিজে গড়বেন, জানুন এখানে।"
+og_image: "https://www.myastrology.in/images/jyotish-shastra-veder-chokh.webp"
+twitter_card: "summary_large_image"
+twitter_title: "জ্যোতিষ শাস্ত্র ভাগ্য পরিবর্তন করে না, তৈরি করে"
+twitter_description: "প্রাচীন জ্যোতিষ শাস্ত্র আপনার জীবন বদলে দিতে পারে, যদি আপনি এর সঠিক অর্থ জানেন। পড়ুন ড. আচার্যের মতামত।"
+twitter_image: "https://www.myastrology.in/images/jyotish-shastra-veder-chokh.webp"
 ---
 
 <h1 style="text-align:center;font-size:2rem;">জ্যোতিষ শাস্ত্র: ভাগ্য দেখা নয়, ভাগ্য গড়ার বিদ্যা</h1>
