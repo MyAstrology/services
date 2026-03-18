@@ -38,6 +38,10 @@
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"MyAstrology – Dr. Prodyut Acharya","image":"https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png","url":"https://www.myastrology.in","telephone":"+91-9333122768","priceRange":"₹501–₹2001","address":{"@type":"PostalAddress","streetAddress":"Nasra Magur Khali, Tut Bagan, Post Nasra","addressLocality":"Ranaghat","addressRegion":"West Bengal","postalCode":"741202","addressCountry":"IN"},"geo":{"@type":"GeoCoordinates","latitude":"23.1676690","longitude":"88.5808191"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"09:00","closes":"23:00"}],"aggregateRating":{"@type":"AggregateRating","ratingValue":5,"bestRating":5,"reviewCount":276}}</script>
 
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"MyAstrology","url":"https://www.myastrology.in/","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://www.myastrology.in/search.html?q={search_term_string}"},"query-input":"required name=search_term_string"}}</script>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","@id":"https://www.myastrology.in/learning/#webpage","url":"https://www.myastrology.in/learning/","name":"জ্যোতিষ ও হস্তরেখা শিক্ষা কেন্দ্র | MyAstrology Learning Hub","description":"বৈদিক জ্যোতিষ, হস্তরেখা, রত্নপাথর, রুদ্রাক্ষ, ১২ রাশি, বাস্তু শাস্ত্র — সম্পূর্ণ বাংলা জ্ঞান কেন্দ্র।","isPartOf":{"@type":"WebSite","@id":"https://www.myastrology.in/"},"author":{"@type":"Person","name":"Dr. Prodyut Acharya"},"dateModified":"2026-03-18","inLanguage":"bn-IN"}</script>
+
 <link rel="icon" type="image/x-icon" href="https://www.myastrology.in/images/favicon.ico">
 <link rel="apple-touch-icon" sizes="180x180" href="https://www.myastrology.in/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -186,31 +190,31 @@ body.nav-open{overflow-y:hidden}
 .story-head{background:linear-gradient(135deg,#401028,#701848)}
 
 /* ── LATEST BLOG ── */
-.blog-sec{padding:48px 20px;background:var(--navy);border-top:3px solid var(--gold);}
+.blog-sec{padding:48px 20px;background:var(--cream2);border-top:2px solid var(--border);}
 .blog-sec-inner{max-width:1100px;margin:0 auto}
-.blog-sec h2{font-family:var(--fh);color:var(--gold-lt);font-size:clamp(1.3rem,3vw,1.7rem);text-align:center;margin-bottom:6px;}
-.blog-sec .sub{color:#7899bb;font-size:.92rem;text-align:center;margin-bottom:28px}
+.blog-sec h2{font-family:var(--fh);color:var(--navy);font-size:clamp(1.3rem,3vw,1.7rem);text-align:center;margin-bottom:6px;}
+.blog-sec .sub{color:var(--muted);font-size:.92rem;text-align:center;margin-bottom:28px}
 .blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px}
-.blog-card{background:rgba(255,255,255,.06);border:1px solid rgba(184,134,11,.22);border-radius:var(--r2);overflow:hidden;transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column;}
-.blog-card:hover{transform:translateY(-4px);box-shadow:0 10px 36px rgba(0,0,0,.3)}
+.blog-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column;border-top:3px solid var(--gold);}
+.blog-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
 .blog-card-img{width:100%;height:155px;object-fit:cover;flex-shrink:0}
 .blog-card-body{padding:16px 18px;flex:1;display:flex;flex-direction:column}
-.blog-cat{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gold);background:rgba(184,134,11,.15);border:1px solid rgba(184,134,11,.3);padding:2px 9px;border-radius:20px;margin-bottom:8px;display:inline-block}
-.blog-title{font-family:var(--fh);font-size:.95rem;color:var(--gold-lt);margin-bottom:8px;line-height:1.4;flex:1}
-.blog-footer{display:flex;align-items:center;justify-content:space-between;padding-top:8px;border-top:1px solid rgba(255,255,255,.08)}
-.blog-footer span{font-size:.72rem;color:#5a7a9a}
-.blog-read{font-size:.78rem;font-weight:700;color:var(--gold);display:flex;align-items:center;gap:5px}
+.blog-cat{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gold);background:var(--gold-bg);border:1px solid rgba(184,134,11,.3);padding:2px 9px;border-radius:20px;margin-bottom:8px;display:inline-block}
+.blog-title{font-family:var(--fh);font-size:.98rem;color:var(--navy);margin-bottom:8px;line-height:1.4;flex:1;font-weight:600;}
+.blog-footer{display:flex;align-items:center;justify-content:space-between;padding-top:8px;border-top:1px solid var(--border-lt)}
+.blog-footer span{font-size:.72rem;color:var(--muted2)}
+.blog-read{font-size:.8rem;font-weight:700;color:var(--blue);display:flex;align-items:center;gap:5px}
 .blog-read i{transition:transform .2s}
 .blog-card:hover .blog-read i{transform:translateX(4px)}
 /* Skeleton */
-.blog-skel{background:rgba(255,255,255,.04);border:1px solid rgba(184,134,11,.12);border-radius:var(--r2);overflow:hidden;animation:shimmer 1.5s infinite}
-@keyframes shimmer{0%{opacity:.4}50%{opacity:.8}100%{opacity:.4}}
-.skel-img{height:155px;background:rgba(255,255,255,.06)}
+.blog-skel{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;animation:shimmer 1.5s infinite}
+@keyframes shimmer{0%{opacity:.5}50%{opacity:1}100%{opacity:.5}}
+.skel-img{height:155px;background:#e8e0d0}
 .skel-body{padding:16px 18px}
-.skel-line{height:11px;background:rgba(255,255,255,.07);border-radius:3px;margin-bottom:9px}
+.skel-line{height:11px;background:#e8e0d0;border-radius:3px;margin-bottom:9px}
 .skel-line.s{width:55%}.skel-line.m{width:80%}
 .blog-more{text-align:center;margin-top:24px}
-.blog-more a{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.07);color:var(--gold-lt);padding:11px 28px;border-radius:50px;font-weight:700;font-size:.9rem;border:1.5px solid rgba(184,134,11,.35);transition:all .2s;}
+.blog-more a{display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:var(--gold-lt);padding:11px 28px;border-radius:50px;font-weight:700;font-size:.9rem;border:1.5px solid rgba(184,134,11,.35);transition:all .2s;}
 .blog-more a:hover{background:var(--gold);color:var(--navy)}
 
 /* ── CTA ── */
@@ -862,9 +866,21 @@ body.nav-open{overflow-y:hidden}
           <ul>
             <li><a href="https://www.myastrology.in/rashifal.html#rashifal-section"><i class="fas fa-chevron-right"></i> আজকের রাশিফল — সব রাশি</a></li>
             <li><a href="https://www.myastrology.in/rashifal.html#janma-rashi"><i class="fas fa-chevron-right"></i> জন্মরাশি অনুযায়ী স্বভাব</a></li>
+            <li><a href="https://www.myastrology.in/rashifal.html#rashicharitra"><i class="fas fa-chevron-right"></i> রাশির চরিত্র ও বৈশিষ্ট্য</a></li>
           </ul>
         </div>
         <a href="https://www.myastrology.in/rashifal.html" class="tc-cta">রাশিফল দেখুন <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="topic-card" style="border-left-color:#b8860b">
+        <div class="tc-head" style="background:linear-gradient(135deg,#2a1a00,#5c3a00)"><i class="fas fa-star" style="color:#ffd080"></i><h3>শুভ মুহূর্ত ও নামকরণ</h3></div>
+        <div class="tc-body">
+          <ul>
+            <li><a href="https://www.myastrology.in/panjika.html"><i class="fas fa-chevron-right"></i> বিবাহের শুভ মুহূর্ত নির্বাচন</a></li>
+            <li><a href="https://www.myastrology.in/panjika.html"><i class="fas fa-chevron-right"></i> গৃহপ্রবেশ ও ব্যবসার শুভ দিন</a></li>
+            <li><a href="https://www.myastrology.in/rashifal.html#janma-rashi"><i class="fas fa-chevron-right"></i> নবজাতকের নামকরণ — নক্ষত্র অনুযায়ী</a></li>
+          </ul>
+        </div>
+        <a href="https://www.myastrology.in/panjika.html" class="tc-cta">মুহূর্ত জানুন <i class="fas fa-arrow-right"></i></a>
       </div>
     </div>
   </div>
@@ -1092,20 +1108,27 @@ document.getElementById('hubSearch').addEventListener('keypress',function(e){
   ];
   function catOf(post){
     var t=(post.title||'').toLowerCase();
-    if(/হস্তরেখা|palm/i.test(t))return{label:'হস্তরেখা',color:'#145c40'};
-    if(/বাস্তু|vastu/i.test(t))return{label:'বাস্তু',color:'#2a6040'};
-    if(/রত্ন|gemstone/i.test(t))return{label:'রত্নপাথর',color:'#5a1e8a'};
-    if(/গল্প|story/i.test(t))return{label:'গল্প',color:'#701848'};
-    if(/দর্শন|ভালো|সাফল্য|মানসিক/i.test(t))return{label:'দর্শন',color:'#403010'};
-    return{label:'জ্যোতিষ',color:'#780b0b'};
+    if(/হস্তরেখা|palm/i.test(t))return{label:'হস্তরেখা',key:'hastrekha'};
+    if(/বাস্তু|vastu/i.test(t))return{label:'বাস্তু',key:'vastu'};
+    if(/রত্ন|gemstone/i.test(t))return{label:'রত্নপাথর',key:'ratna'};
+    if(/গল্প|story/i.test(t))return{label:'গল্প',key:'story'};
+    if(/দর্শন|ভালো|সাফল্য|মানসিক/i.test(t))return{label:'দর্শন',key:'story'};
+    return{label:'জ্যোতিষ',key:'jyotish'};
   }
   function render(posts){
     var grid=document.getElementById('blogGrid');
+    var DEFAULT_IMGS={
+      'jyotish':'https://www.myastrology.in/images/birth-chart-reading-vedic-astrology.webp',
+      'hastrekha':'https://www.myastrology.in/images/Palm Reading Consultation.webp',
+      'vastu':'https://www.myastrology.in/images/vastu-consultant-ranaghat-west-bengal.webp',
+      'ratna':'https://www.myastrology.in/images/best-gemstone-astrologer-india.webp',
+      'story':'https://www.myastrology.in/images/best-astrologer-astrologer-near-me.webp'
+    };
     grid.innerHTML=posts.slice(0,6).map(function(p){
       var c=catOf(p);
-      var img=p.image||p.thumbnail||'';
-      var imgTag=img?'<img src="'+img+'" alt="'+p.title+'" class="blog-card-img" loading="lazy" onerror="this.style.display=\'none\'">'
-        :'<div class="blog-card-img" style="background:linear-gradient(135deg,'+c.color+',#0a192f);display:flex;align-items:center;justify-content:center;font-size:2rem">📖</div>';
+      var img=p.image||p.thumbnail||DEFAULT_IMGS[c.key]||DEFAULT_IMGS['jyotish'];
+      if(img&&!img.startsWith('http'))img='https://www.myastrology.in/'+img;
+      var imgTag='<img src="'+img+'" alt="'+p.title+'" class="blog-card-img" loading="lazy" onerror="this.src=\'https://www.myastrology.in/images/birth-chart-reading-vedic-astrology.webp\'">';
       var date=p.date?new Date(p.date).toLocaleDateString('bn-IN',{year:'numeric',month:'long',day:'numeric'}):'';
       var excerpt=(p.excerpt||p.description||'').substring(0,90);
       var url=p.url||'https://www.myastrology.in/blog/'+(p.slug||'')+'.html';
@@ -1114,8 +1137,8 @@ document.getElementById('hubSearch').addEventListener('keypress',function(e){
         +'<div class="blog-card-body">'
         +'<span class="blog-cat">'+c.label+'</span>'
         +'<div class="blog-title">'+p.title+'</div>'
-        +(excerpt?'<div style="font-size:.82rem;color:#7899bb;line-height:1.5;margin-bottom:8px">'+excerpt+'…</div>':'')
-        +'<div class="blog-footer"><span>'+(date?'<i class="far fa-calendar-alt" style="margin-right:3px"></i>'+date:'')+'</span>'
+        +(excerpt?'<div style="font-size:.84rem;color:var(--muted);line-height:1.6;margin-bottom:8px">'+excerpt+'…</div>':'')
+        +'<div class="blog-footer"><span>'+(date?'<i class="far fa-calendar-alt" style="margin-right:3px;color:var(--gold)"></i>'+date:'')+'</span>'
         +'<span class="blog-read">পড়ুন <i class="fas fa-arrow-right"></i></span></div>'
         +'</div></a>';
     }).join('');
