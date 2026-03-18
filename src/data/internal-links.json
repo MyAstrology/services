@@ -33,9 +33,17 @@
   },
   "prachin-grantha-o-adhunik-bigyan": {
     "relatedByTag": [],
-    "relatedByPillar": [],
-    "relatedByCluster": [],
+    "relatedByPillar": [
+      "prithibir-itihas-rahasya"
+    ],
+    "relatedByCluster": [
+      "prithibir-itihas-rahasya"
+    ],
     "topRelated": [
+      {
+        "slug": "prithibir-itihas-rahasya",
+        "score": 0.3881349206349206
+      },
       {
         "slug": "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
         "score": 0.19357142857142856
@@ -43,14 +51,36 @@
       {
         "slug": "samudrik-shastra-nari-noy-sattva-bichar",
         "score": 0.19232323232323234
-      },
-      {
-        "slug": "bhalo-manush-haoar-satyi-path",
-        "score": 0.18777777777777777
       }
     ],
     "cluster": "বিজ্ঞান",
     "confidence": 0.4800000000000001,
+    "manualLinks": []
+  },
+  "prithibir-itihas-rahasya": {
+    "relatedByTag": [],
+    "relatedByPillar": [
+      "prachin-grantha-o-adhunik-bigyan"
+    ],
+    "relatedByCluster": [
+      "prachin-grantha-o-adhunik-bigyan"
+    ],
+    "topRelated": [
+      {
+        "slug": "prachin-grantha-o-adhunik-bigyan",
+        "score": 0.3881349206349206
+      },
+      {
+        "slug": "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
+        "score": 0.20222222222222222
+      },
+      {
+        "slug": "bhalo-manush-haoar-satyi-path",
+        "score": 0.2
+      }
+    ],
+    "cluster": "বিজ্ঞান",
+    "confidence": 0.32,
     "manualLinks": []
   },
   "stri-r-bicched-er-por-o-mone-pore-chanchal-er-golpo": {
