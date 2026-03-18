@@ -117,6 +117,9 @@ header .logo span {
   }
 }
 /* ============================= */
+/* Figure reset — remove browser default margins */
+figure { margin: 0; padding: 0; }
+
 /* General Reset & Base Styles   */
 /* ============================= */
 html {
@@ -724,6 +727,33 @@ footer a:hover { color: #ffd700; text-decoration: underline; }
   transition: width 0.1s;
 }
 
+
+/* Force all rashi images to be uniform size regardless of wrapper */
+.rashi-section img,
+.rashi-section figure img,
+.rashi-section div img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 280px !important;
+  object-fit: cover !important;
+  object-position: center top !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12) !important;
+  margin: 0 !important;
+}
+.rashi-section figure,
+.rashi-section .img-wrap {
+  display: block;
+  width: 100%;
+  margin: 16px 0 20px;
+  padding: 0;
+}
+@media (max-width: 600px) {
+  .rashi-section img,
+  .rashi-section figure img,
+  .rashi-section div img { height: 200px !important; }
+}
 /* Back to top button */
 .back-to-top {
   position: fixed;
@@ -1202,7 +1232,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <h2>♈ মেষ রাশির স্বভাব, প্রকৃতি ও ভাগ্য <small style="font-size:0.5em;font-weight:400;color:#aaa;letter-spacing:0.5px;">— Aries Zodiac</small></h2>
 
 <div style="text-align:center; margin:20px 0;">
-  <img src="images/mesha-rashi-aries.webp" alt="মেষ রাশির স্বভাব ও ভাগ্য — ড. প্রদ্যুৎ আচার্য" width="600" height="280" style="display:block;width:100%;height:280px;object-fit:cover;object-position:center top;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.12);margin:16px auto 20px;" loading="lazy" decoding="async">
+  <img src="images/mesha-rashi-aries.webp" alt="মেষ রাশির স্বভাব ও ভাগ্য — ড. প্রদ্যুৎ আচার্য" width="600" height="280" style="display:block;width:100%;height:280px;object-fit:cover;object-position:center top;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.12);margin:0;" loading="lazy" decoding="async">
 </div>
   <p>
     🐏 <strong>মেষরাশি</strong> রাশিচক্রের প্রথম রাশি। এর অধিপতি গ্রহ হল <strong>মঙ্গল</strong>, যাকে ভারতীয় জ্যোতিষ শাস্ত্রে দেব সেনাপতি বলা হয়। অগ্নি ও উদ্যমের কারক এই গ্রহের প্রভাবে মেষরাশির জাতক-জাতিকা সকল কাজে প্রেরণা ও কর্মশক্তিতে ভরপুর। 
@@ -1259,7 +1289,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <h2>♉ বৃষ রাশির স্বভাব, প্রকৃতি ও ভাগ্য <small style="font-size:0.5em;font-weight:400;color:#aaa;letter-spacing:0.5px;">— Taurus Zodiac</small></h2>
 
     <div style="text-align:center; margin:20px 0;">
-  <img src="images/vrishabha-rashi-taurus.webp" alt="বৃষ রাশির স্বভাব ও ভাগ্য — ড. প্রদ্যুৎ আচার্য" width="600" height="280" style="display:block;width:100%;height:280px;object-fit:cover;object-position:center top;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.12);margin:16px auto 20px;" loading="lazy" decoding="async">
+  <img src="images/vrishabha-rashi-taurus.webp" alt="বৃষ রাশির স্বভাব ও ভাগ্য — ড. প্রদ্যুৎ আচার্য" width="600" height="280" style="display:block;width:100%;height:280px;object-fit:cover;object-position:center top;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.12);margin:0;" loading="lazy" decoding="async">
 </div>
 
   <p>🐂 <strong>বৃষরাশি</strong> রাশিচক্রের দ্বিতীয় রাশি। এর অধিপতি গ্রহ হল <strong>শুক্র</strong>, যা সৌন্দর্য, আরাম-আয়েশ ও ভোগবিলাসের প্রতীক।</p>
@@ -1320,7 +1350,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <h2>♊ মিথুন রাশির স্বভাব, প্রকৃতি ও ভাগ্য <small style="font-size:0.5em;font-weight:400;color:#aaa;letter-spacing:0.5px;">— Gemini Zodiac</small></h2>
 
   <div style="text-align:center; margin:20px 0;">
-    <img src="images/mithun-rashi-gemini.webp" alt="মিথুন রাশির স্বভাব ও ভাগ্য — ড. প্রদ্যুৎ আচার্য" width="600" height="280" style="display:block;width:100%;height:280px;object-fit:cover;object-position:center top;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.12);margin:16px auto 20px;" loading="lazy" decoding="async">
+    <img src="images/mithun-rashi-gemini.webp" alt="মিথুন রাশির স্বভাব ও ভাগ্য — ড. প্রদ্যুৎ আচার্য" width="600" height="280" style="display:block;width:100%;height:280px;object-fit:cover;object-position:center top;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.12);margin:0;" loading="lazy" decoding="async">
   </div>
 
   <p>
@@ -1377,7 +1407,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <h2>♋ কর্কট রাশির স্বভাব, প্রকৃতি ও ভাগ্য <small style="font-size:0.5em;font-weight:400;color:#aaa;letter-spacing:0.5px;">— Cancer Zodiac</small></h2>
 
   <div style="text-align:center; margin:20px 0;">
-    <img src="images/karka-rashi-cancer.webp" alt="কর্কট রাশির স্বভাব ও ভাগ্য — ড. প্রদ্যুৎ আচার্য" width="600" height="280" style="display:block;width:100%;height:280px;object-fit:cover;object-position:center top;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.12);margin:16px auto 20px;" loading="lazy" decoding="async">
+    <img src="images/karka-rashi-cancer.webp" alt="কর্কট রাশির স্বভাব ও ভাগ্য — ড. প্রদ্যুৎ আচার্য" width="600" height="280" style="display:block;width:100%;height:280px;object-fit:cover;object-position:center top;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.12);margin:0;" loading="lazy" decoding="async">
   </div>
 
   <p>
@@ -1447,7 +1477,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <h2>♌ সিংহ রাশির স্বভাব, প্রকৃতি ও ভাগ্য <small style="font-size:0.5em;font-weight:400;color:#aaa;letter-spacing:0.5px;">— Leo Zodiac</small></h2>
 
   <div style="text-align:center; margin:20px 0;">
-    <img src="images/simha-rashi-leo.webp" alt="সিংহ রাশির স্বভাব ও ভাগ্য — ড. প্রদ্যুৎ আচার্য" width="600" height="280" style="display:block;width:100%;height:280px;object-fit:cover;object-position:center top;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.12);margin:16px auto 20px;" loading="lazy" decoding="async">
+    <img src="images/simha-rashi-leo.webp" alt="সিংহ রাশির স্বভাব ও ভাগ্য — ড. প্রদ্যুৎ আচার্য" width="600" height="280" style="display:block;width:100%;height:280px;object-fit:cover;object-position:center top;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.12);margin:0;" loading="lazy" decoding="async">
   </div>
 
   <p>
@@ -1511,7 +1541,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <h2>♍ কন্যা রাশির স্বভাব, প্রকৃতি ও ভাগ্য <small style="font-size:0.5em;font-weight:400;color:#aaa;letter-spacing:0.5px;">— Virgo Zodiac</small></h2>
 
   <div style="text-align:center; margin:20px 0;">
-    <img src="images/kanya-rashi-virgo.webp" alt="কন্যা রাশির স্বভাব ও ভাগ্য — ড. প্রদ্যুৎ আচার্য" width="600" height="280" style="display:block;width:100%;height:280px;object-fit:cover;object-position:center top;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.12);margin:16px auto 20px;" loading="lazy" decoding="async">
+    <img src="images/kanya-rashi-virgo.webp" alt="কন্যা রাশির স্বভাব ও ভাগ্য — ড. প্রদ্যুৎ আচার্য" width="600" height="280" style="display:block;width:100%;height:280px;object-fit:cover;object-position:center top;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.12);margin:0;" loading="lazy" decoding="async">
   </div>
 
   <p>
@@ -1574,7 +1604,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <h2>♎ তুলা রাশির স্বভাব, প্রকৃতি ও ভাগ্য <small style="font-size:0.5em;font-weight:400;color:#aaa;letter-spacing:0.5px;">— Libra Zodiac</small></h2>
 
   <div style="text-align:center; margin:20px 0;">
-    <img src="images/tula-rashi-libra.webp" alt="তুলা রাশির স্বভাব ও ভাগ্য — ড. প্রদ্যুৎ আচার্য" width="600" height="280" style="display:block;width:100%;height:280px;object-fit:cover;object-position:center top;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.12);margin:16px auto 20px;" loading="lazy" decoding="async">
+    <img src="images/tula-rashi-libra.webp" alt="তুলা রাশির স্বভাব ও ভাগ্য — ড. প্রদ্যুৎ আচার্য" width="600" height="280" style="display:block;width:100%;height:280px;object-fit:cover;object-position:center top;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.12);margin:0;" loading="lazy" decoding="async">
   </div>
 
   <p>
@@ -1634,7 +1664,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- Image with alt -->
   <div>
-    <img src="images/vrischika-rashi-scorpio.webp" alt="বৃশ্চিক রাশির স্বভাব ও ভাগ্য — ড. প্রদ্যুৎ আচার্য" width="600" height="280" style="display:block;width:100%;height:280px;object-fit:cover;object-position:center top;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.12);margin:16px auto 20px;" loading="lazy" decoding="async">
+    <img src="images/vrischika-rashi-scorpio.webp" alt="বৃশ্চিক রাশির স্বভাব ও ভাগ্য — ড. প্রদ্যুৎ আচার্য" width="600" height="280" style="display:block;width:100%;height:280px;object-fit:cover;object-position:center top;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.12);margin:0;" loading="lazy" decoding="async">
   </div>
 
   <p>
@@ -1694,7 +1724,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- Image with alt -->
   <div style="text-align:center; margin:20px 0;">
-  <img src="images/dhanu-rashi-sagittarius.webp" alt="ধনু রাশির স্বভাব ও ভাগ্য — ড. প্রদ্যুৎ আচার্য" width="600" height="280" style="display:block;width:100%;height:280px;object-fit:cover;object-position:center top;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.12);margin:16px auto 20px;" loading="lazy" decoding="async">
+  <img src="images/dhanu-rashi-sagittarius.webp" alt="ধনু রাশির স্বভাব ও ভাগ্য — ড. প্রদ্যুৎ আচার্য" width="600" height="280" style="display:block;width:100%;height:280px;object-fit:cover;object-position:center top;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.12);margin:0;" loading="lazy" decoding="async">
 </div>
 
   <p>
@@ -1768,7 +1798,7 @@ href="https://g.co/kgs/MGMExy7"target="_blank">MyAstrology</a></strong> বা �
   <h2>♑ মকর রাশির স্বভাব, প্রকৃতি ও ভাগ্য <small style="font-size:0.5em;font-weight:400;color:#aaa;letter-spacing:0.5px;">— Capricorn Zodiac</small></h2>
 
   <div style="text-align:center; margin:20px 0;">
-    <img src="images/makar-rashi-capricorn.webp" alt="মকর রাশির স্বভাব ও ভাগ্য — ড. প্রদ্যুৎ আচার্য" width="600" height="280" style="display:block;width:100%;height:280px;object-fit:cover;object-position:center top;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.12);margin:16px auto 20px;" loading="lazy" decoding="async">
+    <img src="images/makar-rashi-capricorn.webp" alt="মকর রাশির স্বভাব ও ভাগ্য — ড. প্রদ্যুৎ আচার্য" width="600" height="280" style="display:block;width:100%;height:280px;object-fit:cover;object-position:center top;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.12);margin:0;" loading="lazy" decoding="async">
   </div>
 
   <p>
@@ -1844,10 +1874,7 @@ href="https://g.co/kgs/MGMExy7"target="_blank">MyAstrology</a> Ranaghat</p>
 
   <h2>♒ কুম্ভ রাশির স্বভাব, প্রকৃতি ও ভাগ্য <small style="font-size:0.5em;font-weight:400;color:#aaa;letter-spacing:0.5px;">— Aquarius Zodiac</small></h2>
 
-  <figure>
-    <div style="width:100%;margin:16px 0;"><img src="images/kumbha-rashi-aquarius.webp" alt="কুম্ভ রাশির স্বভাব ও ভাগ্য — ড. প্রদ্যুৎ আচার্য" width="600" height="280" style="display:block;width:100%;height:280px;object-fit:cover;object-position:center top;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.12);margin:16px auto 20px;" loading="lazy" decoding="async"></div>
-    <figcaption>কুম্ভ রাশির মানুষের বৈশিষ্ট্য, ব্যক্তিত্ব ও ভাগ্য বিশ্লেষণ</figcaption>
-  </figure>
+  <div style="width:100%;margin:16px 0 20px;"><img src="images/kumbha-rashi-aquarius.webp" alt="কুম্ভ রাশির স্বভাব ও ভাগ্য — ড. প্রদ্যুৎ আচার্য" width="600" height="280" style="display:block;width:100%;height:280px;object-fit:cover;object-position:center top;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.12);margin:0;" loading="lazy" decoding="async"></div>
 
   <p itemprop="articleBody">
     🏺 কুম্ভ রাশি রাশিচক্রের একাদশ রাশি; এর অধিপতি <strong><a
@@ -1905,10 +1932,7 @@ href="https://youtu.be/isRu1J5Cc5o?si=ENiCWaZwcMDitf5P"target="_blank">হস্
 
   <h2>♓ মীন রাশির স্বভাব, প্রকৃতি ও ভাগ্য <small style="font-size:0.5em;font-weight:400;color:#aaa;letter-spacing:0.5px;">— Pisces Zodiac</small></h2>
 
-  <figure>
-    <div style="width:100%;margin:16px 0;"><img src="images/meen-rashi-pisces.webp" alt="মীন রাশির স্বভাব ও ভাগ্য — ড. প্রদ্যুৎ আচার্য" width="600" height="280" style="display:block;width:100%;height:280px;object-fit:cover;object-position:center top;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.12);margin:16px auto 20px;" loading="lazy" decoding="async"></div>
-    <figcaption>মীন রাশি—দুটি মাছের প্রতীক; বহির্ভাবে তরঙ্গ, অন্তরে শান্ত গভীরতা।</figcaption>
-  </figure>
+  <div style="width:100%;margin:16px 0 20px;"><img src="images/meen-rashi-pisces.webp" alt="মীন রাশির স্বভাব ও ভাগ্য — ড. প্রদ্যুৎ আচার্য" width="600" height="280" style="display:block;width:100%;height:280px;object-fit:cover;object-position:center top;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.12);margin:0;" loading="lazy" decoding="async"></div>
 
   <p>
     🐟 মীন রাশি রাশিচক্রের দ্বাদশ রাশি। এই রাশির অধিপতি গ্রহ <strong>বৃহস্পতি (দেবগুরু)</strong>—জ্ঞান, করুণা ও পরিসরতার প্রতীক। 
