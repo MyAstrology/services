@@ -1,4 +1,33 @@
 {
+  "jyotish-shastra-veder-chokh": {
+    "cluster": "জ্যোতিষ",
+    "parent": "শারীরিক জ্যোতিষ",
+    "confidence": 1,
+    "allScores": {
+      "জ্যোতিষ": {
+        "score": 5,
+        "matches": 5,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জীবন দর্শন": {
+        "score": 4,
+        "matches": 4,
+        "parent": "আধ্যাত্মিক"
+      }
+    }
+  },
+  "prachin-grantha-o-adhunik-bigyan": {
+    "cluster": "বিজ্ঞান",
+    "parent": "শিক্ষা",
+    "confidence": 0.4800000000000001,
+    "allScores": {
+      "বিজ্ঞান": {
+        "score": 2.4000000000000004,
+        "matches": 3,
+        "parent": "শিক্ষা"
+      }
+    }
+  },
   "stri-r-bicched-er-por-o-mone-pore-chanchal-er-golpo": {
     "cluster": "জীবন দর্শন",
     "parent": "আধ্যাত্মিক",

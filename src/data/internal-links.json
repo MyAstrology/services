@@ -1,4 +1,58 @@
 {
+  "jyotish-shastra-veder-chokh": {
+    "relatedByTag": [
+      "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na"
+    ],
+    "relatedByPillar": [
+      "bishas-ki-kusanskar-prakriti-manush-jyotish",
+      "janma-kundali-hasta-mudra-rahasya",
+      "jibone-sob-kichu-biruddhe-gele-ki-korben"
+    ],
+    "relatedByCluster": [
+      "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
+      "bishas-ki-kusanskar-prakriti-manush-jyotish",
+      "janma-kundali-hasta-mudra-rahasya"
+    ],
+    "topRelated": [
+      {
+        "slug": "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
+        "score": 0.4115873015873016
+      },
+      {
+        "slug": "bishas-ki-kusanskar-prakriti-manush-jyotish",
+        "score": 0.3981051587301587
+      },
+      {
+        "slug": "janma-kundali-hasta-mudra-rahasya",
+        "score": 0.38817460317460317
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 1,
+    "manualLinks": []
+  },
+  "prachin-grantha-o-adhunik-bigyan": {
+    "relatedByTag": [],
+    "relatedByPillar": [],
+    "relatedByCluster": [],
+    "topRelated": [
+      {
+        "slug": "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
+        "score": 0.19357142857142856
+      },
+      {
+        "slug": "samudrik-shastra-nari-noy-sattva-bichar",
+        "score": 0.19232323232323234
+      },
+      {
+        "slug": "bhalo-manush-haoar-satyi-path",
+        "score": 0.18777777777777777
+      }
+    ],
+    "cluster": "বিজ্ঞান",
+    "confidence": 0.4800000000000001,
+    "manualLinks": []
+  },
   "stri-r-bicched-er-por-o-mone-pore-chanchal-er-golpo": {
     "relatedByTag": [],
     "relatedByPillar": [
@@ -98,14 +152,14 @@
       "janma-kundali-hasta-mudra-rahasya"
     ],
     "relatedByPillar": [
+      "jyotish-shastra-veder-chokh",
       "somoyer-rahasya-jyotish-darshan",
-      "prodyut-acharya-jyotish-palmist-journey-ranaghat",
-      "mukhoser-alore-porichoy-naitikota-sankat"
+      "prodyut-acharya-jyotish-palmist-journey-ranaghat"
     ],
     "relatedByCluster": [
       "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
       "janma-kundali-hasta-mudra-rahasya",
-      "somoyer-rahasya-jyotish-darshan"
+      "jyotish-shastra-veder-chokh"
     ],
     "topRelated": [
       {
@@ -117,8 +171,8 @@
         "score": 0.4062992831541219
       },
       {
-        "slug": "somoyer-rahasya-jyotish-darshan",
-        "score": 0.395515873015873
+        "slug": "jyotish-shastra-veder-chokh",
+        "score": 0.3981051587301587
       }
     ],
     "cluster": "জ্যোতিষ",
@@ -219,6 +273,7 @@
   "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na": {
     "relatedByTag": [
       "bishas-ki-kusanskar-prakriti-manush-jyotish",
+      "jyotish-shastra-veder-chokh",
       "janma-kundali-hasta-mudra-rahasya",
       "jibone-sob-kichu-biruddhe-gele-ki-korben"
     ],
@@ -229,8 +284,8 @@
     ],
     "relatedByCluster": [
       "bishas-ki-kusanskar-prakriti-manush-jyotish",
-      "janma-kundali-hasta-mudra-rahasya",
-      "jibone-sob-kichu-biruddhe-gele-ki-korben"
+      "jyotish-shastra-veder-chokh",
+      "janma-kundali-hasta-mudra-rahasya"
     ],
     "topRelated": [
       {
@@ -238,12 +293,12 @@
         "score": 0.4268406593406593
       },
       {
-        "slug": "janma-kundali-hasta-mudra-rahasya",
-        "score": 0.4095634920634921
+        "slug": "jyotish-shastra-veder-chokh",
+        "score": 0.4115873015873016
       },
       {
-        "slug": "jibone-sob-kichu-biruddhe-gele-ki-korben",
-        "score": 0.40694444444444444
+        "slug": "janma-kundali-hasta-mudra-rahasya",
+        "score": 0.4095634920634921
       }
     ],
     "cluster": "জ্যোতিষ",
@@ -607,8 +662,8 @@
     ],
     "relatedByPillar": [
       "mangal-grah-antar-yoddha",
-      "mukhoser-alore-porichoy-naitikota-sankat",
-      "prodyut-acharya-jyotish-palmist-journey-ranaghat"
+      "jyotish-shastra-veder-chokh",
+      "mukhoser-alore-porichoy-naitikota-sankat"
     ],
     "relatedByCluster": [
       "janmakundali-o-hastrekha-jiban-manchitra",
@@ -941,8 +996,8 @@
         "score": 0.25
       },
       {
-        "slug": "prodyut-acharya-jyotish-palmist-journey-ranaghat",
-        "score": 0.20910130718954248
+        "slug": "jyotish-shastra-veder-chokh",
+        "score": 0.2273611111111111
       }
     ],
     "cluster": "গল্প",
