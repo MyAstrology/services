@@ -16,6 +16,169 @@
       }
     }
   },
+  "chinta-shakti-bigyan-jyotish-darshan": {
+    "cluster": "জীবন দর্শন",
+    "parent": "আধ্যাত্মিক",
+    "confidence": 0.4,
+    "allScores": {
+      "জ্যোতিষ": {
+        "score": 1,
+        "matches": 1,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জীবন দর্শন": {
+        "score": 2,
+        "matches": 2,
+        "parent": "আধ্যাত্মিক"
+      },
+      "বিজ্ঞান": {
+        "score": 0.8,
+        "matches": 1,
+        "parent": "শিক্ষা"
+      }
+    }
+  },
+  "hater-rekha-career-dhan-bishleshan": {
+    "cluster": "হস্তরেখা",
+    "parent": "শারীরিক জ্যোতিষ",
+    "confidence": 0.6,
+    "allScores": {
+      "হস্তরেখা": {
+        "score": 3,
+        "matches": 3,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জীবন দর্শন": {
+        "score": 2,
+        "matches": 2,
+        "parent": "আধ্যাত্মিক"
+      },
+      "সাফল্য": {
+        "score": 2.7,
+        "matches": 3,
+        "parent": "ব্যবহারিক জীবন"
+      }
+    }
+  },
+  "ishwar-bishas-nastik-dharmic-karma-part-2": {
+    "cluster": "জীবন দর্শন",
+    "parent": "আধ্যাত্মিক",
+    "confidence": 0.4,
+    "allScores": {
+      "জীবন দর্শন": {
+        "score": 2,
+        "matches": 2,
+        "parent": "আধ্যাত্মিক"
+      }
+    }
+  },
+  "ishwar-bishas-upalabdhi-karma-vivekananda-part-1": {
+    "cluster": "জীবন দর্শন",
+    "parent": "আধ্যাত্মিক",
+    "confidence": 0.8,
+    "allScores": {
+      "জীবন দর্শন": {
+        "score": 4,
+        "matches": 4,
+        "parent": "আধ্যাত্মিক"
+      }
+    }
+  },
+  "jyotish-6-shaktiशali-yoga-kundali-bisleshan": {
+    "cluster": "জ্যোতিষ",
+    "parent": "শারীরিক জ্যোতিষ",
+    "confidence": 0.6,
+    "allScores": {
+      "জ্যোতিষ": {
+        "score": 3,
+        "matches": 3,
+        "parent": "শারীরিক জ্যোতিষ"
+      }
+    }
+  },
+  "mantra-jap-ki-kaj-kore-bigyan-adhyatma": {
+    "cluster": "জীবন দর্শন",
+    "parent": "আধ্যাত্মিক",
+    "confidence": 0.2,
+    "allScores": {
+      "জীবন দর্শন": {
+        "score": 1,
+        "matches": 1,
+        "parent": "আধ্যাত্মিক"
+      },
+      "বিজ্ঞান": {
+        "score": 0.8,
+        "matches": 1,
+        "parent": "শিক্ষা"
+      }
+    }
+  },
+  "manush-keno-venge-pore-yogi-pathik-part-2": {
+    "cluster": "জ্যোতিষ",
+    "parent": "শারীরিক জ্যোতিষ",
+    "confidence": 0.2,
+    "allScores": {
+      "জ্যোতিষ": {
+        "score": 1,
+        "matches": 1,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জীবন দর্শন": {
+        "score": 1,
+        "matches": 1,
+        "parent": "আধ্যাত্মিক"
+      },
+      "সাফল্য": {
+        "score": 0.9,
+        "matches": 1,
+        "parent": "ব্যবহারিক জীবন"
+      }
+    }
+  },
+  "manush-ki-satyi-valobasha-yogi-pathik-part-1": {
+    "cluster": "জীবন দর্শন",
+    "parent": "আধ্যাত্মিক",
+    "confidence": 0.8,
+    "allScores": {
+      "জ্যোতিষ": {
+        "score": 1,
+        "matches": 1,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জীবন দর্শন": {
+        "score": 4,
+        "matches": 4,
+        "parent": "আধ্যাত্মিক"
+      },
+      "সম্পর্ক": {
+        "score": 2.7,
+        "matches": 3,
+        "parent": "ব্যবহারিক জীবন"
+      },
+      "গল্প": {
+        "score": 0.8,
+        "matches": 1,
+        "parent": "সাহিত্য"
+      }
+    }
+  },
+  "maya-o-mukti-yogi-pathik-part-3": {
+    "cluster": "সম্পর্ক",
+    "parent": "ব্যবহারিক জীবন",
+    "confidence": 0.36,
+    "allScores": {
+      "জীবন দর্শন": {
+        "score": 1,
+        "matches": 1,
+        "parent": "আধ্যাত্মিক"
+      },
+      "সম্পর্ক": {
+        "score": 1.8,
+        "matches": 2,
+        "parent": "ব্যবহারিক জীবন"
+      }
+    }
+  },
   "prachin-grantha-o-adhunik-bigyan": {
     "cluster": "বিজ্ঞান",
     "parent": "শিক্ষা",
@@ -25,6 +188,68 @@
         "score": 2.4000000000000004,
         "matches": 3,
         "parent": "শিক্ষা"
+      }
+    }
+  },
+  "preme-byartho-keno-jyotish-hastarekha-uttor": {
+    "cluster": "সম্পর্ক",
+    "parent": "ব্যবহারিক জীবন",
+    "confidence": 1,
+    "allScores": {
+      "হস্তরেখা": {
+        "score": 2,
+        "matches": 2,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জ্যোতিষ": {
+        "score": 4,
+        "matches": 4,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "সাফল্য": {
+        "score": 0.9,
+        "matches": 1,
+        "parent": "ব্যবহারিক জীবন"
+      },
+      "সম্পর্ক": {
+        "score": 6.3,
+        "matches": 7,
+        "parent": "ব্যবহারিক জীবন"
+      }
+    }
+  },
+  "rashichakre-12-rashi-keno-chandra-solar-year": {
+    "cluster": "অন্যান্য",
+    "parent": "অন্যান্য",
+    "confidence": 0,
+    "allScores": {}
+  },
+  "sanshoy-theke-hastarekha-bigyan-jyotish": {
+    "cluster": "হস্তরেখা",
+    "parent": "শারীরিক জ্যোতিষ",
+    "confidence": 0.8,
+    "allScores": {
+      "হস্তরেখা": {
+        "score": 4,
+        "matches": 4,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "বিজ্ঞান": {
+        "score": 4,
+        "matches": 5,
+        "parent": "শিক্ষা"
+      }
+    }
+  },
+  "shani-sadesati-ki-hoy-keno-hoy-ki-korben": {
+    "cluster": "জ্যোতিষ",
+    "parent": "শারীরিক জ্যোতিষ",
+    "confidence": 0.8,
+    "allScores": {
+      "জ্যোতিষ": {
+        "score": 4,
+        "matches": 4,
+        "parent": "শারীরিক জ্যোতিষ"
       }
     }
   },
