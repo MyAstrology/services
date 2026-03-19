@@ -77,6 +77,18 @@
       }
     }
   },
+  "gorib-keno-buddher-utor-jibon-bodle-dey": {
+    "cluster": "জীবন দর্শন",
+    "parent": "আধ্যাত্মিক",
+    "confidence": 1,
+    "allScores": {
+      "জীবন দর্শন": {
+        "score": 6,
+        "matches": 6,
+        "parent": "আধ্যাত্মিক"
+      }
+    }
+  },
   "mangal-grah-antar-yoddha": {
     "cluster": "জ্যোতিষ",
     "parent": "শারীরিক জ্যোতিষ",

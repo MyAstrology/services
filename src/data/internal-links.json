@@ -87,13 +87,13 @@
     "relatedByTag": [],
     "relatedByPillar": [
       "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
-      "pradip-byarthata-manoshik-shanti",
-      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha"
+      "gorib-keno-buddher-utor-jibon-bodle-dey",
+      "pradip-byarthata-manoshik-shanti"
     ],
     "relatedByCluster": [
       "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
-      "pradip-byarthata-manoshik-shanti",
-      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha"
+      "gorib-keno-buddher-utor-jibon-bodle-dey",
+      "pradip-byarthata-manoshik-shanti"
     ],
     "topRelated": [
       {
@@ -101,16 +101,50 @@
         "score": 0.3943055555555556
       },
       {
-        "slug": "pradip-byarthata-manoshik-shanti",
-        "score": 0.3863492063492064
+        "slug": "gorib-keno-buddher-utor-jibon-bodle-dey",
+        "score": 0.39361417108663127
       },
       {
-        "slug": "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
-        "score": 0.3789473684210526
+        "slug": "pradip-byarthata-manoshik-shanti",
+        "score": 0.3863492063492064
       }
     ],
     "cluster": "জীবন দর্শন",
     "confidence": 0.6,
+    "manualLinks": []
+  },
+  "gorib-keno-buddher-utor-jibon-bodle-dey": {
+    "relatedByTag": [
+      "dharma-ki-prokrit-artha-gita-buddha-darshan",
+      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
+      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo"
+    ],
+    "relatedByPillar": [
+      "bhalo-manush-haoar-satyi-path",
+      "mahabharata-ratha-pancha-indriya-jiban-darshan",
+      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha"
+    ],
+    "relatedByCluster": [
+      "dharma-ki-prokrit-artha-gita-buddha-darshan",
+      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
+      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo"
+    ],
+    "topRelated": [
+      {
+        "slug": "dharma-ki-prokrit-artha-gita-buddha-darshan",
+        "score": 0.41073099415204684
+      },
+      {
+        "slug": "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
+        "score": 0.4096920563097034
+      },
+      {
+        "slug": "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
+        "score": 0.4070959595959596
+      }
+    ],
+    "cluster": "জীবন দর্শন",
+    "confidence": 1,
     "manualLinks": []
   },
   "mangal-grah-antar-yoddha": {
@@ -468,8 +502,8 @@
     ],
     "relatedByPillar": [
       "mahabharata-ratha-pancha-indriya-jiban-darshan",
-      "bhalo-manush-haoar-satyi-path",
-      "stri-r-bicched-er-por-o-mone-pore-chanchal-er-golpo"
+      "gorib-keno-buddher-utor-jibon-bodle-dey",
+      "bhalo-manush-haoar-satyi-path"
     ],
     "relatedByCluster": [
       "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
@@ -540,8 +574,8 @@
         "score": 0.20472222222222222
       },
       {
-        "slug": "prodyut-acharya-jyotish-palmist-journey-ranaghat",
-        "score": 0.19675099206349206
+        "slug": "gorib-keno-buddher-utor-jibon-bodle-dey",
+        "score": 0.19866366366366367
       }
     ],
     "cluster": "সম্পর্ক",
@@ -551,7 +585,8 @@
   "safal-manush-sukhi-noy-porichoy-shantir-dwondwo": {
     "relatedByTag": [
       "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
-      "bhalo-manush-haoar-satyi-path"
+      "bhalo-manush-haoar-satyi-path",
+      "gorib-keno-buddher-utor-jibon-bodle-dey"
     ],
     "relatedByPillar": [
       "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
@@ -561,7 +596,7 @@
     "relatedByCluster": [
       "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
       "bhalo-manush-haoar-satyi-path",
-      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha"
+      "gorib-keno-buddher-utor-jibon-bodle-dey"
     ],
     "topRelated": [
       {
@@ -573,8 +608,8 @@
         "score": 0.40755255255255257
       },
       {
-        "slug": "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
-        "score": 0.39910660660660663
+        "slug": "gorib-keno-buddher-utor-jibon-bodle-dey",
+        "score": 0.4070959595959596
       }
     ],
     "cluster": "জীবন দর্শন",
@@ -621,9 +656,9 @@
       "safal-manush-sukhi-noy-porichoy-shantir-dwondwo"
     ],
     "relatedByPillar": [
+      "gorib-keno-buddher-utor-jibon-bodle-dey",
       "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
-      "pradip-byarthata-manoshik-shanti",
-      "stri-r-bicched-er-por-o-mone-pore-chanchal-er-golpo"
+      "pradip-byarthata-manoshik-shanti"
     ],
     "relatedByCluster": [
       "dharma-ki-prokrit-artha-gita-buddha-darshan",
@@ -819,9 +854,9 @@
       "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya"
     ],
     "relatedByPillar": [
+      "gorib-keno-buddher-utor-jibon-bodle-dey",
       "pradip-byarthata-manoshik-shanti",
-      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
-      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo"
+      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha"
     ],
     "relatedByCluster": [
       "bhalo-manush-haoar-satyi-path",
@@ -854,8 +889,7 @@
       "safal-manush-sukhi-noy-porichoy-shantir-dwondwo"
     ],
     "relatedByPillar": [
-      "stri-r-bicched-er-por-o-mone-pore-chanchal-er-golpo",
-      "jibonsongram-sukhi-thaka-ananta-golpo"
+      "stri-r-bicched-er-por-o-mone-pore-chanchal-er-golpo"
     ],
     "relatedByCluster": [
       "dharma-ki-prokrit-artha-gita-buddha-darshan",
@@ -949,7 +983,7 @@
     "relatedByPillar": [
       "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
       "dharma-ki-prokrit-artha-gita-buddha-darshan",
-      "bhalo-manush-haoar-satyi-path"
+      "gorib-keno-buddher-utor-jibon-bodle-dey"
     ],
     "relatedByCluster": [
       "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
