@@ -1239,7 +1239,7 @@ function proceedToRazorpay(){
     }
   });
   rzp.on('payment.failed',function(resp){
-    alert('পেমেন্ট বিফল হয়েছে। পুনরায় চেষ্টা করুন।\nকারণ: ' + (resp.error.description || ''));
+    alert('পেমেন্ট বিফল হয়েছে।\nকারণ: '+(resp.error.description||''));
   });
   rzp.open();
 }
