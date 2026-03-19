@@ -165,7 +165,7 @@
     "confidence": 0.8,
     "manualLinks": []
   },
-  "jyotish-6-shaktiशali-yoga-kundali-bisleshan": {
+  "jyotish-6-shakti-shali-yoga-kundali-bisleshan": {
     "relatedByTag": [
       "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
       "somoyer-rahasya-jyotish-darshan"
@@ -173,7 +173,7 @@
     "relatedByPillar": [
       "mukhoser-alore-porichoy-naitikota-sankat",
       "mangal-grah-antar-yoddha",
-      "jibone-sob-kichu-biruddhe-gele-ki-korben"
+      "pitru-dosh-shastriya-byakhya"
     ],
     "relatedByCluster": [
       "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
@@ -242,7 +242,7 @@
     "relatedByPillar": [
       "nirmal-villa-satya-dhar-mitra",
       "jibone-sob-kichu-biruddhe-gele-ki-korben",
-      "jyotish-6-shaktiशali-yoga-kundali-bisleshan"
+      "jyotish-6-shakti-shali-yoga-kundali-bisleshan"
     ],
     "relatedByCluster": [
       "pitru-dosh-binod-golpo",
@@ -447,8 +447,8 @@
     ],
     "relatedByPillar": [
       "prodyut-acharya-jyotish-palmist-journey-ranaghat",
-      "jyotish-shastra-veder-chokh",
-      "pitru-dosh-binod-golpo"
+      "pitru-dosh-shastriya-byakhya",
+      "jyotish-shastra-veder-chokh"
     ],
     "relatedByCluster": [
       "jibone-sob-kichu-biruddhe-gele-ki-korben",
@@ -628,6 +628,38 @@
     "confidence": 1,
     "manualLinks": []
   },
+  "pitru-dosh-shastriya-byakhya": {
+    "relatedByTag": [
+      "janmakundali-o-hastrekha-jiban-manchitra"
+    ],
+    "relatedByPillar": [
+      "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
+      "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
+      "somoyer-rahasya-jyotish-darshan"
+    ],
+    "relatedByCluster": [
+      "janmakundali-o-hastrekha-jiban-manchitra",
+      "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
+      "jyotish-6-shakti-shali-yoga-kundali-bisleshan"
+    ],
+    "topRelated": [
+      {
+        "slug": "janmakundali-o-hastrekha-jiban-manchitra",
+        "score": 0.4045512820512821
+      },
+      {
+        "slug": "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
+        "score": 0.39222222222222225
+      },
+      {
+        "slug": "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
+        "score": 0.38841269841269843
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 1,
+    "manualLinks": []
+  },
   "bishas-ki-kusanskar-prakriti-manush-jyotish": {
     "relatedByTag": [
       "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
@@ -759,7 +791,7 @@
     "relatedByTag": [
       "bishas-ki-kusanskar-prakriti-manush-jyotish",
       "jyotish-shastra-veder-chokh",
-      "jyotish-6-shaktiशali-yoga-kundali-bisleshan",
+      "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
       "janma-kundali-hasta-mudra-rahasya"
     ],
     "relatedByPillar": [
@@ -770,7 +802,7 @@
     "relatedByCluster": [
       "bishas-ki-kusanskar-prakriti-manush-jyotish",
       "jyotish-shastra-veder-chokh",
-      "jyotish-6-shaktiशali-yoga-kundali-bisleshan"
+      "jyotish-6-shakti-shali-yoga-kundali-bisleshan"
     ],
     "topRelated": [
       {
@@ -782,7 +814,7 @@
         "score": 0.4115873015873016
       },
       {
-        "slug": "jyotish-6-shaktiशali-yoga-kundali-bisleshan",
+        "slug": "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
         "score": 0.4113888888888889
       }
     ],
@@ -794,12 +826,12 @@
     "relatedByTag": [],
     "relatedByPillar": [
       "somoyer-rahasya-jyotish-darshan",
-      "jyotish-6-shaktiशali-yoga-kundali-bisleshan",
+      "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
       "bishas-ki-kusanskar-prakriti-manush-jyotish"
     ],
     "relatedByCluster": [
       "somoyer-rahasya-jyotish-darshan",
-      "jyotish-6-shaktiशali-yoga-kundali-bisleshan",
+      "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
       "bishas-ki-kusanskar-prakriti-manush-jyotish"
     ],
     "topRelated": [
@@ -808,7 +840,7 @@
         "score": 0.39426151761517614
       },
       {
-        "slug": "jyotish-6-shaktiशali-yoga-kundali-bisleshan",
+        "slug": "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
         "score": 0.3924145299145299
       },
       {
@@ -1183,7 +1215,8 @@
   "janmakundali-o-hastrekha-jiban-manchitra": {
     "relatedByTag": [
       "janma-kundali-hasta-mudra-rahasya",
-      "somoyer-rahasya-jyotish-darshan"
+      "somoyer-rahasya-jyotish-darshan",
+      "pitru-dosh-shastriya-byakhya"
     ],
     "relatedByPillar": [
       "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
@@ -1193,7 +1226,7 @@
     "relatedByCluster": [
       "janma-kundali-hasta-mudra-rahasya",
       "somoyer-rahasya-jyotish-darshan",
-      "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na"
+      "pitru-dosh-shastriya-byakhya"
     ],
     "topRelated": [
       {
@@ -1205,8 +1238,8 @@
         "score": 0.4089414414414414
       },
       {
-        "slug": "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
-        "score": 0.39944444444444444
+        "slug": "pitru-dosh-shastriya-byakhya",
+        "score": 0.4045512820512821
       }
     ],
     "cluster": "জ্যোতিষ",
@@ -1592,8 +1625,8 @@
     "relatedByPillar": [],
     "relatedByCluster": [
       "jibone-sob-kichu-biruddhe-gele-ki-korben",
-      "janma-kundali-hasta-mudra-rahasya",
-      "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na"
+      "pitru-dosh-shastriya-byakhya",
+      "janma-kundali-hasta-mudra-rahasya"
     ],
     "topRelated": [
       {
@@ -1601,12 +1634,12 @@
         "score": 0.22653846153846155
       },
       {
-        "slug": "janma-kundali-hasta-mudra-rahasya",
-        "score": 0.21705128205128207
+        "slug": "pitru-dosh-shastriya-byakhya",
+        "score": 0.21722222222222223
       },
       {
-        "slug": "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
-        "score": 0.21539682539682542
+        "slug": "janma-kundali-hasta-mudra-rahasya",
+        "score": 0.21705128205128207
       }
     ],
     "cluster": "জ্যোতিষ",
