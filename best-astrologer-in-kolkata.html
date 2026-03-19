@@ -943,14 +943,12 @@ function proceedToRazorpay(){
     }
   });
   rzp.on('payment.failed',function(resp){
-    alert('পেমেন্ট বিফল হয়েছে। পুনরায় চেষ্টা করুন।
-কারণ: '+(resp.error.description||''));
+    alert('পেমেন্ট বিফল হয়েছে। পুনরায় চেষ্টা করুন।\nকারণ: ' + (resp.error.description || ''));
   });
   rzp.open();
 }
 function showSuccess(name,phone,pid){
-  var NL='
-';
+  var NL='\n';
   var msg='🙏 নমস্কার! আমি '+_svc.label+'-এর জন্য পেমেন্ট সম্পন্ন করেছি।'+NL+NL
         +'👤 নাম: '+name+NL+'📱 WhatsApp: +91'+phone+NL
         +'🛎️ সেবা: '+_svc.label+NL
