@@ -3,7 +3,7 @@ title: "জ্যোতিষের ৬টি শক্তিশালী যো
 description: "গজকেশরী, পঞ্চমহাপুরুষ, নীচভঙ্গ রাজ যোগ — এই যোগগুলো কুণ্ডলীতে থাকলে কী হয়? বৈদিক জ্যোতিষের সবচেয়ে গুরুত্বপূর্ণ ৬টি যোগের সম্পূর্ণ ব্যাখ্যা।"
 date: "2026-03-19"
 image: "https://www.myastrology.in/images/jyotish-yoga-kundali.webp"
-slug: "jyotish-6-shaktiशali-yoga-kundali-bisleshan"
+slug: "jyotish-6-shakti-shali-yoga-kundali-bisleshan"
 author:
   name: "Dr Prodyut Acharya"
   bio: "জ্যোতিষী, হস্তরেখাবিদ, দার্শনিক চিন্তাবিদ ও ভাগ্য উন্নতির পরামর্শদাতা।"
