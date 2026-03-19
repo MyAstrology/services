@@ -31,6 +31,18 @@
     <priority>0.92</priority>
   </url>
   <url>
+    <loc>https://www.myastrology.in/best-astrologer-in-kolkata.html</loc>
+    <lastmod>2026-03-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://www.myastrology.in/best-astrologer-in-nadia.html</loc>
+    <lastmod>2026-03-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
     <loc>https://www.myastrology.in/blog.html</loc>
     <lastmod>2026-03-19</lastmod>
     <changefreq>daily</changefreq>
@@ -39,26 +51,38 @@
   <url>
     <loc>https://www.myastrology.in/rashifal.html</loc>
     <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>daily</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://www.myastrology.in/reviews.html</loc>
     <lastmod>2026-03-19</lastmod>
-    <changefreq>daily</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://www.myastrology.in/vastu-science.html</loc>
     <lastmod>2026-03-19</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.88</priority>
   </url>
   <url>
     <loc>https://www.myastrology.in/vedic-astronomy.html</loc>
     <lastmod>2026-03-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.myastrology.in/learning/</loc>
+    <lastmod>2026-03-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.myastrology.in/gemstone.html</loc>
+    <lastmod>2026-03-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.82</priority>
   </url>
   <url>
     <loc>https://www.myastrology.in/video.html</loc>
@@ -68,12 +92,6 @@
   </url>
   <url>
     <loc>https://www.myastrology.in/gallery.html</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://www.myastrology.in/gemstone.html</loc>
     <lastmod>2026-03-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
@@ -395,18 +413,6 @@
     <lastmod>2026-03-19</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.72</priority>
-  </url>
-  <url>
-    <loc>https://www.myastrology.in/best-astrologer-in-kolkata.html</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.65</priority>
-  </url>
-  <url>
-    <loc>https://www.myastrology.in/best-astrologer-in-nadia.html</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.65</priority>
   </url>
   <url>
     <loc>https://www.myastrology.in/privacy-policy.html</loc>
