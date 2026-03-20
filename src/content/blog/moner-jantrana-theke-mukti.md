@@ -2,7 +2,7 @@
 title: "মনের যন্ত্রণা থেকে মুক্তি কীভাবে পাবেন — জ্যোতিষ ও দর্শনের উত্তর"
 description: "মন যখন কষ্টের কারণ হয়ে ওঠে, তখন জ্যোতিষ কী বলে? ত্রিবেণীর কুম্ভমেলায় ড. প্রদ্যুৎ আচার্যের জীবন বদলে দেওয়া এক রাতের গল্প — এবং চন্দ্র গ্রহ, মানসিক শান্তি ও ভাগবত দর্শনের আলোয় মুক্তির পথ।"
 date: "2026-03-20"
-image: "https://www.myastrology.in/images/astrology-ranaghat-banner1.webp"
+image: "https://www.myastrology.in/images/moner-jantrana-theke-mukti.webp"
 slug: "moner-jantrana-theke-mukti"
 author:
   name: "Dr. Prodyut Acharya"
@@ -20,7 +20,7 @@ tags:
   - "Dr. Prodyut Acharya"
   - "MyAstrology"
 keywords: "মনের শান্তি পাওয়ার উপায়, মানসিক কষ্ট থেকে মুক্তি, মন খারাপ কেন হয় জ্যোতিষ, চন্দ্র গ্রহের প্রভাব মানসিক স্বাস্থ্য, মানসিক যন্ত্রণা থেকে মুক্তির উপায়"
-canonical_url: "https://www.myastrology.in/blog/moner-jantrana-theke-mukti.html"
+canonical_url: "[https://www.myastrology.in/blog/moner-jantrana-theke-mukti.html](https://www.myastrology.in/images/moner-jantrana-theke-mukti.webp)"
 featured: true
 reading_time: "১২ মিনিট"
 og_title: "মনের যন্ত্রণা থেকে মুক্তি — জ্যোতিষ ও দর্শনের উত্তর | Dr. Prodyut Acharya"
@@ -29,7 +29,7 @@ og_image: "https://www.myastrology.in/images/astrology-ranaghat-banner1.webp"
 twitter_card: "summary_large_image"
 twitter_title: "মনের কষ্ট থেকে মুক্তি পাবেন কীভাবে? জ্যোতিষ বলছে..."
 twitter_description: "ত্রিবেণীতে এক রাতে যা উপলব্ধি হয়েছিল — সেটাই আজ হাজারো মানুষকে পথ দেখাচ্ছে।"
-twitter_image: "https://www.myastrology.in/images/astrology-ranaghat-banner1.webp"
+twitter_image: "[https://www.myastrology.in/images/astrology-ranaghat-banner1.webp](https://www.myastrology.in/images/moner-jantrana-theke-mukti.webp)"
 ---
 
 <h1 style="text-align:center;font-size:2rem;line-height:1.35;">মনের যন্ত্রণা থেকে মুক্তি কীভাবে পাবেন<br><span style="color:#8B1A1A;">— জ্যোতিষ ও দর্শনের উত্তর</span></h1>
