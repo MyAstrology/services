@@ -18,7 +18,7 @@ tags:
   - "যক্ষ পুরাণ"
   - "যক্ষপ্রশ্ন মহাভারত"
 keywords: "গন্ধর্ব কারা, যক্ষ কারা পুরাণে, যক্ষপ্রশ্ন কী, কুবের যক্ষদের নেতা, গন্ধর্ব সঙ্গীত উৎস, ভারতীয় শাস্ত্রীয় সঙ্গীত উৎপত্তি, মহাভারত যুধিষ্ঠির যক্ষ"
-canonical_url: "https://www.myastrology.in/blog/gandharva-yaksha-puran-darshan.html"
+canonical_url: "www.myastrology.in/blog/artha-anartha-maraka-bhaba-analysis.html" 
 featured: true
 reading_time: "৬ min"
 og_title: "মহাভারতে যক্ষ যুধিষ্ঠিরকে যে প্রশ্নগুলো করেছিল — আজও প্রাসঙ্গিক"
