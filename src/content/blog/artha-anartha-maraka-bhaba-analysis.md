@@ -11,7 +11,7 @@ author:
 categories: ["Astrology", "Philosophy", "SEO friendly"]
 tags: ["ধনভাব", "সপ্তম ভাব", "মারকস্থান", "জ্যোতিষ", "হস্তরেখা"]
 keywords: "অর্থ, অনর্থ, ধনভাব, সপ্তম ভাব, মারকস্থান, বৃহৎ পরাশর হোরাশাস্ত্র, অর্থ কি সুখ দেয়, অর্থ অনর্থের মূল মানে, দ্বিতীয় ভাব জ্যোতিষ, Astrology, Palmistry, Dr Prodyut Acharya"
-canonical_url: "https://www.myastrology.in/blog.html?post=artha-anartha-maraka-bhaba-analysis."
+canonical_url: "https://www.myastrology.in/blog/artha-anartha-maraka-bhaba-analysis.html"
 featured: true
 priority: 1
 reading_time: "10 min"
@@ -31,23 +31,11 @@ twitter_image: "https://www.myastrology.in/images/artha-anartha-maraka-bhaba-ana
 অর্থ মানুষকে জীবনধারণের শক্তি দেয়, কিন্তু তার অতিরিক্ত লালসা হয়ে ওঠে জীবনের সবচেয়ে বড় মারক শক্তি।
 </blockquote>
 
-<div style="background:#f9f5eb;border:1px solid #e8d9a0;border-radius:10px;padding:14px 20px;margin:0 0 28px;">
-<b style="font-size:15px;">📋 বিষয়সূচি</b>
-<ol style="margin:8px 0 0;padding-left:20px;line-height:1.8;font-size:.93rem;">
-<li><a href="#shastra" style="color:#b8860b;text-decoration:none;">শাস্ত্রীয় প্রমাণ</a></li>
-<li><a href="#dhanabhaba" style="color:#b8860b;text-decoration:none;">ধনভাব — অর্থের শক্তি ও অনর্থ</a></li>
-<li><a href="#saptam" style="color:#b8860b;text-decoration:none;">সপ্তম ভাব — দাম্পত্য, ভোগ ও ব্যবসার দ্বন্দ্ব</a></li>
-<li><a href="#darshan" style="color:#b8860b;text-decoration:none;">দার্শনিক দৃষ্টিভঙ্গি — শাস্ত্র থেকে পাশ্চাত্য</a></li>
-<li><a href="#purushaartha" style="color:#b8860b;text-decoration:none;">ভারতীয় দর্শনে অর্থের প্রকৃত স্থান</a></li>
-<li><a href="#udaharan" style="color:#b8860b;text-decoration:none;">বাস্তব উদাহরণ ও সারসংক্ষেপ</a></li>
-</ol>
-</div>
-
 শাস্ত্রকারগণ সুস্পষ্ট ভাষায় বলেছেন — **"অর্থ অনর্থের মূল।"** এই একটি বাক্য যেন সমগ্র মানবসভ্যতার ইতিহাসকে কষাঘাত করে। সভ্যতার জন্মলগ্ন থেকে আজ অবধি মানুষ প্রতিনিয়ত অর্থের জন্য সংগ্রাম করেছে। অর্থ মানুষকে দিয়েছে প্রাচুর্য, উন্নতি, ক্ষমতা — আবার একই অর্থ মানুষকে করেছে দুঃখী, স্বার্থপর, নির্মম ও নিষ্ঠুর।
 
 বৃহৎ পরাশর হোরাশাস্ত্র অনুযায়ী জন্মকুণ্ডলীর দ্বিতীয় ও সপ্তম ভাবকে **মারকস্থান** বলা হয়েছে। কেন? তার শাস্ত্রীয়, দার্শনিক ও বাস্তব বিশ্লেষণ এই লেখায়।
 
-## <span id="shastra">শাস্ত্রীয় প্রমাণ</span>
+## শাস্ত্রীয় প্রমাণ
 
 **বৃহৎ পরাশর হোরাশাস্ত্র – মারকাধ্যায়** বলছে —
 
@@ -59,7 +47,7 @@ twitter_image: "https://www.myastrology.in/images/artha-anartha-maraka-bhaba-ana
 
 এই ঘোষণাটি নিছক কোনো গূঢ় জ্যোতিষীয় নিয়ম নয়। এর অন্তরে আছে এক গভীর জীবনদর্শন। ইতিহাস সাক্ষী — অর্থের জন্য অসংখ্য যুদ্ধ হয়েছে, রাজ্য ধ্বংস হয়েছে; আবার দাম্পত্যের টানাপোড়েন অসংখ্য পরিবারকে ছিন্নভিন্ন করেছে।
 
-## <span id="dhanabhaba">ধনভাব — অর্থের শক্তি ও অনর্থ</span>
+## ধনভাব — অর্থের শক্তি ও অনর্থ
 
 দ্বিতীয় ভাব থেকে বিচার হয় ধন-সম্পদ, স্থাবর-অস্থাবর সম্পত্তি, বাকশক্তি, পারিবারিক জীবন ও দৈহিক স্থিতি।
 
@@ -75,7 +63,7 @@ twitter_image: "https://www.myastrology.in/images/artha-anartha-maraka-bhaba-ana
 
 শাস্ত্র এই অবস্থাকেই "মারক প্রভাব" বলে চিহ্নিত করেছে। অর্থ যখন প্রয়োজনের সীমার মধ্যে থাকে — তখন তা আশীর্বাদ। অর্থ যখন আসক্তির রূপ নেয় — তখন তা অভিশাপ।
 
-## <span id="saptam">সপ্তম ভাব — দাম্পত্য, ভোগ ও ব্যবসার দ্বন্দ্ব</span>
+## সপ্তম ভাব — দাম্পত্য, ভোগ ও ব্যবসার দ্বন্দ্ব
 
 সপ্তম ভাব থেকে বিচার করা হয় বিবাহ ও দাম্পত্য জীবন, যৌনসম্পর্ক, ব্যবসা-বাণিজ্য, পার্টনারশিপ ও বিদেশযাত্রা।
 
@@ -87,9 +75,7 @@ twitter_image: "https://www.myastrology.in/images/artha-anartha-maraka-bhaba-ana
 
 তাই মহর্ষি পরাশর দ্বিতীয় ও সপ্তম ভাবকে একসঙ্গে মারক বলেছেন — কারণ অর্থ ও দাম্পত্য, এই দুইয়ের সংঘাতেই অধিকাংশ মানুষের পতন ঘটে।
 
-
-
-## <span id="darshan">দার্শনিক দৃষ্টিভঙ্গি — শাস্ত্র থেকে পাশ্চাত্য</span>
+## দার্শনিক দৃষ্টিভঙ্গি — শাস্ত্র থেকে পাশ্চাত্য
 
 অর্থ জীবনধারণের **উপকরণ**, কিন্তু জীবনধারণের **লক্ষ্য নয়**। যখন অর্থকে জীবনের একমাত্র লক্ষ্য করা হয় — তখন মানুষ ঈশ্বর থেকে দূরে সরে যায়, কাছের সম্পর্ককে অবহেলা করে, মানসিক ও পারিবারিক শান্তি হারিয়ে ফেলে।
 
@@ -111,7 +97,7 @@ twitter_image: "https://www.myastrology.in/images/artha-anartha-maraka-bhaba-ana
 
 সব দর্শনের সারকথা — অর্থ প্রয়োজনীয়, কিন্তু অর্থই চূড়ান্ত নয়।
 
-## <span id="purushaartha">ভারতীয় দর্শনে অর্থের প্রকৃত স্থান</span>
+## ভারতীয় দর্শনে অর্থের প্রকৃত স্থান
 
 ভারতীয় দর্শনে পুরুষার্থ চার ভাগে বিভক্ত — ধর্ম, অর্থ, কাম ও মোক্ষ। অর্থ এখানে অপরিহার্য, কিন্তু সর্বস্ব নয়।
 
@@ -127,7 +113,7 @@ twitter_image: "https://www.myastrology.in/images/artha-anartha-maraka-bhaba-ana
 
 তাই ঋষি-মুনি সবসময় বলেছেন — অর্থ থাক, কিন্তু অর্থের দ্বারা বেঁচো না। অর্থ উপার্জন করো, কিন্তু অর্থের দাস হয়ো না। অর্থকে ব্যবহার করো, কিন্তু অর্থকে পূজা করো না।
 
-## <span id="udaharan">বাস্তব উদাহরণ ও সারসংক্ষেপ</span>
+## বাস্তব উদাহরণ ও সারসংক্ষেপ
 
 আমার **১৫+ বছরের জ্যোতিষ জীবনে** অসংখ্য হাতের রেখা ও জন্মকুণ্ডলী বিশ্লেষণ করতে গিয়ে দেখেছি —
 
@@ -151,7 +137,7 @@ twitter_image: "https://www.myastrology.in/images/artha-anartha-maraka-bhaba-ana
 <p style="margin:0;color:#666;font-size:13px;line-height:1.7;">জ্যোতিষী, হস্তরেখাবিদ, দার্শনিক চিন্তাবিদ ও ভাগ্য উন্নতির পরামর্শদাতা। রানাঘাট, নদিয়া, পশ্চিমবঙ্গ। &nbsp;<a href="https://www.myastrology.in" style="color:#b8860b;font-weight:600;">myastrology.in</a></p>
 </div>
 
-<div style="background:#f9f5eb;border:1px solid #e8d9a0;border-radius:10px;padding:14px 18px;">
+<div style="background:#f9f5eb;border:1px solid #e8d9a0;border-radius:10px;padding:14px 18px;margin-top:20px;">
 <p style="margin:0 0 8px;font-weight:700;color:#5a3e00;font-size:.93rem;">🔗 সম্পর্কিত পোস্ট</p>
 <p style="margin:0;line-height:2;font-size:.9rem;">
 • <a href="https://www.myastrology.in/blog/british-sushanta-karmafala-jyotish-darshan.html" style="color:#b8860b;">ব্রিটিশ — শনির ছায়ায় এক অসমাপ্ত মূর্তির জীবনকথা</a><br>
