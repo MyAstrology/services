@@ -1,17 +1,51 @@
 {
+  "damodarer-bali-jibon-dorshon": {
+    "relatedByTag": [],
+    "relatedByPillar": [
+      "tarapith-smashan-tantra-jyotish",
+      "moner-jantrana-theke-mukti",
+      "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na"
+    ],
+    "relatedByCluster": [
+      "tarapith-smashan-tantra-jyotish",
+      "moner-jantrana-theke-mukti",
+      "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na"
+    ],
+    "topRelated": [
+      {
+        "slug": "tarapith-smashan-tantra-jyotish",
+        "score": 0.33932539682539686
+      },
+      {
+        "slug": "moner-jantrana-theke-mukti",
+        "score": 0.3305612244897959
+      },
+      {
+        "slug": "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
+        "score": 0.3180769230769231
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 0.4,
+    "manualLinks": []
+  },
   "tarapith-smashan-tantra-jyotish": {
     "relatedByTag": [],
     "relatedByPillar": [
+      "damodarer-bali-jibon-dorshon",
       "moner-jantrana-theke-mukti",
-      "janma-kundali-hasta-mudra-rahasya",
-      "jyotish-6-shakti-shali-yoga-kundali-bisleshan"
+      "janma-kundali-hasta-mudra-rahasya"
     ],
     "relatedByCluster": [
+      "damodarer-bali-jibon-dorshon",
       "moner-jantrana-theke-mukti",
-      "janma-kundali-hasta-mudra-rahasya",
-      "jyotish-6-shakti-shali-yoga-kundali-bisleshan"
+      "janma-kundali-hasta-mudra-rahasya"
     ],
     "topRelated": [
+      {
+        "slug": "damodarer-bali-jibon-dorshon",
+        "score": 0.33932539682539686
+      },
       {
         "slug": "moner-jantrana-theke-mukti",
         "score": 0.3316943187531423
@@ -19,10 +53,6 @@
       {
         "slug": "janma-kundali-hasta-mudra-rahasya",
         "score": 0.3107894736842105
-      },
-      {
-        "slug": "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
-        "score": 0.3100980392156863
       }
     ],
     "cluster": "জ্যোতিষ",
@@ -62,6 +92,38 @@
     ],
     "cluster": "জীবন দর্শন",
     "confidence": 1,
+    "manualLinks": []
+  },
+  "gandharva-yaksha-puran-darshan": {
+    "relatedByTag": [
+      "shiver-gana-ganesh-ganpati-puran-darshan"
+    ],
+    "relatedByPillar": [
+      "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
+      "janmakundali-o-hastrekha-jiban-manchitra",
+      "somoyer-rahasya-jyotish-darshan"
+    ],
+    "relatedByCluster": [
+      "shiver-gana-ganesh-ganpati-puran-darshan",
+      "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
+      "janmakundali-o-hastrekha-jiban-manchitra"
+    ],
+    "topRelated": [
+      {
+        "slug": "shiver-gana-ganesh-ganpati-puran-darshan",
+        "score": 0.4133620689655172
+      },
+      {
+        "slug": "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
+        "score": 0.3929901960784314
+      },
+      {
+        "slug": "janmakundali-o-hastrekha-jiban-manchitra",
+        "score": 0.3927020202020203
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 0.2,
     "manualLinks": []
   },
   "jyotish-shastra-veder-chokh": {
@@ -124,6 +186,41 @@
     ],
     "cluster": "জ্যোতিষ",
     "confidence": 1,
+    "manualLinks": []
+  },
+  "shiver-gana-ganesh-ganpati-puran-darshan": {
+    "relatedByTag": [
+      "somoyer-rahasya-jyotish-darshan",
+      "gandharva-yaksha-puran-darshan",
+      "jibone-sob-kichu-biruddhe-gele-ki-korben",
+      "manush-keno-venge-pore-yogi-pathik-part-2"
+    ],
+    "relatedByPillar": [
+      "bishas-ki-kusanskar-prakriti-manush-jyotish",
+      "nirmal-villa-satya-dhar-mitra",
+      "pitru-dosh-binod-golpo"
+    ],
+    "relatedByCluster": [
+      "somoyer-rahasya-jyotish-darshan",
+      "gandharva-yaksha-puran-darshan",
+      "jibone-sob-kichu-biruddhe-gele-ki-korben"
+    ],
+    "topRelated": [
+      {
+        "slug": "somoyer-rahasya-jyotish-darshan",
+        "score": 0.4141666666666667
+      },
+      {
+        "slug": "gandharva-yaksha-puran-darshan",
+        "score": 0.4133620689655172
+      },
+      {
+        "slug": "jibone-sob-kichu-biruddhe-gele-ki-korben",
+        "score": 0.41098667672197087
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 0.2,
     "manualLinks": []
   },
   "chinta-shakti-bigyan-jyotish-darshan": {
@@ -268,8 +365,8 @@
     ],
     "relatedByPillar": [
       "mukhoser-alore-porichoy-naitikota-sankat",
-      "mangal-grah-antar-yoddha",
-      "pitru-dosh-shastriya-byakhya"
+      "gandharva-yaksha-puran-darshan",
+      "mangal-grah-antar-yoddha"
     ],
     "relatedByCluster": [
       "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
@@ -330,21 +427,26 @@
   },
   "manush-keno-venge-pore-yogi-pathik-part-2": {
     "relatedByTag": [
+      "shiver-gana-ganesh-ganpati-puran-darshan",
       "pitru-dosh-binod-golpo",
       "somoyer-rahasya-jyotish-darshan",
       "shani-sadesati-ki-hoy-keno-hoy-ki-korben"
     ],
     "relatedByPillar": [
+      "gandharva-yaksha-puran-darshan",
       "nirmal-villa-satya-dhar-mitra",
-      "jibone-sob-kichu-biruddhe-gele-ki-korben",
-      "jyotish-6-shakti-shali-yoga-kundali-bisleshan"
+      "jibone-sob-kichu-biruddhe-gele-ki-korben"
     ],
     "relatedByCluster": [
+      "shiver-gana-ganesh-ganpati-puran-darshan",
       "pitru-dosh-binod-golpo",
-      "somoyer-rahasya-jyotish-darshan",
-      "shani-sadesati-ki-hoy-keno-hoy-ki-korben"
+      "somoyer-rahasya-jyotish-darshan"
     ],
     "topRelated": [
+      {
+        "slug": "shiver-gana-ganesh-ganpati-puran-darshan",
+        "score": 0.40714646464646465
+      },
       {
         "slug": "pitru-dosh-binod-golpo",
         "score": 0.4066339869281046
@@ -352,10 +454,6 @@
       {
         "slug": "somoyer-rahasya-jyotish-darshan",
         "score": 0.4038492063492064
-      },
-      {
-        "slug": "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
-        "score": 0.4008333333333334
       }
     ],
     "cluster": "জ্যোতিষ",
@@ -537,18 +635,18 @@
     "relatedByTag": [
       "jibone-sob-kichu-biruddhe-gele-ki-korben",
       "nirmal-villa-satya-dhar-mitra",
-      "manush-keno-venge-pore-yogi-pathik-part-2",
-      "somoyer-rahasya-jyotish-darshan"
+      "shiver-gana-ganesh-ganpati-puran-darshan",
+      "manush-keno-venge-pore-yogi-pathik-part-2"
     ],
     "relatedByPillar": [
       "prodyut-acharya-jyotish-palmist-journey-ranaghat",
       "pitru-dosh-shastriya-byakhya",
-      "jyotish-shastra-veder-chokh"
+      "gandharva-yaksha-puran-darshan"
     ],
     "relatedByCluster": [
       "jibone-sob-kichu-biruddhe-gele-ki-korben",
       "nirmal-villa-satya-dhar-mitra",
-      "manush-keno-venge-pore-yogi-pathik-part-2"
+      "shiver-gana-ganesh-ganpati-puran-darshan"
     ],
     "topRelated": [
       {
@@ -560,8 +658,8 @@
         "score": 0.4035714285714286
       },
       {
-        "slug": "manush-keno-venge-pore-yogi-pathik-part-2",
-        "score": 0.4008333333333334
+        "slug": "shiver-gana-ganesh-ganpati-puran-darshan",
+        "score": 0.4034984984984985
       }
     ],
     "cluster": "জ্যোতিষ",
@@ -698,7 +796,7 @@
     "relatedByPillar": [
       "somoyer-rahasya-jyotish-darshan",
       "prodyut-acharya-jyotish-palmist-journey-ranaghat",
-      "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na"
+      "shiver-gana-ganesh-ganpati-puran-darshan"
     ],
     "relatedByCluster": [
       "manush-keno-venge-pore-yogi-pathik-part-2",
@@ -761,14 +859,14 @@
       "janma-kundali-hasta-mudra-rahasya"
     ],
     "relatedByPillar": [
+      "shiver-gana-ganesh-ganpati-puran-darshan",
       "jyotish-shastra-veder-chokh",
-      "somoyer-rahasya-jyotish-darshan",
-      "prodyut-acharya-jyotish-palmist-journey-ranaghat"
+      "somoyer-rahasya-jyotish-darshan"
     ],
     "relatedByCluster": [
       "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
       "janma-kundali-hasta-mudra-rahasya",
-      "jyotish-shastra-veder-chokh"
+      "shiver-gana-ganesh-ganpati-puran-darshan"
     ],
     "topRelated": [
       {
@@ -780,8 +878,8 @@
         "score": 0.4062992831541219
       },
       {
-        "slug": "jyotish-shastra-veder-chokh",
-        "score": 0.3981051587301587
+        "slug": "shiver-gana-ganesh-ganpati-puran-darshan",
+        "score": 0.3982291666666667
       }
     ],
     "cluster": "জ্যোতিষ",
@@ -892,7 +990,7 @@
     "relatedByPillar": [
       "janmakundali-o-hastrekha-jiban-manchitra",
       "somoyer-rahasya-jyotish-darshan",
-      "mukhoser-alore-porichoy-naitikota-sankat"
+      "gandharva-yaksha-puran-darshan"
     ],
     "relatedByCluster": [
       "bishas-ki-kusanskar-prakriti-manush-jyotish",
@@ -983,14 +1081,14 @@
       "pitru-dosh-binod-golpo"
     ],
     "relatedByPillar": [
+      "shiver-gana-ganesh-ganpati-puran-darshan",
       "somoyer-rahasya-jyotish-darshan",
-      "manush-keno-venge-pore-yogi-pathik-part-2",
-      "prodyut-acharya-jyotish-palmist-journey-ranaghat"
+      "manush-keno-venge-pore-yogi-pathik-part-2"
     ],
     "relatedByCluster": [
       "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
       "pitru-dosh-binod-golpo",
-      "somoyer-rahasya-jyotish-darshan"
+      "shiver-gana-ganesh-ganpati-puran-darshan"
     ],
     "topRelated": [
       {
@@ -1002,8 +1100,8 @@
         "score": 0.40065656565656566
       },
       {
-        "slug": "somoyer-rahasya-jyotish-darshan",
-        "score": 0.39261904761904765
+        "slug": "shiver-gana-ganesh-ganpati-puran-darshan",
+        "score": 0.39493055555555556
       }
     ],
     "cluster": "জ্যোতিষ",
@@ -1281,7 +1379,7 @@
     "relatedByPillar": [
       "mangal-grah-antar-yoddha",
       "jyotish-shastra-veder-chokh",
-      "mukhoser-alore-porichoy-naitikota-sankat"
+      "gandharva-yaksha-puran-darshan"
     ],
     "relatedByCluster": [
       "janmakundali-o-hastrekha-jiban-manchitra",
@@ -1314,8 +1412,8 @@
     ],
     "relatedByPillar": [
       "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
-      "jibone-sob-kichu-biruddhe-gele-ki-korben",
-      "bishas-ki-kusanskar-prakriti-manush-jyotish"
+      "gandharva-yaksha-puran-darshan",
+      "jibone-sob-kichu-biruddhe-gele-ki-korben"
     ],
     "relatedByCluster": [
       "janma-kundali-hasta-mudra-rahasya",
@@ -1343,19 +1441,18 @@
   "jibone-sob-kichu-biruddhe-gele-ki-korben": {
     "relatedByTag": [
       "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
+      "shiver-gana-ganesh-ganpati-puran-darshan",
       "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
-      "somoyer-rahasya-jyotish-darshan",
-      "pitru-dosh-binod-golpo"
+      "somoyer-rahasya-jyotish-darshan"
     ],
     "relatedByPillar": [
       "janmakundali-o-hastrekha-jiban-manchitra",
-      "mukhoser-alore-porichoy-naitikota-sankat",
-      "manush-keno-venge-pore-yogi-pathik-part-2"
+      "mukhoser-alore-porichoy-naitikota-sankat"
     ],
     "relatedByCluster": [
       "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
-      "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
-      "somoyer-rahasya-jyotish-darshan"
+      "shiver-gana-ganesh-ganpati-puran-darshan",
+      "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na"
     ],
     "topRelated": [
       {
@@ -1363,12 +1460,12 @@
         "score": 0.41273809523809524
       },
       {
-        "slug": "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
-        "score": 0.40694444444444444
+        "slug": "shiver-gana-ganesh-ganpati-puran-darshan",
+        "score": 0.41098667672197087
       },
       {
-        "slug": "somoyer-rahasya-jyotish-darshan",
-        "score": 0.4061111111111111
+        "slug": "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
+        "score": 0.40694444444444444
       }
     ],
     "cluster": "জ্যোতিষ",
@@ -1567,18 +1664,17 @@
   "somoyer-rahasya-jyotish-darshan": {
     "relatedByTag": [
       "janma-kundali-hasta-mudra-rahasya",
+      "shiver-gana-ganesh-ganpati-puran-darshan",
       "janmakundali-o-hastrekha-jiban-manchitra",
-      "jibone-sob-kichu-biruddhe-gele-ki-korben",
-      "manush-keno-venge-pore-yogi-pathik-part-2"
+      "jibone-sob-kichu-biruddhe-gele-ki-korben"
     ],
     "relatedByPillar": [
-      "pitru-dosh-binod-golpo",
-      "bishas-ki-kusanskar-prakriti-manush-jyotish"
+      "pitru-dosh-binod-golpo"
     ],
     "relatedByCluster": [
       "janma-kundali-hasta-mudra-rahasya",
-      "janmakundali-o-hastrekha-jiban-manchitra",
-      "jibone-sob-kichu-biruddhe-gele-ki-korben"
+      "shiver-gana-ganesh-ganpati-puran-darshan",
+      "janmakundali-o-hastrekha-jiban-manchitra"
     ],
     "topRelated": [
       {
@@ -1586,12 +1682,12 @@
         "score": 0.44999999999999996
       },
       {
-        "slug": "janmakundali-o-hastrekha-jiban-manchitra",
-        "score": 0.4089414414414414
+        "slug": "shiver-gana-ganesh-ganpati-puran-darshan",
+        "score": 0.4141666666666667
       },
       {
-        "slug": "jibone-sob-kichu-biruddhe-gele-ki-korben",
-        "score": 0.4061111111111111
+        "slug": "janmakundali-o-hastrekha-jiban-manchitra",
+        "score": 0.4089414414414414
       }
     ],
     "cluster": "জ্যোতিষ",
@@ -1718,26 +1814,26 @@
     "relatedByTag": [],
     "relatedByPillar": [],
     "relatedByCluster": [
-      "jibone-sob-kichu-biruddhe-gele-ki-korben",
       "pitru-dosh-shastriya-byakhya",
-      "janma-kundali-hasta-mudra-rahasya"
+      "jibone-sob-kichu-biruddhe-gele-ki-korben",
+      "moner-jantrana-theke-mukti"
     ],
     "topRelated": [
       {
-        "slug": "jibone-sob-kichu-biruddhe-gele-ki-korben",
-        "score": 0.22653846153846155
-      },
-      {
         "slug": "pitru-dosh-shastriya-byakhya",
-        "score": 0.21722222222222223
+        "score": 0.2248798798798799
       },
       {
-        "slug": "janma-kundali-hasta-mudra-rahasya",
-        "score": 0.21705128205128207
+        "slug": "jibone-sob-kichu-biruddhe-gele-ki-korben",
+        "score": 0.21840909090909094
+      },
+      {
+        "slug": "moner-jantrana-theke-mukti",
+        "score": 0.21722689075630253
       }
     ],
     "cluster": "জ্যোতিষ",
-    "confidence": 1,
+    "confidence": 0.8,
     "manualLinks": []
   }
 }

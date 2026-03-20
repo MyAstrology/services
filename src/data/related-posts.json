@@ -1,13 +1,23 @@
 {
+  "damodarer-bali-jibon-dorshon": [
+    "tarapith-smashan-tantra-jyotish",
+    "moner-jantrana-theke-mukti",
+    "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
+    "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
+    "janma-kundali-hasta-mudra-rahasya",
+    "gandharva-yaksha-puran-darshan",
+    "janmakundali-o-hastrekha-jiban-manchitra",
+    "shiver-gana-ganesh-ganpati-puran-darshan"
+  ],
   "tarapith-smashan-tantra-jyotish": [
+    "damodarer-bali-jibon-dorshon",
     "moner-jantrana-theke-mukti",
     "janma-kundali-hasta-mudra-rahasya",
     "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
     "somoyer-rahasya-jyotish-darshan",
     "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
     "mangal-grah-antar-yoddha",
-    "nirmal-villa-satya-dhar-mitra",
-    "bishas-ki-kusanskar-prakriti-manush-jyotish"
+    "nirmal-villa-satya-dhar-mitra"
   ],
   "artha-ki-sukh-dey-jyotish-darshan-parashar": [
     "mantra-jap-ki-kaj-kore-bigyan-adhyatma",
@@ -19,6 +29,16 @@
     "ishwar-bishas-nastik-dharmic-karma-part-2",
     "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha"
   ],
+  "gandharva-yaksha-puran-darshan": [
+    "shiver-gana-ganesh-ganpati-puran-darshan",
+    "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
+    "janmakundali-o-hastrekha-jiban-manchitra",
+    "somoyer-rahasya-jyotish-darshan",
+    "manush-keno-venge-pore-yogi-pathik-part-2",
+    "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
+    "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
+    "bishas-ki-kusanskar-prakriti-manush-jyotish"
+  ],
   "jyotish-shastra-veder-chokh": [
     "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
     "bishas-ki-kusanskar-prakriti-manush-jyotish",
@@ -26,18 +46,28 @@
     "janma-kundali-hasta-mudra-rahasya",
     "jibone-sob-kichu-biruddhe-gele-ki-korben",
     "janmakundali-o-hastrekha-jiban-manchitra",
-    "somoyer-rahasya-jyotish-darshan",
-    "mukhoser-alore-porichoy-naitikota-sankat"
+    "gandharva-yaksha-puran-darshan",
+    "somoyer-rahasya-jyotish-darshan"
   ],
   "moner-jantrana-theke-mukti": [
     "jibone-sob-kichu-biruddhe-gele-ki-korben",
     "jyotish-shastra-veder-chokh",
     "bishas-ki-kusanskar-prakriti-manush-jyotish",
     "tarapith-smashan-tantra-jyotish",
+    "damodarer-bali-jibon-dorshon",
     "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
     "somoyer-rahasya-jyotish-darshan",
-    "janma-kundali-hasta-mudra-rahasya",
-    "prodyut-acharya-jyotish-palmist-journey-ranaghat"
+    "janma-kundali-hasta-mudra-rahasya"
+  ],
+  "shiver-gana-ganesh-ganpati-puran-darshan": [
+    "somoyer-rahasya-jyotish-darshan",
+    "gandharva-yaksha-puran-darshan",
+    "jibone-sob-kichu-biruddhe-gele-ki-korben",
+    "manush-keno-venge-pore-yogi-pathik-part-2",
+    "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
+    "bishas-ki-kusanskar-prakriti-manush-jyotish",
+    "nirmal-villa-satya-dhar-mitra",
+    "pitru-dosh-binod-golpo"
   ],
   "chinta-shakti-bigyan-jyotish-darshan": [
     "ishwar-bishas-nastik-dharmic-karma-part-2",
@@ -83,11 +113,11 @@
     "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
     "somoyer-rahasya-jyotish-darshan",
     "mukhoser-alore-porichoy-naitikota-sankat",
+    "gandharva-yaksha-puran-darshan",
     "mangal-grah-antar-yoddha",
     "pitru-dosh-shastriya-byakhya",
     "jibone-sob-kichu-biruddhe-gele-ki-korben",
-    "manush-keno-venge-pore-yogi-pathik-part-2",
-    "shani-sadesati-ki-hoy-keno-hoy-ki-korben"
+    "manush-keno-venge-pore-yogi-pathik-part-2"
   ],
   "mantra-jap-ki-kaj-kore-bigyan-adhyatma": [
     "artha-ki-sukh-dey-jyotish-darshan-parashar",
@@ -100,14 +130,14 @@
     "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha"
   ],
   "manush-keno-venge-pore-yogi-pathik-part-2": [
+    "shiver-gana-ganesh-ganpati-puran-darshan",
     "pitru-dosh-binod-golpo",
     "somoyer-rahasya-jyotish-darshan",
     "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
+    "gandharva-yaksha-puran-darshan",
     "nirmal-villa-satya-dhar-mitra",
     "jibone-sob-kichu-biruddhe-gele-ki-korben",
-    "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
-    "bishas-ki-kusanskar-prakriti-manush-jyotish",
-    "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na"
+    "jyotish-6-shakti-shali-yoga-kundali-bisleshan"
   ],
   "manush-ki-satyi-valobasha-yogi-pathik-part-1": [
     "ishwar-bishas-nastik-dharmic-karma-part-2",
@@ -153,11 +183,11 @@
     "preme-byartho-keno-jyotish-hastarekha-uttor",
     "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
     "somoyer-rahasya-jyotish-darshan",
+    "shiver-gana-ganesh-ganpati-puran-darshan",
     "gorib-keno-buddher-utor-jibon-bodle-dey",
     "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
     "manush-keno-venge-pore-yogi-pathik-part-2",
-    "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
-    "pitru-dosh-binod-golpo"
+    "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya"
   ],
   "sanshoy-theke-hastarekha-bigyan-jyotish": [
     "samudrik-shastra-nari-noy-sattva-bichar",
@@ -172,12 +202,12 @@
   "shani-sadesati-ki-hoy-keno-hoy-ki-korben": [
     "jibone-sob-kichu-biruddhe-gele-ki-korben",
     "nirmal-villa-satya-dhar-mitra",
+    "shiver-gana-ganesh-ganpati-puran-darshan",
     "manush-keno-venge-pore-yogi-pathik-part-2",
     "somoyer-rahasya-jyotish-darshan",
     "prodyut-acharya-jyotish-palmist-journey-ranaghat",
     "pitru-dosh-shastriya-byakhya",
-    "jyotish-shastra-veder-chokh",
-    "pitru-dosh-binod-golpo"
+    "gandharva-yaksha-puran-darshan"
   ],
   "prithibir-itihas-rahasya": [
     "prachin-grantha-o-adhunik-bigyan",
@@ -225,9 +255,9 @@
     "nirmal-villa-satya-dhar-mitra",
     "somoyer-rahasya-jyotish-darshan",
     "prodyut-acharya-jyotish-palmist-journey-ranaghat",
+    "shiver-gana-ganesh-ganpati-puran-darshan",
     "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
-    "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
-    "nijeke-chena-andhakarer-path"
+    "shani-sadesati-ki-hoy-keno-hoy-ki-korben"
   ],
   "pitru-dosh-shastriya-byakhya": [
     "janmakundali-o-hastrekha-jiban-manchitra",
@@ -235,19 +265,19 @@
     "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
     "somoyer-rahasya-jyotish-darshan",
     "jibone-sob-kichu-biruddhe-gele-ki-korben",
+    "gandharva-yaksha-puran-darshan",
     "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
-    "mukhoser-alore-porichoy-naitikota-sankat",
-    "janma-kundali-hasta-mudra-rahasya"
+    "mukhoser-alore-porichoy-naitikota-sankat"
   ],
   "bishas-ki-kusanskar-prakriti-manush-jyotish": [
     "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
     "janma-kundali-hasta-mudra-rahasya",
+    "shiver-gana-ganesh-ganpati-puran-darshan",
     "jyotish-shastra-veder-chokh",
     "somoyer-rahasya-jyotish-darshan",
     "prodyut-acharya-jyotish-palmist-journey-ranaghat",
     "mukhoser-alore-porichoy-naitikota-sankat",
-    "janmakundali-o-hastrekha-jiban-manchitra",
-    "shani-sadesati-ki-hoy-keno-hoy-ki-korben"
+    "janmakundali-o-hastrekha-jiban-manchitra"
   ],
   "hath-chinho-porichoy": [
     "star-chinho-hastrekha",
@@ -287,7 +317,7 @@
     "jibone-sob-kichu-biruddhe-gele-ki-korben",
     "janmakundali-o-hastrekha-jiban-manchitra",
     "somoyer-rahasya-jyotish-darshan",
-    "mukhoser-alore-porichoy-naitikota-sankat"
+    "gandharva-yaksha-puran-darshan"
   ],
   "mukhoser-alore-porichoy-naitikota-sankat": [
     "somoyer-rahasya-jyotish-darshan",
@@ -297,7 +327,7 @@
     "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
     "janmakundali-o-hastrekha-jiban-manchitra",
     "jibone-sob-kichu-biruddhe-gele-ki-korben",
-    "janma-kundali-hasta-mudra-rahasya"
+    "gandharva-yaksha-puran-darshan"
   ],
   "nijeke-chena-andhakarer-path": [
     "mangal-grah-antar-yoddha",
@@ -312,12 +342,12 @@
   "nirmal-villa-satya-dhar-mitra": [
     "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
     "pitru-dosh-binod-golpo",
+    "shiver-gana-ganesh-ganpati-puran-darshan",
     "somoyer-rahasya-jyotish-darshan",
     "manush-keno-venge-pore-yogi-pathik-part-2",
     "prodyut-acharya-jyotish-palmist-journey-ranaghat",
     "jibone-sob-kichu-biruddhe-gele-ki-korben",
-    "mangal-grah-antar-yoddha",
-    "nijeke-chena-andhakarer-path"
+    "mangal-grah-antar-yoddha"
   ],
   "hasta-rekha-jivan-manchitra": [
     "hath-rekha-atmounnayan",
@@ -407,27 +437,27 @@
     "jibone-sob-kichu-biruddhe-gele-ki-korben",
     "mangal-grah-antar-yoddha",
     "jyotish-shastra-veder-chokh",
-    "mukhoser-alore-porichoy-naitikota-sankat"
+    "gandharva-yaksha-puran-darshan"
   ],
   "janmakundali-o-hastrekha-jiban-manchitra": [
     "janma-kundali-hasta-mudra-rahasya",
     "somoyer-rahasya-jyotish-darshan",
     "pitru-dosh-shastriya-byakhya",
     "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
+    "gandharva-yaksha-puran-darshan",
     "jibone-sob-kichu-biruddhe-gele-ki-korben",
     "bishas-ki-kusanskar-prakriti-manush-jyotish",
-    "mukhoser-alore-porichoy-naitikota-sankat",
-    "shani-sadesati-ki-hoy-keno-hoy-ki-korben"
+    "mukhoser-alore-porichoy-naitikota-sankat"
   ],
   "jibone-sob-kichu-biruddhe-gele-ki-korben": [
     "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
+    "shiver-gana-ganesh-ganpati-puran-darshan",
     "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
     "somoyer-rahasya-jyotish-darshan",
     "pitru-dosh-binod-golpo",
     "janma-kundali-hasta-mudra-rahasya",
     "janmakundali-o-hastrekha-jiban-manchitra",
-    "mukhoser-alore-porichoy-naitikota-sankat",
-    "manush-keno-venge-pore-yogi-pathik-part-2"
+    "mukhoser-alore-porichoy-naitikota-sankat"
   ],
   "kanaklata-jiban-sangram-saktir-golpo": [
     "sushanta-british-jiban-sangram-kartabya",
@@ -491,13 +521,13 @@
   ],
   "somoyer-rahasya-jyotish-darshan": [
     "janma-kundali-hasta-mudra-rahasya",
+    "shiver-gana-ganesh-ganpati-puran-darshan",
     "janmakundali-o-hastrekha-jiban-manchitra",
     "jibone-sob-kichu-biruddhe-gele-ki-korben",
     "manush-keno-venge-pore-yogi-pathik-part-2",
     "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
     "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
-    "pitru-dosh-binod-golpo",
-    "bishas-ki-kusanskar-prakriti-manush-jyotish"
+    "pitru-dosh-binod-golpo"
   ],
   "sushanta-british-jiban-sangram-kartabya": [
     "kanaklata-jiban-sangram-saktir-golpo",
@@ -540,13 +570,13 @@
     "manush-ki-satyi-valobasha-yogi-pathik-part-1"
   ],
   "artha-anartha-maraka-bhaba-analysis": [
-    "jibone-sob-kichu-biruddhe-gele-ki-korben",
     "pitru-dosh-shastriya-byakhya",
+    "jibone-sob-kichu-biruddhe-gele-ki-korben",
+    "moner-jantrana-theke-mukti",
     "janma-kundali-hasta-mudra-rahasya",
     "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
     "jyotish-shastra-veder-chokh",
-    "moner-jantrana-theke-mukti",
-    "manush-keno-venge-pore-yogi-pathik-part-2",
-    "jyotish-6-shakti-shali-yoga-kundali-bisleshan"
+    "prodyut-acharya-jyotish-palmist-journey-ranaghat",
+    "somoyer-rahasya-jyotish-darshan"
   ]
 }
