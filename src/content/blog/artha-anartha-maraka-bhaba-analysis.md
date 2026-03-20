@@ -11,7 +11,7 @@ author:
 categories: ["Astrology", "Philosophy", "SEO friendly"]
 tags: ["ধনভাব", "সপ্তম ভাব", "মারকস্থান", "জ্যোতিষ", "হস্তরেখা"]
 keywords: "অর্থ, অনর্থ, ধনভাব, সপ্তম ভাব, মারকস্থান, বৃহৎ পরাশর হোরাশাস্ত্র, অর্থ কি সুখ দেয়, অর্থ অনর্থের মূল মানে, দ্বিতীয় ভাব জ্যোতিষ, Astrology, Palmistry, Dr Prodyut Acharya"
-canonical_url: "https://www.myastrology.in/blog.html?post=artha-anartha-maraka"
+canonical_url: "https://www.myastrology.in/blog.html?post=artha-anartha-maraka-bhaba-analysis."
 featured: true
 priority: 1
 reading_time: "10 min"
