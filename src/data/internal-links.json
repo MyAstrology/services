@@ -29,6 +29,41 @@
     "confidence": 0.4,
     "manualLinks": []
   },
+  "artha-ki-sukh-dey-jyotish-darshan-parashar": {
+    "relatedByTag": [
+      "mantra-jap-ki-kaj-kore-bigyan-adhyatma",
+      "gorib-keno-buddher-utor-jibon-bodle-dey",
+      "manush-ki-satyi-valobasha-yogi-pathik-part-1",
+      "dharma-ki-prokrit-artha-gita-buddha-darshan"
+    ],
+    "relatedByPillar": [
+      "chinta-shakti-bigyan-jyotish-darshan",
+      "ishwar-bishas-nastik-dharmic-karma-part-2",
+      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha"
+    ],
+    "relatedByCluster": [
+      "mantra-jap-ki-kaj-kore-bigyan-adhyatma",
+      "gorib-keno-buddher-utor-jibon-bodle-dey",
+      "manush-ki-satyi-valobasha-yogi-pathik-part-1"
+    ],
+    "topRelated": [
+      {
+        "slug": "mantra-jap-ki-kaj-kore-bigyan-adhyatma",
+        "score": 0.43346012388695315
+      },
+      {
+        "slug": "gorib-keno-buddher-utor-jibon-bodle-dey",
+        "score": 0.41487726098191213
+      },
+      {
+        "slug": "manush-ki-satyi-valobasha-yogi-pathik-part-1",
+        "score": 0.41361111111111115
+      }
+    ],
+    "cluster": "জীবন দর্শন",
+    "confidence": 1,
+    "manualLinks": []
+  },
   "jyotish-shastra-veder-chokh": {
     "relatedByTag": [
       "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na"
@@ -97,14 +132,14 @@
       "mantra-jap-ki-kaj-kore-bigyan-adhyatma"
     ],
     "relatedByPillar": [
+      "artha-ki-sukh-dey-jyotish-darshan-parashar",
       "bhalo-manush-haoar-satyi-path",
-      "dharma-ki-prokrit-artha-gita-buddha-darshan",
-      "ishwar-bishas-upalabdhi-karma-vivekananda-part-1"
+      "dharma-ki-prokrit-artha-gita-buddha-darshan"
     ],
     "relatedByCluster": [
       "ishwar-bishas-nastik-dharmic-karma-part-2",
       "mantra-jap-ki-kaj-kore-bigyan-adhyatma",
-      "bhalo-manush-haoar-satyi-path"
+      "artha-ki-sukh-dey-jyotish-darshan-parashar"
     ],
     "topRelated": [
       {
@@ -116,8 +151,8 @@
         "score": 0.4008333333333334
       },
       {
-        "slug": "bhalo-manush-haoar-satyi-path",
-        "score": 0.39666666666666667
+        "slug": "artha-ki-sukh-dey-jyotish-darshan-parashar",
+        "score": 0.39944444444444444
       }
     ],
     "cluster": "জীবন দর্শন",
@@ -165,9 +200,9 @@
       "chinta-shakti-bigyan-jyotish-darshan"
     ],
     "relatedByPillar": [
+      "artha-ki-sukh-dey-jyotish-darshan-parashar",
       "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
-      "mahabharata-ratha-pancha-indriya-jiban-darshan",
-      "bhalo-manush-haoar-satyi-path"
+      "mahabharata-ratha-pancha-indriya-jiban-darshan"
     ],
     "relatedByCluster": [
       "manush-ki-satyi-valobasha-yogi-pathik-part-1",
@@ -195,7 +230,8 @@
   "ishwar-bishas-upalabdhi-karma-vivekananda-part-1": {
     "relatedByTag": [
       "ishwar-bishas-nastik-dharmic-karma-part-2",
-      "manush-ki-satyi-valobasha-yogi-pathik-part-1"
+      "manush-ki-satyi-valobasha-yogi-pathik-part-1",
+      "artha-ki-sukh-dey-jyotish-darshan-parashar"
     ],
     "relatedByPillar": [
       "mantra-jap-ki-kaj-kore-bigyan-adhyatma",
@@ -205,7 +241,7 @@
     "relatedByCluster": [
       "ishwar-bishas-nastik-dharmic-karma-part-2",
       "manush-ki-satyi-valobasha-yogi-pathik-part-1",
-      "mantra-jap-ki-kaj-kore-bigyan-adhyatma"
+      "artha-ki-sukh-dey-jyotish-darshan-parashar"
     ],
     "topRelated": [
       {
@@ -217,8 +253,8 @@
         "score": 0.4141666666666667
       },
       {
-        "slug": "mantra-jap-ki-kaj-kore-bigyan-adhyatma",
-        "score": 0.4
+        "slug": "artha-ki-sukh-dey-jyotish-darshan-parashar",
+        "score": 0.40265651874785
       }
     ],
     "cluster": "জীবন দর্শন",
@@ -260,22 +296,25 @@
   },
   "mantra-jap-ki-kaj-kore-bigyan-adhyatma": {
     "relatedByTag": [
-      "manush-ki-satyi-valobasha-yogi-pathik-part-1",
-      "gorib-keno-buddher-utor-jibon-bodle-dey",
-      "ishwar-bishas-nastik-dharmic-karma-part-2",
-      "chinta-shakti-bigyan-jyotish-darshan"
-    ],
-    "relatedByPillar": [
-      "ishwar-bishas-upalabdhi-karma-vivekananda-part-1",
-      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
-      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo"
-    ],
-    "relatedByCluster": [
+      "artha-ki-sukh-dey-jyotish-darshan-parashar",
       "manush-ki-satyi-valobasha-yogi-pathik-part-1",
       "gorib-keno-buddher-utor-jibon-bodle-dey",
       "ishwar-bishas-nastik-dharmic-karma-part-2"
     ],
+    "relatedByPillar": [
+      "ishwar-bishas-upalabdhi-karma-vivekananda-part-1",
+      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha"
+    ],
+    "relatedByCluster": [
+      "artha-ki-sukh-dey-jyotish-darshan-parashar",
+      "manush-ki-satyi-valobasha-yogi-pathik-part-1",
+      "gorib-keno-buddher-utor-jibon-bodle-dey"
+    ],
     "topRelated": [
+      {
+        "slug": "artha-ki-sukh-dey-jyotish-darshan-parashar",
+        "score": 0.43346012388695315
+      },
       {
         "slug": "manush-ki-satyi-valobasha-yogi-pathik-part-1",
         "score": 0.41607142857142854
@@ -283,10 +322,6 @@
       {
         "slug": "gorib-keno-buddher-utor-jibon-bodle-dey",
         "score": 0.4057539682539683
-      },
-      {
-        "slug": "ishwar-bishas-nastik-dharmic-karma-part-2",
-        "score": 0.40449186991869923
       }
     ],
     "cluster": "জীবন দর্শন",
@@ -332,7 +367,7 @@
       "ishwar-bishas-nastik-dharmic-karma-part-2",
       "mantra-jap-ki-kaj-kore-bigyan-adhyatma",
       "ishwar-bishas-upalabdhi-karma-vivekananda-part-1",
-      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo"
+      "artha-ki-sukh-dey-jyotish-darshan-parashar"
     ],
     "relatedByPillar": [
       "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
@@ -591,10 +626,10 @@
   },
   "gorib-keno-buddher-utor-jibon-bodle-dey": {
     "relatedByTag": [
+      "artha-ki-sukh-dey-jyotish-darshan-parashar",
       "dharma-ki-prokrit-artha-gita-buddha-darshan",
       "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
-      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
-      "mantra-jap-ki-kaj-kore-bigyan-adhyatma"
+      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo"
     ],
     "relatedByPillar": [
       "bhalo-manush-haoar-satyi-path",
@@ -602,11 +637,15 @@
       "ishwar-bishas-upalabdhi-karma-vivekananda-part-1"
     ],
     "relatedByCluster": [
+      "artha-ki-sukh-dey-jyotish-darshan-parashar",
       "dharma-ki-prokrit-artha-gita-buddha-darshan",
-      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
-      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo"
+      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya"
     ],
     "topRelated": [
+      {
+        "slug": "artha-ki-sukh-dey-jyotish-darshan-parashar",
+        "score": 0.41487726098191213
+      },
       {
         "slug": "dharma-ki-prokrit-artha-gita-buddha-darshan",
         "score": 0.41073099415204684
@@ -614,10 +653,6 @@
       {
         "slug": "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
         "score": 0.4096920563097034
-      },
-      {
-        "slug": "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
-        "score": 0.4070959595959596
       }
     ],
     "cluster": "জীবন দর্শন",
@@ -1211,8 +1246,7 @@
       "pradip-byarthata-manoshik-shanti"
     ],
     "relatedByPillar": [
-      "chinta-shakti-bigyan-jyotish-darshan",
-      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha"
+      "chinta-shakti-bigyan-jyotish-darshan"
     ],
     "relatedByCluster": [
       "bhalo-manush-haoar-satyi-path",
@@ -1409,7 +1443,7 @@
       "safal-manush-sukhi-noy-porichoy-shantir-dwondwo"
     ],
     "relatedByPillar": [
-      "mantra-jap-ki-kaj-kore-bigyan-adhyatma"
+      "artha-ki-sukh-dey-jyotish-darshan-parashar"
     ],
     "relatedByCluster": [
       "dharma-ki-prokrit-artha-gita-buddha-darshan",
@@ -1654,13 +1688,13 @@
     "relatedByTag": [],
     "relatedByPillar": [
       "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
-      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
-      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo"
+      "artha-ki-sukh-dey-jyotish-darshan-parashar",
+      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha"
     ],
     "relatedByCluster": [
       "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
-      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
-      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo"
+      "artha-ki-sukh-dey-jyotish-darshan-parashar",
+      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha"
     ],
     "topRelated": [
       {
@@ -1668,12 +1702,12 @@
         "score": 0.30674603174603177
       },
       {
-        "slug": "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
-        "score": 0.25294294294294295
+        "slug": "artha-ki-sukh-dey-jyotish-darshan-parashar",
+        "score": 0.27
       },
       {
-        "slug": "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
-        "score": 0.25222222222222224
+        "slug": "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
+        "score": 0.25294294294294295
       }
     ],
     "cluster": "জীবন দর্শন",
