@@ -1,4 +1,34 @@
 {
+  "tarapith-smashan-tantra-jyotish": {
+    "relatedByTag": [],
+    "relatedByPillar": [
+      "moner-jantrana-theke-mukti",
+      "janma-kundali-hasta-mudra-rahasya",
+      "jyotish-6-shakti-shali-yoga-kundali-bisleshan"
+    ],
+    "relatedByCluster": [
+      "moner-jantrana-theke-mukti",
+      "janma-kundali-hasta-mudra-rahasya",
+      "jyotish-6-shakti-shali-yoga-kundali-bisleshan"
+    ],
+    "topRelated": [
+      {
+        "slug": "moner-jantrana-theke-mukti",
+        "score": 0.3316943187531423
+      },
+      {
+        "slug": "janma-kundali-hasta-mudra-rahasya",
+        "score": 0.3107894736842105
+      },
+      {
+        "slug": "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
+        "score": 0.3100980392156863
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 0.4,
+    "manualLinks": []
+  },
   "jyotish-shastra-veder-chokh": {
     "relatedByTag": [
       "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na"
