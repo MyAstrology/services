@@ -169,3 +169,4 @@ twitter_image: "https://www.myastrology.in/images/artha-anartha-jyotish-darshan.
 <h4 style="margin:0 0 4px;color:#7a5c00;font-size:1rem;">Dr Prodyut Acharya</h4>
 <p style="margin:0;color:#666;font-size:13px;line-height:1.7;">PhD স্বর্ণপদকপ্রাপ্ত জ্যোতিষী, হস্তরেখাবিদ ও দার্শনিক চিন্তাবিদ। ১৫+ বছরের অভিজ্ঞতায় ১০,০০০+ মানুষের জীবন বিশ্লেষণ করেছেন। রানাঘাট, নদিয়া, পশ্চিমবঙ্গ। &nbsp;<a href="https://www.myastrology.in" style="color:#b8860b;font-weight:600;">myastrology.in</a></p>
 </div>
+
