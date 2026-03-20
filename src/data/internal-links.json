@@ -31,6 +31,36 @@
     "confidence": 1,
     "manualLinks": []
   },
+  "moner-jantrana-theke-mukti": {
+    "relatedByTag": [],
+    "relatedByPillar": [
+      "jibone-sob-kichu-biruddhe-gele-ki-korben",
+      "jyotish-shastra-veder-chokh",
+      "bishas-ki-kusanskar-prakriti-manush-jyotish"
+    ],
+    "relatedByCluster": [
+      "jibone-sob-kichu-biruddhe-gele-ki-korben",
+      "jyotish-shastra-veder-chokh",
+      "bishas-ki-kusanskar-prakriti-manush-jyotish"
+    ],
+    "topRelated": [
+      {
+        "slug": "jibone-sob-kichu-biruddhe-gele-ki-korben",
+        "score": 0.3607184085755515
+      },
+      {
+        "slug": "jyotish-shastra-veder-chokh",
+        "score": 0.3353896103896104
+      },
+      {
+        "slug": "bishas-ki-kusanskar-prakriti-manush-jyotish",
+        "score": 0.33181818181818185
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 1,
+    "manualLinks": []
+  },
   "chinta-shakti-bigyan-jyotish-darshan": {
     "relatedByTag": [
       "ishwar-bishas-nastik-dharmic-karma-part-2",
