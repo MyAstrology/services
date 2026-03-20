@@ -27,6 +27,7 @@ const PAGE_CONFIG = {
   'contact.html':                        { priority: 0.72, changefreq: 'yearly'  },
   'privacy-policy.html':                 { priority: 0.30, changefreq: 'yearly'  },
   'terms-of-use.html':                   { priority: 0.30, changefreq: 'yearly'  },
+  'best-astrologer-in-west-bengal.html': { priority: 0.90, changefreq: 'monthly' },
 };
 
 // ── Subdirectory index pages (manually maintained) ─────────────────
