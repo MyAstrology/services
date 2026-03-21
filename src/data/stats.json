@@ -1,8 +1,8 @@
 {
-  "totalPosts": 74,
+  "totalPosts": 75,
   "clusters": {
     "জ্যোতিষ": 24,
-    "জীবন দর্শন": 30,
+    "জীবন দর্শন": 31,
     "সম্পর্ক": 4,
     "হস্তরেখা": 10,
     "বিজ্ঞান": 2,
@@ -12,7 +12,7 @@
   },
   "parentClusters": {
     "শারীরিক জ্যোতিষ": 34,
-    "আধ্যাত্মিক": 30,
+    "আধ্যাত্মিক": 31,
     "ব্যবহারিক জীবন": 5,
     "শিক্ষা": 2,
     "অন্যান্য": 1,
@@ -42,7 +42,7 @@
     "বৃশ্চিক লগ্ন": 1,
     "Scorpio Ascendant": 1,
     "Brischik Lagna": 1,
-    "লগ্ন বিচার": 11,
+    "লগ্ন বিচার": 12,
     "বৃষ লগ্ন": 1,
     "Taurus Ascendant": 1,
     "Brisha Lagna": 1,
@@ -64,6 +64,9 @@
     "মকর লগ্ন": 1,
     "Capricorn Ascendant": 1,
     "Makar Lagna": 1,
+    "মীন লগ্ন": 1,
+    "Pisces Ascendant": 1,
+    "Meen Lagna": 1,
     "মেষ লগ্ন": 1,
     "Aries Ascendant": 1,
     "Mesh Lagna": 1,
@@ -251,8 +254,8 @@
     "জ্যোতিষ": 1,
     "হস্তরেখা": 1
   },
-  "avgLinksPerPost": "7.30",
-  "totalLinks": 540,
+  "avgLinksPerPost": "7.29",
+  "totalLinks": 547,
   "postsWithNoLinks": 1,
-  "generatedAt": "2026-03-21T07:22:14.790Z"
+  "generatedAt": "2026-03-21T07:23:29.318Z"
 }

@@ -373,6 +373,37 @@
     "confidence": 0.8,
     "manualLinks": []
   },
+  "meen-lagna-jataker-swabhab-karma-bibaha-bhagya": {
+    "relatedByTag": [
+      "dhanu-lagna-jataker-swabhab-karma-bibaha-bhagya",
+      "brischik-lagna-jataker-swabhab-karma-bibaha-bhagya",
+      "kumbha-lagna-jataker-swabhab-karma-bibaha-bhagya",
+      "makar-lagna-jataker-swabhab-karma-bibaha-bhagya"
+    ],
+    "relatedByPillar": [],
+    "relatedByCluster": [
+      "dhanu-lagna-jataker-swabhab-karma-bibaha-bhagya",
+      "brischik-lagna-jataker-swabhab-karma-bibaha-bhagya",
+      "kumbha-lagna-jataker-swabhab-karma-bibaha-bhagya"
+    ],
+    "topRelated": [
+      {
+        "slug": "dhanu-lagna-jataker-swabhab-karma-bibaha-bhagya",
+        "score": 0.612
+      },
+      {
+        "slug": "brischik-lagna-jataker-swabhab-karma-bibaha-bhagya",
+        "score": 0.6023076923076923
+      },
+      {
+        "slug": "kumbha-lagna-jataker-swabhab-karma-bibaha-bhagya",
+        "score": 0.6023076923076923
+      }
+    ],
+    "cluster": "জীবন দর্শন",
+    "confidence": 0.8,
+    "manualLinks": []
+  },
   "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya": {
     "relatedByTag": [
       "brischik-lagna-jataker-swabhab-karma-bibaha-bhagya",
