@@ -154,28 +154,28 @@
   },
   "baisakh-mase-janma-12-rashi-swabhab-karma-shastha": {
     "relatedByTag": [
-      "jaistha-mase-janma-12-rashi-swabhab-karma-shastha",
-      "ashar-mase-janma-12-rashi-swabhab-karma-shastha",
-      "ashwin-mase-janma-12-rashi-swabhab-karma-shastha",
-      "bhadra-mase-janma-12-rashi-swabhab-karma-shastha"
-    ],
-    "relatedByPillar": [],
-    "relatedByCluster": [
+      "chaitro-mase-janma-12-rashi-swabhab-karma-shastha",
       "jaistha-mase-janma-12-rashi-swabhab-karma-shastha",
       "ashar-mase-janma-12-rashi-swabhab-karma-shastha",
       "ashwin-mase-janma-12-rashi-swabhab-karma-shastha"
     ],
+    "relatedByPillar": [],
+    "relatedByCluster": [
+      "chaitro-mase-janma-12-rashi-swabhab-karma-shastha",
+      "jaistha-mase-janma-12-rashi-swabhab-karma-shastha",
+      "ashar-mase-janma-12-rashi-swabhab-karma-shastha"
+    ],
     "topRelated": [
+      {
+        "slug": "chaitro-mase-janma-12-rashi-swabhab-karma-shastha",
+        "score": 0.6324110671936759
+      },
       {
         "slug": "jaistha-mase-janma-12-rashi-swabhab-karma-shastha",
         "score": 0.624505928853755
       },
       {
         "slug": "ashar-mase-janma-12-rashi-swabhab-karma-shastha",
-        "score": 0.6073863636363636
-      },
-      {
-        "slug": "ashwin-mase-janma-12-rashi-swabhab-karma-shastha",
         "score": 0.6073863636363636
       }
     ],
@@ -364,6 +364,37 @@
     ],
     "cluster": "জীবন দর্শন",
     "confidence": 0.8,
+    "manualLinks": []
+  },
+  "chaitro-mase-janma-12-rashi-swabhab-karma-shastha": {
+    "relatedByTag": [
+      "jaistha-mase-janma-12-rashi-swabhab-karma-shastha",
+      "ashar-mase-janma-12-rashi-swabhab-karma-shastha",
+      "ashwin-mase-janma-12-rashi-swabhab-karma-shastha",
+      "bhadra-mase-janma-12-rashi-swabhab-karma-shastha"
+    ],
+    "relatedByPillar": [],
+    "relatedByCluster": [
+      "jaistha-mase-janma-12-rashi-swabhab-karma-shastha",
+      "ashar-mase-janma-12-rashi-swabhab-karma-shastha",
+      "ashwin-mase-janma-12-rashi-swabhab-karma-shastha"
+    ],
+    "topRelated": [
+      {
+        "slug": "jaistha-mase-janma-12-rashi-swabhab-karma-shastha",
+        "score": 0.6911725955204217
+      },
+      {
+        "slug": "ashar-mase-janma-12-rashi-swabhab-karma-shastha",
+        "score": 0.6740530303030303
+      },
+      {
+        "slug": "ashwin-mase-janma-12-rashi-swabhab-karma-shastha",
+        "score": 0.6740530303030303
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 0.4,
     "manualLinks": []
   },
   "dhanu-lagna-jataker-swabhab-karma-bibaha-bhagya": {
