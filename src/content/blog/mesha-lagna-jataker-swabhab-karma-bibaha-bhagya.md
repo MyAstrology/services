@@ -23,6 +23,25 @@ twitter_description: "স্বভাব, শিক্ষা, কর্ম, ব�
 twitter_image: "https://www.myastrology.in/images/mesha-rashi-aries.webp"
 ---
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "কুম্ভ লগ্নের জাতকের সম্পূর্ণ বিশ্লেষণ — স্বভাব, কর্ম, বিবাহ ও ভাগ্য",
+  "description": "কুম্ভ লগ্নের জাতক-জাতিকাদের স্বভাব, শিক্ষা, কর্মজীবন, বিবাহ ও ভাগ্য নিয়ে সম্পূর্ণ বৈদিক জ্যোতিষ বিশ্লেষণ। লগ্নস্বামী শনি।",
+  "image": "https://www.myastrology.in/images/kumbha-rashi-aquarius.webp",
+  "author": {"@type": "Person", "name": "Dr Prodyut Acharya", "url": "https://www.myastrology.in"},
+  "publisher": {"@type": "Organization", "name": "MyAstrology Ranaghat", "logo": {"@type": "ImageObject", "url": "https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png"}},
+  "datePublished": "2026-03-21",
+  "dateModified": "2026-03-21",
+  "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.myastrology.in/blog/kumbha-lagna-jataker-swabhab-karma-bibaha-bhagya.html"},
+  "keywords": "কুম্ভ লগ্নের জাতকের স্বভাব, কুম্ভ লগ্নে বিবাহ, Kumbha Lagna Bengali Jyotish, Aquarius Ascendant",
+  "about": {"@type": "Thing", "name": "কুম্ভ লগ্ন জ্যোতিষ বিশ্লেষণ"}
+}
+</script>
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="author" content="Dr Prodyut Acharya, MyAstrology Ranaghat">
+
 <style>
 .lagna-tag{display:inline-block;background:#0a1730;color:#c9a227;font-size:.75rem;letter-spacing:2px;padding:5px 16px;border-radius:20px;text-transform:uppercase;margin-bottom:8px}
 .lagna-table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px}
