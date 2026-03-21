@@ -48,6 +48,33 @@
       }
     }
   },
+  "jyotish-shastra-utpatti-itihas-beder-chokhu": {
+    "cluster": "জ্যোতিষ",
+    "parent": "শারীরিক জ্যোতিষ",
+    "confidence": 1,
+    "allScores": {
+      "হস্তরেখা": {
+        "score": 2,
+        "matches": 2,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জ্যোতিষ": {
+        "score": 10,
+        "matches": 10,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জীবন দর্শন": {
+        "score": 2,
+        "matches": 2,
+        "parent": "আধ্যাত্মিক"
+      },
+      "বিজ্ঞান": {
+        "score": 2.4000000000000004,
+        "matches": 3,
+        "parent": "শিক্ষা"
+      }
+    }
+  },
   "man-jay-na-korle-safalta-asbe-na": {
     "cluster": "বিজ্ঞান",
     "parent": "শিক্ষা",

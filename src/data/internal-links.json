@@ -61,6 +61,36 @@
     "confidence": 1,
     "manualLinks": []
   },
+  "jyotish-shastra-utpatti-itihas-beder-chokhu": {
+    "relatedByTag": [],
+    "relatedByPillar": [
+      "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
+      "jyotish-shastra-veder-chokh",
+      "moner-jantrana-theke-mukti"
+    ],
+    "relatedByCluster": [
+      "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
+      "jyotish-shastra-veder-chokh",
+      "moner-jantrana-theke-mukti"
+    ],
+    "topRelated": [
+      {
+        "slug": "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
+        "score": 0.33808047249907713
+      },
+      {
+        "slug": "jyotish-shastra-veder-chokh",
+        "score": 0.32722222222222225
+      },
+      {
+        "slug": "moner-jantrana-theke-mukti",
+        "score": 0.3177777777777778
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 1,
+    "manualLinks": []
+  },
   "man-jay-na-korle-safalta-asbe-na": {
     "relatedByTag": [],
     "relatedByPillar": [
@@ -2829,21 +2859,21 @@
     "relatedByTag": [],
     "relatedByPillar": [],
     "relatedByCluster": [
+      "jyotish-shastra-utpatti-itihas-beder-chokhu",
       "agrahayan-mase-janma-12-rashi-swabhab-karma-shastha",
-      "falgun-mase-janma-12-rashi-swabhab-karma-shastha",
-      "magh-mase-janma-12-rashi-swabhab-karma-shastha"
+      "falgun-mase-janma-12-rashi-swabhab-karma-shastha"
     ],
     "topRelated": [
+      {
+        "slug": "jyotish-shastra-utpatti-itihas-beder-chokhu",
+        "score": 0.23076923076923078
+      },
       {
         "slug": "agrahayan-mase-janma-12-rashi-swabhab-karma-shastha",
         "score": 0.225
       },
       {
         "slug": "falgun-mase-janma-12-rashi-swabhab-karma-shastha",
-        "score": 0.225
-      },
-      {
-        "slug": "magh-mase-janma-12-rashi-swabhab-karma-shastha",
         "score": 0.225
       }
     ],
