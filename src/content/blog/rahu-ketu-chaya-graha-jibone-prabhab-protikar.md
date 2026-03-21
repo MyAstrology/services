@@ -47,11 +47,11 @@ twitter_image: "https://www.myastrology.in/images/rahu-ketu-chaya-graha-jyotish.
   },
   "publisher": {
     "@type": "Organization",
-    "name": "MyAstrology",
+    "name": "MyAstrology Ranaghat",
     "url": "https://www.myastrology.in",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://www.myastrology.in/images/logo.png"
+      "url": "https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png"
     }
   },
   "mainEntityOfPage": {
@@ -60,9 +60,11 @@ twitter_image: "https://www.myastrology.in/images/rahu-ketu-chaya-graha-jyotish.
   },
   "keywords": "রাহু কেতু কী, রাহু কেতুর প্রভাব, রাহু কেতু দশায় কী হয়, রাহু কেতু প্রতিকার, ছায়া গ্রহ জ্যোতিষ",
   "articleSection": "জ্যোতিষ",
-  "inLanguage": "bn-BD"
+  "inLanguage": "bn-IN"
 }
 </script>
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="author" content="Dr Prodyut Acharya, MyAstrology Ranaghat">
 
 <h1 style="text-align:center;">রাহু ও কেতু<br><span style="font-size:0.75em;color:#b8860b;">ছায়া গ্রহের আসল রহস্য ও জীবনে প্রভাব</span></h1>
 
