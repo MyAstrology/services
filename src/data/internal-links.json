@@ -93,6 +93,36 @@
     "confidence": 1,
     "manualLinks": []
   },
+  "bibaha-rekha-ki-bole-biye-prem-dampattya": {
+    "relatedByTag": [],
+    "relatedByPillar": [
+      "preme-byartho-keno-jyotish-hastarekha-uttor",
+      "maya-o-mukti-yogi-pathik-part-3",
+      "rager-prem-somparka-phatal"
+    ],
+    "relatedByCluster": [
+      "preme-byartho-keno-jyotish-hastarekha-uttor",
+      "maya-o-mukti-yogi-pathik-part-3",
+      "rager-prem-somparka-phatal"
+    ],
+    "topRelated": [
+      {
+        "slug": "preme-byartho-keno-jyotish-hastarekha-uttor",
+        "score": 0.39496031746031746
+      },
+      {
+        "slug": "maya-o-mukti-yogi-pathik-part-3",
+        "score": 0.39044294294294296
+      },
+      {
+        "slug": "rager-prem-somparka-phatal",
+        "score": 0.37388888888888894
+      }
+    ],
+    "cluster": "সম্পর্ক",
+    "confidence": 1,
+    "manualLinks": []
+  },
   "rahu-ketu-chaya-graha-jibone-prabhab-protikar": {
     "relatedByTag": [
       "janma-kundali-hasta-mudra-rahasya"
@@ -563,15 +593,20 @@
   "maya-o-mukti-yogi-pathik-part-3": {
     "relatedByTag": [],
     "relatedByPillar": [
+      "bibaha-rekha-ki-bole-biye-prem-dampattya",
       "preme-byartho-keno-jyotish-hastarekha-uttor",
-      "rager-prem-somparka-phatal",
-      "manush-ki-satyi-valobasha-yogi-pathik-part-1"
+      "rager-prem-somparka-phatal"
     ],
     "relatedByCluster": [
+      "bibaha-rekha-ki-bole-biye-prem-dampattya",
       "preme-byartho-keno-jyotish-hastarekha-uttor",
       "rager-prem-somparka-phatal"
     ],
     "topRelated": [
+      {
+        "slug": "bibaha-rekha-ki-bole-biye-prem-dampattya",
+        "score": 0.39044294294294296
+      },
       {
         "slug": "preme-byartho-keno-jyotish-hastarekha-uttor",
         "score": 0.38749999999999996
@@ -579,10 +614,6 @@
       {
         "slug": "rager-prem-somparka-phatal",
         "score": 0.375
-      },
-      {
-        "slug": "manush-ki-satyi-valobasha-yogi-pathik-part-1",
-        "score": 0.3398701298701299
       }
     ],
     "cluster": "সম্পর্ক",
@@ -618,15 +649,20 @@
   "preme-byartho-keno-jyotish-hastarekha-uttor": {
     "relatedByTag": [],
     "relatedByPillar": [
+      "bibaha-rekha-ki-bole-biye-prem-dampattya",
       "maya-o-mukti-yogi-pathik-part-3",
-      "rager-prem-somparka-phatal",
-      "jibone-safal-howar-7-chabikaathi-jyotish"
+      "rager-prem-somparka-phatal"
     ],
     "relatedByCluster": [
+      "bibaha-rekha-ki-bole-biye-prem-dampattya",
       "maya-o-mukti-yogi-pathik-part-3",
       "rager-prem-somparka-phatal"
     ],
     "topRelated": [
+      {
+        "slug": "bibaha-rekha-ki-bole-biye-prem-dampattya",
+        "score": 0.39496031746031746
+      },
       {
         "slug": "maya-o-mukti-yogi-pathik-part-3",
         "score": 0.38749999999999996
@@ -634,10 +670,6 @@
       {
         "slug": "rager-prem-somparka-phatal",
         "score": 0.375
-      },
-      {
-        "slug": "jibone-safal-howar-7-chabikaathi-jyotish",
-        "score": 0.30913398692810456
       }
     ],
     "cluster": "সম্পর্ক",
@@ -1024,7 +1056,7 @@
     "relatedByPillar": [
       "preme-byartho-keno-jyotish-hastarekha-uttor",
       "maya-o-mukti-yogi-pathik-part-3",
-      "rager-prem-somparka-phatal"
+      "bibaha-rekha-ki-bole-biye-prem-dampattya"
     ],
     "relatedByCluster": [],
     "topRelated": [
@@ -1037,8 +1069,8 @@
         "score": 0.3047222222222222
       },
       {
-        "slug": "rager-prem-somparka-phatal",
-        "score": 0.2977777777777778
+        "slug": "bibaha-rekha-ki-bole-biye-prem-dampattya",
+        "score": 0.3036111111111111
       }
     ],
     "cluster": "সাফল্য",
@@ -1275,11 +1307,12 @@
     "relatedByPillar": [
       "maya-o-mukti-yogi-pathik-part-3",
       "preme-byartho-keno-jyotish-hastarekha-uttor",
-      "jibone-safal-howar-7-chabikaathi-jyotish"
+      "bibaha-rekha-ki-bole-biye-prem-dampattya"
     ],
     "relatedByCluster": [
       "maya-o-mukti-yogi-pathik-part-3",
-      "preme-byartho-keno-jyotish-hastarekha-uttor"
+      "preme-byartho-keno-jyotish-hastarekha-uttor",
+      "bibaha-rekha-ki-bole-biye-prem-dampattya"
     ],
     "topRelated": [
       {
@@ -1291,8 +1324,8 @@
         "score": 0.375
       },
       {
-        "slug": "jibone-safal-howar-7-chabikaathi-jyotish",
-        "score": 0.2977777777777778
+        "slug": "bibaha-rekha-ki-bole-biye-prem-dampattya",
+        "score": 0.37388888888888894
       }
     ],
     "cluster": "সম্পর্ক",

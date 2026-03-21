@@ -65,6 +65,23 @@
       }
     }
   },
+  "bibaha-rekha-ki-bole-biye-prem-dampattya": {
+    "cluster": "সম্পর্ক",
+    "parent": "ব্যবহারিক জীবন",
+    "confidence": 1,
+    "allScores": {
+      "হস্তরেখা": {
+        "score": 2,
+        "matches": 2,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "সম্পর্ক": {
+        "score": 8.100000000000001,
+        "matches": 9,
+        "parent": "ব্যবহারিক জীবন"
+      }
+    }
+  },
   "rahu-ketu-chaya-graha-jibone-prabhab-protikar": {
     "cluster": "জ্যোতিষ",
     "parent": "শারীরিক জ্যোতিষ",
