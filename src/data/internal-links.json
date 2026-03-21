@@ -156,6 +156,36 @@
     "confidence": 0.6,
     "manualLinks": []
   },
+  "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya": {
+    "relatedByTag": [],
+    "relatedByPillar": [
+      "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan",
+      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
+      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya"
+    ],
+    "relatedByCluster": [
+      "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan",
+      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
+      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya"
+    ],
+    "topRelated": [
+      {
+        "slug": "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan",
+        "score": 0.3205882352941177
+      },
+      {
+        "slug": "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
+        "score": 0.3130555555555556
+      },
+      {
+        "slug": "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
+        "score": 0.31061403508771934
+      }
+    ],
+    "cluster": "জীবন দর্শন",
+    "confidence": 0.8,
+    "manualLinks": []
+  },
   "rahu-ketu-chaya-graha-jibone-prabhab-protikar": {
     "relatedByTag": [
       "janma-kundali-hasta-mudra-rahasya"
