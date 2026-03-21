@@ -40,14 +40,14 @@
     "hath-chinho-porichoy"
   ],
   "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya": [
+    "tula-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "kanya-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "mithun-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "singha-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan",
-    "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
-    "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya"
+    "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha"
   ],
   "hater-ulto-pith-karprishtha-samudrik-shastra": [
     "samudrik-shastra-ki-mukh-hasta-pada-bishleshan",
@@ -65,9 +65,9 @@
     "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "singha-lagna-jataker-swabhab-karma-bibaha-bhagya",
+    "tula-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan",
-    "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
-    "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya"
+    "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha"
   ],
   "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya": [
     "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya",
@@ -75,9 +75,9 @@
     "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "mithun-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "singha-lagna-jataker-swabhab-karma-bibaha-bhagya",
+    "tula-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan",
-    "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
-    "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya"
+    "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha"
   ],
   "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya": [
     "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya",
@@ -85,9 +85,9 @@
     "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "mithun-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "singha-lagna-jataker-swabhab-karma-bibaha-bhagya",
+    "tula-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan",
-    "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
-    "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya"
+    "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha"
   ],
   "mithun-lagna-jataker-swabhab-karma-bibaha-bhagya": [
     "kanya-lagna-jataker-swabhab-karma-bibaha-bhagya",
@@ -95,9 +95,9 @@
     "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "singha-lagna-jataker-swabhab-karma-bibaha-bhagya",
+    "tula-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan",
-    "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
-    "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya"
+    "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha"
   ],
   "rahu-ketu-chaya-graha-jibone-prabhab-protikar": [
     "janma-kundali-hasta-mudra-rahasya",
@@ -125,9 +125,19 @@
     "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "mithun-lagna-jataker-swabhab-karma-bibaha-bhagya",
+    "tula-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan",
-    "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
-    "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya"
+    "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha"
+  ],
+  "tula-lagna-jataker-swabhab-karma-bibaha-bhagya": [
+    "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya",
+    "kanya-lagna-jataker-swabhab-karma-bibaha-bhagya",
+    "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya",
+    "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya",
+    "mithun-lagna-jataker-swabhab-karma-bibaha-bhagya",
+    "singha-lagna-jataker-swabhab-karma-bibaha-bhagya",
+    "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan",
+    "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha"
   ],
   "artha-ki-sukh-dey-jyotish-darshan-parashar": [
     "mantra-jap-ki-kaj-kore-bigyan-adhyatma",
