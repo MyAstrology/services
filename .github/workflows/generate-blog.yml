@@ -6,8 +6,10 @@ on:
       - main
       - master
     paths-ignore:
-      - '**.md'
-      - '**.txt'
+      - 'blog/**'
+      - 'src/data/**'
+      - 'src/content/blog/list.json'
+      - '*.xml'
       - '.gitignore'
       - 'README.md'
   schedule:
@@ -389,7 +391,7 @@ jobs:
             MSG="${MSG} (scheduled)"
           fi
 
-          git commit -m "${MSG} [skip ci]"
+          git commit -m "${MSG}"
           git pull --rebase origin ${{ github.ref_name }}
           git push origin ${{ github.ref_name }}
           
