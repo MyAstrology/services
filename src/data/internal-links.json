@@ -127,7 +127,8 @@
     "relatedByTag": [
       "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya",
       "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya",
-      "mithun-lagna-jataker-swabhab-karma-bibaha-bhagya"
+      "mithun-lagna-jataker-swabhab-karma-bibaha-bhagya",
+      "singha-lagna-jataker-swabhab-karma-bibaha-bhagya"
     ],
     "relatedByPillar": [
       "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan",
@@ -194,7 +195,8 @@
     "relatedByTag": [
       "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya",
       "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya",
-      "mithun-lagna-jataker-swabhab-karma-bibaha-bhagya"
+      "mithun-lagna-jataker-swabhab-karma-bibaha-bhagya",
+      "singha-lagna-jataker-swabhab-karma-bibaha-bhagya"
     ],
     "relatedByPillar": [
       "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan",
@@ -228,7 +230,8 @@
     "relatedByTag": [
       "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya",
       "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya",
-      "mithun-lagna-jataker-swabhab-karma-bibaha-bhagya"
+      "mithun-lagna-jataker-swabhab-karma-bibaha-bhagya",
+      "singha-lagna-jataker-swabhab-karma-bibaha-bhagya"
     ],
     "relatedByPillar": [
       "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan",
@@ -262,7 +265,8 @@
     "relatedByTag": [
       "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya",
       "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya",
-      "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya"
+      "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya",
+      "singha-lagna-jataker-swabhab-karma-bibaha-bhagya"
     ],
     "relatedByPillar": [
       "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan",
@@ -357,6 +361,41 @@
     ],
     "cluster": "হস্তরেখা",
     "confidence": 0.6,
+    "manualLinks": []
+  },
+  "singha-lagna-jataker-swabhab-karma-bibaha-bhagya": {
+    "relatedByTag": [
+      "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya",
+      "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya",
+      "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya",
+      "mithun-lagna-jataker-swabhab-karma-bibaha-bhagya"
+    ],
+    "relatedByPillar": [
+      "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan",
+      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
+      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya"
+    ],
+    "relatedByCluster": [
+      "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya",
+      "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya",
+      "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya"
+    ],
+    "topRelated": [
+      {
+        "slug": "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya",
+        "score": 0.6208695652173913
+      },
+      {
+        "slug": "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya",
+        "score": 0.6208695652173913
+      },
+      {
+        "slug": "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya",
+        "score": 0.6208695652173913
+      }
+    ],
+    "cluster": "জীবন দর্শন",
+    "confidence": 0.8,
     "manualLinks": []
   },
   "artha-ki-sukh-dey-jyotish-darshan-parashar": {
