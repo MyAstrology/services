@@ -209,6 +209,28 @@
       }
     }
   },
+  "makar-lagna-jataker-swabhab-karma-bibaha-bhagya": {
+    "cluster": "জীবন দর্শন",
+    "parent": "আধ্যাত্মিক",
+    "confidence": 0.8,
+    "allScores": {
+      "জ্যোতিষ": {
+        "score": 2,
+        "matches": 2,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জীবন দর্শন": {
+        "score": 4,
+        "matches": 4,
+        "parent": "আধ্যাত্মিক"
+      },
+      "সম্পর্ক": {
+        "score": 1.8,
+        "matches": 2,
+        "parent": "ব্যবহারিক জীবন"
+      }
+    }
+  },
   "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya": {
     "cluster": "জীবন দর্শন",
     "parent": "আধ্যাত্মিক",

@@ -42,12 +42,12 @@
   "brischik-lagna-jataker-swabhab-karma-bibaha-bhagya": [
     "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "dhanu-lagna-jataker-swabhab-karma-bibaha-bhagya",
+    "makar-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "kanya-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "mithun-lagna-jataker-swabhab-karma-bibaha-bhagya",
-    "singha-lagna-jataker-swabhab-karma-bibaha-bhagya",
-    "tula-lagna-jataker-swabhab-karma-bibaha-bhagya"
+    "singha-lagna-jataker-swabhab-karma-bibaha-bhagya"
   ],
   "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya": [
     "tula-lagna-jataker-swabhab-karma-bibaha-bhagya",
@@ -61,13 +61,13 @@
   ],
   "dhanu-lagna-jataker-swabhab-karma-bibaha-bhagya": [
     "brischik-lagna-jataker-swabhab-karma-bibaha-bhagya",
+    "makar-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "kanya-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "mithun-lagna-jataker-swabhab-karma-bibaha-bhagya",
-    "singha-lagna-jataker-swabhab-karma-bibaha-bhagya",
-    "tula-lagna-jataker-swabhab-karma-bibaha-bhagya"
+    "singha-lagna-jataker-swabhab-karma-bibaha-bhagya"
   ],
   "hater-ulto-pith-karprishtha-samudrik-shastra": [
     "samudrik-shastra-ki-mukh-hasta-pada-bishleshan",
@@ -98,6 +98,16 @@
     "tula-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "brischik-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "dhanu-lagna-jataker-swabhab-karma-bibaha-bhagya"
+  ],
+  "makar-lagna-jataker-swabhab-karma-bibaha-bhagya": [
+    "brischik-lagna-jataker-swabhab-karma-bibaha-bhagya",
+    "dhanu-lagna-jataker-swabhab-karma-bibaha-bhagya",
+    "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya",
+    "kanya-lagna-jataker-swabhab-karma-bibaha-bhagya",
+    "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya",
+    "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya",
+    "mithun-lagna-jataker-swabhab-karma-bibaha-bhagya",
+    "singha-lagna-jataker-swabhab-karma-bibaha-bhagya"
   ],
   "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya": [
     "brischik-lagna-jataker-swabhab-karma-bibaha-bhagya",
