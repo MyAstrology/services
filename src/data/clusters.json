@@ -65,6 +65,18 @@
       }
     }
   },
+  "rahu-ketu-chaya-graha-jibone-prabhab-protikar": {
+    "cluster": "জ্যোতিষ",
+    "parent": "শারীরিক জ্যোতিষ",
+    "confidence": 1,
+    "allScores": {
+      "জ্যোতিষ": {
+        "score": 11,
+        "matches": 11,
+        "parent": "শারীরিক জ্যোতিষ"
+      }
+    }
+  },
   "artha-ki-sukh-dey-jyotish-darshan-parashar": {
     "cluster": "জীবন দর্শন",
     "parent": "আধ্যাত্মিক",

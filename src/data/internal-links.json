@@ -93,6 +93,38 @@
     "confidence": 1,
     "manualLinks": []
   },
+  "rahu-ketu-chaya-graha-jibone-prabhab-protikar": {
+    "relatedByTag": [
+      "janma-kundali-hasta-mudra-rahasya"
+    ],
+    "relatedByPillar": [
+      "jibone-sob-kichu-biruddhe-gele-ki-korben",
+      "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
+      "pitru-dosh-shastriya-byakhya"
+    ],
+    "relatedByCluster": [
+      "janma-kundali-hasta-mudra-rahasya",
+      "jibone-sob-kichu-biruddhe-gele-ki-korben",
+      "shani-sadesati-ki-hoy-keno-hoy-ki-korben"
+    ],
+    "topRelated": [
+      {
+        "slug": "janma-kundali-hasta-mudra-rahasya",
+        "score": 0.4017530345471522
+      },
+      {
+        "slug": "jibone-sob-kichu-biruddhe-gele-ki-korben",
+        "score": 0.39555555555555555
+      },
+      {
+        "slug": "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
+        "score": 0.39496031746031746
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 1,
+    "manualLinks": []
+  },
   "artha-ki-sukh-dey-jyotish-darshan-parashar": {
     "relatedByTag": [
       "mantra-jap-ki-kaj-kore-bigyan-adhyatma",
@@ -400,7 +432,7 @@
     "relatedByPillar": [
       "mukhoser-alore-porichoy-naitikota-sankat",
       "gandharva-yaksha-puran-darshan",
-      "mangal-grah-antar-yoddha"
+      "rahu-ketu-chaya-graha-jibone-prabhab-protikar"
     ],
     "relatedByCluster": [
       "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
@@ -672,9 +704,9 @@
       "manush-keno-venge-pore-yogi-pathik-part-2"
     ],
     "relatedByPillar": [
+      "rahu-ketu-chaya-graha-jibone-prabhab-protikar",
       "prodyut-acharya-jyotish-palmist-journey-ranaghat",
-      "pitru-dosh-shastriya-byakhya",
-      "gandharva-yaksha-puran-darshan"
+      "pitru-dosh-shastriya-byakhya"
     ],
     "relatedByCluster": [
       "jibone-sob-kichu-biruddhe-gele-ki-korben",
@@ -859,14 +891,14 @@
       "janmakundali-o-hastrekha-jiban-manchitra"
     ],
     "relatedByPillar": [
+      "rahu-ketu-chaya-graha-jibone-prabhab-protikar",
       "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
-      "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
-      "somoyer-rahasya-jyotish-darshan"
+      "jyotish-6-shakti-shali-yoga-kundali-bisleshan"
     ],
     "relatedByCluster": [
       "janmakundali-o-hastrekha-jiban-manchitra",
-      "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
-      "jyotish-6-shakti-shali-yoga-kundali-bisleshan"
+      "rahu-ketu-chaya-graha-jibone-prabhab-protikar",
+      "shani-sadesati-ki-hoy-keno-hoy-ki-korben"
     ],
     "topRelated": [
       {
@@ -874,12 +906,12 @@
         "score": 0.4045512820512821
       },
       {
-        "slug": "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
-        "score": 0.39222222222222225
+        "slug": "rahu-ketu-chaya-graha-jibone-prabhab-protikar",
+        "score": 0.39262626262626266
       },
       {
-        "slug": "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
-        "score": 0.38841269841269843
+        "slug": "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
+        "score": 0.39222222222222225
       }
     ],
     "cluster": "জ্যোতিষ",
@@ -1411,8 +1443,7 @@
     ],
     "relatedByPillar": [
       "mangal-grah-antar-yoddha",
-      "jyotish-shastra-veder-chokh",
-      "gandharva-yaksha-puran-darshan"
+      "jyotish-shastra-veder-chokh"
     ],
     "relatedByCluster": [
       "janmakundali-o-hastrekha-jiban-manchitra",
@@ -1479,8 +1510,8 @@
       "somoyer-rahasya-jyotish-darshan"
     ],
     "relatedByPillar": [
-      "janmakundali-o-hastrekha-jiban-manchitra",
-      "mukhoser-alore-porichoy-naitikota-sankat"
+      "rahu-ketu-chaya-graha-jibone-prabhab-protikar",
+      "janmakundali-o-hastrekha-jiban-manchitra"
     ],
     "relatedByCluster": [
       "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
