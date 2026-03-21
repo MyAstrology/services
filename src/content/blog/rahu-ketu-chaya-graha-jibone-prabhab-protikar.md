@@ -48,6 +48,40 @@ twitter_image: "https://www.myastrology.in/images/rahu-ketu-chaya-graha-jyotish.
 
 ---
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "রাহু ও কেতু — ছায়া গ্রহের আসল রহস্য ও জীবনে প্রভাব",
+  "description": "সমুদ্র মন্থন থেকে জন্ম নেওয়া রাহু ও কেতু কীভাবে মানুষের জীবনে আকস্মিক বাঁক আনে? শাস্ত্র, অভিজ্ঞতা ও প্রতিকার — সম্পূর্ণ বিশ্লেষণ।",
+  "image": "https://www.myastrology.in/images/rahu-ketu-chaya-graha-jyotish.webp",
+  "datePublished": "2026-03-21",
+  "dateModified": "2026-03-21",
+  "author": {
+    "@type": "Person",
+    "name": "Dr Prodyut Acharya",
+    "description": "জ্যোতিষী, হস্তরেখাবিদ, দার্শনিক চিন্তাবিদ ও ভাগ্য উন্নতির পরামর্শদাতা।",
+    "url": "https://www.myastrology.in"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MyAstrology",
+    "url": "https://www.myastrology.in",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.myastrology.in/images/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.myastrology.in/blog/rahu-ketu-chaya-graha-jibone-prabhab-protikar.html"
+  },
+  "keywords": "রাহু কেতু কী, রাহু কেতুর প্রভাব, রাহু কেতু দশায় কী হয়, রাহু কেতু প্রতিকার, ছায়া গ্রহ জ্যোতিষ",
+  "articleSection": "জ্যোতিষ",
+  "inLanguage": "bn-BD"
+}
+</script>
+
 ## পুরাণে রাহু-কেতুর জন্ম
 
 সমুদ্র মন্থনের সময় অমৃত উঠে এলে দেবতা ও অসুরের মধ্যে তুমুল বিবাদ শুরু হয়। বিষ্ণু তখন মোহিনী রূপ ধারণ করে দেবতাদের অমৃত পান করাচ্ছিলেন।
