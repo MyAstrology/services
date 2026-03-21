@@ -59,6 +59,36 @@
     "confidence": 0.4,
     "manualLinks": []
   },
+  "baisakh-mase-janma-12-rashi-swabhab-karma-shastha": {
+    "relatedByTag": [],
+    "relatedByPillar": [
+      "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
+      "pitru-dosh-shastriya-byakhya",
+      "shani-sadesati-ki-hoy-keno-hoy-ki-korben"
+    ],
+    "relatedByCluster": [
+      "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
+      "pitru-dosh-shastriya-byakhya",
+      "shani-sadesati-ki-hoy-keno-hoy-ki-korben"
+    ],
+    "topRelated": [
+      {
+        "slug": "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
+        "score": 0.3178947368421053
+      },
+      {
+        "slug": "pitru-dosh-shastriya-byakhya",
+        "score": 0.3159313725490196
+      },
+      {
+        "slug": "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
+        "score": 0.31138888888888894
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 0.6,
+    "manualLinks": []
+  },
   "bangla-maser-namakarana-nakshatra-purnima-rahasya": {
     "relatedByTag": [],
     "relatedByPillar": [
@@ -2391,8 +2421,8 @@
     "relatedByPillar": [],
     "relatedByCluster": [
       "pitru-dosh-shastriya-byakhya",
-      "jibone-sob-kichu-biruddhe-gele-ki-korben",
-      "moner-jantrana-theke-mukti"
+      "baisakh-mase-janma-12-rashi-swabhab-karma-shastha",
+      "jibone-sob-kichu-biruddhe-gele-ki-korben"
     ],
     "topRelated": [
       {
@@ -2400,12 +2430,12 @@
         "score": 0.2248798798798799
       },
       {
-        "slug": "jibone-sob-kichu-biruddhe-gele-ki-korben",
-        "score": 0.21840909090909094
+        "slug": "baisakh-mase-janma-12-rashi-swabhab-karma-shastha",
+        "score": 0.22321428571428573
       },
       {
-        "slug": "moner-jantrana-theke-mukti",
-        "score": 0.21722689075630253
+        "slug": "jibone-sob-kichu-biruddhe-gele-ki-korben",
+        "score": 0.21840909090909094
       }
     ],
     "cluster": "জ্যোতিষ",

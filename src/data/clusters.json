@@ -38,6 +38,28 @@
       }
     }
   },
+  "baisakh-mase-janma-12-rashi-swabhab-karma-shastha": {
+    "cluster": "জ্যোতিষ",
+    "parent": "শারীরিক জ্যোতিষ",
+    "confidence": 0.6,
+    "allScores": {
+      "জ্যোতিষ": {
+        "score": 3,
+        "matches": 3,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জীবন দর্শন": {
+        "score": 1,
+        "matches": 1,
+        "parent": "আধ্যাত্মিক"
+      },
+      "সাফল্য": {
+        "score": 0.9,
+        "matches": 1,
+        "parent": "ব্যবহারিক জীবন"
+      }
+    }
+  },
   "bangla-maser-namakarana-nakshatra-purnima-rahasya": {
     "cluster": "অন্যান্য",
     "parent": "অন্যান্য",
