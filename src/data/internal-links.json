@@ -91,6 +91,36 @@
     "confidence": 1,
     "manualLinks": []
   },
+  "kalsarpa-yog-ki-prabhab-somadhan": {
+    "relatedByTag": [],
+    "relatedByPillar": [
+      "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
+      "rahu-ketu-chaya-graha-jibone-prabhab-protikar",
+      "pitru-dosh-shastriya-byakhya"
+    ],
+    "relatedByCluster": [
+      "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
+      "rahu-ketu-chaya-graha-jibone-prabhab-protikar",
+      "pitru-dosh-shastriya-byakhya"
+    ],
+    "topRelated": [
+      {
+        "slug": "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
+        "score": 0.3169444444444445
+      },
+      {
+        "slug": "rahu-ketu-chaya-graha-jibone-prabhab-protikar",
+        "score": 0.3149591503267974
+      },
+      {
+        "slug": "pitru-dosh-shastriya-byakhya",
+        "score": 0.3111111111111111
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 1,
+    "manualLinks": []
+  },
   "man-jay-na-korle-safalta-asbe-na": {
     "relatedByTag": [],
     "relatedByPillar": [
