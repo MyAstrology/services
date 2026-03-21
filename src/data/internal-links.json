@@ -61,28 +61,28 @@
   },
   "agrahayan-mase-janma-12-rashi-swabhab-karma-shastha": {
     "relatedByTag": [
-      "poush-mase-janma-12-rashi-swabhab-karma-shastha",
-      "ashar-mase-janma-12-rashi-swabhab-karma-shastha",
-      "ashwin-mase-janma-12-rashi-swabhab-karma-shastha",
-      "bhadra-mase-janma-12-rashi-swabhab-karma-shastha"
-    ],
-    "relatedByPillar": [],
-    "relatedByCluster": [
+      "magh-mase-janma-12-rashi-swabhab-karma-shastha",
       "poush-mase-janma-12-rashi-swabhab-karma-shastha",
       "ashar-mase-janma-12-rashi-swabhab-karma-shastha",
       "ashwin-mase-janma-12-rashi-swabhab-karma-shastha"
     ],
+    "relatedByPillar": [],
+    "relatedByCluster": [
+      "magh-mase-janma-12-rashi-swabhab-karma-shastha",
+      "poush-mase-janma-12-rashi-swabhab-karma-shastha",
+      "ashar-mase-janma-12-rashi-swabhab-karma-shastha"
+    ],
     "topRelated": [
+      {
+        "slug": "magh-mase-janma-12-rashi-swabhab-karma-shastha",
+        "score": 0.9459893048128342
+      },
       {
         "slug": "poush-mase-janma-12-rashi-swabhab-karma-shastha",
         "score": 0.9459893048128342
       },
       {
         "slug": "ashar-mase-janma-12-rashi-swabhab-karma-shastha",
-        "score": 0.9386363636363636
-      },
-      {
-        "slug": "ashwin-mase-janma-12-rashi-swabhab-karma-shastha",
         "score": 0.9386363636363636
       }
     ],
@@ -585,6 +585,37 @@
     "confidence": 0.8,
     "manualLinks": []
   },
+  "magh-mase-janma-12-rashi-swabhab-karma-shastha": {
+    "relatedByTag": [
+      "agrahayan-mase-janma-12-rashi-swabhab-karma-shastha",
+      "poush-mase-janma-12-rashi-swabhab-karma-shastha",
+      "ashar-mase-janma-12-rashi-swabhab-karma-shastha",
+      "ashwin-mase-janma-12-rashi-swabhab-karma-shastha"
+    ],
+    "relatedByPillar": [],
+    "relatedByCluster": [
+      "agrahayan-mase-janma-12-rashi-swabhab-karma-shastha",
+      "poush-mase-janma-12-rashi-swabhab-karma-shastha",
+      "ashar-mase-janma-12-rashi-swabhab-karma-shastha"
+    ],
+    "topRelated": [
+      {
+        "slug": "agrahayan-mase-janma-12-rashi-swabhab-karma-shastha",
+        "score": 0.9459893048128342
+      },
+      {
+        "slug": "poush-mase-janma-12-rashi-swabhab-karma-shastha",
+        "score": 0.9459893048128342
+      },
+      {
+        "slug": "ashar-mase-janma-12-rashi-swabhab-karma-shastha",
+        "score": 0.9386363636363636
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 0.4,
+    "manualLinks": []
+  },
   "makar-lagna-jataker-swabhab-karma-bibaha-bhagya": {
     "relatedByTag": [
       "kumbha-lagna-jataker-swabhab-karma-bibaha-bhagya",
@@ -712,15 +743,15 @@
   "poush-mase-janma-12-rashi-swabhab-karma-shastha": {
     "relatedByTag": [
       "agrahayan-mase-janma-12-rashi-swabhab-karma-shastha",
+      "magh-mase-janma-12-rashi-swabhab-karma-shastha",
       "ashar-mase-janma-12-rashi-swabhab-karma-shastha",
-      "ashwin-mase-janma-12-rashi-swabhab-karma-shastha",
-      "bhadra-mase-janma-12-rashi-swabhab-karma-shastha"
+      "ashwin-mase-janma-12-rashi-swabhab-karma-shastha"
     ],
     "relatedByPillar": [],
     "relatedByCluster": [
       "agrahayan-mase-janma-12-rashi-swabhab-karma-shastha",
-      "ashar-mase-janma-12-rashi-swabhab-karma-shastha",
-      "ashwin-mase-janma-12-rashi-swabhab-karma-shastha"
+      "magh-mase-janma-12-rashi-swabhab-karma-shastha",
+      "ashar-mase-janma-12-rashi-swabhab-karma-shastha"
     ],
     "topRelated": [
       {
@@ -728,11 +759,11 @@
         "score": 0.9459893048128342
       },
       {
-        "slug": "ashar-mase-janma-12-rashi-swabhab-karma-shastha",
-        "score": 0.9386363636363636
+        "slug": "magh-mase-janma-12-rashi-swabhab-karma-shastha",
+        "score": 0.9459893048128342
       },
       {
-        "slug": "ashwin-mase-janma-12-rashi-swabhab-karma-shastha",
+        "slug": "ashar-mase-janma-12-rashi-swabhab-karma-shastha",
         "score": 0.9386363636363636
       }
     ],
@@ -2670,8 +2701,8 @@
     "relatedByPillar": [],
     "relatedByCluster": [
       "agrahayan-mase-janma-12-rashi-swabhab-karma-shastha",
-      "poush-mase-janma-12-rashi-swabhab-karma-shastha",
-      "pitru-dosh-shastriya-byakhya"
+      "magh-mase-janma-12-rashi-swabhab-karma-shastha",
+      "poush-mase-janma-12-rashi-swabhab-karma-shastha"
     ],
     "topRelated": [
       {
@@ -2679,12 +2710,12 @@
         "score": 0.225
       },
       {
-        "slug": "poush-mase-janma-12-rashi-swabhab-karma-shastha",
+        "slug": "magh-mase-janma-12-rashi-swabhab-karma-shastha",
         "score": 0.225
       },
       {
-        "slug": "pitru-dosh-shastriya-byakhya",
-        "score": 0.2248798798798799
+        "slug": "poush-mase-janma-12-rashi-swabhab-karma-shastha",
+        "score": 0.225
       }
     ],
     "cluster": "জ্যোতিষ",
