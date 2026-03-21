@@ -61,10 +61,10 @@
   },
   "ashar-mase-janma-12-rashi-swabhab-karma-shastha": {
     "relatedByTag": [
+      "ashwin-mase-janma-12-rashi-swabhab-karma-shastha",
       "bhadra-mase-janma-12-rashi-swabhab-karma-shastha",
       "shraban-mase-janma-12-rashi-swabhab-karma-shastha",
-      "jaistha-mase-janma-12-rashi-swabhab-karma-shastha",
-      "baisakh-mase-janma-12-rashi-swabhab-karma-shastha"
+      "jaistha-mase-janma-12-rashi-swabhab-karma-shastha"
     ],
     "relatedByPillar": [
       "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
@@ -72,11 +72,15 @@
       "shani-sadesati-ki-hoy-keno-hoy-ki-korben"
     ],
     "relatedByCluster": [
+      "ashwin-mase-janma-12-rashi-swabhab-karma-shastha",
       "bhadra-mase-janma-12-rashi-swabhab-karma-shastha",
-      "shraban-mase-janma-12-rashi-swabhab-karma-shastha",
-      "jaistha-mase-janma-12-rashi-swabhab-karma-shastha"
+      "shraban-mase-janma-12-rashi-swabhab-karma-shastha"
     ],
     "topRelated": [
+      {
+        "slug": "ashwin-mase-janma-12-rashi-swabhab-karma-shastha",
+        "score": 0.9469696969696969
+      },
       {
         "slug": "bhadra-mase-janma-12-rashi-swabhab-karma-shastha",
         "score": 0.9469696969696969
@@ -84,10 +88,41 @@
       {
         "slug": "shraban-mase-janma-12-rashi-swabhab-karma-shastha",
         "score": 0.9469696969696969
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 0.4,
+    "manualLinks": []
+  },
+  "ashwin-mase-janma-12-rashi-swabhab-karma-shastha": {
+    "relatedByTag": [
+      "ashar-mase-janma-12-rashi-swabhab-karma-shastha",
+      "bhadra-mase-janma-12-rashi-swabhab-karma-shastha",
+      "shraban-mase-janma-12-rashi-swabhab-karma-shastha",
+      "jaistha-mase-janma-12-rashi-swabhab-karma-shastha"
+    ],
+    "relatedByPillar": [
+      "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
+      "pitru-dosh-shastriya-byakhya",
+      "shani-sadesati-ki-hoy-keno-hoy-ki-korben"
+    ],
+    "relatedByCluster": [
+      "ashar-mase-janma-12-rashi-swabhab-karma-shastha",
+      "bhadra-mase-janma-12-rashi-swabhab-karma-shastha",
+      "shraban-mase-janma-12-rashi-swabhab-karma-shastha"
+    ],
+    "topRelated": [
+      {
+        "slug": "ashar-mase-janma-12-rashi-swabhab-karma-shastha",
+        "score": 0.9469696969696969
       },
       {
-        "slug": "jaistha-mase-janma-12-rashi-swabhab-karma-shastha",
-        "score": 0.9261363636363636
+        "slug": "bhadra-mase-janma-12-rashi-swabhab-karma-shastha",
+        "score": 0.9469696969696969
+      },
+      {
+        "slug": "shraban-mase-janma-12-rashi-swabhab-karma-shastha",
+        "score": 0.9469696969696969
       }
     ],
     "cluster": "জ্যোতিষ",
@@ -98,8 +133,8 @@
     "relatedByTag": [
       "jaistha-mase-janma-12-rashi-swabhab-karma-shastha",
       "ashar-mase-janma-12-rashi-swabhab-karma-shastha",
-      "bhadra-mase-janma-12-rashi-swabhab-karma-shastha",
-      "shraban-mase-janma-12-rashi-swabhab-karma-shastha"
+      "ashwin-mase-janma-12-rashi-swabhab-karma-shastha",
+      "bhadra-mase-janma-12-rashi-swabhab-karma-shastha"
     ],
     "relatedByPillar": [
       "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
@@ -109,7 +144,7 @@
     "relatedByCluster": [
       "jaistha-mase-janma-12-rashi-swabhab-karma-shastha",
       "ashar-mase-janma-12-rashi-swabhab-karma-shastha",
-      "bhadra-mase-janma-12-rashi-swabhab-karma-shastha"
+      "ashwin-mase-janma-12-rashi-swabhab-karma-shastha"
     ],
     "topRelated": [
       {
@@ -121,7 +156,7 @@
         "score": 0.6073863636363636
       },
       {
-        "slug": "bhadra-mase-janma-12-rashi-swabhab-karma-shastha",
+        "slug": "ashwin-mase-janma-12-rashi-swabhab-karma-shastha",
         "score": 0.6073863636363636
       }
     ],
@@ -158,9 +193,9 @@
   "bhadra-mase-janma-12-rashi-swabhab-karma-shastha": {
     "relatedByTag": [
       "ashar-mase-janma-12-rashi-swabhab-karma-shastha",
+      "ashwin-mase-janma-12-rashi-swabhab-karma-shastha",
       "shraban-mase-janma-12-rashi-swabhab-karma-shastha",
-      "jaistha-mase-janma-12-rashi-swabhab-karma-shastha",
-      "baisakh-mase-janma-12-rashi-swabhab-karma-shastha"
+      "jaistha-mase-janma-12-rashi-swabhab-karma-shastha"
     ],
     "relatedByPillar": [
       "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
@@ -169,8 +204,8 @@
     ],
     "relatedByCluster": [
       "ashar-mase-janma-12-rashi-swabhab-karma-shastha",
-      "shraban-mase-janma-12-rashi-swabhab-karma-shastha",
-      "jaistha-mase-janma-12-rashi-swabhab-karma-shastha"
+      "ashwin-mase-janma-12-rashi-swabhab-karma-shastha",
+      "shraban-mase-janma-12-rashi-swabhab-karma-shastha"
     ],
     "topRelated": [
       {
@@ -178,12 +213,12 @@
         "score": 0.9469696969696969
       },
       {
-        "slug": "shraban-mase-janma-12-rashi-swabhab-karma-shastha",
+        "slug": "ashwin-mase-janma-12-rashi-swabhab-karma-shastha",
         "score": 0.9469696969696969
       },
       {
-        "slug": "jaistha-mase-janma-12-rashi-swabhab-karma-shastha",
-        "score": 0.9261363636363636
+        "slug": "shraban-mase-janma-12-rashi-swabhab-karma-shastha",
+        "score": 0.9469696969696969
       }
     ],
     "cluster": "জ্যোতিষ",
@@ -383,9 +418,9 @@
   "jaistha-mase-janma-12-rashi-swabhab-karma-shastha": {
     "relatedByTag": [
       "ashar-mase-janma-12-rashi-swabhab-karma-shastha",
+      "ashwin-mase-janma-12-rashi-swabhab-karma-shastha",
       "bhadra-mase-janma-12-rashi-swabhab-karma-shastha",
-      "shraban-mase-janma-12-rashi-swabhab-karma-shastha",
-      "baisakh-mase-janma-12-rashi-swabhab-karma-shastha"
+      "shraban-mase-janma-12-rashi-swabhab-karma-shastha"
     ],
     "relatedByPillar": [
       "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
@@ -394,8 +429,8 @@
     ],
     "relatedByCluster": [
       "ashar-mase-janma-12-rashi-swabhab-karma-shastha",
-      "bhadra-mase-janma-12-rashi-swabhab-karma-shastha",
-      "shraban-mase-janma-12-rashi-swabhab-karma-shastha"
+      "ashwin-mase-janma-12-rashi-swabhab-karma-shastha",
+      "bhadra-mase-janma-12-rashi-swabhab-karma-shastha"
     ],
     "topRelated": [
       {
@@ -403,11 +438,11 @@
         "score": 0.9261363636363636
       },
       {
-        "slug": "bhadra-mase-janma-12-rashi-swabhab-karma-shastha",
+        "slug": "ashwin-mase-janma-12-rashi-swabhab-karma-shastha",
         "score": 0.9261363636363636
       },
       {
-        "slug": "shraban-mase-janma-12-rashi-swabhab-karma-shastha",
+        "slug": "bhadra-mase-janma-12-rashi-swabhab-karma-shastha",
         "score": 0.9261363636363636
       }
     ],
@@ -702,9 +737,9 @@
   "shraban-mase-janma-12-rashi-swabhab-karma-shastha": {
     "relatedByTag": [
       "ashar-mase-janma-12-rashi-swabhab-karma-shastha",
+      "ashwin-mase-janma-12-rashi-swabhab-karma-shastha",
       "bhadra-mase-janma-12-rashi-swabhab-karma-shastha",
-      "jaistha-mase-janma-12-rashi-swabhab-karma-shastha",
-      "baisakh-mase-janma-12-rashi-swabhab-karma-shastha"
+      "jaistha-mase-janma-12-rashi-swabhab-karma-shastha"
     ],
     "relatedByPillar": [
       "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
@@ -713,8 +748,8 @@
     ],
     "relatedByCluster": [
       "ashar-mase-janma-12-rashi-swabhab-karma-shastha",
-      "bhadra-mase-janma-12-rashi-swabhab-karma-shastha",
-      "jaistha-mase-janma-12-rashi-swabhab-karma-shastha"
+      "ashwin-mase-janma-12-rashi-swabhab-karma-shastha",
+      "bhadra-mase-janma-12-rashi-swabhab-karma-shastha"
     ],
     "topRelated": [
       {
@@ -722,12 +757,12 @@
         "score": 0.9469696969696969
       },
       {
-        "slug": "bhadra-mase-janma-12-rashi-swabhab-karma-shastha",
+        "slug": "ashwin-mase-janma-12-rashi-swabhab-karma-shastha",
         "score": 0.9469696969696969
       },
       {
-        "slug": "jaistha-mase-janma-12-rashi-swabhab-karma-shastha",
-        "score": 0.9261363636363636
+        "slug": "bhadra-mase-janma-12-rashi-swabhab-karma-shastha",
+        "score": 0.9469696969696969
       }
     ],
     "cluster": "জ্যোতিষ",
@@ -2567,7 +2602,7 @@
     "relatedByCluster": [
       "pitru-dosh-shastriya-byakhya",
       "ashar-mase-janma-12-rashi-swabhab-karma-shastha",
-      "bhadra-mase-janma-12-rashi-swabhab-karma-shastha"
+      "ashwin-mase-janma-12-rashi-swabhab-karma-shastha"
     ],
     "topRelated": [
       {
@@ -2579,7 +2614,7 @@
         "score": 0.22466216216216217
       },
       {
-        "slug": "bhadra-mase-janma-12-rashi-swabhab-karma-shastha",
+        "slug": "ashwin-mase-janma-12-rashi-swabhab-karma-shastha",
         "score": 0.22466216216216217
       }
     ],
