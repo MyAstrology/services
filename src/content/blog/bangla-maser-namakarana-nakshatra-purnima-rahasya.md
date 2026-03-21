@@ -30,6 +30,24 @@ twitter_description: "বাংলা ১২টি মাসের নামই 
 twitter_image: "https://www.myastrology.in/images/bangla-mas-nakshatra-namakarana.webp"
 ---
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "বাংলা মাসের নামকরণ কীভাবে হলো? — নক্ষত্র ও পূর্ণিমার অজানা রহস্য",
+  "description": "বৈশাখ থেকে চৈত্র — বাংলা ১২টি মাসের নামই এসেছে ২৭টি নক্ষত্রের নাম থেকে। পূর্ণিমার চন্দ্র যে নক্ষত্রে থাকত তার নামেই মাসের নামকরণ।",
+  "image": "https://www.myastrology.in/images/bangla-mas-nakshatra-namakarana.webp",
+  "author": {"@type": "Person","name": "Dr Prodyut Acharya","url": "https://www.myastrology.in"},
+  "publisher": {"@type": "Organization","name": "MyAstrology Ranaghat","logo": {"@type": "ImageObject","url": "https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png"}},
+  "datePublished": "2026-03-21",
+  "dateModified": "2026-03-21",
+  "mainEntityOfPage": {"@type": "WebPage","@id": "https://www.myastrology.in/blog/bangla-maser-namakarana-nakshatra-purnima-rahasya.html"},
+  "keywords": "বাংলা মাসের নামকরণ, বিশাখা নক্ষত্র, পূর্ণিমা নক্ষত্র মাস, ২৭ নক্ষত্র"
+}
+</script>
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+
 <style>
 .nakshatra-table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px}
 .nakshatra-table th{background:#0a1730;color:#c9a227;padding:10px 14px;text-align:left}
