@@ -61,6 +61,34 @@
     "confidence": 1,
     "manualLinks": []
   },
+  "man-jay-na-korle-safalta-asbe-na": {
+    "relatedByTag": [],
+    "relatedByPillar": [
+      "prithibir-itihas-rahasya",
+      "prachin-grantha-o-adhunik-bigyan"
+    ],
+    "relatedByCluster": [
+      "prithibir-itihas-rahasya",
+      "prachin-grantha-o-adhunik-bigyan"
+    ],
+    "topRelated": [
+      {
+        "slug": "prithibir-itihas-rahasya",
+        "score": 0.3433040935672515
+      },
+      {
+        "slug": "prachin-grantha-o-adhunik-bigyan",
+        "score": 0.33333333333333337
+      },
+      {
+        "slug": "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
+        "score": 0.15578282828282827
+      }
+    ],
+    "cluster": "বিজ্ঞান",
+    "confidence": 0.9600000000000002,
+    "manualLinks": []
+  },
   "tarapith-smashan-tantra-jyotish": {
     "relatedByTag": [],
     "relatedByPillar": [
@@ -1498,10 +1526,12 @@
   "prachin-grantha-o-adhunik-bigyan": {
     "relatedByTag": [],
     "relatedByPillar": [
-      "prithibir-itihas-rahasya"
+      "prithibir-itihas-rahasya",
+      "man-jay-na-korle-safalta-asbe-na"
     ],
     "relatedByCluster": [
-      "prithibir-itihas-rahasya"
+      "prithibir-itihas-rahasya",
+      "man-jay-na-korle-safalta-asbe-na"
     ],
     "topRelated": [
       {
@@ -1509,12 +1539,12 @@
         "score": 0.3881349206349206
       },
       {
-        "slug": "sanshoy-theke-hastarekha-bigyan-jyotish",
-        "score": 0.2007983056370153
+        "slug": "man-jay-na-korle-safalta-asbe-na",
+        "score": 0.33333333333333337
       },
       {
-        "slug": "bhagya-ki-sabar-bhalo-hoy-sampurna-bisleshan",
-        "score": 0.195
+        "slug": "sanshoy-theke-hastarekha-bigyan-jyotish",
+        "score": 0.2007983056370153
       }
     ],
     "cluster": "বিজ্ঞান",
@@ -1648,10 +1678,12 @@
   "prithibir-itihas-rahasya": {
     "relatedByTag": [],
     "relatedByPillar": [
-      "prachin-grantha-o-adhunik-bigyan"
+      "prachin-grantha-o-adhunik-bigyan",
+      "man-jay-na-korle-safalta-asbe-na"
     ],
     "relatedByCluster": [
-      "prachin-grantha-o-adhunik-bigyan"
+      "prachin-grantha-o-adhunik-bigyan",
+      "man-jay-na-korle-safalta-asbe-na"
     ],
     "topRelated": [
       {
@@ -1659,12 +1691,12 @@
         "score": 0.3881349206349206
       },
       {
-        "slug": "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
-        "score": 0.20222222222222222
+        "slug": "man-jay-na-korle-safalta-asbe-na",
+        "score": 0.3433040935672515
       },
       {
-        "slug": "bhalo-manush-haoar-satyi-path",
-        "score": 0.2
+        "slug": "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
+        "score": 0.20222222222222222
       }
     ],
     "cluster": "বিজ্ঞান",

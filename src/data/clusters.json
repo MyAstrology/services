@@ -48,6 +48,33 @@
       }
     }
   },
+  "man-jay-na-korle-safalta-asbe-na": {
+    "cluster": "বিজ্ঞান",
+    "parent": "শিক্ষা",
+    "confidence": 0.9600000000000002,
+    "allScores": {
+      "জ্যোতিষ": {
+        "score": 2,
+        "matches": 2,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জীবন দর্শন": {
+        "score": 2,
+        "matches": 2,
+        "parent": "আধ্যাত্মিক"
+      },
+      "সাফল্য": {
+        "score": 4.5,
+        "matches": 5,
+        "parent": "ব্যবহারিক জীবন"
+      },
+      "বিজ্ঞান": {
+        "score": 4.800000000000001,
+        "matches": 6,
+        "parent": "শিক্ষা"
+      }
+    }
+  },
   "tarapith-smashan-tantra-jyotish": {
     "cluster": "জ্যোতিষ",
     "parent": "শারীরিক জ্যোতিষ",
