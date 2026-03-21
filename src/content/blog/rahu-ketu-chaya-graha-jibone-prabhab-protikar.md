@@ -30,24 +30,6 @@ twitter_description: "ছায়া গ্রহ রাহু ও কেতু
 twitter_image: "https://www.myastrology.in/images/rahu-ketu-chaya-graha-jyotish.webp"
 ---
 
-<h1 style="text-align:center;">রাহু ও কেতু<br><span style="font-size:0.75em;color:#b8860b;">ছায়া গ্রহের আসল রহস্য ও জীবনে প্রভাব</span></h1>
-
-<p style="text-align:center;color:#888;font-size:15px;">
-✍️ <b>Dr Prodyut Acharya</b> &nbsp;|&nbsp; 📅 ২১ মার্চ ২০২৬ &nbsp;|&nbsp; ⏱️ ৮ মিনিট
-</p>
-
-<hr style="border:none;border-top:2px solid #d4a017;margin:10px 0 25px;">
-
-<blockquote style="font-size:19px;font-style:italic;background:#fffbf0;padding:18px 22px;border-left:5px solid #d4a017;border-radius:0 8px 8px 0;margin:0 0 28px;">
-"রাহু-কেতু ভয়ের গ্রহ নয় — এরা জীবনের সবচেয়ে গভীর পরিবর্তনের দূত।"
-</blockquote>
-
-জ্যোতিষশাস্ত্রে নয়টি গ্রহের মধ্যে রাহু ও কেতু সবচেয়ে রহস্যময়। এদের বলা হয় **ছায়া গ্রহ** — কারণ এদের কোনো শারীরিক অস্তিত্ব নেই, তবু এদের প্রভাব বাস্তব জীবনে অত্যন্ত শক্তিশালী।
-
-অনেকেই রাহু-কেতুর নাম শুনলে ভয় পান। কিন্তু এই ভয় অজ্ঞতার। এই লেখায় আমরা দেখব — পুরাণে এদের জন্মের গল্প, শাস্ত্রে এদের স্বরূপ, জীবনে এদের প্রভাব এবং সঠিক প্রতিকার।
-
----
-
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -81,6 +63,25 @@ twitter_image: "https://www.myastrology.in/images/rahu-ketu-chaya-graha-jyotish.
   "inLanguage": "bn-BD"
 }
 </script>
+
+<h1 style="text-align:center;">রাহু ও কেতু<br><span style="font-size:0.75em;color:#b8860b;">ছায়া গ্রহের আসল রহস্য ও জীবনে প্রভাব</span></h1>
+
+<p style="text-align:center;color:#888;font-size:15px;">
+✍️ <b>Dr Prodyut Acharya</b> &nbsp;|&nbsp; 📅 ২১ মার্চ ২০২৬ &nbsp;|&nbsp; ⏱️ ৮ মিনিট
+</p>
+
+<hr style="border:none;border-top:2px solid #d4a017;margin:10px 0 25px;">
+
+<blockquote style="font-size:19px;font-style:italic;background:#fffbf0;padding:18px 22px;border-left:5px solid #d4a017;border-radius:0 8px 8px 0;margin:0 0 28px;">
+"রাহু-কেতু ভয়ের গ্রহ নয় — এরা জীবনের সবচেয়ে গভীর পরিবর্তনের দূত।"
+</blockquote>
+
+জ্যোতিষশাস্ত্রে নয়টি গ্রহের মধ্যে রাহু ও কেতু সবচেয়ে রহস্যময়। এদের বলা হয় **ছায়া গ্রহ** — কারণ এদের কোনো শারীরিক অস্তিত্ব নেই, তবু এদের প্রভাব বাস্তব জীবনে অত্যন্ত শক্তিশালী।
+
+অনেকেই রাহু-কেতুর নাম শুনলে ভয় পান। কিন্তু এই ভয় অজ্ঞতার। এই লেখায় আমরা দেখব — পুরাণে এদের জন্মের গল্প, শাস্ত্রে এদের স্বরূপ, জীবনে এদের প্রভাব এবং সঠিক প্রতিকার।
+
+---
+
 
 ## পুরাণে রাহু-কেতুর জন্ম
 
