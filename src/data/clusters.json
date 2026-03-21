@@ -193,6 +193,28 @@
       }
     }
   },
+  "jaistha-mase-janma-12-rashi-swabhab-karma-shastha": {
+    "cluster": "জ্যোতিষ",
+    "parent": "শারীরিক জ্যোতিষ",
+    "confidence": 0.4,
+    "allScores": {
+      "জ্যোতিষ": {
+        "score": 2,
+        "matches": 2,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জীবন দর্শন": {
+        "score": 1,
+        "matches": 1,
+        "parent": "আধ্যাত্মিক"
+      },
+      "সাফল্য": {
+        "score": 0.9,
+        "matches": 1,
+        "parent": "ব্যবহারিক জীবন"
+      }
+    }
+  },
   "kanya-lagna-jataker-swabhab-karma-bibaha-bhagya": {
     "cluster": "জীবন দর্শন",
     "parent": "আধ্যাত্মিক",

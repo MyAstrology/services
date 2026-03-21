@@ -60,18 +60,24 @@
     "manualLinks": []
   },
   "baisakh-mase-janma-12-rashi-swabhab-karma-shastha": {
-    "relatedByTag": [],
+    "relatedByTag": [
+      "jaistha-mase-janma-12-rashi-swabhab-karma-shastha"
+    ],
     "relatedByPillar": [
       "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
       "pitru-dosh-shastriya-byakhya",
       "shani-sadesati-ki-hoy-keno-hoy-ki-korben"
     ],
     "relatedByCluster": [
+      "jaistha-mase-janma-12-rashi-swabhab-karma-shastha",
       "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
-      "pitru-dosh-shastriya-byakhya",
-      "shani-sadesati-ki-hoy-keno-hoy-ki-korben"
+      "pitru-dosh-shastriya-byakhya"
     ],
     "topRelated": [
+      {
+        "slug": "jaistha-mase-janma-12-rashi-swabhab-karma-shastha",
+        "score": 0.624505928853755
+      },
       {
         "slug": "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
         "score": 0.3178947368421053
@@ -79,10 +85,6 @@
       {
         "slug": "pitru-dosh-shastriya-byakhya",
         "score": 0.3159313725490196
-      },
-      {
-        "slug": "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
-        "score": 0.31138888888888894
       }
     ],
     "cluster": "জ্যোতিষ",
@@ -303,6 +305,38 @@
     ],
     "cluster": "হস্তরেখা",
     "confidence": 0.6,
+    "manualLinks": []
+  },
+  "jaistha-mase-janma-12-rashi-swabhab-karma-shastha": {
+    "relatedByTag": [
+      "baisakh-mase-janma-12-rashi-swabhab-karma-shastha"
+    ],
+    "relatedByPillar": [
+      "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
+      "pitru-dosh-shastriya-byakhya",
+      "shani-sadesati-ki-hoy-keno-hoy-ki-korben"
+    ],
+    "relatedByCluster": [
+      "baisakh-mase-janma-12-rashi-swabhab-karma-shastha",
+      "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
+      "pitru-dosh-shastriya-byakhya"
+    ],
+    "topRelated": [
+      {
+        "slug": "baisakh-mase-janma-12-rashi-swabhab-karma-shastha",
+        "score": 0.624505928853755
+      },
+      {
+        "slug": "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
+        "score": 0.31882352941176473
+      },
+      {
+        "slug": "pitru-dosh-shastriya-byakhya",
+        "score": 0.31676470588235295
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 0.4,
     "manualLinks": []
   },
   "kanya-lagna-jataker-swabhab-karma-bibaha-bhagya": {
@@ -2421,8 +2455,8 @@
     "relatedByPillar": [],
     "relatedByCluster": [
       "pitru-dosh-shastriya-byakhya",
-      "baisakh-mase-janma-12-rashi-swabhab-karma-shastha",
-      "jibone-sob-kichu-biruddhe-gele-ki-korben"
+      "jaistha-mase-janma-12-rashi-swabhab-karma-shastha",
+      "baisakh-mase-janma-12-rashi-swabhab-karma-shastha"
     ],
     "topRelated": [
       {
@@ -2430,12 +2464,12 @@
         "score": 0.2248798798798799
       },
       {
-        "slug": "baisakh-mase-janma-12-rashi-swabhab-karma-shastha",
-        "score": 0.22321428571428573
+        "slug": "jaistha-mase-janma-12-rashi-swabhab-karma-shastha",
+        "score": 0.2243421052631579
       },
       {
-        "slug": "jibone-sob-kichu-biruddhe-gele-ki-korben",
-        "score": 0.21840909090909094
+        "slug": "baisakh-mase-janma-12-rashi-swabhab-karma-shastha",
+        "score": 0.22321428571428573
       }
     ],
     "cluster": "জ্যোতিষ",
