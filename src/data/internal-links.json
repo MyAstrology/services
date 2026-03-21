@@ -123,6 +123,38 @@
     "confidence": 1,
     "manualLinks": []
   },
+  "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya": {
+    "relatedByTag": [
+      "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya"
+    ],
+    "relatedByPillar": [
+      "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan",
+      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
+      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya"
+    ],
+    "relatedByCluster": [
+      "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya",
+      "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan",
+      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha"
+    ],
+    "topRelated": [
+      {
+        "slug": "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya",
+        "score": 0.6208695652173913
+      },
+      {
+        "slug": "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan",
+        "score": 0.3205882352941177
+      },
+      {
+        "slug": "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
+        "score": 0.3130555555555556
+      }
+    ],
+    "cluster": "জীবন দর্শন",
+    "confidence": 0.8,
+    "manualLinks": []
+  },
   "hater-ulto-pith-karprishtha-samudrik-shastra": {
     "relatedByTag": [
       "samudrik-shastra-ki-mukh-hasta-pada-bishleshan",
@@ -157,18 +189,24 @@
     "manualLinks": []
   },
   "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya": {
-    "relatedByTag": [],
+    "relatedByTag": [
+      "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya"
+    ],
     "relatedByPillar": [
       "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan",
       "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
       "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya"
     ],
     "relatedByCluster": [
+      "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya",
       "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan",
-      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
-      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya"
+      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha"
     ],
     "topRelated": [
+      {
+        "slug": "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya",
+        "score": 0.6208695652173913
+      },
       {
         "slug": "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan",
         "score": 0.3205882352941177
@@ -176,10 +214,6 @@
       {
         "slug": "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
         "score": 0.3130555555555556
-      },
-      {
-        "slug": "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
-        "score": 0.31061403508771934
       }
     ],
     "cluster": "জীবন দর্শন",
