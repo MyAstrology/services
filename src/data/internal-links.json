@@ -29,6 +29,38 @@
     "confidence": 0.4,
     "manualLinks": []
   },
+  "bhagya-ki-sabar-bhalo-hoy-sampurna-bisleshan": {
+    "relatedByTag": [
+      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha"
+    ],
+    "relatedByPillar": [
+      "ishwar-bishas-upalabdhi-karma-vivekananda-part-1",
+      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
+      "artha-ki-sukh-dey-jyotish-darshan-parashar"
+    ],
+    "relatedByCluster": [
+      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
+      "ishwar-bishas-upalabdhi-karma-vivekananda-part-1",
+      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya"
+    ],
+    "topRelated": [
+      {
+        "slug": "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
+        "score": 0.4032905982905983
+      },
+      {
+        "slug": "ishwar-bishas-upalabdhi-karma-vivekananda-part-1",
+        "score": 0.399640522875817
+      },
+      {
+        "slug": "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
+        "score": 0.39909356725146194
+      }
+    ],
+    "cluster": "জীবন দর্শন",
+    "confidence": 1,
+    "manualLinks": []
+  },
   "tarapith-smashan-tantra-jyotish": {
     "relatedByTag": [],
     "relatedByPillar": [
@@ -1270,8 +1302,8 @@
     ],
     "relatedByPillar": [
       "mantra-jap-ki-kaj-kore-bigyan-adhyatma",
-      "gorib-keno-buddher-utor-jibon-bodle-dey",
-      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha"
+      "bhagya-ki-sabar-bhalo-hoy-sampurna-bisleshan",
+      "gorib-keno-buddher-utor-jibon-bodle-dey"
     ],
     "relatedByCluster": [
       "ishwar-bishas-nastik-dharmic-karma-part-2",
@@ -1481,8 +1513,8 @@
         "score": 0.2007983056370153
       },
       {
-        "slug": "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
-        "score": 0.19357142857142856
+        "slug": "bhagya-ki-sabar-bhalo-hoy-sampurna-bisleshan",
+        "score": 0.195
       }
     ],
     "cluster": "বিজ্ঞান",
@@ -2580,7 +2612,8 @@
   },
   "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha": {
     "relatedByTag": [
-      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya"
+      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
+      "bhagya-ki-sabar-bhalo-hoy-sampurna-bisleshan"
     ],
     "relatedByPillar": [
       "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
@@ -2589,8 +2622,8 @@
     ],
     "relatedByCluster": [
       "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
-      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
-      "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan"
+      "bhagya-ki-sabar-bhalo-hoy-sampurna-bisleshan",
+      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo"
     ],
     "topRelated": [
       {
@@ -2598,12 +2631,12 @@
         "score": 0.43000000000000005
       },
       {
-        "slug": "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
-        "score": 0.39910660660660663
+        "slug": "bhagya-ki-sabar-bhalo-hoy-sampurna-bisleshan",
+        "score": 0.4032905982905983
       },
       {
-        "slug": "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan",
-        "score": 0.3987389575194453
+        "slug": "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
+        "score": 0.39910660660660663
       }
     ],
     "cluster": "জীবন দর্শন",
