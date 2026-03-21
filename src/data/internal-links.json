@@ -126,17 +126,15 @@
   "brischik-lagna-jataker-swabhab-karma-bibaha-bhagya": {
     "relatedByTag": [
       "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya",
-      "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya",
-      "kanya-lagna-jataker-swabhab-karma-bibaha-bhagya",
-      "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya"
-    ],
-    "relatedByPillar": [
-      "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan"
-    ],
-    "relatedByCluster": [
-      "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya",
+      "dhanu-lagna-jataker-swabhab-karma-bibaha-bhagya",
       "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya",
       "kanya-lagna-jataker-swabhab-karma-bibaha-bhagya"
+    ],
+    "relatedByPillar": [],
+    "relatedByCluster": [
+      "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya",
+      "dhanu-lagna-jataker-swabhab-karma-bibaha-bhagya",
+      "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya"
     ],
     "topRelated": [
       {
@@ -144,11 +142,11 @@
         "score": 0.6259090909090909
       },
       {
-        "slug": "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya",
-        "score": 0.6143478260869565
+        "slug": "dhanu-lagna-jataker-swabhab-karma-bibaha-bhagya",
+        "score": 0.619090909090909
       },
       {
-        "slug": "kanya-lagna-jataker-swabhab-karma-bibaha-bhagya",
+        "slug": "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya",
         "score": 0.6143478260869565
       }
     ],
@@ -163,9 +161,7 @@
       "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya",
       "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya"
     ],
-    "relatedByPillar": [
-      "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan"
-    ],
+    "relatedByPillar": [],
     "relatedByCluster": [
       "tula-lagna-jataker-swabhab-karma-bibaha-bhagya",
       "kanya-lagna-jataker-swabhab-karma-bibaha-bhagya",
@@ -183,6 +179,37 @@
       {
         "slug": "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya",
         "score": 0.6208695652173913
+      }
+    ],
+    "cluster": "জীবন দর্শন",
+    "confidence": 0.8,
+    "manualLinks": []
+  },
+  "dhanu-lagna-jataker-swabhab-karma-bibaha-bhagya": {
+    "relatedByTag": [
+      "brischik-lagna-jataker-swabhab-karma-bibaha-bhagya",
+      "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya",
+      "kanya-lagna-jataker-swabhab-karma-bibaha-bhagya",
+      "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya"
+    ],
+    "relatedByPillar": [],
+    "relatedByCluster": [
+      "brischik-lagna-jataker-swabhab-karma-bibaha-bhagya",
+      "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya",
+      "kanya-lagna-jataker-swabhab-karma-bibaha-bhagya"
+    ],
+    "topRelated": [
+      {
+        "slug": "brischik-lagna-jataker-swabhab-karma-bibaha-bhagya",
+        "score": 0.619090909090909
+      },
+      {
+        "slug": "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya",
+        "score": 0.6143478260869565
+      },
+      {
+        "slug": "kanya-lagna-jataker-swabhab-karma-bibaha-bhagya",
+        "score": 0.6143478260869565
       }
     ],
     "cluster": "জীবন দর্শন",
@@ -229,9 +256,7 @@
       "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya",
       "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya"
     ],
-    "relatedByPillar": [
-      "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan"
-    ],
+    "relatedByPillar": [],
     "relatedByCluster": [
       "mithun-lagna-jataker-swabhab-karma-bibaha-bhagya",
       "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya",
@@ -262,9 +287,7 @@
       "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya",
       "mithun-lagna-jataker-swabhab-karma-bibaha-bhagya"
     ],
-    "relatedByPillar": [
-      "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan"
-    ],
+    "relatedByPillar": [],
     "relatedByCluster": [
       "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya",
       "kanya-lagna-jataker-swabhab-karma-bibaha-bhagya",
@@ -295,9 +318,7 @@
       "kanya-lagna-jataker-swabhab-karma-bibaha-bhagya",
       "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya"
     ],
-    "relatedByPillar": [
-      "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan"
-    ],
+    "relatedByPillar": [],
     "relatedByCluster": [
       "brischik-lagna-jataker-swabhab-karma-bibaha-bhagya",
       "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya",
@@ -328,9 +349,7 @@
       "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya",
       "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya"
     ],
-    "relatedByPillar": [
-      "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan"
-    ],
+    "relatedByPillar": [],
     "relatedByCluster": [
       "kanya-lagna-jataker-swabhab-karma-bibaha-bhagya",
       "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya",
@@ -428,9 +447,7 @@
       "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya",
       "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya"
     ],
-    "relatedByPillar": [
-      "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan"
-    ],
+    "relatedByPillar": [],
     "relatedByCluster": [
       "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya",
       "kanya-lagna-jataker-swabhab-karma-bibaha-bhagya",
@@ -461,9 +478,7 @@
       "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya",
       "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya"
     ],
-    "relatedByPillar": [
-      "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan"
-    ],
+    "relatedByPillar": [],
     "relatedByCluster": [
       "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya",
       "kanya-lagna-jataker-swabhab-karma-bibaha-bhagya",

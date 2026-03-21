@@ -41,13 +41,13 @@
   ],
   "brischik-lagna-jataker-swabhab-karma-bibaha-bhagya": [
     "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya",
+    "dhanu-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "kanya-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "mithun-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "singha-lagna-jataker-swabhab-karma-bibaha-bhagya",
-    "tula-lagna-jataker-swabhab-karma-bibaha-bhagya",
-    "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan"
+    "tula-lagna-jataker-swabhab-karma-bibaha-bhagya"
   ],
   "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya": [
     "tula-lagna-jataker-swabhab-karma-bibaha-bhagya",
@@ -57,7 +57,17 @@
     "mithun-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "singha-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "brischik-lagna-jataker-swabhab-karma-bibaha-bhagya",
-    "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan"
+    "dhanu-lagna-jataker-swabhab-karma-bibaha-bhagya"
+  ],
+  "dhanu-lagna-jataker-swabhab-karma-bibaha-bhagya": [
+    "brischik-lagna-jataker-swabhab-karma-bibaha-bhagya",
+    "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya",
+    "kanya-lagna-jataker-swabhab-karma-bibaha-bhagya",
+    "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya",
+    "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya",
+    "mithun-lagna-jataker-swabhab-karma-bibaha-bhagya",
+    "singha-lagna-jataker-swabhab-karma-bibaha-bhagya",
+    "tula-lagna-jataker-swabhab-karma-bibaha-bhagya"
   ],
   "hater-ulto-pith-karprishtha-samudrik-shastra": [
     "samudrik-shastra-ki-mukh-hasta-pada-bishleshan",
@@ -77,7 +87,7 @@
     "singha-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "tula-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "brischik-lagna-jataker-swabhab-karma-bibaha-bhagya",
-    "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan"
+    "dhanu-lagna-jataker-swabhab-karma-bibaha-bhagya"
   ],
   "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya": [
     "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya",
@@ -87,7 +97,7 @@
     "singha-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "tula-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "brischik-lagna-jataker-swabhab-karma-bibaha-bhagya",
-    "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan"
+    "dhanu-lagna-jataker-swabhab-karma-bibaha-bhagya"
   ],
   "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya": [
     "brischik-lagna-jataker-swabhab-karma-bibaha-bhagya",
@@ -97,7 +107,7 @@
     "mithun-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "singha-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "tula-lagna-jataker-swabhab-karma-bibaha-bhagya",
-    "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan"
+    "dhanu-lagna-jataker-swabhab-karma-bibaha-bhagya"
   ],
   "mithun-lagna-jataker-swabhab-karma-bibaha-bhagya": [
     "kanya-lagna-jataker-swabhab-karma-bibaha-bhagya",
@@ -107,7 +117,7 @@
     "singha-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "tula-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "brischik-lagna-jataker-swabhab-karma-bibaha-bhagya",
-    "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan"
+    "dhanu-lagna-jataker-swabhab-karma-bibaha-bhagya"
   ],
   "rahu-ketu-chaya-graha-jibone-prabhab-protikar": [
     "janma-kundali-hasta-mudra-rahasya",
@@ -137,7 +147,7 @@
     "mithun-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "tula-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "brischik-lagna-jataker-swabhab-karma-bibaha-bhagya",
-    "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan"
+    "dhanu-lagna-jataker-swabhab-karma-bibaha-bhagya"
   ],
   "tula-lagna-jataker-swabhab-karma-bibaha-bhagya": [
     "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya",
@@ -147,7 +157,7 @@
     "mithun-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "singha-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "brischik-lagna-jataker-swabhab-karma-bibaha-bhagya",
-    "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan"
+    "dhanu-lagna-jataker-swabhab-karma-bibaha-bhagya"
   ],
   "artha-ki-sukh-dey-jyotish-darshan-parashar": [
     "mantra-jap-ki-kaj-kore-bigyan-adhyatma",
