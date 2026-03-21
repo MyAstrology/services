@@ -138,27 +138,93 @@ twitter_image: "https://www.myastrology.in/images/samudrik-shastra-mukh-hasta-bi
 
 সামুদ্রিক শাস্ত্র অনুযায়ী, আমাদের শরীর কেবল বাইরের গঠন নয় — এটি আমাদের মনের অবস্থা, পূর্বজন্মের কর্মফল ও বর্তমানের ভাগ্যচক্রেরও বহিঃপ্রকাশ।
 
-<div class="feature-grid-2">
-<div class="mini-card">
-<div class="mini-card-icon">👁️</div>
-<p class="mini-card-title">চোখের আকৃতি</p>
-<p class="mini-card-body">বলে দেয় কে কেমন স্বপ্ন দেখে এবং তার কল্পনাশক্তি কতটা গভীর।</p>
+<div class="samudrik-section">
+  <div class="samudrik-section-title">
+    <span>🌊</span> সামুদ্রিক সাত্ব — চারিত্রিক বিশ্লেষণ
+  </div>
+  <p style="margin: 0 0 12px 0; font-size: 0.9rem; color: #4b3a1a;">
+    প্রাচীন গ্রন্থ অনুযায়ী, সামুদ্রিক সাত্ব ব্যক্তির শরীরচিহ্ন, রেখা ও গঠন থেকে চরিত্র ও ভবিষ্যৎ নির্ণয় করে। 
+    নিচে প্রধান লক্ষণগুলির একটি স্পষ্ট বিবরণ দেওয়া হল।
+  </p>
+
+  <div class="feature-grid-2">
+    <div class="mini-card">
+      <div class="mini-card-icon">👁️</div>
+      <div class="mini-card-title">চোখের আকৃতি ও প্রকৃতি</div>
+      <div class="mini-card-body">
+        <strong>বড় চোখ:</strong> কল্পনাপ্রবণতা, মানসিক গভীরতা।<br>
+        <strong>ছোট চোখ:</strong> সতর্কতা, বিশ্লেষণী বুদ্ধি।<br>
+        <strong>তির্যক চোখ:</strong> কূটনৈতিক মানসিকতা, ধৈর্য।
+      </div>
+    </div>
+    <div class="mini-card">
+      <div class="mini-card-icon">✋</div>
+      <div class="mini-card-title">হাতের গঠন ও রেখা</div>
+      <div class="mini-card-body">
+        <strong>শক্ত হাতের তালু:</strong> কর্মঠ, স্থিরচিত্ত।<br>
+        <strong>কোমল হাত:</strong> শৈল্পিক মন, সংবেদনশীলতা।<br>
+        <strong>হৃদয়রেখা স্পষ্ট:</strong> আবেগ নিয়ন্ত্রণে সক্ষমতা।
+      </div>
+    </div>
+    <div class="mini-card">
+      <div class="mini-card-icon">🗣️</div>
+      <div class="mini-card-title">কণ্ঠ ও কণ্ঠস্বরে রেখা</div>
+      <div class="mini-card-body">
+        গলার বাম পাশের উজ্জ্বল রেখা — প্রভাবশালী বক্তৃতা।<br>
+        গভীর ও ভারী কণ্ঠ — আত্মবিশ্বাস, নেতৃত্বগুণ।<br>
+        মৃদু কণ্ঠে স্পষ্টতা — যোগাযোগে দক্ষতা।
+      </div>
+    </div>
+    <div class="mini-card">
+      <div class="mini-card-icon">🦶</div>
+      <div class="mini-card-title">পায়ের চিহ্ন ও পদাঙ্গুলি</div>
+      <div class="mini-card-body">
+        পদতলের পদ্মচিহ্ন — ধন, সম্মান।<br>
+        দীর্ঘ দ্বিতীয় পদাঙ্গুলি — উচ্চাকাঙ্ক্ষা ও কর্তৃত্ব।<br>
+        সমান পায়ের পাতা — স্থিরতা, ভারসাম্যপ্রবণতা।
+      </div>
+    </div>
+  </div>
 </div>
-<div class="mini-card">
-<div class="mini-card-icon">✋</div>
-<p class="mini-card-title">হাতের গঠন</p>
-<p class="mini-card-body">বলে দেয় জীবনে কতটা কষ্ট সহ্য করতে হবে এবং সাফল্য কীভাবে আসবে।</p>
+
+<div class="jyotish-box">
+  <div class="samudrik-section-title" style="color: #f5e2a4; border-bottom-color: rgba(201,162,39,0.5);">
+    <span>🔮</span> রেখা ও অঙ্গুলি বিবেচিত (বিশেষ দৃষ্টি)
+  </div>
+  <div class="jyotish-row">
+    <div class="jyotish-arrow">📌</div>
+    <div><strong>জীবনরেখা দ্বিধাহীন ও সুগভীর</strong> — দীর্ঘায়ু ও আত্মবিশ্বাসের সূচক।</div>
+  </div>
+  <div class="jyotish-row">
+    <div class="jyotish-arrow">📌</div>
+    <div><strong>মস্তিষ্করেখা সরল ও দীর্ঘ</strong> — যুক্তিবাদী, বিশ্লেষণাত্মক চিন্তাধারা।</div>
+  </div>
+  <div class="jyotish-row">
+    <div class="jyotish-arrow">📌</div>
+    <div><strong>তর্জনী ও অনামিকার দৈর্ঘ্যের সম্পর্ক</strong> — তর্জনী দীর্ঘ হলে নেতৃত্বগুণ, অনামিকা দীর্ঘ হলে সৃষ্টিশীলতা ও ঝুঁকি গ্রহণের মানসিকতা।</div>
+  </div>
+  <div class="jyotish-row">
+    <div class="jyotish-arrow">📌</div>
+    <div><strong>মণিবন্ধের রেখাজাল স্পষ্ট হলে</strong> — সৌভাগ্য ও আকস্মিক লাভের সম্ভাবনা।</div>
+  </div>
 </div>
-<div class="mini-card">
-<div class="mini-card-icon">🧠</div>
-<p class="mini-card-title">কপালের রেখা</p>
-<p class="mini-card-body">বলে দেয় ভবিষ্যতের উত্থান-পতন ও দীর্ঘজীবনের সম্ভাবনা।</p>
-</div>
-<div class="mini-card">
-<div class="mini-card-icon">👣</div>
-<p class="mini-card-title">পায়ের চিহ্ন</p>
-<p class="mini-card-body">পদতলের বিশেষ চিহ্ন রাজযোগ ও পূর্বজন্মের শুভ কর্মফলের সংকেত।</p>
-</div>
+
+<div class="samudrik-section" style="margin-top: 16px;">
+  <div class="samudrik-section-title">
+    <span>🧠</span> সার্বিক মানসিকতার প্রতিফলন
+  </div>
+  <div class="samudrik-row">
+    <div class="samudrik-dot">•</div>
+    <div>সামুদ্রিক সাত্ব অনুযায়ী, ব্যক্তির বাহ্যিক অঙ্গপ্রত্যঙ্গের গঠন ও চিহ্ন তার অভ্যন্তরীণ প্রকৃতি ও ভবিষ্যৎ পথকে নির্দেশ করে।</div>
+  </div>
+  <div class="samudrik-row">
+    <div class="samudrik-dot">•</div>
+    <div>মুখমণ্ডলের রেখা ও গঠন (চোখের পাতা, ভ্রূর অবস্থান, চিবুকের গঠন) পূর্বজন্মের সংস্কার ও বর্তমান জীবনের প্রবণতা প্রকাশ করে।</div>
+  </div>
+  <div class="samudrik-row">
+    <div class="samudrik-dot">•</div>
+    <div><strong>সামুদ্রিক সাত্বের মূল উৎস:</strong> <em>গড় পুনরায়</em> (প্রাচীন সমুদ্রতত্ত্ব) — যা প্রকৃতি ও মানবচরিত্রের সমন্বয় ব্যাখ্যা করে।</div>
+  </div>
 </div>
 
 ---
