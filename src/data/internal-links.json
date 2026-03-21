@@ -125,21 +125,24 @@
   },
   "hater-ulto-pith-karprishtha-samudrik-shastra": {
     "relatedByTag": [
-      "samudrik-shastra-nari-noy-sattva-bichar",
-      "hasta-rekha-jivan-manchitra",
-      "hater-rekha-career-dhan-bishleshan",
-      "star-chinho-hastrekha"
-    ],
-    "relatedByPillar": [
-      "shishu-hath-rekha-pesa-jyotish-rahasya",
-      "hath-rekha-atmounnayan"
-    ],
-    "relatedByCluster": [
+      "samudrik-shastra-ki-mukh-hasta-pada-bishleshan",
       "samudrik-shastra-nari-noy-sattva-bichar",
       "hasta-rekha-jivan-manchitra",
       "hater-rekha-career-dhan-bishleshan"
     ],
+    "relatedByPillar": [
+      "shishu-hath-rekha-pesa-jyotish-rahasya"
+    ],
+    "relatedByCluster": [
+      "samudrik-shastra-ki-mukh-hasta-pada-bishleshan",
+      "samudrik-shastra-nari-noy-sattva-bichar",
+      "hasta-rekha-jivan-manchitra"
+    ],
     "topRelated": [
+      {
+        "slug": "samudrik-shastra-ki-mukh-hasta-pada-bishleshan",
+        "score": 0.49495798319327733
+      },
       {
         "slug": "samudrik-shastra-nari-noy-sattva-bichar",
         "score": 0.46589169000933706
@@ -147,10 +150,6 @@
       {
         "slug": "hasta-rekha-jivan-manchitra",
         "score": 0.4354692192192192
-      },
-      {
-        "slug": "hater-rekha-career-dhan-bishleshan",
-        "score": 0.41722222222222227
       }
     ],
     "cluster": "হস্তরেখা",
@@ -187,6 +186,41 @@
     ],
     "cluster": "জ্যোতিষ",
     "confidence": 1,
+    "manualLinks": []
+  },
+  "samudrik-shastra-ki-mukh-hasta-pada-bishleshan": {
+    "relatedByTag": [
+      "samudrik-shastra-nari-noy-sattva-bichar",
+      "hater-ulto-pith-karprishtha-samudrik-shastra",
+      "hasta-rekha-jivan-manchitra",
+      "hater-rekha-career-dhan-bishleshan"
+    ],
+    "relatedByPillar": [
+      "hath-chinho-porichoy",
+      "star-chinho-hastrekha",
+      "shishu-hath-rekha-pesa-jyotish-rahasya"
+    ],
+    "relatedByCluster": [
+      "samudrik-shastra-nari-noy-sattva-bichar",
+      "hater-ulto-pith-karprishtha-samudrik-shastra",
+      "hasta-rekha-jivan-manchitra"
+    ],
+    "topRelated": [
+      {
+        "slug": "samudrik-shastra-nari-noy-sattva-bichar",
+        "score": 0.5250922350922351
+      },
+      {
+        "slug": "hater-ulto-pith-karprishtha-samudrik-shastra",
+        "score": 0.49495798319327733
+      },
+      {
+        "slug": "hasta-rekha-jivan-manchitra",
+        "score": 0.4311111111111111
+      }
+    ],
+    "cluster": "হস্তরেখা",
+    "confidence": 0.6,
     "manualLinks": []
   },
   "artha-ki-sukh-dey-jyotish-darshan-parashar": {
@@ -390,6 +424,7 @@
     "relatedByTag": [
       "hater-ulto-pith-karprishtha-samudrik-shastra",
       "hath-rekha-atmounnayan",
+      "samudrik-shastra-ki-mukh-hasta-pada-bishleshan",
       "shishu-hath-rekha-pesa-jyotish-rahasya"
     ],
     "relatedByPillar": [
@@ -400,7 +435,7 @@
     "relatedByCluster": [
       "hater-ulto-pith-karprishtha-samudrik-shastra",
       "hath-rekha-atmounnayan",
-      "shishu-hath-rekha-pesa-jyotish-rahasya"
+      "samudrik-shastra-ki-mukh-hasta-pada-bishleshan"
     ],
     "topRelated": [
       {
@@ -412,8 +447,8 @@
         "score": 0.4078571428571428
       },
       {
-        "slug": "shishu-hath-rekha-pesa-jyotish-rahasya",
-        "score": 0.4017857142857143
+        "slug": "samudrik-shastra-ki-mukh-hasta-pada-bishleshan",
+        "score": 0.4021009631922945
       }
     ],
     "cluster": "হস্তরেখা",
@@ -735,7 +770,8 @@
   },
   "sanshoy-theke-hastarekha-bigyan-jyotish": {
     "relatedByTag": [
-      "hater-ulto-pith-karprishtha-samudrik-shastra"
+      "hater-ulto-pith-karprishtha-samudrik-shastra",
+      "samudrik-shastra-ki-mukh-hasta-pada-bishleshan"
     ],
     "relatedByPillar": [
       "samudrik-shastra-nari-noy-sattva-bichar",
@@ -744,8 +780,8 @@
     ],
     "relatedByCluster": [
       "hater-ulto-pith-karprishtha-samudrik-shastra",
-      "samudrik-shastra-nari-noy-sattva-bichar",
-      "star-chinho-hastrekha"
+      "samudrik-shastra-ki-mukh-hasta-pada-bishleshan",
+      "samudrik-shastra-nari-noy-sattva-bichar"
     ],
     "topRelated": [
       {
@@ -753,12 +789,12 @@
         "score": 0.40177350427350433
       },
       {
-        "slug": "samudrik-shastra-nari-noy-sattva-bichar",
-        "score": 0.3995512820512821
+        "slug": "samudrik-shastra-ki-mukh-hasta-pada-bishleshan",
+        "score": 0.40067460317460324
       },
       {
-        "slug": "star-chinho-hastrekha",
-        "score": 0.3980205278592375
+        "slug": "samudrik-shastra-nari-noy-sattva-bichar",
+        "score": 0.3995512820512821
       }
     ],
     "cluster": "হস্তরেখা",
@@ -1064,7 +1100,7 @@
     "relatedByPillar": [
       "shishu-hath-rekha-pesa-jyotish-rahasya",
       "hater-ulto-pith-karprishtha-samudrik-shastra",
-      "samudrik-shastra-nari-noy-sattva-bichar"
+      "samudrik-shastra-ki-mukh-hasta-pada-bishleshan"
     ],
     "relatedByCluster": [
       "hasta-rekha-jivan-manchitra",
@@ -1702,6 +1738,7 @@
   },
   "samudrik-shastra-nari-noy-sattva-bichar": {
     "relatedByTag": [
+      "samudrik-shastra-ki-mukh-hasta-pada-bishleshan",
       "hater-ulto-pith-karprishtha-samudrik-shastra",
       "hasta-rekha-jivan-manchitra"
     ],
@@ -1711,11 +1748,15 @@
       "hater-rekha-career-dhan-bishleshan"
     ],
     "relatedByCluster": [
+      "samudrik-shastra-ki-mukh-hasta-pada-bishleshan",
       "hater-ulto-pith-karprishtha-samudrik-shastra",
-      "hasta-rekha-jivan-manchitra",
-      "sanshoy-theke-hastarekha-bigyan-jyotish"
+      "hasta-rekha-jivan-manchitra"
     ],
     "topRelated": [
+      {
+        "slug": "samudrik-shastra-ki-mukh-hasta-pada-bishleshan",
+        "score": 0.5250922350922351
+      },
       {
         "slug": "hater-ulto-pith-karprishtha-samudrik-shastra",
         "score": 0.46589169000933706
@@ -1723,10 +1764,6 @@
       {
         "slug": "hasta-rekha-jivan-manchitra",
         "score": 0.4347484984984985
-      },
-      {
-        "slug": "sanshoy-theke-hastarekha-bigyan-jyotish",
-        "score": 0.3995512820512821
       }
     ],
     "cluster": "হস্তরেখা",

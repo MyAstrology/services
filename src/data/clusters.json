@@ -111,6 +111,33 @@
       }
     }
   },
+  "samudrik-shastra-ki-mukh-hasta-pada-bishleshan": {
+    "cluster": "হস্তরেখা",
+    "parent": "শারীরিক জ্যোতিষ",
+    "confidence": 0.6,
+    "allScores": {
+      "হস্তরেখা": {
+        "score": 3,
+        "matches": 3,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জ্যোতিষ": {
+        "score": 2,
+        "matches": 2,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জীবন দর্শন": {
+        "score": 3,
+        "matches": 3,
+        "parent": "আধ্যাত্মিক"
+      },
+      "বিজ্ঞান": {
+        "score": 0.8,
+        "matches": 1,
+        "parent": "শিক্ষা"
+      }
+    }
+  },
   "artha-ki-sukh-dey-jyotish-darshan-parashar": {
     "cluster": "জীবন দর্শন",
     "parent": "আধ্যাত্মিক",
