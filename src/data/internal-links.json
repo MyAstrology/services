@@ -243,31 +243,32 @@
   "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan": {
     "relatedByTag": [
       "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
-      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
-      "manush-ki-satyi-valobasha-yogi-pathik-part-1"
+      "bhalo-manush-haoar-satyi-path",
+      "dharma-ki-prokrit-artha-gita-buddha-darshan",
+      "mahabharata-ratha-pancha-indriya-jiban-darshan"
     ],
     "relatedByPillar": [
-      "bhalo-manush-haoar-satyi-path",
-      "artha-ki-sukh-dey-jyotish-darshan-parashar",
-      "chinta-shakti-bigyan-jyotish-darshan"
+      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
+      "manush-ki-satyi-valobasha-yogi-pathik-part-1",
+      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo"
     ],
     "relatedByCluster": [
       "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
-      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
-      "manush-ki-satyi-valobasha-yogi-pathik-part-1"
+      "bhalo-manush-haoar-satyi-path",
+      "dharma-ki-prokrit-artha-gita-buddha-darshan"
     ],
     "topRelated": [
       {
         "slug": "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
-        "score": 0.46107843137254906
+        "score": 0.4184848484848485
       },
       {
-        "slug": "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
-        "score": 0.4116269841269841
+        "slug": "bhalo-manush-haoar-satyi-path",
+        "score": 0.41594017094017094
       },
       {
-        "slug": "manush-ki-satyi-valobasha-yogi-pathik-part-1",
-        "score": 0.40722222222222226
+        "slug": "dharma-ki-prokrit-artha-gita-buddha-darshan",
+        "score": 0.415189701897019
       }
     ],
     "cluster": "জীবন দর্শন",
@@ -1405,7 +1406,8 @@
     ],
     "relatedByPillar": [
       "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
-      "bhalo-manush-haoar-satyi-path"
+      "bhalo-manush-haoar-satyi-path",
+      "gorib-keno-buddher-utor-jibon-bodle-dey"
     ],
     "relatedByCluster": [
       "ishwar-bishas-nastik-dharmic-karma-part-2",
@@ -2253,8 +2255,8 @@
     "relatedByTag": [
       "dharma-ki-prokrit-artha-gita-buddha-darshan",
       "mahabharata-ratha-pancha-indriya-jiban-darshan",
-      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
-      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo"
+      "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan",
+      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya"
     ],
     "relatedByPillar": [
       "gorib-keno-buddher-utor-jibon-bodle-dey",
@@ -2264,7 +2266,7 @@
     "relatedByCluster": [
       "dharma-ki-prokrit-artha-gita-buddha-darshan",
       "mahabharata-ratha-pancha-indriya-jiban-darshan",
-      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya"
+      "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan"
     ],
     "topRelated": [
       {
@@ -2276,8 +2278,8 @@
         "score": 0.4541666666666667
       },
       {
-        "slug": "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
-        "score": 0.4126736111111111
+        "slug": "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan",
+        "score": 0.41594017094017094
       }
     ],
     "cluster": "জীবন দর্শন",
@@ -2291,9 +2293,7 @@
       "mahabharata-ratha-pancha-indriya-jiban-darshan",
       "pradip-byarthata-manoshik-shanti"
     ],
-    "relatedByPillar": [
-      "chinta-shakti-bigyan-jyotish-darshan"
-    ],
+    "relatedByPillar": [],
     "relatedByCluster": [
       "bhalo-manush-haoar-satyi-path",
       "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
@@ -2449,7 +2449,8 @@
     "relatedByTag": [
       "bhalo-manush-haoar-satyi-path",
       "dharma-ki-prokrit-artha-gita-buddha-darshan",
-      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya"
+      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
+      "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan"
     ],
     "relatedByPillar": [
       "gorib-keno-buddher-utor-jibon-bodle-dey",
@@ -2482,15 +2483,15 @@
   "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya": {
     "relatedByTag": [
       "dharma-ki-prokrit-artha-gita-buddha-darshan",
-      "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan",
       "pradip-byarthata-manoshik-shanti",
-      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha"
+      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
+      "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan"
     ],
     "relatedByPillar": [],
     "relatedByCluster": [
       "dharma-ki-prokrit-artha-gita-buddha-darshan",
-      "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan",
-      "pradip-byarthata-manoshik-shanti"
+      "pradip-byarthata-manoshik-shanti",
+      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha"
     ],
     "topRelated": [
       {
@@ -2498,12 +2499,12 @@
         "score": 0.4632352941176471
       },
       {
-        "slug": "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan",
-        "score": 0.46107843137254906
-      },
-      {
         "slug": "pradip-byarthata-manoshik-shanti",
         "score": 0.4463510101010101
+      },
+      {
+        "slug": "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
+        "score": 0.43000000000000005
       }
     ],
     "cluster": "জীবন দর্শন",
@@ -2578,18 +2579,17 @@
   },
   "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha": {
     "relatedByTag": [
-      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
-      "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan"
+      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya"
     ],
     "relatedByPillar": [
       "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
-      "ishwar-bishas-nastik-dharmic-karma-part-2",
-      "mantra-jap-ki-kaj-kore-bigyan-adhyatma"
+      "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan",
+      "ishwar-bishas-nastik-dharmic-karma-part-2"
     ],
     "relatedByCluster": [
       "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
-      "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan",
-      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo"
+      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
+      "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan"
     ],
     "topRelated": [
       {
@@ -2597,12 +2597,12 @@
         "score": 0.43000000000000005
       },
       {
-        "slug": "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan",
-        "score": 0.4116269841269841
-      },
-      {
         "slug": "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
         "score": 0.39910660660660663
+      },
+      {
+        "slug": "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan",
+        "score": 0.3987389575194453
       }
     ],
     "cluster": "জীবন দর্শন",
@@ -2660,8 +2660,8 @@
         "score": 0.25
       },
       {
-        "slug": "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan",
-        "score": 0.24996732026143792
+        "slug": "jyotish-shastra-veder-chokh",
+        "score": 0.2273611111111111
       }
     ],
     "cluster": "গল্প",
@@ -2747,7 +2747,7 @@
       },
       {
         "slug": "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan",
-        "score": 0.2877777777777778
+        "score": 0.2748550724637681
       },
       {
         "slug": "artha-ki-sukh-dey-jyotish-darshan-parashar",
