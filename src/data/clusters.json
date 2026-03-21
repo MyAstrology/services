@@ -38,6 +38,12 @@
       }
     }
   },
+  "bangla-maser-namakarana-nakshatra-purnima-rahasya": {
+    "cluster": "অন্যান্য",
+    "parent": "অন্যান্য",
+    "confidence": 0,
+    "allScores": {}
+  },
   "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan": {
     "cluster": "জীবন দর্শন",
     "parent": "আধ্যাত্মিক",

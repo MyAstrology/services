@@ -59,6 +59,32 @@
     "confidence": 0.4,
     "manualLinks": []
   },
+  "bangla-maser-namakarana-nakshatra-purnima-rahasya": {
+    "relatedByTag": [],
+    "relatedByPillar": [
+      "rashichakre-12-rashi-keno-chandra-solar-year"
+    ],
+    "relatedByCluster": [
+      "rashichakre-12-rashi-keno-chandra-solar-year"
+    ],
+    "topRelated": [
+      {
+        "slug": "rashichakre-12-rashi-keno-chandra-solar-year",
+        "score": 0.39004742547425475
+      },
+      {
+        "slug": "shishu-hath-rekha-pesa-jyotish-rahasya",
+        "score": 0.21366959064327484
+      },
+      {
+        "slug": "rahu-ketu-chaya-graha-jibone-prabhab-protikar",
+        "score": 0.20833333333333331
+      }
+    ],
+    "cluster": "অন্যান্য",
+    "confidence": 0,
+    "manualLinks": []
+  },
   "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan": {
     "relatedByTag": [
       "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
@@ -1120,9 +1146,17 @@
   },
   "rashichakre-12-rashi-keno-chandra-solar-year": {
     "relatedByTag": [],
-    "relatedByPillar": [],
-    "relatedByCluster": [],
+    "relatedByPillar": [
+      "bangla-maser-namakarana-nakshatra-purnima-rahasya"
+    ],
+    "relatedByCluster": [
+      "bangla-maser-namakarana-nakshatra-purnima-rahasya"
+    ],
     "topRelated": [
+      {
+        "slug": "bangla-maser-namakarana-nakshatra-purnima-rahasya",
+        "score": 0.39004742547425475
+      },
       {
         "slug": "preme-byartho-keno-jyotish-hastarekha-uttor",
         "score": 0.21035714285714285
@@ -1130,10 +1164,6 @@
       {
         "slug": "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
         "score": 0.2090311653116531
-      },
-      {
-        "slug": "somoyer-rahasya-jyotish-darshan",
-        "score": 0.2077734778121775
       }
     ],
     "cluster": "অন্যান্য",
