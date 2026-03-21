@@ -397,6 +397,37 @@
     "confidence": 0.8,
     "manualLinks": []
   },
+  "falgun-mase-janma-12-rashi-swabhab-karma-shastha": {
+    "relatedByTag": [
+      "agrahayan-mase-janma-12-rashi-swabhab-karma-shastha",
+      "magh-mase-janma-12-rashi-swabhab-karma-shastha",
+      "poush-mase-janma-12-rashi-swabhab-karma-shastha",
+      "ashar-mase-janma-12-rashi-swabhab-karma-shastha"
+    ],
+    "relatedByPillar": [],
+    "relatedByCluster": [
+      "agrahayan-mase-janma-12-rashi-swabhab-karma-shastha",
+      "magh-mase-janma-12-rashi-swabhab-karma-shastha",
+      "poush-mase-janma-12-rashi-swabhab-karma-shastha"
+    ],
+    "topRelated": [
+      {
+        "slug": "agrahayan-mase-janma-12-rashi-swabhab-karma-shastha",
+        "score": 0.6659893048128341
+      },
+      {
+        "slug": "magh-mase-janma-12-rashi-swabhab-karma-shastha",
+        "score": 0.6659893048128341
+      },
+      {
+        "slug": "poush-mase-janma-12-rashi-swabhab-karma-shastha",
+        "score": 0.6659893048128341
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 0.4,
+    "manualLinks": []
+  },
   "hater-ulto-pith-karprishtha-samudrik-shastra": {
     "relatedByTag": [
       "samudrik-shastra-ki-mukh-hasta-pada-bishleshan",
@@ -2701,8 +2732,8 @@
     "relatedByPillar": [],
     "relatedByCluster": [
       "agrahayan-mase-janma-12-rashi-swabhab-karma-shastha",
-      "magh-mase-janma-12-rashi-swabhab-karma-shastha",
-      "poush-mase-janma-12-rashi-swabhab-karma-shastha"
+      "falgun-mase-janma-12-rashi-swabhab-karma-shastha",
+      "magh-mase-janma-12-rashi-swabhab-karma-shastha"
     ],
     "topRelated": [
       {
@@ -2710,11 +2741,11 @@
         "score": 0.225
       },
       {
-        "slug": "magh-mase-janma-12-rashi-swabhab-karma-shastha",
+        "slug": "falgun-mase-janma-12-rashi-swabhab-karma-shastha",
         "score": 0.225
       },
       {
-        "slug": "poush-mase-janma-12-rashi-swabhab-karma-shastha",
+        "slug": "magh-mase-janma-12-rashi-swabhab-karma-shastha",
         "score": 0.225
       }
     ],

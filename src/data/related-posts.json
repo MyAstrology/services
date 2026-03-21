@@ -6,8 +6,8 @@
     "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
     "janma-kundali-hasta-mudra-rahasya",
     "agrahayan-mase-janma-12-rashi-swabhab-karma-shastha",
-    "magh-mase-janma-12-rashi-swabhab-karma-shastha",
-    "poush-mase-janma-12-rashi-swabhab-karma-shastha"
+    "falgun-mase-janma-12-rashi-swabhab-karma-shastha",
+    "magh-mase-janma-12-rashi-swabhab-karma-shastha"
   ],
   "tarapith-smashan-tantra-jyotish": [
     "damodarer-bali-jibon-dorshon",
@@ -15,9 +15,9 @@
     "janma-kundali-hasta-mudra-rahasya",
     "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
     "agrahayan-mase-janma-12-rashi-swabhab-karma-shastha",
+    "falgun-mase-janma-12-rashi-swabhab-karma-shastha",
     "magh-mase-janma-12-rashi-swabhab-karma-shastha",
-    "poush-mase-janma-12-rashi-swabhab-karma-shastha",
-    "ashar-mase-janma-12-rashi-swabhab-karma-shastha"
+    "poush-mase-janma-12-rashi-swabhab-karma-shastha"
   ],
   "agrahayan-mase-janma-12-rashi-swabhab-karma-shastha": [
     "magh-mase-janma-12-rashi-swabhab-karma-shastha",
@@ -128,6 +128,16 @@
     "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "mesha-lagna-jataker-swabhab-karma-bibaha-bhagya",
     "mithun-lagna-jataker-swabhab-karma-bibaha-bhagya"
+  ],
+  "falgun-mase-janma-12-rashi-swabhab-karma-shastha": [
+    "agrahayan-mase-janma-12-rashi-swabhab-karma-shastha",
+    "magh-mase-janma-12-rashi-swabhab-karma-shastha",
+    "poush-mase-janma-12-rashi-swabhab-karma-shastha",
+    "ashar-mase-janma-12-rashi-swabhab-karma-shastha",
+    "ashwin-mase-janma-12-rashi-swabhab-karma-shastha",
+    "bhadra-mase-janma-12-rashi-swabhab-karma-shastha",
+    "kartik-mase-janma-12-rashi-swabhab-karma-shastha",
+    "shraban-mase-janma-12-rashi-swabhab-karma-shastha"
   ],
   "hater-ulto-pith-karprishtha-samudrik-shastra": [
     "samudrik-shastra-ki-mukh-hasta-pada-bishleshan",
@@ -851,12 +861,12 @@
   ],
   "artha-anartha-maraka-bhaba-analysis": [
     "agrahayan-mase-janma-12-rashi-swabhab-karma-shastha",
+    "falgun-mase-janma-12-rashi-swabhab-karma-shastha",
     "magh-mase-janma-12-rashi-swabhab-karma-shastha",
     "poush-mase-janma-12-rashi-swabhab-karma-shastha",
     "pitru-dosh-shastriya-byakhya",
     "ashar-mase-janma-12-rashi-swabhab-karma-shastha",
     "ashwin-mase-janma-12-rashi-swabhab-karma-shastha",
-    "bhadra-mase-janma-12-rashi-swabhab-karma-shastha",
-    "kartik-mase-janma-12-rashi-swabhab-karma-shastha"
+    "bhadra-mase-janma-12-rashi-swabhab-karma-shastha"
   ]
 }
