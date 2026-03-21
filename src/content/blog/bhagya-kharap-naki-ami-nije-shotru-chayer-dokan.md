@@ -189,3 +189,4 @@ twitter_image: "https://www.myastrology.in/images/chayer-dokan-bhagya-karma-dars
 <h4 style="margin:0 0 4px;color:#7a5c00;font-size:1rem;">Dr Prodyut Acharya</h4>
 <p style="margin:0;color:#666;font-size:13px;line-height:1.7;">জ্যোতিষী, হস্তরেখাবিদ, দার্শনিক চিন্তাবিদ ও ভাগ্য উন্নতির পরামর্শদাতা। রানাঘাট, নদিয়া, পশ্চিমবঙ্গ। &nbsp;<a href="https://www.myastrology.in" style="color:#b8860b;font-weight:600;">myastrology.in</a></p>
 </div>
+
