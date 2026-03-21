@@ -474,6 +474,23 @@
       }
     }
   },
+  "poush-mase-janma-12-rashi-swabhab-karma-shastha": {
+    "cluster": "জ্যোতিষ",
+    "parent": "শারীরিক জ্যোতিষ",
+    "confidence": 0.4,
+    "allScores": {
+      "জ্যোতিষ": {
+        "score": 2,
+        "matches": 2,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জীবন দর্শন": {
+        "score": 1,
+        "matches": 1,
+        "parent": "আধ্যাত্মিক"
+      }
+    }
+  },
   "rahu-ketu-chaya-graha-jibone-prabhab-protikar": {
     "cluster": "জ্যোতিষ",
     "parent": "শারীরিক জ্যোতিষ",
