@@ -2,9 +2,19 @@
 <html lang="bn-IN" translate="no">
 <head>
 <meta charset="UTF-8">
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MVVL8XBD');</script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-S7BQGLP211"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S7BQGLP211');</script>
+<!-- ★ GTM + GA4 deferred 2s -->
+<script>
+window.dataLayer=window.dataLayer||[];
+window.gtag=function(){window.dataLayer.push(arguments);};
+window.gtag('js',new Date());
+window.addEventListener('load',function(){setTimeout(function(){
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MVVL8XBD');
+  var ga=document.createElement('script');ga.async=true;
+  ga.src='https://www.googletagmanager.com/gtag/js?id=G-S7BQGLP211';
+  ga.onload=function(){window.gtag('config','G-S7BQGLP211');};
+  document.head.appendChild(ga);
+},2000);});
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0a0f1e">
 <meta name="mobile-web-app-capable" content="yes">
@@ -45,11 +55,17 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="https://fonts.gstatic.com/s/playfairdisplay/v30/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvUDQ.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"></noscript>
 <style>
+/* ★ font-display:swap */
+@font-face{font-family:'Playfair Display';font-display:swap;}
+@font-face{font-family:'Hind Siliguri';font-display:swap;}
+/* ★ content-visibility */
+.section,.card,.faq-item,.service-grid{content-visibility:auto;contain-intrinsic-size:0 400px;}
 :root{--deep:#04080f;--navy:#0a1020;--navy2:#0f1830;--gold:#c9a227;--gold2:#e8c050;--gold3:#ffd700;--gold-lt:#fff4ca;--cream:#fafaf6;--cream2:#f4ede0;--white:#fff;--text:#181825;--muted:#4a4568;--muted2:#7a7898;--red:#8B1A1A;--red2:#b33;--blue:#123d87;--border:#e2d4c5;--border-lt:#f0e8df;--gold-bg:#fdf8ed;--shadow:0 4px 18px rgba(0,0,0,.08);--shadow-lg:0 12px 40px rgba(0,0,0,.14);--r:10px;--r2:16px;--fh:'Playfair Display',Georgia,serif;--fb:'Hind Siliguri','Segoe UI',sans-serif;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;overflow-x:clip}
@@ -890,7 +906,7 @@ figure{margin:0 0 28px;padding:0;width:100%}figure figcaption{font-family:var(--
       <h4>MyAstrology</h4>
       <p><i class="fas fa-map-marker-alt"></i>নাসড়া মাগুর খালি, তুত বাগান, রাণাঘাট, নদিয়া — ৭৪১২০২</p>
       <p><i class="fas fa-phone"></i><a href="tel:+919333122768">+91 93331 22768</a></p>
-      <p><i class="fas fa-envelope"></i><a href="mailto:info@myastrology.in">info@myastrology.in</a></p>
+      <p><i class="fas fa-envelope"></i><a href="/cdn-cgi/l/email-protection#9ef7f0f8f1def3e7ffedeaecf1f2f1f9e7b0f7f0"><span class="__cf_email__" data-cfemail="9bf2f5fdf4dbf6e2fae8efe9f4f7f4fce2b5f2f5">[email&#160;protected]</span></a></p>
       <a href="https://wa.me/919333122768" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i>WhatsApp পরামর্শ</a>
       <p style="margin-top:10px;font-size:.76rem;color:var(--gold)"><i class="fas fa-train"></i>শিয়ালদহ থেকে ২ ঘণ্টার ট্রেন</p>
     </div>
@@ -930,7 +946,7 @@ figure{margin:0 0 28px;padding:0;width:100%}figure figcaption{font-family:var(--
   <a href="https://wa.me/919333122768?text=নমস্কার%20ড.%20আচার্য%2C%20কলকাতা%20থেকে%20পরামর্শ%20নিতে%20চাই।" target="_blank" rel="noopener" class="wa-btn" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
 </div>
 <button id="btt" aria-label="উপরে যান" title="উপরে যান">↑</button>
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 function toggleNav(){var n=document.getElementById('navMenu'),o=document.getElementById('navOverlay'),h=document.querySelector('.ham');var op=n.classList.toggle('open');o.classList.toggle('open',op);document.body.classList.toggle('nav-open',op);h.setAttribute('aria-expanded',op?'true':'false');}
 function closeNav(){var n=document.getElementById('navMenu'),o=document.getElementById('navOverlay'),h=document.querySelector('.ham');n.classList.remove('open');o.classList.remove('open');document.body.classList.remove('nav-open');h.setAttribute('aria-expanded','false');}
 document.querySelectorAll('#navMenu a').forEach(function(a){a.addEventListener('click',closeNav)});
@@ -938,7 +954,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeNav();}
 function toggleFAQ(el){var item=el.parentElement;var was=item.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(function(i){i.classList.remove('open')});if(!was)item.classList.add('open');}
 (function(){var btn=document.getElementById('btt');window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>400)},{passive:true});btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();
 (function(){var msgs=['🔮 কলকাতা থেকে পরামর্শ নিন','✋ হস্তরেখা বিচার করুন','🌟 কুণ্ডলী বিশ্লেষণ করুন','💫 বাংলায় অনলাইন পরামর্শ','🏆 SKAVSA PhD গোল্ড মেডেলিস্ট'];var idx=0,b=document.getElementById('waBubble');if(!b)return;b.textContent=msgs[0];setInterval(function(){idx=(idx+1)%msgs.length;b.textContent=msgs[idx];},4000);})();
-document.addEventListener('click',function(e){var a=e.target.closest('a');if(!a||typeof gtag==='undefined')return;if(a.href.includes('wa.me'))gtag('event','whatsapp_click',{event_category:'kolkata_page',event_label:a.textContent.trim().substring(0,30)});});
+document.addEventListener('click',function(e){var a=e.target.closest('a');if(!a||typeof gtag==='undefined')return;if(a.href.includes('wa.me'))window.gtag('event','whatsapp_click',{event_category:'kolkata_page',event_label:a.textContent.trim().substring(0,30)});});
 </script>
 
 <script src="https://checkout.razorpay.com/v1/checkout.js" async></script>
@@ -986,7 +1002,7 @@ function proceedToRazorpay(){
     theme:{color:'#b8860b'},modal:{backdropclose:false,escape:false},
     handler:function(res){
       closeBooking();
-      if(typeof gtag!=='undefined')gtag('event','booking_paid',{event_category:'conversion',event_label:_svc.label,value:_svc.amount/100});
+      if(typeof window.gtag!=='undefined')window.gtag('event','booking_paid',{event_category:'conversion',event_label:_svc.label,value:_svc.amount/100});
       showSuccess(name,phone,res.razorpay_payment_id);
     }
   });
@@ -1019,10 +1035,7 @@ function closeSuccess(){
 }
 document.getElementById('book-overlay').addEventListener('click',function(e){if(e.target===this)closeBooking();});
 document.getElementById('rzp-success-overlay').addEventListener('click',function(e){if(e.target===this)closeSuccess();});
-['bmName','bmPhone'].forEach(function(id){
-  var el=document.getElementById(id);
-  if(el)el.addEventListener('keydown',function(e){if(e.key==='Enter')proceedToRazorpay();});
-});
-document.getElementByI
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeBooking();closeSuccess();}});
+</script>
 </body>
 </html>
