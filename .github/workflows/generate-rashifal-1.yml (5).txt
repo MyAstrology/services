@@ -1,0 +1,184 @@
+name: Daily Rashifal Generator
+
+on:
+  # প্রতিদিন রাত ১১:৫৫ IST (UTC 18:25)
+  schedule:
+    - cron: '25 18 * * *'
+
+  # হাতেও চালানো যাবে (testing-এর জন্য)
+  workflow_dispatch:
+    inputs:
+      date_override:
+        description: 'তারিখ override করুন (YYYY-MM-DD, খালি রাখলে আগামীকাল)'
+        required: false
+        default: ''
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      # ── Step 1: Repository clone ──
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # ── Step 2: Node.js setup — v22 LTS (Node 20 deprecated) ──
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'          # ★ 20 → 22 (Current LTS, deprecation দূর)
+          cache: 'npm'
+          cache-dependency-path: '**/package.json'
+
+      # ── Step 3: Dependencies install ──
+      - name: Install dependencies
+        run: |
+          if [ -f package.json ]; then
+            echo "📦 package.json পাওয়া গেছে — installing..."
+            npm ci --prefer-offline
+            echo "✅ Dependencies installed"
+          else
+            echo "⚠️ package.json নেই — skipping"
+          fi
+
+      # ── Step 4: rashifal/ directory তৈরি ──
+      - name: Create rashifal directory
+        run: mkdir -p rashifal
+
+      # ── Step 5: Date override হ্যান্ডেল ──
+      - name: Set target date
+        id: set_date
+        run: |
+          if [ -n "${{ github.event.inputs.date_override }}" ]; then
+            echo "TARGET_DATE=${{ github.event.inputs.date_override }}" >> $GITHUB_OUTPUT
+            echo "📅 Manual override: ${{ github.event.inputs.date_override }}"
+          else
+            TOMORROW=$(TZ='Asia/Kolkata' date -d tomorrow +%Y-%m-%d)
+            echo "TARGET_DATE=${TOMORROW}" >> $GITHUB_OUTPUT
+            echo "📅 Auto target (tomorrow IST): ${TOMORROW}"
+          fi
+
+      # ── Step 6: রাশিফল HTML generate — verbose error logging ──
+      - name: Generate daily rashifal
+        id: generate
+        env:
+          TARGET_DATE: ${{ steps.set_date.outputs.TARGET_DATE }}
+        run: |
+          echo "🔮 Generating rashifal for: $TARGET_DATE"
+          echo "📂 Working directory: $(pwd)"
+          echo "📁 rashifal/ directory:"
+          ls -la rashifal/ || echo "(empty)"
+          echo "📁 src/content/rashifal/ exists: $([ -d src/content/rashifal ] && echo YES || echo NO)"
+          echo "📄 generator exists: $([ -f src/content/rashifal/generate-rashifal.js ] && echo YES || echo NO)"
+
+          # ★ set -e — যেকোনো error-এ step fail হবে (silent failure দূর)
+          set -e
+          node src/content/rashifal/generate-rashifal.js
+
+          echo "📁 rashifal/ after generation:"
+          ls -la rashifal/ | tail -10
+
+          # ★ Explicit check — ফাইল না থাকলে fail করো
+          if [ ! -f "rashifal/${TARGET_DATE}.html" ]; then
+            echo "❌ ERROR: rashifal/${TARGET_DATE}.html তৈরি হয়নি!"
+            exit 1
+          fi
+          echo "✅ Generation complete: rashifal/${TARGET_DATE}.html"
+
+      # ── Step 7: News Sitemap update ──
+      - name: Update news sitemap
+        env:
+          TARGET_DATE: ${{ steps.set_date.outputs.TARGET_DATE }}
+        run: |
+          set -e
+          node src/content/rashifal/generate-news-sitemap.js
+          echo "✅ Sitemap updated"
+
+      # ── Step 8: Changes আছে কিনা চেক ──
+      - name: Check for changes
+                id: check_changes
+        run: |
+          git status --short
+          if git diff --quiet && git diff --staged --quiet; then
+            if [ -z "$(git ls-files --others --exclude-standard)" ]; then
+              echo "has_changes=false" >> $GITHUB_OUTPUT
+              echo "ℹ️ কোনো পরিবর্তন নেই"
+            else
+              echo "has_changes=true" >> $GITHUB_OUTPUT
+              echo "✅ নতুন ফাইল পাওয়া গেছে"
+            fi
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "✅ পরিবর্তন পাওয়া গেছে"
+          fi
+
+      # ── Step 9: Git commit ও push ──
+      - name: Commit and push
+        if: steps.check_changes.outputs.has_changes == 'true'
+        env:
+          TARGET_DATE: ${{ steps.set_date.outputs.TARGET_DATE }}
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "MyAstrology Bot"
+          git add rashifal/${TARGET_DATE}.html || true
+          git add rashifal/index.html || true
+          git add sitemap-news.xml || true
+          git commit -m "📅 দৈনিক রাশিফল: ${TARGET_DATE} | MyAstrology Bot"
+          git push origin HEAD
+          echo "🚀 GitHub-এ push সম্পন্ন"
+
+      # ── Step 10: Google sitemap ping ──
+      - name: Ping Google sitemap
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          curl -s "https://www.google.com/ping?sitemap=https://www.myastrology.in/sitemap-news.xml" \
+            -o /dev/null -w "HTTP Status: %{http_code}\n"
+          echo "✅ Google sitemap ping সম্পন্ন"
+
+      # ── Step 11: কোনো পরিবর্তন না থাকলে ──
+      - name: No changes
+        if: steps.check_changes.outputs.has_changes == 'false'
+        env:
+          TARGET_DATE: ${{ steps.set_date.outputs.TARGET_DATE }}
+        run: echo "ℹ️ ${TARGET_DATE}-এর রাশিফল আগেই তৈরি আছে — skip করা হলো"
+
+      # ── Step 12: Failure notification ──
+      - name: Send failure notification
+        if: failure() && env.WEBHOOK_URL != ''
+        env:
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+          TARGET_DATE: ${{ steps.set_date.outputs.TARGET_DATE }}
+        run: |
+          curl -s -X POST \
+            -H "Content-Type: application/json" \
+            -d "{\"text\":\"❌ MyAstrology রাশিফল generation ব্যর্থ হয়েছে!\\n📅 তারিখ: ${TARGET_DATE}\\n🔗 Action: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}" \
+            "$WEBHOOK_URL" || echo "Webhook notification failed (non-critical)"
+
+      # ── Step 13: Summary ──
+      - name: Summary
+        env:
+          TARGET_DATE: ${{ steps.set_date.outputs.TARGET_DATE }}
+        run: |
+          echo "## 🔮 Daily Rashifal Generation Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| বিষয় | তথ্য |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|------|" >> $GITHUB_STEP_SUMMARY
+          echo "| তারিখ | ${TARGET_DATE} |" >> $GITHUB_STEP_SUMMARY
+          echo "| ফাইল | rashifal/${TARGET_DATE}.html |" >> $GITHUB_STEP_SUMMARY
+          echo "| URL | https://www.myastrology.in/rashifal/${TARGET_DATE}.html |" >> $GITHUB_STEP_SUMMARY
+          echo "| Node.js | v22 LTS ✅ |" >> $GITHUB_STEP_SUMMARY
+
+          if [ -f "rashifal/${TARGET_DATE}.html" ]; then
+            SIZE=$(wc -c < "rashifal/${TARGET_DATE}.html")
+            echo "| ফাইল সাইজ | ${SIZE} bytes |" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "✅ **সফলভাবে তৈরি হয়েছে**" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "❌ **ফাইল তৈরি হয়নি**" >> $GITHUB_STEP_SUMMARY
+          fi
