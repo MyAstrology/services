@@ -68,7 +68,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
-<!-- ★ Fonts — non-blocking -->
+<!-- ★ Font Preload — browser আগেই font download queue করে, FOUT কমে -->
+<link rel="preload"
+      href="https://fonts.gstatic.com/s/balooda2/v6/2-ch9J9j0IaUMQZwAy5m.woff2"
+      as="font" type="font/woff2" crossorigin>
+
+<!-- ★ Fonts — non-blocking, preload-এর পরে -->
 <link rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700;800&family=Tiro+Bangla:ital@0;1&display=swap"
       media="print" onload="this.media='all'">
@@ -136,13 +141,19 @@ window.addEventListener('load', function() {
   --green:#256625;--red:#b52020;--blue:#123d87;
   --border:rgba(181,134,13,.18);
   --r:10px;--shadow:0 4px 18px rgba(0,0,0,.09);
-  --fh:'Tiro Bangla','Baloo Da 2',Georgia,serif;
-  --fb:'Baloo Da 2','Noto Serif Bengali',sans-serif;
+  --fh:'Tiro Bangla','Baloo Da 2','Noto Serif Bengali',Georgia,serif;
+  --fb:'Baloo Da 2','Noto Sans Bengali','Noto Serif Bengali',Arial,sans-serif;
   --nav-h:62px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;overflow-x:clip;}
-body{font-family:var(--fb);background:var(--bg);color:var(--txt);line-height:1.8;padding-top:var(--nav-h);overflow-x:clip;}
+body{font-family:var(--fb);background:var(--bg);color:var(--txt);
+  line-height:1.9;padding-top:var(--nav-h);overflow-x:clip;
+  /* ★ বাংলা পড়ার সুবিধার জন্য font-size সামান্য বড় */
+  font-size:1.05rem;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;}
 img{max-width:100%;height:auto;display:block;}
 a{text-decoration:none;color:inherit;}
 ul{list-style:none;}
