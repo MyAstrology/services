@@ -2,13 +2,21 @@
 <html lang="bn-IN" dir="ltr" translate="no">
 <head>
 <meta charset="UTF-8">
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MVVL8XBD');</script>
-<!-- End Google Tag Manager -->
+<!-- ★ GTM — deferred, LCP block করে না -->
+<script>
+window.dataLayer = window.dataLayer || [];
+window.gtag = function(){ window.dataLayer.push(arguments); };
+window.gtag('js', new Date());
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MVVL8XBD');
+  }, 2000);
+});
+</script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#1a1a5e">
@@ -172,11 +180,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 
-<!-- Fonts — Bengali optimised, non-blocking -->
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700;800&display=swap" rel="stylesheet"></noscript>
+<!-- ★ Font woff2 preload — FOUT কমায়, বাংলা দ্রুত দেখায় -->
+<link rel="preload"
+      href="https://fonts.gstatic.com/s/notoserifbengali/v1/hYkuPvggTvnzHBCJLS0dyA.woff2"
+      as="font" type="font/woff2" crossorigin>
 
-<!-- Font Awesome — non-blocking -->
+<!-- ★ Fonts — সঠিক non-blocking পদ্ধতি (media=print trick) -->
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700;800&display=swap"
+      media="print" onload="this.media='all'">
+<noscript>
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700;800&display=swap">
+</noscript>
+
+<!-- ★ Font Awesome — non-blocking -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"></noscript>
 
@@ -189,6 +207,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preload" as="image" href="images/palmistry-line-brain-lobes.webp">
 
 <style>
+/* ★ font-display:swap — FOUT কমায় */
+@font-face {
+  font-family: 'Noto Serif Bengali';
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Noto Sans Bengali';
+  font-display: swap;
+}
+
 /* ════════════════════════════════════════════════════
    DESIGN SYSTEM — Variables
    ════════════════════════════════════════════════════ */
@@ -225,6 +253,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 html{scroll-behavior:smooth;font-size:16px;overflow-x:clip}
 body{font-family:var(--font-serif);background:var(--clr-bg);color:var(--clr-text);line-height:1.78;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;padding-top:62px;overflow-x:clip}
 img{max-width:100%;height:auto;display:block}
+/* ★ CLS FIX: img-full — explicit aspect-ratio স্থির করে layout shift প্রতিরোধ */
+.img-full{
+  width:100%;
+  height:auto;
+  aspect-ratio:16/9;
+  background:#f5e9d0;
+  border-radius:var(--radius-sm);
+  margin:1rem 0;
+  object-fit:cover;
+}
+/* ★ CLS FIX: service card images */
+.sc-img{
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:3/2;
+  object-fit:cover;
+  background:#f5e9d0;
+}
 a{color:var(--clr-accent);text-decoration:none;font-weight:600;border-bottom:1.5px solid transparent;transition:color var(--transition),border-color var(--transition)}
 a:hover,a:focus{color:var(--clr-accent-dk);border-color:var(--clr-accent-dk);outline:none}
 ul,ol{padding-left:1.6rem;margin-bottom:1rem}
@@ -238,6 +285,16 @@ h3{font-size:clamp(1.05rem,2.2vw,1.35rem);margin:1.5rem 0 .5rem;color:var(--clr-
 p{font-size:clamp(1rem,1.4vw,1.07rem);margin-bottom:1rem;color:var(--clr-text-md)}
 strong{color:var(--clr-primary);font-weight:700}
 blockquote{border-left:4px solid var(--clr-gold-deep);padding:12px 20px;margin:1.2rem 0;background:var(--clr-gold-lt);border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-style:italic;color:var(--clr-text-lt)}
+
+/* ★ content-visibility — off-screen sections defer render (FCP/LCP উন্নতি) */
+.content-section{
+  content-visibility: auto;
+  contain-intrinsic-size: 0 600px;
+}
+.reviews-section, .svc-section{
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
+}
 
 /* ── Skip link ── */
 .skip-link{position:absolute;top:-60px;left:16px;background:var(--clr-primary);color:#fff;padding:10px 20px;border-radius:0 0 var(--radius-sm) var(--radius-sm);font-family:var(--font-sans);font-size:.9rem;z-index:9999;transition:top .3s;font-weight:600}
@@ -439,8 +496,7 @@ footer{background:linear-gradient(180deg,#0a1628 0%,#060e1a 100%);border-top:3px
 #_btt.show{opacity:1;transform:translateY(0)}
 #_btt:hover{background:#f9a825;color:#0a192f}
 #_waf{position:fixed;bottom:26px;right:22px;z-index:900;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
-#_wfm{display:none;position:fixed;bottom:76px;right:22px;z-index:9001;background:#fff;color:#0a192f;font-family:sans-serif;font-size:.68rem;font-weight:700;padding:5px 9px;border-radius:12px 12px 0 12px;box-shadow:0 4px 16px rgba(0,0,0,.18);border-left:3px solid #25D366;max-width:150px;line-height:1.5}
-#_wfm.on{display:block}
+/* _wfm removed — duplicate flash removed */
 #_waf>a{display:flex;align-items:center;justify-content:center;width:44px;height:44px;background:#25D366;border-radius:50%;box-shadow:0 4px 18px rgba(37,211,102,.45);text-decoration:none;animation:_wap 2.5s ease-in-out infinite}
 #_waf>a i{font-size:1.4rem;color:#fff}
 @keyframes _wap{0%,100%{box-shadow:0 4px 18px rgba(37,211,102,.45),0 0 0 0 rgba(37,211,102,.4)}50%{box-shadow:0 4px 18px rgba(37,211,102,.45),0 0 0 14px rgba(37,211,102,0)}}
@@ -634,7 +690,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     🌺 হাত ও মনের রহস্য — হস্তরেখা শাস্ত্র ও নিউরোসায়েন্স (Neuroscience)-এর মেলবন্ধন
   </h2>
 
-  <img src="images/palmistry-line-brain-lobes.webp" alt="হস্তরেখা ও মস্তিষ্কের সংযোগ — Palmistry brain lobes, জ্যোতিষ নিউরোসায়েন্স বিজ্ঞান" class="img-full" loading="lazy">
+  <img src="images/palmistry-line-brain-lobes.webp" alt="হস্তরেখা ও মস্তিষ্কের সংযোগ — Palmistry brain lobes, জ্যোতিষ নিউরোসায়েন্স বিজ্ঞান" class="img-full" loading="lazy" width="900" height="506" decoding="async">
 
   <p>
     কখনও লক্ষ্য করেছেন — আপনার হাত শুধু কাজের হাতিয়ার নয়, এটি ভেতরের মনের ভাষা বলার একটি গভীর মাধ্যম?
@@ -680,7 +736,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     🌿 হাতের গঠন ও রং — শরীর ও মনের সংকেত
   </h2>
 
-  <img src="images/Palmistry-finger-and-mount.webp" alt="হাতের গঠন ও রং বিশ্লেষণ — Palmistry hand morphology, সামুদ্রিক শাস্ত্র, Samudrik Shastra" class="img-full" loading="lazy">
+  <img src="images/Palmistry-finger-and-mount.webp" alt="হাতের গঠন ও রং বিশ্লেষণ — Palmistry hand morphology, সামুদ্রিক শাস্ত্র, Samudrik Shastra" class="img-full" loading="lazy" width="900" height="506" decoding="async">
 
   <h3>🎨 হাতের রং ও টেক্সচার — শরীর ও মনের সংকেত</h3>
   <div class="table-wrap">
@@ -722,7 +778,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     🌺 আঙুল ও গ্রহ মন্দির — হাতের তালুতে মহাজাগতিক ছাপ
   </h2>
 
-  <img src="images/Palmistry-finger-and-mount.webp" alt="আঙুল ও গ্রহ মন্দির — Fingers and planetary mounts Hasta Rekha Shastra, জ্যোতিষ বিচার" class="img-full" loading="lazy">
+  <img src="images/Palmistry-finger-and-mount.webp" alt="আঙুল ও গ্রহ মন্দির — Fingers and planetary mounts Hasta Rekha Shastra, জ্যোতিষ বিচার" class="img-full" loading="lazy" width="900" height="506" decoding="async">
 
   <p>
     <strong>হস্তরেখা শাস্ত্রে</strong>, একটি জীবনের গল্প শুধু রেখায় নয়, আঙুলের আকার ও গ্রহ মন্দিরের প্রাণশক্তিতেও প্রকাশিত হয়।
@@ -766,7 +822,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     🌿 ছয়টি প্রধান হস্তরেখা ও তাদের গভীর অর্থ
   </h2>
 
-  <img src="images/main-six-palm-lines.webp" alt="ছয়টি প্রধান হস্তরেখা — Six Palm Lines Jyotish, হস্তরেখা শাস্ত্র আধ্যাত্মিক বৈজ্ঞানিক অর্থ" class="img-full" loading="lazy">
+  <img src="images/main-six-palm-lines.webp" alt="ছয়টি প্রধান হস্তরেখা — Six Palm Lines Jyotish, হস্তরেখা শাস্ত্র আধ্যাত্মিক বৈজ্ঞানিক অর্থ" class="img-full" loading="lazy" width="900" height="506" decoding="async">
 
   <p>
     <strong>Palm Analysis</strong>-এ ছয়টি প্রধান রেখা — জীবন রেখা, হৃদয় রেখা, মস্তিষ্ক রেখা, ভাগ্য রেখা, সূর্য রেখা ও বুধ রেখা — প্রতিটি গভীর প্রতীকী, আধ্যাত্মিক ও স্নায়বিক তাৎপর্য বহন করে।
@@ -839,7 +895,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     🌺 শুভ ও অশুভ চিহ্ন — হস্ত বিশ্লেষণের নীরব সংকেত
   </h2>
 
-  <img src="images/auspicious-inauspicious-signs.webp" alt="শুভ ও অশুভ চিহ্ন — সামুদ্রিক শাস্ত্র, Palmistry auspicious signs meaning, হস্তরেখা বিশ্লেষণ" class="img-full" loading="lazy">
+  <img src="images/auspicious-inauspicious-signs.webp" alt="শুভ ও অশুভ চিহ্ন — সামুদ্রিক শাস্ত্র, Palmistry auspicious signs meaning, হস্তরেখা বিশ্লেষণ" class="img-full" loading="lazy" width="900" height="506" decoding="async">
 
   <p>
     <strong>হস্তরেখা বিচারে</strong>, হাতের তালু রেখার মানচিত্রের চেয়ে অনেক বেশি — এটি একটি গোপন প্রতীকী ভাষা ধারণ করে।
@@ -934,7 +990,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- Card 1 -->
     <div class="sc">
-      <img class="sc-img" src="images/Palm Reading Consultation.webp" alt="অনলাইন হস্তরেখা বিচার — Online Palm Reading Consultation, Dr. Prodyut Acharya MyAstrology" loading="lazy" width="420">
+      <img class="sc-img" src="images/Palm Reading Consultation.webp" alt="অনলাইন হস্তরেখা বিচার — Online Palm Reading Consultation, Dr. Prodyut Acharya MyAstrology" loading="lazy" width="420" height="280" decoding="async">
       <div class="sc-body">
         <div class="sc-name">হাতের রেখা বিচার</div>
         <div class="sc-sub">Online Palm Reading · ছবি পাঠান · Hasta Rekha Expert</div>
@@ -962,7 +1018,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- Card 2: Featured -->
     <div class="sc sc-feat">
-      <img class="sc-img" src="images/birth-chart-reading-vedic-astrology.webp" alt="হস্তরেখা ও জন্মকুণ্ডলী Combo — Palmistry Birth Chart Combo, Dr. Prodyut Acharya" loading="lazy" width="420">
+      <img class="sc-img" src="images/birth-chart-reading-vedic-astrology.webp" alt="হস্তরেখা ও জন্মকুণ্ডলী Combo — Palmistry Birth Chart Combo, Dr. Prodyut Acharya" loading="lazy" width="420" height="280" decoding="async">
       <div class="sc-body">
         <div class="sc-name">হস্তরেখা + জন্মকুণ্ডলী Combo</div>
         <div class="sc-sub">Combo Special · সীমিত সময়ের জন্য · সেরা মূল্য</div>
@@ -990,7 +1046,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- Card 3: WhatsApp -->
     <div class="sc">
-      <img class="sc-img" src="images/astrology-and-palmistry.webp" alt="WhatsApp হস্তরেখা পরামর্শ — Direct Palm Reading Consultation via WhatsApp" loading="lazy" width="420">
+      <img class="sc-img" src="images/astrology-and-palmistry.webp" alt="WhatsApp হস্তরেখা পরামর্শ — Direct Palm Reading Consultation via WhatsApp" loading="lazy" width="420" height="280" decoding="async">
       <div class="sc-body">
         <div class="sc-name">সরাসরি WhatsApp পরামর্শ</div>
         <div class="sc-sub">Direct Consultation · ড. আচার্যের সাথে · Palmistry Query</div>
@@ -1145,7 +1201,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div id="_pb"></div>
 <button id="_btt" aria-label="উপরে যান" title="উপরে যান">&#8679;</button>
-<div id="_wfm"></div>
 <div id="_waf">
   <a href="https://wa.me/919333122768?text=%F0%9F%99%8F+%E0%A6%A8%E0%A6%AE%E0%A6%B8%E0%A7%8D%E0%A6%95%E0%A6%BE%E0%A6%B0" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
 </div>
@@ -1183,16 +1238,7 @@ window.addEventListener('scroll',function(){
   if(bt)bt.classList.toggle('show',sy>150);
 },{passive:true});
 if(bt)bt.addEventListener('click',function(e){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});});
-var msgs=[
-  '\uD83D\uDD2E পরামর্শ নিন',
-  '✋ হস্তরেখা ₹১,০০১',
-  '\uD83D\uDC8D যোটোক ₹১,৫০১',
-  '⭐ ২৭৬+ রিভিউ',
-  '\uD83D\uDCC5 রাশিফল দেখুন'
-];
-var mi=0,fm=document.getElementById('_wfm');
-function sm(){if(!fm)return;fm.textContent=msgs[mi++%msgs.length];fm.style.display='block';setTimeout(function(){fm.style.display='none';},3500);}
-if(fm){sm();setInterval(sm,5000);}
+/* WA flash — শুধু waBubble ব্যবহার হবে, _wfm সরানো হয়েছে */
 })();
 var _rS='',_rA=100100;
 var _svcCat={
@@ -1239,7 +1285,7 @@ function _dRzp(){
     theme:{color:'#b8860b'},
     handler:function(r){
       _cRzp();
-      if(typeof gtag!=='undefined')gtag('event','booking_paid',{event_category:'conversion',event_label:svcName,value:amt/100});
+      if(typeof window.gtag!=='undefined')window.gtag('event','booking_paid',{event_category:'conversion',event_label:svcName,value:amt/100});
       var amtDisp=String(Math.floor(amt/100));
       var waMsg='\uD83D\uDE4F \u0986\u09AE\u09BF '+svcName+' \u098F\u09B0 \u099C\u09A8\u09CD\u09AF ₹'+amtDisp+' \u09AA\u09C7\u09AE\u09C7\u09A8\u09CD\u099F \u0995\u09B0\u09C7\u099B\u09BF\u0964 \u0986\u09AE\u09BE\u09B0 \u09AA\u09CD\u09B0\u09AF\u09BC\u09CB\u099C\u09A8\u09C0\u09AF\u09BC \u09AC\u09BF\u09AC\u09B0\u09A3 \u09A8\u09BF\u099A\u09C7 \u09A6\u09BF\u099A\u09CD\u099B\u09BF\u0964\n\n\u09A8\u09BE\u09AE: '+nm+'\nWhatsApp: +91'+ph+'\nPayment ID: '+r.razorpay_payment_id+'\n\n\u0985\u09A8\u09C1\u0997\u09CD\u09B0\u09B9 \u0995\u09B0\u09C7 \u09AA\u09B0\u09AC\u09B0\u09CD\u09A4\u09C0 \u09AA\u09A6\u0995\u09CD\u09B7\u09C7\u09AA \u099C\u09BE\u09A8\u09BE\u09A8\u0964 \u09A7\u09A8\u09CD\u09AF\u09AC\u09BE\u09A6 \uD83D\uDE4F';
       setTimeout(function(){window.open('https://wa.me/919333122768?text='+encodeURIComponent(waMsg),'_blank');},400);
@@ -1258,11 +1304,22 @@ function _dRzp(){
 </div>
 <script>
 (function(){
-  var b=document.getElementById('btt');
+  /* ★ waBubble — একটিমাত্র flash system */
   var msgs=['✋ হস্তরেখা বিচার করুন','📸 হাতের ছবি পাঠান','🔮 অনলাইন Palm Reading','💫 ₹1,001 থেকে শুরু'];
-  var i=0,bubble=document.getElementById('waBubble');
-  if(bubble)setInterval(function(){i=(i+1)%msgs.length;bubble.textContent=msgs[i];},4000);
-  if(b)window.addEventListener('scroll',function(){b.style.display=window.scrollY>400?'flex':'none';},{passive:true});
+  var i=0, bubble=document.getElementById('waBubble');
+  if(!bubble) return;
+  function rotateBubble(){
+    bubble.textContent = msgs[i++ % msgs.length];
+  }
+  /* শুরুতে 3 সেকেন্ড দেখাও, তারপর লুকাও */
+  setTimeout(function(){
+    bubble.style.display = 'none';
+    setInterval(function(){
+      rotateBubble();
+      bubble.style.display = 'block';
+      setTimeout(function(){ bubble.style.display = 'none'; }, 3500);
+    }, 6000);
+  }, 3000);
 })();
 </script>
 </body>
