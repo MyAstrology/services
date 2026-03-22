@@ -870,16 +870,21 @@ function buildDefaultRashiDetail(rashifalData) {
 // ════════════════════════════════════════════════
 function buildArchiveLinks(targetDate, rashifalByDate) {
   const links = [];
-  for(let i = 0; i < 7; i++) {
-    const d = new Date(targetDate);
+  for(let i = 0; i < 30; i++) {  // শেষ ৩০ দিন খুঁজি, কিন্তু শুধু existing ফাইল দেখাই
+    const d   = new Date(targetDate);
     d.setDate(d.getDate() - i);
     const iso     = d.toISOString().slice(0,10);
-    const isToday = (i === 0);
-    const bn      = getBnDate(d);
-    const bnLabel = bn ? `${toBn(bn.d)} ${bn.name} ${toBn(bn.y)}` : iso;
-    // আজকের moon rashi জানা থাকলে দেখাই
-    const moonLabel = (i === 0 && rashifalByDate)
+    const filePath = path.join(OUTPUT_DIR, iso + '.html');
+
+    // ★ FIX: ফাইল না থাকলে link দেখাবে না
+    if(i > 0 && !fs.existsSync(filePath)) continue;
+
+    const isToday  = (i === 0);
+    const bn       = getBnDate(d);
+    const bnLabel  = bn ? `${toBn(bn.d)} ${bn.name} ${toBn(bn.y)}` : iso;
+    const moonLabel= (isToday && rashifalByDate)
       ? `<span class="arc-moon">🌙 চন্দ্র ${RASHI_NAMES[rashifalByDate.moonRashi]}</span>` : '';
+
     links.push(
       `<a href="/rashifal/${iso}.html" class="arc-link${isToday?' today':''}">` +
       `<span class="arc-bn">📅 ${bnLabel}</span>` +
@@ -888,6 +893,13 @@ function buildArchiveLinks(targetDate, rashifalByDate) {
       moonLabel +
       `</a>`
     );
+
+    if(links.length >= 7) break;  // সর্বোচ্চ ৭টি existing link দেখাই
+  }
+
+  // কোনো আর্কাইভ না থাকলে placeholder
+  if(links.length === 0) {
+    links.push('<span style="font-size:.8rem;color:var(--mu);">আর্কাইভ শীঘ্রই আসছে।</span>');
   }
   return links.join('\n');
 }
