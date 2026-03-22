@@ -2,13 +2,15 @@
 <html lang="bn-IN" translate="no">
 <head>
 <meta charset="UTF-8">
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MVVL8XBD');</script>
-<!-- End Google Tag Manager -->
+<!-- ★ GTM deferred 2s -->
+<script>
+window.dataLayer=window.dataLayer||[];
+window.gtag=function(){window.dataLayer.push(arguments);};
+window.gtag('js',new Date());
+window.addEventListener('load',function(){setTimeout(function(){
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MVVL8XBD');
+},2000);});
+</script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="google" content="notranslate">
 <title>গ্রাহকদের রিভিউ – ড. প্রদ্যুৎ আচার্য | MyAstrology রানাঘাট</title>
@@ -36,13 +38,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Tiro+Bangla&family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla&family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
+<noscript><!-- ★ Google Fonts non-blocking -->
+<link rel="preload" href="https://fonts.gstatic.com/s/tirobangla/v6/4jF.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tiro+Bangla&family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla&family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet"></noscript></noscript>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"MyAstrology – Dr. Prodyut Acharya","url":"https://www.myastrology.in","telephone":"+91-9333122768","email":"info@myastrology.in","address":{"@type":"PostalAddress","streetAddress":"Nasra Magur Khali, Tut Bagan, Post Nasra, Ranaghat","addressLocality":"Ranaghat","addressRegion":"West Bengal","postalCode":"741202","addressCountry":"IN"},"geo":{"@type":"GeoCoordinates","latitude":"23.1676690","longitude":"88.5808191"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","bestRating":"5","worstRating":"1","reviewCount":"276"},"sameAs":["https://www.facebook.com/Dr.ProdyutAcharya","https://www.youtube.com/@myastrology","https://www.instagram.com/myastrology.in","https://x.com/AcharyaProdyut"],"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"09:00","closes":"23:00"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"হোম","item":"https://www.myastrology.in/"},{"@type":"ListItem","position":2,"name":"গ্রাহকদের রিভিউ","item":"https://www.myastrology.in/reviews.html"}]}</script>
 <style>
 /* ── VARIABLES ── */
+/* ★ font-display:swap */
+@font-face{font-family:'Tiro Bangla';font-display:swap;}
+@font-face{font-family:'Playfair Display';font-display:swap;}
+@font-face{font-family:'Source Sans 3';font-display:swap;}
+/* ★ content-visibility */
+.review-card,.review-row{content-visibility:auto;contain-intrinsic-size:0 200px;}
 :root{
   --maroon:#7a1c1c;--maroon-dk:#4a0e0e;--maroon-lt:#f9f0ec;
   --gold:#b8860b;--gold-lt:#f5d97a;--gold-bg:#fff8e8;
@@ -644,7 +655,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <footer>
   <div class="ft-brand">MyAstrology — Dr. Prodyut Acharya</div>
   <p class="ft-tag">জ্যোতিষ ও হস্তরেখার আলোয় আপনার আগামীকে আলোকিত করুন।</p>
-  <p class="ft-email"><i class="fas fa-envelope"></i> <a href="mailto:info@myastrology.in">info@myastrology.in</a></p>
+  <p class="ft-email"><i class="fas fa-envelope"></i> <a href="/cdn-cgi/l/email-protection#10797e767f507d69716364627f7c7f77693e797e"><span class="__cf_email__" data-cfemail="d9b0b7bfb699b4a0b8aaadabb6b5b6bea0f7b0b7">[email&#160;protected]</span></a></p>
   <nav class="ft-links">
     <a href="index.html">হোম</a>
     <a href="astrology.html">জ্যোতিষ</a>
@@ -682,7 +693,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <i class="fab fa-whatsapp"></i>
   </a>
 </div>
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script defer src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -723,9 +734,9 @@ document.addEventListener('DOMContentLoaded', function() {
   document.addEventListener('click', function(e) {
     var a = e.target.closest('a'); if (!a) return;
     var h = a.getAttribute('href')||'';
-    if (h.includes('wa.me'))     gtag('event','whatsapp_click',{event_category:'engagement'});
-    if (h.startsWith('tel:'))    gtag('event','phone_click',   {event_category:'engagement'});
-    if (h.startsWith('mailto:')) gtag('event','email_click',   {event_category:'engagement'});
+    if (h.includes('wa.me'))     window.gtag('event','whatsapp_click',{event_category:'engagement'});
+    if (h.startsWith('tel:'))    window.gtag('event','phone_click',   {event_category:'engagement'});
+    if (h.startsWith('mailto:')) window.gtag('event','email_click',   {event_category:'engagement'});
   });
 
   /* ── Payment Modal ── */
@@ -900,7 +911,7 @@ function onPaymentSuccess(res, custName, custPhone) {
     </div>
   </div>
 </div>
-<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="উপরে যান" style="display:none;position:fixed;bottom:18px;left:16px;z-index:9997;background:rgba(10,16,32,.75);border:1.5px solid rgba(201,162,39,.5);border-radius:50%;width:40px;height:40px;cursor:pointer;font-size:1.1rem;color:#ffd700;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(0,0,0,.4);">↑</button>
-<script>(function(){var b=document.getElementById('btt');if(b)window.addEventListener('scroll',function(){b.style.display=window.scrollY>400?'flex':'none';},{passive:true});})();</script>
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="উপরে যান" style="display:none;position:fixed;bottom:18px;left:16px;z-index:9997;background:rgba(10,16,32,.75);border:1.5px solid rgba(201,162,39,.5);border-radius:50%;width:40px;height:40px;cursor:pointer;font-size:1.1rem;color:#ffd700;align-items:center;justify-content:center;box-shadow:0
+</script>
 </body>
 </html>
