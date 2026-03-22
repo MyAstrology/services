@@ -82,10 +82,15 @@ if(allFiles.length === 0) {
 }
 
 // শুধু শেষ ২ দিনের entry রাখুন (Google News requirement)
-const today   = new Date().toISOString().slice(0,10);
+// আজ ও আগামীকাল দুটোই include করুন
+// কারণ: generator রাতে আগামীকালের ফাইল তৈরি করে
+const tomorrow = new Date();
+tomorrow.setDate(tomorrow.getDate() + 1);
+const tomorrowStr = tomorrow.toISOString().slice(0,10);
+
 const entries = allFiles
-  .filter(f => f.replace('.html','') <= today)
-  .slice(0, 2);  // ← সর্বোচ্চ ২টি
+  .filter(f => f.replace('.html','') <= tomorrowStr)  // ← আগামীকাল পর্যন্ত
+  .slice(0, 2);  // সর্বোচ্চ ২টি (Google News requirement)
 
 console.log(`📰 News sitemap-এ ${entries.length}টি entry যোগ হবে:`);
 entries.forEach(f => console.log(`   • ${f}`));
