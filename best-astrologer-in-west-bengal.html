@@ -2,9 +2,19 @@
 <html lang="bn-IN" translate="no">
 <head>
 <meta charset="UTF-8">
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MVVL8XBD');</script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-S7BQGLP211"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S7BQGLP211');</script>
+<!-- ★ GTM + GA4 deferred 2s -->
+<script>
+window.dataLayer=window.dataLayer||[];
+window.gtag=function(){window.dataLayer.push(arguments);};
+window.gtag('js',new Date());
+window.addEventListener('load',function(){setTimeout(function(){
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MVVL8XBD');
+  var ga=document.createElement('script');ga.async=true;
+  ga.src='https://www.googletagmanager.com/gtag/js?id=G-S7BQGLP211';
+  ga.onload=function(){window.gtag('config','G-S7BQGLP211');};
+  document.head.appendChild(ga);
+},2000);});
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0a0f1e">
 <meta name="mobile-web-app-capable" content="yes">
@@ -43,11 +53,17 @@
 <link rel="preload" as="image" href="images/MyAstrology-Prodyut-Acharya.webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="https://fonts.gstatic.com/s/playfairdisplay/v30/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvUDQ.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"></noscript>
 <style>
+/* ★ font-display:swap */
+@font-face{font-family:'Playfair Display';font-display:swap;}
+@font-face{font-family:'Hind Siliguri';font-display:swap;}
+/* ★ content-visibility */
+.section-card,.card,.faq-item,.svc-card{content-visibility:auto;contain-intrinsic-size:0 350px;}
 :root{--deep:#04080f;--navy:#0a1020;--navy2:#0f1830;--gold:#c9a227;--gold2:#e8c050;--gold3:#ffd700;--gold-lt:#fff4ca;--cream:#fafaf6;--cream2:#f4ede0;--white:#fff;--text:#181825;--muted:#4a4568;--muted2:#7a7898;--red:#8B1A1A;--red2:#b33;--blue:#123d87;--border:#e2d4c5;--border-lt:#f0e8df;--gold-bg:#fdf8ed;--shadow:0 4px 18px rgba(0,0,0,.08);--shadow-lg:0 12px 40px rgba(0,0,0,.14);--r:10px;--r2:16px;--fh:'Playfair Display',Georgia,serif;--fb:'Hind Siliguri','Segoe UI',sans-serif;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;overflow-x:clip}
 body{overflow-x:clip;font-family:var(--fb);color:var(--text);background:var(--cream);line-height:1.8;-webkit-font-smoothing:antialiased;padding-top:66px;}
@@ -622,7 +638,7 @@ figure{margin:0 0 28px;padding:0;width:100%}figure figcaption{font-size:.8rem;co
       <h4>MyAstrology</h4>
       <p><i class="fas fa-map-marker-alt"></i>নাসড়া মাগুর খালি, তুত বাগান, রাণাঘাট, নদিয়া — ৭৪১২০২</p>
       <p><i class="fas fa-phone"></i><a href="tel:+919333122768">+91 93331 22768</a></p>
-      <p><i class="fas fa-envelope"></i><a href="mailto:info@myastrology.in">info@myastrology.in</a></p>
+      <p><i class="fas fa-envelope"></i><a href="/cdn-cgi/l/email-protection#1d74737b725d70647c6e696f7271727a64337473"><span class="__cf_email__" data-cfemail="2f464149406f42564e5c5b5d4043404856014641">[email&#160;protected]</span></a></p>
       <a href="https://wa.me/919333122768" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i>WhatsApp পরামর্শ</a>
     </div>
     <div class="ft-col">
@@ -689,7 +705,7 @@ figure{margin:0 0 28px;padding:0;width:100%}figure figcaption{font-size:.8rem;co
 </div>
 <button id="btt" aria-label="উপরে যান" title="উপরে যান">↑</button>
 
-<script src="https://checkout.razorpay.com/v1/checkout.js" async></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://checkout.razorpay.com/v1/checkout.js" async></script>
 <script>
 function toggleNav(){var n=document.getElementById('navMenu'),o=document.getElementById('navOverlay'),h=document.querySelector('.ham');var op=n.classList.toggle('open');o.classList.toggle('open',op);document.body.classList.toggle('nav-open',op);h.setAttribute('aria-expanded',op?'true':'false');}
 function closeNav(){var n=document.getElementById('navMenu'),o=document.getElementById('navOverlay'),h=document.querySelector('.ham');n.classList.remove('open');o.classList.remove('open');document.body.classList.remove('nav-open');h.setAttribute('aria-expanded','false');}
@@ -704,14 +720,19 @@ var RZP_KEY='rzp_live_SN8p6DJxPYFVL1';
 var RZP_LOGO='https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png';
 function openRzp(label,amount,key,price,oldprice){_svc={label:label,amount:amount,price:price||'',oldprice:oldprice||''};document.getElementById('bmSvcName').textContent=label;document.getElementById('bmSvcPrice').textContent=price?'₹'+price:'';document.getElementById('bmName').value='';document.getElementById('bmPhone').value='';document.getElementById('bmName').classList.remove('err');document.getElementById('bmPhone').classList.remove('err');var ov=document.getElementById('book-overlay');ov.style.display='flex';requestAnimationFrame(function(){ov.classList.add('show');});document.body.style.overflow='hidden';setTimeout(function(){document.getElementById('bmName').focus();},350);}
 function closeBooking(){var ov=document.getElementById('book-overlay');ov.classList.remove('show');setTimeout(function(){ov.style.display='none';},300);document.body.style.overflow='';}
-function proceedToRazorpay(){var name=document.getElementById('bmName').value.trim();var phone=document.getElementById('bmPhone').value.replace(/\D/g,'').slice(0,10);var nameEl=document.getElementById('bmName'),phoneEl=document.getElementById('bmPhone');nameEl.classList.remove('err');phoneEl.classList.remove('err');var ok=true;if(!name){nameEl.classList.add('err');nameEl.focus();ok=false;}else if(!phone||phone.length<10){phoneEl.classList.add('err');phoneEl.focus();ok=false;}if(!ok)return;if(typeof Razorpay==='undefined'){alert('পেমেন্ট গেটওয়ে লোড হচ্ছে, একটু অপেক্ষা করুন।');return;}var rzp=new Razorpay({key:RZP_KEY,amount:_svc.amount,currency:'INR',name:'MyAstrology',description:_svc.label,image:RZP_LOGO,prefill:{name:name,contact:'+91'+phone},notes:{service:_svc.label,customer:name,whatsapp:phone},theme:{color:'#b8860b'},modal:{backdropclose:false,escape:false},handler:function(res){closeBooking();if(typeof gtag!=='undefined')gtag('event','booking_paid',{event_category:'conversion',event_label:_svc.label,value:_svc.amount/100});showSuccess(name,phone,res.razorpay_payment_id);}});rzp.on('payment.failed',function(resp){alert('পেমেন্ট বিফল হয়েছে।\nকারণ: '+(resp.error.description||''));});rzp.open();}
+function proceedToRazorpay(){var name=document.getElementById('bmName').value.trim();var phone=document.getElementById('bmPhone').value.replace(/\D/g,'').slice(0,10);var nameEl=document.getElementById('bmName'),phoneEl=document.getElementById('bmPhone');nameEl.classList.remove('err');phoneEl.classList.remove('err');var ok=true;if(!name){nameEl.classList.add('err');nameEl.focus();ok=false;}else if(!phone||phone.length<10){phoneEl.classList.add('err');phoneEl.focus();ok=false;}if(!ok)return;if(typeof Razorpay==='undefined'){alert('পেমেন্ট গেটওয়ে লোড হচ্ছে, একটু অপেক্ষা করুন।');return;}var rzp=new Razorpay({key:RZP_KEY,amount:_svc.amount,currency:'INR',name:'MyAstrology',description:_svc.label,image:RZP_LOGO,prefill:{name:name,contact:'+91'+phone},notes:{service:_svc.label,customer:name,whatsapp:phone},theme:{color:'#b8860b'},modal:{backdropclose:false,escape:false},handler:function(res){closeBooking();if(typeof window.gtag!=='undefined')window.gtag('event','booking_paid',{event_category:'conversion',event_label:_svc.label,value:_svc.amount/100});showSuccess(name,phone,res.razorpay_payment_id);}});rzp.on('payment.failed',function(resp){alert('পেমেন্ট বিফল হয়েছে।\nকারণ: '+(resp.error.description||''));});rzp.open();}
 function showSuccess(name,phone,pid){var NL='\n';var msg='🙏 নমস্কার! আমি '+_svc.label+'-এর জন্য পেমেন্ট সম্পন্ন করেছি।'+NL+NL+'👤 নাম: '+name+NL+'📱 WhatsApp: +91'+phone+NL+'🛎️ সেবা: '+_svc.label+NL+(_svc.price?'💰 মূল্য: ₹'+_svc.price+NL:'')+(pid?'🆔 Payment ID: '+pid:'')+NL+NL+'📋 অনুগ্রহ করে পরামর্শের তারিখ ও সময় জানান। ধন্যবাদ! 🙏';document.getElementById('successWaBtn').href='https://wa.me/'+WA_NUM+'?text='+encodeURIComponent(msg);document.getElementById('successMsg').textContent=name+' — আপনার পেমেন্ট সফলভাবে গৃহীত হয়েছে। ✅';document.getElementById('successPid').textContent=pid||'—';var ov=document.getElementById('rzp-success-overlay');ov.style.display='flex';requestAnimationFrame(function(){ov.classList.add('show');});document.body.style.overflow='hidden';}
 function closeSuccess(){var ov=document.getElementById('rzp-success-overlay');ov.classList.remove('show');setTimeout(function(){ov.style.display='none';},300);document.body.style.overflow='';}
 document.getElementById('book-overlay').addEventListener('click',function(e){if(e.target===this)closeBooking();});
 document.getElementById('rzp-success-overlay').addEventListener('click',function(e){if(e.target===this)closeSuccess();});
 ['bmName','bmPhone'].forEach(function(id){var el=document.getElementById(id);if(el)el.addEventListener('keydown',function(e){if(e.key==='Enter')proceedToRazorpay();});});
 document.getElementById('bmPhone').addEventListener('input',function(){this.value=this.value.replace(/\D/g,'').slice(0,10);});
-document.addEventListener('click',function(e){var a=e.target.closest('a');if(!a||typeof gtag==='undefined')return;if(a.href.includes('wa.me'))gtag('event','whatsapp_click',{event_category:'wb_page',event_label:a.textContent.trim().substring(0,30)});});
+document.addEventListener('click',function(e){
+  var a=e.target.closest('a');if(!a)return;
+  var h=a.getAttribute('href')||'';
+  if(h.includes('wa.me'))window.gtag&&window.gtag('event','whatsapp_click',{event_category:'engagement'});
+  if(h.startsWith('tel:'))window.gtag&&window.gtag('event','phone_click',{event_category:'engagement'});
+});
 </script>
 </body>
 </html>
