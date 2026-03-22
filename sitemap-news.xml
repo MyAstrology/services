@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
-
+  <url>
+    <loc>https://www.myastrology.in/rashifal/2026-03-23.html</loc>
+    <news:news>
+      <news:publication>
+        <news:name>MyAstrology</news:name>
+        <news:language>bn</news:language>
+      </news:publication>
+      <news:publication_date>2026-03-23T05:00:00+05:30</news:publication_date>
+      <news:title>৯ চৈত্র ১৪৩২ — দৈনিক রাশিফল | ১২ রাশির বিস্তারিত ফল</news:title>
+    </news:news>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
 </urlset>
