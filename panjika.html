@@ -2619,4 +2619,25 @@ function onPaymentSuccess(response) {
   var waUrl = 'https://wa.me/919333122768?text=' + encodeURIComponent(waMsg);
 
   // Show success screen
-  document.getElementById('payFormWrap').st
+  document.getElementById('payFormWrap').style.display = 'none';
+  document.getElementById('paySuccess').classList.add('show');
+
+  // Set WhatsApp redirect link
+  document.getElementById('payWaLink').href = waUrl;
+
+  // Auto redirect after 1.5s
+  setTimeout(function() {
+    window.open(waUrl, '_blank', 'noopener');
+  }, 1500);
+
+  // Reset loading button
+  var btn = document.getElementById('paySubmitBtn');
+  if (btn) {
+    btn.classList.remove('loading');
+    document.getElementById('payBtnTxt').textContent = 'নিরাপদ পেমেন্ট করুন — ₹ ' + _pay.price.toLocaleString('bn-BD');
+  }
+}
+
+</script>
+</body>
+</html>
