@@ -4,9 +4,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MVVL8XBD');</script>
-<!-- End Google Tag Manager -->
+<!-- ★ GTM deferred 2s -->
+<script>
+window.dataLayer=window.dataLayer||[];window.gtag=function(){window.dataLayer.push(arguments);};window.gtag('js',new Date());
+window.addEventListener('load',function(){setTimeout(function(){
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MVVL8XBD');
+},2000);});
+</script>
 
 <title>MyAstrology Gallery – ড. প্রদ্যুৎ আচার্য | Astrology Palmistry Ranaghat</title>
 <meta name="description" content="MyAstrology Ranaghat গ্যালারি – ড. প্রদ্যুৎ আচার্য-এর জ্যোতিষ, হস্তরেখা, রাশিফল, বাস্তু ও নিউমেরোলজি পরিষেবার ছবিসংগ্রহ। Best Astrologer Palmist Ranaghat West Bengal India.">
@@ -45,9 +49,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="image" href="https://www.myastrology.in/gallery/myastrology-nadia-astrology-gallery.webp">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="preload" href="https://fonts.gstatic.com/s/notoserifbengali/v1/hYkuPvggTvnzHBCJLS0dyA.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Cinzel:wght@600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Cinzel:wght@600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"></noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous"></noscript>
 
 <script type="application/ld+json">
 {
@@ -115,6 +123,10 @@
 }
 </script>
 
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"MyAstrology গ্যালারিতে কী দেখতে পাব?","acceptedAnswer":{"@type":"Answer","text":"ড. প্রদ্যুৎ আচার্যের বৈদিক জ্যোতিষ, হস্তরেখা, কুণ্ডলী, রত্নপাথর ও বাস্তু পরামর্শের ছবিসংগ্রহ।"}},{"@type":"Question","name":"অনলাইনে পরামর্শ নেওয়া যায়?","acceptedAnswer":{"@type":"Answer","text":"হ্যাঁ। WhatsApp +91 93331 22768-এ যোগাযোগ করুন। সোম–রবি সকাল ৯টা – রাত ১১টা।"}},{"@type":"Question","name":"MyAstrology রানাঘাট কোথায়?","acceptedAnswer":{"@type":"Answer","text":"Nasra Magur Khali, Ranaghat, Nadia, West Bengal 741202। শিয়ালদহ থেকে ট্রেনে ২ ঘণ্টা।"}}]}
+</script>
+
 <style>
 /* ── TOKENS ── */
 :root{
@@ -123,6 +135,9 @@
   --cream:#faf8f2;--text-body:#3d3d5c;--text-muted:#7a7a9a;
   --r:14px;--sh:0 8px 32px rgba(0,0,0,.15);--tr:.3s cubic-bezier(.4,0,.2,1);
 }
+@font-face{font-family:'Noto Serif Bengali';font-display:swap;}
+@font-face{font-family:'Cinzel';font-display:swap;}
+.s-card,.gallery-section{content-visibility:auto;contain-intrinsic-size:0 400px;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'Noto Serif Bengali',serif;background:var(--cream);color:var(--text-body);line-height:1.7}
@@ -420,6 +435,9 @@ footer{
   50%{box-shadow:0 0 0 9px rgba(37,211,102,0),0 4px 16px rgba(37,211,102,.25)}
   100%{box-shadow:0 0 0 0 rgba(37,211,102,0),0 4px 16px rgba(37,211,102,.4)}
 }
+/* ★ Nav overlay */
+#mnav-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:998}
+#mnav-overlay.open{display:block}
 </style>
 </head>
 <body>
@@ -461,6 +479,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <li><a href="https://wa.me/919333122768?text=%F0%9F%99%8F+%E0%A6%AA%E0%A6%B0%E0%A6%BE%E0%A6%AE%E0%A6%B0%E0%A7%8D%E0%A6%B6+%E0%A6%9A%E0%A6%BE%E0%A6%87%E0%A5%A4" target="_blank" rel="noopener">📲 WhatsApp</a></li>
     </ul>
   </nav>
+  <div id="mnav-overlay"></div>
 </header>
 
 <!-- SWIPER HERO -->
@@ -756,7 +775,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="f-brand">
       <h2>🌌 MyAstrology</h2>
       <p>ড. প্রদ্যুৎ আচার্যের জ্যোতিষ ও হস্তরেখা পরামর্শ কেন্দ্র। জন্মকুণ্ডলী, বিবাহ মিলন, ক্যারিয়ার, ব্যবসা ও জীবন সমস্যার সামগ্রিক সমাধান।</p>
-      <a href="mailto:info@myastrology.in">info@myastrology.in</a>
+      <a href="/cdn-cgi/l/email-protection#244d4a424b64495d455750564b484b435d0a4d4a"><span class="__cf_email__" data-cfemail="bed7d0d8d1fed3c7dfcdcaccd1d2d1d9c790d7d0">[email&#160;protected]</span></a>
     </div>
     <div class="f-links">
       <h3>🔗 দরকারী লিংক</h3>
@@ -873,7 +892,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <!-- SCRIPTS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script data-cfasync="false">
 document.addEventListener('DOMContentLoaded', function () {
@@ -885,18 +904,22 @@ document.addEventListener('DOMContentLoaded', function () {
   var ham  = document.getElementById('ham');
   var mnav = document.getElementById('mnav');
 
+  var ov = document.getElementById('mnav-overlay');
   function closeMnav() {
     mnav.classList.remove('open');
+    if(ov) ov.classList.remove('open');
     ham.setAttribute('aria-expanded', 'false');
     ham.setAttribute('aria-label', 'নেভিগেশন মেনু খুলুন');
     ham.innerHTML = '&#9776;';
   }
   function openMnav() {
     mnav.classList.add('open');
+    if(ov) ov.classList.add('open');
     ham.setAttribute('aria-expanded', 'true');
     ham.setAttribute('aria-label', 'নেভিগেশন মেনু বন্ধ করুন');
     ham.innerHTML = '&#10005;';
   }
+  if(ov) ov.addEventListener('click', closeMnav);
 
   ham.addEventListener('click', function (e) {
     e.stopPropagation();
@@ -980,18 +1003,8 @@ document.addEventListener('DOMContentLoaded', function () {
     render(); start();
   });
 
-  <!-- WHATSAPP FLOATING BUTTON -->
-<div id="wa-wrap">
-  <div id="wa-bubble">🔮 এখনই পরামর্শ নিন</div>
-  <a id="wa-link"
-     href="https://wa.me/919333122768?text=নমস্কার%20ড.%20প্রদ্যুৎ%20আচার্য,%20আমি%20জ্যোতিষ%20পরামর্শ%20চাইছি।"
-     target="_blank" rel="noopener"
-     aria-label="WhatsApp">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-    </svg>
-  </a>
-</div>
+
+
 
 /* ── Payment Popup Functions (global scope needed for onclick) ── */
 var _bookingData = {};
@@ -1101,9 +1114,27 @@ document.addEventListener('DOMContentLoaded', function () {
     if (e.key === 'Escape') closeBooking();
   });
 });
+});
 </script>
-<div id="waFloat" style="position:fixed;bottom:24px;right:20px;z-index:9998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;"><div id="waBubble" style="background:#fff;border-radius:8px;padding:5px 11px;font-size:.72rem;font-weight:600;color:#111;box-shadow:0 4px 14px rgba(0,0,0,.15);max-width:145px;text-align:center;display:block;border-left:3px solid #25d366;">🖼️ পরামর্শ নিন</div><a href="https://wa.me/919333122768?text=%E0%A6%A8%E0%A6%AE%E0%A6%B8%E0%A7%8D%E0%A6%95%E0%A6%BE%E0%A6%B0" target="_blank" rel="noopener" aria-label="WhatsApp" style="width:50px;height:50px;border-radius:50%;background:#25d366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.45rem;box-shadow:0 4px 18px rgba(37,211,102,.5);text-decoration:none;"><i class="fab fa-whatsapp"></i></a></div>
+  <!-- WHATSAPP FLOATING BUTTON -->
+<div id="wa-wrap">
+  <div id="wa-bubble">🔮 এখনই পরামর্শ নিন</div>
+<div id="wa-wrap">
+  <div id="wa-bubble">🖼️ গ্যালারি দেখুন</div>
+  <a id="wa-link" href="https://wa.me/919333122768?text=%F0%9F%99%8F+%E0%A6%A8%E0%A6%AE%E0%A6%B8%E0%A7%8D%E0%A6%95%E0%A6%BE%E0%A6%B0%2C+%E0%A6%AA%E0%A6%B0%E0%A6%BE%E0%A6%AE%E0%A6%B0%E0%A7%8D%E0%A6%B6+%E0%A6%9A%E0%A6%BE%E0%A6%87%E0%A5%A4" target="_blank" rel="noopener" aria-label="WhatsApp পরামর্শ নিন">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+</div>
 <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="উপরে যান" style="display:none;position:fixed;bottom:18px;left:16px;z-index:9997;background:rgba(10,16,32,.75);border:1.5px solid rgba(201,162,39,.5);border-radius:50%;width:40px;height:40px;cursor:pointer;font-size:1.1rem;color:#ffd700;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(0,0,0,.4);">↑</button>
-<script>(function(){var b=document.getElementById('btt');if(b)window.addEventListener('scroll',function(){b.style.display=window.scrollY>400?'flex':'none';},{passive:true});})();</script>
+<script>
+(function(){
+  var bubble=document.getElementById('wa-bubble');
+  var msgs=['🖼️ গ্যালারি দেখুন','🔮 পরামর্শ নিন','✋ হস্তরেখা বিচার','⭐ ২৭৬+ রিভিউ','📅 রাশিফল দেখুন'];
+  var i=0;
+  if(bubble){setTimeout(function(){bubble.classList.add('show');setInterval(function(){bubble.classList.remove('show');setTimeout(function(){bubble.textContent=msgs[i++%msgs.length];bubble.classList.add('show');},400);},5000);},2000);}
+  var btt=document.getElementById('btt');
+  if(btt)window.addEventListener('scroll',function(){btt.style.display=window.pageYOffset>300?'flex':'none';},{passive:true});
+})();
+</script>
 </body>
 </html>
