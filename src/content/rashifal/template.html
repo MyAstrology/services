@@ -642,6 +642,12 @@ var RASHIFAL_DATA = {{RASHIFAL_DATA_JSON}};
 var RASHI_NAMES = ['মেষ','বৃষ','মিথুন','কর্কট','সিংহ','কন্যা','তুলা','বৃশ্চিক','ধনু','মকর','কুম্ভ','মীন'];
 var RASHI_SYM   = ['♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓'];
 
+/* ★ FIX: toBn browser-এ define করা হয়নি — তাই অন্য রাশিতে click করলে error হচ্ছিল */
+var _BD = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+function toBn(n) {
+  return String(Math.abs(Math.round(n))).replace(/[0-9]/g, function(d){ return _BD[+d]; });
+}
+
 function showRashi(ri) {
   /* grid highlight */
   document.querySelectorAll('.rb').forEach(function(b,i){
