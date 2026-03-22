@@ -35,6 +35,19 @@
 <meta name="twitter:image"           content="https://www.myastrology.in/images/chinta-shakti-universe-jyotish.webp">
 <!-- Schema -->
 <script type="application/ld+json">[{"@context":"https://schema.org","@type":"BlogPosting","headline":"চিন্তার শক্তি — বিজ্ঞান, জ্যোতিষ ও দর্শন একই কথা বলে","description":"প্রতিটি চিন্তা একটি শক্তি তরঙ্গ। Quantum Physics, Law of Attraction এবং ভারতীয় যোগদর্শন — তিনটিই বলছে: আপনি যা ভাবেন, মহাবিশ্ব তাই ফেরত দেয়।","datePublished":"2026-03-19","dateModified":"2026-03-19","image":{"@type":"ImageObject","url":"https://www.myastrology.in/images/chinta-shakti-universe-jyotish.webp","width":1200,"height":630},"url":"https://www.myastrology.in/blog/chinta-shakti-bigyan-jyotish-darshan.html","inLanguage":"bn-IN","timeRequired":"PT2M","author":{"@type":"Person","name":"Dr. Prodyut Acharya","url":"https://www.myastrology.in/about.html"},"publisher":{"@type":"Organization","name":"MyAstrology","logo":{"@type":"ImageObject","url":"https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.myastrology.in/blog/chinta-shakti-bigyan-jyotish-darshan.html"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"হোম","item":"https://www.myastrology.in"},{"@type":"ListItem","position":2,"name":"ব্লগ","item":"https://www.myastrology.in/blog-list.html"},{"@type":"ListItem","position":3,"name":"চিন্তার শক্তি — বিজ্ঞান, জ্যোতিষ ও দর্শন একই কথা বলে","item":"https://www.myastrology.in/blog/chinta-shakti-bigyan-jyotish-darshan.html"}]}]</script>
+<!-- Google News Publisher — Subscribe with Google Basic -->
+<script async type="application/javascript"
+        src="https://news.google.com/swg/js/v1/swg-basic.js"></script>
+<script>
+  (self.SWG_BASIC = self.SWG_BASIC || []).push(basicSubscriptions => {
+    basicSubscriptions.init({
+      type: "NewsArticle",
+      isPartOfType: ["Product"],
+      isPartOfProductId: "CAow5vfFDA:openaccess",
+      clientOptions: { theme: "light", lang: "bn-in" },
+    });
+  });
+</script>
 <!-- ★ FIX 1: LCP Image Preload — browser আগেই জানে কোন ছবি সবচেয়ে গুরুত্বপূর্ণ -->
 <link rel="preload" as="image" href="https://www.myastrology.in/images/chinta-shakti-universe-jyotish.webp" fetchpriority="high">
 <!-- Preconnects -->
@@ -274,20 +287,47 @@ main{max-width:780px;margin:0 auto;padding:18px 18px 60px;}
 @media(max-width:540px){.ftr-mid-inner{grid-template-columns:1fr;}.ftr-svc-cards{grid-template-columns:repeat(2,1fr);}.ftr-bottom{flex-direction:column;text-align:center;}}
 @media(max-width:600px){main{padding:14px 14px 48px;}.post-header h1{font-size:1.4rem;}.rp-grid{grid-template-columns:1fr;}}
 </style>
-<!-- ★ FIX 5: Analytics deferred (2s পরে) + Bug সংশোধিত -->
+<!--
+  ★ Analytics — তিন স্তরের কৌশল:
+  স্তর ১: dataLayer + gtag queue এখনই global (কোনো network request নেই)
+           → click events সাথে সাথে ধরা পড়ে, 2s অপেক্ষার দরকার নেই
+  স্তর ২: GA4 script deferred (load + 2s) → LCP/FCP ব্লক করে না
+           → ga.onload-এ gtag('config') → script আসার পরেই config
+  স্তর ৩: GTM শুধু GA4 manage করলে GA4 direct সরানো যাবে।
+           এখন উভয়ই রাখা হয়েছে — GTM অন্য tag-ও চালায় বলে।
+-->
 <script>
-window.addEventListener('load',function(){
-  setTimeout(function(){
-    /* GTM */
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MVVL8XBD');
-    /* GA4 — FIX: আগের ফাইলে d, s undefined bug ছিল, এখন সংশোধিত */
-    var ga=document.createElement('script');ga.async=true;
-    ga.src='https://www.googletagmanager.com/gtag/js?id=G-S7BQGLP211';
+/* ── স্তর ১: gtag queue এখনই global — script না এলেও events queue-তে জমা হয় ── */
+window.dataLayer = window.dataLayer || [];
+window.gtag = function(){ window.dataLayer.push(arguments); };
+window.gtag('js', new Date());
+/* ── স্তর ২: script + config deferred ── */
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    /* GA4 script — onload-এ config, script আসার আগে নয় */
+    var ga = document.createElement('script');
+    ga.async = true;
+    ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-S7BQGLP211';
+    ga.onload = function() {
+      window.gtag('config', 'G-S7BQGLP211', {
+        page_title: document.title,
+        page_location: window.location.href,
+        send_page_view: true
+      });
+    };
     document.head.appendChild(ga);
-    window.dataLayer=window.dataLayer||[];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js',new Date());gtag('config','G-S7BQGLP211');
-  },2000);
+    /* GTM — GA4-এর বাইরে অন্য tag-ও চালায় */
+    (function(w,d,s,l,i){
+      w[l]=w[l]||[];
+      w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+      var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),
+          dl=l!='dataLayer'?'&l='+l:'';
+      j.async=true;
+      j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+      f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MVVL8XBD');
+  }, 2000);
 });
 </script>
 <link rel="icon" type="image/x-icon" href="https://www.myastrology.in/images/favicon.ico">
@@ -707,7 +747,7 @@ function proceedToRazorpay(){
   new Razorpay({key:RZP_KEY,amount:_svc.amount,currency:'INR',name:'MyAstrology',description:_svc.label,image:RZP_LOGO,
     prefill:{name:name,contact:'+91'+phone},notes:{service:_svc.label,customer:name,whatsapp:phone},
     theme:{color:'#b8860b'},modal:{backdropclose:false,escape:false},
-    handler:function(res){closeBooking();if(typeof gtag!=='undefined')gtag('event','booking_paid',{event_category:'conversion',event_label:_svc.label,value:_svc.amount/100});showSuccess(name,phone,res.razorpay_payment_id);}
+    handler:function(res){closeBooking();window.gtag('event','booking_paid',{event_category:'conversion',event_label:_svc.label,value:_svc.amount/100,currency:'INR'});showSuccess(name,phone,res.razorpay_payment_id);}
   }).open();
 }
 function showSuccess(name,phone,pid){
@@ -730,8 +770,26 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeSvc();
 (function(){var msgs=['🔮 কুণ্ডলী বিশ্লেষণ করুন','🌟 আজই পরামর্শ নিন','✋ হস্তরেখা বিচার করুন','💬 বাংলায় Online পরামর্শ','🙏 এখনই WhatsApp করুন'];var idx=0,b=document.getElementById('waBubble');if(!b)return;function sm(){b.style.display='block';b.textContent=msgs[idx];b.classList.add('show');setTimeout(function(){b.classList.remove('show');setTimeout(function(){b.style.display='none';},400);},4000);idx=(idx+1)%msgs.length;}setTimeout(function(){sm();setInterval(sm,6000);},3000);})();
 /* ── BACK TO TOP ── */
 (function(){var btn=document.getElementById('back-to-top');if(!btn)return;window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>400);},{passive:true});btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();
-/* ── GA4 EVENTS ── */
-document.addEventListener('click',function(e){var a=e.target.closest('a');if(!a)return;var h=a.getAttribute('href')||'';if(h.includes('wa.me')&&typeof gtag!=='undefined')gtag('event','whatsapp_click',{event_category:'engagement',event_label:a.innerText.trim()||'WhatsApp'});if(h.startsWith('tel:')&&typeof gtag!=='undefined')gtag('event','phone_click',{event_category:'engagement'});});
+/* ── GA4 EVENTS — window.gtag সবসময় available (queue pattern) ── */
+document.addEventListener('click',function(e){
+  var a=e.target.closest('a');if(!a)return;
+  var h=a.getAttribute('href')||'';
+  var label=a.innerText.trim()||'unknown';
+  if(h.includes('wa.me'))
+    window.gtag('event','whatsapp_click',{event_category:'engagement',event_label:label});
+  if(h.startsWith('tel:'))
+    window.gtag('event','phone_click',{event_category:'engagement',event_label:h});
+  if(h.includes('razorpay.com'))
+    window.gtag('event','payment_link_click',{event_category:'conversion',event_label:label});
+});
+/* ── Booking funnel events ── */
+window._gtagBooking = function(step, service) {
+  window.gtag('event', 'booking_funnel', {
+    event_category: 'conversion',
+    event_label: service || '',
+    booking_step: step
+  });
+};
 </script>
 </body>
 </html>
