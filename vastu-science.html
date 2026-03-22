@@ -4,28 +4,44 @@
 <html lang="bn-IN" dir="ltr" translate="no">
 <head>
 <meta charset="UTF-8">
-  <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MVVL8XBD');</script>
-<!-- End Google Tag Manager -->
+<!-- ★ GTM — deferred 2s, LCP/FCP block করে না -->
+<script>
+window.dataLayer = window.dataLayer || [];
+window.gtag = function(){ window.dataLayer.push(arguments); };
+window.gtag('js', new Date());
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MVVL8XBD');
+  }, 2000);
+});
+</script>
   
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Performance -->
+<!-- ★ Performance hints -->
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
 
-<!-- Critical font -->
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&display=swap"></noscript>
+<!-- ★ Font woff2 preload — FOUT কমায় -->
+<link rel="preload"
+      href="https://fonts.gstatic.com/s/notoserifbengali/v1/hYkuPvggTvnzHBCJLS0dyA.woff2"
+      as="font" type="font/woff2" crossorigin>
 
-<!-- Deferred fonts -->
-<link rel="preload" href="https://fonts.maateen.me/solaiman-lipi/font.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link href="https://fonts.maateen.me/solaiman-lipi/font.css" rel="stylesheet"></noscript>
-<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<!-- ★ Google Fonts — সঠিক non-blocking (media=print) -->
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&display=swap"
+      media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&display=swap"></noscript>
+
+<!-- ★ Font Awesome — সঠিক non-blocking (media=print) -->
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 
 <!-- SEO -->
@@ -102,6 +118,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </script>
 
 <style>
+/* ★ font-display: swap — FOUT কমায় */
+@font-face { font-family: 'Noto Serif Bengali'; font-display: swap; }
+@font-face { font-family: 'Noto Sans Bengali';  font-display: swap; }
+@font-face { font-family: 'SolaimanLipi';        font-display: swap; }
+
+/* ★ content-visibility — off-screen render defer করে FCP/LCP উন্নত করে */
+.card, .toc-section {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
+}
+
 /* ╔══════════════════════════════════════════════════════╗
    ║  VASTU SCIENCE — Design System v4.0                 ║
    ║  Theme: Vedic Traditional × Modern Editorial        ║
@@ -489,7 +516,8 @@ footer { background: #1a0800; color: #c8a878; font-family: var(--sans); margin-t
 #_waf>a i{font-size:1.4rem;color:#fff}
 @keyframes _wap{0%,100%{box-shadow:0 4px 18px rgba(37,211,102,.45),0 0 0 0 rgba(37,211,102,.4)}50%{box-shadow:0 4px 18px rgba(37,211,102,.45),0 0 0 14px rgba(37,211,102,0)}}
 </style>
-<link rel="preload" as="image" href="images/vastu-banner.jpg" fetchpriority="high">
+<!-- ★ LCP image preload — correct WebP URL -->
+<link rel="preload" as="image" href="images/vastu-consultant-in-ranaghat.webp" fetchpriority="high">
 <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 <link rel="apple-touch-icon" sizes="180x180" href="images/favicon.ico">
 <meta name="google" content="notranslate">
@@ -1162,7 +1190,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 </footer>
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <div id="_pb"></div>
 <button id="_btt" aria-label="উপরে যান" title="উপরে যান">&#8679;</button>
 <div id="_waf">
@@ -1252,7 +1280,7 @@ function _dRzp(){
     theme:{color:'#b8860b'},
     handler:function(r){
       _cRzp();
-      if(typeof gtag!=='undefined') gtag('event','booking_paid',{event_category:'conversion',event_label:svcName,value:amt/100});
+      if(typeof window.gtag!=='undefined') window.gtag('event','booking_paid',{event_category:'conversion',event_label:svcName,value:amt/100});
       var amtDisp = String(Math.floor(amt/100));
       var waMsg = '\u{1F64F} \u0986\u09AE\u09BF ' + svcName + ' \u098F\u09B0 \u099C\u09A8\u09CD\u09AF \u20B9' + amtDisp + ' \u09AA\u09C7\u09AE\u09C7\u09A8\u09CD\u099F \u0995\u09B0\u09C7\u099B\u09BF\u0964 \u0986\u09AE\u09BE\u09B0 \u09AA\u09CD\u09B0\u09AF\u09BC\u09CB\u099C\u09A8\u09C0\u09AF\u09BC \u09AC\u09BF\u09AC\u09B0\u09A3 \u09A8\u09BF\u099A\u09C7 \u09A6\u09BF\u099A\u09CD\u099B\u09BF\u0964\n\n\u09A8\u09BE\u09AE: ' + nm + '\n\u09AB\u09CB\u09A8: ' + ph;
       setTimeout(function(){window.open('https://wa.me/919333122768?text='+encodeURIComponent(waMsg),'_blank');},400);
@@ -1275,13 +1303,23 @@ function _dRzp(){
 <script>
 (function(){
   var b=document.getElementById('btt');
-  var msgs=['🏠 বাস্তু পরামর্শ নিন','🧭 দিক বিচার করুন','⚡ বাস্তু দোষ সারান','📐 ফ্লোর প্ল্যান পাঠান'];
-  var i=0, bubble=document.getElementById('waBubble');
-  if(bubble) setInterval(function(){i=(i+1)%msgs.length;bubble.textContent=msgs[i];},4000);
+  var msgs=['🏠 বাস্তু পরামর্শ','🔮 জ্যোতিষ পরামর্শ','✋ হস্তরেখা বিচার','⭐ ২৭৬+ রিভিউ','📅 রাশিফল দেখুন'];
+  var mi=0, bubble=document.getElementById('waBubble');
   if(b){
     window.addEventListener('scroll',function(){
-      b.style.display=window.scrollY>400?'flex':'none';
+      b.style.display=window.pageYOffset>300?'flex':'none';
     },{passive:true});
+  }
+  if(bubble){
+    function rotateBubble(){bubble.textContent=msgs[mi++%msgs.length];}
+    setTimeout(function(){
+      bubble.style.display='none';
+      setInterval(function(){
+        rotateBubble();
+        bubble.style.display='block';
+        setTimeout(function(){bubble.style.display='none';},3500);
+      },6000);
+    },3000);
   }
 })();
 </script>
