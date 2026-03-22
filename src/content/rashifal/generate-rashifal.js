@@ -14,16 +14,25 @@ const fs   = require('fs');
 const path = require('path');
 
 // ════════════════════════════════════════════════
-// CONFIG
+// CONFIG — ★ FIX: Environment variable support
 // ════════════════════════════════════════════════
 const SITE_URL   = 'https://www.myastrology.in';
 const OUTPUT_DIR = path.join(__dirname, '..', '..', '..', 'rashifal');
 const TEMPLATE   = path.join(__dirname, 'template.html');
 const LAT = 23.18, LNG = 88.56, TZ = 5.5;  // রানাঘাট
 
-// আগামীকালের তারিখ (GitHub Actions রাত ১১:৫৫-এ চালায়, তাই +1 দিন)
-const TARGET_DATE = new Date();
-TARGET_DATE.setDate(TARGET_DATE.getDate() + 1);
+// ★★★ FIX: Environment variable থেকে তারিখ নিন, না থাকলে আগামীকাল
+let TARGET_DATE;
+if (process.env.TARGET_DATE && process.env.TARGET_DATE !== '') {
+  // GitHub Actions থেকে পাস করা তারিখ ব্যবহার করুন
+  TARGET_DATE = new Date(process.env.TARGET_DATE + 'T00:00:00');
+  console.log(`📅 Using TARGET_DATE from env: ${process.env.TARGET_DATE}`);
+} else {
+  // লোকাল রানে আগামীকালের তারিখ
+  TARGET_DATE = new Date();
+  TARGET_DATE.setDate(TARGET_DATE.getDate() + 1);
+  console.log(`📅 No TARGET_DATE env — using tomorrow: ${TARGET_DATE.toISOString().slice(0,10)}`);
+}
 
 // ════════════════════════════════════════════════
 // BENGALI UTILITIES
