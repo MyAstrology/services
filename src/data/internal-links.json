@@ -31,6 +31,36 @@
     "confidence": 0.4,
     "manualLinks": []
   },
+  "prodyut-acharya-journey-two-ai-analysis": {
+    "relatedByTag": [],
+    "relatedByPillar": [
+      "prithibir-itihas-rahasya",
+      "prachin-grantha-o-adhunik-bigyan",
+      "man-jay-na-korle-safalta-asbe-na"
+    ],
+    "relatedByCluster": [
+      "prithibir-itihas-rahasya",
+      "prachin-grantha-o-adhunik-bigyan",
+      "man-jay-na-korle-safalta-asbe-na"
+    ],
+    "topRelated": [
+      {
+        "slug": "prithibir-itihas-rahasya",
+        "score": 0.3773809523809524
+      },
+      {
+        "slug": "prachin-grantha-o-adhunik-bigyan",
+        "score": 0.3768996415770609
+      },
+      {
+        "slug": "man-jay-na-korle-safalta-asbe-na",
+        "score": 0.3338888888888889
+      }
+    ],
+    "cluster": "বিজ্ঞান",
+    "confidence": 0.4800000000000001,
+    "manualLinks": []
+  },
   "damodarer-bali-jibon-dorshon": {
     "relatedByTag": [],
     "relatedByPillar": [
@@ -319,10 +349,12 @@
     "relatedByTag": [],
     "relatedByPillar": [
       "prithibir-itihas-rahasya",
+      "prodyut-acharya-journey-two-ai-analysis",
       "prachin-grantha-o-adhunik-bigyan"
     ],
     "relatedByCluster": [
       "prithibir-itihas-rahasya",
+      "prodyut-acharya-journey-two-ai-analysis",
       "prachin-grantha-o-adhunik-bigyan"
     ],
     "topRelated": [
@@ -331,12 +363,12 @@
         "score": 0.3433040935672515
       },
       {
-        "slug": "prachin-grantha-o-adhunik-bigyan",
-        "score": 0.33333333333333337
+        "slug": "prodyut-acharya-journey-two-ai-analysis",
+        "score": 0.3338888888888889
       },
       {
-        "slug": "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
-        "score": 0.15578282828282827
+        "slug": "prachin-grantha-o-adhunik-bigyan",
+        "score": 0.33333333333333337
       }
     ],
     "cluster": "বিজ্ঞান",
@@ -1781,10 +1813,12 @@
     "relatedByTag": [],
     "relatedByPillar": [
       "prithibir-itihas-rahasya",
+      "prodyut-acharya-journey-two-ai-analysis",
       "man-jay-na-korle-safalta-asbe-na"
     ],
     "relatedByCluster": [
       "prithibir-itihas-rahasya",
+      "prodyut-acharya-journey-two-ai-analysis",
       "man-jay-na-korle-safalta-asbe-na"
     ],
     "topRelated": [
@@ -1793,12 +1827,12 @@
         "score": 0.3881349206349206
       },
       {
-        "slug": "man-jay-na-korle-safalta-asbe-na",
-        "score": 0.33333333333333337
+        "slug": "prodyut-acharya-journey-two-ai-analysis",
+        "score": 0.3768996415770609
       },
       {
-        "slug": "sanshoy-theke-hastarekha-bigyan-jyotish",
-        "score": 0.2007983056370153
+        "slug": "man-jay-na-korle-safalta-asbe-na",
+        "score": 0.33333333333333337
       }
     ],
     "cluster": "বিজ্ঞান",
@@ -1933,10 +1967,12 @@
     "relatedByTag": [],
     "relatedByPillar": [
       "prachin-grantha-o-adhunik-bigyan",
+      "prodyut-acharya-journey-two-ai-analysis",
       "man-jay-na-korle-safalta-asbe-na"
     ],
     "relatedByCluster": [
       "prachin-grantha-o-adhunik-bigyan",
+      "prodyut-acharya-journey-two-ai-analysis",
       "man-jay-na-korle-safalta-asbe-na"
     ],
     "topRelated": [
@@ -1945,12 +1981,12 @@
         "score": 0.3881349206349206
       },
       {
-        "slug": "man-jay-na-korle-safalta-asbe-na",
-        "score": 0.3433040935672515
+        "slug": "prodyut-acharya-journey-two-ai-analysis",
+        "score": 0.3773809523809524
       },
       {
-        "slug": "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
-        "score": 0.20222222222222222
+        "slug": "man-jay-na-korle-safalta-asbe-na",
+        "score": 0.3433040935672515
       }
     ],
     "cluster": "বিজ্ঞান",
