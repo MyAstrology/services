@@ -15,7 +15,7 @@ const SITE_URL = 'https://www.myastrology.in';
 const RASHIFAL_DIR = path.join(__dirname, '..', '..', '..', 'rashifal');
 const OUTPUT_FILE = path.join(__dirname, '..', '..', '..', 'sitemap-news.xml');
 
-// বাংলা মাস নাম (sitemap title-এর জন্য)
+// বাংলা মাস নাম
 const BMS = [
   {y:1431,m:0,s:'2024-04-14'},{y:1431,m:1,s:'2024-05-15'},{y:1431,m:2,s:'2024-06-15'},
   {y:1431,m:3,s:'2024-07-16'},{y:1431,m:4,s:'2024-08-17'},{y:1431,m:5,s:'2024-09-17'},
@@ -64,18 +64,16 @@ if(!fs.existsSync(RASHIFAL_DIR)) {
   process.exit(0);
 }
 
-// সব .html ফাইল scan করুন
+// সব .html ফাইল scan করুন (index.html বাদ)
 const allFiles = fs.readdirSync(RASHIFAL_DIR)
-  .filter(f => /^\d{4}-\d{2}-\d{2}\.html$/.test(f))
-  .sort()
-  .reverse();
+  .filter(f => /^\d{4}-\d{2}-\d{2}\.html$/.test(f));
 
 if(allFiles.length === 0) {
   console.warn('⚠️ কোনো rashifal HTML ফাইল পাওয়া যায়নি।');
   process.exit(0);
 }
 
-// গতকাল, আজ ও আগামীকালের ফাইল নিন
+// গতকাল, আজ, আগামীকালের তারিখ বের করুন
 const today = new Date();
 today.setHours(0, 0, 0, 0);
 const yesterday = new Date(today);
@@ -87,10 +85,11 @@ const yesterdayStr = yesterday.toISOString().slice(0,10);
 const todayStr = today.toISOString().slice(0,10);
 const tomorrowStr = tomorrow.toISOString().slice(0,10);
 
+// শুধু গতকাল, আজ, আগামীকালের ফাইল নিন
 const entries = allFiles.filter(f => {
   const date = f.replace('.html','');
   return date === yesterdayStr || date === todayStr || date === tomorrowStr;
-});
+}).sort().reverse();
 
 console.log(`📰 News sitemap-এ ${entries.length}টি entry যোগ হবে:`);
 entries.forEach(f => console.log(`   • ${f}`));
