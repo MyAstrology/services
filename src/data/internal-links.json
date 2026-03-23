@@ -93,6 +93,39 @@
     "confidence": 1,
     "manualLinks": []
   },
+  "molmas-adhikmas-ki-keno-proyojon": {
+    "relatedByTag": [
+      "somoyer-rahasya-jyotish-darshan",
+      "janma-kundali-hasta-mudra-rahasya"
+    ],
+    "relatedByPillar": [
+      "jibone-sob-kichu-biruddhe-gele-ki-korben",
+      "shiver-gana-ganesh-ganpati-puran-darshan",
+      "shani-sadesati-ki-hoy-keno-hoy-ki-korben"
+    ],
+    "relatedByCluster": [
+      "somoyer-rahasya-jyotish-darshan",
+      "janma-kundali-hasta-mudra-rahasya",
+      "jibone-sob-kichu-biruddhe-gele-ki-korben"
+    ],
+    "topRelated": [
+      {
+        "slug": "somoyer-rahasya-jyotish-darshan",
+        "score": 0.41622766122766125
+      },
+      {
+        "slug": "janma-kundali-hasta-mudra-rahasya",
+        "score": 0.40997076023391815
+      },
+      {
+        "slug": "jibone-sob-kichu-biruddhe-gele-ki-korben",
+        "score": 0.3932311840206577
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 0.8,
+    "manualLinks": []
+  },
   "mon-joyer-golpo-malini-sukno-nodir-char": {
     "relatedByTag": [
       "vikhari-theke-business-er-golpo"
@@ -2573,17 +2606,16 @@
     "relatedByTag": [
       "somoyer-rahasya-jyotish-darshan",
       "janmakundali-o-hastrekha-jiban-manchitra",
-      "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
-      "bishas-ki-kusanskar-prakriti-manush-jyotish"
+      "molmas-adhikmas-ki-keno-proyojon",
+      "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na"
     ],
     "relatedByPillar": [
-      "mangal-grah-antar-yoddha",
-      "jyotish-shastra-veder-chokh"
+      "mangal-grah-antar-yoddha"
     ],
     "relatedByCluster": [
       "somoyer-rahasya-jyotish-darshan",
       "janmakundali-o-hastrekha-jiban-manchitra",
-      "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na"
+      "molmas-adhikmas-ki-keno-proyojon"
     ],
     "topRelated": [
       {
@@ -2595,8 +2627,8 @@
         "score": 0.4165384615384615
       },
       {
-        "slug": "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
-        "score": 0.4095634920634921
+        "slug": "molmas-adhikmas-ki-keno-proyojon",
+        "score": 0.40997076023391815
       }
     ],
     "cluster": "জ্যোতিষ",
@@ -2864,18 +2896,17 @@
   "somoyer-rahasya-jyotish-darshan": {
     "relatedByTag": [
       "janma-kundali-hasta-mudra-rahasya",
+      "molmas-adhikmas-ki-keno-proyojon",
       "shiver-gana-ganesh-ganpati-puran-darshan",
-      "jibone-sob-kichu-biruddhe-gele-ki-korben",
-      "manush-keno-venge-pore-yogi-pathik-part-2"
+      "jibone-sob-kichu-biruddhe-gele-ki-korben"
     ],
     "relatedByPillar": [
-      "pitru-dosh-binod-golpo",
-      "bishas-ki-kusanskar-prakriti-manush-jyotish"
+      "pitru-dosh-binod-golpo"
     ],
     "relatedByCluster": [
       "janma-kundali-hasta-mudra-rahasya",
-      "shiver-gana-ganesh-ganpati-puran-darshan",
-      "jibone-sob-kichu-biruddhe-gele-ki-korben"
+      "molmas-adhikmas-ki-keno-proyojon",
+      "shiver-gana-ganesh-ganpati-puran-darshan"
     ],
     "topRelated": [
       {
@@ -2883,12 +2914,12 @@
         "score": 0.44999999999999996
       },
       {
-        "slug": "shiver-gana-ganesh-ganpati-puran-darshan",
-        "score": 0.4141666666666667
+        "slug": "molmas-adhikmas-ki-keno-proyojon",
+        "score": 0.41622766122766125
       },
       {
-        "slug": "jibone-sob-kichu-biruddhe-gele-ki-korben",
-        "score": 0.4061111111111111
+        "slug": "shiver-gana-ganesh-ganpati-puran-darshan",
+        "score": 0.4141666666666667
       }
     ],
     "cluster": "জ্যোতিষ",
@@ -3015,21 +3046,21 @@
     "relatedByTag": [],
     "relatedByPillar": [],
     "relatedByCluster": [
+      "molmas-adhikmas-ki-keno-proyojon",
       "jyotish-shastra-utpatti-itihas-beder-chokhu",
-      "agrahayan-mase-janma-12-rashi-swabhab-karma-shastha",
-      "falgun-mase-janma-12-rashi-swabhab-karma-shastha"
+      "agrahayan-mase-janma-12-rashi-swabhab-karma-shastha"
     ],
     "topRelated": [
+      {
+        "slug": "molmas-adhikmas-ki-keno-proyojon",
+        "score": 0.23319783197831978
+      },
       {
         "slug": "jyotish-shastra-utpatti-itihas-beder-chokhu",
         "score": 0.23076923076923078
       },
       {
         "slug": "agrahayan-mase-janma-12-rashi-swabhab-karma-shastha",
-        "score": 0.225
-      },
-      {
-        "slug": "falgun-mase-janma-12-rashi-swabhab-karma-shastha",
         "score": 0.225
       }
     ],

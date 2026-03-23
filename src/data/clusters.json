@@ -80,6 +80,23 @@
       }
     }
   },
+  "molmas-adhikmas-ki-keno-proyojon": {
+    "cluster": "জ্যোতিষ",
+    "parent": "শারীরিক জ্যোতিষ",
+    "confidence": 0.8,
+    "allScores": {
+      "জ্যোতিষ": {
+        "score": 4,
+        "matches": 4,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "বিজ্ঞান": {
+        "score": 1.6,
+        "matches": 2,
+        "parent": "শিক্ষা"
+      }
+    }
+  },
   "mon-joyer-golpo-malini-sukno-nodir-char": {
     "cluster": "জীবন দর্শন",
     "parent": "আধ্যাত্মিক",
