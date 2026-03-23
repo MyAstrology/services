@@ -5,27 +5,27 @@
       "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya"
     ],
     "relatedByPillar": [
-      "dharma-ki-prokrit-artha-gita-buddha-darshan",
       "artha-ki-sukh-dey-jyotish-darshan-parashar",
-      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha"
+      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
+      "bhagya-ki-sabar-bhalo-hoy-sampurna-bisleshan"
     ],
     "relatedByCluster": [
       "bhalo-manush-haoar-satyi-path",
       "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
-      "dharma-ki-prokrit-artha-gita-buddha-darshan"
+      "artha-ki-sukh-dey-jyotish-darshan-parashar"
     ],
     "topRelated": [
       {
         "slug": "bhalo-manush-haoar-satyi-path",
-        "score": 0.502948717948718
+        "score": 0.4905555555555556
       },
       {
         "slug": "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
-        "score": 0.40018817204301077
+        "score": 0.4008333333333333
       },
       {
-        "slug": "dharma-ki-prokrit-artha-gita-buddha-darshan",
-        "score": 0.3953494623655914
+        "slug": "artha-ki-sukh-dey-jyotish-darshan-parashar",
+        "score": 0.39835858585858586
       }
     ],
     "cluster": "জীবন দর্শন",
@@ -403,7 +403,7 @@
     "relatedByPillar": [
       "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
       "manush-ki-satyi-valobasha-yogi-pathik-part-1",
-      "valo-label-er-fand-theke-beriye-asa"
+      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo"
     ],
     "relatedByCluster": [
       "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
@@ -1157,7 +1157,7 @@
     "relatedByPillar": [
       "chinta-shakti-bigyan-jyotish-darshan",
       "ishwar-bishas-nastik-dharmic-karma-part-2",
-      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha"
+      "valo-label-er-fand-theke-beriye-asa"
     ],
     "relatedByCluster": [
       "mantra-jap-ki-kaj-kore-bigyan-adhyatma",
@@ -2351,7 +2351,7 @@
     "relatedByPillar": [
       "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
       "stri-r-bicched-er-por-o-mone-pore-chanchal-er-golpo",
-      "dharma-ki-prokrit-artha-gita-buddha-darshan"
+      "valo-label-er-fand-theke-beriye-asa"
     ],
     "relatedByCluster": [
       "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
@@ -2428,7 +2428,7 @@
     "topRelated": [
       {
         "slug": "valo-label-er-fand-theke-beriye-asa",
-        "score": 0.502948717948718
+        "score": 0.4905555555555556
       },
       {
         "slug": "dharma-ki-prokrit-artha-gita-buddha-darshan",
