@@ -38,6 +38,38 @@
       }
     }
   },
+  "jibone-bar-bar-byartho-hole-ki-korben": {
+    "cluster": "জ্যোতিষ",
+    "parent": "শারীরিক জ্যোতিষ",
+    "confidence": 1,
+    "allScores": {
+      "হস্তরেখা": {
+        "score": 2,
+        "matches": 2,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জ্যোতিষ": {
+        "score": 8,
+        "matches": 8,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জীবন দর্শন": {
+        "score": 1,
+        "matches": 1,
+        "parent": "আধ্যাত্মিক"
+      },
+      "সাফল্য": {
+        "score": 3.6,
+        "matches": 4,
+        "parent": "ব্যবহারিক জীবন"
+      },
+      "সম্পর্ক": {
+        "score": 0.9,
+        "matches": 1,
+        "parent": "ব্যবহারিক জীবন"
+      }
+    }
+  },
   "bhagya-ki-sabar-bhalo-hoy-sampurna-bisleshan": {
     "cluster": "জীবন দর্শন",
     "parent": "আধ্যাত্মিক",

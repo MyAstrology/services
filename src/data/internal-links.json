@@ -62,6 +62,38 @@
     "confidence": 0.4,
     "manualLinks": []
   },
+  "jibone-bar-bar-byartho-hole-ki-korben": {
+    "relatedByTag": [
+      "jibone-sob-kichu-biruddhe-gele-ki-korben"
+    ],
+    "relatedByPillar": [
+      "jyotish-shastra-veder-chokh",
+      "rahu-ketu-chaya-graha-jibone-prabhab-protikar",
+      "pitru-dosh-binod-golpo"
+    ],
+    "relatedByCluster": [
+      "jibone-sob-kichu-biruddhe-gele-ki-korben",
+      "jyotish-shastra-veder-chokh",
+      "rahu-ketu-chaya-graha-jibone-prabhab-protikar"
+    ],
+    "topRelated": [
+      {
+        "slug": "jibone-sob-kichu-biruddhe-gele-ki-korben",
+        "score": 0.4286434108527132
+      },
+      {
+        "slug": "jyotish-shastra-veder-chokh",
+        "score": 0.3923582405935347
+      },
+      {
+        "slug": "rahu-ketu-chaya-graha-jibone-prabhab-protikar",
+        "score": 0.38990081813611227
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 1,
+    "manualLinks": []
+  },
   "bhagya-ki-sabar-bhalo-hoy-sampurna-bisleshan": {
     "relatedByTag": [
       "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha"
@@ -1221,8 +1253,8 @@
     ],
     "relatedByPillar": [
       "bishas-ki-kusanskar-prakriti-manush-jyotish",
-      "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
-      "janma-kundali-hasta-mudra-rahasya"
+      "jibone-bar-bar-byartho-hole-ki-korben",
+      "shani-sadesati-ki-hoy-keno-hoy-ki-korben"
     ],
     "relatedByCluster": [
       "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
@@ -1252,12 +1284,12 @@
     "relatedByPillar": [
       "jibone-sob-kichu-biruddhe-gele-ki-korben",
       "jyotish-shastra-veder-chokh",
-      "bishas-ki-kusanskar-prakriti-manush-jyotish"
+      "jibone-bar-bar-byartho-hole-ki-korben"
     ],
     "relatedByCluster": [
       "jibone-sob-kichu-biruddhe-gele-ki-korben",
       "jyotish-shastra-veder-chokh",
-      "bishas-ki-kusanskar-prakriti-manush-jyotish"
+      "jibone-bar-bar-byartho-hole-ki-korben"
     ],
     "topRelated": [
       {
@@ -1269,8 +1301,8 @@
         "score": 0.3353896103896104
       },
       {
-        "slug": "bishas-ki-kusanskar-prakriti-manush-jyotish",
-        "score": 0.33181818181818185
+        "slug": "jibone-bar-bar-byartho-hole-ki-korben",
+        "score": 0.33444444444444443
       }
     ],
     "cluster": "জ্যোতিষ",
@@ -2544,21 +2576,24 @@
   },
   "jibone-sob-kichu-biruddhe-gele-ki-korben": {
     "relatedByTag": [
-      "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
-      "shiver-gana-ganesh-ganpati-puran-darshan",
-      "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
-      "somoyer-rahasya-jyotish-darshan"
-    ],
-    "relatedByPillar": [
-      "rahu-ketu-chaya-graha-jibone-prabhab-protikar",
-      "mukhoser-alore-porichoy-naitikota-sankat"
-    ],
-    "relatedByCluster": [
+      "jibone-bar-bar-byartho-hole-ki-korben",
       "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
       "shiver-gana-ganesh-ganpati-puran-darshan",
       "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na"
     ],
+    "relatedByPillar": [
+      "rahu-ketu-chaya-graha-jibone-prabhab-protikar"
+    ],
+    "relatedByCluster": [
+      "jibone-bar-bar-byartho-hole-ki-korben",
+      "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
+      "shiver-gana-ganesh-ganpati-puran-darshan"
+    ],
     "topRelated": [
+      {
+        "slug": "jibone-bar-bar-byartho-hole-ki-korben",
+        "score": 0.4286434108527132
+      },
       {
         "slug": "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
         "score": 0.41273809523809524
@@ -2566,10 +2601,6 @@
       {
         "slug": "shiver-gana-ganesh-ganpati-puran-darshan",
         "score": 0.41098667672197087
-      },
-      {
-        "slug": "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
-        "score": 0.40694444444444444
       }
     ],
     "cluster": "জ্যোতিষ",
