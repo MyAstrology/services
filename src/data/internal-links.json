@@ -93,33 +93,34 @@
     "confidence": 1,
     "manualLinks": []
   },
-  "vikhari-ther-business-er-golpo": {
-    "relatedByTag": [
-      "kanaklata-jiban-sangram-saktir-golpo"
-    ],
+  "vikhari-theke-business-er-golpo": {
+    "relatedByTag": [],
     "relatedByPillar": [
-      "sushanta-british-jiban-sangram-kartabya"
+      "gorib-keno-buddher-utor-jibon-bodle-dey",
+      "mahabharata-ratha-pancha-indriya-jiban-darshan",
+      "artha-ki-sukh-dey-jyotish-darshan-parashar"
     ],
     "relatedByCluster": [
-      "kanaklata-jiban-sangram-saktir-golpo",
-      "sushanta-british-jiban-sangram-kartabya"
+      "gorib-keno-buddher-utor-jibon-bodle-dey",
+      "mahabharata-ratha-pancha-indriya-jiban-darshan",
+      "artha-ki-sukh-dey-jyotish-darshan-parashar"
     ],
     "topRelated": [
       {
-        "slug": "kanaklata-jiban-sangram-saktir-golpo",
-        "score": 0.40412186379928317
+        "slug": "gorib-keno-buddher-utor-jibon-bodle-dey",
+        "score": 0.3814141414141414
       },
       {
-        "slug": "sushanta-british-jiban-sangram-kartabya",
-        "score": 0.3976010101010101
+        "slug": "mahabharata-ratha-pancha-indriya-jiban-darshan",
+        "score": 0.3757731157731158
       },
       {
-        "slug": "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
-        "score": 0.20880718954248367
+        "slug": "artha-ki-sukh-dey-jyotish-darshan-parashar",
+        "score": 0.36966200466200466
       }
     ],
-    "cluster": "গল্প",
-    "confidence": 0.64,
+    "cluster": "জীবন দর্শন",
+    "confidence": 0.8,
     "manualLinks": []
   },
   "bhagya-ki-sabar-bhalo-hoy-sampurna-bisleshan": {
@@ -2637,13 +2638,11 @@
   },
   "kanaklata-jiban-sangram-saktir-golpo": {
     "relatedByTag": [
-      "sushanta-british-jiban-sangram-kartabya",
-      "vikhari-ther-business-er-golpo"
+      "sushanta-british-jiban-sangram-kartabya"
     ],
     "relatedByPillar": [],
     "relatedByCluster": [
-      "sushanta-british-jiban-sangram-kartabya",
-      "vikhari-ther-business-er-golpo"
+      "sushanta-british-jiban-sangram-kartabya"
     ],
     "topRelated": [
       {
@@ -2651,12 +2650,12 @@
         "score": 0.4827380952380953
       },
       {
-        "slug": "vikhari-ther-business-er-golpo",
-        "score": 0.40412186379928317
-      },
-      {
         "slug": "jibonsongram-sukhi-thaka-ananta-golpo",
         "score": 0.21161046555783397
+      },
+      {
+        "slug": "prodyut-acharya-jyotish-palmist-journey-ranaghat",
+        "score": 0.2067408245349422
       }
     ],
     "cluster": "গল্প",
@@ -2866,12 +2865,9 @@
     "relatedByTag": [
       "kanaklata-jiban-sangram-saktir-golpo"
     ],
-    "relatedByPillar": [
-      "vikhari-ther-business-er-golpo"
-    ],
+    "relatedByPillar": [],
     "relatedByCluster": [
-      "kanaklata-jiban-sangram-saktir-golpo",
-      "vikhari-ther-business-er-golpo"
+      "kanaklata-jiban-sangram-saktir-golpo"
     ],
     "topRelated": [
       {
@@ -2879,12 +2875,12 @@
         "score": 0.4827380952380953
       },
       {
-        "slug": "vikhari-ther-business-er-golpo",
-        "score": 0.3976010101010101
-      },
-      {
         "slug": "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
         "score": 0.25
+      },
+      {
+        "slug": "jyotish-shastra-veder-chokh",
+        "score": 0.2273611111111111
       }
     ],
     "cluster": "গল্প",
