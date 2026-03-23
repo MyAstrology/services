@@ -4,14 +4,14 @@
       "bhalo-manush-haoar-satyi-path"
     ],
     "relatedByPillar": [
+      "mon-joyer-golpo-malini-sukno-nodir-char",
       "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
-      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
-      "artha-ki-sukh-dey-jyotish-darshan-parashar"
+      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo"
     ],
     "relatedByCluster": [
       "bhalo-manush-haoar-satyi-path",
-      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
-      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo"
+      "mon-joyer-golpo-malini-sukno-nodir-char",
+      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya"
     ],
     "topRelated": [
       {
@@ -19,12 +19,12 @@
         "score": 0.41100195503421305
       },
       {
-        "slug": "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
-        "score": 0.3736363636363636
+        "slug": "mon-joyer-golpo-malini-sukno-nodir-char",
+        "score": 0.3741636141636142
       },
       {
-        "slug": "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
-        "score": 0.37252525252525254
+        "slug": "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
+        "score": 0.3736363636363636
       }
     ],
     "cluster": "জীবন দর্শন",
@@ -93,19 +93,57 @@
     "confidence": 1,
     "manualLinks": []
   },
+  "mon-joyer-golpo-malini-sukno-nodir-char": {
+    "relatedByTag": [
+      "vikhari-theke-business-er-golpo"
+    ],
+    "relatedByPillar": [
+      "dharma-ki-prokrit-artha-gita-buddha-darshan",
+      "mahabharata-ratha-pancha-indriya-jiban-darshan",
+      "ishwar-bishas-nastik-dharmic-karma-part-2"
+    ],
+    "relatedByCluster": [
+      "vikhari-theke-business-er-golpo",
+      "dharma-ki-prokrit-artha-gita-buddha-darshan",
+      "mahabharata-ratha-pancha-indriya-jiban-darshan"
+    ],
+    "topRelated": [
+      {
+        "slug": "vikhari-theke-business-er-golpo",
+        "score": 0.4214473684210527
+      },
+      {
+        "slug": "dharma-ki-prokrit-artha-gita-buddha-darshan",
+        "score": 0.38788194444444446
+      },
+      {
+        "slug": "mahabharata-ratha-pancha-indriya-jiban-darshan",
+        "score": 0.3811111111111111
+      }
+    ],
+    "cluster": "জীবন দর্শন",
+    "confidence": 1,
+    "manualLinks": []
+  },
   "vikhari-theke-business-er-golpo": {
-    "relatedByTag": [],
+    "relatedByTag": [
+      "mon-joyer-golpo-malini-sukno-nodir-char"
+    ],
     "relatedByPillar": [
       "gorib-keno-buddher-utor-jibon-bodle-dey",
       "mahabharata-ratha-pancha-indriya-jiban-darshan",
       "artha-ki-sukh-dey-jyotish-darshan-parashar"
     ],
     "relatedByCluster": [
+      "mon-joyer-golpo-malini-sukno-nodir-char",
       "gorib-keno-buddher-utor-jibon-bodle-dey",
-      "mahabharata-ratha-pancha-indriya-jiban-darshan",
-      "artha-ki-sukh-dey-jyotish-darshan-parashar"
+      "mahabharata-ratha-pancha-indriya-jiban-darshan"
     ],
     "topRelated": [
+      {
+        "slug": "mon-joyer-golpo-malini-sukno-nodir-char",
+        "score": 0.4214473684210527
+      },
       {
         "slug": "gorib-keno-buddher-utor-jibon-bodle-dey",
         "score": 0.3814141414141414
@@ -113,10 +151,6 @@
       {
         "slug": "mahabharata-ratha-pancha-indriya-jiban-darshan",
         "score": 0.3757731157731158
-      },
-      {
-        "slug": "artha-ki-sukh-dey-jyotish-darshan-parashar",
-        "score": 0.36966200466200466
       }
     ],
     "cluster": "জীবন দর্শন",

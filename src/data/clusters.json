@@ -80,6 +80,33 @@
       }
     }
   },
+  "mon-joyer-golpo-malini-sukno-nodir-char": {
+    "cluster": "জীবন দর্শন",
+    "parent": "আধ্যাত্মিক",
+    "confidence": 1,
+    "allScores": {
+      "হস্তরেখা": {
+        "score": 1,
+        "matches": 1,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জ্যোতিষ": {
+        "score": 1,
+        "matches": 1,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জীবন দর্শন": {
+        "score": 9,
+        "matches": 9,
+        "parent": "আধ্যাত্মিক"
+      },
+      "গল্প": {
+        "score": 2.4000000000000004,
+        "matches": 3,
+        "parent": "সাহিত্য"
+      }
+    }
+  },
   "vikhari-theke-business-er-golpo": {
     "cluster": "জীবন দর্শন",
     "parent": "আধ্যাত্মিক",
