@@ -93,20 +93,53 @@
     "confidence": 1,
     "manualLinks": []
   },
+  "manglik-yog-ki-prathamik-dharona": {
+    "relatedByTag": [
+      "mangal-grah-antar-yoddha",
+      "prodyut-acharya-jyotish-palmist-journey-ranaghat"
+    ],
+    "relatedByPillar": [
+      "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
+      "molmas-adhikmas-ki-keno-proyojon",
+      "shani-sadesati-ki-hoy-keno-hoy-ki-korben"
+    ],
+    "relatedByCluster": [
+      "mangal-grah-antar-yoddha",
+      "prodyut-acharya-jyotish-palmist-journey-ranaghat",
+      "jyotish-6-shakti-shali-yoga-kundali-bisleshan"
+    ],
+    "topRelated": [
+      {
+        "slug": "mangal-grah-antar-yoddha",
+        "score": 0.5697491039426523
+      },
+      {
+        "slug": "prodyut-acharya-jyotish-palmist-journey-ranaghat",
+        "score": 0.40134920634920634
+      },
+      {
+        "slug": "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
+        "score": 0.39589169000933705
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 1,
+    "manualLinks": []
+  },
   "molmas-adhikmas-ki-keno-proyojon": {
     "relatedByTag": [
       "somoyer-rahasya-jyotish-darshan",
       "janma-kundali-hasta-mudra-rahasya"
     ],
     "relatedByPillar": [
+      "manglik-yog-ki-prathamik-dharona",
       "jibone-sob-kichu-biruddhe-gele-ki-korben",
-      "shiver-gana-ganesh-ganpati-puran-darshan",
-      "shani-sadesati-ki-hoy-keno-hoy-ki-korben"
+      "shiver-gana-ganesh-ganpati-puran-darshan"
     ],
     "relatedByCluster": [
       "somoyer-rahasya-jyotish-darshan",
       "janma-kundali-hasta-mudra-rahasya",
-      "jibone-sob-kichu-biruddhe-gele-ki-korben"
+      "manglik-yog-ki-prathamik-dharona"
     ],
     "topRelated": [
       {
@@ -118,8 +151,8 @@
         "score": 0.40997076023391815
       },
       {
-        "slug": "jibone-sob-kichu-biruddhe-gele-ki-korben",
-        "score": 0.3932311840206577
+        "slug": "manglik-yog-ki-prathamik-dharona",
+        "score": 0.39375843454790826
       }
     ],
     "cluster": "জ্যোতিষ",
@@ -255,16 +288,20 @@
   "kalsarpa-yog-ki-prabhab-somadhan": {
     "relatedByTag": [],
     "relatedByPillar": [
+      "manglik-yog-ki-prathamik-dharona",
       "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
-      "rahu-ketu-chaya-graha-jibone-prabhab-protikar",
-      "pitru-dosh-shastriya-byakhya"
+      "rahu-ketu-chaya-graha-jibone-prabhab-protikar"
     ],
     "relatedByCluster": [
+      "manglik-yog-ki-prathamik-dharona",
       "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
-      "rahu-ketu-chaya-graha-jibone-prabhab-protikar",
-      "pitru-dosh-shastriya-byakhya"
+      "rahu-ketu-chaya-graha-jibone-prabhab-protikar"
     ],
     "topRelated": [
+      {
+        "slug": "manglik-yog-ki-prathamik-dharona",
+        "score": 0.3259401709401709
+      },
       {
         "slug": "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
         "score": 0.3169444444444445
@@ -272,10 +309,6 @@
       {
         "slug": "rahu-ketu-chaya-graha-jibone-prabhab-protikar",
         "score": 0.3149591503267974
-      },
-      {
-        "slug": "pitru-dosh-shastriya-byakhya",
-        "score": 0.3111111111111111
       }
     ],
     "cluster": "জ্যোতিষ",
@@ -1583,14 +1616,14 @@
       "somoyer-rahasya-jyotish-darshan"
     ],
     "relatedByPillar": [
+      "manglik-yog-ki-prathamik-dharona",
       "mukhoser-alore-porichoy-naitikota-sankat",
-      "gandharva-yaksha-puran-darshan",
-      "rahu-ketu-chaya-graha-jibone-prabhab-protikar"
+      "gandharva-yaksha-puran-darshan"
     ],
     "relatedByCluster": [
       "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
       "somoyer-rahasya-jyotish-darshan",
-      "mukhoser-alore-porichoy-naitikota-sankat"
+      "manglik-yog-ki-prathamik-dharona"
     ],
     "topRelated": [
       {
@@ -1602,8 +1635,8 @@
         "score": 0.40361111111111114
       },
       {
-        "slug": "mukhoser-alore-porichoy-naitikota-sankat",
-        "score": 0.3924145299145299
+        "slug": "manglik-yog-ki-prathamik-dharona",
+        "score": 0.39589169000933705
       }
     ],
     "cluster": "জ্যোতিষ",
@@ -1871,7 +1904,7 @@
     "relatedByPillar": [
       "rahu-ketu-chaya-graha-jibone-prabhab-protikar",
       "prodyut-acharya-jyotish-palmist-journey-ranaghat",
-      "pitru-dosh-shastriya-byakhya"
+      "manglik-yog-ki-prathamik-dharona"
     ],
     "relatedByCluster": [
       "jibone-sob-kichu-biruddhe-gele-ki-korben",
@@ -1990,18 +2023,24 @@
     "manualLinks": []
   },
   "mangal-grah-antar-yoddha": {
-    "relatedByTag": [],
+    "relatedByTag": [
+      "manglik-yog-ki-prathamik-dharona"
+    ],
     "relatedByPillar": [
       "prodyut-acharya-jyotish-palmist-journey-ranaghat",
       "nijeke-chena-andhakarer-path",
       "janma-kundali-hasta-mudra-rahasya"
     ],
     "relatedByCluster": [
+      "manglik-yog-ki-prathamik-dharona",
       "prodyut-acharya-jyotish-palmist-journey-ranaghat",
-      "nijeke-chena-andhakarer-path",
-      "janma-kundali-hasta-mudra-rahasya"
+      "nijeke-chena-andhakarer-path"
     ],
     "topRelated": [
+      {
+        "slug": "manglik-yog-ki-prathamik-dharona",
+        "score": 0.5697491039426523
+      },
       {
         "slug": "prodyut-acharya-jyotish-palmist-journey-ranaghat",
         "score": 0.3954040404040404
@@ -2009,10 +2048,6 @@
       {
         "slug": "nijeke-chena-andhakarer-path",
         "score": 0.3952020202020202
-      },
-      {
-        "slug": "janma-kundali-hasta-mudra-rahasya",
-        "score": 0.3907291666666667
       }
     ],
     "cluster": "জ্যোতিষ",
@@ -2410,18 +2445,24 @@
     "manualLinks": []
   },
   "prodyut-acharya-jyotish-palmist-journey-ranaghat": {
-    "relatedByTag": [],
+    "relatedByTag": [
+      "manglik-yog-ki-prathamik-dharona"
+    ],
     "relatedByPillar": [
       "mangal-grah-antar-yoddha",
       "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
       "nijeke-chena-andhakarer-path"
     ],
     "relatedByCluster": [
+      "manglik-yog-ki-prathamik-dharona",
       "mangal-grah-antar-yoddha",
-      "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
-      "nijeke-chena-andhakarer-path"
+      "shani-sadesati-ki-hoy-keno-hoy-ki-korben"
     ],
     "topRelated": [
+      {
+        "slug": "manglik-yog-ki-prathamik-dharona",
+        "score": 0.40134920634920634
+      },
       {
         "slug": "mangal-grah-antar-yoddha",
         "score": 0.3954040404040404
@@ -2429,10 +2470,6 @@
       {
         "slug": "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
         "score": 0.39329365079365075
-      },
-      {
-        "slug": "nijeke-chena-andhakarer-path",
-        "score": 0.3920634920634921
       }
     ],
     "cluster": "জ্যোতিষ",

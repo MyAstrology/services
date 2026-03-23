@@ -80,6 +80,23 @@
       }
     }
   },
+  "manglik-yog-ki-prathamik-dharona": {
+    "cluster": "জ্যোতিষ",
+    "parent": "শারীরিক জ্যোতিষ",
+    "confidence": 1,
+    "allScores": {
+      "জ্যোতিষ": {
+        "score": 9,
+        "matches": 9,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "সম্পর্ক": {
+        "score": 0.9,
+        "matches": 1,
+        "parent": "ব্যবহারিক জীবন"
+      }
+    }
+  },
   "molmas-adhikmas-ki-keno-proyojon": {
     "cluster": "জ্যোতিষ",
     "parent": "শারীরিক জ্যোতিষ",
