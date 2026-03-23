@@ -121,40 +121,81 @@
 MyAstrology/services/
 │
 ├── 📂 .github/workflows/
-│   ├── 🔄 generate-blog.yml        # Main CI/CD pipeline
-│   └── 🔄 fetch-reviews.yml        # Google Reviews auto-fetch
+│   ├── 🔄 generate-blog.yml        # Main CI/CD pipeline (runs on push to main)
+│   ├── 🔄 fetch-reviews.yml        # Google Reviews auto-fetch (daily at 00:00 UTC)
+│   └── 🔄 generate-rashifal.yml    # Daily rashifal generator (NEW)
 │
-├── 📂 assets/                       # CSS, images etc.
-├── 📂 blog/                          # Generated HTML files
-├── 📂 gallery/                        # Gallery images
-├── 📂 images/                         # Site images
-├── 📂 learning/                       # Learning Hub
+├── 📂 assets/                       # CSS, images, fonts
+├── 📂 blog/                         # Generated HTML files (auto from .md)
+├── 📂 gallery/                      # Gallery images
+├── 📂 images/                       # Site images (featured, og, twitter)
+├── 📂 learning/                     # Learning Hub
 │
 ├── 📂 src/
-│   └── 📂 content/blog/
-│       ├── 📄 list.json              # Auto-generated blog list
-│       ├── ⚙️ generate-list.js       # Blog list generator
-│       ├── ⚙️ generate-sitemap.js    # Sitemap generator
-│       └── 📝 35+ .md files          # Blog posts (বাংলা)
+│   ├── 📂 content/
+│   │   ├── 📂 blog/                 # 📝 ALL BLOG POSTS (Markdown)
+│   │   │   ├── 📄 list.json         # Auto-generated blog list
+│   │   │   ├── ⚙️ generate-list.js  # Blog list generator
+│   │   │   ├── ⚙️ generate-sitemap.js # Sitemap generator
+│   │   │   ├── ⚙️ generate-image-sitemap.js # Image sitemap (NEW)
+│   │   │   ├── ⚙️ generate-video-sitemap.js # Video sitemap (NEW)
+│   │   │   ├── ⚙️ generate-news-sitemap.js # Google News sitemap (NEW)
+│   │   │   └── 📝 40+ .md files    # Blog posts (বাংলা) — updated count
+│   │   │
+│   │   └── 📂 rashifal/             # 🪐 RASHIFAL SYSTEM (NEW)
+│   │       ├── ⚙️ generate-rashifal.js  # Daily rashifal generator
+│   │       ├── 🧩 template.html         # Rashifal HTML template
+│   │       └── 📊 rashifal-data.json   # Auto-generated rashifal data
+│   │
+│   └── 📂 data/                     # 📊 AUTO-GENERATED DATA
+│       ├── 📊 clusters.json         # Topic clusters (auto-updated)
+│       ├── 🔗 internal-links.json   # Related posts mapping
+│       ├── 🔗 related-posts.json    # Related posts slugs
+│       ├── 📈 stats.json            # Generation statistics
+│       └── 📋 tags.json             # Tag configuration (NEW)
 │
-├── 📂 src/data/
-│   ├── 📊 clusters.json              # Auto-generated clusters
-│   ├── 🔗 internal-links.json        # Related posts data
-│   ├── 🔗 related-posts.json         # Related posts slugs
-│   └── 📈 stats.json                 # Generation statistics
+├── 📂 scripts/                      # ⚙️ UTILITY SCRIPTS (NEW)
+│   ├── ⚙️ auto-generate.js         # Main automation runner
+│   ├── ⚙️ generate-posts.js        # Blog post generator
+│   ├── ⚙️ generate-related-posts.js # Related posts generator
+│   ├── ⚙️ update_reviews.js        # Google Reviews updater
+│   ├── ⚙️ watch.js                 # File watcher for dev mode
+│   └── ⚙️ tag-config.js            # Tag & cluster configuration
 │
-├── 📄 *.html                          # Main pages (index, about, etc.)
-├── 📦 package.json                    # Dependencies
-├── 🔒 package-lock.json                # Lock file
-├── 🤖 robots.txt                       # SEO
-├── 🗺️ sitemap.xml                      # Main sitemap
-├── 🖼️ image-sitemap.xml                # Image sitemap
-├── 🎬 video-sitemap.xml                # Video sitemap
-└── 📖 README.md                        # This file
-
+├── 📄 index.html                    # Homepage
+├── 📄 about.html                    # About Dr. Prodyut Acharya
+├── 📄 astrology.html                # Astrology services
+├── 📄 palmistry.html                # Palmistry services
+├── 📄 gemstone.html                 # Gemstone recommendations
+├── 📄 vastu-science.html            # Vastu services
+├── 📄 vedic-astronomy.html          # Vedic astronomy articles
+├── 📄 rashifal.html                 # Daily rashifal page (NEW)
+├── 📄 panjika.html                  # Panjika page
+├── 📄 blog.html                     # Blog landing page
+├── 📄 blog-list.html                # Blog listing page
+├── 📄 gallery.html                  # Gallery page
+├── 📄 video.html                    # Video gallery
+├── 📄 reviews.html                  # Google Reviews page
+├── 📄 contact.html                  # Contact page
+├── 📄 privacy-policy.html           # Privacy policy
+├── 📄 terms-of-use.html             # Terms of use
+├── 📄 best-astrologer-in-kolkata.html   # Location page
+├── 📄 best-astrologer-in-nadia.html      # Location page
+├── 📄 best-astrologer-in-west-bengal.html # Location page
+│
+├── 📄 robots.txt                    # SEO robots.txt
+├── 🗺️ sitemap-index.xml             # Sitemap index
+├── 🗺️ sitemap.xml                   # Main sitemap (auto-updated)
+├── 🗺️ image-sitemap.xml             # Image sitemap (auto-updated)
+├── 🗺️ video-sitemap.xml             # Video sitemap (auto-updated)
+├── 🗺️ sitemap-news.xml              # Google News sitemap (auto-updated, NEW)
+│
+├── 📄 reviews.json                  # Google Reviews data (auto-fetched)
+├── 📦 package.json                  # Dependencies
+├── 🔒 package-lock.json              # Lock file
+└── 📖 README.md                     # Project documentation
 ```
 
----
 
 ## 📝 **Blog Posts**
 
