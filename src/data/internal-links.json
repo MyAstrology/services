@@ -1,4 +1,37 @@
 {
+  "valo-label-er-fand-theke-beriye-asa": {
+    "relatedByTag": [
+      "bhalo-manush-haoar-satyi-path",
+      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya"
+    ],
+    "relatedByPillar": [
+      "dharma-ki-prokrit-artha-gita-buddha-darshan",
+      "artha-ki-sukh-dey-jyotish-darshan-parashar",
+      "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha"
+    ],
+    "relatedByCluster": [
+      "bhalo-manush-haoar-satyi-path",
+      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
+      "dharma-ki-prokrit-artha-gita-buddha-darshan"
+    ],
+    "topRelated": [
+      {
+        "slug": "bhalo-manush-haoar-satyi-path",
+        "score": 0.502948717948718
+      },
+      {
+        "slug": "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
+        "score": 0.40018817204301077
+      },
+      {
+        "slug": "dharma-ki-prokrit-artha-gita-buddha-darshan",
+        "score": 0.3953494623655914
+      }
+    ],
+    "cluster": "জীবন দর্শন",
+    "confidence": 0.2,
+    "manualLinks": []
+  },
   "damodarer-bali-jibon-dorshon": {
     "relatedByTag": [],
     "relatedByPillar": [
@@ -370,7 +403,7 @@
     "relatedByPillar": [
       "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
       "manush-ki-satyi-valobasha-yogi-pathik-part-1",
-      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo"
+      "valo-label-er-fand-theke-beriye-asa"
     ],
     "relatedByCluster": [
       "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
@@ -2378,22 +2411,25 @@
   },
   "bhalo-manush-haoar-satyi-path": {
     "relatedByTag": [
-      "dharma-ki-prokrit-artha-gita-buddha-darshan",
-      "mahabharata-ratha-pancha-indriya-jiban-darshan",
-      "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan",
-      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya"
-    ],
-    "relatedByPillar": [
-      "gorib-keno-buddher-utor-jibon-bodle-dey",
-      "chinta-shakti-bigyan-jyotish-darshan",
-      "manush-ki-satyi-valobasha-yogi-pathik-part-1"
-    ],
-    "relatedByCluster": [
+      "valo-label-er-fand-theke-beriye-asa",
       "dharma-ki-prokrit-artha-gita-buddha-darshan",
       "mahabharata-ratha-pancha-indriya-jiban-darshan",
       "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan"
     ],
+    "relatedByPillar": [
+      "gorib-keno-buddher-utor-jibon-bodle-dey",
+      "chinta-shakti-bigyan-jyotish-darshan"
+    ],
+    "relatedByCluster": [
+      "valo-label-er-fand-theke-beriye-asa",
+      "dharma-ki-prokrit-artha-gita-buddha-darshan",
+      "mahabharata-ratha-pancha-indriya-jiban-darshan"
+    ],
     "topRelated": [
+      {
+        "slug": "valo-label-er-fand-theke-beriye-asa",
+        "score": 0.502948717948718
+      },
       {
         "slug": "dharma-ki-prokrit-artha-gita-buddha-darshan",
         "score": 0.47628083491461104
@@ -2401,10 +2437,6 @@
       {
         "slug": "mahabharata-ratha-pancha-indriya-jiban-darshan",
         "score": 0.4541666666666667
-      },
-      {
-        "slug": "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan",
-        "score": 0.41594017094017094
       }
     ],
     "cluster": "জীবন দর্শন",
