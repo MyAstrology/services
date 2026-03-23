@@ -5,18 +5,15 @@
  * কাজ: rashifal/ ফোল্ডারের সব .html ফাইল স্ক্যান করে
  *       sitemap-news.xml তৈরি করে।
  *
- * ⚠️ IMPORTANT: Google News Sitemap-এ শেষ ৩ দিনের (গতকাল, আজ, আগামীকাল) entry রাখুন।
- *    কারণ: গতকালের রাশিফল এখনও পাঠক দেখেন, আজকের চলতি, আগামীকালের প্রি-জেনারেটেড।
- *
  * চালানো: node src/content/rashifal/generate-news-sitemap.js
  */
 
-const fs   = require('fs');
+const fs = require('fs');
 const path = require('path');
 
-const SITE_URL   = 'https://www.myastrology.in';
+const SITE_URL = 'https://www.myastrology.in';
 const RASHIFAL_DIR = path.join(__dirname, '..', '..', '..', 'rashifal');
-const OUTPUT_FILE  = path.join(__dirname, '..', '..', '..', 'sitemap-news.xml');
+const OUTPUT_FILE = path.join(__dirname, '..', '..', '..', 'sitemap-news.xml');
 
 // বাংলা মাস নাম (sitemap title-এর জন্য)
 const BMS = [
@@ -61,16 +58,13 @@ function buildTitle(iso) {
   return `${iso} দৈনিক রাশিফল — ১২ রাশির বিস্তারিত ফল`;
 }
 
-// ════════════════════════════════════════════════
 // MAIN
-// ════════════════════════════════════════════════
-
 if(!fs.existsSync(RASHIFAL_DIR)) {
   console.warn('⚠️ rashifal/ directory not found. Run generate-rashifal.js first.');
   process.exit(0);
 }
 
-// সব .html ফাইল scan করুন (index.html বাদ দিন)
+// সব .html ফাইল scan করুন
 const allFiles = fs.readdirSync(RASHIFAL_DIR)
   .filter(f => /^\d{4}-\d{2}-\d{2}\.html$/.test(f))
   .sort()
@@ -81,7 +75,7 @@ if(allFiles.length === 0) {
   process.exit(0);
 }
 
-// 🔧 FIX: গতকাল, আজ ও আগামীকালের ফাইল নিন (সর্বোচ্চ ৩টি)
+// গতকাল, আজ ও আগামীকালের ফাইল নিন
 const today = new Date();
 today.setHours(0, 0, 0, 0);
 const yesterday = new Date(today);
@@ -103,12 +97,11 @@ entries.forEach(f => console.log(`   • ${f}`));
 
 if(entries.length === 0) {
   console.warn('⚠️ গতকাল, আজ বা আগামীকালের কোনো রাশিফল ফাইল পাওয়া যায়নি।');
-  console.log(`   গতকাল: ${yesterdayStr}, আজ: ${todayStr}, আগামীকাল: ${tomorrowStr}`);
   process.exit(0);
 }
 
 const urlEntries = entries.map(f => {
-  const iso   = f.replace('.html','');
+  const iso = f.replace('.html','');
   const title = buildTitle(iso).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   return `  <url>
     <loc>${SITE_URL}/rashifal/${f}</loc>
@@ -135,5 +128,3 @@ ${urlEntries}
 fs.writeFileSync(OUTPUT_FILE, xml, 'utf8');
 console.log(`\n✅ sitemap-news.xml তৈরি হয়েছে — ${entries.length}টি entry`);
 console.log(`📍 ফাইল: ${OUTPUT_FILE}`);
-console.log('\n💡 পরবর্তী কাজ:');
-console.log('   Google Search Console → Sitemaps → sitemap-news.xml জমা দিন');
