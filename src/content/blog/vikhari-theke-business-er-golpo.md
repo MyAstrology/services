@@ -340,3 +340,4 @@ twitter_image: "https://www.myastrology.in/images/fuler-lenden-golpo-twitter.web
 <h4 style="margin:0 0 4px;color:#5a1f0a;font-size:1rem;">Dr. Prodyut Acharya</h4>
 <p style="margin:0;color:#666;font-size:13px;line-height:1.7;">PhD in Vedic Jyotish, স্বর্ণপদকপ্রাপ্ত জ্যোতিষী, হস্তরেখাবিদ ও সাহিত্যিক। ১৫+ বছরের অভিজ্ঞতায় হাজারো মানুষের জীবন বিশ্লেষণ করেছেন। জ্যোতিষ, হস্তরেখা ও জীবনদর্শনের সমন্বয়ে মানুষকে পথনির্দেশ দিয়ে আসছেন। রানাঘাট, নদিয়া, পশ্চিমবঙ্গ। &nbsp;<a href="https://www.myastrology.in" style="color:#b8860b;font-weight:600;">myastrology.in</a></p>
 </div>
+
