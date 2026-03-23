@@ -49,24 +49,29 @@
         "parent": "শারীরিক জ্যোতিষ"
       },
       "জ্যোতিষ": {
-        "score": 8,
-        "matches": 8,
+        "score": 6,
+        "matches": 6,
         "parent": "শারীরিক জ্যোতিষ"
       },
       "জীবন দর্শন": {
-        "score": 1,
-        "matches": 1,
+        "score": 2,
+        "matches": 2,
         "parent": "আধ্যাত্মিক"
       },
       "সাফল্য": {
-        "score": 3.6,
-        "matches": 4,
+        "score": 2.7,
+        "matches": 3,
         "parent": "ব্যবহারিক জীবন"
       },
       "সম্পর্ক": {
         "score": 0.9,
         "matches": 1,
         "parent": "ব্যবহারিক জীবন"
+      },
+      "গল্প": {
+        "score": 1.6,
+        "matches": 2,
+        "parent": "সাহিত্য"
       }
     }
   },

@@ -67,27 +67,27 @@
       "jibone-sob-kichu-biruddhe-gele-ki-korben"
     ],
     "relatedByPillar": [
-      "jyotish-shastra-veder-chokh",
-      "rahu-ketu-chaya-graha-jibone-prabhab-protikar",
-      "pitru-dosh-binod-golpo"
+      "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
+      "manush-keno-venge-pore-yogi-pathik-part-2",
+      "bishas-ki-kusanskar-prakriti-manush-jyotish"
     ],
     "relatedByCluster": [
       "jibone-sob-kichu-biruddhe-gele-ki-korben",
-      "jyotish-shastra-veder-chokh",
-      "rahu-ketu-chaya-graha-jibone-prabhab-protikar"
+      "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
+      "manush-keno-venge-pore-yogi-pathik-part-2"
     ],
     "topRelated": [
       {
         "slug": "jibone-sob-kichu-biruddhe-gele-ki-korben",
-        "score": 0.4286434108527132
+        "score": 0.42180555555555554
       },
       {
-        "slug": "jyotish-shastra-veder-chokh",
-        "score": 0.3923582405935347
+        "slug": "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
+        "score": 0.3912344028520499
       },
       {
-        "slug": "rahu-ketu-chaya-graha-jibone-prabhab-protikar",
-        "score": 0.38990081813611227
+        "slug": "manush-keno-venge-pore-yogi-pathik-part-2",
+        "score": 0.3808585858585859
       }
     ],
     "cluster": "জ্যোতিষ",
@@ -131,12 +131,12 @@
     "relatedByPillar": [
       "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
       "jyotish-shastra-veder-chokh",
-      "moner-jantrana-theke-mukti"
+      "jibone-bar-bar-byartho-hole-ki-korben"
     ],
     "relatedByCluster": [
       "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
       "jyotish-shastra-veder-chokh",
-      "moner-jantrana-theke-mukti"
+      "jibone-bar-bar-byartho-hole-ki-korben"
     ],
     "topRelated": [
       {
@@ -148,8 +148,8 @@
         "score": 0.32722222222222225
       },
       {
-        "slug": "moner-jantrana-theke-mukti",
-        "score": 0.3177777777777778
+        "slug": "jibone-bar-bar-byartho-hole-ki-korben",
+        "score": 0.3212091503267974
       }
     ],
     "cluster": "জ্যোতিষ",
@@ -1253,8 +1253,8 @@
     ],
     "relatedByPillar": [
       "bishas-ki-kusanskar-prakriti-manush-jyotish",
-      "jibone-bar-bar-byartho-hole-ki-korben",
-      "shani-sadesati-ki-hoy-keno-hoy-ki-korben"
+      "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
+      "janma-kundali-hasta-mudra-rahasya"
     ],
     "relatedByCluster": [
       "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
@@ -1283,13 +1283,13 @@
     "relatedByTag": [],
     "relatedByPillar": [
       "jibone-sob-kichu-biruddhe-gele-ki-korben",
-      "jyotish-shastra-veder-chokh",
-      "jibone-bar-bar-byartho-hole-ki-korben"
+      "jibone-bar-bar-byartho-hole-ki-korben",
+      "jyotish-shastra-veder-chokh"
     ],
     "relatedByCluster": [
       "jibone-sob-kichu-biruddhe-gele-ki-korben",
-      "jyotish-shastra-veder-chokh",
-      "jibone-bar-bar-byartho-hole-ki-korben"
+      "jibone-bar-bar-byartho-hole-ki-korben",
+      "jyotish-shastra-veder-chokh"
     ],
     "topRelated": [
       {
@@ -1297,12 +1297,12 @@
         "score": 0.3607184085755515
       },
       {
-        "slug": "jyotish-shastra-veder-chokh",
-        "score": 0.3353896103896104
+        "slug": "jibone-bar-bar-byartho-hole-ki-korben",
+        "score": 0.3446725073007927
       },
       {
-        "slug": "jibone-bar-bar-byartho-hole-ki-korben",
-        "score": 0.33444444444444443
+        "slug": "jyotish-shastra-veder-chokh",
+        "score": 0.3353896103896104
       }
     ],
     "cluster": "জ্যোতিষ",
@@ -2125,7 +2125,7 @@
     "relatedByPillar": [
       "somoyer-rahasya-jyotish-darshan",
       "gandharva-yaksha-puran-darshan",
-      "mukhoser-alore-porichoy-naitikota-sankat"
+      "jibone-bar-bar-byartho-hole-ki-korben"
     ],
     "relatedByCluster": [
       "bishas-ki-kusanskar-prakriti-manush-jyotish",
@@ -2592,7 +2592,7 @@
     "topRelated": [
       {
         "slug": "jibone-bar-bar-byartho-hole-ki-korben",
-        "score": 0.4286434108527132
+        "score": 0.42180555555555554
       },
       {
         "slug": "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
