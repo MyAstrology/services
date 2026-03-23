@@ -113,17 +113,20 @@ jobs:
           fi
 
       # ── Step 9: Commit & push ──
-      - name: Commit and push
-        if: steps.check_changes.outputs.has_changes == 'true'
-        env:
-          TARGET_DATE: ${{ steps.set_date.outputs.TARGET_DATE }}
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "MyAstrology Bot"
-          git add rashifal/${TARGET_DATE}.html rashifal/index.html sitemap-news.xml 2>/dev/null || true
-          git commit -m "📅 দৈনিক রাশিফল: ${TARGET_DATE} | MyAstrology Bot"
-          git push origin HEAD
-          echo "🚀 Push সম্পন্ন"
+- name: Commit and push
+  if: steps.check_changes.outputs.has_changes == 'true'
+  env:
+    TARGET_DATE: ${{ steps.set_date.outputs.TARGET_DATE }}
+  run: |
+    git config --local user.email "github-actions[bot]@users.noreply.github.com"
+    git config --local user.name "MyAstrology Bot"
+    git add rashifal/${TARGET_DATE}.html rashifal/index.html sitemap-news.xml 2>/dev/null || true
+    git commit -m "📅 দৈনিক রাশিফল: ${TARGET_DATE} | MyAstrology Bot"
+    
+    # 🔧 FIX: Pull before push to avoid rejection
+    git pull --rebase origin main || true
+    git push origin HEAD
+    echo "🚀 Push সম্পন্ন"
 
       # ── Step 10: Google ping ──
       - name: Ping Google sitemap
