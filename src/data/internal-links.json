@@ -1,5 +1,5 @@
 {
-  "valo-label-er-fand-theke-beriye-as": {
+  "valo-label-er-fand-theke-beriye-asa": {
     "relatedByTag": [
       "bhalo-manush-haoar-satyi-path",
       "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya"
@@ -1189,7 +1189,7 @@
     "relatedByPillar": [
       "chinta-shakti-bigyan-jyotish-darshan",
       "ishwar-bishas-nastik-dharmic-karma-part-2",
-      "valo-label-er-fand-theke-beriye-as"
+      "valo-label-er-fand-theke-beriye-asa"
     ],
     "relatedByCluster": [
       "mantra-jap-ki-kaj-kore-bigyan-adhyatma",
@@ -2383,7 +2383,7 @@
     "relatedByPillar": [
       "sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha",
       "stri-r-bicched-er-por-o-mone-pore-chanchal-er-golpo",
-      "valo-label-er-fand-theke-beriye-as"
+      "valo-label-er-fand-theke-beriye-asa"
     ],
     "relatedByCluster": [
       "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
@@ -2443,7 +2443,7 @@
   },
   "bhalo-manush-haoar-satyi-path": {
     "relatedByTag": [
-      "valo-label-er-fand-theke-beriye-as",
+      "valo-label-er-fand-theke-beriye-asa",
       "dharma-ki-prokrit-artha-gita-buddha-darshan",
       "mahabharata-ratha-pancha-indriya-jiban-darshan",
       "bhagya-kharap-naki-ami-nije-shotru-chayer-dokan"
@@ -2453,13 +2453,13 @@
       "chinta-shakti-bigyan-jyotish-darshan"
     ],
     "relatedByCluster": [
-      "valo-label-er-fand-theke-beriye-as",
+      "valo-label-er-fand-theke-beriye-asa",
       "dharma-ki-prokrit-artha-gita-buddha-darshan",
       "mahabharata-ratha-pancha-indriya-jiban-darshan"
     ],
     "topRelated": [
       {
-        "slug": "valo-label-er-fand-theke-beriye-as",
+        "slug": "valo-label-er-fand-theke-beriye-asa",
         "score": 0.4905555555555556
       },
       {
