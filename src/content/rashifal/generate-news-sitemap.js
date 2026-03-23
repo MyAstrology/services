@@ -5,8 +5,8 @@
  * কাজ: rashifal/ ফোল্ডারের সব .html ফাইল স্ক্যান করে
  *       sitemap-news.xml তৈরি করে।
  *
- * ⚠️ IMPORTANT: Google News Sitemap-এ শুধু শেষ ২ দিনের entry রাখুন।
- *    পুরনো entries থাকলে Google News penalty দেয়।
+ * ⚠️ IMPORTANT: Google News Sitemap-এ শেষ ৩ দিনের (গতকাল, আজ, আগামীকাল) entry রাখুন।
+ *    কারণ: গতকালের রাশিফল এখনও পাঠক দেখেন, আজকের চলতি, আগামীকালের প্রি-জেনারেটেড।
  *
  * চালানো: node src/content/rashifal/generate-news-sitemap.js
  */
@@ -81,19 +81,31 @@ if(allFiles.length === 0) {
   process.exit(0);
 }
 
-// শুধু শেষ ২ দিনের entry রাখুন (Google News requirement)
-// আজ ও আগামীকাল দুটোই include করুন
-// কারণ: generator রাতে আগামীকালের ফাইল তৈরি করে
-const tomorrow = new Date();
-tomorrow.setDate(tomorrow.getDate() + 1);
+// 🔧 FIX: গতকাল, আজ ও আগামীকালের ফাইল নিন (সর্বোচ্চ ৩টি)
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+const yesterday = new Date(today);
+yesterday.setDate(today.getDate() - 1);
+const tomorrow = new Date(today);
+tomorrow.setDate(today.getDate() + 1);
+
+const yesterdayStr = yesterday.toISOString().slice(0,10);
+const todayStr = today.toISOString().slice(0,10);
 const tomorrowStr = tomorrow.toISOString().slice(0,10);
 
-const entries = allFiles
-  .filter(f => f.replace('.html','') <= tomorrowStr)  // ← আগামীকাল পর্যন্ত
-  .slice(0, 2);  // সর্বোচ্চ ২টি (Google News requirement)
+const entries = allFiles.filter(f => {
+  const date = f.replace('.html','');
+  return date === yesterdayStr || date === todayStr || date === tomorrowStr;
+});
 
 console.log(`📰 News sitemap-এ ${entries.length}টি entry যোগ হবে:`);
 entries.forEach(f => console.log(`   • ${f}`));
+
+if(entries.length === 0) {
+  console.warn('⚠️ গতকাল, আজ বা আগামীকালের কোনো রাশিফল ফাইল পাওয়া যায়নি।');
+  console.log(`   গতকাল: ${yesterdayStr}, আজ: ${todayStr}, আগামীকাল: ${tomorrowStr}`);
+  process.exit(0);
+}
 
 const urlEntries = entries.map(f => {
   const iso   = f.replace('.html','');
