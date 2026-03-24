@@ -236,3 +236,4 @@ hr.rd{border:none;border-top:1px dashed #e0cc90;margin:20px 0}
 <p style="margin:0;color:#888;font-size:12px">জ্যোতিষী ও হস্তরেখাবিদ, রানাঘাট &nbsp;·&nbsp; <a href="https://www.myastrology.in" style="color:#b8860b">myastrology.in</a></p>
 </div>
 </div>
+
