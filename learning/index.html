@@ -1444,13 +1444,18 @@ document.getElementById('hubSearch').addEventListener('keypress',function(e){
   setTimeout(show,3000);setInterval(show,6500);
 })();
 
-/* ── BACK TO TOP ── */
+//* ── BACK TO TOP ── */
 (function(){
-  var btn=document.getElementById('btt');
-  window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>400)},{passive:true});
-  btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+  var btn = document.getElementById('btt');
+  if (btn) {
+    window.addEventListener('scroll', function() {
+      btn.classList.toggle('visible', window.scrollY > 400);
+    }, {passive: true});
+    btn.addEventListener('click', function() {
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    });
+  }
 })();
-
 /* ── GA4 ── */
 document.addEventListener('click',function(e){
   var a=e.target.closest('a');if(!a||typeof gtag==='undefined')return;
