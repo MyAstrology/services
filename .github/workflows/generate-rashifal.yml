@@ -99,26 +99,31 @@ jobs:
           fi
 
       - name: Commit and push
-        if: steps.check_changes.outputs.has_changes == 'true'
-        env:
-          TARGET_DATE: ${{ steps.set_date.outputs.TARGET_DATE }}
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "MyAstrology Bot"
-          git add rashifal/${TARGET_DATE}.html rashifal/index.html sitemap-news.xml rashifal/rss.xml 2>/dev/null || true
+  if: steps.check_changes.outputs.has_changes == 'true'
+  env:
+    TARGET_DATE: ${{ steps.set_date.outputs.TARGET_DATE }}
+  run: |
+    git config --local user.email "github-actions[bot]@users.noreply.github.com"
+    git config --local user.name "MyAstrology Bot"
+    git add rashifal/${TARGET_DATE}.html rashifal/index.html sitemap-news.xml rashifal/rss.xml 2>/dev/null || true
 
-          if git diff --staged --quiet; then
-            echo "ℹ️ No changes to commit after all"
-            exit 0
-          fi
+    if git diff --staged --quiet; then
+      echo "ℹ️ No changes to commit after all"
+      exit 0
+    fi
 
-          git commit -m "📅 দৈনিক রাশিফল: ${TARGET_DATE} | MyAstrology Bot"
+    git commit -m "📅 দৈনিক রাশিফল: ${TARGET_DATE} | MyAstrology Bot"
 
-          echo "🔄 Pulling latest changes..."
-          git pull --rebase origin main || echo "⚠️ No changes to pull"
+    # Fetch latest changes and rebase with conflict resolution (keep our changes)
+    git fetch origin main
+    git rebase origin/main --strategy-option=ours || {
+      echo "⚠️ Rebase failed, aborting and trying merge"
+      git rebase --abort
+      git pull origin main --no-rebase --strategy-option=ours
+    }
 
-          git push origin HEAD
-          echo "🚀 Push সম্পন্ন"
+    git push origin main
+    echo "🚀 Push সম্পন্ন"
 
       - name: No changes
         if: steps.check_changes.outputs.has_changes == 'false'
