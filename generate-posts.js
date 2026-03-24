@@ -112,6 +112,15 @@ function normalizeImage(img, slug) {
 // মার্কডাউন → HTML
 // ============================================
 
+
+function applyInline(t) {
+  return t
+    .replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>')
+    .replace(/\*\*(.+?)\*\*/g,    '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g,        '<em>$1</em>')
+    .replace(/`(.+?)`/g,          '<code>$1</code>')
+    .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>');
+}
 function markdownToHtml(raw) {
   let md = raw;
   const fs2 = raw.indexOf('---');
