@@ -111,15 +111,6 @@ function normalizeImage(img, slug) {
 // ============================================
 // মার্কডাউন → HTML
 // ============================================
-function applyInline(t) {
-  return t
-    .replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>')
-    .replace(/\*\*(.+?)\*\*/g,    '<strong>$1</strong>')
-    .replace(/\*(.+?)\*/g,        '<em>$1</em>')
-    .replace(/`(.+?)`/g,          '<code>$1</code>')
-    .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>');
-}
-
 function markdownToHtml(raw) {
   let md = raw;
   const fs2 = raw.indexOf('---');
@@ -165,7 +156,16 @@ function markdownToHtml(raw) {
     }
     html.push('<p>' + applyInline(block.replace(/\n/g, ' ')) + '</p>');
   });
-  return html.join('\n');
+  let finalHtml = html.join('\n');
+  // শুধু .post-body-এর ভেতরের h1-গুলোকে h2-তে পরিবর্তন করি
+  finalHtml = finalHtml.replace(
+    /(<div class="post-body"[^>]*>)([\s\S]*?)(<\/div>)/i,
+    function(match, open, content, close) {
+      content = content.replace(/<h1(\s[^>]*)?>(.*?)<\/h1>/gi, '<h2$1>$2</h2>');
+      return open + content + close;
+    }
+  );
+  return finalHtml;
 }
 
 // ============================================
