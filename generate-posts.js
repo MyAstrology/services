@@ -1091,6 +1091,4 @@ console.log('   ★ GA4 JS bug সংশোধিত');
 console.log('   ★ Google Fonts non-blocking');
 console.log('   ★ Font Awesome non-blocking');
 console.log('   ★ full-style.css সরানো (ছিল না, 404 করত)');
-console.log('   ★ footer content-visibility:auto');
 
-fix h1
