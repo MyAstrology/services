@@ -132,13 +132,13 @@ jobs:
           git push origin HEAD
           echo "🚀 Push সম্পন্ন"
 
-      # Step 10: Google ping
-      - name: Ping Google sitemap
-        if: steps.check_changes.outputs.has_changes == 'true'
-        run: |
-          curl -s "https://www.google.com/ping?sitemap=https://www.myastrology.in/sitemap-news.xml" \
-            -o /dev/null -w "HTTP %{http_code}\n"
-          echo "✅ Google ping সম্পন্ন"
+      # Step 10: Ping Google sitemap (DEPRECATED - removed)
+# - name: Ping Google sitemap
+#   if: steps.check_changes.outputs.has_changes == 'true'
+#   run: |
+#     curl -s "https://www.google.com/ping?sitemap=https://www.myastrology.in/sitemap-news.xml" \
+#       -o /dev/null -w "HTTP %{http_code}\n"
+#     echo "✅ Google ping সম্পন্ন"
 
       # Step 11: No changes
       - name: No changes
