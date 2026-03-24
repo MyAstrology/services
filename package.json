@@ -20,7 +20,8 @@
     "deploy": "npm run build && git add . && git commit -m \"Auto-build: $(date)\" && git push"
   },
   "dependencies": {
-    "gray-matter": "^4.0.3"
+    "gray-matter": "^4.0.3",
+    "cheerio": "^1.0.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.0",
