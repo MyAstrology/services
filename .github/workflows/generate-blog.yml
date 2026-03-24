@@ -140,8 +140,8 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           
 
-      - name: Install dependencies
-  run: |
+     - name: Install dependencies
+       run: |
     echo "📦 Installing dependencies..."
     npm install --no-audit --no-fund
     echo "✅ Dependencies installed"
