@@ -1,8 +1,8 @@
 User-agent: *
 Allow: /
 
-# সাইটম্যাপের সঠিক লিঙ্কগুলো নিচে দিন (যদি ফাইলগুলো রুট ডিরেক্টরিতে থাকে)
 Sitemap: https://www.myastrology.in/sitemap-index.xml
 Sitemap: https://www.myastrology.in/sitemap.xml
 Sitemap: https://www.myastrology.in/image-sitemap.xml
 Sitemap: https://www.myastrology.in/video-sitemap.xml
+Sitemap: https://www.myastrology.in/sitemap-news.xml
