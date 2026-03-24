@@ -3,7 +3,6 @@ name: Daily Rashifal Generator
 on:
   schedule:
     - cron: '25 18 * * *'   # রাত ১১:৫৫ IST
-
   workflow_dispatch:
     inputs:
       date_override:
@@ -17,40 +16,27 @@ jobs:
     permissions:
       contents: write
 
-    # Node 24 migration warning দূর করে
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
     steps:
-      # Step 1: Checkout
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      # Step 2: Node.js 22 LTS setup
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
-          cache: 'npm'
+          node-version: '20'   # 20 LTS, stable
 
-      # Step 3: Dependencies
       - name: Install dependencies
         run: |
-          if [ -f package.json ]; then
-            npm ci --prefer-offline
-            echo "✅ Dependencies installed"
-          else
-            echo "⚠️ package.json নেই — skipping"
-          fi
+          echo "📦 Installing dependencies..."
+          npm install --no-audit --no-fund
+          echo "✅ Dependencies installed"
 
-      # Step 4: rashifal/ directory
       - name: Create rashifal directory
         run: mkdir -p rashifal
 
-      # Step 5: Target date
       - name: Set target date
         id: set_date
         run: |
@@ -63,7 +49,6 @@ jobs:
           fi
           echo "TARGET_DATE=${TARGET}" >> $GITHUB_OUTPUT
 
-      # Step 6: Generate rashifal
       - name: Generate daily rashifal
         env:
           TARGET_DATE: ${{ steps.set_date.outputs.TARGET_DATE }}
@@ -86,7 +71,6 @@ jobs:
           SIZE=$(wc -c < "rashifal/${TARGET_DATE}.html")
           echo "✅ rashifal/${TARGET_DATE}.html তৈরি হয়েছে (${SIZE} bytes)"
 
-      # Step 7: News Sitemap
       - name: Update news sitemap
         env:
           TARGET_DATE: ${{ steps.set_date.outputs.TARGET_DATE }}
@@ -95,13 +79,11 @@ jobs:
           node src/content/rashifal/generate-news-sitemap.js
           echo "✅ sitemap-news.xml updated"
 
-      # Step 8: RSS Feed (Google News optimized)
       - name: Generate RSS feed
         run: |
           node src/content/rashifal/generate-rss.js
           echo "✅ RSS feed generated"
 
-      # Step 9: Check changes
       - name: Check for changes
         id: check_changes
         run: |
@@ -115,7 +97,6 @@ jobs:
             echo "✅ পরিবর্তন পাওয়া গেছে"
           fi
 
-      # Step 10: Commit and push
       - name: Commit and push
         if: steps.check_changes.outputs.has_changes == 'true'
         env:
@@ -138,14 +119,12 @@ jobs:
           git push origin HEAD
           echo "🚀 Push সম্পন্ন"
 
-      # Step 11: No changes
       - name: No changes
         if: steps.check_changes.outputs.has_changes == 'false'
         env:
           TARGET_DATE: ${{ steps.set_date.outputs.TARGET_DATE }}
         run: echo "ℹ️ ${TARGET_DATE}-এর রাশিফল আগেই তৈরি আছে"
 
-      # Step 12: Failure notification
       - name: Send failure notification
         if: failure() && env.WEBHOOK_URL != ''
         env:
@@ -156,7 +135,6 @@ jobs:
             -d "{\"text\":\"❌ রাশিফল generation ব্যর্থ!\\n📅 ${TARGET_DATE}\\n🔗 https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}" \
             "$WEBHOOK_URL" || true
 
-      # Step 13: Summary
       - name: Summary
         if: always()
         env:
@@ -166,7 +144,7 @@ jobs:
           echo "| বিষয় | তথ্য |" >> $GITHUB_STEP_SUMMARY
           echo "|------|------|" >> $GITHUB_STEP_SUMMARY
           echo "| তারিখ | ${TARGET_DATE} |" >> $GITHUB_STEP_SUMMARY
-          echo "| Node.js | v22 LTS ✅ |" >> $GITHUB_STEP_SUMMARY
+          echo "| Node.js | v20 LTS ✅ |" >> $GITHUB_STEP_SUMMARY
           echo "| ফাইল | rashifal/${TARGET_DATE}.html |" >> $GITHUB_STEP_SUMMARY
           echo "| URL | https://www.myastrology.in/rashifal/${TARGET_DATE}.html |" >> $GITHUB_STEP_SUMMARY
           if [ -f "rashifal/${TARGET_DATE}.html" ]; then
