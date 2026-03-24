@@ -111,16 +111,6 @@ function normalizeImage(img, slug) {
 // ============================================
 // মার্কডাউন → HTML
 // ============================================
-
-
-function applyInline(t) {
-  return t
-    .replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>')
-    .replace(/\*\*(.+?)\*\*/g,    '<strong>$1</strong>')
-    .replace(/\*(.+?)\*/g,        '<em>$1</em>')
-    .replace(/`(.+?)`/g,          '<code>$1</code>')
-    .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>');
-}
 function markdownToHtml(raw) {
   let md = raw;
   const fs2 = raw.indexOf('---');
@@ -152,7 +142,7 @@ function markdownToHtml(raw) {
         if (isHdr && i === 1) return;
         const cells = row.split('|').slice(1, -1).map(c => c.trim());
         const tag   = (isHdr && i === 0) ? 'th' : 'td';
-        t += '  <tr>' + cells.map(c => `<${tag}>${applyInline(c)}</${tag}>`).join('') + '</tr>\n';
+        t += '   <tr>' + cells.map(c => `<${tag}>${applyInline(c)}</${tag}>`).join('') + '</tr>\n';
       });
       html.push(t + '</table>\n</div>'); return;
     }
@@ -168,18 +158,19 @@ function markdownToHtml(raw) {
   });
   let finalHtml = html.join('\n');
   
-  // cheerio দিয়ে HTML পার্স করে .post-body-এর ভেতরের h1-গুলোকে h2-তে রূপান্তর
+  // cheerio দিয়ে HTML পার্স করে সব h1-কে h2-তে রূপান্তর
   const $ = cheerio.load(finalHtml);
-  $('.post-body h1').each(function() {
+  $('h1').each(function() {
     const h1 = $(this);
     const h2 = $('<h2>').html(h1.html());
-    // ক্লাস ও স্টাইল অ্যাট্রিবিউট কপি (যদি থাকে)
     if (h1.attr('style')) h2.attr('style', h1.attr('style'));
     if (h1.attr('class')) h2.attr('class', h1.attr('class'));
     h1.replaceWith(h2);
   });
   return $.html();
 }
+
+
 // ============================================
 // ইউটিলিটি
 // ============================================
