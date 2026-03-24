@@ -1,5 +1,3 @@
-
-
 'use strict';
 const fs = require('fs');
 const path = require('path');
@@ -8,6 +6,7 @@ const SITE_URL = 'https://www.myastrology.in';
 const RASHIFAL_DIR = path.join(__dirname, '..', '..', '..', 'rashifal');
 const OUTPUT_FILE = path.join(__dirname, '..', '..', '..', 'sitemap-news.xml');
 
+// বাংলা মাস ও তারিখের জন্য BMS ডেটা (আপনার দেওয়া BMS থেকে নেওয়া)
 const BMS = [
   {y:1431,m:0,s:'2024-04-14'},{y:1431,m:1,s:'2024-05-15'},{y:1431,m:2,s:'2024-06-15'},
   {y:1431,m:3,s:'2024-07-16'},{y:1431,m:4,s:'2024-08-17'},{y:1431,m:5,s:'2024-09-17'},
@@ -28,6 +27,7 @@ const BN_MONTHS = ['বৈশাখ','জ্যৈষ্ঠ','আষাঢ়','
 const BD = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
 const toBn = n => String(Math.abs(Math.round(n))).replace(/[0-9]/g, d => BD[+d]);
 
+// বাংলা তারিখ বের করার ফাংশন
 function getBnDate(date) {
   const t = date.getTime();
   let idx = -1;
@@ -41,6 +41,7 @@ function getBnDate(date) {
   return { y: e.y, m: e.m, d, name: BN_MONTHS[e.m] };
 }
 
+// টাইটেল তৈরি
 function buildTitle(iso) {
   const date = new Date(iso+'T00:00:00');
   const bn = getBnDate(date);
@@ -50,6 +51,32 @@ function buildTitle(iso) {
   return `${iso} দৈনিক রাশিফল — ১২ রাশির বিস্তারিত ফল`;
 }
 
+// ★★ গুরুত্বপূর্ণ: স্থানীয় সময়ে YYYY-MM-DD ফরম্যাট তৈরি করুন ★★
+function getLocalDateString(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
+// আজকের স্থানীয় তারিখ
+const now = new Date();                     // TZ: Asia/Kolkata সেট করা আছে
+const today = new Date(now);
+today.setHours(0, 0, 0, 0);
+const yesterday = new Date(today);
+yesterday.setDate(today.getDate() - 1);
+const tomorrow = new Date(today);
+tomorrow.setDate(today.getDate() + 1);
+
+const todayStr = getLocalDateString(today);
+const yesterdayStr = getLocalDateString(yesterday);
+const tomorrowStr = getLocalDateString(tomorrow);
+
+console.log(`📅 Today (local): ${todayStr}`);
+console.log(`📅 Yesterday: ${yesterdayStr}`);
+console.log(`📅 Tomorrow: ${tomorrowStr}`);
+
+// রাশিফল ফোল্ডার চেক
 if(!fs.existsSync(RASHIFAL_DIR)) {
   console.warn('⚠️ rashifal/ directory not found.');
   process.exit(0);
@@ -63,17 +90,7 @@ if(allFiles.length === 0) {
   process.exit(0);
 }
 
-const today = new Date();
-today.setHours(0, 0, 0, 0);
-const yesterday = new Date(today);
-yesterday.setDate(today.getDate() - 1);
-const tomorrow = new Date(today);
-tomorrow.setDate(today.getDate() + 1);
-
-const yesterdayStr = yesterday.toISOString().slice(0,10);
-const todayStr = today.toISOString().slice(0,10);
-const tomorrowStr = tomorrow.toISOString().slice(0,10);
-
+// শুধু তিন দিনের ফাইল ফিল্টার
 const entries = allFiles.filter(f => {
   const date = f.replace('.html','');
   return date === yesterdayStr || date === todayStr || date === tomorrowStr;
@@ -87,6 +104,7 @@ if(entries.length === 0) {
   process.exit(0);
 }
 
+// XML তৈরি
 const urlEntries = entries.map(f => {
   const iso = f.replace('.html','');
   const title = buildTitle(iso).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
