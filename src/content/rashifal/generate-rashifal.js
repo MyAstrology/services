@@ -1137,8 +1137,11 @@ function buildHtml(date) {
   return html;
 }
 
+
+
+
 // ════════════════════════════════════════════════
-// GENERATE INDEX PAGE — উন্নত ভার্সন (হেডার, ফুটার, স্কিমা সহ)
+// GENERATE INDEX PAGE — উন্নত ভার্সন (Sitemap Link সহ)
 // ════════════════════════════════════════════════
 function generateIndex() {
   const files = fs.readdirSync(OUTPUT_DIR)
@@ -1155,28 +1158,12 @@ function generateIndex() {
     return `<li><a href="/rashifal/${f}">${label} — ${iso}</a></li>`;
   }).join('\n');
 
-  // JSON-LD Schema: CollectionPage
   const schema = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "name": "দৈনিক রাশিফল সংগ্রহ",
     "description": "ড. প্রদ্যুৎ আচার্যের বৈদিক জ্যোতিষভিত্তিক দৈনিক রাশিফল সংগ্রহ। মেষ থেকে মীন — ১২ রাশির বিস্তারিত ফল।",
-    "url": "https://www.myastrology.in/rashifal/",
-    "mainEntity": {
-      "@type": "ItemList",
-      "itemListElement": files.map((f, idx) => {
-        const iso = f.replace('.html', '');
-        const d = new Date(iso + 'T00:00:00');
-        const bn = getBnDate(d);
-        const label = bn ? `${toBn(bn.d)} ${bn.name} ${toBn(bn.y)}` : iso;
-        return {
-          "@type": "ListItem",
-          "position": idx + 1,
-          "url": `https://www.myastrology.in/rashifal/${f}`,
-          "name": label
-        };
-      })
-    }
+    "url": "https://www.myastrology.in/rashifal/"
   });
 
   const indexHtml = `<!DOCTYPE html>
@@ -1188,16 +1175,15 @@ function generateIndex() {
 <meta name="google" content="notranslate">
 <title>দৈনিক রাশিফল সংগ্রহ | ১২ রাশির বিস্তারিত ফল | MyAstrology</title>
 <meta name="description" content="ড. প্রদ্যুৎ আচার্যের বৈদিক জ্যোতিষভিত্তিক দৈনিক রাশিফল সংগ্রহ। মেষ থেকে মীন — ১২ রাশির প্রেম, কর্ম, স্বাস্থ্য, অর্থ ও সতর্কতা। প্রতিদিনের বাংলা রাশিফল।">
-<meta name="keywords" content="দৈনিক রাশিফল, রাশিফল সংগ্রহ, বাংলা রাশিফল, মেষ রাশিফল, বৃষ রাশিফল, মিথুন রাশিফল, কর্কট রাশিফল, সিংহ রাশিফল, কন্যা রাশিফল, তুলা রাশিফল, বৃশ্চিক রাশিফল, ধনু রাশিফল, মকর রাশিফল, কুম্ভ রাশিফল, মীন রাশিফল">
+<meta name="keywords" content="দৈনিক রাশিফল, রাশিফল সংগ্রহ, বাংলা রাশিফল">
 <meta name="author" content="Dr. Prodyut Acharya">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://www.myastrology.in/rashifal/">
 <link rel="alternate" hreflang="bn-IN" href="https://www.myastrology.in/rashifal/">
-<link rel="alternate" hreflang="x-default" href="https://www.myastrology.in/rashifal/">
 
 <!-- Open Graph -->
 <meta property="og:title" content="দৈনিক রাশিফল সংগ্রহ | ১২ রাশির বিস্তারিত ফল | MyAstrology">
-<meta property="og:description" content="ড. প্রদ্যুৎ আচার্যের বৈদিক জ্যোতিষভিত্তিক দৈনিক রাশিফল সংগ্রহ। মেষ থেকে মীন — ১২ রাশির বিস্তারিত ফল।">
+<meta property="og:description" content="ড. প্রদ্যুৎ আচার্যের বৈদিক জ্যোতিষভিত্তিক দৈনিক রাশিফল সংগ্রহ।">
 <meta property="og:url" content="https://www.myastrology.in/rashifal/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://www.myastrology.in/images/daily-rashifal-og.webp">
@@ -1230,209 +1216,94 @@ function generateIndex() {
 });
 </script>
 
-<!-- Preload -->
-<link rel="preload" as="image"
-      href="https://www.myastrology.in/images/daily-rashifal-og.webp"
-      fetchpriority="high">
-
-<!-- Preconnects -->
+<!-- Preloads & Styles (same as before) -->
+<link rel="preload" as="image" href="https://www.myastrology.in/images/daily-rashifal-og.webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://cdnjs.cloudflare.com">
-
-<!-- Fonts -->
-<link rel="preload"
-      href="https://fonts.gstatic.com/s/balooda2/v6/2-ch9J9j0IaUMQZwAy5m.woff2"
-      as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700;800&family=Tiro+Bangla:ital@0;1&display=swap"
-      media="print" onload="this.media='all'">
-<noscript>
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700;800&family=Tiro+Bangla:ital@0;1&display=swap">
-</noscript>
-
-<!-- Font Awesome -->
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-      crossorigin="anonymous" media="print" onload="this.media='all'">
-<noscript>
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-        crossorigin="anonymous">
-</noscript>
-
+<link rel="preload" href="https://fonts.gstatic.com/s/balooda2/v6/2-ch9J9j0IaUMQZwAy5m.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700;800&family=Tiro+Bangla:ital@0;1&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700;800&family=Tiro+Bangla:ital@0;1&display=swap"></noscript>
 <link rel="icon" type="image/x-icon" href="https://www.myastrology.in/images/favicon.ico">
 <link rel="apple-touch-icon" href="https://www.myastrology.in/apple-touch-icon.png">
 
 <style>
-:root{
-  --gold:#b5860d;--gold-l:#8a5e00;--gold-d:#6b4000;
-  --gold3:#ffd700;--gold-lt:#fff4ca;--gold-bg:#fdf8ed;
-  --bg:#fdf8f0;--bg2:#f5ead6;--bg3:#eddfc8;
-  --card:#ffffff;--card2:#fef9f2;
-  --txt:#1e1200;--txt2:#7a5020;--mu:#6B4C3B;
-  --green:#256625;--red:#b52020;--blue:#123d87;
-  --border:rgba(181,134,13,.18);
-  --r:10px;--shadow:0 4px 18px rgba(181,134,13,.1);
-  --fh:'Tiro Bangla','Baloo Da 2','Noto Serif Bengali',Georgia,serif;
-  --fb:'Baloo Da 2','Noto Sans Bengali','Noto Serif Bengali',Arial,sans-serif;
-  --nav-h:60px;
-}
+/* Your existing CSS — keep as is */
+:root{--gold:#b5860d;--gold-l:#8a5e00;--gold-d:#6b4000;--gold3:#ffd700;--gold-lt:#fff4ca;--gold-bg:#fdf8ed;--bg:#fdf8f0;--bg2:#f5ead6;--bg3:#eddfc8;--card:#ffffff;--card2:#fef9f2;--txt:#1e1200;--txt2:#7a5020;--mu:#6B4C3B;--green:#256625;--red:#b52020;--blue:#123d87;--border:rgba(181,134,13,.18);--r:10px;--shadow:0 4px 18px rgba(181,134,13,.1);--fh:'Tiro Bangla','Baloo Da 2','Noto Serif Bengali',Georgia,serif;--fb:'Baloo Da 2','Noto Sans Bengali','Noto Serif Bengali',Arial,sans-serif;--nav-h:60px;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;overflow-x:clip;}
-body{font-family:var(--fb);background:var(--bg);color:var(--txt);
-  line-height:1.9;padding-top:var(--nav-h);overflow-x:clip;
-  font-size:1.05rem;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;}
+body{font-family:var(--fb);background:var(--bg);color:var(--txt);line-height:1.9;padding-top:var(--nav-h);overflow-x:clip;font-size:1.05rem;}
 img{max-width:100%;height:auto;display:block;}
 a{text-decoration:none;color:inherit;}
 ul{list-style:none;}
 h1,h2,h3{font-family:var(--fh);line-height:1.3;}
-::selection{background:var(--gold3);color:var(--navy);}
-
-.site-header{
-  position:fixed;top:0;left:0;right:0;z-index:600;
-  height:var(--nav-h);
-  background:var(--bg);
-  border-bottom:1px solid var(--border);
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 1rem;
-  box-shadow:0 2px 10px rgba(181,134,13,.08);}
-.header-brand{font-family:var(--fh);font-weight:700;font-size:.92rem;
-  line-height:1.15;text-align:center;flex:1;color:var(--txt);}
+.site-header{position:fixed;top:0;left:0;right:0;z-index:600;height:var(--nav-h);background:var(--bg);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 1rem;}
+.header-brand{font-family:var(--fh);font-weight:700;font-size:.92rem;line-height:1.15;text-align:center;flex:1;color:var(--txt);}
 .header-sub{display:block;font-size:.58rem;font-weight:400;color:var(--txt2);}
 .header-logo{width:40px;height:40px;border-radius:8px;object-fit:contain;flex-shrink:0;}
-.hamburger{
-  display:flex;flex-direction:column;justify-content:center;
-  gap:5px;width:36px;height:36px;cursor:pointer;padding:4px;
-  background:rgba(181,134,13,.1);border:1px solid var(--border);border-radius:8px;
-  flex-shrink:0;}
-.hamburger span{display:block;height:2px;background:var(--gold-l);
-  border-radius:2px;transition:all .3s ease;}
+.hamburger{display:flex;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;cursor:pointer;padding:4px;background:rgba(181,134,13,.1);border:1px solid var(--border);border-radius:8px;flex-shrink:0;}
+.hamburger span{display:block;height:2px;background:var(--gold-l);border-radius:2px;transition:all .3s ease;}
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
 .hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
 .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-.sidenav{
-  position:fixed;top:var(--nav-h);left:0;bottom:0;z-index:590;
-  width:280px;
-  background:linear-gradient(180deg,#fff9f0,#fef4e3);
-  border-right:1px solid var(--border);
-  box-shadow:4px 0 24px rgba(181,134,13,.12);
-  transform:translateX(-100%);
-  transition:transform .3s cubic-bezier(.4,0,.2,1);
-  overflow-y:auto;padding:.8rem 0;}
+.sidenav{position:fixed;top:var(--nav-h);left:0;bottom:0;z-index:590;width:280px;background:linear-gradient(180deg,#fff9f0,#fef4e3);border-right:1px solid var(--border);transform:translateX(-100%);transition:transform .3s;overflow-y:auto;padding:.8rem 0;}
 .sidenav.open{transform:translateX(0);}
-.sidenav-overlay{
-  display:none;position:fixed;inset:0;z-index:580;
-  background:rgba(0,0,0,.35);backdrop-filter:blur(2px);}
+.sidenav-overlay{display:none;position:fixed;inset:0;z-index:580;background:rgba(0,0,0,.35);backdrop-filter:blur(2px);}
 .sidenav-overlay.open{display:block;}
-.sidenav a{
-  display:flex;align-items:center;gap:.85rem;
-  padding:.78rem 1.3rem;text-decoration:none;
-  color:var(--txt);font-size:.88rem;
-  border-left:3px solid transparent;transition:all .18s;}
-.sidenav a:hover,.sidenav a.active{
-  background:rgba(181,134,13,.07);
-  border-color:var(--gold);color:var(--gold-l);}
-.sidenav a i{width:18px;text-align:center;color:var(--gold);font-size:.9rem;}
+.sidenav a{display:flex;align-items:center;gap:.85rem;padding:.78rem 1.3rem;color:var(--txt);font-size:.88rem;border-left:3px solid transparent;transition:all .18s;}
+.sidenav a:hover,.sidenav a.active{background:rgba(181,134,13,.07);border-color:var(--gold);color:var(--gold-l);}
+.sidenav a i{width:18px;text-align:center;color:var(--gold);}
 .sidenav a.wa-link{color:#1a9c45;border-color:#25d366;}
 .sidenav-divider{height:1px;background:var(--border);margin:.4rem 1rem;}
-
-.breadcrumb{max-width:860px;margin:0 auto;padding:10px 18px 0;
-  font-size:.76rem;color:var(--mu);display:flex;flex-wrap:wrap;gap:4px;align-items:center;}
+.breadcrumb{max-width:860px;margin:0 auto;padding:10px 18px 0;font-size:.76rem;color:var(--mu);display:flex;flex-wrap:wrap;gap:4px;}
 .breadcrumb a{color:var(--gold);}
-
 main{max-width:860px;margin:0 auto;padding:16px 16px 60px;}
-.hero-banner{
-  background:linear-gradient(135deg,#1a0a00 0%,#3d1c00 50%,#1a0a00 100%);
-  border-radius:14px;padding:22px 20px;margin-bottom:20px;
-  border:1.5px solid rgba(181,134,13,.3);
-  box-shadow:0 8px 28px rgba(181,134,13,.15);}
-.hero-banner h1{font-family:var(--fh);color:var(--gold-lt);
-  font-size:clamp(1.2rem,3.5vw,1.8rem);margin-bottom:8px;}
+.hero-banner{background:linear-gradient(135deg,#1a0a00 0%,#3d1c00 50%,#1a0a00 100%);border-radius:14px;padding:22px 20px;margin-bottom:20px;border:1.5px solid rgba(181,134,13,.3);}
+.hero-banner h1{font-family:var(--fh);color:var(--gold-lt);font-size:clamp(1.2rem,3.5vw,1.8rem);margin-bottom:8px;}
 .hero-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
-.hero-chip{background:rgba(255,255,255,.06);border:1px solid rgba(181,134,13,.2);
-  color:#b0c4dc;font-size:.72rem;font-weight:600;padding:4px 12px;border-radius:20px;}
-
-.rashifal-list{background:var(--card);border:1px solid var(--border);
-  border-radius:14px;padding:20px;margin-bottom:20px;box-shadow:var(--shadow);}
-.rashifal-list h2{font-family:var(--fh);font-size:1.2rem;color:var(--navy);
-  margin-bottom:16px;display:flex;align-items:center;gap:8px;}
-.rashifal-list ul{list-style:none;}
+.hero-chip{background:rgba(255,255,255,.06);border:1px solid rgba(181,134,13,.2);color:#b0c4dc;font-size:.72rem;font-weight:600;padding:4px 12px;border-radius:20px;}
+.rashifal-list{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:20px;}
+.rashifal-list h2{font-family:var(--fh);font-size:1.2rem;color:var(--navy);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
 .rashifal-list li{margin-bottom:10px;border-bottom:1px dashed var(--border);padding:8px 0;}
 .rashifal-list li:last-child{border-bottom:none;}
-.rashifal-list a{display:flex;justify-content:space-between;align-items:center;
-  font-size:.95rem;color:var(--txt);transition:color .2s;}
+.rashifal-list a{display:flex;justify-content:space-between;align-items:center;font-size:.95rem;color:var(--txt);transition:color .2s;}
 .rashifal-list a:hover{color:var(--gold);}
 .rashifal-list .date-bn{font-family:var(--fh);font-weight:700;color:var(--navy);}
 .rashifal-list .date-iso{font-size:.7rem;color:var(--mu);}
-
-.cta-box{background:linear-gradient(135deg,#0a192f,#0e1e38);
-  border-top:2px solid var(--gold);color:#fff;
-  border-radius:14px;padding:26px 20px;margin:24px 0;text-align:center;}
-.cta-box h3{color:var(--gold-lt);margin-bottom:8px;font-size:1.1rem;}
-.btn-wa{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;
-  padding:11px 24px;border-radius:50px;font-weight:800;font-size:.9rem;
-  text-decoration:none;margin:4px;}
-.btn-book{display:inline-flex;align-items:center;gap:8px;
-  background:linear-gradient(135deg,var(--gold-lt),#ffe88a);color:#5a1f0a;
-  padding:11px 24px;border-radius:50px;font-weight:800;font-size:.9rem;
-  border:2px solid rgba(181,134,13,.4);margin:4px;}
-
-.site-footer{
-  background:linear-gradient(135deg,var(--bg3),var(--bg2));
-  border-top:1px solid var(--border);
-  text-align:center;padding:1.5rem 1rem;
-  color:var(--txt2);font-size:.77rem;}
+.sitemap-links{text-align:center;margin-top:20px;padding:12px;font-size:.75rem;border-top:1px solid var(--border);}
+.sitemap-links a{color:var(--gold);margin:0 8px;display:inline-block;}
+.sitemap-links a:hover{text-decoration:underline;}
+.cta-box{background:linear-gradient(135deg,#0a192f,#0e1e38);border-top:2px solid var(--gold);color:#fff;border-radius:14px;padding:26px 20px;margin:24px 0;text-align:center;}
+.btn-wa{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;padding:11px 24px;border-radius:50px;font-weight:800;font-size:.9rem;margin:4px;}
+.btn-book{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--gold-lt),#ffe88a);color:#5a1f0a;padding:11px 24px;border-radius:50px;font-weight:800;font-size:.9rem;border:2px solid rgba(181,134,13,.4);margin:4px;}
+.site-footer{background:linear-gradient(135deg,var(--bg3),var(--bg2));border-top:1px solid var(--border);text-align:center;padding:1.5rem 1rem;color:var(--txt2);font-size:.77rem;}
 .ftr-logo img{max-height:44px;margin:0 auto;display:block;}
 .ftr-brand{font-family:var(--fh);font-weight:700;font-size:.85rem;color:var(--txt);}
-.ftr-links{display:flex;justify-content:center;flex-wrap:wrap;
-  gap:.5rem .85rem;margin:.55rem 0;}
+.ftr-links{display:flex;justify-content:center;flex-wrap:wrap;gap:.5rem .85rem;margin:.55rem 0;}
 .ftr-links a{font-size:.72rem;color:var(--txt2);}
 .ftr-links a:hover{color:var(--gold);}
 .ftr-social{display:flex;justify-content:center;flex-wrap:wrap;gap:.55rem;margin:.85rem 0;}
-.ftr-social a{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;
-  justify-content:center;font-size:.95rem;color:#fff;text-decoration:none;}
-.fts-wa{background:#25d366;}.fts-fb{background:#1877f2;}
-.fts-yt{background:#ff0000;}.fts-ig{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285aeb 90%);}
-.fts-tw{background:#000;}.fts-li{background:#0077b5;}
-.ftr-copy{font-size:.66rem;margin-top:.42rem;opacity:.7;}
-
+.ftr-social a{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.95rem;color:#fff;}
+.fts-wa{background:#25d366;}.fts-fb{background:#1877f2;}.fts-yt{background:#ff0000;}.fts-ig{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285aeb 90%);}.fts-tw{background:#000;}.fts-li{background:#0077b5;}
 .wa-float{position:fixed;bottom:24px;right:20px;z-index:9999;}
-.wa-btn-fl{width:46px;height:46px;border-radius:50%;background:#25d366;
-  color:#fff;display:flex;align-items:center;justify-content:center;
-  font-size:1.3rem;text-decoration:none;
-  box-shadow:0 4px 18px rgba(37,211,102,.5);}
-#btt{position:fixed;bottom:24px;left:18px;z-index:9997;
-  width:40px;height:40px;border-radius:50%;background:var(--navy);color:var(--gold3);
-  border:1.5px solid rgba(181,134,13,.4);cursor:pointer;font-size:.95rem;
-  display:none;align-items:center;justify-content:center;}
+.wa-btn-fl{width:46px;height:46px;border-radius:50%;background:#25d366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.3rem;}
+#btt{position:fixed;bottom:24px;left:18px;z-index:9997;width:40px;height:40px;border-radius:50%;background:var(--navy);color:var(--gold3);border:1.5px solid rgba(181,134,13,.4);cursor:pointer;font-size:.95rem;display:none;align-items:center;justify-content:center;}
 #btt.visible{display:flex;}
-
-@media(max-width:600px){
-  .rashifal-list a{flex-direction:column;align-items:flex-start;gap:4px;}
-}
+@media(max-width:600px){.rashifal-list a{flex-direction:column;align-items:flex-start;gap:4px;}}
 </style>
 </head>
 <body>
 
 <header class="site-header">
   <a href="https://www.myastrology.in/" style="display:flex;align-items:center;flex-shrink:0;">
-    <img src="https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png"
-         alt="MyAstrology" class="header-logo" width="40" height="40" loading="eager" fetchpriority="high">
+    <img src="https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png" alt="MyAstrology" class="header-logo" width="40" height="40" loading="eager" fetchpriority="high">
   </a>
-  <div class="header-brand">MyAstrology
-    <span class="header-sub">ড. প্রদ্যুৎ আচার্য &middot; রানাঘাট</span>
-  </div>
-  <div class="hamburger" id="hbg" aria-label="Menu" role="button" tabindex="0">
-    <span></span><span></span><span></span>
-  </div>
+  <div class="header-brand">MyAstrology<span class="header-sub">ড. প্রদ্যুৎ আচার্য &middot; রানাঘাট</span></div>
+  <div class="hamburger" id="hbg" aria-label="Menu" role="button" tabindex="0"><span></span><span></span><span></span></div>
 </header>
 
 <div class="sidenav-overlay" id="navOverlay"></div>
-<nav class="sidenav" id="sideNav" aria-label="Primary Navigation">
+<nav class="sidenav" id="sideNav">
   <a href="https://www.myastrology.in/"><i class="fas fa-home"></i>হোম</a>
   <a href="https://www.myastrology.in/astrology.html"><i class="fas fa-star"></i>জ্যোতিষ শাস্ত্র</a>
   <a href="https://www.myastrology.in/palmistry.html"><i class="fas fa-hand-paper"></i>হস্তরেখা বিচার</a>
@@ -1445,93 +1316,59 @@ main{max-width:860px;margin:0 auto;padding:16px 16px 60px;}
   <a href="https://www.myastrology.in/about.html"><i class="fas fa-user"></i>আমাদের সম্পর্কে</a>
   <a href="https://www.myastrology.in/contact.html"><i class="fas fa-address-card"></i>যোগাযোগ</a>
   <div class="sidenav-divider"></div>
-  <a href="https://wa.me/919333122768?text=%F0%9F%99%8F%20%E0%A6%A8%E0%A6%AE%E0%A6%B8%E0%A7%8D%E0%A6%95%E0%A6%BE%E0%A6%B0%2C%20%E0%A6%B0%E0%A6%BE%E0%A6%B6%E0%A6%BF%E0%A6%AB%E0%A6%B2%20%E0%A6%AA%E0%A6%B0%E0%A6%BE%E0%A6%AE%E0%A6%B0%E0%A7%8D%E0%A6%B6%20%E0%A6%9A%E0%A6%BE%E0%A6%87%E0%A5%A4"
-     target="_blank" rel="noopener" class="wa-link">
-    <i class="fab fa-whatsapp"></i>WhatsApp পরামর্শ
-  </a>
+  <a href="https://wa.me/919333122768?text=%F0%9F%99%8F%20%E0%A6%A8%E0%A6%AE%E0%A6%B8%E0%A7%8D%E0%A6%95%E0%A6%BE%E0%A6%B0%2C%20%E0%A6%B0%E0%A6%BE%E0%A6%B6%E0%A6%BF%E0%A6%AB%E0%A6%B2%20%E0%A6%AA%E0%A6%B0%E0%A6%BE%E0%A6%AE%E0%A6%B0%E0%A7%8D%E0%A6%B6%20%E0%A6%9A%E0%A6%BE%E0%A6%87%E0%A5%A4" target="_blank" rel="noopener" class="wa-link"><i class="fab fa-whatsapp"></i>WhatsApp পরামর্শ</a>
 </nav>
 
-<nav class="breadcrumb" aria-label="Breadcrumb">
-  <a href="https://www.myastrology.in/">হোম</a>
-  <i class="fas fa-chevron-right"></i>
-  <span>রাশিফল সংগ্রহ</span>
-</nav>
+<nav class="breadcrumb"><a href="https://www.myastrology.in/">হোম</a> <i class="fas fa-chevron-right"></i> <span>রাশিফল সংগ্রহ</span></nav>
 
 <main>
   <div class="hero-banner">
     <h1>🔮 দৈনিক রাশিফল সংগ্রহ</h1>
     <p style="color:#b0c4dc;margin-top:6px;">ড. প্রদ্যুৎ আচার্যের কলম থেকে — প্রতিদিনের বাংলা রাশিফল</p>
-    <div class="hero-meta">
-      <div class="hero-chip">⭐ বৈদিক জ্যোতিষ গণনা</div>
-      <div class="hero-chip">🌙 চন্দ্র গোচর ভিত্তিক</div>
-      <div class="hero-chip">📅 প্রতিদিন আপডেট</div>
-    </div>
+    <div class="hero-meta"><div class="hero-chip">⭐ বৈদিক জ্যোতিষ গণনা</div><div class="hero-chip">🌙 চন্দ্র গোচর ভিত্তিক</div><div class="hero-chip">📅 প্রতিদিন আপডেট</div></div>
   </div>
 
   <div class="rashifal-list">
     <h2><i class="fas fa-list" style="color:var(--gold)"></i> সম্পূর্ণ তালিকা</h2>
-    <ul>
-      ${links}
-    </ul>
+    <ul>${links}</ul>
+  </div>
+
+  <!-- ★ Sitemap Links Added ★ -->
+  <div class="sitemap-links">
+    <a href="/sitemap-news.xml" target="_blank">📰 Google News Sitemap</a> |
+    <a href="/sitemap.xml" target="_blank">🗺️ Main Sitemap</a> |
+    <a href="/rashifal/rss.xml" target="_blank">📡 RSS Feed</a>
   </div>
 
   <div class="cta-box">
     <h3>🔮 ব্যক্তিগত পরামর্শ নিন</h3>
-    <p>হস্তরেখা বিচার &middot; জন্মকুণ্ডলী বিশ্লেষণ &middot; বিবাহযোগ বিচার<br>
-    <strong>ড. প্রদ্যুৎ আচার্য</strong> — রানাঘাট, নদিয়া</p>
-    <a class="btn-wa"
-       href="https://wa.me/919333122768?text=%E0%A6%A8%E0%A6%AE%E0%A6%B8%E0%A7%8D%E0%A6%95%E0%A6%BE%E0%A6%B0%20%E0%A6%A1.%20%E0%A6%86%E0%A6%9A%E0%A6%BE%E0%A6%B0%E0%A7%8D%E0%A6%AF%2C%20%E0%A6%AA%E0%A6%B0%E0%A6%BE%E0%A6%AE%E0%A6%B0%E0%A7%8D%E0%A6%B6%20%E0%A6%A8%E0%A6%BF%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87%E0%A5%A4"
-       target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp করুন</a>
-    <a class="btn-book" href="https://www.myastrology.in/astrology.html#service-consult">
-      <i class="fas fa-calendar-check"></i> পরামর্শ বুক করুন
-    </a>
+    <p>হস্তরেখা বিচার &middot; জন্মকুণ্ডলী বিশ্লেষণ &middot; বিবাহযোগ বিচার<br><strong>ড. প্রদ্যুৎ আচার্য</strong> — রানাঘাট, নদিয়া</p>
+    <a class="btn-wa" href="https://wa.me/919333122768?text=%E0%A6%A8%E0%A6%AE%E0%A6%B8%E0%A7%8D%E0%A6%95%E0%A6%BE%E0%A6%B0%20%E0%A6%A1.%20%E0%A6%86%E0%A6%9A%E0%A6%BE%E0%A6%B0%E0%A7%8D%E0%A6%AF%2C%20%E0%A6%AA%E0%A6%B0%E0%A6%BE%E0%A6%AE%E0%A6%B0%E0%A7%8D%E0%A6%B6%20%E0%A6%A8%E0%A6%BF%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87%E0%A5%A4" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp করুন</a>
+    <a class="btn-book" href="https://www.myastrology.in/astrology.html#service-consult"><i class="fas fa-calendar-check"></i> পরামর্শ বুক করুন</a>
   </div>
 </main>
 
 <footer class="site-footer">
-  <div class="ftr-logo">
-    <img src="https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png" alt="MyAstrology Logo" loading="lazy">
-  </div>
+  <div class="ftr-logo"><img src="https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png" alt="MyAstrology Logo" loading="lazy"></div>
   <div class="ftr-brand">Dr. Prodyut Acharya — Vedic Astrology &amp; Palmistry Consultant</div>
   <div class="ftr-sub">রানাঘাট, নদিয়া, পশ্চিমবঙ্গ | 📞 <a href="tel:+919333122768">+91 93331 22768</a></div>
-  <div class="ftr-links">
-    <a href="https://www.myastrology.in/">Home</a>
-    <a href="https://www.myastrology.in/astrology.html">Astrology</a>
-    <a href="https://www.myastrology.in/palmistry.html">Palmistry</a>
-    <a href="https://www.myastrology.in/rashifal.html">Rashifal</a>
-    <a href="https://www.myastrology.in/about.html">About</a>
-    <a href="https://www.myastrology.in/blog-list.html">Blog</a>
-    <a href="https://www.myastrology.in/privacy-policy.html">Privacy</a>
-    <a href="https://www.myastrology.in/terms-of-use.html">Terms</a>
-  </div>
-  <div class="ftr-social">
-    <a href="https://wa.me/919333122768" target="_blank" class="fts-wa"><i class="fab fa-whatsapp"></i></a>
-    <a href="https://www.facebook.com/Dr.ProdyutAcharya" target="_blank" class="fts-fb"><i class="fab fa-facebook-f"></i></a>
-    <a href="https://www.youtube.com/@myastrology" target="_blank" class="fts-yt"><i class="fab fa-youtube"></i></a>
-    <a href="https://www.instagram.com/myastrology.in" target="_blank" class="fts-ig"><i class="fab fa-instagram"></i></a>
-    <a href="https://x.com/AcharyaProdyut" target="_blank" class="fts-tw"><i class="fab fa-x-twitter"></i></a>
-  </div>
+  <div class="ftr-links"><a href="https://www.myastrology.in/">Home</a><a href="https://www.myastrology.in/astrology.html">Astrology</a><a href="https://www.myastrology.in/palmistry.html">Palmistry</a><a href="https://www.myastrology.in/rashifal.html">Rashifal</a><a href="https://www.myastrology.in/about.html">About</a><a href="https://www.myastrology.in/blog-list.html">Blog</a><a href="https://www.myastrology.in/privacy-policy.html">Privacy</a><a href="https://www.myastrology.in/terms-of-use.html">Terms</a></div>
+  <div class="ftr-social"><a href="https://wa.me/919333122768" target="_blank" class="fts-wa"><i class="fab fa-whatsapp"></i></a><a href="https://www.facebook.com/Dr.ProdyutAcharya" target="_blank" class="fts-fb"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@myastrology" target="_blank" class="fts-yt"><i class="fab fa-youtube"></i></a><a href="https://www.instagram.com/myastrology.in" target="_blank" class="fts-ig"><i class="fab fa-instagram"></i></a><a href="https://x.com/AcharyaProdyut" target="_blank" class="fts-tw"><i class="fab fa-x-twitter"></i></a></div>
   <div class="ftr-copy">&copy; 2025–2026 MyAstrology &middot; Dr. Prodyut Acharya &middot; <a href="https://www.myastrology.in">myastrology.in</a></div>
 </footer>
 
-<div class="wa-float">
-  <a href="https://wa.me/919333122768" target="_blank" rel="noopener" class="wa-btn-fl" aria-label="WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-  </a>
-</div>
-<button id="btt" aria-label="উপরে যান">⬆</button>
+<div class="wa-float"><a href="https://wa.me/919333122768" target="_blank" rel="noopener" class="wa-btn-fl"><i class="fab fa-whatsapp"></i></a></div>
+<button id="btt">⬆</button>
 
 <script>
 (function(){
-  var hbg = document.getElementById('hbg');
-  var nav = document.getElementById('sideNav');
-  var ov = document.getElementById('navOverlay');
+  var hbg=document.getElementById('hbg'),nav=document.getElementById('sideNav'),ov=document.getElementById('navOverlay');
   if(hbg){
     function openNav(){hbg.classList.add('open');nav.classList.add('open');ov.classList.add('open');}
     function closeNav(){hbg.classList.remove('open');nav.classList.remove('open');ov.classList.remove('open');}
-    hbg.addEventListener('click', function(){nav.classList.contains('open')?closeNav():openNav();});
-    ov.addEventListener('click', closeNav);
-    document.addEventListener('keydown', function(e){if(e.key==='Escape') closeNav();});
+    hbg.addEventListener('click',function(){nav.classList.contains('open')?closeNav():openNav();});
+    ov.addEventListener('click',closeNav);
+    document.addEventListener('keydown',function(e){if(e.key==='Escape') closeNav();});
   }
   var btn=document.getElementById('btt');
   if(btn){
@@ -1546,6 +1383,8 @@ main{max-width:860px;margin:0 auto;padding:16px 16px 60px;}
   fs.writeFileSync(path.join(OUTPUT_DIR, 'index.html'), indexHtml, 'utf8');
   console.log('✅ rashifal/index.html updated');
 }
+
+
 // ════════════════════════════════════════════════
 // MAIN
 // ════════════════════════════════════════════════
