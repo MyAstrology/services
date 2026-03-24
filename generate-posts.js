@@ -1093,3 +1093,4 @@ console.log('   ★ Font Awesome non-blocking');
 console.log('   ★ full-style.css সরানো (ছিল না, 404 করত)');
 console.log('   ★ footer content-visibility:auto');
 
+fix h1
