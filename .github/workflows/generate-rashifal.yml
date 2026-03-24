@@ -95,7 +95,13 @@ jobs:
           node src/content/rashifal/generate-news-sitemap.js
           echo "✅ sitemap-news.xml updated"
 
-      # Step 8: Check changes
+      # Step 8: RSS Feed (Google News optimized)
+      - name: Generate RSS feed
+        run: |
+          node src/content/rashifal/generate-rss.js
+          echo "✅ RSS feed generated"
+
+      # Step 9: Check changes
       - name: Check for changes
         id: check_changes
         run: |
@@ -109,7 +115,7 @@ jobs:
             echo "✅ পরিবর্তন পাওয়া গেছে"
           fi
 
-      # Step 9: Commit and push
+      # Step 10: Commit and push
       - name: Commit and push
         if: steps.check_changes.outputs.has_changes == 'true'
         env:
@@ -117,7 +123,7 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "MyAstrology Bot"
-          git add rashifal/${TARGET_DATE}.html rashifal/index.html sitemap-news.xml 2>/dev/null || true
+          git add rashifal/${TARGET_DATE}.html rashifal/index.html sitemap-news.xml rashifal/rss.xml 2>/dev/null || true
 
           if git diff --staged --quiet; then
             echo "ℹ️ No changes to commit after all"
@@ -131,14 +137,6 @@ jobs:
 
           git push origin HEAD
           echo "🚀 Push সম্পন্ন"
-
-# Step 10: Ping Google sitemap (REMOVED - Google deprecated this API)
-# - name: Ping Google sitemap
-#   if: steps.check_changes.outputs.has_changes == 'true'
-#   run: |
-#     curl -s "https://www.google.com/ping?sitemap=https://www.myastrology.in/sitemap-news.xml" \
-#       -o /dev/null -w "HTTP %{http_code}\n"
-#     echo "✅ Google ping সম্পন্ন"
 
       # Step 11: No changes
       - name: No changes
