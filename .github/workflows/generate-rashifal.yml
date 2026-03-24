@@ -132,7 +132,7 @@ jobs:
           git push origin HEAD
           echo "🚀 Push সম্পন্ন"
 
-      # Step 10: Ping Google sitemap (DEPRECATED - removed)
+# Step 10: Ping Google sitemap (REMOVED - Google deprecated this API)
 # - name: Ping Google sitemap
 #   if: steps.check_changes.outputs.has_changes == 'true'
 #   run: |
