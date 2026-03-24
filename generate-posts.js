@@ -111,15 +111,34 @@ function normalizeImage(img, slug) {
 // ============================================
 // মার্কডাউন → HTML
 // ============================================
+function applyInline(t) {
+  return t
+    .replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>')
+    .replace(/\*\*(.+?)\*\*/g,    '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g,        '<em>$1</em>')
+    .replace(/`(.+?)`/g,          '<code>$1</code>')
+    .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>');
+}
+
 function markdownToHtml(raw) {
   let md = raw;
   const fs2 = raw.indexOf('---');
-  if (fs2 !== -1) { const fe = raw.indexOf('\n---', fs2 + 3); if (fe !== -1) md = raw.slice(fe + 4); }
+  if (fs2 !== -1) {
+    const fe = raw.indexOf('\n---', fs2 + 3);
+    if (fe !== -1) md = raw.slice(fe + 4);
+  }
   const html = [];
   md.split(/\n{2,}/).forEach(block => {
-    block = block.trim(); if (!block) return;
-    if (/^---+$/.test(block)) { html.push('<hr>'); return; }
-    if (/^<(div|section|article|figure|table|ul|ol|blockquote|hr|h[1-6]|p[\s>])/i.test(block)) { html.push(block); return; }
+    block = block.trim();
+    if (!block) return;
+    if (/^---+$/.test(block)) {
+      html.push('<hr>');
+      return;
+    }
+    if (/^<(div|section|article|figure|table|ul|ol|blockquote|hr|h[1-6]|p[\s>])/i.test(block)) {
+      html.push(block);
+      return;
+    }
     if (/^#{1,6}\s/.test(block)) {
       html.push(block
         .replace(/^######\s(.+)$/gm, '<h6>$1</h6>')
@@ -142,9 +161,10 @@ function markdownToHtml(raw) {
         if (isHdr && i === 1) return;
         const cells = row.split('|').slice(1, -1).map(c => c.trim());
         const tag   = (isHdr && i === 0) ? 'th' : 'td';
-        t += '   <tr>' + cells.map(c => `<${tag}>${applyInline(c)}</${tag}>`).join('') + '</tr>\n';
+        t += '  <tr>' + cells.map(c => `<${tag}>${applyInline(c)}</${tag}>`).join('') + '</tr>\n';
       });
-      html.push(t + '</table>\n</div>'); return;
+      html.push(t + '</table>\n</div>');
+      return;
     }
     if (/^\s*[-*]\s/.test(block)) {
       html.push('<ul>\n' + block.split('\n').filter(l => /^\s*[-*]\s/.test(l)).map(l => '<li>' + applyInline(l.replace(/^\s*[-*]\s/, '')) + '</li>').join('\n') + '\n</ul>');
@@ -154,6 +174,7 @@ function markdownToHtml(raw) {
       html.push('<ol>\n' + block.split('\n').filter(l => /^\s*\d+\.\s/.test(l)).map(l => '<li>' + applyInline(l.replace(/^\s*\d+\.\s/, '')) + '</li>').join('\n') + '\n</ol>');
       return;
     }
+    // ★★★ গুরুত্বপূর্ণ লাইন ★★★
     html.push('<p>' + applyInline(block.replace(/\n/g, ' ')) + '</p>');
   });
   let finalHtml = html.join('\n');
