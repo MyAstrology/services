@@ -73,6 +73,7 @@ jobs:
 
       - name: Update news sitemap
         env:
+          TZ: Asia/Kolkata
           TARGET_DATE: ${{ steps.set_date.outputs.TARGET_DATE }}
         run: |
           set -e
