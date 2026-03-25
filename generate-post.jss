@@ -460,7 +460,7 @@ function buildSidebarRelatedHTML(currentSlug) {
 // ============================================
 // সম্পূর্ণ CSS (ইনলাইন)
 // ============================================
-const CSS_BLOCK = `
+
 const CSS_BLOCK = `:root {
   --navy: #0a192f;
   --navy2: #0e1e38;
