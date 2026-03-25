@@ -2070,8 +2070,8 @@ function buildHtml(meta, body, slug, allPostsList) {
     .replace(/\n/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
-    
-const pageUrl = SITE_URL + '/blog/' + slug + '.html';
+  
+  const pageUrl = SITE_URL + '/blog/' + slug + '.html';
   const img = normalizeImage(meta.image, slug);
   const imgAlt = meta.image_alt || meta.title;
   const dateStr = formatBanglaDate(meta.date);
