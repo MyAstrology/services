@@ -29,19 +29,49 @@
     "confidence": 0.8,
     "manualLinks": []
   },
+  "pocket-fanka-artha-sankat-jyotish-palmistry": {
+    "relatedByTag": [],
+    "relatedByPillar": [
+      "valo-label-er-fand-theke-beriye-asa",
+      "artha-ki-sukh-dey-jyotish-darshan-parashar",
+      "gorib-keno-buddher-utor-jibon-bodle-dey"
+    ],
+    "relatedByCluster": [
+      "valo-label-er-fand-theke-beriye-asa",
+      "artha-ki-sukh-dey-jyotish-darshan-parashar",
+      "gorib-keno-buddher-utor-jibon-bodle-dey"
+    ],
+    "topRelated": [
+      {
+        "slug": "valo-label-er-fand-theke-beriye-asa",
+        "score": 0.39884635832004256
+      },
+      {
+        "slug": "artha-ki-sukh-dey-jyotish-darshan-parashar",
+        "score": 0.39089181286549707
+      },
+      {
+        "slug": "gorib-keno-buddher-utor-jibon-bodle-dey",
+        "score": 0.38875000000000004
+      }
+    ],
+    "cluster": "জীবন দর্শন",
+    "confidence": 0.8,
+    "manualLinks": []
+  },
   "valo-label-er-fand-theke-beriye-asa": {
     "relatedByTag": [
       "bhalo-manush-haoar-satyi-path"
     ],
     "relatedByPillar": [
+      "pocket-fanka-artha-sankat-jyotish-palmistry",
       "mon-joyer-golpo-malini-sukno-nodir-char",
-      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
-      "safal-manush-sukhi-noy-porichoy-shantir-dwondwo"
+      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya"
     ],
     "relatedByCluster": [
       "bhalo-manush-haoar-satyi-path",
-      "mon-joyer-golpo-malini-sukno-nodir-char",
-      "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya"
+      "pocket-fanka-artha-sankat-jyotish-palmistry",
+      "mon-joyer-golpo-malini-sukno-nodir-char"
     ],
     "topRelated": [
       {
@@ -49,12 +79,12 @@
         "score": 0.41100195503421305
       },
       {
-        "slug": "mon-joyer-golpo-malini-sukno-nodir-char",
-        "score": 0.3741636141636142
+        "slug": "pocket-fanka-artha-sankat-jyotish-palmistry",
+        "score": 0.39884635832004256
       },
       {
-        "slug": "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
-        "score": 0.3736363636363636
+        "slug": "mon-joyer-golpo-malini-sukno-nodir-char",
+        "score": 0.3741636141636142
       }
     ],
     "cluster": "জীবন দর্শন",
