@@ -460,8 +460,7 @@ function buildSidebarRelatedHTML(currentSlug) {
 // ============================================
 // সম্পূর্ণ CSS (ইনলাইন)
 // ============================================
-const CSS_BLOCK = `/* সম্পূর্ণ CSS এখানে থাকবে — প্রথম তথ্যের মতো */`;
-
+const CSS_BLOCK = `
 :root {
   --navy: #0a192f;
   --navy2: #0e1e38;
