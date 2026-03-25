@@ -10,14 +10,24 @@
     "ishwar-bishas-nastik-dharmic-karma-part-2"
   ],
   "damodarer-bali-jibon-dorshon": [
+    "digha-mohona-jibon-dorshon",
     "tarapith-smashan-tantra-jyotish",
     "moner-jantrana-theke-mukti",
     "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
     "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
     "janma-kundali-hasta-mudra-rahasya",
     "jyotish-shastra-utpatti-itihas-beder-chokhu",
-    "jibone-bar-bar-byartho-hole-ki-korben",
-    "agrahayan-mase-janma-12-rashi-swabhab-karma-shastha"
+    "jibone-bar-bar-byartho-hole-ki-korben"
+  ],
+  "digha-mohona-jibon-dorshon": [
+    "damodarer-bali-jibon-dorshon",
+    "moner-jantrana-theke-mukti",
+    "tarapith-smashan-tantra-jyotish",
+    "jaistha-mase-janma-12-rashi-swabhab-karma-shastha",
+    "baisakh-mase-janma-12-rashi-swabhab-karma-shastha",
+    "chaitro-mase-janma-12-rashi-swabhab-karma-shastha",
+    "agrahayan-mase-janma-12-rashi-swabhab-karma-shastha",
+    "falgun-mase-janma-12-rashi-swabhab-karma-shastha"
   ],
   "jibone-bar-bar-byartho-hole-ki-korben": [
     "jibone-sob-kichu-biruddhe-gele-ki-korben",
@@ -110,13 +120,13 @@
   ],
   "tarapith-smashan-tantra-jyotish": [
     "damodarer-bali-jibon-dorshon",
+    "digha-mohona-jibon-dorshon",
     "moner-jantrana-theke-mukti",
     "janma-kundali-hasta-mudra-rahasya",
     "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
     "agrahayan-mase-janma-12-rashi-swabhab-karma-shastha",
     "falgun-mase-janma-12-rashi-swabhab-karma-shastha",
-    "magh-mase-janma-12-rashi-swabhab-karma-shastha",
-    "poush-mase-janma-12-rashi-swabhab-karma-shastha"
+    "magh-mase-janma-12-rashi-swabhab-karma-shastha"
   ],
   "agrahayan-mase-janma-12-rashi-swabhab-karma-shastha": [
     "magh-mase-janma-12-rashi-swabhab-karma-shastha",
@@ -452,11 +462,11 @@
     "jibone-sob-kichu-biruddhe-gele-ki-korben",
     "jibone-bar-bar-byartho-hole-ki-korben",
     "jyotish-shastra-veder-chokh",
+    "digha-mohona-jibon-dorshon",
     "bishas-ki-kusanskar-prakriti-manush-jyotish",
     "tarapith-smashan-tantra-jyotish",
     "damodarer-bali-jibon-dorshon",
-    "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
-    "jyotish-shastra-utpatti-itihas-beder-chokhu"
+    "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na"
   ],
   "shiver-gana-ganesh-ganpati-puran-darshan": [
     "somoyer-rahasya-jyotish-darshan",

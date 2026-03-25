@@ -34,16 +34,20 @@
   "damodarer-bali-jibon-dorshon": {
     "relatedByTag": [],
     "relatedByPillar": [
+      "digha-mohona-jibon-dorshon",
       "tarapith-smashan-tantra-jyotish",
-      "moner-jantrana-theke-mukti",
-      "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na"
+      "moner-jantrana-theke-mukti"
     ],
     "relatedByCluster": [
+      "digha-mohona-jibon-dorshon",
       "tarapith-smashan-tantra-jyotish",
-      "moner-jantrana-theke-mukti",
-      "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na"
+      "moner-jantrana-theke-mukti"
     ],
     "topRelated": [
+      {
+        "slug": "digha-mohona-jibon-dorshon",
+        "score": 0.3398809523809524
+      },
       {
         "slug": "tarapith-smashan-tantra-jyotish",
         "score": 0.33932539682539686
@@ -51,14 +55,40 @@
       {
         "slug": "moner-jantrana-theke-mukti",
         "score": 0.3305612244897959
-      },
-      {
-        "slug": "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
-        "score": 0.3180769230769231
       }
     ],
     "cluster": "জ্যোতিষ",
     "confidence": 0.4,
+    "manualLinks": []
+  },
+  "digha-mohona-jibon-dorshon": {
+    "relatedByTag": [],
+    "relatedByPillar": [
+      "damodarer-bali-jibon-dorshon",
+      "moner-jantrana-theke-mukti",
+      "tarapith-smashan-tantra-jyotish"
+    ],
+    "relatedByCluster": [
+      "damodarer-bali-jibon-dorshon",
+      "moner-jantrana-theke-mukti",
+      "tarapith-smashan-tantra-jyotish"
+    ],
+    "topRelated": [
+      {
+        "slug": "damodarer-bali-jibon-dorshon",
+        "score": 0.3398809523809524
+      },
+      {
+        "slug": "moner-jantrana-theke-mukti",
+        "score": 0.3342564102564103
+      },
+      {
+        "slug": "tarapith-smashan-tantra-jyotish",
+        "score": 0.3328892604979562
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 0.6,
     "manualLinks": []
   },
   "jibone-bar-bar-byartho-hole-ki-korben": {
@@ -347,13 +377,13 @@
     "relatedByTag": [],
     "relatedByPillar": [
       "damodarer-bali-jibon-dorshon",
-      "moner-jantrana-theke-mukti",
-      "janma-kundali-hasta-mudra-rahasya"
+      "digha-mohona-jibon-dorshon",
+      "moner-jantrana-theke-mukti"
     ],
     "relatedByCluster": [
       "damodarer-bali-jibon-dorshon",
-      "moner-jantrana-theke-mukti",
-      "janma-kundali-hasta-mudra-rahasya"
+      "digha-mohona-jibon-dorshon",
+      "moner-jantrana-theke-mukti"
     ],
     "topRelated": [
       {
@@ -361,12 +391,12 @@
         "score": 0.33932539682539686
       },
       {
-        "slug": "moner-jantrana-theke-mukti",
-        "score": 0.3316943187531423
+        "slug": "digha-mohona-jibon-dorshon",
+        "score": 0.3328892604979562
       },
       {
-        "slug": "janma-kundali-hasta-mudra-rahasya",
-        "score": 0.3107894736842105
+        "slug": "moner-jantrana-theke-mukti",
+        "score": 0.3316943187531423
       }
     ],
     "cluster": "জ্যোতিষ",

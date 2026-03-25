@@ -43,6 +43,23 @@
       }
     }
   },
+  "digha-mohona-jibon-dorshon": {
+    "cluster": "জ্যোতিষ",
+    "parent": "শারীরিক জ্যোতিষ",
+    "confidence": 0.6,
+    "allScores": {
+      "জ্যোতিষ": {
+        "score": 3,
+        "matches": 3,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জীবন দর্শন": {
+        "score": 3,
+        "matches": 3,
+        "parent": "আধ্যাত্মিক"
+      }
+    }
+  },
   "jibone-bar-bar-byartho-hole-ki-korben": {
     "cluster": "জ্যোতিষ",
     "parent": "শারীরিক জ্যোতিষ",
