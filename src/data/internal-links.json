@@ -898,18 +898,22 @@
   },
   "dhanu-lagna-jataker-swabhab-karma-bibaha-bhagya": {
     "relatedByTag": [
-      "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya",
-      "singha-lagna-jataker-swabhab-karma-bibaha-bhagya",
-      "kanya-lagna-jataker-swabhab-karma-bibaha-bhagya",
-      "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya"
-    ],
-    "relatedByPillar": [],
-    "relatedByCluster": [
+      "meen-lagna-jataker-swabhab-karma-bibaha-bhagya",
       "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya",
       "singha-lagna-jataker-swabhab-karma-bibaha-bhagya",
       "kanya-lagna-jataker-swabhab-karma-bibaha-bhagya"
     ],
+    "relatedByPillar": [],
+    "relatedByCluster": [
+      "meen-lagna-jataker-swabhab-karma-bibaha-bhagya",
+      "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya",
+      "singha-lagna-jataker-swabhab-karma-bibaha-bhagya"
+    ],
     "topRelated": [
+      {
+        "slug": "meen-lagna-jataker-swabhab-karma-bibaha-bhagya",
+        "score": 0.7256666666666667
+      },
       {
         "slug": "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya",
         "score": 0.6613333333333333
@@ -917,10 +921,6 @@
       {
         "slug": "singha-lagna-jataker-swabhab-karma-bibaha-bhagya",
         "score": 0.6583333333333333
-      },
-      {
-        "slug": "kanya-lagna-jataker-swabhab-karma-bibaha-bhagya",
-        "score": 0.6568452380952381
       }
     ],
     "cluster": "জীবন দর্শন",
@@ -1056,15 +1056,15 @@
   "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya": {
     "relatedByTag": [
       "dhanu-lagna-jataker-swabhab-karma-bibaha-bhagya",
+      "meen-lagna-jataker-swabhab-karma-bibaha-bhagya",
       "singha-lagna-jataker-swabhab-karma-bibaha-bhagya",
-      "kanya-lagna-jataker-swabhab-karma-bibaha-bhagya",
-      "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya"
+      "kanya-lagna-jataker-swabhab-karma-bibaha-bhagya"
     ],
     "relatedByPillar": [],
     "relatedByCluster": [
       "dhanu-lagna-jataker-swabhab-karma-bibaha-bhagya",
-      "singha-lagna-jataker-swabhab-karma-bibaha-bhagya",
-      "kanya-lagna-jataker-swabhab-karma-bibaha-bhagya"
+      "meen-lagna-jataker-swabhab-karma-bibaha-bhagya",
+      "singha-lagna-jataker-swabhab-karma-bibaha-bhagya"
     ],
     "topRelated": [
       {
@@ -1072,12 +1072,12 @@
         "score": 0.6613333333333333
       },
       {
-        "slug": "singha-lagna-jataker-swabhab-karma-bibaha-bhagya",
+        "slug": "meen-lagna-jataker-swabhab-karma-bibaha-bhagya",
         "score": 0.6583333333333333
       },
       {
-        "slug": "kanya-lagna-jataker-swabhab-karma-bibaha-bhagya",
-        "score": 0.6568452380952381
+        "slug": "singha-lagna-jataker-swabhab-karma-bibaha-bhagya",
+        "score": 0.6583333333333333
       }
     ],
     "cluster": "জীবন দর্শন",
@@ -1220,15 +1220,15 @@
     "topRelated": [
       {
         "slug": "dhanu-lagna-jataker-swabhab-karma-bibaha-bhagya",
-        "score": 0.4761656746031746
+        "score": 0.7256666666666667
       },
       {
         "slug": "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya",
-        "score": 0.47005772005772006
+        "score": 0.6583333333333333
       },
       {
         "slug": "singha-lagna-jataker-swabhab-karma-bibaha-bhagya",
-        "score": 0.46872082166199813
+        "score": 0.6555555555555556
       }
     ],
     "cluster": "জীবন দর্শন",
@@ -1430,14 +1430,14 @@
     "relatedByTag": [
       "dhanu-lagna-jataker-swabhab-karma-bibaha-bhagya",
       "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya",
-      "kanya-lagna-jataker-swabhab-karma-bibaha-bhagya",
-      "brisha-lagna-jataker-swabhab-karma-bibaha-bhagya"
+      "meen-lagna-jataker-swabhab-karma-bibaha-bhagya",
+      "kanya-lagna-jataker-swabhab-karma-bibaha-bhagya"
     ],
     "relatedByPillar": [],
     "relatedByCluster": [
       "dhanu-lagna-jataker-swabhab-karma-bibaha-bhagya",
       "karkat-lagna-jataker-swabhab-karma-bibaha-bhagya",
-      "kanya-lagna-jataker-swabhab-karma-bibaha-bhagya"
+      "meen-lagna-jataker-swabhab-karma-bibaha-bhagya"
     ],
     "topRelated": [
       {
@@ -1449,8 +1449,8 @@
         "score": 0.6583333333333333
       },
       {
-        "slug": "kanya-lagna-jataker-swabhab-karma-bibaha-bhagya",
-        "score": 0.6548132183908045
+        "slug": "meen-lagna-jataker-swabhab-karma-bibaha-bhagya",
+        "score": 0.6555555555555556
       }
     ],
     "cluster": "জীবন দর্শন",
