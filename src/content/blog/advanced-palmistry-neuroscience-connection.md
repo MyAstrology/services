@@ -1,6 +1,7 @@
 ---
 title: "আঙুলের রহস্য ও মানব প্রবৃত্তি: হস্তরেখা বিজ্ঞান ও নিউরোসাইন্সের এক মহাজাগতিক সংযোগ | ড. প্রদ্যুৎ আচার্য" description: "আঙুলের প্রতিটি পর্ব কেন আপনার ভাগ্যের মানচিত্র? জানুন পামিস্ট্রির প্রাচীন তত্ত্বে লুকিয়ে থাকা নিউরোসাইন্টিফিক যুক্তি এবং ডারউইনের বিবর্তনবাদ থেকে শুরু করে মস্তিষ্কের স্নায়বিক সংযোগের বিস্তারিত ব্যাখ্যা।" date: "2026-03-26" image: "https://www.myastrology.in/images/deep-finger-analysis.webp" slug: "advanced-palmistry-neuroscience-connection" author: "Dr. Prodyut Acharya" categories: ["উন্নত হস্তরেখা বিজ্ঞান", "নিউরো-অ্যাস্ট্রোলজি"] tags: ["প্রদ্যুত আচার্য", "MyAstrology Ranaghat", "হস্তরেখা তত্ত্ব", "মস্তিষ্ক ও আঙুল", "জীবন দর্শন"] keywords: "হস্তরেখা বিজ্ঞান বিশ্লেষণ, আঙুলের পর্বের গুরুত্ব, নিউরোসাইন্স ও জ্যোতিষ, শুক্রের আঙুল, বৃহস্পতির প্রভাব, ড. প্রদ্যুৎ আচার্য" reading_time: "১২ মিনিট"
 ​---
+
 <blockquote style="font-size:19px;font-style:italic;background:#fdf8ed;padding:18px 22px;border-left:5px solid #b8860b;border-radius:0 8px 8px 0;margin:0 0 28px;">
 “আপনার হাত হলো মস্তিষ্কের একটি বহিরাগত অংশ (External Brain)—যেখানে প্রতিটি স্নায়বিক স্পন্দন রেখা ও পর্বের আকারে মুদ্রিত হয়।”
 </blockquote>
