@@ -247,7 +247,7 @@ function markdownToHtml(raw) {
     $h1.replaceWith($h2);
   });
   
-  return $.html();
+  return $('body').html() || $.html();
 }
 
 // ============================================
