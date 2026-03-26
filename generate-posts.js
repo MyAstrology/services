@@ -145,60 +145,56 @@ function applyInline(text) {
     .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>');
 }
 
+
 // ============================================
-// মার্কডাউন → HTML (উন্নত: H1 → H2, টেবিল, লিস্ট)
+// মার্কডাউন → HTML (উন্নত ও বাগ-মুক্ত ভার্সন)
 // ============================================
 function markdownToHtml(raw) {
-  // ফ্রন্টম্যাটার সরানো
   let content = raw;
-  const frontmatterStart = raw.indexOf('---');
-  if (frontmatterStart !== -1) {
-    const frontmatterEnd = raw.indexOf('\n---', frontmatterStart + 3);
-    if (frontmatterEnd !== -1) {
-      content = raw.slice(frontmatterEnd + 4);
-    }
-  }
   
+  // ১. ফ্রন্টম্যাটার রিমুভাল (উন্নত রেজেক্স যা উইন্ডোজ/লিনাক্স উভয় লাইন ব্রেক চেনে)
+  const frontmatterMatch = raw.match(/^---\r?\n[\s\S]*?\r?\n---\r?\n/);
+  if (frontmatterMatch) {
+    content = raw.slice(frontmatterMatch[0].length);
+  }
+
   const html = [];
   const blocks = content.split(/\n{2,}/);
-  
+
   for (let block of blocks) {
     block = block.trim();
     if (!block) continue;
-    
-    // HR
+
+    // ২. HR (Horizontal Rule) শনাক্তকরণ
     if (/^---+$/.test(block)) {
       html.push('<hr>');
       continue;
     }
-    
-    // ইতিমধ্যে HTML থাকলে সরাসরি যোগ
-    if (/^<(div|section|article|figure|table|ul|ol|blockquote|hr|h[2-6]|p[\s>])/i.test(block)) {
-      html.push(block);
+
+    // ৩. HTML ব্লক শনাক্তকরণ (FAQ ও কাস্টম বক্সের জন্য - স্পেস ও অ্যাট্রিবিউটসহ)
+    if (/^\s*<[a-z][^>]*>/i.test(block)) {
+      html.push(applyInline(block)); 
       continue;
     }
-    
-    // হেডিং (H1 → H2 রূপান্তর)
+
+    // ৪. হেডিং লজিক (H1 -> H2 কনভার্সনসহ)
     if (/^#{1,6}\s/.test(block)) {
-      let heading = block;
-      heading = heading.replace(/^######\s(.+)$/gm, '<h6>$1</h6>');
-      heading = heading.replace(/^#####\s(.+)$/gm, '<h5>$1</h5>');
-      heading = heading.replace(/^####\s(.+)$/gm, '<h4>$1</h4>');
-      heading = heading.replace(/^###\s(.+)$/gm, '<h3>$1</h3>');
-      heading = heading.replace(/^##\s(.+)$/gm, '<h2>$1</h2>');
-      heading = heading.replace(/^#\s(.+)$/gm, '<h2>$1</h2>'); // H1 → H2
-      html.push(heading);
+      let levelMatch = block.match(/^#+/);
+      let level = levelMatch ? levelMatch[0].length : 2;
+      let headingText = block.replace(/^#+\s+/, '');
+      let tag = (level === 1) ? 'h2' : `h${level}`;
+      html.push(`<${tag}>${applyInline(headingText)}</${tag}>`);
       continue;
     }
-    
-    // ব্লককোট
+
+    // ৫. ব্লককোট
     if (/^>\s/.test(block)) {
       const quoteContent = block.split('\n').map(l => l.replace(/^>\s?/, '')).join('\n').trim();
-      html.push('<blockquote>' + applyInline(quoteContent) + '</blockquote>');
+      html.push(`<blockquote>${applyInline(quoteContent)}</blockquote>`);
       continue;
     }
-    
-    // টেবিল
+
+    // ৬. টেবিল (tbl-wrap সহ)
     if (/^\|.+\|/.test(block)) {
       const rows = block.split('\n').filter(r => r.trim());
       const hasHeaderSeparator = rows.length > 1 && /^\|[\s\-:|]+\|$/.test(rows[1]);
@@ -214,41 +210,43 @@ function markdownToHtml(raw) {
       html.push(tableHtml + '</table>\n</div>');
       continue;
     }
-    
-    // আনঅর্ডার্ড লিস্ট
-    if (/^\s*[-*]\s/.test(block)) {
-      const items = block.split('\n').filter(l => /^\s*[-*]\s/.test(l));
-      const listItems = items.map(l => '<li>' + applyInline(l.replace(/^\s*[-*]\s/, '')) + '</li>').join('\n');
-      html.push('<ul>\n' + listItems + '\n</ul>');
+
+    // ৭. লিস্ট (অর্ডার্ড ও আনঅর্ডার্ড)
+    const isUnordered = /^\s*[-*]\s/.test(block);
+    const isOrdered = /^\s*\d+\.\s/.test(block);
+    if (isUnordered || isOrdered) {
+      const listTag = isUnordered ? 'ul' : 'ol';
+      const regex = isUnordered ? /^\s*[-*]\s/ : /^\s*\d+\.\s/;
+      const listItems = block.split('\n')
+                             .filter(l => regex.test(l))
+                             .map(l => `<li>${applyInline(l.replace(regex, ''))}</li>`)
+                             .join('\n');
+      html.push(`<${listTag}>\n${listItems}\n</${listTag}>`);
       continue;
     }
-    
-    // অর্ডার্ড লিস্ট
-    if (/^\s*\d+\.\s/.test(block)) {
-      const items = block.split('\n').filter(l => /^\s*\d+\.\s/.test(l));
-      const listItems = items.map(l => '<li>' + applyInline(l.replace(/^\s*\d+\.\s/, '')) + '</li>').join('\n');
-      html.push('<ol>\n' + listItems + '\n</ol>');
-      continue;
-    }
-    
-    // সাধারণ প্যারাগ্রাফ
-    html.push('<p>' + applyInline(block.replace(/\n/g, ' ')) + '</p>');
+
+    // ৮. সাধারণ প্যারাগ্রাফ
+    html.push(`<p>${applyInline(block.replace(/\n/g, ' '))}</p>`);
   }
+
+  // ৯. cheerio দিয়ে চূড়ান্ত রিফাইনমেন্ট
+  const $ = cheerio.load(html.join('\n'), { decodeEntities: false }, false);
   
-  let finalHtml = html.join('\n');
-  
-  // cheerio দিয়ে সব H1 → H2 নিশ্চিত করা
-  const $ = cheerio.load(finalHtml);
+  // H1 থাকলে H2 তে রূপান্তর নিশ্চিত করা
   $('h1').each(function() {
-    const $h1 = $(this);
-    const $h2 = $('<h2>').html($h1.html());
-    if ($h1.attr('style')) $h2.attr('style', $h1.attr('style'));
-    if ($h1.attr('class')) $h2.attr('class', $h1.attr('class'));
-    $h1.replaceWith($h2);
+    $(this).replaceWith($('<h2>').html($(this).html()));
   });
-  
-  return $('body').html() || $.html();
+
+  // খালি প্যারাগ্রাফ রিমুভ (নিরাপদ উপায়)
+  $('p').each(function() {
+    if (!$(this).text().trim() && !$(this).find('img, iframe, video').length) {
+      $(this).remove();
+    }
+  });
+
+  return $.html();
 }
+
 
 // ============================================
 // সঠিক পড়ার সময় বের করা (শুধু টেক্সট কন্টেন্ট)
