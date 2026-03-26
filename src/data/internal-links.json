@@ -59,6 +59,38 @@
     "confidence": 0.8,
     "manualLinks": []
   },
+  "love-marriage-relationship-solutions-astrology-palmistrylove-marriage-relationship-solutions-astrology-palmistry": {
+    "relatedByTag": [
+      "preme-byartho-keno-jyotish-hastarekha-uttor"
+    ],
+    "relatedByPillar": [
+      "bibaha-rekha-ki-bole-biye-prem-dampattya",
+      "maya-o-mukti-yogi-pathik-part-3",
+      "rager-prem-somparka-phatal"
+    ],
+    "relatedByCluster": [
+      "preme-byartho-keno-jyotish-hastarekha-uttor",
+      "bibaha-rekha-ki-bole-biye-prem-dampattya",
+      "maya-o-mukti-yogi-pathik-part-3"
+    ],
+    "topRelated": [
+      {
+        "slug": "preme-byartho-keno-jyotish-hastarekha-uttor",
+        "score": 0.4119344296858528
+      },
+      {
+        "slug": "bibaha-rekha-ki-bole-biye-prem-dampattya",
+        "score": 0.3989473684210526
+      },
+      {
+        "slug": "maya-o-mukti-yogi-pathik-part-3",
+        "score": 0.3783006535947713
+      }
+    ],
+    "cluster": "সম্পর্ক",
+    "confidence": 0.9,
+    "manualLinks": []
+  },
   "pocket-fanka-artha-sankat-jyotish-palmistry": {
     "relatedByTag": [],
     "relatedByPillar": [
@@ -712,16 +744,20 @@
   "bibaha-rekha-ki-bole-biye-prem-dampattya": {
     "relatedByTag": [],
     "relatedByPillar": [
+      "love-marriage-relationship-solutions-astrology-palmistrylove-marriage-relationship-solutions-astrology-palmistry",
       "preme-byartho-keno-jyotish-hastarekha-uttor",
-      "maya-o-mukti-yogi-pathik-part-3",
-      "rager-prem-somparka-phatal"
+      "maya-o-mukti-yogi-pathik-part-3"
     ],
     "relatedByCluster": [
+      "love-marriage-relationship-solutions-astrology-palmistrylove-marriage-relationship-solutions-astrology-palmistry",
       "preme-byartho-keno-jyotish-hastarekha-uttor",
-      "maya-o-mukti-yogi-pathik-part-3",
-      "rager-prem-somparka-phatal"
+      "maya-o-mukti-yogi-pathik-part-3"
     ],
     "topRelated": [
+      {
+        "slug": "love-marriage-relationship-solutions-astrology-palmistrylove-marriage-relationship-solutions-astrology-palmistry",
+        "score": 0.3989473684210526
+      },
       {
         "slug": "preme-byartho-keno-jyotish-hastarekha-uttor",
         "score": 0.39496031746031746
@@ -729,10 +765,6 @@
       {
         "slug": "maya-o-mukti-yogi-pathik-part-3",
         "score": 0.39044294294294296
-      },
-      {
-        "slug": "rager-prem-somparka-phatal",
-        "score": 0.37388888888888894
       }
     ],
     "cluster": "সম্পর্ক",
@@ -1872,12 +1904,12 @@
     "relatedByPillar": [
       "bibaha-rekha-ki-bole-biye-prem-dampattya",
       "preme-byartho-keno-jyotish-hastarekha-uttor",
-      "rager-prem-somparka-phatal"
+      "love-marriage-relationship-solutions-astrology-palmistrylove-marriage-relationship-solutions-astrology-palmistry"
     ],
     "relatedByCluster": [
       "bibaha-rekha-ki-bole-biye-prem-dampattya",
       "preme-byartho-keno-jyotish-hastarekha-uttor",
-      "rager-prem-somparka-phatal"
+      "love-marriage-relationship-solutions-astrology-palmistrylove-marriage-relationship-solutions-astrology-palmistry"
     ],
     "topRelated": [
       {
@@ -1889,8 +1921,8 @@
         "score": 0.38749999999999996
       },
       {
-        "slug": "rager-prem-somparka-phatal",
-        "score": 0.375
+        "slug": "love-marriage-relationship-solutions-astrology-palmistrylove-marriage-relationship-solutions-astrology-palmistry",
+        "score": 0.3783006535947713
       }
     ],
     "cluster": "সম্পর্ক",
@@ -1926,18 +1958,24 @@
     "manualLinks": []
   },
   "preme-byartho-keno-jyotish-hastarekha-uttor": {
-    "relatedByTag": [],
+    "relatedByTag": [
+      "love-marriage-relationship-solutions-astrology-palmistrylove-marriage-relationship-solutions-astrology-palmistry"
+    ],
     "relatedByPillar": [
       "bibaha-rekha-ki-bole-biye-prem-dampattya",
       "maya-o-mukti-yogi-pathik-part-3",
       "rager-prem-somparka-phatal"
     ],
     "relatedByCluster": [
+      "love-marriage-relationship-solutions-astrology-palmistrylove-marriage-relationship-solutions-astrology-palmistry",
       "bibaha-rekha-ki-bole-biye-prem-dampattya",
-      "maya-o-mukti-yogi-pathik-part-3",
-      "rager-prem-somparka-phatal"
+      "maya-o-mukti-yogi-pathik-part-3"
     ],
     "topRelated": [
+      {
+        "slug": "love-marriage-relationship-solutions-astrology-palmistrylove-marriage-relationship-solutions-astrology-palmistry",
+        "score": 0.4119344296858528
+      },
       {
         "slug": "bibaha-rekha-ki-bole-biye-prem-dampattya",
         "score": 0.39496031746031746
@@ -1945,10 +1983,6 @@
       {
         "slug": "maya-o-mukti-yogi-pathik-part-3",
         "score": 0.38749999999999996
-      },
-      {
-        "slug": "rager-prem-somparka-phatal",
-        "score": 0.375
       }
     ],
     "cluster": "সম্পর্ক",
@@ -2344,8 +2378,8 @@
     "relatedByTag": [],
     "relatedByPillar": [
       "preme-byartho-keno-jyotish-hastarekha-uttor",
-      "maya-o-mukti-yogi-pathik-part-3",
-      "bibaha-rekha-ki-bole-biye-prem-dampattya"
+      "love-marriage-relationship-solutions-astrology-palmistrylove-marriage-relationship-solutions-astrology-palmistry",
+      "maya-o-mukti-yogi-pathik-part-3"
     ],
     "relatedByCluster": [],
     "topRelated": [
@@ -2354,12 +2388,12 @@
         "score": 0.30913398692810456
       },
       {
-        "slug": "maya-o-mukti-yogi-pathik-part-3",
-        "score": 0.3047222222222222
+        "slug": "love-marriage-relationship-solutions-astrology-palmistrylove-marriage-relationship-solutions-astrology-palmistry",
+        "score": 0.3070424836601307
       },
       {
-        "slug": "bibaha-rekha-ki-bole-biye-prem-dampattya",
-        "score": 0.3036111111111111
+        "slug": "maya-o-mukti-yogi-pathik-part-3",
+        "score": 0.3047222222222222
       }
     ],
     "cluster": "সাফল্য",
