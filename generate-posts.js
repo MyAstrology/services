@@ -149,10 +149,10 @@ function applyInline(text) {
 // ============================================
 // মার্কডাউন → HTML (উন্নত ও বাগ-মুক্ত ভার্সন)
 // ============================================
+// আপনার স্ক্রিপ্টে এই অংশটি খুঁজে বের করুন এবং এটি দিয়ে রিপ্লেস করুন
 function markdownToHtml(raw) {
   let content = raw;
-  
-  // ১. ফ্রন্টম্যাটার রিমুভাল (উন্নত রেজেক্স যা উইন্ডোজ/লিনাক্স উভয় লাইন ব্রেক চেনে)
+  // ১. ফ্রন্টম্যাটার সরানো (উন্নত রেজেক্স)
   const frontmatterMatch = raw.match(/^---\r?\n[\s\S]*?\r?\n---\r?\n/);
   if (frontmatterMatch) {
     content = raw.slice(frontmatterMatch[0].length);
@@ -165,19 +165,19 @@ function markdownToHtml(raw) {
     block = block.trim();
     if (!block) continue;
 
-    // ২. HR (Horizontal Rule) শনাক্তকরণ
+    // ২. HR
     if (/^---+$/.test(block)) {
       html.push('<hr>');
       continue;
     }
 
-    // ৩. HTML ব্লক শনাক্তকরণ (FAQ ও কাস্টম বক্সের জন্য - স্পেস ও অ্যাট্রিবিউটসহ)
+    // ৩. HTML ব্লক শনাক্তকরণ (FAQ ও কাস্টম বক্সের জন্য)
     if (/^\s*<[a-z][^>]*>/i.test(block)) {
-      html.push(applyInline(block)); 
+      html.push(applyInline(block)); // ব্লকের ভেতর বোল্ড/লিঙ্ক প্রসেস করবে
       continue;
     }
 
-    // ৪. হেডিং লজিক (H1 -> H2 কনভার্সনসহ)
+    // ৪. হেডিং লজিক (H1 -> H2 কনভার্সন)
     if (/^#{1,6}\s/.test(block)) {
       let levelMatch = block.match(/^#+/);
       let level = levelMatch ? levelMatch[0].length : 2;
@@ -199,14 +199,12 @@ function markdownToHtml(raw) {
       const rows = block.split('\n').filter(r => r.trim());
       const hasHeaderSeparator = rows.length > 1 && /^\|[\s\-:|]+\|$/.test(rows[1]);
       let tableHtml = '<div class="tbl-wrap">\n<table>\n';
-      
       rows.forEach((row, idx) => {
         if (hasHeaderSeparator && idx === 1) return;
         const cells = row.split('|').slice(1, -1).map(c => c.trim());
         const tag = (hasHeaderSeparator && idx === 0) ? 'th' : 'td';
         tableHtml += '  <tr>' + cells.map(c => `<${tag}>${applyInline(c)}</${tag}>`).join('') + '</tr>\n';
       });
-      
       html.push(tableHtml + '</table>\n</div>');
       continue;
     }
@@ -231,21 +229,16 @@ function markdownToHtml(raw) {
 
   // ৯. cheerio দিয়ে চূড়ান্ত রিফাইনমেন্ট
   const $ = cheerio.load(html.join('\n'), { decodeEntities: false }, false);
-  
-  // H1 থাকলে H2 তে রূপান্তর নিশ্চিত করা
   $('h1').each(function() {
     $(this).replaceWith($('<h2>').html($(this).html()));
   });
-
-  // খালি প্যারাগ্রাফ রিমুভ (নিরাপদ উপায়)
   $('p').each(function() {
-    if (!$(this).text().trim() && !$(this).find('img, iframe, video').length) {
-      $(this).remove();
-    }
+    if (!$(this).text().trim() && !$(this).find('img, iframe, video').length) $(this).remove();
   });
 
   return $.html();
 }
+
 
 
 // ============================================
