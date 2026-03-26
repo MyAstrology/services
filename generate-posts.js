@@ -2141,7 +2141,10 @@ ${meta.tags.length ? `<meta property="article:tag" content="${meta.tags.map(esca
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"></noscript>
 <!-- Inline CSS -->
+<style>
 ${CSS_BLOCK}
+</style>
+
 <!-- Analytics -->
 <script>
 window.dataLayer = window.dataLayer || [];
