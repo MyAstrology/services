@@ -1,5 +1,3 @@
-Here is the expanded, detailed, and SEO-optimized blog post based on your instructions, using the provided format and incorporating the themes of astrology, palmistry, and philosophy.
-
 ---
 
 title: "AI যুগের অস্থিরতা: জ্যোতিষ, হস্তরেখা ও দর্শনের পথনির্দেশ | ড. প্রদ্যুৎ আচার্য"
