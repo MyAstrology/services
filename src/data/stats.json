@@ -20,11 +20,11 @@
   },
   "tagsFrequency": {
     "প্রদ্যুৎ আচার্য": 1,
-    "MyAstrology Ranaghat": 80,
+    "MyAstrology Ranaghat": 81,
     "হস্তরেখা তত্ত্ব": 1,
     "মস্তিষ্ক ও আঙুল": 1,
     "জীবন দর্শন": 5,
-    "প্রদ্যুত আচার্য": 79,
+    "প্রদ্যুত আচার্য": 80,
     "AI এবং ভবিষ্যত": 1,
     "জ্যোতিষ ও অর্থনীতি": 1,
     "হস্তরেখায় কর্মরেখা": 1,
@@ -157,7 +157,7 @@
     "Kumbha Lagna": 1,
     "মকর লগ্ন": 1,
     "Capricorn Ascendant": 1,
-    "Makar Lagna": 1,
+    "শনি গ্রহ": 1,
     "মীন লগ্ন": 1,
     "Pisces Ascendant": 1,
     "Meen Lagna": 1,
@@ -339,5 +339,5 @@
   "avgLinksPerPost": "7.23",
   "totalLinks": 752,
   "postsWithNoLinks": 0,
-  "generatedAt": "2026-03-26T16:34:36.762Z"
+  "generatedAt": "2026-03-26T16:35:37.695Z"
 }
