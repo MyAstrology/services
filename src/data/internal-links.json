@@ -1,4 +1,34 @@
 {
+  "ai-uncertainty-astrology-palmistry-guidance": {
+    "relatedByTag": [],
+    "relatedByPillar": [
+      "samudrik-shastra-nari-noy-sattva-bichar",
+      "sanshoy-theke-hastarekha-bigyan-jyotish",
+      "hasta-rekha-jivan-manchitra"
+    ],
+    "relatedByCluster": [
+      "samudrik-shastra-nari-noy-sattva-bichar",
+      "sanshoy-theke-hastarekha-bigyan-jyotish",
+      "hasta-rekha-jivan-manchitra"
+    ],
+    "topRelated": [
+      {
+        "slug": "samudrik-shastra-nari-noy-sattva-bichar",
+        "score": 0.3796464646464647
+      },
+      {
+        "slug": "sanshoy-theke-hastarekha-bigyan-jyotish",
+        "score": 0.3785763888888889
+      },
+      {
+        "slug": "hasta-rekha-jivan-manchitra",
+        "score": 0.37761904761904763
+      }
+    ],
+    "cluster": "হস্তরেখা",
+    "confidence": 0.6,
+    "manualLinks": []
+  },
   "bhagya-karma-astrology-palmistry": {
     "relatedByTag": [],
     "relatedByPillar": [
@@ -2475,8 +2505,8 @@
     ],
     "relatedByPillar": [
       "star-chinho-hastrekha",
-      "shishu-hath-rekha-pesa-jyotish-rahasya",
-      "hater-rekha-career-dhan-bishleshan"
+      "ai-uncertainty-astrology-palmistry-guidance",
+      "shishu-hath-rekha-pesa-jyotish-rahasya"
     ],
     "relatedByCluster": [
       "hath-rekha-atmounnayan",

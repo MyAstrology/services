@@ -1,4 +1,36 @@
 {
+  "ai-uncertainty-astrology-palmistry-guidance": {
+    "cluster": "হস্তরেখা",
+    "parent": "শারীরিক জ্যোতিষ",
+    "confidence": 0.6,
+    "allScores": {
+      "হস্তরেখা": {
+        "score": 3,
+        "matches": 3,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জ্যোতিষ": {
+        "score": 3,
+        "matches": 3,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "জীবন দর্শন": {
+        "score": 3,
+        "matches": 3,
+        "parent": "আধ্যাত্মিক"
+      },
+      "সাফল্য": {
+        "score": 0.9,
+        "matches": 1,
+        "parent": "ব্যবহারিক জীবন"
+      },
+      "বিজ্ঞান": {
+        "score": 0.8,
+        "matches": 1,
+        "parent": "শিক্ষা"
+      }
+    }
+  },
   "bhagya-karma-astrology-palmistry": {
     "cluster": "জীবন দর্শন",
     "parent": "আধ্যাত্মিক",
