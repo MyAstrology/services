@@ -3290,5 +3290,33 @@
     "cluster": "জ্যোতিষ",
     "confidence": 0.8,
     "manualLinks": []
+  },
+  "water-consciousness-chandra-connection": {
+    "relatedByTag": [],
+    "relatedByPillar": [
+      "advanced-palmistry-neuroscience-connection"
+    ],
+    "relatedByCluster": [
+      "advanced-palmistry-neuroscience-connection",
+      "prachin-grantha-o-adhunik-bigyan",
+      "prithibir-itihas-rahasya"
+    ],
+    "topRelated": [
+      {
+        "slug": "advanced-palmistry-neuroscience-connection",
+        "score": 0.28677174218969886
+      },
+      {
+        "slug": "prachin-grantha-o-adhunik-bigyan",
+        "score": 0.22916666666666669
+      },
+      {
+        "slug": "prithibir-itihas-rahasya",
+        "score": 0.22916666666666669
+      }
+    ],
+    "cluster": "বিজ্ঞান",
+    "confidence": 0.8,
+    "manualLinks": []
   }
 }

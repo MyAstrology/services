@@ -2169,5 +2169,22 @@
         "parent": "শিক্ষা"
       }
     }
+  },
+  "water-consciousness-chandra-connection": {
+    "cluster": "বিজ্ঞান",
+    "parent": "শিক্ষা",
+    "confidence": 0.8,
+    "allScores": {
+      "জ্যোতিষ": {
+        "score": 2,
+        "matches": 2,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "বিজ্ঞান": {
+        "score": 4,
+        "matches": 5,
+        "parent": "শিক্ষা"
+      }
+    }
   }
 }
