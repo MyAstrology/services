@@ -128,55 +128,13 @@ h1,h2,h3,h4{font-family:var(--fh);line-height:1.3}
 @keyframes tickx{from{transform:translateX(0)}to{transform:translateX(-100%)}}
 
 /* BANNER */
-/* BANNER — fixed: no cropping, responsive height */
-.banner-images {
-  background: #000;
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-  contain: layout paint;
-}
+.banner-images{background:#000;overflow:hidden;position:relative;width:100%}
+.banner-images img{width:100%;height:auto;display:block;transition:opacity .5s ease;visibility:hidden;position:absolute;top:0;left:0;object-fit:cover;object-position:center top}
+.banner-images img.active{visibility:visible;position:relative}
+@media(min-width:600px){.banner-images img{min-height:320px;object-position:center 30%}}
+@media(min-width:960px){.banner-images img{min-height:460px;object-position:center center}}
 
-.banner-images img {
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: opacity .5s ease;
-  visibility: hidden;
-  position: absolute;
-  top: 0;
-  left: 0;
-  object-fit: cover;
-  object-position: center top;
-}
-
-.banner-images img.active {
-  visibility: visible;
-  position: relative;
-}
-
-/* Mobile (default) */
-.banner-images img {
-  min-height: 200px;
-  object-position: center 20%;
-}
-
-/* Tablet */
-@media (min-width: 600px) {
-  .banner-images img {
-    min-height: 320px;
-    object-position: center 30%;
-  }
-}
-
-/* Desktop */
-@media (min-width: 960px) {
-  .banner-images img {
-    min-height: 460px;
-    object-position: center center;
-  }
-}
-/* HERO */
+ /* HERO */
 .hero{position:relative;overflow:hidden;background:linear-gradient(165deg,#f9f4ee 0%,#edf3fc 60%,#f2eef8 100%);text-align:center;padding:30px 24px 22px;border-bottom:1px solid #ddd5c0;}
 .hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 10% 15%,rgba(184,134,11,.06) 0%,transparent 55%),radial-gradient(circle at 90% 80%,rgba(61,12,97,.05) 0%,transparent 50%);pointer-events:none;}
 .hero-eyebrow{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;border:1px solid rgba(184,134,11,.3);padding:3px 14px;border-radius:30px;background:rgba(253,248,237,.8);}
