@@ -15,12 +15,13 @@
         .result-header { text-align: center; margin-bottom: 30px; }
         .result-number { display: inline-block; background: linear-gradient(135deg, #ffd700, #ff8c00); padding: 20px 35px; border-radius: 60px; margin-bottom: 20px; }
         .big-number { font-size: 64px; font-weight: 800; color: #1a1a2e; }
+        .planet-badge { background: rgba(255,215,0,0.3); padding: 8px 20px; border-radius: 40px; display: inline-block; margin-top: 10px; font-size: 16px; }
         .result-title { font-size: 28px; margin-bottom: 10px; }
         .result-subtitle { opacity: 0.8; font-size: 18px; }
         .info-section { margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .info-section h3 { color: #ffd700; margin-bottom: 12px; font-size: 22px; }
         .info-section h3 i { margin-right: 10px; }
-        .info-section p { line-height: 1.8; opacity: 0.9; }
+        .info-section p { line-height: 1.8; opacity: 0.9; font-size: 16px; text-align: justify; }
         .badge { display: inline-block; background: rgba(255,215,0,0.2); padding: 5px 15px; border-radius: 20px; font-size: 14px; margin-right: 10px; margin-bottom: 10px; }
         .back-btn { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.2); padding: 12px 25px; border-radius: 40px; color: white; text-decoration: none; transition: all 0.3s; margin-top: 20px; }
         .back-btn:hover { background: rgba(255,215,0,0.3); gap: 12px; }
@@ -34,11 +35,13 @@
         .option-buttons { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 30px 0; max-height: 450px; overflow-y: auto; padding: 10px; }
         .option-btn { background: linear-gradient(135deg, #ffd700, #ff8c00); color: #1a1a2e; border: none; padding: 10px 18px; border-radius: 40px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.3s; font-family: inherit; display: inline-flex; align-items: center; gap: 8px; }
         .option-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255,215,0,0.4); }
+        .root-description { background: rgba(255,215,0,0.15); border-radius: 20px; padding: 20px; margin-bottom: 25px; border-left: 4px solid #ffd700; }
         @media (max-width: 768px) {
             .result-card, .clarification-card { padding: 20px; }
             .big-number { font-size: 48px; }
             .result-title { font-size: 22px; }
             .option-btn { padding: 8px 14px; font-size: 12px; }
+            .info-section p { font-size: 14px; }
         }
     </style>
 </head>
@@ -70,7 +73,7 @@
             return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
         }
         
-        // ========== অক্ষর-সংখ্যা ম্যাপিং ==========
+        // অক্ষর-সংখ্যা ম্যাপিং
         const letterValues = {
             'a':1,'b':2,'c':3,'d':4,'e':5,'f':6,'g':7,'h':8,'i':9,
             'j':1,'k':2,'l':3,'m':4,'n':5,'o':6,'p':7,'q':8,'r':9,
@@ -121,7 +124,6 @@
             return { rootNumber, sum: totalSum, digits: digits || [], letterSum, numberSum: sum };
         }
         
-        // ========== যুক্তিপূর্ণ ইনপুট ডিটেক্ট ==========
         function isMeaningfulInput(input) {
             if (/^\d{1,2}[\/\-]\d{1,2}[\/\-]\d{4}$/.test(input)) return true;
             if (/^01[3-9]\d{8}$/.test(input.replace(/[^0-9]/g, ''))) return true;
@@ -135,7 +137,6 @@
         }
         
         function autoDetectCategory(input) {
-            const lowerInput = input.toLowerCase();
             if (/^01[3-9]\d{8}$/.test(input.replace(/[^0-9]/g, ''))) return "mobile_number";
             if (/^[A-Za-zঙ-হ]{2}\s?\d{2}\s?[A-Za-zঙ-হ]{2}\s?\d{4}$/i.test(input)) return "car_number";
             if (/^\d{1,2}[\/\-]\d{1,2}[\/\-]\d{4}$/.test(input)) return "mulank";
@@ -146,125 +147,113 @@
             return "personal_name";
         }
         
-        // ========== ক্যাটাগরি অনুযায়ী আলাদা রেন্ডারার ==========
-        
-        // 1. ব্যক্তির নাম
-        function renderPersonalName(input, number, data) {
+        // ========== মূল সংখ্যার বিস্তারিত বিবরণ ==========
+        function getRootNumberDescription(number, data) {
             return `
-                <div class="result-header">
-                    <div class="result-number"><span class="big-number">${number}</span></div>
-                    <h1 class="result-title">${data.identity.title}</h1>
-                    <p class="result-subtitle">${data.planet} | ব্যক্তির নামের অংক</p>
-                </div>
-                <div class="result-card">
-                    <div class="info-section"><h3><i class="fas fa-user-astronaut"></i> ব্যক্তিত্ব ও স্বভাব</h3><p>${escapeHtml(data.identity.description)}</p></div>
-                    <div class="info-section"><h3><i class="fas fa-briefcase"></i> ক্যারিয়ার ও পেশা</h3><p>${escapeHtml(data.business.description)}</p></div>
-                    <div class="info-section"><h3><i class="fas fa-heart"></i> সম্পর্ক ও বিবাহ</h3><p>${getRelationshipTip(number)}</p></div>
-                    <div class="info-section"><h3><i class="fas fa-hand-sparkles"></i> প্রতিকার</h3><p>${escapeHtml(data.tip.description)}</p></div>
+                <div class="root-description">
+                    <div style="text-align: center; margin-bottom: 15px;">
+                        <span class="planet-badge"><i class="fas fa-star"></i> মূল সংখ্যা: ${number} — ${data.planet}</span>
+                    </div>
+                    <p style="line-height: 1.8; text-align: justify;">${getPlanetInfluence(number, data)}</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px;">
+                        <span class="badge"><i class="fas fa-palette"></i> শুভ রং: ${data.luckyColor}</span>
+                        <span class="badge"><i class="fas fa-calendar"></i> শুভ দিন: ${data.luckyDay}</span>
+                        <span class="badge"><i class="fas fa-compass"></i> শুভ দিক: ${data.luckyDirection}</span>
+                    </div>
                 </div>
             `;
         }
         
-        // 2. শিশুর নাম
-        function renderBabyName(input, number, data) {
-            return `
-                <div class="result-header">
-                    <div class="result-number"><span class="big-number">${number}</span></div>
-                    <h1 class="result-title">শিশুর নামের অংক: ${number}</h1>
-                    <p class="result-subtitle">${data.planet} | নামের প্রভাব</p>
-                </div>
-                <div class="result-card">
-                    <div class="info-section"><h3><i class="fas fa-baby"></i> শিশুর সম্ভাব্য ব্যক্তিত্ব</h3><p>${escapeHtml(data.identity.description.substring(0, 300))}</p></div>
-                    <div class="info-section"><h3><i class="fas fa-graduation-cap"></i> শিক্ষা ও ভবিষ্যৎ</h3><p>${getBabyFutureTip(number)}</p></div>
-                    <div class="info-section"><h3><i class="fas fa-star"></i> নামের প্রভাব</h3><p>${getNameInfluence(number)}</p></div>
-                    <div class="info-section"><h3><i class="fas fa-gem"></i> প্রতিকার</h3><p>${escapeHtml(data.tip.description)}</p></div>
-                </div>
-            `;
+        function getPlanetInfluence(number, data) {
+            const influences = {
+                1: "সূর্য গ্রহের প্রভাবে এই সংখ্যার অধিকারী ব্যক্তি জন্মগতভাবে নেতৃত্বের গুণে ভূষিত হন। সূর্য যেমন সৌরজগতের কেন্দ্র, তেমনি এঁরাও নিজেদের ক্ষেত্রে কেন্দ্রীয় ভূমিকা পালন করেন। আত্মবিশ্বাস, সৃজনশীলতা ও উদ্ভাবনী শক্তি এঁদের প্রধান বৈশিষ্ট্য। এঁরা স্বাধীনচেতা, নিজের পায়ে দাঁড়াতে ভালোবাসেন এবং অন্যদের অনুপ্রাণিত করতে পারেন। তবে মাঝে মাঝে অহংকার ও কর্তৃত্বপ্রিয়তা এঁদের দুর্বলতা হয়ে দাঁড়াতে পারে। সূর্যের শক্তি এঁদের জীবনে সাফল্য ও খ্যাতি এনে দেয়, যদি এঁরা নিজেদের অহংকারকে নিয়ন্ত্রণ করতে পারেন।",
+                2: "চন্দ্র গ্রহের প্রভাবে এই সংখ্যার অধিকারী ব্যক্তি অত্যন্ত আবেগপ্রবণ, কল্পনাপ্রবণ ও সৃজনশীল হন। চন্দ্র যেমন সমুদ্রের জোয়ার-ভাটা নিয়ন্ত্রণ করে, তেমনি এঁদের মনও আবেগের ঢেউয়ে বিচলিত হয়। মানুষের মন বুঝতে এঁদের সেরা ক্ষমতা রয়েছে। সম্পর্কে আবদ্ধ থাকতে ভালোবাসেন এবং অন্যদের সেবা করাই এঁদের স্বভাব। এঁদের ভিতরে একজন শিল্পী, লেখক বা সঙ্গীতজ্ঞ লুকিয়ে থাকে। মানসিক অস্থিরতা ও দ্বিধাদ্বন্দ্ব এঁদের প্রধান চ্যালেঞ্জ। চন্দ্রের শক্তি এঁদের সৃজনশীলতা ও সহানুভূতি বৃদ্ধি করে।",
+                3: "বৃহস্পতি গ্রহের প্রভাবে এই সংখ্যার অধিকারী ব্যক্তি অত্যন্ত জ্ঞানী, আশাবাদী ও আধ্যাত্মিক হন। বৃহস্পতি গুরু গ্রহ হিসেবে পরিচিত, আর এঁরাও অন্যদের পথ প্রদর্শনে সিদ্ধহস্ত। শিক্ষক, গুরু বা পরামর্শকের মতো মানুষ এঁদের স্বাভাবিকভাবে ভক্তি করে। এঁদের কথায় অন্যদের মনে প্রভাব ফেলতে পারেন। জ্ঞানার্জন ও তা বিতরণই এঁদের জীবনের মূল উদ্দেশ্য। অতিরিক্ত আশাবাদ বা অহংকার এঁদের পতন ডেকে আনতে পারে। বৃহস্পতির আশীর্বাদে এঁরা জীবনে জ্ঞান ও সম্মান লাভ করেন।",
+                4: "রাহু গ্রহের প্রভাবে এই সংখ্যার অধিকারী ব্যক্তি অত্যন্ত রহস্যময়, গভীর চিন্তাবিদ ও উদ্ভাবক হন। রাহু যেমন ছায়া গ্রহ, তেমনি এঁরাও সাধারণের চোখের আড়ালে থাকতে ভালোবাসেন। যা অদৃশ্য, তা দেখতে এঁদের বিশেষ ক্ষমতা রয়েছে। সাধারণের পথে চলতে চান না, বরং নতুন পথ তৈরি করতে ভালোবাসেন। জীবনে উঠা-পড়া থাকলেও শেষ পর্যন্ত জয়ী হন। বিদেশে সাফল্য পাওয়ার সম্ভাবনা বেশি। ভ্রম, অস্থিরতা ও বিভ্রান্তি এঁদের প্রধান দুর্বলতা।",
+                5: "বুধ গ্রহের প্রভাবে এই সংখ্যার অধিকারী ব্যক্তি অত্যন্ত বুদ্ধিমান, চটপটে ও যোগাযোগ দক্ষ হন। বুধ যেমন দেবতাদের দূত, তেমনি এঁরাও তথ্য ও ধারণা আদান-প্রদানে সিদ্ধহস্ত। অল্প সময়ে অনেক কাজ করতে পারেন। ব্যবসায়িক বুদ্ধি এঁদের সহজাত। যেকোনো পরিস্থিতির সাথে মানিয়ে নিতে পারেন। চঞ্চলতা ও অধৈর্যতা এঁদের প্রধান দুর্বলতা। বুধের প্রভাবে এঁরা শিক্ষা, বাণিজ্য ও যোগাযোগ মাধ্যমে সাফল্য লাভ করেন।",
+                6: "শুক্র গ্রহের প্রভাবে এই সংখ্যার অধিকারী ব্যক্তি সৌন্দর্যপ্রিয়, বিলাসবহুল জীবন পছন্দ করেন। শুক্র যেমন সৌন্দর্য ও ভালোবাসার দেবতা, তেমনি এঁরাও শিল্প, সঙ্গীত, নৃত্যে স্বাভাবিক দক্ষতা রাখেন। সম্পর্ক ও ভালোবাসা এঁদের জীবনের প্রধান চালিকা শক্তি। মানুষকে আকর্ষণ করতে পারেন। অতিরিক্ত বিলাসিতা ও অনুভূতিপ্রবণতা এঁদের দুর্বলতা। শুক্রের কৃপায় এঁরা সুখ-সম্ভোগ ও সৌন্দর্যপূর্ণ জীবন লাভ করেন।",
+                7: "কেতু গ্রহের প্রভাবে এই সংখ্যার অধিকারী ব্যক্তি আধ্যাত্মিক, গভীর চিন্তাবিদ ও গবেষক হন। কেতু যেমন মোক্ষের দিশারী, তেমনি এঁরাও অদৃশ্য জগতের সাথে যোগাযোগ রাখতে পারেন। সাধারণের চেয়ে আলাদা চিন্তা করেন। একাকীত্ব ও বিষন্নতা এঁদের প্রধান দুর্বলতা। কেতুর প্রভাবে এঁরা লেখালেখি, গবেষণা ও আধ্যাত্মিক চর্চায় সিদ্ধিলাভ করেন।",
+                8: "শনি গ্রহের প্রভাবে এই সংখ্যার অধিকারী ব্যক্তি অত্যন্ত ধৈর্যশীল, পরিশ্রমী ও দায়িত্বশীল হন। শনি যেমন কর্মের ফলদাতা, তেমনি এঁরাও জীবনে সংগ্রাম করে সবকিছু অর্জন করেন। বয়সের চেয়ে বেশি পরিণত বুদ্ধি রয়েছে। ন্যায়পরায়ণ ও শৃঙ্খলাপ্রিয়। জীবনের শুরুতে সংগ্রাম থাকলেও শেষে সাফল্য পাবেন। হতাশা ও নেতিবাচক চিন্তা এঁদের প্রধান দুর্বলতা। শনির প্রভাবে এঁরা ধৈর্য ও অধ্যবসায়ের মাধ্যমে সাফল্য লাভ করেন।",
+                9: "মঙ্গল গ্রহের প্রভাবে এই সংখ্যার অধিকারী ব্যক্তি অত্যন্ত সাহসী, উদ্যমী ও যোদ্ধা প্রকৃতির হন। মঙ্গল যেমন যুদ্ধের দেবতা, তেমনি এঁরাও প্রতিযোগিতায় সিদ্ধহস্ত। যা করতে চান, তা যেকোনো মূল্যে করেন। প্রতিযোগিতায় এঁদের হারানো কঠিন। রাগ ও আগ্রাসন এঁদের প্রধান দুর্বলতা। মঙ্গলের প্রভাবে এঁরা সেনাবাহিনী, খেলাধুলা, প্রতিযোগিতামূলক ক্ষেত্রে সাফল্য লাভ করেন।"
+            };
+            return influences[number] || `${data.planet} গ্রহের প্রভাবে এই সংখ্যার ব্যক্তি অনন্য বৈশিষ্ট্যের অধিকারী হন। এই সংখ্যার কম্পন জীবনে স্থিতিশীলতা ও সাফল্য এনে দেয়। শুভ রং ও দিন মেনে চললে জীবনে ইতিবাচক পরিবর্তন আসে।`;
         }
         
-        // 3. ব্যবসার নাম
-        function renderBusinessName(input, number, data) {
-            return `
-                <div class="result-header">
-                    <div class="result-number"><span class="big-number">${number}</span></div>
-                    <h1 class="result-title">"${escapeHtml(input)}"</h1>
-                    <p class="result-subtitle">${data.planet} | ব্যবসার নামের অংক</p>
-                </div>
-                <div class="result-card">
-                    <div class="info-section"><h3><i class="fas fa-chart-line"></i> ব্যবসার সম্ভাবনা ও ধরণ</h3><p>${escapeHtml(data.business.description)}</p></div>
-                    <div class="info-section"><h3><i class="fas fa-palette"></i> ব্র্যান্ডের জন্য শুভ রং</h3><p>${data.luckyColor}</p></div>
-                    <div class="info-section"><h3><i class="fas fa-calendar-alt"></i> ব্যবসা শুরুর শুভ দিন</h3><p>${data.luckyDay}</p></div>
-                    <div class="info-section"><h3><i class="fas fa-chart-simple"></i> সাফল্যের সূত্র</h3><p>${getBusinessSuccessTip(number)}</p></div>
-                </div>
-            `;
+        // ========== ক্যাটাগরি অনুযায়ী বিস্তারিত বিশ্লেষণ ==========
+        
+        function getPinDetailedAnalysis(number) {
+            const analyses = {
+                1: "সূর্যের প্রভাবে এই PIN কোডটি অত্যন্ত শক্তিশালী ও নিরাপদ। এই সংখ্যার কম্পন আত্মবিশ্বাস ও নেতৃত্বের গুণ বৃদ্ধি করে। আপনার আর্থিক লেনদেনে স্থিতিশীলতা আসবে এবং অপ্রত্যাশিত লাভের সম্ভাবনা থাকবে। তবে এই সংখ্যার প্রভাবে আপনি আত্মবিশ্বাসী হলেও কোডটি অন্যের কাছে প্রকাশ করা থেকে বিরত থাকুন। লাল রঙের ওয়ালেট বা পার্স ব্যবহার করলে নিরাপত্তা আরও বৃদ্ধি পায়। প্রতি ৩ মাস অন্তর কোড পরিবর্তন করা শুভ।",
+                2: "চন্দ্রের প্রভাবে এই PIN কোডটি আবেগপ্রবণ ও সংবেদনশীল। এই সংখ্যার কম্পন মানসিক প্রশান্তি ও সম্পর্কের উন্নতি ঘটায়। তবে এটি সহজেই অনুমানযোগ্য হতে পারে, তাই জন্মতারিখ বা প্রিয়জনের নাম এড়িয়ে চলুন। সাদা রঙের সাথে সম্পর্কিত এই কোডটি গোপন রাখতে সাদা কাগজে লিখে নিরাপদ স্থানে সংরক্ষণ করুন। সোমবারে কোড পরিবর্তন করলে মানসিক স্থিরতা আসে।",
+                3: "বৃহস্পতির আশীর্বাদে এই PIN কোডটি জ্ঞান ও ভাগ্যের প্রতীক। এই সংখ্যার কম্পন শিক্ষা ও জ্ঞান সংক্রান্ত লেনদেনে বিশেষ সাফল্য দেয়। এটি অত্যন্ত শুভ এবং নিরাপদ। তবে অতিরিক্ত আত্মবিশ্বাস এড়িয়ে চলুন। হলুদ রঙের সাথে সম্পর্কিত এই কোডটি শিক্ষা বা আধ্যাত্মিক কাজে ব্যবহার করলে বিশেষ ফল পাওয়া যায়। বৃহস্পতিবারে কোড পরিবর্তন করলে মঙ্গল।",
+                4: "রাহুর প্রভাবে এই PIN কোডটি রহস্যময় ও জটিল। এই সংখ্যার কম্পন গবেষণা ও প্রযুক্তি ক্ষেত্রে সাফল্য দেয়। এটি অন্যদের কাছে অনুমান করা কঠিন, যা নিরাপত্তার দিক থেকে ভালো। তবে এই সংখ্যার প্রভাবে আপনি নিজেও কোড ভুলে যেতে পারেন, তাই নিরাপদ স্থানে লিখে রাখুন। নীল রঙের সাথে সম্পর্কিত, নীল খামে সংরক্ষণ করলে ভালো। শনিবারে কোড পরিবর্তন করুন।",
+                5: "বুধের প্রভাবে এই PIN কোডটি চঞ্চল ও দ্রুত পরিবর্তনশীল। এই সংখ্যার কম্পন দ্রুত সিদ্ধান্ত ও যোগাযোগে দক্ষতা বৃদ্ধি করে। এটি নিরাপত্তার দিক থেকে মাঝারি, কারণ আপনি নিজেও প্রায়ই পরিবর্তন করতে পারেন। সবুজ রঙের সাথে সম্পর্কিত, আপনার ডিজিটাল ডিভাইসে সবুজ থিম ব্যবহার করলে সুরক্ষা বাড়ে। প্রতি মাসে অন্তত একবার কোড পরিবর্তন করা উত্তম।",
+                6: "শুক্রের কৃপায় এই PIN কোডটি সৌন্দর্য ও সম্পর্কের প্রতীক। এই সংখ্যার কম্পন আর্থিক স্থিতিশীলতা ও বিলাসিতা বৃদ্ধি করে। এটি মোটামুটি নিরাপদ, তবে প্রিয়জনের সাথে শেয়ার করা এড়িয়ে চলুন। সাদা ও গোলাপি রঙের সাথে সম্পর্কিত, এই রঙের ডায়েরিতে কোড লিখে রাখুন। শুক্রবারে কোড পরিবর্তন করলে আর্থিক স্থিতিশীলতা আসে।",
+                7: "কেতুর প্রভাবে এই PIN কোডটি আধ্যাত্মিক ও গভীর। এই সংখ্যার কম্পন আধ্যাত্মিক উন্নতি ও গোপন লাভের সম্ভাবনা তৈরি করে। এটি অত্যন্ত নিরাপদ এবং অনুমান করা প্রায় অসম্ভব। তবে আপনি নিজেও কোড ভুলে যেতে পারেন, তাই একটি আধ্যাত্মিক প্রতীক (যেমন ওঁ) দিয়ে মনে রাখার চেষ্টা করুন। বেগুনি বা গাঢ় নীল রং ব্যবহার করুন। কেতুর দিনে (শুক্রবার) পরিবর্তন করুন।",
+                8: "শনির প্রভাবে এই PIN কোডটি অত্যন্ত শক্তিশালী ও স্থিতিশীল। এই সংখ্যার কম্পন দীর্ঘমেয়াদী আর্থিক স্থিতিশীলতা ও ধৈর্যের গুণ বৃদ্ধি করে। এটি নিরাপত্তার দিক থেকে সেরা। তবে এই সংখ্যার প্রভাবে আপনি অতিরিক্ত সতর্ক হন, যা মাঝে মাঝে সমস্যা তৈরি করতে পারে। কালো ও নীল রঙের সাথে সম্পর্কিত। শনিবারে কোড পরিবর্তন করলে দীর্ঘমেয়াদী নিরাপত্তা নিশ্চিত হয়। প্রতি ৬ মাস অন্তর পরিবর্তন করুন।",
+                9: "মঙ্গলের প্রভাবে এই PIN কোডটি সাহসী ও উদ্যমী। এই সংখ্যার কম্পন সাহস ও উদ্যম বৃদ্ধি করে, প্রতিযোগিতামূলক ক্ষেত্রে সাফল্য দেয়। এটি নিরাপত্তার দিক থেকে ভালো, তবে দ্রুত সিদ্ধান্ত নেওয়ার প্রবণতা থাকায় কখনো কখনো ভুল হতে পারে। লাল রঙের সাথে সম্পর্কিত, লাল রঙের কভার ব্যবহার করুন। মঙ্গলবারে কোড পরিবর্তন করলে আত্মবিশ্বাস বৃদ্ধি পায়।"
+            };
+            return analyses[number] || "এই PIN কোডটি মাঝারি মানের নিরাপত্তা প্রদান করে। নিয়মিত পরিবর্তন করুন এবং অন্যের কাছে প্রকাশ করা থেকে বিরত থাকুন। শুভ রং ব্যবহার করলে নিরাপত্তা বৃদ্ধি পায়।";
         }
         
-        // 4. গাড়ির নম্বর
-        function renderCarNumber(input, number, data) {
-            return `
-                <div class="result-header">
-                    <div class="result-number"><span class="big-number">${number}</span></div>
-                    <h1 class="result-title">গাড়ির নম্বর: ${escapeHtml(input)}</h1>
-                    <p class="result-subtitle">${data.planet} | যাত্রার অংক</p>
-                </div>
-                <div class="result-card">
-                    <div class="info-section"><h3><i class="fas fa-plane"></i> যাত্রার শুভ-অশুভ</h3><p>${escapeHtml(data.travel.description)}</p></div>
-                    <div class="info-section"><h3><i class="fas fa-calendar-week"></i> যাত্রার শুভ দিন</h3><p>${data.luckyDay}</p></div>
-                    <div class="info-section"><h3><i class="fas fa-compass"></i> শুভ দিক</h3><p>${data.luckyDirection}</p></div>
-                    <div class="info-section"><h3><i class="fas fa-shield-alt"></i> নিরাপত্তা সতর্কতা</h3><p>${getVehicleSafetyTip(number)}</p></div>
-                </div>
-            `;
+        function getBankDetailedAnalysis(number) {
+            const analyses = {
+                1: "সূর্যের প্রভাবে এই ব্যাংক অ্যাকাউন্ট নম্বরটি অত্যন্ত স্থিতিশীল। দীর্ঘমেয়াদী সঞ্চয়ের জন্য উত্তম। নিয়মিত আয়ের উৎস স্থাপনে সাহায্য করে। নেতৃত্বমূলক বিনিয়োগ ও সরকারি সেক্টরে বিনিয়োগ করলে লাভের সম্ভাবনা বেশি। লাল রঙের চেকবুক ব্যবহার করলে আর্থিক স্থিতিশীলতা বৃদ্ধি পায়।",
+                2: "চন্দ্রের প্রভাবে এই ব্যাংক অ্যাকাউন্ট নম্বরটি মাঝারি স্থিতিশীল। অংশীদারি অ্যাকাউন্ট বা যৌথ মালিকানা বেশি লাভজনক। জলের সাথে সম্পর্কিত ব্যবসায় বিনিয়োগ করলে লাভ হয়। আবেগ নিয়ন্ত্রণে রাখুন, সাদা রঙের পাসবুক ব্যবহার করলে ভালো।",
+                3: "বৃহস্পতির প্রভাবে এই ব্যাংক অ্যাকাউন্ট নম্বরটি শিক্ষা ও জ্ঞান সংক্রান্ত বিনিয়োগে সেরা। দীর্ঘমেয়াদে স্থিতিশীল লাভ নিশ্চিত করে। পাবলিশিং হাউস, শিক্ষা প্রতিষ্ঠানে বিনিয়োগ করলে বিশেষ লাভ হয়। হলুদ রঙের সাথে সম্পর্কিত, এই রঙের চেক ব্যবহার করলে মঙ্গল।",
+                4: "রাহুর প্রভাবে এই ব্যাংক অ্যাকাউন্ট নম্বরটি অস্থিরতার সম্ভাবনা রাখে। একাধিক অ্যাকাউন্ট খোলা ভালো। প্রযুক্তি ও গবেষণা খাতে বিনিয়োগ করলে লাভের সম্ভাবনা থাকে। বিদেশী বিনিয়োগে সতর্কতা প্রয়োজন। নীল রঙের সাথে সম্পর্কিত, নীল খামে দলিল সংরক্ষণ করুন।",
+                5: "বুধের প্রভাবে এই ব্যাংক অ্যাকাউন্ট নম্বরটি দ্রুত লেনদেন ও চঞ্চলতা নির্দেশ করে। স্বল্পমেয়াদী বিনিয়োগে লাভ। শেয়ার বাজার ও ট্রেডিংয়ে সাফল্য আসে। দীর্ঘমেয়াদী সঞ্চয়ের জন্য উপযুক্ত নয়। সবুজ রঙের সাথে সম্পর্কিত, সবুজ রঙের পাসবুক ব্যবহার করলে লাভ হয়।",
+                6: "শুক্রের প্রভাবে এই ব্যাংক অ্যাকাউন্ট নম্বরটি অত্যন্ত স্থিতিশীল ও লাভজনক। পরিবারিক ব্যয় ও সঞ্চয়ের জন্য উত্তম। বিলাস দ্রব্য, কসমেটিকস, ফ্যাশন খাতে বিনিয়োগ করলে লাভ হয়। সাদা ও গোলাপি রঙের চেকবুক ব্যবহার করলে আর্থিক সাফল্য আসে।",
+                7: "কেতুর প্রভাবে এই ব্যাংক অ্যাকাউন্ট নম্বরটি গোপনীয় ও স্থিতিশীল। গবেষণা ও আধ্যাত্মিক কাজের জন্য সেরা। ধীরে ধীরে কিন্তু নিশ্চিত লাভ হয়। লেখালেখি, প্রকাশনা, আধ্যাত্মিক সংস্থায় বিনিয়োগ করলে লাভ। বেগুনি রঙের সাথে সম্পর্কিত।",
+                8: "শনির প্রভাবে এই ব্যাংক অ্যাকাউন্ট নম্বরটি দীর্ঘমেয়াদে অত্যন্ত স্থিতিশীল। ধৈর্য ধরে বিনিয়োগ করলে বিপুল লাভের সম্ভাবনা। শিল্প ও স্থাবর সম্পত্তিতে বিনিয়োগ করলে লাভ হয়। কালো ও নীল রঙের সাথে সম্পর্কিত, শনিবারে লেনদেন করলে বিশেষ লাভ হয়।",
+                9: "মঙ্গলের প্রভাবে এই ব্যাংক অ্যাকাউন্ট নম্বরটি উদ্যমী ও সক্রিয়। প্রতিযোগিতামূলক বিনিয়োগে সাফল্য। উদ্যোক্তা হিসেবে সাফল্য আসবে। কনস্ট্রাকশন, রিয়েল এস্টেট, ডিফেন্স শেয়ারে বিনিয়োগ করলে লাভ। লাল রঙের সাথে সম্পর্কিত, মঙ্গলবারে লেনদেন করলে ভালো।"
+            };
+            return analyses[number] || "এই ব্যাংক অ্যাকাউন্ট নম্বরটি মাঝারি স্থিতিশীলতা প্রদান করে। নিয়মিত লেনদেন ও সঞ্চয়ের মাধ্যমে স্থিতিশীলতা বৃদ্ধি পাবে। দীর্ঘমেয়াদী পরিকল্পনার সাথে ব্যবহার করলে ভালো ফল পাবেন।";
         }
         
-        // 5. বাইক নম্বর
-        function renderBikeNumber(input, number, data) {
-            return `
-                <div class="result-header">
-                    <div class="result-number"><span class="big-number">${number}</span></div>
-                    <h1 class="result-title">বাইকের নম্বর: ${escapeHtml(input)}</h1>
-                    <p class="result-subtitle">${data.planet} | বাইকের অংক</p>
-                </div>
-                <div class="result-card">
-                    <div class="info-section"><h3><i class="fas fa-motorcycle"></i> বাইক চালনার শুভ-অশুভ</h3><p>${escapeHtml(data.travel.description)}</p></div>
-                    <div class="info-section"><h3><i class="fas fa-calendar-week"></i> শুভ দিন</h3><p>${data.luckyDay}</p></div>
-                    <div class="info-section"><h3><i class="fas fa-shield-alt"></i> নিরাপত্তা সতর্কতা</h3><p>${getBikeSafetyTip(number)}</p></div>
-                </div>
-            `;
+        function getCarDetailedAnalysis(number, data) {
+            const analyses = {
+                1: "সূর্যের প্রভাবে এই গাড়ির নম্বরটি অত্যন্ত শক্তিশালী। পূর্ব দিকে যাত্রা করলে বিশেষ সাফল্য লাভ করবেন। সূর্যোদয়ের সময় যাত্রা শুরু করলে মঙ্গল। তবে দ্রুত গাড়ি চালানো এড়িয়ে চলুন। সপ্তাহের দ্বিতীয় ও তৃতীয় দিনে ভ্রমণে সতর্কতা অবলম্বন করুন। নিয়মিত ইঞ্জিন চেক করান এবং লাল রঙের গাড়ি কভার ব্যবহার করলে সুরক্ষা বাড়ে।",
+                2: "চন্দ্রের প্রভাবে এই গাড়ির নম্বরটি আবেগপ্রবণ। সোমবারে যাত্রা করলে মঙ্গল। উত্তর-পশ্চিম দিকে যাত্রা করলে ভালো ফল পাবেন। চাঁদ উঠার সময় যাত্রা শুরু করলে বিশেষ সাফল্য। অমাবস্যার দিন যাত্রা এড়িয়ে চলুন। রাতে গাড়ি চালানোর সময় সতর্ক থাকুন এবং হেডলাইট ভালোভাবে চেক করুন।",
+                3: "বৃহস্পতির প্রভাবে এই গাড়ির নম্বরটি জ্ঞান ও আশাবাদের প্রতীক। শিক্ষা বা ব্যবসায়িক ভ্রমণে এই নম্বর শুভ। বৃহস্পতিবার যাত্রা করলে মঙ্গল। পূর্ব-উত্তর দিকে যাত্রা করলে সাফল্য। সকাল ৮-১০টার মধ্যে যাত্রা শুরু করলে বিশেষ ফল পাওয়া যায়। নিয়মিত সার্ভিস করান।",
+                4: "রাহুর প্রভাবে এই গাড়ির নম্বরটি রহস্যময়। রাতের বেলা যাত্রা এড়িয়ে চলুন। শনিবারে যাত্রা করলে ভালো। দক্ষিণ-পশ্চিম দিক শুভ। যাত্রার আগে ধূপ বা লোবান জ্বালিয়ে নিলে বাধা কমে। ব্রেক ও টায়ার নিয়মিত চেক করান। নীল রঙের গাড়ি কভার ব্যবহার করলে সুরক্ষা বাড়ে।",
+                5: "বুধের প্রভাবে এই গাড়ির নম্বরটি চঞ্চল। স্বল্প দূরত্বের যাত্রায় এই নম্বর শুভ। বুধবার যাত্রা করলে মঙ্গল। উত্তর দিকে যাত্রা করলে ভালো। দুপুর ১২-২টার মধ্যে যাত্রা শুরু করলে সাফল্য। সিগন্যাল মেনে চলুন, ওভারটেকিং এড়িয়ে চলুন। সবুজ রঙের সাথে সম্পর্কিত।",
+                6: "শুক্রের প্রভাবে এই গাড়ির নম্বরটি সৌন্দর্যপ্রিয়। বিনোদন বা পারিবারিক ভ্রমণে এই নম্বর উত্তম। শুক্রবার যাত্রা করলে ভালো। দক্ষিণ-পূর্ব দিকে যাত্রা করলে মঙ্গল। সন্ধ্যার সময় যাত্রা শুরু করলে সাফল্য। আরামদায়ক গতিতে চলুন, গাড়ির অভ্যন্তর পরিষ্কার রাখুন।",
+                7: "কেতুর প্রভাবে এই গাড়ির নম্বরটি আধ্যাত্মিক। তীর্থস্থান বা আধ্যাত্মিক ভ্রমণে এই নম্বর শুভ। শুক্রবার ও শনিবার যাত্রা করলে মঙ্গল। উত্তর-পূর্ব দিকে যাত্রা করলে ভালো। ভোর ৪-৬টায় যাত্রা শুরু করলে সাফল্য। একাগ্র থাকুন, গাড়ি চালানোর সময় ফোন ব্যবহার করবেন না।",
+                8: "শনির প্রভাবে এই গাড়ির নম্বরটি ধৈর্যশীল। পার্বত্য অঞ্চলে ভ্রমণে সতর্ক থাকুন। শনিবার ও মঙ্গলবার যাত্রা করলে ভালো। পশ্চিম দিকে যাত্রা করলে মঙ্গল। সূর্যাস্তের পর যাত্রা শুরু করলে সাফল্য। ব্রেক নিয়মিত চেক করুন, গাড়ির টায়ারের চাপ পরীক্ষা করুন। কালো রঙের সাথে সম্পর্কিত।",
+                9: "মঙ্গলের প্রভাবে এই গাড়ির নম্বরটি সাহসী। প্রতিযোগিতামূলক ভ্রমণে এই নম্বর শুভ। মঙ্গলবার ও রবিবার যাত্রা করলে মঙ্গল। দক্ষিণ দিকে যাত্রা করলে ভালো। দুপুর ১২-৩টার মধ্যে যাত্রা শুরু করলে সাফল্য। অতিরিক্ত গতি এড়িয়ে চলুন, নিয়মিত ইঞ্জিন অয়েল চেক করুন।"
+            };
+            return analyses[number] || `${data.travel.description} এই নম্বরের জন্য শুভ রং: ${data.luckyColor}। শুভ দিন: ${data.luckyDay}। নিয়মিত গাড়ি সার্ভিস করান এবং নিরাপত্তা সতর্কতা মেনে চলুন।`;
         }
         
-        // 6. মোবাইল নম্বর
-        function renderMobileNumber(input, number, data) {
-            return `
-                <div class="result-header">
-                    <div class="result-number"><span class="big-number">${number}</span></div>
-                    <h1 class="result-title">মোবাইল নম্বর: ${escapeHtml(input)}</h1>
-                    <p class="result-subtitle">${data.planet} | যোগাযোগের অংক</p>
-                </div>
-                <div class="result-card">
-                    <div class="info-section"><h3><i class="fas fa-comments"></i> যোগাযোগের প্রভাব</h3><p>${escapeHtml(data.identity.description.substring(0, 250))}</p></div>
-                    <div class="info-section"><h3><i class="fas fa-chart-line"></i> ক্যারিয়ারের উপর প্রভাব</h3><p>${getPhoneCareerTip(number)}</p></div>
-                    <div class="info-section"><h3><i class="fas fa-exclamation-triangle"></i> সতর্কতা</h3><p>${getPhoneWarning(number)}</p></div>
-                </div>
-            `;
+        function getBusinessDetailedAnalysis(number, data) {
+            return `${data.business.description} এই ব্যবসার নামের জন্য শুভ রং: ${data.luckyColor}। ব্যবসা শুরুর শুভ দিন: ${data.luckyDay}। ${data.tip.description.substring(0, 200)} এই অংকের সাথে ৩, ৬ ও ৯ সংখ্যার ব্যক্তিদের সাথে অংশীদারিত্ব করলে সাফল্য আসে।`;
         }
         
-        // 7. পণ্যের মূল্য
-        function renderProductPrice(input, number, data) {
+        function getPriceDetailedAnalysis(number) {
             const isGood = [3,6,9].includes(number);
-            return `
-                <div class="result-header">
-                    <h1 class="result-title">মূল্য বিশ্লেষণ</h1>
-                    <p class="result-subtitle">${escapeHtml(input)}</p>
-                </div>
-                <div class="result-card">
-                    <div class="info-section"><h3><i class="fas fa-calculator"></i> সংখ্যাতাত্ত্বিক মান</h3><p>রুট সংখ্যা: <strong>${number}</strong> (${data.planet})</p></div>
-                    <div class="info-section"><h3><i class="fas fa-star"></i> বিশ্লেষণ</h3><p>${isGood ? '✅ এই মূল্য শুভ এবং ব্যবসার জন্য অনুকূল।' : '⚠️ এই মূল্যে সতর্কতা প্রয়োজন।'}</p></div>
-                    <div class="info-section"><h3><i class="fas fa-lightbulb"></i> বিকল্প মূল্য সুপারিশ</h3><p>${getAlternativePrices(number)}</p></div>
-                </div>
-            `;
+            const goodText = "এই মূল্য শুভ এবং ব্যবসার জন্য অনুকূল। এই সংখ্যার কম্পন আর্থিক স্থিতিশীলতা ও লাভের সম্ভাবনা বৃদ্ধি করে।";
+            const badText = "এই মূল্যে সতর্কতা প্রয়োজন। ৪ ও ৮ সংখ্যার সাথে যুক্ত মূল্য এড়িয়ে চলাই ভালো। বিকল্প মূল্য হিসেবে ৩, ৬, ৯ সংখ্যার দাম (যেমন: ৩৯৯, ৬৯৯, ৯৯৯ টাকা) নির্বাচন করলে লাভের সম্ভাবনা বাড়ে।";
+            return isGood ? goodText : badText;
         }
         
-        // 8. PIN কোড
+        function getAlternativePricesDetailed(number) {
+            const alts = {
+                1: "১১১, ৫৫৫, ৯৯৯ টাকা — এই মূল্যগুলো সূর্যের শক্তির সাথে সঙ্গতিপূর্ণ।",
+                2: "২২২, ৬৬৬, ৮৮৮ টাকা — এই মূল্যগুলো চন্দ্রের শক্তির সাথে সম্পর্কিত।",
+                3: "৩৩৩, ৬৬৬, ৯৯৯ টাকা — বৃহস্পতির আশীর্বাদপ্রাপ্ত মূল্য।",
+                4: "৩৩৩, ৬৬৬, ৯৯৯ টাকা — রাহুর প্রভাব কমাতে এই মূল্যগুলো শুভ।",
+                5: "৫৫৫, ১১১, ৭৭৭ টাকা — বুধের প্রভাবে দ্রুত লাভ দেবে।",
+                6: "৬৬৬, ৯৯৯, ৩৩৩ টাকা — শুক্রের কৃপায় স্থিতিশীল লাভ দেবে।",
+                7: "৭৭৭, ১১১, ৫৫৫ টাকা — কেতুর প্রভাবে আধ্যাত্মিক সাফল্য দেবে।",
+                8: "৩৩৩, ৬৬৬, ৯৯৯ টাকা — শনির প্রভাবে দীর্ঘমেয়াদী স্থিতিশীলতা দেবে।",
+                9: "৯৯৯, ৫৫৫, ১১১ টাকা — মঙ্গলের প্রভাবে সাহস ও উদ্যম বৃদ্ধি করবে।"
+            };
+            return alts[number] || "৩৩৩, ৬৬৬, ৯৯৯ টাকা — এই মূল্যগুলো শুভ এবং ব্যবসার জন্য অনুকূল।";
+        }
+        
+        // ========== রেন্ডার ফাংশন ==========
+        
         function renderPinCode(input, number, data) {
             return `
                 <div class="result-header">
@@ -272,15 +261,24 @@
                     <h1 class="result-title">PIN কোড: ${escapeHtml(input)}</h1>
                     <p class="result-subtitle">${data.planet} | নিরাপত্তার অংক</p>
                 </div>
+                ${getRootNumberDescription(number, data)}
                 <div class="result-card">
-                    <div class="info-section"><h3><i class="fas fa-shield-alt"></i> নিরাপত্তা বিশ্লেষণ</h3><p>${getPinSecurityTip(number)}</p></div>
-                    <div class="info-section"><h3><i class="fas fa-chart-line"></i> ভাগ্যের উপর প্রভাব</h3><p>${getPinLuckTip(number)}</p></div>
-                    <div class="info-section"><h3><i class="fas fa-exclamation-triangle"></i> সতর্কতা</h3><p>${getPinWarning(number)}</p></div>
+                    <div class="info-section">
+                        <h3><i class="fas fa-shield-alt"></i> নিরাপত্তা ও ভাগ্য বিশ্লেষণ</h3>
+                        <p>${getPinDetailedAnalysis(number)}</p>
+                    </div>
+                    <div class="info-section">
+                        <h3><i class="fas fa-exclamation-triangle"></i> সতর্কতা ও পরামর্শ</h3>
+                        <p>এই PIN কোডটি কখনো কারো সাথে শেয়ার করবেন না। প্রতি ৩ মাস অন্তর কোড পরিবর্তন করুন। জন্মতারিখ, মোবাইল নম্বর বা সহজ প্যাটার্ন এড়িয়ে চলুন। নিরাপদ স্থানে লিখে রাখুন। ${data.luckyDay} দিনে কোড পরিবর্তন করলে বিশেষ ফল পাওয়া যায়।</p>
+                    </div>
+                    <div class="info-section">
+                        <h3><i class="fas fa-hand-sparkles"></i> প্রতিকার</h3>
+                        <p>${data.tip.description.substring(0, 200)} এই PIN কোডের জন্য শুভ রং: ${data.luckyColor}। এই রঙের ওয়ালেট বা পার্স ব্যবহার করলে নিরাপত্তা বৃদ্ধি পায়।</p>
+                    </div>
                 </div>
             `;
         }
         
-        // 9. ব্যাংক অ্যাকাউন্ট
         function renderBankAccount(input, number, data) {
             return `
                 <div class="result-header">
@@ -288,47 +286,132 @@
                     <h1 class="result-title">ব্যাংক অ্যাকাউন্ট: ${escapeHtml(input)}</h1>
                     <p class="result-subtitle">${data.planet} | আর্থিক অংক</p>
                 </div>
+                ${getRootNumberDescription(number, data)}
                 <div class="result-card">
-                    <div class="info-section"><h3><i class="fas fa-chart-line"></i> আর্থিক স্থিতিশীলতা</h3><p>${getBankStabilityTip(number)}</p></div>
-                    <div class="info-section"><h3><i class="fas fa-coins"></i> লাভ-ক্ষতির সম্ভাবনা</h3><p>${getBankProfitTip(number)}</p></div>
-                    <div class="info-section"><h3><i class="fas fa-hand-sparkles"></i> প্রতিকার</h3><p>${getBankRemedy(number)}</p></div>
+                    <div class="info-section">
+                        <h3><i class="fas fa-chart-line"></i> আর্থিক স্থিতিশীলতা ও লাভ-ক্ষতি বিশ্লেষণ</h3>
+                        <p>${getBankDetailedAnalysis(number)}</p>
+                    </div>
+                    <div class="info-section">
+                        <h3><i class="fas fa-chart-simple"></i> বিনিয়োগের দিকনির্দেশনা</h3>
+                        <p>${data.investment.description.substring(0, 300)} এই অ্যাকাউন্ট নম্বরের সাথে সঙ্গতিপূর্ণ বিনিয়োগ করলে সাফল্য আসবে। ${data.luckyDay} দিনে বড় লেনদেন করলে বিশেষ লাভ হয়।</p>
+                    </div>
+                    <div class="info-section">
+                        <h3><i class="fas fa-hand-sparkles"></i> প্রতিকার</h3>
+                        <p>${data.tip.description.substring(0, 200)} এই অ্যাকাউন্টের জন্য শুভ রং: ${data.luckyColor}। এই রঙের চেকবুক বা পাসবুক ব্যবহার করলে আর্থিক স্থিতিশীলতা বৃদ্ধি পায়।</p>
+                    </div>
                 </div>
             `;
         }
         
-        // 10. বিবাহ মিলন
-        function renderMarriage(input1, input2, number1, number2, data1, data2) {
-            const compatibility = getCompatibilityScore(number1, number2);
-            return `
-                <div class="result-header">
-                    <h1 class="result-title">বিবাহ মিলন বিশ্লেষণ</h1>
-                    <p class="result-subtitle">${escapeHtml(input1)} (${number1}) ও ${escapeHtml(input2)} (${number2})</p>
-                </div>
-                <div class="result-card">
-                    <div class="info-section"><h3><i class="fas fa-heart"></i> সামঞ্জস্যের হার</h3><p>${compatibility.percentage}% - ${compatibility.level}</p></div>
-                    <div class="info-section"><h3><i class="fas fa-chart-line"></i> দাম্পত্য জীবনের সম্ভাবনা</h3><p>${getMarriagePrediction(number1, number2)}</p></div>
-                    <div class="info-section"><h3><i class="fas fa-handshake"></i> পরামর্শ</h3><p>${getMarriageAdvice(number1, number2)}</p></div>
-                </div>
-            `;
-        }
-        
-        // 11. নতুন বাড়ি
-        function renderNewHome(input, number, data) {
+        function renderCarNumber(input, number, data) {
             return `
                 <div class="result-header">
                     <div class="result-number"><span class="big-number">${number}</span></div>
-                    <h1 class="result-title">বাড়ির নম্বর: ${escapeHtml(input)}</h1>
-                    <p class="result-subtitle">${data.planet} | বসবাসের অংক</p>
+                    <h1 class="result-title">গাড়ির নম্বর: ${escapeHtml(input)}</h1>
+                    <p class="result-subtitle">${data.planet} | যাত্রার অংক</p>
                 </div>
+                ${getRootNumberDescription(number, data)}
                 <div class="result-card">
-                    <div class="info-section"><h3><i class="fas fa-home"></i> পারিবারিক শান্তি</h3><p>${getHomePeaceTip(number)}</p></div>
-                    <div class="info-section"><h3><i class="fas fa-chart-line"></i> স্থিতিশীলতা</h3><p>${getHomeStabilityTip(number)}</p></div>
-                    <div class="info-section"><h3><i class="fas fa-hand-sparkles"></i> বাড়ির জন্য প্রতিকার</h3><p>${getHomeRemedy(number)}</p></div>
+                    <div class="info-section">
+                        <h3><i class="fas fa-plane"></i> যাত্রার শুভ-অশুভ ও নিরাপত্তা বিশ্লেষণ</h3>
+                        <p>${getCarDetailedAnalysis(number, data)}</p>
+                    </div>
+                    <div class="info-section">
+                        <h3><i class="fas fa-wrench"></i> রক্ষণাবেক্ষণ পরামর্শ</h3>
+                        <p>নিয়মিত ইঞ্জিন অয়েল ও ব্রেক ফ্লুইড চেক করুন। ${data.luckyDay} দিনে গাড়ি ধোয়া ও পরিষ্কার করলে যান্ত্রিক সমস্যা কমে। প্রতি ৫০০০ কিলোমিটারে সার্ভিস করান। এই নম্বরের প্রভাবে ব্রেক সিস্টেমে বেশি নজর দিন।</p>
+                    </div>
+                    <div class="info-section">
+                        <h3><i class="fas fa-hand-sparkles"></i> প্রতিকার</h3>
+                        <p>${data.tip.description.substring(0, 200)} এই গাড়ির জন্য শুভ রং: ${data.luckyColor}। এই রঙের গাড়ি কভার ব্যবহার করলে সুরক্ষা বাড়ে। ${data.luckyDay} দিনে যাত্রা করলে বিশেষ সাফল্য লাভ করবেন।</p>
+                    </div>
                 </div>
             `;
         }
         
-        // 12. মূলাংক
+        function renderPersonalName(input, number, data) {
+            return `
+                <div class="result-header">
+                    <div class="result-number"><span class="big-number">${number}</span></div>
+                    <h1 class="result-title">${data.identity.title}</h1>
+                    <p class="result-subtitle">${data.planet} | ব্যক্তির নামের অংক</p>
+                </div>
+                ${getRootNumberDescription(number, data)}
+                <div class="result-card">
+                    <div class="info-section">
+                        <h3><i class="fas fa-user-astronaut"></i> ব্যক্তিত্ব ও স্বভাব</h3>
+                        <p>${escapeHtml(data.identity.description)}</p>
+                    </div>
+                    <div class="info-section">
+                        <h3><i class="fas fa-briefcase"></i> ক্যারিয়ার ও পেশা</h3>
+                        <p>${escapeHtml(data.business.description)}</p>
+                    </div>
+                    <div class="info-section">
+                        <h3><i class="fas fa-heart"></i> সম্পর্ক ও বিবাহ</h3>
+                        <p>${getRelationshipDetailed(number)}</p>
+                    </div>
+                    <div class="info-section">
+                        <h3><i class="fas fa-hand-sparkles"></i> জ্যোতিষীয় প্রতিকার</h3>
+                        <p>${escapeHtml(data.tip.description)}</p>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function renderBusinessName(input, number, data) {
+            return `
+                <div class="result-header">
+                    <div class="result-number"><span class="big-number">${number}</span></div>
+                    <h1 class="result-title">"${escapeHtml(input)}"</h1>
+                    <p class="result-subtitle">${data.planet} | ব্যবসার নামের অংক</p>
+                </div>
+                ${getRootNumberDescription(number, data)}
+                <div class="result-card">
+                    <div class="info-section">
+                        <h3><i class="fas fa-chart-line"></i> ব্যবসার সম্ভাবনা ও ধরণ</h3>
+                        <p>${getBusinessDetailedAnalysis(number, data)}</p>
+                    </div>
+                    <div class="info-section">
+                        <h3><i class="fas fa-palette"></i> ব্র্যান্ডিং ও মার্কেটিং পরামর্শ</h3>
+                        <p>এই ব্যবসার নামের জন্য শুভ রং: ${data.luckyColor}। এই রঙের লোগো, বিজনেস কার্ড ও ওয়েবসাইট ডিজাইন ব্যবহার করলে ব্র্যান্ড ভ্যালু বৃদ্ধি পায়। শুভ দিন: ${data.luckyDay} — এই দিনে ব্যবসার উদ্বোধন বা নতুন পণ্য লঞ্চ করলে সাফল্য আসে।</p>
+                    </div>
+                    <div class="info-section">
+                        <h3><i class="fas fa-chart-simple"></i> সাফল্যের সূত্র</h3>
+                        <p>${getSuccessFormula(number)}</p>
+                    </div>
+                    <div class="info-section">
+                        <h3><i class="fas fa-hand-sparkles"></i> প্রতিকার</h3>
+                        <p>${data.tip.description.substring(0, 200)} ব্যবসায়িক সাফল্যের জন্য ${data.luckyDay} দিনে ${data.luckyColor} রঙের বস্ত্র দান করুন।</p>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function renderProductPrice(input, number, data) {
+            return `
+                <div class="result-header">
+                    <div class="result-number"><span class="big-number">${number}</span></div>
+                    <h1 class="result-title">মূল্য: ${escapeHtml(input)}</h1>
+                    <p class="result-subtitle">${data.planet} | মূল্য নির্ধারণের অংক</p>
+                </div>
+                ${getRootNumberDescription(number, data)}
+                <div class="result-card">
+                    <div class="info-section">
+                        <h3><i class="fas fa-calculator"></i> সংখ্যাতাত্ত্বিক বিশ্লেষণ</h3>
+                        <p>${getPriceDetailedAnalysis(number)}</p>
+                    </div>
+                    <div class="info-section">
+                        <h3><i class="fas fa-lightbulb"></i> বিকল্প মূল্য সুপারিশ</h3>
+                        <p>${getAlternativePricesDetailed(number)}</p>
+                    </div>
+                    <div class="info-section">
+                        <h3><i class="fas fa-chart-line"></i> ব্যবসায়িক প্রভাব</h3>
+                        <p>${data.business.description.substring(0, 250)} এই মূল্য নির্ধারণ করলে আপনার ব্যবসায় ${[3,6,9].includes(number) ? 'স্থিতিশীল লাভ ও গ্রাহক আকর্ষণ বৃদ্ধি পাবে' : 'সতর্কতা প্রয়োজন, বিকল্প মূল্য বিবেচনা করুন'}।</p>
+                    </div>
+                </div>
+            `;
+        }
+        
         function renderMulank(input, number, data) {
             return `
                 <div class="result-header">
@@ -336,124 +419,72 @@
                     <h1 class="result-title">${data.identity.title}</h1>
                     <p class="result-subtitle">${data.planet} | মূলাংক বিশ্লেষণ</p>
                 </div>
+                ${getRootNumberDescription(number, data)}
                 <div class="result-card">
-                    <div class="info-section"><h3><i class="fas fa-user-astronaut"></i> ব্যক্তিত্ব ও স্বভাব</h3><p>${escapeHtml(data.identity.description)}</p></div>
-                    <div class="info-section"><h3><i class="fas fa-briefcase"></i> ক্যারিয়ার ও পেশা</h3><p>${escapeHtml(data.business.description)}</p></div>
-                    <div class="info-section"><h3><i class="fas fa-hand-sparkles"></i> প্রতিকার</h3><p>${escapeHtml(data.tip.description)}</p></div>
+                    <div class="info-section">
+                        <h3><i class="fas fa-user-astronaut"></i> ব্যক্তিত্ব ও স্বভাব</h3>
+                        <p>${escapeHtml(data.identity.description)}</p>
+                    </div>
+                    <div class="info-section">
+                        <h3><i class="fas fa-briefcase"></i> ক্যারিয়ার ও পেশা</h3>
+                        <p>${escapeHtml(data.business.description)}</p>
+                    </div>
+                    <div class="info-section">
+                        <h3><i class="fas fa-chart-line"></i> জীবনের পথ ও ভাগ্য</h3>
+                        <p>${getLifePathDescription(number)}</p>
+                    </div>
+                    <div class="info-section">
+                        <h3><i class="fas fa-hand-sparkles"></i> প্রতিকার</h3>
+                        <p>${escapeHtml(data.tip.description)}</p>
+                    </div>
                 </div>
             `;
         }
         
-        // ========== হেল্পার ফাংশন ==========
-        function getRelationshipTip(num) {
-            const tips = {1:"নেতৃত্ব দিন, সম্পর্কে আধিপত্য দেখাবেন না",2:"আবেগ ভাগ করুন, সঙ্গীকে বুঝুন",3:"আশাবাদী থাকুন, মজা করুন",4:"ধৈর্য ধরুন, সম্পর্কে স্থির থাকুন",5:"স্বাধীনতা দিন, বাঁধা দেবেন না",6:"ভালোবাসা দিন, সেবা করুন",7:"গভীরতা বজায় রাখুন, সৎ থাকুন",8:"দায়িত্ব নিন, বিশ্বস্ত থাকুন",9:"আদর্শিক হোন, উদার থাকুন"};
-            return tips[num] || "সম্পর্কে সততা ও বিশ্বাস বজায় রাখুন";
+        // হেল্পার ফাংশন
+        function getRelationshipDetailed(num) {
+            const tips = {
+                1: "আপনি সম্পর্কে নেতৃত্ব দিতে ভালোবাসেন। সঙ্গীকে সম্মান দিন, আধিপত্য দেখাবেন না। সূর্যের প্রভাবে আপনার সম্পর্কে স্থিতিশীলতা ও আস্থা থাকে। বিবাহিত জীবনে সূর্যের শক্তি আপনাকে দায়িত্বশীল করে তোলে। রবিবারে সঙ্গীর সাথে সময় কাটালে সম্পর্ক মজবুত হয়।",
+                2: "আপনি অত্যন্ত আবেগপ্রবণ ও সম্পর্কপ্রিয়। চাঁদের প্রভাবে আপনার মানসিক অস্থিরতা সম্পর্ককে প্রভাবিত করতে পারে। সঙ্গীর সাথে মন খুলে কথা বলুন, আবেগ ভাগ করে নিন। সোমবারে একসাথে সময় কাটালে মানসিক প্রশান্তি আসে।",
+                3: "আপনি আশাবাদী ও মিশুক। সম্পর্কে হাস্যরস ও আনন্দ বজায় রাখতে পারেন। বৃহস্পতির প্রভাবে আপনার সম্পর্কে জ্ঞান ও বুদ্ধির সমন্বয় থাকে। বৃহস্পতিবারে একসাথে ধর্মীয় বা শিক্ষামূলক কাজ করলে সম্পর্কের গভীরতা বাড়ে।",
+                4: "আপনি সম্পর্কে গম্ভীর ও দায়িত্বশীল। রাহুর প্রভাবে মাঝে মাঝে ভুল বোঝাবুঝি তৈরি হতে পারে। ধৈর্য ধরুন, সঙ্গীকে সময় দিন। শনিবারে একসাথে প্রকৃতিতে সময় কাটালে সম্পর্কের টানাপোড়েন কমে।",
+                5: "আপনি স্বাধীনচেতা ও চঞ্চল। সম্পর্কে একটু দূরত্ব বজায় রাখতে পছন্দ করেন। বুধের প্রভাবে আপনার যোগাযোগ দক্ষতা সম্পর্ককে টিকিয়ে রাখে। বুধবারে একসাথে নতুন কিছু শিখতে বা ভ্রমণ করতে গেলে সম্পর্ক সতেজ হয়।",
+                6: "আপনি অত্যন্ত স্নেহশীল ও যত্নশীল। শুক্রের প্রভাবে আপনার সম্পর্ক সৌন্দর্যপূর্ণ ও সুখময় হয়। সঙ্গীকে ভালোবাসা ও সেবা দিতে ভালোবাসেন। শুক্রবারে একসাথে শিল্প, সঙ্গীত বা সৌন্দর্যচর্চা করলে সম্পর্ক আরও মধুর হয়।",
+                7: "আপনি গভীর ও আধ্যাত্মিক। সম্পর্কে একাকীত্ব বোধ করতে পারেন। কেতুর প্রভাবে আপনার আধ্যাত্মিকতা সঙ্গীকে প্রভাবিত করতে পারে। একসাথে ধ্যান বা আধ্যাত্মিক চর্চা করলে সম্পর্কের গভীরতা বাড়ে।",
+                8: "আপনি দায়িত্বশীল ও স্থিতিশীল। শনির প্রভাবে সম্পর্কে ধৈর্য ও সহনশীলতা থাকে। তবে কর্মব্যস্ততার কারণে সঙ্গীকে সময় দিতে ভুলবেন না। শনিবারে একসাথে সময় কাটালে সম্পর্ক মজবুত হয়।",
+                9: "আপনি আবেগী ও উদ্যমী। মঙ্গলের প্রভাবে সম্পর্কে উত্তেজনা ও উদ্দীপনা থাকে। তবে রাগ নিয়ন্ত্রণ করা জরুরি। মঙ্গলবারে একসাথে খেলাধুলা বা প্রতিযোগিতামূলক কাজ করলে সম্পর্কের বন্ধন দৃঢ় হয়।"
+            };
+            return tips[num] || "সম্পর্কে সততা ও বিশ্বাস বজায় রাখুন। সঙ্গীর সাথে সময় কাটান, কথা বলুন। সম্পর্কের উন্নতির জন্য শুভ দিনে একসাথে সময় কাটান।";
         }
         
-        function getBabyFutureTip(num) {
-            const tips = {1:"নেতৃত্ব গুণাবলী বিকশিত হবে",2:"সৃজনশীল ও কল্পনাপ্রবণ হবে",3:"জ্ঞানী ও পণ্ডিত হবে",4:"গবেষক ও উদ্ভাবক হবে",5:"যোগাযোগে দক্ষ ও বুদ্ধিমান হবে",6:"শিল্পী ও সৌন্দর্যপ্রিয় হবে",7:"আধ্যাত্মিক ও গভীর চিন্তাবিদ হবে",8:"ধৈর্যশীল ও দায়িত্বশীল হবে",9:"সাহসী ও উদ্যমী হবে"};
-            return tips[num] || "সুপ্রতিভ ও সফল হবে";
+        function getLifePathDescription(num) {
+            const paths = {
+                1: "আপনার জীবন পথ নেতৃত্ব ও স্বাধীনতার। আপনাকে নিজের পায়ে দাঁড়াতে হবে এবং অন্যদের পথ দেখাতে হবে। জীবনে সাফল্য পেতে নিজের সিদ্ধান্তে অটল থাকুন। সূর্যের শক্তি আপনাকে উচ্চতায় নিয়ে যাবে।",
+                2: "আপনার জীবন পথ সহযোগিতা ও সম্পর্কের। আপনাকে অন্যদের সাথে মিলেমিশে কাজ করতে হবে। সম্পর্কের মাধ্যমেই আপনার সাফল্য আসবে। চাঁদের শক্তি আপনাকে সৃজনশীল ও সহানুভূতিশীল করে তুলবে।",
+                3: "আপনার জীবন পথ জ্ঞান ও শিক্ষার। আপনাকে জ্ঞানার্জন ও তা বিতরণ করতে হবে। শিক্ষক, লেখক বা পরামর্শক হিসেবে সাফল্য পাবেন। বৃহস্পতির শক্তি আপনাকে জ্ঞানী ও আশাবাদী করবে।",
+                4: "আপনার জীবন পথ গবেষণা ও উদ্ভাবনের। আপনাকে নতুন পথ তৈরি করতে হবে। প্রযুক্তি ও গবেষণা খাতে সাফল্য পাবেন। রাহুর শক্তি আপনাকে রহস্যময় ও গভীর চিন্তাবিদ করবে।",
+                5: "আপনার জীবন পথ যোগাযোগ ও বাণিজ্যের। আপনাকে মানুষের সাথে মিশতে হবে, যোগাযোগ দক্ষতা কাজে লাগাতে হবে। মার্কেটিং, মিডিয়া, ট্রেডিংয়ে সাফল্য পাবেন। বুধের শক্তি আপনাকে বুদ্ধিমান ও চটপটে করবে।",
+                6: "আপনার জীবন পথ সৌন্দর্য ও সম্পর্কের। আপনাকে শিল্প, সঙ্গীত, নৃত্যে নিজেকে প্রকাশ করতে হবে। বিলাস দ্রব্য, ফ্যাশন, কসমেটিকস ব্যবসায় সাফল্য পাবেন। শুক্রের শক্তি আপনাকে সৌন্দর্যপ্রিয় ও আকর্ষণীয় করবে।",
+                7: "আপনার জীবন পথ আধ্যাত্মিকতা ও গবেষণার। আপনাকে গভীরে যেতে হবে, সত্য আবিষ্কার করতে হবে। লেখালেখি, গবেষণা, আধ্যাত্মিক চর্চায় সাফল্য পাবেন। কেতুর শক্তি আপনাকে আধ্যাত্মিক ও গভীর চিন্তাবিদ করবে।",
+                8: "আপনার জীবন পথ ধৈর্য ও সংগ্রামের। আপনাকে পরিশ্রম করে সবকিছু অর্জন করতে হবে। শিল্প, ইঞ্জিনিয়ারিং, প্রশাসনে সাফল্য পাবেন। শনির শক্তি আপনাকে ধৈর্যশীল ও দায়িত্বশীল করবে।",
+                9: "আপনার জীবন পথ সাহস ও উদ্যমের। আপনাকে প্রতিযোগিতায় এগিয়ে থাকতে হবে। সেনাবাহিনী, খেলাধুলা, উদ্যোক্তা হিসেবে সাফল্য পাবেন। মঙ্গলের শক্তি আপনাকে সাহসী ও উদ্যমী করবে।"
+            };
+            return paths[num] || "আপনার জীবন পথ অনন্য। নিজের শক্তিতে বিশ্বাস রাখুন, ধৈর্য ধরুন। সাফল্য আপনার জন্য অপেক্ষা করছে।";
         }
         
-        function getNameInfluence(num) {
-            const influences = {1:"আত্মবিশ্বাসী ও স্বাধীনচেতা করবে",2:"সহানুভূতিশীল ও সম্পর্কপ্রিয় করবে",3:"আশাবাদী ও জ্ঞানী করবে",4:"গম্ভীর ও গবেষণাপ্রবণ করবে",5:"চঞ্চল ও যোগাযোগ দক্ষ করবে",6:"সৌন্দর্যপ্রিয় ও বিলাসী করবে",7:"গবেষণাপ্রবণ ও আধ্যাত্মিক করবে",8:"দায়িত্বশীল ও পরিশ্রমী করবে",9:"উদ্যমী ও সাহসী করবে"};
-            return influences[num] || "ইতিবাচক প্রভাব ফেলবে";
-        }
-        
-        function getBusinessSuccessTip(num) {
-            const tips = {1:"নিজে নেতৃত্ব দিন, সিদ্ধান্ত নিজে নিন",2:"টিম ওয়ার্ক করুন, জনসংযোগ বাড়ান",3:"জ্ঞান বিতরণ করুন, শিক্ষার উপর ফোকাস করুন",4:"গবেষণা করুন, প্রযুক্তি ব্যবহার করুন",5:"যোগাযোগ বাড়ান, মার্কেটিং এ জোর দিন",6:"সৃজনশীল হোন, ডিজাইনে মন দিন",7:"আধ্যাত্মিকতা যোগ করুন, গুণগত মান বজায় রাখুন",8:"সংগঠিত হোন, দীর্ঘমেয়াদী পরিকল্পনা করুন",9:"উদ্যমী থাকুন, প্রতিযোগিতায় এগিয়ে থাকুন"};
-            return tips[num] || "সৎ ও নিষ্ঠার সাথে ব্যবসা করুন";
-        }
-        
-        function getVehicleSafetyTip(num) {
-            const tips = {1:"দ্রুত গাড়ি চালানো এড়িয়ে চলুন",2:"ভারী যানবাহন থেকে দূরে থাকুন",3:"নিয়মিত সার্ভিস করান",4:"রাতে সতর্ক থাকুন, হেডলাইট চেক করুন",5:"সিগন্যাল মেনে চলুন, ওভারটেকিং এড়ান",6:"আরামদায়ক গতিতে চলুন",7:"একাগ্র থাকুন, ফোন ব্যবহার করবেন না",8:"ব্রেক নিয়মিত চেক করুন",9:"অতিরিক্ত গতি এড়িয়ে চলুন"};
-            return tips[num] || "সাবধানে ও নিয়ম মেনে চালনা করুন";
-        }
-        
-        function getBikeSafetyTip(num) {
-            const tips = {1:"হেলমেট পরুন, দ্রুত গতি এড়িয়ে চলুন",2:"রাতে সতর্ক থাকুন, লাইট ব্যবহার করুন",3:"নিয়মিত ব্রেক চেক করুন",4:"ভারী যানবাহন থেকে দূরে থাকুন",5:"সিগন্যাল মেনে চলুন",6:"আরামদায়ক গতিতে চলুন",7:"একাগ্র থাকুন",8:"টায়ার চেক করুন",9:"অতিরিক্ত গতি এড়িয়ে চলুন"};
-            return tips[num] || "সাবধানে চালনা করুন";
-        }
-        
-        function getPhoneCareerTip(num) {
-            const tips = {1:"নেতৃত্বের পদ, প্রশাসন",2:"সৃজনশীল পেশা, শিল্পকলা",3:"শিক্ষকতা, পরামর্শ",4:"গবেষণা, প্রযুক্তি",5:"মার্কেটিং, সেলস",6:"শিল্পকলা, বিনোদন",7:"আধ্যাত্মিকতা, লেখালেখি",8:"প্রশাসন, ব্যবস্থাপনা",9:"উদ্যোক্তা, রাজনীতি"};
-            return tips[num] || "যোগাযোগমূলক পেশা উত্তম";
-        }
-        
-        function getPhoneWarning(num) {
-            const warns = {4:"অপ্রয়োজনীয় কথাবার্তা এড়িয়ে চলুন",8:"অন্যদের সাথে বিতর্ক কম করুন"};
-            return warns[num] || "গোপনীয়তা বজায় রাখুন";
-        }
-        
-        function getAlternativePrices(num) {
-            const alts = {1:"১১১, ৫৫৫, ৯৯৯",2:"২২২, ৬৬৬, ৮৮৮",3:"৩৩৩, ৬৬৬, ৯৯৯",4:"৩৩৩, ৬৬৬, ৯৯৯",5:"৫৫৫, ১১১, ৭৭৭",6:"৬৬৬, ৯৯৯, ৩৩৩",7:"৭৭৭, ১১১, ৫৫৫",8:"৩৩৩, ৬৬৬, ৯৯৯",9:"৯৯৯, ৫৫৫, ১১১"};
-            return alts[num] || "৩৩৩, ৬৬৬, ৯৯৯";
-        }
-        
-        function getPinSecurityTip(num) {
-            const tips = {1:"শক্তিশালী, চুরির সম্ভাবনা কম",2:"সাধারণ, সতর্কতা প্রয়োজন",3:"ভাগ্যবান, নিরাপদ",4:"মাঝারি, নিয়মিত পরিবর্তন করুন",5:"চঞ্চল, সাবধান",6:"স্থিতিশীল, নিরাপদ",7:"গোপনীয়, ভালো",8:"শক্তিশালী, নিরাপদ",9:"ভাগ্যবান, ভালো"};
-            return tips[num] || "নিরাপদ PIN, নিয়মিত পরিবর্তন করুন";
-        }
-        
-        function getPinLuckTip(num) {
-            const tips = {1:"সাফল্য আনবে",2:"মানসিক শান্তি দেবে",3:"জ্ঞান বৃদ্ধি করবে",4:"সতর্কতা প্রয়োজন",5:"দ্রুত সিদ্ধান্তে সাহায্য করবে",6:"সুখ ও সমৃদ্ধি দেবে",7:"আধ্যাত্মিক উন্নতি করবে",8:"ধৈর্য ও স্থিরতা দেবে",9:"সাহস ও শক্তি দেবে"};
-            return tips[num] || "ভাগ্যের উপর ইতিবাচক প্রভাব ফেলবে";
-        }
-        
-        function getPinWarning(num) {
-            const warns = {4:"অন্যদের জানাবেন না",8:"নিয়মিত পরিবর্তন করুন"};
-            return warns[num] || "গোপন রাখুন";
-        }
-        
-        function getBankStabilityTip(num) {
-            const tips = {1:"স্থিতিশীল, ভালো",2:"মাঝারি, সতর্কতা প্রয়োজন",3:"স্থিতিশীল, ভালো",4:"অস্থির, সতর্কতা প্রয়োজন",5:"চঞ্চল, দ্রুত লেনদেন ভালো",6:"স্থিতিশীল, সমৃদ্ধি",7:"গোপনীয়, ভালো",8:"ধৈর্যশীল, দীর্ঘমেয়াদী ভালো",9:"উদার, লাভজনক"};
-            return tips[num] || "স্থিতিশীল অ্যাকাউন্ট";
-        }
-        
-        function getBankProfitTip(num) {
-            const tips = {1:"লাভজনক",2:"সাধারণ",3:"উত্তম",4:"সতর্কতা প্রয়োজন",5:"দ্রুত লাভ",6:"স্থিতিশীল লাভ",7:"ধীরে ধীরে লাভ",8:"দীর্ঘমেয়াদী লাভ",9:"উচ্চ লাভের সম্ভাবনা"};
-            return tips[num] || "লাভের সম্ভাবনা ভালো";
-        }
-        
-        function getBankRemedy(num) {
-            const tips = {4:"লাল রঙের খাতা ব্যবহার করুন",8:"শনিবারে দান করুন"};
-            return tips[num] || "নিয়মিত লেনদেন করুন";
-        }
-        
-        function getCompatibilityScore(n1, n2) {
-            const diff = Math.abs(n1 - n2);
-            if (diff === 0) return { percentage: 95, level: "অসাধারণ" };
-            if (diff === 1 || diff === 8) return { percentage: 85, level: "উত্তম" };
-            if (diff === 2 || diff === 7) return { percentage: 75, level: "ভালো" };
-            if (diff === 3 || diff === 6) return { percentage: 65, level: "মধ্যম" };
-            return { percentage: 50, level: "সাধারণ" };
-        }
-        
-        function getMarriagePrediction(n1, n2) {
-            const compatible = [1,3,5,6,9];
-            if (compatible.includes(n1) && compatible.includes(n2)) return "দাম্পত্য জীবন সুখময় হবে। পরস্পরের প্রতি শ্রদ্ধা বজায় থাকবে।";
-            if ([4,8].includes(n1) && [4,8].includes(n2)) return "উভয়েই পরিশ্রমী, তাই জীবন সংগ্রামময় হলেও সফল হবে।";
-            return "সামঞ্জস্য বাড়াতে পারস্পরিক বোঝাপড়া জরুরি।";
-        }
-        
-        function getMarriageAdvice(n1, n2) {
-            if (n1 === n2) return "একে অপরের পরিপূরক। সুসম্পর্ক বজায় থাকবে।";
-            return "ধৈর্য ও বোঝাপড়ার মাধ্যমে সম্পর্ক মজবুত করুন।";
-        }
-        
-        function getHomePeaceTip(num) {
-            const tips = {1:"শান্তিপূর্ণ, নেতৃত্ব বজায় থাকবে",2:"আবেগপূর্ণ, সাবধান",3:"আনন্দময়, শিক্ষার পরিবেশ",4:"গম্ভীর, ধৈর্য প্রয়োজন",5:"চঞ্চল, পরিবর্তনশীল",6:"সুখী, সৌন্দর্যপূর্ণ",7:"আধ্যাত্মিক, শান্ত",8:"শৃঙ্খলাপূর্ণ, স্থিতিশীল",9:"উদ্যমী, সক্রিয়"};
-            return tips[num] || "শান্তিপূর্ণ পরিবেশ";
-        }
-        
-        function getHomeStabilityTip(num) {
-            const tips = {1:"স্থিতিশীল",2:"মাঝারি",3:"স্থিতিশীল",4:"অস্থির",5:"পরিবর্তনশীল",6:"স্থিতিশীল",7:"স্থিতিশীল",8:"অত্যন্ত স্থিতিশীল",9:"সক্রিয়"};
-            return tips[num] || "স্থিতিশীলতা ভালো";
-        }
-        
-        function getHomeRemedy(num) {
-            const tips = {4:"নীল রং ব্যবহার করুন",8:"পূর্ব দিকে মুখ করে থাকুন"};
-            return tips[num] || "নিয়মিত ধূপ জ্বালান";
+        function getSuccessFormula(num) {
+            const formulas = {
+                1: "নিজের সিদ্ধান্ত নিজে নিন, নেতৃত্ব দিন। অন্যদের মতামতকে মূল্যায়ন করুন কিন্তু শেষ সিদ্ধান্ত আপনার হোক। লাল রঙ ব্যবহার করুন, রবিবারে গুরুত্বপূর্ণ কাজ করুন।",
+                2: "অন্যদের কথা শুনুন, সম্পর্ক বজায় রাখুন। টিম ওয়ার্ক করুন, জনসংযোগ বাড়ান। সাদা রঙ ব্যবহার করুন, সোমবারে নতুন উদ্যোগ নিন।",
+                3: "জ্ঞান অর্জন করুন, ভাগ করুন, বৃদ্ধি পাবেন। শিক্ষার উপর ফোকাস করুন। হলুদ রঙ ব্যবহার করুন, বৃহস্পতিবারে গুরুত্বপূর্ণ সিদ্ধান্ত নিন।",
+                4: "গবেষণা করুন, প্রযুক্তি ব্যবহার করুন। নতুন পথ তৈরি করুন। নীল রঙ ব্যবহার করুন, শনিবারে পরিকল্পনা করুন।",
+                5: "যোগাযোগ বাড়ান, মার্কেটিং এ জোর দিন। দ্রুত সিদ্ধান্ত নিন। সবুজ রঙ ব্যবহার করুন, বুধবারে নতুন কাজ শুরু করুন।",
+                6: "সৃজনশীল হোন, ডিজাইনে মন দিন। সম্পর্কের মাধ্যমে ব্যবসা বাড়ান। সাদা ও গোলাপি রঙ ব্যবহার করুন, শুক্রবারে গুরুত্বপূর্ণ কাজ করুন।",
+                7: "গভীরে যান, সত্য আবিষ্কার করুন। আধ্যাত্মিকতা যোগ করুন। বেগুনি রঙ ব্যবহার করুন, শুক্রবারে ধ্যান করুন।",
+                8: "সংগঠিত হোন, দীর্ঘমেয়াদী পরিকল্পনা করুন। ধৈর্য ধরুন। কালো ও নীল রঙ ব্যবহার করুন, শনিবারে গুরুত্বপূর্ণ কাজ করুন।",
+                9: "উদ্যমী থাকুন, প্রতিযোগিতায় এগিয়ে থাকুন। সাহসী সিদ্ধান্ত নিন। লাল রঙ ব্যবহার করুন, মঙ্গলবারে নতুন উদ্যোগ নিন।"
+            };
+            return formulas[num] || "সৎ ও নিষ্ঠার সাথে কাজ করুন। নিজের শক্তিতে বিশ্বাস রাখুন। ধৈর্য ধরুন, সাফল্য আসবেই।";
         }
         
         // ========== ক্যাটাগরি লিস্ট ==========
@@ -506,38 +537,25 @@
             let resultHtml = '';
             
             switch(categoryId) {
-                case 'personal_name':
-                    resultHtml = renderPersonalName(currentRawInput, numberData.rootNumber, analysis);
-                    break;
-                case 'baby_name':
-                    resultHtml = renderBabyName(currentRawInput, numberData.rootNumber, analysis);
-                    break;
-                case 'business_name':
-                    resultHtml = renderBusinessName(currentRawInput, numberData.rootNumber, analysis);
-                    break;
-                case 'car_number':
-                    resultHtml = renderCarNumber(currentRawInput, numberData.rootNumber, analysis);
-                    break;
-                case 'bike_number':
-                    resultHtml = renderBikeNumber(currentRawInput, numberData.rootNumber, analysis);
-                    break;
-                case 'mobile_number':
-                    resultHtml = renderMobileNumber(currentRawInput, numberData.rootNumber, analysis);
-                    break;
-                case 'product_price':
-                    resultHtml = renderProductPrice(currentRawInput, numberData.rootNumber, analysis);
-                    break;
                 case 'pin_code':
                     resultHtml = renderPinCode(currentRawInput, numberData.rootNumber, analysis);
                     break;
                 case 'bank_account':
                     resultHtml = renderBankAccount(currentRawInput, numberData.rootNumber, analysis);
                     break;
-                case 'marriage':
-                    resultHtml = renderMarriage(currentRawInput, "", numberData.rootNumber, 0, analysis, null);
+                case 'car_number':
+                case 'bike_number':
+                    resultHtml = renderCarNumber(currentRawInput, numberData.rootNumber, analysis);
                     break;
-                case 'new_home':
-                    resultHtml = renderNewHome(currentRawInput, numberData.rootNumber, analysis);
+                case 'personal_name':
+                case 'baby_name':
+                    resultHtml = renderPersonalName(currentRawInput, numberData.rootNumber, analysis);
+                    break;
+                case 'business_name':
+                    resultHtml = renderBusinessName(currentRawInput, numberData.rootNumber, analysis);
+                    break;
+                case 'product_price':
+                    resultHtml = renderProductPrice(currentRawInput, numberData.rootNumber, analysis);
                     break;
                 case 'mulank':
                     resultHtml = renderMulank(currentRawInput, numberData.rootNumber, analysis);
@@ -570,7 +588,7 @@
             } else { copyToClipboard(); }
         }
         
-        // ========== মেইন ==========
+        // মেইন
         document.addEventListener('DOMContentLoaded', function() {
             const query = getQueryParam('q');
             if (!query) { window.location.href = 'numerology.html'; return; }
