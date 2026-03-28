@@ -5,139 +5,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Numerology Intelligence Hub</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            color: #fff;
-            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #0a0a2a;
+            color: white;
+            text-align: center;
         }
         .container {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 20px;
         }
-        .header {
-            text-align: center;
-            padding: 30px 20px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 20px;
-            margin-bottom: 30px;
-        }
-        .header h1 {
-            font-size: 28px;
-        }
-        .header h1 span {
-            color: #ffd700;
-        }
-        .search-card {
-            background: rgba(255,255,255,0.1);
-            border-radius: 24px;
-            padding: 30px;
-            text-align: center;
-        }
-        .search-card h2 {
-            font-size: 24px;
-            margin-bottom: 10px;
+        h1 span {
+            color: gold;
         }
         .search-box {
-            display: flex;
-            gap: 12px;
-            margin: 25px 0;
-            flex-wrap: wrap;
-            justify-content: center;
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
         }
-        .search-box input {
-            flex: 1;
-            min-width: 250px;
-            padding: 14px 20px;
-            font-size: 16px;
+        input {
+            width: 80%;
+            padding: 12px;
+            border-radius: 30px;
             border: none;
-            border-radius: 50px;
-            outline: none;
+            margin: 10px 0;
         }
-        .search-box button {
-            padding: 14px 28px;
-            font-size: 16px;
+        button {
+            padding: 12px 25px;
+            background: gold;
+            border: none;
+            border-radius: 30px;
             font-weight: bold;
-            background: linear-gradient(135deg, #ffd700, #ff8c00);
-            border: none;
-            border-radius: 50px;
             cursor: pointer;
-            color: #1a1a2e;
         }
         .examples {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
             justify-content: center;
-            margin-top: 20px;
+            margin-top: 15px;
         }
         .example {
-            background: rgba(255,255,255,0.15);
-            padding: 6px 14px;
-            border-radius: 30px;
-            font-size: 13px;
+            background: #333;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
             cursor: pointer;
         }
-        .example:hover {
-            background: rgba(255,215,0,0.4);
-        }
         .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
         }
         .feature {
             background: rgba(255,255,255,0.05);
-            padding: 20px;
-            border-radius: 16px;
-            text-align: center;
+            padding: 15px;
+            border-radius: 15px;
+            width: 180px;
         }
-        .feature i {
-            font-size: 32px;
-            color: #ffd700;
-            margin-bottom: 10px;
-        }
-        .feature h4 {
-            margin-bottom: 8px;
-        }
-        .feature p {
-            font-size: 13px;
-            opacity: 0.7;
-        }
-        .footer {
-            text-align: center;
-            padding: 30px 0;
-            margin-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1);
+        footer {
+            margin-top: 40px;
             font-size: 12px;
-        }
-        @media (max-width: 600px) {
-            .container { padding: 15px; }
-            .search-card { padding: 20px; }
-            .search-box input { min-width: 200px; }
+            opacity: 0.6;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>Numerology <span>Intelligence Hub</span></h1>
-            <p>আপনার সংখ্যার গভীরতম রহস্য উন্মোচন করুন</p>
-        </div>
+        <h1>Numerology <span>Intelligence Hub</span></h1>
+        <p>আপনার সংখ্যার গভীরতম রহস্য উন্মোচন করুন</p>
 
-        <div class="search-card">
+        <div class="search-box">
             <h2>🔮 আপনি কী জানতে চান?</h2>
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="যেমন: 15-08-1990 বা রাহুল বা রাহুল + 15-08-1990">
-                <button id="searchBtn">বিশ্লেষণ করুন</button>
-            </div>
+            <input type="text" id="searchInput" placeholder="যেমন: 15-08-1990 বা রাহুল বা রাহুল + 15-08-1990">
+            <br>
+            <button id="searchBtn">বিশ্লেষণ করুন</button>
             <div class="examples">
                 <span class="example" data-val="15-08-1990">📅 জন্মতারিখ</span>
                 <span class="example" data-val="রাহুল">👤 নাম</span>
@@ -150,60 +97,39 @@
         </div>
 
         <div class="features">
-            <div class="feature">
-                <i>📊</i>
-                <h4>মূলাংক বিশ্লেষণ</h4>
-                <p>জন্মতারিখ থেকে মূল সংখ্যা নির্ণয়</p>
-            </div>
-            <div class="feature">
-                <i>👤</i>
-                <h4>নাম বিশ্লেষণ</h4>
-                <p>নামের অংক ও প্রভাব</p>
-            </div>
-            <div class="feature">
-                <i>🔗</i>
-                <h4>সামঞ্জস্য মিলন</h4>
-                <p>নাম, তারিখ, নম্বরের মিলন</p>
-            </div>
-            <div class="feature">
-                <i>🚗</i>
-                <h4>গাড়ির নম্বর</h4>
-                <p>যাত্রার শুভ-অশুভ</p>
-            </div>
+            <div class="feature">📊 মূলাংক বিশ্লেষণ</div>
+            <div class="feature">👤 নাম বিশ্লেষণ</div>
+            <div class="feature">🔗 সামঞ্জস্য মিলন</div>
+            <div class="feature">🚗 গাড়ির নম্বর</div>
         </div>
 
-        <div class="footer">
-            <p>© 2024 myastrology.in | Numerology Intelligence Hub</p>
-        </div>
+        <footer>© 2024 myastrology.in | Numerology Intelligence Hub</footer>
     </div>
 
     <script>
         (function() {
-            const inputField = document.getElementById('searchInput');
-            const searchBtn = document.getElementById('searchBtn');
-            
+            const input = document.getElementById('searchInput');
+            const btn = document.getElementById('searchBtn');
+            const examples = document.querySelectorAll('.example');
+
             function analyze() {
-                let val = inputField.value.trim();
+                let val = input.value.trim();
                 if (!val) {
                     alert('দয়া করে কিছু লিখুন');
                     return;
                 }
                 window.location.href = 'result.html?q=' + encodeURIComponent(val);
             }
-            
-            searchBtn.onclick = analyze;
-            inputField.onkeypress = function(e) {
-                if (e.key === 'Enter') analyze();
-            };
-            
-            document.querySelectorAll('.example').forEach(el => {
+
+            btn.onclick = analyze;
+            input.onkeypress = function(e) { if (e.key === 'Enter') analyze(); };
+            examples.forEach(el => {
                 el.onclick = function() {
-                    inputField.value = this.getAttribute('data-val');
+                    input.value = this.getAttribute('data-val');
                     analyze();
                 };
             });
-            
-            inputField.focus();
+            input.focus();
         })();
     </script>
 </body>
