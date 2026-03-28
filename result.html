@@ -1594,6 +1594,79 @@ function getFirstLetterAdvice(num) {
                 navigator.share({ title: 'Numerology Intelligence Hub', text: document.getElementById('resultContent').innerText.substring(0, 500), url: window.location.href });
             } else { copyToClipboard(); }
         }
+
+switch(categoryId) {
+    case 'personal_name':
+        resultHtml = renderPersonalName(currentRawInput, numberData.rootNumber, analysis);
+        break;
+    case 'baby_name':
+        resultHtml = renderBabyName(currentRawInput, numberData.rootNumber, analysis);
+        break;
+    case 'marriage':
+    case 'love':
+        resultHtml = renderMarriage(currentRawInput, numberData.rootNumber, analysis);
+        break;
+    case 'family':
+        resultHtml = renderFamily(currentRawInput, numberData.rootNumber, analysis);
+        break;
+    case 'journey_date':
+        resultHtml = renderJourneyDate(currentRawInput, numberData.rootNumber, analysis);
+        break;
+    case 'new_home':
+        resultHtml = renderNewHome(currentRawInput, numberData.rootNumber, analysis);
+        break;
+    case 'birthday':
+        resultHtml = renderBirthday(currentRawInput, numberData.rootNumber, analysis);
+        break;
+    case 'business_name':
+        resultHtml = renderBusinessName(currentRawInput, numberData.rootNumber, analysis);
+        break;
+    case 'partnership':
+        resultHtml = renderPartnership(currentRawInput, numberData.rootNumber, analysis);
+        break;
+    case 'startup_name':
+        resultHtml = renderStartupName(currentRawInput, numberData.rootNumber, analysis);
+        break;
+    case 'logo_color':
+        resultHtml = renderLogoColor(currentRawInput, numberData.rootNumber, analysis);
+        break;
+    case 'launch_date':
+        resultHtml = renderLaunchDate(currentRawInput, numberData.rootNumber, analysis);
+        break;
+    case 'product_price':
+        resultHtml = renderProductPrice(currentRawInput, numberData.rootNumber, analysis);
+        break;
+    case 'car_number':
+    case 'bike_number':
+        resultHtml = renderCarNumber(currentRawInput, numberData.rootNumber, analysis);
+        break;
+    case 'mobile_number':
+        resultHtml = renderMobileNumber(currentRawInput, numberData.rootNumber, analysis);
+        break;
+    case 'bank_account':
+        resultHtml = renderBankAccount(currentRawInput, numberData.rootNumber, analysis);
+        break;
+    case 'pin_code':
+        resultHtml = renderPinCode(currentRawInput, numberData.rootNumber, analysis);
+        break;
+    case 'stock_market':
+        resultHtml = renderStockMarket(currentRawInput, numberData.rootNumber, analysis);
+        break;
+    case 'property':
+        resultHtml = renderProperty(currentRawInput, numberData.rootNumber, analysis);
+        break;
+    case 'gold_silver':
+        resultHtml = renderGoldSilver(currentRawInput, numberData.rootNumber, analysis);
+        break;
+    case 'mulank':
+        resultHtml = renderMulank(currentRawInput, numberData.rootNumber, analysis);
+        break;
+    case 'name_number':
+        resultHtml = renderNameNumber(currentRawInput, numberData.rootNumber, analysis);
+        break;
+    default:
+        resultHtml = renderPersonalName(currentRawInput, numberData.rootNumber, analysis);
+}
         
         // ============================================================
         // মেইন ফাংশন
