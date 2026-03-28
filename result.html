@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* (আগের স্টাইল একই থাকবে) */
         .result-container { max-width: 900px; margin: 0 auto; padding: 20px; }
         .result-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 20px; padding: 30px; margin-bottom: 25px; border: 1px solid rgba(255,255,255,0.2); }
         .result-header { text-align: center; margin-bottom: 30px; }
@@ -32,6 +31,58 @@
         .loading { text-align: center; padding: 50px; }
         .loading i { font-size: 48px; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        /* ক্ল্যারিফিকেশন স্টাইল */
+        .clarification-card {
+            text-align: center;
+        }
+        .option-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        .option-btn {
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            color: #1a1a2e;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 40px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+        .option-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,215,0,0.4);
+        }
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .clarification-input {
+            padding: 12px 20px;
+            border-radius: 40px;
+            border: none;
+            font-family: inherit;
+            font-size: 16px;
+            min-width: 250px;
+        }
+        .submit-btn {
+            background: #ffd700;
+            color: #1a1a2e;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
@@ -50,6 +101,9 @@
     <script src="js/intent-detector.js"></script>
     
     <script>
+        let currentInput = '';
+        let currentIntentResult = null;
+        
         function getQueryParam(param) {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(param);
@@ -65,12 +119,86 @@
                 .replace(/'/g, '&#39;');
         }
         
+        // ক্ল্যারিফিকেশন UI দেখানো
+        function showClarification(intentResult) {
+            const contentDiv = document.getElementById('resultContent');
+            const loadingDiv = document.getElementById('loading');
+            
+            let optionsHtml = '';
+            if (intentResult.options && intentResult.options.length > 0) {
+                optionsHtml = `
+                    <div class="option-buttons">
+                        ${intentResult.options.map(opt => `<button class="option-btn" onclick="handleOption('${opt.replace(/'/g, "\\'")}')">${escapeHtml(opt)}</button>`).join('')}
+                    </div>
+                `;
+            }
+            
+            const html = `
+                <div class="result-card clarification-card">
+                    <i class="fas fa-question-circle" style="font-size: 64px; color: #ffd700;"></i>
+                    <h2>${escapeHtml(intentResult.clarificationQuestion)}</h2>
+                    ${optionsHtml}
+                    <div class="input-group">
+                        <input type="text" id="customInput" class="clarification-input" placeholder="অথবা নিজে লিখুন...">
+                        <button class="submit-btn" onclick="submitCustomInput()">জমা দিন</button>
+                    </div>
+                </div>
+            `;
+            
+            contentDiv.innerHTML = html;
+            contentDiv.style.display = 'block';
+            loadingDiv.style.display = 'none';
+        }
+        
+        // অপশন সিলেক্ট করলে
+        function handleOption(option) {
+            let newInput = currentInput;
+            let newIntent = '';
+            
+            switch(option) {
+                case 'জন্মতারিখ':
+                case 'ব্যক্তির নাম':
+                case 'মোবাইল নম্বর':
+                case 'গাড়ির নম্বর':
+                case 'ব্যবসার নাম':
+                case 'পণ্যের মূল্য':
+                case 'শুধু সংখ্যা বিশ্লেষণ':
+                case 'PIN কোড':
+                case 'ব্যাংক অ্যাকাউন্ট':
+                case 'শিশুর নামকরণের জন্য':
+                    // পুনরায় ডিটেকশনের জন্য পেজ রিলোড
+                    window.location.href = `result.html?q=${encodeURIComponent(currentInput)}&type=${encodeURIComponent(option)}`;
+                    return;
+                default:
+                    // নিজের ইনপুট নেওয়া
+                    document.getElementById('customInput').focus();
+                    return;
+            }
+        }
+        
+        function submitCustomInput() {
+            const custom = document.getElementById('customInput').value.trim();
+            if (custom) {
+                window.location.href = `result.html?q=${encodeURIComponent(custom)}`;
+            }
+        }
+        
+        // ফলাফল রেন্ডার করা
         function renderResult(input, intentResult) {
             const contentDiv = document.getElementById('resultContent');
             const loadingDiv = document.getElementById('loading');
             
+            // যদি ক্ল্যারিফিকেশন প্রয়োজন হয়
+            if (intentResult.needsClarification) {
+                currentInput = input;
+                currentIntentResult = intentResult;
+                showClarification(intentResult);
+                return;
+            }
+            
             let html = '';
             
+            // নাম্বার অ্যানালাইসিস
             if (intentResult.analysis && intentResult.analysis.analysis) {
                 const data = intentResult.analysis.analysis;
                 const num = intentResult.analysis.rootNumber || intentResult.mulank;
@@ -117,6 +245,7 @@
                     </div>
                 `;
             }
+            // মূল্য বিশ্লেষণ
             else if (intentResult.intent === "PRODUCT_PRICE" && intentResult.analysis) {
                 const analysis = intentResult.analysis;
                 const data = analysis.analysis;
@@ -141,6 +270,7 @@
                     </div>
                 `;
             }
+            // সাধারণ সংখ্যা বিশ্লেষণ
             else if (intentResult.analysis && intentResult.analysis.analysis) {
                 const analysis = intentResult.analysis;
                 const data = analysis.analysis;
@@ -173,6 +303,7 @@
                     </div>
                 `;
             }
+            // ফলাফল না পাওয়া গেলে
             else {
                 html = `
                     <div class="result-card error-card">
@@ -181,10 +312,10 @@
                         <p>"${escapeHtml(input)}" - এই বিষয়ে আমাদের ডেটাবেসে বিশ্লেষণ পাওয়া যায়নি।</p>
                         <p>আপনি চেষ্টা করতে পারেন:</p>
                         <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 20px;">
-                            <span class="badge">জন্মতারিখ (যেমন: 15-08-1990)</span>
-                            <span class="badge">নাম (যেমন: রাহুল)</span>
-                            <span class="badge">মোবাইল নম্বর (যেমন: 01712345678)</span>
-                            <span class="badge">মূল্য (যেমন: 985 টাকা)</span>
+                            <span class="badge" onclick="window.location.href='result.html?q=15-08-1990'">জন্মতারিখ (যেমন: 15-08-1990)</span>
+                            <span class="badge" onclick="window.location.href='result.html?q=রাহুল'">নাম (যেমন: রাহুল)</span>
+                            <span class="badge" onclick="window.location.href='result.html?q=01712345678'">মোবাইল নম্বর</span>
+                            <span class="badge" onclick="window.location.href='result.html?q=985 টাকা'">মূল্য (যেমন: 985 টাকা)</span>
                         </div>
                     </div>
                 `;
@@ -224,6 +355,7 @@
         
         document.addEventListener('DOMContentLoaded', function() {
             const query = getQueryParam('q');
+            const forcedType = getQueryParam('type');
             
             if (!query) {
                 window.location.href = 'numerology.html';
@@ -232,8 +364,74 @@
             
             const decodedQuery = decodeURIComponent(query);
             
-            const intentResult = IntentDetector.detect(decodedQuery);
+            // ডিটেক্ট করুন
+            let intentResult = IntentDetector.detect(decodedQuery);
             
+            // যদি টাইপ ফোর্স করা হয়
+            if (forcedType) {
+                intentResult.needsClarification = false;
+                if (forcedType === 'জন্মতারিখ') {
+                    const mulank = NumerologyDB.calculateMulank(decodedQuery);
+                    if (mulank) {
+                        intentResult = {
+                            intent: "MULANK",
+                            mulank: mulank,
+                            extracted: decodedQuery,
+                            analysis: {
+                                rootNumber: mulank,
+                                sum: mulank,
+                                analysis: NumerologyDB.getNumberAnalysis(mulank)
+                            }
+                        };
+                    }
+                } else if (forcedType === 'ব্যক্তির নাম' || forcedType === 'শিশুর নামকরণের জন্য') {
+                    const number = IntentDetector.getNumberFromName(decodedQuery);
+                    if (number) {
+                        intentResult = {
+                            intent: "NAME_ANALYSIS",
+                            extracted: decodedQuery,
+                            analysis: {
+                                rootNumber: number,
+                                sum: number,
+                                analysis: NumerologyDB.getNumberAnalysis(number)
+                            }
+                        };
+                    }
+                } else if (forcedType === 'ব্যবসার নাম') {
+                    const number = IntentDetector.getNumberFromName(decodedQuery);
+                    if (number) {
+                        intentResult = {
+                            intent: "BUSINESS_NAME",
+                            extracted: decodedQuery,
+                            analysis: {
+                                rootNumber: number,
+                                sum: number,
+                                analysis: NumerologyDB.getNumberAnalysis(number)
+                            }
+                        };
+                    }
+                } else if (forcedType === 'মোবাইল নম্বর' || forcedType === 'PIN কোড' || forcedType === 'ব্যাংক অ্যাকাউন্ট') {
+                    const analysis = NumerologyDB.analyzeNumber(decodedQuery);
+                    if (analysis) {
+                        intentResult = {
+                            intent: forcedType === 'মোবাইল নম্বর' ? "PHONE_NUMBER" : "GENERAL_NUMBER",
+                            extracted: decodedQuery,
+                            analysis: analysis
+                        };
+                    }
+                } else if (forcedType === 'পণ্যের মূল্য') {
+                    const analysis = NumerologyDB.analyzePrice(decodedQuery);
+                    if (analysis) {
+                        intentResult = {
+                            intent: "PRODUCT_PRICE",
+                            extracted: decodedQuery,
+                            analysis: analysis
+                        };
+                    }
+                }
+            }
+            
+            // নামের জন্য নাম্বার বের করা
             if (intentResult.intent === "NAME_ANALYSIS" && !intentResult.analysis) {
                 const number = IntentDetector.getNumberFromName(decodedQuery);
                 if (number) {
@@ -245,12 +443,31 @@
                 }
             }
             
-            if (intentResult.intent === "MULANK" && intentResult.mulank) {
+            // মুলাংকের জন্য
+            if (intentResult.intent === "MULANK" && intentResult.mulank && !intentResult.analysis) {
                 intentResult.analysis = {
                     rootNumber: intentResult.mulank,
                     sum: intentResult.mulank,
                     analysis: NumerologyDB.getNumberAnalysis(intentResult.mulank)
                 };
+            }
+            
+            // সংখ্যার জন্য
+            if ((intentResult.intent === "PHONE_NUMBER" || intentResult.intent === "VEHICLE_NUMBER" || 
+                 intentResult.intent === "PIN_NUMBER" || intentResult.intent === "BANK_ACCOUNT" || 
+                 intentResult.intent === "GENERAL_NUMBER") && !intentResult.analysis) {
+                const analysis = NumerologyDB.analyzeNumber(decodedQuery);
+                if (analysis) {
+                    intentResult.analysis = analysis;
+                }
+            }
+            
+            // মূল্যের জন্য
+            if (intentResult.intent === "PRODUCT_PRICE" && !intentResult.analysis && intentResult.priceValue) {
+                const analysis = NumerologyDB.analyzePrice(intentResult.priceValue);
+                if (analysis) {
+                    intentResult.analysis = analysis;
+                }
             }
             
             renderResult(decodedQuery, intentResult);
