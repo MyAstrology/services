@@ -128,13 +128,13 @@ h1,h2,h3,h4{font-family:var(--fh);line-height:1.3}
 @keyframes tickx{from{transform:translateX(0)}to{transform:translateX(-100%)}}
 
 /* BANNER */
-.banner-images{background:#000;overflow:hidden;position:relative;width:100%;aspect-ratio:1200/220;contain:layout paint;}
-.banner-images img{visibility:hidden;width:100%;height:100%;object-fit:cover;object-position:center top;position:absolute;top:0;left:0;transition:opacity .5s ease;}
-.banner-images img.active{visibility:visible;position:relative;}
-@media(min-width:600px){.banner-images{aspect-ratio:1200/340;}}
-@media(min-width:960px){.banner-images{aspect-ratio:1200/460;}.banner-images img{object-position:center center;}}
+.banner-images{background:#000;overflow:hidden;position:relative;width:100%}
+.banner-images img{width:100%;height:auto;display:block;transition:opacity .5s ease;visibility:hidden;position:absolute;top:0;left:0;object-fit:cover;object-position:center top}
+.banner-images img.active{visibility:visible;position:relative}
+@media(min-width:600px){.banner-images img{min-height:320px;object-position:center 30%}}
+@media(min-width:960px){.banner-images img{min-height:460px;object-position:center center}}
 
-/* HERO */
+ /* HERO */
 .hero{position:relative;overflow:hidden;background:linear-gradient(165deg,#f9f4ee 0%,#edf3fc 60%,#f2eef8 100%);text-align:center;padding:30px 24px 22px;border-bottom:1px solid #ddd5c0;}
 .hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 10% 15%,rgba(184,134,11,.06) 0%,transparent 55%),radial-gradient(circle at 90% 80%,rgba(61,12,97,.05) 0%,transparent 50%);pointer-events:none;}
 .hero-eyebrow{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;border:1px solid rgba(184,134,11,.3);padding:3px 14px;border-radius:30px;background:rgba(253,248,237,.8);}
@@ -392,7 +392,7 @@ h1,h2,h3,h4{font-family:var(--fh);line-height:1.3}
 @keyframes popIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 /* ── BACK TO TOP: bottom-left desktop, bottom-left mobile ── */
 @media(max-width:768px){
-  #back-to-top{bottom:90px;right:auto;left:14px}
+  #back-to-top{bottom:24px;right:auto;left:22px}
 }
 
 @media(max-width:860px){.footer-grid{grid-template-columns:1fr 1fr;gap:0}.footer-col{border-right:none;padding:0 0 24px 0!important}.footer-col + .footer-col{padding-left:0!important}}
@@ -491,16 +491,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <img src="images/astrology-ranaghat-banner5.webp" alt="Professional Astrologer Palmist MyAstrology Online Consultation Pan-India" loading="lazy" width="1200" height="450" decoding="async">
 </div>
   
-<!-- TICKER -->
-<div class="ticker" aria-hidden="true">
-  <span class="ticker-inner">
-    &#9679; MyAstrology — ভারতের বিশ্বস্ত বৈদিক জ্যোতিষ ও হস্তরেখা কেন্দ্র &nbsp;|&nbsp;
-    ড. প্রদ্যুৎ আচার্য, PhD in Vedic Jyotish · ১৫+ বছরের অভিজ্ঞতা &nbsp;|&nbsp;
-    ২,২৪,১৫০+ YouTube সাবস্ক্রাইবার &nbsp;|&nbsp; ৪১,৪০০+ Facebook অনুসরণকারী &nbsp;|&nbsp;
-    ২৮০+ যাচাইকৃত রিভিউ · Google ও JustDial-এ ৫.০ &#9733; &nbsp;|&nbsp;
-    WhatsApp: +91 93331 22768 &nbsp;|&nbsp; রাণাঘাট · কলকাতা · সারা ভারতে অনলাইন সেবা &#9679;
-  </span>
-</div>
+<span class="ticker-inner">
+  &#9679; MyAstrology — ভারতের বিশ্বস্ত বৈদিক জ্যোতিষ ও হস্তরেখা কেন্দ্র &nbsp;|&nbsp;
+  ড. প্রদ্যুৎ আচার্য, PhD in Vedic Jyotish · ১৫+ বছরের অভিজ্ঞতা &nbsp;|&nbsp;
+  WhatsApp: +91 93331 22768 &nbsp;|&nbsp; রাণাঘাট · কলকাতা · সারা ভারতে অনলাইন সেবা &#9679;
+</span>
 
 <!-- HERO -->
 <section class="hero">
@@ -874,6 +869,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
+
 <!-- ABOUT -->
 <section class="about" id="about">
   <div class="about-inner">
@@ -914,10 +910,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="why-card"><i class="fas fa-graduation-cap"></i><h4>PhD in Vedic Jyotish</h4><p>বৈদিক জ্যোতিষে ডক্টরেট গবেষণাসহ একাডেমিক প্রশিক্ষণ — শুধু স্বশিক্ষিত নন।</p></div>
       <div class="why-card"><i class="fas fa-clock"></i><h4>১৫+ বছরের অনুশীলন</h4><p>দেড় দশকেরও বেশি সময়ের প্রত্যক্ষ পরামর্শ অভিজ্ঞতা, প্রমাণিত নির্ভুলতা সহ।</p></div>
       <div class="why-card"><i class="fas fa-globe-asia"></i><h4>সারা ভারতে অনলাইন</h4><p>WhatsApp, ফোন ও ভিডিওতে সম্পূর্ণ অনলাইন সেবা — ভারত ও বিদেশে।</p></div>
-      <div class="why-card"><i class="fab fa-youtube" style="color:#ff0000"></i><h4>২,২৪,১৫০+ YouTube</h4><p>সাবস্ক্রাইবার যাঁরা জ্যোতিষের গভীর জ্ঞান ও দর্শনের জন্য ভরসা করেন।</p></div>
-      <div class="why-card"><i class="fab fa-facebook" style="color:#1877f2"></i><h4>৪১,৪০০+ Facebook</h4><p>অনুসরণকারী — একটি সক্রিয় বাংলাভাষী জ্যোতিষ কমিউনিটি।</p></div>
-      <div class="why-card"><i class="fas fa-shield-alt"></i><h4>নৈতিক ও গোপনীয়</h4><p>কঠোরভাবে ব্যক্তিগত পরামর্শ — অপ্রয়োজনীয় পণ্য বিক্রি বা চাপ সৃষ্টি নেই।</p></div>
-    </div>
+      <div class="why-card"><i class="fab fa-youtube" style="color:#ff0000"></i><h4>ভারতজুড়ে বিশ্বস্ততা</h4><p>২ লক্ষেরও বেশি YouTube সাবস্ক্রাইবার যাঁরা জ্যোতিষের গভীর জ্ঞান ও দর্শনের জন্য ভরসা করেন।</p></div>
+      <div class="why-card"><i class="fab fa-facebook" style="color:#1877f2"></i><h4>সক্রিয় কমিউনিটি</h4><p>৪১ হাজারের বেশি Facebook অনুসরণকারী — একটি সক্রিয় বাংলাভাষী জ্যোতিষ কমিউনিটি।</p></div>/div>
   </div>
 </section>
 
@@ -941,7 +935,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="social-card">
         <i class="fab fa-google s-g-c"></i>
-        <div class="s-num">১২২+</div>
+        <div class="s-num">১২৬+</div>
         <div class="s-lbl">Google Reviews</div>
         <div class="s-sub">&#11088; ৫.০ রেটিং</div>
       </div>
@@ -982,7 +976,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="inner">
     <h2>বাংলা জ্যোতিষ ও হস্তরেখা — আধুনিক জীবনে প্রাচীন জ্ঞান</h2>
     <figure>
-      <img src="images/Best-Astrologer-in-Kolkota.webp" alt="West Bengal Experienced Astrologer Palmist Dr Prodyut Acharya Ranaghat Kolkata" loading="lazy" width="700" height="380" decoding="async">
+      <img src="images/hater-rekha-bichar.webp" alt="West Bengal Experienced Astrologer Palmist Dr Prodyut Acharya Ranaghat Kolkata" loading="lazy" width="700" height="380" decoding="async">
       <figcaption>রেখাগুলি অর্থহীন নয় — এগুলি একটি ভাষায় কথা বলে; বিদ্বান সেই ভাষা বোঝেন।</figcaption>
     </figure>
     <p><strong>পশ্চিমবঙ্গের</strong> সাংস্কৃতিক হৃদয়ে, <strong>বাংলা জ্যোতিষ</strong> ও <strong>হস্তরেখা</strong> বিচারের চিরন্তন চর্চা আজও অনুসন্ধিৎসু মানুষদের স্পষ্টতা ও দিকনির্দেশনা দিয়ে চলেছে। ক্লাসিক্যাল জ্যোতিষ গ্রহ দোষ, নক্ষত্র অবস্থান ও কার্মিক ছাপের সুনির্দিষ্ট গণনায় প্রোথিত।</p>
@@ -1629,3 +1623,7 @@ document.addEventListener('click', function(e) {
 
 </body>
 </html>
+
+
+
+তাহলে এটাই থাকবে? 
