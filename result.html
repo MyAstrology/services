@@ -1,156 +1,621 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="bn-IN">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>বিশ্লেষণ ফলাফল | Numerology Intelligence Hub</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#6B0000">
+
+    <title>বিশ্লেষণ ফলাফল | সংখ্যা জ্যোতিষ | MyAstrology Ranaghat</title>
+    <meta name="description" content="সংখ্যা জ্যোতিষ বিশ্লেষণের ফলাফল। আপনার নাম, জন্মতারিখ, মোবাইল নম্বরের গভীর বিশ্লেষণ। ২৪টি ক্যাটাগরি ও সামঞ্জস্য মিলন।">
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="https://www.myastrology.in/result.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Serif+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <style>
         /* ============================================================
-        বেস স্টাইল
+           CSS VARIABLES — MyAstrology Gold/Maroon Theme (Numerology Page Match)
         ============================================================ */
+        :root {
+            --gold: #FFD700;
+            --gold-dark: #C8A200;
+            --gold-light: #FFE766;
+            --maroon: #8B0000;
+            --maroon-dark: #5C0000;
+            --maroon-mid: #6B0000;
+            --maroon-light: rgba(139,0,0,0.12);
+            --bg-dark: #080810;
+            --bg-mid: #0f0f1e;
+            --bg-card: rgba(139,0,0,0.12);
+            --bg-card-hover: rgba(139,0,0,0.22);
+            --text-primary: #fff;
+            --text-secondary: rgba(255,255,255,0.82);
+            --text-dim: rgba(255,255,255,0.55);
+            --border-gold: rgba(255,215,0,0.3);
+            --border-maroon: rgba(139,0,0,0.4);
+            --shadow-gold: 0 0 30px rgba(255,215,0,0.15);
+            --shadow-maroon: 0 10px 40px rgba(139,0,0,0.3);
+            --font-bengali: 'Hind Siliguri', 'Noto Serif Bengali', sans-serif;
+            --transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --radius-sm: 10px;
+            --radius-pill: 50px;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Hind Siliguri', sans-serif; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: #fff; min-height: 100vh; }
-        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
-        
-        /* ============================================================
-        কার্ড স্টাইল
-        ============================================================ */
-        .result-card, .clarification-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 24px; padding: 30px; margin-bottom: 25px; border: 1px solid rgba(255,255,255,0.2); }
+        body {
+            font-family: var(--font-bengali);
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.7;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse 80% 50% at 20% 0%, rgba(139,0,0,0.18) 0%, transparent 60%),
+                        radial-gradient(ellipse 60% 40% at 80% 100%, rgba(255,215,0,0.07) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+
+        /* Flash Message */
+        #flashMessage {
+            position: fixed;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-20px);
+            background: linear-gradient(135deg, var(--maroon), #a00000);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: var(--radius-pill);
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid var(--border-gold);
+            z-index: 9999;
+            opacity: 0;
+            transition: var(--transition);
+            pointer-events: none;
+            white-space: nowrap;
+        }
+        #flashMessage.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+        /* Header */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(8,8,16,0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-gold);
+        }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            gap: 20px;
+        }
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        .logo-icon {
+            width: 46px;
+            height: 46px;
+            background: linear-gradient(135deg, var(--maroon), #b00000);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-gold);
+        }
+        .logo-icon i { font-size: 22px; color: var(--gold); }
+        .logo-text .site-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--gold);
+            display: block;
+        }
+        .logo-text .site-tagline { font-size: 11px; color: var(--text-dim); display: block; }
+
+        /* Main Nav */
+        .main-nav { display: flex; align-items: center; gap: 4px; }
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
+        .nav-link:hover { color: var(--gold); background: rgba(255,215,0,0.08); }
+        .nav-link.active { color: var(--gold); background: rgba(255,215,0,0.12); }
+        .header-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, var(--maroon), #a00000);
+            border: 1px solid var(--border-gold);
+            border-radius: var(--radius-pill);
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+            background: transparent;
+            border: 1px solid var(--border-maroon);
+            border-radius: var(--radius-sm);
+        }
+        .hamburger span {
+            width: 22px;
+            height: 2px;
+            background: var(--gold);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 75px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(8,8,16,0.97);
+            backdrop-filter: blur(20px);
+            z-index: 999;
+            flex-direction: column;
+            padding: 30px 24px;
+            gap: 8px;
+            border-top: 1px solid var(--border-gold);
+            overflow-y: auto;
+            transform: translateY(-10px);
+            opacity: 0;
+            transition: var(--transition);
+        }
+        .mobile-nav.open { display: flex; opacity: 1; transform: translateY(0); }
+        .mobile-nav .nav-link { font-size: 16px; padding: 14px 18px; border: 1px solid var(--border-maroon); border-radius: var(--radius-md); justify-content: flex-start; }
+
+        /* Result Content */
+        .result-card, .clarification-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(4px);
+        }
         .result-header { text-align: center; margin-bottom: 30px; }
-        .result-number { display: inline-block; background: linear-gradient(135deg, #ffd700, #ff8c00); padding: 20px 35px; border-radius: 60px; margin-bottom: 20px; }
+        .result-number {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+            padding: 20px 35px;
+            border-radius: 60px;
+            margin-bottom: 20px;
+        }
         .big-number { font-size: 64px; font-weight: 800; color: #1a1a2e; }
         .result-title { font-size: 28px; margin-bottom: 10px; }
         .result-subtitle { opacity: 0.8; font-size: 18px; }
-        
-        /* ============================================================
-        ইনফো সেকশন
-        ============================================================ */
-        .info-section { margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .info-section h3 { color: #ffd700; margin-bottom: 12px; font-size: 22px; }
-        .info-section h3 i { margin-right: 10px; }
-        .info-section p { line-height: 1.8; opacity: 0.9; font-size: 16px; text-align: justify; }
-        
-        /* ============================================================
-        ব্যাজ ও বাটন
-        ============================================================ */
-        .badge { display: inline-block; background: rgba(255,215,0,0.2); padding: 5px 15px; border-radius: 20px; font-size: 14px; margin-right: 10px; margin-bottom: 10px; }
-        .back-btn { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.2); padding: 12px 25px; border-radius: 40px; color: white; text-decoration: none; transition: all 0.3s; margin-top: 20px; }
-        .back-btn:hover { background: rgba(255,215,0,0.3); gap: 12px; }
-        .share-buttons { display: flex; gap: 15px; justify-content: center; margin-top: 30px; flex-wrap: wrap; }
-        .share-btn { background: rgba(255,255,255,0.15); padding: 10px 20px; border-radius: 30px; cursor: pointer; transition: all 0.3s; border: none; color: white; font-family: inherit; font-size: 14px; }
-        .share-btn:hover { background: rgba(255,215,0,0.4); }
-        
-        /* ============================================================
-        লোডিং অ্যানিমেশন
-        ============================================================ */
+        .info-section { margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,215,0,0.2); }
+        .info-section h3 { color: var(--gold); margin-bottom: 12px; font-size: 22px; }
+        .info-section p { line-height: 1.8; opacity: 0.9; }
+        .badge {
+            display: inline-block;
+            background: rgba(255,215,0,0.15);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        .root-description {
+            background: rgba(255,215,0,0.08);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-left: 4px solid var(--gold);
+        }
+        .planet-badge {
+            background: rgba(255,215,0,0.2);
+            padding: 8px 20px;
+            border-radius: 40px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        .option-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin: 30px 0;
+            max-height: 450px;
+            overflow-y: auto;
+        }
+        .option-btn {
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+            color: #1a1a2e;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-family: var(--font-bengali);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        .option-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-gold); }
+        .share-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        .share-btn {
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            border: 1px solid var(--border-gold);
+            color: white;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+        .share-btn:hover { background: rgba(255,215,0,0.2); }
         .loading { text-align: center; padding: 50px; }
         .loading i { font-size: 48px; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        
-        /* ============================================================
-        ক্যাটাগরি নির্বাচন UI
-        ============================================================ */
-        .clarification-card { text-align: center; }
-        .option-buttons { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 30px 0; max-height: 450px; overflow-y: auto; padding: 10px; }
-        .option-btn { background: linear-gradient(135deg, #ffd700, #ff8c00); color: #1a1a2e; border: none; padding: 10px 18px; border-radius: 40px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.3s; font-family: inherit; display: inline-flex; align-items: center; gap: 8px; }
-        .option-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255,215,0,0.4); }
-        
-        /* ============================================================
-        মূল সংখ্যা বিবরণ
-        ============================================================ */
-        .root-description { background: rgba(255,215,0,0.15); border-radius: 20px; padding: 20px; margin-bottom: 25px; border-left: 4px solid #ffd700; }
-        .planet-badge { background: rgba(255,215,0,0.3); padding: 8px 20px; border-radius: 40px; display: inline-block; margin-bottom: 15px; font-size: 16px; }
-        
-        /* ============================================================
-        সামঞ্জস্য ফলাফলের জন্য স্টাইল (Compatibility)
-        ============================================================ */
-        .score-card { text-align: center; }
-        .score-circle { width: 180px; height: 180px; margin: 0 auto 20px; border-radius: 50%; border: 8px solid; display: flex; flex-direction: column; justify-content: center; align-items: center; background: rgba(0,0,0,0.3); }
-        .score-number { font-size: 48px; font-weight: 800; }
-        .score-label { font-size: 14px; opacity: 0.8; }
-        .score-level { font-size: 28px; font-weight: 600; margin-bottom: 15px; }
-        .score-description { font-size: 16px; opacity: 0.9; margin-bottom: 15px; line-height: 1.6; }
-        .score-summary { font-size: 14px; background: rgba(255,255,255,0.1); padding: 10px; border-radius: 20px; margin: 15px 0; }
-        .progress-bar { width: 100%; height: 10px; background: rgba(255,255,255,0.2); border-radius: 10px; overflow: hidden; margin-top: 15px; }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.08);
+            padding: 12px 25px;
+            border-radius: 40px;
+            color: var(--gold);
+            text-decoration: none;
+            margin-top: 20px;
+            border: 1px solid var(--border-gold);
+            transition: var(--transition);
+        }
+        .back-btn:hover { background: rgba(255,215,0,0.15); gap: 12px; }
+
+        /* Compatibility Specific */
+        .score-circle {
+            text-align: center;
+            padding: 20px;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 15px;
+        }
         .progress-fill { height: 100%; border-radius: 10px; transition: width 0.5s ease; }
-        
-        /* আইটেম লিস্ট */
-        .items-list { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 15px; }
-        .item-badge { background: rgba(255,255,255,0.15); border-radius: 50px; padding: 8px 15px; display: inline-flex; align-items: center; gap: 10px; }
-        .item-number { width: 32px; height: 32px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; color: #1a1a2e; }
-        .item-planet { font-weight: 500; }
-        .item-type { opacity: 0.7; }
-        .item-value { max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        
-        /* জোড়া বিশ্লেষণ */
-        .pairs-container { display: flex; flex-direction: column; gap: 20px; }
-        .pair-analysis { background: rgba(255,255,255,0.05); border-radius: 16px; padding: 20px; border-left: 4px solid; }
-        .pair-analysis.special-friend { border-left-color: #ffd700; }
-        .pair-analysis.friend { border-left-color: #90be6d; }
-        .pair-analysis.neutral { border-left-color: #f9c74f; }
-        .pair-analysis.special-enemy { border-left-color: #f9844a; }
-        .pair-analysis.enemy { border-left-color: #e74c3c; }
-        .pair-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 10px; }
-        .pair-items { font-size: 18px; font-weight: 500; display: flex; align-items: center; gap: 10px; }
-        .pair-item { background: rgba(255,255,255,0.1); padding: 4px 12px; border-radius: 20px; }
-        .pair-score { font-weight: bold; }
-        .pair-numbers { font-size: 14px; opacity: 0.8; margin-bottom: 12px; }
-        .num-badge { display: inline-block; width: 24px; height: 24px; background: #ffd700; color: #1a1a2e; border-radius: 50%; text-align: center; line-height: 24px; font-weight: bold; margin: 0 4px; }
-        .pair-analysis-text { line-height: 1.6; margin: 12px 0; }
-        .pair-remedy { background: rgba(255,215,0,0.15); padding: 12px; border-radius: 12px; margin-top: 12px; font-size: 14px; }
-        
-        /* সামগ্রিক বিশ্লেষণ */
-        .overall-analysis { line-height: 1.8; margin-bottom: 20px; }
-        .best-pair, .worst-pair { padding: 12px; border-radius: 12px; margin-top: 12px; }
-        .best-pair { background: rgba(46,204,113,0.2); border-left: 3px solid #2ecc71; }
-        .worst-pair { background: rgba(231,76,60,0.2); border-left: 3px solid #e74c3c; }
-        
-        /* প্রতিকার কার্ড */
-        .remedy-card { background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(255,140,0,0.1)); }
-        .remedy-content { line-height: 1.8; white-space: pre-line; }
-        .remedy-note { margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.2); font-size: 14px; opacity: 0.8; }
-        
-        /* এরর কার্ড */
-        .error-card { text-align: center; padding: 50px; }
-        .error-card i { font-size: 64px; color: #ffd700; margin-bottom: 20px; }
-        
-        /* রেস্পন্সিভ */
+        .items-list { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 15px; }
+        .pair-analysis {
+            background: rgba(0,0,0,0.2);
+            border-radius: var(--radius-md);
+            padding: 18px;
+            margin-bottom: 16px;
+            border-left: 4px solid var(--gold);
+        }
+
+        /* Footer */
+        .site-footer {
+            background: rgba(8,8,16,0.95);
+            border-top: 1px solid var(--border-maroon);
+            padding: 40px 0 24px;
+            margin-top: 60px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-social { display: flex; gap: 10px; margin-top: 16px; }
+        .social-link {
+            width: 36px;
+            height: 36px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-maroon);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .social-link:hover { border-color: var(--border-gold); color: var(--gold); }
+        .footer-col h4 { font-size: 14px; color: var(--gold); margin-bottom: 16px; }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 8px; }
+        .footer-links a { color: var(--text-dim); text-decoration: none; font-size: 13px; transition: var(--transition); }
+        .footer-links a:hover { color: var(--gold); padding-left: 4px; }
+        .footer-bottom {
+            border-top: 1px solid var(--border-maroon);
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 12px;
+            color: var(--text-dim);
+        }
+        .footer-bottom a { color: var(--gold-dark); text-decoration: none; }
+        .disclaimer { font-size: 11px; color: var(--text-dim); text-align: center; margin-top: 20px; }
+
+        /* Floating Buttons */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 80px;
+            right: 24px;
+            z-index: 900;
+        }
+        .whatsapp-btn {
+            width: 56px;
+            height: 56px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: #fff;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+            transition: var(--transition);
+            animation: wa-pulse 2.5s ease-in-out infinite;
+        }
+        @keyframes wa-pulse {
+            0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+            50% { box-shadow: 0 4px 30px rgba(37,211,102,0.7), 0 0 0 8px rgba(37,211,102,0.1); }
+        }
+        .whatsapp-btn:hover { transform: scale(1.1); }
+        #btt {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 46px;
+            height: 46px;
+            background: linear-gradient(135deg, var(--maroon), #a00000);
+            border: 1px solid var(--border-gold);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: var(--gold);
+            cursor: pointer;
+            z-index: 900;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+        }
+        #btt.visible { opacity: 1; pointer-events: all; }
+        #btt:hover { transform: translateY(-3px); }
+
         @media (max-width: 768px) {
-            .result-card, .clarification-card { padding: 20px; }
+            .main-nav, .header-cta { display: none; }
+            .hamburger { display: flex; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+            .result-card { padding: 20px; }
             .big-number { font-size: 48px; }
             .result-title { font-size: 22px; }
-            .option-btn { padding: 8px 14px; font-size: 12px; }
-            .info-section p { font-size: 14px; }
-            .score-circle { width: 140px; height: 140px; }
-            .score-number { font-size: 36px; }
-            .pair-items { font-size: 14px; }
-            .item-value { max-width: 120px; }
+        }
+        @media (max-width: 480px) {
+            .option-btn { padding: 8px 16px; font-size: 12px; }
         }
     </style>
 </head>
 <body>
-    <div class="container" id="app">
-        <div class="loading" id="loading">
-            <i class="fas fa-spinner"></i>
-            <p>বিশ্লেষণ করা হচ্ছে...</p>
-        </div>
-        <div id="resultContent" style="display: none;"></div>
-        <div style="text-align: center; margin-top: 30px;">
-            <a href="numerology.html" class="back-btn"><i class="fas fa-arrow-left"></i> নতুন অনুসন্ধান</a>
+
+<!-- Flash Message -->
+<div id="flashMessage"></div>
+
+<!-- Header -->
+<header class="site-header">
+    <div class="container">
+        <div class="header-inner">
+            <a href="https://www.myastrology.in/" class="logo-wrap">
+                <div class="logo-icon"><i class="fas fa-star-and-crescent"></i></div>
+                <div class="logo-text">
+                    <span class="site-name">MyAstrology</span>
+                    <span class="site-tagline">Ranaghat, West Bengal</span>
+                </div>
+            </a>
+
+            <nav class="main-nav">
+                <a href="https://www.myastrology.in/" class="nav-link"><i class="fas fa-home"></i> হোম</a>
+                <a href="https://www.myastrology.in/astrology.html" class="nav-link"><i class="fas fa-moon"></i> জ্যোতিষ</a>
+                <a href="https://www.myastrology.in/numerology.html" class="nav-link active"><i class="fas fa-hashtag"></i> সংখ্যাজ্যোতিষ</a>
+                <a href="https://www.myastrology.in/rashifal.html" class="nav-link"><i class="fas fa-sun"></i> রাশিফল</a>
+                <a href="https://www.myastrology.in/panjika.html" class="nav-link"><i class="fas fa-calendar-alt"></i> পাঞ্জিকা</a>
+                <a href="https://www.myastrology.in/contact.html" class="nav-link"><i class="fas fa-phone"></i> যোগাযোগ</a>
+            </nav>
+
+            <a href="https://wa.me/919333122768?text=নমস্কার%2C%20সংখ্যাজ্যোতিষ%20পরামর্শ%20চাই" class="header-cta" target="_blank">
+                <i class="fab fa-whatsapp"></i> পরামর্শ নিন
+            </a>
+
+            <button class="hamburger" id="hamburger" aria-label="মেনু খুলুন">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </div>
+</header>
 
-    <!-- ============================================================
-    স্ক্রিপ্ট লোড (সঠিক ক্রমে)
-    ============================================================ -->
-    <script src="js/numerology-data.js"></script>
-    <script src="js/core/planet-relations.js"></script>
-    <script src="js/core/number-utils.js"></script>
-    <script src="js/core/compatibility-core.js"></script>
-    <script src="js/renderers/compatibility-renderer.js"></script>
-    <script src="js/main.js"></script>
+<nav class="mobile-nav" id="mobileNav">
+    <a href="https://www.myastrology.in/" class="nav-link"><i class="fas fa-home"></i> হোম</a>
+    <a href="https://www.myastrology.in/astrology.html" class="nav-link"><i class="fas fa-moon"></i> জ্যোতিষ</a>
+    <a href="https://www.myastrology.in/numerology.html" class="nav-link active"><i class="fas fa-hashtag"></i> সংখ্যাজ্যোতিষ</a>
+    <a href="https://www.myastrology.in/rashifal.html" class="nav-link"><i class="fas fa-sun"></i> রাশিফল</a>
+    <a href="https://www.myastrology.in/panjika.html" class="nav-link"><i class="fas fa-calendar-alt"></i> পাঞ্জিকা</a>
+    <a href="https://www.myastrology.in/contact.html" class="nav-link"><i class="fas fa-phone"></i> যোগাযোগ</a>
+    <a href="https://wa.me/919333122768?text=নমস্কার%2C%20সংখ্যাজ্যোতিষ%20পরামর্শ%20চাই" class="nav-link" style="background:rgba(37,211,102,0.15); margin-top:10px;"><i class="fab fa-whatsapp"></i> WhatsApp পরামর্শ</a>
+</nav>
+
+<!-- Main Content -->
+<div class="container" id="app">
+    <div class="loading" id="loading">
+        <i class="fas fa-spinner"></i>
+        <p>বিশ্লেষণ করা হচ্ছে...</p>
+    </div>
+    <div id="resultContent" style="display: none;"></div>
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="numerology.html" class="back-btn"><i class="fas fa-arrow-left"></i> নতুন অনুসন্ধান</a>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="https://www.myastrology.in/" class="logo-wrap" style="margin-bottom:14px; display:inline-flex;">
+                    <div class="logo-icon"><i class="fas fa-star-and-crescent"></i></div>
+                    <div class="logo-text">
+                        <span class="site-name">MyAstrology</span>
+                        <span class="site-tagline">Ranaghat, West Bengal</span>
+                    </div>
+                </a>
+                <p>Dr. Prodyut Acharya — বৈদিক জ্যোতিষী, হস্তরেখা বিশেষজ্ঞ ও SKAVSA সার্টিফাইড রত্নথেরাপিস্ট।</p>
+                <div class="footer-social">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    <a href="https://wa.me/919333122768" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>পরিষেবা</h4>
+                <ul class="footer-links">
+                    <li><a href="https://www.myastrology.in/astrology.html">জ্যোতিষ পরামর্শ</a></li>
+                    <li><a href="https://www.myastrology.in/numerology.html">সংখ্যাজ্যোতিষ</a></li>
+                    <li><a href="https://www.myastrology.in/gemstone.html">রত্নপাথর পরামর্শ</a></li>
+                    <li><a href="https://www.myastrology.in/panjika.html">বাংলা পাঞ্জিকা</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>তথ্য</h4>
+                <ul class="footer-links">
+                    <li><a href="https://www.myastrology.in/rashifal.html">দৈনিক রাশিফল</a></li>
+                    <li><a href="https://www.myastrology.in/blog-list.html">ব্লগ</a></li>
+                    <li><a href="https://www.myastrology.in/about.html">আমাদের সম্পর্কে</a></li>
+                    <li><a href="https://www.myastrology.in/reviews.html">পর্যালোচনা</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>যোগাযোগ</h4>
+                <ul class="footer-links">
+                    <li><a href="tel:+919333122768"><i class="fas fa-phone"></i> +91 9333122768</a></li>
+                    <li><a href="https://wa.me/919333122768"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+                    <li><a href="https://www.myastrology.in/contact.html">যোগাযোগ পেজ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 MyAstrology Ranaghat. সর্বস্বত্ব সংরক্ষিত।</p>
+            <p><a href="https://www.myastrology.in/privacy-policy.html">গোপনীয়তা নীতি</a> | <a href="https://www.myastrology.in/terms-of-use.html">ব্যবহারের শর্ত</a></p>
+        </div>
+        <p class="disclaimer">⚠️ দ্রষ্টব্য: এই ওয়েবসাইটের তথ্য শুধুমাত্র জ্ঞান ও বিনোদনের উদ্দেশ্যে। গুরুত্বপূর্ণ জীবন-সিদ্ধান্ত নেওয়ার আগে বিশেষজ্ঞ পরামর্শ নিন।</p>
+    </div>
+</footer>
+
+<!-- WhatsApp Float -->
+<div class="whatsapp-float">
+    <a class="whatsapp-btn" href="https://wa.me/919333122768?text=নমস্কার%2C%20সংখ্যাজ্যোতিষ%20পরামর্শ%20চাই" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</div>
+
+<!-- Back to Top -->
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-chevron-up"></i></button>
+
+<!-- Scripts (Core System - Unchanged) -->
+<script src="js/numerology-data.js"></script>
+<script src="js/core/planet-relations.js"></script>
+<script src="js/core/number-utils.js"></script>
+<script src="js/core/compatibility-core.js"></script>
+<script src="js/renderers/compatibility-renderer.js"></script>
+<script src="js/main.js"></script>
+
+<script>
+    // ============================================================
+    // UI Helpers
+    // ============================================================
+    function showFlash(msg, duration = 2500) {
+        const el = document.getElementById('flashMessage');
+        if (!el) return;
+        el.textContent = msg;
+        el.classList.add('show');
+        setTimeout(() => el.classList.remove('show'), duration);
+    }
+
+    // Hamburger Menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    if (hamburger && mobileNav) {
+        hamburger.addEventListener('click', () => {
+            mobileNav.classList.toggle('open');
+            hamburger.classList.toggle('open');
+        });
+        mobileNav.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('open');
+                hamburger.classList.remove('open');
+            });
+        });
+    }
+
+    // Back to Top
+    const btt = document.getElementById('btt');
+    window.addEventListener('scroll', () => {
+        if (btt) btt.classList.toggle('visible', window.scrollY > 300);
+    });
+
+    // Override copyToClipboard and shareResult if needed (fallback)
+    window.copyToClipboard = function() {
+        const text = document.getElementById('resultContent')?.innerText || '';
+        if (text) navigator.clipboard.writeText(text).then(() => showFlash('✅ ফলাফল কপি হয়েছে!'));
+    };
+    window.shareResult = function() {
+        const text = document.getElementById('resultContent')?.innerText || '';
+        if (navigator.share && text) {
+            navigator.share({ title: 'সংখ্যা জ্যোতিষ বিশ্লেষণ', text: text.substring(0, 500), url: window.location.href });
+        } else { window.copyToClipboard(); }
+    };
+
+    // Display flash if result is ready
+    const checkResult = setInterval(() => {
+        if (document.getElementById('resultContent')?.innerHTML?.trim() && !document.getElementById('loading').style.display) {
+            showFlash('✨ বিশ্লেষণ সম্পূর্ণ!');
+            clearInterval(checkResult);
+        }
+    }, 500);
+</script>
+
 </body>
 </html>
