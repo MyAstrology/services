@@ -2,515 +2,209 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Numerology Intelligence Hub | myastrology.in</title>
-    <meta name="description" content="অংকবিদ্যার মাধ্যমে আপনার সংখ্যার গভীর বিশ্লেষণ। মূলাংক, নাম, মোবাইল নম্বর, ব্যবসার নাম, পণ্যের মূল্য - সব কিছু বিশ্লেষণ করুন।">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numerology Intelligence Hub</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
         body {
-            font-family: 'Hind Siliguri', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             color: #fff;
             min-height: 100vh;
         }
-        
         .container {
-            max-width: 1200px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 20px;
         }
-        
-        /* Header */
         .header {
             text-align: center;
-            padding: 40px 20px;
+            padding: 30px 20px;
             background: rgba(255,255,255,0.05);
             border-radius: 20px;
-            margin-bottom: 40px;
-            backdrop-filter: blur(10px);
+            margin-bottom: 30px;
         }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 15px;
+        .header h1 {
+            font-size: 28px;
         }
-        
-        .logo i {
-            font-size: 48px;
+        .header h1 span {
             color: #ffd700;
         }
-        
-        .logo h1 {
-            font-size: 32px;
-            font-weight: 700;
-        }
-        
-        .logo h1 span {
-            color: #ffd700;
-        }
-        
-        .tagline {
-            font-size: 18px;
-            opacity: 0.8;
-        }
-        
-        /* Search Section */
-        .search-section {
-            margin-bottom: 50px;
-        }
-        
         .search-card {
             background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 30px;
-            padding: 40px;
+            border-radius: 24px;
+            padding: 30px;
             text-align: center;
-            border: 1px solid rgba(255,255,255,0.2);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
         }
-        
-        .search-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #ffd700, #ff8c00);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 25px;
-        }
-        
-        .search-icon i {
-            font-size: 40px;
-            color: #1a1a2e;
-        }
-        
         .search-card h2 {
-            font-size: 28px;
+            font-size: 24px;
             margin-bottom: 10px;
         }
-        
-        .subtitle {
-            opacity: 0.8;
-            margin-bottom: 30px;
-        }
-        
-        .search-box-wrapper {
+        .search-box {
             display: flex;
-            gap: 15px;
-            max-width: 800px;
-            margin: 0 auto 30px;
+            gap: 12px;
+            margin: 25px 0;
             flex-wrap: wrap;
             justify-content: center;
         }
-        
-        .universal-input {
+        .search-box input {
             flex: 1;
             min-width: 250px;
-            padding: 18px 25px;
+            padding: 14px 20px;
             font-size: 16px;
-            font-family: 'Hind Siliguri', sans-serif;
             border: none;
             border-radius: 50px;
-            background: rgba(255,255,255,0.95);
-            color: #333;
             outline: none;
-            transition: all 0.3s;
         }
-        
-        .universal-input:focus {
-            box-shadow: 0 0 0 3px rgba(255,215,0,0.5);
-            transform: scale(1.02);
-        }
-        
-        .analyze-btn {
-            padding: 18px 35px;
-            font-size: 18px;
-            font-weight: 600;
-            font-family: 'Hind Siliguri', sans-serif;
+        .search-box button {
+            padding: 14px 28px;
+            font-size: 16px;
+            font-weight: bold;
             background: linear-gradient(135deg, #ffd700, #ff8c00);
             border: none;
             border-radius: 50px;
-            color: #1a1a2e;
             cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            color: #1a1a2e;
         }
-        
-        .analyze-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(255,215,0,0.3);
-        }
-        
-        /* Quick Examples */
-        .quick-examples {
-            margin-top: 20px;
-        }
-        
-        .examples-title {
-            margin-bottom: 15px;
-            opacity: 0.9;
-        }
-        
-        .example-chips {
+        .examples {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 10px;
             justify-content: center;
+            margin-top: 20px;
         }
-        
-        .chip {
+        .example {
             background: rgba(255,255,255,0.15);
-            padding: 8px 18px;
+            padding: 6px 14px;
             border-radius: 30px;
-            font-size: 14px;
+            font-size: 13px;
             cursor: pointer;
-            transition: all 0.3s;
-            border: 1px solid rgba(255,255,255,0.2);
         }
-        
-        .chip:hover {
-            background: rgba(255,215,0,0.3);
-            transform: translateY(-2px);
+        .example:hover {
+            background: rgba(255,215,0,0.4);
         }
-        
-        .chip.multi {
-            background: rgba(255,215,0,0.2);
-            border-color: rgba(255,215,0,0.5);
-        }
-        
-        /* Features Section */
-        .features-section {
-            margin-bottom: 50px;
-        }
-        
-        .features-section h3 {
-            text-align: center;
-            font-size: 28px;
-            margin-bottom: 30px;
-        }
-        
-        .features-section h3 i {
-            color: #ffd700;
-            margin-right: 10px;
-        }
-        
-        .features-grid {
+        .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
         }
-        
-        .feature-card {
+        .feature {
             background: rgba(255,255,255,0.05);
-            padding: 25px;
-            border-radius: 20px;
+            padding: 20px;
+            border-radius: 16px;
             text-align: center;
-            transition: all 0.3s;
-            border: 1px solid rgba(255,255,255,0.1);
         }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255,255,255,0.1);
-            border-color: rgba(255,215,0,0.5);
-        }
-        
-        .feature-card i {
-            font-size: 40px;
+        .feature i {
+            font-size: 32px;
             color: #ffd700;
-            margin-bottom: 15px;
-        }
-        
-        .feature-card h4 {
-            font-size: 20px;
             margin-bottom: 10px;
         }
-        
-        .feature-card p {
+        .feature h4 {
+            margin-bottom: 8px;
+        }
+        .feature p {
+            font-size: 13px;
             opacity: 0.7;
-            font-size: 14px;
         }
-        
-        /* Info Section */
-        .info-section {
-            margin-bottom: 50px;
-        }
-        
-        .info-card {
-            background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(255,140,0,0.1));
-            padding: 30px;
-            border-radius: 20px;
-            text-align: center;
-            border: 1px solid rgba(255,215,0,0.3);
-        }
-        
-        .info-card i {
-            font-size: 50px;
-            color: #ffd700;
-            margin-bottom: 15px;
-        }
-        
-        .info-card h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
-        }
-        
-        .info-card p {
-            max-width: 700px;
-            margin: 0 auto 20px;
-            opacity: 0.9;
-        }
-        
-        .learn-more {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: #ffd700;
-            text-decoration: none;
-            font-weight: 600;
-            transition: gap 0.3s;
-        }
-        
-        .learn-more:hover {
-            gap: 12px;
-        }
-        
-        /* Footer */
         .footer {
             text-align: center;
             padding: 30px 0;
-            border-top: 1px solid rgba(255,255,255,0.1);
             margin-top: 30px;
-        }
-        
-        .disclaimer {
+            border-top: 1px solid rgba(255,255,255,0.1);
             font-size: 12px;
-            opacity: 0.5;
-            margin-top: 10px;
         }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-            
-            .header {
-                padding: 25px 15px;
-            }
-            
-            .logo h1 {
-                font-size: 24px;
-            }
-            
-            .search-card {
-                padding: 25px;
-            }
-            
-            .search-card h2 {
-                font-size: 22px;
-            }
-            
-            .universal-input {
-                padding: 14px 20px;
-            }
-            
-            .analyze-btn {
-                padding: 14px 25px;
-                font-size: 16px;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .chip {
-                padding: 6px 12px;
-                font-size: 12px;
-            }
+        @media (max-width: 600px) {
+            .container { padding: 15px; }
+            .search-card { padding: 20px; }
+            .search-box input { min-width: 200px; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <div class="logo">
-                <i class="fas fa-moon-stars"></i>
-                <h1>Numerology <span>Intelligence Hub</span></h1>
+        <div class="header">
+            <h1>Numerology <span>Intelligence Hub</span></h1>
+            <p>আপনার সংখ্যার গভীরতম রহস্য উন্মোচন করুন</p>
+        </div>
+
+        <div class="search-card">
+            <h2>🔮 আপনি কী জানতে চান?</h2>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="যেমন: 15-08-1990 বা রাহুল বা রাহুল + 15-08-1990">
+                <button id="searchBtn">বিশ্লেষণ করুন</button>
             </div>
-            <p class="tagline">আপনার সংখ্যার গভীরতম রহস্য উন্মোচন করুন</p>
-        </header>
-        
-        <!-- Main Search Section -->
-        <section class="search-section">
-            <div class="search-card">
-                <div class="search-icon">
-                    <i class="fas fa-search"></i>
-                </div>
-                <h2>আপনি কী জানতে চান?</h2>
-                <p class="subtitle">নিচের বক্সে আপনার প্রশ্ন বা তথ্য লিখুন</p>
-                
-                <div class="search-box-wrapper">
-                    <input type="text" 
-                           id="universalInput" 
-                           class="universal-input" 
-                           placeholder="যেমন: ১৫-০৮-১৯৯০ বা রাহুল বা ০১৭১২৩৪৫৬৭৮ বা রাহুল + ১৫-০৮-১৯৯০"
-                           autocomplete="off">
-                    <button id="analyzeBtn" class="analyze-btn">
-                        <i class="fas fa-chart-line"></i> বিশ্লেষণ করুন
-                    </button>
-                </div>
-                
-                <!-- Quick Examples -->
-                <div class="quick-examples">
-                    <p class="examples-title"><i class="fas fa-lightbulb"></i> দ্রুত উদাহরণ:</p>
-                    <div class="example-chips">
-                        <span class="chip" data-example="15-08-1990">📅 জন্মতারিখ</span>
-                        <span class="chip" data-example="রাহুল">👤 ব্যক্তির নাম</span>
-                        <span class="chip" data-example="০১৭১২৩৪৫৬৭৮">📱 মোবাইল নম্বর</span>
-                        <span class="chip" data-example="প্রদ্যুৎ এন্টারপ্রাইজ">🏢 ব্যবসার নাম</span>
-                        <span class="chip" data-example="৯৮৫ টাকা">💰 পণ্যের মূল্য</span>
-                        <span class="chip" data-example="WB12AB3456">🚗 গাড়ির নম্বর</span>
-                        <span class="chip multi" data-example="রাহুল + ১৫-০৮-১৯৯০">🔗 নাম + জন্মতারিখ</span>
-                        <span class="chip multi" data-example="রাহুল + সুমন">👥 দুই ব্যক্তির নাম</span>
-                    </div>
-                    <p style="font-size: 12px; opacity: 0.6; margin-top: 15px;">
-                        <i class="fas fa-info-circle"></i> টিপ: একাধিক তথ্য মেলাতে <strong>"+"</strong> বা <strong>"এবং"</strong> ব্যবহার করুন
-                    </p>
-                </div>
+            <div class="examples">
+                <span class="example" data-val="15-08-1990">📅 জন্মতারিখ</span>
+                <span class="example" data-val="রাহুল">👤 নাম</span>
+                <span class="example" data-val="01712345678">📱 মোবাইল</span>
+                <span class="example" data-val="প্রদ্যুৎ এন্টারপ্রাইজ">🏢 ব্যবসার নাম</span>
+                <span class="example" data-val="985 টাকা">💰 মূল্য</span>
+                <span class="example" data-val="রাহুল + 15-08-1990">🔗 নাম + তারিখ</span>
+                <span class="example" data-val="রাহুল + সুমন">👥 দুই নাম</span>
             </div>
-        </section>
-        
-        <!-- Features Section -->
-        <section class="features-section">
-            <h3><i class="fas fa-crown"></i> আমাদের সেবাসমূহ</h3>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <i class="fas fa-calendar-alt"></i>
-                    <h4>মূলাংক বিশ্লেষণ</h4>
-                    <p>জন্মতারিখ থেকে আপনার মূল সংখ্যা নির্ণয়</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-user-edit"></i>
-                    <h4>নাম বিশ্লেষণ</h4>
-                    <p>নামের অংক ও এর প্রভাব বিশ্লেষণ</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-building"></i>
-                    <h4>ব্যবসার নাম</h4>
-                    <p>ব্যবসার নামের শুভ-অশুভ নির্ণয়</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-tag"></i>
-                    <h4>মূল্য নির্ধারণ</h4>
-                    <p>পণ্যের মূল্যের শুভ সংখ্যা নির্বাচন</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-mobile-alt"></i>
-                    <h4>নম্বর যাচাই</h4>
-                    <p>মোবাইল, গাড়ি, ব্যাংক অ্যাকাউন্ট নম্বর</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-plane-departure"></i>
-                    <h4>শুভ যাত্রা</h4>
-                    <p>যাত্রার শুভ দিন ও দিক নির্ধারণ</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-link"></i>
-                    <h4>সামঞ্জস্য মিলন</h4>
-                    <p>নাম, তারিখ, নম্বরের মধ্যে সামঞ্জস্য বিশ্লেষণ</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-handshake"></i>
-                    <h4>বন্ধুত্ব মিলন</h4>
-                    <p>দুই ব্যক্তির নামের সামঞ্জস্য বিশ্লেষণ</p>
-                </div>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <i>📊</i>
+                <h4>মূলাংক বিশ্লেষণ</h4>
+                <p>জন্মতারিখ থেকে মূল সংখ্যা নির্ণয়</p>
             </div>
-        </section>
-        
-        <!-- Info Section -->
-        <section class="info-section">
-            <div class="info-card">
-                <i class="fas fa-chart-simple"></i>
-                <h3>অংকবিদ্যা কী?</h3>
-                <p>অংকবিদ্যা বা নিউমেরোলজি হল প্রাচীন বিজ্ঞান যা সংখ্যার মাধ্যমে ব্যক্তিত্ব, ভাগ্য ও জীবনের পথ নির্ধারণ করে। প্রতিটি সংখ্যার একটি নির্দিষ্ট কম্পন ও শক্তি রয়েছে যা আমাদের জীবনকে প্রভাবিত করে।</p>
-                <a href="guide.html" class="learn-more">বিস্তারিত জানুন <i class="fas fa-arrow-right"></i></a>
+            <div class="feature">
+                <i>👤</i>
+                <h4>নাম বিশ্লেষণ</h4>
+                <p>নামের অংক ও প্রভাব</p>
             </div>
-        </section>
-        
-        <!-- Footer -->
-        <footer class="footer">
-            <p>&copy; 2024 myastrology.in | Numerology Intelligence Hub</p>
-            <p class="disclaimer">শুধুমাত্র তথ্যের উদ্দেশ্যে, পেশাদার পরামর্শ নয়</p>
-        </footer>
+            <div class="feature">
+                <i>🔗</i>
+                <h4>সামঞ্জস্য মিলন</h4>
+                <p>নাম, তারিখ, নম্বরের মিলন</p>
+            </div>
+            <div class="feature">
+                <i>🚗</i>
+                <h4>গাড়ির নম্বর</h4>
+                <p>যাত্রার শুভ-অশুভ</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2024 myastrology.in | Numerology Intelligence Hub</p>
+        </div>
     </div>
-    
-    <!-- Scripts -->
-    <script src="js/numerology-data.js"></script>
-    <script src="js/main.js"></script>
-    
+
     <script>
-        // পেজ লোড হওয়ার পর
-        document.addEventListener('DOMContentLoaded', function() {
-            const inputField = document.getElementById('universalInput');
-            if (inputField) inputField.focus();
+        (function() {
+            const inputField = document.getElementById('searchInput');
+            const searchBtn = document.getElementById('searchBtn');
             
-            const analyzeBtn = document.getElementById('analyzeBtn');
-            if (analyzeBtn) {
-                analyzeBtn.addEventListener('click', analyzeInput);
+            function analyze() {
+                let val = inputField.value.trim();
+                if (!val) {
+                    alert('দয়া করে কিছু লিখুন');
+                    return;
+                }
+                window.location.href = 'result.html?q=' + encodeURIComponent(val);
             }
             
-            if (inputField) {
-                inputField.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter') {
-                        analyzeInput();
-                    }
-                });
-            }
+            searchBtn.onclick = analyze;
+            inputField.onkeypress = function(e) {
+                if (e.key === 'Enter') analyze();
+            };
             
-            document.querySelectorAll('.chip').forEach(chip => {
-                chip.addEventListener('click', function() {
-                    const example = this.getAttribute('data-example');
-                    if (inputField) {
-                        inputField.value = example;
-                        analyzeInput();
-                    }
-                });
+            document.querySelectorAll('.example').forEach(el => {
+                el.onclick = function() {
+                    inputField.value = this.getAttribute('data-val');
+                    analyze();
+                };
             });
-        });
-        
-        function analyzeInput() {
-            const inputField = document.getElementById('universalInput');
-            const input = inputField ? inputField.value.trim() : '';
             
-            if (!input) {
-                alert('দয়া করে কিছু লিখুন বা উদাহরণ সিলেক্ট করুন');
-                return;
-            }
-            
-            const encodedInput = encodeURIComponent(input);
-            window.location.href = `result.html?q=${encodedInput}`;
-        }
+            inputField.focus();
+        })();
     </script>
 </body>
 </html>
