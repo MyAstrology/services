@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>বিশ্লেষণ ফলাফল | Numerology Intelligence Hub</title>
-    <link rel="stylesheet" href="css/numerology.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        .result-container { max-width: 900px; margin: 0 auto; padding: 20px; }
-        .result-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 20px; padding: 30px; margin-bottom: 25px; border: 1px solid rgba(255,255,255,0.2); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Hind Siliguri', sans-serif; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: #fff; min-height: 100vh; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        
+        .result-card, .clarification-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 24px; padding: 30px; margin-bottom: 25px; border: 1px solid rgba(255,255,255,0.2); }
         .result-header { text-align: center; margin-bottom: 30px; }
         .result-number { display: inline-block; background: linear-gradient(135deg, #ffd700, #ff8c00); padding: 20px 35px; border-radius: 60px; margin-bottom: 20px; }
         .big-number { font-size: 64px; font-weight: 800; color: #1a1a2e; }
@@ -21,72 +23,32 @@
         .info-section h3 i { margin-right: 10px; }
         .info-section p { line-height: 1.8; opacity: 0.9; }
         .badge { display: inline-block; background: rgba(255,215,0,0.2); padding: 5px 15px; border-radius: 20px; font-size: 14px; margin-right: 10px; margin-bottom: 10px; }
+        
         .back-btn { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.2); padding: 12px 25px; border-radius: 40px; color: white; text-decoration: none; transition: all 0.3s; margin-top: 20px; }
         .back-btn:hover { background: rgba(255,215,0,0.3); gap: 12px; }
         .share-buttons { display: flex; gap: 15px; justify-content: center; margin-top: 30px; flex-wrap: wrap; }
         .share-btn { background: rgba(255,255,255,0.15); padding: 10px 20px; border-radius: 30px; cursor: pointer; transition: all 0.3s; border: none; color: white; font-family: inherit; font-size: 14px; }
         .share-btn:hover { background: rgba(255,215,0,0.4); }
-        .error-card { text-align: center; padding: 50px; }
-        .error-card i { font-size: 64px; color: #ffd700; margin-bottom: 20px; }
+        
         .loading { text-align: center; padding: 50px; }
         .loading i { font-size: 48px; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         
-        /* ক্ল্যারিফিকেশন স্টাইল */
-        .clarification-card {
-            text-align: center;
-        }
-        .option-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
-            margin: 30px 0;
-        }
-        .option-btn {
-            background: linear-gradient(135deg, #ffd700, #ff8c00);
-            color: #1a1a2e;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 40px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-family: inherit;
-        }
-        .option-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255,215,0,0.4);
-        }
-        .input-group {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .clarification-input {
-            padding: 12px 20px;
-            border-radius: 40px;
-            border: none;
-            font-family: inherit;
-            font-size: 16px;
-            min-width: 250px;
-        }
-        .submit-btn {
-            background: #ffd700;
-            color: #1a1a2e;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 40px;
-            cursor: pointer;
-            font-weight: 600;
+        .clarification-card { text-align: center; }
+        .option-buttons { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 30px 0; max-height: 400px; overflow-y: auto; padding: 10px; }
+        .option-btn { background: linear-gradient(135deg, #ffd700, #ff8c00); color: #1a1a2e; border: none; padding: 10px 18px; border-radius: 40px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.3s; font-family: inherit; display: inline-flex; align-items: center; gap: 8px; }
+        .option-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255,215,0,0.4); }
+        
+        @media (max-width: 768px) {
+            .result-card, .clarification-card { padding: 20px; }
+            .big-number { font-size: 48px; }
+            .result-title { font-size: 22px; }
+            .option-btn { padding: 8px 14px; font-size: 12px; }
         }
     </style>
 </head>
 <body>
-    <div class="container result-container" id="app">
+    <div class="container" id="app">
         <div class="loading" id="loading">
             <i class="fas fa-spinner"></i>
             <p>বিশ্লেষণ করা হচ্ছে...</p>
@@ -98,11 +60,10 @@
     </div>
 
     <script src="js/numerology-data.js"></script>
-    <script src="js/intent-detector.js"></script>
     
     <script>
-        let currentInput = '';
-        let currentIntentResult = null;
+        let currentRawInput = '';
+        let currentNumberData = null;
         
         function getQueryParam(param) {
             const urlParams = new URLSearchParams(window.location.search);
@@ -111,37 +72,241 @@
         
         function escapeHtml(text) {
             if (!text) return '';
-            return text
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;')
-                .replace(/'/g, '&#39;');
+            return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
         }
         
-        // ক্ল্যারিফিকেশন UI দেখানো
-        function showClarification(intentResult) {
+        // ইনপুট থেকে সংখ্যা বের করা
+        function extractNumberFromInput(input) {
+            const bengaliDigits = {'০':'0','১':'1','২':'2','৩':'3','৪':'4','৫':'5','৬':'6','৭':'7','৮':'8','৯':'9'};
+            let converted = input;
+            for (let [b, e] of Object.entries(bengaliDigits)) {
+                converted = converted.replace(new RegExp(b, 'g'), e);
+            }
+            const digits = converted.replace(/[^0-9]/g, '');
+            if (digits.length === 0) return null;
+            let sum = 0;
+            for (let d of digits) sum += parseInt(d);
+            while (sum > 9) sum = sum.toString().split('').reduce((a, b) => a + parseInt(b), 0);
+            return { rootNumber: sum, sum: sum, digits: digits };
+        }
+        
+        // ==================== ২৪টি ক্যাটাগরির জন্য টিপস ও বিশ্লেষণ ====================
+        
+        function getPersonalNameAnalysis(number, data) {
+            return `
+                <div class="result-header">
+                    <div class="result-number"><span class="big-number">${number}</span></div>
+                    <h1 class="result-title">${data.identity.title}</h1>
+                    <p class="result-subtitle">${data.planet} | ${data.element}</p>
+                </div>
+                <div class="result-card">
+                    <div class="info-section"><h3><i class="fas fa-user-astronaut"></i> ব্যক্তিত্ব ও স্বভাব</h3><p>${escapeHtml(data.identity.description)}</p></div>
+                    <div class="info-section"><h3><i class="fas fa-briefcase"></i> ক্যারিয়ার ও পেশা</h3><p>${escapeHtml(data.business.description)}</p></div>
+                    <div class="info-section"><h3><i class="fas fa-heart"></i> সম্পর্ক ও বিবাহ</h3><p>${getRelationshipTip(number)}</p></div>
+                    <div class="info-section"><h3><i class="fas fa-hand-sparkles"></i> প্রতিকার</h3><p>${escapeHtml(data.tip.description)}</p></div>
+                </div>
+            `;
+        }
+        
+        function getBabyNameAnalysis(number, data) {
+            return `
+                <div class="result-header">
+                    <div class="result-number"><span class="big-number">${number}</span></div>
+                    <h1 class="result-title">শিশুর নামের অংক: ${number}</h1>
+                    <p class="result-subtitle">${data.planet} | শিশুর সম্ভাব্য ব্যক্তিত্ব</p>
+                </div>
+                <div class="result-card">
+                    <div class="info-section"><h3><i class="fas fa-baby"></i> শিশুর সম্ভাব্য ব্যক্তিত্ব</h3><p>${escapeHtml(data.identity.description.substring(0, 300))}</p></div>
+                    <div class="info-section"><h3><i class="fas fa-graduation-cap"></i> শিক্ষা ও ভবিষ্যৎ</h3><p>${getBabyFutureTip(number)}</p></div>
+                    <div class="info-section"><h3><i class="fas fa-star"></i> নামের প্রভাব</h3><p>${getNameInfluence(number)}</p></div>
+                    <div class="info-section"><h3><i class="fas fa-gem"></i> প্রতিকার</h3><p>${escapeHtml(data.tip.description)}</p></div>
+                </div>
+            `;
+        }
+        
+        function getMarriageCompatibility(input1, input2, number1, number2) {
+            const compatibility = getCompatibilityScore(number1, number2);
+            return `
+                <div class="result-header">
+                    <h1 class="result-title">বিবাহ মিলন বিশ্লেষণ</h1>
+                    <p class="result-subtitle">${escapeHtml(input1)} (${number1}) ও ${escapeHtml(input2)} (${number2})</p>
+                </div>
+                <div class="result-card">
+                    <div class="info-section"><h3><i class="fas fa-heart"></i> সামঞ্জস্যের হার</h3><p>${compatibility.percentage}% - ${compatibility.level}</p></div>
+                    <div class="info-section"><h3><i class="fas fa-chart-line"></i> দাম্পত্য জীবনের সম্ভাবনা</h3><p>${getMarriagePrediction(number1, number2)}</p></div>
+                    <div class="info-section"><h3><i class="fas fa-handshake"></i> পরামর্শ</h3><p>${getMarriageAdvice(number1, number2)}</p></div>
+                </div>
+            `;
+        }
+        
+        function getBusinessNameAnalysis(input, number, data) {
+            return `
+                <div class="result-header">
+                    <div class="result-number"><span class="big-number">${number}</span></div>
+                    <h1 class="result-title">"${escapeHtml(input)}"</h1>
+                    <p class="result-subtitle">${data.planet} | ব্যবসার নামের অংক</p>
+                </div>
+                <div class="result-card">
+                    <div class="info-section"><h3><i class="fas fa-chart-line"></i> ব্যবসার সম্ভাবনা</h3><p>${escapeHtml(data.business.description)}</p></div>
+                    <div class="info-section"><h3><i class="fas fa-palette"></i> শুভ রং</h3><p>${data.luckyColor}</p></div>
+                    <div class="info-section"><h3><i class="fas fa-calendar-alt"></i> শুভ দিন</h3><p>${data.luckyDay}</p></div>
+                    <div class="info-section"><h3><i class="fas fa-chart-simple"></i> সাফল্যের সূত্র</h3><p>${getBusinessSuccessTip(number)}</p></div>
+                </div>
+            `;
+        }
+        
+        function getVehicleResult(input, number, data) {
+            return `
+                <div class="result-header">
+                    <div class="result-number"><span class="big-number">${number}</span></div>
+                    <h1 class="result-title">গাড়ির নম্বর: ${escapeHtml(input)}</h1>
+                    <p class="result-subtitle">${data.planet} | যাত্রার অংক</p>
+                </div>
+                <div class="result-card">
+                    <div class="info-section"><h3><i class="fas fa-plane"></i> যাত্রার শুভ-অশুভ</h3><p>${escapeHtml(data.travel.description)}</p></div>
+                    <div class="info-section"><h3><i class="fas fa-calendar-week"></i> শুভ দিন</h3><p>${data.luckyDay}</p></div>
+                    <div class="info-section"><h3><i class="fas fa-compass"></i> শুভ দিক</h3><p>${data.luckyDirection}</p></div>
+                    <div class="info-section"><h3><i class="fas fa-shield-alt"></i> নিরাপত্তা সতর্কতা</h3><p>${getVehicleSafetyTip(number)}</p></div>
+                </div>
+            `;
+        }
+        
+        function getPhoneResult(input, number, data) {
+            return `
+                <div class="result-header">
+                    <div class="result-number"><span class="big-number">${number}</span></div>
+                    <h1 class="result-title">মোবাইল নম্বর: ${escapeHtml(input)}</h1>
+                    <p class="result-subtitle">${data.planet} | যোগাযোগের অংক</p>
+                </div>
+                <div class="result-card">
+                    <div class="info-section"><h3><i class="fas fa-comments"></i> যোগাযোগের প্রভাব</h3><p>${escapeHtml(data.identity.description.substring(0, 250))}</p></div>
+                    <div class="info-section"><h3><i class="fas fa-chart-line"></i> ক্যারিয়ারের উপর প্রভাব</h3><p>${getPhoneCareerTip(number)}</p></div>
+                    <div class="info-section"><h3><i class="fas fa-exclamation-triangle"></i> সতর্কতা</h3><p>${getPhoneWarning(number)}</p></div>
+                </div>
+            `;
+        }
+        
+        function getPriceResult(input, number, data) {
+            const isGood = [3,6,9].includes(number);
+            return `
+                <div class="result-header">
+                    <h1 class="result-title">মূল্য বিশ্লেষণ</h1>
+                    <p class="result-subtitle">${escapeHtml(input)}</p>
+                </div>
+                <div class="result-card">
+                    <div class="info-section"><h3><i class="fas fa-calculator"></i> সংখ্যাতাত্ত্বিক মান</h3><p>রুট সংখ্যা: <strong>${number}</strong> (${data.planet})</p></div>
+                    <div class="info-section"><h3><i class="fas fa-star"></i> বিশ্লেষণ</h3><p>${isGood ? '✅ এই মূল্য শুভ এবং ব্যবসার জন্য অনুকূল।' : '⚠️ এই মূল্যে সতর্কতা প্রয়োজন।'}</p></div>
+                    <div class="info-section"><h3><i class="fas fa-lightbulb"></i> বিকল্প মূল্য</h3><p>${getAlternativePrices(number)}</p></div>
+                </div>
+            `;
+        }
+        
+        // হেল্পার ফাংশনসমূহ
+        function getRelationshipTip(num) {
+            const tips = {1:"সাথে থাকুন, নেতৃত্ব দিন",2:"আবেগ ভাগ করুন",3:"আশাবাদী থাকুন",4:"ধৈর্য ধরুন",5:"মুক্ত থাকুন",6:"ভালোবাসা দিন",7:"গভীরতা বজায় রাখুন",8:"দায়িত্ব নিন",9:"আদর্শিক হোন"};
+            return tips[num] || "সম্পর্কে সততা বজায় রাখুন";
+        }
+        
+        function getBabyFutureTip(num) {
+            const tips = {1:"নেতৃত্ব গুণাবলী",2:"সৃজনশীলতা",3:"জ্ঞানী হবে",4:"গবেষক হবে",5:"যোগাযোগে দক্ষ",6:"শিল্পী হবে",7:"আধ্যাত্মিক",8:"ধৈর্যশীল",9:"সাহসী হবে"};
+            return tips[num] || "সুপ্রতিভ হবে";
+        }
+        
+        function getNameInfluence(num) {
+            const influences = {1:"আত্মবিশ্বাসী",2:"সহানুভূতিশীল",3:"আশাবাদী",4:"গম্ভীর",5:"চঞ্চল",6:"সৌন্দর্যপ্রিয়",7:"গবেষণাপ্রবণ",8:"দায়িত্বশীল",9:"উদ্যমী"};
+            return influences[num] || "ইতিবাচক প্রভাব ফেলবে";
+        }
+        
+        function getCompatibilityScore(n1, n2) {
+            const diff = Math.abs(n1 - n2);
+            if (diff === 0) return { percentage: 95, level: "অসাধারণ" };
+            if (diff === 1 || diff === 8) return { percentage: 85, level: "উত্তম" };
+            if (diff === 2 || diff === 7) return { percentage: 75, level: "ভালো" };
+            if (diff === 3 || diff === 6) return { percentage: 65, level: "মধ্যম" };
+            return { percentage: 50, level: "সাধারণ" };
+        }
+        
+        function getMarriagePrediction(n1, n2) {
+            const compatible = [1,3,5,6,9];
+            if (compatible.includes(n1) && compatible.includes(n2)) return "দাম্পত্য জীবন সুখময় হবে। পরস্পরের প্রতি শ্রদ্ধা বজায় থাকবে।";
+            if ([4,8].includes(n1) && [4,8].includes(n2)) return "উভয়েই পরিশ্রমী, তাই জীবন সংগ্রামময় হলেও সফল হবে।";
+            return "সামঞ্জস্য বাড়াতে পারস্পরিক বোঝাপড়া জরুরি।";
+        }
+        
+        function getMarriageAdvice(n1, n2) {
+            if (n1 === n2) return "একে অপরের পরিপূরক। সুসম্পর্ক বজায় থাকবে।";
+            return "ধৈর্য ও বোঝাপড়ার মাধ্যমে সম্পর্ক মজবুত করুন।";
+        }
+        
+        function getBusinessSuccessTip(num) {
+            const tips = {1:"নিজে নেতৃত্ব দিন",2:"টিম ওয়ার্ক করুন",3:"জ্ঞান বিতরণ করুন",4:"গবেষণা করুন",5:"যোগাযোগ বাড়ান",6:"সৃজনশীল হোন",7:"আধ্যাত্মিকতা যোগ করুন",8:"সংগঠিত হোন",9:"উদ্যমী থাকুন"};
+            return tips[num] || "সৎভাবে ব্যবসা করুন";
+        }
+        
+        function getVehicleSafetyTip(num) {
+            const tips = {1:"দ্রুত গাড়ি চালানো এড়িয়ে চলুন",2:"ভারী যানবাহন থেকে দূরে থাকুন",3:"নিয়মিত সার্ভিস করান",4:"রাতে সতর্ক থাকুন",5:"সিগন্যাল মেনে চলুন",6:"আরামদায়ক গতিতে চলুন",7:"একাগ্র থাকুন",8:"ব্রেক নিয়মিত চেক করুন",9:"অতিরিক্ত গতি এড়িয়ে চলুন"};
+            return tips[num] || "সাবধানে চালনা করুন";
+        }
+        
+        function getPhoneCareerTip(num) {
+            const tips = {1:"নেতৃত্বের পদ",2:"সৃজনশীল পেশা",3:"শিক্ষকতা",4:"গবেষণা",5:"মার্কেটিং",6:"শিল্পকলা",7:"আধ্যাত্মিকতা",8:"প্রশাসন",9:"উদ্যোক্তা"};
+            return tips[num] || "যোগাযোগমূলক পেশা উত্তম";
+        }
+        
+        function getPhoneWarning(num) {
+            const warns = {4:"অপ্রয়োজনীয় কথাবার্তা এড়িয়ে চলুন",8:"অন্যদের সঙ্গে বিতর্ক কম করুন"};
+            return warns[num] || "সতর্ক থাকুন";
+        }
+        
+        function getAlternativePrices(num) {
+            const alts = {1:"১১১, ৫৫৫",2:"২২২, ৬৬৬",3:"৩৩৩, ৯৯৯",4:"৩৩৩, ৬৬৬",5:"৫৫৫, ১১১",6:"৬৬৬, ৯৯৯",7:"৭৭৭, ১১১",8:"৩৩৩, ৬৬৬",9:"৯৯৯, ৫৫৫"};
+            return alts[num] || "৩৩৩, ৬৬৬, ৯৯৯";
+        }
+        
+        // ক্যাটাগরি লিস্ট
+        const categories = [
+            { id: "personal_name", name: "👤 ব্যক্তির নাম", icon: "fa-user", type: "single" },
+            { id: "baby_name", name: "🍼 শিশুর নাম", icon: "fa-baby", type: "single" },
+            { id: "marriage", name: "💍 বিবাহ মিলন", icon: "fa-heart", type: "double" },
+            { id: "love", name: "❤️ প্রেম মিলন", icon: "fa-heartbeat", type: "double" },
+            { id: "family", name: "👨‍👩‍👧 পরিবার মিলন", icon: "fa-users", type: "multi" },
+            { id: "journey_date", name: "✈️ শুভ যাত্রার দিন", icon: "fa-calendar-check", type: "single" },
+            { id: "new_home", name: "🏠 নতুন বাড়ি", icon: "fa-home", type: "single" },
+            { id: "birthday", name: "🎂 জন্মদিন বিশ্লেষণ", icon: "fa-birthday-cake", type: "single" },
+            { id: "business_name", name: "🏢 ব্যবসার নাম", icon: "fa-building", type: "single" },
+            { id: "partnership", name: "🤝 অংশীদারিত্ব মিলন", icon: "fa-handshake", type: "double" },
+            { id: "startup_name", name: "🚀 স্টার্টআপ নাম", icon: "fa-rocket", type: "single" },
+            { id: "logo_color", name: "🎨 লোগো রঙ নির্বাচন", icon: "fa-palette", type: "single" },
+            { id: "launch_date", name: "📈 ব্যবসা উদ্বোধনের তারিখ", icon: "fa-calendar-alt", type: "single" },
+            { id: "product_price", name: "💰 পণ্যের মূল্য নির্ধারণ", icon: "fa-tag", type: "single" },
+            { id: "car_number", name: "🚗 গাড়ির নম্বর", icon: "fa-car", type: "single" },
+            { id: "bike_number", name: "🏍️ বাইক নম্বর", icon: "fa-motorcycle", type: "single" },
+            { id: "mobile_number", name: "📱 মোবাইল নম্বর", icon: "fa-mobile-alt", type: "single" },
+            { id: "bank_account", name: "💳 ব্যাংক অ্যাকাউন্ট", icon: "fa-university", type: "single" },
+            { id: "pin_code", name: "🔢 PIN কোড", icon: "fa-lock", type: "single" },
+            { id: "stock_market", name: "📊 শেয়ার বাজার", icon: "fa-chart-line", type: "single" },
+            { id: "property", name: "🏘️ সম্পত্তি বিনিয়োগ", icon: "fa-landmark", type: "single" },
+            { id: "gold_silver", name: "✨ সোনা/রূপা বিনিয়োগ", icon: "fa-gem", type: "single" },
+            { id: "mulank", name: "🔮 মূলাংক বিশ্লেষণ", icon: "fa-star", type: "single" },
+            { id: "name_number", name: "📖 নামের অংক", icon: "fa-book", type: "single" }
+        ];
+        
+        function showClarification(input) {
             const contentDiv = document.getElementById('resultContent');
             const loadingDiv = document.getElementById('loading');
             
-            let optionsHtml = '';
-            if (intentResult.options && intentResult.options.length > 0) {
-                optionsHtml = `
-                    <div class="option-buttons">
-                        ${intentResult.options.map(opt => `<button class="option-btn" onclick="handleOption('${opt.replace(/'/g, "\\'")}')">${escapeHtml(opt)}</button>`).join('')}
-                    </div>
-                `;
-            }
+            let optionsHtml = '<div class="option-buttons">';
+            categories.forEach(cat => {
+                optionsHtml += `<button class="option-btn" onclick="selectCategory('${cat.id}', '${cat.type}')"><i class="fas ${cat.icon}"></i> ${cat.name}</button>`;
+            });
+            optionsHtml += '</div>';
             
             const html = `
-                <div class="result-card clarification-card">
+                <div class="clarification-card">
                     <i class="fas fa-question-circle" style="font-size: 64px; color: #ffd700;"></i>
-                    <h2>${escapeHtml(intentResult.clarificationQuestion)}</h2>
+                    <h2>"${escapeHtml(input)}" - আমি বুঝতে পারছি না</h2>
+                    <p>দয়া করে জানান আপনি কী জানতে চান:</p>
                     ${optionsHtml}
-                    <div class="input-group">
-                        <input type="text" id="customInput" class="clarification-input" placeholder="অথবা নিজে লিখুন...">
-                        <button class="submit-btn" onclick="submitCustomInput()">জমা দিন</button>
-                    </div>
                 </div>
             `;
             
@@ -150,178 +315,42 @@
             loadingDiv.style.display = 'none';
         }
         
-        // অপশন সিলেক্ট করলে
-        function handleOption(option) {
-            let newInput = currentInput;
-            let newIntent = '';
+        function selectCategory(categoryId, type) {
+            const input = currentRawInput;
+            const numberData = currentNumberData;
+            if (!numberData) return;
             
-            switch(option) {
-                case 'জন্মতারিখ':
-                case 'ব্যক্তির নাম':
-                case 'মোবাইল নম্বর':
-                case 'গাড়ির নম্বর':
-                case 'ব্যবসার নাম':
-                case 'পণ্যের মূল্য':
-                case 'শুধু সংখ্যা বিশ্লেষণ':
-                case 'PIN কোড':
-                case 'ব্যাংক অ্যাকাউন্ট':
-                case 'শিশুর নামকরণের জন্য':
-                    // পুনরায় ডিটেকশনের জন্য পেজ রিলোড
-                    window.location.href = `result.html?q=${encodeURIComponent(currentInput)}&type=${encodeURIComponent(option)}`;
-                    return;
+            const analysis = NumerologyDB.getNumberAnalysis(numberData.rootNumber);
+            if (!analysis) return;
+            
+            let resultHtml = '';
+            
+            switch(categoryId) {
+                case 'personal_name':
+                    resultHtml = getPersonalNameAnalysis(numberData.rootNumber, analysis);
+                    break;
+                case 'baby_name':
+                    resultHtml = getBabyNameAnalysis(numberData.rootNumber, analysis);
+                    break;
+                case 'business_name':
+                case 'startup_name':
+                    resultHtml = getBusinessNameAnalysis(input, numberData.rootNumber, analysis);
+                    break;
+                case 'car_number':
+                case 'bike_number':
+                    resultHtml = getVehicleResult(input, numberData.rootNumber, analysis);
+                    break;
+                case 'mobile_number':
+                    resultHtml = getPhoneResult(input, numberData.rootNumber, analysis);
+                    break;
+                case 'product_price':
+                    resultHtml = getPriceResult(input, numberData.rootNumber, analysis);
+                    break;
                 default:
-                    // নিজের ইনপুট নেওয়া
-                    document.getElementById('customInput').focus();
-                    return;
-            }
-        }
-        
-        function submitCustomInput() {
-            const custom = document.getElementById('customInput').value.trim();
-            if (custom) {
-                window.location.href = `result.html?q=${encodeURIComponent(custom)}`;
-            }
-        }
-        
-        // ফলাফল রেন্ডার করা
-        function renderResult(input, intentResult) {
-            const contentDiv = document.getElementById('resultContent');
-            const loadingDiv = document.getElementById('loading');
-            
-            // যদি ক্ল্যারিফিকেশন প্রয়োজন হয়
-            if (intentResult.needsClarification) {
-                currentInput = input;
-                currentIntentResult = intentResult;
-                showClarification(intentResult);
-                return;
+                    resultHtml = getPersonalNameAnalysis(numberData.rootNumber, analysis);
             }
             
-            let html = '';
-            
-            // নাম্বার অ্যানালাইসিস
-            if (intentResult.analysis && intentResult.analysis.analysis) {
-                const data = intentResult.analysis.analysis;
-                const num = intentResult.analysis.rootNumber || intentResult.mulank;
-                
-                html += `
-                    <div class="result-header">
-                        <div class="result-number">
-                            <span class="big-number">${num}</span>
-                        </div>
-                        <h1 class="result-title">${data.identity.title}</h1>
-                        <p class="result-subtitle">${data.planet} | ${data.element}</p>
-                    </div>
-                    
-                    <div class="result-card">
-                        <div class="info-section">
-                            <h3><i class="fas fa-user-astronaut"></i> ব্যক্তিত্ব ও স্বভাব</h3>
-                            <p>${escapeHtml(data.identity.description)}</p>
-                        </div>
-                        
-                        <div class="info-section">
-                            <h3><i class="fas fa-briefcase"></i> ব্যবসা ও ক্যারিয়ার</h3>
-                            <p>${escapeHtml(data.business.description)}</p>
-                        </div>
-                        
-                        <div class="info-section">
-                            <h3><i class="fas fa-plane"></i> যাত্রা ও ভ্রমণ</h3>
-                            <p>${escapeHtml(data.travel.description)}</p>
-                            <div style="margin-top: 10px;">
-                                <span class="badge"><i class="fas fa-calendar"></i> শুভ দিন: ${data.luckyDay}</span>
-                                <span class="badge"><i class="fas fa-compass"></i> শুভ দিক: ${data.luckyDirection}</span>
-                                <span class="badge"><i class="fas fa-palette"></i> শুভ রং: ${data.luckyColor}</span>
-                            </div>
-                        </div>
-                        
-                        <div class="info-section">
-                            <h3><i class="fas fa-chart-line"></i> বিনিয়োগ নির্দেশনা</h3>
-                            <p>${escapeHtml(data.investment.description)}</p>
-                        </div>
-                        
-                        <div class="info-section">
-                            <h3><i class="fas fa-hand-sparkles"></i> জ্যোতিষীয় প্রতিকার</h3>
-                            <p>${escapeHtml(data.tip.description)}</p>
-                        </div>
-                    </div>
-                `;
-            }
-            // মূল্য বিশ্লেষণ
-            else if (intentResult.intent === "PRODUCT_PRICE" && intentResult.analysis) {
-                const analysis = intentResult.analysis;
-                const data = analysis.analysis;
-                
-                html += `
-                    <div class="result-header">
-                        <h1 class="result-title">মূল্য বিশ্লেষণ</h1>
-                        <p class="result-subtitle">${escapeHtml(intentResult.extracted)}</p>
-                    </div>
-                    
-                    <div class="result-card">
-                        <div class="info-section">
-                            <h3><i class="fas fa-calculator"></i> সংখ্যাতাত্ত্বিক মান</h3>
-                            <p>মূল্যের যোগফল: ${analysis.sum} → রুট সংখ্যা: <strong>${analysis.rootNumber}</strong> (${data ? data.planet : ''})</p>
-                        </div>
-                        
-                        <div class="info-section">
-                            <h3><i class="fas fa-star"></i> বিশ্লেষণ</h3>
-                            <p>${analysis.isAuspicious ? '✅ এই মূল্য শুভ এবং ব্যবসার জন্য অনুকূল।' : '⚠️ এই মূল্যে সতর্কতা প্রয়োজন।'}</p>
-                            ${analysis.alternatives && analysis.alternatives.length > 0 ? `<p><strong>সুপারিশ:</strong> ${analysis.alternatives.join(' ')}</p>` : ''}
-                        </div>
-                    </div>
-                `;
-            }
-            // সাধারণ সংখ্যা বিশ্লেষণ
-            else if (intentResult.analysis && intentResult.analysis.analysis) {
-                const analysis = intentResult.analysis;
-                const data = analysis.analysis;
-                
-                html += `
-                    <div class="result-header">
-                        <div class="result-number">
-                            <span class="big-number">${analysis.rootNumber}</span>
-                        </div>
-                        <h1 class="result-title">${data.identity.title}</h1>
-                        <p class="result-subtitle">${data.planet} | ${data.element}</p>
-                    </div>
-                    
-                    <div class="result-card">
-                        <div class="info-section">
-                            <h3><i class="fas fa-info-circle"></i> ইনপুট তথ্য</h3>
-                            <p><strong>${escapeHtml(intentResult.extracted)}</strong><br>
-                            সংখ্যার যোগফল: ${analysis.sum} → মূল সংখ্যা: ${analysis.rootNumber}</p>
-                        </div>
-                        
-                        <div class="info-section">
-                            <h3><i class="fas fa-brain"></i> প্রভাব ও বিশ্লেষণ</h3>
-                            <p>${escapeHtml(data.identity.description)}</p>
-                        </div>
-                        
-                        <div class="info-section">
-                            <h3><i class="fas fa-gem"></i> প্রতিকার</h3>
-                            <p>${escapeHtml(data.tip.description)}</p>
-                        </div>
-                    </div>
-                `;
-            }
-            // ফলাফল না পাওয়া গেলে
-            else {
-                html = `
-                    <div class="result-card error-card">
-                        <i class="fas fa-moon"></i>
-                        <h2>ক্ষমা করবেন!</h2>
-                        <p>"${escapeHtml(input)}" - এই বিষয়ে আমাদের ডেটাবেসে বিশ্লেষণ পাওয়া যায়নি।</p>
-                        <p>আপনি চেষ্টা করতে পারেন:</p>
-                        <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 20px;">
-                            <span class="badge" onclick="window.location.href='result.html?q=15-08-1990'">জন্মতারিখ (যেমন: 15-08-1990)</span>
-                            <span class="badge" onclick="window.location.href='result.html?q=রাহুল'">নাম (যেমন: রাহুল)</span>
-                            <span class="badge" onclick="window.location.href='result.html?q=01712345678'">মোবাইল নম্বর</span>
-                            <span class="badge" onclick="window.location.href='result.html?q=985 টাকা'">মূল্য (যেমন: 985 টাকা)</span>
-                        </div>
-                    </div>
-                `;
-            }
-            
-            html += `
+            resultHtml += `
                 <div class="share-buttons">
                     <button class="share-btn" onclick="copyToClipboard()"><i class="fas fa-copy"></i> কপি করুন</button>
                     <button class="share-btn" onclick="shareResult()"><i class="fas fa-share-alt"></i> শেয়ার করুন</button>
@@ -329,148 +358,44 @@
                 </div>
             `;
             
-            contentDiv.innerHTML = html;
-            contentDiv.style.display = 'block';
-            loadingDiv.style.display = 'none';
+            document.getElementById('resultContent').innerHTML = resultHtml;
+            document.getElementById('resultContent').style.display = 'block';
+            document.getElementById('loading').style.display = 'none';
         }
         
         function copyToClipboard() {
             const text = document.getElementById('resultContent').innerText;
-            navigator.clipboard.writeText(text).then(() => {
-                alert('ফলাফল কপি হয়েছে!');
-            });
+            navigator.clipboard.writeText(text).then(() => alert('ফলাফল কপি হয়েছে!'));
         }
         
         function shareResult() {
             if (navigator.share) {
-                navigator.share({
-                    title: 'Numerology Intelligence Hub',
-                    text: document.getElementById('resultContent').innerText.substring(0, 500),
-                    url: window.location.href
-                });
-            } else {
-                copyToClipboard();
-            }
+                navigator.share({ title: 'Numerology Intelligence Hub', text: document.getElementById('resultContent').innerText.substring(0, 500), url: window.location.href });
+            } else { copyToClipboard(); }
         }
         
         document.addEventListener('DOMContentLoaded', function() {
             const query = getQueryParam('q');
-            const forcedType = getQueryParam('type');
+            if (!query) { window.location.href = 'numerology.html'; return; }
             
-            if (!query) {
-                window.location.href = 'numerology.html';
+            currentRawInput = decodeURIComponent(query);
+            currentNumberData = extractNumberFromInput(currentRawInput);
+            
+            if (!currentNumberData) {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('resultContent').innerHTML = `
+                    <div class="result-card" style="text-align:center">
+                        <i class="fas fa-exclamation-triangle" style="font-size:64px;color:#ffd700"></i>
+                        <h2>ক্ষমা করবেন!</h2>
+                        <p>"${escapeHtml(currentRawInput)}" - এতে কোনো সংখ্যা খুঁজে পাওয়া যায়নি।</p>
+                        <p>দয়া করে সংখ্যা সম্বলিত কিছু লিখুন (যেমন: নাম, তারিখ, নম্বর)</p>
+                    </div>
+                `;
+                document.getElementById('resultContent').style.display = 'block';
                 return;
             }
             
-            const decodedQuery = decodeURIComponent(query);
-            
-            // ডিটেক্ট করুন
-            let intentResult = IntentDetector.detect(decodedQuery);
-            
-            // যদি টাইপ ফোর্স করা হয়
-            if (forcedType) {
-                intentResult.needsClarification = false;
-                if (forcedType === 'জন্মতারিখ') {
-                    const mulank = NumerologyDB.calculateMulank(decodedQuery);
-                    if (mulank) {
-                        intentResult = {
-                            intent: "MULANK",
-                            mulank: mulank,
-                            extracted: decodedQuery,
-                            analysis: {
-                                rootNumber: mulank,
-                                sum: mulank,
-                                analysis: NumerologyDB.getNumberAnalysis(mulank)
-                            }
-                        };
-                    }
-                } else if (forcedType === 'ব্যক্তির নাম' || forcedType === 'শিশুর নামকরণের জন্য') {
-                    const number = IntentDetector.getNumberFromName(decodedQuery);
-                    if (number) {
-                        intentResult = {
-                            intent: "NAME_ANALYSIS",
-                            extracted: decodedQuery,
-                            analysis: {
-                                rootNumber: number,
-                                sum: number,
-                                analysis: NumerologyDB.getNumberAnalysis(number)
-                            }
-                        };
-                    }
-                } else if (forcedType === 'ব্যবসার নাম') {
-                    const number = IntentDetector.getNumberFromName(decodedQuery);
-                    if (number) {
-                        intentResult = {
-                            intent: "BUSINESS_NAME",
-                            extracted: decodedQuery,
-                            analysis: {
-                                rootNumber: number,
-                                sum: number,
-                                analysis: NumerologyDB.getNumberAnalysis(number)
-                            }
-                        };
-                    }
-                } else if (forcedType === 'মোবাইল নম্বর' || forcedType === 'PIN কোড' || forcedType === 'ব্যাংক অ্যাকাউন্ট') {
-                    const analysis = NumerologyDB.analyzeNumber(decodedQuery);
-                    if (analysis) {
-                        intentResult = {
-                            intent: forcedType === 'মোবাইল নম্বর' ? "PHONE_NUMBER" : "GENERAL_NUMBER",
-                            extracted: decodedQuery,
-                            analysis: analysis
-                        };
-                    }
-                } else if (forcedType === 'পণ্যের মূল্য') {
-                    const analysis = NumerologyDB.analyzePrice(decodedQuery);
-                    if (analysis) {
-                        intentResult = {
-                            intent: "PRODUCT_PRICE",
-                            extracted: decodedQuery,
-                            analysis: analysis
-                        };
-                    }
-                }
-            }
-            
-            // নামের জন্য নাম্বার বের করা
-            if (intentResult.intent === "NAME_ANALYSIS" && !intentResult.analysis) {
-                const number = IntentDetector.getNumberFromName(decodedQuery);
-                if (number) {
-                    intentResult.analysis = {
-                        rootNumber: number,
-                        sum: number,
-                        analysis: NumerologyDB.getNumberAnalysis(number)
-                    };
-                }
-            }
-            
-            // মুলাংকের জন্য
-            if (intentResult.intent === "MULANK" && intentResult.mulank && !intentResult.analysis) {
-                intentResult.analysis = {
-                    rootNumber: intentResult.mulank,
-                    sum: intentResult.mulank,
-                    analysis: NumerologyDB.getNumberAnalysis(intentResult.mulank)
-                };
-            }
-            
-            // সংখ্যার জন্য
-            if ((intentResult.intent === "PHONE_NUMBER" || intentResult.intent === "VEHICLE_NUMBER" || 
-                 intentResult.intent === "PIN_NUMBER" || intentResult.intent === "BANK_ACCOUNT" || 
-                 intentResult.intent === "GENERAL_NUMBER") && !intentResult.analysis) {
-                const analysis = NumerologyDB.analyzeNumber(decodedQuery);
-                if (analysis) {
-                    intentResult.analysis = analysis;
-                }
-            }
-            
-            // মূল্যের জন্য
-            if (intentResult.intent === "PRODUCT_PRICE" && !intentResult.analysis && intentResult.priceValue) {
-                const analysis = NumerologyDB.analyzePrice(intentResult.priceValue);
-                if (analysis) {
-                    intentResult.analysis = analysis;
-                }
-            }
-            
-            renderResult(decodedQuery, intentResult);
+            showClarification(currentRawInput);
         });
     </script>
 </body>
