@@ -1,110 +1,880 @@
-<!DOCTYPE html>
-<html lang="bn">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Numerology Intelligence Hub | myastrology.in</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Segoe UI', 'Hind Siliguri', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            color: #fff;
-            min-height: 100vh;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        /* Header */
-        .header {
-            text-align: center;
-            padding: 30px 20px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 20px;
-            margin-bottom: 30px;
-        }
-        .header h1 {
-            font-size: 28px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-        .header h1 span {
-            color: #ffd700;
-        }
-        .header p {
-            opacity: 0.8;
-            margin-top: 8px;
-        }
-        
-        /* Mode Selector */
-        .mode-selector {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-bottom: 25px;
-            background: rgba(255,255,255,0.1);
-            padding: 8px;
-            border-radius: 60px;
-            flex-wrap: wrap;
-        }
-        .mode-btn {
-            background: transparent;
-            border: none;
-            padding: 12px 28px;
-            font-size: 15px;
-            font-weight: 600;
-            border-radius: 50px;
-            cursor: pointer;
-            color: #fff;
-            transition: all 0.3s;
-            font-family: inherit;
-        }
-        .mode-btn.active {
-            background: linear-gradient(135deg, #ffd700, #ff8c00);
-            color: #1a1a2e;
-        }
-        .mode-btn:not(.active):hover {
-            background: rgba(255,255,255,0.2);
-        }
-        
-        /* Search Card */
-        .search-card {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 24px;
-            padding: 30px;
-            margin-bottom: 30px;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-        .search-card h2 {
-            text-align: center;
-            margin-bottom: 25px;
-            font-size: 24px;
-        }
-        
-        /* Single Input Mode */
-        .single-input {
-            display: flex;
-            justify-content: center;
-        }
-        .single-input input {
             width: 100%;
             max-width: 500px;
             padding: 16px 24px;
             font-size: 16px;
             border: none;
-            border-radius: 50px;
+            border-radius: 50px;<!DOCTYPE html>
+<html lang="bn-IN" dir="ltr" translate="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google" content="notranslate" />
+
+  <!-- Resource Hints -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+
+  <!-- SEO: Title & Description -->
+  <title>সংখ্যা জ্যোতিষ | অংকবিদ্যা | Numerology in Bengali | Dr. Prodyut Acharya</title>
+  <meta name="description" content="বাংলায় সংখ্যা জ্যোতিষ। আপনার নাম, জন্মতারিখ, মোবাইল নম্বর, গাড়ির নম্বর, PIN কোডের গভীর বিশ্লেষণ। ২৪টি ক্যাটাগরি। সামঞ্জস্য মিলন। ড. প্রদ্যুৎ আচার্য, MyAstrology।" />
+  <meta name="keywords" content="সংখ্যা জ্যোতিষ, অংকবিদ্যা, নামের অংক, মূলাংক, জন্ম সংখ্যা, ভাগ্য সংখ্যা, numerology in bengali, best numerology in india, Dr Prodyut Acharya, MyAstrology" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <meta name="author" content="Dr. Prodyut Acharya" />
+  <meta name="language" content="Bengali" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://www.myastrology.in/numerology.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="সংখ্যা জ্যোতিষ | অংকবিদ্যা | Numerology in Bengali" />
+  <meta property="og:description" content="আপনার নাম, জন্মতারিখ, মোবাইল নম্বর, গাড়ির নম্বরের সংখ্যাতাত্ত্বিক বিশ্লেষণ। ২৪টি ক্যাটাগরি ও সামঞ্জস্য মিলন। ড. প্রদ্যুৎ আচার্য।" />
+  <meta property="og:url" content="https://www.myastrology.in/numerology.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="MyAstrology – Dr. Prodyut Acharya" />
+  <meta property="og:image" content="https://www.myastrology.in/images/numerology-hero.webp" />
+  <meta property="og:locale" content="bn_IN" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="সংখ্যা জ্যোতিষ | অংকবিদ্যা | Numerology in Bengali" />
+  <meta name="twitter:description" content="বাংলায় সম্পূর্ণ সংখ্যা জ্যোতিষ সিস্টেম। নাম, তারিখ, নম্বরের গভীর বিশ্লেষণ।" />
+  <meta name="twitter:image" content="https://www.myastrology.in/images/numerology-hero.webp" />
+
+  <!-- Font Awesome (non-render-blocking) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" /></noscript>
+
+  <!-- Google Fonts -->
+  <link rel="preload" href="https://fonts.gstatic.com/s/notoserifbengali/v1/hYkuPvggTvnzHBCJLS0dyA.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;700&family=Noto+Sans+Bengali:wght@400;700;800&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;700&family=Noto+Sans+Bengali:wght@400;700;800&display=swap" rel="stylesheet" /></noscript>
+
+  <style>
+    /* ============================================================
+       CSS DESIGN SYSTEM — আপনার সাইটের সাথে মানানসই
+       ============================================================ */
+    :root {
+      --clr-primary: #1a1a5e;
+      --clr-primary-light: #2d2d8f;
+      --clr-accent: #e65100;
+      --clr-accent-dk: #bf360c;
+      --clr-gold: #f9a825;
+      --clr-gold-light: #fff8e1;
+      --clr-bg: #fffef7;
+      --clr-bg-warm: #fff8e1;
+      --clr-text: #3e2c1c;
+      --clr-text-md: #5d4037;
+      --clr-text-lt: #795548;
+      --clr-border: #e8d5b0;
+      --clr-border-lt: #f3e9d2;
+      --font-serif: 'Noto Serif Bengali', Georgia, serif;
+      --font-sans: 'Noto Sans Bengali', Arial, sans-serif;
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 1.5rem;
+      --space-lg: 2.5rem;
+      --space-xl: 4rem;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.07);
+      --shadow-md: 0 4px 18px rgba(0,0,0,0.1);
+      --shadow-gold: 0 6px 24px rgba(249,168,37,0.22);
+      --transition: 0.28s ease;
+      --max-w: 900px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: var(--font-serif);
+      background: var(--clr-bg);
+      color: var(--clr-text);
+      line-height: 1.78;
+      padding-top: 64px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Skip Link */
+    .skip-link {
+      position: absolute;
+      top: -60px;
+      left: 16px;
+      background: var(--clr-primary);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+      z-index: 9999;
+      transition: top 0.3s;
+    }
+    .skip-link:focus { top: 0; }
+
+    /* Header */
+    header {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 18px;
+      background: var(--clr-bg-warm);
+      border-bottom: 2px solid var(--clr-border);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+    }
+    .logo img { height: 42px; width: auto; display: block; }
+    .header-brand { text-align: center; }
+    .header-brand-name {
+      font-family: var(--font-sans);
+      font-weight: 800;
+      font-size: clamp(0.85rem, 2.2vw, 1.1rem);
+      color: var(--clr-primary);
+      white-space: nowrap;
+    }
+    .header-brand-sub {
+      font-family: var(--font-serif);
+      font-size: clamp(0.72rem, 1.6vw, 0.85rem);
+      color: var(--clr-text-lt);
+    }
+    .menu-toggle {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 10px;
+    }
+    .menu-toggle span {
+      display: block;
+      width: 26px;
+      height: 2.5px;
+      background: var(--clr-primary);
+      border-radius: 2px;
+    }
+
+    /* Off-canvas Nav */
+    nav#main-nav {
+      position: fixed;
+      top: 0; right: 0;
+      width: 280px;
+      height: 100%;
+      background: #fff;
+      transform: translateX(100%);
+      transition: transform 0.32s cubic-bezier(0.4,0,0.2,1);
+      z-index: 1200;
+      overflow-y: auto;
+    }
+    nav#main-nav.open { transform: translateX(0); }
+    .nav-head {
+      display: flex;
+      justify-content: space-between;
+      padding: 14px 18px;
+      background: var(--clr-bg-warm);
+      border-bottom: 1px solid var(--clr-border);
+    }
+    .nav-close {
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+    nav#main-nav a {
+      display: flex;
+      padding: 13px 18px;
+      font-family: var(--font-sans);
+      font-size: 0.93rem;
+      color: var(--clr-text);
+      border-bottom: 1px solid var(--clr-border-lt);
+      text-decoration: none;
+    }
+    nav#main-nav a:hover { background: var(--clr-bg-warm); color: var(--clr-accent); }
+    .backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(10,10,40,0.45);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.32s ease;
+      z-index: 1100;
+    }
+    .backdrop.show { opacity: 1; pointer-events: auto; }
+
+    /* Banner */
+    .banner img {
+      width: 100%;
+      height: auto;
+      max-height: 400px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Scroll Ticker */
+    .scroll-ticker {
+      background: var(--clr-primary);
+      padding: 10px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .scroll-ticker span {
+      display: inline-block;
+      padding-left: 100%;
+      animation: ticker 24s linear infinite;
+      font-family: var(--font-sans);
+      font-weight: 600;
+      color: var(--clr-gold);
+    }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-100%); }
+    }
+
+    /* Main Content */
+    section.content-section {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: var(--space-lg) 20px;
+      border-bottom: 1px solid var(--clr-border-lt);
+    }
+
+    /* Headlines */
+    .headline-h1, .headline-h2 {
+      position: relative;
+      padding: 20px 0 12px 20px;
+      border-left: 5px solid transparent;
+      border-image: linear-gradient(180deg, var(--clr-gold), #d4880a, #9333ea) 1;
+      background: linear-gradient(to right, rgba(249,168,37,0.07), transparent);
+    }
+    .headline-h1::before, .headline-h2::before {
+      content: 'º6  OM  º6';
+      display: block;
+      font-size: .54rem;
+      letter-spacing: .34em;
+      background: linear-gradient(90deg, #9333ea, var(--clr-gold), #d4880a);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 6px;
+    }
+    .headline-h1 {
+      background: linear-gradient(120deg, #1a1a5e 0%, #4338ca 18%, #c2880a 36%, var(--clr-gold) 50%, #9333ea 65%, #1a1a5e 100%);
+      background-size: 300% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer-sweep 8s linear infinite;
+      font-size: clamp(1.35rem, 3vw, 1.95rem);
+      font-weight: 900;
+    }
+    .headline-h2 {
+      background: linear-gradient(110deg, #1a1a5e 0%, #4338ca 25%, #b27708 52%, #7c3aed 72%, #1a1a5e 100%);
+      background-size: 280% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer-sweep 9s linear infinite;
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-weight: 800;
+    }
+    @keyframes shimmer-sweep {
+      0% { background-position: 200% center; }
+      100% { background-position: -200% center; }
+    }
+
+    /* Search Card */
+    .search-card {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      padding: 30px;
+      margin-bottom: 30px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: var(--clr-bg-warm);
+    }
+    .mode-selector {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-bottom: 25px;
+      background: rgba(0,0,0,0.05);
+      padding: 8px;
+      border-radius: 60px;
+      flex-wrap: wrap;
+    }
+    .mode-btn {
+      background: transparent;
+      border: none;
+      padding: 12px 28px;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      transition: all 0.3s;
+    }
+    .mode-btn.active {
+      background: linear-gradient(135deg, var(--clr-gold), var(--clr-accent));
+      color: #1a1a2e;
+    }
+    .single-input, .dual-input { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+    .single-input input, .dual-input input {
+      width: 100%;
+      max-width: 500px;
+      padding: 16px 24px;
+      font-size: 16px;
+      border: 2px solid var(--clr-border);
+      border-radius: 50px;
+      outline: none;
+      font-family: var(--font-sans);
+    }
+    .dual-input .input-group { flex: 1; min-width: 250px; }
+    .analyze-btn {
+      display: block;
+      width: 100%;
+      max-width: 280px;
+      margin: 25px auto 0;
+      padding: 14px 28px;
+      font-size: 18px;
+      font-weight: bold;
+      background: linear-gradient(135deg, var(--clr-primary), #2d2d8f);
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      color: #ffd54f;
+      font-family: var(--font-sans);
+    }
+    .example-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .chip {
+      background: rgba(0,0,0,0.05);
+      padding: 8px 16px;
+      border-radius: 30px;
+      font-size: 13px;
+      cursor: pointer;
+      border: 1px solid var(--clr-border);
+      font-family: var(--font-sans);
+    }
+    .chip.multi { background: rgba(249,168,37,0.1); border-color: var(--clr-gold); }
+
+    /* Features Grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .feature-card {
+      background: rgba(0,0,0,0.02);
+      padding: 12px;
+      border-radius: 16px;
+      text-align: center;
+      border: 1px solid var(--clr-border-lt);
+    }
+    .feature-card i { font-size: 24px; color: var(--clr-gold); }
+    .feature-card h4 { font-size: 14px; margin: 8px 0 3px; }
+    .feature-card p { font-size: 11px; opacity: 0.7; }
+
+    /* Review Badges */
+    .review-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin: 30px 0;
+    }
+    .review-badge {
+      background: var(--clr-bg-warm);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-md);
+      padding: 12px 18px;
+      text-align: center;
+      min-width: 100px;
+    }
+    .review-badge-stars { color: var(--clr-gold); }
+
+    /* Testimonial Grid */
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 18px;
+      margin: 20px 0;
+    }
+    .testimonial-card {
+      background: #fff;
+      border: 1px solid var(--clr-border-lt);
+      border-left: 4px solid var(--clr-gold);
+      border-radius: var(--radius-md);
+      padding: 20px;
+    }
+
+    /* FAQ Section */
+    .faq-item {
+      border-bottom: 1px solid var(--clr-border-lt);
+      padding: 15px 0;
+    }
+    .faq-question {
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-sans);
+    }
+    .faq-answer {
+      display: none;
+      padding-top: 10px;
+      color: var(--clr-text-md);
+    }
+    .faq-answer.show { display: block; }
+
+    /* Blog Links */
+    .blog-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+      margin: 20px 0;
+    }
+    .blog-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 15px;
+      border-left: 3px solid var(--clr-gold);
+      text-decoration: none;
+      display: block;
+    }
+
+    /* Location Links */
+    .location-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    .location-link {
+      background: var(--clr-bg-warm);
+      padding: 10px 20px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-family: var(--font-sans);
+    }
+
+    /* Footer */
+    footer {
+      background: #0c0c30;
+      color: #e8e8f0;
+      padding: 52px 20px 28px;
+      text-align: center;
+    }
+    .footer-contact, .footer-social {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      margin: 18px 0;
+    }
+    .footer-contact a, .footer-social a {
+      color: #c8c8dc;
+      text-decoration: none;
+    }
+    .footer-social a {
+      width: 42px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+    }
+
+    /* Floating Elements */
+    #progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--clr-gold), var(--clr-accent));
+      z-index: 9999;
+    }
+    #back-to-top {
+      position: fixed;
+      bottom: 22px;
+      left: 18px;
+      width: 40px;
+      height: 40px;
+      background: rgba(249,168,37,0.15);
+      color: var(--clr-gold);
+      border: 1px solid rgba(249,168,37,0.3);
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.3s, transform 0.3s;
+      z-index: 800;
+    }
+    #back-to-top.visible { opacity: 1; transform: translateY(0); }
+    #wa-float {
+      position: fixed;
+      bottom: 22px;
+      right: 18px;
+      z-index: 850;
+    }
+    #wa-float a {
+      display: flex;
+      width: 44px;
+      height: 44px;
+      background: #25D366;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-decoration: none;
+      animation: wa-pulse 2.5s ease-in-out infinite;
+    }
+    @keyframes wa-pulse {
+      0%,100% { box-shadow: 0 4px 18px rgba(37,211,102,.45), 0 0 0 0 rgba(37,211,102,.4); }
+      50% { box-shadow: 0 4px 18px rgba(37,211,102,.45), 0 0 0 14px rgba(37,211,102,0); }
+    }
+    #wa-flash-msg {
+      position: absolute;
+      bottom: 55px;
+      right: 0;
+      background: #fff;
+      color: #1a1a5e;
+      padding: 5px 9px;
+      border-radius: 12px 12px 0 12px;
+      font-size: 0.7rem;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    #wa-flash-msg.show { opacity: 1; }
+
+    @media (max-width: 700px) {
+      .dual-input { flex-direction: column; }
+      .mode-btn { padding: 8px 18px; font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Progress Bar -->
+<div id="progress-bar" role="progressbar"></div>
+<!-- Back to Top -->
+<button id="back-to-top" aria-label="উপরে যান">⬆</button>
+<!-- Skip Link -->
+<a href="#main-content" class="skip-link">মূল বিষয়বস্তুতে যান</a>
+
+<!-- ============================================================
+     HEADER (আপনার সাইটের মতো)
+     ============================================================ -->
+<header role="banner">
+  <a href="https://www.myastrology.in/" class="logo">
+    <img src="images/MyAstrology-Ranghat-logo.png" alt="MyAstrology Logo" width="42" height="42">
+  </a>
+  <div class="header-brand">
+    <div class="header-brand-name">MyAstrology</div>
+    <div class="header-brand-sub">ডঃ প্রদ্যুৎ আচার্য</div>
+  </div>
+  <button class="menu-toggle" id="menuToggleBtn" aria-label="মেনু খুলুন">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- Off-canvas Nav -->
+<nav id="main-nav">
+  <div class="nav-head">
+    <span class="nav-head-title">🔮 MyAstrology মেনু</span>
+    <button class="nav-close" id="navCloseBtn">✕</button>
+  </div>
+  <a href="https://www.myastrology.in/">🏠 হোম</a>
+  <a href="https://www.myastrology.in/astrology.html">🔮 জ্যোতিষ শাস্ত্র</a>
+  <a href="https://www.myastrology.in/palmistry.html">✋ হস্তরেখা বিচার</a>
+  <a href="https://www.myastrology.in/numerology.html" aria-current="page">🔢 সংখ্যা জ্যোতিষ</a>
+  <a href="https://www.myastrology.in/gemstone.html">💎 রত্নপাথর পরামর্শ</a>
+  <a href="https://www.myastrology.in/vastu-science.html">🏛️ বাস্তু শাস্ত্র</a>
+  <a href="https://www.myastrology.in/rashifal.html">♈ রাশিফল</a>
+  <a href="https://www.myastrology.in/panjika.html">📅 বাংলা পঞ্জিকা</a>
+  <a href="https://www.myastrology.in/blog-list.html">📋 ব্লগ</a>
+  <a href="https://www.myastrology.in/reviews.html">⭐ রিভিউ</a>
+  <a href="https://www.myastrology.in/about.html">👤 আমাদের সম্পর্কে</a>
+  <a href="https://www.myastrology.in/contact.html">📍 যোগাযোগ</a>
+  <a href="https://wa.me/919333122768?text=🙏+নমস্কার,+সংখ্যা+জ্যোতিষ+পরামর্শ+নিতে+চাই।" target="_blank">📲 WhatsApp পরামর্শ</a>
+</nav>
+<div class="backdrop" id="backdrop"></div>
+
+<!-- Banner -->
+<div class="banner">
+  <img src="images/numerology-hero.webp" alt="সংখ্যা জ্যোতিষ — ড. প্রদ্যুৎ আচার্য, MyAstrology" width="1200" height="400" loading="eager" fetchpriority="high">
+</div>
+
+<!-- Scroll Ticker -->
+<div class="scroll-ticker">
+  <span>✨ সংখ্যা জ্যোতিষ — আপনার নাম, জন্মতারিখ, মোবাইল নম্বরের গভীর বিশ্লেষণ &nbsp;|&nbsp; ২৪টি ক্যাটাগরি &nbsp;|&nbsp; সামঞ্জস্য মিলন &nbsp;|&nbsp; ড. প্রদ্যুৎ আচার্য ✨</span>
+</div>
+
+<main id="main-content">
+
+<!-- Hero Section -->
+<section class="content-section">
+  <h1 class="headline-h1">সংখ্যা জ্যোতিষ — অংকবিদ্যার গভীর বিশ্লেষণ</h1>
+  <p>অংকবিদ্যা বা সংখ্যা জ্যোতিষ (Numerology) হল প্রাচীন ভারতীয় বিজ্ঞান যা সংখ্যার মাধ্যমে ব্যক্তিত্ব, ভাগ্য ও জীবনের পথ নির্ধারণ করে। প্রতিটি সংখ্যার একটি নির্দিষ্ট কম্পন ও শক্তি রয়েছে যা আমাদের জীবনকে প্রভাবিত করে।</p>
+  <p>ড. প্রদ্যুৎ আচার্যের এই সংখ্যা জ্যোতিষ প্ল্যাটফর্মে আপনি আপনার নাম, জন্মতারিখ, মোবাইল নম্বর, গাড়ির নম্বর, PIN কোড, ব্যাংক অ্যাকাউন্ট, ব্যবসার নাম — সবকিছুর সংখ্যাতাত্ত্বিক বিশ্লেষণ পাবেন। একাধিক তথ্যের সামঞ্জস্য মিলনও করা যাবে।</p>
+</section>
+
+<!-- Search Section -->
+<section class="content-section">
+  <div class="search-card">
+    <div class="mode-selector">
+      <button class="mode-btn active" data-mode="single">🔮 একটি জিনিস বিশ্লেষণ</button>
+      <button class="mode-btn" data-mode="dual">🔗 দুটি জিনিসের সামঞ্জস্য</button>
+    </div>
+    <h2 id="modeTitle" style="text-align:center; margin-bottom:20px;">🔮 একটি জিনিস বিশ্লেষণ করুন</h2>
+    <div id="singleMode" class="single-input">
+      <input type="text" id="singleInput" placeholder="যেমন: রাহুল বা ১৫-০৮-১৯৯০ বা ০১৭১২৩৪৫৬৭৮">
+    </div>
+    <div id="dualMode" class="dual-input" style="display:none;">
+      <div class="input-group"><label>📌 প্রথম তথ্য</label><input type="text" id="firstInput" placeholder="যেমন: রাহুল"></div>
+      <div class="input-group"><label>📌 দ্বিতীয় তথ্য</label><input type="text" id="secondInput" placeholder="যেমন: ১৫-০৮-১৯৯০"></div>
+    </div>
+    <button id="analyzeBtn" class="analyze-btn">🔍 বিশ্লেষণ করুন</button>
+    <div class="example-chips">
+      <span class="chip" data-mode="single" data-val="রাহুল">👤 নাম</span>
+      <span class="chip" data-mode="single" data-val="১৫-০৮-১৯৯০">📅 জন্মতারিখ</span>
+      <span class="chip" data-mode="single" data-val="০১৭১২৩৪৫৬৭৮">📱 মোবাইল</span>
+      <span class="chip multi" data-mode="dual" data-first="রাহুল" data-second="১৫-০৮-১৯৯০">👤 নাম + 📅 তারিখ</span>
+      <span class="chip multi" data-mode="dual" data-first="রাহুল" data-second="সুমন">👤 নাম + 👤 বন্ধুর নাম</span>
+      <span class="chip multi" data-mode="dual" data-first="রাহুল" data-second="প্রদ্যুৎ এন্টারপ্রাইজ">👤 নাম + 🏢 ব্যবসা</span>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section (24 Categories) -->
+<section class="content-section">
+  <h2 class="headline-h2">🔢 ২৪টি ক্যাটাগরিতে সংখ্যা বিশ্লেষণ</h2>
+  <div class="features-grid">
+    <div class="feature-card"><i class="fas fa-user"></i><h4>ব্যক্তির নাম</h4><p>নামের অংক ও প্রভাব</p></div>
+    <div class="feature-card"><i class="fas fa-baby"></i><h4>শিশুর নাম</h4><p>শিশুর সম্ভাব্য ব্যক্তিত্ব</p></div>
+    <div class="feature-card"><i class="fas fa-heart"></i><h4>বিবাহ মিলন</h4><p>সামঞ্জস্য বিশ্লেষণ</p></div>
+    <div class="feature-card"><i class="fas fa-building"></i><h4>ব্যবসার নাম</h4><p>ব্যবসার সম্ভাবনা</p></div>
+    <div class="feature-card"><i class="fas fa-car"></i><h4>গাড়ির নম্বর</h4><p>যাত্রার শুভ-অশুভ</p></div>
+    <div class="feature-card"><i class="fas fa-lock"></i><h4>PIN কোড</h4><p>নিরাপত্তা বিশ্লেষণ</p></div>
+    <div class="feature-card"><i class="fas fa-university"></i><h4>ব্যাংক অ্যাকাউন্ট</h4><p>আর্থিক স্থিতিশীলতা</p></div>
+    <div class="feature-card"><i class="fas fa-tag"></i><h4>পণ্যের মূল্য</h4><p>শুভ মূল্য নির্ধারণ</p></div>
+    <div class="feature-card"><i class="fas fa-home"></i><h4>নতুন বাড়ি</h4><p>বাড়ির সংখ্যার প্রভাব</p></div>
+    <div class="feature-card"><i class="fas fa-chart-line"></i><h4>শেয়ার বাজার</h4><p>বিনিয়োগের শুভ-অশুভ</p></div>
+    <div class="feature-card"><i class="fas fa-gem"></i><h4>সোনা/রূপা বিনিয়োগ</h4><p>কেনার শুভ সময়</p></div>
+    <div class="feature-card"><i class="fas fa-handshake"></i><h4>অংশীদারিত্ব</h4><p>ব্যবসায়িক সামঞ্জস্য</p></div>
+  </div>
+</section>
+
+<!-- Review Badges -->
+<section class="content-section">
+  <div class="review-badges">
+    <div class="review-badge"><span class="review-badge-stars">★★★★★</span><span class="review-badge-count">১২৬+ রিভিউ</span><span>Google</span></div>
+    <div class="review-badge"><span class="review-badge-stars">★★★★★</span><span class="review-badge-count">১৩৭+ রিভিউ</span><span>JustDial</span></div>
+    <div class="review-badge"><span class="review-badge-stars">★★★★★</span><span class="review-badge-count">২,২৪,১৫০+</span><span>YouTube</span></div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="content-section">
+  <h2 class="headline-h2">⭐ ক্লায়েন্টদের অভিজ্ঞতা</h2>
+  <div class="testimonial-grid">
+    <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"সংখ্যা জ্যোতিষ এত নির্ভুল যে আমি অবাক হয়ে গিয়েছিলাম। ড. আচার্যের ব্যাখ্যা অসাধারণ।"</p><div class="testimonial-author">— সুমিত্রা দেবী, কলকাতা</div></div>
+    <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"আমার নাম ও জন্মতারিখের বিশ্লেষণ শুনে জীবনের অনেক প্রশ্নের উত্তর পেয়েছি। ধন্যবাদ।"</p><div class="testimonial-author">— রাজীব চক্রবর্তী, দিল্লি</div></div>
+    <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"দুই নামের সামঞ্জস্য বিশ্লেষণ করে বন্ধুত্বের গভীরতা বুঝতে পেরেছি। অসাধারণ সিস্টেম।"</p><div class="testimonial-author">— প্রিয়া সরকার, রানাঘাট</div></div>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="content-section" id="faq">
+  <h2 class="headline-h2">❓ সংখ্যা জ্যোতিষ সম্পর্কে জিজ্ঞাসা</h2>
+  <div class="faq-item"><div class="faq-question">সংখ্যা জ্যোতিষ কি? <span>+</span></div><div class="faq-answer">সংখ্যা জ্যোতিষ বা অংকবিদ্যা হল প্রাচীন ভারতীয় বিজ্ঞান যা সংখ্যার মাধ্যমে ব্যক্তিত্ব, ভাগ্য ও জীবনের পথ নির্ধারণ করে। প্রতিটি সংখ্যার একটি নির্দিষ্ট কম্পন ও শক্তি রয়েছে যা আমাদের জীবনকে প্রভাবিত করে।</div></div>
+  <div class="faq-item"><div class="faq-question">নামের অংক কিভাবে নির্ণয় করা হয়? <span>+</span></div><div class="faq-answer">নামের অংক = নামের সব অক্ষরের সংখ্যাগত মানের যোগফল। বাংলা অক্ষরের জন্য কাবালা পদ্ধতি এবং ইংরেজি অক্ষরের জন্য পিথাগোরাস পদ্ধতি ব্যবহার করা হয়।</div></div>
+  <div class="faq-item"><div class="faq-question">মূলাংক কি এবং কিভাবে নির্ণয় করা হয়? <span>+</span></div><div class="faq-answer">মূলাংক হল জন্মতারিখের দিনের যোগফল। যেমন: ১৫-০৮-১৯৯০ তারিখে জন্ম হলে দিন ১৫ → ১+৫=৬, তাই মূলাংক ৬।</div></div>
+  <div class="faq-item"><div class="faq-question">দুটি নামের সামঞ্জস্য কিভাবে নির্ণয় করা হয়? <span>+</span></div><div class="faq-answer">দুটি নামের অংকের গ্রহগত সম্পর্ক বিশ্লেষণ করে সামঞ্জস্য নির্ণয় করা হয়। মিত্র গ্রহ হলে সামঞ্জস্য ভালো, শত্রু গ্রহ হলে সতর্কতা প্রয়োজন।</div></div>
+  <div class="faq-item"><div class="faq-question">PIN কোডের সংখ্যা কি গুরুত্বপূর্ণ? <span>+</span></div><div class="faq-answer">হ্যাঁ, PIN কোডের সংখ্যার যোগফল আপনার নিরাপত্তা ও ভাগ্যের উপর প্রভাব ফেলে। ১,৩,৬,৯ সংখ্যার PIN কোড শুভ বলে মনে করা হয়।</div></div>
+</section>
+
+<!-- Related Blog Links -->
+<section class="content-section">
+  <h2 class="headline-h2">📖 সংখ্যা জ্যোতিষ সম্পর্কিত ব্লগ</h2>
+  <div class="blog-links">
+    <a href="https://www.myastrology.in/blog/numerology-guide-bengali.html" class="blog-card"><strong>সংখ্যা জ্যোতিষ সম্পূর্ণ গাইড</strong><p>বাংলায় সংখ্যা জ্যোতিষের সম্পূর্ণ পরিচয়</p></a>
+    <a href="https://www.myastrology.in/blog/name-number-calculation.html" class="blog-card"><strong>নামের অংক নির্ণয়ের পদ্ধতি</strong><p>বাংলা ও ইংরেজি নামের অংক বের করার নিয়ম</p></a>
+    <a href="https://www.myastrology.in/blog/mobile-number-numerology.html" class="blog-card"><strong>মোবাইল নম্বরের সংখ্যাতত্ত্ব</strong><p>আপনার মোবাইল নম্বর শুভ নাকি অশুভ?</p></a>
+  </div>
+</section>
+
+<!-- Location Links -->
+<section class="content-section">
+  <h2 class="headline-h2">📍 পশ্চিমবঙ্গের সেরা জ্যোতিষী</h2>
+  <div class="location-links">
+    <a href="https://www.myastrology.in/best-astrologer-in-west-bengal.html" class="location-link">পশ্চিমবঙ্গ</a>
+    <a href="https://www.myastrology.in/best-astrologer-in-kolkata.html" class="location-link">কলকাতা</a>
+    <a href="https://www.myastrology.in/best-astrologer-in-nadia.html" class="location-link">নদিয়া</a>
+  </div>
+</section>
+
+</main>
+
+<!-- Footer (আপনার সাইটের মতো) -->
+<footer role="contentinfo">
+  <p class="footer-tagline">🌟 জেনে রাখুন আরও গভীর সত্য</p>
+  <p class="footer-desc">ড. প্রদ্যুৎ আচার্যের <strong>সংখ্যা জ্যোতিষ</strong> প্ল্যাটফর্ম — আপনার নাম, জন্মতারিখ, মোবাইল নম্বর, গাড়ির নম্বর, PIN কোডের গভীর বিশ্লেষণ। ২৪টি ক্যাটাগরি ও সামঞ্জস্য মিলন। বাংলা ও হিন্দিতে অনলাইন পরামর্শ।</p>
+  <div class="footer-contact">
+    <a href="tel:+919333122768"><i class="fas fa-phone"></i> +91-9333122768</a>
+    <a href="/cdn-cgi/l/email-protection#3e575058517e53475f4d4a4c5152515947105750"><span class="__cf_email__">info@myastrology.in</span></a>
+  </div>
+  <div class="footer-social">
+    <a href="https://www.facebook.com/Dr.ProdyutAcharya" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.instagram.com/myastrology.in" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://youtube.com/@myastrology" target="_blank"><i class="fab fa-youtube"></i></a>
+    <a href="https://x.com/AcharyaProdyut" target="_blank"><i class="fab fa-x-twitter"></i></a>
+    <a href="https://www.linkedin.com/in/ProdyutAcharya" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+  </div>
+  <div class="footer-divider"></div>
+  <div class="footer-copy">
+    <p>© 2026 MyAstrology | ড. প্রদ্যুৎ আচার্য | সকল অধিকার সংরক্ষিত</p>
+    <p><a href="https://www.myastrology.in/privacy-policy.html">Privacy Policy</a> | <a href="https://www.myastrology.in/terms-of-use.html">Terms of Use</a></p>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<div id="wa-float">
+  <div id="wa-flash-msg">🙏 সংখ্যা জ্যোতিষ পরামর্শ নিন</div>
+  <a href="https://wa.me/919333122768?text=🙏+নমস্কার,+সংখ্যা+জ্যোতিষ+পরামর্শ+নিতে+চাই।" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+</div>
+
+<script>
+(function() {
+  // Navigation Toggle
+  var btn = document.getElementById('menuToggleBtn');
+  var nav = document.getElementById('main-nav');
+  var backdrop = document.getElementById('backdrop');
+  var closeBtn = document.getElementById('navCloseBtn');
+  function openNav() { nav.classList.add('open'); backdrop.classList.add('show'); document.body.style.overflow = 'hidden'; }
+  function closeNav() { nav.classList.remove('open'); backdrop.classList.remove('show'); document.body.style.overflow = ''; }
+  if (btn) btn.addEventListener('click', function() { nav.classList.contains('open') ? closeNav() : openNav(); });
+  if (closeBtn) closeBtn.addEventListener('click', closeNav);
+  if (backdrop) backdrop.addEventListener('click', closeNav);
+
+  // Reading Progress Bar
+  var bar = document.getElementById('progress-bar');
+  function updateProgress() { if (bar) { var st = window.scrollY, dh = document.documentElement.scrollHeight - window.innerHeight; bar.style.width = (st / dh * 100) + '%'; } }
+  window.addEventListener('scroll', updateProgress);
+
+  // Back to Top
+  var btt = document.getElementById('back-to-top');
+  function showBtt() { if (btt) window.scrollY > 400 ? btt.classList.add('visible') : btt.classList.remove('visible'); }
+  window.addEventListener('scroll', showBtt);
+  if (btt) btt.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+  // WhatsApp Flash Message
+  var flash = document.getElementById('wa-flash-msg');
+  var msgs = ["🙏 সংখ্যা জ্যোতিষ পরামর্শ নিন", "🔢 আপনার নামের অংক জানুন", "📅 জন্মতারিখের সংখ্যা নির্ণয়", "🔗 নাম + তারিখের সামঞ্জস্য দেখুন"];
+  var idx = 0;
+  function showFlash() { if (flash) { flash.classList.remove('show'); setTimeout(function() { flash.textContent = msgs[idx % msgs.length]; idx++; flash.classList.add('show'); setTimeout(function() { flash.classList.remove('show'); }, 3000); }, 400); } }
+  showFlash(); setInterval(showFlash, 5000);
+
+  // Mode Selector
+  var modeBtns = document.querySelectorAll('.mode-btn');
+  var singleMode = document.getElementById('singleMode');
+  var dualMode = document.getElementById('dualMode');
+  var modeTitle = document.getElementById('modeTitle');
+  var currentMode = 'single';
+  function setMode(mode) {
+    currentMode = mode;
+    if (mode === 'single') { singleMode.style.display = 'flex'; dualMode.style.display = 'none'; modeTitle.innerHTML = '🔮 একটি জিনিস বিশ্লেষণ করুন'; }
+    else { singleMode.style.display = 'none'; dualMode.style.display = 'flex'; modeTitle.innerHTML = '🔗 দুটি জিনিসের সামঞ্জস্য মিলন'; }
+    modeBtns.forEach(btn => { btn.classList.toggle('active', btn.getAttribute('data-mode') === mode); });
+  }
+  modeBtns.forEach(btn => { btn.addEventListener('click', () => setMode(btn.getAttribute('data-mode'))); });
+
+  // Analyze Function
+  function analyze() {
+    if (currentMode === 'single') {
+      var val = document.getElementById('singleInput').value.trim();
+      if (!val) { alert('দয়া করে কিছু লিখুন'); return; }
+      window.location.href = 'result.html?q=' + encodeURIComponent(val);
+    } else {
+      var first = document.getElementById('firstInput').value.trim();
+      var second = document.getElementById('secondInput').value.trim();
+      if (!first || !second) { alert('দয়া করে দুটি তথ্যই লিখুন'); return; }
+      window.location.href = 'result.html?q=' + encodeURIComponent(first + ' + ' + second);
+    }
+  }
+  document.getElementById('analyzeBtn').addEventListener('click', analyze);
+  document.getElementById('singleInput').addEventListener('keypress', e => { if (e.key === 'Enter') analyze(); });
+  document.getElementById('firstInput').addEventListener('keypress', e => { if (e.key === 'Enter') analyze(); });
+  document.getElementById('secondInput').addEventListener('keypress', e => { if (e.key === 'Enter') analyze(); });
+
+  // Example Chips
+  document.querySelectorAll('.chip').forEach(chip => {
+    chip.addEventListener('click', function() {
+      var mode = this.getAttribute('data-mode');
+      setMode(mode);
+      if (mode === 'single') {
+        var val = this.getAttribute('data-val');
+        if (val) document.getElementById('singleInput').value = val;
+      } else {
+        var first = this.getAttribute('data-first');
+        var second = this.getAttribute('data-second');
+        if (first) document.getElementById('firstInput').value = first;
+        if (second) document.getElementById('secondInput').value = second;
+      }
+      setTimeout(analyze, 100);
+    });
+  });
+
+  // FAQ Toggle
+  document.querySelectorAll('.faq-question').forEach(q => {
+    q.addEventListener('click', function() {
+      var answer = this.nextElementSibling;
+      answer.classList.toggle('show');
+      this.querySelector('span').textContent = answer.classList.contains('show') ? '−' : '+';
+    });
+  });
+})();
+</script>
+
+<!-- Schema: FAQPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "সংখ্যা জ্যোতিষ কি?", "acceptedAnswer": {"@type": "Answer", "text": "সংখ্যা জ্যোতিষ বা অংকবিদ্যা হল প্রাচীন ভারতীয় বিজ্ঞান যা সংখ্যার মাধ্যমে ব্যক্তিত্ব, ভাগ্য ও জীবনের পথ নির্ধারণ করে।"}},
+    {"@type": "Question", "name": "নামের অংক কিভাবে নির্ণয় করা হয়?", "acceptedAnswer": {"@type": "Answer", "text": "নামের অংক = নামের সব অক্ষরের সংখ্যাগত মানের যোগফল। বাংলা অক্ষরের জন্য কাবালা পদ্ধতি এবং ইংরেজি অক্ষরের জন্য পিথাগোরাস পদ্ধতি ব্যবহার করা হয়।"}},
+    {"@type": "Question", "name": "মূলাংক কি এবং কিভাবে নির্ণয় করা হয়?", "acceptedAnswer": {"@type": "Answer", "text": "মূলাংক হল জন্মতারিখের দিনের যোগফল। যেমন: ১৫-০৮-১৯৯০ তারিখে জন্ম হলে দিন ১৫ → ১+৫=৬, তাই মূলাংক ৬।"}},
+    {"@type": "Question", "name": "দুটি নামের সামঞ্জস্য কিভাবে নির্ণয় করা হয়?", "acceptedAnswer": {"@type": "Answer", "text": "দুটি নামের অংকের গ্রহগত সম্পর্ক বিশ্লেষণ করে সামঞ্জস্য নির্ণয় করা হয়। মিত্র গ্রহ হলে সামঞ্জস্য ভালো, শত্রু গ্রহ হলে সতর্কতা প্রয়োজন।"}},
+    {"@type": "Question", "name": "PIN কোডের সংখ্যা কি গুরুত্বপূর্ণ?", "acceptedAnswer": {"@type": "Answer", "text": "হ্যাঁ, PIN কোডের সংখ্যার যোগফল আপনার নিরাপত্তা ও ভাগ্যের উপর প্রভাব ফেলে। ১,৩,৬,৯ সংখ্যার PIN কোড শুভ বলে মনে করা হয়。"}}
+  ]
+}
+</script>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "হোম", "item": "https://www.myastrology.in/"},
+    {"@type": "ListItem", "position": 2, "name": "সংখ্যা জ্যোতিষ", "item": "https://www.myastrology.in/numerology.html"}
+  ]
+}
+</script>
+
+</body>
+</html>
             outline: none;
             background: rgba(255,255,255,0.95);
             color: #333;
