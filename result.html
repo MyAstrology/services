@@ -9,149 +9,29 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* রেজাল্ট পেজের জন্য অতিরিক্ত স্টাইল */
-        .result-container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        .result-card {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 25px;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-        
-        .result-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .result-number {
-            display: inline-block;
-            background: linear-gradient(135deg, #ffd700, #ff8c00);
-            padding: 20px 35px;
-            border-radius: 60px;
-            margin-bottom: 20px;
-        }
-        
-        .big-number {
-            font-size: 64px;
-            font-weight: 800;
-            color: #1a1a2e;
-        }
-        
-        .result-title {
-            font-size: 28px;
-            margin-bottom: 10px;
-        }
-        
-        .result-subtitle {
-            opacity: 0.8;
-            font-size: 18px;
-        }
-        
-        .info-section {
-            margin-bottom: 25px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .info-section h3 {
-            color: #ffd700;
-            margin-bottom: 12px;
-            font-size: 22px;
-        }
-        
-        .info-section h3 i {
-            margin-right: 10px;
-        }
-        
-        .info-section p {
-            line-height: 1.8;
-            opacity: 0.9;
-        }
-        
-        .badge {
-            display: inline-block;
-            background: rgba(255,215,0,0.2);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 14px;
-            margin-right: 10px;
-            margin-bottom: 10px;
-        }
-        
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255,255,255,0.2);
-            padding: 12px 25px;
-            border-radius: 40px;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s;
-            margin-top: 20px;
-        }
-        
-        .back-btn:hover {
-            background: rgba(255,215,0,0.3);
-            gap: 12px;
-        }
-        
-        .share-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
-        
-        .share-btn {
-            background: rgba(255,255,255,0.15);
-            padding: 10px 20px;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: none;
-            color: white;
-            font-family: inherit;
-            font-size: 14px;
-        }
-        
-        .share-btn:hover {
-            background: rgba(255,215,0,0.4);
-        }
-        
-        .error-card {
-            text-align: center;
-            padding: 50px;
-        }
-        
-        .error-card i {
-            font-size: 64px;
-            color: #ffd700;
-            margin-bottom: 20px;
-        }
-        
-        .loading {
-            text-align: center;
-            padding: 50px;
-        }
-        
-        .loading i {
-            font-size: 48px;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+        /* (আগের স্টাইল একই থাকবে) */
+        .result-container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        .result-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 20px; padding: 30px; margin-bottom: 25px; border: 1px solid rgba(255,255,255,0.2); }
+        .result-header { text-align: center; margin-bottom: 30px; }
+        .result-number { display: inline-block; background: linear-gradient(135deg, #ffd700, #ff8c00); padding: 20px 35px; border-radius: 60px; margin-bottom: 20px; }
+        .big-number { font-size: 64px; font-weight: 800; color: #1a1a2e; }
+        .result-title { font-size: 28px; margin-bottom: 10px; }
+        .result-subtitle { opacity: 0.8; font-size: 18px; }
+        .info-section { margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .info-section h3 { color: #ffd700; margin-bottom: 12px; font-size: 22px; }
+        .info-section h3 i { margin-right: 10px; }
+        .info-section p { line-height: 1.8; opacity: 0.9; }
+        .badge { display: inline-block; background: rgba(255,215,0,0.2); padding: 5px 15px; border-radius: 20px; font-size: 14px; margin-right: 10px; margin-bottom: 10px; }
+        .back-btn { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.2); padding: 12px 25px; border-radius: 40px; color: white; text-decoration: none; transition: all 0.3s; margin-top: 20px; }
+        .back-btn:hover { background: rgba(255,215,0,0.3); gap: 12px; }
+        .share-buttons { display: flex; gap: 15px; justify-content: center; margin-top: 30px; flex-wrap: wrap; }
+        .share-btn { background: rgba(255,255,255,0.15); padding: 10px 20px; border-radius: 30px; cursor: pointer; transition: all 0.3s; border: none; color: white; font-family: inherit; font-size: 14px; }
+        .share-btn:hover { background: rgba(255,215,0,0.4); }
+        .error-card { text-align: center; padding: 50px; }
+        .error-card i { font-size: 64px; color: #ffd700; margin-bottom: 20px; }
+        .loading { text-align: center; padding: 50px; }
+        .loading i { font-size: 48px; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
@@ -160,9 +40,7 @@
             <i class="fas fa-spinner"></i>
             <p>বিশ্লেষণ করা হচ্ছে...</p>
         </div>
-        
         <div id="resultContent" style="display: none;"></div>
-        
         <div style="text-align: center; margin-top: 30px;">
             <a href="numerology.html" class="back-btn"><i class="fas fa-arrow-left"></i> নতুন অনুসন্ধান</a>
         </div>
@@ -172,13 +50,11 @@
     <script src="js/intent-detector.js"></script>
     
     <script>
-        // URL থেকে query parameter নেওয়া
         function getQueryParam(param) {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(param);
         }
         
-        // HTML এস্কেপ ফাংশন
         function escapeHtml(text) {
             if (!text) return '';
             return text
@@ -189,14 +65,12 @@
                 .replace(/'/g, '&#39;');
         }
         
-        // ফলাফল রেন্ডার করা
         function renderResult(input, intentResult) {
             const contentDiv = document.getElementById('resultContent');
             const loadingDiv = document.getElementById('loading');
             
             let html = '';
             
-            // যদি নাম্বার অ্যানালাইসিস থাকে
             if (intentResult.analysis && intentResult.analysis.analysis) {
                 const data = intentResult.analysis.analysis;
                 const num = intentResult.analysis.rootNumber || intentResult.mulank;
@@ -243,7 +117,6 @@
                     </div>
                 `;
             }
-            // যদি মূল্য বিশ্লেষণ হয়
             else if (intentResult.intent === "PRODUCT_PRICE" && intentResult.analysis) {
                 const analysis = intentResult.analysis;
                 const data = analysis.analysis;
@@ -257,25 +130,17 @@
                     <div class="result-card">
                         <div class="info-section">
                             <h3><i class="fas fa-calculator"></i> সংখ্যাতাত্ত্বিক মান</h3>
-                            <p>মূল্যের যোগফল: ${analysis.sum} → রুট সংখ্যা: <strong>${analysis.rootNumber}</strong> (${data.planet})</p>
+                            <p>মূল্যের যোগফল: ${analysis.sum} → রুট সংখ্যা: <strong>${analysis.rootNumber}</strong> (${data ? data.planet : ''})</p>
                         </div>
                         
                         <div class="info-section">
                             <h3><i class="fas fa-star"></i> বিশ্লেষণ</h3>
                             <p>${analysis.isAuspicious ? '✅ এই মূল্য শুভ এবং ব্যবসার জন্য অনুকূল।' : '⚠️ এই মূল্যে সতর্কতা প্রয়োজন।'}</p>
-                            ${analysis.alternatives.length > 0 ? `<p><strong>সুপারিশ:</strong> ${analysis.alternatives.join(' ')}</p>` : ''}
+                            ${analysis.alternatives && analysis.alternatives.length > 0 ? `<p><strong>সুপারিশ:</strong> ${analysis.alternatives.join(' ')}</p>` : ''}
                         </div>
-                        
-                        ${data ? `
-                        <div class="info-section">
-                            <h3><i class="fas fa-chart-simple"></i> ${data.identity.title}</h3>
-                            <p>${escapeHtml(data.identity.description.substring(0, 200))}...</p>
-                        </div>
-                        ` : ''}
                     </div>
                 `;
             }
-            // সাধারণ সংখ্যা বিশ্লেষণ (মোবাইল, গাড়ি ইত্যাদি)
             else if (intentResult.analysis && intentResult.analysis.analysis) {
                 const analysis = intentResult.analysis;
                 const data = analysis.analysis;
@@ -308,7 +173,6 @@
                     </div>
                 `;
             }
-            // যদি ফলাফল না পাওয়া যায়
             else {
                 html = `
                     <div class="result-card error-card">
@@ -326,7 +190,6 @@
                 `;
             }
             
-            // শেয়ার বাটন যোগ
             html += `
                 <div class="share-buttons">
                     <button class="share-btn" onclick="copyToClipboard()"><i class="fas fa-copy"></i> কপি করুন</button>
@@ -340,7 +203,6 @@
             loadingDiv.style.display = 'none';
         }
         
-        // কপি টু ক্লিপবোর্ড
         function copyToClipboard() {
             const text = document.getElementById('resultContent').innerText;
             navigator.clipboard.writeText(text).then(() => {
@@ -348,7 +210,6 @@
             });
         }
         
-        // শেয়ার ফাংশন
         function shareResult() {
             if (navigator.share) {
                 navigator.share({
@@ -361,7 +222,6 @@
             }
         }
         
-        // পেজ লোড হলে বিশ্লেষণ শুরু
         document.addEventListener('DOMContentLoaded', function() {
             const query = getQueryParam('q');
             
@@ -372,10 +232,8 @@
             
             const decodedQuery = decodeURIComponent(query);
             
-            // ইনটেন্ট ডিটেক্ট করুন
             const intentResult = IntentDetector.detect(decodedQuery);
             
-            // যদি নাম বিশ্লেষণ হয় এবং নামের সংখ্যা পাওয়া যায়
             if (intentResult.intent === "NAME_ANALYSIS" && !intentResult.analysis) {
                 const number = IntentDetector.getNumberFromName(decodedQuery);
                 if (number) {
@@ -387,7 +245,6 @@
                 }
             }
             
-            // যদি মুলাংক হয়
             if (intentResult.intent === "MULANK" && intentResult.mulank) {
                 intentResult.analysis = {
                     rootNumber: intentResult.mulank,
@@ -396,7 +253,6 @@
                 };
             }
             
-            // রেন্ডার করুন
             renderResult(decodedQuery, intentResult);
         });
     </script>
