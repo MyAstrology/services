@@ -1,0 +1,335 @@
+/* numerology.css - Root এ css ফোল্ডারের ভিতরে রাখুন */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Hind Siliguri', sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: #fff;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    padding: 40px 20px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    margin-bottom: 40px;
+    backdrop-filter: blur(10px);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.logo i {
+    font-size: 48px;
+    color: #ffd700;
+    animation: pulse 2s infinite;
+}
+
+.logo h1 {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.logo h1 span {
+    color: #ffd700;
+    font-weight: 400;
+}
+
+.tagline {
+    font-size: 18px;
+    opacity: 0.8;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* Search Section */
+.search-section {
+    margin-bottom: 50px;
+}
+
+.search-card {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    padding: 40px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+}
+
+.search-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #ffd700, #ff8c00);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+}
+
+.search-icon i {
+    font-size: 40px;
+    color: #1a1a2e;
+}
+
+.search-card h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    opacity: 0.8;
+    margin-bottom: 30px;
+}
+
+.search-box-wrapper {
+    display: flex;
+    gap: 15px;
+    max-width: 800px;
+    margin: 0 auto 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.universal-input {
+    flex: 1;
+    min-width: 250px;
+    padding: 18px 25px;
+    font-size: 16px;
+    font-family: 'Hind Siliguri', sans-serif;
+    border: none;
+    border-radius: 50px;
+    background: rgba(255,255,255,0.95);
+    color: #333;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.universal-input:focus {
+    box-shadow: 0 0 0 3px rgba(255,215,0,0.5);
+    transform: scale(1.02);
+}
+
+.analyze-btn {
+    padding: 18px 35px;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: 'Hind Siliguri', sans-serif;
+    background: linear-gradient(135deg, #ffd700, #ff8c00);
+    border: none;
+    border-radius: 50px;
+    color: #1a1a2e;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.analyze-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(255,215,0,0.3);
+}
+
+/* Quick Examples */
+.quick-examples {
+    margin-top: 20px;
+}
+
+.examples-title {
+    margin-bottom: 15px;
+    opacity: 0.9;
+}
+
+.example-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+}
+
+.chip {
+    background: rgba(255,255,255,0.15);
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.chip:hover {
+    background: rgba(255,215,0,0.3);
+    transform: translateY(-2px);
+}
+
+/* Features Section */
+.features-section {
+    margin-bottom: 50px;
+}
+
+.features-section h3 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+.features-section h3 i {
+    color: #ffd700;
+    margin-right: 10px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.feature-card {
+    background: rgba(255,255,255,0.05);
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+    transition: all 0.3s;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,215,0,0.5);
+}
+
+.feature-card i {
+    font-size: 40px;
+    color: #ffd700;
+    margin-bottom: 15px;
+}
+
+.feature-card h4 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    opacity: 0.7;
+    font-size: 14px;
+}
+
+/* Info Section */
+.info-section {
+    margin-bottom: 50px;
+}
+
+.info-card {
+    background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(255,140,0,0.1));
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid rgba(255,215,0,0.3);
+}
+
+.info-card i {
+    font-size: 50px;
+    color: #ffd700;
+    margin-bottom: 15px;
+}
+
+.info-card h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.info-card p {
+    max-width: 700px;
+    margin: 0 auto 20px;
+    opacity: 0.9;
+}
+
+.learn-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #ffd700;
+    text-decoration: none;
+    font-weight: 600;
+    transition: gap 0.3s;
+}
+
+.learn-more:hover {
+    gap: 12px;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 30px 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    margin-top: 30px;
+}
+
+.disclaimer {
+    font-size: 12px;
+    opacity: 0.5;
+    margin-top: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .header {
+        padding: 25px 15px;
+    }
+    
+    .logo h1 {
+        font-size: 24px;
+    }
+    
+    .search-card {
+        padding: 25px;
+    }
+    
+    .search-card h2 {
+        font-size: 22px;
+    }
+    
+    .universal-input {
+        padding: 14px 20px;
+    }
+    
+    .analyze-btn {
+        padding: 14px 25px;
+        font-size: 16px;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+}
