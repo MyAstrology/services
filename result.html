@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>বিশ্লেষণ ফলাফল | Numerology Intelligence Hub</title>
+    <link rel="stylesheet" href="css/numerology.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* রেজাল্ট পেজের জন্য অতিরিক্ত স্টাইল */
+        .result-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .result-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .result-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .result-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            padding: 20px 35px;
+            border-radius: 60px;
+            margin-bottom: 20px;
+        }
+        
+        .big-number {
+            font-size: 64px;
+            font-weight: 800;
+            color: #1a1a2e;
+        }
+        
+        .result-title {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .result-subtitle {
+            opacity: 0.8;
+            font-size: 18px;
+        }
+        
+        .info-section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .info-section h3 {
+            color: #ffd700;
+            margin-bottom: 12px;
+            font-size: 22px;
+        }
+        
+        .info-section h3 i {
+            margin-right: 10px;
+        }
+        
+        .info-section p {
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: rgba(255,215,0,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.2);
+            padding: 12px 25px;
+            border-radius: 40px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255,215,0,0.3);
+            gap: 12px;
+        }
+        
+        .share-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .share-btn {
+            background: rgba(255,255,255,0.15);
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            color: white;
+            font-family: inherit;
+            font-size: 14px;
+        }
+        
+        .share-btn:hover {
+            background: rgba(255,215,0,0.4);
+        }
+        
+        .error-card {
+            text-align: center;
+            padding: 50px;
+        }
+        
+        .error-card i {
+            font-size: 64px;
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 50px;
+        }
+        
+        .loading i {
+            font-size: 48px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container result-container" id="app">
+        <div class="loading" id="loading">
+            <i class="fas fa-spinner"></i>
+            <p>বিশ্লেষণ করা হচ্ছে...</p>
+        </div>
+        
+        <div id="resultContent" style="display: none;"></div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="numerology.html" class="back-btn"><i class="fas fa-arrow-left"></i> নতুন অনুসন্ধান</a>
+        </div>
+    </div>
+
+    <script src="js/numerology-data.js"></script>
+    <script src="js/intent-detector.js"></script>
+    
+    <script>
+        // URL থেকে query parameter নেওয়া
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+        
+        // HTML এস্কেপ ফাংশন
+        function escapeHtml(text) {
+            if (!text) return '';
+            return text
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+        
+        // ফলাফল রেন্ডার করা
+        function renderResult(input, intentResult) {
+            const contentDiv = document.getElementById('resultContent');
+            const loadingDiv = document.getElementById('loading');
+            
+            let html = '';
+            
+            // যদি নাম্বার অ্যানালাইসিস থাকে
+            if (intentResult.analysis && intentResult.analysis.analysis) {
+                const data = intentResult.analysis.analysis;
+                const num = intentResult.analysis.rootNumber || intentResult.mulank;
+                
+                html += `
+                    <div class="result-header">
+                        <div class="result-number">
+                            <span class="big-number">${num}</span>
+                        </div>
+                        <h1 class="result-title">${data.identity.title}</h1>
+                        <p class="result-subtitle">${data.planet} | ${data.element}</p>
+                    </div>
+                    
+                    <div class="result-card">
+                        <div class="info-section">
+                            <h3><i class="fas fa-user-astronaut"></i> ব্যক্তিত্ব ও স্বভাব</h3>
+                            <p>${escapeHtml(data.identity.description)}</p>
+                        </div>
+                        
+                        <div class="info-section">
+                            <h3><i class="fas fa-briefcase"></i> ব্যবসা ও ক্যারিয়ার</h3>
+                            <p>${escapeHtml(data.business.description)}</p>
+                        </div>
+                        
+                        <div class="info-section">
+                            <h3><i class="fas fa-plane"></i> যাত্রা ও ভ্রমণ</h3>
+                            <p>${escapeHtml(data.travel.description)}</p>
+                            <div style="margin-top: 10px;">
+                                <span class="badge"><i class="fas fa-calendar"></i> শুভ দিন: ${data.luckyDay}</span>
+                                <span class="badge"><i class="fas fa-compass"></i> শুভ দিক: ${data.luckyDirection}</span>
+                                <span class="badge"><i class="fas fa-palette"></i> শুভ রং: ${data.luckyColor}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="info-section">
+                            <h3><i class="fas fa-chart-line"></i> বিনিয়োগ নির্দেশনা</h3>
+                            <p>${escapeHtml(data.investment.description)}</p>
+                        </div>
+                        
+                        <div class="info-section">
+                            <h3><i class="fas fa-hand-sparkles"></i> জ্যোতিষীয় প্রতিকার</h3>
+                            <p>${escapeHtml(data.tip.description)}</p>
+                        </div>
+                    </div>
+                `;
+            }
+            // যদি মূল্য বিশ্লেষণ হয়
+            else if (intentResult.intent === "PRODUCT_PRICE" && intentResult.analysis) {
+                const analysis = intentResult.analysis;
+                const data = analysis.analysis;
+                
+                html += `
+                    <div class="result-header">
+                        <h1 class="result-title">মূল্য বিশ্লেষণ</h1>
+                        <p class="result-subtitle">${escapeHtml(intentResult.extracted)}</p>
+                    </div>
+                    
+                    <div class="result-card">
+                        <div class="info-section">
+                            <h3><i class="fas fa-calculator"></i> সংখ্যাতাত্ত্বিক মান</h3>
+                            <p>মূল্যের যোগফল: ${analysis.sum} → রুট সংখ্যা: <strong>${analysis.rootNumber}</strong> (${data.planet})</p>
+                        </div>
+                        
+                        <div class="info-section">
+                            <h3><i class="fas fa-star"></i> বিশ্লেষণ</h3>
+                            <p>${analysis.isAuspicious ? '✅ এই মূল্য শুভ এবং ব্যবসার জন্য অনুকূল।' : '⚠️ এই মূল্যে সতর্কতা প্রয়োজন।'}</p>
+                            ${analysis.alternatives.length > 0 ? `<p><strong>সুপারিশ:</strong> ${analysis.alternatives.join(' ')}</p>` : ''}
+                        </div>
+                        
+                        ${data ? `
+                        <div class="info-section">
+                            <h3><i class="fas fa-chart-simple"></i> ${data.identity.title}</h3>
+                            <p>${escapeHtml(data.identity.description.substring(0, 200))}...</p>
+                        </div>
+                        ` : ''}
+                    </div>
+                `;
+            }
+            // সাধারণ সংখ্যা বিশ্লেষণ (মোবাইল, গাড়ি ইত্যাদি)
+            else if (intentResult.analysis && intentResult.analysis.analysis) {
+                const analysis = intentResult.analysis;
+                const data = analysis.analysis;
+                
+                html += `
+                    <div class="result-header">
+                        <div class="result-number">
+                            <span class="big-number">${analysis.rootNumber}</span>
+                        </div>
+                        <h1 class="result-title">${data.identity.title}</h1>
+                        <p class="result-subtitle">${data.planet} | ${data.element}</p>
+                    </div>
+                    
+                    <div class="result-card">
+                        <div class="info-section">
+                            <h3><i class="fas fa-info-circle"></i> ইনপুট তথ্য</h3>
+                            <p><strong>${escapeHtml(intentResult.extracted)}</strong><br>
+                            সংখ্যার যোগফল: ${analysis.sum} → মূল সংখ্যা: ${analysis.rootNumber}</p>
+                        </div>
+                        
+                        <div class="info-section">
+                            <h3><i class="fas fa-brain"></i> প্রভাব ও বিশ্লেষণ</h3>
+                            <p>${escapeHtml(data.identity.description)}</p>
+                        </div>
+                        
+                        <div class="info-section">
+                            <h3><i class="fas fa-gem"></i> প্রতিকার</h3>
+                            <p>${escapeHtml(data.tip.description)}</p>
+                        </div>
+                    </div>
+                `;
+            }
+            // যদি ফলাফল না পাওয়া যায়
+            else {
+                html = `
+                    <div class="result-card error-card">
+                        <i class="fas fa-moon"></i>
+                        <h2>ক্ষমা করবেন!</h2>
+                        <p>"${escapeHtml(input)}" - এই বিষয়ে আমাদের ডেটাবেসে বিশ্লেষণ পাওয়া যায়নি।</p>
+                        <p>আপনি চেষ্টা করতে পারেন:</p>
+                        <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 20px;">
+                            <span class="badge">জন্মতারিখ (যেমন: 15-08-1990)</span>
+                            <span class="badge">নাম (যেমন: রাহুল)</span>
+                            <span class="badge">মোবাইল নম্বর (যেমন: 01712345678)</span>
+                            <span class="badge">মূল্য (যেমন: 985 টাকা)</span>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // শেয়ার বাটন যোগ
+            html += `
+                <div class="share-buttons">
+                    <button class="share-btn" onclick="copyToClipboard()"><i class="fas fa-copy"></i> কপি করুন</button>
+                    <button class="share-btn" onclick="shareResult()"><i class="fas fa-share-alt"></i> শেয়ার করুন</button>
+                    <button class="share-btn" onclick="window.print()"><i class="fas fa-print"></i> প্রিন্ট করুন</button>
+                </div>
+            `;
+            
+            contentDiv.innerHTML = html;
+            contentDiv.style.display = 'block';
+            loadingDiv.style.display = 'none';
+        }
+        
+        // কপি টু ক্লিপবোর্ড
+        function copyToClipboard() {
+            const text = document.getElementById('resultContent').innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('ফলাফল কপি হয়েছে!');
+            });
+        }
+        
+        // শেয়ার ফাংশন
+        function shareResult() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Numerology Intelligence Hub',
+                    text: document.getElementById('resultContent').innerText.substring(0, 500),
+                    url: window.location.href
+                });
+            } else {
+                copyToClipboard();
+            }
+        }
+        
+        // পেজ লোড হলে বিশ্লেষণ শুরু
+        document.addEventListener('DOMContentLoaded', function() {
+            const query = getQueryParam('q');
+            
+            if (!query) {
+                window.location.href = 'numerology.html';
+                return;
+            }
+            
+            const decodedQuery = decodeURIComponent(query);
+            
+            // ইনটেন্ট ডিটেক্ট করুন
+            const intentResult = IntentDetector.detect(decodedQuery);
+            
+            // যদি নাম বিশ্লেষণ হয় এবং নামের সংখ্যা পাওয়া যায়
+            if (intentResult.intent === "NAME_ANALYSIS" && !intentResult.analysis) {
+                const number = IntentDetector.getNumberFromName(decodedQuery);
+                if (number) {
+                    intentResult.analysis = {
+                        rootNumber: number,
+                        sum: number,
+                        analysis: NumerologyDB.getNumberAnalysis(number)
+                    };
+                }
+            }
+            
+            // যদি মুলাংক হয়
+            if (intentResult.intent === "MULANK" && intentResult.mulank) {
+                intentResult.analysis = {
+                    rootNumber: intentResult.mulank,
+                    sum: intentResult.mulank,
+                    analysis: NumerologyDB.getNumberAnalysis(intentResult.mulank)
+                };
+            }
+            
+            // রেন্ডার করুন
+            renderResult(decodedQuery, intentResult);
+        });
+    </script>
+</body>
+</html>
