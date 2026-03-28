@@ -6,10 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Numerology Intelligence Hub | myastrology.in</title>
     <meta name="description" content="অংকবিদ্যার মাধ্যমে আপনার সংখ্যার গভীর বিশ্লেষণ। মূলাংক, নাম, মোবাইল নম্বর, ব্যবসার নাম, পণ্যের মূল্য - সব কিছু বিশ্লেষণ করুন।">
-    <meta name="keywords" content="অংকবিদ্যা, সংখ্যাতত্ত্ব, মূলাংক, নামের সংখ্যা, numerology bangla, সামঞ্জস্য মিলন">
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/numerology.css">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -18,14 +14,169 @@
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* অতিরিক্ত স্টাইল - নতুন ফিচারের জন্য */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #fff;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .logo i {
+            font-size: 48px;
+            color: #ffd700;
+        }
+        
+        .logo h1 {
+            font-size: 32px;
+            font-weight: 700;
+        }
+        
+        .logo h1 span {
+            color: #ffd700;
+        }
+        
+        .tagline {
+            font-size: 18px;
+            opacity: 0.8;
+        }
+        
+        /* Search Section */
+        .search-section {
+            margin-bottom: 50px;
+        }
+        
+        .search-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 40px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        .search-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+        }
+        
+        .search-icon i {
+            font-size: 40px;
+            color: #1a1a2e;
+        }
+        
+        .search-card h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            opacity: 0.8;
+            margin-bottom: 30px;
+        }
+        
+        .search-box-wrapper {
+            display: flex;
+            gap: 15px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .universal-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 18px 25px;
+            font-size: 16px;
+            font-family: 'Hind Siliguri', sans-serif;
+            border: none;
+            border-radius: 50px;
+            background: rgba(255,255,255,0.95);
+            color: #333;
+            outline: none;
+            transition: all 0.3s;
+        }
+        
+        .universal-input:focus {
+            box-shadow: 0 0 0 3px rgba(255,215,0,0.5);
+            transform: scale(1.02);
+        }
+        
+        .analyze-btn {
+            padding: 18px 35px;
+            font-size: 18px;
+            font-weight: 600;
+            font-family: 'Hind Siliguri', sans-serif;
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            border: none;
+            border-radius: 50px;
+            color: #1a1a2e;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .analyze-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255,215,0,0.3);
+        }
+        
+        /* Quick Examples */
+        .quick-examples {
+            margin-top: 20px;
+        }
+        
+        .examples-title {
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+        
         .example-chips {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
             justify-content: center;
-            margin-top: 20px;
         }
+        
         .chip {
             background: rgba(255,255,255,0.15);
             padding: 8px 18px;
@@ -35,20 +186,39 @@
             transition: all 0.3s;
             border: 1px solid rgba(255,255,255,0.2);
         }
+        
         .chip:hover {
             background: rgba(255,215,0,0.3);
             transform: translateY(-2px);
         }
+        
         .chip.multi {
             background: rgba(255,215,0,0.2);
             border-color: rgba(255,215,0,0.5);
         }
+        
+        /* Features Section */
+        .features-section {
+            margin-bottom: 50px;
+        }
+        
+        .features-section h3 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+        
+        .features-section h3 i {
+            color: #ffd700;
+            margin-right: 10px;
+        }
+        
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
-            margin-top: 30px;
         }
+        
         .feature-card {
             background: rgba(255,255,255,0.05);
             padding: 25px;
@@ -57,41 +227,122 @@
             transition: all 0.3s;
             border: 1px solid rgba(255,255,255,0.1);
         }
+        
         .feature-card:hover {
             transform: translateY(-5px);
             background: rgba(255,255,255,0.1);
             border-color: rgba(255,215,0,0.5);
         }
+        
         .feature-card i {
             font-size: 40px;
             color: #ffd700;
             margin-bottom: 15px;
         }
+        
         .feature-card h4 {
             font-size: 20px;
             margin-bottom: 10px;
         }
+        
         .feature-card p {
             opacity: 0.7;
             font-size: 14px;
         }
+        
+        /* Info Section */
+        .info-section {
+            margin-bottom: 50px;
+        }
+        
         .info-card {
             background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(255,140,0,0.1));
             padding: 30px;
             border-radius: 20px;
             text-align: center;
-            margin-top: 40px;
+            border: 1px solid rgba(255,215,0,0.3);
         }
+        
+        .info-card i {
+            font-size: 50px;
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+        
+        .info-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .info-card p {
+            max-width: 700px;
+            margin: 0 auto 20px;
+            opacity: 0.9;
+        }
+        
+        .learn-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: 600;
+            transition: gap 0.3s;
+        }
+        
+        .learn-more:hover {
+            gap: 12px;
+        }
+        
+        /* Footer */
         .footer {
             text-align: center;
             padding: 30px 0;
-            margin-top: 40px;
             border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 30px;
         }
+        
+        .disclaimer {
+            font-size: 12px;
+            opacity: 0.5;
+            margin-top: 10px;
+        }
+        
+        /* Responsive */
         @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header {
+                padding: 25px 15px;
+            }
+            
+            .logo h1 {
+                font-size: 24px;
+            }
+            
+            .search-card {
+                padding: 25px;
+            }
+            
+            .search-card h2 {
+                font-size: 22px;
+            }
+            
+            .universal-input {
+                padding: 14px 20px;
+            }
+            
+            .analyze-btn {
+                padding: 14px 25px;
+                font-size: 16px;
+            }
+            
             .features-grid {
                 grid-template-columns: 1fr;
             }
+            
             .chip {
                 padding: 6px 12px;
                 font-size: 12px;
@@ -134,19 +385,14 @@
                 <div class="quick-examples">
                     <p class="examples-title"><i class="fas fa-lightbulb"></i> দ্রুত উদাহরণ:</p>
                     <div class="example-chips">
-                        <!-- সিঙ্গেল ইনপুট -->
                         <span class="chip" data-example="15-08-1990">📅 জন্মতারিখ</span>
                         <span class="chip" data-example="রাহুল">👤 ব্যক্তির নাম</span>
                         <span class="chip" data-example="০১৭১২৩৪৫৬৭৮">📱 মোবাইল নম্বর</span>
                         <span class="chip" data-example="প্রদ্যুৎ এন্টারপ্রাইজ">🏢 ব্যবসার নাম</span>
                         <span class="chip" data-example="৯৮৫ টাকা">💰 পণ্যের মূল্য</span>
                         <span class="chip" data-example="WB12AB3456">🚗 গাড়ির নম্বর</span>
-                        
-                        <!-- মাল্টি-ইনপুট (সামঞ্জস্য মিলন) - নতুন ফিচার -->
                         <span class="chip multi" data-example="রাহুল + ১৫-০৮-১৯৯০">🔗 নাম + জন্মতারিখ</span>
-                        <span class="chip multi" data-example="রাহুল + ০১৭১২৩৪৫৬৭৮">🔗 নাম + মোবাইল</span>
                         <span class="chip multi" data-example="রাহুল + সুমন">👥 দুই ব্যক্তির নাম</span>
-                        <span class="chip multi" data-example="প্রদ্যুৎ এন্টারপ্রাইজ + ১৫-০৮-১৯৯০">🔗 ব্যবসা + তারিখ</span>
                     </div>
                     <p style="font-size: 12px; opacity: 0.6; margin-top: 15px;">
                         <i class="fas fa-info-circle"></i> টিপ: একাধিক তথ্য মেলাতে <strong>"+"</strong> বা <strong>"এবং"</strong> ব্যবহার করুন
@@ -219,24 +465,21 @@
         </footer>
     </div>
     
-    <!-- Scripts - শুধুমাত্র প্রয়োজনীয় JS ফাইল -->
+    <!-- Scripts -->
     <script src="js/numerology-data.js"></script>
     <script src="js/main.js"></script>
     
     <script>
         // পেজ লোড হওয়ার পর
         document.addEventListener('DOMContentLoaded', function() {
-            // ইউনিভার্সাল ইনপুট ফোকাস
             const inputField = document.getElementById('universalInput');
             if (inputField) inputField.focus();
             
-            // এনালাইজ বাটন ক্লিক
             const analyzeBtn = document.getElementById('analyzeBtn');
             if (analyzeBtn) {
                 analyzeBtn.addEventListener('click', analyzeInput);
             }
             
-            // এন্টার কি প্রেস
             if (inputField) {
                 inputField.addEventListener('keypress', function(e) {
                     if (e.key === 'Enter') {
@@ -245,7 +488,6 @@
                 });
             }
             
-            // চিপ ক্লিক (উদাহরণ)
             document.querySelectorAll('.chip').forEach(chip => {
                 chip.addEventListener('click', function() {
                     const example = this.getAttribute('data-example');
@@ -266,7 +508,6 @@
                 return;
             }
             
-            // URL এনকোড করে result পেজে পাঠানো
             const encodedInput = encodeURIComponent(input);
             window.location.href = `result.html?q=${encodedInput}`;
         }
