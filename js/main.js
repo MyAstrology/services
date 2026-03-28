@@ -32,7 +32,54 @@ function escapeHtml(text) {
 }
 
 // ============================================================
-// ৪. অটো ডিটেক্ট ক্যাটাগরি (সিঙ্গেল ইনপুটের জন্য)
+// ৪. মাল্টি-ইনপুট চেক (সঠিক ভার্সন)
+// ============================================================
+function isMultiInput(input) {
+    // স্পষ্ট বিভাজক চিহ্ন: +, এবং, &, , 
+    const separators = /[\+\&\|\,\s+(এবং)\s+(and)\s+]+/i;
+    const parts = input.split(separators).filter(p => p.trim().length > 0);
+    
+    // যদি ২ বা তার বেশি অংশ হয় এবং প্রতিটি অংশের দৈর্ঘ্য ১ এর বেশি হয়
+    if (parts.length >= 2) {
+        // চেক করুন এটি শুধু একটি শব্দ নয় (যেমন "Update" ভুলবশত split হয়ে গেলে)
+        const allPartsAreShort = parts.every(p => p.trim().length <= 3);
+        if (allPartsAreShort && parts.length === 2) {
+            // "Up date" এর মতো হতে পারে — এটা মাল্টি-ইনপুট নয়
+            const combined = parts.join(' ').toLowerCase();
+            if (combined === 'up date' || combined === 'update') {
+                return false;
+            }
+        }
+        return true;
+    }
+    return false;
+}
+
+// ============================================================
+// ৫. মাল্টি-ইনপুট পার্সিং
+// ============================================================
+function parseMultiInput(input) {
+    const separators = /[\+\&\|\,\s+(এবং)\s+(and)\s+]+/i;
+    const parts = input.split(separators).filter(p => p.trim().length > 0);
+    
+    if (parts.length < 2) {
+        return [];
+    }
+    
+    return parts.map(part => {
+        const trimmed = part.trim();
+        const numberData = NumberUtils.extractNumber(trimmed);
+        return {
+            raw: trimmed,
+            type: NumberUtils.detectType(trimmed),
+            number: numberData ? numberData.rootNumber : null,
+            fullData: numberData
+        };
+    }).filter(item => item.number !== null);
+}
+
+// ============================================================
+// ৬. অটো ডিটেক্ট ক্যাটাগরি (সিঙ্গেল ইনপুটের জন্য)
 // ============================================================
 function autoDetectCategory(input) {
     const type = NumberUtils.detectType(input);
@@ -55,7 +102,6 @@ function autoDetectCategory(input) {
         case 'bank':
             return 'bank_account';
         case 'number':
-            // 4-6 ডিজিট = PIN, 9-15 ডিজিট = ব্যাংক
             const cleaned = input.replace(/[^0-9]/g, '');
             if (cleaned.length >= 4 && cleaned.length <= 6) return 'pin_code';
             if (cleaned.length >= 9 && cleaned.length <= 15) return 'bank_account';
@@ -66,7 +112,7 @@ function autoDetectCategory(input) {
 }
 
 // ============================================================
-// ৫. সিঙ্গেল ইনপুট রেন্ডার (২৪টি ক্যাটাগরি)
+// ৭. সিঙ্গেল ইনপুট রেন্ডার (২৪টি ক্যাটাগরি)
 // ============================================================
 function renderSingleResult(input, number, analysis) {
     if (!analysis) {
@@ -79,7 +125,6 @@ function renderSingleResult(input, number, analysis) {
         `;
     }
     
-    // মূল সংখ্যার বিস্তারিত ব্যাখ্যা
     const rootDesc = getRootDescription(number, analysis, 'personal');
     
     return `
@@ -129,7 +174,7 @@ function renderSingleResult(input, number, analysis) {
 }
 
 // ============================================================
-// ৬. মূল সংখ্যার বিস্তারিত ব্যাখ্যা
+// ৮. মূল সংখ্যার বিস্তারিত ব্যাখ্যা
 // ============================================================
 function getRootDescription(number, data, categoryType) {
     const personalRoot = {
@@ -138,17 +183,17 @@ function getRootDescription(number, data, categoryType) {
         3: "বৃহস্পতি গ্রহের প্রভাবে এই সংখ্যার অধিকারী ব্যক্তি অত্যন্ত জ্ঞানী, আশাবাদী ও আধ্যাত্মিক হন। বৃহস্পতি গুরু গ্রহ হিসেবে পরিচিত, আর আপনিও অন্যদের পথ প্রদর্শনে সিদ্ধহস্ত। শিক্ষক, গুরু বা পরামর্শকের মতো মানুষ আপনাকে স্বাভাবিকভাবে ভক্তি করে। আপনার কথায় অন্যদের মনে প্রভাব ফেলতে পারেন। জ্ঞানার্জন ও তা বিতরণই আপনার জীবনের মূল উদ্দেশ্য। অতিরিক্ত আশাবাদ আপনার পতন ডেকে আনতে পারে।",
         4: "রাহু গ্রহের প্রভাবে এই সংখ্যার অধিকারী ব্যক্তি অত্যন্ত রহস্যময়, গভীর চিন্তাবিদ ও উদ্ভাবক হন। রাহু যেমন ছায়া গ্রহ, তেমনি আপনিও সাধারণের চোখের আড়ালে থাকতে ভালোবাসেন। যা অদৃশ্য, তা দেখতে আপনার বিশেষ ক্ষমতা রয়েছে। সাধারণের পথে চলতে চান না, বরং নতুন পথ তৈরি করতে ভালোবাসেন। জীবনে উঠা-পড়া থাকলেও শেষ পর্যন্ত জয়ী হন। বিদেশে সাফল্য পাওয়ার সম্ভাবনা বেশি।",
         5: "বুধ গ্রহের প্রভাবে এই সংখ্যার অধিকারী ব্যক্তি অত্যন্ত বুদ্ধিমান, চটপটে ও যোগাযোগ দক্ষ হন। বুধ যেমন দেবতাদের দূত, তেমনি আপনিও তথ্য ও ধারণা আদান-প্রদানে সিদ্ধহস্ত। অল্প সময়ে অনেক কাজ করতে পারেন। ব্যবসায়িক বুদ্ধি আপনার সহজাত। যেকোনো পরিস্থিতির সাথে মানিয়ে নিতে পারেন। চঞ্চলতা ও অধৈর্যতা আপনার প্রধান দুর্বলতা。",
-        6: "শুক্র গ্রহের প্রভাবে এই সংখ্যার অধিকারী ব্যক্তি সৌন্দর্যপ্রিয়, বিলাসবহুল জীবন পছন্দ করেন। শুক্র যেমন সৌন্দর্য ও ভালোবাসার দেবতা, তেমনি আপনিও শিল্প, সঙ্গীত, নৃত্যে স্বাভাবিক দক্ষতা রাখেন। সম্পর্ক ও ভালোবাসা আপনার জীবনের প্রধান চালিকা শক্তি। মানুষকে আকর্ষণ করতে পারেন। অতিরিক্ত বিলাসিতা ও অনুভূতিপ্রবণতা আপনার দুর্বলতা।",
-        7: "কেতু গ্রহের প্রভাবে এই সংখ্যার অধিকারী ব্যক্তি আধ্যাত্মিক, গভীর চিন্তাবিদ ও গবেষক হন। কেতু যেমন মোক্ষের দিশারী, তেমনি আপনিও অদৃশ্য জগতের সাথে যোগাযোগ রাখতে পারেন। সাধারণের চেয়ে আলাদা চিন্তা করেন। একাকীত্ব ও বিষন্নতা আপনার প্রধান দুর্বলতা। লেখালেখি, গবেষণা ও আধ্যাত্মিক চর্চায় সিদ্ধিলাভ করেন।",
+        6: "শুক্র গ্রহের প্রভাবে এই সংখ্যার অধিকারী ব্যক্তি সৌন্দর্যপ্রিয়, বিলাসবহুল জীবন পছন্দ করেন। শুক্র যেমন সৌন্দর্য ও ভালোবাসার দেবতা, তেমনি আপনিও শিল্প, সঙ্গীত, নৃত্যে স্বাভাবিক দক্ষতা রাখেন। সম্পর্ক ও ভালোবাসা আপনার জীবনের প্রধান চালিকা শক্তি। মানুষকে আকর্ষণ করতে পারেন। অতিরিক্ত বিলাসিতা ও অনুভূতিপ্রবণতা আপনার দুর্বলতা。",
+        7: "কেতু গ্রহের প্রভাবে এই সংখ্যার অধিকারী ব্যক্তি আধ্যাত্মিক, গভীর চিন্তাবিদ ও গবেষক হন। কেতু যেমন মোক্ষের দিশারী, তেমনি আপনিও অদৃশ্য জগতের সাথে যোগাযোগ রাখতে পারেন। সাধারণের চেয়ে আলাদা চিন্তা করেন। একাকীত্ব ও বিষন্নতা আপনার প্রধান দুর্বলতা। লেখালেখি, গবেষণা ও আধ্যাত্মিক চর্চায় সিদ্ধিলাভ করেন。",
         8: "শনি গ্রহের প্রভাবে এই সংখ্যার অধিকারী ব্যক্তি অত্যন্ত ধৈর্যশীল, পরিশ্রমী ও দায়িত্বশীল হন। শনি যেমন কর্মের ফলদাতা, তেমনি আপনিও জীবনে সংগ্রাম করে সবকিছু অর্জন করেন। বয়সের চেয়ে বেশি পরিণত বুদ্ধি রয়েছে। ন্যায়পরায়ণ ও শৃঙ্খলাপ্রিয়। জীবনের শুরুতে সংগ্রাম থাকলেও শেষে সাফল্য পাবেন। হতাশা ও নেতিবাচক চিন্তা আপনার দুর্বলতা।",
         9: "মঙ্গল গ্রহের প্রভাবে এই সংখ্যার অধিকারী ব্যক্তি অত্যন্ত সাহসী, উদ্যমী ও যোদ্ধা প্রকৃতির হন। মঙ্গল যেমন যুদ্ধের দেবতা, তেমনি আপনিও প্রতিযোগিতায় সিদ্ধহস্ত। যা করতে চান, তা যেকোনো মূল্যে করেন। প্রতিযোগিতায় আপনাকে হারানো কঠিন। রাগ ও আগ্রাসন আপনার প্রধান দুর্বলতা। সেনাবাহিনী, খেলাধুলা, প্রতিযোগিতামূলক ক্ষেত্রে সাফল্য লাভ করেন。"
     };
     
-    return personalRoot[number] || `${data.planet} গ্রহের প্রভাবে এই সংখ্যার ব্যক্তি অনন্য বৈশিষ্ট্যের অধিকারী হন।`;
+    return personalRoot[number] || `${data.planet} গ্রহের প্রভাবে এই সংখ্যার ব্যক্তি অনন্য বৈশিষ্ট্যের অধিকারী হন。`;
 }
 
 // ============================================================
-// ৭. ক্যাটাগরি নির্বাচন UI (যুক্তিহীন ইনপুটের জন্য)
+// ৯. ক্যাটাগরি নির্বাচন UI (যুক্তিহীন ইনপুটের জন্য)
 // ============================================================
 const categories = [
     { id: "personal_name", name: "👤 ব্যক্তির নাম", icon: "fa-user" },
@@ -218,10 +263,9 @@ function selectAndShowResult(categoryId) {
 }
 
 // ============================================================
-// ৮. মাল্টি-ইনপুট রেন্ডার (সামঞ্জস্য মিলন)
+// ১০. মাল্টি-ইনপুট রেন্ডার (সামঞ্জস্য মিলন)
 // ============================================================
 function renderMultiResult(input, items, numbers) {
-    // CompatibilityCore ব্যবহার করে বিশ্লেষণ
     const renderData = CompatibilityCore.prepareRenderData(input, items, numbers);
     
     if (!renderData) {
@@ -234,12 +278,11 @@ function renderMultiResult(input, items, numbers) {
         `;
     }
     
-    // CompatibilityRenderer ব্যবহার করে HTML তৈরি
     return CompatibilityRenderer.render(renderData);
 }
 
 // ============================================================
-// ৯. কপি ও শেয়ার ফাংশন
+// ১১. কপি ও শেয়ার ফাংশন
 // ============================================================
 function copyToClipboard() {
     const text = document.getElementById('resultContent')?.innerText || '';
@@ -264,27 +307,30 @@ function shareResult() {
 }
 
 // ============================================================
-// ১০. মেইন ফাংশন (পেজ লোড হলে চালু হয়)
+// ১২. মেইন ফাংশন (পেজ লোড হলে চালু হয়)
 // ============================================================
 document.addEventListener('DOMContentLoaded', function() {
     const query = getQueryParam('q');
     
     if (!query) {
-        // কোনো কুয়েরি না থাকলে ল্যান্ডিং পেজে রিডাইরেক্ট
         window.location.href = 'numerology.html';
         return;
     }
     
     currentRawInput = decodeURIComponent(query);
     
-    // ১. মাল্টি-ইনপুট চেক (সামঞ্জস্য মিলন)
-    if (NumberUtils.isMultiInput(currentRawInput)) {
-        const items = NumberUtils.parseMultiInput(currentRawInput);
+    // ============================================================
+    // ধাপ ১: মাল্টি-ইনপুট চেক (স্পষ্ট বিভাজক চিহ্ন থাকলেই)
+    // ============================================================
+    const hasExplicitSeparator = /[\+\&\|\,\s+(এবং)\s+(and)\s+]/i.test(currentRawInput);
+    const partsCount = currentRawInput.split(/[\+\&\|\,\s+(এবং)\s+(and)\s+]+/i).filter(p => p.trim().length > 0).length;
+    
+    if (hasExplicitSeparator && partsCount >= 2) {
+        const items = parseMultiInput(currentRawInput);
         
         if (items.length >= 2) {
             const validItems = items.map(i => i.raw);
             const validNumbers = items.map(i => i.number);
-            
             const resultHtml = renderMultiResult(currentRawInput, validItems, validNumbers);
             
             document.getElementById('resultContent').innerHTML = resultHtml;
@@ -294,7 +340,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // ২. সিঙ্গেল ইনপুট (যুক্তিপূর্ণ)
+    // ============================================================
+    // ধাপ ২: সিঙ্গেল ইনপুট (যুক্তিপূর্ণ) - সরাসরি রেজাল্ট
+    // ============================================================
     if (NumberUtils.isMeaningful(currentRawInput)) {
         currentNumberData = NumberUtils.extractNumber(currentRawInput);
         
@@ -305,13 +353,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // ৩. সিঙ্গেল ইনপুট (যুক্তিহীন) - ক্যাটাগরি জিজ্ঞেস করবে
+    // ============================================================
+    // ধাপ ৩: সিঙ্গেল ইনপুট (যুক্তিহীন) - ক্যাটাগরি জিজ্ঞেস করবে
+    // ============================================================
     currentNumberData = NumberUtils.extractNumber(currentRawInput);
     
     if (currentNumberData) {
         showCategorySelection();
     } else {
-        // কোনো সংখ্যা পাওয়া যায়নি
         document.getElementById('loading').style.display = 'none';
         document.getElementById('resultContent').innerHTML = `
             <div class="result-card error-card">
