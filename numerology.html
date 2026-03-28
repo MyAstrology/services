@@ -6,16 +6,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Numerology Intelligence Hub | myastrology.in</title>
     <meta name="description" content="অংকবিদ্যার মাধ্যমে আপনার সংখ্যার গভীর বিশ্লেষণ। মূলাংক, নাম, মোবাইল নম্বর, ব্যবসার নাম, পণ্যের মূল্য - সব কিছু বিশ্লেষণ করুন।">
-    <meta name="keywords" content="অংকবিদ্যা, সংখ্যাতত্ত্ব, মূলাংক, নামের সংখ্যা, numerology bangla">
+    <meta name="keywords" content="অংকবিদ্যা, সংখ্যাতত্ত্ব, মূলাংক, নামের সংখ্যা, numerology bangla, সামঞ্জস্য মিলন">
     
     <!-- CSS -->
     <link rel="stylesheet" href="css/numerology.css">
     
-    <!-- Font Awesome for icons (optional) -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* অতিরিক্ত স্টাইল - নতুন ফিচারের জন্য */
+        .example-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .chip {
+            background: rgba(255,255,255,0.15);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .chip:hover {
+            background: rgba(255,215,0,0.3);
+            transform: translateY(-2px);
+        }
+        .chip.multi {
+            background: rgba(255,215,0,0.2);
+            border-color: rgba(255,215,0,0.5);
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        .feature-card {
+            background: rgba(255,255,255,0.05);
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,215,0,0.5);
+        }
+        .feature-card i {
+            font-size: 40px;
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+        .feature-card h4 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .feature-card p {
+            opacity: 0.7;
+            font-size: 14px;
+        }
+        .info-card {
+            background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(255,140,0,0.1));
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            .chip {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -41,7 +123,7 @@
                     <input type="text" 
                            id="universalInput" 
                            class="universal-input" 
-                           placeholder="যেমন: ১৫-০৮-১৯৯০  বা  প্রদ্যুৎ এন্টারপ্রাইজ  বা  ৯৮৫ টাকা  বা  ০১৭১২৩৪৫৬৭৮"
+                           placeholder="যেমন: ১৫-০৮-১৯৯০ বা রাহুল বা ০১৭১২৩৪৫৬৭৮ বা রাহুল + ১৫-০৮-১৯৯০"
                            autocomplete="off">
                     <button id="analyzeBtn" class="analyze-btn">
                         <i class="fas fa-chart-line"></i> বিশ্লেষণ করুন
@@ -52,13 +134,23 @@
                 <div class="quick-examples">
                     <p class="examples-title"><i class="fas fa-lightbulb"></i> দ্রুত উদাহরণ:</p>
                     <div class="example-chips">
+                        <!-- সিঙ্গেল ইনপুট -->
                         <span class="chip" data-example="15-08-1990">📅 জন্মতারিখ</span>
-                        <span class="chip" data-example="প্রদ্যুৎ আচার্য">👤 নাম বিশ্লেষণ</span>
+                        <span class="chip" data-example="রাহুল">👤 ব্যক্তির নাম</span>
                         <span class="chip" data-example="০১৭১২৩৪৫৬৭৮">📱 মোবাইল নম্বর</span>
                         <span class="chip" data-example="প্রদ্যুৎ এন্টারপ্রাইজ">🏢 ব্যবসার নাম</span>
                         <span class="chip" data-example="৯৮৫ টাকা">💰 পণ্যের মূল্য</span>
-                        <span class="chip" data-example="WB 1234">🚗 গাড়ির নম্বর</span>
+                        <span class="chip" data-example="WB12AB3456">🚗 গাড়ির নম্বর</span>
+                        
+                        <!-- মাল্টি-ইনপুট (সামঞ্জস্য মিলন) - নতুন ফিচার -->
+                        <span class="chip multi" data-example="রাহুল + ১৫-০৮-১৯৯০">🔗 নাম + জন্মতারিখ</span>
+                        <span class="chip multi" data-example="রাহুল + ০১৭১২৩৪৫৬৭৮">🔗 নাম + মোবাইল</span>
+                        <span class="chip multi" data-example="রাহুল + সুমন">👥 দুই ব্যক্তির নাম</span>
+                        <span class="chip multi" data-example="প্রদ্যুৎ এন্টারপ্রাইজ + ১৫-০৮-১৯৯০">🔗 ব্যবসা + তারিখ</span>
                     </div>
+                    <p style="font-size: 12px; opacity: 0.6; margin-top: 15px;">
+                        <i class="fas fa-info-circle"></i> টিপ: একাধিক তথ্য মেলাতে <strong>"+"</strong> বা <strong>"এবং"</strong> ব্যবহার করুন
+                    </p>
                 </div>
             </div>
         </section>
@@ -74,7 +166,7 @@
                 </div>
                 <div class="feature-card">
                     <i class="fas fa-user-edit"></i>
-                    <h4>নাম শুদ্ধি</h4>
+                    <h4>নাম বিশ্লেষণ</h4>
                     <p>নামের অংক ও এর প্রভাব বিশ্লেষণ</p>
                 </div>
                 <div class="feature-card">
@@ -97,6 +189,16 @@
                     <h4>শুভ যাত্রা</h4>
                     <p>যাত্রার শুভ দিন ও দিক নির্ধারণ</p>
                 </div>
+                <div class="feature-card">
+                    <i class="fas fa-link"></i>
+                    <h4>সামঞ্জস্য মিলন</h4>
+                    <p>নাম, তারিখ, নম্বরের মধ্যে সামঞ্জস্য বিশ্লেষণ</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-handshake"></i>
+                    <h4>বন্ধুত্ব মিলন</h4>
+                    <p>দুই ব্যক্তির নামের সামঞ্জস্য বিশ্লেষণ</p>
+                </div>
             </div>
         </section>
         
@@ -117,39 +219,47 @@
         </footer>
     </div>
     
-    <!-- Scripts -->
+    <!-- Scripts - শুধুমাত্র প্রয়োজনীয় JS ফাইল -->
     <script src="js/numerology-data.js"></script>
-    <script src="js/intent-detector.js"></script>
     <script src="js/main.js"></script>
     
     <script>
         // পেজ লোড হওয়ার পর
         document.addEventListener('DOMContentLoaded', function() {
             // ইউনিভার্সাল ইনপুট ফোকাস
-            document.getElementById('universalInput').focus();
+            const inputField = document.getElementById('universalInput');
+            if (inputField) inputField.focus();
             
             // এনালাইজ বাটন ক্লিক
-            document.getElementById('analyzeBtn').addEventListener('click', analyzeInput);
+            const analyzeBtn = document.getElementById('analyzeBtn');
+            if (analyzeBtn) {
+                analyzeBtn.addEventListener('click', analyzeInput);
+            }
             
             // এন্টার কি প্রেস
-            document.getElementById('universalInput').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    analyzeInput();
-                }
-            });
+            if (inputField) {
+                inputField.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        analyzeInput();
+                    }
+                });
+            }
             
             // চিপ ক্লিক (উদাহরণ)
             document.querySelectorAll('.chip').forEach(chip => {
                 chip.addEventListener('click', function() {
                     const example = this.getAttribute('data-example');
-                    document.getElementById('universalInput').value = example;
-                    analyzeInput();
+                    if (inputField) {
+                        inputField.value = example;
+                        analyzeInput();
+                    }
                 });
             });
         });
         
         function analyzeInput() {
-            const input = document.getElementById('universalInput').value.trim();
+            const inputField = document.getElementById('universalInput');
+            const input = inputField ? inputField.value.trim() : '';
             
             if (!input) {
                 alert('দয়া করে কিছু লিখুন বা উদাহরণ সিলেক্ট করুন');
