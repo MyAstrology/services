@@ -208,6 +208,199 @@ function showCategorySelection() {
 }
 
 // ============================================================
+// যুক্তিপূর্ণ ইনপুট ডিটেক্ট (স্মার্ট ভার্সন)
+// ============================================================
+
+function isMeaningfulInput(input) {
+    const cleaned = input.trim();
+    
+    // 1. তারিখ ফরম্যাট চেক (DD-MM-YYYY বা DD/MM/YYYY বা YYYY-MM-DD)
+    if (/^\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4}$/.test(cleaned)) {
+        return true;
+    }
+    
+    // 2. মোবাইল নম্বর (বাংলাদেশ)
+    if (/^01[3-9]\d{8}$/.test(cleaned.replace(/[^0-9]/g, ''))) {
+        return true;
+    }
+    
+    // 3. গাড়ির নম্বর প্যাটার্ন
+    if (/^[A-Za-zঙ-হ]{2}\s?\d{2}\s?[A-Za-zঙ-হ]{2}\s?\d{4}$/i.test(cleaned)) {
+        return true;
+    }
+    
+    // 4. মূল্য (টাকা উল্লেখ)
+    if (/(\d{3,6})\s*(টাকা|taka)/i.test(cleaned)) {
+        return true;
+    }
+    
+    // 5. ব্যবসার নাম (কীওয়ার্ড)
+    if (/(এন্টারপ্রাইজ|ফার্ম|ট্রেডার্স|enterprise|firm|লিমিটেড|limited)/i.test(cleaned)) {
+        return true;
+    }
+    
+    // 6. শুধু বাংলা অক্ষর (নাম)
+    if (/^[ঙ-হ\s]{3,30}$/.test(cleaned)) {
+        return true;
+    }
+    
+    // 7. শুধু ইংরেজি অক্ষর (নাম)
+    if (/^[A-Za-z\s]{3,30}$/.test(cleaned)) {
+        return true;
+    }
+    
+    // 8. শুধু সংখ্যা - এখানে স্মার্ট ডিটেকশন প্রয়োজন
+    if (/^\d{4,15}$/.test(cleaned)) {
+        // 8 ডিজিটের সংখ্যা: DDMMYYYY হতে পারে
+        if (cleaned.length === 8) {
+            const day = parseInt(cleaned.substring(0, 2));
+            const month = parseInt(cleaned.substring(2, 4));
+            const year = parseInt(cleaned.substring(4, 8));
+            // যাচাই করুন এটি বৈধ তারিখ কিনা
+            if (isValidDate(day, month, year)) {
+                return true; // বৈধ তারিখ
+            }
+        }
+        // 6 ডিজিটের সংখ্যা: DDMMYY হতে পারে
+        if (cleaned.length === 6) {
+            const day = parseInt(cleaned.substring(0, 2));
+            const month = parseInt(cleaned.substring(2, 4));
+            const year = 2000 + parseInt(cleaned.substring(4, 6));
+            if (isValidDate(day, month, year)) {
+                return true; // বৈধ তারিখ
+            }
+        }
+        // 4 ডিজিটের সংখ্যা: DDMM হতে পারে
+        if (cleaned.length === 4) {
+            const day = parseInt(cleaned.substring(0, 2));
+            const month = parseInt(cleaned.substring(2, 4));
+            if (day >= 1 && day <= 31 && month >= 1 && month <= 12) {
+                return true; // বৈধ দিন-মাস
+            }
+        }
+        // যদি তারিখ না হয়, তাহলে এটি সাধারণ সংখ্যা (PIN, ব্যাংক অ্যাকাউন্ট)
+        return false;
+    }
+    
+    return false;
+}
+
+// তারিখ বৈধতা যাচাই ফাংশন
+function isValidDate(day, month, year) {
+    if (month < 1 || month > 12) return false;
+    if (day < 1 || day > 31) return false;
+    
+    // মাস অনুযায়ী দিনের সংখ্যা চেক
+    const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    
+    // লিপ ইয়ার চেক
+    if (month === 2) {
+        const isLeap = (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+        if (day > (isLeap ? 29 : 28)) return false;
+    } else {
+        if (day > daysInMonth[month - 1]) return false;
+    }
+    
+    return true;
+}
+
+// ============================================================
+// অটো ডিটেক্ট ক্যাটাগরি (স্মার্ট ভার্সন)
+// ============================================================
+
+function autoDetectCategory(input) {
+    const cleaned = input.trim();
+    
+    // 1. তারিখ ফরম্যাট (স্ল্যাশ বা ড্যাশ সহ)
+    if (/^\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4}$/.test(cleaned)) {
+        return "mulank";
+    }
+    
+    // 2. মোবাইল নম্বর
+    if (/^01[3-9]\d{8}$/.test(cleaned.replace(/[^0-9]/g, ''))) {
+        return "mobile_number";
+    }
+    
+    // 3. গাড়ির নম্বর
+    if (/^[A-Za-zঙ-হ]{2}\s?\d{2}\s?[A-Za-zঙ-হ]{2}\s?\d{4}$/i.test(cleaned)) {
+        return "car_number";
+    }
+    
+    // 4. মূল্য
+    if (/(\d{3,6})\s*(টাকা|taka)/i.test(cleaned)) {
+        return "product_price";
+    }
+    
+    // 5. ব্যবসার নাম
+    if (/(এন্টারপ্রাইজ|ফার্ম|ট্রেডার্স|enterprise|firm|লিমিটেড|limited)/i.test(cleaned)) {
+        return "business_name";
+    }
+    
+    // 6. শুধু বাংলা অক্ষর (নাম)
+    if (/^[ঙ-হ\s]{3,30}$/.test(cleaned)) {
+        return "personal_name";
+    }
+    
+    // 7. শুধু ইংরেজি অক্ষর (নাম)
+    if (/^[A-Za-z\s]{3,30}$/.test(cleaned)) {
+        return "personal_name";
+    }
+    
+    // 8. শুধু সংখ্যা - স্মার্ট ডিটেকশন
+    if (/^\d+$/.test(cleaned)) {
+        // 8 ডিজিট: DDMMYYYY ফরম্যাট চেক
+        if (cleaned.length === 8) {
+            const day = parseInt(cleaned.substring(0, 2));
+            const month = parseInt(cleaned.substring(2, 4));
+            const year = parseInt(cleaned.substring(4, 8));
+            if (isValidDate(day, month, year)) {
+                return "mulank";
+            }
+        }
+        
+        // 6 ডিজিট: DDMMYY ফরম্যাট চেক
+        if (cleaned.length === 6) {
+            const day = parseInt(cleaned.substring(0, 2));
+            const month = parseInt(cleaned.substring(2, 4));
+            const year = 2000 + parseInt(cleaned.substring(4, 6));
+            if (isValidDate(day, month, year)) {
+                return "mulank";
+            }
+        }
+        
+        // 4 ডিজিট: DDMM ফরম্যাট চেক (শুধু দিন ও মাস)
+        if (cleaned.length === 4) {
+            const day = parseInt(cleaned.substring(0, 2));
+            const month = parseInt(cleaned.substring(2, 4));
+            if (day >= 1 && day <= 31 && month >= 1 && month <= 12) {
+                return "mulank";
+            }
+        }
+        
+        // 2 ডিজিট: শুধু দিন
+        if (cleaned.length === 2) {
+            const day = parseInt(cleaned);
+            if (day >= 1 && day <= 31) {
+                return "mulank";
+            }
+        }
+        
+        // যদি তারিখ না হয়, তাহলে সংখ্যার দৈর্ঘ্য অনুযায়ী ক্যাটাগরি নির্ধারণ
+        if (cleaned.length === 4 || cleaned.length === 5 || cleaned.length === 6) {
+            return "pin_code";
+        }
+        if (cleaned.length >= 9 && cleaned.length <= 15) {
+            return "bank_account";
+        }
+        
+        // ডিফল্ট: সাধারণ সংখ্যা
+        return "pin_code";
+    }
+    
+    return "personal_name";
+}
+        
+// ============================================================
 // মূল সংখ্যার বিস্তারিত ব্যাখ্যা (১-৯ সংখ্যার জন্য)
 // ============================================================
 function getRootDescription(number, data, categoryType) {
