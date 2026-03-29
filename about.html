@@ -250,12 +250,24 @@ footer h2,
     word-break: normal;
   }
 }
-  .section {
-  border-bottom: 1px solid #eae6e0;
-  margin-bottom: 30px;
+  /* প্রতিটি সেকশনের মধ্যে ভিজুয়াল বিভাজন */
+.section {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  margin-bottom: 20px;
 }
+
+/* শেষ সেকশনে বর্ডার থাকবে না */
 .section:last-of-type {
   border-bottom: none;
+  margin-bottom: 0;
+}
+
+/* ঐচ্ছিক: সেকশনের মধ্যে হালকা ছায়া */
+.about-section, .struggle-section, .academic-section, 
+.philosophy-section, .award-section, .professional-section, 
+.closing-section {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+  border-radius: 8px;
 }                       
 
 </style>
