@@ -135,65 +135,31 @@ img{max-width:100%;height:auto;display:block;}
 .rashifal-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(255,204,0,0.5);}
 .section{padding:50px 16px;max-width:960px;margin:0 auto;line-height:1.85;color:var(--clr-text);}
 @media (min-width:1200px){}
-.section h1,
-.section h2{text-align:center;margin-bottom:25px;font-weight:700;}
-.about-section h1 {color:var(--clr-maroon);font-size:clamp(1.6rem, 4vw, 2.3rem);}
-.section h2 {font-size:clamp(1.4rem, 3.5vw, 2rem);}
-.philosophy-section h2 {color:var(--clr-violet);}
-.professional-section h2 {color:var(--clr-gold);}
-.closing-section h2 {color:var(--clr-maroon);}
-.award-section h2 {color:var(--clr-maroon);font-size:clamp(1.5rem, 3.5vw, 2.5rem);margin-bottom:15px;}
-.section a {text-decoration:none;border-bottom:1px dotted;transition:opacity 0.2s;}
-.section a:hover {opacity:0.75;}
-/* হেডলাইনের নিচে ডেকোরেটিভ লাইন - বিদ্যমান স্টাইলের সাথে যোগ */
-.about-section h1 {
-  position: relative;
-  padding-bottom: 15px;
-}
-
-.about-section h1::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 3px;
-  background: linear-gradient(90deg, var(--clr-gold), var(--clr-maroon));
-  border-radius: 3px;
-}
-
-.section h2 {
-  position: relative;
-  padding-bottom: 12px;
-}
-
-.section h2::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 2px;
-  background: var(--clr-gold-light);
-  border-radius: 2px;
-}
-  
-  .about-section a {color:var(--clr-maroon);}
-.philosophy-section a {color:var(--clr-violet);}
-.professional-section a {color:var(--clr-gold);}
-.closing-section a {color:var(--clr-maroon);}
-.award-section a {color:inherit;}
-.section blockquote{border-left:4px solid var(--clr-maroon);padding-left:18px;margin:28px 0;font-style:italic;color:var(--clr-muted);background:#fdf5f5;border-radius:0 8px 8px 0;padding:14px 14px 14px 20px;}
-.philosophical-tagline{font-family:var(--font-script);font-size:clamp(1.2rem,3vw,1.5rem);text-align:center;margin-top:32px;}
-.about-section .philosophical-tagline {color:var(--clr-maroon);}
-.philosophy-section .philosophical-tagline {color:var(--clr-violet);}
-.professional-section .philosophical-tagline {color:var(--clr-gold);}
-.closing-section .philosophical-tagline {color:var(--clr-maroon);}
-.award-section .philosophical-tagline {color:var(--clr-maroon);}
-.section-divider{width:80px;height:3px;background:linear-gradient(90deg,transparent,var(--clr-gold-light),transparent);margin:0 auto 30px;border:none;}
-.card,
+/* হেডলাইন স্টাইলিং */
+.section h1, .section h2 { text-align: center; margin-bottom: 25px; font-weight: 700; }
+.about-section h1 { color: var(--clr-maroon); font-size: clamp(1.6rem, 4vw, 2.3rem); position: relative; padding-bottom: 15px; }
+.about-section h1::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 80px; height: 3px; background: linear-gradient(90deg, var(--clr-gold), var(--clr-maroon)); border-radius: 3px; }
+.section h2 { font-size: clamp(1.4rem, 3.5vw, 2rem); position: relative; padding-bottom: 12px; }
+.section h2::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 2px; background: var(--clr-gold-light); border-radius: 2px; }
+.philosophy-section h2 { color: var(--clr-violet); }
+.professional-section h2 { color: var(--clr-gold); }
+.closing-section h2 { color: var(--clr-maroon); }
+.award-section h2 { color: var(--clr-maroon); font-size: clamp(1.5rem, 3.5vw, 2.5rem); margin-bottom: 15px; }
+.section a { text-decoration: none; border-bottom: 1px dotted; transition: opacity 0.2s; }
+.section a:hover { opacity: 0.75; }
+.about-section a { color: var(--clr-maroon); }
+.philosophy-section a { color: var(--clr-violet); }
+.professional-section a { color: var(--clr-gold); }
+.closing-section a { color: var(--clr-maroon); }
+.award-section a { color: inherit; }
+.section blockquote { border-left: 4px solid var(--clr-maroon); padding-left: 18px; margin: 28px 0; font-style: italic; color: var(--clr-muted); background: #fdf5f5; border-radius: 0 8px 8px 0; padding: 14px 14px 14px 20px; }
+.philosophical-tagline { font-family: var(--font-script); font-size: clamp(1.2rem, 3vw, 1.5rem); text-align: center; margin-top: 32px; }
+.about-section .philosophical-tagline { color: var(--clr-maroon); }
+.philosophy-section .philosophical-tagline { color: var(--clr-violet); }
+.professional-section .philosophical-tagline { color: var(--clr-gold); }
+.closing-section .philosophical-tagline { color: var(--clr-maroon); }
+.award-section .philosophical-tagline { color: var(--clr-maroon); }
+.section-divider { width: 80px; height: 3px; background: linear-gradient(90deg, transparent, var(--clr-gold-light), transparent); margin: 0 auto 30px; border: none; }.card,
 .award-card{background:var(--clr-bg);border-radius:var(--radius);padding:20px;text-align:center;box-shadow:0 4px 12px var(--clr-card-shadow);transition:transform var(--transition),box-shadow var(--transition);border:1px solid rgba(0,0,0,0.05);}
 .card:hover,
 .award-card:hover{transform:translateY(-5px);box-shadow:0 8px 24px rgba(0,0,0,0.15);}
