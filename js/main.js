@@ -895,14 +895,13 @@ function renderMultiResult(input, items, numbers) {
             <a href="numerology.html" class="back-btn">← নতুন অনুসন্ধান</a>
         </div>`;
     }
+    // CompatibilityRenderer.render() already includes share buttons via renderShareButtons()
+    // So we ONLY add the back button here — NO duplicate share buttons
     return CompatibilityRenderer.render(renderData) + `
-        <div style="margin-top:20px">
-            <a href="numerology.html" class="back-btn"><i class="fas fa-arrow-left"></i> নতুন অনুসন্ধান</a>
-        </div>
-        <div class="share-buttons">
-            <button class="share-btn" onclick="copyResult()"><i class="fas fa-copy"></i> কপি করুন</button>
-            <button class="share-btn" onclick="shareResult()"><i class="fas fa-share-alt"></i> শেয়ার করুন</button>
-            <button class="share-btn" onclick="window.print()"><i class="fas fa-print"></i> প্রিন্ট করুন</button>
+        <div style="margin-top:16px;text-align:center">
+            <a href="numerology.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> নতুন অনুসন্ধান
+            </a>
         </div>`;
 }
 
