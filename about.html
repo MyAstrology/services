@@ -145,7 +145,42 @@ img{max-width:100%;height:auto;display:block;}
 .award-section h2 {color:var(--clr-maroon);font-size:clamp(1.5rem, 3.5vw, 2.5rem);margin-bottom:15px;}
 .section a {text-decoration:none;border-bottom:1px dotted;transition:opacity 0.2s;}
 .section a:hover {opacity:0.75;}
-.about-section a {color:var(--clr-maroon);}
+/* হেডলাইনের নিচে ডেকোরেটিভ লাইন - বিদ্যমান স্টাইলের সাথে যোগ */
+.about-section h1 {
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.about-section h1::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--clr-gold), var(--clr-maroon));
+  border-radius: 3px;
+}
+
+.section h2 {
+  position: relative;
+  padding-bottom: 12px;
+}
+
+.section h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background: var(--clr-gold-light);
+  border-radius: 2px;
+}
+  
+  .about-section a {color:var(--clr-maroon);}
 .philosophy-section a {color:var(--clr-violet);}
 .professional-section a {color:var(--clr-gold);}
 .closing-section a {color:var(--clr-maroon);}
