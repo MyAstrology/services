@@ -53,37 +53,38 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"></noscript>
 
-  <!-- ✅ JSON-LD Schema: Organization -->
-  <script type="application/ld+json">
+<!-- ✅ JSON-LD Schema: Person (Principal) -->
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Person",
-  "@id": "https://www.myastrology.in/about.html#person",
+  "@id": "https://www.myastrology.in/#person",
   "name": "Dr. Prodyut Acharya",
+  "alternateName": "ড. প্রদ্যুৎ আচার্য",
   "jobTitle": "Vedic Astrologer, Palmist, Numerologist & Vastu Expert",
   "description": "Gold Medalist PhD Astrologer and Palmist. Expert in Vedic Jyotish, Palmistry, Kundli Analysis, Numerology, Gemstone Therapy, and Vastu Shastra.",
-  "url": "https://www.myastrology.in/about.html",
+  "url": "https://www.myastrology.in/",
   "image": "https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png",
+  "sameAs": [
+    "https://www.youtube.com/@myastrology",
+    "https://www.facebook.com/Dr.ProdyutAcharya",
+    "https://www.instagram.com/myastrology.in",
+    "https://www.linkedin.com/in/ProdyutAcharya"
+  ],
   "alumniOf": {
     "@type": "EducationalOrganization",
-    "name": "South Kolkata Astrology & Vastu Science Academy"
+    "name": "South Kolkata Astrology & Vastu Science Academy",
+    "sameAs": "https://skavsa.in"
   },
   "award": [
     "Gold Medal – Ph.D. in Astrology (SKAVSA)",
-    "YouTube Silver Play Button – 100K Subscribers (Currently 224,150+)",
+    "YouTube Silver Play Button – 224,150+ Subscribers",
     "Best of the Best Award 2018",
     "Maa Sarada Devi Award",
     "Swami Vivekananda Award",
     "Netaji Subhas Chandra Bose Award",
     "Life Membership – SKAVSA"
   ],
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5",
-    "bestRating": "5",
-    "worstRating": "1",
-    "ratingCount": 289
-  },
   "knowsAbout": [
     "Vedic Astrology",
     "Palmistry",
@@ -94,90 +95,155 @@
   ],
   "address": {
     "@type": "PostalAddress",
+    "streetAddress": "Ranaghat",
     "addressLocality": "Ranaghat",
     "addressRegion": "West Bengal",
+    "postalCode": "741201",
     "addressCountry": "IN"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": 5.0,
+    "bestRating": 5,
+    "worstRating": 1,
+    "ratingCount": 289,
+    "reviewCount": 289
+  },
+  "makesOffer": {
+    "@type": "Offer",
+    "itemOffered": {
+      "@type": "Service",
+      "name": "Astrology Consultation",
+      "description": "Online and offline Vedic astrology, palmistry, numerology, and Vastu consultation"
+    },
+    "availability": "https://schema.org/InStock",
+    "priceSpecification": {
+      "@type": "PriceSpecification",
+      "price": "501",
+      "priceCurrency": "INR",
+      "valueAddedTaxIncluded": false
+    }
   }
 }
 </script>
 
-  <!-- ✅ JSON-LD Schema: Person -->
-  <script type="application/ld+json">
+<!-- ✅ JSON-LD Schema: WebSite (Organization level) -->
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "@id": "https://www.myastrology.in/about.html#person",
-  "name": "Dr. Prodyut Acharya",
-  "jobTitle": "Vedic Astrologer, Palmist, Numerologist & Vastu Expert",
-  "description": "Gold Medalist PhD Astrologer and Palmist. Expert in Vedic Jyotish, Palmistry, Kundli Analysis, Numerology, Gemstone Therapy, and Vastu Shastra.",
-  "url": "https://www.myastrology.in/about.html",
-  "image": "https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png",
-  "alumniOf": {
-    "@type": "EducationalOrganization",
-    "name": "South Kolkata Astrology & Vastu Science Academy"
+  "@type": "WebSite",
+  "@id": "https://www.myastrology.in/#website",
+  "url": "https://www.myastrology.in/",
+  "name": "MyAstrology",
+  "alternateName": "MyAstrology Ranaghat",
+  "description": "ড. প্রদ্যুৎ আচার্যের বৈদিক জ্যোতিষ, হস্তরেখা ও আধ্যাত্মিক পরামর্শ কেন্দ্র",
+  "inLanguage": "bn-IN",
+  "publisher": {
+    "@id": "https://www.myastrology.in/#person"
   },
-  "award": [
-    "Gold Medal – Ph.D. in Astrology (SKAVSA)",
-    "YouTube Silver Play Button – 100K Subscribers (Currently 224,150+)",
-    "Best of the Best Award 2018",
-    "Maa Sarada Devi Award",
-    "Swami Vivekananda Award",
-    "Netaji Subhas Chandra Bose Award",
-    "Life Membership – SKAVSA"
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://www.myastrology.in/search.html?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+<!-- ✅ JSON-LD Schema: BreadcrumbList -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "@id": "https://www.myastrology.in/about.html#breadcrumb",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "হোম",
+      "item": "https://www.myastrology.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "আমাদের সম্পর্কে",
+      "item": "https://www.myastrology.in/about.html"
+    }
+  ]
+}
+</script>
+
+<!-- ✅ JSON-LD Schema: AboutPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "@id": "https://www.myastrology.in/about.html#webpage",
+  "url": "https://www.myastrology.in/about.html",
+  "name": "ড. প্রদ্যুৎ আচার্য – বৈদিক জ্যোতিষ ও হস্তরেখা বিশেষজ্ঞ | MyAstrology রানাঘাট",
+  "description": "ড. প্রদ্যুৎ আচার্য — রানাঘাটের PhD স্বর্ণপদকপ্রাপ্ত বৈদিক জ্যোতিষ ও হস্তরেখা বিশেষজ্ঞ। Google ১২২+ ও JustDial ১২৮+ যাচাইকৃত ৫★ রিভিউ।",
+  "isPartOf": { "@id": "https://www.myastrology.in/#website" },
+  "about": { "@id": "https://www.myastrology.in/#person" },
+  "inLanguage": "bn-IN",
+  "dateModified": "2026-03-29"
+}
+</script>
+
+<!-- ✅ JSON-LD Schema: LocalBusiness (Optional but powerful for local SEO) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://www.myastrology.in/#localbusiness",
+  "name": "MyAstrology",
+  "image": "https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Ranaghat, Near GT Road",
+    "addressLocality": "Ranaghat",
+    "addressRegion": "West Bengal",
+    "postalCode": "741201",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 23.1767,
+    "longitude": 88.5665
+  },
+  "url": "https://www.myastrology.in/",
+  "telephone": "+919333122768",
+  "priceRange": "₹501 - ₹5000",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "opens": "10:00",
+      "closes": "20:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Sunday",
+      "opens": "11:00",
+      "closes": "17:00"
+    }
+  ],
+  "sameAs": [
+    "https://www.youtube.com/@myastrology",
+    "https://www.facebook.com/Dr.ProdyutAcharya",
+    "https://www.instagram.com/myastrology.in",
+    "https://wa.me/919333122768"
   ],
   "aggregateRating": {
     "@type": "AggregateRating",
-    "ratingValue": "5.0",
-    "bestRating": "5",
-    "worstRating": "1",
-    "reviewCount": "289"
-  },
-  "knowsAbout": ["Vedic Astrology", "Palmistry", "Numerology", "Vastu Shastra", "Gemstone Therapy", "Jyotish Darshan"],
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Ranaghat",
-    "addressRegion": "West Bengal",
-    "addressCountry": "IN"
+    "ratingValue": 5.0,
+    "ratingCount": 289
   }
 }
 </script>
 
-  <!-- ✅ JSON-LD Schema: BreadcrumbList -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://www.myastrology.in/"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "আমাদের সম্পর্কে – Dr. Prodyut Acharya",
-        "item": "https://www.myastrology.in/about.html"
-      }
-    ]
-  }
-  </script>
-
-  <!-- ✅ JSON-LD Schema: WebPage -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "AboutPage",
-    "@id": "https://www.myastrology.in/about.html#webpage",
-    "url": "https://www.myastrology.in/about.html",
-    "name": "ড. প্রদ্যুৎ আচার্য – বৈদিক জ্যোতিষ ও হস্তরেখা বিশেষজ্ঞ | MyAstrology রানাঘাট",
-    "description": "ড. প্রদ্যুৎ আচার্য — রানাঘাটের PhD স্বর্ণপদকপ্রাপ্ত বৈদিক জ্যোতিষ ও হস্তরেখা বিশেষজ্ঞ। Google ১২২+ ও JustDial ১২৮+ যাচাইকৃত ৫★ রিভিউ।",
-    "isPartOf": { "@id": "https://www.myastrology.in/#organization" },
-    "about": { "@id": "https://www.myastrology.in/about.html#person" },
-    "inLanguage": ["bn-IN", "en"]
-  }
-  </script>
+  
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
