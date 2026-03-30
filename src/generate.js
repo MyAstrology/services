@@ -57,34 +57,37 @@ if (process.env.TARGET_DATE && process.env.TARGET_DATE !== '') {
   console.log(`📅 Using TARGET_DATE from env: ${process.env.TARGET_DATE}`);
 } else {
   const now = new Date();
-  let istHour = now.getUTCHours() + 5;
-  let istMinutes = now.getUTCMinutes() + 30;
+  let istHour, istMinutes;
   
-  if (istMinutes >= 60) {
-    istHour += 1;
-    istMinutes -= 60;
+  // GitHub Actions-এ TZ সেট করা থাকলে সরাসরি ঘন্টা নিন
+  if (process.env.TZ === 'Asia/Kolkata') {
+    istHour = now.getHours();
+    istMinutes = now.getMinutes();
+    console.log(`🕐 System TZ (IST): ${istHour.toString().padStart(2, '0')}:${istMinutes.toString().padStart(2, '0')}`);
+  } else {
+    // লোকাল টেস্টের জন্য UTC+5:30 যোগ করুন
+    istHour = now.getUTCHours() + 5;
+    istMinutes = now.getUTCMinutes() + 30;
+    
+    if (istMinutes >= 60) {
+      istHour += 1;
+      istMinutes -= 60;
+    }
+    istHour = istHour % 24;
+    
+    console.log(`🕐 UTC Time: ${now.toISOString()}`);
+    console.log(`🕐 Indian Time (IST): ${istHour.toString().padStart(2, '0')}:${istMinutes.toString().padStart(2, '0')}`);
   }
-  istHour = istHour % 24;
-  
-  console.log(`🕐 UTC Time: ${now.toISOString()}`);
-  console.log(`🕐 Indian Time (IST): ${istHour.toString().padStart(2, '0')}:${istMinutes.toString().padStart(2, '0')}`);
   
   TARGET_DATE = new Date();
   
-  // ✅ সঠিক লজিক:
-  // সকাল 6টা থেকে রাত 9টার মধ্যে → আজকের রাশিফল
-  // রাত 9টার পরে → আগামীকালের রাশিফল
-  // ভোর 12টা থেকে 6টার মধ্যে → আজকের রাশিফল
-  
+  // ✅ সঠিক লজিক (একই থাকে)
   if (istHour >= 6 && istHour < 21) {
-    // সকাল 6টা থেকে রাত 9টা: আজকের রাশিফল
     console.log(`📅 আজকের রাশিফল তৈরি হচ্ছে: ${TARGET_DATE.toISOString().slice(0, 10)}`);
   } else if (istHour >= 21) {
-    // রাত 9টার পরে: আগামীকালের রাশিফল
     TARGET_DATE.setDate(TARGET_DATE.getDate() + 1);
     console.log(`📅 রাত ৯টার পরে — আগামীকালের রাশিফল তৈরি হচ্ছে: ${TARGET_DATE.toISOString().slice(0, 10)}`);
   } else {
-    // ভোর 12টা-6টা: আজকের রাশিফল
     console.log(`📅 আজকের রাশিফল তৈরি হচ্ছে: ${TARGET_DATE.toISOString().slice(0, 10)}`);
   }
 }
