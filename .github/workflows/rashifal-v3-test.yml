@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       date_override:
-        description: 'তারিখ override (YYYY-MM-DD, খালি = আগামীকাল)'
+        description: 'তারিখ override (YYYY-MM-DD, খালি = আজকের তারিখ)'
         required: false
         default: ''
 
@@ -44,11 +44,17 @@ jobs:
             TARGET="${{ github.event.inputs.date_override }}"
             echo "📅 Manual override: $TARGET"
           else
-            # পুরনো লজিক: আগামীকালের রাশিফল তৈরি হবে
-            TARGET=$(TZ='Asia/Kolkata' date -d tomorrow +%Y-%m-%d)
-            echo "📅 Tomorrow IST: $TARGET"
+            # আজকের তারিখ পাস করুন, generate.js নিজেই আগামীকাল যোগ করবে
+            TARGET=$(TZ='Asia/Kolkata' date +%Y-%m-%d)
+            echo "📅 Today IST: $TARGET"
           fi
           echo "TARGET_DATE=${TARGET}" >> $GITHUB_OUTPUT
+          echo "TODAY_DATE=${TARGET}" >> $GITHUB_OUTPUT
+
+      - name: Debug environment
+        run: |
+          echo "🔍 TARGET_DATE from workflow: ${{ steps.set_date.outputs.TARGET_DATE }}"
+          echo "🔍 TODAY_DATE from workflow: ${{ steps.set_date.outputs.TODAY_DATE }}"
 
       - name: Generate daily rashifal
         env:
@@ -56,22 +62,57 @@ jobs:
           TZ: 'Asia/Kolkata'
         run: |
           echo "🔮 Target: $TARGET_DATE"
-          echo "📂 CWD: $(pwd)"
-          echo "🔍 Generator: $(ls src/generate.js 2>/dev/null || echo 'NOT FOUND')"
-
-          set -e
-          cd src && node generate.js
-
-          echo "📁 rashifal/ contents:"
-          ls -la ../rashifal/
-
-          if [ ! -f "../rashifal/${TARGET_DATE}.html" ]; then
-            echo "❌ FATAL: rashifal/${TARGET_DATE}.html তৈরি হয়নি!"
-            echo "   Generator output-এ error আছে কিনা দেখুন।"
+          echo "📂 Current directory: $(pwd)"
+          
+          # Check if generator exists
+          if [ ! -f "src/generate.js" ]; then
+            echo "❌ ERROR: src/generate.js not found!"
+            echo "📁 Available files in src:"
+            ls -la src/
             exit 1
           fi
-          SIZE=$(wc -c < "../rashifal/${TARGET_DATE}.html")
-          echo "✅ rashifal/${TARGET_DATE}.html তৈরি হয়েছে (${SIZE} bytes)"
+          
+          echo "🔍 Generator found: src/generate.js"
+          
+          # Run generator
+          set -e
+          cd src
+          node generate.js
+          cd ..
+          
+          # Check if file was created
+          echo ""
+          echo "📁 rashifal/ contents after generation:"
+          ls -la rashifal/ | head -20
+          
+          # Determine expected filename
+          if [ -n "${{ steps.set_date.outputs.TARGET_DATE }}" ]; then
+            EXPECTED_FILE="rashifal/${{ steps.set_date.outputs.TARGET_DATE }}.html"
+          else
+            EXPECTED_FILE="rashifal/$(TZ='Asia/Kolkata' date +%Y-%m-%d).html"
+          fi
+          
+          echo "🔍 Expected file: $EXPECTED_FILE"
+          
+          if [ ! -f "$EXPECTED_FILE" ]; then
+            echo "❌ FATAL: $EXPECTED_FILE তৈরি হয়নি!"
+            echo ""
+            echo "📁 All rashifal files:"
+            ls -la rashifal/*.html 2>/dev/null || echo "No HTML files found"
+            exit 1
+          fi
+          
+          SIZE=$(wc -c < "$EXPECTED_FILE")
+          echo "✅ $EXPECTED_FILE তৈরি হয়েছে (${SIZE} bytes)"
+
+      - name: Update sitemap
+        run: |
+          if [ -f "src/update-sitemap.js" ]; then
+            cd src && node update-sitemap.js && cd ..
+            echo "✅ Sitemap updated"
+          else
+            echo "⚠️ update-sitemap.js not found, skipping"
+          fi
 
       - name: Check for changes
         id: check_changes
@@ -93,22 +134,26 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "MyAstrology Bot"
-          git add rashifal/ sitemap-rashifal.xml sitemap-news.xml 2>/dev/null || true
-
+          
+          # Add all rashifal files and sitemaps
+          git add rashifal/ || true
+          git add sitemap-*.xml 2>/dev/null || true
+          
           if git diff --staged --quiet; then
             echo "ℹ️ No changes to commit after all"
             exit 0
           fi
-
+          
           git commit -m "📅 দৈনিক রাশিফল: ${TARGET_DATE} | MyAstrology Bot"
-
-          git fetch origin main
-          git pull origin main --rebase --strategy-option=ours || {
-            echo "⚠️ Rebase failed, trying merge"
-            git pull origin main --no-rebase --strategy-option=ours
-          }
-
-          git push origin main
+          
+          # Push with retry logic
+          for i in 1 2 3; do
+            echo "🔄 Push attempt $i..."
+            git pull origin main --rebase --strategy-option=ours && \
+            git push origin main && break
+            sleep 5
+          done
+          
           echo "🚀 Push সম্পন্ন"
 
       - name: No changes
