@@ -1,36 +1,150 @@
-name: Daily Rashifal
+name: Daily Rashifal Generator
 
 on:
   schedule:
-    - cron: '30 0 * * *'   # UTC 00:30 = IST 06:00
+    - cron: '30 0 * * *'   # UTC 00:30 = IST 06:00 (সকাল ৬টা)
   workflow_dispatch:
-
-permissions:
-  contents: write
+    inputs:
+      date_override:
+        description: 'তারিখ override (YYYY-MM-DD, খালি = আজকের তারিখ)'
+        required: false
+        default: ''
 
 jobs:
   generate:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - run: |
-          sudo apt-get update
-          sudo apt-get install -y libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev build-essential
-      - run: npm install --no-audit --no-fund
-      - run: mkdir -p rashifal cache
-      - name: Generate
-        run: cd src && node generate.js
-        env:
-          TZ: 'Asia/Kolkata'   # ← generate.js-এ এই ফ্ল্যাগ চেক করতে হবে
-      - name: Push
+
+      - name: Install dependencies
         run: |
-          git config user.name "MyAstrology Bot"
-          git config user.email "bot@myastrology.in"
-          git add rashifal/
-          git add rashifal/*.xml rashifal/*.json rashifal/rss.xml 2>/dev/null || true
-          git diff --cached --quiet && exit 0
-          git commit -m "Rashifal: $(TZ='Asia/Kolkata' date +%Y-%m-%d)"
+          echo "📦 Installing dependencies..."
+          npm install --no-audit --no-fund
+          echo "✅ Dependencies installed"
+
+      - name: Create rashifal directory
+        run: mkdir -p rashifal
+
+      - name: Set target date
+        id: set_date
+        run: |
+          if [ -n "${{ github.event.inputs.date_override }}" ]; then
+            TARGET="${{ github.event.inputs.date_override }}"
+            echo "📅 Manual override: $TARGET"
+          else
+            # IST সকাল ৬টার পর আজকের রাশিফল তৈরি হবে
+            TARGET=$(TZ='Asia/Kolkata' date +%Y-%m-%d)
+            echo "📅 Today IST: $TARGET"
+          fi
+          echo "TARGET_DATE=${TARGET}" >> $GITHUB_OUTPUT
+
+      - name: Generate daily rashifal
+        env:
+          TARGET_DATE: ${{ steps.set_date.outputs.TARGET_DATE }}
+          TZ: 'Asia/Kolkata'
+        run: |
+          echo "🔮 Target: $TARGET_DATE"
+          echo "📂 CWD: $(pwd)"
+          echo "🔍 Generator: $(ls src/generate.js 2>/dev/null || echo 'NOT FOUND')"
+
+          set -e
+          cd src && node generate.js
+
+          echo "📁 rashifal/ contents:"
+          ls -la ../rashifal/
+
+          if [ ! -f "../rashifal/${TARGET_DATE}.html" ]; then
+            echo "❌ FATAL: rashifal/${TARGET_DATE}.html তৈরি হয়নি!"
+            echo "   Generator output-এ error আছে কিনা দেখুন।"
+            exit 1
+          fi
+          SIZE=$(wc -c < "../rashifal/${TARGET_DATE}.html")
+          echo "✅ rashifal/${TARGET_DATE}.html তৈরি হয়েছে (${SIZE} bytes)"
+
+      - name: Check for changes
+        id: check_changes
+        run: |
+          git status --short
+          if git diff --quiet && git diff --staged --quiet && \
+             [ -z "$(git ls-files --others --exclude-standard)" ]; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "ℹ️ কোনো পরিবর্তন নেই"
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "✅ পরিবর্তন পাওয়া গেছে"
+          fi
+
+      - name: Commit and push
+        if: steps.check_changes.outputs.has_changes == 'true'
+        env:
+          TARGET_DATE: ${{ steps.set_date.outputs.TARGET_DATE }}
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "MyAstrology Bot"
+          git add rashifal/ sitemap-rashifal.xml sitemap-news.xml 2>/dev/null || true
+
+          if git diff --staged --quiet; then
+            echo "ℹ️ No changes to commit after all"
+            exit 0
+          fi
+
+          git commit -m "📅 দৈনিক রাশিফল: ${TARGET_DATE} | MyAstrology Bot"
+
+          git fetch origin main
+          git pull origin main --rebase --strategy-option=ours || {
+            echo "⚠️ Rebase failed, trying merge"
+            git pull origin main --no-rebase --strategy-option=ours
+          }
+
           git push origin main
+          echo "🚀 Push সম্পন্ন"
+
+      - name: No changes
+        if: steps.check_changes.outputs.has_changes == 'false'
+        env:
+          TARGET_DATE: ${{ steps.set_date.outputs.TARGET_DATE }}
+        run: echo "ℹ️ ${TARGET_DATE}-এর রাশিফল আগেই তৈরি আছে"
+
+      - name: Send failure notification
+        if: failure() && env.WEBHOOK_URL != ''
+        env:
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+          TARGET_DATE: ${{ steps.set_date.outputs.TARGET_DATE }}
+        run: |
+          curl -s -X POST -H "Content-Type: application/json" \
+            -d "{\"text\":\"❌ রাশিফল generation ব্যর্থ!\\n📅 ${TARGET_DATE}\\n🔗 https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}" \
+            "$WEBHOOK_URL" || true
+
+      - name: Summary
+        if: always()
+        env:
+          TARGET_DATE: ${{ steps.set_date.outputs.TARGET_DATE }}
+        run: |
+          echo "## 🔮 Daily Rashifal Generation Summary" >> $GITHUB_STEP_SUMMARY
+          echo "| বিষয় | তথ্য |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|------|" >> $GITHUB_STEP_SUMMARY
+          echo "| তারিখ | ${TARGET_DATE} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Node.js | v20 LTS ✅ |" >> $GITHUB_STEP_SUMMARY
+          echo "| ফাইল | rashifal/${TARGET_DATE}.html |" >> $GITHUB_STEP_SUMMARY
+          echo "| URL | https://www.myastrology.in/rashifal/${TARGET_DATE}.html |" >> $GITHUB_STEP_SUMMARY
+          if [ -f "rashifal/${TARGET_DATE}.html" ]; then
+            SIZE=$(wc -c < "rashifal/${TARGET_DATE}.html")
+            echo "| সাইজ | ${SIZE} bytes |" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "✅ **সফলভাবে তৈরি হয়েছে**" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "❌ **ফাইল তৈরি হয়নি**" >> $GITHUB_STEP_SUMMARY
+          fi
