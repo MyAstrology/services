@@ -2,11 +2,11 @@ name: Rashifal Daily
 
 on:
   schedule:
-    - cron: '25 18 * * *'   # UTC 18:25 = IST 23:55
+    - cron: '25 18 * * *'
   workflow_dispatch:
     inputs:
       target_date:
-        description: 'তারিখ (YYYY-MM-DD) – খালি রাখলে অটো'
+        description: 'তারিখ (YYYY-MM-DD)'
         required: false
         type: string
         default: ''
@@ -68,6 +68,9 @@ jobs:
           git config user.name "MyAstrology Bot"
           git config user.email "bot@myastrology.in"
           git add rashifal/ cache/
-          git diff --cached --quiet && echo "No changes" && exit 0
+          if git diff --cached --quiet; then
+            echo "No changes"
+            exit 0
+          fi
           git commit -m "Rashifal: ${{ steps.date.outputs.date }}"
           git push origin main
