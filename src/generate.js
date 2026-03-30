@@ -54,7 +54,7 @@ let TARGET_DATE;
 
 if (process.env.TARGET_DATE && process.env.TARGET_DATE !== '') {
   // GitHub Actions থেকে পাস করা তারিখ ব্যবহার করুন
-  TARGET_DATE = new Date(process.env.TARGET_DATE + 'T00:00:00');
+  TARGET_DATE = new Date(process.env.TARGET_DATE + 'T00:00:00Z'); // ✅ UTC midnight — IST timezone shift ঠেকাতে Z আবশ্যক
   console.log(`📅 Using TARGET_DATE from env: ${process.env.TARGET_DATE}`);
 } else {
   // লোকাল রানে আগামীকালের তারিখ
