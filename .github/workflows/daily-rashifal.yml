@@ -1,9 +1,9 @@
-name: Daily Rashifal Generator (IST)
+name: Rashifal Daily Generator
 
 on:
   schedule:
-    - cron: '30 15 * * *'   # IST 21:00
-    - cron: '30 17 * * *'   # IST 23:00
+    - cron: '30 15 * * *'   # IST 21:00 (রাত 9টা)
+    - cron: '30 17 * * *'   # IST 23:00 (রাত 11টা - ব্যাকআপ)
   workflow_dispatch:
     inputs:
       date:
@@ -14,20 +14,18 @@ on:
 
 permissions:
   contents: write
-  actions: read
 
 jobs:
   generate:
-    name: Generate All (Blog + Rashifal)
+    name: Generate Daily Rashifal
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 10
     
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
-          token: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -45,31 +43,8 @@ jobs:
         env:
           CI: true
           
-      - name: Create required directories
-        run: |
-          mkdir -p cache rashifal src/content/blog
-          
-      # ========== ব্লগ জেনারেটর ==========
-      - name: Generate blog list
-        run: npm run generate-list
-        continue-on-error: true
-        
-      - name: Generate related posts
-        run: npm run generate-related
-        continue-on-error: true
-        
-      - name: Generate blog HTML files
-        run: npm run generate-posts
-        continue-on-error: true
-        
-      # ========== সাইটম্যাপ ==========
-      - name: Generate sitemaps
-        run: |
-          echo "Generating sitemaps..."
-        continue-on-error: true
-        
-      # ========== রাশিফল জেনারেটর ==========
       - name: Generate Rashifal
+        id: generate
         run: |
           cd src
           node generate.js
@@ -77,22 +52,20 @@ jobs:
           TARGET_DATE: ${{ github.event.inputs.date || '' }}
           TZ: 'Asia/Kolkata'
           NODE_ENV: production
-        continue-on-error: true
-        
-      # ========== ক্লিনআপ ==========
-      - name: Cleanup old cache files
+          
+      - name: Cleanup old files
         run: |
+          mkdir -p cache rashifal
           find cache -name "planets-*.json" -mtime +30 -delete 2>/dev/null || true
           find rashifal -name "*.html" -mtime +365 -delete 2>/dev/null || true
           
-      # ========== COMMIT AND PUSH (NO REBASE) ==========
       - name: Commit and Push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
-          # সব পরিবর্তন স্টেজ করুন
-          git add -A
+          # শুধু rashifal ও cache ফোল্ডারের পরিবর্তন যোগ করুন
+          git add rashifal/ cache/
           
           # পরিবর্তন আছে কিনা চেক করুন
           if git diff --cached --quiet; then
@@ -101,7 +74,7 @@ jobs:
           fi
           
           # কমিট করুন
-          git commit -m "Auto-update: $(TZ='Asia/Kolkata' date +'%Y-%m-%d %H:%M')"
+          git commit -m "Rashifal: daily update $(TZ='Asia/Kolkata' date +'%Y-%m-%d %H:%M')"
           
-          # সরাসরি পুশ করুন (pull/rebase ছাড়া)
-          git push origin HEAD:main --force-with-lease
+          # পুশ করুন
+          git push origin HEAD:main
