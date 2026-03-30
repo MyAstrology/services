@@ -49,14 +49,14 @@ const TEMPLATE = path.join(__dirname, 'daily.template.html');
 console.log(`📁 আউটপুট ডিরেক্টরি: ${OUTPUT_DIR}`);
 console.log(`📦 ক্যাশ ডিরেক্টরি: ${CACHE_DIR}`);
 
-// ==================== TARGET DATE (ভারতীয় সময় IST) ====================
+// ==================== TARGET DATE ====================
 let TARGET_DATE;
 
 if (process.env.TARGET_DATE && process.env.TARGET_DATE !== '') {
   TARGET_DATE = new Date(process.env.TARGET_DATE + 'T00:00:00');
   console.log(`📅 Using TARGET_DATE from env: ${process.env.TARGET_DATE}`);
 } else {
-  // সরল পদ্ধতি: আগামীকালের রাশিফল তৈরি করুন
+  // লোকাল রানে আগামীকালের তারিখ (পুরনো লজিক)
   TARGET_DATE = new Date();
   TARGET_DATE.setDate(TARGET_DATE.getDate() + 1);
   console.log(`📅 No TARGET_DATE env — using tomorrow: ${TARGET_DATE.toISOString().slice(0,10)}`);
