@@ -5,7 +5,7 @@
 
 $today = date('Y-m-d');
 $outputFile = __DIR__ . '/' . $today . '.html';
-$templateFile = __DIR__ . '/template.html';
+$templateFile = __DIR__ . '/../src/daily.template.html';
 
 // Check if already generated for today
 if(file_exists($outputFile) && filesize($outputFile) > 10000) {
