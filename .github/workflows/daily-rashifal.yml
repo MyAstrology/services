@@ -1,0 +1,147 @@
+name: Daily Rashifal Generator (V3)
+
+on:
+  schedule:
+    # UTC 18:25 = IST 23:55 (রাত ১১:৫৫)
+    - cron: '25 18 * * *'
+  workflow_dispatch:
+    inputs:
+      target_date:
+        description: 'তারিখ (YYYY-MM-DD) – খালি রাখলে অটো-ডিটেক্ট'
+        required: false
+        type: string
+        default: ''
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    name: Generate Daily Rashifal (V3)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      # 1. কোড চেকআউট
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      # 2. Node.js সেটআপ
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # 3. Canvas-এর জন্য সিস্টেম ডিপেন্ডেন্সি
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev build-essential
+
+      # 4. npm নির্ভরতা ইনস্টল
+      - name: Install npm dependencies
+        run: npm ci
+        env:
+          CI: true
+
+      # 5. প্রয়োজনীয় ডিরেক্টরি তৈরি
+      - name: Create directories
+        run: |
+          mkdir -p rashifal cache src/templates
+
+      # 6. টার্গেট তারিখ নির্ধারণ
+      - name: Set target date
+        id: target_date
+        run: |
+          if [ -n "${{ github.event.inputs.target_date }}" ]; then
+            TARGET="${{ github.event.inputs.target_date }}"
+            echo "📅 Manual override: $TARGET"
+          else
+            # IST সময় অনুযায়ী গণনা
+            NOW_IST=$(TZ='Asia/Kolkata' date +%Y-%m-%d)
+            HOUR_IST=$(TZ='Asia/Kolkata' date +%H)
+            
+            if [ $HOUR_IST -ge 21 ]; then
+              # রাত ৯টার পরে: পরশুর জন্য
+              TARGET=$(TZ='Asia/Kolkata' date -d "+2 days" +%Y-%m-%d)
+              echo "📅 রাত ৯টার পরে → পরশু: $TARGET"
+            else
+              # রাত ৯টার আগে: আগামীকালের জন্য
+              TARGET=$(TZ='Asia/Kolkata' date -d "tomorrow" +%Y-%m-%d)
+              echo "📅 রাত ৯টার আগে → আগামীকাল: $TARGET"
+            fi
+          fi
+          echo "target=$TARGET" >> $GITHUB_OUTPUT
+          echo "🎯 Target date: $TARGET"
+
+      # 7. রাশিফল জেনারেট
+      - name: Generate Rashifal
+        run: |
+          echo "🔮 Generating rashifal for ${{ steps.target_date.outputs.target }}"
+          cd src
+          node generate.js
+        env:
+          TARGET_DATE: ${{ steps.target_date.outputs.target }}
+          TZ: 'Asia/Kolkata'
+          NODE_ENV: production
+
+      # 8. ক্লিনআপ (পুরনো ফাইল মুছে ফেলা)
+      - name: Cleanup old files
+        run: |
+          # ৩০ দিনের বেশি পুরনো ক্যাশ ফাইল মুছে ফেলা
+          find cache -name "planets-*.json" -mtime +30 -delete 2>/dev/null || true
+          # ৩৬৫ দিনের বেশি পুরনো HTML ফাইল মুছে ফেলা
+          find rashifal -name "*.html" -mtime +365 -delete 2>/dev/null || true
+          echo "✅ Cleanup completed"
+
+      # 9. পরিবর্তন চেক
+      - name: Check for changes
+        id: check_changes
+        run: |
+          git add rashifal/ cache/
+          
+          if git diff --cached --quiet; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "📭 কোনো পরিবর্তন নেই"
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "✅ নতুন ফাইল যোগ হয়েছে"
+          fi
+
+      # 10. কমিট ও পুশ
+      - name: Commit and Push
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          git config user.name "MyAstrology Bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          git commit -m "📅 দৈনিক রাশিফল: ${{ steps.target_date.outputs.target }}"
+          
+          # সরাসরি পুশ (pull/rebase ছাড়া)
+          git push origin main
+
+      # 11. ফলাফল সারাংশ
+      - name: Summary
+        if: always()
+        run: |
+          TARGET="${{ steps.target_date.outputs.target }}"
+          
+          echo "## 🔮 Daily Rashifal Summary" >> $GITHUB_STEP_SUMMARY
+          echo "| বিষয় | তথ্য |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|------|" >> $GITHUB_STEP_SUMMARY
+          echo "| তারিখ | ${TARGET} |" >> $GITHUB_STEP_SUMMARY
+          
+          if [ -f "rashifal/${TARGET}.html" ]; then
+            SIZE=$(wc -c < "rashifal/${TARGET}.html")
+            echo "| ফাইল | rashifal/${TARGET}.html (${SIZE} bytes) |" >> $GITHUB_STEP_SUMMARY
+            echo "| URL | https://www.myastrology.in/rashifal/${TARGET}.html |" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "✅ **সফলভাবে তৈরি হয়েছে**" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| ফাইল | ❌ তৈরি হয়নি |" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "❌ **ব্যর্থ**" >> $GITHUB_STEP_SUMMARY
+          fi
