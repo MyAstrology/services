@@ -35,9 +35,18 @@ const LAT = CFG.LAT ?? 23.18;
 const LNG = CFG.LNG ?? 88.56;
 const TZ = CFG.TZ ?? 5.5;
 const WHATSAPP = CFG.WHATSAPP || '919333122768';
-const OUTPUT_DIR = path.join(__dirname, CFG.OUTPUT_DIR || '../rashifal');
+
+// ★★★ OUTPUT_DIR কাস্টমাইজেশন (টেস্টের জন্য এনভায়রনমেন্ট সাপোর্ট) ★★★
+const CUSTOM_OUTPUT_DIR = process.env.OUTPUT_DIR;
+const OUTPUT_DIR = CUSTOM_OUTPUT_DIR 
+  ? path.join(__dirname, '..', CUSTOM_OUTPUT_DIR)
+  : path.join(__dirname, CFG.OUTPUT_DIR || '../rashifal');
+
 const CACHE_DIR = path.join(__dirname, CFG.CACHE_DIR || '../cache');
 const TEMPLATE = path.join(__dirname, 'templates/daily.template.html');
+
+console.log(`📁 আউটপুট ডিরেক্টরি: ${OUTPUT_DIR}`);
+console.log(`📦 ক্যাশ ডিরেক্টরি: ${CACHE_DIR}`);
 
 // ==================== TARGET DATE (ভারতীয় সময় IST) ====================
 let TARGET_DATE;
