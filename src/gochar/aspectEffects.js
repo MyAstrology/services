@@ -70,4 +70,15 @@ function enhanceFinanceText(baseText, aspects) {
   if (aspects.jupiter) {
     text += ' বৃহস্পতির দৃষ্টিতে আর্থিক লাভের সম্ভাবনা।';
   }
-  if (
+  if (aspects.saturn) {
+    text += ' শনির দৃষ্টিতে সঞ্চয় ও ব্যয়ের ভারসাম্য রাখুন।';
+  }
+  return text;
+}
+
+module.exports = {
+  enhanceLoveText,
+  enhanceWorkText,
+  enhanceHealthText,
+  enhanceFinanceText
+};
