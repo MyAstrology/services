@@ -14,7 +14,8 @@
 const { BN_MONTHS, EN_MONTHS, BN_WEEKDAY } = require('../utils/constants');
 const { toBn } = require('../utils/bengali');
 
-// Bengali month starts — 2024 থেকে 2030 পর্যন্ত
+// Bengali month starts — 2024 থেকে 2030 পর্যন্ত (UTC তারিখ)
+// সতর্কতা: 2030 সালের পরে নতুন বছর যোগ করতে হবে
 const BMS = [
   // 1431
   { y: 1431, m: 0, s: '2024-04-14' }, { y: 1431, m: 1, s: '2024-05-15' }, { y: 1431, m: 2, s: '2024-06-15' },
@@ -51,24 +52,43 @@ const BMS = [
 ];
 
 /**
+ * UTC তারিখ তৈরি করা (টাইমজোন নিরপেক্ষ)
+ * @param {string} dateStr - YYYY-MM-DD ফরম্যাটে তারিখ
+ * @returns {Date}
+ */
+function toUTCDate(dateStr) {
+  const [y, m, d] = dateStr.split('-').map(Number);
+  return new Date(Date.UTC(y, m - 1, d));
+}
+
+/**
  * বাংলা তারিখের তথ্য বের করা
- * @param {Date} date - ইংরেজি তারিখ
+ * @param {Date} date - ইংরেজি তারিখ (লোকাল)
  * @returns {Object|null} - { y, m, d, name, ritu, vikram, saka }
  */
 function getBnDate(date) {
-  const t = date.getTime();
+  // UTC মধ্যরাতের জন্য তারিখ তৈরি
+  const utcDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+  const t = utcDate.getTime();
+  
   let idx = -1;
   for (let i = BMS.length - 1; i >= 0; i--) {
-    if (t >= new Date(BMS[i].s + 'T00:00:00').getTime()) {
+    const bmDate = toUTCDate(BMS[i].s);
+    if (t >= bmDate.getTime()) {
       idx = i;
       break;
     }
   }
-  if (idx < 0) return null;
+  
+  if (idx < 0) {
+    console.warn(`⚠️ বাংলা তারিখ পাওয়া যায়নি: ${date.toISOString().slice(0,10)}`);
+    return null;
+  }
   
   const e = BMS[idx];
-  const s = new Date(e.s + 'T00:00:00');
-  const d = Math.floor((t - s.getTime()) / 86400000) + 1;
+  const s = toUTCDate(e.s);
+  const diffDays = Math.floor((t - s.getTime()) / 86400000);
+  const d = diffDays + 1;
   
   const RITU = ['গ্রীষ্ম', 'গ্রীষ্ম', 'বর্ষা', 'বর্ষা', 'শরৎ', 'শরৎ',
                 'হেমন্ত', 'হেমন্ত', 'শীত', 'শীত', 'বসন্ত', 'বসন্ত'];
@@ -80,7 +100,10 @@ function getBnDate(date) {
     name: BN_MONTHS[e.m],
     ritu: RITU[e.m],
     vikram: e.y + 57,
-    saka: e.y - 78
+    saka: e.y - 78,
+    // অতিরিক্ত তথ্য
+    enDate: `${date.getDate()} ${EN_MONTHS[date.getMonth()]} ${date.getFullYear()}`,
+    weekday: BN_WEEKDAY[date.getDay()]
   };
 }
 
@@ -91,7 +114,9 @@ function getBnDate(date) {
  */
 function formatBnDate(date) {
   const bn = getBnDate(date);
-  if (!bn) return `${date.getDate()} ${EN_MONTHS[date.getMonth()]} ${date.getFullYear()}`;
+  if (!bn) {
+    return `${date.getDate()} ${EN_MONTHS[date.getMonth()]} ${date.getFullYear()}`;
+  }
   return `${toBn(bn.d)} ${bn.name} ${toBn(bn.y)}`;
 }
 
@@ -103,8 +128,55 @@ function formatBnDate(date) {
 function formatBnDateFull(date) {
   const bn = getBnDate(date);
   const wd = BN_WEEKDAY[date.getDay()];
-  if (!bn) return `${wd}, ${date.getDate()} ${EN_MONTHS[date.getMonth()]} ${date.getFullYear()}`;
+  if (!bn) {
+    return `${wd}, ${date.getDate()} ${EN_MONTHS[date.getMonth()]} ${date.getFullYear()}`;
+  }
   return `${wd}, ${toBn(bn.d)} ${bn.name} ${toBn(bn.y)} বঙ্গাব্দ | ${date.getDate()} ${EN_MONTHS[date.getMonth()]} ${date.getFullYear()}`;
 }
 
-module.exports = { BMS, getBnDate, formatBnDate, formatBnDateFull };
+/**
+ * বাংলা তারিখ ফরম্যাট (শুধু মাস ও বছর)
+ * @param {Date} date - ইংরেজি তারিখ
+ * @returns {string}
+ */
+function formatBnMonthYear(date) {
+  const bn = getBnDate(date);
+  if (!bn) {
+    return `${EN_MONTHS[date.getMonth()]} ${date.getFullYear()}`;
+  }
+  return `${bn.name} ${toBn(bn.y)} বঙ্গাব্দ`;
+}
+
+/**
+ * BMS ডেটা ভ্যালিডেশন
+ * @returns {boolean}
+ */
+function validateBMS() {
+  if (!BMS || BMS.length === 0) {
+    console.error('❌ BMS ডেটা খালি!');
+    return false;
+  }
+  
+  // চেক করুন তারিখগুলো সাজানো আছে কিনা
+  for (let i = 1; i < BMS.length; i++) {
+    const prev = toUTCDate(BMS[i-1].s);
+    const curr = toUTCDate(BMS[i].s);
+    if (curr <= prev) {
+      console.warn(`⚠️ BMS ডেটা সাজানো নেই: ${BMS[i-1].s} → ${BMS[i].s}`);
+    }
+  }
+  
+  console.log(`✅ BMS ভ্যালিডেটেড: ${BMS.length}টি এন্ট্রি (${BMS[0].s} থেকে ${BMS[BMS.length-1].s})`);
+  return true;
+}
+
+// এক্সপোর্ট
+module.exports = { 
+  BMS, 
+  getBnDate, 
+  formatBnDate, 
+  formatBnDateFull,
+  formatBnMonthYear,
+  validateBMS,
+  toUTCDate
+};
