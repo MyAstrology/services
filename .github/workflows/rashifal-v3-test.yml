@@ -38,17 +38,17 @@ jobs:
         run: mkdir -p rashifal
 
       - name: Set target date
-        id: set_date
-        run: |
-          if [ -n "${{ github.event.inputs.date_override }}" ]; then
-            TARGET="${{ github.event.inputs.date_override }}"
-            echo "📅 Manual override: $TARGET"
-          else
-            # IST সকাল ৬টার পর আজকের রাশিফল তৈরি হবে
-            TARGET=$(TZ='Asia/Kolkata' date +%Y-%m-%d)
-            echo "📅 Today IST: $TARGET"
-          fi
-          echo "TARGET_DATE=${TARGET}" >> $GITHUB_OUTPUT
+  id: set_date
+  run: |
+    if [ -n "${{ github.event.inputs.date_override }}" ]; then
+      TARGET="${{ github.event.inputs.date_override }}"
+      echo "📅 Manual override: $TARGET"
+    else
+      # পুরনো লজিক: আগামীকালের রাশিফল তৈরি হবে
+      TARGET=$(TZ='Asia/Kolkata' date -d tomorrow +%Y-%m-%d)
+      echo "📅 Tomorrow IST: $TARGET"
+    fi
+    echo "TARGET_DATE=${TARGET}" >> $GITHUB_OUTPUT
 
       - name: Generate daily rashifal
         env:
