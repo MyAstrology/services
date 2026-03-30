@@ -1,0 +1,37 @@
+name: Daily Rashifal Generator
+
+on:
+  schedule:
+    - cron: '55 23 * * *'  # প্রতিদিন রাত ১১:৫৫
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          
+      - name: Install dependencies
+        run: npm install
+        # যদি canvas লাগে (OG ইমেজের জন্য)
+        # run: npm install canvas
+        
+      - name: Generate Rashifal
+        run: |
+          cd src
+          node generate.js
+        env:
+          TARGET_DATE: ${{ github.event.inputs.date || '' }}
+          
+      - name: Commit and Push
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add rashifal/ cache/
+          git diff --quiet && git diff --staged --quiet || git commit -m "Daily rashifal update $(date +'%Y-%m-%d')"
+          git push
