@@ -19,10 +19,16 @@ jobs:
           sudo apt-get install -y libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev build-essential
       - run: npm install --no-audit --no-fund
       - run: mkdir -p rashifal-v3 cache
+      - name: Set target date
+        id: set_date
+        run: |
+          TARGET=$(TZ='Asia/Kolkata' date -d "tomorrow" +%Y-%m-%d)
+          echo "target=$TARGET" >> $GITHUB_OUTPUT
+          echo "Target date: $TARGET"
       - name: Generate V3
         run: cd src && node generate.js
         env:
-          TARGET_DATE: $(TZ='Asia/Kolkata' date -d tomorrow +%Y-%m-%d)
+          TARGET_DATE: ${{ steps.set_date.outputs.target }}
           TZ: 'Asia/Kolkata'
           OUTPUT_DIR: "../rashifal-v3"
       - name: Push test output
