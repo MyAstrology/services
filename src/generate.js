@@ -56,45 +56,16 @@ if (process.env.TARGET_DATE && process.env.TARGET_DATE !== '') {
   TARGET_DATE = new Date(process.env.TARGET_DATE + 'T00:00:00');
   console.log(`📅 Using TARGET_DATE from env: ${process.env.TARGET_DATE}`);
 } else {
-  const now = new Date();
-  let istHour, istMinutes;
-  
-  // GitHub Actions-এ TZ সেট করা থাকলে সরাসরি ঘন্টা নিন
-  if (process.env.TZ === 'Asia/Kolkata') {
-    istHour = now.getHours();
-    istMinutes = now.getMinutes();
-    console.log(`🕐 System TZ (IST): ${istHour.toString().padStart(2, '0')}:${istMinutes.toString().padStart(2, '0')}`);
-  } else {
-    // লোকাল টেস্টের জন্য UTC+5:30 যোগ করুন
-    istHour = now.getUTCHours() + 5;
-    istMinutes = now.getUTCMinutes() + 30;
-    
-    if (istMinutes >= 60) {
-      istHour += 1;
-      istMinutes -= 60;
-    }
-    istHour = istHour % 24;
-    
-    console.log(`🕐 UTC Time: ${now.toISOString()}`);
-    console.log(`🕐 Indian Time (IST): ${istHour.toString().padStart(2, '0')}:${istMinutes.toString().padStart(2, '0')}`);
-  }
-  
+  // সরল পদ্ধতি: আগামীকালের রাশিফল তৈরি করুন
   TARGET_DATE = new Date();
-  
-  // ✅ সঠিক লজিক (একই থাকে)
-  if (istHour >= 6 && istHour < 21) {
-    console.log(`📅 আজকের রাশিফল তৈরি হচ্ছে: ${TARGET_DATE.toISOString().slice(0, 10)}`);
-  } else if (istHour >= 21) {
-    TARGET_DATE.setDate(TARGET_DATE.getDate() + 1);
-    console.log(`📅 রাত ৯টার পরে — আগামীকালের রাশিফল তৈরি হচ্ছে: ${TARGET_DATE.toISOString().slice(0, 10)}`);
-  } else {
-    console.log(`📅 আজকের রাশিফল তৈরি হচ্ছে: ${TARGET_DATE.toISOString().slice(0, 10)}`);
-  }
+  TARGET_DATE.setDate(TARGET_DATE.getDate() + 1);
+  console.log(`📅 No TARGET_DATE env — using tomorrow: ${TARGET_DATE.toISOString().slice(0,10)}`);
 }
 
 if (isNaN(TARGET_DATE.getTime())) {
-  console.error('❌ TARGET_DATE invalid, using today');
+  console.error('❌ TARGET_DATE invalid, using tomorrow');
   TARGET_DATE = new Date();
+  TARGET_DATE.setDate(TARGET_DATE.getDate() + 1);
 }
 // ==================== ইউটিলিটি ইম্পোর্ট ====================
 const { toBn, getRahuKal, getGulikaKal, getYamaGhanta, getAbhijitMuhurta, fmtTime } = require('./utils/bengali');
