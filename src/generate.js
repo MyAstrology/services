@@ -85,12 +85,15 @@ if (isNaN(TARGET_DATE.getTime())) {
   TARGET_DATE.setDate(TARGET_DATE.getDate() + 1);
 }
 
+
 // ==================== ইউটিলিটি ইম্পোর্ট ====================
 const { toBn, getRahuKal, getGulikaKal, getYamaGhanta, getAbhijitMuhurta, fmtTime } = require('./utils/bengali');
-const {
+const { generateOgImage } = require('./utils/ogImage');  // ← নতুন যোগ
+
   RASHI_NAMES, RASHI_ENG, RASHI_SYM, RASHI_LORD, RASHI_EL, RASHI_NAT,
   RASHI_GEM, LUCKY_DIRS, MANTRAS, GOOD_HOUSES, BAD_HOUSES
 } = require('./utils/constants');
+
 
 // ==================== অ্যাস্ট্রোনমি ইম্পোর্ট ====================
 const { JD } = require('./astronomy/jd');
@@ -358,8 +361,94 @@ try {
 } catch (err) {
   console.warn('⚠️ OG ইমেজ তৈরি ব্যর্থ, ডিফল্ট ব্যবহার:', err.message);
 }
+
+// ==================== MAIN ====================
+try {
+  if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR, { recursive: true });
+  if (!fs.existsSync(CACHE_DIR)) fs.mkdirSync(CACHE_DIR, { recursive: true });
+  
+  const iso = TARGET_DATE.toISOString().slice(0, 10);
+  const outFile = path.join(OUTPUT_DIR, iso + '.html');
+  
+  console.log(`\n🔮 রাশিফল জেনারেটর v3.0 শুরু হচ্ছে...`);
+  console.log(`📅 তারিখ: ${iso}`);
+  console.log(`📁 আউটপুট ডিরেক্টরি: ${OUTPUT_DIR}`);
+  console.log(`📦 ক্যাশ ডিরেক্টরি: ${CACHE_DIR}`);
+  
+  // টেমপ্লেট ফাইল চেক
+  if (!fs.existsSync(TEMPLATE)) {
+    throw new Error(`টেমপ্লেট ফাইল পাওয়া যায়নি: ${TEMPLATE}`);
+  }
+  
+  const templateContent = fs.readFileSync(TEMPLATE, 'utf8');
+  const y = TARGET_DATE.getFullYear(), m = TARGET_DATE.getMonth() + 1, d = TARGET_DATE.getDate();
+  const jd = JD(y, m, d) + 0.5;
+  
+  const rashifalResult = generateRashifalData(TARGET_DATE);
+  const panchang = {
+    tithi: getTithiName(jd),
+    nakshatra: getNakshatraName(jd),
+    yoga: getYogaName(jd),
+    karan: getKaranName(jd)
+  };
+  const st = sunTimes(y, m, d, LAT, LNG, TZ);
+  const rahuKal = getRahuKal(st.rise, st.set, TARGET_DATE.getDay());
+  
+  const bnDate = formatBnDate(TARGET_DATE);
+  const bnDateFull = formatBnDateFull(TARGET_DATE);
+  const moonRashiName = RASHI_NAMES[rashifalResult.moonRashi];
+  const sunRashiName = RASHI_NAMES[rashifalResult.sunRashi];
+  
+  // ★★★ ডায়নামিক OG ইমেজ তৈরি ★★★
+  let ogImageUrl = `${SITE_URL}/images/daily-rashifal-og.webp`;
+  try {
+    ogImageUrl = await generateOgImage(TARGET_DATE, moonRashiName, sunRashiName, OUTPUT_DIR);
+    console.log(`🖼️ OG ইমেজ তৈরি: ${ogImageUrl}`);
+  } catch (err) {
+    console.warn('⚠️ OG ইমেজ তৈরি ব্যর্থ, ডিফল্ট ব্যবহার:', err.message);
+  }
+  
+  let html = templateContent
+    .replace(/\{\{BN_DATE\}\}/g, bnDate)
+    .replace(/\{\{BN_DATE_FULL\}\}/g, bnDateFull)
+    .replace(/\{\{URL_DATE\}\}/g, iso)
+    .replace(/\{\{ISO_DATE\}\}/g, iso)
+    .replace(/\{\{MOON_RASHI\}\}/g, moonRashiName)
+    .replace(/\{\{SUN_RASHI\}\}/g, sunRashiName)
+    .replace(/\{\{TITHI\}\}/g, panchang.tithi)
+    .replace(/\{\{NAKSHATRA\}\}/g, panchang.nakshatra)
+    .replace(/\{\{YOGA\}\}/g, panchang.yoga)
+    .replace(/\{\{KARAN\}\}/g, panchang.karan)
+    .replace('{{SCHEMA_JSON}}', buildSchema(TARGET_DATE, rashifalResult, ogImageUrl))  // ← ogImageUrl পাস
+    .replace('{{RASHI_CARDS}}', buildRashiCards(rashifalResult))
+    .replace('{{DEFAULT_RASHI_DETAIL}}', buildDefaultRashiDetail(rashifalResult))
+    .replace('{{ARCHIVE_LINKS}}', buildArchiveLinks(TARGET_DATE, rashifalResult))
+    .replace('{{RASHIFAL_DATA_JSON}}', JSON.stringify(rashifalResult.data))
+    .replace('{{FAQ_SCHEMA_JSON}}', buildFaqSchema(TARGET_DATE, rashifalResult, panchang));
+  
+  fs.writeFileSync(outFile, html, 'utf8');
+  console.log(`✅ rashifal/${iso}.html — তৈরি হয়েছে`);
+  console.log(`🌙 চন্দ্র: ${RASHI_NAMES[rashifalResult.moonRashi]} | ☀️ সূর্য: ${RASHI_NAMES[rashifalResult.sunRashi]}`);
+  console.log(`📿 তিথি: ${panchang.tithi} | নক্ষত্র: ${panchang.nakshatra} | যোগ: ${panchang.yoga}`);
+  
+  const archive = updateMasterArchive(TARGET_DATE, rashifalResult, panchang);
+  generateIndex(archive);
+  
+  console.log('\n🎉 সম্পন্ন! Daily rashifal generation v3.0 complete.');
+  console.log('💡 নতুন বৈশিষ্ট্য:');
+  console.log('   ✓ মডুলার কোড স্ট্রাকচার (ফেজ ২)');
+  console.log('   ✓ গ্রহের দৃষ্টি (শনি + বৃহস্পতি) – ফেজ ৩');
+  console.log('   ✓ ক্যাশিং সিস্টেম – দ্বিতীয়বার দ্রুত');
+  
+} catch (err) {
+  console.error('❌ Generation failed:', err.message);
+  console.error(err.stack);
+  process.exit(1);
+}
+
+
 // ==================== স্কিমা বিল্ডার ====================
-function buildSchema(date, rashifalResult) {
+function buildSchema(date, rashifalResult, ogImageUrl) {
   const iso = date.toISOString().slice(0, 10);
   const bnDate = formatBnDate(date);
   const moonRashiName = RASHI_NAMES[rashifalResult.moonRashi];
@@ -370,9 +459,8 @@ function buildSchema(date, rashifalResult) {
       "description": `${bnDate} তারিখের ১২ রাশির বিস্তারিত দৈনিক রাশিফল। চন্দ্র ${moonRashiName} রাশিতে। প্রেম, কর্ম, স্বাস্থ্য, অর্থ ও সতর্কতা।`,
       "datePublished": `${iso}T05:00:00+05:30`,
       "dateModified": `${iso}T05:00:00+05:30`,
-      "image": { "@type": "ImageObject", "url": `${SITE_URL}/images/daily-rashifal-og.webp`, "width": 1200, "height": 630 },
+      "image": { "@type": "ImageObject", "url": ogImageUrl, "width": 1200, "height": 630 },
       "url": `${SITE_URL}/rashifal/${iso}.html`,
-      "image": { "@type": "ImageObject", "url": ogImageUrl, "width": 1200, "height": 630 }
       "inLanguage": "bn-IN",
       "author": { "@type": "Person", "name": "Dr. Prodyut Acharya", "url": `${SITE_URL}/about.html` },
       "publisher": { "@type": "Organization", "name": "MyAstrology", "logo": { "@type": "ImageObject", "url": `${SITE_URL}/images/MyAstrology-Ranghat-logo.png` } },
