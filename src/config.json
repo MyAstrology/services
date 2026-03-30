@@ -1,0 +1,26 @@
+/**
+ * ============================================================
+ * MYASTROLOGY DAILY RASHIFAL GENERATOR v3.0
+ * ============================================================
+ * ফাইল: [filename]
+ * কাজ: [brief description]
+ * প্রকল্প: Daily Rashifal Generator
+ * তারিখ: 2026-03-30
+ * 
+ * এই ফাইলটি শুধুমাত্র দৈনিক রাশিফল জেনারেটরের অংশ।
+ * অন্য কোনো প্রকল্পের সাথে মিশিয়ে ফেলবেন না।
+ * ============================================================
+ */
+
+{
+  "SITE_URL": "https://www.myastrology.in",
+  "LAT": 23.18,
+  "LNG": 88.56,
+  "TZ": 5.5,
+  "LOCATION_NAME": "রানাঘাট",
+  "AUTHOR_NAME": "Dr. Prodyut Acharya",
+  "AUTHOR_URL": "https://www.myastrology.in/about.html",
+  "WHATSAPP": "919333122768",
+  "OUTPUT_DIR": "../../../rashifal",
+  "CACHE_DIR": "../../../cache"
+}
