@@ -9,9 +9,11 @@
         <news:language>bn</news:language>
       </news:publication>
       <news:publication_date>2026-04-01T05:00:00+05:30</news:publication_date>
-      <news:title>১৮ চৈত্র ১৪৩২ দৈনিক রাশিফল | MyAstrology</news:title>
-      <news:keywords>রাশিফল, বাংলা রাশিফল, কন্যা রাশি</news:keywords>
+      <news:title>১৮ চৈত্র ১৪৩২ — দৈনিক রাশিফল | ১২ রাশির বিস্তারিত ফল</news:title>
     </news:news>
+    <lastmod>2026-04-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
   </url>
   <url>
     <loc>https://www.myastrology.in/rashifal/2026-03-31.html</loc>
@@ -21,9 +23,11 @@
         <news:language>bn</news:language>
       </news:publication>
       <news:publication_date>2026-03-31T05:00:00+05:30</news:publication_date>
-      <news:title>১৮ চৈত্র ১৪৩২ দৈনিক রাশিফল | MyAstrology</news:title>
-      <news:keywords>রাশিফল, বাংলা রাশিফল, কন্যা রাশি</news:keywords>
+      <news:title>১৭ চৈত্র ১৪৩২ — দৈনিক রাশিফল | ১২ রাশির বিস্তারিত ফল</news:title>
     </news:news>
+    <lastmod>2026-03-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
   </url>
   <url>
     <loc>https://www.myastrology.in/rashifal/2026-03-30.html</loc>
@@ -33,8 +37,10 @@
         <news:language>bn</news:language>
       </news:publication>
       <news:publication_date>2026-03-30T05:00:00+05:30</news:publication_date>
-      <news:title>১৭ চৈত্র ১৪৩২ দৈনিক রাশিফল | MyAstrology</news:title>
-      <news:keywords>রাশিফল, বাংলা রাশিফল, সিংহ রাশি</news:keywords>
+      <news:title>১৬ চৈত্র ১৪৩২ — দৈনিক রাশিফল | ১২ রাশির বিস্তারিত ফল</news:title>
     </news:news>
+    <lastmod>2026-03-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
   </url>
 </urlset>
