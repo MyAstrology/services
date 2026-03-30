@@ -10,26 +10,73 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - run: |
+
+      - name: Install system dependencies (for canvas)
+        run: |
           sudo apt-get update
           sudo apt-get install -y libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev build-essential
-      - run: npm install --no-audit --no-fund
-      - run: mkdir -p rashifal-v3 cache
-      - name: Generate V3
+
+      - name: Install npm dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Create test directories
+        run: mkdir -p rashifal-test cache
+
+      - name: Generate Rashifal V3
         run: cd src && node generate.js
         env:
-          # ★★★ TARGET_DATE সেট করবেন না ★★★
           TZ: 'Asia/Kolkata'
-          OUTPUT_DIR: "../rashifal-v3"
-      - name: Push test output
+          OUTPUT_DIR: "../rashifal-test"
+
+      - name: List generated files
         run: |
-          git config user.name "Test Bot"
-          git config user.email "test@myastrology.in"
-          git add rashifal-v3/
-          git diff --cached --quiet && exit 0
-          git commit -m "test: v3 output"
+          echo "📁 Files in rashifal-test:"
+          ls -la rashifal-test/
+          echo ""
+          echo "📄 Checking for 2026-04-01.html:"
+          if [ -f "rashifal-test/2026-04-01.html" ]; then
+            echo "✅ 2026-04-01.html created successfully"
+            SIZE=$(wc -c < "rashifal-test/2026-04-01.html")
+            echo "   Size: $SIZE bytes"
+          else
+            echo "❌ 2026-04-01.html not found"
+          fi
+
+      - name: Commit and Push test output
+        run: |
+          git config user.name "MyAstrology Test Bot"
+          git config user.email "test-bot@myastrology.in"
+          
+          git add rashifal-test/
+          
+          if git diff --cached --quiet; then
+            echo "📭 No changes to commit"
+            exit 0
+          fi
+          
+          DATE=$(TZ='Asia/Kolkata' date +%Y-%m-%d_%H-%M)
+          git commit -m "test(v3): rashifal output $DATE"
           git push origin main
+
+      - name: Summary
+        run: |
+          echo "## 🧪 Rashifal V3 Test Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Item | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Generation | ✅ Success |" >> $GITHUB_STEP_SUMMARY
+          if [ -f "rashifal-test/2026-04-01.html" ]; then
+            SIZE=$(wc -c < "rashifal-test/2026-04-01.html")
+            echo "| 2026-04-01.html | Created ($SIZE bytes) |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| 2026-04-01.html | ❌ Not found |" >> $GITHUB_STEP_SUMMARY
+          fi
