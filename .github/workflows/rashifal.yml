@@ -4,12 +4,6 @@ on:
   schedule:
     - cron: '25 18 * * *'
   workflow_dispatch:
-    inputs:
-      target_date:
-        description: 'তারিখ (YYYY-MM-DD)'
-        required: false
-        type: string
-        default: ''
 
 permissions:
   contents: write
@@ -17,60 +11,23 @@ permissions:
 jobs:
   generate:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 1
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: '20'
-
-      - name: Install canvas dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev build-essential
-
-      - name: Install npm packages
-        run: npm ci
-
-      - name: Create directories
-        run: mkdir -p rashifal cache
-
-      - name: Set date
-        id: date
-        run: |
-          if [ -n "${{ github.event.inputs.target_date }}" ]; then
-            DATE="${{ github.event.inputs.target_date }}"
-          else
-            DATE=$(TZ='Asia/Kolkata' date -d "tomorrow" +%Y-%m-%d)
-          fi
-          echo "date=$DATE" >> $GITHUB_OUTPUT
-
+      - run: sudo apt-get update && sudo apt-get install -y libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev build-essential
+      - run: npm ci
+      - run: mkdir -p rashifal cache
       - name: Generate
-        run: |
-          cd src
-          node generate.js
+        run: cd src && node generate.js
         env:
-          TARGET_DATE: ${{ steps.date.outputs.date }}
           TZ: 'Asia/Kolkata'
-
-      - name: Cleanup
-        run: |
-          find cache -name "*.json" -mtime +30 -delete 2>/dev/null || true
-
       - name: Push
         run: |
           git config user.name "MyAstrology Bot"
           git config user.email "bot@myastrology.in"
           git add rashifal/ cache/
-          if git diff --cached --quiet; then
-            echo "No changes"
-            exit 0
-          fi
-          git commit -m "Rashifal: ${{ steps.date.outputs.date }}"
+          git diff --cached --quiet && exit 0
+          git commit -m "Rashifal update"
           git push origin main
