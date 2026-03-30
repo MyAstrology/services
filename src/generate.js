@@ -53,20 +53,25 @@ console.log(`📦 ক্যাশ ডিরেক্টরি: ${CACHE_DIR}`);
 let TARGET_DATE;
 
 if (process.env.TARGET_DATE && process.env.TARGET_DATE !== '') {
+  // GitHub Actions থেকে পাস করা তারিখ ব্যবহার করুন
   TARGET_DATE = new Date(process.env.TARGET_DATE + 'T00:00:00');
   console.log(`📅 Using TARGET_DATE from env: ${process.env.TARGET_DATE}`);
 } else {
-  // লোকাল রানে আগামীকালের তারিখ (পুরনো লজিক)
+  // লোকাল রানে আগামীকালের তারিখ
   TARGET_DATE = new Date();
   TARGET_DATE.setDate(TARGET_DATE.getDate() + 1);
   console.log(`📅 No TARGET_DATE env — using tomorrow: ${TARGET_DATE.toISOString().slice(0,10)}`);
 }
 
+// যদি কোনো কারণে TARGET_DATE ইনভালিড হয়, তাহলে আগামীকাল সেট করুন
 if (isNaN(TARGET_DATE.getTime())) {
   console.error('❌ TARGET_DATE invalid, using tomorrow');
   TARGET_DATE = new Date();
   TARGET_DATE.setDate(TARGET_DATE.getDate() + 1);
 }
+
+console.log(`🎯 Final target date: ${TARGET_DATE.toISOString().slice(0,10)}`);
+
 // ==================== ইউটিলিটি ইম্পোর্ট ====================
 const { toBn, getRahuKal, getGulikaKal, getYamaGhanta, getAbhijitMuhurta, fmtTime } = require('./utils/bengali');
 const { generateOgImage, cleanupOldOgImages } = require('./utils/ogImage');
