@@ -20,4 +20,31 @@ const { TNAMES } = require('../utils/constants');
  * @returns {string} - যেমন "শুক্লপক্ষ একাদশী"
  */
 function getTithiName(jd) {
-  const diff = (moonL(jd) - sunL(j
+  const diff = (moonL(jd) - sunL(jd) + 360) % 360;
+  const idx = Math.floor(diff / 12) % 30;
+  const paksha = idx < 15 ? 'শুক্লপক্ষ' : 'কৃষ্ণপক্ষ';
+  return `${paksha} ${TNAMES[idx]}`;
+}
+
+/**
+ * শুধু তিথির নাম (পক্ষ ছাড়া) – FAQ-তে ব্যবহারের জন্য
+ * @param {number} jd - জুলিয়ান দিন
+ * @returns {string} - যেমন "একাদশী"
+ */
+function getTithiShort(jd) {
+  const diff = (moonL(jd) - sunL(jd) + 360) % 360;
+  const idx = Math.floor(diff / 12) % 30;
+  return TNAMES[idx];
+}
+
+/**
+ * তিথির সংখ্যা (১-৩০) বের করা
+ * @param {number} jd - জুলিয়ান দিন
+ * @returns {number} - ১-৩০
+ */
+function getTithiNumber(jd) {
+  const diff = (moonL(jd) - sunL(jd) + 360) % 360;
+  return Math.floor(diff / 12) % 30 + 1;
+}
+
+module.exports = { getTithiName, getTithiShort, getTithiNumber };
