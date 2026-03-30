@@ -262,7 +262,7 @@ function generateRashifalData(date) {
     });
   }
   
-  return { moonRashi, sunRashi, saturnRashi, jupiterRashi, rahuRashi, data };
+  return { moonRashi, sunRashi, saturnRashi, jupiterRashi, rahuRashi, ketuRashi, data };
 }
 
 // ==================== HTML বিল্ডার ====================
@@ -351,7 +351,13 @@ function buildArchiveLinks(targetDate, rashifalResult) {
   if (links.length === 0) links.push('<span style="font-size:.8rem;color:var(--mu);">আর্কাইভ শীঘ্রই আসছে।</span>');
   return links.join('\n');
 }
-
+// ডায়নামিক OG ইমেজ তৈরি (ঐচ্ছিক)
+let ogImageUrl = `${SITE_URL}/images/daily-rashifal-og.webp`;
+try {
+  ogImageUrl = await generateOgImage(TARGET_DATE, moonRashiName, sunRashiName, OUTPUT_DIR);
+} catch (err) {
+  console.warn('⚠️ OG ইমেজ তৈরি ব্যর্থ, ডিফল্ট ব্যবহার:', err.message);
+}
 // ==================== স্কিমা বিল্ডার ====================
 function buildSchema(date, rashifalResult) {
   const iso = date.toISOString().slice(0, 10);
@@ -366,6 +372,7 @@ function buildSchema(date, rashifalResult) {
       "dateModified": `${iso}T05:00:00+05:30`,
       "image": { "@type": "ImageObject", "url": `${SITE_URL}/images/daily-rashifal-og.webp`, "width": 1200, "height": 630 },
       "url": `${SITE_URL}/rashifal/${iso}.html`,
+      "image": { "@type": "ImageObject", "url": ogImageUrl, "width": 1200, "height": 630 }
       "inLanguage": "bn-IN",
       "author": { "@type": "Person", "name": "Dr. Prodyut Acharya", "url": `${SITE_URL}/about.html` },
       "publisher": { "@type": "Organization", "name": "MyAstrology", "logo": { "@type": "ImageObject", "url": `${SITE_URL}/images/MyAstrology-Ranghat-logo.png` } },
@@ -389,8 +396,8 @@ function buildFaqSchema(date, rashifalResult, panchang) {
   const sunRashiName = RASHI_NAMES[rashifalResult.sunRashi];
   const jupiRashiName = RASHI_NAMES[rashifalResult.jupiterRashi];
   const saniRashiName = RASHI_NAMES[rashifalResult.saturnRashi];
+  const ketuRashiName = RASHI_NAMES[rashifalResult.ketuRashi];  // নতুন যোগ
   const bnDate = formatBnDate(date);
-  
   const scores = rashifalResult.data.map((d, i) => ({ name: RASHI_NAMES[i], avg: (d.score.love + d.score.work + d.score.health + d.score.finance) / 4 }));
   const bestRashi = scores.reduce((a, b) => a.avg > b.avg ? a : b).name;
   const worstRashi = scores.reduce((a, b) => a.avg < b.avg ? a : b).name;
