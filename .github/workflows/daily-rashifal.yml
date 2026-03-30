@@ -44,11 +44,17 @@ jobs:
             TARGET="${{ github.event.inputs.date_override }}"
             echo "📅 Manual override: $TARGET"
           else
-            # পুরনো লজিক: আগামীকালের তারিখ পাস করবে
             TARGET=$(TZ='Asia/Kolkata' date -d tomorrow +%Y-%m-%d)
             echo "📅 Tomorrow IST: $TARGET"
           fi
           echo "TARGET_DATE=${TARGET}" >> $GITHUB_OUTPUT
+          echo "✅ TARGET_DATE set to: ${TARGET}"
+
+      - name: Debug - Show target date
+        run: |
+          echo "🔍 TARGET_DATE from step output: ${{ steps.set_date.outputs.TARGET_DATE }}"
+          echo "🔍 Current time IST: $(TZ='Asia/Kolkata' date)"
+          echo "🔍 Tomorrow date: $(TZ='Asia/Kolkata' date -d tomorrow +%Y-%m-%d)"
 
       - name: Generate daily rashifal
         env:
@@ -56,27 +62,51 @@ jobs:
           TZ: 'Asia/Kolkata'
         run: |
           echo "🔮 Target: $TARGET_DATE"
-          echo "📂 CWD: $(pwd)"
-          echo "🔍 Generator: $(ls src/generate.js 2>/dev/null || echo 'NOT FOUND')"
+          echo "📂 Current directory: $(pwd)"
+          echo "📂 Contents of src/ before generation:"
+          ls -la src/ || echo "src/ not found"
+          echo "🔍 Checking src/generate.js:"
+          if [ -f "src/generate.js" ]; then
+            echo "✅ src/generate.js exists"
+            head -20 src/generate.js
+          else
+            echo "❌ src/generate.js NOT FOUND!"
+            echo "Looking for generate.js elsewhere:"
+            find . -name "generate.js" -type f
+          fi
+          echo "📂 Contents of rashifal/ before generation:"
+          ls -la rashifal/ || echo "rashifal/ empty or not found"
 
           set -e
           cd src && node generate.js
+          cd ..
 
-          echo "📁 rashifal/ contents:"
-          ls -la ../rashifal/
+          echo "📁 After generation, rashifal/ contents:"
+          ls -la rashifal/
 
-          if [ ! -f "../rashifal/${TARGET_DATE}.html" ]; then
+          echo "🔍 Looking for: rashifal/${TARGET_DATE}.html"
+          if [ -f "rashifal/${TARGET_DATE}.html" ]; then
+            echo "✅ File exists at rashifal/${TARGET_DATE}.html"
+            SIZE=$(wc -c < "rashifal/${TARGET_DATE}.html")
+            echo "✅ rashifal/${TARGET_DATE}.html তৈরি হয়েছে (${SIZE} bytes)"
+          else
+            echo "❌ File NOT found at rashifal/${TARGET_DATE}.html"
+            echo "🔍 Also checking ../rashifal/${TARGET_DATE}.html:"
+            if [ -f "../rashifal/${TARGET_DATE}.html" ]; then
+              echo "✅ File exists at ../rashifal/${TARGET_DATE}.html"
+              ls -la ../rashifal/
+            else
+              echo "❌ File also not found at ../rashifal/${TARGET_DATE}.html"
+            fi
             echo "❌ FATAL: rashifal/${TARGET_DATE}.html তৈরি হয়নি!"
-            echo "   Generator output-এ error আছে কিনা দেখুন।"
             exit 1
           fi
-          SIZE=$(wc -c < "../rashifal/${TARGET_DATE}.html")
-          echo "✅ rashifal/${TARGET_DATE}.html তৈরি হয়েছে (${SIZE} bytes)"
 
       - name: Update sitemaps
         run: |
-          # সাইটম্যাপ জেনারেটর ইতিমধ্যে generate.js-এর ভিতরে আছে
           echo "✅ sitemap-rashifal.xml and sitemap-news.xml updated by generate.js"
+          echo "📁 Current sitemaps:"
+          ls -la sitemap-*.xml 2>/dev/null || echo "No sitemaps found yet"
 
       - name: Check for changes
         id: check_changes
