@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       date_override:
-        description: 'তারিখ override (YYYY-MM-DD, খালি = স্বয়ংক্রিয়)'
+        description: 'তারিখ override (YYYY-MM-DD, খালি = পরশু)'
         required: false
         default: ''
 
@@ -44,12 +44,11 @@ jobs:
             TARGET="${{ github.event.inputs.date_override }}"
             echo "📅 Manual override: $TARGET"
           else
-            # আজকের তারিখ পাস করুন, generate.js নিজেই আগামীকাল যোগ করবে
-            TARGET=$(TZ='Asia/Kolkata' date +%Y-%m-%d)
-            echo "📅 Today IST: $TARGET"
+            # পরশুর রাশিফল তৈরি হবে (এক দিন বাদ দিয়ে)
+            TARGET=$(TZ='Asia/Kolkata' date -d "2 days" +%Y-%m-%d)
+            echo "📅 Day after tomorrow IST: $TARGET"
           fi
           echo "TARGET_DATE=${TARGET}" >> $GITHUB_OUTPUT
-          echo "target_date=${TARGET}" >> $GITHUB_OUTPUT
 
       - name: Generate daily rashifal
         env:
@@ -57,31 +56,22 @@ jobs:
           TZ: 'Asia/Kolkata'
         run: |
           echo "🔮 Target: $TARGET_DATE"
-          echo "📂 Current directory: $(pwd)"
-          echo "📁 Source directory contents:"
-          ls -la src/ || echo "src/ not found"
-          
-          echo ""
-          echo "🔍 Generating rashifal..."
+          echo "📂 CWD: $(pwd)"
+          echo "🔍 Generator: $(ls src/generate.js 2>/dev/null || echo 'NOT FOUND')"
+
           set -e
           cd src && node generate.js
-          cd ..
 
-          echo ""
-          echo "📁 rashifal/ directory contents:"
-          ls -la rashifal/
+          echo "📁 rashifal/ contents:"
+          ls -la ../rashifal/
 
-          # চেক করুন ফাইল তৈরি হয়েছে কিনা
-          EXPECTED_FILE="rashifal/${TARGET_DATE}.html"
-          if [ ! -f "$EXPECTED_FILE" ]; then
-            echo "❌ ERROR: $EXPECTED_FILE তৈরি হয়নি!"
-            echo "   Generated files:"
-            ls -la rashifal/*.html 2>/dev/null || echo "   No HTML files found"
+          if [ ! -f "../rashifal/${TARGET_DATE}.html" ]; then
+            echo "❌ FATAL: rashifal/${TARGET_DATE}.html তৈরি হয়নি!"
+            echo "   Generator output-এ error আছে কিনা দেখুন।"
             exit 1
           fi
-          
-          SIZE=$(wc -c < "$EXPECTED_FILE")
-          echo "✅ $EXPECTED_FILE তৈরি হয়েছে (${SIZE} bytes)"
+          SIZE=$(wc -c < "../rashifal/${TARGET_DATE}.html")
+          echo "✅ rashifal/${TARGET_DATE}.html তৈরি হয়েছে (${SIZE} bytes)"
 
       - name: Check for changes
         id: check_changes
@@ -115,7 +105,6 @@ jobs:
           git fetch origin main
           git pull origin main --rebase --strategy-option=ours || {
             echo "⚠️ Rebase failed, trying merge"
-            git rebase --abort
             git pull origin main --no-rebase --strategy-option=ours
           }
 
@@ -158,8 +147,4 @@ jobs:
           else
             echo "" >> $GITHUB_STEP_SUMMARY
             echo "❌ **ফাইল তৈরি হয়নি**" >> $GITHUB_STEP_SUMMARY
-            echo "" >> $GITHUB_STEP_SUMMARY
-            echo "**rashifal/ ফোল্ডারের কন্টেন্ট:**" >> $GITHUB_STEP_SUMMARY
-            echo '```' >> $GITHUB_STEP_SUMMARY
-            ls -la rashifal/ >> $GITHUB_STEP_SUMMARY 2>/dev/null || echo "ফোল্ডার খালি" >> $GITHUB_STEP_SUMMARY
-            echo '```' >> $GITHUB_STEP_SUMMARY
+          fi
