@@ -1,6 +1,7 @@
 {
   "name": "myastrology",
   "version": "3.0.0",
+  "type": "commonjs",
   "private": true,
   "description": "MyAstrology – Daily Rashifal Generator with Vedic Astrology",
   "author": "Dr. Prodyut Acharya",
