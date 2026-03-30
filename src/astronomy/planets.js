@@ -138,6 +138,19 @@ const saturnRashi = sid(planets.saturn);
 const jupiterRashi = sid(planets.jupiter);
 const rahuRashi = sid(planets.rahu);
 const ketuRashi = (rahuRashi + 6) % 12;  // কেতু = রাহু + ৬ রাশি
+/**
+ * গ্রহের গতি নির্ণয় (বক্রগতি কিনা)
+ * @param {function} positionFunc - গ্রহের অবস্থান ফাংশন (sunL, moonL, ইত্যাদি)
+ * @param {number} jd - জুলিয়ান দিন
+ * @returns {boolean} - true if retrograde
+ */
+function isRetrograde(positionFunc, jd) {
+  const today = positionFunc(jd);
+  const tomorrow = positionFunc(jd + 1);
+  const diff = tomorrow - today;
+  // যদি মান কমে যায় (diff < 0) তাহলে বক্রগতি
+  return diff < 0;
+}
 
 // ... পরে planetFooter-এ যোগ করুন
 const planetFooter = `☀️ ${RASHI_NAMES[sunRashi]} · 🪐 শনি ${RASHI_NAMES[saturnRashi]} · ♃ বৃহস্পতি ${RASHI_NAMES[jupiterRashi]} · ☊ রাহু ${RASHI_NAMES[rahuRashi]} · ☋ কেতু ${RASHI_NAMES[ketuRashi]}`;
