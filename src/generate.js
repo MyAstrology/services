@@ -237,10 +237,9 @@ function generateRashifalData(date) {
       });
     }
     
-    const planetFooter = `☀️ ${RASHI_NAMES[sunRashi]} · 🪐 শনি ${RASHI_NAMES[saturnRashi]} · ♃ বৃহস্পতি ${RASHI_NAMES[jupiterRashi]} · ☊ রাহু ${RASHI_NAMES[rahuRashi]}`;
+    const planetFooter = `☀️ ${RASHI_NAMES[sunRashi]} · 🪐 শনি ${RASHI_NAMES[saturnRashi]} · ♃ বৃহস্পতি ${RASHI_NAMES[jupiterRashi]} · ☊ রাহু ${RASHI_NAMES[rahuRashi]} · ☋ কেতু ${RASHI_NAMES[ketuRashi]}`;
     const rashiInfo = `${RASHI_ENG[ri]} | অধিপতি: ${RASHI_LORD[ri]} | ${RASHI_EL[ri]} | ${RASHI_NAT[ri]}`;
-    
-    data.push({
+       data.push({
       rashi: RASHI_NAMES[ri],
       rashiInfo,
       house,
