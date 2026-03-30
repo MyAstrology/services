@@ -70,22 +70,28 @@ if (process.env.TARGET_DATE && process.env.TARGET_DATE !== '') {
   
   TARGET_DATE = new Date();
   
-  // রাত ৯টার পরে রান করলে পরশুর রাশিফল (ইনডেক্সিং টাইম বিবেচনায়)
-  if (istHour >= 21) {
-    TARGET_DATE.setDate(TARGET_DATE.getDate() + 2);
-    console.log(`📅 রাত ৯টার পরে — পরশুর রাশিফল তৈরি হচ্ছে: ${TARGET_DATE.toISOString().slice(0, 10)}`);
-  } else {
+  // ✅ সঠিক লজিক:
+  // সকাল 6টা থেকে রাত 9টার মধ্যে → আজকের রাশিফল
+  // রাত 9টার পরে → আগামীকালের রাশিফল
+  // ভোর 12টা থেকে 6টার মধ্যে → আজকের রাশিফল
+  
+  if (istHour >= 6 && istHour < 21) {
+    // সকাল 6টা থেকে রাত 9টা: আজকের রাশিফল
+    console.log(`📅 আজকের রাশিফল তৈরি হচ্ছে: ${TARGET_DATE.toISOString().slice(0, 10)}`);
+  } else if (istHour >= 21) {
+    // রাত 9টার পরে: আগামীকালের রাশিফল
     TARGET_DATE.setDate(TARGET_DATE.getDate() + 1);
-    console.log(`📅 রাত ৯টার আগে — আগামীকালের রাশিফল তৈরি হচ্ছে: ${TARGET_DATE.toISOString().slice(0, 10)}`);
+    console.log(`📅 রাত ৯টার পরে — আগামীকালের রাশিফল তৈরি হচ্ছে: ${TARGET_DATE.toISOString().slice(0, 10)}`);
+  } else {
+    // ভোর 12টা-6টা: আজকের রাশিফল
+    console.log(`📅 আজকের রাশিফল তৈরি হচ্ছে: ${TARGET_DATE.toISOString().slice(0, 10)}`);
   }
 }
 
 if (isNaN(TARGET_DATE.getTime())) {
-  console.error('❌ TARGET_DATE invalid, using tomorrow');
+  console.error('❌ TARGET_DATE invalid, using today');
   TARGET_DATE = new Date();
-  TARGET_DATE.setDate(TARGET_DATE.getDate() + 1);
 }
-
 // ==================== ইউটিলিটি ইম্পোর্ট ====================
 const { toBn, getRahuKal, getGulikaKal, getYamaGhanta, getAbhijitMuhurta, fmtTime } = require('./utils/bengali');
 const { generateOgImage, cleanupOldOgImages } = require('./utils/ogImage');
