@@ -885,93 +885,96 @@ function filterMonth(val) {
 }
 
 // ==================== MAIN ====================
-try {
-  if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR, { recursive: true });
-  if (!fs.existsSync(CACHE_DIR)) fs.mkdirSync(CACHE_DIR, { recursive: true });
-  
-  const iso = TARGET_DATE.toISOString().slice(0, 10);
-  const outFile = path.join(OUTPUT_DIR, iso + '.html');
-  
-  console.log(`\n🔮 রাশিফল জেনারেটর v3.0 শুরু হচ্ছে...`);
-  console.log(`📅 তারিখ: ${iso}`);
-  console.log(`📁 আউটপুট ডিরেক্টরি: ${OUTPUT_DIR}`);
-  console.log(`📦 ক্যাশ ডিরেক্টরি: ${CACHE_DIR}`);
-  
-  if (!fs.existsSync(TEMPLATE)) {
-    throw new Error(`টেমপ্লেট ফাইল পাওয়া যায়নি: ${TEMPLATE}`);
-  }
-  
-  const templateContent = fs.readFileSync(TEMPLATE, 'utf8');
-  const y = TARGET_DATE.getFullYear(), m = TARGET_DATE.getMonth() + 1, d = TARGET_DATE.getDate();
-  const jd = JD(y, m, d) + 0.5;
-  
-  const rashifalResult = generateRashifalData(TARGET_DATE);
-  const panchang = {
-    tithi: getTithiName(jd),
-    nakshatra: getNakshatraName(jd),
-    yoga: getYogaName(jd),
-    karan: getKaranName(jd)
-  };
-  const st = sunTimes(y, m, d, LAT, LNG, TZ);
-  const rahuKal = getRahuKal(st.rise, st.set, TARGET_DATE.getDay());
-  
-  const bnDate = formatBnDate(TARGET_DATE);
-  const bnDateFull = formatBnDateFull(TARGET_DATE);
-  const moonRashiName = RASHI_NAMES[rashifalResult.moonRashi];
-  const sunRashiName = RASHI_NAMES[rashifalResult.sunRashi];
-  
-  // ডায়নামিক OG ইমেজ তৈরি
-  let ogImageUrl = `${SITE_URL}/images/daily-rashifal-og.webp`;
+(async function main() {
   try {
-    ogImageUrl = await generateOgImage(TARGET_DATE, moonRashiName, sunRashiName, OUTPUT_DIR);
-    console.log(`🖼️ OG ইমেজ তৈরি: ${ogImageUrl}`);
+    if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR, { recursive: true });
+    if (!fs.existsSync(CACHE_DIR)) fs.mkdirSync(CACHE_DIR, { recursive: true });
+    
+    const iso = TARGET_DATE.toISOString().slice(0, 10);
+    const outFile = path.join(OUTPUT_DIR, iso + '.html');
+    
+    console.log(`\n🔮 রাশিফল জেনারেটর v3.0 শুরু হচ্ছে...`);
+    console.log(`📅 তারিখ: ${iso}`);
+    console.log(`📁 আউটপুট ডিরেক্টরি: ${OUTPUT_DIR}`);
+    console.log(`📦 ক্যাশ ডিরেক্টরি: ${CACHE_DIR}`);
+    
+    if (!fs.existsSync(TEMPLATE)) {
+      throw new Error(`টেমপ্লেট ফাইল পাওয়া যায়নি: ${TEMPLATE}`);
+    }
+    
+    const templateContent = fs.readFileSync(TEMPLATE, 'utf8');
+    const y = TARGET_DATE.getFullYear(), m = TARGET_DATE.getMonth() + 1, d = TARGET_DATE.getDate();
+    const jd = JD(y, m, d) + 0.5;
+    
+    const rashifalResult = generateRashifalData(TARGET_DATE);
+    const panchang = {
+      tithi: getTithiName(jd),
+      nakshatra: getNakshatraName(jd),
+      yoga: getYogaName(jd),
+      karan: getKaranName(jd)
+    };
+    const st = sunTimes(y, m, d, LAT, LNG, TZ);
+    const rahuKal = getRahuKal(st.rise, st.set, TARGET_DATE.getDay());
+    
+    const bnDate = formatBnDate(TARGET_DATE);
+    const bnDateFull = formatBnDateFull(TARGET_DATE);
+    const moonRashiName = RASHI_NAMES[rashifalResult.moonRashi];
+    const sunRashiName = RASHI_NAMES[rashifalResult.sunRashi];
+    
+    // ডায়নামিক OG ইমেজ তৈরি (এখন async function-এর ভিতরে)
+    let ogImageUrl = `${SITE_URL}/images/daily-rashifal-og.webp`;
+    try {
+      ogImageUrl = await generateOgImage(TARGET_DATE, moonRashiName, sunRashiName, OUTPUT_DIR);
+      console.log(`🖼️ OG ইমেজ তৈরি: ${ogImageUrl}`);
+    } catch (err) {
+      console.warn('⚠️ OG ইমেজ তৈরি ব্যর্থ, ডিফল্ট ব্যবহার:', err.message);
+    }
+    
+    let html = templateContent
+      .replace(/\{\{BN_DATE\}\}/g, bnDate)
+      .replace(/\{\{BN_DATE_FULL\}\}/g, bnDateFull)
+      .replace(/\{\{URL_DATE\}\}/g, iso)
+      .replace(/\{\{ISO_DATE\}\}/g, iso)
+      .replace(/\{\{MOON_RASHI\}\}/g, moonRashiName)
+      .replace(/\{\{SUN_RASHI\}\}/g, sunRashiName)
+      .replace(/\{\{TITHI\}\}/g, panchang.tithi)
+      .replace(/\{\{NAKSHATRA\}\}/g, panchang.nakshatra)
+      .replace(/\{\{YOGA\}\}/g, panchang.yoga)
+      .replace(/\{\{KARAN\}\}/g, panchang.karan)
+      .replace('{{SCHEMA_JSON}}', buildSchema(TARGET_DATE, rashifalResult, ogImageUrl, panchang))
+      .replace('{{RASHI_CARDS}}', buildRashiCards(rashifalResult))
+      .replace('{{DEFAULT_RASHI_DETAIL}}', buildDefaultRashiDetail(rashifalResult))
+      .replace('{{ARCHIVE_LINKS}}', buildArchiveLinks(TARGET_DATE, rashifalResult))
+      .replace('{{RASHIFAL_DATA_JSON}}', JSON.stringify(rashifalResult.data))
+      .replace('{{FAQ_SCHEMA_JSON}}', buildFaqSchema(TARGET_DATE, rashifalResult, panchang));
+    
+    fs.writeFileSync(outFile, html, 'utf8');
+    console.log(`✅ rashifal/${iso}.html — তৈরি হয়েছে`);
+    console.log(`🌙 চন্দ্র: ${RASHI_NAMES[rashifalResult.moonRashi]} | ☀️ সূর্য: ${RASHI_NAMES[rashifalResult.sunRashi]}`);
+    console.log(`📿 তিথি: ${panchang.tithi} | নক্ষত্র: ${panchang.nakshatra} | যোগ: ${panchang.yoga}`);
+    
+    const archive = updateMasterArchive(TARGET_DATE, rashifalResult, panchang);
+    generateIndex(archive);
+    generateSitemaps(archive);
+    
+    cleanupOldOgImages(OUTPUT_DIR, 30);
+    
+    console.log('\n🎉 সম্পন্ন! Daily rashifal generation v3.0 complete.');
+    console.log('💡 SEO-অপটিমাইজড বৈশিষ্ট্য:');
+    console.log('   ✓ মডুলার কোড স্ট্রাকচার (ফেজ ২)');
+    console.log('   ✓ গ্রহের দৃষ্টি (মঙ্গল, বুধ, শুক্র, শনি, বৃহস্পতি) – ফেজ ৩');
+    console.log('   ✓ ক্যাশিং সিস্টেম – দ্বিতীয়বার দ্রুত');
+    console.log('   ✓ ৮টি গ্রহের গোচর (সূর্য, চন্দ্র, মঙ্গল, বুধ, শুক্র, শনি, বৃহস্পতি, রাহু, কেতু)');
+    console.log('   ✓ ডায়নামিক OG ইমেজ');
+    console.log('   ✓ JSON-LD স্কিমা (NewsArticle, FAQPage, BreadcrumbList, Organization)');
+    console.log('   ✓ মাস্টার আর্কাইভ মাস-ফিল্টার সহ');
+    console.log('   ✓ নিউজ সাইটম্যাপ ও প্রধান সাইটম্যাপ');
+    
   } catch (err) {
-    console.warn('⚠️ OG ইমেজ তৈরি ব্যর্থ, ডিফল্ট ব্যবহার:', err.message);
+    console.error('❌ Generation failed:', err.message);
+    console.error(err.stack);
+    process.exit(1);
   }
+})();
   
-  let html = templateContent
-    .replace(/\{\{BN_DATE\}\}/g, bnDate)
-    .replace(/\{\{BN_DATE_FULL\}\}/g, bnDateFull)
-    .replace(/\{\{URL_DATE\}\}/g, iso)
-    .replace(/\{\{ISO_DATE\}\}/g, iso)
-    .replace(/\{\{MOON_RASHI\}\}/g, moonRashiName)
-    .replace(/\{\{SUN_RASHI\}\}/g, sunRashiName)
-    .replace(/\{\{TITHI\}\}/g, panchang.tithi)
-    .replace(/\{\{NAKSHATRA\}\}/g, panchang.nakshatra)
-    .replace(/\{\{YOGA\}\}/g, panchang.yoga)
-    .replace(/\{\{KARAN\}\}/g, panchang.karan)
-    .replace('{{SCHEMA_JSON}}', buildSchema(TARGET_DATE, rashifalResult, ogImageUrl, panchang))
-    .replace('{{RASHI_CARDS}}', buildRashiCards(rashifalResult))
-    .replace('{{DEFAULT_RASHI_DETAIL}}', buildDefaultRashiDetail(rashifalResult))
-    .replace('{{ARCHIVE_LINKS}}', buildArchiveLinks(TARGET_DATE, rashifalResult))
-    .replace('{{RASHIFAL_DATA_JSON}}', JSON.stringify(rashifalResult.data))
-    .replace('{{FAQ_SCHEMA_JSON}}', buildFaqSchema(TARGET_DATE, rashifalResult, panchang));
   
-  fs.writeFileSync(outFile, html, 'utf8');
-  console.log(`✅ rashifal/${iso}.html — তৈরি হয়েছে`);
-  console.log(`🌙 চন্দ্র: ${RASHI_NAMES[rashifalResult.moonRashi]} | ☀️ সূর্য: ${RASHI_NAMES[rashifalResult.sunRashi]}`);
-  console.log(`📿 তিথি: ${panchang.tithi} | নক্ষত্র: ${panchang.nakshatra} | যোগ: ${panchang.yoga}`);
-  
-  const archive = updateMasterArchive(TARGET_DATE, rashifalResult, panchang);
-  generateIndex(archive);
-  generateSitemaps(archive);
-  
-  // পুরনো OG ইমেজ ক্লিনআপ (30 দিনের বেশি পুরনো)
-  cleanupOldOgImages(OUTPUT_DIR, 30);
-  
-  console.log('\n🎉 সম্পন্ন! Daily rashifal generation v3.0 complete.');
-  console.log('💡 SEO-অপটিমাইজড বৈশিষ্ট্য:');
-  console.log('   ✓ মডুলার কোড স্ট্রাকচার (ফেজ ২)');
-  console.log('   ✓ গ্রহের দৃষ্টি (মঙ্গল, বুধ, শুক্র, শনি, বৃহস্পতি) – ফেজ ৩');
-  console.log('   ✓ ক্যাশিং সিস্টেম – দ্বিতীয়বার দ্রুত');
-  console.log('   ✓ ৮টি গ্রহের গোচর (সূর্য, চন্দ্র, মঙ্গল, বুধ, শুক্র, শনি, বৃহস্পতি, রাহু, কেতু)');
-  console.log('   ✓ ডায়নামিক OG ইমেজ');
-  console.log('   ✓ JSON-LD স্কিমা (NewsArticle, FAQPage, BreadcrumbList, Organization)');
-  console.log('   ✓ মাস্টার আর্কাইভ মাস-ফিল্টার সহ');
-  console.log('   ✓ নিউজ সাইটম্যাপ ও প্রধান সাইটম্যাপ');
-  
-} catch (err) {
-  console.error('❌ Generation failed:', err.message);
-  console.error(err.stack);
-  process.exit(1);
-}
