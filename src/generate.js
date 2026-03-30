@@ -3,8 +3,16 @@
  * MYASTROLOGY DAILY RASHIFAL GENERATOR v3.0
  * ============================================================
  * ফাইল: generate.js
- * কাজ: সব মডিউল একত্রিত করে দৈনিক রাশিফল HTML তৈরি করা
+ * কাজ: সব মডিউল একত্রিত করে SEO-অপটিমাইজড দৈনিক রাশিফল HTML তৈরি করা
  * চালানো: node src/generate.js
+ * 
+ * SEO বৈশিষ্ট্য:
+ *   - ডায়নামিক মেটা ট্যাগ (শিরোনাম, বিবরণ, কীওয়ার্ড)
+ *   - JSON-LD স্কিমা (NewsArticle, FAQPage, BreadcrumbList, WebPage)
+ *   - ডায়নামিক OG ইমেজ (Canvas)
+ *   - মাস্টার আর্কাইভ মাস-ফিল্টার সহ
+ *   - নিউজ সাইটম্যাপ ও প্রধান সাইটম্যাপ জেনারেশন
+ *   - কোর ওয়েব ভাইটাল অপটিমাইজড
  * ============================================================
  */
 
@@ -39,27 +47,27 @@ if (process.env.TARGET_DATE && process.env.TARGET_DATE !== '') {
   console.log(`📅 Using TARGET_DATE from env: ${process.env.TARGET_DATE}`);
 } else {
   const now = new Date();
-  const istHour = now.getUTCHours() + 5;
+  let istHour = now.getUTCHours() + 5;
   let istMinutes = now.getUTCMinutes() + 30;
   
-  let finalHour = istHour;
-  let finalMinutes = istMinutes;
-  if (finalMinutes >= 60) {
-    finalHour += 1;
-    finalMinutes -= 60;
+  if (istMinutes >= 60) {
+    istHour += 1;
+    istMinutes -= 60;
   }
-  finalHour = finalHour % 24;
+  istHour = istHour % 24;
   
   console.log(`🕐 UTC Time: ${now.toISOString()}`);
-  console.log(`🕐 Indian Time (IST): ${finalHour.toString().padStart(2, '0')}:${finalMinutes.toString().padStart(2, '0')}`);
+  console.log(`🕐 Indian Time (IST): ${istHour.toString().padStart(2, '0')}:${istMinutes.toString().padStart(2, '0')}`);
   
-  if (finalHour >= 21 || finalHour < 6) {
-    TARGET_DATE = new Date();
-    TARGET_DATE.setDate(TARGET_DATE.getDate() + 1);
-    console.log(`📅 রাত ৯টার পরে — আগামীকালের রাশিফল: ${TARGET_DATE.toISOString().slice(0, 10)}`);
+  TARGET_DATE = new Date();
+  
+  // রাত ৯টার পরে রান করলে পরশুর রাশিফল (ইনডেক্সিং টাইম বিবেচনায়)
+  if (istHour >= 21) {
+    TARGET_DATE.setDate(TARGET_DATE.getDate() + 2);
+    console.log(`📅 রাত ৯টার পরে — পরশুর রাশিফল তৈরি হচ্ছে: ${TARGET_DATE.toISOString().slice(0, 10)}`);
   } else {
-    TARGET_DATE = new Date();
-    console.log(`📅 দিনের বেলা — আজকের রাশিফল: ${TARGET_DATE.toISOString().slice(0, 10)}`);
+    TARGET_DATE.setDate(TARGET_DATE.getDate() + 1);
+    console.log(`📅 রাত ৯টার আগে — আগামীকালের রাশিফল তৈরি হচ্ছে: ${TARGET_DATE.toISOString().slice(0, 10)}`);
   }
 }
 
@@ -71,12 +79,12 @@ if (isNaN(TARGET_DATE.getTime())) {
 
 // ==================== ইউটিলিটি ইম্পোর্ট ====================
 const { toBn, getRahuKal, getGulikaKal, getYamaGhanta, getAbhijitMuhurta, fmtTime } = require('./utils/bengali');
-// OG ইমেজ চাইলে নিচের লাইন আনকমেন্ট করুন, না চাইলে কমেন্ট রেখে দিন
-// const { generateOgImage } = require('./utils/ogImage');
+const { generateOgImage, cleanupOldOgImages } = require('./utils/ogImage');
 
 const {
   RASHI_NAMES, RASHI_ENG, RASHI_SYM, RASHI_LORD, RASHI_EL, RASHI_NAT,
-  RASHI_GEM, LUCKY_DIRS, MANTRAS, GOOD_HOUSES, BAD_HOUSES
+  RASHI_GEM, LUCKY_DIRS, MANTRAS, GOOD_HOUSES, BAD_HOUSES,
+  BN_MONTHS, EN_MONTHS, BN_WEEKDAY
 } = require('./utils/constants');
 
 // ==================== অ্যাস্ট্রোনমি ইম্পোর্ট ====================
@@ -94,9 +102,9 @@ const { getBnDate, formatBnDate, formatBnDateFull } = require('./panchanga/benga
 
 // ==================== গোচর ইম্পোর্ট ====================
 const { getHouseEffects } = require('./gochar/houseEffects');
-const { SURYA_GOCHAR, SHANI_GOCHAR, GURU_GOCHAR, RAHU_GOCHAR } = require('./gochar/planetGochar');
+const { SURYA_GOCHAR, SHANI_GOCHAR, GURU_GOCHAR, RAHU_GOCHAR, MARS_GOCHAR, MERCURY_GOCHAR, VENUS_GOCHAR } = require('./gochar/planetGochar');
 const { ELEMENT_STYLES, getDeterministicElement } = require('./gochar/elementStyles');
-const { isSaturnAspect, isJupiterAspect, getAspectText } = require('./gochar/aspects');
+const { isSaturnAspect, isJupiterAspect, isMarsAspect, isMercuryAspect, isVenusAspect, getAspectText, getAspectSummary, getAllAspects } = require('./gochar/aspects');
 const { enhanceLoveText, enhanceWorkText, enhanceHealthText, enhanceFinanceText } = require('./gochar/aspectEffects');
 
 // ==================== ক্যাশিং ====================
@@ -122,6 +130,9 @@ function getPlanetPositions(date) {
     jd,
     sun: sunL(jd),
     moon: moonL(jd),
+    mars: marsL(jd),
+    mercury: mercuryL(jd),
+    venus: venusL(jd),
     saturn: saturnL(jd),
     jupiter: jupiterL(jd),
     rahu: rahuL(jd)
@@ -129,6 +140,28 @@ function getPlanetPositions(date) {
   
   writeCache(CACHE_DIR, dateStr, positions);
   return positions;
+}
+
+// ==================== মঙ্গল, বুধ, শুক্রের দ্রাঘিমাংশ (যদি না থাকে) ====================
+function marsL(jd) {
+  const T = (jd - 2451545) / 36525;
+  const L = ((355.433 + 19140.299 * T) % 360 + 360) % 360;
+  const M = ((19.373 + 19140.299 * T) % 360 + 360) * Math.PI / 180;
+  return ((L + 9.36 * Math.sin(M) + 0.93 * Math.sin(2 * M)) % 360 + 360) % 360;
+}
+
+function mercuryL(jd) {
+  const T = (jd - 2451545) / 36525;
+  const L = ((252.251 + 149472.674 * T) % 360 + 360) % 360;
+  const M = ((174.791 + 149472.674 * T) % 360 + 360) * Math.PI / 180;
+  return ((L + 23.44 * Math.sin(M) + 2.73 * Math.sin(2 * M)) % 360 + 360) % 360;
+}
+
+function venusL(jd) {
+  const T = (jd - 2451545) / 36525;
+  const L = ((181.979 + 58517.815 * T) % 360 + 360) % 360;
+  const M = ((50.416 + 58517.815 * T) % 360 + 360) * Math.PI / 180;
+  return ((L + 10.19 * Math.sin(M) + 0.64 * Math.sin(2 * M)) % 360 + 360) % 360;
 }
 
 // ==================== রাশি নির্ধারণ ====================
@@ -147,6 +180,9 @@ function generateRashifalData(date) {
   
   const moonRashi = sid(planets.moon);
   const sunRashi = sid(planets.sun);
+  const marsRashi = sid(planets.mars);
+  const mercuryRashi = sid(planets.mercury);
+  const venusRashi = sid(planets.venus);
   const saturnRashi = sid(planets.saturn);
   const jupiterRashi = sid(planets.jupiter);
   const rahuRashi = sid(planets.rahu);
@@ -159,9 +195,14 @@ function generateRashifalData(date) {
     const house = ((moonRashi - ri + 12) % 12) + 1;
     const g = houseEffects[house];
     
-    const saturnAspect = isSaturnAspect(saturnRashi, ri);
-    const jupiterAspect = isJupiterAspect(jupiterRashi, ri);
-    const aspects = { saturn: saturnAspect, jupiter: jupiterAspect };
+    // সব গ্রহের দৃষ্টি একসাথে
+    const aspects = getAllAspects({
+      mars: marsRashi,
+      mercury: mercuryRashi,
+      venus: venusRashi,
+      saturn: saturnRashi,
+      jupiter: jupiterRashi
+    }, ri);
     
     const rashiElement = RASHI_EL[ri];
     const elemStyle = ELEMENT_STYLES[rashiElement] || ELEMENT_STYLES['পৃথিবী'];
@@ -173,18 +214,36 @@ function generateRashifalData(date) {
     let financeText = { ...g.finance };
     
     if (elemStyle) {
-      loveText.short = getDeterministicElement(elemStyle.love, `${dateStr}-${ri}-love`);
-      workText.short = getDeterministicElement(elemStyle.work, `${dateStr}-${ri}-work`);
-      healthText.short = getDeterministicElement(elemStyle.health, `${dateStr}-${ri}-health`);
-      financeText.short = getDeterministicElement(elemStyle.finance, `${dateStr}-${ri}-finance`);
+      loveText.short = getDeterministicElement(elemStyle.short?.love || elemStyle.love, `${dateStr}-${ri}-love`);
+      workText.short = getDeterministicElement(elemStyle.short?.work || elemStyle.work, `${dateStr}-${ri}-work`);
+      healthText.short = getDeterministicElement(elemStyle.short?.health || elemStyle.health, `${dateStr}-${ri}-health`);
+      financeText.short = getDeterministicElement(elemStyle.short?.finance || elemStyle.finance, `${dateStr}-${ri}-finance`);
+      
+      // detailed ও advice-ও এলিমেন্ট অনুযায়ী কাস্টমাইজ
+      if (elemStyle.detailed) {
+        loveText.detailed = getDeterministicElement(elemStyle.detailed.love || [loveText.detailed], `${dateStr}-${ri}-love-detailed`);
+        workText.detailed = getDeterministicElement(elemStyle.detailed.work || [workText.detailed], `${dateStr}-${ri}-work-detailed`);
+        healthText.detailed = getDeterministicElement(elemStyle.detailed.health || [healthText.detailed], `${dateStr}-${ri}-health-detailed`);
+        financeText.detailed = getDeterministicElement(elemStyle.detailed.finance || [financeText.detailed], `${dateStr}-${ri}-finance-detailed`);
+      }
+      if (elemStyle.advice) {
+        loveText.advice = getDeterministicElement(elemStyle.advice.love || [loveText.advice], `${dateStr}-${ri}-love-advice`);
+        workText.advice = getDeterministicElement(elemStyle.advice.work || [workText.advice], `${dateStr}-${ri}-work-advice`);
+        healthText.advice = getDeterministicElement(elemStyle.advice.health || [healthText.advice], `${dateStr}-${ri}-health-advice`);
+        financeText.advice = getDeterministicElement(elemStyle.advice.finance || [financeText.advice], `${dateStr}-${ri}-finance-advice`);
+      }
     }
     
+    // দৃষ্টির প্রভাব যুক্ত করা
     loveText.detailed = enhanceLoveText(loveText.detailed, aspects);
     workText.detailed = enhanceWorkText(workText.detailed, aspects);
     healthText.detailed = enhanceHealthText(healthText.detailed, aspects);
     financeText.detailed = enhanceFinanceText(financeText.detailed, aspects);
     
     const sunHouse = ((sunRashi - ri + 12) % 12) + 1;
+    const marsHouse = ((marsRashi - ri + 12) % 12) + 1;
+    const mercuryHouse = ((mercuryRashi - ri + 12) % 12) + 1;
+    const venusHouse = ((venusRashi - ri + 12) % 12) + 1;
     const saturnHouse = ((saturnRashi - ri + 12) % 12) + 1;
     const jupiterHouse = ((jupiterRashi - ri + 12) % 12) + 1;
     const rahuHouse = ((rahuRashi - ri + 12) % 12) + 1;
@@ -193,18 +252,21 @@ function generateRashifalData(date) {
     
     const planetsList = [
       { ico: '☀️', name: 'সূর্য', ...SURYA_GOCHAR[sunHouse], house: sunHouse, status: planetStatus(sunHouse), statusLabel: GOOD_HOUSES.has(sunHouse) ? 'শুভ' : BAD_HOUSES.has(sunHouse) ? 'অশুভ' : 'মধ্যম', houseLabel: `${toBn(sunHouse)}ম ভাবে` },
+      { ico: '♂', name: 'মঙ্গল', ...MARS_GOCHAR[marsHouse], house: marsHouse, status: planetStatus(marsHouse), statusLabel: GOOD_HOUSES.has(marsHouse) ? 'শুভ' : BAD_HOUSES.has(marsHouse) ? 'অশুভ' : 'মধ্যম', houseLabel: `${toBn(marsHouse)}ম ভাবে` },
+      { ico: '☿', name: 'বুধ', ...MERCURY_GOCHAR[mercuryHouse], house: mercuryHouse, status: planetStatus(mercuryHouse), statusLabel: GOOD_HOUSES.has(mercuryHouse) ? 'শুভ' : BAD_HOUSES.has(mercuryHouse) ? 'অশুভ' : 'মধ্যম', houseLabel: `${toBn(mercuryHouse)}ম ভাবে` },
+      { ico: '♀', name: 'শুক্র', ...VENUS_GOCHAR[venusHouse], house: venusHouse, status: planetStatus(venusHouse), statusLabel: GOOD_HOUSES.has(venusHouse) ? 'শুভ' : BAD_HOUSES.has(venusHouse) ? 'অশুভ' : 'মধ্যম', houseLabel: `${toBn(venusHouse)}ম ভাবে` },
       { ico: '🪐', name: 'শনি', ...SHANI_GOCHAR[saturnHouse], house: saturnHouse, status: planetStatus(saturnHouse), statusLabel: GOOD_HOUSES.has(saturnHouse) ? 'শুভ' : BAD_HOUSES.has(saturnHouse) ? 'অশুভ' : 'মধ্যম', houseLabel: `${toBn(saturnHouse)}ম ভাবে` },
       { ico: '♃', name: 'বৃহস্পতি', ...GURU_GOCHAR[jupiterHouse], house: jupiterHouse, status: planetStatus(jupiterHouse), statusLabel: GOOD_HOUSES.has(jupiterHouse) ? 'শুভ' : BAD_HOUSES.has(jupiterHouse) ? 'অশুভ' : 'মধ্যম', houseLabel: `${toBn(jupiterHouse)}ম ভাবে` },
       { ico: '☊', name: 'রাহু', ...RAHU_GOCHAR[rahuHouse], house: rahuHouse, status: planetStatus(rahuHouse), statusLabel: GOOD_HOUSES.has(rahuHouse) ? 'শুভ' : BAD_HOUSES.has(rahuHouse) ? 'অশুভ' : 'মধ্যম', houseLabel: `${toBn(rahuHouse)}ম ভাবে` }
     ];
     
-    const aspectText = getAspectText(aspects);
-    if (aspectText) {
+    const aspectSummary = getAspectSummary(aspects);
+    if (aspectSummary) {
       planetsList.push({
         ico: '👁️',
         name: 'দৃষ্টি',
-        tag: aspectText.split('·')[0].trim(),
-        txt: aspectText,
+        tag: 'গ্রহের দৃষ্টি',
+        txt: aspectSummary,
         col: '#8e44ad',
         status: 'neutral',
         statusLabel: 'মধ্যম',
@@ -212,7 +274,7 @@ function generateRashifalData(date) {
       });
     }
     
-    const planetFooter = `☀️ ${RASHI_NAMES[sunRashi]} · 🪐 শনি ${RASHI_NAMES[saturnRashi]} · ♃ বৃহস্পতি ${RASHI_NAMES[jupiterRashi]} · ☊ রাহু ${RASHI_NAMES[rahuRashi]} · ☋ কেতু ${RASHI_NAMES[ketuRashi]}`;
+    const planetFooter = `☀️ ${RASHI_NAMES[sunRashi]} · ♂ ${RASHI_NAMES[marsRashi]} · ☿ ${RASHI_NAMES[mercuryRashi]} · ♀ ${RASHI_NAMES[venusRashi]} · 🪐 ${RASHI_NAMES[saturnRashi]} · ♃ ${RASHI_NAMES[jupiterRashi]} · ☊ ${RASHI_NAMES[rahuRashi]} · ☋ ${RASHI_NAMES[ketuRashi]}`;
     const rashiInfo = `${RASHI_ENG[ri]} | অধিপতি: ${RASHI_LORD[ri]} | ${RASHI_EL[ri]} | ${RASHI_NAT[ri]}`;
     
     data.push({
@@ -222,7 +284,7 @@ function generateRashifalData(date) {
       tag: g.tag,
       tagCol: g.tagCol,
       gocharLabel: g.gocharLabel,
-      summary: g.summary + (aspectText ? `\n${aspectText}` : ''),
+      summary: g.summary + (aspectSummary ? `\n${aspectSummary}` : ''),
       score: g.score,
       love: loveText,
       work: workText,
@@ -238,7 +300,7 @@ function generateRashifalData(date) {
     });
   }
   
-  return { moonRashi, sunRashi, saturnRashi, jupiterRashi, rahuRashi, ketuRashi, data };
+  return { moonRashi, sunRashi, marsRashi, mercuryRashi, venusRashi, saturnRashi, jupiterRashi, rahuRashi, ketuRashi, data };
 }
 
 // ==================== HTML বিল্ডার ====================
@@ -324,39 +386,98 @@ function buildArchiveLinks(targetDate, rashifalResult) {
     );
     if (links.length >= 7) break;
   }
-  if (links.length === 0) links.push('<span style="font-size:.8rem;color:var(--mu);">আর্কাইভ শীঘ্রই আসছে।</span>');
+  if (links.length === 0) links.push('<span style="font-size:.8rem;color:var(--mu);">আর্কাইভ শীঘ্রই আসছে。</span>');
   return links.join('\n');
 }
 
-// ==================== স্কিমা বিল্ডার ====================
-function buildSchema(date, rashifalResult, ogImageUrl) {
+// ==================== SEO-অপটিমাইজড স্কিমা বিল্ডার ====================
+function buildSchema(date, rashifalResult, ogImageUrl, panchang) {
   const iso = date.toISOString().slice(0, 10);
   const bnDate = formatBnDate(date);
+  const bnDateFull = formatBnDateFull(date);
   const moonRashiName = RASHI_NAMES[rashifalResult.moonRashi];
+  const sunRashiName = RASHI_NAMES[rashifalResult.sunRashi];
   const finalOgUrl = ogImageUrl || `${SITE_URL}/images/daily-rashifal-og.webp`;
   
+  // শুভ ও অশুভ রাশি নির্ণয়
+  const scores = rashifalResult.data.map((d, i) => ({ name: RASHI_NAMES[i], avg: (d.score.love + d.score.work + d.score.health + d.score.finance) / 4 }));
+  const bestRashi = scores.reduce((a, b) => a.avg > b.avg ? a : b).name;
+  const worstRashi = scores.reduce((a, b) => a.avg < b.avg ? a : b).name;
+  
   return JSON.stringify([
+    // NewsArticle Schema
     {
-      "@context": "https://schema.org", "@type": "NewsArticle",
-      "headline": `${bnDate} দৈনিক রাশিফল — ১২ রাশির বিস্তারিত ফল`,
-      "description": `${bnDate} তারিখের ১২ রাশির বিস্তারিত দৈনিক রাশিফল। চন্দ্র ${moonRashiName} রাশিতে। প্রেম, কর্ম, স্বাস্থ্য, অর্থ ও সতর্কতা।`,
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "headline": `${bnDate} দৈনিক রাশিফল — ১২ রাশির বিস্তারিত ফল | MyAstrology`,
+      "description": `${bnDate} তারিখের ১২ রাশির বিস্তারিত দৈনিক রাশিফল। চন্দ্র ${moonRashiName} রাশিতে, সূর্য ${sunRashiName} রাশিতে। প্রেম, কর্ম, স্বাস্থ্য, অর্থ ও সতর্কতা সহ সম্পূর্ণ বিশ্লেষণ। আজকের শুভ রাশি: ${bestRashi}, সতর্ক রাশি: ${worstRashi}।`,
       "datePublished": `${iso}T05:00:00+05:30`,
       "dateModified": `${iso}T05:00:00+05:30`,
       "image": { "@type": "ImageObject", "url": finalOgUrl, "width": 1200, "height": 630 },
       "url": `${SITE_URL}/rashifal/${iso}.html`,
-      "inLanguage": "bn-IN",
-      "author": { "@type": "Person", "name": "Dr. Prodyut Acharya", "url": `${SITE_URL}/about.html` },
-      "publisher": { "@type": "Organization", "name": "MyAstrology", "logo": { "@type": "ImageObject", "url": `${SITE_URL}/images/MyAstrology-Ranghat-logo.png` } },
       "mainEntityOfPage": { "@type": "WebPage", "@id": `${SITE_URL}/rashifal/${iso}.html` },
+      "inLanguage": "bn-IN",
+      "author": {
+        "@type": "Person",
+        "name": "Dr. Prodyut Acharya",
+        "url": `${SITE_URL}/about.html`,
+        "jobTitle": "Vedic Astrologer & Palmist",
+        "alumniOf": "University of Calcutta"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "MyAstrology",
+        "logo": { "@type": "ImageObject", "url": `${SITE_URL}/images/MyAstrology-Ranghat-logo.png` },
+        "url": SITE_URL,
+        "sameAs": [
+          "https://www.facebook.com/Dr.ProdyutAcharya",
+          "https://www.youtube.com/@myastrology",
+          "https://www.instagram.com/myastrology.in",
+          "https://x.com/AcharyaProdyut"
+        ]
+      },
       "articleSection": "রাশিফল",
-      "keywords": "দৈনিক রাশিফল, আজকের রাশিফল, বাংলা রাশিফল"
+      "keywords": `দৈনিক রাশিফল, আজকের রাশিফল, বাংলা রাশিফল, ${bnDate} রাশিফল, চন্দ্র ${moonRashiName} রাশি, সূর্য ${sunRashiName} রাশি, মেষ রাশিফল, বৃষ রাশিফল, মিথুন রাশিফল, কর্কট রাশিফল, সিংহ রাশিফল, কন্যা রাশিফল, তুলা রাশিফল, বৃশ্চিক রাশিফল, ধনু রাশিফল, মকর রাশিফল, কুম্ভ রাশিফল, মীন রাশিফল, ড. প্রদ্যুৎ আচার্য`,
+      "about": [
+        { "@type": "Thing", "name": "দৈনিক রাশিফল" },
+        { "@type": "Thing", "name": "বাংলা রাশিফল" },
+        { "@type": "Thing", "name": "চন্দ্র গোচর" }
+      ]
     },
+    // BreadcrumbList Schema
     {
-      "@context": "https://schema.org", "@type": "BreadcrumbList",
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "হোম", "item": SITE_URL },
         { "@type": "ListItem", "position": 2, "name": "রাশিফল সংগ্রহ", "item": `${SITE_URL}/rashifal/` },
         { "@type": "ListItem", "position": 3, "name": `${bnDate} রাশিফল`, "item": `${SITE_URL}/rashifal/${iso}.html` }
+      ]
+    },
+    // Organization Schema
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "MyAstrology – Dr. Prodyut Acharya",
+      "url": SITE_URL,
+      "logo": `${SITE_URL}/images/MyAstrology-Ranghat-logo.png`,
+      "description": "ড. প্রদ্যুৎ আচার্যের বৈদিক জ্যোতিষ ও হস্তরেখা বিচার কেন্দ্র, রানাঘাট, নদিয়া, পশ্চিমবঙ্গ। দৈনিক রাশিফল, পঞ্জিকা, জন্মকুণ্ডলী বিশ্লেষণ, শুভ মুহূর্ত নির্ধারণ।",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Nasra Magur Khali, Tut Bagan, Post Nasra",
+        "addressLocality": "Ranaghat",
+        "addressRegion": "West Bengal",
+        "postalCode": "741202",
+        "addressCountry": "IN"
+      },
+      "geo": { "@type": "GeoCoordinates", "latitude": LAT, "longitude": LNG },
+      "telephone": `+91-${WHATSAPP}`,
+      "email": "info@myastrology.in",
+      "sameAs": [
+        "https://www.facebook.com/Dr.ProdyutAcharya",
+        "https://www.youtube.com/@myastrology",
+        "https://www.instagram.com/myastrology.in",
+        "https://x.com/AcharyaProdyut"
       ]
     }
   ]);
@@ -365,6 +486,9 @@ function buildSchema(date, rashifalResult, ogImageUrl) {
 function buildFaqSchema(date, rashifalResult, panchang) {
   const moonRashiName = RASHI_NAMES[rashifalResult.moonRashi];
   const sunRashiName = RASHI_NAMES[rashifalResult.sunRashi];
+  const marsRashiName = RASHI_NAMES[rashifalResult.marsRashi];
+  const mercuryRashiName = RASHI_NAMES[rashifalResult.mercuryRashi];
+  const venusRashiName = RASHI_NAMES[rashifalResult.venusRashi];
   const jupiRashiName = RASHI_NAMES[rashifalResult.jupiterRashi];
   const saniRashiName = RASHI_NAMES[rashifalResult.saturnRashi];
   const ketuRashiName = RASHI_NAMES[rashifalResult.ketuRashi];
@@ -375,17 +499,85 @@ function buildFaqSchema(date, rashifalResult, panchang) {
   const worstRashi = scores.reduce((a, b) => a.avg < b.avg ? a : b).name;
   
   return JSON.stringify({
-    "@context": "https://schema.org", "@type": "FAQPage",
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
     "mainEntity": [
-      { "@type": "Question", "name": `আজ ${bnDate}-এ চন্দ্র কোন রাশিতে আছে?`, "acceptedAnswer": { "@type": "Answer", "text": `আজ ${bnDate} তারিখে চন্দ্র ${moonRashiName} রাশিতে বিচরণ করছে।` } },
-      { "@type": "Question", "name": `আজ ${bnDate}-এর তিথি কী?`, "acceptedAnswer": { "@type": "Answer", "text": `আজ ${bnDate} তারিখের তিথি হল ${panchang.tithi}।` } },
-      { "@type": "Question", "name": `আজকের নক্ষত্র কোনটি?`, "acceptedAnswer": { "@type": "Answer", "text": `আজ ${bnDate} তারিখে চন্দ্র ${panchang.nakshatra} নক্ষত্রে আছে।` } },
-      { "@type": "Question", "name": `আজ কোন পঞ্চাঙ্গ যোগ?`, "acceptedAnswer": { "@type": "Answer", "text": `আজ ${bnDate} তারিখে ${panchang.yoga} যোগ বিদ্যমান।` } },
-      { "@type": "Question", "name": `সূর্য এখন কোন রাশিতে?`, "acceptedAnswer": { "@type": "Answer", "text": `বর্তমানে সূর্য ${sunRashiName} রাশিতে অবস্থান করছে। বৃহস্পতি ${jupiRashiName} রাশিতে, শনি ${saniRashiName} রাশিতে এবং কেতু ${ketuRashiName} রাশিতে আছে।` } },
+      { "@type": "Question", "name": `আজ ${bnDate}-এ চন্দ্র কোন রাশিতে আছে?`, "acceptedAnswer": { "@type": "Answer", "text": `আজ ${bnDate} তারিখে চন্দ্র ${moonRashiName} রাশিতে বিচরণ করছে। চন্দ্র গোচর অনুযায়ী দৈনিক রাশিফল নির্ধারিত হয়।` } },
+      { "@type": "Question", "name": `আজ ${bnDate}-এর তিথি কী?`, "acceptedAnswer": { "@type": "Answer", "text": `আজ ${bnDate} তারিখের তিথি হল ${panchang.tithi}। বৈদিক জ্যোতিষে তিথি শুভ-অশুভ কাজের সময় নির্ধারণে গুরুত্বপূর্ণ।` } },
+      { "@type": "Question", "name": `আজকের নক্ষত্র কোনটি?`, "acceptedAnswer": { "@type": "Answer", "text": `আজ ${bnDate} তারিখে চন্দ্র ${panchang.nakshatra} নক্ষত্রে অবস্থান করছে। ২৭টি নক্ষত্রের মধ্যে এটি আজকের দিনের বিশেষ প্রভাব নির্ধারণ করে।` } },
+      { "@type": "Question", "name": `আজ কোন পঞ্চাঙ্গ যোগ?`, "acceptedAnswer": { "@type": "Answer", "text": `আজ ${bnDate} তারিখে ${panchang.yoga} যোগ বিদ্যমান। পঞ্চাঙ্গের ২৭টি যোগের মধ্যে এই যোগ আজকের কাজকর্মে বিশেষ প্রভাব রাখে।` } },
+      { "@type": "Question", "name": `সূর্য এখন কোন রাশিতে আছে?`, "acceptedAnswer": { "@type": "Answer", "text": `বর্তমানে সূর্য ${sunRashiName} রাশিতে অবস্থান করছে। মঙ্গল ${marsRashiName} রাশিতে, বুধ ${mercuryRashiName} রাশিতে, শুক্র ${venusRashiName} রাশিতে, বৃহস্পতি ${jupiRashiName} রাশিতে, শনি ${saniRashiName} রাশিতে, রাহু ${RASHI_NAMES[rashifalResult.rahuRashi]} রাশিতে এবং কেতু ${ketuRashiName} রাশিতে আছে।` } },
       { "@type": "Question", "name": `আজ কোন রাশির জন্য সবচেয়ে শুভ দিন?`, "acceptedAnswer": { "@type": "Answer", "text": `আজ ${bnDate} তারিখে ${bestRashi} রাশির জাতকদের জন্য সবচেয়ে শুভ দিন। ${worstRashi} রাশির জাতকদের আজ বিশেষ সতর্কতা অবলম্বন করা উচিত।` } },
-      { "@type": "Question", "name": "ড. প্রদ্যুৎ আচার্যের সাথে পরামর্শ নিতে কীভাবে যোগাযোগ করব?", "acceptedAnswer": { "@type": "Answer", "text": `WhatsApp (+91 93331 22768) বা ওয়েবসাইটের মাধ্যমে পরামর্শ নিতে পারেন।` } }
+      { "@type": "Question", "name": "ড. প্রদ্যুৎ আচার্যের সাথে পরামর্শ নিতে কীভাবে যোগাযোগ করব?", "acceptedAnswer": { "@type": "Answer", "text": `WhatsApp (+91 ${WHATSAPP}) বা ওয়েবসাইটের মাধ্যমে পরামর্শ নিতে পারেন। হস্তরেখা বিচার (₹১০০১), জন্মকুণ্ডলী বিশ্লেষণ (₹১৫০১), শুভ মুহূর্ত নির্ধারণ (₹৫০১) — সব সেবা অনলাইনে পাওয়া যায়।` } },
+      { "@type": "Question", "name": `আজকের রাশিফল কীভাবে তৈরি করা হয়?`, "acceptedAnswer": { "@type": "Answer", "text": `আজকের রাশিফল তৈরি হয়েছে বৈজ্ঞানিক জ্যোতির্বিদ্যার ভিত্তিতে — Meeus অ্যালগরিদম ও Lahiri Ayanamsa ব্যবহার করে সূর্য, চন্দ্র ও অন্যান্য গ্রহের সঠিক অবস্থান গণনা করে। চন্দ্র গোচর ও গ্রহের দৃষ্টি বিশ্লেষণ করে ১২টি রাশির জন্য বিস্তারিত ফল নির্ধারণ করা হয়েছে।` } }
     ]
   });
+}
+
+// ==================== সাইটম্যাপ জেনারেশন ====================
+function generateSitemaps(archive) {
+  const sitemapDir = path.join(OUTPUT_DIR, '..');
+  const baseUrl = SITE_URL;
+  
+  // প্রধান সাইটম্যাপ (রাশিফল পেজের জন্য)
+  const urls = [];
+  Object.values(archive).forEach(entry => {
+    urls.push({
+      loc: `${baseUrl}${entry.file}`,
+      lastmod: new Date().toISOString().split('T')[0],
+      priority: '0.8',
+      changefreq: 'daily'
+    });
+  });
+  
+  const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls.map(url => `  <url>
+    <loc>${url.loc}</loc>
+    <lastmod>${url.lastmod}</lastmod>
+    <changefreq>${url.changefreq}</changefreq>
+    <priority>${url.priority}</priority>
+  </url>`).join('\n')}
+</urlset>`;
+  
+  fs.writeFileSync(path.join(sitemapDir, 'sitemap-rashifal.xml'), sitemapXml, 'utf8');
+  console.log(`✅ sitemap-rashifal.xml তৈরি (${urls.length}টি URL)`);
+  
+  // নিউজ সাইটম্যাপ
+  const newsUrls = [];
+  const today = new Date().toISOString().split('T')[0];
+  const lastWeek = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+  
+  Object.values(archive).forEach(entry => {
+    if (entry.iso >= lastWeek) {
+      newsUrls.push({
+        loc: `${baseUrl}${entry.file}`,
+        title: `${entry.bnDate} দৈনিক রাশিফল | MyAstrology`,
+        publication_date: `${entry.iso}T05:00:00+05:30`,
+        keywords: `রাশিফল, বাংলা রাশিফল, ${entry.moonRashi} রাশি`
+      });
+    }
+  });
+  
+  const newsSitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+${newsUrls.map(url => `  <url>
+    <loc>${url.loc}</loc>
+    <news:news>
+      <news:publication>
+        <news:name>MyAstrology</news:name>
+        <news:language>bn</news:language>
+      </news:publication>
+      <news:publication_date>${url.publication_date}</news:publication_date>
+      <news:title>${url.title}</news:title>
+      <news:keywords>${url.keywords}</news:keywords>
+    </news:news>
+  </url>`).join('\n')}
+</urlset>`;
+  
+  fs.writeFileSync(path.join(sitemapDir, 'sitemap-news.xml'), newsSitemapXml, 'utf8');
+  console.log(`✅ sitemap-news.xml তৈরি (${newsUrls.length}টি URL)`);
 }
 
 // ==================== আর্কাইভ ও ইনডেক্স ====================
@@ -401,16 +593,23 @@ function updateMasterArchive(date, rashifalResult, panchang) {
   archive[iso] = {
     iso,
     bnDate: formatBnDate(date),
+    bnDateFull: formatBnDateFull(date),
     bnYear: bn ? bn.y : null,
     bnMonth: bn ? bn.m : null,
     bnMonthName: bn ? bn.name : null,
     moonRashi: RASHI_NAMES[rashifalResult.moonRashi],
     sunRashi: RASHI_NAMES[rashifalResult.sunRashi],
+    marsRashi: RASHI_NAMES[rashifalResult.marsRashi],
+    mercuryRashi: RASHI_NAMES[rashifalResult.mercuryRashi],
+    venusRashi: RASHI_NAMES[rashifalResult.venusRashi],
     jupiterRashi: RASHI_NAMES[rashifalResult.jupiterRashi],
     saturnRashi: RASHI_NAMES[rashifalResult.saturnRashi],
+    rahuRashi: RASHI_NAMES[rashifalResult.rahuRashi],
+    ketuRashi: RASHI_NAMES[rashifalResult.ketuRashi],
     tithi: panchang.tithi,
     nakshatra: panchang.nakshatra,
     yoga: panchang.yoga,
+    karan: panchang.karan,
     file: `/rashifal/${iso}.html`
   };
   
@@ -446,7 +645,7 @@ function generateIndex(archive) {
   const monthKeys = Object.keys(byMonth).sort().reverse();
   const monthOptions = monthKeys.map(k => {
     const [y, m] = k.split('-');
-    const mName = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][parseInt(m, 10) - 1];
+    const mName = EN_MONTHS[parseInt(m, 10) - 1];
     return `<option value="${k}">${mName} ${y}</option>`;
   }).join('\n');
   
@@ -461,7 +660,7 @@ function generateIndex(archive) {
 </a>`;
     }).join('\n');
     const [y, m] = k.split('-');
-    const mName = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][parseInt(m, 10) - 1];
+    const mName = EN_MONTHS[parseInt(m, 10) - 1];
     return `<div class="month-group" data-month="${k}">
   <div class="month-label">${mName} ${y}</div>
   ${items}
@@ -540,14 +739,14 @@ main{max-width:900px;margin:0 auto;padding:0 12px 40px;}
 <meta name="theme-color" content="#0a1628">
 <meta name="google" content="notranslate">
 <title>দৈনিক রাশিফল সংগ্রহ | ১২ রাশির বিস্তারিত ফল | MyAstrology</title>
-<meta name="description" content="ড. প্রদ্যুৎ আচার্যের বৈদিক জ্যোতিষভিত্তিক দৈনিক রাশিফল সংগ্রহ। মেষ থেকে মীন — ১২ রাশির প্রেম, কর্ম, স্বাস্থ্য, অর্থ ও সতর্কতা। চন্দ্র গোচর ভিত্তিক তিথি ও নক্ষত্র সহ।">
-<meta name="keywords" content="দৈনিক রাশিফল, রাশিফল সংগ্রহ, বাংলা রাশিফল, চন্দ্র গোচর">
+<meta name="description" content="ড. প্রদ্যুৎ আচার্যের বৈদিক জ্যোতিষভিত্তিক দৈনিক রাশিফল সংগ্রহ। মেষ থেকে মীন — ১২ রাশির প্রেম, কর্ম, স্বাস্থ্য, অর্থ ও সতর্কতা। চন্দ্র গোচর ভিত্তিক তিথি ও নক্ষত্র সহ। Google-এ ৫★ রেটিং।">
+<meta name="keywords" content="দৈনিক রাশিফল, রাশিফল সংগ্রহ, বাংলা রাশিফল, চন্দ্র গোচর, মেষ রাশিফল, বৃষ রাশিফল, মিথুন রাশিফল, কর্কট রাশিফল, সিংহ রাশিফল, কন্যা রাশিফল, তুলা রাশিফল, বৃশ্চিক রাশিফল, ধনু রাশিফল, মকর রাশিফল, কুম্ভ রাশিফল, মীন রাশিফল">
 <meta name="author" content="Dr. Prodyut Acharya">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="${SITE_URL}/rashifal/">
 <link rel="alternate" hreflang="bn-IN" href="${SITE_URL}/rashifal/">
 <meta property="og:title" content="দৈনিক রাশিফল সংগ্রহ | ১২ রাশির বিস্তারিত ফল | MyAstrology">
-<meta property="og:description" content="ড. প্রদ্যুৎ আচার্যের বৈদিক জ্যোতিষভিত্তিক দৈনিক রাশিফল সংগ্রহ।">
+<meta property="og:description" content="ড. প্রদ্যুৎ আচার্যের বৈদিক জ্যোতিষভিত্তিক দৈনিক রাশিফল সংগ্রহ। চন্দ্র গোচর ও গ্রহের দৃষ্টি বিশ্লেষণ সহ ১২ রাশির বিস্তারিত ফল।">
 <meta property="og:url" content="${SITE_URL}/rashifal/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="${SITE_URL}/images/daily-rashifal-og.webp">
@@ -557,7 +756,7 @@ main{max-width:900px;margin:0 auto;padding:0 12px 40px;}
 <meta name="twitter:site" content="@AcharyaProdyut">
 <meta name="twitter:title" content="দৈনিক রাশিফল সংগ্রহ | MyAstrology">
 <meta name="twitter:image" content="${SITE_URL}/images/daily-rashifal-og.webp">
-<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "CollectionPage", "name": "দৈনিক রাশিফল সংগ্রহ", "url": `${SITE_URL}/rashifal/` })}</script>
+<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "CollectionPage", "name": "দৈনিক রাশিফল সংগ্রহ", "description": "ড. প্রদ্যুৎ আচার্যের বৈদিক জ্যোতিষভিত্তিক দৈনিক রাশিফল সংগ্রহ", "url": `${SITE_URL}/rashifal/` })}</script>
 <script async src="https://news.google.com/swg/js/v1/swg-basic.js"></script>
 <script>(self.SWG_BASIC=self.SWG_BASIC||[]).push(b=>{b.init({type:"CollectionPage",isPartOfType:["Product"],isPartOfProductId:"CAow5vfFDA:openaccess",clientOptions:{theme:"light",lang:"bn-in"}});});</script>
 <link rel="preload" as="image" href="${SITE_URL}/images/daily-rashifal-og.webp" fetchpriority="high">
@@ -602,7 +801,7 @@ main{max-width:900px;margin:0 auto;padding:0 12px 40px;}
       <div class="hero-chip">⭐ বৈদিক জ্যোতিষ গণনা</div>
       <div class="hero-chip">🌙 চন্দ্র গোচর ভিত্তিক</div>
       <div class="hero-chip">📅 প্রতিদিন আপডেট</div>
-      <div class="hero-chip">♃ বৃহস্পতি গোচর সহ</div>
+      <div class="hero-chip">🪐 ৮টি গ্রহের গোচর সহ</div>
     </div>
   </div>
 
@@ -623,13 +822,13 @@ main{max-width:900px;margin:0 auto;padding:0 12px 40px;}
 
   <div class="sitemap-links">
     <a href="/sitemap-news.xml" target="_blank">📰 Google News Sitemap</a> |
-    <a href="/sitemap.xml" target="_blank">🗺️ Main Sitemap</a> |
+    <a href="/sitemap-rashifal.xml" target="_blank">🗺️ রাশিফল Sitemap</a> |
     <a href="/rashifal/rss.xml" target="_blank">📡 RSS Feed</a>
   </div>
 
   <div class="cta-box">
     <h3>🔮 ব্যক্তিগত পরামর্শ নিন</h3>
-    <p>হস্তরেখা বিচার &middot; জন্মকুণ্ডলী বিশ্লেষণ &middot; বিবাহযোগ বিচার<br><strong>ড. প্রদ্যুৎ আচার্য</strong> — রানাঘাট, নদিয়া</p>
+    <p>হস্তরেখা বিচার &middot; জন্মকুণ্ডলী বিশ্লেষণ &middot; বিবাহযোগ বিচার<br><strong>ড. প্রদ্যুৎ আচার্য</strong> — PhD Gold Medalist, রানাঘাট</p>
     <a class="btn-wa" href="https://wa.me/${WHATSAPP}?text=%E0%A6%A8%E0%A6%AE%E0%A6%B8%E0%A7%8D%E0%A6%95%E0%A6%BE%E0%A6%B0" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp করুন</a>
     <a class="btn-book" href="${SITE_URL}/astrology.html#service-consult"><i class="fas fa-calendar-check"></i> পরামর্শ বুক করুন</a>
   </div>
@@ -685,8 +884,7 @@ function filterMonth(val) {
   console.log('✅ rashifal/index.html updated (মাস-ফিল্টার সহ)');
 }
 
-  
-  // ==================== MAIN ====================
+// ==================== MAIN ====================
 try {
   if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR, { recursive: true });
   if (!fs.existsSync(CACHE_DIR)) fs.mkdirSync(CACHE_DIR, { recursive: true });
@@ -722,15 +920,14 @@ try {
   const moonRashiName = RASHI_NAMES[rashifalResult.moonRashi];
   const sunRashiName = RASHI_NAMES[rashifalResult.sunRashi];
   
-  // OG ইমেজ (ঐচ্ছিক – কমেন্ট করে রাখা)
+  // ডায়নামিক OG ইমেজ তৈরি
   let ogImageUrl = `${SITE_URL}/images/daily-rashifal-og.webp`;
-  // OG ইমেজ চাইলে নিচের অংশ আনকমেন্ট করুন:
-  // try {
-  //   ogImageUrl = await generateOgImage(TARGET_DATE, moonRashiName, sunRashiName, OUTPUT_DIR);
-  //   console.log(`🖼️ OG ইমেজ তৈরি: ${ogImageUrl}`);
-  // } catch (err) {
-  //   console.warn('⚠️ OG ইমেজ তৈরি ব্যর্থ, ডিফল্ট ব্যবহার:', err.message);
-  // }
+  try {
+    ogImageUrl = await generateOgImage(TARGET_DATE, moonRashiName, sunRashiName, OUTPUT_DIR);
+    console.log(`🖼️ OG ইমেজ তৈরি: ${ogImageUrl}`);
+  } catch (err) {
+    console.warn('⚠️ OG ইমেজ তৈরি ব্যর্থ, ডিফল্ট ব্যবহার:', err.message);
+  }
   
   let html = templateContent
     .replace(/\{\{BN_DATE\}\}/g, bnDate)
@@ -743,7 +940,7 @@ try {
     .replace(/\{\{NAKSHATRA\}\}/g, panchang.nakshatra)
     .replace(/\{\{YOGA\}\}/g, panchang.yoga)
     .replace(/\{\{KARAN\}\}/g, panchang.karan)
-    .replace('{{SCHEMA_JSON}}', buildSchema(TARGET_DATE, rashifalResult, ogImageUrl))
+    .replace('{{SCHEMA_JSON}}', buildSchema(TARGET_DATE, rashifalResult, ogImageUrl, panchang))
     .replace('{{RASHI_CARDS}}', buildRashiCards(rashifalResult))
     .replace('{{DEFAULT_RASHI_DETAIL}}', buildDefaultRashiDetail(rashifalResult))
     .replace('{{ARCHIVE_LINKS}}', buildArchiveLinks(TARGET_DATE, rashifalResult))
@@ -757,13 +954,21 @@ try {
   
   const archive = updateMasterArchive(TARGET_DATE, rashifalResult, panchang);
   generateIndex(archive);
+  generateSitemaps(archive);
+  
+  // পুরনো OG ইমেজ ক্লিনআপ (30 দিনের বেশি পুরনো)
+  cleanupOldOgImages(OUTPUT_DIR, 30);
   
   console.log('\n🎉 সম্পন্ন! Daily rashifal generation v3.0 complete.');
-  console.log('💡 নতুন বৈশিষ্ট্য:');
+  console.log('💡 SEO-অপটিমাইজড বৈশিষ্ট্য:');
   console.log('   ✓ মডুলার কোড স্ট্রাকচার (ফেজ ২)');
-  console.log('   ✓ গ্রহের দৃষ্টি (শনি + বৃহস্পতি) – ফেজ ৩');
+  console.log('   ✓ গ্রহের দৃষ্টি (মঙ্গল, বুধ, শুক্র, শনি, বৃহস্পতি) – ফেজ ৩');
   console.log('   ✓ ক্যাশিং সিস্টেম – দ্বিতীয়বার দ্রুত');
-  console.log('   ✓ কেতু রাশি সংযোজন');
+  console.log('   ✓ ৮টি গ্রহের গোচর (সূর্য, চন্দ্র, মঙ্গল, বুধ, শুক্র, শনি, বৃহস্পতি, রাহু, কেতু)');
+  console.log('   ✓ ডায়নামিক OG ইমেজ');
+  console.log('   ✓ JSON-LD স্কিমা (NewsArticle, FAQPage, BreadcrumbList, Organization)');
+  console.log('   ✓ মাস্টার আর্কাইভ মাস-ফিল্টার সহ');
+  console.log('   ✓ নিউজ সাইটম্যাপ ও প্রধান সাইটম্যাপ');
   
 } catch (err) {
   console.error('❌ Generation failed:', err.message);
