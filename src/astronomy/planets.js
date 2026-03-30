@@ -125,3 +125,20 @@ module.exports = {
   rahuL,
   getRashiIdx
 };
+// গ্রহের অবস্থান (ক্যাশ থেকে বা নতুন)
+const planets = getPlanetPositions(date);
+const jd = planets.jd;
+const ay = lahiriAY(jd);
+
+const sid = lng => Math.floor(((lng - ay) % 360 + 360) % 360 / 30);
+
+const moonRashi = sid(planets.moon);
+const sunRashi = sid(planets.sun);
+const saturnRashi = sid(planets.saturn);
+const jupiterRashi = sid(planets.jupiter);
+const rahuRashi = sid(planets.rahu);
+const ketuRashi = (rahuRashi + 6) % 12;  // কেতু = রাহু + ৬ রাশি
+
+// ... পরে planetFooter-এ যোগ করুন
+const planetFooter = `☀️ ${RASHI_NAMES[sunRashi]} · 🪐 শনি ${RASHI_NAMES[saturnRashi]} · ♃ বৃহস্পতি ${RASHI_NAMES[jupiterRashi]} · ☊ রাহু ${RASHI_NAMES[rahuRashi]} · ☋ কেতু ${RASHI_NAMES[ketuRashi]}`;
+
