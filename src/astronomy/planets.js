@@ -117,27 +117,6 @@ function getRashiIdx(longitude, jd) {
   return Math.floor(((longitude - ay) % 360 + 360) % 360 / 30);
 }
 
-module.exports = {
-  sunL,
-  moonL,
-  saturnL,
-  jupiterL,
-  rahuL,
-  getRashiIdx
-};
-// গ্রহের অবস্থান (ক্যাশ থেকে বা নতুন)
-const planets = getPlanetPositions(date);
-const jd = planets.jd;
-const ay = lahiriAY(jd);
-
-const sid = lng => Math.floor(((lng - ay) % 360 + 360) % 360 / 30);
-
-const moonRashi = sid(planets.moon);
-const sunRashi = sid(planets.sun);
-const saturnRashi = sid(planets.saturn);
-const jupiterRashi = sid(planets.jupiter);
-const rahuRashi = sid(planets.rahu);
-const ketuRashi = (rahuRashi + 6) % 12;  // কেতু = রাহু + ৬ রাশি
 /**
  * গ্রহের গতি নির্ণয় (বক্রগতি কিনা)
  * @param {function} positionFunc - গ্রহের অবস্থান ফাংশন (sunL, moonL, ইত্যাদি)
@@ -148,10 +127,16 @@ function isRetrograde(positionFunc, jd) {
   const today = positionFunc(jd);
   const tomorrow = positionFunc(jd + 1);
   const diff = tomorrow - today;
-  // যদি মান কমে যায় (diff < 0) তাহলে বক্রগতি
+  // বক্রগতি: দ্রাঘিমাংশ কমে যায় (diff < 0)
   return diff < 0;
 }
 
-// ... পরে planetFooter-এ যোগ করুন
-const planetFooter = `☀️ ${RASHI_NAMES[sunRashi]} · 🪐 শনি ${RASHI_NAMES[saturnRashi]} · ♃ বৃহস্পতি ${RASHI_NAMES[jupiterRashi]} · ☊ রাহু ${RASHI_NAMES[rahuRashi]} · ☋ কেতু ${RASHI_NAMES[ketuRashi]}`;
-
+module.exports = {
+  sunL,
+  moonL,
+  saturnL,
+  jupiterL,
+  rahuL,
+  getRashiIdx,
+  isRetrograde
+};
