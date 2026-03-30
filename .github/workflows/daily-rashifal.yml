@@ -2,8 +2,8 @@ name: Rashifal Daily Generator
 
 on:
   schedule:
-    - cron: '30 15 * * *'   # IST 21:00 (রাত 9টা)
-    - cron: '30 17 * * *'   # IST 23:00 (রাত 11টা - ব্যাকআপ)
+    - cron: '30 15 * * *'   # IST 21:00
+    - cron: '30 17 * * *'   # IST 23:00
   workflow_dispatch:
     inputs:
       date:
@@ -44,7 +44,6 @@ jobs:
           CI: true
           
       - name: Generate Rashifal
-        id: generate
         run: |
           cd src
           node generate.js
@@ -64,17 +63,12 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
-          # শুধু rashifal ও cache ফোল্ডারের পরিবর্তন যোগ করুন
           git add rashifal/ cache/
           
-          # পরিবর্তন আছে কিনা চেক করুন
           if git diff --cached --quiet; then
             echo "📭 কোনো পরিবর্তন নেই"
             exit 0
           fi
           
-          # কমিট করুন
           git commit -m "Rashifal: daily update $(TZ='Asia/Kolkata' date +'%Y-%m-%d %H:%M')"
-          
-          # পুশ করুন
           git push origin HEAD:main
