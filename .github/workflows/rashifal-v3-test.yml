@@ -1,13 +1,15 @@
-name: Rashifal V3 Test
+name: Daily Rashifal
 
 on:
+  schedule:
+    - cron: '25 18 * * *'
   workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  test:
+  generate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,17 +20,16 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev build-essential
       - run: npm install --no-audit --no-fund
-      - run: mkdir -p rashifal-test cache
-      - name: Generate V3
+      - run: mkdir -p rashifal cache
+      - name: Generate
         run: cd src && node generate.js
         env:
           TZ: 'Asia/Kolkata'
-          OUTPUT_DIR: "../rashifal-test"   # ← এই লাইনটি আছে কি?
-      - name: Push test output
+      - name: Push
         run: |
-          git config user.name "Test Bot"
-          git config user.email "test@myastrology.in"
-          git add rashifal-test/
+          git config user.name "MyAstrology Bot"
+          git config user.email "bot@myastrology.in"
+          git add rashifal/ cache/
           git diff --cached --quiet && exit 0
-          git commit -m "test: v3 output"
+          git commit -m "Rashifal: $(TZ='Asia/Kolkata' date +%Y-%m-%d)"
           git push origin main
