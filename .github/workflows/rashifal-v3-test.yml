@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       date_override:
-        description: 'তারিখ override (YYYY-MM-DD, খালি = আজকের তারিখ)'
+        description: 'তারিখ override (YYYY-MM-DD, খালি = আগামীকাল)'
         required: false
         default: ''
 
@@ -38,17 +38,17 @@ jobs:
         run: mkdir -p rashifal
 
       - name: Set target date
-  id: set_date
-  run: |
-    if [ -n "${{ github.event.inputs.date_override }}" ]; then
-      TARGET="${{ github.event.inputs.date_override }}"
-      echo "📅 Manual override: $TARGET"
-    else
-      # পুরনো লজিক: আগামীকালের রাশিফল তৈরি হবে
-      TARGET=$(TZ='Asia/Kolkata' date -d tomorrow +%Y-%m-%d)
-      echo "📅 Tomorrow IST: $TARGET"
-    fi
-    echo "TARGET_DATE=${TARGET}" >> $GITHUB_OUTPUT
+        id: set_date
+        run: |
+          if [ -n "${{ github.event.inputs.date_override }}" ]; then
+            TARGET="${{ github.event.inputs.date_override }}"
+            echo "📅 Manual override: $TARGET"
+          else
+            # পুরনো লজিক: আগামীকালের রাশিফল তৈরি হবে
+            TARGET=$(TZ='Asia/Kolkata' date -d tomorrow +%Y-%m-%d)
+            echo "📅 Tomorrow IST: $TARGET"
+          fi
+          echo "TARGET_DATE=${TARGET}" >> $GITHUB_OUTPUT
 
       - name: Generate daily rashifal
         env:
