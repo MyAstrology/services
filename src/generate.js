@@ -40,15 +40,49 @@ const OUTPUT_DIR = path.join(__dirname, CFG.OUTPUT_DIR || '../rashifal');
 const CACHE_DIR = path.join(__dirname, CFG.CACHE_DIR || '../cache');
 const TEMPLATE = path.join(__dirname, 'templates/daily.template.html');
 
-// ==================== TARGET DATE ====================
+// ==================== TARGET DATE (ভারতীয় সময় IST) ====================
 let TARGET_DATE;
+
+// যদি এনভায়রনমেন্ট থেকে পাস করা হয়
 if (process.env.TARGET_DATE && process.env.TARGET_DATE !== '') {
   TARGET_DATE = new Date(process.env.TARGET_DATE + 'T00:00:00');
   console.log(`📅 Using TARGET_DATE from env: ${process.env.TARGET_DATE}`);
 } else {
+  const now = new Date();
+  
+  // ভারতীয় সময় IST = UTC+5:30
+  const istHour = now.getUTCHours() + 5;
+  let istMinutes = now.getUTCMinutes() + 30;
+  
+  // মিনিট অ্যাডজাস্ট
+  let finalHour = istHour;
+  let finalMinutes = istMinutes;
+  if (finalMinutes >= 60) {
+    finalHour += 1;
+    finalMinutes -= 60;
+  }
+  finalHour = finalHour % 24;
+  
+  console.log(`🕐 UTC Time: ${now.toISOString()}`);
+  console.log(`🕐 Indian Time (IST): ${finalHour.toString().padStart(2, '0')}:${finalMinutes.toString().padStart(2, '0')}`);
+  
+  // ভারতীয় সময় রাত ৯টা (২১:০০) থেকে আগামীকালের রাশিফল তৈরি শুরু
+  // এতে রাত ১১:৫৫-এর মধ্যে ফাইল তৈরি হয়ে যাবে
+  if (finalHour >= 21 || finalHour < 6) {
+    TARGET_DATE = new Date();
+    TARGET_DATE.setDate(TARGET_DATE.getDate() + 1);
+    console.log(`📅 রাত ৯টার পরে — আগামীকালের রাশিফল তৈরি হচ্ছে: ${TARGET_DATE.toISOString().slice(0, 10)}`);
+  } else {
+    TARGET_DATE = new Date();
+    console.log(`📅 দিনের বেলা — আজকের রাশিফল তৈরি হচ্ছে: ${TARGET_DATE.toISOString().slice(0, 10)}`);
+  }
+}
+
+// নিশ্চিত করুন TARGET_DATE সঠিক
+if (isNaN(TARGET_DATE.getTime())) {
+  console.error('❌ TARGET_DATE invalid, using tomorrow');
   TARGET_DATE = new Date();
   TARGET_DATE.setDate(TARGET_DATE.getDate() + 1);
-  console.log(`📅 No TARGET_DATE env — using tomorrow: ${TARGET_DATE.toISOString().slice(0, 10)}`);
 }
 
 // ==================== ইউটিলিটি ইম্পোর্ট ====================
