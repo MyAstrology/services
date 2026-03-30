@@ -179,66 +179,7 @@ function getRashiFromLongitude(lng, jd) {
   return Math.floor(((lng - ay) % 360 + 360) % 360 / 30);
 }
 
-// ==================== ASPECT EFFECTS FUNCTIONS ====================
-function enhanceLoveTextAdvanced(text, aspects, context) {
-    if (!aspects || aspects.length === 0) return text;
-    
-    let enhanced = text;
-    for (const aspect of aspects) {
-        if (aspect.type === 'love') {
-            enhanced += ` ${aspect.effect}`;
-        } else if (aspect.planet === 'শুক্র' && aspect.type === 'positive') {
-            enhanced += ` শুক্রের দৃষ্টিতে প্রেমের ক্ষেত্রে মধুরতা বৃদ্ধি পাবে।`;
-        } else if (aspect.planet === 'মঙ্গল' && aspect.type === 'negative') {
-            enhanced += ` মঙ্গলের দৃষ্টিতে সম্পর্কে কিছুটা উত্তেজনা থাকতে পারে।`;
-        }
-    }
-    return enhanced;
-}
 
-function enhanceWorkTextAdvanced(text, aspects, context) {
-    if (!aspects || aspects.length === 0) return text;
-    
-    let enhanced = text;
-    for (const aspect of aspects) {
-        if (aspect.type === 'work') {
-            enhanced += ` ${aspect.effect}`;
-        } else if (aspect.planet === 'বৃহস্পতি' && aspect.type === 'positive') {
-            enhanced += ` বৃহস্পতির দৃষ্টিতে কর্মক্ষেত্রে সাফল্যের সম্ভাবনা।`;
-        } else if (aspect.planet === 'শনি' && aspect.type === 'negative') {
-            enhanced += ` শনির দৃষ্টিতে কাজে কিছুটা বিলম্ব হতে পারে।`;
-        }
-    }
-    return enhanced;
-}
-
-function enhanceHealthTextAdvanced(text, aspects, context) {
-    if (!aspects || aspects.length === 0) return text;
-    
-    let enhanced = text;
-    for (const aspect of aspects) {
-        if (aspect.type === 'health') {
-            enhanced += ` ${aspect.effect}`;
-        } else if (aspect.planet === 'শনি' && aspect.type === 'negative') {
-            enhanced += ` শনির দৃষ্টিতে শারীরিক ক্লান্তি অনুভূত হতে পারে।`;
-        }
-    }
-    return enhanced;
-}
-
-function enhanceFinanceTextAdvanced(text, aspects, context) {
-    if (!aspects || aspects.length === 0) return text;
-    
-    let enhanced = text;
-    for (const aspect of aspects) {
-        if (aspect.type === 'finance') {
-            enhanced += ` ${aspect.effect}`;
-        } else if (aspect.planet === 'বৃহস্পতি' && aspect.type === 'positive') {
-            enhanced += ` বৃহস্পতির দৃষ্টিতে আর্থিক লাভের যোগ।`;
-        }
-    }
-    return enhanced;
-}
 
 // ==================== রাশিফল ডেটা জেনারেশন ====================
 function generateRashifalData(date) {
