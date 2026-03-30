@@ -114,7 +114,7 @@ const { getHouseEffects } = require('./gochar/houseEffects');
 const { SURYA_GOCHAR, SHANI_GOCHAR, GURU_GOCHAR, RAHU_GOCHAR, MARS_GOCHAR, MERCURY_GOCHAR, VENUS_GOCHAR } = require('./gochar/planetGochar');
 const { ELEMENT_STYLES, getDeterministicElement } = require('./gochar/elementStyles');
 const { isSaturnAspect, isJupiterAspect, isMarsAspect, isMercuryAspect, isVenusAspect, getAspectText, getAspectSummary, getAllAspects } = require('./gochar/aspects');
-const { enhanceLoveText, enhanceWorkText, enhanceHealthText, enhanceFinanceText } = require('./gochar/aspectEffects');
+const { enhanceLoveTextAdvanced, enhanceWorkTextAdvanced, enhanceHealthTextAdvanced, enhanceFinanceTextAdvanced } = require('./gochar/aspectEffects');
 
 // ==================== ক্যাশিং ====================
 const { readCache, writeCache } = require('./utils/cache');
