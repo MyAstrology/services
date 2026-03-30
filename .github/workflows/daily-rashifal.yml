@@ -63,8 +63,8 @@ jobs:
           
       - name: Commit and Push
         run: |
-          git config user.name "GitHub Actions Bot"
-          git config user.email "actions@github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           
           # সব পরিবর্তন স্টেজ করুন
           git add -A
@@ -76,7 +76,7 @@ jobs:
           fi
           
           # কমিট করুন
-          git commit -m "Daily rashifal update $(TZ='Asia/Kolkata' date +'%Y-%m-%d %H:%M')"
+          git commit -m "Auto-update: $(TZ='Asia/Kolkata' date +'%Y-%m-%d %H:%M')"
           
-          # পুশ করুন (একবার চেষ্টা)
-          git push origin HEAD:main
+          # সরাসরি পুশ করুন (pull/rebase ছাড়া)
+          git push origin HEAD:main --force-with-lease
