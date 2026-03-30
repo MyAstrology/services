@@ -171,6 +171,7 @@ function generateRashifalData(date) {
   const saturnRashi = sid(planets.saturn);
   const jupiterRashi = sid(planets.jupiter);
   const rahuRashi = sid(planets.rahu);
+  const ketuRashi = (rahuRashi + 6) % 12;  // কেতু = রাহু + ৬ রাশি
   
   const houseEffects = getHouseEffects();
   const data = [];
