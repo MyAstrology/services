@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       date_override:
-        description: 'তারিখ override (YYYY-MM-DD, খালি = পরশু)'
+        description: 'তারিখ override (YYYY-MM-DD, খালি = আগামীকাল)'
         required: false
         default: ''
 
@@ -44,9 +44,9 @@ jobs:
             TARGET="${{ github.event.inputs.date_override }}"
             echo "📅 Manual override: $TARGET"
           else
-            # পরশুর রাশিফল তৈরি হবে (এক দিন বাদ দিয়ে)
-            TARGET=$(TZ='Asia/Kolkata' date -d "2 days" +%Y-%m-%d)
-            echo "📅 Day after tomorrow IST: $TARGET"
+            # পুরনো লজিক: আগামীকালের রাশিফল তৈরি হবে
+            TARGET=$(TZ='Asia/Kolkata' date -d tomorrow +%Y-%m-%d)
+            echo "📅 Tomorrow IST: $TARGET"
           fi
           echo "TARGET_DATE=${TARGET}" >> $GITHUB_OUTPUT
 
