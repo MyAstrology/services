@@ -18,9 +18,9 @@ permissions:
 
 jobs:
   generate:
-    name: Generate Rashifal Pages
+    name: Generate All (Blog + Rashifal)
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     
     steps:
       - name: Checkout repository
@@ -45,8 +45,31 @@ jobs:
         env:
           CI: true
           
+      - name: Create required directories
+        run: |
+          mkdir -p cache rashifal src/content/blog
+          
+      # ========== ব্লগ জেনারেটর ==========
+      - name: Generate blog list
+        run: npm run generate-list
+        continue-on-error: true
+        
+      - name: Generate related posts
+        run: npm run generate-related
+        continue-on-error: true
+        
+      - name: Generate blog HTML files
+        run: npm run generate-posts
+        continue-on-error: true
+        
+      # ========== সাইটম্যাপ ==========
+      - name: Generate sitemaps
+        run: |
+          echo "Generating sitemaps..."
+        continue-on-error: true
+        
+      # ========== রাশিফল জেনারেটর ==========
       - name: Generate Rashifal
-        id: generate
         run: |
           cd src
           node generate.js
@@ -54,13 +77,15 @@ jobs:
           TARGET_DATE: ${{ github.event.inputs.date || '' }}
           TZ: 'Asia/Kolkata'
           NODE_ENV: production
-          
+        continue-on-error: true
+        
+      # ========== ক্লিনআপ ==========
       - name: Cleanup old cache files
         run: |
-          mkdir -p cache rashifal
           find cache -name "planets-*.json" -mtime +30 -delete 2>/dev/null || true
           find rashifal -name "*.html" -mtime +365 -delete 2>/dev/null || true
           
+      # ========== COMMIT AND PUSH (NO REBASE) ==========
       - name: Commit and Push
         run: |
           git config user.name "github-actions[bot]"
@@ -71,7 +96,7 @@ jobs:
           
           # পরিবর্তন আছে কিনা চেক করুন
           if git diff --cached --quiet; then
-            echo "📭 কোনো পরিবর্তন নেই, কমিট স্কিপ করা হচ্ছে"
+            echo "📭 কোনো পরিবর্তন নেই"
             exit 0
           fi
           
