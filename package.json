@@ -1,11 +1,7 @@
 {
   "name": "myastrology",
-  "version": "3.0.0",
-  "type": "commonjs",
+  "version": "1.0.0",
   "private": true,
-  "description": "MyAstrology – Daily Rashifal Generator with Vedic Astrology",
-  "author": "Dr. Prodyut Acharya",
-  "license": "ISC",
   "engines": {
     "node": ">=20.0.0",
     "npm": ">=10.0.0"
@@ -15,26 +11,17 @@
     "generate-related": "node generate-related-posts.js",
     "generate-posts": "node generate-posts.js",
     "generate-all": "npm run generate-list && npm run generate-related && npm run generate-posts",
-    
-    "generate-rashifal": "cd src && node generate.js",
-    "generate-rashifal-force": "cd src && node generate.js --force",
-    "generate-rashifal-all": "npm run generate-rashifal",
-    
+    "generate-rashifal": "node src/content/rashifal/generate-rashifal.js",
+    "generate-news-sitemap": "node src/content/rashifal/generate-news-sitemap.js",
+    "generate-rashifal-all": "npm run generate-rashifal && npm run generate-news-sitemap",
     "build": "npm run generate-all",
-    "build-all": "npm run generate-all && npm run generate-rashifal",
-    
     "watch": "node watch.js",
     "watch-simple": "node auto-generate.js",
-    
-    "deploy": "npm run build-all && git add . && git commit -m \"Auto-build: $(date)\" && git push",
-    
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "clean": "rm -rf rashifal/*.html cache/*.json 2>/dev/null || true"
+    "deploy": "npm run build && git add . && git commit -m \"Auto-build: $(date)\" && git push"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
-    "cheerio": "^1.0.0",
-    "canvas": "^2.11.2"
+    "cheerio": "^1.0.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.0",
