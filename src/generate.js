@@ -43,7 +43,7 @@ const OUTPUT_DIR = CUSTOM_OUTPUT_DIR
   : path.join(__dirname, CFG.OUTPUT_DIR || '../rashifal');
 
 const CACHE_DIR = path.join(__dirname, CFG.CACHE_DIR || '../cache');
-const TEMPLATE = path.join(__dirname, 'templates/daily.template.html');
+const TEMPLATE = path.join(__dirname, 'daily.template.html');
 
 console.log(`📁 আউটপুট ডিরেক্টরি: ${OUTPUT_DIR}`);
 console.log(`📦 ক্যাশ ডিরেক্টরি: ${CACHE_DIR}`);
