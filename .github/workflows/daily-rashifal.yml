@@ -1,9 +1,15 @@
-name: Daily Rashifal Generator
+name: Daily Rashifal Generator (IST)
 
 on:
   schedule:
-    - cron: '55 23 * * *'  # প্রতিদিন রাত ১১:৫৫
+    # UTC ১৭:৩০ = IST ২৩:০০ (রাত ১১:০০)
+    - cron: '30 17 * * *'
   workflow_dispatch:
+    inputs:
+      date:
+        description: 'তারিখ (YYYY-MM-DD) – খালি রাখলে আগামীকাল'
+        required: false
+        type: string
 
 jobs:
   generate:
@@ -17,21 +23,27 @@ jobs:
           node-version: '18'
           
       - name: Install dependencies
-        run: npm install
-        # যদি canvas লাগে (OG ইমেজের জন্য)
-        # run: npm install canvas
-        
+        run: |
+          npm install
+          # যদি canvas দরকার হয় (OG ইমেজের জন্য)
+          # sudo apt-get update
+          # sudo apt-get install -y libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev build-essential
+          # npm install canvas
+          
       - name: Generate Rashifal
         run: |
           cd src
           node generate.js
         env:
           TARGET_DATE: ${{ github.event.inputs.date || '' }}
+          TZ: 'Asia/Kolkata'  # ভারতীয় সময় জোন সেট
+          NODE_ENV: production
           
       - name: Commit and Push
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
+          # IST-তে তারিখ ফরম্যাট
           git add rashifal/ cache/
-          git diff --quiet && git diff --staged --quiet || git commit -m "Daily rashifal update $(date +'%Y-%m-%d')"
+          git diff --quiet && git diff --staged --quiet || git commit -m "Daily rashifal update $(TZ='Asia/Kolkata' date +'%Y-%m-%d %H:%M')"
           git push
