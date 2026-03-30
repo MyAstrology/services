@@ -7,6 +7,6 @@
   "AUTHOR_NAME": "Dr. Prodyut Acharya",
   "AUTHOR_URL": "https://www.myastrology.in/about.html",
   "WHATSAPP": "919333122768",
-  "OUTPUT_DIR": "../../services/rashifal",
-  "CACHE_DIR": "../../cache"
+  "OUTPUT_DIR": "../rashifal",
+  "CACHE_DIR": "../cache"
 }
