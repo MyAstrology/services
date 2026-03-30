@@ -39,7 +39,7 @@ function getNumberLabel(type){
 function renderInputBanner(input,number,data,type){
   const label=getNumberLabel(type);
   const icon=type==='name'?'📝':type==='date'?'📅':'🔢';
-  return `<div class="input-identity-banner">
+  return `<div class="iib">
     <div class="iib-row">
       <div class="iib-icon">${icon}</div>
       <div class="iib-body">
@@ -239,27 +239,36 @@ function renderNewHome(input,num,data,type){
 
 // 8. জন্মদিন বিশ্লেষণ
 function renderBirthday(input,num,data,type){
-  const bhagyank=(NumerologyDB.calculateBhagyank?NumerologyDB.calculateBhagyank(input):num)||num;
-  const mulank=(NumerologyDB.calculateMulank?NumerologyDB.calculateMulank(input):num)||num;
+  // num = mulank (দিনের সংখ্যা) — DOMContentLoaded-এ ঠিক করা হয়েছে
+  const bhagyank=(NumerologyDB.calculateBhagyank?NumerologyDB.calculateBhagyank(input):null)||num;
+  const mulank=num; // num is now correctly the mulank
+  // bhagyank analysis data (if different from mulank)
+  const bhData=NumerologyDB.getNumberAnalysis(bhagyank)||data;
   return renderInputBanner(input,num,data,'date')+`
   <div class="result-header">
-    <div class="result-number"><span class="big-number">${num}</span></div>
+    <div class="result-number"><span class="big-number">${mulank}</span></div>
     <h1 class="result-title">${escapeHtml(data.identity.title)}</h1>
-    <p class="result-subtitle">${escapeHtml(data.planet)} · জন্মদিন বিশ্লেষণ</p>
+    <p class="result-subtitle">${escapeHtml(data.planet)} · জন্মদিন — মূলাংক বিশ্লেষণ</p>
   </div>
   <div class="root-description">
-    ${planetBadge('fa-birthday-cake',num,data.planet)}
-    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px">
-      <span class="badge">🔮 মূলাংক: ${mulank}</span>
-      <span class="badge">⭐ ভাগ্যাংক: ${bhagyank}</span>
-      <span class="badge">🌿 তত্ত্ব: ${escapeHtml(data.element||'')}</span>
+    <div style="display:flex;flex-wrap:wrap;gap:9px;margin-bottom:14px">
+      <div style="background:rgba(245,184,0,.2);border:1.5px solid rgba(245,184,0,.5);border-radius:12px;padding:10px 18px;text-align:center;flex:1;min-width:130px">
+        <div style="font-size:.74rem;color:#c8d8f0;margin-bottom:3px">🔮 মূলাংক (জন্মদিনের অঙ্ক)</div>
+        <div style="font-size:2rem;font-weight:900;color:#f5b800;font-family:var(--fh)">${mulank}</div>
+        <div style="font-size:.76rem;color:#c8d8f0">${escapeHtml(data.planet)}</div>
+      </div>
+      <div style="background:rgba(100,140,255,.12);border:1.5px solid rgba(100,140,255,.3);border-radius:12px;padding:10px 18px;text-align:center;flex:1;min-width:130px">
+        <div style="font-size:.74rem;color:#c8d8f0;margin-bottom:3px">⭐ ভাগ্যাংক (পুরো তারিখের অঙ্ক)</div>
+        <div style="font-size:2rem;font-weight:900;color:#a0c4ff;font-family:var(--fh)">${bhagyank}</div>
+        <div style="font-size:.76rem;color:#c8d8f0">${escapeHtml(bhData.planet||data.planet)}</div>
+      </div>
     </div>
-    <p>মূলাংক আপনার মৌলিক স্বভাব, ভাগ্যাংক আপনার জীবনের মূল উদ্দেশ্য নির্দেশ করে।</p>
+    <p><strong>মূলাংক ${mulank}</strong> (শুধু জন্মদিনের দিনের সংখ্যা) আপনার মৌলিক স্বভাব দেখায়। <strong>ভাগ্যাংক ${bhagyank}</strong> (পুরো জন্মতারিখের সংখ্যার যোগফল) আপনার জীবনের মূল উদ্দেশ্য ও নিয়তি নির্দেশ করে।</p>
   </div>
   <div class="result-card">
-    <div class="info-section"><h3><i class="fas fa-calendar-star"></i> জন্মদিনের বিশেষ তাৎপর্য</h3><p>${getBirthdaySignificance(num)}</p></div>
+    <div class="info-section"><h3><i class="fas fa-calendar-star"></i> জন্মদিনের বিশেষ তাৎপর্য — মূলাংক ${mulank}</h3><p>${getBirthdaySignificance(mulank)}</p></div>
     <div class="info-section"><h3><i class="fas fa-user"></i> ব্যক্তিত্ব ও জীবনশৈলী</h3><p>${escapeHtml(data.identity.description)}</p></div>
-    <div class="info-section"><h3><i class="fas fa-chart-line"></i> জীবনের গুরুত্বপূর্ণ বছর</h3><p>${getLifeMilestones(num)}</p></div>
+    <div class="info-section"><h3><i class="fas fa-chart-line"></i> জীবনের গুরুত্বপূর্ণ বছর</h3><p>${getLifeMilestones(mulank)}</p></div>
     <div class="info-section"><h3><i class="fas fa-briefcase"></i> ক্যারিয়ার পথ</h3><p>${escapeHtml(data.business.description)}</p></div>
     <div class="info-section"><h3><i class="fas fa-magic"></i> প্রতিকার</h3><p>${escapeHtml(data.tip.description)}</p></div>
   </div>`+bottomButtons();
@@ -1109,9 +1118,25 @@ document.addEventListener('DOMContentLoaded',function(){
   // ── সিঙ্গেল ইনপুট ──
   currentNumberData=NumberUtils.extractNumber(currentRawInput);
   if(!currentNumberData||!currentNumberData.rootNumber){
-    if(div){div.innerHTML=`<div class="result-card error-card"><i class="fas fa-exclamation-triangle" style="font-size:64px;color:var(--gold3)"></i><h2>ক্ষমা করবেন!</h2><p>"${escapeHtml(currentRawInput)}" — বিশ্লেষণযোগ্য তথ্য পাওয়া যায়নি।</p><a href="numerology.html" class="back-btn">← নতুন অনুসন্ধান</a></div>`;div.style.display='block';}
+    if(div){div.innerHTML=`<div class="result-card error-card"><i class="fas fa-exclamation-triangle" style="font-size:64px;color:#f5b800"></i><h2 style="color:#fff;margin:10px 0">ক্ষমা করবেন!</h2><p>"${escapeHtml(currentRawInput)}" — বিশ্লেষণযোগ্য তথ্য পাওয়া যায়নি।</p><a href="numerology.html" class="back-btn">← নতুন অনুসন্ধান</a></div>`;div.style.display='block';}
     if(ld)ld.style.display='none';
     return;
+  }
+
+  // ★ CRITICAL FIX: তারিখ হলে মূলাংক (দিনের সংখ্যা) primary হিসেবে ব্যবহার করো
+  // extractNumber() সব অঙ্ক যোগ করে ভাগ্যাংক দেয়, কিন্তু birthday/mulank-এ মূলাংক দরকার
+  if(currentInputType==='date'){
+    // bhagyank সংরক্ষণ করো (full date sum)
+    currentNumberData.bhagyank=currentNumberData.rootNumber;
+    // mulank বের করো (শুধু দিনের সংখ্যা)
+    const ml=NumerologyDB.calculateMulank?NumerologyDB.calculateMulank(currentRawInput):null;
+    if(ml&&ml>=1&&ml<=9){
+      currentNumberData.mulank=ml;
+      // mulank কে primary rootNumber করো
+      currentNumberData.rootNumber=ml;
+    } else {
+      currentNumberData.mulank=currentNumberData.rootNumber;
+    }
   }
 
   // catHint → সরাসরি
