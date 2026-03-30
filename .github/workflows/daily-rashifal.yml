@@ -2,7 +2,7 @@ name: Daily Rashifal Generator
 
 on:
   schedule:
-    - cron: '25 18 * * *'   # রাত ১১:৫৫ IST
+    - cron: '25 18 * * *'   # UTC 18:25 = IST 00:25 (মধ্যরাত)
   workflow_dispatch:
     inputs:
       date_override:
@@ -44,6 +44,7 @@ jobs:
             TARGET="${{ github.event.inputs.date_override }}"
             echo "📅 Manual override: $TARGET"
           else
+            # পুরনো লজিক: আগামীকালের তারিখ পাস করবে
             TARGET=$(TZ='Asia/Kolkata' date -d tomorrow +%Y-%m-%d)
             echo "📅 Tomorrow IST: $TARGET"
           fi
@@ -52,38 +53,30 @@ jobs:
       - name: Generate daily rashifal
         env:
           TARGET_DATE: ${{ steps.set_date.outputs.TARGET_DATE }}
+          TZ: 'Asia/Kolkata'
         run: |
           echo "🔮 Target: $TARGET_DATE"
           echo "📂 CWD: $(pwd)"
-          echo "🔍 Generator: $(ls src/content/rashifal/generate-rashifal.js 2>/dev/null || echo 'NOT FOUND')"
+          echo "🔍 Generator: $(ls src/generate.js 2>/dev/null || echo 'NOT FOUND')"
 
           set -e
-          node src/content/rashifal/generate-rashifal.js
+          cd src && node generate.js
 
           echo "📁 rashifal/ contents:"
-          ls -la rashifal/
+          ls -la ../rashifal/
 
-          if [ ! -f "rashifal/${TARGET_DATE}.html" ]; then
+          if [ ! -f "../rashifal/${TARGET_DATE}.html" ]; then
             echo "❌ FATAL: rashifal/${TARGET_DATE}.html তৈরি হয়নি!"
             echo "   Generator output-এ error আছে কিনা দেখুন।"
             exit 1
           fi
-          SIZE=$(wc -c < "rashifal/${TARGET_DATE}.html")
+          SIZE=$(wc -c < "../rashifal/${TARGET_DATE}.html")
           echo "✅ rashifal/${TARGET_DATE}.html তৈরি হয়েছে (${SIZE} bytes)"
 
-      - name: Update news sitemap
-        env:
-          TZ: Asia/Kolkata
-          TARGET_DATE: ${{ steps.set_date.outputs.TARGET_DATE }}
+      - name: Update sitemaps
         run: |
-          set -e
-          node src/content/rashifal/generate-news-sitemap.js
-          echo "✅ sitemap-news.xml updated"
-
-      - name: Generate RSS feed
-        run: |
-          node src/content/rashifal/generate-rss.js
-          echo "✅ RSS feed generated"
+          # সাইটম্যাপ জেনারেটর ইতিমধ্যে generate.js-এর ভিতরে আছে
+          echo "✅ sitemap-rashifal.xml and sitemap-news.xml updated by generate.js"
 
       - name: Check for changes
         id: check_changes
@@ -105,7 +98,7 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "MyAstrology Bot"
-          git add rashifal/${TARGET_DATE}.html rashifal/index.html sitemap-news.xml rashifal/rss.xml 2>/dev/null || true
+          git add rashifal/ sitemap-rashifal.xml sitemap-news.xml 2>/dev/null || true
 
           if git diff --staged --quiet; then
             echo "ℹ️ No changes to commit after all"
@@ -114,11 +107,9 @@ jobs:
 
           git commit -m "📅 দৈনিক রাশিফল: ${TARGET_DATE} | MyAstrology Bot"
 
-          # Fetch latest changes and rebase with conflict resolution (keep our changes)
           git fetch origin main
-          git rebase origin/main --strategy-option=ours || {
-            echo "⚠️ Rebase failed, aborting and trying merge"
-            git rebase --abort
+          git pull origin main --rebase --strategy-option=ours || {
+            echo "⚠️ Rebase failed, trying merge"
             git pull origin main --no-rebase --strategy-option=ours
           }
 
