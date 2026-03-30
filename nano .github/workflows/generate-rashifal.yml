@@ -1,0 +1,47 @@
+name: Generate Daily Rashifal
+
+on:
+  schedule:
+    - cron: '25 18 * * *'
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Create rashifal directory
+        run: mkdir -p rashifal
+
+      - name: Set target date
+        id: set_date
+        run: |
+          TARGET=$(TZ='Asia/Kolkata' date -d tomorrow +%Y-%m-%d)
+          echo "TARGET_DATE=${TARGET}" >> $GITHUB_OUTPUT
+
+      - name: Generate daily rashifal
+        run: node src/content/rashifal/generate-rashifal.js
+        env:
+          TARGET_DATE: ${{ steps.set_date.outputs.TARGET_DATE }}
+
+      - name: Commit and push
+        run: |
+          git config user.name "MyAstrology Bot"
+          git config user.email "bot@myastrology.in"
+          git add rashifal/
+          git diff --cached --quiet && exit 0
+          git commit -m "Rashifal: ${{ steps.set_date.outputs.TARGET_DATE }}"
+          git push origin main
