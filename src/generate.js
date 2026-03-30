@@ -228,7 +228,6 @@ function generateRashifalData(date) {
       healthText.short = getDeterministicElement(elemStyle.short?.health || elemStyle.health, `${dateStr}-${ri}-health`);
       financeText.short = getDeterministicElement(elemStyle.short?.finance || elemStyle.finance, `${dateStr}-${ri}-finance`);
       
-      // detailed ও advice-ও এলিমেন্ট অনুযায়ী কাস্টমাইজ
       if (elemStyle.detailed) {
         loveText.detailed = getDeterministicElement(elemStyle.detailed.love || [loveText.detailed], `${dateStr}-${ri}-love-detailed`);
         workText.detailed = getDeterministicElement(elemStyle.detailed.work || [workText.detailed], `${dateStr}-${ri}-work-detailed`);
@@ -243,11 +242,25 @@ function generateRashifalData(date) {
       }
     }
     
-    // দৃষ্টির প্রভাব যুক্ত করা
-    loveText.detailed = enhanceLoveText(loveText.detailed, aspects);
-    workText.detailed = enhanceWorkText(workText.detailed, aspects);
-    healthText.detailed = enhanceHealthText(healthText.detailed, aspects);
-    financeText.detailed = enhanceFinanceText(financeText.detailed, aspects);
+    // ★★★ নতুন কোড: দৃষ্টির গভীর প্রভাব যুক্ত করা ★★★
+    const context = {
+      date: date,
+      rashiElement: RASHI_EL[ri],
+      targetRashi: ri,
+      planetRashis: { 
+        mars: marsRashi, 
+        mercury: mercuryRashi, 
+        venus: venusRashi, 
+        saturn: saturnRashi, 
+        jupiter: jupiterRashi 
+      }
+    };
+    
+    loveText.detailed = enhanceLoveTextAdvanced(loveText.detailed, aspects, context);
+    workText.detailed = enhanceWorkTextAdvanced(workText.detailed, aspects, context);
+    healthText.detailed = enhanceHealthTextAdvanced(healthText.detailed, aspects, context);
+    financeText.detailed = enhanceFinanceTextAdvanced(financeText.detailed, aspects, context);
+    // ★★★ নতুন কোড শেষ ★★★
     
     const sunHouse = ((sunRashi - ri + 12) % 12) + 1;
     const marsHouse = ((marsRashi - ri + 12) % 12) + 1;
@@ -310,7 +323,8 @@ function generateRashifalData(date) {
   }
   
   return { moonRashi, sunRashi, marsRashi, mercuryRashi, venusRashi, saturnRashi, jupiterRashi, rahuRashi, ketuRashi, data };
-}
+}      
+      
 
 // ==================== HTML বিল্ডার ====================
 function buildRashiCards(rashifalData) {
