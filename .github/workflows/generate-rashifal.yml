@@ -2,7 +2,7 @@ name: Daily Rashifal Generator
 
 on:
   schedule:
-    - cron: '25 18 * * *'   # UTC 18:25 = IST 00:25 (মধ্যরাত)
+    - cron: '25 18 * * *'   # রাত ১১:৫৫ IST
   workflow_dispatch:
     inputs:
       date_override:
@@ -48,65 +48,42 @@ jobs:
             echo "📅 Tomorrow IST: $TARGET"
           fi
           echo "TARGET_DATE=${TARGET}" >> $GITHUB_OUTPUT
-          echo "✅ TARGET_DATE set to: ${TARGET}"
-
-      - name: Debug - Show target date
-        run: |
-          echo "🔍 TARGET_DATE from step output: ${{ steps.set_date.outputs.TARGET_DATE }}"
-          echo "🔍 Current time IST: $(TZ='Asia/Kolkata' date)"
-          echo "🔍 Tomorrow date: $(TZ='Asia/Kolkata' date -d tomorrow +%Y-%m-%d)"
 
       - name: Generate daily rashifal
         env:
           TARGET_DATE: ${{ steps.set_date.outputs.TARGET_DATE }}
-          TZ: 'Asia/Kolkata'
         run: |
           echo "🔮 Target: $TARGET_DATE"
-          echo "📂 Current directory: $(pwd)"
-          echo "📂 Contents of src/ before generation:"
-          ls -la src/ || echo "src/ not found"
-          echo "🔍 Checking src/generate.js:"
-          if [ -f "src/generate.js" ]; then
-            echo "✅ src/generate.js exists"
-            head -20 src/generate.js
-          else
-            echo "❌ src/generate.js NOT FOUND!"
-            echo "Looking for generate.js elsewhere:"
-            find . -name "generate.js" -type f
-          fi
-          echo "📂 Contents of rashifal/ before generation:"
-          ls -la rashifal/ || echo "rashifal/ empty or not found"
+          echo "📂 CWD: $(pwd)"
+          echo "🔍 Generator: $(ls src/content/rashifal/generate-rashifal.js 2>/dev/null || echo 'NOT FOUND')"
 
           set -e
-          cd src && node generate.js
-          cd ..
+          node src/content/rashifal/generate-rashifal.js
 
-          echo "📁 After generation, rashifal/ contents:"
+          echo "📁 rashifal/ contents:"
           ls -la rashifal/
 
-          echo "🔍 Looking for: rashifal/${TARGET_DATE}.html"
-          if [ -f "rashifal/${TARGET_DATE}.html" ]; then
-            echo "✅ File exists at rashifal/${TARGET_DATE}.html"
-            SIZE=$(wc -c < "rashifal/${TARGET_DATE}.html")
-            echo "✅ rashifal/${TARGET_DATE}.html তৈরি হয়েছে (${SIZE} bytes)"
-          else
-            echo "❌ File NOT found at rashifal/${TARGET_DATE}.html"
-            echo "🔍 Also checking ../rashifal/${TARGET_DATE}.html:"
-            if [ -f "../rashifal/${TARGET_DATE}.html" ]; then
-              echo "✅ File exists at ../rashifal/${TARGET_DATE}.html"
-              ls -la ../rashifal/
-            else
-              echo "❌ File also not found at ../rashifal/${TARGET_DATE}.html"
-            fi
+          if [ ! -f "rashifal/${TARGET_DATE}.html" ]; then
             echo "❌ FATAL: rashifal/${TARGET_DATE}.html তৈরি হয়নি!"
+            echo "   Generator output-এ error আছে কিনা দেখুন।"
             exit 1
           fi
+          SIZE=$(wc -c < "rashifal/${TARGET_DATE}.html")
+          echo "✅ rashifal/${TARGET_DATE}.html তৈরি হয়েছে (${SIZE} bytes)"
 
-      - name: Update sitemaps
+      - name: Update news sitemap
+        env:
+          TZ: Asia/Kolkata
+          TARGET_DATE: ${{ steps.set_date.outputs.TARGET_DATE }}
         run: |
-          echo "✅ sitemap-rashifal.xml and sitemap-news.xml updated by generate.js"
-          echo "📁 Current sitemaps:"
-          ls -la sitemap-*.xml 2>/dev/null || echo "No sitemaps found yet"
+          set -e
+          node src/content/rashifal/generate-news-sitemap.js
+          echo "✅ sitemap-news.xml updated"
+
+      - name: Generate RSS feed
+        run: |
+          node src/content/rashifal/generate-rss.js
+          echo "✅ RSS feed generated"
 
       - name: Check for changes
         id: check_changes
@@ -128,7 +105,7 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "MyAstrology Bot"
-          git add rashifal/ sitemap-rashifal.xml sitemap-news.xml 2>/dev/null || true
+          git add rashifal/${TARGET_DATE}.html rashifal/index.html sitemap-news.xml rashifal/rss.xml 2>/dev/null || true
 
           if git diff --staged --quiet; then
             echo "ℹ️ No changes to commit after all"
@@ -137,9 +114,11 @@ jobs:
 
           git commit -m "📅 দৈনিক রাশিফল: ${TARGET_DATE} | MyAstrology Bot"
 
+          # Fetch latest changes and rebase with conflict resolution (keep our changes)
           git fetch origin main
-          git pull origin main --rebase --strategy-option=ours || {
-            echo "⚠️ Rebase failed, trying merge"
+          git rebase origin/main --strategy-option=ours || {
+            echo "⚠️ Rebase failed, aborting and trying merge"
+            git rebase --abort
             git pull origin main --no-rebase --strategy-option=ours
           }
 
