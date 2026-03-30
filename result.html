@@ -5,19 +5,18 @@
 <script>
 window.dataLayer=window.dataLayer||[];
 window.gtag=function(){window.dataLayer.push(arguments);};
-window.gtag('js',new Date());
 window.addEventListener('load',function(){setTimeout(function(){
 (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MVVL8XBD');
 },2000);});
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0a192f">
+<meta name="theme-color" content="#060920">
 <meta name="google" content="notranslate">
-<meta name="robots" content="noindex, follow">
-<title id="pageTitle">বিশ্লেষণ ফলাফল | সংখ্যা জ্যোতিষ | MyAstrology Ranaghat</title>
-<meta name="description" content="সংখ্যা জ্যোতিষ বিশ্লেষণ — নাম, জন্মতারিখ, মোবাইল নম্বরের গভীর বিশ্লেষণ। Dr. Prodyut Acharya, MyAstrology Ranaghat, Nadia, West Bengal।">
-<link rel="canonical" href="https://www.myastrology.in/result.html">
+<meta name="robots" content="noindex,follow">
+<title id="pt">বিশ্লেষণ ফলাফল | সংখ্যা জ্যোতিষ | MyAstrology Ranaghat</title>
+<meta name="description" content="সংখ্যা জ্যোতিষ বিশ্লেষণ — MyAstrology Ranaghat। Dr. Prodyut Acharya।">
 <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+<link rel="canonical" href="https://www.myastrology.in/result.html">
 <meta property="og:site_name" content="MyAstrology">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.myastrology.in/result.html">
@@ -32,327 +31,391 @@ window.addEventListener('load',function(){setTimeout(function(){
 <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"></noscript>
 
 <style>
-/* ═══════════════════════════════════════════
-   DESIGN SYSTEM
-═══════════════════════════════════════════ */
+/* ════════════════════════════════════════
+   TABLET COLOR SCHEME — Deep Navy + Gold
+   Text visibility: 100% fixed
+════════════════════════════════════════ */
 :root{
-  --navy:#0a192f;--navy2:#0e1e38;
-  --gold:#b8860b;--gold2:#c8950c;--gold3:#ffd700;
-  --gold-lt:#fff4ca;--gold-bg:#fdf8ed;
-  --cream:#fafaf6;--cream2:#f4ede0;--white:#fff;
-  --text:#181825;--muted:#464662;--red:#780b0b;--blue:#123d87;
-  --border:#ddd0b5;--shadow:0 4px 28px rgba(0,0,0,.09);--r:10px;
+  /* Base */
+  --navy:#0a192f; --navy2:#0e1e38;
+  --gold:#b8860b; --gold2:#c8950c; --gold3:#ffd700;
+  --gold-lt:#fff4ca; --gold-bg:#fdf8ed;
+  --cream:#fafaf6; --cream2:#f4ede0; --white:#fff;
+  --text:#181825; --muted:#464662; --red:#780b0b; --blue:#123d87;
+  --border:#ddd0b5; --shadow:0 4px 28px rgba(0,0,0,.09); --r:10px;
   --fh:'Playfair Display',Georgia,serif;
   --fb:'Source Sans 3','Segoe UI',sans-serif;
-  /* Result page cosmic palette — point 10 fix */
-  --rbg1:#04091a;--rbg2:#081228;--rbg3:#050e1f;
-  --rcard:rgba(14,28,60,0.7);
-  --rborder:rgba(255,180,0,.25);
+
+  /* ★ Tablet Cosmic Palette — matches mockup image */
+  --pg:#060920;          /* page background */
+  --pg2:#080d28;         /* page gradient end */
+  --card:#0d1845;        /* card background — SOLID, no transparency */
+  --card2:#111e52;       /* card alt background */
+  --cborder:rgba(245,184,0,.35); /* card border */
+  --cgold:#f5b800;       /* primary gold */
+  --cgold2:#ffd700;      /* bright gold */
+  --ctext:#ffffff;       /* primary text — pure white */
+  --ctext2:#e8f0ff;      /* secondary text — near white */
+  --cmuted:#9ab8d8;      /* muted text */
+  --ch3:#f5d060;         /* section headings */
+  --cbadge:rgba(255,255,255,.12); /* badge bg */
 }
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;overflow-x:clip}
-body{overflow-x:clip;font-family:var(--fb);color:var(--text);background:var(--cream);line-height:1.75;-webkit-font-smoothing:antialiased;padding-top:66px;}
+body{overflow-x:clip;font-family:var(--fb);background:var(--pg);color:var(--ctext);line-height:1.75;-webkit-font-smoothing:antialiased;padding-top:66px;}
 a{text-decoration:none;color:inherit}
 h1,h2,h3,h4{font-family:var(--fh);line-height:1.3}
 img{max-width:100%;height:auto;display:block}
-:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+:focus-visible{outline:2px solid var(--cgold);outline-offset:2px}
 
 /* ── HEADER ── */
-.site-header{position:fixed;width:100%;top:0;z-index:900;display:flex;align-items:center;gap:12px;padding:0 20px;height:66px;background:var(--navy);box-shadow:0 2px 18px rgba(0,0,0,.5);border-bottom:2px solid var(--gold);}
-.ham{background:rgba(255,255,255,.06);border:1.5px solid rgba(184,134,11,.45);cursor:pointer;color:var(--gold-lt);font-size:1.25rem;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:7px;flex-shrink:0;transition:background .2s;}
-.ham:hover{background:rgba(184,134,11,.18)}
+.site-header{position:fixed;width:100%;top:0;z-index:900;display:flex;align-items:center;gap:12px;padding:0 20px;height:66px;background:var(--navy);box-shadow:0 2px 20px rgba(0,0,0,.6);border-bottom:2.5px solid var(--gold);}
+.ham{background:rgba(255,255,255,.07);border:1.5px solid rgba(184,134,11,.5);cursor:pointer;color:var(--gold-lt);font-size:1.25rem;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:7px;flex-shrink:0;transition:background .2s;}
+.ham:hover{background:rgba(184,134,11,.2)}
 .header-brand{font-family:var(--fh);font-size:1.18rem;font-weight:700;color:var(--gold-lt);letter-spacing:.05em;flex:1;text-align:center;}
 .header-logo{width:46px;height:46px;border-radius:8px;object-fit:contain;background:var(--navy);padding:2px;flex-shrink:0;}
 
 /* ── NAV ── */
-.nav{display:none;flex-direction:column;position:fixed;top:66px;left:0;right:0;background:var(--navy2);border-top:2px solid var(--gold);z-index:899;max-height:82vh;overflow-y:auto;box-shadow:0 10px 30px rgba(0,0,0,.45);}
+.nav{display:none;flex-direction:column;position:fixed;top:66px;left:0;right:0;background:var(--navy2);border-top:2px solid var(--gold);z-index:899;max-height:82vh;overflow-y:auto;box-shadow:0 10px 32px rgba(0,0,0,.5);}
 .nav.open{display:flex}
-.nav-ov{display:none;position:fixed;inset:0;top:66px;background:rgba(0,0,0,.45);z-index:898}
+.nav-ov{display:none;position:fixed;inset:0;top:66px;background:rgba(0,0,0,.5);z-index:898}
 .nav-ov.open{display:block}
 .nav a{color:#b0c4dc;padding:12px 22px;font-size:.93rem;font-weight:600;border-bottom:1px solid rgba(255,255,255,.06);transition:background .2s,color .2s;}
 .nav a i{width:20px;margin-right:9px;color:var(--gold3);opacity:.85}
-.nav a:hover,.nav a.on{background:rgba(184,134,11,.12);color:var(--gold-lt)}
+.nav a:hover,.nav a.on{background:rgba(184,134,11,.14);color:var(--gold-lt)}
 .nav a.on{font-weight:700;color:var(--gold3)}
 
 /* ── FLASH ── */
-#fl{position:fixed;top:80px;left:50%;transform:translateX(-50%) translateY(-10px);background:var(--navy2);color:var(--gold-lt);border:1px solid rgba(184,134,11,.4);padding:10px 22px;border-radius:50px;font-size:.86rem;font-weight:600;z-index:9999;opacity:0;transition:opacity .3s,transform .3s;pointer-events:none;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,.3);}
+#fl{position:fixed;top:80px;left:50%;transform:translateX(-50%) translateY(-10px);background:#0d1845;color:var(--gold-lt);border:1px solid rgba(245,184,0,.5);padding:10px 22px;border-radius:50px;font-size:.86rem;font-weight:600;z-index:9999;opacity:0;transition:opacity .3s,transform .3s;pointer-events:none;white-space:nowrap;box-shadow:0 4px 24px rgba(0,0,0,.4);}
 #fl.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-/* ═══════════════════════════════════════════
-   DAILY PANJIKA CARD — point 7
-═══════════════════════════════════════════ */
-.daily-box{background:linear-gradient(135deg,#0d1547,#0a0f3d,#12122a);padding:10px 16px 12px;border-top:2px solid rgba(255,180,0,.35);border-bottom:2px solid rgba(255,180,0,.35);}
-.daily-card{max-width:700px;margin:0 auto;background:linear-gradient(145deg,#1a2060,#141852,#0d1040);border-radius:14px;padding:12px 20px;border:1.5px solid rgba(255,180,0,.35);box-shadow:0 8px 40px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.05);position:relative;overflow:hidden;text-align:center;}
-.daily-card::before{content:'';position:absolute;top:-40px;right:-40px;width:130px;height:130px;background:radial-gradient(circle,rgba(255,180,0,.12),transparent 70%);pointer-events:none;}
-.daily-star{font-size:1.4rem;filter:drop-shadow(0 0 8px rgba(255,200,0,.6));margin-bottom:3px;display:block;}
-.daily-title{font-family:var(--fh);font-size:clamp(.95rem,2.5vw,1.2rem);font-weight:800;color:#f5b800;text-shadow:0 2px 12px rgba(255,180,0,.4);margin-bottom:5px;}
-.daily-desc{font-size:.78rem;color:#8a9fc8;line-height:1.45;margin-bottom:8px;}
+/* ════════════════════════════════════════
+   DAILY PANJIKA (above result)
+════════════════════════════════════════ */
+.daily-box{background:linear-gradient(135deg,#0c1340,#0f1850);padding:10px 16px 12px;border-top:2px solid rgba(245,184,0,.4);border-bottom:2px solid rgba(245,184,0,.4);}
+.daily-card{max-width:700px;margin:0 auto;background:#0f1850;border-radius:14px;padding:12px 20px;border:1.5px solid rgba(245,184,0,.4);text-align:center;}
+.daily-star{font-size:1.3rem;display:block;filter:drop-shadow(0 0 8px rgba(255,200,0,.7));margin-bottom:3px;}
+.daily-title{font-family:var(--fh);font-size:clamp(.9rem,2.5vw,1.15rem);font-weight:800;color:var(--cgold);margin-bottom:5px;}
+.daily-desc{font-size:.76rem;color:#9ab8d8;margin-bottom:8px;}
 .daily-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:5px;margin-bottom:8px;}
-.daily-tag{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:#c8d8f0;font-size:.76rem;font-weight:600;padding:4px 10px;border-radius:50px;display:flex;align-items:center;gap:4px;}
-.daily-btn{display:inline-block;background:linear-gradient(135deg,#f5b800,#e8a200,#f5c800);color:#1a0e00;font-weight:800;font-size:.9rem;padding:8px 32px;border-radius:50px;transition:all .3s;box-shadow:0 4px 18px rgba(245,184,0,.45);}
-.daily-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(245,184,0,.6);}
+.daily-tag{background:rgba(255,255,255,.1);color:#e8f0ff;font-size:.73rem;font-weight:600;padding:3px 9px;border-radius:50px;border:1px solid rgba(255,255,255,.15);}
+.daily-btn{display:inline-block;background:linear-gradient(135deg,#f5b800,#e8a200);color:#1a0e00;font-weight:800;font-size:.88rem;padding:7px 28px;border-radius:50px;transition:all .3s;}
+.daily-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(245,184,0,.5);}
 
-/* ═══════════════════════════════════════════
-   RESULT WRAP — cosmic color (point 10)
-═══════════════════════════════════════════ */
+/* ════════════════════════════════════════
+   RESULT WRAP — Tablet cosmic style
+════════════════════════════════════════ */
 .result-wrap{
-  background:linear-gradient(160deg,var(--rbg1) 0%,var(--rbg2) 55%,var(--rbg3) 100%);
-  position:relative;
+  background:linear-gradient(160deg,var(--pg) 0%,#0a0e24 50%,var(--pg2) 100%);
   min-height:60vh;
-  padding:24px 0 50px;
+  padding:20px 0 50px;
+  position:relative;
 }
 .result-wrap::before{
-  content:'';
-  position:absolute;
-  inset:0;
+  content:'';position:absolute;inset:0;
   background:
-    radial-gradient(ellipse 60% 30% at 20% 10%, rgba(255,180,0,.07) 0%,transparent 70%),
-    radial-gradient(ellipse 40% 25% at 80% 80%, rgba(100,120,255,.06) 0%,transparent 70%);
+    radial-gradient(ellipse 55% 25% at 15% 5%,rgba(245,184,0,.06) 0%,transparent 70%),
+    radial-gradient(ellipse 40% 20% at 85% 90%,rgba(100,140,255,.05) 0%,transparent 70%);
   pointer-events:none;
 }
-.result-inner{max-width:900px;margin:0 auto;padding:0 18px;position:relative;z-index:1;}
+.result-inner{max-width:880px;margin:0 auto;padding:0 16px;position:relative;z-index:1;}
 
 /* ── LOADING ── */
-#loading{text-align:center;padding:80px 20px;color:#8aabcb;}
-#loading .spin{width:60px;height:60px;border:3px solid rgba(255,180,0,.15);border-top-color:var(--gold3);border-radius:50%;animation:spin 0.9s linear infinite;margin:0 auto 20px;}
-#loading p{font-size:1rem;color:#8aabcb;}
+#loading{text-align:center;padding:80px 20px;}
+#loading .spin{width:64px;height:64px;border:4px solid rgba(245,184,0,.15);border-top-color:var(--cgold);border-radius:50%;animation:spin .9s linear infinite;margin:0 auto 20px;}
+#loading p{font-size:1rem;color:#9ab8d8;}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* ── RESULT CONTENT ── */
 #resultContent{display:none;}
 
-/* ── RESULT HEADER ── */
-.result-header{text-align:center;padding:24px 16px 18px;margin-bottom:16px;}
-.result-number{display:inline-block;background:linear-gradient(135deg,#f5b800,#e8a200);padding:16px 36px;border-radius:60px;margin-bottom:16px;box-shadow:0 6px 24px rgba(245,184,0,.4);}
-.big-number{font-size:60px;font-weight:900;color:#1a0e00;font-family:var(--fh);line-height:1;}
-.result-title{font-family:var(--fh);font-size:clamp(1.15rem,3vw,1.7rem);color:#f5d060;margin-bottom:8px;text-shadow:0 2px 12px rgba(255,180,0,.3);}
-.result-subtitle{font-size:.92rem;color:#9ab0cc;line-height:1.5;}
-
-/* ── ROOT DESCRIPTION ── */
-.root-description{background:rgba(255,180,0,.07);border:1px solid rgba(255,180,0,.2);border-left:4px solid #f5b800;border-radius:var(--r);padding:18px 20px;margin-bottom:16px;}
-.root-description p{font-size:.95rem;color:#ccd8f0;line-height:1.85;}
-.planet-badge{background:rgba(245,184,0,.16);padding:7px 18px;border-radius:40px;display:inline-block;margin-bottom:12px;font-size:.9rem;color:var(--gold3);font-weight:600;border:1px solid rgba(245,184,0,.3);}
-.badge{display:inline-block;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);padding:5px 13px;border-radius:20px;font-size:.8rem;color:#b8cce4;margin-right:7px;margin-bottom:7px;}
-
-/* ── RESULT CARD ── */
-.result-card{background:var(--rcard);backdrop-filter:blur(10px);border:1px solid var(--rborder);border-radius:16px;padding:24px;margin-bottom:16px;}
-.error-card{text-align:center;padding:50px 24px;}
-.error-card p{color:#8aabcb;margin:12px 0 20px;}
-
-/* ── INFO SECTIONS — improved text visibility ── */
-.info-section{margin-bottom:22px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,.07);}
-.info-section:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
-.info-section h3{color:#f5d060;margin-bottom:11px;font-size:1.02rem;display:flex;align-items:center;gap:8px;font-family:var(--fb);}
-.info-section h3 i{font-size:.88rem;}
-/* FIX point 2: Brighter text for better visibility */
-.info-section p{color:#d0e2f8;font-size:.93rem;line-height:1.85;text-align:justify;}
-.info-section strong{color:#f5d060;}
-
-/* ── BACK BTN ── */
-.back-btn{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);padding:10px 20px;border-radius:40px;color:#c0d4ec;transition:all .2s;font-size:.88rem;}
-.back-btn:hover{background:rgba(245,184,0,.15);border-color:rgba(245,184,0,.4);color:var(--gold-lt);}
-
-/* ── SHARE BUTTONS — single set only ── */
-.share-buttons{display:flex;gap:10px;justify-content:center;margin-top:20px;flex-wrap:wrap;}
-.share-btn{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);padding:9px 18px;border-radius:30px;cursor:pointer;color:#b8ccec;font-family:var(--fb);font-size:.86rem;display:inline-flex;align-items:center;gap:6px;transition:all .2s;}
-.share-btn:hover{background:rgba(245,184,0,.14);border-color:rgba(245,184,0,.4);color:var(--gold-lt);}
-
-/* ── CLARIFICATION CARD ── */
-.clarification-card{background:var(--rcard);border:1px solid var(--rborder);border-radius:16px;padding:32px 24px;text-align:center;margin-bottom:16px;}
-.clarification-card h2{font-family:var(--fh);color:var(--gold3);font-size:clamp(1.05rem,3vw,1.4rem);margin:12px 0 8px;}
-.clarification-card p{color:#8aabcb;font-size:.94rem;margin-bottom:20px;}
-.option-buttons{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;max-height:380px;overflow-y:auto;padding:6px;}
-.option-btn{background:linear-gradient(135deg,#f5b800,#e8a200);color:#1a0e00;border:none;padding:9px 16px;border-radius:40px;font-size:.82rem;font-weight:700;cursor:pointer;font-family:var(--fb);display:inline-flex;align-items:center;gap:6px;transition:all .2s;box-shadow:0 3px 10px rgba(245,184,0,.3);}
-.option-btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(245,184,0,.5);}
-
-/* ═══════════════════════════════════════════
-   COMPATIBILITY RESULT — point 2 FIX
-   Score number visibility
-═══════════════════════════════════════════ */
-.compatibility-result{}
-.compat-header{text-align:center;padding:20px 0 14px;}
-.compat-header h1{font-family:var(--fh);font-size:clamp(1.15rem,3vw,1.65rem);color:#f5d060;margin-bottom:5px;}
-.compat-header p{color:#8aabcb;font-size:.88rem;}
-.score-card{background:var(--rcard);border:1px solid var(--rborder);border-radius:16px;padding:26px;margin-bottom:16px;text-align:center;}
-.score-circle{width:168px;height:168px;margin:0 auto 16px;border-radius:50%;border:8px solid;display:flex;flex-direction:column;justify-content:center;align-items:center;background:rgba(0,0,0,.35);}
-/* FIX point 2: Score number ALWAYS white with glow */
-.score-number{
-  font-size:52px;
-  font-weight:900;
-  font-family:var(--fh);
-  line-height:1.1;
-  color:#ffffff !important;
-  text-shadow:0 0 20px rgba(255,215,0,.9), 0 2px 6px rgba(0,0,0,.8) !important;
+/* ════════════════════════════════════════
+   INPUT IDENTITY BANNER
+════════════════════════════════════════ */
+.iib{
+  background:linear-gradient(135deg,rgba(245,184,0,.2),rgba(245,184,0,.08));
+  border:1.5px solid rgba(245,184,0,.45);
+  border-radius:14px;padding:14px 18px;
+  margin-bottom:16px;
+  animation:fadeSlide .4s ease;
 }
-.score-label{font-size:.76rem;color:#a0b4cc;margin-top:4px;}
-.score-level{font-size:1.55rem;font-weight:700;margin-bottom:10px;font-family:var(--fh);}
-/* FIX: description text brighter */
-.score-description{color:#ccd8f0;font-size:.93rem;line-height:1.78;max-width:580px;margin:0 auto 12px;}
-.score-summary{font-size:.83rem;background:rgba(255,255,255,.07);padding:10px 16px;border-radius:20px;color:#9ab0cc;display:inline-block;}
-.progress-bar{width:100%;height:10px;background:rgba(255,255,255,.14);border-radius:10px;overflow:hidden;margin-top:14px;}
-.progress-fill{height:100%;border-radius:10px;transition:width .6s ease;}
-.items-list{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:var(--r);padding:16px 18px;margin-bottom:14px;}
-.items-list h3{font-size:.88rem;color:#8aabcb;margin-bottom:12px;text-transform:uppercase;letter-spacing:.08em;}
-.item-row{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.06);flex-wrap:wrap;gap:7px;}
-.item-row:last-child{border-bottom:none;padding-bottom:0;}
-/* FIX: item text brighter */
-.item-text{font-size:.93rem;color:#d0e2f8;}
-.item-num{background:linear-gradient(135deg,#f5b800,#e8a200);color:#1a0e00;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1rem;font-family:var(--fh);flex-shrink:0;}
-.item-planet{font-size:.78rem;color:#8aabcb;}
-.pairs-section{margin-bottom:14px;}
-.pair-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:var(--r);padding:16px 18px;margin-bottom:10px;}
-.pair-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:7px;}
-/* FIX: pair title brighter */
-.pair-title{font-size:.93rem;color:#d0e2f8;font-weight:600;}
-.pair-score-badge{padding:4px 14px;border-radius:20px;font-size:.81rem;font-weight:700;border:1px solid;}
-.pair-relation{font-size:.79rem;color:#8aabcb;margin-bottom:7px;}
-/* FIX: pair analysis brighter */
-.pair-analysis{font-size:.88rem;color:#b8ccec;line-height:1.75;}
-.overall-card{background:var(--rcard);border:1px solid var(--rborder);border-radius:14px;padding:22px;margin-bottom:14px;}
-.overall-card h3{color:#f5d060;font-size:1.02rem;margin-bottom:10px;display:flex;align-items:center;gap:8px;font-family:var(--fb);}
-/* FIX: overall text brighter */
-.overall-card p{color:#ccd8f0;font-size:.93rem;line-height:1.85;}
-.remedy-card{background:rgba(255,180,0,.07);border:1px solid rgba(255,180,0,.2);border-left:4px solid #f5b800;border-radius:var(--r);padding:18px;margin-bottom:14px;}
-.remedy-card h3{color:#f5d060;font-size:.98rem;margin-bottom:10px;display:flex;align-items:center;gap:8px;font-family:var(--fb);}
-/* FIX: remedy text brighter */
-.remedy-card p{color:#d0e2f8;font-size:.9rem;line-height:1.85;white-space:pre-line;}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+.iib-row{display:flex;align-items:center;gap:14px;}
+.iib-icon{font-size:2.2rem;flex-shrink:0;filter:drop-shadow(0 0 10px rgba(255,200,0,.6));}
+.iib-body{flex:1;}
+.iib-input{font-family:var(--fh);font-size:clamp(1.05rem,3vw,1.4rem);font-weight:700;color:var(--cgold);margin-bottom:6px;word-break:break-all;}
+.iib-meta{display:flex;flex-wrap:wrap;align-items:center;gap:7px;}
+.iib-label{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#e8f0ff;font-size:.76rem;font-weight:700;padding:3px 11px;border-radius:20px;}
+.iib-number{background:linear-gradient(135deg,#f5b800,#e8a200);color:#1a0e00;font-size:1.55rem;font-weight:900;font-family:var(--fh);width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 12px rgba(245,184,0,.45);}
+.iib-planet{color:#c8d8f0;font-size:.8rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:3px 10px;border-radius:20px;}
 
-/* ═══════════════════════════════════════════
-   TRY YOUR OWN — point 11
-═══════════════════════════════════════════ */
-.try-own-wrap{padding:0 0 8px;}
-.try-own-card{background:linear-gradient(135deg,rgba(14,28,60,.9),rgba(8,18,40,.9));border:1.5px solid rgba(255,180,0,.3);border-radius:16px;padding:26px 24px;text-align:center;}
-.try-own-icon{font-size:2rem;margin-bottom:10px;display:block;filter:drop-shadow(0 0 10px rgba(255,200,0,.5));}
-.try-own-card h3{font-family:var(--fh);color:#f5d060;font-size:1.2rem;margin-bottom:7px;}
-.try-own-card p{color:#8aabcb;font-size:.88rem;margin-bottom:16px;}
-.try-row{display:flex;gap:10px;max-width:520px;margin:0 auto 12px;flex-wrap:wrap;justify-content:center;}
-.try-input{flex:1;min-width:200px;padding:12px 18px;font-size:.94rem;font-family:var(--fb);border:1.5px solid rgba(255,255,255,.12);border-radius:50px;background:rgba(255,255,255,.07);color:#fff;outline:none;transition:border-color .2s;}
-.try-input::placeholder{color:rgba(255,255,255,.32);}
+/* ════════════════════════════════════════
+   RESULT HEADER
+════════════════════════════════════════ */
+.result-header{text-align:center;padding:20px 16px 16px;margin-bottom:14px;}
+.result-number{display:inline-block;background:linear-gradient(135deg,#f5b800,#e8a200,#f5c800);padding:14px 40px;border-radius:60px;margin-bottom:14px;box-shadow:0 6px 28px rgba(245,184,0,.45);}
+.big-number{font-size:64px;font-weight:900;color:#1a0e00;font-family:var(--fh);line-height:1;}
+/* ★ FIX: Title clearly white */
+.result-title{font-family:var(--fh);font-size:clamp(1.15rem,3.5vw,1.75rem);color:#ffffff;margin-bottom:7px;text-shadow:0 1px 8px rgba(0,0,0,.6);}
+.result-subtitle{font-size:.9rem;color:#c8d8f0;}
+
+/* ════════════════════════════════════════
+   ROOT DESCRIPTION BOX
+════════════════════════════════════════ */
+.root-description{
+  background:#0f1d54; /* SOLID — no transparency */
+  border:1.5px solid rgba(245,184,0,.35);
+  border-left:4px solid var(--cgold);
+  border-radius:12px;padding:18px 20px;margin-bottom:14px;
+}
+/* ★ FIX: All text pure white */
+.root-description p{font-size:.94rem;color:#ffffff;line-height:1.88;}
+.root-description strong{color:var(--cgold);}
+.planet-badge{
+  background:linear-gradient(135deg,rgba(245,184,0,.25),rgba(245,184,0,.1));
+  border:1px solid rgba(245,184,0,.4);
+  padding:6px 16px;border-radius:40px;display:inline-block;margin-bottom:12px;
+  font-size:.88rem;color:var(--cgold2);font-weight:700;
+}
+.badge{
+  display:inline-block;
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.18);
+  padding:4px 12px;border-radius:18px;
+  font-size:.79rem;color:#e8f0ff;
+  margin-right:6px;margin-bottom:6px;
+}
+
+/* ════════════════════════════════════════
+   RESULT CARD — SOLID BG, VISIBLE TEXT
+   ★ KEY FIX: No backdrop-filter, solid bg
+════════════════════════════════════════ */
+.result-card{
+  background:#0d1845; /* SOLID navy — no rgba transparency */
+  border:1.5px solid var(--cborder);
+  border-radius:16px;padding:22px 20px;margin-bottom:14px;
+  box-shadow:0 4px 20px rgba(0,0,0,.4);
+}
+.error-card{text-align:center;padding:48px 24px;}
+.error-card p{color:#c8d8f0;margin:12px 0 20px;}
+
+/* ════════════════════════════════════════
+   INFO SECTIONS — ★ TEXT FULLY VISIBLE
+════════════════════════════════════════ */
+.info-section{margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.09);}
+.info-section:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+/* ★ FIXED: h3 golden, clearly visible */
+.info-section h3{
+  color:var(--ch3);
+  margin-bottom:10px;font-size:.98rem;
+  display:flex;align-items:center;gap:8px;
+  font-family:var(--fb);font-weight:700;
+}
+.info-section h3 i{font-size:.86rem;opacity:.9;}
+/* ★ FIXED: p WHITE — fully readable */
+.info-section p{
+  color:#ffffff;
+  font-size:.92rem;line-height:1.88;
+  text-align:justify;
+}
+.info-section strong{color:var(--cgold);}
+
+/* BACK & SHARE */
+.back-btn{
+  display:inline-flex;align-items:center;gap:7px;
+  background:#111e52;border:1.5px solid rgba(245,184,0,.4);
+  padding:10px 20px;border-radius:40px;color:#e8f0ff;
+  transition:all .2s;font-size:.88rem;
+}
+.back-btn:hover{background:rgba(245,184,0,.18);color:var(--gold-lt);}
+.share-buttons{display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap;}
+.share-btn{
+  background:#111e52;border:1.5px solid rgba(255,255,255,.18);
+  padding:9px 18px;border-radius:30px;cursor:pointer;
+  color:#e8f0ff;font-family:var(--fb);font-size:.86rem;
+  display:inline-flex;align-items:center;gap:6px;transition:all .2s;
+}
+.share-btn:hover{background:rgba(245,184,0,.18);border-color:rgba(245,184,0,.5);color:var(--gold-lt);}
+
+/* ════════════════════════════════════════
+   CLARIFICATION CARD
+════════════════════════════════════════ */
+.clarification-card{
+  background:#0d1845;border:1.5px solid var(--cborder);
+  border-radius:16px;padding:30px 22px;text-align:center;margin-bottom:14px;
+}
+.clarification-card h2{font-family:var(--fh);color:var(--cgold2);font-size:clamp(1rem,3vw,1.4rem);margin:12px 0 8px;}
+/* ★ Fixed: clarification text visible */
+.clarification-card p{color:#c8d8f0;font-size:.92rem;margin-bottom:18px;}
+.option-buttons{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-height:360px;overflow-y:auto;padding:4px;}
+.option-btn{
+  background:linear-gradient(135deg,#f5b800,#e8a200);
+  color:#1a0e00;border:none;padding:8px 15px;border-radius:40px;
+  font-size:.81rem;font-weight:700;cursor:pointer;font-family:var(--fb);
+  display:inline-flex;align-items:center;gap:5px;transition:all .2s;
+  box-shadow:0 2px 10px rgba(245,184,0,.3);
+}
+.option-btn:hover{transform:translateY(-2px);box-shadow:0 5px 18px rgba(245,184,0,.5);}
+
+/* ════════════════════════════════════════
+   COMPATIBILITY — ALL TEXT FIXED
+════════════════════════════════════════ */
+.score-card{background:#0d1845;border:1.5px solid var(--cborder);border-radius:16px;padding:26px;margin-bottom:14px;text-align:center;}
+.score-circle{width:170px;height:170px;margin:0 auto 16px;border-radius:50%;border:8px solid;display:flex;flex-direction:column;justify-content:center;align-items:center;background:rgba(0,0,0,.4);}
+/* ★ Score number: ALWAYS white + glow */
+.score-number{font-size:54px;font-weight:900;font-family:var(--fh);line-height:1.1;color:#ffffff !important;text-shadow:0 0 24px rgba(255,215,0,.9),0 2px 6px rgba(0,0,0,.9) !important;}
+.score-label{font-size:.74rem;color:#c8d8f0;margin-top:4px;}
+/* ★ All score text white */
+.score-level{font-size:1.5rem;font-weight:700;margin-bottom:10px;font-family:var(--fh);color:#ffffff;}
+.score-description{color:#ffffff;font-size:.92rem;line-height:1.8;max-width:580px;margin:0 auto 12px;}
+.score-summary{font-size:.82rem;background:rgba(255,255,255,.08);padding:9px 16px;border-radius:20px;color:#e8f0ff;display:inline-block;}
+.progress-bar{width:100%;height:10px;background:rgba(255,255,255,.12);border-radius:10px;overflow:hidden;margin-top:14px;}
+.progress-fill{height:100%;border-radius:10px;}
+
+.items-list{background:#111e52;border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:16px 18px;margin-bottom:14px;}
+.items-list h3{font-size:.86rem;color:#c8d8f0;margin-bottom:12px;text-transform:uppercase;letter-spacing:.08em;}
+.item-row{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.07);flex-wrap:wrap;gap:6px;}
+.item-row:last-child{border-bottom:none;padding-bottom:0;}
+/* ★ item text white */
+.item-text{font-size:.92rem;color:#ffffff;}
+.item-num{background:linear-gradient(135deg,#f5b800,#e8a200);color:#1a0e00;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1rem;font-family:var(--fh);flex-shrink:0;}
+.item-planet{font-size:.77rem;color:#c8d8f0;}
+
+.pairs-section{margin-bottom:14px;}
+.pair-card{background:#111e52;border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:16px 18px;margin-bottom:10px;}
+.pair-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;flex-wrap:wrap;gap:6px;}
+/* ★ pair title white */
+.pair-title{font-size:.92rem;color:#ffffff;font-weight:700;}
+.pair-score-badge{padding:4px 13px;border-radius:20px;font-size:.8rem;font-weight:700;border:1px solid;}
+.pair-relation{font-size:.78rem;color:#c8d8f0;margin-bottom:7px;}
+/* ★ pair analysis white */
+.pair-analysis{font-size:.88rem;color:#e8f0ff;line-height:1.78;}
+.overall-card{background:#0d1845;border:1.5px solid var(--cborder);border-radius:14px;padding:22px;margin-bottom:14px;}
+/* ★ overall text white */
+.overall-card h3{color:var(--ch3);font-size:.98rem;margin-bottom:10px;display:flex;align-items:center;gap:8px;font-family:var(--fb);font-weight:700;}
+.overall-card p{color:#ffffff;font-size:.92rem;line-height:1.88;}
+/* ★ remedy text white */
+.remedy-card{background:#0f1d54;border:1.5px solid rgba(245,184,0,.4);border-left:4px solid var(--cgold);border-radius:10px;padding:18px;margin-bottom:14px;}
+.remedy-card h3{color:var(--ch3);font-size:.95rem;margin-bottom:10px;display:flex;align-items:center;gap:8px;font-family:var(--fb);font-weight:700;}
+.remedy-card p{color:#ffffff;font-size:.9rem;line-height:1.88;white-space:pre-line;}
+
+/* ════════════════════════════════════════
+   TRY OWN
+════════════════════════════════════════ */
+.try-own-card{background:#0d1845;border:1.5px solid rgba(245,184,0,.35);border-radius:16px;padding:24px;text-align:center;}
+.try-own-icon{font-size:2rem;margin-bottom:9px;display:block;filter:drop-shadow(0 0 10px rgba(255,200,0,.6));}
+/* ★ try own text white */
+.try-own-card h3{font-family:var(--fh);color:var(--cgold);font-size:1.15rem;margin-bottom:7px;}
+.try-own-card p{color:#c8d8f0;font-size:.86rem;margin-bottom:14px;}
+.try-row{display:flex;gap:9px;max-width:500px;margin:0 auto 10px;flex-wrap:wrap;justify-content:center;}
+.try-input{flex:1;min-width:190px;padding:11px 17px;font-size:.93rem;font-family:var(--fb);border:1.5px solid rgba(255,255,255,.15);border-radius:50px;background:#111e52;color:#ffffff;outline:none;transition:border-color .2s;}
+.try-input::placeholder{color:rgba(255,255,255,.35);}
 .try-input:focus{border-color:rgba(245,184,0,.5);}
-.try-btn{padding:12px 22px;background:linear-gradient(135deg,#f5b800,#e8a200);color:#1a0e00;border:none;border-radius:50px;font-weight:800;font-size:.9rem;cursor:pointer;font-family:var(--fb);transition:all .2s;box-shadow:0 4px 14px rgba(245,184,0,.4);}
-.try-btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(245,184,0,.6);}
-.try-link{display:inline-block;color:#8aabcb;font-size:.82rem;text-decoration:underline;margin-top:4px;}
+.try-btn{padding:11px 20px;background:linear-gradient(135deg,#f5b800,#e8a200);color:#1a0e00;border:none;border-radius:50px;font-weight:800;font-size:.9rem;cursor:pointer;font-family:var(--fb);transition:all .2s;}
+.try-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(245,184,0,.5);}
+.try-link{display:inline-block;color:#9ab8d8;font-size:.8rem;text-decoration:underline;margin-top:4px;}
 .try-link:hover{color:var(--gold-lt);}
 
-/* ═══════════════════════════════════════════
-   SOCIAL PROOF — point 9
-═══════════════════════════════════════════ */
-.social-proof-strip{background:var(--navy);border-top:2px solid var(--gold);border-bottom:2px solid var(--gold);padding:18px 24px;}
-.sp-inner{display:flex;flex-wrap:wrap;justify-content:center;gap:20px 40px;max-width:900px;margin:0 auto;}
+/* ════════════════════════════════════════
+   SOCIAL PROOF
+════════════════════════════════════════ */
+.sp-strip{background:var(--navy);border-top:2px solid var(--gold);border-bottom:2px solid var(--gold);padding:16px 24px;}
+.sp-inner{display:flex;flex-wrap:wrap;justify-content:center;gap:16px 36px;max-width:900px;margin:0 auto;}
 .sp-card{text-align:center;}
-.sp-card i{font-size:1.6rem;margin-bottom:8px;display:block;}
-.sp-num{font-size:1.35rem;font-weight:700;color:var(--gold3);font-family:var(--fh);}
-.sp-lbl{font-size:.68rem;color:#6888a8;margin-top:2px;letter-spacing:.04em;text-transform:uppercase;}
-.s-yt-c{color:#ff0000}.s-fb-c{color:#1877f2}.s-g-c{color:#4285f4}.s-jd-c{color:#ff6900}
+.sp-card i{font-size:1.55rem;margin-bottom:7px;display:block;}
+.sp-num{font-size:1.3rem;font-weight:700;color:var(--gold3);font-family:var(--fh);}
+.sp-lbl{font-size:.66rem;color:#6888a8;margin-top:2px;letter-spacing:.04em;text-transform:uppercase;}
+.s-yt{color:#ff0000}.s-fb{color:#1877f2}.s-g{color:#4285f4}
 
-/* ═══════════════════════════════════════════
-   SEO ARTICLE — point 4
-═══════════════════════════════════════════ */
-.seo-article-wrap{background:var(--cream2);border-top:1px solid var(--border);padding:50px 24px;}
-.seo-article-inner{max-width:860px;margin:0 auto;}
-.seo-article-inner h2{font-family:var(--fh);font-size:clamp(1.2rem,3vw,1.7rem);color:var(--red);margin-bottom:18px;line-height:1.35;}
-.seo-article-inner h3{font-family:var(--fh);font-size:1.06rem;color:var(--navy);margin:24px 0 10px;}
-.seo-article-inner p{font-size:.95rem;color:var(--muted);margin-bottom:.9rem;line-height:1.88;}
-.seo-article-inner strong{color:var(--navy);}
-.seo-article-inner a{color:var(--blue);border-bottom:1px dotted;}
-.article-tagline{margin-top:24px;padding:16px 20px;background:rgba(184,134,11,.08);border-left:4px solid var(--gold2);font-family:var(--fh);font-style:italic;font-size:.98rem;color:#3a3020;border-radius:0 var(--r) var(--r) 0;line-height:1.7;}
+/* ════════════════════════════════════════
+   SEO ARTICLE (light bg)
+════════════════════════════════════════ */
+.seo-wrap{background:var(--cream2);border-top:1px solid var(--border);padding:50px 24px;}
+.seo-in{max-width:860px;margin:0 auto;}
+.seo-in h2{font-family:var(--fh);font-size:clamp(1.2rem,3vw,1.7rem);color:var(--red);margin-bottom:16px;}
+.seo-in h3{font-family:var(--fh);font-size:1.04rem;color:var(--navy);margin:22px 0 10px;}
+.seo-in p{font-size:.94rem;color:var(--muted);margin-bottom:.9rem;line-height:1.85;}
+.seo-in strong{color:var(--navy);}
+.seo-in a{color:var(--blue);border-bottom:1px dotted;}
+.article-tagline{margin-top:22px;padding:15px 20px;background:rgba(184,134,11,.08);border-left:4px solid var(--gold2);font-family:var(--fh);font-style:italic;font-size:.97rem;color:#3a3020;border-radius:0 var(--r) var(--r) 0;line-height:1.7;}
 
-/* ═══════════════════════════════════════════
-   BLOG INTERLINKS — point 5
-═══════════════════════════════════════════ */
-.blog-links-wrap{background:var(--cream);border-top:1px solid var(--border);padding:40px 24px;}
-.blog-links-inner{max-width:860px;margin:0 auto;}
-.blog-links-inner h3{font-family:var(--fh);font-size:1.15rem;color:var(--navy);margin-bottom:18px;text-align:center;}
-.blog-links-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;}
-.blog-link-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);border-left:4px solid var(--gold);padding:14px 16px;transition:box-shadow .2s,transform .2s;display:block;}
-.blog-link-card:hover{box-shadow:var(--shadow);transform:translateY(-2px);border-left-color:var(--red);}
-.blog-link-card .blc-icon{font-size:1.2rem;margin-bottom:6px;display:block;}
-.blog-link-card .blc-title{font-size:.86rem;font-weight:700;color:var(--navy);line-height:1.35;}
-.blog-link-card .blc-sub{font-size:.76rem;color:var(--muted);margin-top:3px;}
-.blog-link-card:hover .blc-title{color:var(--red);}
+/* BLOG LINKS */
+.blog-wrap{background:var(--cream);border-top:1px solid var(--border);padding:38px 24px;}
+.blog-in{max-width:860px;margin:0 auto;}
+.blog-in h3{font-family:var(--fh);font-size:1.12rem;color:var(--navy);margin-bottom:16px;text-align:center;}
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:11px;}
+.blk{background:var(--white);border:1px solid var(--border);border-radius:var(--r);border-left:4px solid var(--gold);padding:13px 15px;transition:all .2s;display:block;}
+.blk:hover{box-shadow:var(--shadow);transform:translateY(-2px);border-left-color:var(--red);}
+.blk-ico{font-size:1.1rem;margin-bottom:5px;display:block;}
+.blk-t{font-size:.84rem;font-weight:700;color:var(--navy);line-height:1.3;}
+.blk-s{font-size:.74rem;color:var(--muted);margin-top:2px;}
+.blk:hover .blk-t{color:var(--red);}
 
-/* ── CTA STRIP ── */
-.cta-strip{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);border-top:2px solid var(--gold);padding:44px 24px;text-align:center;}
-.cta-strip h3{font-family:var(--fh);color:var(--gold-lt);font-size:1.25rem;margin-bottom:8px;}
-.cta-strip p{color:#7899bb;font-size:.9rem;margin-bottom:18px;max-width:500px;margin-left:auto;margin-right:auto;}
-.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+/* CTA */
+.cta-wrap{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);border-top:2px solid var(--gold);padding:44px 24px;text-align:center;}
+.cta-wrap h3{font-family:var(--fh);color:var(--gold-lt);font-size:1.22rem;margin-bottom:8px;}
+.cta-wrap p{color:#7899bb;font-size:.9rem;margin-bottom:16px;max-width:500px;margin-left:auto;margin-right:auto;}
+.cta-btns{display:flex;gap:11px;justify-content:center;flex-wrap:wrap;}
 .btn-wa{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;padding:12px 24px;border-radius:50px;font-weight:800;font-size:.92rem;box-shadow:0 4px 16px rgba(37,211,102,.4);transition:all .2s;}
 .btn-wa:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,.55);}
-.btn-outline-gold{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1.5px solid rgba(184,134,11,.5);color:var(--gold-lt);padding:12px 24px;border-radius:50px;font-weight:600;font-size:.92rem;transition:all .2s;}
-.btn-outline-gold:hover{background:rgba(184,134,11,.12);transform:translateY(-2px);}
+.btn-gold{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1.5px solid rgba(184,134,11,.5);color:var(--gold-lt);padding:12px 24px;border-radius:50px;font-weight:600;font-size:.92rem;transition:all .2s;}
+.btn-gold:hover{background:rgba(184,134,11,.14);transform:translateY(-2px);}
 
-/* ── FOOTER ── */
+/* FOOTER */
 .site-footer{background:linear-gradient(180deg,#0a1628 0%,#060e1a 100%);border-top:3px solid var(--gold);color:#6888a8;}
-.fg{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.1fr;gap:0;max-width:1080px;margin:0 auto;padding:44px 24px 36px;border-bottom:1px solid rgba(255,255,255,.05);}
-.fc{padding:0 28px 0 0;border-right:1px solid rgba(255,255,255,.05);}
-.fc:first-child{padding-left:0}.fc:last-child{padding-right:0;border-right:none}.fc+.fc{padding-left:28px}
-.fc h4{font-family:var(--fh);color:var(--gold);font-size:.8rem;letter-spacing:.13em;text-transform:uppercase;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid rgba(184,134,11,.25);}
-.fc p,.fc a{font-size:.82rem;color:#8aabcb;display:block;margin-bottom:8px;transition:color .2s;line-height:1.65;}
-.fc a:hover{color:var(--gold-lt)}.fc i{width:15px;margin-right:7px;opacity:.75;color:var(--gold);font-size:.78rem;}
-.fb{max-width:1080px;margin:0 auto;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
-.fb p{font-size:.76rem;color:#3d5570;}.fb a{color:#5a7a9a}.fb a:hover{color:var(--gold-lt)}
-.srow{display:flex;gap:8px;flex-wrap:wrap}
-.srow a{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.88rem;color:#fff;transition:transform .2s,filter .2s;filter:brightness(.8);}
+.fg{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.1fr;max-width:1080px;margin:0 auto;padding:40px 24px 32px;border-bottom:1px solid rgba(255,255,255,.05);}
+.fc{padding:0 26px 0 0;border-right:1px solid rgba(255,255,255,.05);}
+.fc:first-child{padding-left:0}.fc:last-child{padding-right:0;border-right:none}.fc+.fc{padding-left:26px}
+.fc h4{font-family:var(--fh);color:var(--gold);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;padding-bottom:9px;border-bottom:1px solid rgba(184,134,11,.25);}
+.fc p,.fc a{font-size:.81rem;color:#8aabcb;display:block;margin-bottom:7px;transition:color .2s;line-height:1.65;}
+.fc a:hover{color:var(--gold-lt)}.fc i{width:15px;margin-right:7px;opacity:.75;color:var(--gold);font-size:.76rem;}
+.fb{max-width:1080px;margin:0 auto;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:11px;flex-wrap:wrap;}
+.fb p{font-size:.74rem;color:#3d5570;}.fb a{color:#5a7a9a}.fb a:hover{color:var(--gold-lt)}
+.srow{display:flex;gap:7px;flex-wrap:wrap}
+.srow a{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.86rem;color:#fff;transition:transform .2s,filter .2s;filter:brightness(.8);}
 .srow a:hover{transform:translateY(-3px);filter:brightness(1)}
 .swa{background:#25d366}.sfb{background:#1877f2}.syt{background:#ff0000}
 .sig{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285aeb 90%)}
 
-/* ── WA FLOAT ── */
-.wa-float{position:fixed;bottom:22px;right:22px;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
-.wa-bub{background:var(--white);border-radius:8px;padding:6px 10px;font-size:.72rem;font-weight:600;color:#111;box-shadow:0 4px 20px rgba(0,0,0,.2);max-width:150px;text-align:center;display:none;}
+/* WA FLOAT */
+.wa-float{position:fixed;bottom:22px;right:22px;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:7px;}
+.wa-bub{background:#fff;border-radius:8px;padding:6px 10px;font-size:.71rem;font-weight:600;color:#111;box-shadow:0 4px 20px rgba(0,0,0,.2);max-width:148px;text-align:center;display:none;}
 .wa-bub.show{display:block;animation:popIn .4s ease}
-.wa-btn{width:44px;height:44px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:#fff;cursor:pointer;box-shadow:0 4px 20px rgba(37,211,102,.5);animation:waPulse 2.4s infinite;text-decoration:none;}
+.wa-btn{width:44px;height:44px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:#fff;cursor:pointer;box-shadow:0 4px 20px rgba(37,211,102,.55);animation:waPulse 2.4s infinite;text-decoration:none;}
 .wa-btn:hover{background:#1ebe5d;animation:none;transform:scale(1.07)}
-@keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.5)}50%{box-shadow:0 4px 34px rgba(37,211,102,.8),0 0 0 8px rgba(37,211,102,.1)}}
+@keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.55)}50%{box-shadow:0 4px 34px rgba(37,211,102,.85),0 0 0 8px rgba(37,211,102,.12)}}
 @keyframes popIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
-/* ── BTT bottom-LEFT ── */
-#btt{position:fixed;bottom:22px;left:18px;width:44px;height:44px;background:rgba(10,25,47,.85);color:var(--gold3);border:1.5px solid rgba(184,134,11,.4);border-radius:50%;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(0,0,0,.3);opacity:0;transform:translateY(14px);transition:opacity .3s,transform .3s;z-index:800;backdrop-filter:blur(4px);}
+/* BTT */
+#btt{position:fixed;bottom:22px;left:18px;width:44px;height:44px;background:rgba(10,25,47,.9);color:var(--gold3);border:1.5px solid rgba(184,134,11,.45);border-radius:50%;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(0,0,0,.35);opacity:0;transform:translateY(14px);transition:opacity .3s,transform .3s;z-index:800;}
 #btt.v{opacity:1;transform:translateY(0);}
 #btt:hover{background:var(--navy2);}
 
-/* ── PRINT ── */
+/* PRINT */
 @media print{
-  .site-header,.nav,.wa-float,#btt,.share-buttons,.back-btn,.cta-strip,.daily-box,.social-proof-strip,.blog-links-wrap,.try-own-wrap,.seo-article-wrap,.site-footer{display:none!important}
-  body{background:#fff!important;padding-top:0!important;}
-  .result-wrap{background:#fff!important;min-height:auto!important;}
-  .result-card,.score-card,.pair-card,.overall-card,.remedy-card,.clarification-card,.root-description{background:#f8f8f8!important;border:1px solid #ccc!important;}
-  .result-title,.result-subtitle,.info-section h3,.overall-card h3,.remedy-card h3,.pair-title,.score-level,.score-description,.pair-analysis,.overall-card p,.remedy-card p,.item-text,.info-section p{color:#333!important;}
-  .score-number{color:#000!important;text-shadow:none!important;}
-  .planet-badge,.badge{background:#eee!important;color:#333!important;}
+  .site-header,.nav,.wa-float,#btt,.share-buttons,.back-btn,.cta-wrap,.sp-strip,.blog-wrap,.try-own-card,.seo-wrap,.daily-box,.site-footer{display:none!important}
+  body{background:#fff!important;padding-top:0!important;color:#000!important}
+  .result-wrap,.result-card,.root-description,.score-card,.overall-card,.remedy-card{background:#f5f5f5!important;border:1px solid #ccc!important;}
+  .result-title,.info-section h3,.info-section p,.score-description,.overall-card p,.remedy-card p,.pair-analysis,.item-text,.pair-title,.score-level,.score-number{color:#000!important;text-shadow:none!important;}
   .big-number{color:#000!important;}
-  .root-description p{color:#333!important;}
 }
 
-/* ── RESPONSIVE ── */
-@media(max-width:860px){.fg{grid-template-columns:1fr 1fr;gap:0}.fc{border-right:none;padding:0 0 22px 0!important}.fc+.fc{padding-left:0!important}}
-@media(max-width:600px){.sp-inner{gap:14px 26px}.blog-links-grid{grid-template-columns:1fr 1fr}}
+/* RESPONSIVE */
+@media(max-width:860px){.fg{grid-template-columns:1fr 1fr}.fc{border-right:none;padding:0 0 20px 0!important}.fc+.fc{padding-left:0!important}}
+@media(max-width:600px){.sp-inner{gap:12px 24px}.blog-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:480px){
-  .result-inner{padding:0 12px}
+  .result-inner{padding:0 11px}
   .result-card,.score-card,.clarification-card{padding:18px 14px}
   .fg{grid-template-columns:1fr}.fb{flex-direction:column;text-align:center}
-  .big-number{font-size:46px}
-  .score-number{font-size:44px!important}
-  .option-buttons{max-height:340px}
+  .big-number{font-size:50px}
+  .score-number{font-size:46px!important}
   .try-row{flex-direction:column;}
   .try-input,.try-btn{width:100%;}
 }
-/* ── INPUT IDENTITY BANNER (Point 1) ── */
-.input-identity-banner{background:linear-gradient(135deg,rgba(245,184,0,.18),rgba(245,184,0,.08));border:1.5px solid rgba(245,184,0,.4);border-radius:14px;padding:16px 20px;margin-bottom:18px;animation:fadeIn .4s ease;}
-@keyframes fadeIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
-.iib-row{display:flex;align-items:center;gap:14px;}
-.iib-icon{font-size:2.2rem;flex-shrink:0;filter:drop-shadow(0 0 10px rgba(255,200,0,.5));}
-.iib-body{flex:1;}
-.iib-input{font-family:var(--fh);font-size:clamp(1.1rem,3vw,1.5rem);font-weight:700;color:#f5b800;margin-bottom:6px;word-break:break-all;}
-.iib-meta{display:flex;align-items:center;flex-wrap:wrap;gap:8px;}
-.iib-label{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#c8d8f0;font-size:.78rem;font-weight:600;padding:3px 11px;border-radius:20px;}
-.iib-number{background:linear-gradient(135deg,#f5b800,#e8a200);color:#1a0e00;font-size:1.6rem;font-weight:900;font-family:var(--fh);width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(245,184,0,.4);}
-.iib-planet{color:#8aabcb;font-size:.82rem;padding:3px 10px;background:rgba(255,255,255,.06);border-radius:20px;}
 </style>
 </head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVVL8XBD" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-
 <a href="#main" style="position:absolute;left:-9999px;top:4px;z-index:9999;background:var(--navy);color:var(--gold3);padding:8px 16px;border-radius:0 0 8px 0;font-weight:700;font-size:.9rem" onfocus="this.style.left='0'" onblur="this.style.left='-9999px'">মূল কন্টেন্টে যান</a>
 <div id="fl"></div>
 
@@ -364,7 +427,7 @@ img{max-width:100%;height:auto;display:block}
 </header>
 
 <!-- NAV -->
-<nav class="nav" id="nm" aria-label="মূল নেভিগেশন">
+<nav class="nav" id="nm" aria-label="নেভিগেশন">
   <a href="https://www.myastrology.in/"><i class="fas fa-home"></i>হোম</a>
   <a href="https://www.myastrology.in/astrology.html"><i class="fas fa-star"></i>জ্যোতিষ শাস্ত্র</a>
   <a href="https://www.myastrology.in/palmistry.html"><i class="fas fa-hand-paper"></i>হস্তরেখা</a>
@@ -388,15 +451,14 @@ img{max-width:100%;height:auto;display:block}
 </nav>
 <div class="nav-ov" id="no" onclick="cNav()"></div>
 
-<!-- MAIN -->
 <main id="main">
 
-<!-- ── DAILY PANJIKA (point 7) ── -->
-<div class="daily-box" aria-label="আজকের রাশিফল ও দিন পঞ্জিকা">
+<!-- Daily Panjika -->
+<div class="daily-box">
   <div class="daily-card">
     <span class="daily-star">⭐</span>
     <h2 class="daily-title">আজকের রাশিফল ও দিন পঞ্জিকা</h2>
-    <p class="daily-desc">দৈনিক চন্দ্র গোচর অনুযায়ী প্রতিটি রাশির আজকের ভাগ্য বিচার। তিথি, নক্ষত্র, যোগ, করণ সহ সম্পূর্ণ বৈদিক পঞ্জিকা।</p>
+    <p class="daily-desc">তিথি, নক্ষত্র, যোগ, করণ সহ সম্পূর্ণ বৈদিক পঞ্জিকা ও রাশিফল</p>
     <div class="daily-tags">
       <span class="daily-tag">❤️ প্রেম</span>
       <span class="daily-tag">💼 কর্ম</span>
@@ -408,153 +470,75 @@ img{max-width:100%;height:auto;display:block}
   </div>
 </div>
 
-<!-- ── RESULT SECTION ── -->
+<!-- Result Section -->
 <div class="result-wrap">
   <div class="result-inner">
-
-    <!-- Loading -->
-    <div id="loading">
-      <div class="spin"></div>
-      <p>বিশ্লেষণ হচ্ছে — অনুগ্রহ করে অপেক্ষা করুন...</p>
-    </div>
-
-    <!-- Result Content -->
+    <div id="loading"><div class="spin"></div><p>বিশ্লেষণ হচ্ছে...</p></div>
     <div id="resultContent"></div>
-
-    <!-- TRY YOUR OWN — point 11 -->
-    <div class="try-own-wrap" style="margin-top:20px;">
+    <!-- Try Own -->
+    <div style="margin-top:18px;">
       <div class="try-own-card">
         <span class="try-own-icon">🔮</span>
-        <h3>আপনার নিজের সংখ্যা জ্যোতিষ বিশ্লেষণ করুন</h3>
-        <p>আপনার নাম, জন্মতারিখ, মোবাইল নম্বর বা গাড়ির নম্বর দিয়ে বিশ্লেষণ করুন</p>
+        <h3>আপনার নিজের সংখ্যা বিশ্লেষণ করুন</h3>
+        <p>নাম, জন্মতারিখ, মোবাইল নম্বর বা যেকোনো নম্বর লিখুন</p>
         <div class="try-row">
-          <input type="text" id="tryInput" class="try-input"
-            placeholder="নাম, তারিখ, মোবাইল বা যেকোনো নম্বর..."
-            autocomplete="off" spellcheck="false"
-            onkeydown="if(event.key==='Enter')doTryOwn()">
-          <button class="try-btn" onclick="doTryOwn()"><i class="fas fa-search"></i> বিশ্লেষণ করুন</button>
+          <input type="text" id="ti" class="try-input" placeholder="নাম, তারিখ, মোবাইল..." autocomplete="off" onkeydown="if(event.key==='Enter')doTry()">
+          <button class="try-btn" onclick="doTry()"><i class="fas fa-search"></i> বিশ্লেষণ করুন</button>
         </div>
-        <a href="https://www.myastrology.in/numerology.html" class="try-link">
-          <i class="fas fa-arrow-left"></i> সম্পূর্ণ সংখ্যা জ্যোতিষ পেজ দেখুন
-        </a>
+        <a href="https://www.myastrology.in/numerology.html" class="try-link"><i class="fas fa-arrow-left"></i> সম্পূর্ণ Numerology Hub</a>
       </div>
-    </div>
-
-  </div>
-</div><!-- .result-wrap -->
-
-<!-- ── SOCIAL PROOF (point 9) ── -->
-<div class="social-proof-strip">
-  <div class="sp-inner">
-    <div class="sp-card">
-      <i class="fab fa-youtube s-yt-c"></i>
-      <div class="sp-num">২,২৪,০০০+</div>
-      <div class="sp-lbl">YouTube সাবস্ক্রাইবার</div>
-    </div>
-    <div class="sp-card">
-      <i class="fab fa-facebook-f s-fb-c"></i>
-      <div class="sp-num">৪১,৪০০+</div>
-      <div class="sp-lbl">Facebook অনুসরণকারী</div>
-    </div>
-    <div class="sp-card">
-      <i class="fab fa-google s-g-c"></i>
-      <div class="sp-num">২৮৯+ · ৫.০⭐</div>
-      <div class="sp-lbl">Google রিভিউ</div>
-    </div>
-    <div class="sp-card">
-      <i class="fas fa-users" style="color:var(--gold3)"></i>
-      <div class="sp-num">১০,০০০+</div>
-      <div class="sp-lbl">সন্তুষ্ট গ্রাহক</div>
-    </div>
-    <div class="sp-card">
-      <i class="fas fa-award" style="color:#ff6900"></i>
-      <div class="sp-num">১৫+ বছর</div>
-      <div class="sp-lbl">অভিজ্ঞতা</div>
     </div>
   </div>
 </div>
 
-<!-- ── SEO ARTICLE (point 4) ── -->
-<section class="seo-article-wrap">
-  <div class="seo-article-inner">
+<!-- Social Proof -->
+<div class="sp-strip">
+  <div class="sp-inner">
+    <div class="sp-card"><i class="fab fa-youtube s-yt"></i><div class="sp-num">২,২৪,০০০+</div><div class="sp-lbl">YouTube সাবস্ক্রাইবার</div></div>
+    <div class="sp-card"><i class="fab fa-facebook-f s-fb"></i><div class="sp-num">৪১,৪০০+</div><div class="sp-lbl">Facebook ফলোয়ার</div></div>
+    <div class="sp-card"><i class="fab fa-google s-g"></i><div class="sp-num">২৮৯+ · ৫.০⭐</div><div class="sp-lbl">Google রিভিউ</div></div>
+    <div class="sp-card"><i class="fas fa-users" style="color:var(--gold3)"></i><div class="sp-num">১০,০০০+</div><div class="sp-lbl">সন্তুষ্ট গ্রাহক</div></div>
+    <div class="sp-card"><i class="fas fa-award" style="color:#ff6900"></i><div class="sp-num">১৫+ বছর</div><div class="sp-lbl">অভিজ্ঞতা</div></div>
+  </div>
+</div>
+
+<!-- SEO Article -->
+<section class="seo-wrap">
+  <div class="seo-in">
     <h2>সংখ্যা জ্যোতিষ, হস্তরেখা ও বৈদিক জ্যোতিষ — জীবনের তিনটি আলোকবর্তিকা</h2>
-
-    <p>মানুষ চিরকাল নিজের ভবিষ্যৎ জানতে চেয়েছে। রাণাঘাট থেকে কলকাতা, নদিয়া থেকে সারা পশ্চিমবঙ্গ — প্রতিটি মানুষের মনের গভীরে একটাই প্রশ্ন: "আমার জীবনে কী আছে?" প্রাচীন ভারতীয় শাস্ত্র এই প্রশ্নের উত্তর খুঁজেছে তিনটি পথে — <strong>বৈদিক জ্যোতিষ</strong>, <strong>হস্তরেখা</strong> ও <strong>সংখ্যা জ্যোতিষ</strong>।</p>
-
-    <h3>সংখ্যা জ্যোতিষ — সৃষ্টির ভাষা</h3>
-    <p>মহাবিশ্বের মূল ভিত্তি সংখ্যায় গড়া। পিথাগোরাস বলেছিলেন, "সংখ্যাই সবকিছু।" <strong>সংখ্যা জ্যোতিষ বা নিউমেরোলজি</strong> সেই প্রাচীন সত্যকে জীবনের সাথে জুড়ে দেয়। আপনার জন্মতারিখের <strong>মূলাংক</strong> বলে দেয় আপনি মূলত কেমন মানুষ। <strong>ভাগ্যাংক</strong> দেখায় জীবনের মূল উদ্দেশ্য। আপনার নামের প্রতিটি অক্ষরে আছে একটি সংখ্যা, সেই সংখ্যায় আছে একটি গ্রহের শক্তি।</p>
-    <p>ভারতের সেরা <a href="https://www.myastrology.in/numerology.html">বাংলা সংখ্যা জ্যোতিষ সিস্টেম</a> এখন আপনার হাতের মুঠোয়। শুধু নাম বা তারিখ লিখুন — রাহু-কেতু থেকে শনি, সূর্য থেকে মঙ্গল — প্রতিটি গ্রহের প্রভাব বিশ্লেষণ করে পাবেন গভীর অন্তর্দৃষ্টি।</p>
-
-    <h3>হস্তরেখা — হাতের মানচিত্রে জীবনের গল্প</h3>
-    <p><strong>হস্তরেখা শাস্ত্র</strong> মানুষের হাতের রেখাকে একটি জীবন্ত মানচিত্র হিসেবে দেখে। হৃদয়রেখা বলে প্রেম ও সম্পর্কের কথা, মস্তিষ্করেখা বলে বুদ্ধি ও সিদ্ধান্তের কথা, জীবনরেখা বলে স্বাস্থ্য ও আয়ুর কথা। Dr. Prodyut Acharya-র <a href="https://www.myastrology.in/palmistry.html">হস্তরেখা পরামর্শ</a> রাণাঘাট, কলকাতা ও সারা ভারতে পরিচিত। কারণ তিনি শুধু রেখা দেখেন না — দেখেন মানুষকে।</p>
-
-    <h3>বৈদিক জ্যোতিষ — গ্রহের বার্তা</h3>
-    <p><strong>বৈদিক জ্যোতিষ</strong> হলো বিজ্ঞান ও আধ্যাত্মিকতার সমন্বয়। জন্মকুণ্ডলী শুধু একটি চার্ট নয় — এটি আপনার জীবনের নীলনকশা। গ্রহদশা, অন্তর্দশা, গোচর — এই সব মিলিয়ে তৈরি হয় জীবনের প্রতিটি পর্যায়ের ছবি। <a href="https://www.myastrology.in/astrology.html">PhD in Vedic Jyotish Dr. Prodyut Acharya</a> নদিয়া, পশ্চিমবঙ্গ থেকে সারা ভারতে অনলাইনে পরামর্শ দিচ্ছেন ১৫ বছরেরও বেশি সময় ধরে।</p>
-
-    <h3>তিনটি শাস্ত্র, একটি লক্ষ্য</h3>
-    <p>সংখ্যা জ্যোতিষ, হস্তরেখা ও বৈদিক জ্যোতিষ — তিনটি ভিন্ন পথ, কিন্তু লক্ষ্য একটাই: আপনাকে নিজেকে চেনানো। কারণ নিজেকে যে চেনে, সে-ই পারে সঠিক সময়ে সঠিক সিদ্ধান্ত নিতে। তারারা বাধ্য করে না — পথ দেখায়। সিদ্ধান্ত সর্বদা আপনার।</p>
-
-    <div class="article-tagline">
-      "আপনার হাত নিয়তির খাঁচা নয় — এটি সচেত পছন্দের একটি ক্যানভাস। তারারা বাধ্য করে না; তারা পরামর্শ দেয়।" — ড. প্রদ্যুৎ আচার্য, MyAstrology, রাণাঘাট
-    </div>
+    <p><strong>সংখ্যা জ্যোতিষ বা নিউমেরোলজি</strong> হলো হাজার বছরের পুরনো একটি প্রাচীন শাস্ত্র। রাণাঘাট থেকে কলকাতা, নদিয়া থেকে সারা পশ্চিমবঙ্গ — প্রতিটি মানুষের জীবনে সংখ্যার গভীর প্রভাব রয়েছে। প্রতিটি সংখ্যা একটি নির্দিষ্ট গ্রহের শক্তির সাথে সংযুক্ত।</p>
+    <h3>মূলাংক ও ভাগ্যাংক — দুটি ভিন্ন পথ</h3>
+    <p><strong>মূলাংক</strong> হলো জন্মতারিখের শুধু দিনের সংখ্যা (যেমন ১৫ তারিখ → ১+৫=৬)। এটি আপনার মৌলিক স্বভাব দেখায়। <strong>ভাগ্যাংক</strong> হলো পুরো জন্মতারিখের (দিন+মাস+বছর) সমস্ত সংখ্যার যোগফল — এটি আপনার জীবনের মূল উদ্দেশ্য ও নিয়তি নির্দেশ করে।</p>
+    <h3>হস্তরেখা ও বৈদিক জ্যোতিষ</h3>
+    <p><strong>হস্তরেখা শাস্ত্র</strong> মানুষের হাতকে জীবনের মানচিত্র হিসেবে পড়ে। <strong>বৈদিক জ্যোতিষ</strong> জন্মকুণ্ডলীর মাধ্যমে গ্রহদশা ও জীবনের নানা পর্যায়ের ছবি আঁকে। Dr. Prodyut Acharya এই তিনটি শাস্ত্রের সমন্বয়ে <a href="https://www.myastrology.in/astrology.html">অনলাইন পরামর্শ</a> দিচ্ছেন ১৫+ বছর ধরে।</p>
+    <div class="article-tagline">"তারারা বাধ্য করে না — পথ দেখায়। সিদ্ধান্ত সর্বদা আপনার।" — ড. প্রদ্যুৎ আচার্য, MyAstrology, রাণাঘাট</div>
   </div>
 </section>
 
-<!-- ── BLOG INTERLINKS (point 5) ── -->
-<section class="blog-links-wrap">
-  <div class="blog-links-inner">
+<!-- Blog Links -->
+<section class="blog-wrap">
+  <div class="blog-in">
     <h3>📚 সংশ্লিষ্ট জ্যোতিষ প্রবন্ধ</h3>
-    <div class="blog-links-grid">
-      <a href="https://www.myastrology.in/blog/rahu-ketu-chaya-graha-jibone-prabhab-protikar.html" class="blog-link-card">
-        <span class="blc-icon">🌑</span>
-        <div class="blc-title">রাহু-কেতুর জীবনে প্রভাব ও প্রতিকার</div>
-        <div class="blc-sub">ছায়া গ্রহের রহস্য</div>
-      </a>
-      <a href="https://www.myastrology.in/blog/shani-sadesati-ki-hoy-keno-hoy-ki-korben.html" class="blog-link-card">
-        <span class="blc-icon">🪐</span>
-        <div class="blc-title">শনি সাড়ে সাতি কী ও কেন হয়?</div>
-        <div class="blc-sub">শনির প্রভাব বিশ্লেষণ</div>
-      </a>
-      <a href="https://www.myastrology.in/blog/bhagya-kharap-naki-ami-nije-shotru-chayer-dokan.html" class="blog-link-card">
-        <span class="blc-icon">🔮</span>
-        <div class="blc-title">ভাগ্য খারাপ নাকি আমি নিজেই শত্রু?</div>
-        <div class="blc-sub">জীবন দর্শন</div>
-      </a>
-      <a href="https://www.myastrology.in/blog/bibaha-rekha-ki-bole-biye-prem-dampattya.html" class="blog-link-card">
-        <span class="blc-icon">💑</span>
-        <div class="blc-title">বিবাহ রেখা কী বলে?</div>
-        <div class="blc-sub">প্রেম ও দাম্পত্য হস্তরেখা</div>
-      </a>
-      <a href="https://www.myastrology.in/blog/porisram-kore-keno-safalta-ashe-na-bhagya-rahasya.html" class="blog-link-card">
-        <span class="blc-icon">⭐</span>
-        <div class="blc-title">পরিশ্রম করেও কেন সাফল্য আসে না?</div>
-        <div class="blc-sub">ভাগ্যের রহস্য</div>
-      </a>
-      <a href="https://www.myastrology.in/blog/bhagya-karma-astrology-palmistry.html" class="blog-link-card">
-        <span class="blc-icon">☀️</span>
-        <div class="blc-title">ভাগ্য ও কর্ম — জ্যোতিষ ও হস্তরেখায়</div>
-        <div class="blc-sub">শাস্ত্রীয় বিশ্লেষণ</div>
-      </a>
+    <div class="blog-grid">
+      <a href="https://www.myastrology.in/blog/rahu-ketu-chaya-graha-jibone-prabhab-protikar.html" class="blk"><span class="blc-icon">🌑</span><div class="blk-t">রাহু-কেতুর জীবনে প্রভাব ও প্রতিকার</div><div class="blk-s">ছায়া গ্রহের রহস্য</div></a>
+      <a href="https://www.myastrology.in/blog/shani-sadesati-ki-hoy-keno-hoy-ki-korben.html" class="blk"><span class="blc-icon">🪐</span><div class="blk-t">শনি সাড়ে সাতি — কী ও কেন?</div><div class="blk-s">শনির প্রভাব বিশ্লেষণ</div></a>
+      <a href="https://www.myastrology.in/blog/bibaha-rekha-ki-bole-biye-prem-dampattya.html" class="blk"><span class="blc-icon">💑</span><div class="blk-t">বিবাহ রেখা কী বলে?</div><div class="blk-s">প্রেম ও দাম্পত্য হস্তরেখা</div></a>
+      <a href="https://www.myastrology.in/blog/porisram-kore-keno-safalta-ashe-na-bhagya-rahasya.html" class="blk"><span class="blc-icon">⭐</span><div class="blk-t">পরিশ্রমেও কেন সাফল্য আসে না?</div><div class="blk-s">ভাগ্যের রহস্য</div></a>
+      <a href="https://www.myastrology.in/blog/bhagya-karma-astrology-palmistry.html" class="blk"><span class="blc-icon">☀️</span><div class="blk-t">ভাগ্য ও কর্ম — জ্যোতিষে</div><div class="blk-s">শাস্ত্রীয় বিশ্লেষণ</div></a>
+      <a href="https://www.myastrology.in/numerology.html" class="blk"><span class="blc-icon">🔢</span><div class="blk-t">সংখ্যা জ্যোতিষ Hub</div><div class="blk-s">২৪টি ক্যাটাগরি বিশ্লেষণ</div></a>
     </div>
   </div>
 </section>
 
-<!-- ── CTA ── -->
-<section class="cta-strip">
+<!-- CTA -->
+<section class="cta-wrap">
   <h3>গভীর ব্যক্তিগত পরামর্শ চান?</h3>
   <p>রাণাঘাট, নদিয়া, কলকাতা ও সারা ভারতে অনলাইনে পরামর্শ — জন্মকুণ্ডলী, হস্তরেখা ও সংখ্যাজ্যোতিষ সহ।</p>
   <div class="cta-btns">
-    <a href="https://wa.me/919333122768?text=নমস্কার%20ড.%20আচার্য%2C%20আমি%20সংখ্যাজ্যোতিষ%20পরামর্শ%20নিতে%20চাই।" target="_blank" rel="noopener" class="btn-wa">
-      <i class="fab fa-whatsapp"></i> WhatsApp পরামর্শ নিন
-    </a>
-    <a href="https://www.myastrology.in/astrology.html" class="btn-outline-gold">
-      <i class="fas fa-star"></i> সব পরিষেবা দেখুন
-    </a>
+    <a href="https://wa.me/919333122768?text=নমস্কার%20ড.%20আচার্য%2C%20সংখ্যাজ্যোতিষ%20পরামর্শ%20নিতে%20চাই।" target="_blank" rel="noopener" class="btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp পরামর্শ নিন</a>
+    <a href="https://www.myastrology.in/astrology.html" class="btn-gold"><i class="fas fa-star"></i> সব পরিষেবা দেখুন</a>
   </div>
-  <p style="margin-top:14px;font-size:.8rem;color:#5a7a9a">
-    <i class="fas fa-phone" style="color:var(--gold3)"></i> +91 9333122768 &nbsp;|&nbsp;
-    <i class="fas fa-map-marker-alt" style="color:var(--gold3)"></i> রাণাঘাট, নদিয়া, পশ্চিমবঙ্গ &nbsp;|&nbsp; সকাল ৯টা – রাত ১১টা
-  </p>
+  <p style="margin-top:12px;font-size:.79rem;color:#5a7a9a"><i class="fas fa-phone" style="color:var(--gold3)"></i> +91 9333122768 &nbsp;|&nbsp; <i class="fas fa-map-marker-alt" style="color:var(--gold3)"></i> রাণাঘাট, নদিয়া, WB &nbsp;|&nbsp; সকাল ৯টা – রাত ১১টা</p>
 </section>
 
 </main>
@@ -562,64 +546,20 @@ img{max-width:100%;height:auto;display:block}
 <!-- FOOTER -->
 <footer class="site-footer">
   <div class="fg">
-    <div class="fc">
-      <h4>MyAstrology</h4>
-      <p>Dr. Prodyut Acharya — বৈদিক জ্যোতিষী, হস্তরেখাবিদ ও SKAVSA সার্টিফাইড রত্নথেরাপিস্ট।</p>
-      <p><i class="fas fa-map-marker-alt"></i>নাসড়া, রাণাঘাট, নদিয়া, WB — ৭৪১২০২</p>
-      <p><i class="fas fa-phone"></i><a href="tel:+919333122768">+91 9333122768</a></p>
-      <p><i class="fas fa-clock"></i>সকাল ৯টা – রাত ১১টা, ৭ দিন</p>
-      <div class="srow" style="margin-top:12px">
-        <a href="https://wa.me/919333122768" class="swa" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://www.facebook.com/Dr.ProdyutAcharya" class="sfb" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.youtube.com/@myastrology" class="syt" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
-        <a href="https://www.instagram.com/myastrology.in" class="sig" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
-      </div>
-    </div>
-    <div class="fc">
-      <h4>পরিষেবা</h4>
-      <a href="https://www.myastrology.in/astrology.html"><i class="fas fa-star"></i>জ্যোতিষ পরামর্শ</a>
-      <a href="https://www.myastrology.in/palmistry.html"><i class="fas fa-hand-paper"></i>হস্তরেখা বিচার</a>
-      <a href="https://www.myastrology.in/gemstone.html"><i class="fas fa-gem"></i>রত্নপাথর পরামর্শ</a>
-      <a href="https://www.myastrology.in/vastu-science.html"><i class="fas fa-building"></i>বাস্তু শাস্ত্র</a>
-      <a href="https://www.myastrology.in/numerology.html"><i class="fas fa-hashtag"></i>সংখ্যা জ্যোতিষ</a>
-    </div>
-    <div class="fc">
-      <h4>তথ্য</h4>
-      <a href="https://www.myastrology.in/rashifal.html"><i class="fas fa-circle-notch"></i>দৈনিক রাশিফল</a>
-      <a href="https://www.myastrology.in/blog-list.html"><i class="fas fa-blog"></i>ব্লগ</a>
-      <a href="https://www.myastrology.in/about.html"><i class="fas fa-user"></i>আমাদের সম্পর্কে</a>
-      <a href="https://www.myastrology.in/reviews.html"><i class="fas fa-star-half-alt"></i>রিভিউ</a>
-    </div>
-    <div class="fc">
-      <h4>যোগাযোগ</h4>
-      <a href="tel:+919333122768"><i class="fas fa-phone"></i>+91 9333122768</a>
-      <a href="https://wa.me/919333122768" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i>WhatsApp</a>
-      <a href="https://www.myastrology.in/contact.html"><i class="fas fa-address-card"></i>যোগাযোগ পেজ</a>
-      <a href="https://www.myastrology.in/privacy-policy.html"><i class="fas fa-shield-alt"></i>গোপনীয়তা নীতি</a>
-    </div>
+    <div class="fc"><h4>MyAstrology</h4><p>Dr. Prodyut Acharya — বৈদিক জ্যোতিষী, হস্তরেখাবিদ, রত্নথেরাপিস্ট। ১৫+ বছর।</p><p><i class="fas fa-map-marker-alt"></i>নাসড়া, রাণাঘাট, নদিয়া, WB</p><p><i class="fas fa-phone"></i><a href="tel:+919333122768">+91 9333122768</a></p><div class="srow" style="margin-top:12px"><a href="https://wa.me/919333122768" class="swa" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a><a href="https://www.facebook.com/Dr.ProdyutAcharya" class="sfb" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@myastrology" class="syt" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a><a href="https://www.instagram.com/myastrology.in" class="sig" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a></div></div>
+    <div class="fc"><h4>পরিষেবা</h4><a href="https://www.myastrology.in/astrology.html"><i class="fas fa-star"></i>জ্যোতিষ পরামর্শ</a><a href="https://www.myastrology.in/palmistry.html"><i class="fas fa-hand-paper"></i>হস্তরেখা বিচার</a><a href="https://www.myastrology.in/gemstone.html"><i class="fas fa-gem"></i>রত্নপাথর পরামর্শ</a><a href="https://www.myastrology.in/numerology.html"><i class="fas fa-hashtag"></i>সংখ্যা জ্যোতিষ</a><a href="https://www.myastrology.in/vastu-science.html"><i class="fas fa-building"></i>বাস্তু শাস্ত্র</a></div>
+    <div class="fc"><h4>তথ্য</h4><a href="https://www.myastrology.in/rashifal.html"><i class="fas fa-circle-notch"></i>দৈনিক রাশিফল</a><a href="https://www.myastrology.in/blog-list.html"><i class="fas fa-blog"></i>ব্লগ</a><a href="https://www.myastrology.in/about.html"><i class="fas fa-user"></i>আমাদের সম্পর্কে</a><a href="https://www.myastrology.in/reviews.html"><i class="fas fa-star-half-alt"></i>রিভিউ</a></div>
+    <div class="fc"><h4>যোগাযোগ</h4><a href="tel:+919333122768"><i class="fas fa-phone"></i>+91 9333122768</a><a href="https://wa.me/919333122768" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i>WhatsApp</a><a href="https://www.myastrology.in/contact.html"><i class="fas fa-address-card"></i>যোগাযোগ পেজ</a><a href="https://www.myastrology.in/privacy-policy.html"><i class="fas fa-shield-alt"></i>গোপনীয়তা নীতি</a></div>
   </div>
-  <div class="fb">
-    <p>© 2025 MyAstrology — Dr. Prodyut Acharya. সর্বস্বত্ব সংরক্ষিত।</p>
-    <p><a href="https://www.myastrology.in/terms-of-use.html">ব্যবহারের শর্ত</a></p>
-    <div class="srow">
-      <a href="https://wa.me/919333122768" class="swa" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
-      <a href="https://www.facebook.com/Dr.ProdyutAcharya" class="sfb" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
-      <a href="https://www.youtube.com/@myastrology" class="syt" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
-    </div>
-  </div>
-  <p style="font-size:.72rem;color:#2d4560;text-align:center;padding:10px 24px 16px;max-width:1080px;margin:0 auto;">⚠️ এই বিশ্লেষণ সম্পূর্ণ বিনামূল্যে এবং শিক্ষামূলক উদ্দেশ্যে। গভীর ব্যক্তিগত পরামর্শের জন্য Dr. Prodyut Acharya-র সাথে যোগাযোগ করুন।</p>
+  <div class="fb"><p>© 2025 MyAstrology — Dr. Prodyut Acharya. সর্বস্বত্ব সংরক্ষিত।</p><div class="srow"><a href="https://wa.me/919333122768" class="swa" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a><a href="https://www.facebook.com/Dr.ProdyutAcharya" class="sfb" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a><a href="https://www.youtube.com/@myastrology" class="syt" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a></div></div>
+  <p style="font-size:.72rem;color:#2d4560;text-align:center;padding:9px 24px 15px;max-width:1080px;margin:0 auto;">⚠️ এই বিশ্লেষণ শিক্ষামূলক উদ্দেশ্যে বিনামূল্যে। গভীর পরামর্শের জন্য Dr. Prodyut Acharya-র সাথে যোগাযোগ করুন।</p>
 </footer>
 
-<!-- WA Float -->
-<div class="wa-float">
-  <div class="wa-bub" id="wb">পরামর্শ নিন!</div>
-  <a class="wa-btn" href="https://wa.me/919333122768?text=নমস্কার%20ড.%20আচার্য%2C%20সংখ্যাজ্যোতিষ%20পরামর্শ%20নিতে%20চাই।" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-</div>
+<!-- WA + BTT -->
+<div class="wa-float"><div class="wa-bub" id="wb">পরামর্শ নিন!</div><a class="wa-btn" href="https://wa.me/919333122768?text=নমস্কার%20ড.%20আচার্য%2C%20পরামর্শ%20নিতে%20চাই।" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a></div>
 <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="উপরে যান"><i class="fas fa-chevron-up"></i></button>
 
-<!-- ══════════════════════════════════
-     SCRIPTS — সঠিক লোড ক্রম
-══════════════════════════════════ -->
+<!-- SCRIPTS — correct load order -->
 <script src="js/numerology-data.js"></script>
 <script src="js/core/planet-relations.js"></script>
 <script src="js/core/number-utils.js"></script>
@@ -628,39 +568,24 @@ img{max-width:100%;height:auto;display:block}
 <script src="js/main.js"></script>
 
 <script>
-/* ── Nav ── */
+/* Nav */
 function tNav(){const m=document.getElementById('nm'),o=document.getElementById('no'),b=document.getElementById('hb');const op=m.classList.toggle('open');o.classList.toggle('open',op);b.setAttribute('aria-expanded',op);b.innerHTML=op?'<i class="fas fa-times"></i>':'<i class="fas fa-bars"></i>';}
 function cNav(){const m=document.getElementById('nm'),o=document.getElementById('no'),b=document.getElementById('hb');m.classList.remove('open');o.classList.remove('open');b.setAttribute('aria-expanded','false');b.innerHTML='<i class="fas fa-bars"></i>';}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')cNav();});
-
-/* ── BTT ── */
+/* BTT */
 window.addEventListener('scroll',()=>{document.getElementById('btt').classList.toggle('v',window.scrollY>300);},{passive:true});
-
-/* ── WA bubble ── */
+/* WA bubble */
 setTimeout(()=>{const b=document.getElementById('wb');if(b){b.classList.add('show');setTimeout(()=>b.classList.remove('show'),4000);}},4000);
-
-/* ── Flash ── */
+/* Flash */
 function fl(m,d=2800){const e=document.getElementById('fl');e.textContent=m;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),d);}
-
-/* ── Try your own analysis — point 11 ── */
-function doTryOwn(){
-  const v=document.getElementById('tryInput').value.trim();
-  if(!v){fl('✏️ কিছু একটা লিখুন');document.getElementById('tryInput').focus();return;}
-  fl('🔮 বিশ্লেষণ হচ্ছে...',1200);
-  setTimeout(()=>window.location.href='result.html?q='+encodeURIComponent(v),500);
-}
-
-/* ── Dynamic page title + shared result banner ── */
+/* Try own */
+function doTry(){const v=document.getElementById('ti').value.trim();if(!v){fl('✏️ কিছু একটা লিখুন');return;}fl('🔮 বিশ্লেষণ হচ্ছে...',1200);setTimeout(()=>window.location.href='result.html?q='+encodeURIComponent(v),500);}
+/* Dynamic title */
 window.addEventListener('DOMContentLoaded',function(){
   const q=new URLSearchParams(window.location.search).get('q');
-  if(q){
-    const decoded=decodeURIComponent(q);
-    // Update page title
-    document.getElementById('pageTitle').textContent=`"${decoded}" বিশ্লেষণ | সংখ্যা জ্যোতিষ | MyAstrology`;
-  }
+  if(q){const d=decodeURIComponent(q);document.getElementById('pt').textContent=`"${d}" বিশ্লেষণ | সংখ্যা জ্যোতিষ | MyAstrology`;}
 });
-
-/* ── GA4 ── */
+/* GA4 */
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S7BQGLP211');
 </script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-S7BQGLP211"></script>
