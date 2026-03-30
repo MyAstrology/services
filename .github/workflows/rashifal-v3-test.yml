@@ -2,7 +2,7 @@ name: Daily Rashifal
 
 on:
   schedule:
-    - cron: '25 18 * * *'
+    - cron: '30 0 * * *'   # UTC 00:30 = IST 06:00
   workflow_dispatch:
 
 permissions:
@@ -24,12 +24,13 @@ jobs:
       - name: Generate
         run: cd src && node generate.js
         env:
-          TZ: 'Asia/Kolkata'
+          TZ: 'Asia/Kolkata'   # ← generate.js-এ এই ফ্ল্যাগ চেক করতে হবে
       - name: Push
         run: |
           git config user.name "MyAstrology Bot"
           git config user.email "bot@myastrology.in"
-          git add rashifal/ cache/
+          git add rashifal/
+          git add rashifal/*.xml rashifal/*.json rashifal/rss.xml 2>/dev/null || true
           git diff --cached --quiet && exit 0
           git commit -m "Rashifal: $(TZ='Asia/Kolkata' date +%Y-%m-%d)"
           git push origin main
