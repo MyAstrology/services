@@ -25,7 +25,7 @@ const LAT = 23.18, LNG = 88.56, TZ = 5.5;  // রানাঘাট
 let TARGET_DATE;
 if (process.env.TARGET_DATE && process.env.TARGET_DATE !== '') {
   // GitHub Actions থেকে পাস করা তারিখ ব্যবহার করুন
-  TARGET_DATE = new Date(process.env.TARGET_DATE + 'T00:00:00');
+  TARGET_DATE = new Date(process.env.TARGET_DATE + 'T00:00:00Z'); // ✅ UTC midnight
   console.log(`📅 Using TARGET_DATE from env: ${process.env.TARGET_DATE}`);
 } else {
   // লোকাল রানে আগামীকালের তারিখ
@@ -202,6 +202,52 @@ function jupiterL(jd){
 function rahuL(jd){
   const T=(jd-2451545)/36525;
   return((125.0445479-1934.1362608*T)%360+360)%360;
+}
+
+
+// ════════════════════════════════════════════════
+// মঙ্গল, বুধ, শুক্রের দ্রাঘিমাংশ (Meeus সরলীকৃত)
+// ════════════════════════════════════════════════
+function marsL(jd) {
+  const T = (jd - 2451545) / 36525;
+  const L = ((355.433 + 19140.299 * T) % 360 + 360) % 360;
+  const M = ((19.373  + 19140.299 * T) % 360 + 360) * Math.PI / 180;
+  return ((L + 9.36 * Math.sin(M) + 0.93 * Math.sin(2 * M)) % 360 + 360) % 360;
+}
+
+function mercuryL(jd) {
+  const T = (jd - 2451545) / 36525;
+  const L = ((252.251 + 149472.674 * T) % 360 + 360) % 360;
+  const M = ((174.791 + 149472.674 * T) % 360 + 360) * Math.PI / 180;
+  return ((L + 23.44 * Math.sin(M) + 2.73 * Math.sin(2 * M)) % 360 + 360) % 360;
+}
+
+function venusL(jd) {
+  const T = (jd - 2451545) / 36525;
+  const L = ((181.979 + 58517.815 * T) % 360 + 360) % 360;
+  const M = ((50.416  + 58517.815 * T) % 360 + 360) * Math.PI / 180;
+  return ((L + 10.19 * Math.sin(M) + 0.64 * Math.sin(2 * M)) % 360 + 360) % 360;
+}
+
+// ════════════════════════════════════════════════
+// গ্রহের দৃষ্টি (GRAHA DRISHTI) — বৈদিক নিয়ম
+// শনি: ৩,৭,১০ | বৃহস্পতি: ৫,৭,৯ | মঙ্গল: ৪,৭,৮
+// বুধ/শুক্র/সূর্য: কেবল ৭ম ভাব
+// ════════════════════════════════════════════════
+function hasAspect(fromRashi, toRashi, aspectHouses) {
+  const diff = ((toRashi - fromRashi + 12) % 12) + 1;
+  return aspectHouses.includes(diff);
+}
+
+function getAspectBonus(planetRashis, targetRashi) {
+  let bonus = 0;
+  if (planetRashis.jupiter !== undefined &&
+      hasAspect(planetRashis.jupiter, targetRashi, [5, 7, 9]))  bonus += 1;
+  if (planetRashis.saturn  !== undefined &&
+      hasAspect(planetRashis.saturn,  targetRashi, [3, 7, 10])) bonus -= 0.5;
+  if (planetRashis.mars    !== undefined &&
+      hasAspect(planetRashis.mars,    targetRashi, [4, 7, 8]))  bonus -= 0.3;
+  return bonus;
 }
 
 function sunTimes(y,m,d){
@@ -744,6 +790,102 @@ const RAHU_GOCHAR = [
   {tag:'গোপন ব্যয়',col:'#7f8c8d',txt:'দ্বাদশে রাহু — গোপন শত্রু।'}
 ];
 
+
+// ════════════════════════════════════════════════
+// বৃহস্পতি গোচর (GURU GOCHAR)
+// ════════════════════════════════════════════════
+const GURU_GOCHAR = [
+  null,
+  {tag:'কঠিন গুরু',        col:'#c0392b', txt:'বৃহস্পতি জন্মরাশিতে — বিনম্রতা রাখুন, অতিরিক্ত আশাবাদ বিপদ আনতে পারে।'},
+  {tag:'অর্থে সতর্ক',      col:'#d35400', txt:'দ্বিতীয়ে বৃহস্পতি — পারিবারিক সুখ, তবে অতিরিক্ত ব্যয় সম্ভব।'},
+  {tag:'শুভ গুরু',          col:'#27ae60', txt:'তৃতীয়ে বৃহস্পতি — সাহস ও উদ্যোগে সাফল্য। ভ্রমণে লাভ।'},
+  {tag:'গৃহে শুভ',          col:'#8e44ad', txt:'চতুর্থে বৃহস্পতি — সম্পত্তিলাভ ও পারিবারিক সুখ।'},
+  {tag:'সন্তান সুখ',        col:'#27ae60', txt:'পঞ্চমে বৃহস্পতি — সন্তানের সুখবর, বিনিয়োগে লাভ।'},
+  {tag:'শত্রু জয়',          col:'#27ae60', txt:'ষষ্ঠে বৃহস্পতি — রোগ থেকে মুক্তি, প্রতিপক্ষ পরাজিত।'},
+  {tag:'দাম্পত্যে শুভ',     col:'#1e8449', txt:'সপ্তমে বৃহস্পতি — বিবাহযোগ, অংশীদারিত্বে লাভ।'},
+  {tag:'অত্যন্ত কঠিন',     col:'#c0392b', txt:'অষ্টমে বৃহস্পতি — স্বাস্থ্যে সতর্ক, ব্যয় বৃদ্ধি। ধৈর্য রাখুন।'},
+  {tag:'ভাগ্যশালী গুরু',    col:'#1e8449', txt:'নবমে বৃহস্পতি — সর্বোত্তম গোচর। উচ্চশিক্ষা, ধর্মকার্য ও ভাগ্যলাভ।'},
+  {tag:'কর্মে উন্নতি',      col:'#2980b9', txt:'দশমে বৃহস্পতি — পদোন্নতি ও সামাজিক সম্মান বৃদ্ধি।'},
+  {tag:'লাভের গুরু',        col:'#1e8449', txt:'একাদশে বৃহস্পতি — আয় বৃদ্ধি, ইচ্ছাপূরণ ও বন্ধুলাভ।'},
+  {tag:'ব্যয় ও আধ্যাত্ম',  col:'#7f8c8d', txt:'দ্বাদশে বৃহস্পতি — বিদেশযোগ বা আধ্যাত্মিক অগ্রগতি।'}
+];
+
+// ════════════════════════════════════════════════
+// মঙ্গল গোচর (MARS GOCHAR)
+// ════════════════════════════════════════════════
+const MARS_GOCHAR = [
+  null,
+  {tag:'সতর্ক থাকুন',       col:'#c0392b', txt:'মঙ্গল জন্মরাশিতে — রাগ নিয়ন্ত্রণ করুন। দুর্ঘটনার সম্ভাবনা।'},
+  {tag:'অর্থ সংঘর্ষ',       col:'#d35400', txt:'দ্বিতীয়ে মঙ্গল — পারিবারিক বিবাদ ও অর্থব্যয়ের সম্ভাবনা।'},
+  {tag:'শুভ মঙ্গল',          col:'#27ae60', txt:'তৃতীয়ে মঙ্গল — সাহস বৃদ্ধি, প্রতিযোগিতায় জয়।'},
+  {tag:'গৃহ অশান্তি',        col:'#c0392b', txt:'চতুর্থে মঙ্গল — গৃহে অশান্তি, মায়ের স্বাস্থ্যে সতর্ক।'},
+  {tag:'সন্তানে সতর্ক',     col:'#d35400', txt:'পঞ্চমে মঙ্গল — সন্তানের বিষয়ে ও বিনিয়োগে সাবধান।'},
+  {tag:'শত্রু বিনাশ',        col:'#27ae60', txt:'ষষ্ঠে মঙ্গল — শত্রু পরাজয়, কোর্টে জয়।'},
+  {tag:'দাম্পত্যে চাপ',     col:'#c0392b', txt:'সপ্তমে মঙ্গল — সঙ্গীর সাথে বিবাদ। সংযম রাখুন।'},
+  {tag:'বিপদের সম্ভাবনা',  col:'#c0392b', txt:'অষ্টমে মঙ্গল — অপঘাত সতর্কতা, অস্ত্রোপচারের সম্ভাবনা।'},
+  {tag:'ভাগ্য মিশ্র',       col:'#d35400', txt:'নবমে মঙ্গল — ধর্মকার্যে বাধা, পিতার স্বাস্থ্যে নজর।'},
+  {tag:'কর্মে সাফল্য',      col:'#2980b9', txt:'দশমে মঙ্গল — কর্মে উদ্যম ও নেতৃত্বের সুযোগ।'},
+  {tag:'আয়-লাভ সম্ভব',     col:'#1e8449', txt:'একাদশে মঙ্গল — আয় বৃদ্ধি, উদ্যোগে ফল।'},
+  {tag:'গোপন ব্যয়',         col:'#7f8c8d', txt:'দ্বাদশে মঙ্গল — অযথা ব্যয় ও গোপন শত্রু থেকে সাবধান।'}
+];
+
+// ════════════════════════════════════════════════
+// বুধ গোচর (MERCURY GOCHAR)
+// ════════════════════════════════════════════════
+const MERCURY_GOCHAR = [
+  null,
+  {tag:'বুদ্ধি তীক্ষ্ণ',    col:'#2980b9', txt:'বুধ জন্মরাশিতে — মানসিক তীক্ষ্ণতা বাড়বে।'},
+  {tag:'বাণিজ্যে শুভ',      col:'#27ae60', txt:'দ্বিতীয়ে বুধ — ব্যবসায় লাভ, বাকশক্তি উন্নত।'},
+  {tag:'যোগাযোগে সাফল্য',   col:'#27ae60', txt:'তৃতীয়ে বুধ — লেখালেখি, যোগাযোগ ও ভ্রমণে শুভ।'},
+  {tag:'গৃহে বুদ্ধি',        col:'#8e44ad', txt:'চতুর্থে বুধ — সম্পত্তি কেনাবেচায় শুভ।'},
+  {tag:'শিক্ষায় উন্নতি',    col:'#27ae60', txt:'পঞ্চমে বুধ — বিদ্যা ও সৃজনশীলতায় অগ্রগতি।'},
+  {tag:'কর্মে বিবাদ',       col:'#d35400', txt:'ষষ্ঠে বুধ — সহকর্মীর সাথে মতবিরোধ।'},
+  {tag:'চুক্তিতে সতর্ক',   col:'#d35400', txt:'সপ্তমে বুধ — অংশীদারিত্বে চুক্তিতে সাবধান।'},
+  {tag:'গোপন তথ্য',         col:'#c0392b', txt:'অষ্টমে বুধ — গোপন তথ্য প্রকাশ হতে পারে।'},
+  {tag:'জ্ঞান বৃদ্ধি',      col:'#27ae60', txt:'নবমে বুধ — উচ্চশিক্ষা ও আধ্যাত্মিক জ্ঞানে উন্নতি।'},
+  {tag:'কর্মে বুদ্ধি',      col:'#2980b9', txt:'দশমে বুধ — ব্যবসায়িক বুদ্ধিমত্তায় সাফল্য।'},
+  {tag:'লাভের বুধ',         col:'#1e8449', txt:'একাদশে বুধ — নেটওয়ার্কিং থেকে আর্থিক লাভ।'},
+  {tag:'মানসিক চাপ',        col:'#7f8c8d', txt:'দ্বাদশে বুধ — মানসিক অস্থিরতা। ধ্যান করুন।'}
+];
+
+// ════════════════════════════════════════════════
+// শুক্র গোচর (VENUS GOCHAR)
+// ════════════════════════════════════════════════
+const VENUS_GOCHAR = [
+  null,
+  {tag:'সৌন্দর্য লাভ',      col:'#2980b9', txt:'শুক্র জন্মরাশিতে — ব্যক্তিত্ব আকর্ষণীয়। নতুন সম্পর্কের সম্ভাবনা।'},
+  {tag:'ধন লাভ',            col:'#1e8449', txt:'দ্বিতীয়ে শুক্র — আর্থিক লাভ ও পারিবারিক আনন্দ।'},
+  {tag:'মিশ্র ফল',          col:'#d35400', txt:'তৃতীয়ে শুক্র — ভাই-বোনের সাথে সম্পর্কে সতর্ক।'},
+  {tag:'গৃহে সুখ',           col:'#1e8449', txt:'চতুর্থে শুক্র — গৃহে সুখ ও সম্পত্তিলাভ।'},
+  {tag:'প্রেমে আনন্দ',      col:'#1e8449', txt:'পঞ্চমে শুক্র — প্রেমে সাফল্য, সন্তানের সুখবর।'},
+  {tag:'স্বাস্থ্য সতর্ক',   col:'#d35400', txt:'ষষ্ঠে শুক্র — শত্রুপক্ষ সক্রিয়। স্বাস্থ্যে নজর।'},
+  {tag:'বিবাহ যোগ',         col:'#1e8449', txt:'সপ্তমে শুক্র — দাম্পত্যে মিষ্টতা। বিবাহযোগ বা নতুন প্রেম।'},
+  {tag:'আকস্মিক লাভ',      col:'#8e44ad', txt:'অষ্টমে শুক্র — আকস্মিক ধনলাভ। উত্তরাধিকারের যোগ।'},
+  {tag:'ভাগ্যে শুভ',         col:'#1e8449', txt:'নবমে শুক্র — ভ্রমণ ও ধর্মকার্যে সুখ।'},
+  {tag:'কর্মে সম্মান',      col:'#2980b9', txt:'দশমে শুক্র — পেশায় সুনাম ও সামাজিক মর্যাদা।'},
+  {tag:'আয় বৃদ্ধি',        col:'#1e8449', txt:'একাদশে শুক্র — আর্থিক লাভ ও সামাজিক সম্পর্ক উন্নত।'},
+  {tag:'বিলাসব্যয়',         col:'#7f8c8d', txt:'দ্বাদশে শুক্র — বিলাসিতায় অতিরিক্ত ব্যয়। সংযম রাখুন।'}
+];
+
+// ════════════════════════════════════════════════
+// কেতু গোচর (KETU GOCHAR)
+// ════════════════════════════════════════════════
+const KETU_GOCHAR = [
+  null,
+  {tag:'আধ্যাত্মিক টান',    col:'#7b2fbe', txt:'কেতু জন্মরাশিতে — বৈরাগ্য ও আধ্যাত্মিকতার দিকে মন যাবে।'},
+  {tag:'অর্থ অনিশ্চয়',     col:'#c0392b', txt:'দ্বিতীয়ে কেতু — অপ্রত্যাশিত ব্যয়, কথায় সংযম রাখুন।'},
+  {tag:'পরাক্রমে শুভ',      col:'#27ae60', txt:'তৃতীয়ে কেতু — সাহস বৃদ্ধি, প্রচেষ্টায় সাফল্য।'},
+  {tag:'গৃহে অস্থিরতা',    col:'#d35400', txt:'চতুর্থে কেতু — গৃহে অশান্তি, বাসস্থান পরিবর্তনের সম্ভাবনা।'},
+  {tag:'সন্তানে সতর্ক',    col:'#d35400', txt:'পঞ্চমে কেতু — সন্তানের বিষয়ে সতর্ক। বিনিয়োগে ঝুঁকি।'},
+  {tag:'রোগমুক্তি',         col:'#27ae60', txt:'ষষ্ঠে কেতু — দীর্ঘস্থায়ী রোগ থেকে মুক্তির যোগ।'},
+  {tag:'দাম্পত্যে সংকট',   col:'#c0392b', txt:'সপ্তমে কেতু — সম্পর্কে দূরত্ব। বিচ্ছেদের সম্ভাবনা এড়ান।'},
+  {tag:'পরিবর্তনের ইঙ্গিত', col:'#8e44ad', txt:'অষ্টমে কেতু — গভীর রূপান্তরের সময়। মোক্ষ সাধনায় শুভ।'},
+  {tag:'ধর্মে শুভ',          col:'#1e8449', txt:'নবমে কেতু — আধ্যাত্মিক উন্নতি, তীর্থযাত্রায় ফল।'},
+  {tag:'কর্মে বাধা',         col:'#c0392b', txt:'দশমে কেতু — কর্মজীবনে অনিশ্চয়তা। ধৈর্য রাখুন।'},
+  {tag:'আকস্মিক লাভ',      col:'#27ae60', txt:'একাদশে কেতু — অপ্রত্যাশিত আয়, আধ্যাত্মিক পুরস্কার।'},
+  {tag:'মোক্ষ সাধনা',       col:'#7b2fbe', txt:'দ্বাদশে কেতু — বৈদেশিক যোগ, আধ্যাত্মিক মুক্তির সময়।'}
+];
+
 // ════════════════════════════════════════════════
 // GENERATE RASHIFAL DATA for all 12 rashis
 // ════════════════════════════════════════════════
@@ -755,123 +897,107 @@ function generateRashifalData(date) {
   const ay = lahiriAY(jd);
   const sid = lng => Math.floor(((lng - ay) % 360 + 360) % 360 / 30);
 
-  const moonRashi   = sid(moonL(jd));
-  const sunRashi    = sid(sunL(jd));
-  const saturnRashi = sid(saturnL(jd));
-  const jupiterRashi= sid(jupiterL(jd));
-  const rahuRashi   = sid(rahuL(jd));
-  const ketuRashi   = (rahuRashi + 6) % 12;
+  // ★ সব ৯টি গ্রহের রাশি গণনা
+  const moonRashi    = sid(moonL(jd));
+  const sunRashi     = sid(sunL(jd));
+  const saturnRashi  = sid(saturnL(jd));
+  const jupiterRashi = sid(jupiterL(jd));
+  const marsRashi    = sid(marsL(jd));
+  const mercuryRashi = sid(mercuryL(jd));
+  const venusRashi   = sid(venusL(jd));
+  const rahuRashi    = sid(rahuL(jd));
+  const ketuRashi    = (rahuRashi + 6) % 12;
+
+  // ★ দৃষ্টি গণনার জন্য
+  const allPlanetRashis = { jupiter: jupiterRashi, saturn: saturnRashi, mars: marsRashi };
+
+  const GOOD_HOUSES  = new Set([3, 6, 9, 10, 11]);
+  const BAD_HOUSES   = new Set([1, 2, 4, 5, 7, 8, 12]);
+  const planetStatus = h => GOOD_HOUSES.has(h) ? 'good' : BAD_HOUSES.has(h) ? 'bad' : 'neutral';
+  const statusLbl    = h => GOOD_HOUSES.has(h) ? '\u09b6\u09c1\u09ad' : BAD_HOUSES.has(h) ? '\u0985\u09b6\u09c1\u09ad' : '\u09ae\u09a7\u09cd\u09af\u09ae';
+  const clamp        = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 
   const gocharData = buildEnhancedGochar();
-
   const data = [];
+
   for(let ri = 0; ri < 12; ri++) {
     const house = ((moonRashi - ri + 12) % 12) + 1;
     const g = gocharData[house];
 
+    // এলিমেন্ট অনুযায়ী ডায়নামিক টেক্সট
+    const rashiElement = RASHI_EL[ri];
+    const elemStyle = ELEMENT_STYLES[rashiElement] || ELEMENT_STYLES['\u09aa\u09c3\u09a5\u09bf\u09ac\u09c0'];
+    const dateStr = date.toISOString().slice(0,10);
+    if (elemStyle) {
+      if (g.love    && g.love.short)    g.love.short    = getDeterministicElement(elemStyle.love,    `${dateStr}-${ri}-love`);
+      if (g.work    && g.work.short)    g.work.short    = getDeterministicElement(elemStyle.work,    `${dateStr}-${ri}-work`);
+      if (g.health  && g.health.short)  g.health.short  = getDeterministicElement(elemStyle.health,  `${dateStr}-${ri}-health`);
+      if (g.finance && g.finance.short) g.finance.short = getDeterministicElement(elemStyle.finance, `${dateStr}-${ri}-finance`);
+    }
 
+    // ★ গ্রহের দৃষ্টির প্রভাবে score সংশোধন
+    const ab = getAspectBonus(allPlanetRashis, ri);
+    const adjustedScore = {
+      love:    clamp(Math.round(g.score.love    + ab), 1, 5),
+      work:    clamp(Math.round(g.score.work    + ab), 1, 5),
+      health:  clamp(Math.round(g.score.health  + ab * 0.5), 1, 5),
+      finance: clamp(Math.round(g.score.finance + ab), 1, 5),
+    };
 
-// এলিমেন্ট অনুযায়ী ডায়নামিক টেক্সট (Deterministic — একই দিনে একই টেক্সট)
-const rashiElement = RASHI_EL[ri];
-const elemStyle = ELEMENT_STYLES[rashiElement] || ELEMENT_STYLES['পৃথিবী'];
-const dateStr = date.toISOString().slice(0,10); // '2026-03-24'
+    const sunH     = ((sunRashi     - ri + 12) % 12) + 1;
+    const satH     = ((saturnRashi  - ri + 12) % 12) + 1;
+    const jupH     = ((jupiterRashi - ri + 12) % 12) + 1;
+    const marH     = ((marsRashi    - ri + 12) % 12) + 1;
+    const merH     = ((mercuryRashi - ri + 12) % 12) + 1;
+    const venH     = ((venusRashi   - ri + 12) % 12) + 1;
+    const rahH     = ((rahuRashi    - ri + 12) % 12) + 1;
+    const ketH     = ((ketuRashi    - ri + 12) % 12) + 1;
 
-if (elemStyle) {
-  if (g.love && g.love.short) {
-    const seed = `${dateStr}-${ri}-love`;
-    g.love.short = getDeterministicElement(elemStyle.love, seed);
-  }
-  if (g.work && g.work.short) {
-    const seed = `${dateStr}-${ri}-work`;
-    g.work.short = getDeterministicElement(elemStyle.work, seed);
-  }
-  if (g.health && g.health.short) {
-    const seed = `${dateStr}-${ri}-health`;
-    g.health.short = getDeterministicElement(elemStyle.health, seed);
-  }
-  if (g.finance && g.finance.short) {
-    const seed = `${dateStr}-${ri}-finance`;
-    g.finance.short = getDeterministicElement(elemStyle.finance, seed);
-  }
-}
+    const mkP = (ico, name, tbl, h) => ({
+      ico, name, ...tbl[h], house: h,
+      status: planetStatus(h), statusLabel: statusLbl(h),
+      houseLabel: `${toBn(h)}\u09ae \u09ad\u09be\u09ac\u09c7`
+    });
 
-
-    const sunHouse    = ((sunRashi    - ri + 12) % 12) + 1;
-    const saturnHouse = ((saturnRashi - ri + 12) % 12) + 1;
-    const rahuHouse   = ((rahuRashi   - ri + 12) % 12) + 1;
-    const jupiterHouse= ((jupiterRashi- ri + 12) % 12) + 1;
-
-    // planet status indicators (শুভ/অশুভ নির্দেশক)
-    const GOOD_HOUSES  = new Set([3,6,9,10,11]);
-    const BAD_HOUSES   = new Set([1,2,4,5,7,8,12]);
-    const planetStatus = (h) => GOOD_HOUSES.has(h) ? 'good' : BAD_HOUSES.has(h) ? 'bad' : 'neutral';
-
+    // ★ সব ৮টি গ্রহ — সূর্য, বৃহস্পতি, শনি, মঙ্গল, বুধ, শুক্র, রাহু, কেতু
     const planets = [
-      {
-        ico:'☀️', name:'সূর্য',
-        ...SURYA_GOCHAR[sunHouse],
-        house: sunHouse,
-        status: planetStatus(sunHouse),
-        statusLabel: GOOD_HOUSES.has(sunHouse) ? 'শুভ' : BAD_HOUSES.has(sunHouse) ? 'অশুভ' : 'মধ্যম',
-        houseLabel: `${toBn(sunHouse)}ম ভাবে`
-      },
-      {
-        ico:'🪐', name:'শনি',
-        ...SHANI_GOCHAR[saturnHouse],
-        house: saturnHouse,
-        status: planetStatus(saturnHouse),
-        statusLabel: GOOD_HOUSES.has(saturnHouse) ? 'শুভ' : BAD_HOUSES.has(saturnHouse) ? 'অশুভ' : 'মধ্যম',
-        houseLabel: `${toBn(saturnHouse)}ম ভাবে`
-      },
-      {
-        ico:'☊', name:'রাহু',
-        ...RAHU_GOCHAR[rahuHouse],
-        house: rahuHouse,
-        status: planetStatus(rahuHouse),
-        statusLabel: GOOD_HOUSES.has(rahuHouse) ? 'শুভ' : BAD_HOUSES.has(rahuHouse) ? 'অশুভ' : 'মধ্যম',
-        houseLabel: `${toBn(rahuHouse)}ম ভাবে`
-      },
+      mkP('\u2600\ufe0f', '\u09b8\u09c2\u09b0\u09cd\u09af',       SURYA_GOCHAR,   sunH),
+      mkP('\u2643',        '\u09ac\u09c3\u09b9\u09b8\u09cd\u09aa\u09a4\u09bf', GURU_GOCHAR,    jupH),
+      mkP('\ud83e\ude90', '\u09b6\u09a8\u09bf',         SHANI_GOCHAR,   satH),
+      mkP('\u2642',        '\u09ae\u0999\u09cd\u0997\u09b2',       MARS_GOCHAR,    marH),
+      mkP('\u263f',        '\u09ac\u09c1\u09a7',          MERCURY_GOCHAR, merH),
+      mkP('\u2640',        '\u09b6\u09c1\u0995\u09cd\u09b0',       VENUS_GOCHAR,   venH),
+      mkP('\u260a',        '\u09b0\u09be\u09b9\u09c1',        RAHU_GOCHAR,    rahH),
+      mkP('\u260b',        '\u0995\u09c7\u09a4\u09c1',        KETU_GOCHAR,    ketH),
     ];
 
-    const planetFooter = `☀️ ${RASHI_NAMES[sunRashi]} · 🪐 শনি ${RASHI_NAMES[saturnRashi]} · ☊ রাহু ${RASHI_NAMES[rahuRashi]} · ♃ বৃহস্পতি ${RASHI_NAMES[jupiterRashi]}`;
+    const planetFooter =
+      `\u2600\ufe0f ${RASHI_NAMES[sunRashi]} \u00b7 ` +
+      `\u2643 ${RASHI_NAMES[jupiterRashi]} \u00b7 ` +
+      `\ud83e\ude90 ${RASHI_NAMES[saturnRashi]} \u00b7 ` +
+      `\u2642 ${RASHI_NAMES[marsRashi]} \u00b7 ` +
+      `\u263f ${RASHI_NAMES[mercuryRashi]} \u00b7 ` +
+      `\u2640 ${RASHI_NAMES[venusRashi]} \u00b7 ` +
+      `\u260a ${RASHI_NAMES[rahuRashi]} \u00b7 ` +
+      `\u260b ${RASHI_NAMES[ketuRashi]}`;
 
-    // rashiInfo — element, lord, nature
-    const rashiInfo = `${RASHI_ENG[ri]} | অধিপতি: ${RASHI_LORD[ri]} | ${RASHI_EL[ri]} | ${RASHI_NAT[ri]}`;
+    const rashiInfo = `${RASHI_ENG[ri]} | \u0985\u09a7\u09bf\u09aa\u09a4\u09bf: ${RASHI_LORD[ri]} | ${RASHI_EL[ri]} | ${RASHI_NAT[ri]}`;
 
     data.push({
-      rashi: RASHI_NAMES[ri],
-      rashiInfo,
-      house,
-      tag:        g.tag,
-      tagCol:     g.tagCol,
-      gocharLabel:g.gocharLabel,
-      summary:    g.summary,
-      score:      g.score,
-      love:       g.love,
-      work:       g.work,
-      health:     g.health,
-      finance:    g.finance,
-      spiritual:  g.spiritual,
-      lucky: {
-        nums:     g.lucky.nums,
-        colors:   g.lucky.colors,
-        goodTime: g.lucky.goodTime,
-        badTime:  g.lucky.badTime,
-        dir:      LUCKY_DIRS[ri]
-      },
-      gem:        RASHI_GEM[ri],
-      caution:    g.caution,
-      mantra:     MANTRAS[ri],
-      planets,
-      planetFooter
+      rashi: RASHI_NAMES[ri], rashiInfo, house,
+      tag: g.tag, tagCol: g.tagCol, gocharLabel: g.gocharLabel, summary: g.summary,
+      score: adjustedScore,
+      love: g.love, work: g.work, health: g.health, finance: g.finance,
+      spiritual: g.spiritual,
+      lucky: { nums: g.lucky.nums, colors: g.lucky.colors,
+               goodTime: g.lucky.goodTime, badTime: g.lucky.badTime, dir: LUCKY_DIRS[ri] },
+      gem: RASHI_GEM[ri], caution: g.caution, mantra: MANTRAS[ri],
+      planets, planetFooter
     });
   }
 
-  return {
-    moonRashi,
-    sunRashi,
-    data
-  };
+  return { moonRashi, sunRashi, saturnRashi, jupiterRashi, marsRashi,
+           mercuryRashi, venusRashi, rahuRashi, ketuRashi, data };
 }
 
 // ════════════════════════════════════════════════
@@ -1008,31 +1134,50 @@ function formatBnDateFull(date) {
 // BUILD JSON-LD SCHEMA
 // ════════════════════════════════════════════════
 function buildSchema(date, rashifalResult) {
-  const iso = date.toISOString().slice(0,10);
-  const urlDate = iso;
-  const bnDate = formatBnDate(date);
+  const iso     = date.toISOString().slice(0,10);
+  const bnDate  = formatBnDate(date);
   const moonRashiName = RASHI_NAMES[rashifalResult.moonRashi];
+  const sunRashiName  = RASHI_NAMES[rashifalResult.sunRashi];
+
+  // সেরা ও সতর্ক রাশি
+  const scores    = rashifalResult.data.map((d,i) => ({ name:RASHI_NAMES[i], avg:(d.score.love+d.score.work+d.score.health+d.score.finance)/4 }));
+  const bestRashi = scores.reduce((a,b) => a.avg > b.avg ? a : b).name;
+  const warnRashi = scores.reduce((a,b) => a.avg < b.avg ? a : b).name;
 
   return JSON.stringify([
     {
       "@context":"https://schema.org",
       "@type":"NewsArticle",
-      "headline":`${bnDate} দৈনিক রাশিফল — ১২ রাশির বিস্তারিত ফল`,
-      "description":`${bnDate} তারিখের ১২ রাশির বিস্তারিত দৈনিক রাশিফল। চন্দ্র ${moonRashiName} রাশিতে। প্রেম, কর্ম, স্বাস্থ্য, অর্থ ও সতর্কতা।`,
+      "headline":`${bnDate} দৈনিক রাশিফল — ১২ রাশির বিস্তারিত ফল | MyAstrology`,
+      "description":`${bnDate} তারিখের ১২ রাশির বিস্তারিত দৈনিক রাশিফল। চন্দ্র ${moonRashiName} রাশিতে, সূর্য ${sunRashiName} রাশিতে। আজকের শুভ রাশি: ${bestRashi}। প্রেম, কর্ম, স্বাস্থ্য, অর্থ ও সতর্কতা সহ সম্পূর্ণ বিশ্লেষণ।`,
       "datePublished":`${iso}T05:00:00+05:30`,
       "dateModified":`${iso}T05:00:00+05:30`,
       "image":{"@type":"ImageObject","url":"https://www.myastrology.in/images/daily-rashifal-og.webp","width":1200,"height":630},
-      "url":`https://www.myastrology.in/rashifal/${urlDate}.html`,
+      "url":`https://www.myastrology.in/rashifal/${iso}.html`,
       "inLanguage":"bn-IN",
-      "author":{"@type":"Person","name":"Dr. Prodyut Acharya","url":"https://www.myastrology.in/about.html"},
-      "publisher":{
-        "@type":"Organization",
-        "name":"MyAstrology",
-        "logo":{"@type":"ImageObject","url":"https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png"}
-      },
-      "mainEntityOfPage":{"@type":"WebPage","@id":`https://www.myastrology.in/rashifal/${urlDate}.html`},
+      "author":{"@type":"Person","name":"Dr. Prodyut Acharya","url":"https://www.myastrology.in/about.html","jobTitle":"Vedic Astrologer & Palmist"},
+      "publisher":{"@type":"Organization","name":"MyAstrology","logo":{"@type":"ImageObject","url":"https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png"}},
+      "mainEntityOfPage":{"@type":"WebPage","@id":`https://www.myastrology.in/rashifal/${iso}.html`},
       "articleSection":"রাশিফল",
-      "keywords":"দৈনিক রাশিফল, আজকের রাশিফল, বাংলা রাশিফল"
+      "keywords":`দৈনিক রাশিফল, আজকের রাশিফল, বাংলা রাশিফল, ${bnDate} রাশিফল, চন্দ্র ${moonRashiName} রাশি, সূর্য ${sunRashiName} রাশি, মেষ রাশিফল, বৃষ রাশিফল, মিথুন রাশিফল, কর্কট রাশিফল, সিংহ রাশিফল, কন্যা রাশিফল, তুলা রাশিফল, বৃশ্চিক রাশিফল, ধনু রাশিফল, মকর রাশিফল, কুম্ভ রাশিফল, মীন রাশিফল, ড. প্রদ্যুৎ আচার্য`,
+      "about":[
+        {"@type":"Thing","name":"দৈনিক রাশিফল"},
+        {"@type":"Thing","name":"বাংলা রাশিফল"},
+        {"@type":"Thing","name":"চন্দ্র গোচর"},
+        {"@type":"Thing","name":"বৈদিক জ্যোতিষ"},
+        {"@type":"Thing","name":`চন্দ্র ${moonRashiName} রাশি`}
+      ]
+    },
+    {
+      "@context":"https://schema.org",
+      "@type":"WebPage",
+      "@id":`https://www.myastrology.in/rashifal/${iso}.html`,
+      "name":`${bnDate} দৈনিক রাশিফল | MyAstrology`,
+      "url":`https://www.myastrology.in/rashifal/${iso}.html`,
+      "inLanguage":"bn-IN",
+      "isPartOf":{"@type":"WebSite","url":"https://www.myastrology.in","name":"MyAstrology"},
+      "datePublished":`${iso}T05:00:00+05:30`,
+      "dateModified":`${iso}T05:00:00+05:30`
     },
     {
       "@context":"https://schema.org",
@@ -1040,7 +1185,31 @@ function buildSchema(date, rashifalResult) {
       "itemListElement":[
         {"@type":"ListItem","position":1,"name":"হোম","item":"https://www.myastrology.in"},
         {"@type":"ListItem","position":2,"name":"রাশিফল সংগ্রহ","item":"https://www.myastrology.in/rashifal/"},
-        {"@type":"ListItem","position":3,"name":`${bnDate} রাশিফল`,"item":`https://www.myastrology.in/rashifal/${urlDate}.html`}
+        {"@type":"ListItem","position":3,"name":`${bnDate} রাশিফল`,"item":`https://www.myastrology.in/rashifal/${iso}.html`}
+      ]
+    },
+    {
+      "@context":"https://schema.org",
+      "@type":"LocalBusiness",
+      "name":"MyAstrology – ড. প্রদ্যুৎ আচার্য",
+      "url":"https://www.myastrology.in",
+      "image":"https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png",
+      "description":"ড. প্রদ্যুৎ আচার্যের বৈদিক জ্যোতিষ ও হস্তরেখা বিচার কেন্দ্র, রানাঘাট, নদিয়া। দৈনিক রাশিফল, জন্মকুণ্ডলী বিশ্লেষণ, শুভ মুহূর্ত।",
+      "address":{"@type":"PostalAddress","streetAddress":"Nasra Magur Khali, Tut Bagan, Post Nasra","addressLocality":"Ranaghat","addressRegion":"West Bengal","postalCode":"741201","addressCountry":"IN"},
+      "geo":{"@type":"GeoCoordinates","latitude":23.1677,"longitude":88.5808},
+      "telephone":"+91-9333122768",
+      "aggregateRating":{
+        "@type":"AggregateRating",
+        "ratingValue":"4.9",
+        "reviewCount":"290",
+        "bestRating":"5",
+        "worstRating":"1"
+      },
+      "sameAs":[
+        "https://www.facebook.com/Dr.ProdyutAcharya",
+        "https://www.youtube.com/@myastrology",
+        "https://www.instagram.com/myastrology.in",
+        "https://x.com/AcharyaProdyut"
       ]
     }
   ]);
@@ -1051,42 +1220,53 @@ function buildSchema(date, rashifalResult) {
 // ════════════════════════════════════════════════
 function buildFaqSchema(date, rashifalResult) {
   const moonRashiName = RASHI_NAMES[rashifalResult.moonRashi];
+  const sunRashiName  = RASHI_NAMES[rashifalResult.sunRashi];
+  const satRashiName  = RASHI_NAMES[rashifalResult.saturnRashi];
+  const jupRashiName  = RASHI_NAMES[rashifalResult.jupiterRashi];
   const bnDate = formatBnDate(date);
+
+  const scores    = rashifalResult.data.map((d,i) => ({ name:RASHI_NAMES[i], avg:(d.score.love+d.score.work+d.score.health+d.score.finance)/4 }));
+  const bestRashi = scores.reduce((a,b) => a.avg > b.avg ? a : b).name;
+  const warnRashi = scores.reduce((a,b) => a.avg < b.avg ? a : b).name;
+
   return JSON.stringify({
     "@context":"https://schema.org",
     "@type":"FAQPage",
     "mainEntity":[
       {
         "@type":"Question",
+        "name":`আজ ${bnDate}-এ চন্দ্র কোন রাশিতে আছে?`,
+        "acceptedAnswer":{"@type":"Answer","text":`আজ ${bnDate} তারিখে চন্দ্র ${moonRashiName} রাশিতে বিচরণ করছে। চন্দ্র গোচর অনুযায়ী দৈনিক রাশিফল নির্ধারিত হয়।`}
+      },
+      {
+        "@type":"Question",
+        "name":`সূর্য এখন কোন রাশিতে আছে?`,
+        "acceptedAnswer":{"@type":"Answer","text":`বর্তমানে সূর্য ${sunRashiName} রাশিতে অবস্থান করছে। শনি ${satRashiName} রাশিতে ও বৃহস্পতি ${jupRashiName} রাশিতে গোচর করছে।`}
+      },
+      {
+        "@type":"Question",
+        "name":`আজ কোন রাশির জন্য সবচেয়ে শুভ দিন?`,
+        "acceptedAnswer":{"@type":"Answer","text":`আজ ${bnDate} তারিখে ${bestRashi} রাশির জাতকদের জন্য সবচেয়ে শুভ দিন। ${warnRashi} রাশির জাতকদের আজ বিশেষ সতর্কতা অবলম্বন করা উচিত।`}
+      },
+      {
+        "@type":"Question",
         "name":`${bnDate}-এর রাশিফল কীভাবে তৈরি করা হয়?`,
-        "acceptedAnswer":{
-          "@type":"Answer",
-          "text":`${bnDate}-এর রাশিফল তৈরি হয়েছে বৈজ্ঞানিক জ্যোতির্বিদ্যার ভিত্তিতে — Meeus অ্যালগরিদম ও Lahiri Ayanamsa ব্যবহার করে চন্দ্র, সূর্য ও অন্যান্য গ্রহের সঠিক অবস্থান গণনা করা হয়েছে। আজ চন্দ্র ${moonRashiName} রাশিতে আছে।`
-        }
+        "acceptedAnswer":{"@type":"Answer","text":`${bnDate}-এর রাশিফল তৈরি হয়েছে বৈজ্ঞানিক জ্যোতির্বিদ্যার ভিত্তিতে — Meeus অ্যালগরিদম ও Lahiri Ayanamsa ব্যবহার করে সূর্য, চন্দ্র, মঙ্গল, বুধ, শুক্র, শনি, বৃহস্পতি, রাহু ও কেতুর সঠিক অবস্থান গণনা করা হয়েছে।`}
       },
       {
         "@type":"Question",
         "name":"আমার জন্মরাশি কীভাবে জানব?",
-        "acceptedAnswer":{
-          "@type":"Answer",
-          "text":"জন্মরাশি নির্ধারিত হয় জন্মের সময় চন্দ্রের অবস্থান দিয়ে। সঠিক জন্মতারিখ, সময় ও স্থান জানালে ড. প্রদ্যুৎ আচার্য WhatsApp-এ (+91 93331 22768) নির্ধারণ করে দেবেন।"
-        }
+        "acceptedAnswer":{"@type":"Answer","text":"জন্মরাশি নির্ধারিত হয় জন্মের সময় চন্দ্রের অবস্থান দিয়ে। সঠিক জন্মতারিখ, সময় ও স্থান জানালে ড. প্রদ্যুৎ আচার্য WhatsApp-এ (+91 93331 22768) নির্ধারণ করে দেবেন।"}
       },
       {
         "@type":"Question",
         "name":"চন্দ্র গোচর কী এবং কেন গুরুত্বপূর্ণ?",
-        "acceptedAnswer":{
-          "@type":"Answer",
-          "text":"চন্দ্র প্রতি ২-৩ দিনে একটি রাশি পরিবর্তন করে। চন্দ্র আপনার জন্মরাশি থেকে কোন ভাবে আছে তার উপর নির্ভর করে দৈনিক ফলাফল — এটিই চন্দ্র গোচর। বৈদিক জ্যোতিষে এটি সবচেয়ে গুরুত্বপূর্ণ দৈনিক গণনা।"
-        }
+        "acceptedAnswer":{"@type":"Answer","text":"চন্দ্র প্রতি ২-৩ দিনে একটি রাশি পরিবর্তন করে। চন্দ্র আপনার জন্মরাশি থেকে কোন ভাবে আছে তার উপর নির্ভর করে দৈনিক ফলাফল — এটিই চন্দ্র গোচর। বৈদিক জ্যোতিষে এটি সবচেয়ে গুরুত্বপূর্ণ দৈনিক গণনা।"}
       },
       {
         "@type":"Question",
         "name":"ড. প্রদ্যুৎ আচার্যের সাথে পরামর্শ নিতে কীভাবে যোগাযোগ করব?",
-        "acceptedAnswer":{
-          "@type":"Answer",
-          "text":"WhatsApp (+91 93331 22768) বা ওয়েবসাইটের মাধ্যমে পরামর্শ নিতে পারেন। হস্তরেখা বিচার, জন্মকুণ্ডলী বিশ্লেষণ ও বিবাহযোগ বিচার — সব সেবা অনলাইনে পাওয়া যায়।"
-        }
+        "acceptedAnswer":{"@type":"Answer","text":"WhatsApp (+91 93331 22768) বা ওয়েবসাইটের মাধ্যমে পরামর্শ নিতে পারেন। হস্তরেখা বিচার (₹১০০১), জন্মকুণ্ডলী বিশ্লেষণ (₹১৫০১), শুভ মুহূর্ত নির্ধারণ (₹৫০১) — সব সেবা অনলাইনে পাওয়া যায়। Google-এ ১২৭+, JustDial-এ ১৩৭+ ও Facebook-এ ২৬টি যাচাই রিভিউ সহ মোট ২৯০+ সন্তুষ্ট ক্লায়েন্টের পর্যালোচনা রয়েছে।"}
       }
     ]
   });
@@ -1325,7 +1505,7 @@ main{max-width:860px;margin:0 auto;padding:16px 16px 60px;}
   <div class="hero-banner">
     <h1>🔮 দৈনিক রাশিফল সংগ্রহ</h1>
     <p style="color:#b0c4dc;margin-top:6px;">ড. প্রদ্যুৎ আচার্যের কলম থেকে — প্রতিদিনের বাংলা রাশিফল</p>
-    <div class="hero-meta"><div class="hero-chip">⭐ বৈদিক জ্যোতিষ গণনা</div><div class="hero-chip">🌙 চন্দ্র গোচর ভিত্তিক</div><div class="hero-chip">📅 প্রতিদিন আপডেট</div></div>
+    <div class="hero-meta"><div class="hero-chip">⭐ বৈদিক জ্যোতিষ গণনা</div><div class="hero-chip">🌙 চন্দ্র গোচর ভিত্তিক</div><div class="hero-chip">📅 প্রতিদিন আপডেট</div><div class="hero-chip">🔴 YouTube ২,২৪,১৬০+</div><div class="hero-chip">👥 Facebook ৪১,৫০০+</div><div class="hero-chip">⭐ ২৯০+ যাচাই রিভিউ</div></div>
   </div>
 
   <div class="rashifal-list">
@@ -1400,5 +1580,4 @@ console.log(`✅ rashifal/${iso}.html — created`);
 
 generateIndex();
 console.log('\n🎉 Done! Daily rashifal generation complete.');
-
 
