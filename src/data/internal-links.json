@@ -29,6 +29,160 @@
     "confidence": 0.64,
     "manualLinks": []
   },
+  "karana-calculation-method": {
+    "relatedByTag": [],
+    "relatedByPillar": [
+      "rashichakre-12-rashi-keno-chandra-solar-year",
+      "bangla-maser-namakarana-nakshatra-purnima-rahasya"
+    ],
+    "relatedByCluster": [
+      "rashichakre-12-rashi-keno-chandra-solar-year",
+      "bangla-maser-namakarana-nakshatra-purnima-rahasya"
+    ],
+    "topRelated": [
+      {
+        "slug": "rashichakre-12-rashi-keno-chandra-solar-year",
+        "score": 0.31570175438596493
+      },
+      {
+        "slug": "bangla-maser-namakarana-nakshatra-purnima-rahasya",
+        "score": 0.3021367521367522
+      },
+      {
+        "slug": "nakshatra-calculation-method",
+        "score": 0.19088235294117648
+      }
+    ],
+    "cluster": "অন্যান্য",
+    "confidence": 0,
+    "manualLinks": []
+  },
+  "nakshatra-calculation-method": {
+    "relatedByTag": [
+      "tithi-calculation-method"
+    ],
+    "relatedByPillar": [
+      "yoga-calculation-method",
+      "panchanga-guide",
+      "molmas-adhikmas-ki-keno-proyojon"
+    ],
+    "relatedByCluster": [
+      "tithi-calculation-method",
+      "yoga-calculation-method",
+      "panchanga-guide"
+    ],
+    "topRelated": [
+      {
+        "slug": "tithi-calculation-method",
+        "score": 0.40591728091728096
+      },
+      {
+        "slug": "yoga-calculation-method",
+        "score": 0.37763975155279506
+      },
+      {
+        "slug": "panchanga-guide",
+        "score": 0.3504079254079254
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 0.2,
+    "manualLinks": []
+  },
+  "panchanga-guide": {
+    "relatedByTag": [],
+    "relatedByPillar": [
+      "molmas-adhikmas-ki-keno-proyojon",
+      "tithi-calculation-method",
+      "nakshatra-calculation-method"
+    ],
+    "relatedByCluster": [
+      "molmas-adhikmas-ki-keno-proyojon",
+      "tithi-calculation-method",
+      "nakshatra-calculation-method"
+    ],
+    "topRelated": [
+      {
+        "slug": "molmas-adhikmas-ki-keno-proyojon",
+        "score": 0.36044733044733046
+      },
+      {
+        "slug": "tithi-calculation-method",
+        "score": 0.35270568561872906
+      },
+      {
+        "slug": "nakshatra-calculation-method",
+        "score": 0.3504079254079254
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 0.6,
+    "manualLinks": []
+  },
+  "tithi-calculation-method": {
+    "relatedByTag": [
+      "nakshatra-calculation-method"
+    ],
+    "relatedByPillar": [
+      "yoga-calculation-method",
+      "molmas-adhikmas-ki-keno-proyojon",
+      "panchanga-guide"
+    ],
+    "relatedByCluster": [
+      "nakshatra-calculation-method",
+      "yoga-calculation-method",
+      "molmas-adhikmas-ki-keno-proyojon"
+    ],
+    "topRelated": [
+      {
+        "slug": "nakshatra-calculation-method",
+        "score": 0.40591728091728096
+      },
+      {
+        "slug": "yoga-calculation-method",
+        "score": 0.3633333333333333
+      },
+      {
+        "slug": "molmas-adhikmas-ki-keno-proyojon",
+        "score": 0.353455376664679
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 0.4,
+    "manualLinks": []
+  },
+  "yoga-calculation-method": {
+    "relatedByTag": [
+      "manglik-yog-ki-prathamik-dharona"
+    ],
+    "relatedByPillar": [
+      "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
+      "gandharva-yaksha-puran-darshan",
+      "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na"
+    ],
+    "relatedByCluster": [
+      "manglik-yog-ki-prathamik-dharona",
+      "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
+      "gandharva-yaksha-puran-darshan"
+    ],
+    "topRelated": [
+      {
+        "slug": "manglik-yog-ki-prathamik-dharona",
+        "score": 0.40445157609470833
+      },
+      {
+        "slug": "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
+        "score": 0.3964243943191312
+      },
+      {
+        "slug": "gandharva-yaksha-puran-darshan",
+        "score": 0.38833333333333336
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 0.2,
+    "manualLinks": []
+  },
   "advanced-palmistry-neuroscience-connection": {
     "relatedByTag": [],
     "relatedByPillar": [
@@ -308,6 +462,7 @@
   "manglik-yog-ki-prathamik-dharona": {
     "relatedByTag": [
       "mangal-grah-antar-yoddha",
+      "yoga-calculation-method",
       "prodyut-acharya-jyotish-palmist-journey-ranaghat"
     ],
     "relatedByPillar": [
@@ -317,8 +472,8 @@
     ],
     "relatedByCluster": [
       "mangal-grah-antar-yoddha",
-      "prodyut-acharya-jyotish-palmist-journey-ranaghat",
-      "jyotish-6-shakti-shali-yoga-kundali-bisleshan"
+      "yoga-calculation-method",
+      "prodyut-acharya-jyotish-palmist-journey-ranaghat"
     ],
     "topRelated": [
       {
@@ -326,12 +481,12 @@
         "score": 0.5697491039426523
       },
       {
-        "slug": "prodyut-acharya-jyotish-palmist-journey-ranaghat",
-        "score": 0.40134920634920634
+        "slug": "yoga-calculation-method",
+        "score": 0.40445157609470833
       },
       {
-        "slug": "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
-        "score": 0.39589169000933705
+        "slug": "prodyut-acharya-jyotish-palmist-journey-ranaghat",
+        "score": 0.40134920634920634
       }
     ],
     "cluster": "জ্যোতিষ",
@@ -714,10 +869,12 @@
   "bangla-maser-namakarana-nakshatra-purnima-rahasya": {
     "relatedByTag": [],
     "relatedByPillar": [
-      "rashichakre-12-rashi-keno-chandra-solar-year"
+      "rashichakre-12-rashi-keno-chandra-solar-year",
+      "karana-calculation-method"
     ],
     "relatedByCluster": [
-      "rashichakre-12-rashi-keno-chandra-solar-year"
+      "rashichakre-12-rashi-keno-chandra-solar-year",
+      "karana-calculation-method"
     ],
     "topRelated": [
       {
@@ -725,12 +882,12 @@
         "score": 0.39004742547425475
       },
       {
-        "slug": "shishu-hath-rekha-pesa-jyotish-rahasya",
-        "score": 0.21366959064327484
+        "slug": "karana-calculation-method",
+        "score": 0.3021367521367522
       },
       {
-        "slug": "rahu-ketu-chaya-graha-jibone-prabhab-protikar",
-        "score": 0.20833333333333331
+        "slug": "shishu-hath-rekha-pesa-jyotish-rahasya",
+        "score": 0.21366959064327484
       }
     ],
     "cluster": "অন্যান্য",
@@ -1826,14 +1983,14 @@
       "somoyer-rahasya-jyotish-darshan"
     ],
     "relatedByPillar": [
+      "yoga-calculation-method",
       "manglik-yog-ki-prathamik-dharona",
-      "mukhoser-alore-porichoy-naitikota-sankat",
-      "gandharva-yaksha-puran-darshan"
+      "mukhoser-alore-porichoy-naitikota-sankat"
     ],
     "relatedByCluster": [
       "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
       "somoyer-rahasya-jyotish-darshan",
-      "manglik-yog-ki-prathamik-dharona"
+      "yoga-calculation-method"
     ],
     "topRelated": [
       {
@@ -1845,8 +2002,8 @@
         "score": 0.40361111111111114
       },
       {
-        "slug": "manglik-yog-ki-prathamik-dharona",
-        "score": 0.39589169000933705
+        "slug": "yoga-calculation-method",
+        "score": 0.3964243943191312
       }
     ],
     "cluster": "জ্যোতিষ",
@@ -2052,10 +2209,12 @@
   "rashichakre-12-rashi-keno-chandra-solar-year": {
     "relatedByTag": [],
     "relatedByPillar": [
-      "bangla-maser-namakarana-nakshatra-purnima-rahasya"
+      "bangla-maser-namakarana-nakshatra-purnima-rahasya",
+      "karana-calculation-method"
     ],
     "relatedByCluster": [
-      "bangla-maser-namakarana-nakshatra-purnima-rahasya"
+      "bangla-maser-namakarana-nakshatra-purnima-rahasya",
+      "karana-calculation-method"
     ],
     "topRelated": [
       {
@@ -2063,12 +2222,12 @@
         "score": 0.39004742547425475
       },
       {
-        "slug": "preme-byartho-keno-jyotish-hastarekha-uttor",
-        "score": 0.21035714285714285
+        "slug": "karana-calculation-method",
+        "score": 0.31570175438596493
       },
       {
-        "slug": "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
-        "score": 0.2090311653116531
+        "slug": "preme-byartho-keno-jyotish-hastarekha-uttor",
+        "score": 0.21035714285714285
       }
     ],
     "cluster": "অন্যান্য",

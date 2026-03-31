@@ -4,7 +4,58 @@
     "man-jay-na-korle-safalta-asbe-na",
     "prachin-grantha-o-adhunik-bigyan",
     "prithibir-itihas-rahasya",
-    "water-consciousness-chandra-connection"
+    "water-consciousness-chandra-connection",
+    "nakshatra-calculation-method",
+    "tithi-calculation-method",
+    "panchanga-guide"
+  ],
+  "karana-calculation-method": [
+    "rashichakre-12-rashi-keno-chandra-solar-year",
+    "bangla-maser-namakarana-nakshatra-purnima-rahasya",
+    "nakshatra-calculation-method",
+    "yoga-calculation-method",
+    "day-calculation-method",
+    "panchanga-guide"
+  ],
+  "nakshatra-calculation-method": [
+    "tithi-calculation-method",
+    "yoga-calculation-method",
+    "panchanga-guide",
+    "molmas-adhikmas-ki-keno-proyojon",
+    "somoyer-rahasya-jyotish-darshan",
+    "janma-kundali-hasta-mudra-rahasya",
+    "manglik-yog-ki-prathamik-dharona",
+    "kumbha-lagna-jataker-swabhab-karma-bibaha-bhagya"
+  ],
+  "panchanga-guide": [
+    "molmas-adhikmas-ki-keno-proyojon",
+    "tithi-calculation-method",
+    "nakshatra-calculation-method",
+    "yoga-calculation-method",
+    "somoyer-rahasya-jyotish-darshan",
+    "kumbha-lagna-jataker-swabhab-karma-bibaha-bhagya",
+    "manglik-yog-ki-prathamik-dharona",
+    "janma-kundali-hasta-mudra-rahasya"
+  ],
+  "tithi-calculation-method": [
+    "nakshatra-calculation-method",
+    "yoga-calculation-method",
+    "molmas-adhikmas-ki-keno-proyojon",
+    "panchanga-guide",
+    "somoyer-rahasya-jyotish-darshan",
+    "janma-kundali-hasta-mudra-rahasya",
+    "shiver-gana-ganesh-ganpati-puran-darshan",
+    "moner-jantrana-theke-mukti"
+  ],
+  "yoga-calculation-method": [
+    "manglik-yog-ki-prathamik-dharona",
+    "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
+    "gandharva-yaksha-puran-darshan",
+    "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
+    "kumbha-lagna-jataker-swabhab-karma-bibaha-bhagya",
+    "janma-kundali-hasta-mudra-rahasya",
+    "prodyut-acharya-jyotish-palmist-journey-ranaghat",
+    "somoyer-rahasya-jyotish-darshan"
   ],
   "advanced-palmistry-neuroscience-connection": [
     "prachin-grantha-o-adhunik-bigyan",
@@ -98,13 +149,13 @@
   ],
   "manglik-yog-ki-prathamik-dharona": [
     "mangal-grah-antar-yoddha",
+    "yoga-calculation-method",
     "prodyut-acharya-jyotish-palmist-journey-ranaghat",
     "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
     "molmas-adhikmas-ki-keno-proyojon",
     "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
     "jibone-sob-kichu-biruddhe-gele-ki-korben",
-    "kumbha-lagna-jataker-swabhab-karma-bibaha-bhagya",
-    "rahu-ketu-chaya-graha-jibone-prabhab-protikar"
+    "kumbha-lagna-jataker-swabhab-karma-bibaha-bhagya"
   ],
   "molmas-adhikmas-ki-keno-proyojon": [
     "somoyer-rahasya-jyotish-darshan",
@@ -114,7 +165,7 @@
     "jibone-sob-kichu-biruddhe-gele-ki-korben",
     "shiver-gana-ganesh-ganpati-puran-darshan",
     "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
-    "prodyut-acharya-jyotish-palmist-journey-ranaghat"
+    "yoga-calculation-method"
   ],
   "mon-joyer-golpo-malini-sukno-nodir-char": [
     "vikhari-theke-business-er-golpo",
@@ -160,11 +211,11 @@
     "manglik-yog-ki-prathamik-dharona",
     "jyotish-6-shakti-shali-yoga-kundali-bisleshan",
     "rahu-ketu-chaya-graha-jibone-prabhab-protikar",
+    "yoga-calculation-method",
     "pitru-dosh-shastriya-byakhya",
     "tarapith-smashan-tantra-jyotish",
-    "mangal-grah-antar-yoddha",
-    "jyotish-shastra-utpatti-itihas-beder-chokhu",
-    "damodarer-bali-jibon-dorshon"
+    "tithi-calculation-method",
+    "mangal-grah-antar-yoddha"
   ],
   "man-jay-na-korle-safalta-asbe-na": [
     "prithibir-itihas-rahasya",
@@ -228,13 +279,13 @@
   ],
   "bangla-maser-namakarana-nakshatra-purnima-rahasya": [
     "rashichakre-12-rashi-keno-chandra-solar-year",
+    "karana-calculation-method",
     "shishu-hath-rekha-pesa-jyotish-rahasya",
     "rahu-ketu-chaya-graha-jibone-prabhab-protikar",
     "hater-rekha-career-dhan-bishleshan",
     "janma-kundali-hasta-mudra-rahasya",
     "mahabharata-ratha-pancha-indriya-jiban-darshan",
-    "artha-ki-sukh-dey-jyotish-darshan-parashar",
-    "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya"
+    "artha-ki-sukh-dey-jyotish-darshan-parashar"
   ],
   "bhadra-mase-janma-12-rashi-swabhab-karma-shastha": [
     "ashar-mase-janma-12-rashi-swabhab-karma-shastha",
@@ -579,12 +630,12 @@
   "jyotish-6-shakti-shali-yoga-kundali-bisleshan": [
     "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
     "somoyer-rahasya-jyotish-darshan",
+    "yoga-calculation-method",
     "manglik-yog-ki-prathamik-dharona",
     "mukhoser-alore-porichoy-naitikota-sankat",
     "gandharva-yaksha-puran-darshan",
     "rahu-ketu-chaya-graha-jibone-prabhab-protikar",
-    "mangal-grah-antar-yoddha",
-    "pitru-dosh-shastriya-byakhya"
+    "mangal-grah-antar-yoddha"
   ],
   "mantra-jap-ki-kaj-kore-bigyan-adhyatma": [
     "artha-ki-sukh-dey-jyotish-darshan-parashar",
@@ -648,13 +699,13 @@
   ],
   "rashichakre-12-rashi-keno-chandra-solar-year": [
     "bangla-maser-namakarana-nakshatra-purnima-rahasya",
+    "karana-calculation-method",
     "preme-byartho-keno-jyotish-hastarekha-uttor",
     "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
     "somoyer-rahasya-jyotish-darshan",
     "shiver-gana-ganesh-ganpati-puran-darshan",
     "gorib-keno-buddher-utor-jibon-bodle-dey",
-    "shani-sadesati-ki-hoy-keno-hoy-ki-korben",
-    "manush-keno-venge-pore-yogi-pathik-part-2"
+    "shani-sadesati-ki-hoy-keno-hoy-ki-korben"
   ],
   "sanshoy-theke-hastarekha-bigyan-jyotish": [
     "hater-ulto-pith-karprishtha-samudrik-shastra",
