@@ -1,4 +1,21 @@
 {
+  "day-calculation-method": {
+    "cluster": "বিজ্ঞান",
+    "parent": "শিক্ষা",
+    "confidence": 0.64,
+    "allScores": {
+      "জ্যোতিষ": {
+        "score": 3,
+        "matches": 3,
+        "parent": "শারীরিক জ্যোতিষ"
+      },
+      "বিজ্ঞান": {
+        "score": 3.2,
+        "matches": 4,
+        "parent": "শিক্ষা"
+      }
+    }
+  },
   "advanced-palmistry-neuroscience-connection": {
     "cluster": "বিজ্ঞান",
     "parent": "শিক্ষা",

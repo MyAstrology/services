@@ -1,13 +1,20 @@
 {
+  "day-calculation-method": [
+    "advanced-palmistry-neuroscience-connection",
+    "man-jay-na-korle-safalta-asbe-na",
+    "prachin-grantha-o-adhunik-bigyan",
+    "prithibir-itihas-rahasya",
+    "water-consciousness-chandra-connection"
+  ],
   "advanced-palmistry-neuroscience-connection": [
     "prachin-grantha-o-adhunik-bigyan",
     "prithibir-itihas-rahasya",
+    "day-calculation-method",
     "man-jay-na-korle-safalta-asbe-na",
     "water-consciousness-chandra-connection",
     "porisram-kore-keno-safalta-ashe-na-bhagya-rahasya",
     "somoyer-rahasya-jyotish-darshan",
-    "dharma-ki-prokrit-artha-gita-buddha-darshan",
-    "ai-uncertainty-astrology-palmistry-guidance"
+    "dharma-ki-prokrit-artha-gita-buddha-darshan"
   ],
   "ai-uncertainty-astrology-palmistry-guidance": [
     "samudrik-shastra-nari-noy-sattva-bichar",
@@ -162,12 +169,12 @@
   "man-jay-na-korle-safalta-asbe-na": [
     "prithibir-itihas-rahasya",
     "prachin-grantha-o-adhunik-bigyan",
+    "day-calculation-method",
     "advanced-palmistry-neuroscience-connection",
     "water-consciousness-chandra-connection",
     "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
     "mon-joyer-golpo-malini-sukno-nodir-char",
-    "somoyer-rahasya-jyotish-darshan",
-    "mahabharata-ratha-pancha-indriya-jiban-darshan"
+    "somoyer-rahasya-jyotish-darshan"
   ],
   "tarapith-smashan-tantra-jyotish": [
     "damodarer-bali-jibon-dorshon",
@@ -623,11 +630,11 @@
     "prithibir-itihas-rahasya",
     "advanced-palmistry-neuroscience-connection",
     "man-jay-na-korle-safalta-asbe-na",
+    "day-calculation-method",
     "water-consciousness-chandra-connection",
     "sanshoy-theke-hastarekha-bigyan-jyotish",
     "bhagya-ki-sabar-bhalo-hoy-sampurna-bisleshan",
-    "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
-    "samudrik-shastra-nari-noy-sattva-bichar"
+    "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na"
   ],
   "preme-byartho-keno-jyotish-hastarekha-uttor": [
     "love-marriage-relationship-solutions-astrology-palmistry",
@@ -673,11 +680,11 @@
     "prachin-grantha-o-adhunik-bigyan",
     "man-jay-na-korle-safalta-asbe-na",
     "advanced-palmistry-neuroscience-connection",
+    "day-calculation-method",
     "water-consciousness-chandra-connection",
     "jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na",
     "bhalo-manush-haoar-satyi-path",
-    "sanshoy-theke-hastarekha-bigyan-jyotish",
-    "hater-ulto-pith-karprishtha-samudrik-shastra"
+    "sanshoy-theke-hastarekha-bigyan-jyotish"
   ],
   "stri-r-bicched-er-por-o-mone-pore-chanchal-er-golpo": [
     "safal-manush-sukhi-noy-porichoy-shantir-dwondwo",
@@ -1043,6 +1050,7 @@
     "advanced-palmistry-neuroscience-connection",
     "prachin-grantha-o-adhunik-bigyan",
     "prithibir-itihas-rahasya",
+    "day-calculation-method",
     "man-jay-na-korle-safalta-asbe-na"
   ]
 }

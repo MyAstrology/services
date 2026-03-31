@@ -1,15 +1,45 @@
 {
+  "day-calculation-method": {
+    "relatedByTag": [],
+    "relatedByPillar": [
+      "advanced-palmistry-neuroscience-connection",
+      "man-jay-na-korle-safalta-asbe-na",
+      "prachin-grantha-o-adhunik-bigyan"
+    ],
+    "relatedByCluster": [
+      "advanced-palmistry-neuroscience-connection",
+      "man-jay-na-korle-safalta-asbe-na",
+      "prachin-grantha-o-adhunik-bigyan"
+    ],
+    "topRelated": [
+      {
+        "slug": "advanced-palmistry-neuroscience-connection",
+        "score": 0.3182720631554142
+      },
+      {
+        "slug": "man-jay-na-korle-safalta-asbe-na",
+        "score": 0.3179813664596274
+      },
+      {
+        "slug": "prachin-grantha-o-adhunik-bigyan",
+        "score": 0.2977450980392157
+      }
+    ],
+    "cluster": "বিজ্ঞান",
+    "confidence": 0.64,
+    "manualLinks": []
+  },
   "advanced-palmistry-neuroscience-connection": {
     "relatedByTag": [],
     "relatedByPillar": [
       "prachin-grantha-o-adhunik-bigyan",
       "prithibir-itihas-rahasya",
-      "man-jay-na-korle-safalta-asbe-na"
+      "day-calculation-method"
     ],
     "relatedByCluster": [
       "prachin-grantha-o-adhunik-bigyan",
       "prithibir-itihas-rahasya",
-      "man-jay-na-korle-safalta-asbe-na"
+      "day-calculation-method"
     ],
     "topRelated": [
       {
@@ -21,8 +51,8 @@
         "score": 0.33484126984126983
       },
       {
-        "slug": "man-jay-na-korle-safalta-asbe-na",
-        "score": 0.3040277777777778
+        "slug": "day-calculation-method",
+        "score": 0.3182720631554142
       }
     ],
     "cluster": "বিজ্ঞান",
@@ -502,12 +532,12 @@
     "relatedByPillar": [
       "prithibir-itihas-rahasya",
       "prachin-grantha-o-adhunik-bigyan",
-      "advanced-palmistry-neuroscience-connection"
+      "day-calculation-method"
     ],
     "relatedByCluster": [
       "prithibir-itihas-rahasya",
       "prachin-grantha-o-adhunik-bigyan",
-      "advanced-palmistry-neuroscience-connection"
+      "day-calculation-method"
     ],
     "topRelated": [
       {
@@ -519,8 +549,8 @@
         "score": 0.33333333333333337
       },
       {
-        "slug": "advanced-palmistry-neuroscience-connection",
-        "score": 0.3040277777777778
+        "slug": "day-calculation-method",
+        "score": 0.3179813664596274
       }
     ],
     "cluster": "বিজ্ঞান",
