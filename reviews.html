@@ -841,7 +841,7 @@ function onPaymentSuccess(res, custName, custPhone) {
 
   /* reviews.json — Google Places API থেকে auto-update হওয়া JSON ফাইল
      Expected structure:
-     { "result": { "rating": "5.0", "user_ratings_total": 122,
+     { "result": { "rating": "5.0", "user_ratings_total": 127,
                    "reviews": [{ "author_name","rating","text","relative_time_description" }] } }
   */
   function loadGoogleReviews() {
@@ -856,7 +856,7 @@ function onPaymentSuccess(res, custName, custPhone) {
         var reviews = Array.isArray(result.reviews) ? result.reviews : [];
         if (!reviews.length) { showFallback(); return; }
         var rating = result.rating || '5.0';
-        var total  = result.user_ratings_total || '122';
+        var total  = result.user_ratings_total || '127';
         var el_sum = document.getElementById('gr-summary');
         var el_btn = document.getElementById('gr-btn-txt');
         if (el_sum) el_sum.textContent = 'Google Maps-এ ' + total + '+ যাচাইকৃত রিভিউ · ⭐ ' + rating + ' · Best Astrologer Ranaghat, West Bengal';
