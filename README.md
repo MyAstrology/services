@@ -239,48 +239,123 @@ MyAstrology/services/
 
 ## 📝 **Blog Posts**
 
-> **৩৫+ বাংলা ব্লগ পোস্ট** নিয়মিত প্রকাশিত হচ্ছে। প্রতিটি পোস্ট **AI-লাইক অ্যানালাইসিস** এর মাধ্যমে ক্লাস্টার ও সম্পর্কিত পোস্ট চিহ্নিত করা হয়।
+> **১০০+ বাংলা ব্লগ পোস্ট** নিয়মিত প্রকাশিত হচ্ছে। প্রতিটি পোস্ট **AI-লাইক অ্যানালাইসিস** এর মাধ্যমে ক্লাস্টার ও সম্পর্কিত পোস্ট চিহ্নিত করা হয়।
+
 
 <details>
 <summary>📖 সম্পূর্ণ ব্লগ তালিকা দেখুন (ক্লিক করুন)</summary>
 
-| # | স্লাগ | বিষয় |
-|:---:|:---|:---|
-| 1 | `ai-yuge-ortho-bhalobasha-bhagya-pradyut-acharya` | AI যুগে অর্থ, ভালোবাসা ও ভাগ্য |
-| 2 | `artha-anartha-maraka-bhaba-analysis` | অর্থ-অনর্থ মারক ভাব বিশ্লেষণ |
-| 3 | `bhalo-manush-haoar-satyi-path` | ভালো মানুষ হওয়ার সত্য পথ |
-| 4 | `dharma-ki-prokrit-artha-gita-buddha-darshan` | ধর্মের প্রকৃত অর্থ |
-| 5 | `hasta-rekha-jivan-manchitra` | হস্তরেখা – জীবনের মানচিত্র |
-| 6 | `hath-chinho-porichoy` | হাতে কোন চিহ্ন কী বলে |
-| 7 | `hath-rekha-atmounnayan` | হাতের রেখায় আত্মউন্নয়ন |
-| 8 | `janma-kundali-hasta-mudra-rahasya` | জন্মকুণ্ডলী ও হস্তমুদ্রা |
-| 9 | `janmakundali-o-hastrekha-jiban-manchitra` | জন্মকুণ্ডলী ও হস্তরেখা একসাথে |
-| 10 | `jibone-safal-howar-7-chabikaathi-jyotish` | সফল হওয়ার ৭ চাবিকাঠি |
-| 11 | `jibone-sob-kichu-biruddhe-gele-ki-korben` | সব কিছু বিরুদ্ধে গেলে |
-| 12 | `jibonsongram-sukhi-thaka-ananta-golpo` | অনন্তের গল্প |
-| 13 | `jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na` | জ্যোতিষ কি কুসংস্কার? |
-| 14 | `kanaklata-jiban-sangram-saktir-golpo` | কনকলতার গল্প |
-| 15 | `mahabharata-ratha-pancha-indriya-jiban-darshan` | মহাভারতের রথ ও জীবন দর্শন |
-| 16 | `mangal-grah-antar-yoddha` | মঙ্গল গ্রহ – অন্তরের যোদ্ধা |
-| 17 | `mukhoser-alore-porichoy-naitikota-sankat` | মুখোশের আড়ালে কে? |
-| 18 | `nijeke-chena-andhakarer-path` | নিজেকে চেনার পথ |
-| 19 | `nirmal-villa-satya-dhar-mitra` | বৃদ্ধ বয়সের একাকীত্ব |
-| 20 | `pitru-dosh-binod-golpo` | পিতৃদোষের গল্প |
-| 21 | `porisram-kore-keno-safalta-ashe-na-bhagya-rahasya` | পরিশ্রমেও সফলতা না পাওয়ার কারণ |
-| 22 | `pradip-byarthata-manoshik-shanti` | ব্যর্থতা থেকে শিক্ষা |
-| 23 | `prodyut-acharya-jyotish-palmist-journey-ranaghat` | ড. আচার্যের যাত্রা |
-| 24 | `rager-prem-somparka-phatal` | রাগ ও সম্পর্ক |
-| 25 | `safal-manush-sukhi-noy-porichoy-shantir-dwondwo` | সফল মানুষ কেন সুখী নয় |
-| 26 | `samudrik-shastra-nari-noy-sattva-bichar` | সামুদ্রিক শাস্ত্রে নারী |
-| 27 | `shishu-hath-rekha-pesa-jyotish-rahasya` | শিশুর হাতের রেখা ও পেশা |
-| 28 | `sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha` | নিয়তি ও স্বাধীন ইচ্ছা |
-| 29 | `somoyer-rahasya-jyotish-darshan` | সময়ের রহস্য |
-| 30 | `star-chinho-hastrekha` | হাতে স্টার চিহ্ন |
-| 31 | `sushanta-british-jiban-sangram-kartabya` | সুশান্তের গল্প |
-| 32 | `tripto-maner-shanti-arun-pradip-golpo` | তৃপ্তি ও মানসিক শান্তি |
-| 33 | `stri-r-bicched-er-por-o-mone-pore-chanchal-er-golpo` | চঞ্চলের গল্প (নতুন) |
+# স্লাগ বিষয়
+1 advanced-palmistry-neuroscience-connection অ্যাডভান্সড পামিস্ট্রি ও নিউরোসায়েন্স সংযোগ
+2 agrahayan-mase-janma-12-rashi-swabhab-karma অগ্রহায়ণ মাসে জন্ম - ১২ রাশির স্বভাব ও কর্ম
+3 ai-uncertainty-astrology-palmistry-guidance AI, অনিশ্চয়তা ও জ্যোতিষ-হস্তরেখার গাইডেন্স
+4 ai-yuge-ortho-bhalobasha-bhagya-pradyut-acharya AI যুগে অর্থ, ভালোবাসা ও ভাগ্য
+5 artha-anartha-maraka-bhaba-analysis অর্থ-অনর্থ মারক ভাব বিশ্লেষণ
+6 artha-ki-sukh-dey-jyotish-darshan-parashar অর্থ কি সুখ দেয়? জ্যোতিষ দর্শন
+7 ashar-mase-janma-12-rashi-swabhab-karma আশার মাসে জন্ম - ১২ রাশির স্বভাব ও কর্ম
+8 ashwin-mase-janma-12-rashi-swabhab-karma আশ্বিন মাসে জন্ম - ১২ রাশির স্বভাব ও কর্ম
+9 baisakh-mase-janma-12-rashi-swabhab-karma বৈশাখ মাসে জন্ম - ১২ রাশির স্বভাব ও কর্ম
+10 bangla-maser-namakarana-nakshatra-purnima-rahasya বাংলা মাসের নামকরণ, নক্ষত্র ও পূর্ণিমার রহস্য
+11 bhadra-mase-janma-12-rashi-swabhab-karma ভাদ্র মাসে জন্ম - ১২ রাশির স্বভাব ও কর্ম
+12 bhagya-karma-astrology-palmistry ভাগ্য ও কর্ম - জ্যোতিষ ও হস্তরেখায়
+13 bhagya-kharap-naki-ami-nije-shotru-chayer-dokan ভাগ্য খারাপ নাকি আমি নিজেই শত্রু?
+14 bhagya-ki-sabar-bhalo-hoy-sampurna-bisleshan ভাগ্য কি সবার ভালো হয়? সম্পূর্ণ বিশ্লেষণ
+15 bhala-manush-haaar-sati-path ভালো মানুষ হওয়ার সত্য পথ
+16 bibaha-rekha-ki-bole-biye-prem-dampattya বিবাহ রেখা কী বলে? বিবাহ, প্রেম ও দাম্পত্য
+17 bishas-ki-kusanskar-prakriti-manush-joytish বিশ্বাস কি কুসংস্কার? প্রকৃতি, মানুষ ও জ্যোতিষ
+18 brischik-lagna-jataker-swabhab-karma-bibaha-bhagya বৃশ্চিক লগ্নজাতকের স্বভাব, কর্ম, বিবাহ ও ভাগ্য
+19 brisha-lagna-jataker-swabhab-karma-bibaha-bhagya বৃষ লগ্নজাতকের স্বভাব, কর্ম, বিবাহ ও ভাগ্য
+20 chaitro-mase-janma-12-rashi-swabhab-karma চৈত্র মাসে জন্ম - ১২ রাশির স্বভাব ও কর্ম
+21 chinta-shakti-bigyan-joytish-darshan চিন্তা শক্তি, বিজ্ঞান ও জ্যোতিষ দর্শন
+22 damodarer-bali-jibon-dorshon দামোদরের বলি - জীবন দর্শন
+23 dhanu-lagna-jataker-swabhab-karma-bibaha-bhagya ধনু লগ্নজাতকের স্বভাব, কর্ম, বিবাহ ও ভাগ্য
+24 dharma-ki-prokrit-artha-gita-buddha-darshan ধর্মের প্রকৃত অর্থ - গীতা ও বুদ্ধ দর্শন
+25 digha-mohona-jibon-dorshon দীঘা মোহনা - জীবন দর্শন
+26 falgun-mase-janma-12-rashi-swabhab-karma ফাল্গুন মাসে জন্ম - ১২ রাশির স্বভাব ও কর্ম
+27 gandharva-yaksha-puran-darshan গন্ধর্ব ও যক্ষ - পুরাণ দর্শন
+28 gorib-keno-buddher-utor-jibon-bodle-dey গরিব কেন বুদ্ধের উত্তর? জীবন বদলে দেয়
+29 hasta-rekha-jivan-manchitra হস্তরেখা - জীবনের মানচিত্র
+30 hater-rekha-career-dhan-bishleshan হাতের রেখায় ক্যারিয়ার ও ধন বিশ্লেষণ
+31 hater-ulto-pith-karprishtha-samudrik-shastra হাতের উল্টো পিঠ (কর্পৃষ্ঠ) - সামুদ্রিক শাস্ত্র
+32 hath-chinho-porichoy হাতের চিহ্ন - পরিচয়
+33 hath-rekha-atmounnayan হস্তরেখায় আত্মউন্নয়ন
+34 ishwar-bishas-nastik-dharmic-karma-part-2 ঈশ্বরে বিশ্বাস, নাস্তিক, ধার্মিক ও কর্ম - পর্ব ২
+35 ishwar-bishas-upalabdhi-karma-vivekananda-part-1 ঈশ্বরে বিশ্বাস, উপলব্ধি, কর্ম ও বিবেকানন্দ - পর্ব ১
+36 jaistha-mase-janma-12-rashi-swabhab-karma জ্যৈষ্ঠ মাসে জন্ম - ১২ রাশির স্বভাব ও কর্ম
+37 janma-kundali-hasta-mudra-rahasya জন্মকুণ্ডলী ও হস্তমুদ্রার রহস্য
+38 janmakundali-o-hastrekha-jiban-manchitra জন্মকুণ্ডলী ও হস্তরেখা - জীবনের মানচিত্র
+39 jibone-bar-bar-byartho-hole-ki-korben জীবনে বার বার ব্যর্থ হলে কী করবেন?
+40 jibone-safal-howar-7-chabikaathi-jyotish জীবনে সফল হওয়ার ৭ চাবিকাঠি - জ্যোতিষ
+41 jibone-sob-kichu-biruddhe-gele-ki-korben জীবনে সব কিছু বিরুদ্ধে গেলে কী করবেন?
+42 jibonsongram-sukhi-thaka-ananta-golpo জীবনসংগ্রাম ও সুখী থাকার অনন্ত গল্প
+43 jyotish-6-shakti-shali-yoga-kundali-bisleshan জ্যোতিষের ৬ শক্তিশালী যোগ - কুণ্ডলী বিশ্লেষণ
+44 jyotish-ki-kusanskar-bigyan-ja-bolte-pare-na জ্যোতিষ কি কুসংস্কার? বিজ্ঞান যা বলতে পারে না
+45 jyotish-shastra-uptatti-itihas-beder-chokhu জ্যোতিষ শাস্ত্রের উপত্তি ও ইতিহাস - বেদের চোখ
+46 jyotish-shastra-veder-chokh জ্যোতিষ শাস্ত্র - বেদের চোখ
+47 kalsarpa-yog-ki-prabhab-somadhan কালসর্প যোগ কী? প্রভাব ও সমাধান
+48 kanaklata-jiban-sangram-saktir-golpo কনকলতা - জীবনসংগ্রাম ও শক্তির গল্প
+49 kanya-lagna-jataker-swabhab-karma-bibaha-bhagya কন্যা লগ্নজাতকের স্বভাব, কর্ম, বিবাহ ও ভাগ্য
+50 karkat-lagna-jataker-swabhab-karma-bibaha-bhagya কর্কট লগ্নজাতকের স্বভাব, কর্ম, বিবাহ ও ভাগ্য
+51 kartik-mase-janma-12-rashi-swabhab-karma কার্তিক মাসে জন্ম - ১২ রাশির স্বভাব ও কর্ম
+52 kumbha-lagna-jataker-swabhab-karma-bibaha-bhagya কুম্ভ লগ্নজাতকের স্বভাব, কর্ম, বিবাহ ও ভাগ্য
+53 love-marriage-relationship-solutions-astrology-palmistry-1 প্রেম, বিবাহ ও সম্পর্কের সমাধান - জ্যোতিষ ও হস্তরেখা (১)
+54 love-marriage-relationship-solutions-astrology-palmistry-2 প্রেম, বিবাহ ও সম্পর্কের সমাধান - জ্যোতিষ ও হস্তরেখা (২)
+55 magh-mase-janma-12-rashi-swabhab-karma মাঘ মাসে জন্ম - ১২ রাশির স্বভাব ও কর্ম
+56 mahabharata-ratha-pancha-indriya-jiban-darshan মহাভারতের রথ, পঞ্চ ইন্দ্রিয় ও জীবন দর্শন
+57 makar-lagna-jataker-swabhab-karma-bibaha-bhagya মকর লগ্নজাতকের স্বভাব, কর্ম, বিবাহ ও ভাগ্য
+58 man-jay-na-korle-saflatta-asbe-na মন জয় না করলে সাফল্য আসবে না
+59 mangal-grah-antar-yoddha মঙ্গল গ্রহ - অন্তরের যোদ্ধা
+60 manglik-yog-ki-prathamik-dharona মঙ্গলিক যোগ কী? প্রাথমিক ধারণা
+61 mantra-jap-ki-kaj-kore-bigyan-adhyatma মন্ত্র জপ কী কাজ করে? বিজ্ঞান ও আধ্যাত্ম
+62 manush-keno-venge-pore-yogi-pathik-part-2 মানুষ কেন ভেঙে পড়ে? যোগী পথিক - পর্ব ২
+63 manush-ki-satyi-valobasha-yogi-pathik-part-1 মানুষ কি সত্যি ভালোবাসে? যোগী পথিক - পর্ব ১
+64 maya-o-mukti-yogi-pathik-part-3 মায়া ও মুক্তি - যোগী পথিক - পর্ব ৩
+65 meen-lagna-jataker-swabhab-karma-bibaha-bhagya মীন লগ্নজাতকের স্বভাব, কর্ম, বিবাহ ও ভাগ্য
+66 mesha-lagna-jataker-swabhab-karma-bibaha-bhagya মেষ লগ্নজাতকের স্বভাব, কর্ম, বিবাহ ও ভাগ্য
+67 mithun-lagna-jataker-swabhab-karma-bibaha-bhagya মিথুন লগ্নজাতকের স্বভাব, কর্ম, বিবাহ ও ভাগ্য
+68 molmas-adhikmas-ki-keno-proyojon মলমাস/অধিকমাস কী? কেন প্রয়োজন?
+69 mon-joyer-golpo-malini-sukno-nodir-char মন জয়ের গল্প - মালিনী ও শুকনো নদীর চর
+70 moner-jantrana-theke-mukti মনের যন্ত্রণা থেকে মুক্তি
+71 mukhoser-alore-porichoy-naitikota-sankat মুখোশের আড়ালে পরিচয় ও নৈতিকতার সঙ্কট
+72 nijeke-chena-andhakarer-path নিজেকে চেনা - অন্ধকারের পথ
+73 nirmal-villa-satya-dhar-mitra নির্মল ভিলা - সত্য ধর মিত্র
+74 pitru-dosh-binod-golpo পিত্রু দোষ - বিনোদ গল্প
+75 pitru-dosh-shastriya-byakhya পিত্রু দোষ - শাস্ত্রীয় ব্যাখ্যা
+76 pocket-fanka-artha-sankat-jyotish-palmistry পকেট ফাঁকা - অর্থ সঙ্কট ও জ্যোতিষ-হস্তরেখা
+77 porisram-kore-keno-safalta-ashe-na-bhagya-rahasya পরিশ্রম করেও কেন সাফল্য আসে না? ভাগ্যের রহস্য
+78 poush-mase-janma-12-rashi-swabhab-karma পৌষ মাসে জন্ম - ১২ রাশির স্বভাব ও কর্ম
+79 prachin-rantha-o-adhunik-bigyan প্রাচীন রন্থা ও আধুনিক বিজ্ঞান
+80 pradip-byarthata-manoshik-shanti প্রদীপ - ব্যর্থতা ও মানসিক শান্তি
+81 preme-byartho-keno-jyotish-hastarekha-uttor প্রেমে ব্যর্থ কেন? জ্যোতিষ ও হস্তরেখায় উত্তর
+82 prithibir-itihas-rahasya পৃথিবীর ইতিহাস ও রহস্য
+83 prodyut-acharya-jyotish-palmist-journey-ranaghat ড. প্রদ্যুৎ আচার্যের জ্যোতিষ ও হস্তরেখায় যাত্রা - রাণাঘাট
+84 rager-prem-somparka-phatal রাগ, প্রেম ও সম্পর্ক - ফাটল
+85 rahu-ketu-chaya-graha-jibone-prabhab-protikar রাহু-কেতু - ছায়া গ্রহ, জীবনে প্রভাব ও প্রতিকার
+86 rashichakre-12-rashi-keno-chandra-solar-year রাশিচক্রে ১২ রাশি কেন? চন্দ্র ও সৌর বছর
+87 safal-manush-sukhi-noy-porichoy-shantir-dwondwo সফল মানুষ সুখী নয় - পরিচয় ও শান্তির দ্বন্দ্ব
+88 samudrik-shastra-ki-mukh-hasta-pada-bishleshan সামুদ্রিক শাস্ত্র কী? মুখ, হাত ও পাদ বিশ্লেষণ
+89 samudrik-shastra-nari-noy-sattva-bichar সামুদ্রিক শাস্ত্রে নারী - সত্ত্ব বিচার
+90 sanshoy-theke-hastarekha-bigyan-jyotish সন্দেহ থেকে হস্তরেখা, বিজ্ঞান ও জ্যোতিষ
+91 shani-sadesati-ki-hoy-keno-hoy-ki-korben শনি সাড়েসাতি কী? কেন হয়? কী করবেন?
+92 shishu-hatt-rekha-pesa-jyotish-rahasya শিশুর হাতের রেখা, পেশা ও জ্যোতিষের রহস্য
+93 shiver-gana-ganesh-ganpati-puran-darshan শিবের গনা, গণেশ ও গণপতি - পুরাণ দর্শন
+94 shraban-mase-janma-12-rashi-swabhab-karma শ্রাবণ মাসে জন্ম - ১২ রাশির স্বভাব ও কর্ম
+95 singha-lagna-jataker-swabhab-karma-bibaha-bhagya সিংহ লগ্নজাতকের স্বভাব, কর্ম, বিবাহ ও ভাগ্য
+96 sob-kichu-ki-purbanirdharity-niyoti-swadhin-ichha সব কিছু কি পূর্বনির্ধারিত? নিয়তি ও স্বাধীন ইচ্ছা
+97 somoyer-rahasya-jyotish-darshan সময়ের রহস্য - জ্যোতিষ দর্শন
+98 star-chinho-hastrekha স্টার চিহ্ন - হস্তরেখায়
+99 stri-r-bicched-er-por-o-mone-pore-chanchal-er-golpo স্ত্রীর বিচ্ছেদের পরও মনে পড়ে - চঞ্চলের গল্প
+100 sushanta-british-jiban-sangram-kartabya সুশান্ত - ব্রিটিশ, জীবনসংগ্রাম ও কর্তব্য
+101 tarapith-smashan-tantra-jyotish তারাপীঠ, শ্মশান, তন্ত্র ও জ্যোতিষ
+102 tripto-maner-shanti-arun-pradip-golpo তৃপ্তি, মনের শান্তি - অরুণ ও প্রদীপের গল্প
+103 tula-lagna-jataker-swabhab-karma-bibaha-bhagya তুলা লগ্নজাতকের স্বভাব, কর্ম, বিবাহ ও ভাগ্য
+104 valo-label-er-fand-theke-beriye-asa ভালো লেবেলের ফাঁদ থেকে বেরিয়ে আসা
+105 vikhari-theke-business-er-golpo ভিখারি থেকে বিজনেসের গল্প
+106 water-consciousness-chandra-connection জল, চেতনা ও চন্দ্র সংযোগ
 
 </details>
+
+
 
 ---
 
