@@ -1421,10 +1421,12 @@ document.addEventListener('DOMContentLoaded',function(){
 // ================================================================
 // বৈদিক তথ্য ফাংশন (শেষের দিকে যোগ করুন)
 // ================================================================
-// 1. বৈদিক পরিচয় (গুছানো সংস্করণ)
+// 1. বৈদিক পরিচয় (গুছানো সংস্করণ) — FIXED
 function getVedicIdentity(number) {
     const data = NumerologyDB.getNumberAnalysis(number);
-    if (!data) return '';  // data না থাকলে ফাঁকা স্ট্রিং
+    
+    // ★ FIX 2: ডাটা না থাকলে ফাঁকা স্ট্রিং ফেরত দিন
+    if (!data) return '';
     
     const vedicData = {
         1: { sanskrit: "একম", vedicName: "সূর্য", element: "অগ্নি", guna: "সাত্ত্বিক", deity: "ভগবান সূর্য", mantra: "ওঁ ঘৃণি সূর্যায় নমঃ", bodyPart: "হৃদয়, চোখ", yoga: "সূর্য নমস্কার" },
@@ -1438,12 +1440,11 @@ function getVedicIdentity(number) {
         9: { sanskrit: "নব", vedicName: "মঙ্গল", element: "অগ্নি", guna: "রাজসিক", deity: "মঙ্গল", mantra: "ওঁ ক্রাং ক্রীং ক্রৌঁ সঃ ভৌমায় নমঃ", bodyPart: "রক্ত, পেশী", yoga: "বীরভদ্রাসন" }
     };
     
-    // ★ FIX 1: Defensive check — v undefined হলে খালি অবজেক্ট
     const v = vedicData[number] || {};
     
     return `
         <div class="vedic-card">
-            <h4><i class="fas fa-om"></i> বৈদিক পরিচয় — ${data.planet || ''}</h4>
+            <h4><i class="fas fa-om"></i> বৈদিক পরিচয় — ${data.planet || 'অজানা'}</h4>
             <div class="vedic-grid-2col">
                 <div><span class="vedic-label">🕉️ সংস্কৃত নাম</span> ${v.sanskrit || ''}</div>
                 <div><span class="vedic-label">🌟 বৈদিক নাম</span> ${v.vedicName || ''}</div>
