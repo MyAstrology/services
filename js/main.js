@@ -97,6 +97,7 @@ function renderPersonalName(input,num,data,type){
     ${planetBadge('fa-user',num,data.planet)}
     <p><strong>"${escapeHtml(input)}"</strong> — এই নামের নামাংক <strong>${num}</strong>। ${getNamankDeep(num)}</p>
     ${luckBadges(data)}
+    ${getVedicIdentity(num)}
   </div>
   <div class="result-card">
     <div class="info-section">
@@ -123,6 +124,9 @@ function renderPersonalName(input,num,data,type){
       <h3><i class="fas fa-coins"></i> বিনিয়োগ ও অর্থনৈতিক পরামর্শ</h3>
       <p>${escapeHtml(data.investment.description)}</p>
     </div>
+    ${getLifeAreaAnalysis(num)}
+    ${getFamousPersonalities(num)}
+    ${getVedicChants(num)}
     <div class="info-section">
       <h3><i class="fas fa-magic"></i> শাস্ত্রীয় প্রতিকার</h3>
       <p>${escapeHtml(data.tip.description)}</p>
@@ -141,11 +145,15 @@ function renderBabyName(input,num,data,type){
   <div class="root-description">
     ${planetBadge('fa-baby',num,data.planet)}
     <p>নাম <strong>"${escapeHtml(input)}"</strong>-এর নামাংক <strong>${num}</strong>। ${escapeHtml(data.planet)}-এর শক্তিতে শিশুর জীবন পরিচালিত হবে।</p>
+    ${getVedicIdentity(num)}
   </div>
   <div class="result-card">
     <div class="info-section"><h3><i class="fas fa-star"></i> নামের শুভত্ব বিচার</h3><p>${getBabyNameEffect(num)}</p></div>
     <div class="info-section"><h3><i class="fas fa-baby"></i> শিশুর সম্ভাব্য ব্যক্তিত্ব</h3><p>${escapeHtml(data.identity.description)}</p></div>
     <div class="info-section"><h3><i class="fas fa-graduation-cap"></i> শিক্ষা ও ভবিষ্যৎ</h3><p>${getBabyFutureTip(num)}</p></div>
+    ${getLifeAreaAnalysis(num)}
+    ${getFamousPersonalities(num)}
+    ${getVedicChants(num)}
     <div class="info-section"><h3><i class="fas fa-shield-alt"></i> শিশুর সুরক্ষা ও পরামর্শ</h3><p>${escapeHtml(data.tip.description)}</p></div>
   </div>`+bottomButtons();
 }
@@ -263,10 +271,8 @@ function renderNewHome(input,num,data,type){
 
 // 8. জন্মদিন বিশ্লেষণ
 function renderBirthday(input,num,data,type){
-  // num = mulank (দিনের সংখ্যা) — DOMContentLoaded-এ ঠিক করা হয়েছে
   const bhagyank=(NumerologyDB.calculateBhagyank?NumerologyDB.calculateBhagyank(input):null)||num;
-  const mulank=num; // num is now correctly the mulank
-  // bhagyank analysis data (if different from mulank)
+  const mulank=num;
   const bhData=NumerologyDB.getNumberAnalysis(bhagyank)||data;
   return renderInputBanner(input,num,data,'date')+`
   <div class="result-header">
@@ -288,12 +294,16 @@ function renderBirthday(input,num,data,type){
       </div>
     </div>
     <p><strong>মূলাংক ${mulank}</strong> (শুধু জন্মদিনের দিনের সংখ্যা) আপনার মৌলিক স্বভাব দেখায়। <strong>ভাগ্যাংক ${bhagyank}</strong> (পুরো জন্মতারিখের সংখ্যার যোগফল) আপনার জীবনের মূল উদ্দেশ্য ও নিয়তি নির্দেশ করে।</p>
+    ${getVedicIdentity(mulank)}
   </div>
   <div class="result-card">
     <div class="info-section"><h3><i class="fas fa-calendar-star"></i> জন্মদিনের বিশেষ তাৎপর্য — মূলাংক ${mulank}</h3><p>${getBirthdaySignificance(mulank)}</p></div>
     <div class="info-section"><h3><i class="fas fa-user"></i> ব্যক্তিত্ব ও জীবনশৈলী</h3><p>${escapeHtml(data.identity.description)}</p></div>
     <div class="info-section"><h3><i class="fas fa-chart-line"></i> জীবনের গুরুত্বপূর্ণ বছর</h3><p>${getLifeMilestones(mulank)}</p></div>
     <div class="info-section"><h3><i class="fas fa-briefcase"></i> ক্যারিয়ার পথ</h3><p>${escapeHtml(data.business.description)}</p></div>
+    ${getLifeAreaAnalysis(mulank)}
+    ${getFamousPersonalities(mulank)}
+    ${getVedicChants(mulank)}
     <div class="info-section"><h3><i class="fas fa-magic"></i> প্রতিকার</h3><p>${escapeHtml(data.tip.description)}</p></div>
   </div>`+bottomButtons();
 }
@@ -665,16 +675,19 @@ function renderMulank(input,num,data,type){
     </div>`:''}
     <p>গ্রহাধিপতি <strong>${escapeHtml(data.planet)}</strong>-এর প্রভাবে জীবন পরিচালিত। ${getPlanetRulerEffect(num,data)}</p>
     ${luckBadges(data)}
+    ${getVedicIdentity(num)}
   </div>
   <div class="result-card">
     <div class="info-section"><h3><i class="fas fa-user"></i> ব্যক্তিত্ব ও স্বভাব</h3><p>${escapeHtml(data.identity.description)}</p></div>
     <div class="info-section"><h3><i class="fas fa-briefcase"></i> ক্যারিয়ার ও পেশা</h3><p>${escapeHtml(data.business.description)}</p></div>
     <div class="info-section"><h3><i class="fas fa-plane"></i> যাত্রা পরামর্শ</h3><p>${escapeHtml(data.travel.description)}</p></div>
     <div class="info-section"><h3><i class="fas fa-coins"></i> বিনিয়োগ</h3><p>${escapeHtml(data.investment.description)}</p></div>
+    ${getLifeAreaAnalysis(num)}
+    ${getFamousPersonalities(num)}
+    ${getVedicChants(num)}
     <div class="info-section"><h3><i class="fas fa-magic"></i> জ্যোতিষীয় প্রতিকার</h3><p>${escapeHtml(data.tip.description)}</p></div>
   </div>`+bottomButtons();
 }
-
 // 24. নামের অংক
 function renderNameNumber(input,num,data,type){return renderPersonalName(input,num,data,'name');}
 
