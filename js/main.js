@@ -1643,11 +1643,3 @@ function getBusinessIcons(number) {
         </div>
     `;
 }
-
-// ↓↓↓ এখানে MAIN — DOMContentLoaded আছে (এটি ইতিমধ্যে আছে) ↓↓↓
-// MAIN — DOMContentLoaded
-document.addEventListener('DOMContentLoaded',function(){
-    // ... আপনার existing কোড (এটি পরিবর্তন করবেন না)
-});
-
-// ❌ শেষে কোনো extra code থাকবে না ❌
