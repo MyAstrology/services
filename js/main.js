@@ -309,7 +309,6 @@ function renderBirthday(input,num,data,type){
 }
 
 // 9. ব্যবসার নাম
-// 9. ব্যবসার নাম
 function renderBusinessName(input,num,data,type){
   return renderInputBanner(input,num,data,'name')+`
   <div class="result-header">
@@ -351,6 +350,7 @@ function renderBusinessName(input,num,data,type){
       <h3><i class="fas fa-coins"></i> বিনিয়োগ ও আর্থিক কৌশল</h3>
       <p>${escapeHtml(data.investment.description)}</p>
     </div>
+    ${getBusinessIcons(num)}
     ${getBusinessMantra(num, data)}
     <div class="info-section">
       <h3><i class="fas fa-magic"></i> ব্যবসায়িক প্রতিকার ও মন্ত্র</h3>
@@ -358,7 +358,6 @@ function renderBusinessName(input,num,data,type){
     </div>
   </div>`+bottomButtons();
 }
-
 // 10. অংশীদারিত্ব
 function renderPartnership(input,num,data,type){
   return renderInputBanner(input,num,data,type||'name')+`
