@@ -1613,18 +1613,17 @@ function getBusinessMantra(number, data) {
     `;
 }
 
-// ব্যবসার জন্য বিখ্যাত কোম্পানি ও ব্যবসায়ী (ইংরেজি ভাষায়)
 function getBusinessIcons(number) {
     const businessIcons = {
-        1: ["Tata Group", "Ratan Tata", "Samsung"],
-        2: ["Coca-Cola", "McDonald's", "Amazon"],
-        3: ["Microsoft", "Bill Gates", "Google"],
-        4: ["Tesla", "Elon Musk", "IBM"],
-        5: ["Facebook", "Mark Zuckerberg", "Flipkart"],
-        6: ["Apple", "Steve Jobs", "Louis Vuitton"],
-        7: ["SpaceX", "IT Sector", "Research Lab"],
-        8: ["Reliance", "Mukesh Ambani", "Berri"],
-        9: ["Nike", "Adidas", "Ferrari"]
+        1: ["Tata Group", "Aditya Birla Group", "Samsung"],  // সূর্যের সংখ্যা - নেতৃত্ব
+        2: ["Coca-Cola", "McDonald's", "Amazon"],           // চন্দ্রের সংখ্যা - জনপ্রিয়তা
+        3: ["Microsoft", "Google", "Apple"],                // বৃহস্পতির সংখ্যা - জ্ঞান, প্রযুক্তি
+        4: ["IBM", "Intel", "SpaceX"],                      // রাহুর সংখ্যা - উদ্ভাবন, গবেষণা
+        5: ["Meta (Facebook)", "Walmart", "Alibaba"],       // বুধের সংখ্যা - যোগাযোগ, বাণিজ্য
+        6: ["Louis Vuitton", "Chanel", "Disney"],           // শুক্রের সংখ্যা - সৌন্দর্য, বিনোদন
+        7: ["Pfizer", "Roche", "Novartis"],                 // কেতুর সংখ্যা - গবেষণা, ওষুধ
+        8: ["Berkshire Hathaway", "JPMorgan", "Reliance"],  // শনির সংখ্যা - স্থায়িত্ব, শিল্প
+        9: ["Nike", "Adidas", "Ferrari"]                    // মঙ্গলের সংখ্যা - প্রতিযোগিতা, ক্রীড়া
     };
     
     const list = businessIcons[number] || [];
@@ -1632,11 +1631,11 @@ function getBusinessIcons(number) {
     
     return `
         <div class="famous-card">
-            <h4><i class="fas fa-chart-line"></i> একই সংখ্যার বিখ্যাত ব্যবসা ও উদ্যোক্তা</h4>
+            <h4><i class="fas fa-chart-line"></i> একই সংখ্যার বিখ্যাত ব্যবসা ও কর্পোরেশন</h4>
             <div class="famous-list">
                 ${list.map(name => `<span class="famous-name">${name}</span>`).join('')}
             </div>
-            <p class="famous-note">এই সংখ্যার শক্তি সাফল্যের পথ দেখিয়েছে। আপনার ব্যবসায়ও এই শক্তি কাজে লাগান।</p>
+            <p class="famous-note">এই সংখ্যার শক্তি বিশ্বের শীর্ষ কোম্পানিগুলোকে সাফল্য এনে দিয়েছে। আপনার ব্যবসায়ও এই শক্তি কাজে লাগান।</p>
         </div>
     `;
 }
