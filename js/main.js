@@ -1536,18 +1536,19 @@ function getLifeAreaAnalysis(number) {
         </div>
     `;
 }
-// 3. বিখ্যাত ব্যক্তিত্ব (একই সংখ্যার বিখ্যাত মানুষ)
+// 3. বিখ্যাত ব্যক্তিত্ব (একই সংখ্যার বিখ্যাত মানুষ) - Pythagorean Numerology অনুযায়ী সঠিক গণনা
+
 function getFamousPersonalities(number) {
     const personalities = {
-        1: ["স্বামী বিবেকানন্দ", "নেতাজি সুভাষচন্দ্র বসু", "মহাত্মা গান্ধী"],
-        2: ["রবীন্দ্রনাথ ঠাকুর", "লতা মঙ্গেশকর", "মাদার টেরেসা"],
-        3: ["ডঃ মুহম্মদ ইউনুস", "আলবার্ট আইনস্টাইন", "স্টিভ জবস"],
-        4: ["সত্যজিৎ রায়", "আমর্ত্য সেন", "নিকোলা টেসলা"],
-        5: ["বঙ্গবন্ধু শেখ মুজিবুর রহমান", "মার্ক জাকারবার্গ", "বারাক ওবামা"],
-        6: ["কাজী নজরুল ইসলাম", "মেরিলিন মনরো", "লিওনার্দো দা ভিঞ্চি"],
-        7: ["পরমহংস যোগানন্দ", "গৌতম বুদ্ধ", "আদি শঙ্করাচার্য"],
-        8: ["শ্রী অরবিন্দ", "মাদার (শ্রী অরবিন্দ আশ্রম)", "মোহাম্মদ আলী"],
-        9: ["ভগৎ সিং", "চে গেভারা", "নেপোলিয়ন বোনাপার্ট"]
+        1: ["Mahatma Gandhi", "Joe Biden", "Johnny Depp", "Winston Churchill"],
+        2: ["Shah Rukh Khan", "Katrina Kaif", "Elon Musk", "Tom Hanks"],
+        3: ["Priyanka Chopra", "Deepika Padukone", "Donald Trump", "Nelson Mandela"],
+        4: ["Amitabh Bachchan", "Salman Khan", "Aamir Khan", "Rohit Sharma"],
+        5: ["Lata Mangeshkar", "Barack Obama", "Rabindranath Tagore", "Oprah Winfrey"],
+        6: ["Bill Gates", "Ratan Tata", "Sundar Pichai", "Mark Zuckerberg"],
+        7: ["Sachin Tendulkar", "Cristiano Ronaldo", "Michael Jackson", "Satya Nadella"],
+        8: ["Narendra Modi", "Virat Kohli", "Indira Gandhi", "Madonna"],
+        9: ["Mahendra Singh Dhoni", "Mukesh Ambani", "Steve Jobs", "Albert Einstein"]
     };
     
     const list = personalities[number] || [];
@@ -1559,11 +1560,10 @@ function getFamousPersonalities(number) {
             <div class="famous-list">
                 ${list.map(name => `<span class="famous-name">${name}</span>`).join('')}
             </div>
-            <p class="famous-note">তাদের মতো আপনারও এই সংখ্যার গুণাবলী বিদ্যমান। তাদের জীবন থেকে অনুপ্রেরণা নিন।</p>
+            <p class="famous-note">Pythagorean Numerology অনুযায়ী এই সংখ্যার সাথে তাদের নামের সংখ্যা মিল রয়েছে। তাদের জীবন থেকে অনুপ্রেরণা নিন।</p>
         </div>
     `;
 }
-
 // 4. শাস্ত্রীয় মন্ত্র (বাংলা ভাষায়)
 function getVedicChants(number) {
     const chants = {
@@ -1615,19 +1615,19 @@ function getBusinessMantra(number, data) {
     `;
 }
 
-// ↓↓↓ এখানে Business Icons ফাংশন যোগ করুন ↓↓↓
-// ব্যবসার জন্য বিখ্যাত কোম্পানি
+// 3. বিখ্যাত ব্যবসা ও কোম্পানি (একই সংখ্যার বিখ্যাত ব্র্যান্ড) - Pythagorean Numerology অনুযায়ী সঠিক গণনা
+
 function getBusinessIcons(number) {
     const businessIcons = {
-        1: ["Tata Group", "Aditya Birla Group", "Samsung"],
-        2: ["Coca-Cola", "McDonald's", "Amazon"],
-        3: ["Microsoft", "Google", "Apple"],
-        4: ["IBM", "Intel", "SpaceX"],
-        5: ["Meta (Facebook)", "Walmart", "Alibaba"],
-        6: ["Louis Vuitton", "Chanel", "Disney"],
-        7: ["Pfizer", "Roche", "Novartis"],
-        8: ["Berkshire Hathaway", "JPMorgan", "Reliance Industries"],
-        9: ["Nike", "Adidas", "Ferrari"]
+        1: ["Microsoft", "Sony", "Uber", "Airbnb"],
+        2: ["Pepsi", "Adidas", "BMW", "Reebok"],
+        3: ["Tesla", "Meta", "Nike", "Lego"],
+        4: ["Facebook", "Samsung", "Cisco", "Prada"],
+        5: ["Apple", "Nokia", "Volvo", "Omega"],
+        6: ["Tata", "Intel", "Honda", "Bajaj"],
+        7: ["Google", "Amazon", "Walmart", "Unilever"],
+        8: ["Infosys", "PayPal", "IKEA", "Ricoh"],
+        9: ["Adobe", "Oracle", "Netflix", "Wipro"]
     };
     
     const list = businessIcons[number] || [];
@@ -1639,7 +1639,7 @@ function getBusinessIcons(number) {
             <div class="famous-list">
                 ${list.map(name => `<span class="famous-name">${name}</span>`).join('')}
             </div>
-            <p class="famous-note">এই সংখ্যার শক্তি বিশ্বের শীর্ষ কোম্পানিগুলোকে সাফল্য এনে দিয়েছে। আপনার ব্যবসায়ও এই শক্তি কাজে লাগান।</p>
+            <p class="famous-note">Pythagorean Numerology অনুযায়ী এই সংখ্যার সাথে এই কোম্পানিগুলোর নামের সংখ্যা মিল রয়েছে। তাদের সাফল্যের পথ অনুসরণ করুন।</p>
         </div>
     `;
 }
