@@ -1,3 +1,4 @@
+
 // ================================================================
 // main.js — Numerology Intelligence Hub v3.0
 // সব সংশোধনী: ১১ পয়েন্ট সম্পূর্ণ
@@ -96,6 +97,7 @@ function renderPersonalName(input,num,data,type){
     ${planetBadge('fa-user',num,data.planet)}
     <p><strong>"${escapeHtml(input)}"</strong> — এই নামের নামাংক <strong>${num}</strong>। ${getNamankDeep(num)}</p>
     ${luckBadges(data)}
+    ${getVedicIdentity(num)}
   </div>
   <div class="result-card">
     <div class="info-section">
@@ -122,6 +124,9 @@ function renderPersonalName(input,num,data,type){
       <h3><i class="fas fa-coins"></i> বিনিয়োগ ও অর্থনৈতিক পরামর্শ</h3>
       <p>${escapeHtml(data.investment.description)}</p>
     </div>
+    ${getLifeAreaAnalysis(num)}
+    ${getFamousPersonalities(num)}
+    ${getVedicChants(num)}
     <div class="info-section">
       <h3><i class="fas fa-magic"></i> শাস্ত্রীয় প্রতিকার</h3>
       <p>${escapeHtml(data.tip.description)}</p>
@@ -140,11 +145,15 @@ function renderBabyName(input,num,data,type){
   <div class="root-description">
     ${planetBadge('fa-baby',num,data.planet)}
     <p>নাম <strong>"${escapeHtml(input)}"</strong>-এর নামাংক <strong>${num}</strong>। ${escapeHtml(data.planet)}-এর শক্তিতে শিশুর জীবন পরিচালিত হবে।</p>
+    ${getVedicIdentity(num)}
   </div>
   <div class="result-card">
     <div class="info-section"><h3><i class="fas fa-star"></i> নামের শুভত্ব বিচার</h3><p>${getBabyNameEffect(num)}</p></div>
     <div class="info-section"><h3><i class="fas fa-baby"></i> শিশুর সম্ভাব্য ব্যক্তিত্ব</h3><p>${escapeHtml(data.identity.description)}</p></div>
     <div class="info-section"><h3><i class="fas fa-graduation-cap"></i> শিক্ষা ও ভবিষ্যৎ</h3><p>${getBabyFutureTip(num)}</p></div>
+    ${getLifeAreaAnalysis(num)}
+    ${getFamousPersonalities(num)}
+    ${getVedicChants(num)}
     <div class="info-section"><h3><i class="fas fa-shield-alt"></i> শিশুর সুরক্ষা ও পরামর্শ</h3><p>${escapeHtml(data.tip.description)}</p></div>
   </div>`+bottomButtons();
 }
@@ -262,10 +271,8 @@ function renderNewHome(input,num,data,type){
 
 // 8. জন্মদিন বিশ্লেষণ
 function renderBirthday(input,num,data,type){
-  // num = mulank (দিনের সংখ্যা) — DOMContentLoaded-এ ঠিক করা হয়েছে
   const bhagyank=(NumerologyDB.calculateBhagyank?NumerologyDB.calculateBhagyank(input):null)||num;
-  const mulank=num; // num is now correctly the mulank
-  // bhagyank analysis data (if different from mulank)
+  const mulank=num;
   const bhData=NumerologyDB.getNumberAnalysis(bhagyank)||data;
   return renderInputBanner(input,num,data,'date')+`
   <div class="result-header">
@@ -287,12 +294,16 @@ function renderBirthday(input,num,data,type){
       </div>
     </div>
     <p><strong>মূলাংক ${mulank}</strong> (শুধু জন্মদিনের দিনের সংখ্যা) আপনার মৌলিক স্বভাব দেখায়। <strong>ভাগ্যাংক ${bhagyank}</strong> (পুরো জন্মতারিখের সংখ্যার যোগফল) আপনার জীবনের মূল উদ্দেশ্য ও নিয়তি নির্দেশ করে।</p>
+    ${getVedicIdentity(mulank)}
   </div>
   <div class="result-card">
     <div class="info-section"><h3><i class="fas fa-calendar-star"></i> জন্মদিনের বিশেষ তাৎপর্য — মূলাংক ${mulank}</h3><p>${getBirthdaySignificance(mulank)}</p></div>
     <div class="info-section"><h3><i class="fas fa-user"></i> ব্যক্তিত্ব ও জীবনশৈলী</h3><p>${escapeHtml(data.identity.description)}</p></div>
     <div class="info-section"><h3><i class="fas fa-chart-line"></i> জীবনের গুরুত্বপূর্ণ বছর</h3><p>${getLifeMilestones(mulank)}</p></div>
     <div class="info-section"><h3><i class="fas fa-briefcase"></i> ক্যারিয়ার পথ</h3><p>${escapeHtml(data.business.description)}</p></div>
+    ${getLifeAreaAnalysis(mulank)}
+    ${getFamousPersonalities(mulank)}
+    ${getVedicChants(mulank)}
     <div class="info-section"><h3><i class="fas fa-magic"></i> প্রতিকার</h3><p>${escapeHtml(data.tip.description)}</p></div>
   </div>`+bottomButtons();
 }
@@ -339,13 +350,14 @@ function renderBusinessName(input,num,data,type){
       <h3><i class="fas fa-coins"></i> বিনিয়োগ ও আর্থিক কৌশল</h3>
       <p>${escapeHtml(data.investment.description)}</p>
     </div>
+    ${getBusinessIcons(num)}
+    ${getBusinessMantra(num, data)}
     <div class="info-section">
       <h3><i class="fas fa-magic"></i> ব্যবসায়িক প্রতিকার ও মন্ত্র</h3>
       <p>${escapeHtml(data.tip.description)}</p>
     </div>
   </div>`+bottomButtons();
 }
-
 // 10. অংশীদারিত্ব
 function renderPartnership(input,num,data,type){
   return renderInputBanner(input,num,data,type||'name')+`
@@ -664,16 +676,19 @@ function renderMulank(input,num,data,type){
     </div>`:''}
     <p>গ্রহাধিপতি <strong>${escapeHtml(data.planet)}</strong>-এর প্রভাবে জীবন পরিচালিত। ${getPlanetRulerEffect(num,data)}</p>
     ${luckBadges(data)}
+    ${getVedicIdentity(num)}
   </div>
   <div class="result-card">
     <div class="info-section"><h3><i class="fas fa-user"></i> ব্যক্তিত্ব ও স্বভাব</h3><p>${escapeHtml(data.identity.description)}</p></div>
     <div class="info-section"><h3><i class="fas fa-briefcase"></i> ক্যারিয়ার ও পেশা</h3><p>${escapeHtml(data.business.description)}</p></div>
     <div class="info-section"><h3><i class="fas fa-plane"></i> যাত্রা পরামর্শ</h3><p>${escapeHtml(data.travel.description)}</p></div>
     <div class="info-section"><h3><i class="fas fa-coins"></i> বিনিয়োগ</h3><p>${escapeHtml(data.investment.description)}</p></div>
+    ${getLifeAreaAnalysis(num)}
+    ${getFamousPersonalities(num)}
+    ${getVedicChants(num)}
     <div class="info-section"><h3><i class="fas fa-magic"></i> জ্যোতিষীয় প্রতিকার</h3><p>${escapeHtml(data.tip.description)}</p></div>
   </div>`+bottomButtons();
 }
-
 // 24. নামের অংক
 function renderNameNumber(input,num,data,type){return renderPersonalName(input,num,data,'name');}
 
@@ -1403,3 +1418,228 @@ document.addEventListener('DOMContentLoaded',function(){
   if(ld)ld.style.display='none';
   showCategorySelection(false);
 });
+
+
+// 1. বৈদিক পরিচয় (গুছানো সংস্করণ) — অপটিমাইজড
+function getVedicIdentity(number) {
+    const data = NumerologyDB.getNumberAnalysis(number);
+    if (!data) return '';
+    
+    // ★ GLOBAL অবজেক্ট থেকে ডাটা নিন (প্রতি বার নতুন করে তৈরি হচ্ছে না)
+    const v = VEDIC_DATA[number] || {};
+    
+    return `
+        <div class="vedic-card">
+            <h4><i class="fas fa-om"></i> বৈদিক পরিচয় — ${data.planet || 'অজানা'}</h4>
+            <div class="vedic-grid-2col">
+                <div><span class="vedic-label">🕉️ সংস্কৃত নাম</span> ${v.sanskrit || ''}</div>
+                <div><span class="vedic-label">🌟 বৈদিক নাম</span> ${v.vedicName || ''}</div>
+                <div><span class="vedic-label">🌿 তত্ত্ব</span> ${v.element || ''}</div>
+                <div><span class="vedic-label">⚖️ প্রকৃতি</span> ${v.guna || ''}</div>
+                <div><span class="vedic-label">🔱 দেবতা</span> ${v.deity || ''}</div>
+                <div><span class="vedic-label">🕉️ মন্ত্র</span> ${v.mantra || ''}</div>
+                <div><span class="vedic-label">💪 অঙ্গপ্রত্যঙ্গ</span> ${v.bodyPart || ''}</div>
+                <div><span class="vedic-label">🧘 যোগাসন</span> ${v.yoga || ''}</div>
+            </div>
+        </div>
+    `;
+}
+
+
+// 2. জীবনক্ষেত্র বিশ্লেষণ (স্বাস্থ্য, শিক্ষা, সম্পর্ক)
+function getLifeAreaAnalysis(number) {
+    const areas = {
+        1: {
+            health: "শক্তি ও জীবনীশক্তি অসীম। তবে হৃদরোগ ও রক্তচাপের ঝুঁকি আছে। নিয়মিত ব্যায়াম ও সূর্য নমস্কার করুন। খাবারে মিষ্টি জাতীয় পদ কম খান।",
+            education: "নেতৃত্বগুণ বিকাশের জন্য প্রশাসন ও আইন শিক্ষা উত্তম। সৃজনশীলতাকে উৎসাহ দিন। বিদেশে পড়ার সুযোগ এলে গ্রহণ করুন।",
+            relationship: "আপনি সম্পর্কে নেতৃত্ব দিতে চান। সঙ্গীকে ছাড় দিতে শিখুন। অহংকার পরিহার করুন। বন্ধু নির্বাচনে সচেতন হোন।"
+        },
+        2: {
+            health: "মানসিক চাপ ও হজমের সমস্যা হতে পারে। নিয়মিত মেডিটেশন ও সঠিক খাদ্য গ্রহণ করুন। রাতে পর্যাপ্ত ঘুম জরুরি।",
+            education: "সৃজনশীল ও মানবিক শিক্ষায় ভালো। শিল্পকলা, সাহিত্য, সঙ্গীতে দক্ষতা অর্জন করুন। শিক্ষাক্ষেত্রে সাফল্য আসবে।",
+            relationship: "আপনি সম্পর্কে আবেগী ও সংবেদনশীল। সঙ্গীর যত্ন নিন, তবে নিজের জন্যও সময় রাখুন। পরিবারের সঙ্গে সময় কাটান।"
+        },
+        3: {
+            health: "শ্বাসকষ্ট ও স্নায়বিক সমস্যার ঝুঁকি। যোগব্যায়াম ও প্রাণায়াম নিয়মিত করুন। ধূমপান ও মদ্যপান এড়িয়ে চলুন।",
+            education: "শিক্ষাক্ষেত্রে অসাধারণ সাফল্য। আইন, দর্শন, ধর্মতত্ত্ব, শিক্ষকতায় দক্ষতা। জ্ঞান অর্জনে মনোযোগ দিন।",
+            relationship: "আপনি সম্পর্কে আশাবাদী ও উৎসাহী। সঙ্গীকে অনুপ্রাণিত করুন, তবে অতিরিক্ত পরামর্শ দেবেন না। সন্তানের প্রতি যত্নশীল হোন।"
+        },
+        4: {
+            health: "হজমের সমস্যা ও ত্বকের রোগ হতে পারে। নিয়মিত ব্যায়াম ও পরিষ্কার-পরিচ্ছন্নতা জরুরি। ভাত ও পানীয়তে সতর্ক হোন।",
+            education: "প্রযুক্তি ও গবেষণায় ভালো। বিদেশে শিক্ষাগ্রহণ শুভ। নিয়মিত পড়ার অভ্যাস করুন। গণিতে দক্ষতা বাড়বে।",
+            relationship: "আপনি সম্পর্কে গভীর ও বিশ্বস্ত। একবার বন্ধু হলে চিরকাল। ধৈর্য ধরুন। কারো সাথে দ্রুত সম্পর্ক গড়বেন না।"
+        },
+        5: {
+            health: "স্নায়বিক সমস্যা ও ক্লান্তি হতে পারে। পর্যাপ্ত বিশ্রাম ও পুষ্টিকর খাবার খান। চা-কফি কম পান করুন।",
+            education: "যোগাযোগ ও বাণিজ্য শিক্ষায় ভালো। মিডিয়া, মার্কেটিং, ব্যবসায় প্রশাসনে দক্ষ। ভাষা শিক্ষায় মনোযোগ দিন।",
+            relationship: "আপনি সম্পর্কে স্বাধীনতা চান। সঙ্গীকেও স্বাধীনতা দিন। চঞ্চলতা নিয়ন্ত্রণ করুন। সম্পর্কে সৎ থাকুন।"
+        },
+        6: {
+            health: "প্রেমের কারণে মানসিক চাপ। কিডনি ও ত্বকের যত্ন নিন। নিয়মিত ঘুম জরুরি। সপ্তাহে একদিন উপবাস করুন।",
+            education: "শিল্পকলা, ফ্যাশন, নৃত্যে দক্ষ। সৌন্দর্যশাস্ত্র, সংগীতে উৎকর্ষ অর্জন করুন। বিদেশে শিক্ষার সুযোগ আসতে পারে।",
+            relationship: "আপনি সম্পর্কে সবচেয়ে নিবেদিত। পরিবার আপনার কেন্দ্র। বিলাসিতায় মিতাচার করুন। প্রিয়জনকে সময় দিন।"
+        },
+        7: {
+            health: "স্নায়বিক সমস্যা ও অনিদ্রার ঝুঁকি। ধ্যান, যোগ ও নিয়মিত হাঁটাহাঁটি করুন। সন্ধ্যার পর হালকা খাবার খান।",
+            education: "গবেষণা, দর্শন, বিজ্ঞান ও আধ্যাত্মিক শিক্ষায় উৎকর্ষ। গভীর অধ্যয়ন করুন। বিদেশে পড়ার সুযোগ এলে গ্রহণ করুন।",
+            relationship: "আপনি সম্পর্কে গভীর ও আধ্যাত্মিক। একাকীত্বের প্রয়োজন সঙ্গীকে বুঝিয়ে বলুন। সত্যিকারের বন্ধু অল্প হলেও যথেষ্ট।"
+        },
+        8: {
+            health: "হাড় ও জয়েন্টের সমস্যা। নিয়মিত ব্যায়াম, ক্যালসিয়াম সমৃদ্ধ খাবার ও বিশ্রাম জরুরি। সপ্তাহে একদিন ম্যাসাজ করুন।",
+            education: "ব্যবস্থাপনা, আইন, প্রশাসন শিক্ষায় সফল। দীর্ঘমেয়াদী লক্ষ্য নির্ধারণ করুন। ধৈর্য ধরে পড়াশোনা চালিয়ে যান।",
+            relationship: "আপনি সম্পর্কে ধৈর্যশীল ও বিশ্বস্ত। কাজের চাপে সম্পর্কে দূরত্ব তৈরি করবেন না। পরিবারের সঙ্গে সময় কাটান।"
+        },
+        9: {
+            health: "রক্তচাপ ও দুর্ঘটনার ঝুঁকি। রাগ নিয়ন্ত্রণ করুন। নিয়মিত ব্যায়াম ও যোগব্যায়াম করুন। লবণ কম খান।",
+            education: "সামরিক, ক্রীড়া, প্রকৌশলে অসাধারণ। প্রতিযোগিতায় অগ্রগামী। সাহসী সিদ্ধান্ত নিন। শারীরিক শিক্ষায় মনোযোগ দিন।",
+            relationship: "আপনি সম্পর্কে সাহসী ও রক্ষণশীল। সঙ্গীর পাশে থাকুন, কিন্তু রাগ নিয়ন্ত্রণ করুন। ঝগড়া এড়িয়ে চলুন।"
+        }
+    };
+    
+    const area = areas[number] || {};
+    
+    return `
+        <div class="life-areas-card">
+            <h4><i class="fas fa-chart-line"></i> জীবনক্ষেত্র বিশ্লেষণ</h4>
+            <div class="life-areas-grid">
+                <div class="life-area">
+                    <i class="fas fa-heartbeat"></i>
+                    <strong>স্বাস্থ্য</strong>
+                    <p>${area.health || 'স্বাস্থ্যের দিকে বিশেষ নজর রাখুন। নিয়মিত ব্যায়াম ও সঠিক খাদ্যাভ্যাস জরুরি।'}</p>
+                </div>
+                <div class="life-area">
+                    <i class="fas fa-graduation-cap"></i>
+                    <strong>শিক্ষা ও ক্যারিয়ার</strong>
+                    <p>${area.education || 'শিক্ষাক্ষেত্রে সাফল্যের সম্ভাবনা। নিজের দক্ষতা বিকাশে মনোযোগ দিন।'}</p>
+                </div>
+                <div class="life-area">
+                    <i class="fas fa-heart"></i>
+                    <strong>সম্পর্ক ও দাম্পত্য</strong>
+                    <p>${area.relationship || 'সম্পর্কে বোঝাপড়া গুরুত্বপূর্ণ। সৎ যোগাযোগ বজায় রাখুন।'}</p>
+                </div>
+            </div>
+        </div>
+    `;
+}
+// 3. বিখ্যাত ব্যক্তিত্ব (একই সংখ্যার বিখ্যাত মানুষ)
+function getFamousPersonalities(number) {
+    const personalities = {
+        1: ["স্বামী বিবেকানন্দ", "নেতাজি সুভাষচন্দ্র বসু", "মহাত্মা গান্ধী"],
+        2: ["রবীন্দ্রনাথ ঠাকুর", "লতা মঙ্গেশকর", "মাদার টেরেসা"],
+        3: ["ডঃ মুহম্মদ ইউনুস", "আলবার্ট আইনস্টাইন", "স্টিভ জবস"],
+        4: ["সত্যজিৎ রায়", "আমর্ত্য সেন", "নিকোলা টেসলা"],
+        5: ["বঙ্গবন্ধু শেখ মুজিবুর রহমান", "মার্ক জাকারবার্গ", "বারাক ওবামা"],
+        6: ["কাজী নজরুল ইসলাম", "মেরিলিন মনরো", "লিওনার্দো দা ভিঞ্চি"],
+        7: ["পরমহংস যোগানন্দ", "গৌতম বুদ্ধ", "আদি শঙ্করাচার্য"],
+        8: ["শ্রী অরবিন্দ", "মাদার (শ্রী অরবিন্দ আশ্রম)", "মোহাম্মদ আলী"],
+        9: ["ভগৎ সিং", "চে গেভারা", "নেপোলিয়ন বোনাপার্ট"]
+    };
+    
+    const list = personalities[number] || [];
+    if (list.length === 0) return '';
+    
+    return `
+        <div class="famous-card">
+            <h4><i class="fas fa-crown"></i> একই সংখ্যার বিখ্যাত ব্যক্তিত্ব</h4>
+            <div class="famous-list">
+                ${list.map(name => `<span class="famous-name">${name}</span>`).join('')}
+            </div>
+            <p class="famous-note">তাদের মতো আপনারও এই সংখ্যার গুণাবলী বিদ্যমান। তাদের জীবন থেকে অনুপ্রেরণা নিন।</p>
+        </div>
+    `;
+}
+// 4. শাস্ত্রীয় মন্ত্র (বাংলা ভাষায়)
+function getVedicChants(number) {
+    const chants = {
+        1: "ওঁ ঘৃণি সূর্যায় নমঃ। ওঁ আদিত্যায় বিদ্মহে দিবাকরায় ধীমহি তন্নো সূর্যঃ প্রচোদয়াৎ।",
+        2: "ওঁ শ্রাং শ্রীং শ্রৌঁ সঃ চন্দ্রায় নমঃ। দধিশঙ্খতুষারাভং ক্ষীরোদার্ণবসম্ভবম্। নমামি শশিনং সোমং শম্ভোর্মুকুটভূষণম্।।",
+        3: "ওঁ গুং গ্রহপতয়ে নমঃ। দেবানাং চ ঋষীণাং চ গুরুং কাঞ্চনসন্নিভম্। বুদ্ধিভূতং ত্রিলোকেশং তং নমামি বৃহস্পতিম্।।",
+        4: "ওঁ রাং রাহবে নমঃ। অর্ধকায়ং মহাবীর্যং চন্দ্রাদিত্যবিমর্দনম্। সিংহিকাগর্ভসম্ভূতং তং রাহুং প্রণমাম্যহম্।।",
+        5: "ওঁ বুঁ বুধায় নমঃ। প্রিয়ঙ্গুকলিকাশ্যামং রূপেণাপ্রতিমং বুধম্। সৌম্যং সৌম্যগুণোপেতং তং বুধং প্রণমাম্যহম্।।",
+        6: "ওঁ দ্রাং দ্রীং দ্রৌঁ সঃ শুক্রায় নমঃ। হিমকুন্দমৃণালাভং দৈত্যানাং পরমং গুরুম্। সর্বশাস্ত্রপ্রবক্তারং ভার্গবং প্রণমাম্যহম্।।",
+        7: "ওঁ কেং কেতবে নমঃ। পলাশপুষ্পসংকাশং তারাগ্রহমস্তকম্। রৌদ্রং রৌদ্রাত্মকং ঘোরং তং কেতুং প্রণমাম্যহম্।।",
+        8: "ওঁ প্রাং প্রীং প্রৌঁ সঃ শনৈশ্চরায় নমঃ। নীলাঞ্জনসমাভাসং রবিপুত্রং যমাগ্রজম্। ছায়ামার্তাণ্ডসম্ভূতং তং নমামি শনৈশ্চরম্।।",
+        9: "ওঁ ক্রাং ক্রীং ক্রৌঁ সঃ ভৌমায় নমঃ। ধরণীগর্ভসম্ভূতং বিদ্যুৎকান্তিসমপ্রভম্। কুমারং শক্তিহস্তং চ মঙ্গলং প্রণমাম্যহম্।।"
+    };
+    
+    const mantra = chants[number] || "ওঁ নমঃ শিবায়। সর্বগ্রহ শান্তি মন্ত্র।";
+    
+    return `
+        <div class="mantra-card">
+            <h4><i class="fas fa-pray"></i> শাস্ত্রীয় মন্ত্র</h4>
+            <p class="mantra-text-bangla">${mantra}</p>
+            <p class="mantra-note">প্রতিদিন সকালে স্নানের পর এই মন্ত্র ১০৮ বার জপ করলে গ্রহের আশীর্বাদ লাভ হয়। মন্ত্র জপের সময় মুখ পূর্ব দিকে রাখুন।</p>
+        </div>
+    `;
+}
+
+// ব্যবসার জন্য বিশেষ মন্ত্র (শুধুমাত্র মন্ত্র অংশ)
+function getBusinessMantra(number, data) {
+    const businessMantras = {
+        1: "ওঁ ঘৃণি সূর্যায় নমঃ। ব্যবসায় সাফল্যের জন্য প্রতিদিন সূর্যোদয়ের সময় এই মন্ত্র ১০৮ বার জপ করুন। লাল ও সোনালি রঙের ব্যবহার ব্যবসায় উন্নতি আনে।",
+        2: "ওঁ শ্রাং শ্রীং শ্রৌঁ সঃ চন্দ্রায় নমঃ। সোমবারে সাদা বস্ত্র দান করুন। রূপালি রঙের ব্যবহার গ্রাহক আকর্ষণ বাড়ায়।",
+        3: "ওঁ গুং গ্রহপতয়ে নমঃ। বৃহস্পতিবারে হলুদ বস্ত্র দান করুন। শিক্ষা ও পরামর্শ সংক্রান্ত ব্যবসায় এই মন্ত্র বিশেষ ফলদায়ক।",
+        4: "ওঁ রাং রাহবে নমঃ। শনিবারে নীল বস্ত্র দান করুন। প্রযুক্তি ও গবেষণা সংক্রান্ত ব্যবসায় এই মন্ত্র জপ করুন।",
+        5: "ওঁ বুঁ বুধায় নমঃ। বুধবারে সবুজ বস্ত্র দান করুন। যোগাযোগ ও বাণিজ্য সংক্রান্ত ব্যবসায় এই মন্ত্র সাফল্য আনে।",
+        6: "ওঁ দ্রাং দ্রীং দ্রৌঁ সঃ শুক্রায় নমঃ। শুক্রবারে সাদা ও গোলাপি বস্ত্র দান করুন। ফ্যাশন ও সৌন্দর্য সংক্রান্ত ব্যবসায় এই মন্ত্র শুভ।",
+        7: "ওঁ কেং কেতবে নমঃ। রবিবার ভোরে ধ্যান করে এই মন্ত্র জপ করুন। গবেষণা ও আধ্যাত্মিক ব্যবসায় সাফল্য আসে।",
+        8: "ওঁ প্রাং প্রীং প্রৌঁ সঃ শনৈশ্চরায় নমঃ। শনিবারে কালো তিল ও লোহার বস্তু দান করুন। শিল্প ও নির্মাণ ব্যবসায় এই মন্ত্র শুভ।",
+        9: "ওঁ ক্রাং ক্রীং ক্রৌঁ সঃ ভৌমায় নমঃ। মঙ্গলবারে লাল বস্ত্র দান করুন। প্রতিযোগিতামূলক ব্যবসায় সাফল্যের জন্য এই মন্ত্র জপ করুন।"
+    };
+    
+    const mantra = businessMantras[number] || "ওঁ নমঃ শিবায়। ব্যবসায় সাফল্যের জন্য প্রতিদিন এই মন্ত্র ১০৮ বার জপ করুন।";
+    
+    return `
+        <div class="mantra-card">
+            <h4><i class="fas fa-pray"></i> ব্যবসায়িক সাফল্যের মন্ত্র</h4>
+            <p class="mantra-text-bangla">${mantra}</p>
+            <p class="mantra-note">প্রতিদিন সকালে স্নানের পর এই মন্ত্র ১০৮ বার জপ করলে ব্যবসায় উন্নতি হয়।</p>
+        </div>
+    `;
+}
+
+// ব্যবসার জন্য বিখ্যাত কোম্পানি ও ব্যবসায়ী (ইংরেজি ভাষায়)
+function getBusinessIcons(number) {
+    const businessIcons = {
+        1: ["Tata Group", "Ratan Tata", "Samsung"],
+        2: ["Coca-Cola", "McDonald's", "Amazon"],
+        3: ["Microsoft", "Bill Gates", "Google"],
+        4: ["Tesla", "Elon Musk", "IBM"],
+        5: ["Facebook", "Mark Zuckerberg", "Flipkart"],
+        6: ["Apple", "Steve Jobs", "Louis Vuitton"],
+        7: ["SpaceX", "IT Sector", "Research Lab"],
+        8: ["Reliance", "Mukesh Ambani", "Berri"],
+        9: ["Nike", "Adidas", "Ferrari"]
+    };
+    
+    const list = businessIcons[number] || [];
+    if (list.length === 0) return '';
+    
+    return `
+        <div class="famous-card">
+            <h4><i class="fas fa-chart-line"></i> একই সংখ্যার বিখ্যাত ব্যবসা ও উদ্যোক্তা</h4>
+            <div class="famous-list">
+                ${list.map(name => `<span class="famous-name">${name}</span>`).join('')}
+            </div>
+            <p class="famous-note">এই সংখ্যার শক্তি সাফল্যের পথ দেখিয়েছে। আপনার ব্যবসায়ও এই শক্তি কাজে লাগান।</p>
+        </div>
+    `;
+}
+
+
+
+// ================================================================
+// GLOBAL DATA — একবার তৈরি, বারবার ব্যবহার
+// ================================================================
+
+const VEDIC_DATA = {
+    1: { sanskrit: "একম", vedicName: "সূর্য", element: "অগ্নি", guna: "সাত্ত্বিক", deity: "ভগবান সূর্য", mantra: "ওঁ ঘৃণি সূর্যায় নমঃ", bodyPart: "হৃদয়, চোখ", yoga: "সূর্য নমস্কার" },
+    2: { sanskrit: "দ্বে", vedicName: "চন্দ্র", element: "জল", guna: "রাজসিক", deity: "ভগবান চন্দ্র", mantra: "ওঁ শ্রাং শ্রীং শ্রৌঁ সঃ চন্দ্রায় নমঃ", bodyPart: "মন, বুক", yoga: "চন্দ্র নমস্কার" },
+    3: { sanskrit: "ত্রীণি", vedicName: "গুরু", element: "আকাশ", guna: "সাত্ত্বিক", deity: "বৃহস্পতি", mantra: "ওঁ গুং গ্রহপতয়ে নমঃ", bodyPart: "মস্তিষ্ক", yoga: "গুরু প্রণাম" },
+    4: { sanskrit: "চত্বারি", vedicName: "রাহু", element: "বায়ু", guna: "তামসিক", deity: "রাহু", mantra: "ওঁ রাং রাহবে নমঃ", bodyPart: "পা, হাড়", yoga: "গভীর ধ্যান" },
+    5: { sanskrit: "পঞ্চ", vedicName: "বুধ", element: "পৃথিবী", guna: "রাজসিক", deity: "বুধ", mantra: "ওঁ বুঁ বুধায় নমঃ", bodyPart: "হাত, স্নায়ু", yoga: "বজ্রাসন" },
+    6: { sanskrit: "ষট্", vedicName: "শুক্র", element: "জল", guna: "রাজসিক", deity: "শুক্র", mantra: "ওঁ দ্রাং দ্রীং দ্রৌঁ সঃ শুক্রায় নমঃ", bodyPart: "মুখ, কিডনি", yoga: "উষ্ট্রাসন" },
+    7: { sanskrit: "সপ্ত", vedicName: "কেতু", element: "আকাশ", guna: "সাত্ত্বিক", deity: "কেতু", mantra: "ওঁ কেং কেতবে নমঃ", bodyPart: "মেরুদণ্ড", yoga: "পদ্মাসন" },
+    8: { sanskrit: "অষ্ট", vedicName: "শনি", element: "বায়ু", guna: "তামসিক", deity: "শনি", mantra: "ওঁ প্রাং প্রীং প্রৌঁ সঃ শনৈশ্চরায় নমঃ", bodyPart: "হাড়, দাঁত", yoga: "শবাসন" },
+    9: { sanskrit: "নব", vedicName: "মঙ্গল", element: "অগ্নি", guna: "রাজসিক", deity: "মঙ্গল", mantra: "ওঁ ক্রাং ক্রীং ক্রৌঁ সঃ ভৌমায় নমঃ", bodyPart: "রক্ত, পেশী", yoga: "বীরভদ্রাসন" }
+};
