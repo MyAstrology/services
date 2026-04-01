@@ -1421,8 +1421,7 @@ document.addEventListener('DOMContentLoaded',function(){
 // ================================================================
 // বৈদিক তথ্য ফাংশন (শেষের দিকে যোগ করুন)
 // ================================================================
-
-// 1. বৈদিক পরিচয়
+// 1. বৈদিক পরিচয় (গুছানো সংস্করণ)
 function getVedicIdentity(number) {
     const data = NumerologyDB.getNumberAnalysis(number);
     if (!data) return '';
@@ -1441,18 +1440,19 @@ function getVedicIdentity(number) {
     
     const v = vedicData[number] || {};
     
+    // গুছানো ২-কলামের গ্রিড
     return `
         <div class="vedic-card">
             <h4><i class="fas fa-om"></i> বৈদিক পরিচয় — ${data.planet}</h4>
-            <div class="vedic-grid">
-                <div><span class="vedic-label">🕉️ সংস্কৃত নাম:</span> ${v.sanskrit || ''}</div>
-                <div><span class="vedic-label">🌟 বৈদিক নাম:</span> ${v.vedicName || ''}</div>
-                <div><span class="vedic-label">🌿 তত্ত্ব:</span> ${v.element || ''}</div>
-                <div><span class="vedic-label">⚖️ প্রকৃতি:</span> ${v.guna || ''}</div>
-                <div><span class="vedic-label">🔱 দেবতা:</span> ${v.deity || ''}</div>
-                <div><span class="vedic-label">🕉️ মন্ত্র:</span> ${v.mantra || ''}</div>
-                <div><span class="vedic-label">💪 অঙ্গপ্রত্যঙ্গ:</span> ${v.bodyPart || ''}</div>
-                <div><span class="vedic-label">🧘 যোগাসন:</span> ${v.yoga || ''}</div>
+            <div class="vedic-grid-2col">
+                <div><span class="vedic-label">🕉️ সংস্কৃত নাম</span> ${v.sanskrit || ''}</div>
+                <div><span class="vedic-label">🌟 বৈদিক নাম</span> ${v.vedicName || ''}</div>
+                <div><span class="vedic-label">🌿 তত্ত্ব</span> ${v.element || ''}</div>
+                <div><span class="vedic-label">⚖️ প্রকৃতি</span> ${v.guna || ''}</div>
+                <div><span class="vedic-label">🔱 দেবতা</span> ${v.deity || ''}</div>
+                <div><span class="vedic-label">🕉️ মন্ত্র</span> ${v.mantra || ''}</div>
+                <div><span class="vedic-label">💪 অঙ্গপ্রত্যঙ্গ</span> ${v.bodyPart || ''}</div>
+                <div><span class="vedic-label">🧘 যোগাসন</span> ${v.yoga || ''}</div>
             </div>
         </div>
     `;
