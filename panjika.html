@@ -2904,7 +2904,9 @@ _initLoad=false;
   },{passive:true});
 })();
 
-// ════════════════════════════════════════════════════════
+
+
+  // ════════════════════════════════════════════════════════
 // PAYMENT MODAL — Razorpay Integration
 // ⚠️ আপনার Razorpay Key ID নিচে বসান
 // ════════════════════════════════════════════════════════
@@ -2917,12 +2919,10 @@ function openPayModal(svcName, price, icon) {
   _pay.price = price;
   _pay.icon  = icon;
 
-  // Populate UI
   document.getElementById('paySvcIco').textContent = icon;
   document.getElementById('paySvcNm').textContent  = svcName;
   document.getElementById('paySvcPr').textContent  = '₹ ' + price.toLocaleString('bn-BD');
 
-  // Reset form
   document.getElementById('payName').value  = '';
   document.getElementById('payPhone').value = '';
   document.getElementById('payName').classList.remove('error');
@@ -2930,20 +2930,16 @@ function openPayModal(svcName, price, icon) {
   document.getElementById('payNameErr').classList.remove('show');
   document.getElementById('payPhoneErr').classList.remove('show');
 
-  // Hide success, show form
   document.getElementById('payFormWrap').style.display = '';
   document.getElementById('paySuccess').classList.remove('show');
 
-  // Reset button
   var btn = document.getElementById('paySubmitBtn');
   btn.classList.remove('loading');
   document.getElementById('payBtnTxt').textContent = 'নিরাপদ পেমেন্ট করুন — ₹ ' + price.toLocaleString('bn-BD');
 
-  // Open overlay
   document.getElementById('payOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
 
-  // Focus name field
   setTimeout(function(){ document.getElementById('payName').focus(); }, 350);
 }
 
@@ -2956,7 +2952,6 @@ function handleOverlayClick(e) {
   if (e.target === document.getElementById('payOverlay')) closePayModal();
 }
 
-// Close on Escape key
 document.addEventListener('keydown', function(e){
   if (e.key === 'Escape') closePayModal();
 });
@@ -2966,7 +2961,6 @@ function initiatePayment() {
   var phone = document.getElementById('payPhone').value.trim();
   var valid = true;
 
-  // Validate name
   if (!name || name.length < 2) {
     document.getElementById('payName').classList.add('error');
     document.getElementById('payNameErr').classList.add('show');
@@ -2976,7 +2970,6 @@ function initiatePayment() {
     document.getElementById('payNameErr').classList.remove('show');
   }
 
-  // Validate phone
   if (!/^\d{10}$/.test(phone)) {
     document.getElementById('payPhone').classList.add('error');
     document.getElementById('payPhoneErr').classList.add('show');
@@ -2991,15 +2984,13 @@ function initiatePayment() {
   _pay.custName  = name;
   _pay.custPhone = phone;
 
-  // Loading state
   var btn = document.getElementById('paySubmitBtn');
   btn.classList.add('loading');
   document.getElementById('payBtnTxt').innerHTML = '<i class="fas fa-spinner fa-spin"></i> অপেক্ষা করুন...';
 
-  // Razorpay Options
   var options = {
     key:         RZP_KEY,
-    amount:      _pay.price * 100,        // পয়সায় (100 = ₹1)
+    amount:      _pay.price * 100,
     currency:    'INR',
     name:        'MyAstrology',
     description: _pay.name,
@@ -3019,13 +3010,11 @@ function initiatePayment() {
     },
     modal: {
       ondismiss: function() {
-        // Payment cancelled — reset button
         btn.classList.remove('loading');
         document.getElementById('payBtnTxt').textContent = 'নিরাপদ পেমেন্ট করুন — ₹ ' + _pay.price.toLocaleString('bn-BD');
       }
     },
     handler: function(response) {
-      // ✅ Payment success!
       onPaymentSuccess(response);
     }
   };
@@ -3047,7 +3036,10 @@ function initiatePayment() {
 }
 
 function onPaymentSuccess(response) {
-  // Build WhatsApp message
+  var btn = document.getElementById('paySubmitBtn');
+  btn.classList.remove('loading');
+  document.getElementById('payBtnTxt').textContent = 'নিরাপদ পেমেন্ট করুন — ₹ ' + _pay.price.toLocaleString('bn-BD');
+  
   var waMsg = '🙏 আমি ' + _pay.name + ' পরিষেবার জন্য '
     + _pay.price + ' টাকা পেমেন্ট করেছি। আমার প্রয়োজনীয় বিবরণ নিচে দিচ্ছি।'
     + '\n\n👤 নাম: ' + _pay.custName
@@ -3058,17 +3050,11 @@ function onPaymentSuccess(response) {
 
   var waUrl = 'https://wa.me/919333122768?text=' + encodeURIComponent(waMsg);
 
-  // Show success screen
   document.getElementById('payFormWrap').style.display = 'none';
   document.getElementById('paySuccess').classList.add('show');
-
-  // Set WhatsApp redirect link
   document.getElementById('payWaLink').href = waUrl;
 
-  // Auto redirect after 1.5s
   setTimeout(function() {
     window.open(waUrl, '_blank', 'noopener');
   }, 1500);
-
-  // Reset loading button
-  var btn = document.getElementById('paySubmitBtn')
+}
