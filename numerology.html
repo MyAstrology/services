@@ -344,7 +344,27 @@ h1,h2,h3,h4{font-family:var(--fh);line-height:1.3}
     font-size: 0.75rem;
     color: #aaa;
 }
-
+/* ২-কলাম গ্রিড — পাশাপাশি দেখানোর জন্য */
+.vedic-grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 16px;
+    margin-top: 6px;
+}
+.vedic-grid-2col div {
+    font-size: 0.8rem;
+    color: #ffffff;
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+.vedic-label {
+    font-size: 0.65rem;
+    color: #88aadd;
+    font-weight: 500;
+    min-width: 70px;
+}
 </style>
 <script src="js/main.js" defer></script>
 <script src="js/numerology-data.js" defer></script>
