@@ -721,6 +721,27 @@ img{max-width:100%;height:auto;display:block}
 <script src="js/main.js"></script>
 
 <script>
+
+   // টুলবক্স উন্নতি: র্যান্ডম উদাহরণ দেখানো
+function updatePlaceholder() {
+    const examples = [
+        "রাহুল", "15-08-1990", "9333122768", "আহত", 
+        "MyAstrology", "WB12AB3456", "প্রিয়া", "1234"
+    ];
+    const random = examples[Math.floor(Math.random() * examples.length)];
+    const inputBox = document.getElementById('ti');
+    if (inputBox) {
+        inputBox.placeholder = `যেমন: ${random}`;
+    }
+}
+
+// প্রতি 5 সেকেন্ডে প্লেসহোল্ডার পরিবর্তন করুন
+setInterval(updatePlaceholder, 5000);
+
+// পেজ লোড হলে প্রথমবার দেখান
+window.addEventListener('DOMContentLoaded', function() {
+    updatePlaceholder();
+});
 /* Nav */
 function tNav(){const m=document.getElementById('nm'),o=document.getElementById('no'),b=document.getElementById('hb');const op=m.classList.toggle('open');o.classList.toggle('open',op);b.setAttribute('aria-expanded',op);b.innerHTML=op?'<i class="fas fa-times"></i>':'<i class="fas fa-bars"></i>';}
 function cNav(){const m=document.getElementById('nm'),o=document.getElementById('no'),b=document.getElementById('hb');m.classList.remove('open');o.classList.remove('open');b.setAttribute('aria-expanded','false');b.innerHTML='<i class="fas fa-bars"></i>';}
