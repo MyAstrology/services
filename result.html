@@ -445,12 +445,26 @@ img{max-width:100%;height:auto;display:block}
 .mantra-text-bangla{font-family:monospace;font-size:.8rem;line-height:1.5;color:#ffdb8e;margin-bottom:6px;}
 .mantra-note{font-size:.65rem;color:#88aadd;}
 
-/* মোবাইলে ১ কলাম */
-@media (max-width:600px){
-.vedic-grid-2col,.life-areas-grid{grid-template-columns:1fr;}
-.famous-list{flex-wrap:wrap;}
+/* ২-কলাম গ্রিড — পাশাপাশি দেখানোর জন্য */
+.vedic-grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 16px;
+    margin-top: 6px;
 }
-
+.vedic-grid-2col div {
+    font-size: 0.8rem;
+    color: #ffffff;
+    line-height: 1.4;
+}
+.vedic-label {
+    font-size: 0.65rem;
+    color: #88aadd;
+    font-weight: 500;
+    display: inline-block;
+    min-width: 70px;
+    margin-right: 6px;
+}
    
 </style>
 </head>
