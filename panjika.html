@@ -16,8 +16,8 @@ window.addEventListener('load', function() {
 });
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>বাংলা পঞ্জিকা – আজকের তিথি, নক্ষত্র, রাহুকাল ও দৈনিক রাশিফল | MyAstrology</title>
-<meta name="description" content="আজকের বাংলা পঞ্জিকা – তিথি, নক্ষত্র, যোগ, করণ, রাহুকাল ও শুভমুহূর্ত। ১২ রাশির দৈনিক রাশিফল। Dr. Prodyut Acharya, রানাঘাট। Google ও JustDial-এ ৫★ রেটিং।">
+<title>বাংলা পঞ্জিকা ২০২৬ – তিথি, নক্ষত্র, শুভ মুহূর্ত ও বিশেষ দিন | MyAstrology</title>
+<meta name="description" content="আজকের বাংলা পঞ্জিকা – তিথি, নক্ষত্র, যোগ, করণ, রাহুকাল, শুভমুহূর্ত, উৎসব ও মহাপুরুষের জন্মদিন। Dr. Prodyut Acharya, রানাঘাট। Google ও JustDial-এ ৫★ রেটিং।">
 <meta name="keywords" content="বাংলা পঞ্জিকা, আজকের পঞ্জিকা, দৈনিক রাশিফল, তিথি নক্ষত্র, রাহুকাল আজ, শুভ মুহূর্ত, Bengali panjika today, daily rashifal Bengali, astrologer Ranaghat West Bengal, Dr Prodyut Acharya MyAstrology">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="author" content="Dr. Prodyut Acharya — MyAstrology Ranaghat">
@@ -115,7 +115,9 @@ window.addEventListener('load', function() {
         crossorigin="anonymous">
 </noscript>
 <!-- ★ FIX: Razorpay defer — পেজ render হওয়ার পরে লোড হবে -->
-<script defer src="https://checkout.razorpay.com/v1/checkout.js"></script>      
+<script defer src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<!-- পঞ্জিকা ডেটা ফাইল (উৎসব, মহাপুরুষ, আধুনিক দিবস, মলমাস) -->
+<script src="panjika-data.js"></script>
   
   <style>
 :root{
@@ -240,73 +242,155 @@ body{background:var(--bg);color:var(--txt);font-family:'Baloo Da 2',sans-serif;p
 .chip{background:rgba(181,134,13,.09);border:1px solid rgba(181,134,13,.2);border-radius:8px;padding:.23rem .6rem;font-size:.73rem;color:var(--gold-l);font-family:'Tiro Bangla',serif;}
 
 
-
-/* ═══════════════════════════════════
-   RASHIFAL
-═══════════════════════════════════ */
-.rf-wrap{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.1rem;margin-bottom:1.1rem;box-shadow:0 3px 14px rgba(181,134,13,.06);}
-.rf-title{font-family:'Tiro Bangla',serif;font-size:1.08rem;color:var(--gold-l);margin-bottom:.95rem;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;}
-.rf-title::after{content:'';flex:1;height:1px;background:linear-gradient(to right,var(--border),transparent);min-width:20px;}
-.rg{display:grid;grid-template-columns:repeat(6,1fr);gap:.42rem;}
-@media(max-width:480px){.rg{grid-template-columns:repeat(4,1fr);}}
-.rb{background:var(--bg2);border:1.5px solid var(--border);border-radius:10px;padding:.5rem .18rem;cursor:pointer;text-align:center;transition:all .2s;}
-.rb:hover{border-color:var(--gold);background:rgba(181,134,13,.06);}
-.rb.act{border-color:var(--gold);background:linear-gradient(135deg,rgba(181,134,13,.18),rgba(181,134,13,.06));box-shadow:0 2px 12px rgba(181,134,13,.28),inset 0 1px 0 rgba(255,255,255,.5);}
-.rb-s{font-size:1.3rem;line-height:1;}
-.rb-n{font-family:'Tiro Bangla',serif;font-size:.73rem;color:var(--txt);font-weight:600;margin-top:.1rem;}
-.rb-l{font-size:.54rem;color:var(--txt2);}
-.rb.act .rb-n{color:var(--gold-l);font-weight:700;}
-.rb.act .rb-s{filter:drop-shadow(0 0 4px rgba(181,134,13,.5));}
-
-/* RF Result */
-.rfr{display:none;margin-top:.8rem;animation:fu .4s ease;}
-.rfr.show{display:block;}
-@keyframes fu{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
-.rft{background:linear-gradient(135deg,var(--card2),var(--bg3));border:1px solid rgba(181,134,13,.22);border-radius:13px;padding:1rem;margin-bottom:.7rem;display:flex;align-items:center;gap:.85rem;flex-wrap:wrap;}
-.rfs{width:62px;height:62px;background:linear-gradient(135deg,var(--gold-d),var(--gold));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;flex-shrink:0;box-shadow:0 3px 12px rgba(181,134,13,.33);}
-.rfti .rfn{font-family:'Tiro Bangla',serif;font-size:1.5rem;color:var(--gold-l);}
-.rfti .rfs2{font-size:.77rem;color:var(--txt2);margin-top:.1rem;}
-.rfch{display:flex;gap:.35rem;flex-wrap:wrap;margin-top:.48rem;}
-.rc{background:rgba(181,134,13,.09);border:1px solid rgba(181,134,13,.2);border-radius:7px;padding:.2rem .55rem;font-size:.72rem;color:var(--gold);font-family:'Tiro Bangla',serif;}
-.rc.g{background:rgba(37,102,37,.08);border-color:rgba(37,102,37,.22);color:var(--green);}
-.rc.r{background:rgba(181,32,32,.06);border-color:rgba(181,32,32,.18);color:var(--red);}
-.rfmsg{background:rgba(181,134,13,.06);border:1px solid rgba(181,134,13,.16);border-radius:11px;padding:.85rem 1rem;margin-bottom:.7rem;text-align:center;}
-.rfmsg-l{font-size:.6rem;color:var(--gold);text-transform:uppercase;letter-spacing:.15em;margin-bottom:.22rem;}
-.rfmsg-t{font-family:'Tiro Bangla',serif;font-size:.9rem;color:var(--txt);line-height:1.7;}
-.rfcg{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.62rem;margin-bottom:.7rem;}
-.rfc{background:var(--card);border:1px solid var(--border);border-radius:11px;padding:.95rem;}
-.rfch2{display:flex;align-items:center;gap:.48rem;margin-bottom:.5rem;padding-bottom:.42rem;border-bottom:1px solid var(--border);}
-.rfci{font-size:1.15rem;}
-.rfct{font-size:.64rem;color:var(--txt2);text-transform:uppercase;letter-spacing:.1em;flex:1;}
-.rfcst{font-size:.7rem;font-weight:700;}
-.rfcst.s4,.rfcst.s5{color:var(--green);}
-.rfcst.s3{color:var(--gold);}
-.rfcst.s1,.rfcst.s2{color:var(--red);}
-.rfctx{font-family:'Tiro Bangla',serif;font-size:.86rem;color:var(--txt);line-height:1.7;}
-.rfcbar{height:4px;background:var(--bg3);border-radius:2px;margin-top:.58rem;overflow:hidden;}
-.rfcfill{height:100%;border-radius:2px;transition:width 1s ease;}
-.rflg{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:.48rem;margin-bottom:.7rem;}
-.rfl{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:.7rem;text-align:center;}
-.rfli{font-size:1.15rem;margin-bottom:.15rem;}
-.rfll{font-size:.57rem;color:var(--txt2);text-transform:uppercase;letter-spacing:.08em;}
-.rflv{font-family:'Tiro Bangla',serif;font-size:.88rem;color:var(--gold-l);font-weight:700;margin-top:.1rem;}
-.rfcau{background:rgba(181,32,32,.05);border:1px solid rgba(181,32,32,.17);border-radius:11px;padding:.85rem 1.05rem;display:flex;gap:.7rem;align-items:flex-start;margin-bottom:.7rem;}
-.rfcaui{font-size:1.2rem;flex-shrink:0;}
-.rfcaul{font-size:.6rem;color:var(--red);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.2rem;}
-.rfcaut{font-family:'Tiro Bangla',serif;font-size:.86rem;color:var(--txt);line-height:1.65;}
-
-/* RF CTA (after rashifal) */
-.rf-cta{
-  background:linear-gradient(135deg,rgba(181,134,13,.08),rgba(181,134,13,.02));
-  border:1px dashed rgba(181,134,13,.35);
-  border-radius:12px;padding:.9rem 1.1rem;
-  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.7rem;
-}
-.rf-cta-txt{font-family:'Tiro Bangla',serif;font-size:.9rem;color:var(--gold-l);}
-.rf-cta-txt span{display:block;font-size:.72rem;color:var(--txt2);font-family:'Baloo Da 2',sans-serif;margin-top:.1rem;}
-
 /* DIVIDER */
 .dvd{height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);margin:1.3rem 0;}
+
+/* ═══════════════════════════════════
+   আজকের বিশেষ দিন সেকশন
+═══════════════════════════════════ */
+.special-day-wrap{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.1rem;margin-bottom:1.1rem;box-shadow:0 3px 14px rgba(181,134,13,.06);}
+.special-day-title{font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.55rem;}
+.special-day-list{display:flex;flex-direction:column;gap:.48rem;}
+.sd-card{background:linear-gradient(135deg,var(--bg2),var(--card2));border:1px solid rgba(181,134,13,.18);border-radius:12px;padding:.75rem .9rem;}
+.sd-card.festival{border-left:4px solid var(--gold);}
+.sd-card.birthday{border-left:4px solid #27ae60;}
+.sd-card.death{border-left:4px solid #7f8c8d;}
+.sd-card.modern{border-left:4px solid #2980b9;}
+.sd-card.yoga{border-left:4px solid #8e44ad;}
+.sd-card.malmas{border-left:4px solid #c0392b;}
+.sd-head{display:flex;align-items:center;gap:.55rem;margin-bottom:.3rem;}
+.sd-icon{font-size:1.2rem;flex-shrink:0;}
+.sd-name{font-family:'Tiro Bangla',serif;font-size:.93rem;color:var(--gold-l);font-weight:700;}
+.sd-type{font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.12rem .45rem;border-radius:20px;margin-left:auto;flex-shrink:0;}
+.sd-type.festival{background:rgba(181,134,13,.1);color:var(--gold);}
+.sd-type.birthday{background:rgba(39,174,96,.1);color:#27ae60;}
+.sd-type.death{background:rgba(127,140,141,.1);color:#7f8c8d;}
+.sd-type.modern{background:rgba(41,128,185,.1);color:#2980b9;}
+.sd-type.yoga{background:rgba(142,68,173,.1);color:#8e44ad;}
+.sd-type.malmas{background:rgba(192,57,43,.1);color:#c0392b;}
+.sd-sig{font-family:'Tiro Bangla',serif;font-size:.8rem;color:var(--txt);line-height:1.6;margin-bottom:.28rem;}
+.sd-mantra{font-size:.72rem;color:var(--gold-d);background:rgba(181,134,13,.06);border-radius:8px;padding:.3rem .6rem;margin-top:.2rem;font-style:italic;}
+.sd-quote{font-family:'Tiro Bangla',serif;font-size:.8rem;color:var(--txt);line-height:1.6;font-style:italic;}
+.sd-works{font-size:.68rem;color:var(--txt2);margin-top:.18rem;}
+.sd-empty{font-family:'Tiro Bangla',serif;font-size:.85rem;color:var(--txt2);padding:.5rem 0;text-align:center;}
+
+/* ═══════════════════════════════════
+   মাসের গুরুত্বপূর্ণ দিন সেকশন
+═══════════════════════════════════ */
+.month-events-wrap{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.1rem;margin-bottom:1.1rem;box-shadow:0 3px 14px rgba(181,134,13,.06);}
+.month-events-list{display:flex;flex-direction:column;gap:.35rem;}
+.me-row{display:flex;align-items:center;gap:.65rem;padding:.42rem .6rem;background:rgba(181,134,13,.04);border:1px solid rgba(181,134,13,.12);border-radius:9px;cursor:pointer;transition:background .18s;}
+.me-row:hover{background:rgba(181,134,13,.1);}
+.me-date{font-family:'Tiro Bangla',serif;font-size:.78rem;font-weight:700;color:var(--gold-d);min-width:38px;flex-shrink:0;}
+.me-icon{font-size:.95rem;flex-shrink:0;}
+.me-name{font-family:'Tiro Bangla',serif;font-size:.82rem;color:var(--txt);flex:1;}
+.me-tag{font-size:.54rem;color:var(--txt2);flex-shrink:0;}
+
+/* ═══════════════════════════════════
+   শুভ সময় গাইড সেকশন
+═══════════════════════════════════ */
+.guide-wrap{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.1rem;margin-bottom:1.1rem;box-shadow:0 3px 14px rgba(181,134,13,.06);}
+.guide-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.85rem;margin-top:.75rem;}
+.guide-card{background:linear-gradient(135deg,var(--bg2),var(--card2));border:1px solid rgba(181,134,13,.2);border-radius:13px;padding:.9rem 1rem;cursor:pointer;transition:all .2s;}
+.guide-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(181,134,13,.12);}
+.guide-card-head{display:flex;align-items:center;gap:.6rem;margin-bottom:.5rem;}
+.guide-card-ico{font-size:1.5rem;}
+.guide-card-title{font-family:'Tiro Bangla',serif;font-size:.95rem;color:var(--gold-l);font-weight:700;}
+.guide-good-days{font-size:.7rem;color:var(--green);margin-bottom:.22rem;}
+.guide-good-naks{font-size:.7rem;color:var(--txt2);margin-bottom:.22rem;line-height:1.5;}
+.guide-mantra{font-size:.68rem;color:var(--gold-d);font-style:italic;margin-top:.3rem;padding:.25rem .5rem;background:rgba(181,134,13,.07);border-radius:7px;}
+.guide-expand{display:none;margin-top:.65rem;border-top:1px solid var(--border);padding-top:.65rem;}
+.guide-expand.show{display:block;}
+.guide-row{display:grid;grid-template-columns:1fr 1fr;gap:.35rem;margin-bottom:.4rem;}
+.guide-label{font-size:.62rem;color:var(--txt2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.12rem;}
+.guide-val{font-size:.72rem;color:var(--txt);}
+.guide-val.good{color:var(--green);}
+.guide-val.bad{color:var(--red);}
+
+/* ═══════════════════════════════════
+   শুভ দিনের কাউন্টার
+═══════════════════════════════════ */
+.auspicious-counter-wrap{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.1rem;margin-bottom:1.1rem;box-shadow:0 3px 14px rgba(181,134,13,.06);}
+.ac-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.55rem;margin-top:.7rem;}
+@media(max-width:400px){.ac-grid{grid-template-columns:repeat(2,1fr);}}
+.ac-card{background:linear-gradient(135deg,var(--bg2),var(--card2));border:1px solid rgba(181,134,13,.2);border-radius:11px;padding:.7rem;text-align:center;cursor:pointer;transition:all .2s;}
+.ac-card:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(181,134,13,.15);}
+.ac-ico{font-size:1.3rem;margin-bottom:.2rem;}
+.ac-count{font-family:'Tiro Bangla',serif;font-size:1.5rem;font-weight:700;color:var(--gold-d);line-height:1;}
+.ac-label{font-size:.6rem;color:var(--txt2);margin-top:.12rem;line-height:1.3;}
+
+/* Auspicious Day Modal */
+.ac-modal-overlay{position:fixed;inset:0;z-index:9000;background:rgba(10,5,0,.65);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:1rem;}
+.ac-modal-overlay.open{display:flex;}
+.ac-modal{background:#fffdf7;border-radius:18px;width:100%;max-width:440px;max-height:80vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.35);}
+.ac-modal-head{background:linear-gradient(135deg,#1a0a00,#3d1c00);padding:.9rem 1.2rem;display:flex;align-items:center;justify-content:space-between;}
+.ac-modal-title{font-family:'Tiro Bangla',serif;font-size:1rem;color:#f5d78a;}
+.ac-modal-close{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.8rem;}
+.ac-modal-body{padding:.9rem 1rem;}
+.ac-day-row{display:flex;align-items:center;gap:.7rem;padding:.42rem .6rem;border-bottom:1px solid rgba(181,134,13,.1);cursor:pointer;transition:background .15s;}
+.ac-day-row:last-child{border-bottom:none;}
+.ac-day-row:hover{background:rgba(181,134,13,.07);}
+.ac-day-date{font-family:'Tiro Bangla',serif;font-size:.9rem;font-weight:700;color:var(--gold-d);min-width:55px;}
+.ac-day-info{font-size:.72rem;color:var(--txt2);line-height:1.4;}
+
+/* ═══════════════════════════════════
+   ডিটেইল প্যানেল ট্যাব
+═══════════════════════════════════ */
+.dtabs{display:flex;overflow-x:auto;border-bottom:1px solid var(--border);padding:0 .8rem;scrollbar-width:none;}
+.dtabs::-webkit-scrollbar{display:none;}
+.dtab{padding:.52rem .75rem;font-size:.68rem;font-weight:600;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;color:var(--txt2);transition:all .18s;flex-shrink:0;}
+.dtab.act{border-bottom-color:var(--gold);color:var(--gold-l);}
+.dtab-pane{display:none;}
+.dtab-pane.show{display:block;}
+
+/* শুভ সময় ট্যাব */
+.shubha-grid{display:flex;flex-direction:column;gap:.48rem;padding:.6rem 1.2rem;}
+.shubha-row{border-radius:10px;padding:.7rem .9rem;border:1px solid rgba(181,134,13,.15);background:rgba(255,255,255,.55);}
+.shubha-row-head{display:flex;align-items:center;gap:.5rem;margin-bottom:.28rem;}
+.shubha-ico{font-size:1rem;flex-shrink:0;}
+.shubha-name{font-family:'Tiro Bangla',serif;font-size:.88rem;font-weight:700;color:var(--txt);flex:1;}
+.shubha-badge{font-size:.62rem;font-weight:700;padding:.15rem .5rem;border-radius:20px;flex-shrink:0;}
+.shubha-badge.good{background:rgba(37,102,37,.1);color:var(--green);}
+.shubha-badge.bad{background:rgba(181,32,32,.08);color:var(--red);}
+.shubha-badge.neutral{background:rgba(181,134,13,.1);color:var(--gold);}
+.shubha-detail{font-size:.7rem;color:var(--txt2);line-height:1.5;}
+
+/* ক্যালকুলেটর ট্যাব */
+.calc-form{padding:.7rem 1.2rem;}
+.calc-field{margin-bottom:.75rem;}
+.calc-field label{display:block;font-size:.68rem;font-weight:700;color:var(--txt2);margin-bottom:.28rem;text-transform:uppercase;letter-spacing:.04em;}
+.calc-field input,.calc-field select{width:100%;padding:.58rem .8rem;border:1.5px solid rgba(181,134,13,.25);border-radius:9px;font-family:'Baloo Da 2',sans-serif;font-size:.88rem;color:var(--txt);background:#fff;outline:none;transition:border-color .2s;}
+.calc-field input:focus,.calc-field select:focus{border-color:var(--gold);}
+.calc-row{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;}
+.calc-btn{width:100%;padding:.72rem;background:linear-gradient(135deg,var(--gold-d),var(--gold));color:#fff;border:none;border-radius:10px;font-family:'Baloo Da 2',sans-serif;font-size:.9rem;font-weight:800;cursor:pointer;transition:transform .18s;}
+.calc-btn:hover{transform:translateY(-1px);}
+.calc-result{background:linear-gradient(135deg,var(--bg2),var(--card2));border:1px solid rgba(181,134,13,.22);border-radius:12px;padding:.85rem 1rem;margin-top:.8rem;display:none;}
+.calc-result.show{display:block;}
+.calc-result-head{font-family:'Tiro Bangla',serif;font-size:.95rem;color:var(--gold-l);font-weight:700;margin-bottom:.55rem;padding-bottom:.4rem;border-bottom:1px solid var(--border);}
+.calc-result-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.42rem;}
+.calc-result-item{background:rgba(255,255,255,.6);border:1px solid var(--border);border-radius:9px;padding:.55rem .65rem;}
+.calc-result-item .lbl{font-size:.58rem;color:var(--txt2);text-transform:uppercase;letter-spacing:.08em;}
+.calc-result-item .val{font-family:'Tiro Bangla',serif;font-size:.92rem;color:var(--gold-d);font-weight:700;margin-top:.1rem;}
+
+/* ═══════════════════════════════════
+   জন্মরাশি / মৃত্যু দোষ স্বতন্ত্র সেকশন
+═══════════════════════════════════ */
+.calculator-section{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 3px 14px rgba(181,134,13,.06);margin-bottom:1.1rem;}
+.calc-sec-tabs{display:flex;border-bottom:1px solid var(--border);}
+.calc-sec-tab{flex:1;padding:.62rem;text-align:center;font-size:.75rem;font-weight:700;cursor:pointer;color:var(--txt2);transition:all .18s;border-bottom:2px solid transparent;}
+.calc-sec-tab.act{color:var(--gold-l);border-bottom-color:var(--gold);background:rgba(181,134,13,.04);}
+.calc-sec-pane{display:none;padding:1rem;}
+.calc-sec-pane.show{display:block;}
+
+/* ═══════════════════════════════════
+   Calendar icons (event dots)
+═══════════════════════════════════ */
+.cd-icons{display:flex;gap:2px;flex-wrap:wrap;margin-top:2px;}
+.cd-dot{font-size:.45rem;line-height:1;}
+.rg-good{background:rgba(37,102,37,.07);border-color:rgba(37,102,37,.2);}
+.rg-bad{background:rgba(181,32,32,.05);border-color:rgba(181,32,32,.18);}
+
+
 
 /* ═══════════════════════════════════
    CALENDAR
@@ -793,11 +877,11 @@ footer a{color:var(--gold);text-decoration:none;}
     "streetAddress": "Nasra Magur Khali, Tut Bagan, Post Nasra, Ranaghat",
     "addressLocality": "Ranaghat",
     "addressRegion": "West Bengal",
-    "postalCode": "741202",
+    "postalCode": "741201",
     "addressCountry": "IN"
   },
   "geo": { "@type": "GeoCoordinates", "latitude": "23.1676690", "longitude": "88.5808191" },
-  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5", "reviewCount": "276", "bestRating": "5" },
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5", "reviewCount": "290", "bestRating": "5" },
   "openingHoursSpecification": [
     {
       "@type": "OpeningHoursSpecification",
@@ -981,8 +1065,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- HERO -->
   <div class="hero">
     <div class="hbadge">দিক্ সিদ্ধান্ত মতে</div>
-    <h1>বাংলা পঞ্জিকা ও দৈনিক রাশিফল</h1>
-    <p style="font-size:.73rem;color:var(--txt2);margin-top:.3rem;font-weight:500;">আজকের তিথি · নক্ষত্র · যোগ · রাহুকাল · শুভমুহূর্ত · ১২ রাশির রাশিফল</p>
+    <h1>বাংলা পঞ্জিকা ও শুভ মুহূর্ত বিচার</h1>
+    <p style="font-size:.73rem;color:var(--txt2);margin-top:.3rem;font-weight:500;">আজকের তিথি · নক্ষত্র · যোগ · রাহুকাল · শুভমুহূর্ত · উৎসব · মহাপুরুষের দিন</p>
     <p>MyAstrology Astrology &amp; Palmistry Consultant — রানাঘাট | Dr. Prodyut Acharya</p>
   </div>
 
@@ -996,46 +1080,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="chips" id="tb-chips"></div>
   </div>
 
-
-
-  <!-- ══ দৈনিক রাশিফল ══ -->
-  <div class="rf-wrap">
-    <div class="rf-title" style="flex-direction:column;align-items:flex-start;gap:.35rem;margin-bottom:1.1rem;">
-      <div style="font-size:.65rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-family:'Baloo Da 2',sans-serif;">দৈনিক রাশিফল</div>
-      <h2 class="panjika-date-h2">🪐 আজকের রাশিফল</h2>
-      <div style="width:56px;height:2.5px;background:linear-gradient(90deg,var(--gold-d),var(--gold));border-radius:2px;"></div>
-      <span style="font-size:.79rem;color:var(--txt2);font-family:'Baloo Da 2',sans-serif;">✨ আপনার রাশি নির্বাচন করুন</span>
+  <!-- ══ আজকের বিশেষ দিন ══ -->
+  <div class="special-day-wrap" id="specialDayWrap">
+    <div class="special-day-title">🌟 আজকের বিশেষ দিন</div>
+    <div class="special-day-list" id="specialDayList">
+      <div class="sd-empty">তথ্য লোড হচ্ছে...</div>
     </div>
-    <div id="moonBadgeWrap" style="margin-bottom:.6rem;"></div>
-    <div class="rg" id="rg"></div>
+  </div>
 
-    <div class="rfr" id="rfr">
-      <div class="rft">
-        <div class="rfs" id="rfsym"></div>
-        <div class="rfti">
-          <div class="rfn" id="rfn"></div>
-          <div class="rfs2" id="rfs2"></div>
-          <div class="rfch" id="rfch"></div>
-        </div>
-      </div>
-      <div class="rfmsg" id="rfmsg"></div>
-      <div class="rfcg" id="rfcg"></div>
-      <div class="rflg" id="rflg"></div>
-      <div class="rfcau" id="rfcau"></div>
-      <div id="rfpg"></div>
-      <!-- RF inline CTA -->
-      <div class="rf-cta">
-        <div class="rf-cta-txt">
-          🙏 আরও বিস্তারিত ব্যক্তিগত রাশিফল চান?
-          <span>Dr. Prodyut Acharya-র সাথে সরাসরি পরামর্শ করুন</span>
-        </div>
-        <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
-          <a href="https://wa.me/919333122768" target="_blank" rel="noopener" class="cta-btn wa" style="font-size:.78rem;padding:.45rem .9rem;">
-            <i class="fab fa-whatsapp"></i> WhatsApp
-          </a>
-        </div>
-      </div>
+  <!-- ══ মাসের গুরুত্বপূর্ণ দিন ══ -->
+  <div class="month-events-wrap">
+    <div class="special-day-title" id="monthEventsTitle">📅 এই মাসের গুরুত্বপূর্ণ দিন</div>
+    <div class="month-events-list" id="monthEventsList">
+      <div class="sd-empty">তথ্য লোড হচ্ছে...</div>
     </div>
+  </div>
+
+  <!-- ══ শুভ সময় নির্ধারণের গাইড ══ -->
+  <div class="guide-wrap">
+    <div class="special-day-title">📿 শুভ সময় নির্ধারণের গাইড</div>
+    <p style="font-size:.75rem;color:var(--txt2);margin-bottom:.1rem;">বিবাহ, গৃহপ্রবেশ, ব্যবসা, যাত্রার জন্য শুভ তিথি-নক্ষত্র-বার বিচার। বিস্তারিত পরামর্শের জন্য WhatsApp করুন।</p>
+    <div class="guide-grid" id="guideGrid"></div>
   </div>
 
   <!-- DIVIDER -->
@@ -1060,7 +1125,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="cbody" id="cbody"></div>
   </div>
 
-  <!-- DETAIL PANEL -->
+  <!-- DETAIL PANEL — ৭ট্যাব -->
   <div class="dtp" id="dtp">
     <div class="dtc">
       <div class="dth">
@@ -1081,19 +1146,173 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="mplbl" id="dtplbl"></div>
         </div>
       </div>
-      <div class="dsec">🌟 পঞ্চাঙ্গ বিস্তার</div>
-      <div class="dpan" id="dtpan"></div>
-      <div class="dsec">☀️ সময় ও শুভমুহূর্ত</div>
-      <div class="dtimes" id="dttimes"></div>
-      <div class="dsec">🎉 উৎসব ও ব্রত</div>
-      <div class="dfests" id="dtfests"></div>
+      <!-- ট্যাব নেভিগেশন -->
+      <div class="dtabs" id="dtabs">
+        <div class="dtab act" onclick="switchDTab(0,this)">পঞ্চাঙ্গ</div>
+        <div class="dtab" onclick="switchDTab(1,this)">শুভ সময়</div>
+        <div class="dtab" onclick="switchDTab(2,this)">উৎসব</div>
+        <div class="dtab" onclick="switchDTab(3,this)">মন্ত্র ও বিধি</div>
+        <div class="dtab" onclick="switchDTab(4,this)">মলমাস</div>
+        <div class="dtab" onclick="switchDTab(5,this)">জন্মরাশি</div>
+        <div class="dtab" onclick="switchDTab(6,this)">মৃত্যু দোষ</div>
+      </div>
+
+      <!-- ট্যাব ০: পঞ্চাঙ্গ -->
+      <div class="dtab-pane show" id="dtpane0">
+        <div class="dsec">🌟 পঞ্চাঙ্গ বিস্তার</div>
+        <div class="dpan" id="dtpan"></div>
+        <div class="dsec">☀️ সময় ও শুভমুহূর্ত</div>
+        <div class="dtimes" id="dttimes"></div>
+      </div>
+
+      <!-- ট্যাব ১: শুভ সময় -->
+      <div class="dtab-pane" id="dtpane1">
+        <div class="shubha-grid" id="dtshubha"></div>
+      </div>
+
+      <!-- ট্যাব ২: উৎসব -->
+      <div class="dtab-pane" id="dtpane2">
+        <div class="dfests" id="dtfests"></div>
+        <div class="dfests" id="dtspecial"></div>
+      </div>
+
+      <!-- ট্যাব ৩: মন্ত্র ও বিধি -->
+      <div class="dtab-pane" id="dtpane3">
+        <div class="dfests" id="dtmantra"></div>
+      </div>
+
+      <!-- ট্যাব ৪: মলমাস -->
+      <div class="dtab-pane" id="dtpane4">
+        <div class="dfests" id="dtmalmas"></div>
+      </div>
+
+      <!-- ট্যাব ৫: জন্মরাশি -->
+      <div class="dtab-pane" id="dtpane5">
+        <div class="calc-form">
+          <p style="font-size:.73rem;color:var(--txt2);margin-bottom:.7rem;">শিশুর জন্ম তারিখ, সময় ও স্থান দিলে রাশি, নক্ষত্র ও লগ্ন দেখাবে।</p>
+          <div class="calc-field">
+            <label>জন্ম তারিখ</label>
+            <input type="date" id="birthDate2" />
+          </div>
+          <div class="calc-row">
+            <div class="calc-field">
+              <label>ঘণ্টা (0–23)</label>
+              <input type="number" id="birthHour2" min="0" max="23" placeholder="যেমন: 14" />
+            </div>
+            <div class="calc-field">
+              <label>মিনিট (0–59)</label>
+              <input type="number" id="birthMin2" min="0" max="59" placeholder="যেমন: 30" />
+            </div>
+          </div>
+          <div class="calc-row">
+            <div class="calc-field">
+              <label>অক্ষাংশ (°N)</label>
+              <input type="number" id="birthLat2" step="0.01" placeholder="23.17 (রানাঘাট)" value="23.17" />
+            </div>
+            <div class="calc-field">
+              <label>দ্রাঘিমাংশ (°E)</label>
+              <input type="number" id="birthLng2" step="0.01" placeholder="88.58" value="88.58" />
+            </div>
+          </div>
+          <button class="calc-btn" onclick="calcBirthRashi2()">🔮 রাশি নির্ধারণ করুন</button>
+          <div class="calc-result" id="birthResult2"></div>
+        </div>
+      </div>
+
+      <!-- ট্যাব ৬: মৃত্যু দোষ -->
+      <div class="dtab-pane" id="dtpane6">
+        <div class="calc-form">
+          <p style="font-size:.73rem;color:var(--txt2);margin-bottom:.7rem;">মৃত্যুর তারিখ ও সময় দিলে সূতক কাল, পিণ্ডদান ও তর্পণের বিধি দেখাবে।</p>
+          <div class="calc-field">
+            <label>মৃত্যুর তারিখ</label>
+            <input type="date" id="deathDate2" />
+          </div>
+          <div class="calc-row">
+            <div class="calc-field">
+              <label>ঘণ্টা (0–23)</label>
+              <input type="number" id="deathHour2" min="0" max="23" placeholder="যেমন: 10" />
+            </div>
+            <div class="calc-field">
+              <label>মিনিট (0–59)</label>
+              <input type="number" id="deathMin2" min="0" max="59" placeholder="যেমন: 0" />
+            </div>
+          </div>
+          <button class="calc-btn" onclick="calcDeathDosha2()">📿 দোষ নির্ধারণ করুন</button>
+          <div class="calc-result" id="deathResult2"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ শুভ দিনের কাউন্টার ══ -->
+  <div class="auspicious-counter-wrap">
+    <div class="special-day-title">✨ এই মাসের শুভ দিন</div>
+    <p style="font-size:.73rem;color:var(--txt2);margin-bottom:.2rem;">যেকোনো কার্ডে ক্লিক করলে সেই মাসের সব শুভ তারিখের তালিকা দেখাবে।</p>
+    <div class="ac-grid" id="acGrid"></div>
+  </div>
+
+  <!-- ══ জন্মরাশি ও মৃত্যু দোষ ক্যালকুলেটর (standalone) ══ -->
+  <div class="calculator-section">
+    <div class="calc-sec-tabs">
+      <div class="calc-sec-tab act" onclick="switchCalcTab(0,this)">🔮 জন্মরাশি নির্ধারণ</div>
+      <div class="calc-sec-tab" onclick="switchCalcTab(1,this)">📿 মৃত্যু দোষ বিচার</div>
+    </div>
+
+    <!-- পেন ০: জন্মরাশি -->
+    <div class="calc-sec-pane show" id="calcPane0">
+      <p style="font-size:.73rem;color:var(--txt2);margin-bottom:.8rem;">জন্ম তারিখ, সময় ও স্থান দিলে রাশি, নক্ষত্র, লগ্ন ও গ্রহের অবস্থান স্বয়ংক্রিয়ভাবে দেখাবে।</p>
+      <div class="calc-field">
+        <label>জন্ম তারিখ</label>
+        <input type="date" id="birthDateMain" />
+      </div>
+      <div class="calc-row">
+        <div class="calc-field">
+          <label>জন্ম সময় — ঘণ্টা (0–23)</label>
+          <input type="number" id="birthHourMain" min="0" max="23" placeholder="যেমন: 14" />
+        </div>
+        <div class="calc-field">
+          <label>মিনিট (0–59)</label>
+          <input type="number" id="birthMinMain" min="0" max="59" placeholder="যেমন: 30" />
+        </div>
+      </div>
+      <div class="calc-row">
+        <div class="calc-field">
+          <label>অক্ষাংশ (°N)</label>
+          <input type="number" id="birthLatMain" step="0.01" value="23.17" placeholder="23.17" />
+        </div>
+        <div class="calc-field">
+          <label>দ্রাঘিমাংশ (°E)</label>
+          <input type="number" id="birthLngMain" step="0.01" value="88.58" placeholder="88.58" />
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcBirthRashiMain()">🔮 রাশি নির্ধারণ করুন</button>
+      <div class="calc-result" id="birthResultMain"></div>
+    </div>
+
+    <!-- পেন ১: মৃত্যু দোষ -->
+    <div class="calc-sec-pane" id="calcPane1">
+      <p style="font-size:.73rem;color:var(--txt2);margin-bottom:.8rem;">মৃত্যুর তারিখ ও সময় দিলে সূতক কাল, পিণ্ডদান তিথি ও বার্ষিক শ্রাদ্ধের তারিখ দেখাবে।</p>
+      <div class="calc-field">
+        <label>মৃত্যুর তারিখ</label>
+        <input type="date" id="deathDateMain" />
+      </div>
+      <div class="calc-row">
+        <div class="calc-field">
+          <label>মৃত্যু সময় — ঘণ্টা (0–23)</label>
+          <input type="number" id="deathHourMain" min="0" max="23" placeholder="যেমন: 10" />
+        </div>
+        <div class="calc-field">
+          <label>মিনিট (0–59)</label>
+          <input type="number" id="deathMinMain" min="0" max="59" placeholder="যেমন: 0" />
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcDeathDoshaMain()">📿 দোষ নির্ধারণ করুন</button>
+      <div class="calc-result" id="deathResultMain"></div>
     </div>
   </div>
 
 
-
-
-  <!-- ═══ SERVICES CARDS ═══ -->
   <div class="bottom-cta">
     <div class="svc-section-title" style="text-align:center;margin-bottom:1.2rem;">
       <div style="font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem;">Dr. Prodyut Acharya</div>
@@ -1171,7 +1390,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
 </div>
-  
+
+<!-- শুভ দিন মডাল -->
+<div class="ac-modal-overlay" id="acModalOverlay" onclick="if(event.target===this)closeAcModal()">
+  <div class="ac-modal">
+    <div class="ac-modal-head">
+      <div class="ac-modal-title" id="acModalTitle">শুভ দিনের তালিকা</div>
+      <button class="ac-modal-close" onclick="closeAcModal()">✕</button>
+    </div>
+    <div class="ac-modal-body" id="acModalBody"></div>
+  </div>
+</div>
+
   
 <!-- About / Profile Section -->
 <section class="about-sec">
@@ -1196,15 +1426,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="astat-l">বছরের অভিজ্ঞতা</div>
     </div>
     <div class="astat">
-      <div class="astat-n">১৫,০০০+</div>
+      <div class="astat-n">১০,০০০+</div>
       <div class="astat-l">সন্তুষ্ট গ্রাহক</div>
     </div>
     <div class="astat">
-      <div class="astat-n">১২২+</div>
+      <div class="astat-n">১২৭+</div>
       <div class="astat-l">Google রিভিউ ৫★</div>
     </div>
     <div class="astat">
-      <div class="astat-n">১২৮+</div>
+      <div class="astat-n">১৩৭+</div>
       <div class="astat-l">JustDial রিভিউ</div>
     </div>
   </div>
@@ -1257,7 +1487,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
        onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(66,133,244,.15)'"
        onmouseout="this.style.transform='';this.style.boxShadow='0 2px 10px rgba(66,133,244,.08)'">
       <img src="https://www.google.com/favicon.ico" alt="Google Reviews" width="18" height="18" style="margin-bottom:.3rem;vertical-align:middle;" loading="lazy">
-      <div style="font-size:1.45rem;font-weight:900;color:#1a73e8;font-family:'Baloo Da 2',sans-serif;line-height:1;">১২২+</div>
+      <div style="font-size:1.45rem;font-weight:900;color:#1a73e8;font-family:'Baloo Da 2',sans-serif;line-height:1;">১২৭+</div>
       <div style="font-size:.62rem;color:#444;font-weight:700;margin-top:.15rem;letter-spacing:.03em;">Google Reviews</div>
       <div style="color:#fbbc04;font-size:.7rem;margin-top:.12rem;letter-spacing:.05em;">★★★★★ 5.0</div>
     </a>
@@ -1267,19 +1497,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
        onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(255,102,0,.15)'"
        onmouseout="this.style.transform='';this.style.boxShadow='0 2px 10px rgba(255,102,0,.08)'">
       <div style="font-size:1rem;margin-bottom:.18rem;">🟠</div>
-      <div style="font-size:1.45rem;font-weight:900;color:#e64a00;font-family:'Baloo Da 2',sans-serif;line-height:1;">১২৮+</div>
+      <div style="font-size:1.45rem;font-weight:900;color:#e64a00;font-family:'Baloo Da 2',sans-serif;line-height:1;">১৩৭+</div>
       <div style="font-size:.62rem;color:#444;font-weight:700;margin-top:.15rem;letter-spacing:.03em;">JustDial Reviews</div>
       <div style="color:#fbbc04;font-size:.7rem;margin-top:.12rem;letter-spacing:.05em;">★★★★★ Verified</div>
-    </a>
-
-    <a href="https://www.youtube.com/@myastrology" target="_blank" rel="noopener" role="listitem"
-       style="text-decoration:none;display:block;background:#fff;border:1.5px solid rgba(255,0,0,.18);border-radius:14px;padding:.85rem .7rem;text-align:center;box-shadow:0 2px 10px rgba(255,0,0,.06);transition:transform .18s,box-shadow .18s;"
-       onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(255,0,0,.14)'"
-       onmouseout="this.style.transform='';this.style.boxShadow='0 2px 10px rgba(255,0,0,.06)'">
-      <div style="font-size:1rem;margin-bottom:.18rem;">▶️</div>
-      <div style="font-size:1.45rem;font-weight:900;color:#cc0000;font-family:'Baloo Da 2',sans-serif;line-height:1;">২,২৪,১৫০+</div>
-      <div style="font-size:.62rem;color:#444;font-weight:700;margin-top:.15rem;letter-spacing:.03em;">YouTube Subscribers</div>
-      <div style="color:#cc0000;font-size:.68rem;margin-top:.12rem;font-weight:600;">@myastrology</div>
     </a>
 
     <a href="https://www.facebook.com/Dr.ProdyutAcharya" target="_blank" rel="noopener" role="listitem"
@@ -1287,9 +1507,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
        onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(24,119,242,.15)'"
        onmouseout="this.style.transform='';this.style.boxShadow='0 2px 10px rgba(24,119,242,.07)'">
       <div style="font-size:1rem;margin-bottom:.18rem;">👍</div>
-      <div style="font-size:1.45rem;font-weight:900;color:#1877f2;font-family:'Baloo Da 2',sans-serif;line-height:1;">৪১,০৫০+</div>
+      <div style="font-size:1.45rem;font-weight:900;color:#1877f2;font-family:'Baloo Da 2',sans-serif;line-height:1;">৪১,৫০০+</div>
       <div style="font-size:.62rem;color:#444;font-weight:700;margin-top:.15rem;letter-spacing:.03em;">Facebook Followers</div>
-      <div style="color:#1877f2;font-size:.68rem;margin-top:.12rem;font-weight:600;">Dr. ProdyutAcharya</div>
+      <div style="color:#1877f2;font-size:.68rem;margin-top:.12rem;font-weight:600;">২৬টি Facebook রিভিউ</div>
+    </a>
+
+    <a href="https://www.youtube.com/@myastrology" target="_blank" rel="noopener" role="listitem"
+       style="text-decoration:none;display:block;background:#fff;border:1.5px solid rgba(255,0,0,.18);border-radius:14px;padding:.85rem .7rem;text-align:center;box-shadow:0 2px 10px rgba(255,0,0,.06);transition:transform .18s,box-shadow .18s;"
+       onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(255,0,0,.14)'"
+       onmouseout="this.style.transform='';this.style.boxShadow='0 2px 10px rgba(255,0,0,.06)'">
+      <div style="font-size:1rem;margin-bottom:.18rem;">▶️</div>
+      <div style="font-size:1.45rem;font-weight:900;color:#cc0000;font-family:'Baloo Da 2',sans-serif;line-height:1;">২,২৪,১৬০+</div>
+      <div style="font-size:.62rem;color:#444;font-weight:700;margin-top:.15rem;letter-spacing:.03em;">YouTube Subscribers</div>
+      <div style="color:#cc0000;font-size:.68rem;margin-top:.12rem;font-weight:600;">@myastrology</div>
+    </a>
+
+    <a href="https://www.myastrology.in/reviews.html" role="listitem"
+       style="text-decoration:none;display:block;background:linear-gradient(135deg,#fff9f0,#fff3e0);border:1.5px solid rgba(181,134,13,.25);border-radius:14px;padding:.85rem .7rem;text-align:center;box-shadow:0 2px 10px rgba(181,134,13,.1);grid-column:span 2;transition:transform .18s,box-shadow .18s;"
+       onmouseover="this.style.transform='translateY(-3px)'"
+       onmouseout="this.style.transform=''">
+      <div style="font-size:1rem;margin-bottom:.18rem;">⭐</div>
+      <div style="font-size:1.8rem;font-weight:900;color:var(--gold-d);font-family:'Baloo Da 2',sans-serif;line-height:1;">২৯০+</div>
+      <div style="font-size:.7rem;color:#444;font-weight:700;margin-top:.15rem;">মোট যাচাইকৃত রিভিউ</div>
+      <div style="font-size:.62rem;color:var(--txt2);margin-top:.12rem;">Google · JustDial · Facebook</div>
     </a>
 
   </div>
@@ -1447,7 +1687,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="ftname">Dr. Prodyut Acharya — Vedic Astrology &amp; Palmistry Consultant</div>
   <div style="margin:.3rem 0;line-height:1.8;word-break:break-word;">
     রানাঘাট, নদিয়া, পশ্চিমবঙ্গ<br>
-    <a href="tel:+919333122768">📞 +91 93331 22768</a> &nbsp;|&nbsp; <a href="mailto:info@myastrology.in">✉ info@myastrology.in</a>
+    <a href="tel:+919333122768">📞 +91 93331 22768</a> &nbsp;|&nbsp; <a href="/cdn-cgi/l/email-protection#0e676068614e63776f7d7a7c6162616977206760">✉ <span class="__cf_email__" data-cfemail="365f585059765b4f57454244595a59514f185f58">[email&#160;protected]</span></a>
   </div>
   <div class="ftlinks">
     <a href="https://www.myastrology.in/">Home</a>
@@ -1477,13 +1717,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="https://www.linkedin.com/in/ProdyutAcharya" target="_blank" rel="noopener" aria-label="LinkedIn" class="fts-li"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
   </div>
   <div class="ftdisc">
-    বিশুদ্ধ সিদ্ধান্ত মতে বাংলা পঞ্জিকা ও দৈনিক রাশিফল — রানাঘাট, নদিয়া, পশ্চিমবঙ্গ<br>
+    বিশুদ্ধ সিদ্ধান্ত মতে বাংলা পঞ্জিকা, শুভ মুহূর্ত বিচার ও বিশেষ দিনের তথ্য — রানাঘাট, নদিয়া, পশ্চিমবঙ্গ<br>
     &copy; 2025–2026 MyAstrology · Dr. Prodyut Acharya ·
     <a href="https://www.myastrology.in">www.myastrology.in</a>
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false">
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false">
 'use strict';
 /* ████████████████████████████████████████████████████████████████████
    ██  বাংলা পঞ্জিকা — সম্পূর্ণ কোড সূচি                          ██
@@ -2029,409 +2269,608 @@ function showDetail(date) {
 function closeD() { document.getElementById('dtp').classList.remove('show'); selDate = null; renderCal(); }
 
 // ════════════════════════════════════════════════════════
-// SECTION ⑭ — RASHI DATA (১২ রাশির তথ্য)
-// কাজ: প্রতিটি রাশির প্রতীক, অধিপতি, রত্ন, রং, সংখ্যা ধরে রাখে
-// পরিবর্তন: তথ্য সংশোধন করতে এখানে আসুন
+// SECTION ⑭ — TAB NAVIGATION HELPERS
 // ════════════════════════════════════════════════════════
-const RASHIS=[
-  {n:'মেষ',   e:'Aries',      s:'♈',l:'মঙ্গল',el:'অগ্নি', nat:'চর',   gem:'প্রবাল',   col:'লাল',   num:'৯'},
-  {n:'বৃষ',   e:'Taurus',     s:'♉',l:'শুক্র', el:'পৃথিবী',nat:'স্থির',gem:'হীরা',     col:'সাদা',  num:'৬'},
-  {n:'মিথুন', e:'Gemini',     s:'♊',l:'বুধ',   el:'বায়ু',  nat:'দ্বিস্বভাব',gem:'পান্না',col:'সবুজ', num:'৫'},
-  {n:'কর্কট', e:'Cancer',     s:'♋',l:'চন্দ্র',el:'জল',    nat:'চর',   gem:'মুক্তা',   col:'সাদা',  num:'২'},
-  {n:'সিংহ',  e:'Leo',        s:'♌',l:'সূর্য', el:'অগ্নি', nat:'স্থির',gem:'মাণিক',    col:'সোনালি',num:'১'},
-  {n:'কন্যা', e:'Virgo',      s:'♍',l:'বুধ',   el:'পৃথিবী',nat:'দ্বিস্বভাব',gem:'পান্না',col:'নীল',  num:'৫'},
-  {n:'তুলা',  e:'Libra',      s:'♎',l:'শুক্র', el:'বায়ু',  nat:'চর',   gem:'হীরা',     col:'নীল',   num:'৬'},
-  {n:'বৃশ্চিক',e:'Scorpio',   s:'♏',l:'মঙ্গল', el:'জল',    nat:'স্থির',gem:'প্রবাল',   col:'লাল',   num:'৯'},
-  {n:'ধনু',   e:'Sagittarius',s:'♐',l:'গুরু',  el:'অগ্নি', nat:'দ্বিস্বভাব',gem:'পুষ্পরাগ',col:'হলুদ',num:'৩'},
-  {n:'মকর',   e:'Capricorn',  s:'♑',l:'শনি',   el:'পৃথিবী',nat:'চর',   gem:'নীলম',     col:'কালো',  num:'৮'},
-  {n:'কুম্ভ', e:'Aquarius',   s:'♒',l:'শনি',   el:'বায়ু',  nat:'স্থির',gem:'নীলম',     col:'নীল',   num:'৮'},
-  {n:'মীন',   e:'Pisces',     s:'♓',l:'গুরু',  el:'জল',    nat:'দ্বিস্বভাব',gem:'পুষ্পরাগ',col:'হলুদ',num:'৩'},
-];
+function switchDTab(idx, el) {
+  document.querySelectorAll('.dtab').forEach(function(t){t.classList.remove('act');});
+  document.querySelectorAll('.dtab-pane').forEach(function(p){p.classList.remove('show');});
+  el.classList.add('act');
+  document.getElementById('dtpane'+idx).classList.add('show');
+}
+function switchCalcTab(idx, el) {
+  document.querySelectorAll('.calc-sec-tab').forEach(function(t){t.classList.remove('act');});
+  document.querySelectorAll('.calc-sec-pane').forEach(function(p){p.classList.remove('show');});
+  el.classList.add('act');
+  document.getElementById('calcPane'+idx).classList.add('show');
+}
 
 // ════════════════════════════════════════════════════════
+// SECTION ⑮ — TODAY EVENTS RENDER (আজকের বিশেষ দিন)
 // ════════════════════════════════════════════════════════
-// SECTION ⑮ — CHANDRA GOCHAR DATA (চন্দ্র গোচর ফলাদেশ)
-// কাজ: চন্দ্র যে ভাবে গোচর করছে তার ভিত্তিতে রাশিফল তৈরি করে
-//   আপডেট: random text বদলে সত্যিকারের জ্যোতিষ গণনা
-// পরিবর্তন: বার্তার ভাষা সংশোধন করতে এখানে আসুন
-// ════════════════════════════════════════════════════════
+function renderTodayEvents() {
+  var ds = dStr(TODAY);
+  var mmdd = ds.slice(5); // MM-DD
+  var evts = getPanjikaEvents(ds, mmdd);
+  var c = calcDay(TODAY);
+  var specialYogas = checkSpecialYogas(TODAY.getDay(), c.nakList[0].val ? Math.floor(((moonL(JD(TODAY.getFullYear(),TODAY.getMonth()+1,TODAY.getDate())+0.5)-lahiriAY(JD(TODAY.getFullYear(),TODAY.getMonth()+1,TODAY.getDate())+0.5)+360)%360)/(360/27))%27 : 0, TODAY.getDay());
+  var html = '';
 
-// ১২টি ভাবের গোচর ফল — প্রতিটিতে ৪ category
-var GOCHAR = [
-  null, // placeholder (1-indexed)
-  { // ১ম ভাব — জন্মরাশিতে চন্দ্র (অশুভ)
-    label:'জন্মরাশিতে চন্দ্র', tag:'সতর্কতার দিন', tagCol:'#c0392b', score:[2,2,2,2],
-    summary:'আজ চন্দ্র আপনার জন্মরাশিতে। মানসিক অস্থিরতা ও দ্বন্দ্বের সম্ভাবনা।',
-    love:'মনের মধ্যে সংশয় থাকতে পারে। প্রিয়জনের সাথে বাদানুবাদ এড়িয়ে চলুন। ধৈর্য ধরুন।',
-    work:'কর্মক্ষেত্রে আজ সিদ্ধান্ত নিতে দ্বিধা হতে পারে। গুরুত্বপূর্ণ চুক্তি আজ স্থগিত রাখুন।',
-    health:'শরীরে অবসাদ ও মাথাব্যথার সম্ভাবনা। পর্যাপ্ত জল পান করুন ও বিশ্রাম নিন।',
-    finance:'অযথা খরচ বাড়তে পারে। বড় বিনিয়োগ আজ এড়িয়ে চলুন।',
-    msg:'আজ নিজের ভেতরে তাকান। বাইরের ঘটনার চেয়ে মনের শান্তি বেশি দরকার।',
-    caution:'অপরিচিত কারোর উপর অতিরিক্ত বিশ্বাস রাখবেন না। নিজের স্বাস্থ্যের প্রতি সতর্ক থাকুন।'
-  },
-  { // ২য় ভাব (মিশ্র)
-    label:'দ্বিতীয় ভাবে চন্দ্র', tag:'আর্থিক সতর্কতা', tagCol:'#d35400', score:[3,3,2,2],
-    summary:'চন্দ্র ধন ও পরিবার ভাবে। অর্থের উপর চাপ, পারিবারিক কলহের সম্ভাবনা।',
-    love:'পরিবারের সাথে সম্পর্ক আজ কিছুটা টানাপোড়েনে পড়তে পারে। ধৈর্য রাখুন।',
-    work:'কাজে একটু ধীরগতি থাকতে পারে। পুরোনো কাজ শেষ করুন, নতুন শুরু নয়।',
-    health:'পেট বা হজমে সমস্যা হতে পারে। বাইরের খাবার আজ এড়িয়ে চলুন।',
-    finance:'অর্থের অপচয় সম্ভব। অযথা কেনাকাটা থেকে বিরত থাকুন। ঋণ এড়িয়ে চলুন।',
-    msg:'পরিবারের সাথে মিষ্টি কথায় সম্পর্ক টিকিয়ে রাখুন। আজ অহং ছাড়ুন।',
-    caution:'টাকাপয়সার লেনদেন আজ নথিবদ্ধ করে রাখুন। মুখের কথায় বিশ্বাস করবেন না।'
-  },
-  { // ৩য় ভাব — পরাক্রম (শুভ)
-    label:'তৃতীয় ভাবে চন্দ্র', tag:'সাহস ও সাফল্য', tagCol:'#27ae60', score:[4,5,4,4],
-    summary:'চন্দ্র পরাক্রম ভাবে। সাহস, যোগাযোগ ও ছোট ভ্রমণে বিশেষ সাফল্য।',
-    love:'সঙ্গীর সাথে কোথাও ঘুরতে যাওয়ার পরিকল্পনা আজ সফল হবে। যোগাযোগ মধুর হবে।',
-    work:'কর্মক্ষেত্রে আজ উদ্যোগ নিন — সাফল্য নিশ্চিত। লেখালেখি ও যোগাযোগ সংক্রান্ত কাজে বিশেষ ফল।',
-    health:'শরীরে শক্তি ও উদ্যম বেশি থাকবে। ব্যায়াম বা শরীরচর্চার জন্য আদর্শ দিন।',
-    finance:'ছোট বিনিয়োগে ভালো ফল আসবে। ব্যবসায়িক আলোচনায় লাভ হবে।',
-    msg:'আজ সাহস করে এগিয়ে যান — আপনার পাশে বন্ধু ও পরিবার আছে।',
-    caution:'একটু বেশি উত্তেজিত হয়ে পড়তে পারেন। ঠান্ডা মাথায় সিদ্ধান্ত নিন।'
-  },
-  { // ৪র্থ ভাব — গৃহ (মিশ্র)
-    label:'চতুর্থ ভাবে চন্দ্র', tag:'গৃহ ও পরিবার', tagCol:'#8e44ad', score:[3,2,3,3],
-    summary:'চন্দ্র সুখ ভাবে। পারিবারিক বিষয়ে মনোযোগ দিন। মায়ের স্বাস্থ্যে দৃষ্টি রাখুন।',
-    love:'পরিবার থেকে সম্পর্কে বাধা আসতে পারে। ঘরে থেকে প্রিয়জনকে বিশেষ সময় দিন।',
-    work:'কর্মক্ষেত্রের চেয়ে পরিবারে মন থাকবে। বড় সিদ্ধান্ত আজ এড়িয়ে চলুন।',
-    health:'মায়ের বা বয়োজ্যেষ্ঠদের স্বাস্থ্যে নজর রাখুন। নিজের বুকে বা ফুসফুসে সতর্ক থাকুন।',
-    finance:'সম্পত্তি বা বাড়ি সংক্রান্ত খরচ হতে পারে। হিসেব রাখুন।',
-    msg:'আজ ঘরকে আপনার শক্তির উৎস হতে দিন। পরিবারের সাথে সময় কাটান।',
-    caution:'মানসিক অস্থিরতা থাকতে পারে। একা বড় সিদ্ধান্ত নেবেন না।'
-  },
-  { // ৫ম ভাব — বুদ্ধি/সন্তান (শুভ)
-    label:'পঞ্চম ভাবে চন্দ্র', tag:'বুদ্ধি ও আনন্দ', tagCol:'#27ae60', score:[5,4,4,4],
-    summary:'চন্দ্র বুদ্ধি ভাবে। সৃজনশীলতা ও প্রেমে বিশেষ সাফল্য। সন্তানের সুসংবাদ সম্ভব।',
-    love:'প্রেমে আজ ভরপুর আনন্দ। নতুন পরিচয় বা পুরোনো সম্পর্কে নতুন প্রাণ আসবে।',
-    work:'সৃজনশীল কাজে আজ অসাধারণ ফল পাবেন। নতুন আইডিয়া মাথায় আসবে।',
-    health:'মন ও শরীর দুটোই ভালো থাকবে। বিনোদনে সময় কাটান, উপকার হবে।',
-    finance:'শেয়ার বা লটারি জাতীয় বিষয়ে আজ সামান্য সুযোগ আছে। পরিমিত ঝুঁকি নিন।',
-    msg:'আজ আপনার মেধা ও বুদ্ধিমত্তাই সবচেয়ে বড় সম্পদ। সেটি কাজে লাগান।',
-    caution:'অতিরিক্ত আনন্দে ভেসে না গিয়ে মাথা ঠান্ডা রাখুন।'
-  },
-  { // ৬ষ্ঠ ভাব — শত্রু জয় (শুভ)
-    label:'ষষ্ঠ ভাবে চন্দ্র', tag:'শত্রু পরাজিত', tagCol:'#27ae60', score:[4,4,3,4],
-    summary:'চন্দ্র রিপু ভাবে। শত্রু পরাজিত হবে, কিন্তু স্বাস্থ্যে সতর্কতা প্রয়োজন।',
-    love:'প্রতিদ্বন্দ্বী বা তৃতীয় পক্ষ সম্পর্কে বাধা দিতে পারবে না আজ।',
-    work:'কর্মক্ষেত্রে বিরোধীরা পরাজিত হবে। আইনি বিষয়ে জয়ের সম্ভাবনা।',
-    health:'পেট ও হজমে সমস্যা হতে পারে। ডাক্তারি পরামর্শ নিন যদি দরকার হয়।',
-    finance:'ঋণ পরিশোধে অগ্রগতি হবে। পাওনা টাকা ফেরত আসতে পারে।',
-    msg:'আজ নিজের শক্তির উপর ভরসা রাখুন — বাধা সরে যাবে।',
-    caution:'খাদ্যাভ্যাসে সতর্ক থাকুন। অপরিচিত খাবার এড়িয়ে চলুন।'
-  },
-  { // ৭ম ভাব — দাম্পত্য (মিশ্র)
-    label:'সপ্তম ভাবে চন্দ্র', tag:'সম্পর্কে যত্ন নিন', tagCol:'#d35400', score:[3,3,4,3],
-    summary:'চন্দ্র দাম্পত্য ভাবে। দাম্পত্য সম্পর্কে বিশেষ মনোযোগ দরকার। চুক্তিতে সাবধান।',
-    love:'সঙ্গীর সাথে খোলামেলা কথা বলুন। মান-অভিমান আজ মিটিয়ে নিন।',
-    work:'ব্যবসায়িক অংশীদারের সাথে আলোচনায় সতর্ক থাকুন। চুক্তি মনোযোগ দিয়ে পড়ুন।',
-    health:'কিডনি ও মূত্রাশয়ে সামান্য সমস্যা হতে পারে। প্রচুর জল পান করুন।',
-    finance:'অংশীদারি ব্যবসায় আজ আলোচনা ভালো হবে। তবে তাড়াহুড়ো করবেন না।',
-    msg:'আজ নিজের মতামতের পাশাপাশি অন্যের কথাও শুনুন — দুজনেই সঠিক হতে পারেন।',
-    caution:'একতরফা সিদ্ধান্ত না নিয়ে সঙ্গীর মতামতকে গুরুত্ব দিন।'
-  },
-  { // ৮ম ভাব — অষ্টম (অশুভ)
-    label:'অষ্টম ভাবে চন্দ্র', tag:'কঠিন দিন', tagCol:'#c0392b', score:[2,2,2,2],
-    summary:'চন্দ্র আয়ু ভাবে — সবচেয়ে কঠিন গোচর। গোপন শত্রু ও দুর্ঘটনা থেকে সতর্ক।',
-    love:'সম্পর্কে গোপন তথ্য বা বিশ্বাসঘাতকতার ভয়। আজ আবেগে ভেসে যাবেন না।',
-    work:'কর্মক্ষেত্রে বাধা ও বিপত্তি আসতে পারে। সতর্কভাবে পা ফেলুন।',
-    health:'শারীরিক সমস্যা বাড়তে পারে। বাইক বা গাড়ি চালানোয় বিশেষ সতর্ক থাকুন।',
-    finance:'অর্থহানির ঝুঁকি আছে। টাকা ধার দেবেন না। বিনিয়োগ স্থগিত রাখুন।',
-    msg:'আজ মাথা নিচু রেখে চলুন। ধৈর্য ও বিশ্বাসই আজকের রক্ষাকবচ।',
-    caution:'অপরিচিত জায়গায় যাওয়া এবং বড় ঝুঁকি নেওয়া আজ এড়িয়ে চলুন।'
-  },
-  { // ৯ম ভাব — ভাগ্য (অতি শুভ)
-    label:'নবম ভাবে চন্দ্র', tag:'ভাগ্যের দিন', tagCol:'#27ae60', score:[5,5,5,5],
-    summary:'চন্দ্র ভাগ্য ভাবে — শ্রেষ্ঠ গোচরগুলোর একটি। গুরু ও ধর্মকার্যে বিশেষ আশীর্বাদ।',
-    love:'প্রেম ও দাম্পত্যে আজ ভাগ্যের বাতাস বইছে। দীর্ঘদিনের ইচ্ছা পূরণ হতে পারে।',
-    work:'কর্মক্ষেত্রে উচ্চতর পদে সুযোগ। গুরু বা বসের সহায়তায় বড় অগ্রগতি।',
-    health:'শরীর ও মন দুটোই সতেজ থাকবে। আধ্যাত্মিক অনুশীলনে বিশেষ ফল পাবেন।',
-    finance:'দীর্ঘমেয়াদী বিনিয়োগে আজকের সিদ্ধান্ত শুভ। ভাগ্যের সহায়তায় অর্থলাভ সম্ভব।',
-    msg:'আজ ঈশ্বরকে ধন্যবাদ দিন — আপনার জীবনে অনেক কিছু আছে যার জন্য কৃতজ্ঞ হওয়া উচিত।',
-    caution:'অতিরিক্ত আত্মবিশ্বাসে যেন অহংকার না আসে।'
-  },
-  { // ১০ম ভাব — কর্ম/রাজ্য (শুভ)
-    label:'দশম ভাবে চন্দ্র', tag:'কর্মে সাফল্য', tagCol:'#2980b9', score:[4,5,4,4],
-    summary:'চন্দ্র রাজ্য ভাবে। কর্মক্ষেত্রে বিশেষ সাফল্য ও সমাজে সম্মানবৃদ্ধি।',
-    love:'আজ সঙ্গী আপনার কর্মসাফল্যে গর্বিত বোধ করবে। সম্পর্কে উষ্ণতা বাড়বে।',
-    work:'কর্মক্ষেত্রে আজ আপনার নাম উজ্জ্বল হবে। সরকারি বা উচ্চপদের সুযোগ আসতে পারে।',
-    health:'কাজের চাপে শরীর কিছুটা ক্লান্ত হতে পারে। কাজের মাঝে বিরতি নিন।',
-    finance:'পদোন্নতি বা বেতনবৃদ্ধির খবর আসতে পারে। ব্যবসায় বড় অর্ডার পেতে পারেন।',
-    msg:'আজ আপনার পরিশ্রমের ফল পাওয়ার দিন। আত্মবিশ্বাসী হয়ে এগিয়ে যান।',
-    caution:'সাফল্যের আনন্দে সহকর্মীদের ছোট করবেন না।'
-  },
-  { // ১১তম ভাব — লাভ (অতি শুভ)
-    label:'একাদশ ভাবে চন্দ্র', tag:'অতি শুভ — লাভের দিন', tagCol:'#1e8449', score:[5,5,5,5],
-    summary:'চন্দ্র লাভ ভাবে — সর্বোত্তম গোচর। আয় বৃদ্ধি, বন্ধুলাভ ও ইচ্ছাপূরণের দিন।',
-    love:'দীর্ঘদিনের প্রেমের ইচ্ছা আজ পূরণ হতে পারে। সম্পর্কে নতুন আনন্দের সঞ্চার।',
-    work:'কর্মক্ষেত্রে আয় ও সুযোগ দুটোই বাড়বে। বন্ধুদের সহায়তায় বড় সাফল্য।',
-    health:'শরীর ও মন সতেজ ও শক্তিশালী থাকবে। আনন্দে দিন কাটান।',
-    finance:'আর্থিক লাভের সেরা দিন। পাওনা টাকা ফেরত আসবে। নতুন আয়ের পথ খুলবে।',
-    msg:'আজ সুযোগ এসেছে — হাতছাড়া করবেন না। নিজের উপর বিশ্বাস রাখুন।',
-    caution:'লোভের বশে অতিরিক্ত ঝুঁকি নেবেন না।'
-  },
-  { // ১২তম ভাব — ব্যয় (অশুভ)
-    label:'দ্বাদশ ভাবে চন্দ্র', tag:'ব্যয় ও বিশ্রামের দিন', tagCol:'#7f8c8d', score:[2,2,3,2],
-    summary:'চন্দ্র ব্যয় ভাবে। অর্থ ব্যয় বৃদ্ধি, একাকীত্ব ও আত্মিক সাধনার সময়।',
-    love:'একাকীত্ব অনুভব হতে পারে। প্রিয়জনের সাথে সময় কাটান, মন হালকা হবে।',
-    work:'কাজে আজ বিশেষ উদ্যম পাবেন না। পুরোনো কাজ গুছিয়ে নিন, নতুন শুরু নয়।',
-    health:'ঘুমের সমস্যা হতে পারে। মেডিটেশন বা হালকা যোগব্যায়াম করুন।',
-    finance:'অপ্রত্যাশিত খরচ বাড়বে। হিসেব রাখুন। বড় কেনাকাটা এড়িয়ে চলুন।',
-    msg:'আজ নিজের জন্য সময় রাখুন। আত্মচিন্তায় আগামীর পথ স্পষ্ট হবে।',
-    caution:'বিদেশ ভ্রমণে বা হাসপাতাল সংক্রান্ত খরচের জন্য প্রস্তুত থাকুন।'
+  // মলমাস
+  if (evts.malmas) {
+    var ml = evts.malmas;
+    html += '<div class="sd-card malmas"><div class="sd-head"><span class="sd-icon">📿</span><span class="sd-name">'+ml.monthName+'</span><span class="sd-type malmas">মলমাস</span></div>';
+    html += '<div class="sd-sig">'+ml.significance+'</div>';
+    html += '<div class="sd-mantra">মন্ত্র: '+ml.mantra+'</div></div>';
   }
-];
+
+  // ধর্মীয় উৎসব
+  evts.festivals.forEach(function(f){
+    html += '<div class="sd-card festival"><div class="sd-head"><span class="sd-icon">'+f.icon+'</span><span class="sd-name">'+f.name+'</span><span class="sd-type festival">উৎসব</span></div>';
+    html += '<div class="sd-sig">'+f.significance+'</div>';
+    if(f.mantra) html += '<div class="sd-mantra">🕉️ '+f.mantra+'</div>';
+    html += '<div class="sd-works" style="margin-top:.25rem;">⏰ পূজার সময়: '+f.pujaTime+'</div></div>';
+  });
+
+  // জন্মদিন
+  evts.births.forEach(function(b){
+    html += '<div class="sd-card birthday"><div class="sd-head"><span class="sd-icon">'+b.icon+'</span><span class="sd-name">'+b.name+'</span><span class="sd-type birthday">জন্মদিন</span></div>';
+    html += '<div class="sd-sig">'+b.birthYear+'–'+b.deathYear+' | '+b.message+'</div>';
+    html += '<div class="sd-quote">'+b.quote+'</div>';
+    if(b.notableWorks && b.notableWorks.length) html += '<div class="sd-works">📚 উল্লেখযোগ্য: '+b.notableWorks.join(', ')+'</div>';
+    html += '</div>';
+  });
+
+  // তিরোধান
+  evts.deaths.forEach(function(d){
+    html += '<div class="sd-card death"><div class="sd-head"><span class="sd-icon">'+d.icon+'</span><span class="sd-name">'+d.name+'</span><span class="sd-type death">তিরোধান</span></div>';
+    html += '<div class="sd-sig">'+d.tribute+'</div></div>';
+  });
+
+  // আধুনিক দিবস
+  evts.modern.forEach(function(m){
+    html += '<div class="sd-card modern"><div class="sd-head"><span class="sd-icon">'+m.icon+'</span><span class="sd-name">'+m.name+'</span><span class="sd-type modern">দিবস</span></div>';
+    html += '<div class="sd-sig">'+m.message+'</div>';
+    if(m.loveMantra) html += '<div class="sd-mantra">'+m.loveMantra+'</div>';
+    html += '</div>';
+  });
+
+  // বিশেষ যোগ
+  try {
+    var nIdx = _getNakIdx(JD(TODAY.getFullYear(),TODAY.getMonth()+1,TODAY.getDate()) + 0.5);
+    var syogas = checkSpecialYogas(TODAY.getDay(), nIdx);
+    syogas.forEach(function(y){
+      html += '<div class="sd-card yoga"><div class="sd-head"><span class="sd-icon">'+y.icon+'</span><span class="sd-name">'+y.name+'</span><span class="sd-type yoga">বিশেষ যোগ</span></div>';
+      html += '<div class="sd-sig">'+y.significance+'</div>';
+      html += '<div class="sd-works">উপযোগী কাজ: '+y.suitableWork.join(', ')+'</div></div>';
+    });
+  } catch(e){}
+
+  if (!html) html = '<div class="sd-empty">আজ বিশেষ কোনো দিন নেই।</div>';
+  document.getElementById('specialDayList').innerHTML = html;
+}
 
 // ════════════════════════════════════════════════════════
-// SECTION ⑯ — RASHIFAL RENDER (রাশিফল UI তৈরি — চন্দ্র গোচর ভিত্তিক)
-// কাজ: আজকের চন্দ্রের সিদ্ধান্ত অনুযায়ী প্রতিটি রাশির ফল দেখায়
-//   • getMoonRashi()  — আজকের চন্দ্র কোন রাশিতে আছে
-//   • getGocharHouse()— প্রতিটি রাশির জন্য চন্দ্র কত নম্বর ভাবে
-//   • getRF(ri)       — গোচর ভিত্তিক score ও বার্তা
-//   • showRF(ri)      — রাশিফল panel দেখায়
-// পরিবর্তন: UI layout বদলাতে এখানে আসুন
+// SECTION ⑯ — MONTH EVENTS RENDER (মাসের গুরুত্বপূর্ণ দিন)
 // ════════════════════════════════════════════════════════
+function renderMonthEvents() {
+  var days = getBnMonthDays(calIdx);
+  if (!days.length) return;
+  var e = BMS[calIdx];
+  document.getElementById('monthEventsTitle').textContent = '📅 ' + BNM_NAMES[e.m] + ' ' + toBn(e.y) + ' বঙ্গাব্দের গুরুত্বপূর্ণ দিন';
 
-var LCOLS=['লাল','নীল','সবুজ','হলুদ','সাদা','কমলা','বেগুনি','সোনালি','গোলাপি','আকাশি'];
-var LDIRS=['পূর্ব','পশ্চিম','উত্তর','দক্ষিণ','ঈশান','আগ্নেয়'];
+  var rows = [];
+  days.forEach(function(item){
+    var dt = item.date;
+    var ds = dStr(dt);
+    var mmdd = ds.slice(5);
+    var evts = getPanjikaEvents(ds, mmdd);
+    var allEvts = [];
+    evts.festivals.forEach(function(f){ allEvts.push({icon:f.icon, name:f.name, type:'উৎসব'}); });
+    evts.births.forEach(function(b){ allEvts.push({icon:b.icon, name:b.name, type:'জন্মদিন'}); });
+    evts.deaths.forEach(function(d){ allEvts.push({icon:d.icon, name:d.name, type:'তিরোধান'}); });
+    evts.modern.forEach(function(m){ allEvts.push({icon:m.icon, name:m.name, type:'দিবস'}); });
+    if(evts.malmas) allEvts.push({icon:'📿', name:evts.malmas.monthName, type:'মলমাস'});
+    // existing FESTS
+    var fests = getFests(ds);
+    fests.forEach(function(f){
+      if(!evts.festivals.find(function(x){return x.date===ds;}))
+        allEvts.push({icon:f.i, name:f.n, type:'উৎসব'});
+    });
+    allEvts.forEach(function(ev){
+      rows.push({date:dt, bnDay:item.bnDay, event:ev, ds:ds});
+    });
+  });
 
-// আজকের চন্দ্র রাশি গণনা
-function getMoonRashi() {
-  var y=TODAY.getFullYear(), m=TODAY.getMonth()+1, d=TODAY.getDate();
-  var jd=JD(y,m,d)+0.5;
-  var ml=moonL(jd);
-  var AY=lahiriAY(jd);
-  var sid=((ml-AY)%360+360)%360;
-  return Math.floor(sid/30); // 0=মেষ ... 11=মীন
-}
-
-// সব গ্রহের আজকের রাশি
-function getAllPlanetRashi() {
-  var y=TODAY.getFullYear(), m=TODAY.getMonth()+1, d=TODAY.getDate();
-  var jd=JD(y,m,d)+0.5;
-  var AY=lahiriAY(jd);
-  var sid=function(lng){return Math.floor(((lng-AY)%360+360)%360/30);};
-  var rahu=sid(rahuL(jd));
-  return {
-    sun:    sid(sunL(jd)),
-    moon:   sid(moonL(jd)),
-    saturn: sid(saturnL(jd)),
-    jupiter:sid(jupiterL(jd)),
-    rahu:   rahu,
-    ketu:   (rahu+6)%12
-  };
-}
-
-// রাশি ri-এর জন্য চন্দ্র কত নম্বর ভাবে (1–12)
-function getGocharHouse(ri, moonRashi) {
-  return ((moonRashi - ri + 12) % 12) + 1;
-}
-
-// গ্রহ গোচর ফল — সূর্য (মাসিক), শনি (২.৫ বছরিক), রাহু (দেড় বছরিক), বৃহস্পতি (বার্ষিক)
-var SURYA_GOCHAR = [
-  null,
-  {tag:'সতর্কতার মাস',    col:'#c0392b', txt:'সূর্য জন্মরাশিতে — শরীরে চাপ, নেতাদের সাথে সম্পর্কে সাবধান।'},
-  {tag:'আর্থিক চাপ',      col:'#d35400', txt:'বাকশক্তিতে প্রভাব। অর্থ ব্যয়ে সতর্ক।'},
-  {tag:'শুভ মাস',          col:'#27ae60', txt:'সাহস ও উদ্যোগে সাফল্য। ভ্রাতা-সম্পর্কে ভালো।'},
-  {tag:'মানসিক চাপ',      col:'#8e44ad', txt:'মায়ের স্বাস্থ্যে মনোযোগ। গৃহে অস্থিরতা।'},
-  {tag:'শুভ মাস',          col:'#27ae60', txt:'বুদ্ধিমত্তা ও সন্তানের জন্য শুভ।'},
-  {tag:'শত্রু জয়',         col:'#27ae60', txt:'প্রতিপক্ষ পরাজিত। রোগ থেকে মুক্তির যোগ।'},
-  {tag:'দাম্পত্য মনোযোগ', col:'#d35400', txt:'সঙ্গীর স্বাস্থ্যে নজর রাখুন। চুক্তিতে সাবধান।'},
-  {tag:'কঠিন মাস',        col:'#c0392b', txt:'দুর্ঘটনার ভয়। গোপন শত্রু সক্রিয়। সাবধান।'},
-  {tag:'ভাগ্যশালী মাস',   col:'#27ae60', txt:'ধর্মকার্য ও উচ্চশিক্ষায় সাফল্য।'},
-  {tag:'কর্মসাফল্য',       col:'#2980b9', txt:'পদমর্যাদা বৃদ্ধি। সরকারি কাজে সাফল্য।'},
-  {tag:'লাভের মাস',        col:'#1e8449', txt:'আয় বৃদ্ধি, পুরানো পাওনা ফেরত।'},
-  {tag:'ব্যয়ের মাস',       col:'#7f8c8d', txt:'একাকীত্ব। ধর্মীয় কাজে মনোযোগ দিন।'}
-];
-var SHANI_GOCHAR = [
-  null,
-  {tag:'শনির দৃষ্টি — সতর্ক',  col:'#8e44ad', txt:'জন্মরাশিতে শনি (জন্মশনি) — কঠিন সময়। ধৈর্য রাখুন।'},
-  {tag:'অর্থকষ্ট সম্ভব',        col:'#c0392b', txt:'শনি দ্বিতীয়ে — ব্যয় বৃদ্ধি, পরিবারে চাপ।'},
-  {tag:'শুভ শনি গোচর',         col:'#27ae60', txt:'শনি তৃতীয়ে — পরিশ্রমের ফল মিলবে।'},
-  {tag:'মানসিক চাপ',            col:'#d35400', txt:'শনি চতুর্থে — গৃহ ও কর্মে অস্থিরতা।'},
-  {tag:'সাবধানতা দরকার',        col:'#d35400', txt:'শনি পঞ্চমে — সন্তান ও বিনিয়োগে সতর্ক।'},
-  {tag:'শুভ — ঋণমুক্তি',        col:'#27ae60', txt:'শনি ষষ্ঠে — শত্রু পরাজয়, রোগমুক্তি সম্ভব।'},
-  {tag:'দাম্পত্য চাপ',          col:'#c0392b', txt:'শনি সপ্তমে — সম্পর্কে দূরত্ব, মতভেদ।'},
-  {tag:'অত্যন্ত কঠিন',          col:'#c0392b', txt:'শনি অষ্টমে — স্বাস্থ্য ও অর্থে সংকট।'},
-  {tag:'শুভ শনি',                col:'#27ae60', txt:'শনি নবমে — ভাগ্য ও ধর্মে সহায়তা।'},
-  {tag:'কর্মে সাফল্য',           col:'#2980b9', txt:'শনি দশমে — পরিশ্রমের ফল।'},
-  {tag:'লাভের যোগ',             col:'#1e8449', txt:'শনি একাদশে — আয় বৃদ্ধি।'},
-  {tag:'ব্যয় ও একাকীত্ব',      col:'#7f8c8d', txt:'শনি দ্বাদশে — আর্থিক ব্যয়, আধ্যাত্মিক সময়।'}
-];
-var RAHU_GOCHAR = [
-  null,
-  {tag:'রাহু জন্মরাশিতে',     col:'#7b2fbe', txt:'মানসিক বিভ্রান্তি, অস্বাভাবিক ঘটনা সম্ভব।'},
-  {tag:'অর্থ-বাক্ ব্যাঘাত',   col:'#c0392b', txt:'বাকবিতণ্ডা, অর্থহানি সম্ভব।'},
-  {tag:'শুভ রাহু',              col:'#27ae60', txt:'সাহস ও কর্মশক্তি বৃদ্ধি।'},
-  {tag:'গৃহে অশান্তি',          col:'#d35400', txt:'পারিবারিক মতভেদ, মানসিক চাপ।'},
-  {tag:'বিনিয়োগে সতর্ক',      col:'#d35400', txt:'ফাটকায় ক্ষতি সম্ভব।'},
-  {tag:'শত্রু সক্রিয়',          col:'#d35400', txt:'গোপন শত্রু থেকে সাবধান।'},
-  {tag:'সম্পর্কে জটিলতা',      col:'#8e44ad', txt:'দাম্পত্যে বিভ্রান্তি।'},
-  {tag:'রহস্যময় বিপদ',        col:'#c0392b', txt:'অষ্টমে রাহু — অজানা বিপদ থেকে সতর্ক।'},
-  {tag:'শুভ রাহু',              col:'#27ae60', txt:'আধ্যাত্মিক উন্নতি।'},
-  {tag:'কর্মে সাফল্য',          col:'#2980b9', txt:'দশমে রাহু — উচ্চাকাঙ্ক্ষা পূরণ।'},
-  {tag:'আয়-লাভ সম্ভব',        col:'#1e8449', txt:'একাদশে রাহু — অর্থলাভ।'},
-  {tag:'গোপন ব্যয়',            col:'#7f8c8d', txt:'দ্বাদশে রাহু — গোপন শত্রু, বিদেশযোগ।'}
-];
-
-var _moonRashi = getMoonRashi();
-var _allPlanets = getAllPlanetRashi();
-
-function getRF(ri) {
-  var house = getGocharHouse(ri, _moonRashi);
-  var g = GOCHAR[house];
-  var D=TODAY.getDate(), W=TODAY.getDay(), M=TODAY.getMonth();
-  // Lucky info varies by rashi+date for variety
-  return {
-    house: house,
-    gocharLabel: g.label,
-    tag: g.tag,
-    tagCol: g.tagCol,
-    love:    { score: g.score[0], text: g.love },
-    work:    { score: g.score[1], text: g.work },
-    health:  { score: g.score[2], text: g.health },
-    finance: { score: g.score[3], text: g.finance },
-    msg:     g.msg,
-    caution: g.caution,
-    moonRashi: _moonRashi,
-    lucky: {
-      num:   toBn((ri+D*3+W)%9+1),
-      color: LCOLS[(ri*2+D+M)%LCOLS.length],
-      dir:   LDIRS[(ri+W)%LDIRS.length],
-      gem:   RASHIS[ri].gem,
-      time:  W<5?'সকাল ও দুপুর':'বিকাল ও সন্ধ্যা'
-    }
-  };
-}
-
-var actR=-1;
-var RASHI_NAMES=['মেষ','বৃষ','মিথুন','কর্কট','সিংহ','কন্যা','তুলা','বৃশ্চিক','ধনু','মকর','কুম্ভ','মীন'];
-
-function renderRG() {
-  // Moon badge — outside grid, in its own wrapper
-  var moonBadgeEl = document.getElementById('moonBadgeWrap');
-  if (moonBadgeEl) {
-    moonBadgeEl.innerHTML =
-      '<div style="font-size:.72rem;color:var(--txt2);text-align:center;padding:.38rem .9rem;'
-      + 'background:linear-gradient(90deg,rgba(181,134,13,.06),rgba(181,134,13,.12),rgba(181,134,13,.06));'
-      + 'border-radius:20px;border:1px solid rgba(181,134,13,.2);display:inline-flex;align-items:center;'
-      + 'gap:.4rem;width:100%;justify-content:center;box-sizing:border-box;">'
-      + '🌙 আজ চন্দ্র <strong style="color:var(--gold-d);">' + RASHI_NAMES[_moonRashi] + ' রাশিতে</strong> গোচর করছে'
-      + '</div>';
+  if (!rows.length) {
+    document.getElementById('monthEventsList').innerHTML = '<div class="sd-empty">এই মাসে কোনো বিশেষ দিন নেই।</div>';
+    return;
   }
-  // Grid — 12 rashi only, clean 4-column
-  document.getElementById('rg').innerHTML =
-    RASHIS.map(function(r,i){
-      var house = getGocharHouse(i, _moonRashi);
-      var g = GOCHAR[house];
-      var dot = house===11||house===9||house===3?' rg-good':house===1||house===8||house===12?' rg-bad':'';
-      return '<div class="rb' + (i===actR?' act':'') + dot + '" onclick="showRF(' + i + ')">'
-        + '<div class="rb-s">' + r.s + '</div>'
-        + '<div class="rb-n">' + r.n + '</div>'
-        + '<div class="rb-l" style="color:' + g.tagCol + ';font-size:.54rem;font-weight:700;">' + g.tag + '</div>'
-        + '</div>';
-    }).join('');
+
+  var html = '';
+  rows.forEach(function(r){
+    var dayName = VDAYS[r.date.getDay()];
+    html += '<div class="me-row" onclick="showDetail(new Date(\''+r.ds+'\'))">';
+    html += '<span class="me-date">'+toBn(r.date.getDate())+'</span>';
+    html += '<span class="me-icon">'+r.event.icon+'</span>';
+    html += '<span class="me-name">'+r.event.name+'</span>';
+    html += '<span class="me-tag">'+dayName+' · '+r.event.type+'</span>';
+    html += '</div>';
+  });
+  document.getElementById('monthEventsList').innerHTML = html;
 }
 
-function showRF(ri) {
-  actR=ri; renderRG();
-  var r=RASHIS[ri], rf=getRF(ri);
-  var stars=function(s){return'★'.repeat(s)+'☆'.repeat(5-s);};
-  var bc=function(s){return s>=4?'var(--green)':s>=3?'var(--gold)':'var(--red)';};
-  var sc=function(s){return s>=4?'s4':s>=3?'s3':'s2';};
-  var over=Math.round((rf.love.score+rf.work.score+rf.health.score+rf.finance.score)/4);
-  var oL=['','কঠিন দিন','সাধারণ','মধ্যম','ভালো দিন','অত্যন্ত শুভ'];
-  var oC=['','r','r','','g','g'];
-
-  document.getElementById('rfsym').textContent=r.s;
-  document.getElementById('rfn').textContent=r.n+' রাশি';
-  document.getElementById('rfs2').textContent=r.e+' | অধিপতি: '+r.l+' | '+r.el+' | '+r.nat;
-  document.getElementById('rfch').innerHTML=[
-    '<div class="rc ' + oC[over] + '">⭐ '+oL[over]+'</div>',
-    '<div class="rc" style="background:rgba(181,134,13,.08);border-color:rgba(181,134,13,.25);color:'+rf.tagCol+';">🌙 '+rf.gocharLabel+'</div>',
-    '<div class="rc">💎 '+r.gem+'</div>',
-    '<div class="rc">🎨 '+r.col+'</div>'
-  ].join('');
-
-  // Gochar summary banner
-  document.getElementById('rfmsg').innerHTML=
-    '<div style="background:rgba(181,134,13,.06);border:1px solid rgba(181,134,13,.2);border-radius:10px;padding:.65rem .8rem;margin-bottom:.5rem;">'
-    + '<div style="font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:'+rf.tagCol+';margin-bottom:.3rem;">🌙 চন্দ্র গোচর বিচার — আজকের ফল</div>'
-    + '<div style="font-size:.8rem;color:var(--txt);font-weight:600;margin-bottom:.3rem;">'
-    + 'চন্দ্র <strong style="color:'+rf.tagCol+';">' + rf.gocharLabel + '</strong>'
-    + ' &nbsp;→&nbsp; <span style="background:'+rf.tagCol+';color:#fff;border-radius:20px;padding:.12rem .55rem;font-size:.68rem;">'+rf.tag+'</span>'
-    + '</div>'
-    + '<div class="rfmsg-t">' + rf.msg + '</div>'
-    + '</div>';
-
-  document.getElementById('rfcg').innerHTML=[
-    {ico:'💑',title:'প্রেম ও সম্পর্ক',data:rf.love},
-    {ico:'💼',title:'কর্ম ও ব্যবসা',data:rf.work},
-    {ico:'🌿',title:'স্বাস্থ্য',data:rf.health},
-    {ico:'💰',title:'আর্থিক অবস্থা',data:rf.finance}
-  ].map(function(c){
-    return '<div class="rfc"><div class="rfch2"><div class="rfci">'+c.ico+'</div><div class="rfct">'+c.title+'</div>'
-      +'<div class="rfcst '+sc(c.data.score)+'">'+stars(c.data.score)+'</div></div>'
-      +'<div class="rfctx">'+c.data.text+'</div>'
-      +'<div class="rfcbar"><div class="rfcfill" style="width:'+c.data.score*20+'%;background:'+bc(c.data.score)+'"></div></div></div>';
-  }).join('');
-
-  document.getElementById('rflg').innerHTML=[
-    {i:'🔢',l:'ভাগ্য সংখ্যা',v:rf.lucky.num},
-    {i:'🎨',l:'শুভ রং',v:rf.lucky.color},
-    {i:'🧭',l:'শুভ দিক',v:rf.lucky.dir},
-    {i:'💎',l:'রত্নপাথর',v:rf.lucky.gem},
-    {i:'⏰',l:'শুভ সময়',v:rf.lucky.time},
-    {i:'🌙',l:'চন্দ্র রাশি',v:RASHI_NAMES[rf.moonRashi]}
-  ].map(function(x){
-    return '<div class="rfl"><div class="rfli">'+x.i+'</div><div class="rfll">'+x.l+'</div><div class="rflv">'+x.v+'</div></div>';
-  }).join('');
-
-  document.getElementById('rfcau').innerHTML=
-    '<div class="rfcaui">⚠️</div><div><div class="rfcaul">আজকের সতর্কতা</div><div class="rfcaut">'+rf.caution+'</div></div>';
-
-  // ── গ্রহ গোচর strip (সূর্য · শনি · রাহু · বৃহস্পতি) ──
-  var gp = _allPlanets;
-  var mkPG = function(ico, name, planet, gocharArr) {
-    var h = ((planet - ri + 12) % 12) + 1;
-    var g = gocharArr[h];
-    return '<div style="display:flex;align-items:center;gap:.5rem;padding:.35rem .5rem;'
-      + 'background:rgba(0,0,0,.02);border-radius:8px;border-left:3px solid ' + g.col + ';">'
-      + '<span style="font-size:.9rem;">' + ico + '</span>'
-      + '<div style="flex:1;">'
-      + '<div style="font-size:.58rem;font-weight:700;color:' + g.col + ';letter-spacing:.1em;text-transform:uppercase;">'
-      + name + ' গোচর — ' + g.tag + '</div>'
-      + '<div style="font-size:.68rem;color:var(--txt2);line-height:1.4;">' + g.txt + '</div>'
-      + '</div></div>';
-  };
-  var pgHtml = '<div style="margin-top:.6rem;border:1px solid rgba(181,134,13,.15);border-radius:10px;overflow:hidden;">'
-    + '<div style="font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;'
-    + 'color:var(--gold);padding:.4rem .7rem;background:rgba(181,134,13,.06);border-bottom:1px solid rgba(181,134,13,.1);">'
-    + '🪐 গ্রহ গোচর বিচার (আজকের অবস্থান)</div>'
-    + '<div style="padding:.45rem .5rem;display:flex;flex-direction:column;gap:.35rem;">'
-    + mkPG('☀️', 'সূর্য',     gp.sun,     SURYA_GOCHAR)
-    + mkPG('🪐', 'শনি',       gp.saturn,  SHANI_GOCHAR)
-    + mkPG('☊',  'রাহু',      gp.rahu,    RAHU_GOCHAR)
-    + '</div>'
-    + '<div style="font-size:.58rem;color:var(--txt2);padding:.3rem .7rem;text-align:right;'
-    + 'border-top:1px solid rgba(181,134,13,.08);">'
-    + '☀️ ' + RASHI_NAMES[gp.sun] + ' · 🪐 শনি ' + RASHI_NAMES[gp.saturn]
-    + ' · ☊ রাহু ' + RASHI_NAMES[gp.rahu] + ' · ♃ বৃহস্পতি ' + RASHI_NAMES[gp.jupiter] + '</div>'
-    + '</div>';
-  var pgEl = document.getElementById('rfpg');
-  if (pgEl) pgEl.innerHTML = pgHtml;
-
-  document.getElementById('rfr').classList.add('show');
-  setTimeout(function(){document.getElementById('rfr').scrollIntoView({behavior:'smooth',block:'nearest'});},200);
+// ════════════════════════════════════════════════════════
+// SECTION ⑰ — GUIDE CARDS (শুভ সময় গাইড)
+// ════════════════════════════════════════════════════════
+function renderGuideCards() {
+  var guides = PANJIKA_DATA.auspiciousGuides;
+  var html = '';
+  Object.keys(guides).forEach(function(key){
+    var g = guides[key];
+    html += '<div class="guide-card" onclick="toggleGuide(this)">';
+    html += '<div class="guide-card-head"><span class="guide-card-ico">'+g.icon+'</span><span class="guide-card-title">'+g.title+'</span></div>';
+    html += '<div class="guide-good-days">✅ শুভ বার: '+g.goodDays.join(', ')+'</div>';
+    html += '<div class="guide-good-naks">⭐ শুভ নক্ষত্র: '+g.goodNakshatras.slice(0,5).join(', ')+(g.goodNakshatras.length>5?' …':'')+'</div>';
+    html += '<div class="guide-expand">';
+    html += '<div class="guide-row">';
+    html += '<div><div class="guide-label">শুভ তিথি</div><div class="guide-val good">'+g.goodTithis.join(', ')+'</div></div>';
+    html += '<div><div class="guide-label">শুভ লগ্ন</div><div class="guide-val good">'+(g.goodLagnas||[]).join(', ')+'</div></div>';
+    html += '</div>';
+    if(g.badDays) html += '<div style="margin-bottom:.3rem;"><div class="guide-label">বর্জনীয় বার</div><div class="guide-val bad">'+g.badDays.join(', ')+'</div></div>';
+    if(g.badTithis) html += '<div style="margin-bottom:.3rem;"><div class="guide-label">বর্জনীয় তিথি</div><div class="guide-val bad">'+g.badTithis.join(', ')+'</div></div>';
+    html += '<div class="guide-mantra">'+g.mantra+'</div>';
+    html += '<p style="font-size:.7rem;color:var(--txt2);margin-top:.5rem;line-height:1.55;">'+g.procedure+'</p>';
+    html += '</div>';
+    html += '</div>';
+  });
+  document.getElementById('guideGrid').innerHTML = html;
 }
-// SECTION ⑰ — INIT (পেজ লোড হলে প্রথমে চালু হয়)
-// কাজ: সব component একবার render করে পেজ চালু করে
-// পরিবর্তন: সাধারণত দরকার নেই
+function toggleGuide(el) {
+  var exp = el.querySelector('.guide-expand');
+  exp.classList.toggle('show');
+}
+
+// ════════════════════════════════════════════════════════
+// SECTION ⑱ — AUSPICIOUS COUNTER (শুভ দিনের কাউন্টার)
+// ════════════════════════════════════════════════════════
+var SHUBHA_TITHIS_VIVAH = [1,2,4,6,9,10,12]; // 0-indexed (দ্বিতীয়া=1...)
+var SHUBHA_TITHIS_GRIHA  = [0,1,2,4,6,9,10,12];
+var SHUBHA_NAKS_VIVAH   = [3,4,7,12,13,14,16,11,20,25,26];
+var SHUBHA_NAKS_GRIHA   = [3,4,7,12,13,11,20,25,26];
+var SHUBHA_NAKS_NIRMAN  = [3,4,7,12,13,11,20,25,26];
+var SHUBHA_NAKS_GARB    = [0,3,6,7,12,13,14,16,11,20,25,26];
+var SHUBHA_NAKS_BIZ     = [0,7,12,16,18,11,26];
+var SHUBHA_NAKS_TRAVEL  = [0,7,14,12,16,18,26];
+var BAD_DAYS_VW = [2,6]; // মঙ্গল, শনি (0=রবি)
+var BAD_TITHIS_GEN = [14,7,8,29]; // চতুর্দশী,অষ্টমী,নবমী,অমাবস্যা
+
+function _isMalmasDt(dt) {
+  var t = dt.getTime();
+  return PANJIKA_DATA.malmas.some(function(ml){
+    return t >= new Date(ml.startDate+'T00:00:00').getTime() && t <= new Date(ml.endDate+'T23:59:59').getTime();
+  });
+}
+
+function _isShubhaDay(dt, nakNeed, tithiNeed) {
+  if (BAD_DAYS_VW.includes(dt.getDay())) return false;
+  if (_isMalmasDt(dt)) return false;
+  try {
+    var c = calcDay(dt);
+    var ti = c.tithiList[0].val;
+    var tN = ti.pakDay - 1 + (ti.paksha==='কৃষ্ণপক্ষ' ? 15 : 0);
+    if (BAD_TITHIS_GEN.includes(tN)) return false;
+    if (tithiNeed && !tithiNeed.includes(tN)) return false;
+    var nIdx = c.nakList[0].val ? NAKS.findIndex(function(n){return n[0]===c.nakList[0].val.name;}) : -1;
+    if (nIdx === -1) return false;
+    if (nakNeed && !nakNeed.includes(nIdx)) return false;
+    return true;
+  } catch(e){ return false; }
+}
+
+function _getMonthShubhaDays(nakNeed, tithiNeed, extraBadDays) {
+  var days = getBnMonthDays(calIdx);
+  return days.filter(function(item){
+    if (extraBadDays && extraBadDays.includes(item.date.getDay())) return false;
+    return _isShubhaDay(item.date, nakNeed, tithiNeed);
+  });
+}
+
+function renderAuspiciousCounter() {
+  var CATS = [
+    {label:'বিবাহের শুভ দিন', icon:'💒', nakNeed:SHUBHA_NAKS_VIVAH, tithiNeed:SHUBHA_TITHIS_VIVAH},
+    {label:'গৃহপ্রবেশের শুভ দিন', icon:'🏠', nakNeed:SHUBHA_NAKS_GRIHA, tithiNeed:SHUBHA_TITHIS_GRIHA},
+    {label:'গৃহ নির্মাণের শুভ দিন', icon:'🏗️', nakNeed:SHUBHA_NAKS_NIRMAN, tithiNeed:SHUBHA_TITHIS_GRIHA},
+    {label:'গর্ভধারণের শুভ দিন', icon:'🤰', nakNeed:SHUBHA_NAKS_GARB, tithiNeed:null},
+    {label:'ব্যবসা শুরুর শুভ দিন', icon:'💼', nakNeed:SHUBHA_NAKS_BIZ, tithiNeed:null},
+    {label:'যাত্রার শুভ দিন', icon:'✈️', nakNeed:SHUBHA_NAKS_TRAVEL, tithiNeed:null},
+  ];
+  var html = '';
+  CATS.forEach(function(cat, ci){
+    var result = _getMonthShubhaDays(cat.nakNeed, cat.tithiNeed);
+    html += '<div class="ac-card" onclick="openAcModal('+ci+')">';
+    html += '<div class="ac-ico">'+cat.icon+'</div>';
+    html += '<div class="ac-count">'+toBn(result.length)+'</div>';
+    html += '<div class="ac-label">'+cat.label+'</div>';
+    html += '</div>';
+  });
+  document.getElementById('acGrid').innerHTML = html;
+}
+
+var _acCats = [
+  {label:'বিবাহের শুভ দিন', icon:'💒', nakNeed:SHUBHA_NAKS_VIVAH, tithiNeed:SHUBHA_TITHIS_VIVAH},
+  {label:'গৃহপ্রবেশের শুভ দিন', icon:'🏠', nakNeed:SHUBHA_NAKS_GRIHA, tithiNeed:SHUBHA_TITHIS_GRIHA},
+  {label:'গৃহ নির্মাণের শুভ দিন', icon:'🏗️', nakNeed:SHUBHA_NAKS_NIRMAN, tithiNeed:SHUBHA_TITHIS_GRIHA},
+  {label:'গর্ভধারণের শুভ দিন', icon:'🤰', nakNeed:SHUBHA_NAKS_GARB, tithiNeed:null},
+  {label:'ব্যবসা শুরুর শুভ দিন', icon:'💼', nakNeed:SHUBHA_NAKS_BIZ, tithiNeed:null},
+  {label:'যাত্রার শুভ দিন', icon:'✈️', nakNeed:SHUBHA_NAKS_TRAVEL, tithiNeed:null},
+];
+
+function openAcModal(catIdx) {
+  var cat = _acCats[catIdx];
+  var days = _getMonthShubhaDays(cat.nakNeed, cat.tithiNeed);
+  document.getElementById('acModalTitle').textContent = cat.icon + ' ' + cat.label;
+  var html = '';
+  if (!days.length) {
+    html = '<p style="font-size:.82rem;color:var(--txt2);padding:.5rem;">এই মাসে শুভ দিন নেই।</p>';
+  } else {
+    days.forEach(function(item){
+      var c = calcDay(item.date);
+      var ds = dStr(item.date);
+      html += '<div class="ac-day-row" onclick="closeAcModal();showDetail(new Date(\''+ds+'\'))">';
+      html += '<span class="ac-day-date">'+item.date.getDate()+' '+EMSh[item.date.getMonth()]+'</span>';
+      html += '<span class="ac-day-info">'+VDAYS[item.date.getDay()]+' | '+c.tName+' | '+c.nak[0]+'</span>';
+      html += '</div>';
+    });
+  }
+  document.getElementById('acModalBody').innerHTML = html;
+  document.getElementById('acModalOverlay').classList.add('open');
+}
+function closeAcModal() {
+  document.getElementById('acModalOverlay').classList.remove('open');
+}
+
+// ════════════════════════════════════════════════════════
+// SECTION ⑲ — BIRTH RASHI CALCULATOR (জন্মরাশি নির্ধারণ)
+// ════════════════════════════════════════════════════════
+var RASHI_NAMES_FULL=['মেষ','বৃষ','মিথুন','কর্কট','সিংহ','কন্যা','তুলা','বৃশ্চিক','ধনু','মকর','কুম্ভ','মীন'];
+var RASHI_LORDS=['মঙ্গল','শুক্র','বুধ','চন্দ্র','সূর্য','বুধ','শুক্র','মঙ্গল','গুরু','শনি','শনি','গুরু'];
+var LAGNA_NAMES=['মেষ','বৃষ','মিথুন','কর্কট','সিংহ','কন্যা','তুলা','বৃশ্চিক','ধনু','মকর','কুম্ভ','মীন'];
+var MANGAL_DOSHA_LAGNA=[0,3,6,7]; // মেষ,কর্কট,তুলা,বৃশ্চিক লগ্নে মঙ্গল ১/৪/৭/৮/১২তে
+
+function _calcBirthData(dateStr, hourF, lat, lng) {
+  var parts = dateStr.split('-');
+  var y=+parts[0], m=+parts[1], d=+parts[2];
+  var tz = 5.5; // IST
+  var jd = JD(y,m,d) + (hourF - tz)/24;
+  var ay = lahiriAY(jd);
+  var ml = moonL(jd);
+  var sl = sunL(jd);
+  var moonSid = ((ml - ay) % 360 + 360) % 360;
+  var sunSid  = ((sl - ay) % 360 + 360) % 360;
+  var moonRashi = Math.floor(moonSid / 30);
+  var sunRashi  = Math.floor(sunSid  / 30);
+  var nakIdx    = Math.floor(moonSid / (360/27)) % 27;
+  // লগ্ন গণনা (approximate — RAMC based)
+  var st = sunTimes(y, m, d);
+  var st2 = {rise: st.rise, set: st.set};
+  // Ascendant approx: sidereal time
+  var jd0 = JD(y,m,d) + 0.5;
+  var T = (jd0 - 2451545)/36525;
+  var GMST = (280.46061837 + 360.98564736629*(jd0-2451545) + 0.000387933*T*T) % 360;
+  var LMST = ((GMST + lng) % 360 + 360) % 360;
+  var RA_MC = LMST;
+  var eps = 23.439 * Math.PI/180;
+  var mc_ecl = Math.atan2(Math.sin(RA_MC*Math.PI/180), Math.cos(RA_MC*Math.PI/180)*Math.cos(eps))*180/Math.PI;
+  var latR = lat*Math.PI/180;
+  var ascRad = Math.atan2(Math.cos(mc_ecl*Math.PI/180), -Math.sin(mc_ecl*Math.PI/180)*Math.cos(eps) - Math.tan(latR)*Math.sin(eps));
+  var ascTrop = ((ascRad*180/Math.PI) + 180 + 360) % 360;
+  var ascSid = ((ascTrop - ay) % 360 + 360) % 360;
+  var lagnaRashi = Math.floor(ascSid / 30);
+  // মঙ্গল দোষ পরীক্ষা
+  var marsPos = Math.floor((((saturnL(jd)-ay)%360+360)%360)/30); // approximate using saturn fn
+  // rough Mars calculation
+  var T2=(jd-2451545)/36525;
+  var marsL = ((355.433 + 19140.2993+0.0003*T2)*T2 % 360 + 360) % 360;
+  var marsSid = ((marsL - ay) % 360 + 360) % 360;
+  var marsRashi = Math.floor(marsSid / 30);
+  var marsHouse = ((marsRashi - lagnaRashi + 12) % 12) + 1;
+  var hasMangalDosha = [1,4,7,8,12].includes(marsHouse);
+  return {moonRashi, sunRashi, nakIdx, lagnaRashi, hasMangalDosha, marsHouse, moonDeg: moonSid.toFixed(2)};
+}
+
+function _showBirthResult(data, elId) {
+  var html = '<div class="calc-result-head">🔮 জন্মরাশি নির্ধারণ ফলাফল</div>';
+  html += '<div class="calc-result-grid">';
+  html += '<div class="calc-result-item"><div class="lbl">জন্মরাশি (চন্দ্র)</div><div class="val">'+RASHI_NAMES_FULL[data.moonRashi]+'</div></div>';
+  html += '<div class="calc-result-item"><div class="lbl">জন্মনক্ষত্র</div><div class="val">'+NAKS[data.nakIdx][0]+'</div></div>';
+  html += '<div class="calc-result-item"><div class="lbl">জন্মলগ্ন</div><div class="val">'+LAGNA_NAMES[data.lagnaRashi]+'</div></div>';
+  html += '<div class="calc-result-item"><div class="lbl">সূর্যরাশি</div><div class="val">'+RASHI_NAMES_FULL[data.sunRashi]+'</div></div>';
+  html += '<div class="calc-result-item"><div class="lbl">রাশির অধিপতি</div><div class="val">'+RASHI_LORDS[data.moonRashi]+'</div></div>';
+  html += '<div class="calc-result-item"><div class="lbl">নক্ষত্রের অধিপতি</div><div class="val">'+NAKS[data.nakIdx][1]+'</div></div>';
+  html += '</div>';
+  html += '<div style="margin-top:.6rem;padding:.5rem .65rem;border-radius:9px;font-size:.72rem;line-height:1.6;background:'+(data.hasMangalDosha?'rgba(181,32,32,.06)':'rgba(37,102,37,.06)')+';border:1px solid '+(data.hasMangalDosha?'rgba(181,32,32,.18)':'rgba(37,102,37,.18)')+';color:var(--txt);">';
+  html += (data.hasMangalDosha ? '⚠️ <strong>মঙ্গল দোষ আছে</strong> ('+data.marsHouse+' নম্বর ভাবে মঙ্গল) — বিবাহের আগে বিশেষ পরামর্শ নিন।' : '✅ মঙ্গল দোষ নেই।');
+  html += '</div>';
+  var el = document.getElementById(elId);
+  el.innerHTML = html;
+  el.classList.add('show');
+}
+
+function calcBirthRashiMain() {
+  var d = document.getElementById('birthDateMain').value;
+  var h = +document.getElementById('birthHourMain').value || 6;
+  var mn = +document.getElementById('birthMinMain').value || 0;
+  var lat = +document.getElementById('birthLatMain').value || LAT;
+  var lng = +document.getElementById('birthLngMain').value || LNG;
+  if (!d) { alert('জন্ম তারিখ দিন।'); return; }
+  try { var data = _calcBirthData(d, h + mn/60, lat, lng); _showBirthResult(data, 'birthResultMain'); }
+  catch(e) { document.getElementById('birthResultMain').innerHTML = '<p style="color:red">গণনায় ত্রুটি: '+e.message+'</p>'; document.getElementById('birthResultMain').classList.add('show'); }
+}
+function calcBirthRashi2() {
+  var d = document.getElementById('birthDate2').value;
+  var h = +document.getElementById('birthHour2').value || 6;
+  var mn = +document.getElementById('birthMin2').value || 0;
+  var lat = +document.getElementById('birthLat2').value || LAT;
+  var lng = +document.getElementById('birthLng2').value || LNG;
+  if (!d) { alert('জন্ম তারিখ দিন।'); return; }
+  try { var data = _calcBirthData(d, h + mn/60, lat, lng); _showBirthResult(data, 'birthResult2'); }
+  catch(e) { document.getElementById('birthResult2').innerHTML = '<p style="color:red">ত্রুটি: '+e.message+'</p>'; document.getElementById('birthResult2').classList.add('show'); }
+}
+
+// ════════════════════════════════════════════════════════
+// SECTION ⑳ — DEATH DOSHA CALCULATOR (মৃত্যু দোষ গণনা)
+// ════════════════════════════════════════════════════════
+function _calcDeathData(dateStr, hourF) {
+  var dt = new Date(dateStr + 'T00:00:00');
+  var c = calcDay(dt);
+  // দশাহ (১০ দিন সূতক)
+  var dashaha = new Date(dt); dashaha.setDate(dashaha.getDate() + 10);
+  // তেরো দিন
+  var thirteenth = new Date(dt); thirteenth.setDate(thirteenth.getDate() + 13);
+  // মাসিক শ্রাদ্ধ (মৃত্যু তিথিতে প্রতি মাসে)
+  var tithiName = c.tName;
+  var paksha = c.paksha;
+  // বার্ষিক শ্রাদ্ধ (মৃত্যু তিথিতে পরের বছর)
+  var nextYear = new Date(dt); nextYear.setFullYear(nextYear.getFullYear()+1);
+  var shraddhaYear = nextYear.toLocaleDateString('bn-IN',{day:'numeric',month:'long',year:'numeric'});
+  // সূতক কাল
+  var sutakEnd = new Date(dashaha);
+  return {c, tithiName, paksha, dashahaDate:dashaha, thirteenth, shraddhaYear, sutakEnd};
+}
+
+function _showDeathResult(data, elId) {
+  var html = '<div class="calc-result-head">📿 মৃত্যু দোষ ও পিণ্ডদান ফলাফল</div>';
+  html += '<div class="calc-result-grid">';
+  html += '<div class="calc-result-item"><div class="lbl">মৃত্যুর তিথি</div><div class="val">'+data.c.paksha.slice(0,2)+' '+data.tithiName+'</div></div>';
+  html += '<div class="calc-result-item"><div class="lbl">মৃত্যুর বার</div><div class="val">'+data.c.vara+'</div></div>';
+  html += '<div class="calc-result-item"><div class="lbl">দশাহ শেষ</div><div class="val">'+data.dashahaDate.toLocaleDateString('bn-IN')+'</div></div>';
+  html += '<div class="calc-result-item"><div class="lbl">তেরোদিন</div><div class="val">'+data.thirteenth.toLocaleDateString('bn-IN')+'</div></div>';
+  html += '</div>';
+  html += '<div style="margin-top:.6rem;padding:.6rem .7rem;border-radius:9px;background:rgba(181,134,13,.06);border:1px solid rgba(181,134,13,.18);font-size:.72rem;line-height:1.7;color:var(--txt);">';
+  html += '<div style="font-weight:700;color:var(--gold-d);margin-bottom:.3rem;">📿 পিণ্ডদান ও তর্পণ বিধি</div>';
+  html += '• সূতক কাল দশাহ পর্যন্ত। এর মধ্যে কোনো শুভ কাজ করবেন না।<br>';
+  html += '• ১০ দিনের দিন দশাহ ক্রিয়া সম্পন্ন করুন।<br>';
+  html += '• ১৩তম দিনে তেরো পিণ্ড দান করুন।<br>';
+  html += '• প্রতি মাসে মৃত্যু তিথিতে ('+data.paksha.slice(0,2)+' '+data.tithiName+') মাসিক শ্রাদ্ধ করুন।<br>';
+  html += '• মৃত্যুর এক বছর পরে বার্ষিক শ্রাদ্ধ: '+data.shraddhaYear+'।<br>';
+  html += '• গয়া পিণ্ডদান করলে বিশেষ মুক্তি লাভ হয়।<br>';
+  html += '• তর্পণ মন্ত্র: <em>ওঁ আগচ্ছন্তু মে পিতরঃ সর্বে</em>';
+  html += '</div>';
+  var el = document.getElementById(elId);
+  el.innerHTML = html;
+  el.classList.add('show');
+}
+
+function calcDeathDoshaMain() {
+  var d = document.getElementById('deathDateMain').value;
+  var h = +document.getElementById('deathHourMain').value || 0;
+  if (!d) { alert('মৃত্যুর তারিখ দিন।'); return; }
+  try { var data = _calcDeathData(d, h); _showDeathResult(data, 'deathResultMain'); }
+  catch(e) { document.getElementById('deathResultMain').innerHTML = '<p style="color:red">ত্রুটি: '+e.message+'</p>'; document.getElementById('deathResultMain').classList.add('show'); }
+}
+function calcDeathDosha2() {
+  var d = document.getElementById('deathDate2').value;
+  var h = +document.getElementById('deathHour2').value || 0;
+  if (!d) { alert('মৃত্যুর তারিখ দিন।'); return; }
+  try { var data = _calcDeathData(d, h); _showDeathResult(data, 'deathResult2'); }
+  catch(e) { document.getElementById('deathResult2').innerHTML = '<p style="color:red">ত্রুটি: '+e.message+'</p>'; document.getElementById('deathResult2').classList.add('show'); }
+}
+
+// ════════════════════════════════════════════════════════
+// SECTION ㉑ — UPDATED showDetail (৭ ট্যাব সহ)
+// ════════════════════════════════════════════════════════
+function showDetail(date) {
+  if (!(date instanceof Date)) { date = new Date(date); }
+  selDate = date;
+  renderCal();
+  var c = calcDay(date), bn = c.bn;
+  var y = date.getFullYear(), mo = date.getMonth(), d = date.getDate();
+  document.getElementById('dtbn').textContent = bn ? toBn(bn.d) + ' ' + bn.name + ' ' + toBn(bn.y) + ' বঙ্গাব্দ' : '';
+  document.getElementById('dten').textContent = d + ' ' + EMS[mo] + ' ' + y + ' | ' + c.vara + ' | ' + (bn ? bn.ritu + ' ঋতু' : '');
+  document.getElementById('dtmoon').textContent = moonEmoji(c.tN);
+  document.getElementById('dtpaksha').textContent = c.paksha + ' — ' + c.tName + ' (' + toBn(c.pakDay) + ' তিথি)';
+  document.getElementById('dtvara').textContent = 'বার-অধিপতি: ' + c.varaL;
+  var pct = c.tN <= 15 ? (c.tN / 15 * 100) : ((30 - c.tN) / 15 * 100);
+  document.getElementById('dtprog').style.width = pct + '%';
+  document.getElementById('dtplbl').textContent = c.tN <= 15 ? 'পূর্ণিমা পর্যন্ত ' + toBn(15 - c.tN) + ' তিথি' : 'অমাবস্যা পর্যন্ত ' + toBn(30 - c.tN) + ' তিথি';
+
+  // ── ট্যাব ০: পঞ্চাঙ্গ ──
+  var extraItems = [{i:'☀️',l:'বার',v:c.vara,s:'অধিপতি: '+c.varaL},{i:'🌿',l:'ঋতু',v:bn?bn.ritu:'—',s:bn?bn.name+' মাস':''},{i:'📅',l:'বিক্রম সম্বত',v:bn?toBn(bn.vikram):'—',s:''},{i:'🕉️',l:'শক সম্বত',v:bn?toBn(bn.saka):'—',s:''}];
+  var extraHtml = '';
+  for (var xi = 0; xi < extraItems.length; xi++) {
+    var x = extraItems[xi];
+    extraHtml += '<div class="di"><div class="dii">'+x.i+'</div><div class="dil">'+x.l+'</div><div class="div2">'+x.v+'</div>'+(x.s?'<div class="dis">'+x.s+'</div>':'')+'</div>';
+  }
+  document.getElementById('dtpan').innerHTML =
+    _panItem('🌙','তিথি',c.tithiList,function(v){return v.pakShort+' '+v.name;},function(v){return v.paksha;})+
+    _panItem('⭐','নক্ষত্র',c.nakList,function(v){return v.name;},function(v){return 'অধিপতি: '+v.lord;})+
+    _panItem('🌟','যোগ',c.yogaList,function(v){return v.name;},function(v){return v.sym==='✓'?'শুভ যোগ':'অশুভ যোগ';})+
+    _panItem('🎴','করণ',c.karanList,function(v){return v.name;},null)+extraHtml;
+  var rh=Math.floor(c.st.rise),rm=Math.round((c.st.rise-rh)*60);
+  var sh=Math.floor(c.st.set),sm=Math.round((c.st.set-sh)*60);
+  var row1=[{ico:'🌅',cls:'shubha',l:'সূর্যোদয়',v:fmtT(rh,rm)},{ico:'🌇',cls:'',l:'সূর্যাস্ত',v:fmtT(sh,sm)},{ico:'🌄',cls:'shubha',l:'ব্রাহ্ম মুহূর্ত',v:_brahmaT(c.st.rise)}];
+  var row2=[{ico:'⚡',cls:'rahu',l:'রাহুকাল',v:c.rahu},{ico:'🕯️',cls:'rahu',l:'গুলিকাকাল',v:c.gulika},{ico:'💫',cls:'shubha',l:'অভিজিৎ মুহূর্ত',v:c.abhi},{ico:'🔥',cls:'',l:'যমঘণ্ট',v:c.yam}];
+  var mkCard=function(t){return '<div class="dtime '+t.cls+'"><div class="dtl">'+t.ico+' '+t.l+'</div><div class="dtv">'+t.v+'</div></div>';};
+  document.getElementById('dttimes').innerHTML=
+    '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.52rem;margin-bottom:.52rem;">'+row1.map(mkCard).join('')+'</div>'+
+    '<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.52rem;">'+row2.map(mkCard).join('')+'</div>';
+
+  // ── ট্যাব ১: শুভ সময় ──
+  var ds2 = dStr(date);
+  var isGood = !BAD_DAYS_VW.includes(date.getDay()) && !_isMalmasDt(date);
+  var tN = c.tN, nakName = c.nak[0], nakIdx2 = NAKS.findIndex(function(n){return n[0]===nakName;});
+  var shubhaHtml = '';
+  var GUIDE = PANJIKA_DATA.auspiciousGuides;
+  Object.keys(GUIDE).forEach(function(key){
+    var g = GUIDE[key];
+    var goodNak = nakIdx2>=0 && g.goodNakshatras && g.goodNakshatras.includes(nakName);
+    var badTithi = g.badTithis && g.badTithis.some(function(bt){ return c.tName.includes(bt) || (bt==='অমাবস্যা'&&c.tN===30) || (bt==='পূর্ণিমা'&&c.tN===15); });
+    var goodDay = !g.badDays || !g.badDays.includes(c.vara);
+    var status = (!isGood || badTithi) ? 'bad' : (goodNak && goodDay) ? 'good' : 'neutral';
+    var badgeText = status==='good' ? '✅ শুভ' : status==='bad' ? '❌ অশুভ' : '⚠️ মধ্যম';
+    shubhaHtml += '<div class="shubha-row"><div class="shubha-row-head">';
+    shubhaHtml += '<span class="shubha-ico">'+g.icon+'</span><span class="shubha-name">'+g.title+'</span>';
+    shubhaHtml += '<span class="shubha-badge '+status+'">'+badgeText+'</span></div>';
+    if (status==='good') shubhaHtml += '<div class="shubha-detail">আজকের নক্ষত্র ('+nakName+') ও বার এই কাজের জন্য শুভ।</div>';
+    else if (status==='bad') shubhaHtml += '<div class="shubha-detail">আজ '+c.vara+' বা তিথি ('+c.tName+') এই কাজের জন্য প্রতিকূল।</div>';
+    else shubhaHtml += '<div class="shubha-detail">মিশ্র যোগ। Dr. Prodyut Acharya-র সাথে পরামর্শ করুন।</div>';
+    shubhaHtml += '</div>';
+  });
+  document.getElementById('dtshubha').innerHTML = shubhaHtml;
+
+  // ── ট্যাব ২: উৎসব ──
+  var festHtml2 = _festHtml(c);
+  var evts2 = getPanjikaEvents(ds2, ds2.slice(5));
+  var specHtml = '';
+  evts2.festivals.forEach(function(f){ specHtml += '<div class="fi"><div class="fiico">'+f.icon+'</div><div class="fin">'+f.name+'</div></div>'; });
+  evts2.births.forEach(function(b){ specHtml += '<div class="fi"><div class="fiico">'+b.icon+'</div><div class="fin">'+b.name+' — জন্মদিন ('+b.birthYear+')</div></div>'; });
+  evts2.deaths.forEach(function(d2){ specHtml += '<div class="fi"><div class="fiico">'+d2.icon+'</div><div class="fin">'+d2.name+' — তিরোধান ('+d2.deathYear+')</div></div>'; });
+  evts2.modern.forEach(function(m){ specHtml += '<div class="fi"><div class="fiico">'+m.icon+'</div><div class="fin">'+m.name+'</div></div>'; });
+  try {
+    var nIdx3 = _getNakIdx(JD(y,mo+1,d)+0.5);
+    var syogas2 = checkSpecialYogas(date.getDay(), nIdx3);
+    syogas2.forEach(function(yg){ specHtml += '<div class="fi"><div class="fiico">'+yg.icon+'</div><div class="fin">'+yg.name+'</div></div>'; });
+  } catch(e){}
+  document.getElementById('dtfests').innerHTML = festHtml2;
+  document.getElementById('dtspecial').innerHTML = specHtml || '';
+
+  // ── ট্যাব ৩: মন্ত্র ও বিধি ──
+  var mantraHtml = '';
+  var mantraEvts = evts2.festivals.concat(evts2.births.map(function(b){return {name:b.name, mantra:'', pujaVidhi:b.message};}));
+  if (evts2.malmas) mantraEvts.push({name:evts2.malmas.monthName, mantra:evts2.malmas.mantra, pujaVidhi:evts2.malmas.do.join(', ')});
+  if (mantraEvts.length) {
+    mantraEvts.forEach(function(f){
+      if(f.mantra||f.pujaVidhi){
+        mantraHtml += '<div class="sd-card festival" style="margin:.42rem 1.2rem;"><div class="sd-name">'+f.name+'</div>';
+        if(f.mantra) mantraHtml += '<div class="sd-mantra">🕉️ মন্ত্র: '+f.mantra+'</div>';
+        if(f.pujaVidhi) mantraHtml += '<div class="sd-sig" style="margin-top:.3rem;">📿 বিধি: '+f.pujaVidhi+'</div>';
+        mantraHtml += '</div>';
+      }
+    });
+  }
+  var yogaMantras={'বিষ্কুম্ভ':'আজ বিশ্রাম নিন। নতুন কাজ শুরু করবেন না।','প্রীতি':'সম্পর্ক মধুর হয়। প্রিয়জনের সাথে সময় কাটান।','সৌভাগ্য':'আজ ভাগ্য সহায়। নতুন উদ্যোগ নিন।','সিদ্ধি':'কাজে সিদ্ধি লাভ হবে।','শুভ':'সব শুভ কাজের জন্য আদর্শ দিন।','ধ্রুব':'স্থায়ী সিদ্ধান্ত নেওয়ার দিন।','বৃদ্ধি':'উন্নতির যোগ।','বৈধৃতি':'শুভ কাজ এড়িয়ে চলুন।','ব্যতীপাত':'সতর্কতার দিন।'};
+  var yName = c.yogaList[0].val.name;
+  if (yogaMantras[yName]) mantraHtml += '<div class="fi" style="margin:.42rem 1.2rem;"><div class="fiico">🌟</div><div class="fin">'+yName+' যোগ — '+yogaMantras[yName]+'</div></div>';
+  if (!mantraHtml) mantraHtml = '<div class="nofest" style="margin:1rem;">আজকের বিশেষ মন্ত্র বা বিধি নেই।</div>';
+  document.getElementById('dtmantra').innerHTML = mantraHtml;
+
+  // ── ট্যাব ৪: মলমাস ──
+  var malmasHtml = '';
+  if (evts2.malmas) {
+    var ml = evts2.malmas;
+    malmasHtml += '<div class="sd-card malmas" style="margin:.6rem 1.2rem 0;"><div class="sd-head"><span class="sd-icon">📿</span><span class="sd-name">'+ml.monthName+'</span></div>';
+    malmasHtml += '<div class="sd-sig">'+ml.significance+'</div>';
+    malmasHtml += '<div style="margin-top:.4rem;"><div style="color:var(--green);font-size:.7rem;font-weight:700;margin-bottom:.18rem;">✅ করণীয়:</div>';
+    ml.do.forEach(function(d3){ malmasHtml += '<div style="font-size:.72rem;color:var(--txt);padding:.1rem 0;">• '+d3+'</div>'; });
+    malmasHtml += '</div><div style="margin-top:.35rem;"><div style="color:var(--red);font-size:.7rem;font-weight:700;margin-bottom:.18rem;">❌ বর্জনীয়:</div>';
+    ml.dont.forEach(function(d4){ malmasHtml += '<div style="font-size:.72rem;color:var(--txt);padding:.1rem 0;">• '+d4+'</div>'; });
+    malmasHtml += '</div><div class="sd-mantra" style="margin-top:.4rem;">'+ml.mantra+'</div></div>';
+    malmasHtml += '<div style="font-size:.7rem;color:var(--txt2);padding:.5rem 1.2rem;">সময়কাল: '+ml.startDate+' থেকে '+ml.endDate+'</div>';
+  } else {
+    malmasHtml = '<div class="nofest" style="margin:1rem;">এই দিনে মলমাস নেই।</div>';
+  }
+  document.getElementById('dtmalmas').innerHTML = malmasHtml;
+
+  // পেন ৫ ও ৬ (ক্যালকুলেটর) — ফর্ম রিসেট
+  ['birthResult2','deathResult2'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el){el.classList.remove('show');el.innerHTML='';}
+  });
+  if(document.getElementById('birthDate2')) document.getElementById('birthDate2').value = dStr(date);
+
+  // ট্যাব ০ activate
+  document.querySelectorAll('.dtab').forEach(function(t,i){t.classList.toggle('act',i===0);});
+  document.querySelectorAll('.dtab-pane').forEach(function(p,i){p.classList.toggle('show',i===0);});
+
+  var p = document.getElementById('dtp');
+  p.classList.add('show');
+  if (!_initLoad) { setTimeout(function(){ p.scrollIntoView({behavior:'smooth', block:'start'}); }, 100); }
+}
+function closeD() { document.getElementById('dtp').classList.remove('show'); selDate = null; renderCal(); }
+
+// ════════════════════════════════════════════════════════
+// SECTION ㉒ — UPDATED renderCal (ইভেন্ট আইকন সহ)
+// ════════════════════════════════════════════════════════
+// override renderCal to add event icons from PANJIKA_DATA
+var _origRenderCal = renderCal;
+function renderCal(){
+  var days=getBnMonthDays(calIdx);
+  if(!days.length)return;
+  var e=BMS[calIdx];
+  var f=days[0].date,l=days[days.length-1].date;
+  var enRange=f.getMonth()===l.getMonth()?EMS[f.getMonth()]+' '+f.getFullYear():EMSh[f.getMonth()]+'–'+EMSh[l.getMonth()]+' '+l.getFullYear();
+  document.getElementById('cmbn').textContent=BNM_NAMES[e.m]+' '+toBn(e.y)+' বঙ্গাব্দ';
+  document.getElementById('cmen').textContent=enRange;
+  var first=days[0].date.getDay();
+  var h='';
+  for(var i=0;i<first;i++)h+='<div class="cd ce"></div>';
+  days.forEach(function(item){
+    var date=item.date;var bnDay=item.bnDay;
+    var wd=date.getDay();
+    var isT=date.toDateString()===TODAY.toDateString();
+    var isS=selDate&&date.toDateString()===selDate.toDateString();
+    var c=calcDay(date);
+    var ds_=dStr(date);
+    var mmdd=ds_.slice(5);
+    var fests=c.fests;
+    var enLbl=date.getDate()+' '+EMSh[date.getMonth()];
+    var tsh=c.tithiList.length>1?c.tithiList[0].val.pakShort+' '+c.tithiList[0].val.name+'/'+c.tithiList[1].val.pakShort+' '+c.tithiList[1].val.name:c.tithiList[0].val.pakShort+' '+c.tithiList[0].val.name;
+    var cls='cd';
+    if(wd===0)cls+=' ds';if(wd===6)cls+=' dsa';if(isT)cls+=' ct';if(isS)cls+=' cs';
+    // event icons from PANJIKA_DATA
+    var evts2=getPanjikaEvents(ds_,mmdd);
+    var malmasOnDay=evts2.malmas;
+    var iconDots='';
+    if(malmasOnDay) iconDots+='<span class="cd-dot" title="মলমাস">📿</span>';
+    if(evts2.festivals.length) iconDots+='<span class="cd-dot" title="'+evts2.festivals[0].name+'">'+evts2.festivals[0].icon+'</span>';
+    if(evts2.births.length) iconDots+='<span class="cd-dot" title="'+evts2.births[0].name+'">🕉️</span>';
+    if(evts2.deaths.length) iconDots+='<span class="cd-dot" title="'+evts2.deaths[0].name+'">🕯️</span>';
+    if(evts2.modern.length) iconDots+='<span class="cd-dot" title="'+evts2.modern[0].name+'">'+evts2.modern[0].icon+'</span>';
+    // special yogas
+    try{var nIdx4=_getNakIdx(JD(date.getFullYear(),date.getMonth()+1,date.getDate())+0.5);var sy=checkSpecialYogas(date.getDay(),nIdx4);if(sy.length)iconDots+='<span class="cd-dot" title="'+sy[0].name+'">✨</span>';}catch(er){}
+    var festDisp='';
+    if(c.eclipses&&c.eclipses.length)festDisp='<div class="df" style="color:#7b2fbe;">'+c.eclipses[0].icon+' '+c.eclipses[0].type+'</div>';
+    else if(evts2.festivals.length)festDisp='<div class="df">'+evts2.festivals[0].icon+' '+evts2.festivals[0].name+'</div>';
+    else if(fests.length)festDisp='<div class="df">'+fests[0].i+' '+fests[0].n+'</div>';
+    h+='<div class="'+cls+'" onclick="showDetail(new Date(\''+ds_+'\'))">'+(isT?'<div class="tdot"></div>':'')+'<div class="db">'+toBn(bnDay)+'</div><div class="de">'+enLbl+'</div><div class="dti">'+tsh+'</div>'+festDisp+(iconDots?'<div class="cd-icons">'+iconDots+'</div>':'')+'</div>';
+  });
+  document.getElementById('cbody').innerHTML=h;
+  // refresh month events when calendar changes
+  if(typeof renderMonthEvents==='function') renderMonthEvents();
+  if(typeof renderAuspiciousCounter==='function') renderAuspiciousCounter();
+}
+
+// ════════════════════════════════════════════════════════
+// SECTION ㉓ — INIT
 // ════════════════════════════════════════════════════════
 let _initLoad=true;
 try {
   renderHeader();
-  renderRG();
   renderCal();
+  renderTodayEvents();
+  renderMonthEvents();
+  renderGuideCards();
+  renderAuspiciousCounter();
   showDetail(TODAY);
 } catch(e) {
   console.error('Panjika init error:', e);
@@ -2441,6 +2880,7 @@ try {
   document.body.insertBefore(dbg, document.body.firstChild);
 }
 _initLoad=false;
+
 
 // ══ WhatsApp bubble flash ══
 (function(){
@@ -2631,13 +3071,4 @@ function onPaymentSuccess(response) {
   }, 1500);
 
   // Reset loading button
-  var btn = document.getElementById('paySubmitBtn');
-  if (btn) {
-    btn.classList.remove('loading');
-    document.getElementById('payBtnTxt').textContent = 'নিরাপদ পেমেন্ট করুন — ₹ ' + _pay.price.toLocaleString('bn-BD');
-  }
-}
-
-</script>
-</body>
-</html>
+  var btn = document.getElementById('paySubmitBtn')
