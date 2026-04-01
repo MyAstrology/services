@@ -1614,7 +1614,7 @@ function getBusinessMantra(number, data) {
 }
 
 // ব্যবসার জন্য বিখ্যাত কোম্পানি ও ব্যবসায়ী (ইংরেজি ভাষায়)
-function getBusinessIcons(number) {
+${getBusinessIcons(num)}  {
     const businessIcons = {
         1: ["Tata Group", "Ratan Tata", "Samsung"],
         2: ["Coca-Cola", "McDonald's", "Amazon"],
