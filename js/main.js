@@ -1418,29 +1418,31 @@ document.addEventListener('DOMContentLoaded',function(){
   if(ld)ld.style.display='none';
   showCategorySelection(false);
 });
+
+
 // ================================================================
-// বৈদিক তথ্য ফাংশন (শেষের দিকে যোগ করুন)
+// GLOBAL DATA — একবার তৈরি, বারবার ব্যবহার
 // ================================================================
-// 1. বৈদিক পরিচয় (গুছানো সংস্করণ) — FIXED
+
+const VEDIC_DATA = {
+    1: { sanskrit: "একম", vedicName: "সূর্য", element: "অগ্নি", guna: "সাত্ত্বিক", deity: "ভগবান সূর্য", mantra: "ওঁ ঘৃণি সূর্যায় নমঃ", bodyPart: "হৃদয়, চোখ", yoga: "সূর্য নমস্কার" },
+    2: { sanskrit: "দ্বে", vedicName: "চন্দ্র", element: "জল", guna: "রাজসিক", deity: "ভগবান চন্দ্র", mantra: "ওঁ শ্রাং শ্রীং শ্রৌঁ সঃ চন্দ্রায় নমঃ", bodyPart: "মন, বুক", yoga: "চন্দ্র নমস্কার" },
+    3: { sanskrit: "ত্রীণি", vedicName: "গুরু", element: "আকাশ", guna: "সাত্ত্বিক", deity: "বৃহস্পতি", mantra: "ওঁ গুং গ্রহপতয়ে নমঃ", bodyPart: "মস্তিষ্ক", yoga: "গুরু প্রণাম" },
+    4: { sanskrit: "চত্বারি", vedicName: "রাহু", element: "বায়ু", guna: "তামসিক", deity: "রাহু", mantra: "ওঁ রাং রাহবে নমঃ", bodyPart: "পা, হাড়", yoga: "গভীর ধ্যান" },
+    5: { sanskrit: "পঞ্চ", vedicName: "বুধ", element: "পৃথিবী", guna: "রাজসিক", deity: "বুধ", mantra: "ওঁ বুঁ বুধায় নমঃ", bodyPart: "হাত, স্নায়ু", yoga: "বজ্রাসন" },
+    6: { sanskrit: "ষট্", vedicName: "শুক্র", element: "জল", guna: "রাজসিক", deity: "শুক্র", mantra: "ওঁ দ্রাং দ্রীং দ্রৌঁ সঃ শুক্রায় নমঃ", bodyPart: "মুখ, কিডনি", yoga: "উষ্ট্রাসন" },
+    7: { sanskrit: "সপ্ত", vedicName: "কেতু", element: "আকাশ", guna: "সাত্ত্বিক", deity: "কেতু", mantra: "ওঁ কেং কেতবে নমঃ", bodyPart: "মেরুদণ্ড", yoga: "পদ্মাসন" },
+    8: { sanskrit: "অষ্ট", vedicName: "শনি", element: "বায়ু", guna: "তামসিক", deity: "শনি", mantra: "ওঁ প্রাং প্রীং প্রৌঁ সঃ শনৈশ্চরায় নমঃ", bodyPart: "হাড়, দাঁত", yoga: "শবাসন" },
+    9: { sanskrit: "নব", vedicName: "মঙ্গল", element: "অগ্নি", guna: "রাজসিক", deity: "মঙ্গল", mantra: "ওঁ ক্রাং ক্রীং ক্রৌঁ সঃ ভৌমায় নমঃ", bodyPart: "রক্ত, পেশী", yoga: "বীরভদ্রাসন" }
+};
+
+// 1. বৈদিক পরিচয় (গুছানো সংস্করণ) — অপটিমাইজড
 function getVedicIdentity(number) {
     const data = NumerologyDB.getNumberAnalysis(number);
-    
-    // ★ FIX 2: ডাটা না থাকলে ফাঁকা স্ট্রিং ফেরত দিন
     if (!data) return '';
     
-    const vedicData = {
-        1: { sanskrit: "একম", vedicName: "সূর্য", element: "অগ্নি", guna: "সাত্ত্বিক", deity: "ভগবান সূর্য", mantra: "ওঁ ঘৃণি সূর্যায় নমঃ", bodyPart: "হৃদয়, চোখ", yoga: "সূর্য নমস্কার" },
-        2: { sanskrit: "দ্বে", vedicName: "চন্দ্র", element: "জল", guna: "রাজসিক", deity: "ভগবান চন্দ্র", mantra: "ওঁ শ্রাং শ্রীং শ্রৌঁ সঃ চন্দ্রায় নমঃ", bodyPart: "মন, বুক", yoga: "চন্দ্র নমস্কার" },
-        3: { sanskrit: "ত্রীণি", vedicName: "গুরু", element: "আকাশ", guna: "সাত্ত্বিক", deity: "বৃহস্পতি", mantra: "ওঁ গুং গ্রহপতয়ে নমঃ", bodyPart: "মস্তিষ্ক", yoga: "গুরু প্রণাম" },
-        4: { sanskrit: "চত্বারি", vedicName: "রাহু", element: "বায়ু", guna: "তামসিক", deity: "রাহু", mantra: "ওঁ রাং রাহবে নমঃ", bodyPart: "পা, হাড়", yoga: "গভীর ধ্যান" },
-        5: { sanskrit: "পঞ্চ", vedicName: "বুধ", element: "পৃথিবী", guna: "রাজসিক", deity: "বুধ", mantra: "ওঁ বুঁ বুধায় নমঃ", bodyPart: "হাত, স্নায়ু", yoga: "বজ্রাসন" },
-        6: { sanskrit: "ষট্", vedicName: "শুক্র", element: "জল", guna: "রাজসিক", deity: "শুক্র", mantra: "ওঁ দ্রাং দ্রীং দ্রৌঁ সঃ শুক্রায় নমঃ", bodyPart: "মুখ, কিডনি", yoga: "উষ্ট্রাসন" },
-        7: { sanskrit: "সপ্ত", vedicName: "কেতু", element: "আকাশ", guna: "সাত্ত্বিক", deity: "কেতু", mantra: "ওঁ কেং কেতবে নমঃ", bodyPart: "মেরুদণ্ড", yoga: "পদ্মাসন" },
-        8: { sanskrit: "অষ্ট", vedicName: "শনি", element: "বায়ু", guna: "তামসিক", deity: "শনি", mantra: "ওঁ প্রাং প্রীং প্রৌঁ সঃ শনৈশ্চরায় নমঃ", bodyPart: "হাড়, দাঁত", yoga: "শবাসন" },
-        9: { sanskrit: "নব", vedicName: "মঙ্গল", element: "অগ্নি", guna: "রাজসিক", deity: "মঙ্গল", mantra: "ওঁ ক্রাং ক্রীং ক্রৌঁ সঃ ভৌমায় নমঃ", bodyPart: "রক্ত, পেশী", yoga: "বীরভদ্রাসন" }
-    };
-    
-    const v = vedicData[number] || {};
+    // ★ GLOBAL অবজেক্ট থেকে ডাটা নিন (প্রতি বার নতুন করে তৈরি হচ্ছে না)
+    const v = VEDIC_DATA[number] || {};
     
     return `
         <div class="vedic-card">
@@ -1458,6 +1460,7 @@ function getVedicIdentity(number) {
         </div>
     `;
 }
+
 
 // 2. জীবনক্ষেত্র বিশ্লেষণ (স্বাস্থ্য, শিক্ষা, সম্পর্ক)
 function getLifeAreaAnalysis(number) {
