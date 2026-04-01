@@ -1563,6 +1563,7 @@ function getFamousPersonalities(number) {
         </div>
     `;
 }
+
 // 4. শাস্ত্রীয় মন্ত্র (বাংলা ভাষায়)
 function getVedicChants(number) {
     const chants = {
@@ -1588,7 +1589,8 @@ function getVedicChants(number) {
     `;
 }
 
-// ব্যবসার জন্য বিশেষ মন্ত্র (শুধুমাত্র মন্ত্র অংশ)
+// ↓↓↓ এখানে Business Mantra ফাংশন যোগ করুন ↓↓↓
+// ব্যবসার জন্য বিশেষ মন্ত্র
 function getBusinessMantra(number, data) {
     const businessMantras = {
         1: "ওঁ ঘৃণি সূর্যায় নমঃ। ব্যবসায় সাফল্যের জন্য প্রতিদিন সূর্যোদয়ের সময় এই মন্ত্র ১০৮ বার জপ করুন। লাল ও সোনালি রঙের ব্যবহার ব্যবসায় উন্নতি আনে।",
@@ -1613,17 +1615,19 @@ function getBusinessMantra(number, data) {
     `;
 }
 
+// ↓↓↓ এখানে Business Icons ফাংশন যোগ করুন ↓↓↓
+// ব্যবসার জন্য বিখ্যাত কোম্পানি
 function getBusinessIcons(number) {
     const businessIcons = {
-        1: ["Tata Group", "Aditya Birla Group", "Samsung"],  // সূর্যের সংখ্যা - নেতৃত্ব
-        2: ["Coca-Cola", "McDonald's", "Amazon"],           // চন্দ্রের সংখ্যা - জনপ্রিয়তা
-        3: ["Microsoft", "Google", "Apple"],                // বৃহস্পতির সংখ্যা - জ্ঞান, প্রযুক্তি
-        4: ["IBM", "Intel", "SpaceX"],                      // রাহুর সংখ্যা - উদ্ভাবন, গবেষণা
-        5: ["Meta (Facebook)", "Walmart", "Alibaba"],       // বুধের সংখ্যা - যোগাযোগ, বাণিজ্য
-        6: ["Louis Vuitton", "Chanel", "Disney"],           // শুক্রের সংখ্যা - সৌন্দর্য, বিনোদন
-        7: ["Pfizer", "Roche", "Novartis"],                 // কেতুর সংখ্যা - গবেষণা, ওষুধ
-        8: ["Berkshire Hathaway", "JPMorgan", "Reliance"],  // শনির সংখ্যা - স্থায়িত্ব, শিল্প
-        9: ["Nike", "Adidas", "Ferrari"]                    // মঙ্গলের সংখ্যা - প্রতিযোগিতা, ক্রীড়া
+        1: ["Tata Group", "Aditya Birla Group", "Samsung"],
+        2: ["Coca-Cola", "McDonald's", "Amazon"],
+        3: ["Microsoft", "Google", "Apple"],
+        4: ["IBM", "Intel", "SpaceX"],
+        5: ["Meta (Facebook)", "Walmart", "Alibaba"],
+        6: ["Louis Vuitton", "Chanel", "Disney"],
+        7: ["Pfizer", "Roche", "Novartis"],
+        8: ["Berkshire Hathaway", "JPMorgan", "Reliance Industries"],
+        9: ["Nike", "Adidas", "Ferrari"]
     };
     
     const list = businessIcons[number] || [];
@@ -1639,3 +1643,11 @@ function getBusinessIcons(number) {
         </div>
     `;
 }
+
+// ↓↓↓ এখানে MAIN — DOMContentLoaded আছে (এটি ইতিমধ্যে আছে) ↓↓↓
+// MAIN — DOMContentLoaded
+document.addEventListener('DOMContentLoaded',function(){
+    // ... আপনার existing কোড (এটি পরিবর্তন করবেন না)
+});
+
+// ❌ শেষে কোনো extra code থাকবে না ❌
