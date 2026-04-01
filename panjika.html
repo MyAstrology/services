@@ -2958,6 +2958,7 @@ document.addEventListener('keydown', function(e){
   if (e.key === 'Escape') closePayModal();
 });
 
+// এখানে শেষ অংশ (পেমেন্ট ফাংশন) পুরোপুরি এভাবে বসান:
 function initiatePayment() {
   var name  = document.getElementById('payName').value.trim();
   var phone = document.getElementById('payPhone').value.trim();
@@ -2991,64 +2992,33 @@ function initiatePayment() {
   document.getElementById('payBtnTxt').innerHTML = '<i class="fas fa-spinner fa-spin"></i> অপেক্ষা করুন...';
 
   var options = {
-    key:         RZP_KEY,
-    amount:      _pay.price * 100,
-    currency:    'INR',
-    name:        'MyAstrology',
+    key: RZP_KEY,
+    amount: _pay.price * 100,
+    currency: 'INR',
+    name: 'MyAstrology',
     description: _pay.name,
-    image:       'https://www.myastrology.in/images/logo.png',
-    prefill: {
-      name:    name,
-      contact: '+91' + phone
-    },
-    notes: {
-      service: _pay.name,
-      customer_name: name,
-      customer_phone: phone
-    },
-    theme: {
-      color: '#b5860d',
-      backdrop_color: 'rgba(10,5,0,0.72)'
-    },
-    modal: {
-      ondismiss: function() {
-        btn.classList.remove('loading');
-        document.getElementById('payBtnTxt').textContent = 'নিরাপদ পেমেন্ট করুন — ₹ ' + _pay.price.toLocaleString('bn-BD');
-      }
-    },
-    handler: function(response) {
-      onPaymentSuccess(response);
-    }
+    image: 'https://www.myastrology.in/images/logo.png',
+    prefill: { name: name, contact: '+91' + phone },
+    notes: { service: _pay.name, customer_name: name, customer_phone: phone },
+    theme: { color: '#b5860d' },
+    handler: function(response) { onPaymentSuccess(response); }
   };
 
   try {
     var rzp = new Razorpay(options);
-    rzp.on('payment.failed', function(resp){
-      btn.classList.remove('loading');
-      document.getElementById('payBtnTxt').textContent = 'নিরাপদ পেমেন্ট করুন — ₹ ' + _pay.price.toLocaleString('bn-BD');
-      alert('⚠️ পেমেন্ট ব্যর্থ হয়েছে। আবার চেষ্টা করুন অথবা WhatsApp-এ যোগাযোগ করুন।');
-    });
     rzp.open();
   } catch(err) {
     btn.classList.remove('loading');
     document.getElementById('payBtnTxt').textContent = 'নিরাপদ পেমেন্ট করুন — ₹ ' + _pay.price.toLocaleString('bn-BD');
-    alert('Razorpay লোড হয়নি। ইন্টারনেট কানেকশন চেক করুন।');
-    console.error('Razorpay Error:', err);
+    alert('Razorpay লোড হয়নি।');
   }
 }
 
 function onPaymentSuccess(response) {
   var btn = document.getElementById('paySubmitBtn');
   btn.classList.remove('loading');
-  document.getElementById('payBtnTxt').textContent = 'নিরাপদ পেমেন্ট করুন — ₹ ' + _pay.price.toLocaleString('bn-BD');
-  
-  var waMsg = '🙏 আমি ' + _pay.name + ' পরিষেবার জন্য '
-    + _pay.price + ' টাকা পেমেন্ট করেছি। আমার প্রয়োজনীয় বিবরণ নিচে দিচ্ছি।'
-    + '\n\n👤 নাম: ' + _pay.custName
-    + '\n📱 মোবাইল: ' + _pay.custPhone
-    + '\n💳 Payment ID: ' + (response.razorpay_payment_id || 'N/A')
-    + '\n📦 পরিষেবা: ' + _pay.name
-    + '\n💰 পরিমাণ: ₹' + _pay.price;
+
+  var waMsg = '🙏 আমি ' + _pay.name + ' পরিষেবার জন্য ' + _pay.price + ' টাকা পেমেন্ট করেছি।\n\n👤 নাম: ' + _pay.custName + '\n📱 মোবাইল: ' + _pay.custPhone + '\n💳 Payment ID: ' + (response.razorpay_payment_id || 'N/A');
 
   var waUrl = 'https://wa.me/919333122768?text=' + encodeURIComponent(waMsg);
 
@@ -3056,7 +3026,6 @@ function onPaymentSuccess(response) {
   document.getElementById('paySuccess').classList.add('show');
   document.getElementById('payWaLink').href = waUrl;
 
-  setTimeout(function() {
-    window.open(waUrl, '_blank', 'noopener');
-  }, 1500);
+  setTimeout(() => window.open(waUrl, '_blank'), 1500);
 }
+</script>
