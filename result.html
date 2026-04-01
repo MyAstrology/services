@@ -412,6 +412,172 @@ img{max-width:100%;height:auto;display:block}
   .try-row{flex-direction:column;}
   .try-input,.try-btn{width:100%;}
 }
+
+/* ============================================
+   বৈদিক তথ্যের জন্য নতুন স্টাইল (main.js-এর ফাংশনের জন্য)
+   ============================================ */
+
+/* বৈদিক পরিচয় — ২ কলাম */
+.vedic-card {
+    background: linear-gradient(135deg, #1e2a4a, #0f1a30);
+    border-radius: 20px;
+    padding: 10px 14px;
+    margin-top: 14px;
+    border-left: 4px solid #ffb347;
+}
+.vedic-card h4 {
+    color: #ffb347;
+    font-size: .85rem;
+    margin-bottom: 8px;
+}
+.vedic-grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 16px;
+    margin-top: 6px;
+}
+.vedic-grid-2col div {
+    font-size: 0.8rem;
+    color: #ffffff;
+    line-height: 1.4;
+}
+.vedic-label {
+    font-size: 0.65rem;
+    color: #88aadd;
+    font-weight: 500;
+    display: inline-block;
+    min-width: 70px;
+    margin-right: 6px;
+}
+
+/* জীবনক্ষেত্র — ৩ কলাম */
+.life-areas-card {
+    background: linear-gradient(135deg, #1a2540, #0f172f);
+    border-radius: 18px;
+    padding: 10px 14px;
+    margin-top: 14px;
+}
+.life-areas-card h4 {
+    color: #ffb347;
+    font-size: .85rem;
+    margin-bottom: 8px;
+}
+.life-areas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+.life-area {
+    background: rgba(0,0,0,.35);
+    border-radius: 12px;
+    padding: 6px 10px;
+}
+.life-area i {
+    font-size: 1rem;
+    margin-right: 6px;
+    color: #ffb347;
+}
+.life-area strong {
+    font-size: .7rem;
+    display: block;
+    margin-bottom: 4px;
+    color: #ffb347;
+}
+.life-area p {
+    font-size: .7rem;
+    line-height: 1.4;
+    margin: 0;
+    color: #fff;
+}
+
+/* বিখ্যাত ব্যক্তিত্ব */
+.famous-card {
+    background: rgba(255,255,255,.04);
+    border-radius: 18px;
+    padding: 10px 14px;
+    margin-top: 14px;
+    text-align: center;
+}
+.famous-card h4 {
+    color: #ffb347;
+    font-size: .85rem;
+    margin-bottom: 8px;
+}
+.famous-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+.famous-name {
+    background: rgba(255,180,71,.2);
+    padding: 3px 10px;
+    border-radius: 16px;
+    font-size: .7rem;
+    color: #fff;
+}
+.famous-note {
+    font-size: .65rem;
+    color: #88aadd;
+}
+
+/* মন্ত্র কার্ড */
+.mantra-card {
+    background: linear-gradient(135deg, #0f1a30, #080e20);
+    border-radius: 18px;
+    padding: 10px 14px;
+    margin-top: 14px;
+    text-align: center;
+    border: 1px solid rgba(255,180,71,.3);
+}
+.mantra-card h4 {
+    color: #ffb347;
+    font-size: .85rem;
+    margin-bottom: 6px;
+}
+.mantra-text-bangla {
+    font-family: monospace;
+    font-size: .8rem;
+    line-height: 1.5;
+    color: #ffdb8e;
+    margin-bottom: 6px;
+}
+.mantra-note {
+    font-size: .65rem;
+    color: #88aadd;
+}
+
+/* মোবাইলে ১ কলাম */
+@media (max-width: 600px) {
+    .vedic-grid-2col,
+    .life-areas-grid {
+        grid-template-columns: 1fr;
+    }
+    .famous-list {
+        flex-wrap: wrap;
+    }
+}
+   /* ২-কলাম গ্রিড — পাশাপাশি দেখানোর জন্য */
+.vedic-grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 16px;
+    margin-top: 6px;
+}
+.vedic-grid-2col div {
+    font-size: 0.8rem;
+    color: #ffffff;
+    line-height: 1.4;
+}
+.vedic-label {
+    font-size: 0.65rem;
+    color: #88aadd;
+    font-weight: 500;
+    display: inline-block;
+    min-width: 70px;
+    margin-right: 6px;
+}
 </style>
 </head>
 <body>
@@ -559,15 +725,29 @@ img{max-width:100%;height:auto;display:block}
 <div class="wa-float"><div class="wa-bub" id="wb">পরামর্শ নিন!</div><a class="wa-btn" href="https://wa.me/919333122768?text=নমস্কার%20ড.%20আচার্য%2C%20পরামর্শ%20নিতে%20চাই।" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a></div>
 <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="উপরে যান"><i class="fas fa-chevron-up"></i></button>
 
-<!-- SCRIPTS — correct load order -->
-<script src="js/numerology-data.js"></script>
-<script src="js/core/planet-relations.js"></script>
-<script src="js/core/number-utils.js"></script>
-<script src="js/core/compatibility-core.js"></script>
-<script src="js/renderers/compatibility-renderer.js"></script>
-<script src="js/main.js"></script>
 
 <script>
+
+   // টুলবক্স উন্নতি: র্যান্ডম উদাহরণ দেখানো
+function updatePlaceholder() {
+    const examples = [
+        "রাহুল", "15-08-1990", "9333122768", "আহত", 
+        "MyAstrology", "WB12AB3456", "প্রিয়া", "1234"
+    ];
+    const random = examples[Math.floor(Math.random() * examples.length)];
+    const inputBox = document.getElementById('ti');
+    if (inputBox) {
+        inputBox.placeholder = `যেমন: ${random}`;
+    }
+}
+
+// প্রতি 5 সেকেন্ডে প্লেসহোল্ডার পরিবর্তন করুন
+setInterval(updatePlaceholder, 5000);
+
+// পেজ লোড হলে প্রথমবার দেখান
+window.addEventListener('DOMContentLoaded', function() {
+    updatePlaceholder();
+});
 /* Nav */
 function tNav(){const m=document.getElementById('nm'),o=document.getElementById('no'),b=document.getElementById('hb');const op=m.classList.toggle('open');o.classList.toggle('open',op);b.setAttribute('aria-expanded',op);b.innerHTML=op?'<i class="fas fa-times"></i>':'<i class="fas fa-bars"></i>';}
 function cNav(){const m=document.getElementById('nm'),o=document.getElementById('no'),b=document.getElementById('hb');m.classList.remove('open');o.classList.remove('open');b.setAttribute('aria-expanded','false');b.innerHTML='<i class="fas fa-bars"></i>';}
@@ -589,5 +769,13 @@ window.addEventListener('DOMContentLoaded',function(){
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-S7BQGLP211');
 </script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-S7BQGLP211"></script>
+<!-- SCRIPTS — correct load order (FIXED) -->
+<script src="js/numerology-data.js"></script>
+<script src="js/core/number-utils.js"></script>
+<script src="js/core/planet-relations.js"></script>
+<script src="js/core/compatibility-core.js"></script>
+<script src="js/renderers/compatibility-renderer.js"></script>
+<script src="js/main.js"></script>
+
 </body>
 </html>
