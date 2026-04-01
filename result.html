@@ -412,6 +412,136 @@ img{max-width:100%;height:auto;display:block}
   .try-row{flex-direction:column;}
   .try-input,.try-btn{width:100%;}
 }
+
+/* ============================================
+   বৈদিক তথ্যের জন্য নতুন স্টাইল (main.js-এর ফাংশনের জন্য)
+   ============================================ */
+
+/* বৈদিক পরিচয় কার্ড */
+.vedic-card {
+    background: linear-gradient(135deg, rgba(245,184,0,0.15), rgba(100,80,0,0.1));
+    border-radius: 16px;
+    padding: 16px;
+    margin-top: 16px;
+    border-left: 3px solid #f5b800;
+}
+.vedic-card h4 {
+    color: #f5b800;
+    margin-bottom: 12px;
+    font-size: 1rem;
+}
+.vedic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+}
+.vedic-label {
+    color: #9ab8d8;
+    font-size: 0.75rem;
+    display: block;
+    margin-bottom: 2px;
+}
+.vedic-grid div {
+    font-size: 0.85rem;
+    color: #ffffff;
+}
+
+/* জীবনক্ষেত্র কার্ড */
+.life-areas-card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 16px;
+    padding: 16px;
+    margin-top: 16px;
+}
+.life-areas-card h4 {
+    color: #f5b800;
+    margin-bottom: 12px;
+    font-size: 1rem;
+}
+.life-areas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+}
+.life-area {
+    background: rgba(0,0,0,0.3);
+    border-radius: 12px;
+    padding: 12px;
+}
+.life-area i {
+    font-size: 1.2rem;
+    margin-right: 8px;
+    color: #f5b800;
+}
+.life-area strong {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: #f5b800;
+}
+.life-area p {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin: 0;
+    color: #ffffff;
+}
+
+/* বিখ্যাত ব্যক্তিত্ব কার্ড */
+.famous-card {
+    background: rgba(255,255,255,0.03);
+    border-radius: 16px;
+    padding: 16px;
+    margin-top: 16px;
+    text-align: center;
+}
+.famous-card h4 {
+    color: #f5b800;
+    margin-bottom: 12px;
+}
+.famous-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+.famous-name {
+    background: rgba(245,184,0,0.2);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: #ffffff;
+}
+.famous-note {
+    font-size: 0.75rem;
+    color: #9ab8d8;
+}
+
+/* শাস্ত্রীয় মন্ত্র কার্ড */
+.mantra-card {
+    background: rgba(0,0,0,0.4);
+    border-radius: 16px;
+    padding: 16px;
+    margin-top: 16px;
+    text-align: center;
+    border: 1px solid rgba(245,184,0,0.3);
+}
+.mantra-card h4 {
+    color: #f5b800;
+    margin-bottom: 12px;
+}
+.mantra-text-bangla {
+    font-family: monospace;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: #ffd966;
+    margin-bottom: 12px;
+}
+.mantra-note {
+    font-size: 0.75rem;
+    color: #9ab8d8;
+}
+
+   
 </style>
 </head>
 <body>
