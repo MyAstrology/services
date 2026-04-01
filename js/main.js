@@ -1610,3 +1610,31 @@ function getBusinessMantra(number, data) {
         </div>
     `;
 }
+
+// ব্যবসার জন্য বিখ্যাত কোম্পানি ও ব্যবসায়ী (ইংরেজি ভাষায়)
+function getBusinessIcons(number) {
+    const businessIcons = {
+        1: ["Tata Group", "Ratan Tata", "Samsung"],
+        2: ["Coca-Cola", "McDonald's", "Amazon"],
+        3: ["Microsoft", "Bill Gates", "Google"],
+        4: ["Tesla", "Elon Musk", "IBM"],
+        5: ["Facebook", "Mark Zuckerberg", "Flipkart"],
+        6: ["Apple", "Steve Jobs", "Louis Vuitton"],
+        7: ["SpaceX", "IT Sector", "Research Lab"],
+        8: ["Reliance", "Mukesh Ambani", "Berri"],
+        9: ["Nike", "Adidas", "Ferrari"]
+    };
+    
+    const list = businessIcons[number] || [];
+    if (list.length === 0) return '';
+    
+    return `
+        <div class="famous-card">
+            <h4><i class="fas fa-chart-line"></i> একই সংখ্যার বিখ্যাত ব্যবসা ও উদ্যোক্তা</h4>
+            <div class="famous-list">
+                ${list.map(name => `<span class="famous-name">${name}</span>`).join('')}
+            </div>
+            <p class="famous-note">এই সংখ্যার শক্তি সাফল্যের পথ দেখিয়েছে। আপনার ব্যবসায়ও এই শক্তি কাজে লাগান।</p>
+        </div>
+    `;
+}
