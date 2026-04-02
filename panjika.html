@@ -16,8 +16,8 @@ window.addEventListener('load', function() {
 });
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>বাংলা পঞ্জিকা ২০২৬ – তিথি, নক্ষত্র, শুভ মুহূর্ত ও বিশেষ দিন | MyAstrology</title>
-<meta name="description" content="আজকের বাংলা পঞ্জিকা – তিথি, নক্ষত্র, যোগ, করণ, রাহুকাল, শুভমুহূর্ত, উৎসব ও মহাপুরুষের জন্মদিন। Dr. Prodyut Acharya, রানাঘাট। Google ও JustDial-এ ৫★ রেটিং।">
+<title>বাংলা পঞ্জিকা ২০২৬ – সংশোধিত গণনা: তিথি, নক্ষত্র, লগ্ন, রাহুকাল | MyAstrology</title>
+<meta name="description" content="বিশুদ্ধ সিদ্ধান্ত মতে বাংলা পঞ্জিকা – N.C. লাহিড়ী অয়নাংশ ভিত্তিক নির্ভুল তিথি, নক্ষত্র, যোগ, করণ, রাহুকাল, অমৃতযোগ, মাহেন্দ্রযোগ, বারবেলা, লগ্ন ও শুভমুহূর্ত। Dr. Prodyut Acharya, রানাঘাট।">
 <meta name="keywords" content="বাংলা পঞ্জিকা, আজকের পঞ্জিকা, দৈনিক রাশিফল, তিথি নক্ষত্র, রাহুকাল আজ, শুভ মুহূর্ত, Bengali panjika today, daily rashifal Bengali, astrologer Ranaghat West Bengal, Dr Prodyut Acharya MyAstrology">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="author" content="Dr. Prodyut Acharya — MyAstrology Ranaghat">
@@ -1861,16 +1861,163 @@ function findTodayIdx(){const t=TODAY.getTime();for(let i=BMS.length-1;i>=0;i--)
 function JD(y,m,d){if(m<=2){y--;m+=12;}const A=Math.floor(y/100),B=2-A+Math.floor(A/4);return Math.floor(365.25*(y+4716))+Math.floor(30.6001*(m+1))+d+B-1524.5;}
 function sunL(jd){const n=jd-2451545,L=((280.46+0.9856474*n)%360+360)%360,g=((357.528+0.9856003*n)%360+360)*Math.PI/180;return((L+1.915*Math.sin(g)+0.02*Math.sin(2*g))%360+360)%360;}
 function moonL(jd){const T=(jd-2451545)/36525;const Lp=((218.3164477+481267.88123421*T-0.0015786*T*T)%360+360)%360;const D=((297.8501921+445267.1114034*T-0.0018819*T*T)%360+360)%360;const Ms=((357.5291092+35999.0502909*T)%360+360)%360;const Mp=((134.9633964+477198.8675055*T+0.0087414*T*T)%360+360)%360;const F=((93.2720950+483202.0175233*T-0.0036539*T*T)%360+360)%360;const E=1-0.002516*T;const dr=D*Math.PI/180,msr=Ms*Math.PI/180,mr=Mp*Math.PI/180,fr=F*Math.PI/180;const A1=((119.75+131.849*T)%360+360)*Math.PI/180,A2=((53.09+479264.29*T)%360+360)*Math.PI/180;let sl=6288774*Math.sin(mr)+1274027*Math.sin(2*dr-mr)+658314*Math.sin(2*dr)+213618*Math.sin(2*mr)-185116*E*Math.sin(msr)-114332*Math.sin(2*fr)+58793*Math.sin(2*dr-2*mr)+57066*E*Math.sin(2*dr-msr-mr)+53322*Math.sin(2*dr+mr)+45758*E*Math.sin(2*dr-msr)-40923*E*Math.sin(msr-mr)-34720*Math.sin(dr)-30383*E*Math.sin(msr+mr)+15327*Math.sin(2*dr-2*fr)+10675*Math.sin(4*dr-mr)+10034*Math.sin(3*mr)+8548*Math.sin(4*dr-2*mr)-7888*E*Math.sin(2*dr+msr-mr)-6766*E*Math.sin(2*dr+msr)-5163*Math.sin(dr-mr)+4987*E*Math.sin(dr+msr)+4036*E*Math.sin(2*dr-msr+mr)+3994*Math.sin(2*dr+2*mr)+3861*Math.sin(4*dr)+3665*Math.sin(2*dr-3*mr)-2689*E*Math.sin(msr-2*mr)+2390*E*Math.sin(2*dr-msr-2*mr)-2348*Math.sin(dr+mr)+2236*E*E*Math.sin(2*dr-2*msr)-2120*E*Math.sin(msr+2*mr)+2048*E*E*Math.sin(2*dr-2*msr-mr)-1773*Math.sin(2*dr+mr-2*fr)-1595*Math.sin(2*dr+2*fr)+1215*E*Math.sin(4*dr-msr-mr)-892*Math.sin(3*dr-mr)-810*E*Math.sin(2*dr+msr+mr)+759*E*Math.sin(4*dr-msr-2*mr)+691*E*Math.sin(2*dr+msr-2*mr)+549*Math.sin(4*dr+mr)+537*Math.sin(4*mr)+520*E*Math.sin(4*dr-msr)+299*E*Math.sin(dr+msr-mr)+294*Math.sin(2*dr+3*mr);sl+=3958*Math.sin(A1)+1962*Math.sin(Lp*Math.PI/180-fr)+318*Math.sin(A2);return((Lp+sl/1000000)%360+360)%360;}
-// ── NC Lahiri Ayanamsa (সঠিক) ──
-function lahiriAY(jd){const T=(jd-2451545)/36525;return 23.853056+(50.2564+0.0222*T)/3600*T*100;}
-// ── ধীর গ্রহ (Slow Planets) ──
+
+// ── N.C. লাহিড়ী অয়নাংশ (সংশোধিত — ভারতীয় নভোগণনা কেন্দ্র অনুযায়ী) ──
+// J2000.0 মান: 23° 51' 11.4" = 23.853167°  বার্ষিক গতি: ≈ 50.29" = 1.39694°/শতাব্দী
+// যাচাই: ১ এপ্রিল ২০২৬ অয়নাংশ ≈ 24° 13' 11" (বিশুদ্ধ সিদ্ধান্ত পঞ্জিকার সাথে সামঞ্জস্যপূর্ণ)
+function lahiriAY(jd){const T=(jd-2451545)/36525;return 23.853167+1.39694*T+0.000617*T*T;}
+
+// ── গ্রহের অবস্থান ──
 function saturnL(jd){const T=(jd-2451545)/36525;const L=((50.077444+1222.113777*T)%360+360)%360;const M=((316.967+1221.552*T)%360+360)*Math.PI/180;return((L+6.3585*Math.sin(M)+0.2204*Math.sin(2*M))%360+360)%360;}
 function jupiterL(jd){const T=(jd-2451545)/36525;const L=((34.351519+3034.905675*T)%360+360)%360;const M=((20.9+3034.9*T)%360+360)*Math.PI/180;return((L+5.5549*Math.sin(M)+0.1683*Math.sin(2*M))%360+360)%360;}
 function rahuL(jd){const T=(jd-2451545)/36525;return((125.0445479-1934.1362608*T)%360+360)%360;}
-function sunTimes(y,m,d){const jd0=JD(y,m,d),n=jd0-2451545+0.5;const L=((280.46646+0.9856474*n)%360+360)%360,g=((357.52911+0.9856003*n)%360+360)*Math.PI/180;const lam=L+1.914602*Math.sin(g)+0.019993*Math.sin(2*g);const eps=23.439*Math.PI/180,lamR=lam*Math.PI/180,sinDec=Math.sin(eps)*Math.sin(lamR),dec=Math.asin(sinDec);const e2=0.016708634,y2=Math.tan(eps/2)**2,lR=L*Math.PI/180;const EoT=4*(y2*Math.sin(2*lR)-2*e2*Math.sin(g)+4*e2*y2*Math.sin(g)*Math.cos(2*lR)-0.5*y2*y2*Math.sin(4*lR)-1.25*e2*e2*Math.sin(2*g))*180/Math.PI;const latR=LAT*Math.PI/180,cosH=(Math.sin(-0.8333*Math.PI/180)-Math.sin(latR)*sinDec)/(Math.cos(latR)*Math.cos(dec));if(Math.abs(cosH)>1)return{rise:6,set:18};const H=Math.acos(Math.min(1,Math.max(-1,cosH)))*180/Math.PI;const noon=(720-4*LNG-EoT)/60+TZ;return{rise:noon-H/15,set:noon+H/15};}
+// ── মঙ্গল গ্রহ (সংশোধিত — আগের ফর্মুলা সম্পূর্ণ ভুল ছিল) ──
+// যাচাই: ১ এপ্রিল ২০২৬ মঙ্গল ≈ 340° tropical → কুম্ভ রাশি (সিদ্ধান্ত)
+function marsL(jd){const T=(jd-2451545)/36525;const L=((355.4332+19140.2993*T+0.000310*T*T)%360+360)%360;const M=((19.3730+19140.2993*T)%360+360)*Math.PI/180;return((L+10.691*Math.sin(M)+0.623*Math.sin(2*M)+0.050*Math.sin(3*M))%360+360)%360;}
+
+// ── সূর্যোদয়/অস্ত (সংশোধিত — বিশুদ্ধ সিদ্ধান্ত পঞ্জিকার সাথে মিলিয়ে ক্যালিব্রেট) ──
+// বিশুদ্ধ সিদ্ধান্ত পঞ্জিকা মতে সূর্যোদয় = সূর্যবিম্বের নিম্নপ্রান্ত দৃশ্যমান হওয়ার মুহূর্ত।
+// এই পদ্ধতিতে দৃষ্টিকোণ-সংশোধন (depression) = +0.267° (≈ 16 কলা = সূর্যের অর্ধব্যাস)।
+// যাচাই: ১ এপ্রিল ২০২৬ সূর্যোদয় 5:33 ✓, বারবেলা 8:36-10:08 ✓, অমৃতযোগ 5:33-7:11 ✓
+function sunTimes(y,m,d){const jd0=JD(y,m,d),n=jd0-2451545+0.5;const L=((280.46646+0.9856474*n)%360+360)%360,g=((357.52911+0.9856003*n)%360+360)*Math.PI/180;const lam=L+1.914602*Math.sin(g)+0.019993*Math.sin(2*g);const eps=23.439*Math.PI/180,lamR=lam*Math.PI/180,sinDec=Math.sin(eps)*Math.sin(lamR),dec=Math.asin(sinDec);const e2=0.016708634,y2=Math.tan(eps/2)**2,lR=L*Math.PI/180;const EoT=4*(y2*Math.sin(2*lR)-2*e2*Math.sin(g)+4*e2*y2*Math.sin(g)*Math.cos(2*lR)-0.5*y2*y2*Math.sin(4*lR)-1.25*e2*e2*Math.sin(2*g))*180/Math.PI;const latR=LAT*Math.PI/180,cosH=(Math.sin(0.267*Math.PI/180)-Math.sin(latR)*sinDec)/(Math.cos(latR)*Math.cos(dec));if(Math.abs(cosH)>1)return{rise:6,set:18};const H=Math.acos(Math.min(1,Math.max(-1,cosH)))*180/Math.PI;const noon=(720-4*LNG-EoT)/60+TZ;return{rise:noon-H/15,set:noon+H/15};}
 
 // ════════════════════════════════════════════════════════
-// SECTION ⑤ — PANJIKA NAMES (পঞ্চাঙ্গের বাংলা নামের তালিকা)
+// SECTION ⑧b — বারবেলা, কালরাত্রি, অমৃতযোগ, মাহেন্দ্রযোগ, মৃত্যু দোষ
+// বিশুদ্ধ সিদ্ধান্ত পঞ্জিকার সাথে যাচাইকৃত (বুধবার ১ এপ্রিল ও ১৫ এপ্রিল ২০২৬)
+// ════════════════════════════════════════════════════════
+
+// ─── বারবেলা (দিনের অশুভ প্রহর) — প্রতিটি দিনের ২টি করে প্রহর ───
+// বুধবার = ৩য় ও ৫ম প্রহর (যাচাইকৃত: ৮:৩৬-১০:০৮ ও ১১:৪০-১:১২, ১ এপ্রিল ২০২৬)
+const BAARBELL_PRAHARA=[[4,7],[2,6],[6,2],[3,5],[5,7],[1,5],[8,4]];
+// 0=রবি, 1=সোম, 2=মঙ্গল, 3=বুধ, 4=বৃহঃ, 5=শুক্র, 6=শনি
+function calcBaarbell(rise,set,wd){
+  const dayMin=(set-rise)*60, prahara=dayMin/8;
+  const slots=BAARBELL_PRAHARA[wd];
+  return slots.map(s=>({start:rise+(s-1)*prahara/60, end:rise+s*prahara/60}));
+}
+
+// ─── কালরাত্রি (রাত্রির অশুভ প্রহর) ───
+// বুধবার = ৭ম রাত্রিপ্রহর (যাচাইকৃত: ২:৩৬-৪:০৪ — ১ এপ্রিল, ২:২৯-৩:৫৫ — ১৫ এপ্রিল)
+const KAALRATRI_PRAHARA=[5,3,7,7,7,3,6];
+function calcKaalratri(sunset,nextRise,wd){
+  const nightMin=((nextRise+24)-sunset)*60, prahara=nightMin/8;
+  const slot=KAALRATRI_PRAHARA[wd];
+  const s=sunset+(slot-1)*prahara/60, e=sunset+slot*prahara/60;
+  // রাত ১২ পেরোলে পরদিনের ঘণ্টা হিসেবে
+  return {start:s, end:e};
+}
+
+// ─── অমৃতযোগ ও মাহেন্দ্রযোগ (দিনমুহূর্ত ভিত্তিক) ───
+// দিনকে ১৫টি সমান মুহূর্তে বিভক্ত (প্রতিটি ≈৪৯ মিনিট)
+// বুধবার অমৃতযোগ: মুহূর্ত ১-২, ৬-৭, ১৩-১৪ (যাচাইকৃত ✓)
+// বুধবার মাহেন্দ্রযোগ: মুহূর্ত ১১-১২ (যাচাইকৃত ✓)
+const AMRITA_MUHURTAS=[[5,6,11,12],[1,2,8,9,12,13],[3,4,10,11,14,15],[1,2,6,7,13,14],[3,4,10,11],[1,2,5,6,12,13],[2,3,8,9,14,15]];
+const MAHENDRA_MUHURTAS=[[8,9],[12,13],[7,8],[11,12],[6,7],[9,10],[5,6]];
+// রাত্রির অমৃতযোগ মুহূর্ত (বুধবার: ২-৪, ১০-১৫ যাচাইকৃত)
+const AMRITA_NIGHT_MUHURTAS=[[6,7,13,14],[2,3,9,10],[4,5,11,12],[2,3,4,10,11,12,13,14,15],[4,5,12,13],[1,2,7,8,14,15],[3,4,10,11]];
+
+function calcAmritaYoga(rise,set,wd){
+  const dayMin=(set-rise)*60, m=dayMin/15;
+  const slots=AMRITA_MUHURTAS[wd];
+  const periods=[];
+  let i=0;
+  while(i<slots.length){
+    // গুচ্ছবদ্ধ মুহূর্তগুলো একটি পিরিয়ডে দেখাও
+    const startMuh=slots[i]-1;
+    let endMuh=slots[i];
+    while(i+1<slots.length && slots[i+1]===slots[i]+1){i++;endMuh=slots[i];}
+    periods.push({start:rise+startMuh*m/60, end:rise+endMuh*m/60});
+    i++;
+  }
+  return periods;
+}
+
+function calcMahendraYoga(rise,set,wd){
+  const dayMin=(set-rise)*60, m=dayMin/15;
+  const slots=MAHENDRA_MUHURTAS[wd];
+  const s=slots[0]-1, e=slots[slots.length-1];
+  return {start:rise+s*m/60, end:rise+e*m/60};
+}
+
+// রাত্রির অমৃতযোগ (sunset থেকে পরবর্তী sunrise পর্যন্ত)
+function calcAmritaNight(sunset,nextRise,wd){
+  const nightMin=((nextRise+24)-sunset)*60, m=nightMin/15;
+  const slots=AMRITA_NIGHT_MUHURTAS[wd];
+  const periods=[];
+  let i=0;
+  while(i<slots.length){
+    const startMuh=slots[i]-1;
+    let endMuh=slots[i];
+    while(i+1<slots.length && slots[i+1]===slots[i]+1){i++;endMuh=slots[i];}
+    const s=sunset+startMuh*m/60;
+    const e=sunset+endMuh*m/60;
+    periods.push({start:s, end:e});
+    i++;
+  }
+  return periods;
+}
+
+// ─── মৃত্যু দোষ নির্ধারণ (নক্ষত্র ভিত্তিক, বিশুদ্ধ সিদ্ধান্ত অনুযায়ী) ───
+// যাচাইকৃত: উত্তরফাল্গুনী → দ্বিপাদদোষ ✓  পূর্বভাদ্র → দ্বিপাদদোষ ✓
+// হস্তা → দোষ নেই ✓  উত্তরভাদ্র → দোষ নেই ✓
+const MRITYU_DOSHA=[
+  '',           // 0 অশ্বিনী — দোষ নেই
+  'সর্বদোষ',   // 1 ভরণী
+  'গো-দোষ',    // 2 কৃত্তিকা
+  '',           // 3 রোহিণী
+  '',           // 4 মৃগশিরা
+  'সর্বদোষ',   // 5 আর্দ্রা
+  '',           // 6 পুনর্বসু
+  '',           // 7 পুষ্যা
+  'সর্পদোষ',   // 8 আশ্লেষা
+  'পিতৃদোষ',   // 9 মঘা
+  'সর্বদোষ',   // 10 পূর্বফাল্গুনী
+  'দ্বিপাদদোষ',// 11 উত্তরফাল্গুনী ✓
+  '',           // 12 হস্তা ✓
+  '',           // 13 চিত্রা
+  'সর্বদোষ',   // 14 স্বাতী
+  '',           // 15 বিশাখা
+  '',           // 16 অনুরাধা
+  'সর্বদোষ',   // 17 জ্যেষ্ঠা
+  'পিতৃদোষ',   // 18 মূলা
+  'সর্বদোষ',   // 19 পূর্বাষাঢ়া
+  '',           // 20 উত্তরাষাঢ়া
+  '',           // 21 শ্রবণা
+  '',           // 22 ধনিষ্ঠা
+  'সর্পদোষ',   // 23 শতভিষা
+  'দ্বিপাদদোষ',// 24 পূর্বভাদ্র ✓
+  '',           // 25 উত্তরভাদ্র ✓
+  '',           // 26 রেবতী
+];
+
+// ─── সূর্যোদয় লগ্ন (জন্মরাশি নির্ধারণে ব্যবহৃত) ───
+function calcSunriseLagna(jdRise, lat, lng){
+  const T=(jdRise-2451545)/36525;
+  const GMST=((280.46061837+360.98564736629*(jdRise-2451545)+0.000387933*T*T)%360+360)%360;
+  const LMST=((GMST+lng)%360+360)%360;
+  const RAMC=LMST;
+  const ay=lahiriAY(jdRise);
+  const eps=23.439*Math.PI/180, latR=lat*Math.PI/180, RAMC_r=RAMC*Math.PI/180;
+  // MC tropical longitude
+  const mc=((Math.atan2(Math.sin(RAMC_r),Math.cos(RAMC_r)*Math.cos(eps))*180/Math.PI)+360)%360;
+  // Ascendant tropical longitude (Jean Meeus formula)
+  const yA=-Math.cos(RAMC_r);
+  const xA=Math.sin(eps)*Math.tan(latR)+Math.cos(eps)*Math.sin(RAMC_r);
+  let E=((Math.atan2(yA,xA)*180/Math.PI)+360)%360;
+  // Quadrant correction: Asc must be ~90° ahead of MC
+  const E2=(E+180)%360;
+  const diff=(E-mc+360)%360;
+  if(diff<90||diff>270) E=E2;
+  const ascSid=((E-ay)%360+360)%360;
+  const descSid=(ascSid+180)%360;
+  return {
+    ascTrop:E, ascSid, ascRashi:Math.floor(ascSid/30),
+    descSid, descRashi:Math.floor(descSid/30),
+    mcTrop:mc, mcSid:((mc-ay)%360+360)%360
+  };
+}
+
+
 // কাজ: তিথি, নক্ষত্র, যোগ, করণের নাম ধরে রাখে
 //   • TNAMES[30]  — ৩০টি তিথির নাম (শুক্ল প্রতিপদ → কৃষ্ণ অমাবস্যা)
 //   • NAKS[27]    — ২৭টি নক্ষত্রের নাম ও অধিপতি গ্রহ
@@ -2114,11 +2261,24 @@ function calcDay(date){
   // Primary (backward compat)
   const p=tithiList[0].val;
   const tN=p.pakDay+(p.paksha==='কৃষ্ণপক্ষ'?15:0);
+  // নতুন: বারবেলা, কালরাত্রি, অমৃতযোগ, মাহেন্দ্রযোগ, লগ্ন, মৃত্যু দোষ
+  const baarbell=calcBaarbell(st.rise,st.set,w);
+  const kaalratri=calcKaalratri(st.set,stN.rise,w);
+  const amritaDay=calcAmritaYoga(st.rise,st.set,w);
+  const mahendra=calcMahendraYoga(st.rise,st.set,w);
+  const amritaNight=calcAmritaNight(st.set,stN.rise,w);
+  const lagna=calcSunriseLagna(jdRise,LAT,LNG);
+  const nakDosha=MRITYU_DOSHA[nIdx0%27];
+  // মৃত্যু দোষের শেষ সময় (নক্ষত্র পরিবর্তন হলে)
+  let nakDoshaEnd=null;
+  if(nakDosha&&nTrans.length>0) nakDoshaEnd=nTrans[0].time;
   return{w,bn,tN,tName:p.name,paksha:p.paksha,pakDay:p.pakDay,
     nak:NAKS[nIdx0],yoga:YOGAS[yIdx0],karan:karanList[0].val.name,
     vara:VDAYS[w],varaL:VLORD[w],st,
     rahu:slotT(st.rise,st.set,RS[w]),gulika:slotT(st.rise,st.set,GS[w]),
     yam:slotT(st.rise,st.set,YS[w]),abhi:abhiT(st.rise,st.set),
+    baarbell,kaalratri,amritaDay,mahendra,amritaNight,
+    lagna,nakDosha,nakDoshaEnd,
     eclipses:getEclipse(dStr(date)),
     fests:getFests(dStr(date)),
     tithiList,nakList,yogaList,karanList};
@@ -2130,7 +2290,20 @@ function moonEmoji(t){if(t===15)return'🌕';if(t===30||t===1)return'🌑';if(t<
 // কাজ: পেজের উপরে আজকের বাংলা তারিখ ও chip গুলো দেখায়
 // পরিবর্তন: chip-এ কী দেখাবে তা বদলাতে এখানে আসুন
 // ════════════════════════════════════════════════════════
-function renderHeader(){const c=calcDay(TODAY),bn=c.bn;if(!bn)return;document.getElementById('tb-bn').textContent=`${toBn(bn.d)} ${bn.name} ${toBn(bn.y)} বঙ্গাব্দ`;document.getElementById('tb-en').textContent=`${TODAY.getDate()} ${EMS[TODAY.getMonth()]} ${TODAY.getFullYear()} | ${c.vara} | ${bn.ritu} ঋতু`;const rh=Math.floor(c.st.rise),rm=Math.round((c.st.rise-rh)*60);document.getElementById('tb-chips').innerHTML=[c.paksha,c.tName,c.nak[0],`${toBn(rh)}:${String(rm).padStart(2,'0')} উদয়`].map(x=>`<div class="chip">${x}</div>`).join('');}
+function renderHeader(){
+  const c=calcDay(TODAY),bn=c.bn;
+  if(!bn)return;
+  document.getElementById('tb-bn').textContent=`${toBn(bn.d)} ${bn.name} ${toBn(bn.y)} বঙ্গাব্দ`;
+  document.getElementById('tb-en').textContent=`${TODAY.getDate()} ${EMS[TODAY.getMonth()]} ${TODAY.getFullYear()} | ${c.vara} | ${bn.ritu} ঋতু`;
+  const rh=Math.floor(c.st.rise),rm=Math.round((c.st.rise-rh)*60);
+  const RASHI_BN_H=['মেষ','বৃষ','মিথুন','কর্কট','সিংহ','কন্যা','তুলা','বৃশ্চিক','ধনু','মকর','কুম্ভ','মীন'];
+  const lagnaName=c.lagna?RASHI_BN_H[c.lagna.ascRashi]:'';
+  document.getElementById('tb-chips').innerHTML=[
+    c.paksha, c.tName, c.nak[0],
+    `${toBn(rh)}:${String(rm).padStart(2,'0').replace(/[0-9]/g,d=>['০','১','২','৩','৪','৫','৬','৭','৮','৯'][+d])} উদয়`,
+    lagnaName?lagnaName+' লগ্ন':''
+  ].filter(Boolean).map(x=>`<div class="chip">${x}</div>`).join('');
+}
 
 // ════════════════════════════════════════════════════════
 // SECTION ⑫ — CALENDAR RENDER (মাসিক ক্যালেন্ডার)
@@ -2257,11 +2430,93 @@ function showDetail(date) {
     {ico:'🔥', cls:'',       l:'যমঘণ্ট',          v:c.yam}
   ];
   var mkCard = function(t){ return '<div class="dtime ' + t.cls + '"><div class="dtl">' + t.ico + ' ' + t.l + '</div><div class="dtv">' + t.v + '</div></div>'; };
+
+  // লগ্ন তথ্য
+  var RASHI_BN_ARR=['মেষ','বৃষ','মিথুন','কর্কট','সিংহ','কন্যা','তুলা','বৃশ্চিক','ধনু','মকর','কুম্ভ','মীন'];
+  var lagnaHtml = '';
+  if (c.lagna) {
+    lagnaHtml = '<div style="display:grid;grid-template-columns:1fr 1fr;gap:.42rem;margin-bottom:.5rem;">'
+      + '<div class="dtime shubha"><div class="dtl">🌅 উদয় লগ্ন</div><div class="dtv">'+(RASHI_BN_ARR[c.lagna.ascRashi]||'—')+'</div></div>'
+      + '<div class="dtime"><div class="dtl">🌇 অস্ত লগ্ন</div><div class="dtv">'+(RASHI_BN_ARR[c.lagna.descRashi]||'—')+'</div></div>'
+      + '</div>';
+  }
+
+  // মৃত্যু দোষ
+  var doshaHtml = '';
+  if (c.nakDosha) {
+    doshaHtml = '<div class="dtime" style="border-color:rgba(181,32,32,.25);margin-bottom:.52rem;"><div class="dtl">💀 মৃত্যু দোষ</div><div class="dtv" style="color:#b52020;">'
+      + c.nakDosha + (c.nakDoshaEnd ? ' — ' + c.nakDoshaEnd + ' পর্যন্ত' : '') + '</div></div>'
+      + (c.nakDoshaEnd ? '<div class="dtime shubha" style="margin-bottom:.52rem;"><div class="dtl">✅ দোষ নেই</div><div class="dtv">' + c.nakDoshaEnd + ' থেকে</div></div>' : '');
+  } else {
+    doshaHtml = '<div class="dtime shubha" style="margin-bottom:.52rem;"><div class="dtl">✅ মৃত্যু দোষ</div><div class="dtv">নেই</div></div>';
+  }
+
+  // বারবেলা
+  var baarHtml = '<div style="display:grid;grid-template-columns:1fr 1fr;gap:.42rem;margin-bottom:.5rem;">';
+  if (c.baarbell && c.baarbell.length) {
+    c.baarbell.forEach(function(b,i){
+      baarHtml += '<div class="dtime rahu"><div class="dtl">🚫 বারবেলা '+(i+1)+'</div><div class="dtv">'+slotT(b.start,b.end, 1).replace(/[^০-৯: ––\-]/g,'')||fmtT(Math.floor(b.start),Math.round((b.start-Math.floor(b.start))*60))+' – '+fmtT(Math.floor(b.end),Math.round((b.end-Math.floor(b.end))*60))+'</div></div>';
+    });
+  }
+  baarHtml += '</div>';
+
+  // সঠিক বারবেলা ফরম্যাট
+  var baarHtml2 = '<div style="display:grid;grid-template-columns:1fr 1fr;gap:.42rem;margin-bottom:.5rem;">';
+  if (c.baarbell) {
+    c.baarbell.forEach(function(b,i){
+      var sh=Math.floor(b.start), sm=Math.round((b.start-sh)*60);
+      var eh=Math.floor(b.end), em=Math.round((b.end-eh)*60);
+      baarHtml2 += '<div class="dtime rahu"><div class="dtl">🚫 বারবেলা '+(i+1)+'</div><div class="dtv">'+fmtT(sh,sm)+' – '+fmtT(eh,em)+'</div></div>';
+    });
+    // কালরাত্রি
+    if (c.kaalratri) {
+      var ks=c.kaalratri.start%24, ke=c.kaalratri.end%24;
+      // রাত্রির সময় (12 পেরোলে পরদিন)
+      var ksh=Math.floor(((ks%24)+24)%24), ksm=Math.round((ks-Math.floor(ks))*60);
+      var keh=Math.floor(((ke%24)+24)%24), kem=Math.round((ke-Math.floor(ke))*60);
+      baarHtml2 += '<div class="dtime rahu"><div class="dtl">🌑 কালরাত্রি</div><div class="dtv">'+fmtT(ksh,ksm)+' – '+fmtT(keh,kem)+'</div></div>';
+    }
+  }
+  baarHtml2 += '</div>';
+
+  // অমৃতযোগ ও মাহেন্দ্রযোগ
+  var amritaHtml = '';
+  if (c.amritaDay && c.amritaDay.length) {
+    var aStr = c.amritaDay.map(function(a){
+      var sh=Math.floor(a.start), sm=Math.round((a.start-sh)*60);
+      var eh=Math.floor(a.end), em=Math.round((a.end-eh)*60);
+      return fmtT(sh,sm)+' – '+fmtT(eh,em);
+    }).join(' · ');
+    amritaHtml += '<div class="dtime shubha" style="margin-bottom:.42rem;"><div class="dtl">✨ অমৃতযোগ (দিন)</div><div class="dtv" style="font-size:.68rem;">'+aStr+'</div></div>';
+  }
+  if (c.mahendra) {
+    var msh=Math.floor(c.mahendra.start), msm=Math.round((c.mahendra.start-msh)*60);
+    var meh=Math.floor(c.mahendra.end), mem=Math.round((c.mahendra.end-meh)*60);
+    amritaHtml += '<div class="dtime shubha" style="margin-bottom:.42rem;"><div class="dtl">🌠 মাহেন্দ্রযোগ</div><div class="dtv">'+fmtT(msh,msm)+' – '+fmtT(meh,mem)+'</div></div>';
+  }
+  if (c.amritaNight && c.amritaNight.length) {
+    var aNStr = c.amritaNight.map(function(a){
+      var sh=Math.floor(((a.start%24)+24)%24), sm=Math.round((a.start-Math.floor(a.start))*60);
+      var eh=Math.floor(((a.end%24)+24)%24), em=Math.round((a.end-Math.floor(a.end))*60);
+      return fmtT(sh,sm)+' – '+fmtT(eh,em);
+    }).join(' · ');
+    amritaHtml += '<div class="dtime shubha" style="margin-bottom:.42rem;"><div class="dtl">🌙 অমৃতযোগ (রাত্রি)</div><div class="dtv" style="font-size:.68rem;">'+aNStr+'</div></div>';
+  }
+
   var timesHtml =
-    '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.52rem;margin-bottom:.52rem;">'
+    '<div class="dsec" style="padding:.4rem .6rem .1rem;">☀️ সূর্যোদয়/অস্ত ও ব্রাহ্ম মুহূর্ত</div>'
+    + '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.52rem;margin:.35rem 0 .52rem;padding:0 .6rem;">'
     + row1.map(mkCard).join('') + '</div>'
-    + '<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.52rem;">'
-    + row2.map(mkCard).join('') + '</div>';
+    + '<div class="dsec" style="padding:.4rem .6rem .1rem;">⚡ রাহুকাল, গুলিকা, যমঘণ্ট, অভিজিৎ</div>'
+    + '<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.52rem;margin:.35rem 0 .52rem;padding:0 .6rem;">'
+    + row2.map(mkCard).join('') + '</div>'
+    + '<div class="dsec" style="padding:.4rem .6rem .1rem;">🚫 বারবেলা ও কালরাত্রি</div>'
+    + '<div style="padding:0 .6rem .42rem;">' + baarHtml2 + '</div>'
+    + '<div class="dsec" style="padding:.4rem .6rem .1rem;">✨ অমৃতযোগ ও মাহেন্দ্রযোগ</div>'
+    + '<div style="padding:0 .6rem .42rem;">' + amritaHtml + '</div>'
+    + '<div class="dsec" style="padding:.4rem .6rem .1rem;">🌅 লগ্ন ও মৃত্যু দোষ</div>'
+    + '<div style="padding:0 .6rem .42rem;">' + lagnaHtml + doshaHtml + '</div>';
+
   document.getElementById('dttimes').innerHTML = timesHtml;
   document.getElementById('dtfests').innerHTML = _festHtml(c);
   var p = document.getElementById('dtp');
@@ -2543,8 +2798,11 @@ function _calcBirthData(dateStr, hourF, lat, lng) {
   var parts = dateStr.split('-');
   var y=+parts[0], m=+parts[1], d=+parts[2];
   var tz = 5.5; // IST
+  // ✅ সংশোধন: প্রকৃত জন্ম সময়ের JD ব্যবহার (আগে ভুলভাবে noon = JD+0.5 ব্যবহৃত হত)
   var jd = JD(y,m,d) + (hourF - tz)/24;
   var ay = lahiriAY(jd);
+
+  // গ্রহের sidereal অবস্থান
   var ml = moonL(jd);
   var sl = sunL(jd);
   var moonSid = ((ml - ay) % 360 + 360) % 360;
@@ -2552,46 +2810,76 @@ function _calcBirthData(dateStr, hourF, lat, lng) {
   var moonRashi = Math.floor(moonSid / 30);
   var sunRashi  = Math.floor(sunSid  / 30);
   var nakIdx    = Math.floor(moonSid / (360/27)) % 27;
-  // লগ্ন গণনা (approximate — RAMC based)
-  var st = sunTimes(y, m, d);
-  var st2 = {rise: st.rise, set: st.set};
-  // Ascendant approx: sidereal time
-  var jd0 = JD(y,m,d) + 0.5;
-  var T = (jd0 - 2451545)/36525;
-  var GMST = (280.46061837 + 360.98564736629*(jd0-2451545) + 0.000387933*T*T) % 360;
+
+  // ✅ সংশোধিত লগ্ন গণনা — RAMC ভিত্তিক সঠিক সূত্র
+  // GMST = UT সময়ে Greenwich-এর mean sidereal time
+  var T = (jd - 2451545)/36525;
+  var GMST = ((280.46061837 + 360.98564736629*(jd-2451545) + 0.000387933*T*T) % 360 + 360) % 360;
   var LMST = ((GMST + lng) % 360 + 360) % 360;
-  var RA_MC = LMST;
+  var RAMC = LMST; // Local sidereal time = RA of Midheaven
   var eps = 23.439 * Math.PI/180;
-  var mc_ecl = Math.atan2(Math.sin(RA_MC*Math.PI/180), Math.cos(RA_MC*Math.PI/180)*Math.cos(eps))*180/Math.PI;
-  var latR = lat*Math.PI/180;
-  var ascRad = Math.atan2(Math.cos(mc_ecl*Math.PI/180), -Math.sin(mc_ecl*Math.PI/180)*Math.cos(eps) - Math.tan(latR)*Math.sin(eps));
-  var ascTrop = ((ascRad*180/Math.PI) + 180 + 360) % 360;
-  var ascSid = ((ascTrop - ay) % 360 + 360) % 360;
+  var latR = lat * Math.PI/180;
+  var RAMC_r = RAMC * Math.PI/180;
+
+  // MC tropical longitude
+  var mc_trop = ((Math.atan2(Math.sin(RAMC_r), Math.cos(RAMC_r)*Math.cos(eps))*180/Math.PI) + 360) % 360;
+
+  // ✅ সংশোধিত Ascendant সূত্র (Jean Meeus, Astronomical Algorithms)
+  // tan(Asc) = -cos(RAMC) / (sin(ε)·tan(φ) + cos(ε)·sin(RAMC))
+  var yA = -Math.cos(RAMC_r);
+  var xA = Math.sin(eps)*Math.tan(latR) + Math.cos(eps)*Math.sin(RAMC_r);
+  var E = ((Math.atan2(yA, xA)*180/Math.PI) + 360) % 360;
+  // Quadrant correction: Ascendant ≈ MC + 90°
+  var E2 = (E + 180) % 360;
+  var diff = (E - mc_trop + 360) % 360;
+  if (diff < 90 || diff > 270) E = E2;
+
+  var ascTrop = E;
+  var ascSid  = ((ascTrop - ay) % 360 + 360) % 360;
   var lagnaRashi = Math.floor(ascSid / 30);
-  // মঙ্গল দোষ পরীক্ষা
-  var marsPos = Math.floor((((saturnL(jd)-ay)%360+360)%360)/30); // approximate using saturn fn
-  // rough Mars calculation
-  var T2=(jd-2451545)/36525;
-  var marsL = ((355.433 + 19140.2993+0.0003*T2)*T2 % 360 + 360) % 360;
-  var marsSid = ((marsL - ay) % 360 + 360) % 360;
+
+  // ✅ সংশোধিত মঙ্গল গণনা (আগে saturnL ব্যবহার করা হত — সম্পূর্ণ ভুল)
+  var marsTrop = marsL(jd);
+  var marsSid  = ((marsTrop - ay) % 360 + 360) % 360;
   var marsRashi = Math.floor(marsSid / 30);
   var marsHouse = ((marsRashi - lagnaRashi + 12) % 12) + 1;
   var hasMangalDosha = [1,4,7,8,12].includes(marsHouse);
-  return {moonRashi, sunRashi, nakIdx, lagnaRashi, hasMangalDosha, marsHouse, moonDeg: moonSid.toFixed(2)};
+
+  // রাহু ও কেতু
+  var rahuTrop = rahuL(jd);
+  var rahuSid  = ((rahuTrop - ay) % 360 + 360) % 360;
+  var rahuRashi = Math.floor(rahuSid / 30);
+  var ketuRashi = (rahuRashi + 6) % 12;
+
+  return {
+    moonRashi, sunRashi, nakIdx, lagnaRashi, ascSid, ascTrop,
+    hasMangalDosha, marsHouse, marsRashi,
+    rahuRashi, ketuRashi,
+    moonDeg: moonSid.toFixed(2),
+    moonPada: Math.floor(moonSid / (360/108)) % 4 + 1
+  };
 }
 
 function _showBirthResult(data, elId) {
+  var RASHI_BN=['মেষ','বৃষ','মিথুন','কর্কট','সিংহ','কন্যা','তুলা','বৃশ্চিক','ধনু','মকর','কুম্ভ','মীন'];
+  var LORDS=['মঙ্গল','শুক্র','বুধ','চন্দ্র','সূর্য','বুধ','শুক্র','মঙ্গল','গুরু','শনি','শনি','গুরু'];
   var html = '<div class="calc-result-head">🔮 জন্মরাশি নির্ধারণ ফলাফল</div>';
   html += '<div class="calc-result-grid">';
-  html += '<div class="calc-result-item"><div class="lbl">জন্মরাশি (চন্দ্র)</div><div class="val">'+RASHI_NAMES_FULL[data.moonRashi]+'</div></div>';
-  html += '<div class="calc-result-item"><div class="lbl">জন্মনক্ষত্র</div><div class="val">'+NAKS[data.nakIdx][0]+'</div></div>';
-  html += '<div class="calc-result-item"><div class="lbl">জন্মলগ্ন</div><div class="val">'+LAGNA_NAMES[data.lagnaRashi]+'</div></div>';
-  html += '<div class="calc-result-item"><div class="lbl">সূর্যরাশি</div><div class="val">'+RASHI_NAMES_FULL[data.sunRashi]+'</div></div>';
-  html += '<div class="calc-result-item"><div class="lbl">রাশির অধিপতি</div><div class="val">'+RASHI_LORDS[data.moonRashi]+'</div></div>';
+  html += '<div class="calc-result-item"><div class="lbl">জন্মরাশি (চন্দ্র)</div><div class="val">'+RASHI_BN[data.moonRashi]+'</div></div>';
+  html += '<div class="calc-result-item"><div class="lbl">জন্মনক্ষত্র (পাদ)</div><div class="val">'+NAKS[data.nakIdx][0]+' ('+data.moonPada+'ম পাদ)</div></div>';
+  html += '<div class="calc-result-item"><div class="lbl">জন্মলগ্ন</div><div class="val">'+RASHI_BN[data.lagnaRashi]+'</div></div>';
+  html += '<div class="calc-result-item"><div class="lbl">সূর্যরাশি</div><div class="val">'+RASHI_BN[data.sunRashi]+'</div></div>';
+  html += '<div class="calc-result-item"><div class="lbl">রাশির অধিপতি</div><div class="val">'+LORDS[data.moonRashi]+'</div></div>';
   html += '<div class="calc-result-item"><div class="lbl">নক্ষত্রের অধিপতি</div><div class="val">'+NAKS[data.nakIdx][1]+'</div></div>';
+  html += '<div class="calc-result-item"><div class="lbl">রাহু রাশি</div><div class="val">'+RASHI_BN[data.rahuRashi]+'</div></div>';
+  html += '<div class="calc-result-item"><div class="lbl">কেতু রাশি</div><div class="val">'+RASHI_BN[data.ketuRashi]+'</div></div>';
   html += '</div>';
-  html += '<div style="margin-top:.6rem;padding:.5rem .65rem;border-radius:9px;font-size:.72rem;line-height:1.6;background:'+(data.hasMangalDosha?'rgba(181,32,32,.06)':'rgba(37,102,37,.06)')+';border:1px solid '+(data.hasMangalDosha?'rgba(181,32,32,.18)':'rgba(37,102,37,.18)')+';color:var(--txt);">';
-  html += (data.hasMangalDosha ? '⚠️ <strong>মঙ্গল দোষ আছে</strong> ('+data.marsHouse+' নম্বর ভাবে মঙ্গল) — বিবাহের আগে বিশেষ পরামর্শ নিন।' : '✅ মঙ্গল দোষ নেই।');
+  html += '<div style="margin-top:.6rem;padding:.5rem .65rem;border-radius:9px;font-size:.72rem;line-height:1.6;background:'
+    +(data.hasMangalDosha?'rgba(181,32,32,.06)':'rgba(37,102,37,.06)')
+    +';border:1px solid '+(data.hasMangalDosha?'rgba(181,32,32,.18)':'rgba(37,102,37,.18)')+';color:var(--txt);">';
+  html += (data.hasMangalDosha
+    ? '⚠️ <strong>মঙ্গল দোষ আছে</strong> ('+(data.marsHouse)+'ম ভাবে মঙ্গল — রাশি: '+(RASHI_BN[data.marsRashi])+') — বিবাহের আগে বিশেষ পরামর্শ নিন।'
+    : '✅ <strong>মঙ্গল দোষ নেই</strong> (মঙ্গল '+(data.marsHouse)+'ম ভাবে — রাশি: '+(RASHI_BN[data.marsRashi])+')');
   html += '</div>';
   var el = document.getElementById(elId);
   el.innerHTML = html;
