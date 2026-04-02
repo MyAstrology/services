@@ -1,100 +1,141 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
     <title>MyAstrology দৈনিক রাশিফল</title>
     <link>https://www.myastrology.in/rashifal/</link>
     <description>ড. প্রদ্যুৎ আচার্যের বৈদিক জ্যোতিষভিত্তিক দৈনিক রাশিফল — ১২ রাশির বিস্তারিত ফল, প্রেম, কর্ম, স্বাস্থ্য, অর্থ ও সতর্কতা।</description>
-    <language>bn</language>
-    <lastBuildDate>Wed, 1 Apr 2026 19:33:47 +0530</lastBuildDate>
+    <language>bn-IN</language>
+    <managingEditor>drprodyutacharya@gmail.com (Dr. Prodyut Acharya)</managingEditor>
+    <webMaster>drprodyutacharya@gmail.com (Dr. Prodyut Acharya)</webMaster>
+    <lastBuildDate>Wed, 01 Apr 2026 23:30:00 +0000</lastBuildDate>
+    <ttl>1440</ttl>
     <atom:link href="https://www.myastrology.in/rashifal/rss.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png</url>
       <title>MyAstrology দৈনিক রাশিফল</title>
       <link>https://www.myastrology.in/rashifal/</link>
+      <width>144</width>
+      <height>144</height>
     </image>
+    <item>
+      <title><![CDATA[২১ চৈত্র ১৪৩২ দৈনিক রাশিফল — ১২ রাশির বিস্তারিত ফল]]></title>
+      <link>https://www.myastrology.in/rashifal/2026-04-04.html</link>
+      <description><![CDATA[২১ চৈত্র ১৪৩২ তারিখের ১২ রাশির বিস্তারিত দৈনিক রাশিফল। চন্দ্র তুলা রাশিতে। প্রেম, কর্ম, স্বাস্থ্য, অর্থ ও সতর্কতা সহ সম্পূর্ণ বিশ্লেষণ। ড. প্রদ্যুৎ আচার্য, রানাঘাট। চন্দ্র তুলা রাশিতে।]]></description>
+      <pubDate>Fri, 03 Apr 2026 23:30:00 +0000</pubDate>
+      <guid isPermaLink="true">https://www.myastrology.in/rashifal/2026-04-04.html</guid>
+      <category><![CDATA[রাশিফল]]></category>
+      <author>drprodyutacharya@gmail.com (Dr. Prodyut Acharya)</author>
+    </item>
     <item>
       <title><![CDATA[২০ চৈত্র ১৪৩২ দৈনিক রাশিফল — ১২ রাশির বিস্তারিত ফল]]></title>
       <link>https://www.myastrology.in/rashifal/2026-04-03.html</link>
-      <description><![CDATA[২০ চৈত্র ১৪৩২ তারিখের ১২ রাশির বিস্তারিত দৈনিক রাশিফল। চন্দ্র তুলা রাশিতে। প্রেম, কর্ম, স্বাস্থ্য, অর্থ ও সতর্কতা সহ সম্পূর্ণ বিশ্লেষণ। ড. প্রদ্যুৎ আচার্য, রানাঘাট।]]></description>
-      <pubDate>Fri, 3 Apr 2026 00:00:00 +0530</pubDate>
-      <guid isPermaLink="false">https://www.myastrology.in/rashifal/2026-04-03.html</guid>
+      <description><![CDATA[২০ চৈত্র ১৪৩২ তারিখের ১২ রাশির বিস্তারিত দৈনিক রাশিফল। চন্দ্র তুলা রাশিতে। প্রেম, কর্ম, স্বাস্থ্য, অর্থ ও সতর্কতা সহ সম্পূর্ণ বিশ্লেষণ। ড. প্রদ্যুৎ আচার্য, রানাঘাট। চন্দ্র তুলা রাশিতে।]]></description>
+      <pubDate>Thu, 02 Apr 2026 23:30:00 +0000</pubDate>
+      <guid isPermaLink="true">https://www.myastrology.in/rashifal/2026-04-03.html</guid>
+      <category><![CDATA[রাশিফল]]></category>
+      <author>drprodyutacharya@gmail.com (Dr. Prodyut Acharya)</author>
     </item>
     <item>
       <title><![CDATA[১৯ চৈত্র ১৪৩২ দৈনিক রাশিফল — ১২ রাশির বিস্তারিত ফল]]></title>
       <link>https://www.myastrology.in/rashifal/2026-04-02.html</link>
-      <description><![CDATA[১৯ চৈত্র ১৪৩২ তারিখের ১২ রাশির বিস্তারিত দৈনিক রাশিফল। চন্দ্র কন্যা রাশিতে। প্রেম, কর্ম, স্বাস্থ্য, অর্থ ও সতর্কতা সহ সম্পূর্ণ বিশ্লেষণ। ড. প্রদ্যুৎ আচার্য, রানাঘাট।]]></description>
-      <pubDate>Thu, 2 Apr 2026 00:00:00 +0530</pubDate>
-      <guid isPermaLink="false">https://www.myastrology.in/rashifal/2026-04-02.html</guid>
+      <description><![CDATA[১৯ চৈত্র ১৪৩২ তারিখের ১২ রাশির বিস্তারিত দৈনিক রাশিফল। চন্দ্র কন্যা রাশিতে। প্রেম, কর্ম, স্বাস্থ্য, অর্থ ও সতর্কতা সহ সম্পূর্ণ বিশ্লেষণ। ড. প্রদ্যুৎ আচার্য, রানাঘাট। চন্দ্র কন্যা রাশিতে।]]></description>
+      <pubDate>Wed, 01 Apr 2026 23:30:00 +0000</pubDate>
+      <guid isPermaLink="true">https://www.myastrology.in/rashifal/2026-04-02.html</guid>
+      <category><![CDATA[রাশিফল]]></category>
+      <author>drprodyutacharya@gmail.com (Dr. Prodyut Acharya)</author>
     </item>
     <item>
       <title><![CDATA[১৮ চৈত্র ১৪৩২ দৈনিক রাশিফল — ১২ রাশির বিস্তারিত ফল]]></title>
       <link>https://www.myastrology.in/rashifal/2026-04-01.html</link>
-      <description><![CDATA[১৮ চৈত্র ১৪৩২ তারিখের ১২ রাশির বিস্তারিত দৈনিক রাশিফল। চন্দ্র কন্যা রাশিতে। প্রেম, কর্ম, স্বাস্থ্য, অর্থ ও সতর্কতা সহ সম্পূর্ণ বিশ্লেষণ। ড. প্রদ্যুৎ আচার্য, রানাঘাট।]]></description>
-      <pubDate>Wed, 1 Apr 2026 00:00:00 +0530</pubDate>
-      <guid isPermaLink="false">https://www.myastrology.in/rashifal/2026-04-01.html</guid>
+      <description><![CDATA[১৮ চৈত্র ১৪৩২ তারিখের ১২ রাশির বিস্তারিত দৈনিক রাশিফল। চন্দ্র কন্যা রাশিতে। প্রেম, কর্ম, স্বাস্থ্য, অর্থ ও সতর্কতা সহ সম্পূর্ণ বিশ্লেষণ। ড. প্রদ্যুৎ আচার্য, রানাঘাট। চন্দ্র কন্যা রাশিতে।]]></description>
+      <pubDate>Tue, 31 Mar 2026 23:30:00 +0000</pubDate>
+      <guid isPermaLink="true">https://www.myastrology.in/rashifal/2026-04-01.html</guid>
+      <category><![CDATA[রাশিফল]]></category>
+      <author>drprodyutacharya@gmail.com (Dr. Prodyut Acharya)</author>
     </item>
     <item>
       <title><![CDATA[১৭ চৈত্র ১৪৩২ দৈনিক রাশিফল — ১২ রাশির বিস্তারিত ফল]]></title>
       <link>https://www.myastrology.in/rashifal/2026-03-31.html</link>
-      <description><![CDATA[১৭ চৈত্র ১৪৩২ তারিখের ১২ রাশির বিস্তারিত দৈনিক রাশিফল। চন্দ্র আপনার রাশিতে। প্রেম, কর্ম, স্বাস্থ্য, অর্থ ও সতর্কতা।]]></description>
-      <pubDate>Tue, 31 Mar 2026 00:00:00 +0530</pubDate>
-      <guid isPermaLink="false">https://www.myastrology.in/rashifal/2026-03-31.html</guid>
+      <description><![CDATA[১৭ চৈত্র ১৪৩২ তারিখের ১২ রাশির বিস্তারিত দৈনিক রাশিফল। চন্দ্র আপনার রাশিতে। প্রেম, কর্ম, স্বাস্থ্য, অর্থ ও সতর্কতা। চন্দ্র আপনার রাশিতে।]]></description>
+      <pubDate>Mon, 30 Mar 2026 23:30:00 +0000</pubDate>
+      <guid isPermaLink="true">https://www.myastrology.in/rashifal/2026-03-31.html</guid>
+      <category><![CDATA[রাশিফল]]></category>
+      <author>drprodyutacharya@gmail.com (Dr. Prodyut Acharya)</author>
     </item>
     <item>
       <title><![CDATA[১৬ চৈত্র ১৪৩২ দৈনিক রাশিফল — ১২ রাশির বিস্তারিত ফল]]></title>
       <link>https://www.myastrology.in/rashifal/2026-03-30.html</link>
-      <description><![CDATA[১৬ চৈত্র ১৪৩২ তারিখের ১২ রাশির বিস্তারিত দৈনিক রাশিফল। চন্দ্র আপনার রাশিতে। প্রেম, কর্ম, স্বাস্থ্য, অর্থ ও সতর্কতা।]]></description>
-      <pubDate>Mon, 30 Mar 2026 00:00:00 +0530</pubDate>
-      <guid isPermaLink="false">https://www.myastrology.in/rashifal/2026-03-30.html</guid>
+      <description><![CDATA[১৬ চৈত্র ১৪৩২ তারিখের ১২ রাশির বিস্তারিত দৈনিক রাশিফল। চন্দ্র আপনার রাশিতে। প্রেম, কর্ম, স্বাস্থ্য, অর্থ ও সতর্কতা। চন্দ্র আপনার রাশিতে।]]></description>
+      <pubDate>Sun, 29 Mar 2026 23:30:00 +0000</pubDate>
+      <guid isPermaLink="true">https://www.myastrology.in/rashifal/2026-03-30.html</guid>
+      <category><![CDATA[রাশিফল]]></category>
+      <author>drprodyutacharya@gmail.com (Dr. Prodyut Acharya)</author>
     </item>
     <item>
       <title><![CDATA[১৫ চৈত্র ১৪৩২ দৈনিক রাশিফল — ১২ রাশির বিস্তারিত ফল]]></title>
       <link>https://www.myastrology.in/rashifal/2026-03-29.html</link>
-      <description><![CDATA[১৫ চৈত্র ১৪৩২ তারিখের ১২ রাশির বিস্তারিত দৈনিক রাশিফল। চন্দ্র সিংহ রাশিতে। প্রেম, কর্ম, স্বাস্থ্য, অর্থ ও সতর্কতা সহ সম্পূর্ণ বিশ্লেষণ। ড. প্রদ্যুৎ আচার্য, রানাঘাট।]]></description>
-      <pubDate>Sun, 29 Mar 2026 00:00:00 +0530</pubDate>
-      <guid isPermaLink="false">https://www.myastrology.in/rashifal/2026-03-29.html</guid>
+      <description><![CDATA[১৫ চৈত্র ১৪৩২ তারিখের ১২ রাশির বিস্তারিত দৈনিক রাশিফল। চন্দ্র সিংহ রাশিতে। প্রেম, কর্ম, স্বাস্থ্য, অর্থ ও সতর্কতা সহ সম্পূর্ণ বিশ্লেষণ। ড. প্রদ্যুৎ আচার্য, রানাঘাট। চন্দ্র সিংহ রাশিতে।]]></description>
+      <pubDate>Sat, 28 Mar 2026 23:30:00 +0000</pubDate>
+      <guid isPermaLink="true">https://www.myastrology.in/rashifal/2026-03-29.html</guid>
+      <category><![CDATA[রাশিফল]]></category>
+      <author>drprodyutacharya@gmail.com (Dr. Prodyut Acharya)</author>
     </item>
     <item>
       <title><![CDATA[১৪ চৈত্র ১৪৩২ দৈনিক রাশিফল — ১২ রাশির বিস্তারিত ফল]]></title>
       <link>https://www.myastrology.in/rashifal/2026-03-28.html</link>
-      <description><![CDATA[১৪ চৈত্র ১৪৩২ তারিখের ১২ রাশির বিস্তারিত দৈনিক রাশিফল। চন্দ্র কর্কট রাশিতে। প্রেম, কর্ম, স্বাস্থ্য, অর্থ ও সতর্কতা সহ সম্পূর্ণ বিশ্লেষণ। ড. প্রদ্যুৎ আচার্য, রানাঘাট।]]></description>
-      <pubDate>Sat, 28 Mar 2026 00:00:00 +0530</pubDate>
-      <guid isPermaLink="false">https://www.myastrology.in/rashifal/2026-03-28.html</guid>
+      <description><![CDATA[১৪ চৈত্র ১৪৩২ তারিখের ১২ রাশির বিস্তারিত দৈনিক রাশিফল। চন্দ্র কর্কট রাশিতে। প্রেম, কর্ম, স্বাস্থ্য, অর্থ ও সতর্কতা সহ সম্পূর্ণ বিশ্লেষণ। ড. প্রদ্যুৎ আচার্য, রানাঘাট। চন্দ্র কর্কট রাশিতে।]]></description>
+      <pubDate>Fri, 27 Mar 2026 23:30:00 +0000</pubDate>
+      <guid isPermaLink="true">https://www.myastrology.in/rashifal/2026-03-28.html</guid>
+      <category><![CDATA[রাশিফল]]></category>
+      <author>drprodyutacharya@gmail.com (Dr. Prodyut Acharya)</author>
     </item>
     <item>
       <title><![CDATA[১৩ চৈত্র ১৪৩২ দৈনিক রাশিফল — ১২ রাশির বিস্তারিত ফল]]></title>
       <link>https://www.myastrology.in/rashifal/2026-03-27.html</link>
-      <description><![CDATA[১৩ চৈত্র ১৪৩২ তারিখের ১২ রাশির বিস্তারিত দৈনিক রাশিফল। চন্দ্র কর্কট রাশিতে। প্রেম, কর্ম, স্বাস্থ্য, অর্থ ও সতর্কতা সহ সম্পূর্ণ বিশ্লেষণ। ড. প্রদ্যুৎ আচার্য, রানাঘাট।]]></description>
-      <pubDate>Fri, 27 Mar 2026 00:00:00 +0530</pubDate>
-      <guid isPermaLink="false">https://www.myastrology.in/rashifal/2026-03-27.html</guid>
+      <description><![CDATA[১৩ চৈত্র ১৪৩২ তারিখের ১২ রাশির বিস্তারিত দৈনিক রাশিফল। চন্দ্র কর্কট রাশিতে। প্রেম, কর্ম, স্বাস্থ্য, অর্থ ও সতর্কতা সহ সম্পূর্ণ বিশ্লেষণ। ড. প্রদ্যুৎ আচার্য, রানাঘাট। চন্দ্র কর্কট রাশিতে।]]></description>
+      <pubDate>Thu, 26 Mar 2026 23:30:00 +0000</pubDate>
+      <guid isPermaLink="true">https://www.myastrology.in/rashifal/2026-03-27.html</guid>
+      <category><![CDATA[রাশিফল]]></category>
+      <author>drprodyutacharya@gmail.com (Dr. Prodyut Acharya)</author>
     </item>
     <item>
       <title><![CDATA[১২ চৈত্র ১৪৩২ দৈনিক রাশিফল — ১২ রাশির বিস্তারিত ফল]]></title>
       <link>https://www.myastrology.in/rashifal/2026-03-26.html</link>
-      <description><![CDATA[১২ চৈত্র ১৪৩২ তারিখের ১২ রাশির বিস্তারিত দৈনিক রাশিফল। চন্দ্র মিথুন রাশিতে। প্রেম, কর্ম, স্বাস্থ্য, অর্থ ও সতর্কতা সহ সম্পূর্ণ বিশ্লেষণ। ড. প্রদ্যুৎ আচার্য, রানাঘাট।]]></description>
-      <pubDate>Thu, 26 Mar 2026 00:00:00 +0530</pubDate>
-      <guid isPermaLink="false">https://www.myastrology.in/rashifal/2026-03-26.html</guid>
+      <description><![CDATA[১২ চৈত্র ১৪৩২ তারিখের ১২ রাশির বিস্তারিত দৈনিক রাশিফল। চন্দ্র মিথুন রাশিতে। প্রেম, কর্ম, স্বাস্থ্য, অর্থ ও সতর্কতা সহ সম্পূর্ণ বিশ্লেষণ। ড. প্রদ্যুৎ আচার্য, রানাঘাট। চন্দ্র মিথুন রাশিতে।]]></description>
+      <pubDate>Wed, 25 Mar 2026 23:30:00 +0000</pubDate>
+      <guid isPermaLink="true">https://www.myastrology.in/rashifal/2026-03-26.html</guid>
+      <category><![CDATA[রাশিফল]]></category>
+      <author>drprodyutacharya@gmail.com (Dr. Prodyut Acharya)</author>
     </item>
     <item>
       <title><![CDATA[১১ চৈত্র ১৪৩২ দৈনিক রাশিফল — ১২ রাশির বিস্তারিত ফল]]></title>
       <link>https://www.myastrology.in/rashifal/2026-03-25.html</link>
-      <description><![CDATA[১১ চৈত্র ১৪৩২ তারিখের ১২ রাশির বিস্তারিত দৈনিক রাশিফল। চন্দ্র মিথুন রাশিতে। প্রেম, কর্ম, স্বাস্থ্য, অর্থ ও সতর্কতা সহ সম্পূর্ণ বিশ্লেষণ। ড. প্রদ্যুৎ আচার্য, রানাঘাট।]]></description>
-      <pubDate>Wed, 25 Mar 2026 00:00:00 +0530</pubDate>
-      <guid isPermaLink="false">https://www.myastrology.in/rashifal/2026-03-25.html</guid>
+      <description><![CDATA[১১ চৈত্র ১৪৩২ তারিখের ১২ রাশির বিস্তারিত দৈনিক রাশিফল। চন্দ্র মিথুন রাশিতে। প্রেম, কর্ম, স্বাস্থ্য, অর্থ ও সতর্কতা সহ সম্পূর্ণ বিশ্লেষণ। ড. প্রদ্যুৎ আচার্য, রানাঘাট। চন্দ্র মিথুন রাশিতে।]]></description>
+      <pubDate>Tue, 24 Mar 2026 23:30:00 +0000</pubDate>
+      <guid isPermaLink="true">https://www.myastrology.in/rashifal/2026-03-25.html</guid>
+      <category><![CDATA[রাশিফল]]></category>
+      <author>drprodyutacharya@gmail.com (Dr. Prodyut Acharya)</author>
     </item>
     <item>
       <title><![CDATA[১০ চৈত্র ১৪৩২ দৈনিক রাশিফল — ১২ রাশির বিস্তারিত ফল]]></title>
       <link>https://www.myastrology.in/rashifal/2026-03-24.html</link>
-      <description><![CDATA[১০ চৈত্র ১৪৩২ তারিখের ১২ রাশির বিস্তারিত দৈনিক রাশিফল। চন্দ্র বৃষ রাশিতে। প্রেম, কর্ম, স্বাস্থ্য, অর্থ ও সতর্কতা সহ সম্পূর্ণ বিশ্লেষণ। ড. প্রদ্যুৎ আচার্য, রানাঘাট।]]></description>
-      <pubDate>Tue, 24 Mar 2026 00:00:00 +0530</pubDate>
-      <guid isPermaLink="false">https://www.myastrology.in/rashifal/2026-03-24.html</guid>
+      <description><![CDATA[১০ চৈত্র ১৪৩২ তারিখের ১২ রাশির বিস্তারিত দৈনিক রাশিফল। চন্দ্র বৃষ রাশিতে। প্রেম, কর্ম, স্বাস্থ্য, অর্থ ও সতর্কতা সহ সম্পূর্ণ বিশ্লেষণ। ড. প্রদ্যুৎ আচার্য, রানাঘাট। চন্দ্র বৃষ রাশিতে।]]></description>
+      <pubDate>Mon, 23 Mar 2026 23:30:00 +0000</pubDate>
+      <guid isPermaLink="true">https://www.myastrology.in/rashifal/2026-03-24.html</guid>
+      <category><![CDATA[রাশিফল]]></category>
+      <author>drprodyutacharya@gmail.com (Dr. Prodyut Acharya)</author>
     </item>
     <item>
       <title><![CDATA[৯ চৈত্র ১৪৩২ দৈনিক রাশিফল — ১২ রাশির বিস্তারিত ফল]]></title>
       <link>https://www.myastrology.in/rashifal/2026-03-23.html</link>
-      <description><![CDATA[৯ চৈত্র ১৪৩২ তারিখের ১২ রাশির বিস্তারিত দৈনিক রাশিফল। চন্দ্র বৃষ রাশিতে। প্রেম, কর্ম, স্বাস্থ্য, অর্থ ও সতর্কতা সহ সম্পূর্ণ বিশ্লেষণ। ড. প্রদ্যুৎ আচার্য, রানাঘাট।]]></description>
-      <pubDate>Mon, 23 Mar 2026 00:00:00 +0530</pubDate>
-      <guid isPermaLink="false">https://www.myastrology.in/rashifal/2026-03-23.html</guid>
+      <description><![CDATA[৯ চৈত্র ১৪৩২ তারিখের ১২ রাশির বিস্তারিত দৈনিক রাশিফল। চন্দ্র বৃষ রাশিতে। প্রেম, কর্ম, স্বাস্থ্য, অর্থ ও সতর্কতা সহ সম্পূর্ণ বিশ্লেষণ। ড. প্রদ্যুৎ আচার্য, রানাঘাট। চন্দ্র বৃষ রাশিতে।]]></description>
+      <pubDate>Sun, 22 Mar 2026 23:30:00 +0000</pubDate>
+      <guid isPermaLink="true">https://www.myastrology.in/rashifal/2026-03-23.html</guid>
+      <category><![CDATA[রাশিফল]]></category>
+      <author>drprodyutacharya@gmail.com (Dr. Prodyut Acharya)</author>
     </item>
   </channel>
 </rss>

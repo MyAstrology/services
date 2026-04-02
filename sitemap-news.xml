@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
   <url>
+    <loc>https://www.myastrology.in/rashifal/2026-04-04.html</loc>
+    <news:news>
+      <news:publication>
+        <news:name>MyAstrology</news:name>
+        <news:language>bn</news:language>
+      </news:publication>
+      <news:publication_date>2026-04-04T05:00:00+05:30</news:publication_date>
+      <news:title>২১ চৈত্র ১৪৩২ — দৈনিক রাশিফল | ১২ রাশির বিস্তারিত ফল</news:title>
+    </news:news>
+    <lastmod>2026-04-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
     <loc>https://www.myastrology.in/rashifal/2026-04-03.html</loc>
     <news:news>
       <news:publication>
@@ -26,20 +40,6 @@
       <news:title>১৯ চৈত্র ১৪৩২ — দৈনিক রাশিফল | ১২ রাশির বিস্তারিত ফল</news:title>
     </news:news>
     <lastmod>2026-04-02</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.95</priority>
-  </url>
-  <url>
-    <loc>https://www.myastrology.in/rashifal/2026-04-01.html</loc>
-    <news:news>
-      <news:publication>
-        <news:name>MyAstrology</news:name>
-        <news:language>bn</news:language>
-      </news:publication>
-      <news:publication_date>2026-04-01T05:00:00+05:30</news:publication_date>
-      <news:title>১৮ চৈত্র ১৪৩২ — দৈনিক রাশিফল | ১২ রাশির বিস্তারিত ফল</news:title>
-    </news:news>
-    <lastmod>2026-04-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
