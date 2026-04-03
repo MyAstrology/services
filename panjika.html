@@ -1978,17 +1978,29 @@ function calcAmritaN(ss,nr,w){return _mkP(AMRITA_N[w],ss,((nr+24)-ss)*60/15);}
 function calcMahendra(r,s,w){const sl=MAHENDRA_D[w],m=(s-r)*60/15;return{st:r+(sl[0]-1)*m/60,en:r+sl[sl.length-1]*m/60};}
 
 // ══ মৃত্যু দোষ (verified: 2Nov2025 রবি → ত্রিপাদ→পুষ্কর→দ্বিপাদ→একপাদ ✓) ══
-const DD_BAR=[0,2,6],DD_TI=[1,6,11],DD_NAK=[2,6,11,15,20,24];
-const DD_NM={0:'দোষ নেই',1:'একপাদ দোষ',2:'দ্বিপাদ দোষ',3:'ত্রিপাদ দোষ',4:'পুষ্কর দোষ'};
-function calcDeathDosha(wd,tiInPak,nakIdx){
-  const bar=DD_BAR.includes(wd)?1:0,ti=DD_TI.includes(tiInPak)?1:0,nak=DD_NAK.includes(nakIdx%27)?2:0;
-  const total=bar+ti+nak;
-  let pk='';
-  if(total===4){const v=[1,2,3,4,5,6,7][wd];const r=(v+35)%3;pk=r===1?' (স্বর্গবাসী)':r===2?' (পাতালবাসী)':' (মর্ত্যবাসী)';}
-  return{total,name:(DD_NM[total]||'পুষ্কর দোষ')+pk};
-}
-const MRITYU_DOSHA=['','সর্বদোষ','গো-দোষ','','','সর্বদোষ','','','সর্পদোষ','পিতৃদোষ','সর্বদোষ','দ্বিপাদদোষ','','','সর্বদোষ','','','সর্বদোষ','পিতৃদোষ','সর্বদোষ','','','','সর্পদোষ','দ্বিপাদদোষ','',''];
+const DD_BAR = [0,2,6];
+const DD_TI = [1,6,11];
+const DD_NAK = [2,6,11,15,20,24];
+const DD_NM = {0:'দোষ নেই',1:'একপাদ দোষ',2:'দ্বিপাদ দোষ',3:'ত্রিপাদ দোষ',4:'পুষ্কর দোষ'};
 
+function calcDeathDosha(wd, tiInPak, nakIdx) {
+  const bar = DD_BAR.includes(wd) ? 1 : 0;
+  const ti = DD_TI.includes(tiInPak) ? 1 : 0;
+  const nak = DD_NAK.includes(nakIdx % 27) ? 2 : 0;
+  const total = bar + ti + nak;
+  let pk = '';
+  if (total === 4) {
+    const v = [1,2,3,4,5,6,7][wd];
+    const r = (v + 35) % 3;
+    pk = r === 1 ? ' (স্বর্গবাসী)' : r === 2 ? ' (পাতালবাসী)' : ' (মর্ত্যবাসী)';
+  }
+  return { total, name: (DD_NM[total] || 'পুষ্কর দোষ') + pk };
+}
+
+// শুধুমাত্র যদি MRITYU_DOSHA আগে না থাকে তবেই ডিক্লেয়ার করো
+if (typeof MRITYU_DOSHA === 'undefined') {
+  var MRITYU_DOSHA = ['','সর্বদোষ','গো-দোষ','','','সর্বদোষ','','','সর্পদোষ','পিতৃদোষ','সর্বদোষ','দ্বিপাদদোষ','','','সর্বদোষ','','','সর্বদোষ','পিতৃদোষ','সর্বদোষ','','','','সর্পদোষ','দ্বিপাদদোষ','',''];
+}
 // ══ লগ্ন (verified: Apr3 11:00 Kolkata=মিথুন 17°20′≈ref 17°19′27″✓) ══
 function calcLagnaAt(jd,lat,lng){
   const T=(jd-2451545)/36525;
