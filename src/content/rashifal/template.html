@@ -28,6 +28,10 @@
 <meta property="og:site_name" content="MyAstrology – Dr. Prodyut Acharya">
 <meta property="article:published_time" content="{{ISO_DATE}}T05:00:00+05:30">
 <meta property="article:modified_time" content="{{ISO_DATE}}T05:00:00+05:30">
+<!-- ★ Google News: RFC 822 GMT pub date -->
+<meta name="pubdate" content="{{GMT_PUB_DATE}}">
+<!-- ★ Google News: keywords -->
+<meta name="news_keywords" content="{{NEWS_KEYWORDS}}">
 <meta property="article:author" content="Dr. Prodyut Acharya">
 <meta property="article:section" content="রাশিফল">
 <meta property="article:tag" content="দৈনিক রাশিফল,রাশিফল,জ্যোতিষ">
@@ -143,6 +147,8 @@ window.addEventListener('load', function() {
   --fh:'Tiro Bangla','Baloo Da 2','Noto Serif Bengali',Georgia,serif;
   --fb:'Baloo Da 2','Noto Sans Bengali','Noto Serif Bengali',Arial,sans-serif;
   --nav-h:60px;
+  /* ★ Navy — CTA ব্যাকগ্রাউন্ড */
+  --navy:#0a1e3c;--navy2:#112d5a;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;overflow-x:clip;}
@@ -236,6 +242,9 @@ main{max-width:860px;margin:0 auto;padding:16px 16px 60px;}
   text-transform:uppercase;color:var(--gold);
   background:rgba(181,134,13,.1);border:1px solid rgba(181,134,13,.25);
   display:inline-block;padding:3px 12px;border-radius:20px;margin-bottom:10px;}
+.hero-banner h1{font-family:var(--fh);color:var(--gold-lt);
+  font-size:clamp(1.2rem,3.5vw,1.8rem);margin-bottom:8px;line-height:1.3;}
+.hero-banner h1 em{color:var(--gold3);font-style:normal;}
 .hero-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
 .hero-chip{background:rgba(255,255,255,.06);border:1px solid rgba(181,134,13,.2);
   color:#b0c4dc;font-size:.72rem;font-weight:600;
@@ -260,10 +269,9 @@ main{max-width:860px;margin:0 auto;padding:16px 16px 60px;}
   background:linear-gradient(90deg,var(--gold),var(--gold-lt));
   border-radius:2px;margin:0 auto 22px;}
 
-/* ── HERO H1 ── */
+/* ── HERO H1 subtitle ── */
 .hero-banner h1{font-family:var(--fh);color:var(--gold-lt);
   font-size:clamp(1.1rem,3vw,1.7rem);margin-bottom:6px;line-height:1.3;}
-.hero-banner h1 em{color:var(--gold3);font-style:normal;}
 .hero-subtitle{color:#b0c4dc;font-size:clamp(.8rem,2vw,.95rem);margin-bottom:10px;font-style:italic;}
 
 /* ── RASHI GRID ── */
@@ -511,6 +519,27 @@ main{max-width:860px;margin:0 auto;padding:16px 16px 60px;}
   display:none;align-items:center;justify-content:center;transition:all .25s;
   box-shadow:0 3px 12px rgba(0,0,0,.2);}
 #btt.visible{display:flex;}#btt:hover{background:var(--gold);color:var(--navy);}
+
+/* ── SOCIAL PROOF SECTION ── */
+.social-proof-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px 16px;margin:0 0 18px;}
+.sp-title{font-family:var(--fh);font-size:.95rem;color:var(--navy);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.sp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;}
+.sp-card{background:var(--card);border-radius:10px;padding:12px 10px;text-align:center;border:1px solid var(--border);box-shadow:var(--shadow);transition:transform .2s;}
+.sp-card:hover{transform:translateY(-2px);}
+.sp-ico{font-size:1.4rem;margin-bottom:4px;}
+.sp-num{font-family:var(--fh);font-size:1.05rem;font-weight:800;color:var(--navy);line-height:1.2;}
+.sp-label{font-size:.63rem;font-weight:700;color:var(--txt2);text-transform:uppercase;letter-spacing:.05em;margin:3px 0;}
+.sp-sub{font-size:.6rem;color:var(--mu);margin-bottom:6px;}
+.sp-link{display:inline-block;font-size:.6rem;font-weight:700;color:var(--gold-l);border:1px solid var(--gold);border-radius:10px;padding:2px 8px;transition:background .2s;}
+.sp-link:hover{background:var(--gold);color:#fff;}
+.sp-google .sp-num{color:#ea4335;} .sp-fb .sp-num{color:#1877f2;} .sp-yt .sp-num{color:#ff0000;} .sp-total .sp-num{color:var(--green);}
+/* ── INTERNAL LINKS ── */
+.internal-links-section{background:var(--card2);border:1px solid var(--border);border-radius:var(--r);padding:18px 16px;margin:0 0 18px;}
+.il-title{font-family:var(--fh);font-size:.95rem;color:var(--navy);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.il-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;}
+.il-card{display:flex;flex-direction:column;align-items:center;gap:4px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 8px;text-align:center;color:var(--txt);font-size:.72rem;font-weight:600;transition:all .2s;}
+.il-card:hover{background:var(--gold-bg);border-color:var(--gold);color:var(--gold-l);transform:translateY(-2px);box-shadow:0 4px 12px rgba(181,134,13,.15);}
+.il-ico{font-size:1.15rem;} .il-text{font-family:var(--fh);font-size:.67rem;line-height:1.3;}
 </style>
 </head>
 <body>
@@ -612,6 +641,11 @@ main{max-width:860px;margin:0 auto;padding:16px 16px 60px;}
         <div class="pan-label">করণ</div>
         <div class="pan-val">{{KARAN}}</div>
       </div>
+      <div class="pan-item">
+        <div class="pan-ico">⏰</div>
+        <div class="pan-label">রাহুকাল</div>
+        <div class="pan-val">{{RAHU_KAL}}</div>
+      </div>
     </div>
   </div>
 
@@ -673,6 +707,58 @@ main{max-width:860px;margin:0 auto;padding:16px 16px 60px;}
     </div>
   </section>
 
+
+  <!-- ★ SOCIAL PROOF CARDS -->
+  <section class="social-proof-section" aria-label="সামাজিক প্রমাণ">
+    <h2 class="sp-title"><i class="fas fa-star" style="color:var(--gold)"></i> বিশ্বাসযোগ্যতার প্রমাণ</h2>
+    <div class="sp-grid">
+      <div class="sp-card sp-google">
+        <div class="sp-ico">⭐</div><div class="sp-num">১২৭+</div>
+        <div class="sp-label">Google Review</div><div class="sp-sub">গড় রেটিং ৪.৯/৫</div>
+        <a href="https://g.page/r/myastrology-ranaghat/review" target="_blank" rel="noopener" class="sp-link">দেখুন</a>
+      </div>
+      <div class="sp-card sp-fb">
+        <div class="sp-ico">👍</div><div class="sp-num">২৬</div>
+        <div class="sp-label">Facebook Review</div><div class="sp-sub">৪১,৫০০+ followers</div>
+        <a href="https://www.facebook.com/Dr.ProdyutAcharya/reviews" target="_blank" rel="noopener" class="sp-link">দেখুন</a>
+      </div>
+      <div class="sp-card sp-jd">
+        <div class="sp-ico">📋</div><div class="sp-num">১৩৭+</div>
+        <div class="sp-label">JustDial Review</div><div class="sp-sub">যাচাইকৃত রিভিউ</div>
+        <a href="https://www.myastrology.in/reviews.html" class="sp-link">দেখুন</a>
+      </div>
+      <div class="sp-card sp-yt">
+        <div class="sp-ico">▶️</div><div class="sp-num">২,২৪,১৬০+</div>
+        <div class="sp-label">YouTube Subscribers</div><div class="sp-sub">১০০+ ব্লগ পোস্ট</div>
+        <a href="https://www.youtube.com/@myastrology" target="_blank" rel="noopener" class="sp-link">দেখুন</a>
+      </div>
+      <div class="sp-card sp-total">
+        <div class="sp-ico">✅</div><div class="sp-num">২৯০+</div>
+        <div class="sp-label">যাচাই রিভিউ</div><div class="sp-sub">সন্তুষ্ট গ্রাহক</div>
+        <a href="https://www.myastrology.in/reviews.html" class="sp-link">দেখুন</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ★ INTERNAL LINKS -->
+  <section class="internal-links-section" aria-label="আরও দেখুন">
+    <h2 class="il-title"><i class="fas fa-link" style="color:var(--gold)"></i> আরও জানুন</h2>
+    <div class="il-grid">
+      <a href="https://www.myastrology.in/astrology.html" class="il-card"><span class="il-ico">🌟</span><span class="il-text">জ্যোতিষ পরামর্শ</span></a>
+      <a href="https://www.myastrology.in/palmistry.html" class="il-card"><span class="il-ico">✋</span><span class="il-text">হস্তরেখা বিচার</span></a>
+      <a href="https://www.myastrology.in/panjika.html" class="il-card"><span class="il-ico">📅</span><span class="il-text">বাংলা পঞ্জিকা</span></a>
+      <a href="https://www.myastrology.in/rashifal.html" class="il-card"><span class="il-ico">🔮</span><span class="il-text">রাশিফল সংগ্রহ</span></a>
+      <a href="https://www.myastrology.in/best-astrologer-in-kolkata.html" class="il-card"><span class="il-ico">🏙️</span><span class="il-text">কলকাতার সেরা জ্যোতিষী</span></a>
+      <a href="https://www.myastrology.in/best-astrologer-in-nadia.html" class="il-card"><span class="il-ico">📍</span><span class="il-text">নদিয়ার সেরা জ্যোতিষী</span></a>
+      <a href="https://www.myastrology.in/gemstone.html" class="il-card"><span class="il-ico">💎</span><span class="il-text">রত্নপাথর পরামর্শ</span></a>
+      <a href="https://www.myastrology.in/vastu-science.html" class="il-card"><span class="il-ico">🏠</span><span class="il-text">বাস্তুবিজ্ঞান</span></a>
+      <a href="https://www.myastrology.in/blog-list.html" class="il-card"><span class="il-ico">📝</span><span class="il-text">জ্যোতিষ ব্লগ</span></a>
+      <a href="https://www.myastrology.in/video.html" class="il-card"><span class="il-ico">▶️</span><span class="il-text">ভিডিও</span></a>
+      <a href="https://www.myastrology.in/vedic-astronomy.html" class="il-card"><span class="il-ico">🪐</span><span class="il-text">বৈদিক জ্যোতির্বিদ্যা</span></a>
+      <a href="https://www.myastrology.in/reviews.html" class="il-card"><span class="il-ico">⭐</span><span class="il-text">রিভিউ</span></a>
+    </div>
+  </section>
+
   <!-- ARCHIVE LINKS -->
   <div class="archive-wrap">
     <h3><i class="fas fa-history" style="color:var(--gold);margin-right:6px"></i>সাম্প্রতিক রাশিফল</h3>
@@ -684,38 +770,40 @@ main{max-width:860px;margin:0 auto;padding:16px 16px 60px;}
 </main>
 
 <!-- FOOTER -->
+
+<!-- FOOTER -->
 <footer class="site-footer">
   <div class="ftr-logo">
     <img src="https://www.myastrology.in/images/MyAstrology-Ranghat-logo.png"
-         alt="MyAstrology Logo" loading="lazy">
+         alt="MyAstrology Logo" loading="lazy" width="48" height="48">
   </div>
   <div class="ftr-brand">Dr. Prodyut Acharya — Vedic Astrology &amp; Palmistry Consultant</div>
   <div class="ftr-sub">
-    রানাঘাট, নদিয়া, পশ্চিমবঙ্গ<br>
-    <a href="tel:+919333122768">📞 +91 93331 22768</a> &nbsp;|&nbsp;
-    <a href="/cdn-cgi/l/email-protection#80e9eee6efc0edf9e1f3f4f2efecefe7f9aee9ee">✉ <span class="__cf_email__" data-cfemail="81e8efe7eec1ecf8e0f2f5f3eeedeee6f8afe8ef">[email&#160;protected]</span></a>
+    রানাঘাট, নদিয়া, পশ্চিমবঙ্গ &nbsp;|&nbsp;
+    <a href="tel:+919333122768">📞 +91 93331 22768</a>
   </div>
   <div class="ftr-links">
     <a href="https://www.myastrology.in/">Home</a>
-    <a href="https://www.myastrology.in/astrology.html">Astrology</a>
-    <a href="https://www.myastrology.in/palmistry.html">Palmistry</a>
-    <a href="https://www.myastrology.in/vastu-science.html">Vastu</a>
-    <a href="https://www.myastrology.in/rashifal.html">Rashifal</a>
-    <a href="https://www.myastrology.in/panjika.html">Panjika</a>
-    <a href="https://www.myastrology.in/about.html">About</a>
-    <a href="https://www.myastrology.in/blog-list.html">Blog</a>
-    <a href="https://www.myastrology.in/reviews.html">Reviews</a>
-    <a href="https://www.myastrology.in/privacy-policy.html">Privacy Policy</a>
-    <a href="https://www.myastrology.in/terms-of-use.html">Terms of Use</a>
+    <a href="https://www.myastrology.in/astrology.html">জ্যোতিষ</a>
+    <a href="https://www.myastrology.in/palmistry.html">হস্তরেখা</a>
+    <a href="https://www.myastrology.in/vastu-science.html">বাস্তু</a>
+    <a href="https://www.myastrology.in/rashifal.html">রাশিফল</a>
+    <a href="https://www.myastrology.in/panjika.html">পঞ্জিকা</a>
+    <a href="https://www.myastrology.in/gemstone.html">রত্নপাথর</a>
+    <a href="https://www.myastrology.in/best-astrologer-in-kolkata.html">কলকাতা</a>
+    <a href="https://www.myastrology.in/best-astrologer-in-nadia.html">নদিয়া</a>
+    <a href="https://www.myastrology.in/best-astrologer-in-west-bengal.html">পশ্চিমবঙ্গ</a>
+    <a href="https://www.myastrology.in/blog-list.html">ব্লগ</a>
+    <a href="https://www.myastrology.in/reviews.html">রিভিউ</a>
+    <a href="https://www.myastrology.in/video.html">ভিডিও</a>
+    <a href="https://www.myastrology.in/vedic-astronomy.html">জ্যোতির্বিদ্যা</a>
   </div>
-  <!-- Social Media Icons -->
   <div class="ftr-social">
     <a href="https://wa.me/919333122768" target="_blank" rel="noopener" aria-label="WhatsApp" class="fts-wa"><i class="fab fa-whatsapp"></i></a>
     <a href="https://www.facebook.com/Dr.ProdyutAcharya" target="_blank" rel="noopener" aria-label="Facebook" class="fts-fb"><i class="fab fa-facebook-f"></i></a>
     <a href="https://www.youtube.com/@myastrology" target="_blank" rel="noopener" aria-label="YouTube" class="fts-yt"><i class="fab fa-youtube"></i></a>
     <a href="https://www.instagram.com/myastrology.in" target="_blank" rel="noopener" aria-label="Instagram" class="fts-ig"><i class="fab fa-instagram"></i></a>
     <a href="https://x.com/AcharyaProdyut" target="_blank" rel="noopener" aria-label="X" class="fts-tw"><i class="fab fa-x-twitter"></i></a>
-    <a href="https://www.linkedin.com/in/ProdyutAcharya" target="_blank" rel="noopener" aria-label="LinkedIn" class="fts-li"><i class="fab fa-linkedin-in"></i></a>
   </div>
   <div class="ftr-copy">
     বিশুদ্ধ সিদ্ধান্ত মতে বাংলা পঞ্জিকা ও দৈনিক রাশিফল — রানাঘাট, নদিয়া, পশ্চিমবঙ্গ<br>
@@ -723,6 +811,7 @@ main{max-width:860px;margin:0 auto;padding:16px 16px 60px;}
     <a href="https://www.myastrology.in">www.myastrology.in</a>
   </div>
 </footer>
+</main>
 
 <!-- WA FLOAT -->
 <div class="wa-float">
@@ -734,175 +823,22 @@ main{max-width:860px;margin:0 auto;padding:16px 16px 60px;}
 </div>
 <button id="btt" aria-label="উপরে যান">⬆</button>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-/* ── HAMBURGER NAV — panjika-র মতো ── */
+<script data-cfasync="false">
+/* ── HAMBURGER NAV ── */
 (function(){
-  var hbg = document.getElementById('hbg');
-  var nav = document.getElementById('sideNav');
-  var ov  = document.getElementById('navOverlay');
+  var hbg=document.getElementById('hbg');
+  var nav=document.getElementById('sideNav');
+  var ov=document.getElementById('navOverlay');
   if(!hbg) return;
   function openNav(){hbg.classList.add('open');nav.classList.add('open');ov.classList.add('open');}
   function closeNav(){hbg.classList.remove('open');nav.classList.remove('open');ov.classList.remove('open');}
-  hbg.addEventListener('click', function(){nav.classList.contains('open')?closeNav():openNav();});
-  ov.addEventListener('click', closeNav);
-  document.addEventListener('keydown', function(e){if(e.key==='Escape') closeNav();});
+  hbg.addEventListener('click',function(){nav.classList.contains('open')?closeNav():openNav();});
+  ov.addEventListener('click',closeNav);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape') closeNav();});
 })();
 
-/* ── রাশিফল সব data embedded by generator ── */
-var RASHIFAL_DATA = {{RASHIFAL_DATA_JSON}};
-var RASHI_NAMES = ['মেষ','বৃষ','মিথুন','কর্কট','সিংহ','কন্যা','তুলা','বৃশ্চিক','ধনু','মকর','কুম্ভ','মীন'];
-var RASHI_SYM   = ['♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓'];
-
-/* ★ FIX: toBn browser-এ define করা হয়নি — তাই অন্য রাশিতে click করলে error হচ্ছিল */
-var _BD = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
-function toBn(n) {
-  return String(Math.abs(Math.round(n))).replace(/[0-9]/g, function(d){ return _BD[+d]; });
-}
-
-function showRashi(ri) {
-  /* grid highlight */
-  document.querySelectorAll('.rb').forEach(function(b,i){
-    b.classList.toggle('act', i === ri);
-  });
-  var d = RASHIFAL_DATA[ri];
-  var stars = function(s){ return '★'.repeat(s) + '☆'.repeat(5-s); };
-  var sc    = function(s){ return s>=4?'s4':s>=3?'s3':'s2'; };
-  var bc    = function(s){ return s>=4?'var(--green)':s>=3?'var(--gold)':'var(--red)'; };
-  var pct   = function(s){ return toBn(s*20) + '%'; };
-  var cats  = [
-    {ico:'💑', title:'প্রেম ও সম্পর্ক', k:'love'},
-    {ico:'💼', title:'কর্ম ও ব্যবসা',   k:'work'},
-    {ico:'🌿', title:'স্বাস্থ্য',         k:'health'},
-    {ico:'💰', title:'আর্থিক অবস্থা',    k:'finance'}
-  ];
-
-  var html = '<div class="rf-detail">';
-  /* ★ H3: রাশির নাম — heading hierarchy */
-  html += '<div class="rf-header">';
-  html += '<div class="rf-sym">'+RASHI_SYM[ri]+'</div>';
-  html += '<div><h3 class="rf-name">'+RASHI_NAMES[ri]+' রাশি</h3>';
-  html += '<div class="rf-sub">'+d.rashiInfo+'</div>';
-  html += '<div class="rf-chips">';
-  var overScore = Math.round((d.score.love+d.score.work+d.score.health+d.score.finance)/4);
-  var oLabel = ['','কঠিন','সাধারণ','মধ্যম','ভালো','অত্যন্ত শুভ'];
-  html += '<span class="rc '+(overScore>=4?'good':overScore<=2?'bad':'')+'">⭐ '+oLabel[overScore]+'</span> ';
-  html += '<span class="rc" style="color:'+d.tagCol+';border-color:'+d.tagCol+';background:rgba(0,0,0,.03)">🌙 '+d.gocharLabel+'</span> ';
-  html += '<span class="rc">💎 '+d.gem+'</span>';
-  html += '</div></div></div>';
-
-  /* gochar summary */
-  html += '<div class="gochar-summary">';
-  html += '<div class="gochar-label" style="color:'+d.tagCol+'">🌙 চন্দ্র গোচর বিচার</div>';
-  html += '<div class="gochar-main">'+d.gocharLabel+' <span class="gochar-tag" style="background:'+d.tagCol+'">'+d.tag+'</span></div>';
-  html += '<div class="gochar-text">'+d.summary+'</div>';
-  html += '</div>';
-
-  /* ★ score cards — H4 heading + score percent */
-  html += '<div class="score-grid">';
-  cats.forEach(function(c){
-    var cat = d[c.k];
-    var s   = d.score[c.k];
-    html += '<div class="scard">';
-    /* ★ H4: category শিরোনাম */
-    html += '<div class="scard-head">';
-    html += '<span class="scard-ico">'+c.ico+'</span>';
-    html += '<h4 class="scard-title">'+c.title+'</h4>';
-    html += '<span class="scard-stars '+sc(s)+'">'+stars(s)+'</span>';
-    html += '</div>';
-    html += '<div class="scard-short">'+cat.short+'</div>';
-    html += '<div class="scard-detail">'+cat.detailed+'</div>';
-    html += '<div class="scard-advice">💡 '+cat.advice+'</div>';
-    html += '<div class="score-bar"><div class="score-fill" style="width:'+s*20+'%;background:'+bc(s)+'"></div></div>';
-    /* ★ score শতাংশ */
-    html += '<div class="score-percent">'+pct(s)+'</div>';
-    html += '</div>';
-  });
-  html += '</div>';
-
-  /* lucky grid */
-  html += '<div class="lucky-grid">';
-  [
-    {ico:'🔢',l:'ভাগ্য সংখ্যা',v:d.lucky.nums},
-    {ico:'🎨',l:'শুভ রং',       v:d.lucky.colors},
-    {ico:'⏰',l:'শুভ সময়',      v:d.lucky.goodTime},
-    {ico:'⛔',l:'অশুভ সময়',     v:d.lucky.badTime},
-    {ico:'💎',l:'রত্নপাথর',     v:d.gem},
-    {ico:'🧭',l:'শুভ দিক',      v:d.lucky.dir}
-  ].forEach(function(x){
-    html += '<div class="luck-item"><div class="luck-ico">'+x.ico+'</div>';
-    html += '<div class="luck-label">'+x.l+'</div>';
-    html += '<div class="luck-val">'+x.v+'</div></div>';
-  });
-  html += '</div>';
-
-  /* ★ planet strip — শুভ/অশুভ status indicator সহ */
-  html += '<div class="planet-strip"><div class="planet-strip-head">🪐 গ্রহ গোচর বিচার</div>';
-  html += '<div class="planet-items">';
-  d.planets.forEach(function(p){
-    html += '<div class="pi" style="border-left-color:'+p.col+';">';
-    html += '<span class="pi-ico">'+p.ico+'</span><div>';
-    html += '<div class="pi-tag" style="color:'+p.col+'">';
-    html += p.name+' ('+p.houseLabel+')';
-    html += '<span class="pi-status '+p.status+'">'+p.statusLabel+'</span>';
-    html += ' — '+p.tag+'</div>';
-    html += '<div class="pi-txt">'+p.txt+'</div></div></div>';
-  });
-  html += '</div>';
-  html += '<div class="planet-footer">'+d.planetFooter+'</div></div>';
-
-  /* caution */
-  html += '<div class="caution-box"><span class="caution-ico">⚠️</span><div>';
-  html += '<div class="caution-title">আজকের সতর্কতা</div>';
-  html += '<ul class="caution-list">';
-  d.caution.forEach(function(c){ html += '<li>'+c+'</li>'; });
-  html += '</ul></div></div>';
-
-  /* spiritual */
-  html += '<div class="spiritual-box"><div class="ico">🕉️</div>';
-  html += '<p>'+d.spiritual+'</p></div>';
-
-  /* ★ দৈনিক মন্ত্র */
-  if(d.mantra) {
-    html += '<div class="mantra-box">';
-    html += '<div class="mantra-head">🔔 আজকের দৈনিক মন্ত্র</div>';
-    html += '<div class="mantra-text">'+d.mantra.text+'</div>';
-    html += '<div class="mantra-meaning">'+d.mantra.meaning+'</div>';
-    html += '<span class="mantra-count">'+d.mantra.count+' জপ করুন</span>';
-    html += '</div>';
-  }
-
-  html += '</div>'; /* rf-detail close */
-  document.getElementById('rfDetail').innerHTML = html;
-  document.getElementById('rfDetail').scrollIntoView({behavior:'smooth',block:'start'});
-  window.gtag('event','rashi_click',{event_category:'engagement',event_label:RASHI_NAMES[ri]});
-}
-
-/* ── WA BUBBLE ── */
-(function(){
-  var msgs=['🔮 কুণ্ডলী পরামর্শ নিন','✋ হস্তরেখা বিচার করুন','🌟 আজই WhatsApp করুন'];
-  var idx=0,b=document.getElementById('waBubble');
-  if(!b)return;
-  function sm(){b.style.display='block';b.textContent=msgs[idx];
-    b.classList.add('show');
-    setTimeout(function(){b.classList.remove('show');
-      setTimeout(function(){b.style.display='none';},400);},4000);
-    idx=(idx+1)%msgs.length;}
-  setTimeout(function(){sm();setInterval(sm,7000);},3000);
-})();
-
-/* ── BACK TO TOP ── */
-(function(){
-  var btn=document.getElementById('btt');if(!btn)return;
-  window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>400);},{passive:true});
-  btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
-})();
-
-/* ── WA CLICK TRACKING ── */
-document.addEventListener('click',function(e){
-  var a=e.target.closest('a');if(!a)return;
-  var h=a.getAttribute('href')||'';
-  if(h.includes('wa.me'))window.gtag('event','whatsapp_click',{event_category:'engagement'});
-});
+/* ── রাশিফল data ও client script — generator inject করবে ── */
+{{CLIENT_SCRIPT}}
 </script>
 </body>
 </html>
