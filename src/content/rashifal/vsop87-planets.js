@@ -302,8 +302,217 @@ function planetaryPositions(jd) {
   };
 }
 
+
+// ─────────────────────────────────────────────
+// JD from IST datetime (Indian Standard Time = UTC+5:30)
+// ─────────────────────────────────────────────
+function JD_IST(y, m, d, h_ist) {
+  const h_utc = h_ist - 5.5;
+  let day = d, month = m, year = y, h = h_utc;
+  if (h < 0) {
+    h += 24; day--;
+    if (day < 1) {
+      month--;
+      if (month < 1) { month = 12; year--; }
+      const dims = [0,31,28,31,30,31,30,31,31,30,31,30,31];
+      if (year%4===0 && (year%100!==0 || year%400===0)) dims[2] = 29;
+      day = dims[month];
+    }
+  }
+  if (month <= 2) { year--; month += 12; }
+  const A = Math.floor(year/100), B = 2 - A + Math.floor(A/4);
+  return Math.floor(365.25*(year+4716)) + Math.floor(30.6001*(month+1)) + day + B - 1524.5 + h/24;
+}
+
+// ─────────────────────────────────────────────
+// RASHI ASPECTS — Vedic special aspects
+// All planets: 7th aspect (opposite rashi)
+// Jupiter: 5th & 9th additional
+// Mars: 4th & 8th additional
+// Saturn: 3rd & 10th additional
+// ─────────────────────────────────────────────
+const PLANET_ASPECTS = {
+  sun:     [7],
+  moon:    [7],
+  mercury: [7],
+  venus:   [7],
+  mars:    [4, 7, 8],
+  jupiter: [5, 7, 9],
+  saturn:  [3, 7, 10],
+  rahu:    [5, 7, 9],
+  ketu:    [5, 7, 9],
+};
+
+/**
+ * Get all planets aspecting a given rashi (1-12)
+ * @param {Object} positions - sidereal longitudes from planetaryPositions()
+ * @param {number} targetRashi - 0-indexed rashi (0=Mesha, 11=Meena)
+ * @returns {Array} [{planet, house, aspect, nature}]
+ */
+function getAspects(positions, targetRashi) {
+  const results = [];
+  const PLANET_NATURE = {
+    sun:'মিত্র', moon:'শুভ', mercury:'মধ্যম',
+    venus:'শুভ', mars:'অশুভ', jupiter:'শুভ',
+    saturn:'অশুভ', rahu:'অশুভ', ketu:'অশুভ',
+  };
+  
+  for (const [planet, aspects] of Object.entries(PLANET_ASPECTS)) {
+    const lon = positions[planet];
+    if (lon === undefined) continue;
+    const fromRashi = Math.floor(lon / 30); // 0-11
+    
+    for (const asp of aspects) {
+      const aspRashi = (fromRashi + asp - 1) % 12;
+      if (aspRashi === targetRashi) {
+        // Distance from aspected rashi (house number from planet)
+        results.push({
+          planet,
+          fromRashi,
+          aspect: asp,
+          nature: PLANET_NATURE[planet],
+          lon: lon % 30,
+        });
+        break;
+      }
+    }
+  }
+  return results;
+}
+
+/**
+ * Check aspects specifically on Moon's rashi
+ * @param {Object} positions - from planetaryPositions()
+ * @returns {Array}
+ */
+function getMoonAspects(positions) {
+  const moonRashi = Math.floor(positions.moon / 30);
+  return getAspects(positions, moonRashi).filter(a => a.planet !== 'moon');
+}
+
+// ─────────────────────────────────────────────
+// YOGA DETECTION (major Vedic yogas)
+// ─────────────────────────────────────────────
+function detectYogas(positions) {
+  const yogas = [];
+  const ri = p => Math.floor(p/30);
+  const { sun, moon, mercury, venus, mars, jupiter, saturn, rahu, ketu } = positions;
+  
+  // House from moon (Chandra Lagna)
+  const houseFromMoon = (p) => ((ri(p) - ri(moon) + 12) % 12) + 1;
+  
+  // 1. GAJAKESARI — Jupiter in kendra (1,4,7,10) from Moon
+  const jupHouseFromMoon = houseFromMoon(jupiter);
+  if ([1,4,7,10].includes(jupHouseFromMoon)) {
+    yogas.push({
+      name: 'গজকেসরী যোগ', sanskrit: 'Gajakesari Yoga',
+      type: 'শুভ', strength: 'বলবান',
+      description: `বৃহস্পতি চন্দ্র থেকে ${jupHouseFromMoon}ম ভাবে — মেধা, যশ ও সমৃদ্ধির শ্রেষ্ঠ যোগ। এই জাতক বুদ্ধিমান, সৌভাগ্যশালী ও সমাজে সম্মানিত হন।`,
+    });
+  }
+  
+  // 2. SUNAFA — Planets (except Sun) in 2nd from Moon
+  const h2 = (ri(moon)+1)%12;
+  const planetsIn2nd = Object.entries({mercury,venus,mars,jupiter,saturn})
+    .filter(([n,p])=>ri(p)===h2).map(([n])=>n);
+  if (planetsIn2nd.length > 0) {
+    yogas.push({
+      name: 'সুনফা যোগ', sanskrit: 'Sunafa Yoga',
+      type: 'শুভ', strength: 'মধ্যম',
+      description: `চন্দ্র থেকে দ্বিতীয় ভাবে ${planetsIn2nd.join(', ')} — ধন, বুদ্ধি ও কর্মক্ষমতা বৃদ্ধির যোগ।`,
+    });
+  }
+  
+  // 3. ANAPHA — Planets in 12th from Moon
+  const h12 = (ri(moon)+11)%12;
+  const planetsIn12th = Object.entries({mercury,venus,mars,jupiter,saturn})
+    .filter(([n,p])=>ri(p)===h12).map(([n])=>n);
+  if (planetsIn12th.length > 0) {
+    yogas.push({
+      name: 'অনফা যোগ', sanskrit: 'Anapha Yoga',
+      type: 'শুভ', strength: 'মধ্যম',
+      description: `চন্দ্র থেকে দ্বাদশ ভাবে ${planetsIn12th.join(', ')} — স্বাস্থ্য, প্রতিষ্ঠা ও সুখের যোগ।`,
+    });
+  }
+  
+  // 4. KEMADRUMA — No planets 2nd or 12th from Moon (bad yoga)
+  const allPlanets = {mercury,venus,mars,jupiter,saturn};
+  const near2 = Object.values(allPlanets).some(p=>ri(p)===h2);
+  const near12 = Object.values(allPlanets).some(p=>ri(p)===h12);
+  const nearMoon = Object.values(allPlanets).some(p=>ri(p)===ri(moon));
+  if (!near2 && !near12 && !nearMoon) {
+    yogas.push({
+      name: 'কেমদ্রুম যোগ', sanskrit: 'Kemadruma Yoga',
+      type: 'অশুভ', strength: 'মধ্যম',
+      description: 'চন্দ্রের দ্বিতীয়, দ্বাদশ ও নিজ ভাবে কোনো গ্রহ নেই — মানসিক অস্থিরতা ও বাধার যোগ। সৎ কর্ম ও সাধনায় এই যোগের প্রভাব হ্রাস পায়।',
+    });
+  }
+  
+  // 5. BUDHA-ADITYA — Sun + Mercury in same rashi
+  if (ri(sun) === ri(mercury)) {
+    yogas.push({
+      name: 'বুধাদিত্য যোগ', sanskrit: 'Budha-Aditya Yoga',
+      type: 'শুভ', strength: 'বলবান',
+      description: `সূর্য ও বুধ একত্রে ${['মেষ','বৃষ','মিথুন','কর্কট','সিংহ','কন্যা','তুলা','বৃশ্চিক','ধনু','মকর','কুম্ভ','মীন'][ri(sun)]} রাশিতে — বুদ্ধি, বাগ্মিতা ও কর্মক্ষেত্রে সাফল্যের শ্রেষ্ঠ যোগ।`,
+    });
+  }
+  
+  // 6. LAKSHMI — Venus exalted/own + Jupiter strong
+  const VENUS_EXALT = 11; // Meena
+  const VENUS_OWN = [1, 6]; // Vrish, Tula
+  if (ri(venus)===VENUS_EXALT || VENUS_OWN.includes(ri(venus))) {
+    if (ri(jupiter)===3 || ri(jupiter)===8) { // Cancer exalted or Pisces own
+      yogas.push({
+        name: 'লক্ষ্মী যোগ', sanskrit: 'Lakshmi Yoga',
+        type: 'শুভ', strength: 'অতি বলবান',
+        description: 'শুক্র ও বৃহস্পতি উচ্চ বা স্বক্ষেত্রে — ধন-সম্পদ, সৌভাগ্য ও ঐশ্বর্যের অত্যুৎকৃষ্ট যোগ।',
+      });
+    }
+  }
+  
+  // 7. RAHU-KETU axis check — serpent yogas
+  const rahuRashi = ri(rahu);
+  const ketuRashi = ri(ketu);
+  // Kala Sarpa — all planets between Rahu and Ketu
+  const between = (p) => {
+    const pr = ri(p);
+    const r1 = rahuRashi, r2 = ketuRashi;
+    if (r1 < r2) return pr > r1 && pr < r2;
+    return pr > r1 || pr < r2;
+  };
+  const allBetween = [sun,moon,mercury,venus,mars,jupiter,saturn].every(p => between(p));
+  if (allBetween) {
+    yogas.push({
+      name: 'কালসর্প যোগ', sanskrit: 'Kala Sarpa Yoga',
+      type: 'বিশেষ', strength: 'বলবান',
+      description: 'সমস্ত গ্রহ রাহু-কেতু অক্ষের মধ্যে — জীবনে বিশেষ উত্থান-পতন। সংকল্পবদ্ধ কর্ম ও আধ্যাত্মিক সাধনায় এই যোগ শক্তিতে পরিণত হয়।',
+    });
+  }
+  
+  // 8. SARASWATI — Jupiter, Venus, Mercury in kendra/trikona
+  const kendras = [0,3,6,9]; // Mesha, Karka, Tula, Makara
+  const trikonas = [0,4,8];  // Mesha, Simha, Dhanu
+  const goodHouses = new Set([...kendras, ...trikonas]);
+  if (goodHouses.has(ri(jupiter)) && goodHouses.has(ri(venus)) && goodHouses.has(ri(mercury))) {
+    yogas.push({
+      name: 'সরস্বতী যোগ', sanskrit: 'Saraswati Yoga',
+      type: 'শুভ', strength: 'বলবান',
+      description: 'বৃহস্পতি, শুক্র ও বুধ কেন্দ্র বা ত্রিকোণে — বিদ্যা, শিল্প, সাহিত্য ও জ্ঞানের অসাধারণ যোগ।',
+    });
+  }
+
+  return yogas;
+}
+
+module.exports.JD_IST = JD_IST;
+module.exports.getAspects = getAspects;
+module.exports.getMoonAspects = getMoonAspects;
+module.exports.detectYogas = detectYogas;
+
+// Updated module.exports:
 module.exports = {
   JD, lahiriAY,
   sunL, moonL, mercuryL, venusL, marsL, jupiterL, saturnL, rahuL,
   isRetrograde, getRetrogrades, planetaryPositions,
+  JD_IST, getAspects, getMoonAspects, detectYogas,
 };
