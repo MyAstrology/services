@@ -657,7 +657,28 @@ function generateRashifalData(date){
     const planetFooter=`☀️ ${RASHI_NAMES[sunRashi]} · ♃ ${RASHI_NAMES[jupiterRashi]} · 🪐 ${RASHI_NAMES[saturnRashi]} · ♂ ${RASHI_NAMES[marsRashi]} · ☿ ${RASHI_NAMES[mercuryRashi]} · ♀ ${RASHI_NAMES[venusRashi]} · ☊ ${RASHI_NAMES[rahuRashi]} · ☋ ${RASHI_NAMES[ketuRashi]}`;
     const rashiInfo=`${RASHI_ENG[ri]} | অধিপতি: ${RASHI_LORD[ri]} | ${RASHI_EL[ri]} | ${RASHI_NAT[ri]}`;
     const sadeSati=getSadeSatiInfo(satH);
-    const moonAspects=getMoonAspects(moonRashi,allPR);
+    const moonAspects=(function(){
+      try{return _planets.getMoonAspects(allSid);}catch(e){return getMoonAspects(moonRashi,allPR);}
+    })();
+    // ★ Yoga detection using actual sidereal longitudes
+    const jdCalc=JD(y,m,d)+0.5;
+    const allSid=(function(){
+      const a=_planets.lahiriAY(jdCalc);
+      const s=t=>((t-a)%360+360)%360;
+      return{
+        sun:s(_planets.sunL(jdCalc)),
+        moon:s(_planets.moonL(jdCalc)),
+        mercury:s(_planets.mercuryL(jdCalc)),
+        venus:s(_planets.venusL(jdCalc)),
+        mars:_planets.marsL(jdCalc),
+        jupiter:s(_planets.jupiterL(jdCalc)),
+        saturn:s(_planets.saturnL(jdCalc)),
+        rahu:s(_planets.rahuL(jdCalc)),
+        ketu:(s(_planets.rahuL(jdCalc))+180)%360,
+      };
+    })();
+    let yogas=[];
+    try{ yogas=_planets.detectYogas(allSid); }catch(e){console.error('Yoga err:',e.message);}
     const mercuryRetroNote=retro.mercury?'বুধ বক্রী চলছে — চুক্তি, যোগাযোগ, ভ্রমণে বিশেষ সতর্কতা। পুরনো বিষয় পর্যালোচনার উপযুক্ত সময়।':null;
 
     result.push({
@@ -668,7 +689,7 @@ function generateRashifalData(date){
       lucky:{nums:g.lucky.nums,colors:g.lucky.colors,goodTime:g.lucky.goodTime,
              badTime:g.lucky.badTime,dir:LUCKY_DIRS[ri]},
       gem:RASHI_GEM[ri],caution:g.caution,mantra:MANTRAS[ri],
-      planets,planetFooter,sadeSati,moonAspects,mercuryRetroNote,retro,
+      planets,planetFooter,sadeSati,moonAspects,yogas,mercuryRetroNote,retro,
     });
   }
   return{moonRashi,sunRashi,saturnRashi,jupiterRashi,marsRashi,
