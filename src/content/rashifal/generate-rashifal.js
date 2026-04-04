@@ -782,6 +782,18 @@ function buildDefaultRashiDetail(rf){
     }).join('')}
   </div>
   <div class="spiritual-box"><div class="ico">🕉️</div><p>${d.spiritual}</p></div>
+  ${d.yogas&&d.yogas.length>0?`
+  <div class="yoga-box">
+    <div class="yoga-title">🔯 সক্রিয় জ্যোতিষ যোগ</div>
+    ${d.yogas.map(y=>{
+      const ico=y.type==='শুভ'?'✨':y.type==='অশুভ'?'⚠️':'🔷';
+      const col=y.type==='শুভ'?'var(--green)':y.type==='অশুভ'?'var(--red)':'var(--blue)';
+      return '<div class="yoga-item" style="border-left-color:'+col+';">'
+           +'<div class="yoga-name">'+ico+' '+y.name+' <span class="yoga-type" style="color:'+col+';">['+y.type+']</span></div>'
+           +'<div class="yoga-desc">'+y.description+'</div>'
+           +'</div>';
+    }).join('')}
+  </div>`:''}
   <div class="caution-box">
     <span class="caution-ico">⚠️</span>
     <div><div class="caution-title">আজকের সতর্কতা</div>
@@ -898,6 +910,21 @@ function showRashi(ri){
     html+='<div class="pi-txt">'+p.txt+'</div></div></div>';
   });
   html+='</div><div class="planet-footer">'+d.planetFooter+'</div></div>';
+
+  /* yogas */
+  if(d.yogas&&d.yogas.length>0){
+    html+='<div class="yoga-box">';
+    html+='<div class="yoga-title">🔯 সক্রিয় জ্যোতিষ যোগ</div>';
+    d.yogas.forEach(function(y){
+      var ico=y.type==='শুভ'?'✨':y.type==='অশুভ'?'⚠️':'🔷';
+      var col=y.type==='শুভ'?'var(--green)':y.type==='অশুভ'?'var(--red)':'var(--blue)';
+      html+='<div class="yoga-item" style="border-left-color:'+col+';">';
+      html+='<div class="yoga-name">'+ico+' '+y.name+' <span class="yoga-type" style="color:'+col+';">['+y.type+']</span></div>';
+      html+='<div class="yoga-desc">'+y.description+'</div>';
+      html+='</div>';
+    });
+    html+='</div>';
+  }
 
   /* caution */
   html+='<div class="caution-box"><span class="caution-ico">⚠️</span><div><div class="caution-title">আজকের সতর্কতা</div><ul class="caution-list">';
