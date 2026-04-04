@@ -540,6 +540,42 @@ main{max-width:860px;margin:0 auto;padding:16px 16px 60px;}
 .il-card{display:flex;flex-direction:column;align-items:center;gap:4px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 8px;text-align:center;color:var(--txt);font-size:.72rem;font-weight:600;transition:all .2s;}
 .il-card:hover{background:var(--gold-bg);border-color:var(--gold);color:var(--gold-l);transform:translateY(-2px);box-shadow:0 4px 12px rgba(181,134,13,.15);}
 .il-ico{font-size:1.15rem;} .il-text{font-family:var(--fh);font-size:.67rem;line-height:1.3;}
+
+/* ── YOGA BOX ── */
+.yoga-box{
+  background:var(--gold-bg);border:1px solid var(--border);
+  border-radius:var(--r);padding:16px;margin:0 0 16px;
+}
+.yoga-title{
+  font-family:var(--fh);font-size:.85rem;font-weight:700;
+  color:var(--navy);margin-bottom:10px;letter-spacing:.03em;
+}
+.yoga-item{
+  border-left:3px solid var(--gold);padding:8px 10px;
+  margin-bottom:8px;background:var(--card);border-radius:0 8px 8px 0;
+  box-shadow:0 1px 4px rgba(181,134,13,.06);
+}
+.yoga-item:last-child{margin-bottom:0;}
+.yoga-name{
+  font-family:var(--fh);font-size:.82rem;font-weight:700;
+  color:var(--txt);margin-bottom:4px;
+}
+.yoga-type{font-size:.68rem;font-weight:800;letter-spacing:.05em;margin-left:4px;}
+.yoga-desc{font-size:.77rem;color:var(--mu);line-height:1.7;}
+/* ── PANJIKA LINK BOX ── */
+.panjika-link-box{text-align:center;margin:0 0 16px;}
+.panjika-link-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,var(--gold-d),var(--gold));
+  color:#fff;font-family:var(--fh);font-size:.88rem;font-weight:700;
+  padding:11px 22px;border-radius:50px;text-decoration:none;
+  box-shadow:0 4px 14px rgba(181,134,13,.3);transition:all .2s;
+}
+.panjika-link-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 6px 20px rgba(181,134,13,.4);
+  background:linear-gradient(135deg,var(--gold),var(--gold-d));
+}
 </style>
 </head>
 <body>
@@ -759,6 +795,15 @@ main{max-width:860px;margin:0 auto;padding:16px 16px 60px;}
     </div>
   </section>
 
+
+  <!-- ★ পঞ্জিকা লিংক -->
+  <div class="panjika-link-box">
+    <a href="https://www.myastrology.in/panjika.html" class="panjika-link-btn">
+      <i class="fas fa-calendar-alt"></i>
+      আজকের বাংলা পঞ্জিকা দেখুন
+    </a>
+  </div>
+
   <!-- ARCHIVE LINKS -->
   <div class="archive-wrap">
     <h3><i class="fas fa-history" style="color:var(--gold);margin-right:6px"></i>সাম্প্রতিক রাশিফল</h3>
@@ -829,12 +874,51 @@ main{max-width:860px;margin:0 auto;padding:16px 16px 60px;}
   var hbg=document.getElementById('hbg');
   var nav=document.getElementById('sideNav');
   var ov=document.getElementById('navOverlay');
-  if(!hbg) return;
-  function openNav(){hbg.classList.add('open');nav.classList.add('open');ov.classList.add('open');}
-  function closeNav(){hbg.classList.remove('open');nav.classList.remove('open');ov.classList.remove('open');}
-  hbg.addEventListener('click',function(){nav.classList.contains('open')?closeNav():openNav();});
-  ov.addEventListener('click',closeNav);
-  document.addEventListener('keydown',function(e){if(e.key==='Escape') closeNav();});
+  if(!hbg||!nav||!ov) return;
+
+  function openNav(){
+    hbg.classList.add('open');
+    nav.classList.add('open');
+    ov.classList.add('open');
+    nav.setAttribute('aria-hidden','false');
+    hbg.setAttribute('aria-expanded','true');
+    document.body.style.overflow='hidden';
+  }
+  function closeNav(){
+    hbg.classList.remove('open');
+    nav.classList.remove('open');
+    ov.classList.remove('open');
+    nav.setAttribute('aria-hidden','true');
+    hbg.setAttribute('aria-expanded','false');
+    document.body.style.overflow='';
+  }
+  function toggleNav(){
+    if(nav.classList.contains('open')) closeNav();
+    else openNav();
+  }
+
+  /* Click */
+  hbg.addEventListener('click', toggleNav);
+  /* Keyboard: Enter or Space */
+  hbg.addEventListener('keydown', function(e){
+    if(e.key==='Enter'||e.key===' '){e.preventDefault();toggleNav();}
+  });
+  /* Overlay click */
+  ov.addEventListener('click', closeNav);
+  /* Touch support */
+  ov.addEventListener('touchstart', function(e){e.preventDefault();closeNav();},{passive:false});
+  /* Escape key */
+  document.addEventListener('keydown', function(e){if(e.key==='Escape') closeNav();});
+  /* Swipe-left on sidenav to close */
+  var txStart=0;
+  nav.addEventListener('touchstart',function(e){txStart=e.touches[0].clientX;},{passive:true});
+  nav.addEventListener('touchend',function(e){
+    if(txStart-e.changedTouches[0].clientX>60) closeNav();
+  },{passive:true});
+
+  /* Init closed state */
+  nav.setAttribute('aria-hidden','true');
+  hbg.setAttribute('aria-expanded','false');
 })();
 
 /* ── রাশিফল data ও client script — generator inject করবে ── */
