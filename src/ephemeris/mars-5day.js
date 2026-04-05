@@ -1,5 +1,5 @@
 /**
- * mars_d.js — Mars 10.0-day step (2000-2040)
+ * mars_d.js — Mars 5.0-day step (2000-2040)
  * Source: NASA JPL Horizons DE441
  * Entries: 2923 | Step: 10.0 days | JD0: 2436934.5
  */
