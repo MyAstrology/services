@@ -2546,9 +2546,9 @@ function _isMalmasDt(dt) {
   });
 }
 
-// বিবাহ বর্জনীয় নক্ষত্র — শাস্ত্রীয় তালিকা
-var _VIVAH_BAD_NAKS=[1,5,8,9,10,15,17,18];  // পূর্বাষাঢ়া(19) বাদ — Bishuddha verified
-// 1=ভরণী, 5=আর্দ্রা, 8=আশ্লেষা, 9=মঘা, 10=পূঃফাল্গুনী, 15=বিশাখা, 17=জ্যেষ্ঠা, 18=মূলা, 19=পূঃষাঢ়া
+// বিবাহ বর্জনীয় নক্ষত্র — শাস্ত্রীয় তালিকা (Bishuddha Siddhanta)
+var _VIVAH_BAD_NAKS=[1,5,8,9,10,15,17,18,19];
+// 1=ভরণী, 5=আর্দ্রা, 8=আশ্লেষা, 9=মঘা, 10=পূঃফাল্গুনী, 15=বিশাখা, 17=জ্যেষ্ঠা, 18=মূলা, 19=পূঃষাঢ়া (সম্পূর্ণ বর্জনীয়)
 
 function _isShubhaDay(dt, nakNeed, tithiNeed, karmaType) {
   // শনি ও মঙ্গল: বিবাহে অতিরিক্ত, তবে সম্পূর্ণ বাদ নয়
@@ -2593,10 +2593,11 @@ function _isShubhaDay(dt, nakNeed, tithiNeed, karmaType) {
     if(tithiNeed&&tithiNeed.indexOf(tIdxSet)<0) return false;
     // নক্ষত্র নিড চেক
     if(nakNeed&&nakNeed.indexOf(nIdxSet)<0) return false;
-    // বিবাহ বর্জনীয় নক্ষত্র (সূর্যাস্তে)
+    // বিবাহ: বিশুদ্ধ সিদ্ধান্ত পদ্ধতি — শুভ লগ্ন উইন্ডো + সম্পূর্ণ নক্ষত্র + তিথি চেক
+    // (শুধু সন্ধ্যায় নক্ষত্র চেক যথেষ্ট নয় — রাত্রিকালীন শুভ লগ্ন থাকা আবশ্যক)
     if(karmaType==='vivah'){
-      if(_VIVAH_BAD_NAKS.indexOf(nIdxSet)>=0) return false;
-      if(nIdxSet===2&&mRashiSet===1) return false;  // কৃত্তিকা বৃষ
+      var chkV=_vivahEligible(dt,st2.set);
+      return chkV.ok;
     }
     return true;
   } catch(e){ return false; }
@@ -2651,9 +2652,15 @@ function openAcModal(catIdx) {
     days.forEach(function(item){
       var c = calcDay(item.date);
       var ds = dStr(item.date);
+      var infoExtra='';
+      if(cat.karmaType==='vivah'){
+        var stVw=sunTimes(item.date.getFullYear(),item.date.getMonth()+1,item.date.getDate());
+        var chkVw=_vivahEligible(item.date,stVw.set);
+        if(chkVw.ok&&chkVw.type==='atirikta') infoExtra=' <span style="background:rgba(181,134,13,.15);color:var(--gold-d);font-size:.58rem;padding:.05rem .3rem;border-radius:4px;vertical-align:middle;">অতিরিক্ত</span>';
+      }
       html += '<div class="ac-day-row" onclick="closeAcModal();showDetail(new Date(\''+ds+'\'))">';
       html += '<span class="ac-day-date">'+item.date.getDate()+' '+EMSh[item.date.getMonth()]+'</span>';
-      html += '<span class="ac-day-info">'+VDAYS[item.date.getDay()]+' | '+c.tName+' | '+c.nak[0]+'</span>';
+      html += '<span class="ac-day-info">'+VDAYS[item.date.getDay()]+' | '+c.tName+' | '+c.nak[0]+infoExtra+'</span>';
       html += '</div>';
     });
   }
@@ -3234,7 +3241,8 @@ function onPaymentSuccess(response) {
 <script>
 // ══════════════════════════════════════════════════════════════════════
 // বিবাহ মুহূর্ত ইঞ্জিন v2 — বিশুদ্ধ সিদ্ধান্ত পঞ্জিকা পদ্ধতি
-// Verified: Feb14✓ Mar4✓ Mar9✓ Mar10✓ | Feb20✗ Feb26✗ Mar1✗
+// Counter/Modal ও Detail Panel উভয়ই এই engine ব্যবহার করে
+// মাঘ: ৩টি | ফাল্গুন: ৪টি — Bishuddha Siddhanta verified
 // ══════════════════════════════════════════════════════════════════════
 
 // ── বিবাহের শুভ লগ্ন (Bishuddha verified) ──
