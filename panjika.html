@@ -2350,11 +2350,82 @@ function showDetail(date) {
     {ico:'🔥', cls:'',       l:'যমঘণ্ট',          v:c.yam}
   ];
   var mkCard = function(t){ return '<div class="dtime ' + t.cls + '"><div class="dtl">' + t.ico + ' ' + t.l + '</div><div class="dtv">' + t.v + '</div></div>'; };
-  var timesHtml =
-    '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.52rem;margin-bottom:.52rem;">'
+  
+  // ── Helper: format fractional hour → "সকাল ৫:৩৩" style
+  function _fT(v){
+    var hh=Math.floor(((v%24)+24)%24),mm=Math.round((v-Math.floor(v))*60);
+    if(mm>=60){hh=(hh+1)%24;mm=0;}
+    return fmtT(hh,mm);
+  }
+
+  // ── Section header
+  function _sec(t){return '<div style="font-size:.62rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.05em;padding:.3rem 0 .18rem;border-top:1px solid rgba(201,162,39,.12);margin-top:.15rem;">'+t+'</div>';}
+
+  // ── Baarbell & Kaalratri
+  var bbHtml='';
+  if(c.bb&&c.bb.length){
+    c.bb.forEach(function(b,i){bbHtml+='<div class="dtime rahu" style="grid-column:span 1"><div class="dtl">🚫 বারবেলা '+(i+1)+'</div><div class="dtv">'+_fT(b.st)+' – '+_fT(b.en)+'</div></div>';});
+  }
+  if(c.kr){bbHtml+='<div class="dtime rahu"><div class="dtl">🌑 কালরাত্রি</div><div class="dtv">'+_fT(c.kr.st)+' – '+_fT(c.kr.en)+'</div></div>';}
+
+  // ── Amrita & Mahendra
+  var amHtml='';
+  if(c.amD&&c.amD.length){
+    var amDStr=c.amD.map(function(a){return _fT(a.st)+' – '+_fT(a.en);}).join('<br>');
+    amHtml+='<div class="dtime shubha"><div class="dtl">✨ অমৃতযোগ (দিন)</div><div class="dtv" style="font-size:.65rem;line-height:1.6;">'+amDStr+'</div></div>';
+  }
+  if(c.mhD&&c.mhD.st){
+    amHtml+='<div class="dtime shubha"><div class="dtl">🌠 মাহেন্দ্রযোগ</div><div class="dtv">'+_fT(c.mhD.st)+' – '+_fT(c.mhD.en)+'</div></div>';
+  }
+  if(c.amN&&c.amN.length){
+    var amNStr=c.amN.map(function(a){return _fT(a.st)+' – '+_fT(a.en);}).join('<br>');
+    amHtml+='<div class="dtime shubha"><div class="dtl">🌙 অমৃতযোগ (রাত্রি)</div><div class="dtv" style="font-size:.65rem;line-height:1.6;">'+amNStr+'</div></div>';
+  }
+
+  // ── Lagna
+  var lgnHtml='';
+  if(c.lgn){
+    lgnHtml='<div style="display:grid;grid-template-columns:1fr 1fr;gap:.42rem;">'
+      +'<div class="dtime shubha"><div class="dtl">🌅 উদয় লগ্ন</div><div class="dtv">'+(['মেষ','বৃষ','মিথুন','কর্কট','সিংহ','কন্যা','তুলা','বৃশ্চিক','ধনু','মকর','কুম্ভ','মীন'][c.lgn.ri])+'</div></div>'
+      +'<div class="dtime"><div class="dtl">🌇 অস্ত লগ্ন</div><div class="dtv">'+(['মেষ','বৃষ','মিথুন','কর্কট','সিংহ','কন্যা','তুলা','বৃশ্চিক','ধনু','মকর','কুম্ভ','মীন'][c.lgn.descRi])+'</div></div>'
+      +'</div>';
+  }
+
+  // ── Mrityu Dosha
+  var ddHtml='';
+  if(c.dd){
+    var ddBg=c.dd.total===0?'rgba(37,102,37,.07)':c.dd.total<=2?'rgba(181,134,13,.07)':'rgba(181,32,32,.07)';
+    var ddFg=c.dd.total===0?'var(--green)':c.dd.total<=2?'var(--gold)':'#b52020';
+    ddHtml='<div class="dtime" style="background:'+ddBg+';border-color:'+ddBg+'"><div class="dtl">💀 মৃত্যু দোষ</div><div class="dtv" style="color:'+ddFg+';">'+c.dd.name+(c.nakDoshaEnd?' — '+c.nakDoshaEnd+' পর্যন্ত':c.dd.total===0?' সারাদিন':'')+'</div></div>';
+  }
+
+  // ── Rashifal link (auto-date)
+  var rfDate=dStr(selDate||TODAY);
+  var rfHtml='<a href="https://www.myastrology.in/rashifal/'+rfDate+'.html" target="_blank" '
+    +'style="display:block;padding:.42rem .6rem;background:linear-gradient(135deg,#0a1730,#0f2248);border-radius:10px;border:1px solid rgba(201,162,39,.3);text-align:center;text-decoration:none;margin-bottom:.35rem;">'
+    +'<span style="color:#c9a227;font-size:.74rem;font-weight:700;">📅 আজকের রাশিফল দেখুন →</span></a>';
+
+  // ── Shubha Karma buttons (নির্দিষ্ট সময় গণনা)
+  var ds2=dStr(selDate||TODAY);
+  var KMAPS=[['vivah','💒 বিবাহ'],['griha','🏠 গৃহপ্রবেশ'],['garb','🤱 গর্ভধারণ'],['busi','💼 ব্যবসা'],['annaprashan','🍚 অন্নপ্রাশন'],['namakaran','👶 নামকরণ'],['rin','💰 ঋণ গ্রহণ'],['kroya','🛒 ক্রয়-বিক্রয়'],['shanti','🙏 শান্তিস্বস্ত্যয়ন'],['yatra','🚶 যাত্রা'],['sadh','🎉 সাধভক্ষণ'],['deeksha','🕉️ দীক্ষা'],['ratna','💎 রত্নধারণ'],['puja','🪔 গ্রহপূজা']];
+  var btnHtml='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.3rem;">';
+  KMAPS.forEach(function(k){btnHtml+='<button onclick="_shubhaM(\''+ds2+'\',\''+k[0]+'\')" '
+    +'style="background:linear-gradient(135deg,#0a1730,#0f2248);color:#c9a227;border:1px solid rgba(201,162,39,.3);border-radius:7px;padding:.35rem .2rem;font-size:.63rem;font-weight:600;cursor:pointer;font-family:\'Baloo Da 2\',sans-serif;">'+k[1]+'</button>';});
+  btnHtml+='</div>';
+
+  var timesHtml = rfHtml
+    + _sec('☀️ সূর্যোদয় / সূর্যাস্ত / ব্রাহ্ম মুহূর্ত')
+    + '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.52rem;margin-bottom:.42rem;">'
     + row1.map(mkCard).join('') + '</div>'
-    + '<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.52rem;">'
-    + row2.map(mkCard).join('') + '</div>';
+    + _sec('⚡ রাহুকাল · গুলিকাকাল · যমঘণ্ট · অভিজিৎ')
+    + '<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.52rem;margin-bottom:.42rem;">'
+    + row2.map(mkCard).join('') + '</div>'
+    + (bbHtml ? _sec('🚫 বারবেলা ও কালরাত্রি')+'<div style="display:grid;grid-template-columns:1fr 1fr;gap:.42rem;margin-bottom:.42rem;">'+bbHtml+'</div>' : '')
+    + (amHtml ? _sec('✨ অমৃতযোগ ও মাহেন্দ্রযোগ')+'<div style="display:grid;grid-template-columns:1fr 1fr;gap:.42rem;margin-bottom:.42rem;">'+amHtml+'</div>' : '')
+    + (lgnHtml ? _sec('🌅 লগ্ন ও মৃত্যু দোষ')+lgnHtml+ddHtml : '')
+    + _sec('🌸 শুভকর্মের নির্দিষ্ট সময়')
+    + btnHtml;
+
   document.getElementById('dttimes').innerHTML = timesHtml;
   document.getElementById('dtfests').innerHTML = _festHtml(c);
   var p = document.getElementById('dtp');
@@ -3101,5 +3172,157 @@ function onPaymentSuccess(response) {
   document.getElementById('payWaLink').href = waUrl;
 
   setTimeout(() => window.open(waUrl, '_blank'), 1500);
+}
+</script>
+
+<script>
+// ════════════════════════════════════════════════════════════════════
+// শুভকর্মের নির্দিষ্ট তারিখের নির্দিষ্ট সময় গণনা
+// বিবাহ, অন্নপ্রাশন, গৃহপ্রবেশ, গর্ভধারণ, ব্যবসা, যাত্রা ইত্যাদি
+// ════════════════════════════════════════════════════════════════════
+
+var _LBNS=['মেষ','বৃষ','মিথুন','কর্কট','সিংহ','কন্যা','তুলা','বৃশ্চিক','ধনু','মকর','কুম্ভ','মীন'];
+
+// শুভ লগ্ন সেট (প্রতিটি কর্মের জন্য)
+var _LSETS={
+  vivah:[2,5,6,8,11],          // বিবাহ: মিথুন,কন্যা,তুলা,ধনু,মীন
+  griha:[1,3,4,5,6,8,11],      // গৃহপ্রবেশ: বৃষ,কর্কট,সিংহ,কন্যা,তুলা,ধনু,মীন
+  garb:[2,4,5,6,7,8,9,10,11],  // গর্ভধারণ
+  busi:[1,2,3,6,9,10,11],      // ব্যবসা
+  annaprashan:[1,2,4,5,6,7,9,10,11],  // অন্নপ্রাশন
+  namakaran:[1,2,3,4,5,6,7,8,9,10,11], // নামকরণ
+  rin:[2,3,6,9,10,11],         // ঋণ গ্রহণ
+  kroya:[1,2,4,5,9,10,11],     // ক্রয়-বিক্রয়
+  shanti:[1,4,5,6,8,11],       // শান্তিস্বস্ত্যয়ন
+  yatra:[1,2,4,5,6,8,9,10,11], // যাত্রা
+  sadh:[1,2,3,4,5,6,7,8,9,10,11], // সাধভক্ষণ
+  deeksha:[1,4,5,8,9],         // দীক্ষা
+  ratna:[1,2,4,5,6,8,9,11],    // রত্নধারণ
+  puja:[1,2,4,5,6,7,8,9,10,11] // গ্রহপূজা
+};
+
+var _KTITLES={
+  vivah:'💒 বিবাহের শুভ লগ্ন ও সময়',
+  griha:'🏠 গৃহপ্রবেশের শুভ সময়',
+  garb:'🤱 গর্ভধারণের শুভ সময়',
+  busi:'💼 ব্যবসা আরম্ভের শুভ সময়',
+  annaprashan:'🍚 অন্নপ্রাশনের শুভ সময়',
+  namakaran:'👶 নামকরণের শুভ সময়',
+  rin:'💰 ঋণ গ্রহণের শুভ সময়',
+  kroya:'🛒 ক্রয়-বিক্রয়ের শুভ সময়',
+  shanti:'🙏 শান্তিস্বস্ত্যয়নের শুভ সময়',
+  yatra:'🚶 শুভ যাত্রার সময় ও দিক',
+  sadh:'🎉 সাধভক্ষণের শুভ সময়',
+  deeksha:'🕉️ দীক্ষার শুভ সময়',
+  ratna:'💎 রত্নধারণের শুভ সময়',
+  puja:'🪔 গ্রহপূজার শুভ সময়'
+};
+
+var _YATRADIRS={0:'দক্ষিণ',1:'উত্তর',2:'পূর্ব',3:'উত্তর',4:'পূর্ব ও পশ্চিম',5:'পূর্ব ও পশ্চিম',6:'পশ্চিম'};
+
+// লগ্ন উইন্ডো গণনা — সূর্যাস্ত থেকে পরদিন ভোর পর্যন্ত
+function _getLagnaWins(y,m,d,lSet){
+  var wins=[],prevRi=-1,startH=null;
+  for(var i=0;i<=36*30;i++){
+    var h=18+i*(2/60);
+    if(h>=54)break;
+    var hi=h>=24?h-24:h;
+    var dOff=h>=24?0:-1;
+    var jT=JD(y,m,d+dOff)+(hi-TZ+(dOff?24:0))/24;
+    var ri=calcLagnaAt(jT,LAT,LNG).ri;
+    if(ri!==prevRi){
+      if(prevRi>-1&&lSet.indexOf(prevRi)>=0&&startH!==null){
+        wins.push({ri:prevRi,name:_LBNS[prevRi],start:startH,end:hi,nextDay:startH>hi||hi<6});
+      }
+      startH=lSet.indexOf(ri)>=0?hi:null;
+      prevRi=ri;
+    }
+  }
+  return wins;
+}
+
+function _fmtH(v){
+  var hh=Math.floor(((v%24)+24)%24),mm=Math.round((v-Math.floor(v))*60);
+  if(mm>=60){hh=(hh+1)%24;mm=0;}
+  return fmtT(hh,mm);
+}
+
+function _shubhaM(dateStr,karmaType){
+  var pts=dateStr.split('-'),y=+pts[0],m=+pts[1],d=+pts[2];
+  var c=calcDay(new Date(dateStr+'T12:00:00'));
+  if(!c)return;
+
+  var title=_KTITLES[karmaType]||karmaType;
+  var lSet=_LSETS[karmaType]||_LSETS.griha;
+
+  var html='<div style="padding:.5rem .6rem;">';
+  html+='<div style="font-size:.78rem;font-weight:700;color:var(--gold-d);margin-bottom:.38rem;">'+title+'</div>';
+  html+='<div style="font-size:.67rem;color:var(--txt2);margin-bottom:.38rem;">'+dateStr+' | '+c.vara+' | '+c.paksha+' '+c.tName+' | '+c.nak[0]+'</div>';
+
+  // মৃত্যু দোষ সতর্কতা
+  if(c.dd&&c.dd.total>0){
+    html+='<div style="font-size:.66rem;color:#b52020;padding:.25rem .4rem;background:rgba(181,32,32,.06);border-radius:6px;margin-bottom:.35rem;">⚠️ '+c.dd.name+' আছে</div>';
+  }
+
+  if(karmaType==='yatra'){
+    // যাত্রা: শুভ দিক + সময়
+    var badDay=['মঙ্গলবার','শনিবার'].indexOf(c.vara)>=0;
+    var dir=_YATRADIRS[c.w||0]||'পূর্ব';
+    if(!badDay){
+      html+='<div style="padding:.45rem .55rem;background:rgba(37,102,37,.08);border-radius:10px;border:1px solid rgba(37,102,37,.2);margin-bottom:.35rem;">';
+      html+='<div style="font-size:.72rem;font-weight:700;color:var(--green);">✅ শুভ যাত্রা</div>';
+      html+='<div style="font-size:.7rem;color:var(--txt);margin-top:.22rem;">⏰ সময়: সূর্যোদয় পরে (রাহুকাল ও বারবেলা বাদ দিয়ে)</div>';
+      html+='<div style="font-size:.7rem;color:var(--txt);margin-top:.18rem;">🧭 শুভ দিক: <strong>'+dir+'</strong></div>';
+      html+='</div>';
+    } else {
+      html+='<div style="padding:.45rem;background:rgba(181,32,32,.07);border-radius:10px;border:1px solid rgba(181,32,32,.2);"><div style="color:#b52020;font-weight:700;">⚠️ আজ শুভ যাত্রা নেই ('+c.vara+')</div></div>';
+    }
+  } else if(karmaType==='garb'){
+    // গর্ভধারণ: রাত্রির অমৃতযোগ সময়
+    var garbTime=(c.amN&&c.amN.length)?c.amN[0].st:c.st.set+3.5;
+    html+='<div style="padding:.45rem .55rem;background:rgba(37,102,37,.08);border-radius:10px;border:1px solid rgba(37,102,37,.2);">';
+    html+='<div style="font-size:.72rem;font-weight:700;color:var(--green);">🌙 রাত্রি '+_fmtH(garbTime)+' পরে গর্ভধারণ শুভ</div>';
+    html+='<div style="font-size:.67rem;color:var(--txt2);margin-top:.2rem;">চন্দ্রের নক্ষত্র: '+c.nak[0]+' | অমৃতযোগের সময়ে সর্বোত্তম</div>';
+    html+='</div>';
+  } else {
+    // অন্য সব: শুভ লগ্নের নির্দিষ্ট সময়
+    var wins=_getLagnaWins(y,m,d,lSet);
+    if(wins&&wins.length>0){
+      html+='<div style="display:flex;flex-direction:column;gap:.3rem;margin-bottom:.38rem;">';
+      wins.forEach(function(w){
+        var nd2=w.nextDay?' (পরদিন)':'';
+        // সুতহিবুকযোগ: বৃহস্পতিবার মিথুন/ধনু লগ্নে
+        var suti=(karmaType==='vivah')&&(
+          (c.vara==='বৃহস্পতিবার'&&(w.ri===2||w.ri===8))||
+          (c.vara==='সোমবার'&&w.ri===3)||
+          (c.vara==='শুক্রবার'&&(w.ri===1||w.ri===6))
+        );
+        var sutiTag=suti?'<span style="font-size:.56rem;background:rgba(37,102,37,.18);border-radius:3px;padding:.05rem .25rem;margin-left:.3rem;color:var(--green);">সুতহিবুকযোগ</span>':'';
+        html+='<div style="display:flex;justify-content:space-between;align-items:center;padding:.38rem .5rem;background:rgba(37,102,37,.08);border-radius:9px;border:1px solid rgba(37,102,37,.18);">';
+        html+='<span style="font-size:.71rem;font-weight:700;color:var(--green);">'+w.name+' লগ্ন'+sutiTag+'</span>';
+        html+='<span style="font-size:.7rem;color:var(--txt);">'+_fmtH(w.start)+' – '+_fmtH(w.end)+nd2+'</span>';
+        html+='</div>';
+      });
+      html+='</div>';
+    } else {
+      html+='<div style="padding:.4rem .5rem;background:rgba(181,32,32,.06);border-radius:9px;font-size:.7rem;color:#b52020;margin-bottom:.35rem;">⚠️ এই তারিখে শুভ লগ্ন নেই</div>';
+    }
+    // অভিজিৎ মুহূর্ত
+    if(c.noon){
+      html+='<div style="font-size:.67rem;color:var(--txt2);margin-bottom:.25rem;">⭐ অভিজিৎ মুহূর্ত: '+_fmtH(c.noon-24/60)+' – '+_fmtH(c.noon+24/60)+'</div>';
+    }
+    // বারবেলা সতর্কতা
+    if(c.bb&&c.bb.length){
+      html+='<div style="font-size:.63rem;color:#b52020;">⚠️ বারবেলা এড়িয়ে চলুন: ';
+      html+=c.bb.map(function(b){return _fmtH(b.st)+' – '+_fmtH(b.en);}).join(', ');
+      html+='</div>';
+    }
+  }
+
+  html+='</div>';
+
+  document.getElementById('dtfests').innerHTML=html;
+  var panel=document.getElementById('dtp');
+  if(!panel.classList.contains('show'))panel.classList.add('show');
 }
 </script>
