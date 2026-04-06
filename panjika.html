@@ -2822,20 +2822,43 @@ function showDetail(date) {
     var LBN=['মেষ','বৃষ','মিথুন','কর্কট','সিংহ','কন্যা','তুলা','বৃশ্চিক','ধনু','মকর','কুম্ভ','মীন'];
     var lgnH='<div style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem;">'+'<div class="dtime shubha"><div class="dtl">🌅 উদয় লগ্ন</div><div class="dtv">'+LBN[lgn.ri]+'</div></div>'+'<div class="dtime"><div class="dtl">🌇 অস্ত লগ্ন</div><div class="dtv">'+LBN[lgn.descRi]+'</div></div>'+'</div>';
     // মৃত্যু দোষ
-    var DDN=['দোষ নেই','একপাদ দোষ','দ্বিপাদ দোষ','ত্রিপাদ দোষ','পুষ্কর দোষ'];
     var MRN=['','সর্বদোষ','গো-দোষ','','','সর্বদোষ','','','সর্পদোষ','পিতৃদোষ','সর্বদোষ','দ্বিপাদদোষ','','','সর্বদোষ','','','সর্বদোষ','পিতৃদোষ','সর্বদোষ','','','','সর্পদোষ','দ্বিপাদদোষ','',''];
     var nIdx2=NAKS.findIndex(function(n){return n[0]===c.nak[0];});if(nIdx2<0)nIdx2=0;
     var tiP=c.tithiList[0].val.pakDay-1;
-    var dBar=[0,2,6].indexOf(w2)>=0?1:0, dTi=[1,6,11].indexOf(tiP%15)>=0?1:0, dNak=[2,6,11,15,20,24].indexOf(nIdx2%27)>=0?2:0;
-    var dTot=dBar+dTi+dNak;
-    var ddBg=dTot===0?'rgba(37,102,37,.07)':dTot<=2?'rgba(181,134,13,.07)':'rgba(181,32,32,.07)';
-    var ddFg=dTot===0?'var(--green)':dTot<=2?'var(--gold)':'#b52020';
-    var nakD=MRN[nIdx2%27]||'';
-    var ddDetail=(dBar?'বারদোষ ':' ')+(dTi?'তিথিদোষ ':' ')+(nakD?nakD:' ');
-    var ddH='<div class="dtime" style="background:'+ddBg+';border-color:'+ddBg+';margin-top:.35rem;"><div class="dtl">💀 মৃত্যু দোষ</div><div class="dtv" style="color:'+ddFg+';">'+(DDN[dTot]||'পুষ্কর দোষ')+'<span style="font-size:.6rem;color:var(--txt2);display:block;">'+ddDetail.trim()+'</span></div></div>';
+    var dBar=[0,2,6].indexOf(w2)>=0?1:0;
+    var dTi=[1,6,11].indexOf(tiP%15)>=0?1:0;
+    var dNak=[2,6,11,15,20,24].indexOf(nIdx2%27)>=0?1:0;
+    // Correct pad calculation:
+    // Each: bar=1pad, tithi=1pad, nak=2pad (nak alone=দ্বিপাদ)
+    var pads=dBar+dTi+(dNak*2);
+    // Cap at 4 (পুষ্কর)
+    if(pads>4)pads=4;
+    // Name map
+    var DDN=['দোষ নেই','একপাদ দোষ','দ্বিপাদ দোষ','ত্রিপাদ দোষ','পুষ্কর দোষ (চতুষ্পাদ)'];
+    var ddBg=pads===0?'rgba(37,102,37,.07)':pads<=2?'rgba(181,134,13,.07)':'rgba(181,32,32,.07)';
+    var ddFg=pads===0?'var(--green)':pads<=2?'var(--gold)':'#b52020';
+    // Detail: which dosha + end time
+    var ddParts=[];
+    if(dBar) ddParts.push('বার দোষ (সারাদিন)');
+    if(dTi){
+      var tiEnd=c.tithiList.length>1?c.tithiList[0].time:'সারাদিন';
+      ddParts.push('তিথি দোষ'+(tiEnd&&tiEnd!=='সারাদিন'?' ('+tiEnd+' পর্যন্ত)':''));
+    }
+    if(dNak){
+      var nakNm=MRN[nIdx2%27]||'নক্ষত্র দোষ';
+      var nakEnd=c.nakList&&c.nakList.length>1?c.nakList[0].time:'সারাদিন';
+      ddParts.push(nakNm+(nakEnd&&nakEnd!=='সারাদিন'?' ('+nakEnd+' পর্যন্ত)':''));
+    }
+    // After tithi/nak change, dosha may reduce
+    var ddAfter='';
+    if((dTi&&c.tithiList.length>1)||(dNak&&c.nakList&&c.nakList.length>1)){
+      var newPads=dBar;// only bar remains after change
+      if(newPads<pads) ddAfter=' → এরপর '+(newPads===0?'দোষ নেই':DDN[newPads]);
+    }
+    var ddH='<div class="dtime" style="background:'+ddBg+';border-color:'+ddBg+';margin-top:.35rem;"><div class="dtl">💀 মৃত্যু দোষ</div><div class="dtv" style="color:'+ddFg+';">'+(DDN[pads]||'পুষ্কর দোষ')+'<span style="font-size:.62rem;color:var(--txt2);display:block;margin-top:.18rem;line-height:1.5;">'+(ddParts.join(' | ')||'')+(ddAfter?'<br>'+ddAfter:'')+'</span></div></div>';
     // Section header helper
     function sec(t){return '<div style="font-size:.61rem;font-weight:700;color:var(--gold);text-transform:uppercase;padding:.28rem 0 .15rem;border-top:1px solid rgba(201,162,39,.12);margin-top:.15rem;">'+t+'</div>';}
-    var extra=sec('🚫 বারবেলা ও কালরাত্রি')+'<div style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem;margin-bottom:.35rem;">'+bbH+'</div>'+sec('✨ অমৃতযোগ ও মাহেন্দ্রযোগ')+'<div style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem;margin-bottom:.35rem;">'+amH+'</div>'+sec('🌅 লগ্ন ও মৃত্যু দোষ')+lgnH+ddH;
+    var extra=sec('🚫 বারবেলা ও কালরাত্রি')+'<div style="display:flex;flex-direction:column;gap:.35rem;margin-bottom:.35rem;">'+bbH+'</div>'+sec('✨ অমৃতযোগ ও মাহেন্দ্রযোগ')+'<div style="display:flex;flex-direction:column;gap:.35rem;margin-bottom:.35rem;">'+amH+'</div>'+sec('🌅 লগ্ন ও মৃত্যু দোষ')+lgnH+ddH;
     document.getElementById('dttimes').innerHTML=
       '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.52rem;margin-bottom:.52rem;">'+row1.map(mkCard).join('')+'</div>'+
       '<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.52rem;margin-bottom:.35rem;">'+row2.map(mkCard).join('')+'</div>'+
