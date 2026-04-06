@@ -541,3 +541,36 @@ function getPanjikaEvents(dateStr, mmdd) {
 
   return result;
 }
+// ════════════════════════════════════════════════════════════
+// Pipeline overrides — run AFTER panjika-engine.js loads
+// ════════════════════════════════════════════════════════════
+(function(){
+'use strict';
+
+window.getFests=function(ds){
+  if(!ds)return[];
+  var all=[];
+  (PANJIKA_DATA.festivals||[]).forEach(function(f){if(f.date===ds)all.push({i:f.icon||'🔹',n:f.name,sig:f.significance||'',mantra:f.mantra||'',vidhi:f.pujaVidhi||'',time:f.pujaTime||''});});
+  (PANJIKA_DATA.birthAnniversaries||[]).forEach(function(f){if(f.date===ds)all.push({i:'👶',n:f.name+(f.year?' (জন্ম '+f.year+')':''),sig:f.quote||''});});
+  (PANJIKA_DATA.deathAnniversaries||[]).forEach(function(f){if(f.date===ds)all.push({i:'🕯️',n:f.name+' — তিরোধান',sig:f.quote||''});});
+  (PANJIKA_DATA.modernDays||[]).forEach(function(f){if(f.date===ds)all.push({i:f.icon||'📅',n:f.name,sig:f.significance||''});});
+  return all;
+};
+
+window.getEclipse=function(ds){
+  if(!ds)return[];
+  return(PANJIKA_DATA.eclipses||[]).filter(function(e){return e.date===ds;}).map(function(e){return{d:e.date,icon:e.icon||'🌑',type:e.type||e.name||'গ্রহণ',desc:e.description||''};});
+};
+
+window._festHtml=function(c){
+  var ds=c&&c.fests?null:null;
+  var fests=c&&c.fests?c.fests:[];
+  var ecl=c&&c.eclipses?c.eclipses:[];
+  if(!fests.length&&!ecl.length)return '<div style="padding:.4rem .5rem;font-size:.72rem;color:var(--txt2);">আজ কোনো বিশেষ উৎসব নেই।</div>';
+  var h='<div style="display:flex;flex-direction:column;gap:.35rem;padding:.1rem 0;">';
+  ecl.forEach(function(e){h+='<div style="padding:.45rem .55rem;background:rgba(123,47,190,.07);border:1px solid rgba(123,47,190,.2);border-radius:9px;"><div style="font-size:.75rem;font-weight:700;color:#7b2fbe;">'+e.icon+' '+e.type+'</div>'+(e.desc?'<div style="font-size:.65rem;color:var(--txt2);margin-top:.15rem;">'+e.desc+'</div>':'')+'</div>';});
+  fests.forEach(function(f){h+='<div style="padding:.45rem .55rem;background:rgba(201,162,39,.06);border:1px solid rgba(201,162,39,.15);border-radius:9px;"><div style="font-size:.75rem;font-weight:700;color:var(--gold-d);">'+f.i+' '+f.n+'</div>'+(f.sig?'<div style="font-size:.65rem;color:var(--txt2);margin-top:.15rem;">'+f.sig+'</div>':'')+(f.mantra?'<div style="font-size:.62rem;color:var(--txt2);margin-top:.12rem;font-style:italic;">'+f.mantra+'</div>':'')+(f.vidhi?'<div style="font-size:.62rem;color:var(--txt2);margin-top:.12rem;">🙏 '+f.vidhi+'</div>':'')+(f.time?'<div style="font-size:.62rem;color:var(--gold);margin-top:.12rem;">⏰ '+f.time+'</div>':'')+'</div>';});
+  h+='</div>';return h;
+};
+
+})();
