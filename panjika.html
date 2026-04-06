@@ -1875,6 +1875,23 @@ function saturnL(jd){const T=(jd-2451545)/36525;const L=((50.077444+1222.113777*
 function jupiterL(jd){const T=(jd-2451545)/36525;const L=((34.351519+3034.905675*T)%360+360)%360;const M=((20.9+3034.9*T)%360+360)*Math.PI/180;return((L+5.5549*Math.sin(M)+0.1683*Math.sin(2*M))%360+360)%360;}
 function rahuL(jd){const T=(jd-2451545)/36525;return((125.0445479-1934.1362608*T+0.0020754*T*T)%360+360)%360;}
 
+
+// ════ বারবেলা/কালরাত্রি/অমৃতযোগ/মাহেন্দ্রযোগ tables ════
+const _BB=[[4,7],[2,6],[6,2],[3,5],[5,7],[1,5],[8,4]]; // Sun=0
+const _KR=[5,3,7,7,7,3,6];
+const _AMD=[[5,6,11,12],[1,2,8,9,12,13],[3,4,10,11,14,15],[1,2,6,7,13,14],[3,4,10,11],[1,2,5,6,12,13],[2,3,8,9,14,15]];
+const _MHD=[[8,9],[12,13],[7,8],[11,12],[6,7],[9,10],[5,6]];
+const _AMN=[[6,7,13,14],[3,4,9,10,11,12,13,14,15],[4,5,11,12],[2,3,4,10,11,12,13,14,15],[4,5,12,13],[1,2,7,8,14,15],[3,4,10,11]];
+function _mkP(sl,b,m){var r=[];var i=0;while(i<sl.length){var s=sl[i]-1;var e=sl[i];while(i+1<sl.length&&sl[i+1]===sl[i]+1){i++;e=sl[i];}r.push({st:b+s*m/60,en:b+e*m/60});i++;}return r;}
+function _cBB(r,s,w){var p=(s-r)*60/8;return _BB[w].map(function(sl){return{st:r+(sl-1)*p/60,en:r+sl*p/60};});}
+function _cKR(ss,nr,w){var nm=((nr+24)-ss)*60,p=nm/8,sl=_KR[w]-1;return{st:ss+sl*p/60,en:ss+(sl+1)*p/60};}
+function _cAMD(r,s,w){return _mkP(_AMD[w],r,(s-r)*60/15);}
+function _cAMN(ss,nr,w){return _mkP(_AMN[w],ss,((nr+24)-ss)*60/15);}
+function _cMHD(r,s,w){var sl=_MHD[w],m=(s-r)*60/15;return sl&&sl.length?{st:r+(sl[0]-1)*m/60,en:r+sl[sl.length-1]*m/60}:null;}
+// মৃত্যু দোষ
+const _DDN2=['দোষ নেই','একপাদ দোষ','দ্বিপাদ দোষ','ত্রিপাদ দোষ','পুষ্কর দোষ'];
+const _MRN2=['','সর্বদোষ','গো-দোষ','','','সর্বদোষ','','','সর্পদোষ','পিতৃদোষ','সর্বদোষ','দ্বিপাদদোষ','','','সর্বদোষ','','','সর্বদোষ','পিতৃদোষ','সর্বদোষ','','','','সর্পদোষ','দ্বিপাদদোষ','',''];
+function _cDD2(w,ti,ni){var bar=[0,2,6].indexOf(w)>=0?1:0,t=[1,6,11].indexOf(ti%15)>=0?1:0,n=[2,6,11,15,20,24].indexOf(ni%27)>=0?2:0,tot=bar+t+n;var pk='';if(tot===4){var v=[1,2,3,4,5,6,7][w]||1;var r=(v+35)%3;pk=r===1?' (স্বর্গবাসী)':r===2?' (পাতালবাসী)':' (মর্ত্যবাসী)';}return{total:tot,name:(_DDN2[tot]||'পুষ্কর দোষ')+pk};}
 // ✅ Corrected Lagna — 13/13 reference cases verified (২০২৫-০৪-০৬)
 // জরুরি fix: +180° → ASC পাই, DSC নয়
 function calcLagnaAt(jd,lat,lng){
@@ -2207,11 +2224,25 @@ function calcDay(date){
   // Primary (backward compat)
   const p=tithiList[0].val;
   const tN=p.pakDay+(p.paksha==='কৃষ্ণপক্ষ'?15:0);
+  // ── পঞ্চাঙ্গ গণনা ──
+  var _bb=_cBB(st.rise,st.set,w);
+  var _stN2=sunTimes(date.getFullYear(),date.getMonth()+1,date.getDate()+1);
+  var _kr=_cKR(st.set,_stN2.rise,w);
+  var _amD=_cAMD(st.rise,st.set,w);
+  var _mhD=_cMHD(st.rise,st.set,w);
+  var _amN=_cAMN(st.set,_stN2.rise,w);
+  var _lgn=calcLagnaAt(jdRise,LAT,LNG);
+  var _nakDosha=_MRN2[nIdx0%27]||'';
+  var _nakDoshaEnd=(_nakDosha&&nTrans.length>0)?nTrans[0].time:null;
+  var _dd=_cDD2(w,p.pakDay-1,nIdx0);
+  var _noon=(st.rise+st.set)/2;
   return{w,bn,tN,tName:p.name,paksha:p.paksha,pakDay:p.pakDay,
     nak:NAKS[nIdx0],yoga:YOGAS[yIdx0],karan:karanList[0].val.name,
     vara:VDAYS[w],varaL:VLORD[w],st,
     rahu:slotT(st.rise,st.set,RS[w]),gulika:slotT(st.rise,st.set,GS[w]),
     yam:slotT(st.rise,st.set,YS[w]),abhi:abhiT(st.rise,st.set),
+    bb:_bb,kr:_kr,amD:_amD,mhD:_mhD,amN:_amN,lgn:_lgn,
+    nakDosha:_nakDosha,nakDoshaEnd:_nakDoshaEnd,dd:_dd,noon:_noon,
     eclipses:getEclipse(dStr(date)),
     fests:getFests(dStr(date)),
     tithiList,nakList,yogaList,karanList};
