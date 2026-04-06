@@ -2546,10 +2546,25 @@ function _isMalmasDt(dt) {
   });
 }
 
-function _isShubhaDay(dt, nakNeed, tithiNeed) {
+// বিবাহ বর্জনীয় নক্ষত্র — শাস্ত্রীয় তালিকা
+var _VIVAH_BAD_NAKS=[1,5,8,9,10,15,17,18,19];
+// 1=ভরণী, 5=আর্দ্রা, 8=আশ্লেষা, 9=মঘা, 10=পূঃফাল্গুনী, 15=বিশাখা, 17=জ্যেষ্ঠা, 18=মূলা, 19=পূঃষাঢ়া
+
+function _isShubhaDay(dt, nakNeed, tithiNeed, karmaType) {
   if (BAD_DAYS_VW.includes(dt.getDay())) return false;
   if (_isMalmasDt(dt)) return false;
   try {
+    // ── বিবাহের বিশেষ ফিল্টার ──
+    if(karmaType==='vivah') {
+      var jdV=JD(dt.getFullYear(),dt.getMonth()+1,dt.getDate())+(12-TZ)/24;
+      var TV=(jdV-2451545)/36525;
+      var sunTV=((280.46646+36000.76983*TV)%360+360)%360;
+      var sunMV=((357.52911+35999.05029*TV)%360+360)*Math.PI/180;
+      var sunSidV=(((sunTV+(1.914602-0.004817*TV)*Math.sin(sunMV)+0.019993*Math.sin(2*sunMV))%360+360)%360-lahiriAY(jdV)+360)%360;
+      var sunRashiV=Math.floor(sunSidV/30);
+      // খর মাস: সূর্য ধনু(8) বা মীন(11) রাশিতে → সম্পূর্ণ নিষিদ্ধ
+      if(sunRashiV===8||sunRashiV===11) return false;
+    }
     var c = calcDay(dt);
     var ti = c.tithiList[0].val;
     var tN = ti.pakDay - 1 + (ti.paksha==='কৃষ্ণপক্ষ' ? 15 : 0);
@@ -2558,21 +2573,23 @@ function _isShubhaDay(dt, nakNeed, tithiNeed) {
     var nIdx = c.nakList[0].val ? NAKS.findIndex(function(n){return n[0]===c.nakList[0].val.name;}) : -1;
     if (nIdx === -1) return false;
     if (nakNeed && !nakNeed.includes(nIdx)) return false;
+    // বিবাহ বর্জনীয় নক্ষত্র চেক
+    if(karmaType==='vivah' && _VIVAH_BAD_NAKS.indexOf(nIdx)>=0) return false;
     return true;
   } catch(e){ return false; }
 }
 
-function _getMonthShubhaDays(nakNeed, tithiNeed, extraBadDays) {
+function _getMonthShubhaDays(nakNeed, tithiNeed, extraBadDays, karmaType) {
   var days = getBnMonthDays(calIdx);
   return days.filter(function(item){
     if (extraBadDays && extraBadDays.includes(item.date.getDay())) return false;
-    return _isShubhaDay(item.date, nakNeed, tithiNeed);
+    return _isShubhaDay(item.date, nakNeed, tithiNeed, karmaType);
   });
 }
 
 function renderAuspiciousCounter() {
   var CATS = [
-    {label:'বিবাহের শুভ দিন', icon:'💒', nakNeed:SHUBHA_NAKS_VIVAH, tithiNeed:SHUBHA_TITHIS_VIVAH},
+    {label:'বিবাহের শুভ দিন', icon:'💒', nakNeed:SHUBHA_NAKS_VIVAH, tithiNeed:SHUBHA_TITHIS_VIVAH, karmaType:'vivah'},
     {label:'গৃহপ্রবেশের শুভ দিন', icon:'🏠', nakNeed:SHUBHA_NAKS_GRIHA, tithiNeed:SHUBHA_TITHIS_GRIHA},
     {label:'গৃহ নির্মাণের শুভ দিন', icon:'🏗️', nakNeed:SHUBHA_NAKS_NIRMAN, tithiNeed:SHUBHA_TITHIS_GRIHA},
     {label:'গর্ভধারণের শুভ দিন', icon:'🤰', nakNeed:SHUBHA_NAKS_GARB, tithiNeed:null},
@@ -2581,7 +2598,7 @@ function renderAuspiciousCounter() {
   ];
   var html = '';
   CATS.forEach(function(cat, ci){
-    var result = _getMonthShubhaDays(cat.nakNeed, cat.tithiNeed);
+    var result = _getMonthShubhaDays(cat.nakNeed, cat.tithiNeed, null, cat.karmaType);
     html += '<div class="ac-card" onclick="openAcModal('+ci+')">';
     html += '<div class="ac-ico">'+cat.icon+'</div>';
     html += '<div class="ac-count">'+toBn(result.length)+'</div>';
@@ -2592,7 +2609,7 @@ function renderAuspiciousCounter() {
 }
 
 var _acCats = [
-  {label:'বিবাহের শুভ দিন', icon:'💒', nakNeed:SHUBHA_NAKS_VIVAH, tithiNeed:SHUBHA_TITHIS_VIVAH},
+  {label:'বিবাহের শুভ দিন', icon:'💒', nakNeed:SHUBHA_NAKS_VIVAH, tithiNeed:SHUBHA_TITHIS_VIVAH, karmaType:'vivah'},
   {label:'গৃহপ্রবেশের শুভ দিন', icon:'🏠', nakNeed:SHUBHA_NAKS_GRIHA, tithiNeed:SHUBHA_TITHIS_GRIHA},
   {label:'গৃহ নির্মাণের শুভ দিন', icon:'🏗️', nakNeed:SHUBHA_NAKS_NIRMAN, tithiNeed:SHUBHA_TITHIS_GRIHA},
   {label:'গর্ভধারণের শুভ দিন', icon:'🤰', nakNeed:SHUBHA_NAKS_GARB, tithiNeed:null},
@@ -2602,7 +2619,7 @@ var _acCats = [
 
 function openAcModal(catIdx) {
   var cat = _acCats[catIdx];
-  var days = _getMonthShubhaDays(cat.nakNeed, cat.tithiNeed);
+  var days = _getMonthShubhaDays(cat.nakNeed, cat.tithiNeed, null, cat.karmaType);
   document.getElementById('acModalTitle').textContent = cat.icon + ' ' + cat.label;
   var html = '';
   if (!days.length) {
