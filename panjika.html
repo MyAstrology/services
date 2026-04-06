@@ -3279,42 +3279,51 @@ function _sSid(jd){
   return(((L0+(1.914602-0.004817*T)*Math.sin(M)+0.019993*Math.sin(2*M))%360+360)%360-lahiriAY(jd)+360)%360;
 }
 
-// ── বিবাহ উইন্ডো গণনা (Bishuddha method) ──
+// ── বিবাহ উইন্ডো গণনা (Bishuddha method — সম্পূর্ণ সংশোধিত) ──
+// সংশোধন: (১) window শুরুর আগে নক্ষত্র চেক (২) নক্ষত্র-পরিবর্তন tracking
+// (৩) কৃত্তিকা বৃষ বর্জন (৪) break নেই — রাতের পরে window সম্ভব
 function _calcVivahWin(y,m,d,sunset){
-  var wins=[],curL=-1,winStart=null,moonRashiAtStart=-1;
-  // সূর্যাস্ত থেকে পরদিন ভোর পর্যন্ত (সর্বোচ্চ 9 ঘণ্টা)
+  var wins=[],curL=-1,winStart=null,prevNak=-1;
+  function _isBN(nak,mRashi){return _BN.has(nak)||(nak===2&&mRashi===1);}
+  function _hN(hv){return hv>=24?hv-24:hv;}
+  function _nd(s,e){return s>e;}
+  
   for(var i=0;i<9*30;i++){
     var hv=sunset+i*(2/60);if(hv>sunset+9)break;
-    var hi=hv>=24?hv-24:hv;var dOff=hv>=24?1:0;
+    var hi=_hN(hv);var dOff=hv>=24?1:0;
     var jT=JD(y,m,d+dOff)+(hi-TZ)/24;
-    var lgn=calcLagnaAt(jT,LAT,LNG);
-    var ri=lgn.ri;
+    var ri=calcLagnaAt(jT,LAT,LNG).ri;
     var ms=_mSid(jT);
     var moonRashi=Math.floor(ms/30);
     var nak=Math.floor(ms/(360/27))%27;
+    var badNak=_isBN(nak,moonRashi);
     
+    // ── লগ্ন পরিবর্তন ──
     if(ri!==curL){
-      // লগ্ন পরিবর্তন
       if(curL>-1&&winStart!==null){
-        // পূর্ববর্তী লগ্নের window বন্ধ
-        wins.push({ri:curL,s:winStart,e:hv>=24?hv-24:hv,nd:winStart>(hv>=24?hv-24:hv)||hv>=24});
+        // পূর্ব লগ্নের window বন্ধ
+        wins.push({ri:curL,s:winStart,e:_hN(hv),nd:_nd(winStart,_hN(hv))});
         winStart=null;
       }
-      // নতুন লগ্ন চেক
-      if(_VL.indexOf(ri)>=0){
-        // Moon same rashi as lagna? → বর্জন
-        if(moonRashi!==ri){
-          winStart=hv;
-        }
+      // নতুন শুভ লগ্ন: চন্দ্র ভিন্ন রাশি + নক্ষত্র বর্জনীয় নয়
+      if(_VL.indexOf(ri)>=0 && moonRashi!==ri && !badNak){
+        winStart=hv;
       }
       curL=ri;
     }
-    // নক্ষত্র বর্জনীয় হলে window বন্ধ
-    if(winStart!==null&&_BN.has(nak)){
-      wins.push({ri:curL,s:winStart,e:hv>=24?hv-24:hv,nd:winStart>(hv>=24?hv-24:hv)||hv>=24,nakEnd:true});
-      winStart=null;
-      break;  // নক্ষত্র খারাপ = সব বন্ধ
+    
+    // ── নক্ষত্র পরিবর্তন (একই লগ্নে) ──
+    if(nak!==prevNak && prevNak!==-1){
+      if(winStart!==null && badNak){
+        // বর্জনীয় নক্ষত্রে প্রবেশ → window বন্ধ (break নেই, পরে আবার শুরু সম্ভব)
+        wins.push({ri:curL,s:winStart,e:_hN(hv),nd:_nd(winStart,_hN(hv)),nakEnd:true});
+        winStart=null;
+      } else if(winStart===null && !badNak && _VL.indexOf(curL)>=0 && moonRashi!==curL){
+        // শুভ নক্ষত্রে প্রবেশ, শুভ লগ্ন চলছে → window শুরু
+        winStart=hv;
+      }
     }
+    prevNak=nak;
   }
   return wins;
 }
