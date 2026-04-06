@@ -3237,8 +3237,6 @@ function onPaymentSuccess(response) {
 </script>
 
 <script>
-
-<script>
 // ══════════════════════════════════════════════════════════════════════
 // বিবাহ মুহূর্ত ইঞ্জিন v2 — বিশুদ্ধ সিদ্ধান্ত পঞ্জিকা পদ্ধতি
 // Counter/Modal ও Detail Panel উভয়ই এই engine ব্যবহার করে
@@ -3454,5 +3452,9 @@ function sunTimes(y,m,d){
   var H=Math.acos(Math.min(1,Math.max(-1,cosH)))*180/Math.PI,noon=(720-4*LNG-EoT)/60+TZ;
   return{rise:noon-H/15,set:noon+H/15};
 }
+
+// ── বিবাহ engine লোড হওয়ার পরে counter পুনরায় render ──
+// (INIT-এ প্রথম call-এ _vivahEligible defined ছিল না → এখন সঠিক গণনা)
+if(typeof renderAuspiciousCounter==='function') renderAuspiciousCounter();
 </script>
 
