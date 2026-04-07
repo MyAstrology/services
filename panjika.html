@@ -2742,14 +2742,18 @@ function _isShubhaDay(dt, nakNeed, tithiNeed, karmaType) {
     var jdNoon=JD(y2,m2,d2)+(12-TZ)/24;
 
     if(karmaType==='vivah'){
-      // খর মাস
-      if(_isKharMaas(dt)) return false;
-      // তিথি at sunset
+      // খর মাস: সূর্যোদয়ের সময় সূর্যের রাশি check
+      var jdRise2=JD(y2,m2,d2)+(sunTimes(y2,m2,d2)[0]-TZ)/24;
+      var srRise=Math.floor(_sunSidAt(jdRise2)/30);
+      if(srRise===8||srRise===11) return false;
+      // তিথি at sunset — strict Bishuddha tithis
       var st2=sunTimes(y2,m2,d2);
       var jdSet=JD(y2,m2,d2)+(st2.set-TZ)/24;
       var msSt=_moonSidAt(jdSet),ssSt=_sunSidAt(jdSet);
       var tIdxSet=Math.floor(((msSt-ssSt+360)%360)/12);
-      if(_VIVAH_BAD_TITHIS.has(tIdxSet)) return false;
+      // শুক্লপক্ষ: প্রতিপদ(0), ষষ্ঠী(5) | কৃষ্ণপক্ষ: দ্বিতীয়া(16), ষষ্ঠী(20), সপ্তমী(21), ত্রয়োদশী(27)
+      var _VIVAH_OK_TI=new Set([0,5,16,20,21,27]);
+      if(!_VIVAH_OK_TI.has(tIdxSet)) return false;
       // প্রথম শুভ লগ্ন
       var fl=_findFirstVivahLagna(y2,m2,d2,st2.set);
       if(!fl) return false;
