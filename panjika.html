@@ -3512,3 +3512,29 @@ function sunTimes(y,m,d){
 }
 </script>
 
+
+<script>
+// ── panjika-data.js stubs (file removed — data now inline) ──
+var PANJIKA_DATA = {
+  auspiciousGuides: {
+    vivah: {icon:'💒', title:'বিবাহের শুভ সময়', goodNakshatras:['রোহিণী','মৃগশিরা','পুষ্যা','উঃফাল্গুনী','হস্তা','চিত্রা','স্বাতী','অনুরাধা','শ্রবণা','ধনিষ্ঠা','উঃষাঢ়া','রেবতী'], badDays:['মঙ্গলবার','শনিবার']},
+    griha: {icon:'🏠', title:'গৃহপ্রবেশের শুভ সময়', goodNakshatras:['রোহিণী','মৃগশিরা','পুষ্যা','উঃফাল্গুনী','হস্তা','চিত্রা','শ্রবণা','উঃষাঢ়া','রেবতী'], badDays:['মঙ্গলবার','শনিবার']},
+    business: {icon:'💼', title:'ব্যবসা শুরুর শুভ সময়', goodNakshatras:['অশ্বিনী','পুষ্যা','হস্তা','অনুরাধা','উঃষাঢ়া','শ্রবণা','রেবতী'], badDays:['মঙ্গলবার','শনিবার']},
+    travel: {icon:'✈️', title:'যাত্রার শুভ সময়', goodNakshatras:['অশ্বিনী','পুষ্যা','হস্তা','স্বাতী','অনুরাধা','শ্রবণা','রেবতী'], badDays:['মঙ্গলবার','শনিবার']}
+  }
+};
+
+function getPanjikaEvents(dateStr, mmdd) {
+  var fests = getFests ? getFests(dateStr) : [];
+  var eclipse = getEclipse ? getEclipse(dateStr) : [];
+  var bn = getBnInfo ? getBnInfo(new Date(dateStr+'T12:00:00')) : null;
+  var malmas = bn ? _isMalmasDt(new Date(dateStr+'T12:00:00')) : false;
+  return {
+    festivals: fests || [],
+    births: [],
+    deaths: [],
+    malmas: malmas,
+    eclipse: eclipse || []
+  };
+}
+</script>
