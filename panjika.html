@@ -1743,6 +1743,33 @@ function getPanjikaEvents(dateStr, mmdd) {
   return { festivals: fests||[], births:[], deaths:[], malmas: malmas, modern:[], eclipse:[] };
 }
 
+// ════ checkSpecialYogas — weekday+nakshatra special yogas ════
+function checkSpecialYogas(wd, nakIdx) {
+  // wd=0(Sun)..6(Sat), nakIdx=0..26
+  var yogas = [];
+  // সর্বার্থসিদ্ধি যোগ
+  var SSY = {0:[0,10,11,3,6,7,16,26],1:[6,7,26,2,3],2:[2,0,7,6,8,16,26],3:[6,7,26,3,14,15],4:[6,7,26,3,14,15,20,21],5:[6,7,26,3,9,10,11],6:[6,7,26,0,3]};
+  if(SSY[wd]&&SSY[wd].indexOf(nakIdx)>=0) yogas.push({name:'সর্বার্থসিদ্ধি যোগ',icon:'✨',desc:'সব কাজ সিদ্ধ লাভের শ্রেষ্ঠ যোগ।',type:'বিশেষ যোগ',uses:'বিবাহ, বাগদান, ব্যবসা শুরু, গৃহপ্রবেশ, যাত্রা'});
+  // অমৃতসিদ্ধি যোগ
+  var ASY = {0:[0,7],1:[6,11],2:[3,7],3:[14,7],4:[6,7],5:[11,26],6:[3,26]};
+  if(ASY[wd]&&ASY[wd].indexOf(nakIdx)>=0) yogas.push({name:'অমৃতসিদ্ধি যোগ',icon:'🌟',desc:'অমৃততুল্য শুভ যোগ। দীর্ঘস্থায়ী ফলদায়ক।',type:'বিশেষ যোগ',uses:'যেকোনো শুভকর্ম'});
+  // রবি যোগ (Sun only)
+  if(wd===0&&[0,5,6,11,14,19,22].indexOf(nakIdx)>=0) yogas.push({name:'রবিযোগ',icon:'☀️',desc:'সূর্যের শক্তিশালী যোগ।',type:'বিশেষ যোগ',uses:'নতুন কাজ শুরু'});
+  return yogas;
+}
+
+// ════ _getNakIdx — JD থেকে নক্ষত্র index ════
+function _getNakIdx(jd) {
+  var ay=lahiriAY(jd);
+  var T=(jd-2451545)/36525;
+  var Lp=((218.3164477+481267.88123421*T)%360+360)%360;
+  var Mp=((134.9633964+477198.8675055*T)%360+360)%360;
+  var sl=6288774*Math.sin(Mp*Math.PI/180);
+  var moonSid2=((Lp+sl/1000000-ay)%360+360)%360;
+  return Math.floor(moonSid2/(360/27))%27;
+}
+
+
 'use strict';
 
 /* ████████████████████████████████████████████████████████████████████
