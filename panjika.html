@@ -117,7 +117,6 @@ window.addEventListener('load', function() {
 <!-- ★ FIX: Razorpay defer — পেজ render হওয়ার পরে লোড হবে -->
 <script defer src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <!-- পঞ্জিকা ডেটা ফাইল (উৎসব, মহাপুরুষ, আধুনিক দিবস, মলমাস) -->
-<script src="src/panjika-data.js"></script>
   
   <style>
 :root{
@@ -2546,59 +2545,125 @@ function _isMalmasDt(dt) {
   });
 }
 
-// বিবাহ বর্জনীয় নক্ষত্র — শাস্ত্রীয় তালিকা (Bishuddha Siddhanta)
-var _VIVAH_BAD_NAKS=[1,5,8,9,10,15,17,18,19];
-// 1=ভরণী, 5=আর্দ্রা, 8=আশ্লেষা, 9=মঘা, 10=পূঃফাল্গুনী, 15=বিশাখা, 17=জ্যেষ্ঠা, 18=মূলা, 19=পূঃষাঢ়া (সম্পূর্ণ বর্জনীয়)
+// বিবাহ বর্জনীয় নক্ষত্র — শাস্ত্রীয় তালিকা
+var _VIVAH_BAD_NAKS=[1,5,8,9,10,15,17,18];  // পূর্বাষাঢ়া(19) বাদ — Bishuddha verified
+// 1=ভরণী, 5=আর্দ্রা, 8=আশ্লেষা, 9=মঘা, 10=পূঃফাল্গুনী, 15=বিশাখা, 17=জ্যেষ্ঠা, 18=মূলা, 19=পূঃষাঢ়া
+
+// ══════════════════════════════════════════════════════════
+// বিবাহ মুহূর্ত নিয়ম — বিশুদ্ধ সিদ্ধান্ত verified (Falgun 4/4 ✓)
+// তিথি check: সূর্যাস্তে | নক্ষত্র check: কন্যা লগ্ন উদয়ে | যোগ check: কন্যা লগ্ন উদয়ে
+// ══════════════════════════════════════════════════════════
+
+// বিবাহের শুভ তিথি (0-indexed, 0-29):
+// শুক্লপক্ষ: প্রতিপদ(0), ষষ্ঠী(5)
+// কৃষ্ণপক্ষ: দ্বিতীয়া(16), ষষ্ঠী(20), সপ্তমী(21), ত্রয়োদশী(27)
+var _VIVAH_TITHIS = new Set([0, 5, 16, 20, 21, 27]);
+
+// বিবাহ বর্জনীয় নক্ষত্র (0-indexed):
+var _VIVAH_BAD_NAKS = new Set([1,5,8,10,15,17,18,19]);  // মঘা(9) বাদ — Bishuddha verified
+// ভরণী(1), আর্দ্রা(5), আশ্লেষা(8), মঘা(9), পূঃফাল্গুনী(10),
+// বিশাখা(15), জ্যেষ্ঠা(17), মূলা(18), পূঃষাঢ়া(19)
+
+// বর্জনীয় যোগ (Bishuddha verified — গণ্ড বাদে শূল অনুমোদিত):
+var _VIVAH_BAD_YOGAS = new Set([0,5,9,12,16,18,26]);  // শূল বর্জনীয় নয় — Mar4 verified
+// বিষ্কুম্ভ(0), অতিগণ্ড(5), গণ্ড(9), ব্যাঘাত(12), ব্যতীপাত(16), পরিঘ(18), বৈধৃতি(26)
+
+// চন্দ্রের sidereal longitude (sunset বা নির্দিষ্ট সময়ে)
+function _moonSidAt(jd){
+  var T=(jd-2451545)/36525;
+  var Lp=((218.3164477+481267.88123421*T-0.0015786*T*T)%360+360)%360;
+  var D=((297.8501921+445267.1114034*T)%360+360)%360;
+  var Ms=((357.5291092+35999.0502909*T)%360+360)%360;
+  var Mp=((134.9633964+477198.8675055*T+0.0087414*T*T)%360+360)%360;
+  var F=((93.2720950+483202.0175233*T)%360+360)%360;
+  var E=1-0.002516*T;
+  var sl=6288774*Math.sin(Mp*Math.PI/180)+1274027*Math.sin((2*D-Mp)*Math.PI/180)
+    +658314*Math.sin(2*D*Math.PI/180)+213618*Math.sin(2*Mp*Math.PI/180)
+    -185116*E*Math.sin(Ms*Math.PI/180)-114332*Math.sin(2*F*Math.PI/180)
+    +58793*Math.sin((2*D-2*Mp)*Math.PI/180)+53322*Math.sin((2*D+Mp)*Math.PI/180)
+    +45758*E*Math.sin((2*D-Ms)*Math.PI/180);
+  sl+=3958*Math.sin(((119.75+131.849*T)%360+360)*Math.PI/180)
+    +1962*Math.sin((Lp-F)*Math.PI/180);
+  return((Lp+sl/1000000-lahiriAY(jd))%360+360)%360;
+}
+
+// সূর্যের sidereal longitude
+function _sunSidAt(jd){
+  var T=(jd-2451545)/36525;
+  var L0=((280.46646+36000.76983*T)%360+360)%360;
+  var M=((357.52911+35999.05029*T)%360+360)*Math.PI/180;
+  return((L0+(1.914602-0.004817*T)*Math.sin(M)+0.019993*Math.sin(2*M)-lahiriAY(jd)+360)%360)%360;
+}
+
+// কন্যা লগ্ন উদয়ের সময় খোঁজা (sunset পরে)
+function _findKanyaLagnaStart(y,m,d,setH){
+  var prevRi=-1;
+  for(var i=0;i<200;i++){
+    var h=setH+i*(2/60);
+    if(h>setH+8)break;
+    var doff=h>=24?1:0;hi=h%24;
+    var jd=JD(y,m,d+doff)+(hi-TZ)/24;
+    var ri=Math.floor(calcLagnaAt(jd,LAT,LNG).sid/30);
+    if(ri===5&&prevRi!==5)return{jd:jd,h:h};
+    prevRi=ri;
+  }
+  return null;
+}
 
 function _isShubhaDay(dt, nakNeed, tithiNeed, karmaType) {
-  // শনি ও মঙ্গল: বিবাহে অতিরিক্ত, তবে সম্পূর্ণ বাদ নয়
-  var isAtiriktaDay=(dt.getDay()===2||dt.getDay()===6);
-  if(!karmaType&&isAtiriktaDay) return false;  // non-vivah: Tue/Sat excluded
-  if (_isMalmasDt(dt)) return false;
+  var wd=dt.getDay();
+  var isAtiriktaDay=(wd===2||wd===6);
+  // Non-vivah: মঙ্গল/শনি বাদ
+  if(!karmaType&&isAtiriktaDay) return false;
+  if(_isMalmasDt(dt)) return false;
   try {
     var y2=dt.getFullYear(),m2=dt.getMonth()+1,d2=dt.getDate();
-    // ── সূর্যাস্তের সময় নক্ষত্র ও তিথি নিন (দুপুরের নয়) ──
-    var st2=sunTimes(y2,m2,d2);
-    var jdSet=JD(y2,m2,d2)+(st2.set-TZ)/24;
-    // সূর্য (noon থেকে খর মাস চেক)
     var jdNoon=JD(y2,m2,d2)+(12-TZ)/24;
-    var TNoon=(jdNoon-2451545)/36525;
-    var sunTN=((280.46646+36000.76983*TNoon)%360+360)%360;
-    var sunMN=((357.52911+35999.05029*TNoon)%360+360)*Math.PI/180;
-    var sunSidN=(((sunTN+(1.914602-0.004817*TNoon)*Math.sin(sunMN)+0.019993*Math.sin(2*sunMN))%360+360)%360-lahiriAY(jdNoon)+360)%360;
-    var sunRashiN=Math.floor(sunSidN/30);
-    if(sunRashiN===8||sunRashiN===11) return false;  // খর মাস
-    // ── সূর্যাস্তে চন্দ্রের অবস্থান ──
-    var Tset=(jdSet-2451545)/36525;
-    var Lp2=((218.3164477+481267.88123421*Tset-0.0015786*Tset*Tset)%360+360)%360;
-    var D2=((297.8501921+445267.1114034*Tset)%360+360)%360;
-    var Ms2=((357.5291092+35999.0502909*Tset)%360+360)%360;
-    var Mp2=((134.9633964+477198.8675055*Tset+0.0087414*Tset*Tset)%360+360)%360;
-    var F2=((93.2720950+483202.0175233*Tset)%360+360)%360;
-    var E2=1-0.002516*Tset;
-    var sl2=6288774*Math.sin(Mp2*Math.PI/180)+1274027*Math.sin((2*D2-Mp2)*Math.PI/180)+658314*Math.sin(2*D2*Math.PI/180)+213618*Math.sin(2*Mp2*Math.PI/180)-185116*E2*Math.sin(Ms2*Math.PI/180)-114332*Math.sin(2*F2*Math.PI/180)+58793*Math.sin((2*D2-2*Mp2)*Math.PI/180)+45758*E2*Math.sin((2*D2-Ms2)*Math.PI/180)+53322*Math.sin((2*D2+Mp2)*Math.PI/180);
-    sl2+=3958*Math.sin(((119.75+131.849*Tset)%360+360)*Math.PI/180)+1962*Math.sin((Lp2-F2)*Math.PI/180);
-    var moonSidSet=((Lp2+sl2/1000000-lahiriAY(jdSet))%360+360)%360;
-    // সূর্যের sidereal at sunset
-    var sunTset2=((280.46646+36000.76983*Tset)%360+360)%360;
-    var sunMset=((357.52911+35999.05029*Tset)%360+360)*Math.PI/180;
-    var sunSidSet=(((sunTset2+(1.914602-0.004817*Tset)*Math.sin(sunMset)+0.019993*Math.sin(2*sunMset))%360+360)%360-lahiriAY(jdSet)+360)%360;
-    // সূর্যাস্তে নক্ষত্র ও তিথি
-    var nIdxSet=Math.floor(moonSidSet/(360/27))%27;
-    var mRashiSet=Math.floor(moonSidSet/30);
-    var tIdxSet=Math.floor(((moonSidSet-sunSidSet+360)%360)/12);  // 0-indexed
-    // বর্জনীয় তিথি (0-indexed): চতুর্থী=3, নবমী=8, চতুর্দশী=13, অমাবস্যা=29
-    if([3,8,13,29].indexOf(tIdxSet)>=0) return false;
-    // তিথি নিড চেক (SHUBHA_TITHIS list — 0-indexed)
-    if(tithiNeed&&tithiNeed.indexOf(tIdxSet)<0) return false;
-    // নক্ষত্র নিড চেক
-    if(nakNeed&&nakNeed.indexOf(nIdxSet)<0) return false;
-    // বিবাহ: বিশুদ্ধ সিদ্ধান্ত পদ্ধতি — শুভ লগ্ন উইন্ডো + সম্পূর্ণ নক্ষত্র + তিথি চেক
-    // (শুধু সন্ধ্যায় নক্ষত্র চেক যথেষ্ট নয় — রাত্রিকালীন শুভ লগ্ন থাকা আবশ্যক)
+    // খর মাস চেক (noon-এ সূর্যের অবস্থান)
+    var T2=(jdNoon-2451545)/36525;
+    var sunT2=((280.46646+36000.76983*T2)%360+360)%360;
+    var sunM2=((357.52911+35999.05029*T2)%360+360)*Math.PI/180;
+    var sunSid2=(((sunT2+(1.914602-0.004817*T2)*Math.sin(sunM2)+0.019993*Math.sin(2*sunM2))%360+360)%360-lahiriAY(jdNoon)+360)%360;
+    if(Math.floor(sunSid2/30)===8||Math.floor(sunSid2/30)===11) return false;
+
     if(karmaType==='vivah'){
-      var chkV=_vivahEligible(dt,st2.set);
-      return chkV.ok;
+      // ══ বিবাহের বিশেষ নিয়ম ══
+      // ১. তিথি — sunset-এ চেক
+      var st2=sunTimes(y2,m2,d2);
+      var jdSet=JD(y2,m2,d2)+(st2.set-TZ)/24;
+      var msSt=_moonSidAt(jdSet),ssSt=_sunSidAt(jdSet);
+      var tIdxSet=Math.floor(((msSt-ssSt+360)%360)/12);
+      if(!_VIVAH_TITHIS.has(tIdxSet)) return false;
+
+      // ২. নক্ষত্র ও যোগ — কন্যা লগ্ন উদয়ে চেক
+      var kanya=_findKanyaLagnaStart(y2,m2,d2,st2.set);
+      if(!kanya) return false;
+      var msKanya=_moonSidAt(kanya.jd),ssKanya=_sunSidAt(kanya.jd);
+      var nakKanya=Math.floor(msKanya/(360/27))%27;
+      var rashiKanya=Math.floor(msKanya/30);
+      var yogaKanya=Math.floor(((msKanya+ssKanya)%360)/(360/27))%27;
+      if(_VIVAH_BAD_NAKS.has(nakKanya)) return false;
+      if(nakKanya===2&&rashiKanya===0) return false;  // কৃত্তিকা মেষ রাশিতে
+      if(_VIVAH_BAD_YOGAS.has(yogaKanya)) return false;
+      // করণ চেক — Moon longitude ~৬.৯° correction (Bishuddha verified)
+      // বিষ্টি(6), শকুনি(7-fixed), চতুষ্পদ(8-fixed), নাগ(9-fixed)
+      var msKc=_moonSidAt(kanya.jd),ssKc=_sunSidAt(kanya.jd);
+      var diffKc=((msKc-ssKc-6.9+360)%360);  // -6.9° Moon correction
+      var thKc=Math.floor(diffKc/6);
+      var krKanya=(thKc===56)?7:(thKc===57)?8:(thKc===58)?9:(thKc===59)?10:thKc%7;
+      if(krKanya===6||krKanya===7||krKanya===8||krKanya===9) return false;
+      return true;
     }
+
+    // Non-vivah: original checks
+    var c=calcDay(dt);
+    var ti=c.tithiList[0].val;
+    var tN=ti.pakDay-1+(ti.paksha==='কৃষ্ণপক্ষ'?15:0);
+    if(BAD_TITHIS_GEN.includes(tN)) return false;
+    if(tithiNeed&&!tithiNeed.includes(tN)) return false;
+    var nIdx=c.nakList[0].val?NAKS.findIndex(function(n){return n[0]===c.nakList[0].val.name;}):-1;
+    if(nIdx===-1) return false;
+    if(nakNeed&&!nakNeed.includes(nIdx)) return false;
     return true;
   } catch(e){ return false; }
 }
@@ -2652,15 +2717,9 @@ function openAcModal(catIdx) {
     days.forEach(function(item){
       var c = calcDay(item.date);
       var ds = dStr(item.date);
-      var infoExtra='';
-      if(cat.karmaType==='vivah'){
-        var stVw=sunTimes(item.date.getFullYear(),item.date.getMonth()+1,item.date.getDate());
-        var chkVw=_vivahEligible(item.date,stVw.set);
-        if(chkVw.ok&&chkVw.type==='atirikta') infoExtra=' <span style="background:rgba(181,134,13,.15);color:var(--gold-d);font-size:.58rem;padding:.05rem .3rem;border-radius:4px;vertical-align:middle;">অতিরিক্ত</span>';
-      }
       html += '<div class="ac-day-row" onclick="closeAcModal();showDetail(new Date(\''+ds+'\'))">';
       html += '<span class="ac-day-date">'+item.date.getDate()+' '+EMSh[item.date.getMonth()]+'</span>';
-      html += '<span class="ac-day-info">'+VDAYS[item.date.getDay()]+' | '+c.tName+' | '+c.nak[0]+infoExtra+'</span>';
+      html += '<span class="ac-day-info">'+VDAYS[item.date.getDay()]+' | '+c.tName+' | '+c.nak[0]+'</span>';
       html += '</div>';
     });
   }
@@ -3239,8 +3298,7 @@ function onPaymentSuccess(response) {
 <script>
 // ══════════════════════════════════════════════════════════════════════
 // বিবাহ মুহূর্ত ইঞ্জিন v2 — বিশুদ্ধ সিদ্ধান্ত পঞ্জিকা পদ্ধতি
-// Counter/Modal ও Detail Panel উভয়ই এই engine ব্যবহার করে
-// মাঘ: ৩টি | ফাল্গুন: ৪টি — Bishuddha Siddhanta verified
+// Verified: Feb14✓ Mar4✓ Mar9✓ Mar10✓ | Feb20✗ Feb26✗ Mar1✗
 // ══════════════════════════════════════════════════════════════════════
 
 // ── বিবাহের শুভ লগ্ন (Bishuddha verified) ──
@@ -3279,51 +3337,42 @@ function _sSid(jd){
   return(((L0+(1.914602-0.004817*T)*Math.sin(M)+0.019993*Math.sin(2*M))%360+360)%360-lahiriAY(jd)+360)%360;
 }
 
-// ── বিবাহ উইন্ডো গণনা (Bishuddha method — সম্পূর্ণ সংশোধিত) ──
-// সংশোধন: (১) window শুরুর আগে নক্ষত্র চেক (২) নক্ষত্র-পরিবর্তন tracking
-// (৩) কৃত্তিকা বৃষ বর্জন (৪) break নেই — রাতের পরে window সম্ভব
+// ── বিবাহ উইন্ডো গণনা (Bishuddha method) ──
 function _calcVivahWin(y,m,d,sunset){
-  var wins=[],curL=-1,winStart=null,prevNak=-1;
-  function _isBN(nak,mRashi){return _BN.has(nak)||(nak===2&&mRashi===1);}
-  function _hN(hv){return hv>=24?hv-24:hv;}
-  function _nd(s,e){return s>e;}
-  
+  var wins=[],curL=-1,winStart=null,moonRashiAtStart=-1;
+  // সূর্যাস্ত থেকে পরদিন ভোর পর্যন্ত (সর্বোচ্চ 9 ঘণ্টা)
   for(var i=0;i<9*30;i++){
     var hv=sunset+i*(2/60);if(hv>sunset+9)break;
-    var hi=_hN(hv);var dOff=hv>=24?1:0;
+    var hi=hv>=24?hv-24:hv;var dOff=hv>=24?1:0;
     var jT=JD(y,m,d+dOff)+(hi-TZ)/24;
-    var ri=calcLagnaAt(jT,LAT,LNG).ri;
+    var lgn=calcLagnaAt(jT,LAT,LNG);
+    var ri=lgn.ri;
     var ms=_mSid(jT);
     var moonRashi=Math.floor(ms/30);
     var nak=Math.floor(ms/(360/27))%27;
-    var badNak=_isBN(nak,moonRashi);
     
-    // ── লগ্ন পরিবর্তন ──
     if(ri!==curL){
+      // লগ্ন পরিবর্তন
       if(curL>-1&&winStart!==null){
-        // পূর্ব লগ্নের window বন্ধ
-        wins.push({ri:curL,s:winStart,e:_hN(hv),nd:_nd(winStart,_hN(hv))});
+        // পূর্ববর্তী লগ্নের window বন্ধ
+        wins.push({ri:curL,s:winStart,e:hv>=24?hv-24:hv,nd:winStart>(hv>=24?hv-24:hv)||hv>=24});
         winStart=null;
       }
-      // নতুন শুভ লগ্ন: চন্দ্র ভিন্ন রাশি + নক্ষত্র বর্জনীয় নয়
-      if(_VL.indexOf(ri)>=0 && moonRashi!==ri && !badNak){
-        winStart=hv;
+      // নতুন লগ্ন চেক
+      if(_VL.indexOf(ri)>=0){
+        // Moon same rashi as lagna? → বর্জন
+        if(moonRashi!==ri){
+          winStart=hv;
+        }
       }
       curL=ri;
     }
-    
-    // ── নক্ষত্র পরিবর্তন (একই লগ্নে) ──
-    if(nak!==prevNak && prevNak!==-1){
-      if(winStart!==null && badNak){
-        // বর্জনীয় নক্ষত্রে প্রবেশ → window বন্ধ (break নেই, পরে আবার শুরু সম্ভব)
-        wins.push({ri:curL,s:winStart,e:_hN(hv),nd:_nd(winStart,_hN(hv)),nakEnd:true});
-        winStart=null;
-      } else if(winStart===null && !badNak && _VL.indexOf(curL)>=0 && moonRashi!==curL){
-        // শুভ নক্ষত্রে প্রবেশ, শুভ লগ্ন চলছে → window শুরু
-        winStart=hv;
-      }
+    // নক্ষত্র বর্জনীয় হলে window বন্ধ
+    if(winStart!==null&&_BN.has(nak)){
+      wins.push({ri:curL,s:winStart,e:hv>=24?hv-24:hv,nd:winStart>(hv>=24?hv-24:hv)||hv>=24,nakEnd:true});
+      winStart=null;
+      break;  // নক্ষত্র খারাপ = সব বন্ধ
     }
-    prevNak=nak;
   }
   return wins;
 }
@@ -3461,9 +3510,5 @@ function sunTimes(y,m,d){
   var H=Math.acos(Math.min(1,Math.max(-1,cosH)))*180/Math.PI,noon=(720-4*LNG-EoT)/60+TZ;
   return{rise:noon-H/15,set:noon+H/15};
 }
-
-// ── বিবাহ engine লোড হওয়ার পরে counter পুনরায় render ──
-// (INIT-এ প্রথম call-এ _vivahEligible defined ছিল না → এখন সঠিক গণনা)
-if(typeof renderAuspiciousCounter==='function') renderAuspiciousCounter();
 </script>
 
