@@ -1740,7 +1740,7 @@ var PANJIKA_DATA = {
 function getPanjikaEvents(dateStr, mmdd) {
   var fests = (typeof getFests==='function') ? getFests(dateStr) : [];
   var malmas = (typeof _isMalmasDt==='function') ? _isMalmasDt(new Date(dateStr+'T12:00:00')) : false;
-  return { festivals: fests||[], births:[], deaths:[], malmas: malmas };
+  return { festivals: fests||[], births:[], deaths:[], malmas: malmas, modern:[], eclipse:[] };
 }
 
 'use strict';
@@ -3043,7 +3043,7 @@ function showDetail(date) {
   // ── ট্যাব ৩: মন্ত্র ও বিধি ──
   var mantraHtml = '';
   var mantraEvts = evts2.festivals.concat(evts2.births.map(function(b){return {name:b.name, mantra:'', pujaVidhi:b.message};}));
-  if (evts2.malmas) mantraEvts.push({name:evts2.malmas.monthName, mantra:evts2.malmas.mantra, pujaVidhi:evts2.malmas.do.join(', ')});
+  if (evts2.malmas) mantraEvts.push({name:evts2.malmas.monthName, mantra:evts2.malmas.mantra, pujaVidhi:''});
   if (mantraEvts.length) {
     mantraEvts.forEach(function(f){
       if(f.mantra||f.pujaVidhi){
@@ -3128,15 +3128,15 @@ function renderCal(){
     var malmasOnDay=evts2.malmas;
     var iconDots='';
     if(malmasOnDay) iconDots+='<span class="cd-dot" title="মলমাস">📿</span>';
-    if(evts2.festivals.length) iconDots+='<span class="cd-dot" title="'+evts2.festivals[0].name+'">'+evts2.festivals[0].icon+'</span>';
-    if(evts2.births.length) iconDots+='<span class="cd-dot" title="'+evts2.births[0].name+'">🕉️</span>';
-    if(evts2.deaths.length) iconDots+='<span class="cd-dot" title="'+evts2.deaths[0].name+'">🕯️</span>';
-    if(evts2.modern.length) iconDots+='<span class="cd-dot" title="'+evts2.modern[0].name+'">'+evts2.modern[0].icon+'</span>';
+    if(evts2.festivals&&evts2.festivals.length) iconDots+='<span class="cd-dot" title="'+evts2.festivals[0].name+'">'+evts2.festivals[0].icon+'</span>';
+    if(evts2.births&&evts2.births.length) iconDots+='<span class="cd-dot" title="'+evts2.births[0].name+'">🕉️</span>';
+    if(evts2.deaths&&evts2.deaths.length) iconDots+='<span class="cd-dot" title="'+evts2.deaths[0].name+'">🕯️</span>';
+    if(evts2.modern&&evts2.modern.length) iconDots+='<span class="cd-dot" title="'+evts2.modern[0].name+'">'+evts2.modern[0].icon+'</span>';
     // special yogas
     try{var nIdx4=_getNakIdx(JD(date.getFullYear(),date.getMonth()+1,date.getDate())+0.5);var sy=checkSpecialYogas(date.getDay(),nIdx4);if(sy.length)iconDots+='<span class="cd-dot" title="'+sy[0].name+'">✨</span>';}catch(er){}
     var festDisp='';
     if(c.eclipses&&c.eclipses.length)festDisp='<div class="df" style="color:#7b2fbe;">'+c.eclipses[0].icon+' '+c.eclipses[0].type+'</div>';
-    else if(evts2.festivals.length)festDisp='<div class="df">'+evts2.festivals[0].icon+' '+evts2.festivals[0].name+'</div>';
+    else if(evts2.festivals&&evts2.festivals.length)festDisp='<div class="df">'+evts2.festivals[0].icon+' '+evts2.festivals[0].name+'</div>';
     else if(fests.length)festDisp='<div class="df">'+fests[0].i+' '+fests[0].n+'</div>';
     h+='<div class="'+cls+'" onclick="showDetail(new Date(\''+ds_+'\'))">'+(isT?'<div class="tdot"></div>':'')+'<div class="db">'+toBn(bnDay)+'</div><div class="de">'+enLbl+'</div><div class="dti">'+tsh+'</div>'+festDisp+(iconDots?'<div class="cd-icons">'+iconDots+'</div>':'')+'</div>';
   });
