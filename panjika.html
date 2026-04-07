@@ -1726,14 +1726,50 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script data-cfasync="false">
 // ── getPanjikaEvents & PANJIKA_DATA (formerly in panjika-data.js) ──
 var PANJIKA_DATA = {
-  malmas: [],  // অধিক মাস / মলমাস তালিকা
+  malmas: [],
   auspiciousGuides: {
-    vivah:     {icon:'💒', title:'বিবাহের শুভ সময়',    goodNakshatras:['রোহিণী','মৃগশিরা','পুষ্যা','উঃফাল্গুনী','হস্তা','চিত্রা','স্বাতী','অনুরাধা','শ্রবণা','উঃষাঢ়া','ধনিষ্ঠা','রেবতী'], badDays:['মঙ্গলবার','শনিবার'], badTithis:['অমাবস্যা','পূর্ণিমা','চতুর্থী','নবমী','চতুর্দশী']},
-    griha:     {icon:'🏠', title:'গৃহপ্রবেশের শুভ সময়', goodNakshatras:['রোহিণী','মৃগশিরা','পুষ্যা','উঃফাল্গুনী','হস্তা','চিত্রা','শ্রবণা','উঃষাঢ়া','রেবতী'], badDays:['মঙ্গলবার','শনিবার'], badTithis:['অমাবস্যা','পূর্ণিমা','অষ্টমী','নবমী','চতুর্দশী']},
-    construction:{icon:'🏗️',title:'গৃহ নির্মাণের শুভ সময়',goodNakshatras:['রোহিণী','মৃগশিরা','পুষ্যা','উঃফাল্গুনী','হস্তা','চিত্রা','শ্রবণা','উঃষাঢ়া','রেবতী'], badDays:['মঙ্গলবার','শনিবার'], badTithis:['অমাবস্যা','পূর্ণিমা','অষ্টমী','নবমী','চতুর্দশী']},
-    pregnancy: {icon:'🤰', title:'গর্ভধারণের শুভ সময়', goodNakshatras:['অশ্বিনী','রোহিণী','পুনর্বসু','পুষ্যা','হস্তা','স্বাতী','অনুরাধা','শ্রবণা','রেবতী'], badDays:['মঙ্গলবার','শনিবার'], badTithis:['অমাবস্যা','চতুর্দশী']},
-    business:  {icon:'💼', title:'ব্যবসা শুরুর শুভ দিন',  goodNakshatras:['অশ্বিনী','পুষ্যা','হস্তা','অনুরাধা','উঃষাঢ়া','শ্রবণা','রেবতী'], badDays:['মঙ্গলবার','শনিবার'], badTithis:['অমাবস্যা','নবমী','চতুর্দশী']},
-    travel:    {icon:'✈️', title:'যাত্রার শুভ দিন',       goodNakshatras:['অশ্বিনী','পুষ্যা','হস্তা','স্বাতী','অনুরাধা','শ্রবণা','রেবতী'], badDays:['মঙ্গলবার','শনিবার'], badTithis:['অমাবস্যা','চতুর্দশী']}
+    vivah:{icon:'💒',title:'বিবাহের শুভ সময়',
+      goodDays:['সোমবার','বুধবার','বৃহস্পতিবার','শুক্রবার'],
+      goodTithis:['দ্বিতীয়া','তৃতীয়া','পঞ্চমী','সপ্তমী','দশমী','একাদশী','ত্রয়োদশী'],
+      goodNakshatras:['রোহিণী','মৃগশিরা','পুষ্যা','উঃফাল্গুনী','হস্তা','চিত্রা','স্বাতী','অনুরাধা','শ্রবণা','উঃষাঢ়া','ধনিষ্ঠা','রেবতী'],
+      goodLagnas:['মিথুন','কন্যা','তুলা','ধনু','মীন'],
+      badDays:['মঙ্গলবার','শনিবার'],
+      badTithis:['অমাবস্যা','পূর্ণিমা','চতুর্থী','নবমী','চতুর্দশী']},
+    griha:{icon:'🏠',title:'গৃহপ্রবেশের শুভ সময়',
+      goodDays:['সোমবার','বুধবার','বৃহস্পতিবার','শুক্রবার'],
+      goodTithis:['দ্বিতীয়া','তৃতীয়া','পঞ্চমী','সপ্তমী','দশমী','একাদশী','ত্রয়োদশী'],
+      goodNakshatras:['রোহিণী','মৃগশিরা','পুষ্যা','উঃফাল্গুনী','হস্তা','চিত্রা','শ্রবণা','উঃষাঢ়া','রেবতী'],
+      goodLagnas:['বৃষ','সিংহ','তুলা','মকর'],
+      badDays:['মঙ্গলবার','শনিবার'],
+      badTithis:['অমাবস্যা','পূর্ণিমা','অষ্টমী','নবমী','চতুর্দশী']},
+    construction:{icon:'🏗️',title:'গৃহ নির্মাণের শুভ সময়',
+      goodDays:['সোমবার','বুধবার','বৃহস্পতিবার','শুক্রবার'],
+      goodTithis:['দ্বিতীয়া','তৃতীয়া','পঞ্চমী','সপ্তমী','দশমী','একাদশী','ত্রয়োদশী'],
+      goodNakshatras:['রোহিণী','মৃগশিরা','পুষ্যা','উঃফাল্গুনী','হস্তা','চিত্রা','শ্রবণা','উঃষাঢ়া','রেবতী'],
+      goodLagnas:['বৃষ','সিংহ','তুলা','মকর'],
+      badDays:['মঙ্গলবার','শনিবার'],
+      badTithis:['অমাবস্যা','পূর্ণিমা','অষ্টমী','নবমী','চতুর্দশী']},
+    pregnancy:{icon:'🤰',title:'গর্ভধারণের শুভ সময়',
+      goodDays:['সোমবার','বুধবার','বৃহস্পতিবার','শুক্রবার'],
+      goodTithis:['দ্বিতীয়া','তৃতীয়া','পঞ্চমী','সপ্তমী','দশমী','একাদশী'],
+      goodNakshatras:['অশ্বিনী','রোহিণী','পুনর্বসু','পুষ্যা','হস্তা','স্বাতী','অনুরাধা','শ্রবণা','রেবতী'],
+      goodLagnas:['বৃষ','কর্কট','কন্যা','মীন'],
+      badDays:['মঙ্গলবার','শনিবার'],
+      badTithis:['অমাবস্যা','চতুর্দশী','নবমী']},
+    business:{icon:'💼',title:'ব্যবসা শুরুর শুভ দিন',
+      goodDays:['সোমবার','বুধবার','বৃহস্পতিবার','শুক্রবার'],
+      goodTithis:['দ্বিতীয়া','তৃতীয়া','পঞ্চমী','সপ্তমী','দশমী','একাদশী'],
+      goodNakshatras:['অশ্বিনী','পুষ্যা','হস্তা','অনুরাধা','উঃষাঢ়া','শ্রবণা','রেবতী'],
+      goodLagnas:['মিথুন','তুলা','মকর','কুম্ভ'],
+      badDays:['মঙ্গলবার','শনিবার'],
+      badTithis:['অমাবস্যা','নবমী','চতুর্দশী']},
+    travel:{icon:'✈️',title:'যাত্রার শুভ দিন',
+      goodDays:['সোমবার','বুধবার','বৃহস্পতিবার','শুক্রবার'],
+      goodTithis:['দ্বিতীয়া','তৃতীয়া','পঞ্চমী','সপ্তমী','দশমী','একাদশী'],
+      goodNakshatras:['অশ্বিনী','পুষ্যা','হস্তা','স্বাতী','অনুরাধা','শ্রবণা','রেবতী'],
+      goodLagnas:['মেষ','মিথুন','সিংহ','তুলা'],
+      badDays:['মঙ্গলবার','শনিবার'],
+      badTithis:['অমাবস্যা','চতুর্দশী']}
   }
 };
 
@@ -1749,12 +1785,12 @@ function checkSpecialYogas(wd, nakIdx) {
   var yogas = [];
   // সর্বার্থসিদ্ধি যোগ
   var SSY = {0:[0,10,11,3,6,7,16,26],1:[6,7,26,2,3],2:[2,0,7,6,8,16,26],3:[6,7,26,3,14,15],4:[6,7,26,3,14,15,20,21],5:[6,7,26,3,9,10,11],6:[6,7,26,0,3]};
-  if(SSY[wd]&&SSY[wd].indexOf(nakIdx)>=0) yogas.push({name:'সর্বার্থসিদ্ধি যোগ',icon:'✨',desc:'সব কাজ সিদ্ধ লাভের শ্রেষ্ঠ যোগ।',type:'বিশেষ যোগ',uses:'বিবাহ, বাগদান, ব্যবসা শুরু, গৃহপ্রবেশ, যাত্রা'});
+  if(SSY[wd]&&SSY[wd].indexOf(nakIdx)>=0) yogas.push({name:'সর্বার্থসিদ্ধি যোগ',icon:'✨',desc:'সব কাজ সিদ্ধ লাভের শ্রেষ্ঠ যোগ।',type:'বিশেষ যোগ',uses:'বিবাহ, বাগদান, ব্যবসা শুরু, গৃহপ্রবেশ, যাত্রা',suitableWork:['বিবাহ','বাগদান','ব্যবসা শুরু','গৃহপ্রবেশ','যাত্রা']});
   // অমৃতসিদ্ধি যোগ
   var ASY = {0:[0,7],1:[6,11],2:[3,7],3:[14,7],4:[6,7],5:[11,26],6:[3,26]};
-  if(ASY[wd]&&ASY[wd].indexOf(nakIdx)>=0) yogas.push({name:'অমৃতসিদ্ধি যোগ',icon:'🌟',desc:'অমৃততুল্য শুভ যোগ। দীর্ঘস্থায়ী ফলদায়ক।',type:'বিশেষ যোগ',uses:'যেকোনো শুভকর্ম'});
+  if(ASY[wd]&&ASY[wd].indexOf(nakIdx)>=0) yogas.push({name:'অমৃতসিদ্ধি যোগ',icon:'🌟',desc:'অমৃততুল্য শুভ যোগ। দীর্ঘস্থায়ী ফলদায়ক।',type:'বিশেষ যোগ',uses:'যেকোনো শুভকর্ম',suitableWork:['যেকোনো শুভকর্ম']});
   // রবি যোগ (Sun only)
-  if(wd===0&&[0,5,6,11,14,19,22].indexOf(nakIdx)>=0) yogas.push({name:'রবিযোগ',icon:'☀️',desc:'সূর্যের শক্তিশালী যোগ।',type:'বিশেষ যোগ',uses:'নতুন কাজ শুরু'});
+  if(wd===0&&[0,5,6,11,14,19,22].indexOf(nakIdx)>=0) yogas.push({name:'রবিযোগ',icon:'☀️',desc:'সূর্যের শক্তিশালী যোগ।',type:'বিশেষ যোগ',uses:'নতুন কাজ শুরু',suitableWork:['নতুন কাজ শুরু']});
   return yogas;
 }
 
@@ -2456,7 +2492,7 @@ function renderTodayEvents() {
     html += '<div class="sd-card birthday"><div class="sd-head"><span class="sd-icon">'+b.icon+'</span><span class="sd-name">'+b.name+'</span><span class="sd-type birthday">জন্মদিন</span></div>';
     html += '<div class="sd-sig">'+b.birthYear+'–'+b.deathYear+' | '+b.message+'</div>';
     html += '<div class="sd-quote">'+b.quote+'</div>';
-    if(b.notableWorks && b.notableWorks.length) html += '<div class="sd-works">📚 উল্লেখযোগ্য: '+b.notableWorks.join(', ')+'</div>';
+    if(b.notableWorks && b.notableWorks.length) html += '<div class="sd-works">📚 উল্লেখযোগ্য: '+(b.notableWorks||[]).join(', ')+'</div>';
     html += '</div>';
   });
 
@@ -2478,10 +2514,10 @@ function renderTodayEvents() {
   try {
     var nIdx = _getNakIdx(JD(TODAY.getFullYear(),TODAY.getMonth()+1,TODAY.getDate()) + 0.5);
     var syogas = checkSpecialYogas(TODAY.getDay(), nIdx);
-    syogas.forEach(function(y){
+    if(syogas&&syogas.length)syogas.forEach(function(y){
       html += '<div class="sd-card yoga"><div class="sd-head"><span class="sd-icon">'+y.icon+'</span><span class="sd-name">'+y.name+'</span><span class="sd-type yoga">বিশেষ যোগ</span></div>';
       html += '<div class="sd-sig">'+y.significance+'</div>';
-      html += '<div class="sd-works">উপযোগী কাজ: '+y.suitableWork.join(', ')+'</div></div>';
+      html += '<div class="sd-works">উপযোগী কাজ: '+(y.suitableWork||[]).join(', ')+'</div></div>';
     });
   } catch(e){}
 
@@ -2549,15 +2585,15 @@ function renderGuideCards() {
     var g = guides[key];
     html += '<div class="guide-card" onclick="toggleGuide(this)">';
     html += '<div class="guide-card-head"><span class="guide-card-ico">'+g.icon+'</span><span class="guide-card-title">'+g.title+'</span></div>';
-    html += '<div class="guide-good-days">✅ শুভ বার: '+g.goodDays.join(', ')+'</div>';
+    html += '<div class="guide-good-days">✅ শুভ বার: '+(g.goodDays||[]).join(', ')+'</div>';
     html += '<div class="guide-good-naks">⭐ শুভ নক্ষত্র: '+g.goodNakshatras.slice(0,5).join(', ')+(g.goodNakshatras.length>5?' …':'')+'</div>';
     html += '<div class="guide-expand">';
     html += '<div class="guide-row">';
-    html += '<div><div class="guide-label">শুভ তিথি</div><div class="guide-val good">'+g.goodTithis.join(', ')+'</div></div>';
+    html += '<div><div class="guide-label">শুভ তিথি</div><div class="guide-val good">'+(g.goodTithis||[]).join(', ')+'</div></div>';
     html += '<div><div class="guide-label">শুভ লগ্ন</div><div class="guide-val good">'+(g.goodLagnas||[]).join(', ')+'</div></div>';
     html += '</div>';
-    if(g.badDays) html += '<div style="margin-bottom:.3rem;"><div class="guide-label">বর্জনীয় বার</div><div class="guide-val bad">'+g.badDays.join(', ')+'</div></div>';
-    if(g.badTithis) html += '<div style="margin-bottom:.3rem;"><div class="guide-label">বর্জনীয় তিথি</div><div class="guide-val bad">'+g.badTithis.join(', ')+'</div></div>';
+    if(g.badDays) html += '<div style="margin-bottom:.3rem;"><div class="guide-label">বর্জনীয় বার</div><div class="guide-val bad">'+(g.badDays||[]).join(', ')+'</div></div>';
+    if(g.badTithis) html += '<div style="margin-bottom:.3rem;"><div class="guide-label">বর্জনীয় তিথি</div><div class="guide-val bad">'+(g.badTithis||[]).join(', ')+'</div></div>';
     html += '<div class="guide-mantra">'+g.mantra+'</div>';
     html += '<p style="font-size:.7rem;color:var(--txt2);margin-top:.5rem;line-height:1.55;">'+g.procedure+'</p>';
     html += '</div>';
@@ -2586,7 +2622,7 @@ var BAD_TITHIS_GEN = [14,7,8,29]; // চতুর্দশী,অষ্টমী
 
 function _isMalmasDt(dt) {
   var t = dt.getTime();
-  return PANJIKA_DATA.malmas.some(function(ml){
+  return (PANJIKA_DATA.malmas||[]).some(function(ml){
     return t >= new Date(ml.startDate+'T00:00:00').getTime() && t <= new Date(ml.endDate+'T23:59:59').getTime();
   });
 }
@@ -3062,7 +3098,7 @@ function showDetail(date) {
   try {
     var nIdx3 = _getNakIdx(JD(y,mo+1,d)+0.5);
     var syogas2 = checkSpecialYogas(date.getDay(), nIdx3);
-    syogas2.forEach(function(yg){ specHtml += '<div class="fi"><div class="fiico">'+yg.icon+'</div><div class="fin">'+yg.name+'</div></div>'; });
+    if(syogas2&&syogas2.length)syogas2.forEach(function(yg){ specHtml += '<div class="fi"><div class="fiico">'+yg.icon+'</div><div class="fin">'+yg.name+'</div></div>'; });
   } catch(e){}
   document.getElementById('dtfests').innerHTML = festHtml2;
   document.getElementById('dtspecial').innerHTML = specHtml || '';
