@@ -2910,6 +2910,74 @@ function getLagnaAtJD(jd, lat, lng){
 }
 
 // ── বিবাহ মুহূর্ত: শুভ লগ্ন উইন্ডো ──
+
+// ── অন্যান্য শুভ অনুষ্ঠানের শুভ লগ্ন উইন্ডো (দিনে) ──
+function getKarmaLagnaWindows(date, c, karmaType){
+  var y=date.getFullYear(),m=date.getMonth()+1,d=date.getDate();
+  var st=c.st;
+  var LAT_=22.5833, LNG_=88.3767;
+  var wd=date.getDay();
+
+  // দিনের উইন্ডো: সূর্যোদয় থেকে সূর্যাস্ত
+  var winStart=st.rise;
+  var winEnd=st.set;
+
+  // বারবেলা নিষিদ্ধ
+  var BB_M=[[4,5],[2,7],[2,6],[3,5],[7,8],[3,4],[1,6,8]];
+  var bbP=(st.set-st.rise)*60/8;
+  function mkG(sl){var g=[],i=0,s2=sl.slice().sort(function(a,b){return a-b;});while(i<s2.length){var s=s2[i],e=s;while(i+1<s2.length&&s2[i+1]===s2[i]+1){i++;e=s2[i];}g.push([s,e]);i++;}return g;}
+  var allBad=[];
+  mkG(BB_M[wd]).forEach(function(g){
+    var ts=st.rise+(g[0]-1)*bbP/60;
+    var te=st.rise+g[1]*bbP/60;
+    if(g[1]===8)te=st.set;
+    allBad.push({start:ts,end:te,reason:'বারবেলা'});
+  });
+
+  // যোগবর্জ্য
+  var yv=getYogaVarjya(c);
+  if(yv) yv.forEach(function(v){
+    if(v.endH&&v.startH&&v.endH>winStart&&v.startH<winEnd){
+      allBad.push({start:Math.max(v.startH,winStart),end:Math.min(v.endH,winEnd),reason:v.name});
+    }
+  });
+
+  allBad.sort(function(a,b){return a.start-b.start;});
+
+  // ৩০ মিনিট পদক্ষেপে লগ্ন যাচাই
+  var STEP=0.5;
+  var shubhaSlots=[];
+  var cursor=winStart;
+  var RASHI_BN=['মেষ','বৃষ','মিথুন','কর্কট','সিংহ','কন্যা','তুলা','বৃশ্চিক','ধনু','মকর','কুম্ভ','মীন'];
+
+  function isInBad(h){return allBad.some(function(w){return h>=w.start&&h<w.end;});}
+
+  while(cursor<winEnd){
+    if(isInBad(cursor)){cursor+=STEP;continue;}
+    var jdCur=JD(y,m,d)+(cursor-5.5)/24;
+    var lagnaInfo=getLagnaAtJD(jdCur,LAT_,LNG_);
+    var pr=getAllPlanetRashis(jdCur);
+    var sut=isSutahibuka(lagnaInfo.rashi,pr);
+    shubhaSlots.push({startH:cursor,endH:cursor+STEP,lagna:RASHI_BN[lagnaInfo.rashi],sutahibuka:sut});
+    cursor+=STEP;
+  }
+
+  // মার্জ করো
+  var merged=[];
+  var prev=null;
+  shubhaSlots.forEach(function(s){
+    if(prev&&s.startH<=prev.endH&&s.lagna===prev.lagna){
+      prev.endH=s.endH; prev.duration_min=Math.round((prev.endH-prev.startH)*60);
+    } else {
+      if(prev&&prev.duration_min>=30) merged.push(prev);
+      prev={startH:s.startH,endH:s.endH,lagna:s.lagna,sutahibuka:s.sutahibuka,duration_min:Math.round(STEP*60)};
+    }
+  });
+  if(prev&&prev.duration_min>=30) merged.push(prev);
+
+  return{windows:merged,allBad:allBad};
+}
+
 function getVivahLagnaWindows(date, c){
   var y=date.getFullYear(),m=date.getMonth()+1,d=date.getDate();
   var st=c.st;
@@ -3423,12 +3491,21 @@ function _isShubhaDay(dt, nakNeed, tithiNeed, karmaType) {
 
 function _getMonthShubhaDays(nakNeed, tithiNeed, extraBadDays, karmaType) {
   var days = getBnMonthDays(calIdx);
+  // বিশুদ্ধ সিদ্ধান্ত পঞ্জিকা ১৪৩৩ — karma type অনুযায়ী নির্দিষ্ট তারিখ সেট
+  var _DATE_SETS={
+    'vivah':typeof VIVAH_DATES_1433!=='undefined'?VIVAH_DATES_1433:null,
+    'annaprashan':typeof ANNAPRASHAN_DATES_1433!=='undefined'?ANNAPRASHAN_DATES_1433:null,
+    'swadbhakshan':typeof SWADBHAKSHAN_DATES_1433!=='undefined'?SWADBHAKSHAN_DATES_1433:null,
+    'griha':typeof GRIHA_DATES_1433!=='undefined'?GRIHA_DATES_1433:null,
+    'garbhadhan':typeof GARBHADHAN_DATES_1433!=='undefined'?GARBHADHAN_DATES_1433:null,
+    'busi':typeof BUSINESS_DATES_1433!=='undefined'?BUSINESS_DATES_1433:null
+  };
+  var dateSet=karmaType&&_DATE_SETS[karmaType]?_DATE_SETS[karmaType]:null;
   return days.filter(function(item){
     if (extraBadDays && extraBadDays.includes(item.date.getDay())) return false;
-    // বিবাহের জন্য: শুধুমাত্র বিশুদ্ধ সিদ্ধান্ত পঞ্জিকা-নির্দেশিত তারিখ
-    if(karmaType==='vivah'){
+    if(dateSet){
       var ds=dStr(item.date);
-      return typeof VIVAH_DATES_1433!=='undefined' && VIVAH_DATES_1433.has(ds);
+      return dateSet.has(ds);
     }
     return _isShubhaDay(item.date, nakNeed, tithiNeed, karmaType);
   });
@@ -3437,11 +3514,11 @@ function _getMonthShubhaDays(nakNeed, tithiNeed, extraBadDays, karmaType) {
 function renderAuspiciousCounter() {
   var CATS = [
     {label:'বিবাহের শুভ দিন', icon:'💒', nakNeed:null, tithiNeed:null, karmaType:'vivah'},
-    {label:'গৃহপ্রবেশের শুভ দিন', icon:'🏠', nakNeed:SHUBHA_NAKS_GRIHA, tithiNeed:SHUBHA_TITHIS_GRIHA},
-    {label:'গৃহ নির্মাণের শুভ দিন', icon:'🏗️', nakNeed:SHUBHA_NAKS_NIRMAN, tithiNeed:SHUBHA_TITHIS_GRIHA},
-    {label:'গর্ভধারণের শুভ দিন', icon:'🤰', nakNeed:SHUBHA_NAKS_GARB, tithiNeed:null},
-    {label:'ব্যবসা শুরুর শুভ দিন', icon:'💼', nakNeed:SHUBHA_NAKS_BIZ, tithiNeed:null},
-    {label:'যাত্রার শুভ দিন', icon:'✈️', nakNeed:SHUBHA_NAKS_TRAVEL, tithiNeed:null},
+    {label:'গৃহপ্রবেশ ও নির্মাণ', icon:'🏠', nakNeed:null, tithiNeed:null, karmaType:'griha'},
+    {label:'গর্ভধারণের শুভ দিন', icon:'🤰', nakNeed:null, tithiNeed:null, karmaType:'garbhadhan'},
+    {label:'অন্নপ্রাশনের শুভ দিন', icon:'🍚', nakNeed:null, tithiNeed:null, karmaType:'annaprashan'},
+    {label:'সাধভক্ষণের শুভ দিন', icon:'🌸', nakNeed:null, tithiNeed:null, karmaType:'swadbhakshan'},
+    {label:'শিল্প ও ব্যবসা আরম্ভ', icon:'💼', nakNeed:null, tithiNeed:null, karmaType:'busi'},
   ];
   var html = '';
   CATS.forEach(function(cat, ci){
@@ -3457,11 +3534,11 @@ function renderAuspiciousCounter() {
 
 var _acCats = [
   {label:'বিবাহের শুভ দিন', icon:'💒', nakNeed:null, tithiNeed:null, karmaType:'vivah'},
-  {label:'গৃহপ্রবেশের শুভ দিন', icon:'🏠', nakNeed:SHUBHA_NAKS_GRIHA, tithiNeed:SHUBHA_TITHIS_GRIHA},
-  {label:'গৃহ নির্মাণের শুভ দিন', icon:'🏗️', nakNeed:SHUBHA_NAKS_NIRMAN, tithiNeed:SHUBHA_TITHIS_GRIHA},
-  {label:'গর্ভধারণের শুভ দিন', icon:'🤰', nakNeed:SHUBHA_NAKS_GARB, tithiNeed:null},
-  {label:'ব্যবসা শুরুর শুভ দিন', icon:'💼', nakNeed:SHUBHA_NAKS_BIZ, tithiNeed:null},
-  {label:'যাত্রার শুভ দিন', icon:'✈️', nakNeed:SHUBHA_NAKS_TRAVEL, tithiNeed:null},
+  {label:'গৃহপ্রবেশ ও নির্মাণ', icon:'🏠', nakNeed:null, tithiNeed:null, karmaType:'griha'},
+  {label:'গর্ভধারণের শুভ দিন', icon:'🤰', nakNeed:null, tithiNeed:null, karmaType:'garbhadhan'},
+  {label:'অন্নপ্রাশনের শুভ দিন', icon:'🍚', nakNeed:null, tithiNeed:null, karmaType:'annaprashan'},
+  {label:'সাধভক্ষণের শুভ দিন', icon:'🌸', nakNeed:null, tithiNeed:null, karmaType:'swadbhakshan'},
+  {label:'শিল্প ও ব্যবসা আরম্ভ', icon:'💼', nakNeed:null, tithiNeed:null, karmaType:'busi'},
 ];
 
 function openAcModal(catIdx) {
@@ -3794,9 +3871,17 @@ function showDetail(date) {
   var _gr=isGrahanKal(c);
   var _cd=isChandraDagdha(JD(y,mo+1,d)+(c.st.rise-TZ)/24);
   var _ts=isTrispharsha(date);
-  // বিবাহ শুভতা: শুধুমাত্র বিশুদ্ধ সিদ্ধান্ত পঞ্জিকা-নির্দেশিত তারিখ
-  var _vivahDateStr=dStr(date);
-  var _vivahPreapproved=typeof VIVAH_DATES_1433!=='undefined'&&VIVAH_DATES_1433.has(_vivahDateStr);
+  // বিশুদ্ধ সিদ্ধান্ত পঞ্জিকা ১৪৩৩ — নির্দিষ্ট তারিখ পরীক্ষা
+  var _ds2=dStr(date);
+  var _PSETS={
+    'vivah':typeof VIVAH_DATES_1433!=='undefined'?VIVAH_DATES_1433:null,
+    'annaprashan':typeof ANNAPRASHAN_DATES_1433!=='undefined'?ANNAPRASHAN_DATES_1433:null,
+    'swadbhakshan':typeof SWADBHAKSHAN_DATES_1433!=='undefined'?SWADBHAKSHAN_DATES_1433:null,
+    'griha':typeof GRIHA_DATES_1433!=='undefined'?GRIHA_DATES_1433:null,
+    'garbhadhan':typeof GARBHADHAN_DATES_1433!=='undefined'?GARBHADHAN_DATES_1433:null,
+    'busi':typeof BUSINESS_DATES_1433!=='undefined'?BUSINESS_DATES_1433:null
+  };
+  var _vivahPreapproved=_PSETS['vivah']&&_PSETS['vivah'].has(_ds2);
   var isGood = !BAD_DAYS_VW.includes(date.getDay()) && !_isMalmasDt(date) && !_kh.ok && !_gr && !_cd.ok && !_ts;
   var tN = c.tN, nakName = c.nak[0], nakIdx2 = NAKS.findIndex(function(n){return n[0]===nakName;});
   var shubhaHtml = '';
@@ -3806,10 +3891,15 @@ function showDetail(date) {
     var goodNak = nakIdx2>=0 && g.goodNakshatras && g.goodNakshatras.includes(nakName);
     var badTithi = g.badTithis && g.badTithis.some(function(bt){ return c.tName.includes(bt) || (bt==='অমাবস্যা'&&c.tN===30) || (bt==='পূর্ণিমা'&&c.tN===15); });
     var goodDay = !g.badDays || !g.badDays.includes(c.vara);
-    // বিবাহের জন্য বিশুদ্ধ সিদ্ধান্ত পঞ্জিকার নির্দিষ্ট তারিখ ব্যবহার করুন
+    // বিশুদ্ধ সিদ্ধান্ত পঞ্জিকার নির্দিষ্ট তারিখ ব্যবহার করুন
+    var _ktmap={'marriage':'vivah','grahapravesh':'griha','grihaNirman':'griha',
+                'garbhadhan':'garbhadhan','business':'busi'};
+    var _ktkey=_ktmap[key];
+    var _preApproved=_ktkey&&_PSETS[_ktkey]&&_PSETS[_ktkey].has(_ds2);
+    var _hasDateSet=_ktkey&&_PSETS[_ktkey]!==null;
     var status;
-    if(key==='marriage'){
-      status=_vivahPreapproved?'good':'bad';
+    if(_hasDateSet){
+      status=_preApproved?'good':'bad';
     } else {
       status = (!isGood || badTithi) ? 'bad' : (goodNak && goodDay) ? 'good' : 'neutral';
     }
@@ -3820,13 +3910,30 @@ function showDetail(date) {
     if (status==='good') shubhaHtml += '<div class="shubha-detail">আজকের নক্ষত্র ('+nakName+') ও বার এই কাজের জন্য শুভ।</div>';
     else if (status==='bad') shubhaHtml += '<div class="shubha-detail">আজ '+c.vara+' বা তিথি ('+c.tName+') এই কাজের জন্য প্রতিকূল।</div>';
     else shubhaHtml += '<div class="shubha-detail">মিশ্র যোগ। Dr. Prodyut Acharya-র সাথে পরামর্শ করুন।</div>';
+    // শুভ লগ্ন সময় দেখানো (approved dates-এ)
+    if(status==='good'&&typeof getKarmaLagnaWindows==='function'&&key!=='marriage'){
+      try{
+        var kl=getKarmaLagnaWindows(date,c,_ktkey);
+        function fmtKH(h){h=((h%24)+24)%24;var hh=Math.floor(h),mm=Math.round((h-hh)*60);if(mm>=60){hh=(hh+1)%24;mm=0;}return(hh<10?'০':'')+toBn(hh)+':'+(mm<10?'০':'')+toBn(mm);}
+        if(kl.windows.length>0){
+          shubhaHtml+='<div style="margin-top:.3rem;background:rgba(38,127,67,.06);border-left:2px solid #267f43;padding:.3rem .5rem;border-radius:4px;">';
+          shubhaHtml+='<div style="font-size:.62rem;font-weight:700;color:#267f43;">⏰ শুভ লগ্ন সময়:</div>';
+          kl.windows.slice(0,4).forEach(function(w){
+            var sut=w.sutahibuka?'<span style="font-size:.55rem;background:#267f43;color:#fff;border-radius:2px;padding:0 2px;margin-left:2px;">সুতহিবুক</span>':'';
+            shubhaHtml+='<div style="font-size:.63rem;color:#267f43;">🟢 '+fmtKH(w.startH)+'–'+fmtKH(w.endH)+' '+w.lagna+' লগ্ন'+sut+' ('+toBn(w.duration_min)+' মি)</div>';
+          });
+          shubhaHtml+='</div>';
+        }
+      }catch(ek){}
+    }
     shubhaHtml += '</div>';
   });
   // Keep general guide
   // বিবাহ মুহূর্ত বিশেষ দর্শন
   // বিশুদ্ধ সিদ্ধান্ত পঞ্জিকা: নির্দিষ্ট তারিখ ছাড়া বিবাহ নিষিদ্ধ
   var vivahForbid=getVivahForbidden(date,c);
-  var _vivahApproved2=typeof VIVAH_DATES_1433!=='undefined'&&VIVAH_DATES_1433.has(dStr(date));
+  var _ds3=dStr(date);
+  var _vivahApproved2=_PSETS['vivah']&&_PSETS['vivah'].has(_ds3);
   if(!_vivahApproved2&&!vivahForbid.some(function(f){return f.severity==='full';})){
     vivahForbid.unshift({type:'তারিখ',name:'অনুমোদিত তারিখ নয়',
       detail:'বিশুদ্ধ সিদ্ধান্ত পঞ্জিকা ১৪৩৩ — এই তারিখটি বিবাহের জন্য অনুমোদিত নয়।',
