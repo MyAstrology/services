@@ -2470,13 +2470,14 @@ function getVivahForbidden(date, c){
   var list = [];
   var y=date.getFullYear(),m=date.getMonth()+1,d=date.getDate();
   var st=c.st;
+  var wd=date.getDay(); // 0=Sun
 
-  // ১. খর মাস
+  // ১. খর মাস (সূর্য ধনু বা মীন রাশিতে)
   var kh=isKharMaas(date);
-  if(kh.ok) list.push({type:'খর মাস',name:kh.type,detail:'সূর্য '+kh.rashi+' রাশিতে — বিবাহ নিষিদ্ধ',icon:'☀️',severity:'full'});
+  if(kh.ok) list.push({type:'খর মাস',name:kh.type,detail:'সূর্য '+kh.rashi+' রাশিতে — সম্পূর্ণ মাস বিবাহ নিষিদ্ধ',icon:'☀️',severity:'full'});
 
   // ২. মলমাস
-  if(isMalmasByAmavasya(date)) list.push({type:'মলমাস',name:'মলমাস/পুরুষোত্তম মাস',detail:'এই মাসে বিবাহ নিষিদ্ধ',icon:'📿',severity:'full'});
+  if(isMalmasByAmavasya(date)) list.push({type:'মলমাস',name:'মলমাস',detail:'এই মাসে বিবাহ নিষিদ্ধ',icon:'📿',severity:'full'});
 
   // ৩. গ্রহণকাল
   if(isGrahanKal(c)) list.push({type:'গ্রহণ',name:'গ্রহণকাল',detail:'সূর্য/চন্দ্রগ্রহণ — সমস্ত শুভকার্য নিষিদ্ধ',icon:'🌑',severity:'full'});
@@ -2489,26 +2490,54 @@ function getVivahForbidden(date, c){
   // ৫. ত্রিস্পর্শ
   if(isTrispharsha(date)) list.push({type:'ত্রিস্পর্শ',name:'ত্রিস্পর্শ তিথি',detail:'তিন তিথি এক দিনে — বিবাহ নিষিদ্ধ',icon:'⚠️',severity:'full'});
 
-  // ৬. বর্জনীয় বার (দিনে বিবাহ — রবি/মঙ্গল/শনি)
-  var wd=date.getDay(); // 0=Sun,2=Tue,6=Sat
+  // ৬. বর্জনীয় বার (দিনে রবি/মঙ্গল/শনি)
   if([0,2,6].indexOf(wd)>=0){
-    list.push({type:'বার',name:'অশুভ বার',detail:'রবি/মঙ্গল/শনিবার — দিবাভাগে বিবাহ নিষিদ্ধ (রাত্রিতে দোষ নেই)',icon:'📅',severity:'day_only'});
+    list.push({type:'বার',name:'অশুভ বার (দিনে)',detail:'রবি/মঙ্গল/শনিবার দিনে বিবাহ নিষিদ্ধ। রাত্রিতে দোষ নেই।',icon:'📅',severity:'day_only'});
   }
 
-  // ৭. যোগবর্জ্য
+  // ৭. বর্জনীয় তিথি
+  var jdSet=JD(y,m,d)+(st.set-TZ)/24;
+  var moonSid=((moonL(jdSet)-lahiriAY(jdSet))%360+360)%360;
+  var sunSid=((sunL(jdSet)-lahiriAY(jdSet))%360+360)%360;
+  var tIdx=Math.floor(((moonSid-sunSid+360)%360)/12);
+  var satNight=(wd===6);
+  if(tIdx===29) list.push({type:'তিথি',name:'অমাবস্যা',detail:'অমাবস্যা তিথিতে বিবাহ সম্পূর্ণ নিষিদ্ধ',icon:'🌑',severity:'full'});
+  if(tIdx===14) list.push({type:'তিথি',name:'পূর্ণিমা',detail:'পূর্ণিমা তিথিতে বিবাহ নিষিদ্ধ',icon:'🌕',severity:'full'});
+  if(!satNight&&[3,8,13].indexOf(tIdx)>=0){
+    var rikNames=['চতুর্থী','নবমী','চতুর্দশী'];
+    var rikName=rikNames[[3,8,13].indexOf(tIdx)];
+    list.push({type:'তিথি',name:'রিক্তা তিথি ('+rikName+')',detail:'রিক্তা তিথিতে বিবাহ নিষিদ্ধ। শনিবার রাত্রে বৈধ।',icon:'⚠️',severity:'full'});
+  }
+
+  // ৮. যোগবর্জ্য (সম্পূর্ণ দিন নিষিদ্ধ)
   var yv=getYogaVarjya(c);
   if(yv) yv.forEach(function(v){
     var endH=typeof v.endH==='number'?v.endH:null;
-    list.push({type:'যোগবর্জ্য',name:v.name+' যোগবর্জ্য',
-      detail:typeof v.durMin==='number'?('প্রথম '+v.durMin+' মিনিট অশুভ'):('সম্পূর্ণ সময় অশুভ'),
-      startH:v.startH,endH:endH,icon:'🌟',severity:'partial'});
+    list.push({type:'যোগবর্জ্য',name:v.name+' যোগ',
+      detail:typeof v.durMin==='number'?('প্রথম '+v.durMin+' মিনিট অশুভ'):('সম্পূর্ণ দিন নিষিদ্ধ'),
+      startH:v.startH,endH:endH,icon:'🌟',
+      severity:(v.durMin==='all'||v.durMin===undefined)?'full':'partial'});
   });
 
-  // ৮. বারবেলা (দিনের নির্দিষ্ট সময়)
-  // (renderForbiddenTimes থেকে আলাদাভাবে দেখানো হয়)
+  // ৯. দিনের বেলা বিবাহ নিষিদ্ধ (সূর্যোদয় থেকে সূর্যাস্তের ২৪ মিনিট আগে)
+  list.push({type:'দিবাবেলা',name:'দিবাভাগে বিবাহ নিষিদ্ধ',
+    detail:'সূর্যোদয় ('+fmtT(Math.floor(st.rise),Math.round((st.rise%1)*60))+') থেকে সূর্যাস্তের ২৪ মিনিট আগে ('+fmtT(Math.floor(st.set-0.4),Math.round(((st.set-0.4)%1)*60))+') পর্যন্ত বিবাহ নিষিদ্ধ।',
+    icon:'🌅',severity:'daytime',startH:st.rise,endH:st.set-0.4});
 
-  // ৯. কালরাত্রি
-  // (renderForbiddenTimes থেকে আলাদাভাবে দেখানো হয়)
+  // ১০. বর্জনীয় করণ
+  // করণ আমরা c.karanList থেকে পাই
+  var BAD_KARANA_VW=['বিষ্টি','শকুনি','চতুষ্পাদ','নাগ','কিন্তুঘ্ন'];
+  if(c.karanList){
+    c.karanList.forEach(function(k){
+      var kn=k.val?k.val.name:'';
+      if(BAD_KARANA_VW.indexOf(kn)>=0){
+        var exempt=(kn==='কিন্তুঘ্ন'&&satNight);
+        if(!exempt) list.push({type:'করণ',name:'বর্জনীয় করণ: '+kn,
+          detail:kn+' করণে বিবাহ নিষিদ্ধ'+(kn==='কিন্তুঘ্ন'?' (শনি রাতে বৈধ)':''),
+          icon:'🎴',severity:'partial'});
+      }
+    });
+  }
 
   return list;
 }
@@ -2520,39 +2549,37 @@ function getVivahForbidden(date, c){
 function getVivahMuhurta(date, c){
   var y=date.getFullYear(),m=date.getMonth()+1,d=date.getDate();
   var st=c.st;
+  var wd=date.getDay();
   var rise=st.rise, sunset=st.set;
 
-  // গোধূলি: সূর্যাস্ত থেকে ৪৮ মিনিট
-  var godhuli_start=sunset, godhuli_end=sunset+0.8; // 48min
+  // গোধূলি: সূর্যাস্ত থেকে ৪৮ মিনিট = সূর্যাস্ত-২৪ মিনিট থেকে শুরু (actually = sunset-0.4h)
+  // বঙ্গ মতে: সূর্যাস্তের ২৪ মিনিট আগে থেকেই গোধূলি শুরু হয়
+  var godhuli_start=sunset-0.4;  // ২৪ মিনিট আগে
+  var godhuli_end=sunset+0.8;    // সূর্যাস্তের ৪৮ মিনিট পরে
 
-  // মূল শুভ উইন্ডো: সূর্যাস্ত থেকে রাত ৩টা (শেষরাত্রি আগে)
-  var vivah_start=sunset;
-  var vivah_end=3.0; // 3am next day (as hour value, may wrap)
+  // গোধূলি নিষিদ্ধ মাস: অগ্রহায়ণ (m:6) বা মাঘ (m:9) → Bengali month from BMS
+  var bn=c.bn;
+  var bnMonth=bn?bn.m:-1; // 0=বৈশাখ ... 6=অগ্রহায়ণ, 9=মাঘ
+  var godhuliMonthBad=(bnMonth===6||bnMonth===9); // অগ্রহায়ণ=6, মাঘ=9
+  // গোধূলি নিষিদ্ধ বার: বৃহস্পতিবার (4) ও শনিবার (6)
+  var godhuliDayBad=(wd===4||wd===6);
+  var godhuli_valid=!godhuliMonthBad&&!godhuliDayBad;
+
+  // মূল শুভ উইন্ডো: গোধূলি থেকে রাত ৩টা পর্যন্ত
+  // বঙ্গে বিবাহ রাত্রিতে: (sunset-24min) থেকে 3am
+  var vivah_start=godhuli_start; // sunset - 24min
+  var vivah_end=27.0;  // 3am = 24+3
 
   // বর্জনীয় সময় সংগ্রহ
   var forbidden_windows=[];
 
-  // বারবেলা
-  var wd=date.getDay();
-  var BB_MULTI2=[[4,5],[2,7],[2,6],[3,5],[7,8],[3,4],[1,6,8]];
-  var bbP=(sunset-rise)*60/8;
-
-  function mkG(sl){var s2=sl.slice().sort(function(a,b){return a-b;});var g=[];var i=0;while(i<s2.length){var s=s2[i],e=s;while(i+1<s2.length&&s2[i+1]===s2[i]+1){i++;e=s2[i];}g.push([s,e]);i++;}return g;}
-
-  mkG(BB_MULTI2[wd]).forEach(function(g){
-    var ts=rise+(g[0]-1)*bbP/60;
-    var te=rise+g[1]*bbP/60;
-    if(g[1]===8)te=sunset;
-    if(te>vivah_start) forbidden_windows.push({start:Math.max(ts,vivah_start),end:te,name:'বারবেলা'});
-  });
-
-  // কালরাত্রি
+  // ক) কালরাত্রি
   var nd2=new Date(date); nd2.setDate(nd2.getDate()+1);
   var stN=sunTimes(nd2.getFullYear(),nd2.getMonth()+1,nd2.getDate());
   var nRise=stN.rise+24;
   var KR_MULTI2=[[6],[4],[2],[7],[5],[3],[1,8]];
   var krP=(nRise-sunset)*60/8;
-
+  function mkG(sl){var s2=sl.slice().sort(function(a,b){return a-b;});var g=[];var i=0;while(i<s2.length){var s=s2[i],e=s;while(i+1<s2.length&&s2[i+1]===s2[i]+1){i++;e=s2[i];}g.push([s,e]);i++;}return g;}
   mkG(KR_MULTI2[wd]).forEach(function(g){
     var ts=sunset+(g[0]-1)*krP/60;
     var te=sunset+g[1]*krP/60;
@@ -2560,45 +2587,51 @@ function getVivahMuhurta(date, c){
     forbidden_windows.push({start:ts,end:te,name:'কালরাত্রি'});
   });
 
-  // যোগবর্জ্য
+  // খ) যোগবর্জ্য (রাত্রিকালীন)
   var yv=getYogaVarjya(c);
   if(yv) yv.forEach(function(v){
-    if(v.endH && v.startH){
-      if(v.endH>vivah_start||v.startH>vivah_start){
-        forbidden_windows.push({start:v.startH,end:v.endH,name:v.name+' বর্জ্য'});
+    if(v.endH&&v.startH){
+      var s=v.startH,e=v.endH;
+      if(e>vivah_start||s>vivah_start){
+        forbidden_windows.push({start:Math.max(s,vivah_start),end:Math.min(e,vivah_end),name:v.name+' বর্জ্য'});
       }
     }
   });
 
-  // ৪৫ মিনিট নিয়ম: শুভ window খোঁজা
-  // শুভ উইন্ডো = সূর্যাস্ত থেকে পরদিন ৩টা পর্যন্ত, বর্জনীয় বাদে
-  var shubha_windows=[];
-  var sorted_forb=forbidden_windows.sort(function(a,b){return a.start-b.start;});
+  // গ) বর্জনীয় করণ সময় (karanList থেকে)
+  var BAD_KARANA=['বিষ্টি','শকুনি','চতুষ্পাদ','নাগ'];
+  var satNight=(wd===6);
+  if(c.karanList){
+    c.karanList.forEach(function(k){
+      var kn=k.val?k.val.name:'';
+      var kBad=BAD_KARANA.indexOf(kn)>=0||(kn==='কিন্তুঘ্ন'&&!satNight);
+      if(kBad&&k.endH>vivah_start){
+        forbidden_windows.push({start:Math.max(k.startH||0,vivah_start),end:k.endH,name:kn+' করণ'});
+      }
+    });
+  }
 
+  // ৪৫ মিনিট নিয়ম: শুভ উইন্ডো খোঁজা
+  var sorted_forb=forbidden_windows.sort(function(a,b){return a.start-b.start;});
+  var shubha_windows=[];
   var cursor=vivah_start;
-  var end_time=vivah_end<12?vivah_end+24:vivah_end; // handle midnight wrap
 
   sorted_forb.forEach(function(fw){
-    if(fw.start>cursor+0.75){ // at least 45 min (0.75h)
-      shubha_windows.push({start:cursor,end:fw.start,
-        duration_min:Math.round((fw.start-cursor)*60)});
+    if(fw.start>cursor+0.75){
+      shubha_windows.push({start:cursor,end:fw.start,duration_min:Math.round((fw.start-cursor)*60)});
     }
     cursor=Math.max(cursor,fw.end);
   });
-  if(cursor<end_time && end_time-cursor>=0.75){
-    shubha_windows.push({start:cursor,end:end_time,
-      duration_min:Math.round((end_time-cursor)*60)});
+  if(cursor<vivah_end&&vivah_end-cursor>=0.75){
+    shubha_windows.push({start:cursor,end:vivah_end,duration_min:Math.round((vivah_end-cursor)*60)});
   }
 
-  // গোধূলি উইন্ডো (সর্বদা শুভ, ব্যতিক্রম ছাড়া)
-  var godhuli_valid=true;
-  // শনি/বৃহস্পতিবার দিনে গোধূলি নিষিদ্ধ
-  if(wd===6||wd===4) godhuli_valid=false;
-
   return{
-    godhuli:{start:godhuli_start,end:godhuli_end,valid:godhuli_valid},
+    godhuli:{start:godhuli_start,end:godhuli_end,valid:godhuli_valid,
+      godhuliMonthBad:godhuliMonthBad,godhuliDayBad:godhuliDayBad},
     shubha_windows:shubha_windows,
-    forbidden_windows:sorted_forb
+    forbidden_windows:sorted_forb,
+    vivah_start:vivah_start,vivah_end:vivah_end
   };
 }
 
@@ -3009,24 +3042,36 @@ var _VIVAH_BAD_NAKS=[1,5,8,9,10,15,17,18];  // পূর্বাষাঢ়া
 // 1=ভরণী, 5=আর্দ্রা, 8=আশ্লেষা, 9=মঘা, 10=পূঃফাল্গুনী, 15=বিশাখা, 17=জ্যেষ্ঠা, 18=মূলা, 19=পূঃষাঢ়া
 
 function _isShubhaDay(dt, nakNeed, tithiNeed, karmaType) {
-  // শনি ও মঙ্গল: বিবাহে অতিরিক্ত, তবে সম্পূর্ণ বাদ নয়
-  var isAtiriktaDay=(dt.getDay()===2||dt.getDay()===6);
-  if(!karmaType&&isAtiriktaDay) return false;  // non-vivah: Tue/Sat excluded
-  if (_isMalmasDt(dt)) return false;
-  try {
+  var wd=dt.getDay(); // 0=Sun,1=Mon,2=Tue,3=Wed,4=Thu,5=Fri,6=Sat
+  // বিবাহ: শনি ও মঙ্গল দিনে নিষিদ্ধ (গর্গমত: রাত্রিতে বৈধ, কিন্তু এটি দিন-পরীক্ষা)
+  var isAtiriktaDay=(wd===2||wd===6);
+  if(!karmaType&&isAtiriktaDay) return false;
+
+  if(_isMalmasDt(dt)) return false;
+
+  try{
     var y2=dt.getFullYear(),m2=dt.getMonth()+1,d2=dt.getDate();
-    // ── সূর্যাস্তের সময় নক্ষত্র ও তিথি নিন (দুপুরের নয়) ──
     var st2=sunTimes(y2,m2,d2);
-    var jdSet=JD(y2,m2,d2)+(st2.set-TZ)/24;
-    // সূর্য (noon থেকে খর মাস চেক)
     var jdNoon=JD(y2,m2,d2)+(12-TZ)/24;
+    var jdSet=JD(y2,m2,d2)+(st2.set-TZ)/24;
+
+    // ═══ সূর্যের রাশি → খর মাস ═══
     var TNoon=(jdNoon-2451545)/36525;
     var sunTN=((280.46646+36000.76983*TNoon)%360+360)%360;
     var sunMN=((357.52911+35999.05029*TNoon)%360+360)*Math.PI/180;
     var sunSidN=(((sunTN+(1.914602-0.004817*TNoon)*Math.sin(sunMN)+0.019993*Math.sin(2*sunMN))%360+360)%360-lahiriAY(jdNoon)+360)%360;
     var sunRashiN=Math.floor(sunSidN/30);
-    if(sunRashiN===8||sunRashiN===11) return false;  // খর মাস
-    // ── সূর্যাস্তে চন্দ্রের অবস্থান ──
+    if(sunRashiN===8||sunRashiN===11) return false; // ধনু বা মীন = খর মাস
+
+    // ═══ চন্দ্রদগ্ধা ═══
+    var jdRise2=JD(y2,m2,d2)+(st2.rise-TZ)/24;
+    var cdCheck=isChandraDagdha(jdRise2);
+    if(cdCheck.ok) return false;
+
+    // ═══ ত্রিস্পর্শ ═══
+    if(isTrispharsha(dt)) return false;
+
+    // ═══ সূর্যাস্তে চন্দ্রের অবস্থান → নক্ষত্র ও তিথি ═══
     var Tset=(jdSet-2451545)/36525;
     var Lp2=((218.3164477+481267.88123421*Tset-0.0015786*Tset*Tset)%360+360)%360;
     var D2=((297.8501921+445267.1114034*Tset)%360+360)%360;
@@ -3037,27 +3082,44 @@ function _isShubhaDay(dt, nakNeed, tithiNeed, karmaType) {
     var sl2=6288774*Math.sin(Mp2*Math.PI/180)+1274027*Math.sin((2*D2-Mp2)*Math.PI/180)+658314*Math.sin(2*D2*Math.PI/180)+213618*Math.sin(2*Mp2*Math.PI/180)-185116*E2*Math.sin(Ms2*Math.PI/180)-114332*Math.sin(2*F2*Math.PI/180)+58793*Math.sin((2*D2-2*Mp2)*Math.PI/180)+45758*E2*Math.sin((2*D2-Ms2)*Math.PI/180)+53322*Math.sin((2*D2+Mp2)*Math.PI/180);
     sl2+=3958*Math.sin(((119.75+131.849*Tset)%360+360)*Math.PI/180)+1962*Math.sin((Lp2-F2)*Math.PI/180);
     var moonSidSet=((Lp2+sl2/1000000-lahiriAY(jdSet))%360+360)%360;
-    // সূর্যের sidereal at sunset
     var sunTset2=((280.46646+36000.76983*Tset)%360+360)%360;
     var sunMset=((357.52911+35999.05029*Tset)%360+360)*Math.PI/180;
     var sunSidSet=(((sunTset2+(1.914602-0.004817*Tset)*Math.sin(sunMset)+0.019993*Math.sin(2*sunMset))%360+360)%360-lahiriAY(jdSet)+360)%360;
-    // সূর্যাস্তে নক্ষত্র ও তিথি
     var nIdxSet=Math.floor(moonSidSet/(360/27))%27;
     var mRashiSet=Math.floor(moonSidSet/30);
-    var tIdxSet=Math.floor(((moonSidSet-sunSidSet+360)%360)/12);  // 0-indexed
-    // বর্জনীয় তিথি (0-indexed): চতুর্থী=3, নবমী=8, চতুর্দশী=13, অমাবস্যা=29
-    if([3,8,13,29].indexOf(tIdxSet)>=0) return false;
-    // তিথি নিড চেক (SHUBHA_TITHIS list — 0-indexed)
+    var tIdxSet=Math.floor(((moonSidSet-sunSidSet+360)%360)/12); // 0-indexed 0-29
+
+    // ═══ বর্জনীয় তিথি ═══
+    // রিক্তা (চতুর্থী=3, নবমী=8, চতুর্দশী=13), অমাবস্যা=29, পূর্ণিমা=14
+    var rikta=[3,8,13];
+    var satNight=(wd===6); // শনিবার → রিক্তা রাত্রিতে বৈধ
+    if([29,14].indexOf(tIdxSet)>=0) return false; // অমাবস্যা/পূর্ণিমা — সবসময় নিষিদ্ধ
+    if(!satNight&&rikta.indexOf(tIdxSet)>=0) return false; // রিক্তা শনিবার রাতে বৈধ
+
+    // ═══ তিথি নিড চেক ═══
     if(tithiNeed&&tithiNeed.indexOf(tIdxSet)<0) return false;
-    // নক্ষত্র নিড চেক
+
+    // ═══ নক্ষত্র নিড চেক ═══
     if(nakNeed&&nakNeed.indexOf(nIdxSet)<0) return false;
-    // বিবাহ বর্জনীয় নক্ষত্র (সূর্যাস্তে)
+
+    // ═══ বিবাহ বিশেষ নিয়ম ═══
     if(karmaType==='vivah'){
       if(_VIVAH_BAD_NAKS.indexOf(nIdxSet)>=0) return false;
-      if(nIdxSet===2&&mRashiSet===1) return false;  // কৃত্তিকা বৃষ
+      if(nIdxSet===2&&mRashiSet===1) return false; // কৃত্তিকা বৃষে
+
+      // দশযোগবিদ্ধ চেক
+      var sunNakN=Math.floor(sunSidSet/(360/27))%27; // সূর্যের নক্ষত্র
+      var dashaSum=(sunNakN+nIdxSet+2)%27; // 1-indexed যোগফল
+      if(dashaSum===0) dashaSum=27;
+      var dashaBAD=[1,4,6,10,11,15,18,19,20,27];
+      if(dashaBAD.indexOf(dashaSum)>=0) return false; // দশযোগবিদ্ধ
+
+      // সপ্তশলাকাবেধ চেক (simplified: check if nakshatra pairs have malefic)
+      // Full implementation would need planet positions; skip for counter (shown in detail)
     }
+
     return true;
-  } catch(e){ return false; }
+  }catch(e){ return false; }
 }
 
 function _getMonthShubhaDays(nakNeed, tithiNeed, extraBadDays, karmaType) {
