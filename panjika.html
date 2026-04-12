@@ -3425,6 +3425,11 @@ function _getMonthShubhaDays(nakNeed, tithiNeed, extraBadDays, karmaType) {
   var days = getBnMonthDays(calIdx);
   return days.filter(function(item){
     if (extraBadDays && extraBadDays.includes(item.date.getDay())) return false;
+    // বিবাহের জন্য: শুধুমাত্র বিশুদ্ধ সিদ্ধান্ত পঞ্জিকা-নির্দেশিত তারিখ
+    if(karmaType==='vivah'){
+      var ds=dStr(item.date);
+      return typeof VIVAH_DATES_1433!=='undefined' && VIVAH_DATES_1433.has(ds);
+    }
     return _isShubhaDay(item.date, nakNeed, tithiNeed, karmaType);
   });
 }
@@ -3789,6 +3794,9 @@ function showDetail(date) {
   var _gr=isGrahanKal(c);
   var _cd=isChandraDagdha(JD(y,mo+1,d)+(c.st.rise-TZ)/24);
   var _ts=isTrispharsha(date);
+  // বিবাহ শুভতা: শুধুমাত্র বিশুদ্ধ সিদ্ধান্ত পঞ্জিকা-নির্দেশিত তারিখ
+  var _vivahDateStr=dStr(date);
+  var _vivahPreapproved=typeof VIVAH_DATES_1433!=='undefined'&&VIVAH_DATES_1433.has(_vivahDateStr);
   var isGood = !BAD_DAYS_VW.includes(date.getDay()) && !_isMalmasDt(date) && !_kh.ok && !_gr && !_cd.ok && !_ts;
   var tN = c.tN, nakName = c.nak[0], nakIdx2 = NAKS.findIndex(function(n){return n[0]===nakName;});
   var shubhaHtml = '';
@@ -3798,7 +3806,13 @@ function showDetail(date) {
     var goodNak = nakIdx2>=0 && g.goodNakshatras && g.goodNakshatras.includes(nakName);
     var badTithi = g.badTithis && g.badTithis.some(function(bt){ return c.tName.includes(bt) || (bt==='অমাবস্যা'&&c.tN===30) || (bt==='পূর্ণিমা'&&c.tN===15); });
     var goodDay = !g.badDays || !g.badDays.includes(c.vara);
-    var status = (!isGood || badTithi) ? 'bad' : (goodNak && goodDay) ? 'good' : 'neutral';
+    // বিবাহের জন্য বিশুদ্ধ সিদ্ধান্ত পঞ্জিকার নির্দিষ্ট তারিখ ব্যবহার করুন
+    var status;
+    if(key==='marriage'){
+      status=_vivahPreapproved?'good':'bad';
+    } else {
+      status = (!isGood || badTithi) ? 'bad' : (goodNak && goodDay) ? 'good' : 'neutral';
+    }
     var badgeText = status==='good' ? '✅ শুভ' : status==='bad' ? '❌ অশুভ' : '⚠️ মধ্যম';
     shubhaHtml += '<div class="shubha-row"><div class="shubha-row-head">';
     shubhaHtml += '<span class="shubha-ico">'+g.icon+'</span><span class="shubha-name">'+g.title+'</span>';
@@ -3810,8 +3824,15 @@ function showDetail(date) {
   });
   // Keep general guide
   // বিবাহ মুহূর্ত বিশেষ দর্শন
+  // বিশুদ্ধ সিদ্ধান্ত পঞ্জিকা: নির্দিষ্ট তারিখ ছাড়া বিবাহ নিষিদ্ধ
   var vivahForbid=getVivahForbidden(date,c);
-  var vivahLagna=getVivahLagnaWindows(date,c);
+  var _vivahApproved2=typeof VIVAH_DATES_1433!=='undefined'&&VIVAH_DATES_1433.has(dStr(date));
+  if(!_vivahApproved2&&!vivahForbid.some(function(f){return f.severity==='full';})){
+    vivahForbid.unshift({type:'তারিখ',name:'অনুমোদিত তারিখ নয়',
+      detail:'বিশুদ্ধ সিদ্ধান্ত পঞ্জিকা ১৪৩৩ — এই তারিখটি বিবাহের জন্য অনুমোদিত নয়।',
+      icon:'🚫',severity:'full'});
+  }
+  var vivahLagna=_vivahApproved2?getVivahLagnaWindows(date,c):{windows:[],godhuli:{valid:false}};
   function fmtVH(h){h=((h%24)+24)%24;var hh=Math.floor(h),mm=Math.round((h-hh)*60);if(mm>=60){hh=(hh+1)%24;mm=0;}return(hh<10?'০':'')+toBn(hh)+':'+(mm<10?'০':'')+toBn(mm);}
   var vivahExtra='';
   // ── নিষিদ্ধ কারণ ──
@@ -3911,8 +3932,6 @@ function showDetail(date) {
     ml.dont.forEach(function(d4){ malmasHtml += '<div style="font-size:.72rem;color:var(--txt);padding:.1rem 0;">• '+d4+'</div>'; });
     malmasHtml += '</div><div class="sd-mantra" style="margin-top:.4rem;">'+ml.mantra+'</div></div>';
     malmasHtml += '<div style="font-size:.7rem;color:var(--txt2);padding:.5rem 1.2rem;">সময়কাল: '+ml.startDate+' থেকে '+ml.endDate+'</div>';
-  } else {
-    malmasHtml = '<div class="nofest" style="margin:1rem;">এই দিনে মলমাস নেই।</div>';
   }
   document.getElementById('dtmalmas').innerHTML = malmasHtml;
 
@@ -3944,7 +3963,12 @@ function renderCal(){
   var e=BMS[calIdx];
   var f=days[0].date,l=days[days.length-1].date;
   var enRange=f.getMonth()===l.getMonth()?EMS[f.getMonth()]+' '+f.getFullYear():EMSh[f.getMonth()]+'–'+EMSh[l.getMonth()]+' '+l.getFullYear();
-  document.getElementById('cmbn').textContent=BNM_NAMES[e.m]+' '+toBn(e.y)+' বঙ্গাব্দ';
+  // মলমাস মাসের নাম-এ যুক্ত করা হবে
+  var _isMalM=false;
+  var _testDt=days.length>10?days[10].date:days[0].date;
+  var _testEvt=getPanjikaEvents(dStr(_testDt),dStr(_testDt).slice(5));
+  if(_testEvt.malmas) _isMalM=true;
+  document.getElementById('cmbn').textContent=BNM_NAMES[e.m]+' '+toBn(e.y)+' বঙ্গাব্দ'+(_isMalM?' 📿 মলমাস':'');
   document.getElementById('cmen').textContent=enRange;
   var first=days[0].date.getDay();
   var h='';
@@ -3966,7 +3990,7 @@ function renderCal(){
     var evts2=getPanjikaEvents(ds_,mmdd);
     var malmasOnDay=evts2.malmas;
     var iconDots='';
-    if(malmasOnDay) iconDots+='<span class="cd-dot" title="মলমাস">📿</span>';
+    // malmas icon shown in month header, not per day
     if(evts2.festivals.length) iconDots+='<span class="cd-dot" title="'+evts2.festivals[0].name+'">'+evts2.festivals[0].icon+'</span>';
     if(evts2.births.length) iconDots+='<span class="cd-dot" title="'+evts2.births[0].name+'">🕉️</span>';
     if(evts2.deaths.length) iconDots+='<span class="cd-dot" title="'+evts2.deaths[0].name+'">🕯️</span>';
