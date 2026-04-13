@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <!-- ★ GTM — deferred (LCP block করে না) -->
+<script src="panjika-data.js"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 window.addEventListener('load', function() {
@@ -1948,15 +1949,37 @@ function findTodayIdx(){const t=TODAY.getTime();for(let i=BMS.length-1;i>=0;i--)
 // পরিবর্তন: সাধারণত দরকার নেই
 // ════════════════════════════════════════════════════════
 function JD(y,m,d){if(m<=2){y--;m+=12;}const A=Math.floor(y/100),B=2-A+Math.floor(A/4);return Math.floor(365.25*(y+4716))+Math.floor(30.6001*(m+1))+d+B-1524.5;}
-function sunL(jd){const n=jd-2451545,L=((280.46+0.9856474*n)%360+360)%360,g=((357.528+0.9856003*n)%360+360)*Math.PI/180;return((L+1.915*Math.sin(g)+0.02*Math.sin(2*g))%360+360)%360;}
-function moonL(jd){const T=(jd-2451545)/36525;const Lp=((218.3164477+481267.88123421*T-0.0015786*T*T)%360+360)%360;const D=((297.8501921+445267.1114034*T-0.0018819*T*T)%360+360)%360;const Ms=((357.5291092+35999.0502909*T)%360+360)%360;const Mp=((134.9633964+477198.8675055*T+0.0087414*T*T)%360+360)%360;const F=((93.2720950+483202.0175233*T-0.0036539*T*T)%360+360)%360;const E=1-0.002516*T;const dr=D*Math.PI/180,msr=Ms*Math.PI/180,mr=Mp*Math.PI/180,fr=F*Math.PI/180;const A1=((119.75+131.849*T)%360+360)*Math.PI/180,A2=((53.09+479264.29*T)%360+360)*Math.PI/180;let sl=6288774*Math.sin(mr)+1274027*Math.sin(2*dr-mr)+658314*Math.sin(2*dr)+213618*Math.sin(2*mr)-185116*E*Math.sin(msr)-114332*Math.sin(2*fr)+58793*Math.sin(2*dr-2*mr)+57066*E*Math.sin(2*dr-msr-mr)+53322*Math.sin(2*dr+mr)+45758*E*Math.sin(2*dr-msr)-40923*E*Math.sin(msr-mr)-34720*Math.sin(dr)-30383*E*Math.sin(msr+mr)+15327*Math.sin(2*dr-2*fr)+10675*Math.sin(4*dr-mr)+10034*Math.sin(3*mr)+8548*Math.sin(4*dr-2*mr)-7888*E*Math.sin(2*dr+msr-mr)-6766*E*Math.sin(2*dr+msr)-5163*Math.sin(dr-mr)+4987*E*Math.sin(dr+msr)+4036*E*Math.sin(2*dr-msr+mr)+3994*Math.sin(2*dr+2*mr)+3861*Math.sin(4*dr)+3665*Math.sin(2*dr-3*mr)-2689*E*Math.sin(msr-2*mr)+2390*E*Math.sin(2*dr-msr-2*mr)-2348*Math.sin(dr+mr)+2236*E*E*Math.sin(2*dr-2*msr)-2120*E*Math.sin(msr+2*mr)+2048*E*E*Math.sin(2*dr-2*msr-mr)-1773*Math.sin(2*dr+mr-2*fr)-1595*Math.sin(2*dr+2*fr)+1215*E*Math.sin(4*dr-msr-mr)-892*Math.sin(3*dr-mr)-810*E*Math.sin(2*dr+msr+mr)+759*E*Math.sin(4*dr-msr-2*mr)+691*E*Math.sin(2*dr+msr-2*mr)+549*Math.sin(4*dr+mr)+537*Math.sin(4*mr)+520*E*Math.sin(4*dr-msr)+299*E*Math.sin(dr+msr-mr)+294*Math.sin(2*dr+3*mr);sl+=3958*Math.sin(A1)+1962*Math.sin(Lp*Math.PI/180-fr)+318*Math.sin(A2);return((Lp+sl/1000000)%360+360)%360;}
+function sunL(jd){
+  if(typeof PD!=='undefined'&&PD.p){
+    var i=Math.round(jd-PD.jd0);
+    if(i>=0&&i<PD.p.length){
+      // Sidereal + ayanamsa = tropical
+      var sid=PD.p[i][0]; var ay=PD.ay(jd);
+      return(sid+ay+360)%360;
+    }
+  }
+  var n=jd-2451545,L=((280.46+0.9856474*n)%360+360)%360,g=((357.528+0.9856003*n)%360+360)*Math.PI/180;
+  return((L+1.915*Math.sin(g)+0.02*Math.sin(2*g))%360+360)%360;
+}
+function moonL(jd){
+  if(typeof PD!=='undefined'&&PD.m6){
+    var i=(jd-PD.jd0)*4;
+    var i0=Math.floor(i),f=i-i0;
+    if(i0>=0&&i0<PD.m6.length-1){
+      var l0=PD.m6[i0],l1=PD.m6[i0+1];
+      var d=l1-l0;if(d>180)d-=360;if(d<-180)d+=360;
+      var sid=(l0+f*d+360)%360;
+      return(sid+PD.ay(jd)+360)%360;
+    }
+  }
+  // Analytical fallback (Brown/ELP theory)
+  const T=(jd-2451545)/36525;const Lp=((218.3164477+481267.88123421*T-0.0015786*T*T)%360+360)%360;const D=((297.8501921+445267.1114034*T-0.0018819*T*T)%360+360)%360;const Ms=((357.5291092+35999.0502909*T)%360+360)%360;const Mp=((134.9633964+477198.8675055*T+0.0087414*T*T)%360+360)%360;const F=((93.2720950+483202.0175233*T-0.0036539*T*T)%360+360)%360;const E=1-0.002516*T;const dr=D*Math.PI/180,msr=Ms*Math.PI/180,mr=Mp*Math.PI/180,fr=F*Math.PI/180;const A1=((119.75+131.849*T)%360+360)*Math.PI/180,A2=((53.09+479264.29*T)%360+360)*Math.PI/180;let sl=6288774*Math.sin(mr)+1274027*Math.sin(2*dr-mr)+658314*Math.sin(2*dr)+213618*Math.sin(2*mr)-185116*E*Math.sin(msr)-114332*Math.sin(2*fr)+58793*Math.sin(2*dr-2*mr)+57066*E*Math.sin(2*dr-msr-mr)+53322*Math.sin(2*dr+mr)+45758*E*Math.sin(2*dr-msr)-40923*E*Math.sin(msr-mr)-34720*Math.sin(dr)-30383*E*Math.sin(msr+mr)+15327*Math.sin(2*dr-2*fr)+10675*Math.sin(4*dr-mr)+10034*Math.sin(3*mr)+8548*Math.sin(4*dr-2*mr)-7888*E*Math.sin(2*dr+msr-mr)-6766*E*Math.sin(2*dr+msr)-5163*Math.sin(dr-mr)+4987*E*Math.sin(dr+msr)+4036*E*Math.sin(2*dr-msr+mr)+3994*Math.sin(2*dr+2*mr)+3861*Math.sin(4*dr)+3665*Math.sin(2*dr-3*mr)-2689*E*Math.sin(msr-2*mr)+2390*E*Math.sin(2*dr-msr-2*mr)-2348*Math.sin(dr+mr)+2236*E*E*Math.sin(2*dr-2*msr)-2120*E*Math.sin(msr+2*mr)+2048*E*E*Math.sin(2*dr-2*msr-mr)-1773*Math.sin(2*dr+mr-2*fr)-1595*Math.sin(2*dr+2*fr)+1215*E*Math.sin(4*dr-msr-mr)-892*Math.sin(3*dr-mr)-810*E*Math.sin(2*dr+msr+mr)+759*E*Math.sin(4*dr-msr-2*mr)+691*E*Math.sin(2*dr+msr-2*mr)+549*Math.sin(4*dr+mr)+537*Math.sin(4*mr)+520*E*Math.sin(4*dr-msr)+299*E*Math.sin(dr+msr-mr)+294*Math.sin(2*dr+3*mr);sl+=3958*Math.sin(A1)+1962*Math.sin(Lp*Math.PI/180-fr)+318*Math.sin(A2);return((Lp+sl/1000000)%360+360)%360;}
 // ── NC Lahiri Ayanamsa (সঠিক) ──
 function lahiriAY(jd){
   // Bishuddha Siddhanta Lahiri Ayanamsa (from monthly table 1432-1433)
   var T=(jd-2451545)/36525;
   return 23.819167+1.548210*T;
-}
-// ── ধীর গ্রহ (Slow Planets) ──
+}// ── ধীর গ্রহ (Slow Planets) ──
 function saturnL(jd){const T=(jd-2451545)/36525;const L=((50.077444+1222.113777*T)%360+360)%360;const M=((316.967+1221.552*T)%360+360)*Math.PI/180;return((L+6.3585*Math.sin(M)+0.2204*Math.sin(2*M))%360+360)%360;}
 function jupiterL(jd){const T=(jd-2451545)/36525;const L=((34.351519+3034.905675*T)%360+360)%360;const M=((20.9+3034.9*T)%360+360)*Math.PI/180;return((L+5.5549*Math.sin(M)+0.1683*Math.sin(2*M))%360+360)%360;}
 function rahuL(jd){const T=(jd-2451545)/36525;return((125.0445479-1934.1362608*T+0.0020754*T*T)%360+360)%360;}
@@ -2688,7 +2711,16 @@ function _planetSid(pname,dt){
 }
 // চন্দ্র sidereal (inline — analytical fallback)
 function _moonSidAt(jd){
-  var T=(jd-2451545)/36525;
+  if(typeof PD!=='undefined'&&PD.m6){
+    var i=(jd-PD.jd0)*4;
+    var i0=Math.floor(i),f=i-i0;
+    if(i0>=0&&i0<PD.m6.length-1){
+      var l0=PD.m6[i0],l1=PD.m6[i0+1];
+      var dd=l1-l0;if(dd>180)dd-=360;if(dd<-180)dd+=360;
+      return(l0+f*dd+360)%360;
+    }
+  }
+var T=(jd-2451545)/36525;
   var Lp=((218.3164477+481267.88123421*T-0.0015786*T*T)%360+360)%360;
   var D=((297.8501921+445267.1114034*T)%360+360)%360;
   var Ms=((357.5291092+35999.0502909*T)%360+360)%360;
@@ -2706,7 +2738,18 @@ function _moonSidAt(jd){
 }
 // সূর্য sidereal (inline)
 function _sunSidAt(jd){
-  var T=(jd-2451545)/36525;
+  if(typeof PD!=='undefined'&&PD.p){
+    var i=Math.round(jd-PD.jd0);
+    if(i>=0&&i<PD.p.length)return PD.p[i][0];
+    // Interpolate if between days
+    var i0=Math.floor(jd-PD.jd0),f=(jd-PD.jd0)-i0;
+    if(i0>=0&&i0<PD.p.length-1){
+      var l0=PD.p[i0][0],l1=PD.p[i0+1][0];
+      var dd=l1-l0;if(dd>180)dd-=360;if(dd<-180)dd+=360;
+      return(l0+f*dd+360)%360;
+    }
+  }
+var T=(jd-2451545)/36525;
   var L0=((280.46646+36000.76983*T)%360+360)%360;
   var M=((357.52911+35999.05029*T)%360+360)*Math.PI/180;
   return((L0+(1.914602-0.004817*T)*Math.sin(M)+0.019993*Math.sin(2*M)-lahiriAY(jd)+360)%360)%360;
@@ -3171,6 +3214,25 @@ function getAmritaSlots(nak,wd,rise,sset){
     if(amD.length){amH+='<div class="dtime shubha"><div class="dtl">✨ অমৃতযোগ (দিন)</div><div class="dtv" style="font-size:.65rem;line-height:1.6;">'+amD.map(function(a){return fT(a.st)+' – '+fT(a.en);}).join('<br>')+'</div></div>';}
     if(mhD2){amH+='<div class="dtime shubha"><div class="dtl">🌠 মাহেন্দ্রযোগ</div><div class="dtv">'+fT(mhD2.st)+' – '+fT(mhD2.en)+'</div></div>';}
     if(amN.length){amH+='<div class="dtime shubha"><div class="dtl">🌙 অমৃতযোগ (রাত্রি)</div><div class="dtv" style="font-size:.65rem;line-height:1.6;">'+amN.map(function(a){return fT(a.st)+' – '+fT(a.en);}).join('<br>')+'</div></div>';}
+    // গ্রহ স্থান (planet positions)
+    var grahaH='';
+    var GNMS=['☀️ সূর্য','🌙 চন্দ্র','♂ মঙ্গল','♃ বৃহস্পতি','♄ শনি','♀ শুক্র','☿ বুধ','☊ রাহু','☋ কেতু'];
+    var GRS=['মেষ','বৃষ','মিথুন','কর্কট','সিংহ','কন্যা','তুলা','বৃশ্চিক','ধনু','মকর','কুম্ভ','মীন'];
+    if(typeof PD!=='undefined'&&PD.geo){
+      var gd=PD.geo(date);
+      if(gd){
+        var glons=[gd.sun,gd.moon,gd.mars,gd.jup,gd.sat,gd.ven,gd.mer,gd.rahu,(gd.rahu+180)%360];
+        grahaH='<div style="font-size:.7rem;font-weight:700;color:var(--gold);margin:0.5rem 0 .3rem;">🪐 গ্রহ স্থান</div>';
+        grahaH+='<div style="display:grid;grid-template-columns:1fr 1fr;gap:.25rem;">';
+        glons.forEach(function(lon,gi){
+          var ri=Math.floor(lon/30),dg=Math.floor(lon%30),mn=Math.floor((lon%30-dg)*60);
+          grahaH+='<div style="font-size:.68rem;padding:.2rem .4rem;background:rgba(255,255,255,.04);border-radius:5px;">';
+          grahaH+=GNMS[gi]+': <span style="color:var(--green)">'+GRS[ri]+' '+dg+'°'+String(mn).padStart(2,'0')+'′</span>';
+          grahaH+='</div>';
+        });
+        grahaH+='</div>';
+      }
+    }
     // লগ্ন
     var jdR=JD(date.getFullYear(),date.getMonth()+1,date.getDate())+(rise-TZ)/24;
     var lgn=calcLagnaAt(jdR,LAT,LNG);
@@ -3217,7 +3279,9 @@ function getAmritaSlots(nak,wd,rise,sset){
     document.getElementById('dttimes').innerHTML=
       '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.52rem;margin-bottom:.52rem;">'+row1.map(mkCard).join('')+'</div>'+
       '<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.52rem;margin-bottom:.35rem;">'+row2.map(mkCard).join('')+'</div>'+
-      extra;
+      extra +
+      (grahaH ? '<div style="margin-top:.5rem">' + sec('🪐 গ্রহ স্থান') + grahaH + '</div>' : '') +
+      sec('🔭 লগ্ন ও মৃত্যু দোষ') + lgnH + ddH;
   })();
 
   // ── ট্যাব ১: শুভ সময় ──
@@ -3565,25 +3629,13 @@ var _BT=new Set([4,9,14,30]);  // চতুর্থী,নবমী,চতু�
 
 // Moon sidereal
 function _mSid(jd){
-  var T=(jd-2451545)/36525;
-  var Lp=((218.3164477+481267.88123421*T-0.0015786*T*T)%360+360)%360;
-  var D=((297.8501921+445267.1114034*T)%360+360)%360;
-  var Mp=((134.9633964+477198.8675055*T+0.0087414*T*T)%360+360)%360;
-  var Ms=((357.5291092+35999.0502909*T)%360+360)%360;
-  var F=((93.2720950+483202.0175233*T)%360+360)%360;
-  var E=1-0.002516*T;
-  var dr=D*Math.PI/180,msr=Ms*Math.PI/180,mr=Mp*Math.PI/180,fr=F*Math.PI/180;
-  var sl=6288774*Math.sin(mr)+1274027*Math.sin(2*dr-mr)+658314*Math.sin(2*dr)+213618*Math.sin(2*mr)
-    -185116*E*Math.sin(msr)-114332*Math.sin(2*fr)+58793*Math.sin(2*dr-2*mr)
-    +57066*E*Math.sin(2*dr-msr-mr)+53322*Math.sin(2*dr+mr)+45758*E*Math.sin(2*dr-msr);
-  sl+=3958*Math.sin(((119.75+131.849*T)%360+360)*Math.PI/180)+1962*Math.sin(Lp*Math.PI/180-fr);
-  return((Lp+sl/1000000-lahiriAY(jd))%360+360)%360;
+  // Uses PD (panjika-data.js) when loaded, else analytical
+  return _moonSidAt(jd);
 }
 // Sun sidereal
 function _sSid(jd){
-  var T=(jd-2451545)/36525,L0=((280.46646+36000.76983*T)%360+360)%360;
-  var M=((357.52911+35999.05029*T)%360+360)*Math.PI/180;
-  return(((L0+(1.914602-0.004817*T)*Math.sin(M)+0.019993*Math.sin(2*M))%360+360)%360-lahiriAY(jd)+360)%360;
+  // Uses PD (panjika-data.js) when loaded, else analytical
+  return _sunSidAt(jd);
 }
 
 // ── বিবাহ উইন্ডো গণনা (Bishuddha method) ──
