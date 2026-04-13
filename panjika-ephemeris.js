@@ -1,5 +1,6 @@
-// panjika-data.js — NASA JPL Horizons + Bishuddha Siddhanta Lahiri Ayanamsa
-// DO NOT EDIT — auto-generated from JPL Horizons DE441
+// panjika-ephemeris.js — NASA JPL Horizons DE441 Ephemeris Data
+// DO NOT EDIT — auto-generated | Bishuddha Siddhanta Lahiri Ayanamsa
+// Load BEFORE panjika-data.js and panjika.html
 var PD={
   v:2,
   start:"2025-04-01",
