@@ -119,6 +119,8 @@ window.addEventListener('load', function() {
 <!-- পঞ্জিকা ডেটা ফাইল (উৎসব, মহাপুরুষ, আধুনিক দিবস, মলমাস) -->
 <script data-cfasync="false" src="src/panjika-ephemeris.js"></script>
 <script data-cfasync="false" src="src/panjika-data.js"></script>
+<script data-cfasync="false" src="src/ephemeris/venus-daily.js"></script>
+<script data-cfasync="false" src="src/ephemeris/mercury-daily.js"></script>
   
   <style>
 :root{
@@ -2789,8 +2791,8 @@ function getAllPlanetRashis(jd){
   var jupSid=jupiterSid(jd,ay);
   var satSid=saturnSid(jd,ay);
   var rahuSid=((rahuL(jd)-ay)%360+360)%360;
-  var venSid=venusSidFn(jd,ay);
-  var merSid=mercurySidFn(jd,ay);
+  var venSid=(typeof getVenusLon==='function')?getVenusLon(jd,ay):venusSidFn(jd,ay);
+  var merSid=(typeof getMercuryLon==='function')?getMercuryLon(jd,ay):mercurySidFn(jd,ay);
   return{
     sun:Math.floor(sunSid/30)%12,
     moon:Math.floor(moonSid/30)%12,
@@ -3658,6 +3660,10 @@ function showDetail(date) {
   var satSid2=saturnSid(jdRise2,ay2);
   var rahuSid2=((rahuL(jdRise2)-ay2)%360+360)%360;
   var ketuSid2=(rahuSid2+180)%360;
+  var venSid2=(typeof getVenusLon==='function')?getVenusLon(jdRise2,ay2):venusSidFn(jdRise2,ay2);
+  var merSid2=(typeof getMercuryLon==='function')?getMercuryLon(jdRise2,ay2):mercurySidFn(jdRise2,ay2);
+  var _venRetro=(typeof isVenusRetro==='function')&&isVenusRetro(jdRise2);
+  var _merRetro=(typeof isMercuryRetro==='function')&&isMercuryRetro(jdRise2);
   var extraItems = [{i:'☀️',l:'বার',v:c.vara,s:'অধিপতি: '+c.varaL},{i:'🌿',l:'ঋতু',v:bn?bn.ritu:'—',s:bn?bn.name+' মাস':''},{i:'📅',l:'বিক্রম সম্বত',v:bn?toBn(bn.vikram):'—',s:''},{i:'🕉️',l:'শক সম্বত',v:bn?toBn(bn.saka):'—',s:''}];
   var extraHtml = '';
   for (var xi = 0; xi < extraItems.length; xi++) {
@@ -3669,7 +3675,9 @@ function showDetail(date) {
   var grahaData=[
     {i:'☀️',l:'সূর্য',v:_grahaSub(sunSid2)},
     {i:'🌙',l:'চন্দ্র',v:_grahaSub(moonSid2)},
-    {i:'🔴',l:'মঙ্গল',v:_grahaSub(marsSid2)+(Math.abs(((marsSid2-sunSid2+540)%360)-180)<17?' <span style="color:#b52020;font-size:.6rem;">দগ্ধ</span>':'')},
+    {i:'🔴',l:'মঙ্গল',v:_grahaSub(marsSid2)+(isMarsRetro&&isMarsRetro(jdRise2)?' <span style="color:#c9a227;font-size:.6rem;">বক্র</span>':'')+(Math.abs(((marsSid2-sunSid2+540)%360)-180)<17?' <span style="color:#b52020;font-size:.6rem;">দগ্ধ</span>':'')},
+    {i:'⚪',l:'শুক্র',v:_grahaSub(venSid2)+(_venRetro?' <span style="color:#c9a227;font-size:.6rem;">বক্র</span>':'')+(Math.abs(((venSid2-sunSid2+540)%360)-180)<10?' <span style="color:#b52020;font-size:.6rem;">দগ্ধ</span>':'')},
+    {i:'🟢',l:'বুধ',v:_grahaSub(merSid2)+(_merRetro?' <span style="color:#c9a227;font-size:.6rem;">বক্র</span>':'')+(Math.abs(((merSid2-sunSid2+540)%360)-180)<(_merRetro?12:14)?' <span style="color:#b52020;font-size:.6rem;">দগ্ধ</span>':'')},
     {i:'🟡',l:'গুরু',v:_grahaSub(jupSid2)},
     {i:'⬛',l:'শনি',v:_grahaSub(satSid2)},
     {i:'🔵',l:'রাহু',v:_grahaSub(rahuSid2)},
