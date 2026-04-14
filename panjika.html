@@ -117,6 +117,7 @@ window.addEventListener('load', function() {
 <!-- ★ FIX: Razorpay defer — পেজ render হওয়ার পরে লোড হবে -->
 <script defer src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <!-- পঞ্জিকা ডেটা ফাইল (উৎসব, মহাপুরুষ, আধুনিক দিবস, মলমাস) -->
+<script data-cfasync="false" src="src/panjika-ephemeris.js"></script>
 <script data-cfasync="false" src="src/panjika-data.js"></script>
   
   <style>
@@ -1928,7 +1929,7 @@ function JD(y,m,d){if(m<=2){y--;m+=12;}const A=Math.floor(y/100),B=2-A+Math.floo
 function sunL(jd){const n=jd-2451545,L=((280.46+0.9856474*n)%360+360)%360,g=((357.528+0.9856003*n)%360+360)*Math.PI/180;return((L+1.915*Math.sin(g)+0.02*Math.sin(2*g))%360+360)%360;}
 function moonL(jd){const T=(jd-2451545)/36525;const Lp=((218.3164477+481267.88123421*T-0.0015786*T*T)%360+360)%360;const D=((297.8501921+445267.1114034*T-0.0018819*T*T)%360+360)%360;const Ms=((357.5291092+35999.0502909*T)%360+360)%360;const Mp=((134.9633964+477198.8675055*T+0.0087414*T*T)%360+360)%360;const F=((93.2720950+483202.0175233*T-0.0036539*T*T)%360+360)%360;const E=1-0.002516*T;const dr=D*Math.PI/180,msr=Ms*Math.PI/180,mr=Mp*Math.PI/180,fr=F*Math.PI/180;const A1=((119.75+131.849*T)%360+360)*Math.PI/180,A2=((53.09+479264.29*T)%360+360)*Math.PI/180;let sl=6288774*Math.sin(mr)+1274027*Math.sin(2*dr-mr)+658314*Math.sin(2*dr)+213618*Math.sin(2*mr)-185116*E*Math.sin(msr)-114332*Math.sin(2*fr)+58793*Math.sin(2*dr-2*mr)+57066*E*Math.sin(2*dr-msr-mr)+53322*Math.sin(2*dr+mr)+45758*E*Math.sin(2*dr-msr)-40923*E*Math.sin(msr-mr)-34720*Math.sin(dr)-30383*E*Math.sin(msr+mr)+15327*Math.sin(2*dr-2*fr)+10675*Math.sin(4*dr-mr)+10034*Math.sin(3*mr)+8548*Math.sin(4*dr-2*mr)-7888*E*Math.sin(2*dr+msr-mr)-6766*E*Math.sin(2*dr+msr)-5163*Math.sin(dr-mr)+4987*E*Math.sin(dr+msr)+4036*E*Math.sin(2*dr-msr+mr)+3994*Math.sin(2*dr+2*mr)+3861*Math.sin(4*dr)+3665*Math.sin(2*dr-3*mr)-2689*E*Math.sin(msr-2*mr)+2390*E*Math.sin(2*dr-msr-2*mr)-2348*Math.sin(dr+mr)+2236*E*E*Math.sin(2*dr-2*msr)-2120*E*Math.sin(msr+2*mr)+2048*E*E*Math.sin(2*dr-2*msr-mr)-1773*Math.sin(2*dr+mr-2*fr)-1595*Math.sin(2*dr+2*fr)+1215*E*Math.sin(4*dr-msr-mr)-892*Math.sin(3*dr-mr)-810*E*Math.sin(2*dr+msr+mr)+759*E*Math.sin(4*dr-msr-2*mr)+691*E*Math.sin(2*dr+msr-2*mr)+549*Math.sin(4*dr+mr)+537*Math.sin(4*mr)+520*E*Math.sin(4*dr-msr)+299*E*Math.sin(dr+msr-mr)+294*Math.sin(2*dr+3*mr);sl+=3958*Math.sin(A1)+1962*Math.sin(Lp*Math.PI/180-fr)+318*Math.sin(A2);return((Lp+sl/1000000)%360+360)%360;}
 // ── NC Lahiri Ayanamsa (সঠিক) ──
-function lahiriAY(jd){const T=(jd-2451545)/36525;return 23.853167+1.39694*T+0.000617*T*T;}
+function lahiriAY(jd){const T=(jd-2451545)/36525;return 23.819167+1.548210*T;}
 // ── ধীর গ্রহ (Slow Planets) ──
 function saturnL(jd){const T=(jd-2451545)/36525;const L=((50.077444+1222.113777*T)%360+360)%360;const M=((316.967+1221.552*T)%360+360)*Math.PI/180;return((L+6.3585*Math.sin(M)+0.2204*Math.sin(2*M))%360+360)%360;}
 function jupiterL(jd){const T=(jd-2451545)/36525;const L=((34.351519+3034.905675*T)%360+360)%360;const M=((20.9+3034.9*T)%360+360)*Math.PI/180;return((L+5.5549*Math.sin(M)+0.1683*Math.sin(2*M))%360+360)%360;}
@@ -1992,7 +1993,7 @@ const n=jd0-2451545+0.5-LNG/360;const L=((280.46646+0.9856474*n)%360+360)%360,g=
 // বারবেলা/কালরাত্রির জন্য সূর্যোদয়/অস্ত — সূর্যের ডিস্ক সম্পূর্ণ উদয়/অস্ত সময়
 // h0=+0.267° — বিশুদ্ধ সিদ্ধান্ত পঞ্জিকার পদ্ধতি (JPL রেফারেন্স ১-২ মিনিট নির্ভুলতা)
 function sunTimesForBela(y,m,d){const jd0=JD(y,m,d);
-const n=jd0-2451545+0.5-LNG/360;const L=((280.46646+0.9856474*n)%360+360)%360,g=((357.52911+0.9856003*n)%360+360)*Math.PI/180;const lam=L+1.914602*Math.sin(g)+0.019993*Math.sin(2*g);const eps=23.439*Math.PI/180,lamR=lam*Math.PI/180,sinDec=Math.sin(eps)*Math.sin(lamR),dec=Math.asin(sinDec);const e2=0.016708634,y2=Math.tan(eps/2)**2,lR=L*Math.PI/180;const EoT=4*(y2*Math.sin(2*lR)-2*e2*Math.sin(g)+4*e2*y2*Math.sin(g)*Math.cos(2*lR)-0.5*y2*y2*Math.sin(4*lR)-1.25*e2*e2*Math.sin(2*g))*180/Math.PI;const latR=LAT*Math.PI/180,cosH=(Math.sin(0.267*Math.PI/180)-Math.sin(latR)*sinDec)/(Math.cos(latR)*Math.cos(dec));if(Math.abs(cosH)>1)return{rise:6,set:18};const H=Math.acos(Math.min(1,Math.max(-1,cosH)))*180/Math.PI;const noon=(720-4*LNG-EoT)/60+TZ;return{rise:noon-H/15,set:noon+H/15};}
+const n=jd0-2451545+0.5-LNG/360;const L=((280.46646+0.9856474*n)%360+360)%360,g=((357.52911+0.9856003*n)%360+360)*Math.PI/180;const lam=L+1.914602*Math.sin(g)+0.019993*Math.sin(2*g);const eps=23.439*Math.PI/180,lamR=lam*Math.PI/180,sinDec=Math.sin(eps)*Math.sin(lamR),dec=Math.asin(sinDec);const e2=0.016708634,y2=Math.tan(eps/2)**2,lR=L*Math.PI/180;const EoT=4*(y2*Math.sin(2*lR)-2*e2*Math.sin(g)+4*e2*y2*Math.sin(g)*Math.cos(2*lR)-0.5*y2*y2*Math.sin(4*lR)-1.25*e2*e2*Math.sin(2*g))*180/Math.PI;const latR=LAT*Math.PI/180,cosH=(-Math.sin(latR)*sinDec)/(Math.cos(latR)*Math.cos(dec));if(Math.abs(cosH)>1)return{rise:6,set:18};const H=Math.acos(Math.min(1,Math.max(-1,cosH)))*180/Math.PI;const noon=(720-4*LNG-EoT)/60+TZ;return{rise:noon-H/15,set:noon+H/15};}
 
 // ════════════════════════════════════════════════════════
 // SECTION ⑤ — PANJIKA NAMES (পঞ্চাঙ্গের বাংলা নামের তালিকা)
@@ -3721,16 +3722,41 @@ function showDetail(date) {
       if(g[1]===8) te=bNRise;     // ৮ম রাত্রিপ্রহর: পরের সূর্যোদয় পর্যন্ত
       bbH+='<div class="dtime rahu"><div class="dtl">🌑 কালরাত্রি</div><div class="dtv">'+fT(ts)+' – '+fT(te)+'</div></div>';
     });
-    // অমৃতযোগ
-    var AMD=[[5,6,11,12],[1,2,8,9,12,13],[3,4,10,11,14,15],[1,2,6,7,13,14],[3,4,10,11],[1,2,5,6,12,13],[2,3,8,9,14,15]];
-    var MHD=[[8,9],[12,13],[7,8],[11,12],[6,7],[9,10],[5,6]];
-    var AMN=[[6,7,13,14],[3,4,9,10,11,12,13,14,15],[4,5,11,12],[2,3,4,10,11,12,13,14,15],[4,5,12,13],[1,2,7,8,14,15],[3,4,10,11]];
+    // ═══ অমৃতযোগ ও মাহেন্দ্রযোগ — তিন ঋতুভেদে মুহূর্ত তালিকা ═══
+    // দিনমান ও রাত্রিমানের ১৫ ভাগের প্রতিটি ভাগ = ১ মুহূর্ত
+    // তথ্যসূত্র: বিশুদ্ধ সিদ্ধান্ত পঞ্জিকা — আষাঢ় ১৪৩২ (৩১ দিন যাচাইকৃত ✓)
+    // index: 0=রবি 1=সোম 2=মঙ্গল 3=বুধ 4=বৃহস্পতি 5=শুক্র 6=শনি
+
+    // Season C: জ্যৈষ্ঠ+আষাঢ় — সম্পূর্ণ যাচাইকৃত ✓
+    var AMD_C=[[3,4,5,9,10,11],[5,6],[1,2,3,6,7,8,13],[4,5,6,7,11,12,13,14],[13,14,15],[9,10,11],[13,14,15]];
+    var MHD_C=[[14],[],[12,14],[],[1,6,7],[2,6],[1,6,7,8]];
+    var AMN_C=[[1,2,7,8,9],[5,6,7,8,11,12],[1,9,10,11],[1,2,3,4,5,9,10],[2,3,4,9,10,11,14,15],[1,2,3,10,11,12,14,15],[2,8,9,10,13,14,15]];
+    var MHN_C=[[],[14],[4,5],[],[],[],[]];
+
+    // Season B: আশ্বিন-পৌষ — আংশিক যাচাই ⚠️
+    var AMD_B=[[5,6,11,12],[1,2,8,9,12,13],[3,4,10,11,14,15],[1,2,6,7,13,14],[3,4,10,11],[1,2,5,6,12,13],[2,3,8,9,14,15]];
+    var MHD_B=[[8,9],[12,13],[7,8],[11,12],[6,7],[9,10],[5,6]];
+    var AMN_B=[[6,7,13,14],[3,4,9,10,11,12,13,14,15],[4,5,11,12],[2,3,4,10,11,12,13,14,15],[4,5,12,13],[1,2,7,8,14,15],[3,4,10,11]];
+    var MHN_B=[[],[],[],[],[],[],[]];
+
+    // Season A: মাঘ-বৈশাখ + শ্রাবণ-ভাদ্র — পরবর্তী যাচাই প্রয়োজন ⚠️
+    var AMD_A=AMD_B,MHD_A=MHD_B,AMN_A=AMN_B,MHN_A=MHN_B;
+
+    // বাংলা মাস অনুযায়ী ঋতু নির্বাচন (0=বৈশাখ … 11=চৈত্র)
+    var bnM2=getBnInfo(date).m;
+    var aT=(bnM2===1||bnM2===2)?{D:AMD_C,dH:MHD_C,N:AMN_C,nH:MHN_C}:
+           (bnM2>=5&&bnM2<=8)?{D:AMD_B,dH:MHD_B,N:AMN_B,nH:MHN_B}:
+           {D:AMD_A,dH:MHD_A,N:AMN_A,nH:MHN_A};
+
     function mkPch(sl,b,m){var r=[];var i=0;while(i<sl.length){var s=sl[i]-1;var e=sl[i];while(i+1<sl.length&&sl[i+1]===sl[i]+1){i++;e=sl[i];}r.push({st:b+s*m/60,en:b+e*m/60});i++;}return r;}
-    var amD=mkPch(AMD[w2],rise,dT), mhD2=(function(){var s=MHD[w2];return s&&s.length?{st:rise+(s[0]-1)*dT/60,en:rise+s[s.length-1]*dT/60}:null;})();
-    var amN=mkPch(AMN[w2],set,nT);
+    var amD=mkPch(aT.D[w2],rise,dT);
+    var mhD=mkPch(aT.dH[w2],rise,dT);
+    var amN=mkPch(aT.N[w2],set,nT);
+    var mhN=mkPch(aT.nH[w2],set,nT);
+    var mhAll=mhD.concat(mhN);
     var amH='';
     if(amD.length){amH+='<div class="dtime shubha"><div class="dtl">✨ অমৃতযোগ (দিন)</div><div class="dtv" style="font-size:.65rem;line-height:1.6;">'+amD.map(function(a){return fT(a.st)+' – '+fT(a.en);}).join('<br>')+'</div></div>';}
-    if(mhD2){amH+='<div class="dtime shubha"><div class="dtl">🌠 মাহেন্দ্রযোগ</div><div class="dtv">'+fT(mhD2.st)+' – '+fT(mhD2.en)+'</div></div>';}
+    if(mhAll.length){amH+='<div class="dtime shubha"><div class="dtl">🌠 মাহেন্দ্রযোগ</div><div class="dtv" style="font-size:.65rem;line-height:1.6;">'+mhAll.map(function(a){return fT(a.st)+' – '+fT(a.en);}).join('<br>')+'</div></div>';}
     if(amN.length){amH+='<div class="dtime shubha"><div class="dtl">🌙 অমৃতযোগ (রাত্রি)</div><div class="dtv" style="font-size:.65rem;line-height:1.6;">'+amN.map(function(a){return fT(a.st)+' – '+fT(a.en);}).join('<br>')+'</div></div>';}
     // লগ্ন
     var jdR=JD(date.getFullYear(),date.getMonth()+1,date.getDate())+(rise-TZ)/24;
