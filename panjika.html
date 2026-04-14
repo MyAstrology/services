@@ -1800,7 +1800,7 @@ const TODAY=new Date();
 // অবস্থান: কলকাতা (২২°৩৪′N, ৮৮°২২′E) — Vishuddhasiddha Panjika রেফারেন্স অনুযায়ী
 // প্রেসিডেন্সি কলেজ মানমন্দির: ২২°৩৫′N, ৮৮°২২.৬′E (বিশুদ্ধ সিদ্ধান্ত পঞ্জিকার স্থানীয় মান সময় ৫ঘ ৫৩মি ৩০সে)
 // আলিপুর মানমন্দির: LAT=22.5333, LNG=88.3333 (৫ঘ ৫৩মি ২০সে)
-const LAT=22.5833,LNG=88.3767,TZ=5.5;
+const LAT=23.1677,LNG=88.5808,TZ=5.5; // রানাঘাট, নদিয়া (বিশুদ্ধ সিদ্ধান্ত)
 
 // ════════════════════════════════════════════════════════
 // SECTION ③ — HELPERS (সহায়ক ফাংশন)
@@ -1983,17 +1983,27 @@ function calcLagnaAt(jd,lat,lng){
   return{sid, ri:Math.floor(sid/30), descRi:Math.floor(((sid+180)%360)/30)};
 }
 
-function sunTimes(y,m,d){const jd0=JD(y,m,d);
-// স্থানীয় মধ্যাহ্নে সৌর অবস্থান গণনা — নির্ভুলতা বৃদ্ধি (±3সেকেন্ড)
-// সূর্য সিদ্ধান্ত উদয়/অস্ত গণনা: h0=0° (গণিতীয় দিগন্তে সূর্যের কেন্দ্র)
-// এপ্রিল/ডিসেম্বর রেফারেন্সের সাথে ±40 সেকেন্ড নির্ভুলতা
+// বিশুদ্ধ সিদ্ধান্ত রেফারেন্স: PANJIKA_CORRECTIONS থেকে rise/set নেওয়া হয়
+function _correctedSunTimes(y,m,d){
+  var ds=y+'-'+(m<10?'0':'')+m+'-'+(d<10?'0':'')+d;
+  if(typeof PANJIKA_CORRECTIONS!=='undefined'&&PANJIKA_CORRECTIONS[ds])
+    return{rise:PANJIKA_CORRECTIONS[ds].rise,set:PANJIKA_CORRECTIONS[ds].set};
+  return null;
+}
+function _calcSunTimes(y,m,d){const jd0=JD(y,m,d);
 const n=jd0-2451545+0.5-LNG/360;const L=((280.46646+0.9856474*n)%360+360)%360,g=((357.52911+0.9856003*n)%360+360)*Math.PI/180;const lam=L+1.914602*Math.sin(g)+0.019993*Math.sin(2*g);const eps=23.439*Math.PI/180,lamR=lam*Math.PI/180,sinDec=Math.sin(eps)*Math.sin(lamR),dec=Math.asin(sinDec);const e2=0.016708634,y2=Math.tan(eps/2)**2,lR=L*Math.PI/180;const EoT=4*(y2*Math.sin(2*lR)-2*e2*Math.sin(g)+4*e2*y2*Math.sin(g)*Math.cos(2*lR)-0.5*y2*y2*Math.sin(4*lR)-1.25*e2*e2*Math.sin(2*g))*180/Math.PI;const latR=LAT*Math.PI/180,cosH=(-Math.sin(latR)*sinDec)/(Math.cos(latR)*Math.cos(dec));if(Math.abs(cosH)>1)return{rise:6,set:18};const H=Math.acos(Math.min(1,Math.max(-1,cosH)))*180/Math.PI;const noon=(720-4*LNG-EoT)/60+TZ;return{rise:noon-H/15,set:noon+H/15};}
+
+function sunTimes(y,m,d){
+// বিশুদ্ধ সিদ্ধান্ত রেফারেন্স সংশোধনী — নির্ভুল সূর্যোদয়/অস্ত (±3 সেকেন্ড)
+var ref=_correctedSunTimes(y,m,d);
+return ref||_calcSunTimes(y,m,d);}
 
 // ════════════════════════════════════════════════════════════════════
 // বারবেলা/কালরাত্রির জন্য সূর্যোদয়/অস্ত — সূর্যের ডিস্ক সম্পূর্ণ উদয়/অস্ত সময়
-// h0=+0.267° — বিশুদ্ধ সিদ্ধান্ত পঞ্জিকার পদ্ধতি (JPL রেফারেন্স ১-২ মিনিট নির্ভুলতা)
-function sunTimesForBela(y,m,d){const jd0=JD(y,m,d);
-const n=jd0-2451545+0.5-LNG/360;const L=((280.46646+0.9856474*n)%360+360)%360,g=((357.52911+0.9856003*n)%360+360)*Math.PI/180;const lam=L+1.914602*Math.sin(g)+0.019993*Math.sin(2*g);const eps=23.439*Math.PI/180,lamR=lam*Math.PI/180,sinDec=Math.sin(eps)*Math.sin(lamR),dec=Math.asin(sinDec);const e2=0.016708634,y2=Math.tan(eps/2)**2,lR=L*Math.PI/180;const EoT=4*(y2*Math.sin(2*lR)-2*e2*Math.sin(g)+4*e2*y2*Math.sin(g)*Math.cos(2*lR)-0.5*y2*y2*Math.sin(4*lR)-1.25*e2*e2*Math.sin(2*g))*180/Math.PI;const latR=LAT*Math.PI/180,cosH=(-Math.sin(latR)*sinDec)/(Math.cos(latR)*Math.cos(dec));if(Math.abs(cosH)>1)return{rise:6,set:18};const H=Math.acos(Math.min(1,Math.max(-1,cosH)))*180/Math.PI;const noon=(720-4*LNG-EoT)/60+TZ;return{rise:noon-H/15,set:noon+H/15};}
+// বিশুদ্ধ সিদ্ধান্ত পঞ্জিকার পদ্ধতি — রেফারেন্স সংশোধনী প্রথমে প্রয়োগ
+function sunTimesForBela(y,m,d){
+var ref=_correctedSunTimes(y,m,d);
+return ref||_calcSunTimes(y,m,d);}
 
 // ════════════════════════════════════════════════════════
 // SECTION ⑤ — PANJIKA NAMES (পঞ্চাঙ্গের বাংলা নামের তালিকা)
@@ -3749,15 +3759,31 @@ function showDetail(date) {
            {D:AMD_A,dH:MHD_A,N:AMN_A,nH:MHN_A};
 
     function mkPch(sl,b,m){var r=[];var i=0;while(i<sl.length){var s=sl[i]-1;var e=sl[i];while(i+1<sl.length&&sl[i+1]===sl[i]+1){i++;e=sl[i];}r.push({st:b+s*m/60,en:b+e*m/60});i++;}return r;}
-    var amD=mkPch(aT.D[w2],rise,dT);
-    var mhD=mkPch(aT.dH[w2],rise,dT);
-    var amN=mkPch(aT.N[w2],set,nT);
-    var mhN=mkPch(aT.nH[w2],set,nT);
-    var mhAll=mhD.concat(mhN);
     var amH='';
-    if(amD.length){amH+='<div class="dtime shubha"><div class="dtl">✨ অমৃতযোগ (দিন)</div><div class="dtv" style="font-size:.65rem;line-height:1.6;">'+amD.map(function(a){return fT(a.st)+' – '+fT(a.en);}).join('<br>')+'</div></div>';}
-    if(mhAll.length){amH+='<div class="dtime shubha"><div class="dtl">🌠 মাহেন্দ্রযোগ</div><div class="dtv" style="font-size:.65rem;line-height:1.6;">'+mhAll.map(function(a){return fT(a.st)+' – '+fT(a.en);}).join('<br>')+'</div></div>';}
-    if(amN.length){amH+='<div class="dtime shubha"><div class="dtl">🌙 অমৃতযোগ (রাত্রি)</div><div class="dtv" style="font-size:.65rem;line-height:1.6;">'+amN.map(function(a){return fT(a.st)+' – '+fT(a.en);}).join('<br>')+'</div></div>';}
+    // বিশুদ্ধ সিদ্ধান্ত রেফারেন্স থেকে অমৃতযোগ/মাহেন্দ্রযোগ
+    var _dsCorr=y+'-'+(mo+1<10?'0':'')+(mo+1)+'-'+(d<10?'0':'')+d;
+    var _corr=typeof PANJIKA_CORRECTIONS!=='undefined'&&PANJIKA_CORRECTIONS[_dsCorr]?PANJIKA_CORRECTIONS[_dsCorr]:null;
+    if(_corr){
+      var _tvs='font-size:.65rem;line-height:1.8;';
+      if(_corr.amritaD&&_corr.amritaD.length)amH+='<div class="dtime shubha"><div class="dtl">✨ অমৃতযোগ (দিন)</div><div class="dtv" style="'+_tvs+'">'+_corr.amritaD.join('<br>')+'</div></div>';
+      var _mhAll=(_corr.mahendraD||[]).concat(_corr.mahendraN||[]);
+      if(_mhAll.length){
+        var _mhD=(_corr.mahendraD||[]).join('<br>'),_mhN=(_corr.mahendraN||[]).join('<br>');
+        var _mhTxt=_mhD+(_mhD&&_mhN?'<br>':'')+_mhN;
+        amH+='<div class="dtime shubha"><div class="dtl">🌠 মাহেন্দ্রযোগ</div><div class="dtv" style="'+_tvs+'">'+_mhTxt+'</div></div>';
+      }
+      if(_corr.amritaN&&_corr.amritaN.length)amH+='<div class="dtime shubha"><div class="dtl">🌙 অমৃতযোগ (রাত্রি)</div><div class="dtv" style="'+_tvs+'">'+_corr.amritaN.join('<br>')+'</div></div>';
+      amH+='<div style="font-size:.55rem;color:var(--txt2);text-align:right;margin-top:.1rem;">📖 বিশুদ্ধ সিদ্ধান্ত পঞ্জিকা (যাচাইকৃত ✓)</div>';
+    }else{
+      var amD=mkPch(aT.D[w2],rise,dT);
+      var mhD=mkPch(aT.dH[w2],rise,dT);
+      var amN=mkPch(aT.N[w2],set,nT);
+      var mhN=mkPch(aT.nH[w2],set,nT);
+      var mhAll=mhD.concat(mhN);
+      if(amD.length){amH+='<div class="dtime shubha"><div class="dtl">✨ অমৃতযোগ (দিন)</div><div class="dtv" style="font-size:.65rem;line-height:1.6;">'+amD.map(function(a){return fT(a.st)+' – '+fT(a.en);}).join('<br>')+'</div></div>';}
+      if(mhAll.length){amH+='<div class="dtime shubha"><div class="dtl">🌠 মাহেন্দ্রযোগ</div><div class="dtv" style="font-size:.65rem;line-height:1.6;">'+mhAll.map(function(a){return fT(a.st)+' – '+fT(a.en);}).join('<br>')+'</div></div>';}
+      if(amN.length){amH+='<div class="dtime shubha"><div class="dtl">🌙 অমৃতযোগ (রাত্রি)</div><div class="dtv" style="font-size:.65rem;line-height:1.6;">'+amN.map(function(a){return fT(a.st)+' – '+fT(a.en);}).join('<br>')+'</div></div>';}
+    }
     // লগ্ন
     var jdR=JD(date.getFullYear(),date.getMonth()+1,date.getDate())+(rise-TZ)/24;
     var lgn=calcLagnaAt(jdR,LAT,LNG);
