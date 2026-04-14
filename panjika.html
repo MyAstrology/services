@@ -3758,6 +3758,14 @@ function showDetail(date) {
     if(amD.length){amH+='<div class="dtime shubha"><div class="dtl">✨ অমৃতযোগ (দিন)</div><div class="dtv" style="font-size:.65rem;line-height:1.6;">'+amD.map(function(a){return fT(a.st)+' – '+fT(a.en);}).join('<br>')+'</div></div>';}
     if(mhAll.length){amH+='<div class="dtime shubha"><div class="dtl">🌠 মাহেন্দ্রযোগ</div><div class="dtv" style="font-size:.65rem;line-height:1.6;">'+mhAll.map(function(a){return fT(a.st)+' – '+fT(a.en);}).join('<br>')+'</div></div>';}
     if(amN.length){amH+='<div class="dtime shubha"><div class="dtl">🌙 অমৃতযোগ (রাত্রি)</div><div class="dtv" style="font-size:.65rem;line-height:1.6;">'+amN.map(function(a){return fT(a.st)+' – '+fT(a.en);}).join('<br>')+'</div></div>';}
+    // বিশুদ্ধ সিদ্ধান্ত পঞ্জিকা ১৪৩৩ — amH override (যাচাইকৃত ডেটা)
+    var bsRef=(typeof BISHUDDHA_SIDDHANTA_1433!=='undefined'&&BISHUDDHA_SIDDHANTA_1433[dStr(date)])||null;
+    if(bsRef){
+      amH='<div style="font-size:.59rem;font-weight:800;color:#267f43;padding:.1rem 0 .2rem;letter-spacing:.03em;">📖 বিশুদ্ধ সিদ্ধান্ত পঞ্জিকা ১৪৩৩ — যাচাইকৃত</div>';
+      bsRef.amritYoga.forEach(function(a){
+        amH+='<div class="dtime shubha"><div class="dtl">'+a.label+'</div><div class="dtv" style="font-size:.65rem;line-height:1.6;">'+a.text+'</div></div>';
+      });
+    }
     // লগ্ন
     var jdR=JD(date.getFullYear(),date.getMonth()+1,date.getDate())+(rise-TZ)/24;
     var lgn=calcLagnaAt(jdR,LAT,LNG);
@@ -3802,8 +3810,34 @@ function showDetail(date) {
     function sec(t){return '<div style="font-size:.61rem;font-weight:700;color:var(--gold);text-transform:uppercase;padding:.28rem 0 .15rem;border-top:1px solid rgba(201,162,39,.12);margin-top:.15rem;">'+t+'</div>';}
     // নিষিদ্ধ সময় (বারবেলা + চন্দ্রদগ্ধা + ত্রিস্পর্শ + যোগবর্জ্য + মলমাস)
     var forbidHtml=renderForbiddenTimes(date,c);
+    // বিশুদ্ধ সিদ্ধান্ত — বারবেলা/কালরাত্রি সংশোধন
+    if(bsRef){
+      var bsBarH='';
+      if(bsRef.barbela)bsBarH+='<div class="dtime rahu"><div class="dtl">🚫 বারবেলা</div><div class="dtv">'+bsRef.barbela+'</div></div>';
+      if(bsRef.kalratri)bsBarH+='<div class="dtime rahu"><div class="dtl">🌑 কালরাত্রি</div><div class="dtv">'+bsRef.kalratri+'</div></div>';
+      // বিশুদ্ধ সিদ্ধান্তের বারবেলা/কালরাত্রি দেখিয়ে বাকি নিষিদ্ধ সময় রাখা হচ্ছে
+      forbidHtml=bsBarH+(forbidHtml?'<div style="margin-top:.25rem;font-size:.57rem;color:var(--txt2);padding:.1rem 0;">— এছাড়াও —</div>'+forbidHtml:'');
+    }
     var extra=sec('🚫 নিষিদ্ধ সময় (বারবেলা · কালরাত্রি · চন্দ্রদগ্ধা · যোগবর্জ্য)')+'<div style="margin-bottom:.35rem;">'+forbidHtml+'</div>'+sec('✨ অমৃতযোগ · মাহেন্দ্রযোগ')+'<div style="display:flex;flex-direction:column;gap:.35rem;margin-bottom:.35rem;">'+amH+'</div>'+sec('🌅 লগ্ন ও মৃত্যু দোষ')+lgnH+ddH;
+    // বিশুদ্ধ সিদ্ধান্ত — সূর্যোদয়/সূর্যাস্ত + তিথি/নক্ষত্র/যোগ/করণ verified card
+    var bsTopCard='';
+    if(bsRef){
+      bsTopCard='<div style="background:rgba(37,102,37,.06);border:1px solid rgba(37,102,37,.22);border-radius:.65rem;padding:.5rem .65rem;margin-bottom:.5rem;">'
+        +'<div style="font-size:.6rem;font-weight:800;color:#267f43;margin-bottom:.32rem;letter-spacing:.04em;">📖 বিশুদ্ধ সিদ্ধান্ত পঞ্জিকা ১৪৩৩ — '+bsRef.label+' (যাচাইকৃত)</div>'
+        +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:.28rem;margin-bottom:.28rem;">'
+        +'<div class="dtime shubha" style="padding:.28rem .4rem;"><div class="dtl" style="font-size:.57rem;">🌅 সূর্যোদয়</div><div class="dtv" style="font-size:.8rem;font-weight:700;">'+bsRef.rise+'</div></div>'
+        +'<div class="dtime" style="padding:.28rem .4rem;"><div class="dtl" style="font-size:.57rem;">🌇 সূর্যাস্ত</div><div class="dtv" style="font-size:.8rem;font-weight:700;">'+bsRef.set+'</div></div>'
+        +'</div>'
+        +'<div style="font-size:.62rem;line-height:1.85;color:var(--txt);padding:.05rem 0;">'
+        +'<span style="color:var(--txt2);">তিথি: </span>'+bsRef.tithi+'<br>'
+        +'<span style="color:var(--txt2);">নক্ষত্র: </span>'+bsRef.nakshatra+'<br>'
+        +'<span style="color:var(--txt2);">যোগ: </span>'+bsRef.yoga+'<br>'
+        +'<span style="color:var(--txt2);">করণ: </span>'+bsRef.karana
+        +'</div>'
+        +'</div>';
+    }
     document.getElementById('dttimes').innerHTML=
+      bsTopCard+
       '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.52rem;margin-bottom:.52rem;">'+row1.map(mkCard).join('')+'</div>'+
       '<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.52rem;margin-bottom:.35rem;">'+row2.map(mkCard).join('')+'</div>'+
       extra;
