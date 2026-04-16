@@ -2093,83 +2093,88 @@ function getEclipse(ds){return ECLIPSE_DATA.filter(e=>e.d===ds);}
 const getFests=ds=>FESTS.filter(f=>f.d===ds);
 
 // ════════════════════════════════════════════════════════
-// SECTION ⑩ — FINAL COMPATIBILITY LAYER (Complete Fix)
+// SECTION ⑩ — FINAL ADAPTER & HELPERS (১০০% ফিক্স)
 // ════════════════════════════════════════════════════════
 
-// ১. UI-এর জন্য প্রয়োজনীয় গ্লোবাল ডেটা ও হেল্পার (Missing Data Fix)
+// ১. গ্লোবাল হেল্পার ফাংশনসমূহ (Missing function fixes)
 var BD = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
-var toBn = function(n) { return String(Math.abs(Math.round(n))).replace(/[0-9]/g, function(d){ return BD[+d]; }); };
+var toBn = function(n) { 
+    return String(Math.abs(Math.round(n))).replace(/[0-9]/g, function(d){ return BD[+d]; }); 
+};
 var VLORD = ['সূর্য','চন্দ্র','মঙ্গল','বুধ','বৃহস্পতি','শুক্র','শনি'];
 
+// তারিখ ফরম্যাট হেল্পার
+function getEngineDate(d) {
+    if (!(d instanceof Date)) d = new Date(d);
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+}
+
 if (typeof PEph !== "undefined") {
-    console.log("✅ MyAstrology Engine (PEph) Connected!");
+    console.log("✅ MyAstrology Engine (v5.2) Connected!");
 
-    // তারিখ ফরম্যাট হেল্পার
-    function getPEphDate(d) {
-        return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
-    }
-
-    // ২. মূল পঞ্চাঙ্গ ফাংশন ম্যাপিং
+    // ২. মূল পঞ্চাঙ্গ ফাংশন ম্যাপিং (UI এর জন্য)
     window.calcDay = function(date) {
-        var ds = getPEphDate(date);
+        var ds = getEngineDate(date);
         var bn = typeof getBnInfo === "function" ? getBnInfo(date) : null;
         var bnMonthIdx = bn ? bn.m + 1 : (date.getMonth() + 1);
         
-        // PEph এর getDailyPanchang কল করা
-        return PEph.getDailyPanchang(ds, bnMonthIdx);
+        // উন্নত ইঞ্জিন PEph থেকে পূর্ণাঙ্গ ডেটা নেওয়া
+        var rawData = PEph.getDailyPanchang(ds, bnMonthIdx);
+        
+        // আপনার ডিজাইনের ফরম্যাটে ডেটা রিটার্ন করা
+        return {
+            w: date.getDay(),
+            bn: bn,
+            tN: rawData.tithi,
+            tName: rawData.tithiName,
+            paksha: rawData.paksha + 'পক্ষ',
+            pakDay: rawData.tithi,
+            nak: [rawData.nakshatraName, ''], 
+            yoga: [rawData.yogaName, ''],
+            karan: rawData.karanaName,
+            vara: rawData.weekday,
+            varaL: VLORD[date.getDay()],
+            st: { rise: rawData.rise, set: rawData.set_ },
+            rahu: rawData.rahukal.startStr + ' – ' + rawData.rahukal.endStr,
+            gulika: rawData.gulikakal.startStr + ' – ' + rawData.gulikakal.endStr,
+            abhi: rawData.abhijit.startStr + ' – ' + rawData.abhijit.endStr,
+            yam: rawData.kalaRatri.length > 0 ? rawData.kalaRatri[0].startStr + ' – ' + rawData.kalaRatri[0].endStr : "",
+            eclipses: typeof getEclipse === 'function' ? getEclipse(ds) : [],
+            fests: typeof getFests === 'function' ? getFests(ds) : [],
+            tithiList: [{val: {name: rawData.tithiName, paksha: rawData.paksha+'পক্ষ', pakShort: rawData.paksha.substring(0,1), pakDay: rawData.tithi}, endTime: null}],
+            nakList: [{val: {name: rawData.nakshatraName, lord: ''}, endTime: null}],
+            yogaList: [{val: {name: rawData.yogaName, sym: ''}, endTime: null}],
+            karanList: [{val: {name: rawData.karanaName}, endTime: null}]
+        };
     };
 
-    // ৩. গাণিতিক ফাংশন এলাইয়াস (Aliases)
+    // ৩. গাণিতিক ক্যালকুলেশন এলাইয়াস (Compatibility)
     window.JD = PEph.jd;
     window.lahiriAY = PEph.ayanamsa;
     window.moonL = PEph.getMoonLon;
     window.sunL = PEph.getSunLon;
     window.getMarsLong = PEph.getMarLon;
     window.rahuL = PEph.getRahuLon;
+    window.jupiterSid = function(jd, ay) { return (PEph.getJupLon(getEngineDate(new Date((jd-2440587.5)*86400000))) - ay + 360) % 360; };
+    window.saturnSid = function(jd, ay) { return (PEph.getSatLon(getEngineDate(new Date((jd-2440587.5)*86400000))) - ay + 360) % 360; };
 
-    // ৪. সূর্যোদয়/সূর্যাস্ত
     window.sunTimes = function(y, m, d) {
-        var ds = y + '-' + String(m).padStart(2, '0') + '-' + String(d).padStart(2, '0');
+        var ds = y + '-' + String(m).padStart(2,'0') + '-' + String(d).padStart(2,'0');
         return { rise: PEph.getSunrise(ds), set: PEph.getSunset(ds) };
     };
     window.sunTimesForBela = window.sunTimes;
 
-    // ৫. লগ্ন ও গ্রহের অবস্থান (showDetail এর জন্য)
-    window.jupiterSid = function(jd, ay) {
-        var dt = new Date((jd - 2440587.5) * 86400000);
-        return (PEph.getJupLon(getPEphDate(dt)) - ay + 360) % 360;
-    };
-
-    window.saturnSid = function(jd, ay) {
-        var dt = new Date((jd - 2440587.5) * 86400000);
-        return (PEph.getSatLon(getPEphDate(dt)) - ay + 360) % 360;
-    };
-
     window.calcLagnaAt = function(jd, lat, lng) {
         var dt = new Date((jd - 2440587.5) * 86400000);
-        var h = dt.getHours() + dt.getMinutes()/60;
-        var lag = PEph.getLagna(getPEphDate(dt), h);
+        var lag = PEph.getLagna(getEngineDate(dt), dt.getHours() + dt.getMinutes()/60);
         return { sid: lag.sid, ri: lag.rashi, descRi: (lag.rashi + 6) % 12 };
     };
 
-    // ৬. ইনডেক্স হেল্পার (Transition Logic)
-    window._getNakIdx = function(jd) {
-        var dt = new Date((jd - 2440587.5) * 86400000);
-        var ay = PEph.ayanamsa(jd);
-        return Math.floor(((PEph.getMoonLon(getPEphDate(dt), dt.getHours()) - ay + 360) % 360) / (360 / 27)) % 27;
-    };
-
-    window._getTithiIdx = function(jd) {
-        var dt = new Date((jd - 2440587.5) * 86400000);
-        var ds = getPEphDate(dt);
-        return Math.floor(((PEph.getMoonLon(ds, dt.getHours()) - PEph.getSunLon(ds) + 360) % 360) / 12) % 30;
-    };
-
 } else {
-    console.error("❌ Error: panjika-ephemeris.js not found!");
+    console.error("❌ PEph Engine Not Found! Check file loading order.");
 }
 
-// ৭. মুন ইমোজি (UI)
+// ৪. মুন ইমোজি (UI)
 function moonEmoji(t) {
     if(t === 15) return '🌕';
     if(t === 30 || t === 1) return '🌑';
@@ -2180,6 +2185,7 @@ function moonEmoji(t) {
     if(t === 23) return '🌗';
     return '🌘';
 }
+
 
 
 
