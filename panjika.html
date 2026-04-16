@@ -2093,35 +2093,31 @@ function getEclipse(ds){return ECLIPSE_DATA.filter(e=>e.d===ds);}
 const getFests=ds=>FESTS.filter(f=>f.d===ds);
 
 // ════════════════════════════════════════════════════════
-// SECTION ⑩ — FINAL ADAPTER & HELPERS (১০০% ফিক্স)
+// SECTION ⑩ — FINAL COMPLETE ADAPTER (Self-Contained)
 // ════════════════════════════════════════════════════════
 
-// ১. গ্লোবাল হেল্পার ফাংশনসমূহ (Missing function fixes)
+// ১. গ্লোবাল ডেটা (Missing Data Safety)
 var BD = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
-var toBn = function(n) { 
-    return String(Math.abs(Math.round(n))).replace(/[0-9]/g, function(d){ return BD[+d]; }); 
-};
+var toBn = function(n) { return String(Math.abs(Math.round(n))).replace(/[0-9]/g, function(d){ return BD[+d]; }); };
 var VLORD = ['সূর্য','চন্দ্র','মঙ্গল','বুধ','বৃহস্পতি','শুক্র','শনি'];
 
-// তারিখ ফরম্যাট হেল্পার
-function getEngineDate(d) {
-    if (!(d instanceof Date)) d = new Date(d);
-    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
-}
-
 if (typeof PEph !== "undefined") {
-    console.log("✅ MyAstrology Engine (v5.2) Connected!");
+    console.log("✅ PEph Engine Connected!");
 
-    // ২. মূল পঞ্চাঙ্গ ফাংশন ম্যাপিং (UI এর জন্য)
+    // তারিখ হেল্পার
+    var getDsLocal = function(d) {
+        return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    };
+
+    // ২. মেইন ক্যালকুলেশন ফাংশন
     window.calcDay = function(date) {
-        var ds = getEngineDate(date);
-        var bn = typeof getBnInfo === "function" ? getBnInfo(date) : null;
+        var ds = getDsLocal(date);
+        // getBnInfo নিচে থাকলেও এখান থেকে কল করলে এরর দেবেনা কারণ calcDay রান হওয়ার সময় ওটা রেডি থাকে
+        var bn = (typeof getBnInfo === "function") ? getBnInfo(date) : {m: date.getMonth(), d: date.getDate(), y: date.getFullYear()-593};
         var bnMonthIdx = bn ? bn.m + 1 : (date.getMonth() + 1);
         
-        // উন্নত ইঞ্জিন PEph থেকে পূর্ণাঙ্গ ডেটা নেওয়া
         var rawData = PEph.getDailyPanchang(ds, bnMonthIdx);
         
-        // আপনার ডিজাইনের ফরম্যাটে ডেটা রিটার্ন করা
         return {
             w: date.getDay(),
             bn: bn,
@@ -2139,8 +2135,8 @@ if (typeof PEph !== "undefined") {
             gulika: rawData.gulikakal.startStr + ' – ' + rawData.gulikakal.endStr,
             abhi: rawData.abhijit.startStr + ' – ' + rawData.abhijit.endStr,
             yam: rawData.kalaRatri.length > 0 ? rawData.kalaRatri[0].startStr + ' – ' + rawData.kalaRatri[0].endStr : "",
-            eclipses: typeof getEclipse === 'function' ? getEclipse(ds) : [],
-            fests: typeof getFests === 'function' ? getFests(ds) : [],
+            eclipses: (typeof getEclipse === 'function') ? getEclipse(ds) : [],
+            fests: (typeof getFests === 'function') ? getFests(ds) : [],
             tithiList: [{val: {name: rawData.tithiName, paksha: rawData.paksha+'পক্ষ', pakShort: rawData.paksha.substring(0,1), pakDay: rawData.tithi}, endTime: null}],
             nakList: [{val: {name: rawData.nakshatraName, lord: ''}, endTime: null}],
             yogaList: [{val: {name: rawData.yogaName, sym: ''}, endTime: null}],
@@ -2148,15 +2144,22 @@ if (typeof PEph !== "undefined") {
         };
     };
 
-    // ৩. গাণিতিক ক্যালকুলেশন এলাইয়াস (Compatibility)
+    // ৩. গ্রহের অবস্থান এলাইয়াস (Compatibility)
     window.JD = PEph.jd;
     window.lahiriAY = PEph.ayanamsa;
     window.moonL = PEph.getMoonLon;
     window.sunL = PEph.getSunLon;
     window.getMarsLong = PEph.getMarLon;
     window.rahuL = PEph.getRahuLon;
-    window.jupiterSid = function(jd, ay) { return (PEph.getJupLon(getEngineDate(new Date((jd-2440587.5)*86400000))) - ay + 360) % 360; };
-    window.saturnSid = function(jd, ay) { return (PEph.getSatLon(getEngineDate(new Date((jd-2440587.5)*86400000))) - ay + 360) % 360; };
+    
+    window.jupiterSid = function(jd, ay) { 
+        var dt = new Date((jd-2440587.5)*86400000);
+        return (PEph.getJupLon(getDsLocal(dt)) - ay + 360) % 360; 
+    };
+    window.saturnSid = function(jd, ay) { 
+        var dt = new Date((jd-2440587.5)*86400000);
+        return (PEph.getSatLon(getDsLocal(dt)) - ay + 360) % 360; 
+    };
 
     window.sunTimes = function(y, m, d) {
         var ds = y + '-' + String(m).padStart(2,'0') + '-' + String(d).padStart(2,'0');
@@ -2166,15 +2169,14 @@ if (typeof PEph !== "undefined") {
 
     window.calcLagnaAt = function(jd, lat, lng) {
         var dt = new Date((jd - 2440587.5) * 86400000);
-        var lag = PEph.getLagna(getEngineDate(dt), dt.getHours() + dt.getMinutes()/60);
+        var lag = PEph.getLagna(getDsLocal(dt), dt.getHours() + dt.getMinutes()/60);
         return { sid: lag.sid, ri: lag.rashi, descRi: (lag.rashi + 6) % 12 };
     };
 
 } else {
-    console.error("❌ PEph Engine Not Found! Check file loading order.");
+    alert("PEph Engine not found! ইঞ্জিন ফাইলটি লোড হয়নি।");
 }
 
-// ৪. মুন ইমোজি (UI)
 function moonEmoji(t) {
     if(t === 15) return '🌕';
     if(t === 30 || t === 1) return '🌑';
@@ -2185,6 +2187,7 @@ function moonEmoji(t) {
     if(t === 23) return '🌗';
     return '🌘';
 }
+
 
 
 
