@@ -2094,31 +2094,64 @@ const getFests=ds=>FESTS.filter(f=>f.d===ds);
 
 
 // ════════════════════════════════════════════════════════
-// SECTION ⑩ — ENGINE ADAPTER (নতুন ইঞ্জিনের সাথে সংযোগ)
-// কাজ: HTML ডিজাইনের সাথে panjika-ephemeris.js এর ডেটা আদানপ্রদান
+// SECTION ⑩ — SMART ENGINE ADAPTER (Ultimate Bridge)
 // ════════════════════════════════════════════════════════
+var EPHEMERIS = null;
 
-function calcDay(date) {
-    // আপনার নতুন ইঞ্জিনে যদি ফাংশনটি সরাসরি থাকে:
-    if (typeof getDailyPanchang === "function") {
-        return getDailyPanchang(date);
-    } 
-    // যদি আপনার ইঞ্জিনটি কোনো ভেরিয়েবলের ভেতরে রিটার্ন করা থাকে 
-    // (যেমন: var Panjika = (function(){ ... return { getDailyPanchang: ... }})() )
-    // তাহলে এখানে সেই ভেরিয়েবলের নামটি (যেমন Panjika) বসাতে হবে। আমি নিচে একটি উদাহরণ দিলাম:
-    else if (typeof window.Panjika !== "undefined") {
-        return window.Panjika.getDailyPanchang(date);
-    } 
-    else if (typeof window.Ephemeris !== "undefined") {
-        return window.Ephemeris.getDailyPanchang(date);
-    }
-    else {
-        console.error("Panjika Engine is not connected properly! getDailyPanchang is missing.");
-        return null; // এটি হলে বুঝবেন লিংকিংয়ে সমস্যা আছে
+// ১. স্বয়ংক্রিয়ভাবে নতুন উন্নত ইঞ্জিনটিকে খুঁজে বের করা
+for (var key in window) {
+    if (window[key] && typeof window[key].getDailyPanchang === 'function') {
+        EPHEMERIS = window[key];
+        break;
     }
 }
+if (!EPHEMERIS && typeof getDailyPanchang === 'function') {
+    EPHEMERIS = window;
+}
 
-// UI-এর চাঁদ ইমোজি রেন্ডার করার জন্য এটি প্রয়োজন হবে
+if (EPHEMERIS) {
+    console.log("✅ Advanced Panjika Engine Connected Successfully!");
+
+    // ২. মূল ফাংশনের অনুবাদ
+    window.calcDay = function(date) { return EPHEMERIS.getDailyPanchang(date); };
+
+    // ৩. UI-এর অন্যান্য নির্ভরশীল ফাংশনগুলোকে নতুন ইঞ্জিনের সাথে লিঙ্ক করা (Aliases)
+    window.JD = EPHEMERIS.jd;
+    window.lahiriAY = EPHEMERIS.ayanamsa;
+    window.moonL = EPHEMERIS.getMoonLon;
+    window.sunL = EPHEMERIS.getSunLon;
+    window.getMarsLong = EPHEMERIS.getMarLon;
+    window.rahuL = EPHEMERIS.getRahuLon;
+
+    window.sunTimes = function(y, m, d) {
+        return {
+            rise: EPHEMERIS.getSunrise(y, m, d, LAT, LNG),
+            set: EPHEMERIS.getSunset(y, m, d, LAT, LNG)
+        };
+    };
+    window.sunTimesForBela = window.sunTimes;
+
+    window.calcLagnaAt = function(jd, lat, lng) {
+        return EPHEMERIS.getLagna(jd, lat, lng);
+    };
+
+    window._getNakIdx = function(jd) {
+        var ay = EPHEMERIS.ayanamsa(jd);
+        return Math.floor(((EPHEMERIS.getMoonLon(jd) - ay + 360) % 360) / (360 / 27)) % 27;
+    };
+
+    window._getTithiIdx = function(jd) {
+        return Math.floor(((EPHEMERIS.getMoonLon(jd) - EPHEMERIS.getSunLon(jd) + 360) % 360) / 12) % 30;
+    };
+
+    window.jupiterSid = function(jd, ay) { return ((EPHEMERIS.getJupLon(jd) - ay) % 360 + 360) % 360; };
+    window.saturnSid = function(jd, ay) { return ((EPHEMERIS.getSatLon(jd) - ay) % 360 + 360) % 360; };
+
+} else {
+    console.error("❌ Error: panjika-ephemeris.js is not loaded properly!");
+}
+
+// ৪. চাঁদ ইমোজি রেন্ডার
 function moonEmoji(t) {
     if(t === 15) return '🌕';
     if(t === 30 || t === 1) return '🌑';
@@ -2129,7 +2162,6 @@ function moonEmoji(t) {
     if(t === 23) return '🌗';
     return '🌘';
 }
-
 
 
   
