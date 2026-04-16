@@ -2092,6 +2092,47 @@ const ECLIPSE_DATA = [
 function getEclipse(ds){return ECLIPSE_DATA.filter(e=>e.d===ds);}
 const getFests=ds=>FESTS.filter(f=>f.d===ds);
 
+
+// ════════════════════════════════════════════════════════
+// SECTION ⑩ — ENGINE ADAPTER (নতুন ইঞ্জিনের সাথে সংযোগ)
+// কাজ: HTML ডিজাইনের সাথে panjika-ephemeris.js এর ডেটা আদানপ্রদান
+// ════════════════════════════════════════════════════════
+
+function calcDay(date) {
+    // আপনার নতুন ইঞ্জিনে যদি ফাংশনটি সরাসরি থাকে:
+    if (typeof getDailyPanchang === "function") {
+        return getDailyPanchang(date);
+    } 
+    // যদি আপনার ইঞ্জিনটি কোনো ভেরিয়েবলের ভেতরে রিটার্ন করা থাকে 
+    // (যেমন: var Panjika = (function(){ ... return { getDailyPanchang: ... }})() )
+    // তাহলে এখানে সেই ভেরিয়েবলের নামটি (যেমন Panjika) বসাতে হবে। আমি নিচে একটি উদাহরণ দিলাম:
+    else if (typeof window.Panjika !== "undefined") {
+        return window.Panjika.getDailyPanchang(date);
+    } 
+    else if (typeof window.Ephemeris !== "undefined") {
+        return window.Ephemeris.getDailyPanchang(date);
+    }
+    else {
+        console.error("Panjika Engine is not connected properly! getDailyPanchang is missing.");
+        return null; // এটি হলে বুঝবেন লিংকিংয়ে সমস্যা আছে
+    }
+}
+
+// UI-এর চাঁদ ইমোজি রেন্ডার করার জন্য এটি প্রয়োজন হবে
+function moonEmoji(t) {
+    if(t === 15) return '🌕';
+    if(t === 30 || t === 1) return '🌑';
+    if(t < 8) return '🌒';
+    if(t === 8) return '🌓';
+    if(t < 15) return '🌔';
+    if(t < 23) return '🌖';
+    if(t === 23) return '🌗';
+    return '🌘';
+}
+
+
+
+  
 // ════════════════════════════════════════════════════════
 // SECTION ⑪ — HEADER RENDER (আজকের তারিখ ব্যানার)
 // কাজ: পেজের উপরে আজকের বাংলা তারিখ ও chip গুলো দেখায়
