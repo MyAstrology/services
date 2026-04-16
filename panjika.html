@@ -2094,110 +2094,74 @@ const getFests=ds=>FESTS.filter(f=>f.d===ds);
 
 
 // ════════════════════════════════════════════════════════
-// SECTION ⑩ — SMART ENGINE ADAPTER (Ultimate Bridge)
-// কাজ: HTML ডিজাইনের সাথে PEph (panjika-ephemeris.js v5.2) এর সংযোগ
+// SECTION ⑩ — SMART ENGINE ADAPTER (Final Fix)
 // ════════════════════════════════════════════════════════
 
 if (typeof PEph !== "undefined") {
-    console.log("✅ Advanced Panjika Engine (v5.2) Connected Successfully!");
+    console.log("✅ Advanced Panjika Engine Connected!");
 
-    // ১. গাণিতিক ফাংশনগুলোর কানেকশন (Alias)
-    window.JD = function(y, m, d) { return PEph.jd(y, m, d); };
-    window.lahiriAY = function(jd) { return PEph.ayanamsa(jd); };
-    window.moonL = function(jd) { 
-        // JD থেকে date string ও hour বের করা
-        var ms = (jd + 0.5 - 2440588) * 86400000;
-        var dt = new Date(ms);
-        var ds = dt.getFullYear() + '-' + String(dt.getMonth()+1).padStart(2,'0') + '-' + String(dt.getDate()).padStart(2,'0');
-        var h = dt.getHours() + dt.getMinutes()/60;
-        return PEph.getMoonLon(ds, h); 
-    };
-    window.sunL = function(jd) {
-        var ms = (jd + 0.5 - 2440588) * 86400000;
-        var dt = new Date(ms);
-        var ds = dt.getFullYear() + '-' + String(dt.getMonth()+1).padStart(2,'0') + '-' + String(dt.getDate()).padStart(2,'0');
-        return PEph.getSunLon(ds);
-    };
-    window.getMarsLong = function(jd) {
-        var ms = (jd + 0.5 - 2440588) * 86400000;
-        var dt = new Date(ms);
-        var ds = dt.getFullYear() + '-' + String(dt.getMonth()+1).padStart(2,'0') + '-' + String(dt.getDate()).padStart(2,'0');
-        return PEph.getMarLon(ds);
-    };
-    window.rahuL = function(jd) {
-        var ms = (jd + 0.5 - 2440588) * 86400000;
-        var dt = new Date(ms);
-        var ds = dt.getFullYear() + '-' + String(dt.getMonth()+1).padStart(2,'0') + '-' + String(dt.getDate()).padStart(2,'0');
-        return PEph.getRahuLon(ds);
-    };
+    // ১. মূল ফাংশন ম্যাপ করা
+    window.calcDay = function(date) { return PEph.getDailyPanchang(dateStr(date)); };
+    
+    // তারিখ ফরম্যাট হেল্পার (ইঞ্জিন YYYY-MM-DD ফরম্যাট পছন্দ করে)
+    function dateStr(d) {
+        return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    }
 
-    // ২. সূর্যোদয় ও সূর্যাস্ত কানেকশন
+    // ২. গাণিতিক ফাংশন এবং এলাইয়াস (Aliases)
+    window.JD = PEph.jd;
+    window.lahiriAY = PEph.ayanamsa;
+    window.moonL = PEph.getMoonLon;
+    window.sunL = PEph.getSunLon;
+    window.getMarsLong = PEph.getMarLon;
+    window.rahuL = PEph.getRahuLon;
+
+    // ৩. সূর্যোদয় ও সূর্যাস্ত
     window.sunTimes = function(y, m, d) {
         var ds = y + '-' + String(m).padStart(2,'0') + '-' + String(d).padStart(2,'0');
-        return {
-            rise: PEph.getSunrise(ds),
-            set: PEph.getSunset(ds)
-        };
+        return { rise: PEph.getSunrise(ds), set: PEph.getSunset(ds) };
     };
     window.sunTimesForBela = window.sunTimes;
 
-    // ৩. মূল পঞ্চাঙ্গ ফাংশন (calcDay) কানেকশন
-    window.calcDay = function(dateObj) {
-        var y = dateObj.getFullYear();
-        var m = String(dateObj.getMonth() + 1).padStart(2, '0');
-        var d = String(dateObj.getDate()).padStart(2, '0');
-        var ds = y + '-' + m + '-' + d;
-        
-        // PEph থেকে ডেটা নেওয়া
-        var ephemData = PEph.getDailyPanchang(ds, dateObj.getMonth() + 1);
-        
-        // আপনার HTML ডিজাইন যে ফরম্যাটে ডেটা চায়, সেভাবে সাজিয়ে দেওয়া
-        var st = window.sunTimes(dateObj.getFullYear(), dateObj.getMonth()+1, dateObj.getDate());
-        var bnInfo = getBnInfo(dateObj); // আপনার HTML-এর ভেতরের ফাংশন
-        
-        return {
-            w: dateObj.getDay(),
-            bn: bnInfo,
-            tN: ephemData.tithi,
-            tName: ephemData.tithiName,
-            paksha: ephemData.paksha + 'পক্ষ',
-            pakDay: ephemData.tithi,
-            nak: [ephemData.nakshatraName, ''], 
-            yoga: [ephemData.yogaName, ''],
-            karan: ephemData.karanaName,
-            vara: ephemData.weekday,
-            varaL: VLORD[dateObj.getDay()],
-            st: st,
-            rahu: PEph.hm(ephemData.rahukal.start) + ' - ' + PEph.hm(ephemData.rahukal.end),
-            gulika: PEph.hm(ephemData.gulikakal.start) + ' - ' + PEph.hm(ephemData.gulikakal.end),
-            yam: "", // যমঘণ্টের জন্য আলাদা লজিক না থাকলে ফাঁকা
-            abhi: PEph.hm(ephemData.abhijit.start) + ' - ' + PEph.hm(ephemData.abhijit.end),
-            eclipses: typeof getEclipse === 'function' ? getEclipse(ds) : [],
-            fests: typeof getFests === 'function' ? getFests(ds) : [],
-            
-            // ট্রানজিশন লিস্টগুলো (যেহেতু নতুন ইঞ্জিনে লিস্ট নেই, তাই সারাদিনের জন্য কারেন্ট ভ্যালু পাঠানো হচ্ছে)
-            tithiList: [{val: {name: ephemData.tithiName, paksha: ephemData.paksha+'পক্ষ', pakShort: ephemData.paksha.substring(0,1), pakDay: ephemData.tithi}, endTime: null}],
-            nakList: [{val: {name: ephemData.nakshatraName, lord: ''}, endTime: null}],
-            yogaList: [{val: {name: ephemData.yogaName, sym: ''}, endTime: null}],
-            karanList: [{val: {name: ephemData.karanaName}, endTime: null}]
-        };
+    // ৪. লগ্ন
+    window.calcLagnaAt = function(jd, lat, lng) {
+        // JD থেকে তারিখ এবং ঘণ্টা বের করা
+        var date = new Date((jd - 2440587.5) * 86400000);
+        var ds = dateStr(date);
+        var h = date.getHours() + date.getMinutes()/60;
+        var lag = PEph.getLagna(ds, h);
+        return { sid: lag.sid, ri: lag.rashi, descRi: (lag.rashi + 6) % 12 };
     };
 
-    // লগ্ন কানেকশন
-    window.calcLagnaAt = function(jd, lat, lng) {
-        var ms = (jd + 0.5 - 2440588) * 86400000;
-        var dt = new Date(ms);
-        var ds = dt.getFullYear() + '-' + String(dt.getMonth()+1).padStart(2,'0') + '-' + String(dt.getDate()).padStart(2,'0');
-        var h = dt.getHours() + dt.getMinutes()/60;
-        var lag = PEph.getLagna(ds, h);
-        return { sid: lag.sid, ri: lag.rashi, descRi: (lag.rashi+6)%12 };
+    // ৫. জপিটার এবং শনি সাইডরিয়াল (এটিই আপনার এরর ফিক্স করবে)
+    window.jupiterSid = function(jd, ay) {
+        var date = new Date((jd - 2440587.5) * 86400000);
+        return (PEph.getJupLon(dateStr(date)) - ay + 360) % 360;
+    };
+
+    window.saturnSid = function(jd, ay) {
+        var date = new Date((jd - 2440587.5) * 86400000);
+        return (PEph.getSatLon(dateStr(date)) - ay + 360) % 360;
+    };
+
+    // ৬. নক্ষত্র ও তিথি ইনডেক্স হেল্পার
+    window._getNakIdx = function(jd) {
+        var date = new Date((jd - 2440587.5) * 86400000);
+        var ay = PEph.ayanamsa(jd);
+        return Math.floor(((PEph.getMoonLon(dateStr(date), date.getHours()) - ay + 360) % 360) / (360 / 27)) % 27;
+    };
+
+    window._getTithiIdx = function(jd) {
+        var date = new Date((jd - 2440587.5) * 86400000);
+        var ds = dateStr(date);
+        return Math.floor(((PEph.getMoonLon(ds, date.getHours()) - PEph.getSunLon(ds) + 360) % 360) / 12) % 30;
     };
 
 } else {
-    console.error("❌ Error: PEph (panjika-ephemeris.js) is not loaded properly!");
+    console.error("❌ PEph Engine Not Found!");
 }
 
-// UI-এর চাঁদ ইমোজি রেন্ডার করার জন্য
+// ৭. চাঁদ ইমোজি (UI এর জন্য)
 function moonEmoji(t) {
     if(t === 15) return '🌕';
     if(t === 30 || t === 1) return '🌑';
@@ -2208,6 +2172,7 @@ function moonEmoji(t) {
     if(t === 23) return '🌗';
     return '🌘';
 }
+
 
 
   
