@@ -1805,6 +1805,15 @@ const VLORD=['সূর্য','চন্দ্র','মঙ্গল','বুধ
 function fmtT(h,m){m=Math.round(m||0);if(m>=60){h+=Math.floor(m/60);m=m%60;}if(m<0){h--;m+=60;}h=((h%24)+24)%24;const l=h>=4.5&&h<6?'ভোর':h<6?'রাত':h<12?'সকাল':h<14?'দুপুর':h<17?'বিকেল':h<20?'সন্ধ্যা':'রাত';const hh=h%12===0?12:h%12;return`${l} ${toBn(hh)}:${String(m).padStart(2,'0').replace(/[0-9]/g,d=>BD[+d])}`;}
 function dStr(d){return`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;}
 
+function JD(y, m, d) {
+    return PEph.jd(y, m, d);
+}
+function _getNakIdx(jd) {
+    const d = new Date((jd - 2440587.5) * 86400000);
+    const c = calcDay(d);
+    return NAKS.findIndex(n => n[0] === c.nak[0]);
+}
+  
 // বাংলা মাস ও ঋতু
 const BNM_NAMES = ['','বৈশাখ','জ্যৈষ্ঠ','আষাঢ়','শ্রাবণ','ভাদ্র','আশ্বিন','কার্তিক','অগ্রহায়ণ','পৌষ','মাঘ','ফাল্গুন','চৈত্র'];
 const RITU = ['','গ্রীষ্ম','গ্রীষ্ম','বর্ষা','বর্ষা','শরৎ','শরৎ','হেমন্ত','হেমন্ত','শীত','শীত','বসন্ত','বসন্ত'];
