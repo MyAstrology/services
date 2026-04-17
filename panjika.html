@@ -2005,31 +2005,33 @@ function showDetail(date) {
     var c = calcDay(date), bn = c.bn;
 
     // ─── গ্রহের পূর্ণাঙ্গ অবস্থান (JPL DE441) ────────────────────────────
-    const nav = PEph.getNavagraha(dStr(date), c.st.rise);
-    const grahaData = [
-        { name: 'সূর্য',   data: nav.surya },
-        { name: 'চন্দ্র',  data: nav.chandra },
-        { name: 'মঙ্গল',  data: nav.mangal },
-        { name: 'বুধ',    data: nav.budha },
-        { name: 'গুরু',   data: nav.brihaspati },
-        { name: 'শুক্র',  data: nav.shukra },
-        { name: 'শনি',    data: nav.shani },
-        { name: 'রাহু',   data: nav.rahu },
-        { name: 'কেতু',   data: nav.ketu }
-    ];
-    const nakNames = ['অশ্বিনী','ভরণী','কৃত্তিকা','রোহিণী','মৃগশিরা','আর্দ্রা','পুনর্বসু','পুষ্যা','আশ্লেষা','মঘা','পূর্বফাল্গুনী','উত্তরফাল্গুনী','হস্তা','চিত্রা','স্বাতী','বিশাখা','অনুরাধা','জ্যেষ্ঠা','মূলা','পূর্বাষাঢ়া','উত্তরাষাঢ়া','শ্রবণা','ধনিষ্ঠা','শতভিষা','পূর্বভাদ্র','উত্তরভাদ্র','রেবতী'];
-    const padaSymbol = ['①','②','③','④'];
-    let grahaHtml = '<div style="font-size:.6rem;font-weight:700;color:var(--gold);text-transform:uppercase;padding:.4rem 0 .2rem;border-top:1px solid rgba(201,162,39,.12);margin-top:.2rem;">🪐 গ্রহের অবস্থান (সিদ্ধান্তীয়)</div>';
-    grahaData.forEach(g => {
-        const d = g.data;
-        const deg = d.deg;
-        const degInt = Math.floor(deg);
-        const degMin = Math.floor((deg - degInt) * 60);
-        const nak = nakNames[d.nak];
-        const pada = padaSymbol[d.nakPad - 1] || '';
-        const rashiName = d.rashiName;
-        grahaHtml += `<div class="di"><div class="dii">${g.name[0]}</div><div class="dil">${g.name}</div><div class="div2" style="font-size:.68rem;">${rashiName} ${toBn(degInt)}°${toBn(degMin)}′ ${nak} ${pada}</div></div>`;
-    });
+const nav = PEph.getNavagraha(dStr(date), c.st.rise);
+const grahaData = [
+    { name: 'সূর্য',   data: nav.surya },
+    { name: 'চন্দ্র',  data: nav.chandra },
+    { name: 'মঙ্গল',  data: nav.mangal },
+    { name: 'বুধ',    data: nav.budha },
+    { name: 'গুরু',   data: nav.brihaspati },
+    { name: 'শুক্র',  data: nav.shukra },
+    { name: 'শনি',    data: nav.shani },
+    { name: 'রাহু',   data: nav.rahu },
+    { name: 'কেতু',   data: nav.ketu }
+];
+const nakNames = ['অশ্বিনী','ভরণী','কৃত্তিকা','রোহিণী','মৃগশিরা','আর্দ্রা','পুনর্বসু','পুষ্যা','আশ্লেষা','মঘা','পূর্বফাল্গুনী','উত্তরফাল্গুনী','হস্তা','চিত্রা','স্বাতী','বিশাখা','অনুরাধা','জ্যেষ্ঠা','মূলা','পূর্বাষাঢ়া','উত্তরাষাঢ়া','শ্রবণা','ধনিষ্ঠা','শতভিষা','পূর্বভাদ্র','উত্তরভাদ্র','রেবতী'];
+const padaSymbol = ['①','②','③','④'];
+let grahaHtml = '<div style="font-size:.65rem;font-weight:700;color:var(--gold);text-transform:uppercase;padding:.4rem 0 .2rem;border-top:1px solid rgba(201,162,39,.12);margin-top:.2rem;">🪐 গ্রহের অবস্থান (সিদ্ধান্তীয়)</div>';
+grahaHtml += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.3rem;">';
+grahaData.forEach(g => {
+    const d = g.data;
+    const deg = d.deg;
+    const degInt = Math.floor(deg);
+    const degMin = Math.floor((deg - degInt) * 60);
+    const nak = nakNames[d.nak];
+    const pada = padaSymbol[d.nakPad - 1] || '';
+    const rashiName = d.rashiName;
+    grahaHtml += `<div class="di" style="padding:.45rem .5rem;"><div style="display:flex;align-items:center;gap:.4rem;margin-bottom:.15rem;"><span style="font-size:1rem;">${g.name[0]}</span><span style="font-weight:700;color:var(--txt);">${g.name}</span></div><div class="div2" style="font-size:.7rem;line-height:1.4;">${rashiName} ${toBn(degInt)}°${toBn(degMin)}′ ${nak} ${pada}</div></div>`;
+});
+grahaHtml += '</div>';
 
     var y = date.getFullYear(), mo = date.getMonth(), d = date.getDate();
     document.getElementById('dtbn').textContent = bn ? toBn(bn.d) + ' ' + bn.name + ' ' + toBn(bn.y) + ' বঙ্গাব্দ' : '';
