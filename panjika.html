@@ -1764,11 +1764,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
    ⚡ দ্রুত খুঁজে পেতে Ctrl+F → "SECTION ④" লিখুন
    ████████████████████████████████████████████████████████████████████ */
 
-// ════════════════════════════════════════════════════════
+
+'use strict';
+
+/* ==========================================================================
+   BRIDGE + UI FUNCTIONS (JPL DE441 ইঞ্জিন সহ)
+   MyAstrology | Dr. Prodyut Acharya
+   ========================================================================== */
+
 // SECTION ① — HAMBURGER NAV
-// কাজ: হ্যামবার্গার মেনু টগল করে
-// পরিবর্তন: সাধারণত দরকার নেই
-// ════════════════════════════════════════════════════════
 function toggleNav(){
   document.getElementById('hbg').classList.toggle('open');
   document.getElementById('sideNav').classList.toggle('open');
@@ -1787,26 +1791,11 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeNav();});
   if(ov)ov.addEventListener('click',closeNav);
 })();
 
-// ════════════════════════════════════════════════════════
-// SECTION ② — CONFIG (সাইটের অবস্থান ও সময় জোন)
-// কাজ: সূর্যোদয়/সূর্যাস্ত ও সমস্ত মুহূর্ত গণনা এর উপর নির্ভর করে
-// ▶ কলকাতা (২২°৩৪′N, ৮৮°২২′E) — JPL Horizons যাচাইকৃত
-//   সূর্যোদয় ত্রুটি: < ১৫ সেকেন্ড (রেফারেন্স: Vishuddhasiddha Panjika)
-// ── অন্য শহরের জন্য ──
-//   রানাঘাট: LAT=23.1676, LNG=88.5808
-//   ঢাকা:    LAT=23.7104, LNG=90.4074 (TZ=6)
-// ════════════════════════════════════════════════════════
+// SECTION ② — CONFIG
 const TODAY=new Date();
-// অবস্থান: কলকাতা (২২°৩৪′N, ৮৮°২২′E) — Vishuddhasiddha Panjika রেফারেন্স অনুযায়ী
-// প্রেসিডেন্সি কলেজ মানমন্দির: ২২°৩৫′N, ৮৮°২২.৬′E (বিশুদ্ধ সিদ্ধান্ত পঞ্জিকার স্থানীয় মান সময় ৫ঘ ৫৩মি ৩০সে)
-// আলিপুর মানমন্দির: LAT=22.5333, LNG=88.3333 (৫ঘ ৫৩মি ২০সে)
-const LAT=22.5833,LNG=88.3767,TZ=5.5;
+const LAT=22.5833, LNG=88.3767, TZ=5.5;
 
-// ════════════════════════════════════════════════════════
-// SECTION ③ — HELPERS (সহায়ক ফাংশন)
-// কাজ: সময় ফরম্যাট, বাংলা সংখ্যা, রাহুকাল slot গণনা
-// পরিবর্তন: সাধারণত দরকার নেই
-// ════════════════════════════════════════════════════════
+// SECTION ③ — HELPERS
 const BD=['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
 const toBn=n=>String(Math.abs(Math.round(n))).replace(/[0-9]/g,d=>BD[+d]);
 const EMS=['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -1814,94 +1803,28 @@ const EMSh=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','D
 const VDAYS=['রবিবার','সোমবার','মঙ্গলবার','বুধবার','বৃহস্পতিবার','শুক্রবার','শনিবার'];
 const VLORD=['সূর্য','চন্দ্র','মঙ্গল','বুধ','বৃহস্পতি','শুক্র','শনি'];
 function fmtT(h,m){m=Math.round(m||0);if(m>=60){h+=Math.floor(m/60);m=m%60;}if(m<0){h--;m+=60;}h=((h%24)+24)%24;const l=h>=4.5&&h<6?'ভোর':h<6?'রাত':h<12?'সকাল':h<14?'দুপুর':h<17?'বিকেল':h<20?'সন্ধ্যা':'রাত';const hh=h%12===0?12:h%12;return`${l} ${toBn(hh)}:${String(m).padStart(2,'0').replace(/[0-9]/g,d=>BD[+d])}`;}
-// slotT: দিবা মানকে ৮ ভাগ করে (যামার্ধ গণনা) — ১ প্রহর = ২ যামার্ধ
-function slotT(rise,set,s){const len=(set-rise)/8,st=rise+len*(s-1),en=st+len;const sh=Math.floor(st),sm=Math.round((st-sh)*60);const eh=Math.floor(en),em=Math.round((en-eh)*60);return`${fmtT(sh,sm)} – ${fmtT(eh,em)}`;}
-function abhiT(rise,set){const n=(rise+set)/2,s=n-24/60,e=n+24/60;return`${fmtT(Math.floor(s),Math.round((s-Math.floor(s))*60))} – ${fmtT(Math.floor(e),Math.round((e-Math.floor(e))*60))}`;}
 function dStr(d){return`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;}
 
-// ════════════════════════════════════════════════════════
-// SECTION ④ — BENGALI MONTH STARTS (বাংলা মাসের শুরুর তারিখ)
-// কাজ: প্রতিটি বাংলা মাস কোন ইংরেজি তারিখে শুরু হয় তা ধরে রাখে
-// পরিবর্তন: নতুন বছর যোগ করতে BMS array-এ entries যোগ করুন
-//   format: {y: বাংলা বছর, m: মাস index (0=বৈশাখ), s: 'YYYY-MM-DD'}
-//   ⚠️ শেষ entry টি পরের বছরের প্রথম দিন হতে হবে
-
-
-// ════════════════════════════════════════════════════════════════════════════
-// SECTION — গতিশীল সংক্রান্তি গণনা (Dynamic Sankranti / Bengali Month Engine)
-// বিশুদ্ধ সিদ্ধান্ত পঞ্জিকা নিয়ম:
-//   সূর্য যেদিন এক রাশি থেকে অন্য রাশিতে প্রবেশ করে = সেদিন ওই মাসের শেষ দিন
-//   পরের দিন = নতুন মাসের ১ তারিখ
-//   রাত ১২টা পার করে উদয়ের আগে সংক্রান্তি হলে = ঐ ইংরেজি তারিখেই মাস শেষ
-// ════════════════════════════════════════════════════════════════════════════
-
-// সূর্যের sidereal longitude (Lahiri ayanamsa বিয়োগ করে)
-function sunSidLong(jd){
-  const ay=lahiriAY(jd);
-  return((sunL(jd)-ay)%360+360)%360;
-}
-
-// সূর্যের রাশি (0=মেষ, 1=বৃষ, ... 11=মীন)
-function sunRashi(jd){return Math.floor(sunSidLong(jd)/30)%12;}
-
-// ঐ বাংলা মাসের রাশি index (0=বৈশাখ/মেষ, ..., 11=চৈত্র/মীন)
-const RASHI_TO_BN_MONTH=[0,1,2,3,4,5,6,7,8,9,10,11]; // মেষ→বৈশাখ, বৃষ→জ্যৈষ্ঠ, ...
-
-// কোনো দিনের বাংলা তারিখ গতিশীলভাবে গণনা করুন
-// Returns: {y, m, d, name, ritu, vikram, saka, isLastDay, sankrantiToday}
-function getBnInfoDynamic(date){
-  const y=date.getFullYear(), m=date.getMonth()+1, d=date.getDate();
-  // সূর্যোদয়ের JD
-  const st=sunTimes(y,m,d);
-  const jdRise=JD(y,m,d)+(st.rise-TZ)/24;
-  const jdSet =JD(y,m,d)+(st.set-TZ)/24;
-  // উদয়কালে সূর্যের রাশি
-  const rashiAtRise=sunRashi(jdRise);
-  // আগের দিনের সূর্যাস্তের পরে সংক্রান্তি হয়েছে কিনা?
-  const prev=new Date(date); prev.setDate(prev.getDate()-1);
-  const stP=sunTimes(prev.getFullYear(),prev.getMonth()+1,prev.getDate());
-  const jdPrevSet=JD(prev.getFullYear(),prev.getMonth()+1,prev.getDate())+(stP.set-TZ)/24;
-  const rashiAtPrevSet=sunRashi(jdPrevSet);
-  // আজকের উদয়ে রাশি পরিবর্তন হয়েছে কিনা (সূর্যাস্তের পরে রাশি বদলেছিল)
-  const sankrantiToday=(rashiAtRise!==rashiAtPrevSet);
-  // বাংলা মাস = উদয়কালের রাশি
-  const bnMonth=RASHI_TO_BN_MONTH[rashiAtRise];
-  // বাংলা বছর: মেষ (বৈশাখ) = বাংলা বছরের শুরু
-  // ইংরেজি বছর x-এর বৈশাখ মাসে বাংলা বছর = x-593 (প্রায়)
-  const bnYear=y-593+(bnMonth<0?0:0);
-  // সঠিক বাংলা বছর: চৈত্র (মাস 11) এপ্রিলের আগে থাকলে পূর্ববর্তী বাংলা বছর
-  let by=y-593;
-  if(bnMonth>=9 && m<=4) by=y-594; // পৌষ-চৈত্র জানুয়ারি-এপ্রিলে
-  if(bnMonth<=2 && m>=10) by=y-592; // বৈশাখ-আষাঢ় অক্টোবরে (অসম্ভব, safety)
-  // আরো সঠিক: BMS টেবিল থেকে cross-reference
-  const bn=getBnInfo(date); // existing function
-  if(bn) return bn; // existing is good for pre-computed years
-  return{y:by,m:bnMonth,d:1,name:BNM_NAMES[bnMonth],ritu:RITU[bnMonth],vikram:by+57,saka:by-78};
-}
-
-// ═══════════════════════════════════════════════════════════════════════════
-// BRIDGE: নতুন panjika-ephemeris.js ইঞ্জিনকে পুরনো UI-এর সাথে যুক্ত করা
-// ═══════════════════════════════════════════════════════════════════════════
-
-// বাংলা মাসের নাম ও ঋতু (SECTION ④ থেকে হারিয়ে গেছে, তাই আবার দেওয়া হলো)
+// বাংলা মাস ও ঋতু
 const BNM_NAMES = ['','বৈশাখ','জ্যৈষ্ঠ','আষাঢ়','শ্রাবণ','ভাদ্র','আশ্বিন','কার্তিক','অগ্রহায়ণ','পৌষ','মাঘ','ফাল্গুন','চৈত্র'];
 const RITU = ['','গ্রীষ্ম','গ্রীষ্ম','বর্ষা','বর্ষা','শরৎ','শরৎ','হেমন্ত','হেমন্ত','শীত','শীত','বসন্ত','বসন্ত'];
 
-// ক্যালেন্ডারের বর্তমান প্রদর্শিত মাস (পুরনো calIdx-এর পরিবর্তে)
+// ক্যালেন্ডার স্টেট
 let currentBengaliYear = 1433;
-let currentBengaliMonth = 1; // 1 = বৈশাখ
+let currentBengaliMonth = 1; // 1=বৈশাখ
+let selDate = null;
 
 // ═══════════════════════════════════════════════════════════════════════════
-// ১. পুরনো getBnMonthDays ফাংশনের জায়গায় নতুন ফাংশন (PEph ব্যবহার করে)
+// BRIDGE: নতুন ইঞ্জিনের সাথে পুরনো UI-এর সংযোগ
+// ═══════════════════════════════════════════════════════════════════════════
+
 function getBnMonthDaysForCurrent() {
     const monthStart = PEph.getBanglaMonthStart(currentBengaliYear, currentBengaliMonth);
     if (!monthStart) return [];
-    
     const nextMonth = currentBengaliMonth === 12 ? 1 : currentBengaliMonth + 1;
     const nextYear = currentBengaliMonth === 12 ? currentBengaliYear + 1 : currentBengaliYear;
     const nextMonthStart = PEph.getBanglaMonthStart(nextYear, nextMonth);
     if (!nextMonthStart) return [];
-    
     const days = [];
     let cur = new Date(monthStart);
     let bnDay = 1;
@@ -1913,165 +1836,64 @@ function getBnMonthDaysForCurrent() {
     return days;
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// ২. getBnInfo ফাংশন (PEph থেকে ডেটা এনে পুরনো ফরম্যাটে দেয়)
 function getBnInfo(date) {
     const ds = date.toISOString().slice(0,10);
     const bn = PEph.getBanglaDate(ds);
     if (!bn) return null;
     return {
-        y: bn.bnYear,
-        m: bn.bnMonth,
-        d: bn.bnDay,
-        name: bn.bnMonthName,
-        ritu: RITU[bn.bnMonth] || '',
-        vikram: bn.bnYear + 57,
-        saka: bn.bnYear - 78
+        y: bn.bnYear, m: bn.bnMonth, d: bn.bnDay,
+        name: bn.bnMonthName, ritu: RITU[bn.bnMonth] || '',
+        vikram: bn.bnYear + 57, saka: bn.bnYear - 78
     };
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// ৩. calcDay ফাংশন (সবচেয়ে গুরুত্বপূর্ণ – পুরো UI এই ফাংশনের উপর নির্ভরশীল)
+// NAKS অ্যারে (পরে দরকার)
+const NAKS=[['অশ্বিনী','কেতু'],['ভরণী','শুক্র'],['কৃত্তিকা','সূর্য'],['রোহিণী','চন্দ্র'],['মৃগশিরা','মঙ্গল'],['আর্দ্রা','রাহু'],['পুনর্বসু','গুরু'],['পুষ্যা','শনি'],['আশ্লেষা','বুধ'],['মঘা','কেতু'],['পূর্বফাল্গুনী','শুক্র'],['উত্তরফাল্গুনী','সূর্য'],['হস্তা','চন্দ্র'],['চিত্রা','মঙ্গল'],['স্বাতী','রাহু'],['বিশাখা','গুরু'],['অনুরাধা','শনি'],['জ্যেষ্ঠা','বুধ'],['মূলা','কেতু'],['পূর্বাষাঢ়া','শুক্র'],['উত্তরাষাঢ়া','সূর্য'],['শ্রবণা','চন্দ্র'],['ধনিষ্ঠা','মঙ্গল'],['শতভিষা','রাহু'],['পূর্বভাদ্র','গুরু'],['উত্তরভাদ্র','শনি'],['রেবতী','বুধ']];
+const YOGAS=[['বিষ্কুম্ভ','✗'],['প্রীতি','✓'],['আয়ুষ্মান','✓'],['সৌভাগ্য','✓'],['শোভন','✓'],['অতিগণ্ড','✗'],['সুকর্মা','✓'],['ধৃতি','✓'],['শূল','✗'],['গণ্ড','✗'],['বৃদ্ধি','✓'],['ধ্রুব','✓'],['ব্যাঘাত','✗'],['হর্ষণ','✓'],['বজ্র','✗'],['সিদ্ধি','✓'],['ব্যতীপাত','✗'],['বরীয়ান','✓'],['পরিঘ','✗'],['শিব','✓'],['সিদ্ধ','✓'],['সাধ্য','✓'],['শুভ','✓'],['শুক্ল','✓'],['ব্রহ্ম','✓'],['ইন্দ্র','✓'],['বৈধৃতি','✗']];
+
 function calcDay(date) {
     const ds = date.toISOString().slice(0,10);
     const bnInfo = getBnInfo(date);
     const bnMonth = bnInfo ? bnInfo.m : 1;
     const pc = PEph.getDailyPanchang(ds, bnMonth);
-    
-    // তিথি সংখ্যা (1-30)
     const tIdx = (pc.paksha === 'শুক্ল' ? pc.tithi - 1 : pc.tithi + 14);
     const tithiNum = tIdx + 1;
-    
-    // নক্ষত্রের অধিপতি (NAKS অ্যারে থেকে নেওয়া)
     const nakLord = (NAKS[pc.nakshatra] && NAKS[pc.nakshatra][1]) || '';
-    
     return {
-        w: pc.weekdayNum,
-        bn: bnInfo,
-        tN: tithiNum,
-        tName: pc.tithiName,
-        paksha: pc.paksha,
-        pakDay: pc.tithi,
-        nak: [pc.nakshatraName, nakLord],
-        yoga: [pc.yogaName, pc.yoga < 6 ? '✓' : '✗'], // মোটামুটি শুভ/অশুভ নির্ধারণ
-        karan: pc.karanaName,
-        vara: pc.weekday,
-        varaL: VLORD[pc.weekdayNum],
+        w: pc.weekdayNum, bn: bnInfo, tN: tithiNum, tName: pc.tithiName,
+        paksha: pc.paksha, pakDay: pc.tithi, nak: [pc.nakshatraName, nakLord],
+        yoga: [pc.yogaName, pc.yoga < 6 ? '✓' : '✗'], karan: pc.karanaName,
+        vara: pc.weekday, varaL: VLORD[pc.weekdayNum],
         st: { rise: pc.rise, set: pc.set_ },
         rahu: `${pc.rahukal.startStr} – ${pc.rahukal.endStr}`,
         gulika: `${pc.gulikakal.startStr} – ${pc.gulikakal.endStr}`,
         yam: (pc.kalaRatri && pc.kalaRatri.length) ? `${pc.kalaRatri[0].startStr} – ${pc.kalaRatri[0].endStr}` : '',
         abhi: `${pc.abhijit.startStr} – ${pc.abhijit.endStr}`,
-        eclipses: getEclipse(ds),
-        fests: getFests(ds),
-        // ট্রানজিশন তালিকা (আপাতত শুধু চলতি অবস্থা দেখানো হবে, পরিবর্তনের সময় পরে যোগ করা যাবে)
-        tithiList: [{ val: { pakShort: pc.paksha === 'শুক্ল' ? 'শু' : 'কৃ', name: pc.tithiName, paksha: pc.paksha }, endTime: null }],
+        eclipses: (typeof getEclipse==='function'?getEclipse(ds):[]),
+        fests: (typeof getFests==='function'?getFests(ds):[]),
+        tithiList: [{ val: { pakShort: pc.paksha==='শুক্ল'?'শু':'কৃ', name: pc.tithiName, paksha: pc.paksha }, endTime: null }],
         nakList: [{ val: { name: pc.nakshatraName, lord: nakLord }, endTime: null }],
         yogaList: [{ val: { name: pc.yogaName, sym: pc.yoga < 6 ? '✓' : '✗' }, endTime: null }],
         karanList: [{ val: { name: pc.karanaName }, endTime: null }]
     };
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// ৪. অন্যান্য ইউটিলিটি ফাংশন যা পুরনো কোডে কল করা হয়
-function JD(y, m, d) {
-    return PEph.jd(y, m, d) + 0.5; // PEph.jd returns JD at 0h UT; adjust if needed
-}
-
-function sunTimes(y, m, d) {
-    const ds = `${y}-${String(m).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-    return { rise: PEph.getSunrise(ds), set: PEph.getSunset(ds) };
-}
-
-function lahiriAY(jd) {
-    return PEph.ayanamsa(jd);
-}
-
-// গ্রহের দ্রাঘিমা (পুরনো ফাংশনের স্টাব – শুধু তখনই কাজ করবে যখন jd থেকে তারিখ বের করা সম্ভব)
-function sunL(jd) {
-    const date = new Date((jd - 2440587.5) * 86400000);
-    const ds = date.toISOString().slice(0,10);
-    return PEph.getSunLon(ds);
-}
-function moonL(jd) {
-    const date = new Date((jd - 2440587.5) * 86400000);
-    const ds = date.toISOString().slice(0,10);
-    const istH = (jd - Math.floor(jd)) * 24 + 5.5;
-    return PEph.getMoonLon(ds, istH);
-}
-function rahuL(jd) {
-    const date = new Date((jd - 2440587.5) * 86400000);
-    const ds = date.toISOString().slice(0,10);
-    return PEph.getRahuLon(ds);
-}
-function getMarsLong(jd) {
-    const date = new Date((jd - 2440587.5) * 86400000);
-    const ds = date.toISOString().slice(0,10);
-    return PEph.getMarLon(ds);
-}
-function jupiterSid(jd, ay) {
-    const date = new Date((jd - 2440587.5) * 86400000);
-    const ds = date.toISOString().slice(0,10);
-    return PEph.getJupLon(ds);
-}
-function saturnSid(jd, ay) {
-    const date = new Date((jd - 2440587.5) * 86400000);
-    const ds = date.toISOString().slice(0,10);
-    return PEph.getSatLon(ds);
-}
-function calcLagnaAt(jd, lat, lng) {
-    const date = new Date((jd - 2440587.5) * 86400000);
-    const ds = date.toISOString().slice(0,10);
-    const istH = (jd - Math.floor(jd)) * 24 + 5.5;
-    const lagna = PEph.getLagna(ds, istH);
-    return { ri: lagna.rashi, descRi: (lagna.rashi + 6) % 12, sid: lagna.sid };
-}
-function _getTithiIdx(jd) {
-    const date = new Date((jd - 2440587.5) * 86400000);
-    const ds = date.toISOString().slice(0,10);
-    const istH = (jd - Math.floor(jd)) * 24 + 5.5;
-    const pc = PEph.getDailyPanchang(ds, 1); // month param不重要
-    return (pc.paksha === 'শুক্ল' ? pc.tithi - 1 : pc.tithi + 14);
-}
-function _getNakIdx(jd) {
-    const date = new Date((jd - 2440587.5) * 86400000);
-    const ds = date.toISOString().slice(0,10);
-    const istH = (jd - Math.floor(jd)) * 24 + 5.5;
-    const pc = PEph.getDailyPanchang(ds, 1);
-    return pc.nakshatra;
-}
-
-// ═══════════════════════════════════════════════════════════════════════════
-// ৫. ক্যালেন্ডার রেন্ডারিং (নতুন ডেটা সোর্স ব্যবহার করে)
 function findTodayIdx() {
-    const today = new Date();
-    const bn = getBnInfo(today);
-    if (bn) {
-        currentBengaliYear = bn.y;
-        currentBengaliMonth = bn.m;
-    }
-    return 0; // আর calIdx ব্যবহার হচ্ছে না
+    const bn = getBnInfo(TODAY);
+    if (bn) { currentBengaliYear = bn.y; currentBengaliMonth = bn.m; }
+    return 0;
 }
-
-let selDate = null;
 
 function renderCal() {
     const days = getBnMonthDaysForCurrent();
     if (!days.length) return;
-    
-    const f = days[0].date;
-    const l = days[days.length-1].date;
-    const enRange = f.getMonth() === l.getMonth() 
-        ? `${EMS[f.getMonth()]} ${f.getFullYear()}` 
-        : `${EMSh[f.getMonth()]}–${EMSh[l.getMonth()]} ${l.getFullYear()}`;
-    
+    const f = days[0].date, l = days[days.length-1].date;
+    const enRange = f.getMonth() === l.getMonth() ? `${EMS[f.getMonth()]} ${f.getFullYear()}` : `${EMSh[f.getMonth()]}–${EMSh[l.getMonth()]} ${l.getFullYear()}`;
     document.getElementById('cmbn').textContent = `${BNM_NAMES[currentBengaliMonth]} ${toBn(currentBengaliYear)} বঙ্গাব্দ`;
     document.getElementById('cmen').textContent = enRange;
-    
     const first = days[0].date.getDay();
     let h = '';
     for (let i = 0; i < first; i++) h += '<div class="cd ce"></div>';
-    
     days.forEach(({ date, bnDay }) => {
         const wd = date.getDay();
         const isT = date.toDateString() === TODAY.toDateString();
@@ -2080,9 +1902,7 @@ function renderCal() {
         const ds_ = dStr(date);
         const fests = c.fests;
         const enLbl = `${date.getDate()} ${EMSh[date.getMonth()]}`;
-        const tsh = c.tithiList.length > 1 
-            ? `${c.tithiList[0].val.pakShort} ${c.tithiList[0].val.name}/${c.tithiList[1].val.pakShort} ${c.tithiList[1].val.name}`
-            : `${c.tithiList[0].val.pakShort} ${c.tithiList[0].val.name}`;
+        const tsh = c.tithiList.length > 1 ? `${c.tithiList[0].val.pakShort} ${c.tithiList[0].val.name}/${c.tithiList[1].val.pakShort} ${c.tithiList[1].val.name}` : `${c.tithiList[0].val.pakShort} ${c.tithiList[0].val.name}`;
         let cls = 'cd';
         if (wd === 0) cls += ' ds';
         if (wd === 6) cls += ' dsa';
@@ -2091,250 +1911,226 @@ function renderCal() {
         h += `<div class="${cls}" onclick="showDetail(new Date('${ds_}'))">${isT?'<div class="tdot"></div>':''}<div class="db">${toBn(bnDay)}</div><div class="de">${enLbl}</div><div class="dti">${tsh}</div>${(c.eclipses&&c.eclipses.length)?`<div class="df" style="color:#7b2fbe;">${c.eclipses[0].icon} ${c.eclipses[0].type}</div>`:fests.length?`<div class="df">${fests[0].i} ${fests[0].n}</div>`:''}</div>`;
     });
     document.getElementById('cbody').innerHTML = h;
+    if (typeof renderMonthEvents === 'function') renderMonthEvents();
+    if (typeof renderAuspiciousCounter === 'function') renderAuspiciousCounter();
 }
 
 function shiftM(delta) {
     currentBengaliMonth += delta;
-    if (currentBengaliMonth > 12) {
-        currentBengaliMonth = 1;
-        currentBengaliYear++;
-    } else if (currentBengaliMonth < 1) {
-        currentBengaliMonth = 12;
-        currentBengaliYear--;
-    }
+    if (currentBengaliMonth > 12) { currentBengaliMonth = 1; currentBengaliYear++; }
+    else if (currentBengaliMonth < 1) { currentBengaliMonth = 12; currentBengaliYear--; }
     renderCal();
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// ৬. মাসের ইভেন্ট রেন্ডার (আগের renderMonthEvents ওভাররাইট)
-function renderMonthEvents() {
-    const days = getBnMonthDaysForCurrent();
-    if (!days.length) return;
-    document.getElementById('monthEventsTitle').textContent = `📅 ${BNM_NAMES[currentBengaliMonth]} ${toBn(currentBengaliYear)} বঙ্গাব্দের গুরুত্বপূর্ণ দিন`;
-    // বাকি লজিক আগের মতোই চলবে, কারণ getPanjikaEvents, getFests ইত্যাদি আগে থেকেই আছে
-    // তবে এখানে পুরনো BMS ব্যবহার করা বন্ধ করতে হবে। নিচে সংক্ষেপে পুরনো লজিকই ব্যবহার করা হলো:
-    const rows = [];
-    days.forEach(item => {
-        const dt = item.date;
-        const ds = dStr(dt);
-        const mmdd = ds.slice(5);
-        const evts = getPanjikaEvents(ds, mmdd);
-        const allEvts = [];
-        evts.festivals.forEach(f => allEvts.push({icon:f.icon, name:f.name, type:'উৎসব'}));
-        evts.births.forEach(b => allEvts.push({icon:b.icon, name:b.name, type:'জন্মদিন'}));
-        evts.deaths.forEach(d => allEvts.push({icon:d.icon, name:d.name, type:'তিরোধান'}));
-        evts.modern.forEach(m => allEvts.push({icon:m.icon, name:m.name, type:'দিবস'}));
-        if(evts.malmas) allEvts.push({icon:'📿', name:evts.malmas.monthName, type:'মলমাস'});
-        const fests = getFests(ds);
-        fests.forEach(f => { if (!evts.festivals.find(x => x.date===ds)) allEvts.push({icon:f.i, name:f.n, type:'উৎসব'}); });
-        allEvts.forEach(ev => rows.push({date:dt, bnDay:item.bnDay, event:ev, ds:ds}));
-    });
-    if (!rows.length) {
-        document.getElementById('monthEventsList').innerHTML = '<div class="sd-empty">এই মাসে কোনো বিশেষ দিন নেই।</div>';
-        return;
-    }
-    let html = '';
-    rows.forEach(r => {
-        const dayName = VDAYS[r.date.getDay()];
-        html += `<div class="me-row" onclick="showDetail(new Date('${r.ds}'))">`;
-        html += `<span class="me-date">${toBn(r.date.getDate())}</span>`;
-        html += `<span class="me-icon">${r.event.icon}</span>`;
-        html += `<span class="me-name">${r.event.name}</span>`;
-        html += `<span class="me-tag">${dayName} · ${r.event.type}</span>`;
-        html += `</div>`;
-    });
-    document.getElementById('monthEventsList').innerHTML = html;
+function renderHeader() {
+    const c = calcDay(TODAY), bn = c.bn;
+    if (!bn) return;
+    document.getElementById('tb-bn').textContent = `${toBn(bn.d)} ${bn.name} ${toBn(bn.y)} বঙ্গাব্দ`;
+    document.getElementById('tb-en').textContent = `${TODAY.getDate()} ${EMS[TODAY.getMonth()]} ${TODAY.getFullYear()} | ${c.vara} | ${bn.ritu} ঋতু`;
+    const rh = Math.floor(c.st.rise), rm = Math.round((c.st.rise - rh) * 60);
+    document.getElementById('tb-chips').innerHTML = [c.paksha, c.tName, c.nak[0], `${toBn(rh)}:${String(rm).padStart(2,'0')} উদয়`].map(x => `<div class="chip">${x}</div>`).join('');
 }
-// ════════════════════════════════════════════════════════════════════
-// বারবেলা/কালরাত্রির জন্য সূর্যোদয়/অস্ত — সূর্যের ডিস্ক সম্পূর্ণ উদয়/অস্ত সময়
-// h0=+0.267° — বিশুদ্ধ সিদ্ধান্ত পঞ্জিকার পদ্ধতি (JPL রেফারেন্স ১-২ মিনিট নির্ভুলতা)
-function sunTimesForBela(y,m,d){const jd0=JD(y,m,d);
-const n=jd0-2451545+0.5-LNG/360;const L=((280.46646+0.9856474*n)%360+360)%360,g=((357.52911+0.9856003*n)%360+360)*Math.PI/180;const lam=L+1.914602*Math.sin(g)+0.019993*Math.sin(2*g);const eps=23.439*Math.PI/180,lamR=lam*Math.PI/180,sinDec=Math.sin(eps)*Math.sin(lamR),dec=Math.asin(sinDec);const e2=0.016708634,y2=Math.tan(eps/2)**2,lR=L*Math.PI/180;const EoT=4*(y2*Math.sin(2*lR)-2*e2*Math.sin(g)+4*e2*y2*Math.sin(g)*Math.cos(2*lR)-0.5*y2*y2*Math.sin(4*lR)-1.25*e2*e2*Math.sin(2*g))*180/Math.PI;const latR=LAT*Math.PI/180,cosH=(-Math.sin(latR)*sinDec)/(Math.cos(latR)*Math.cos(dec));if(Math.abs(cosH)>1)return{rise:6,set:18};const H=Math.acos(Math.min(1,Math.max(-1,cosH)))*180/Math.PI;const noon=(720-4*LNG-EoT)/60+TZ;return{rise:noon-H/15,set:noon+H/15};}
 
-// ════════════════════════════════════════════════════════
-// SECTION ⑤ — PANJIKA NAMES (পঞ্চাঙ্গের বাংলা নামের তালিকা)
-// কাজ: তিথি, নক্ষত্র, যোগ, করণের নাম ধরে রাখে
-//   • TNAMES[30]  — ৩০টি তিথির নাম (শুক্ল প্রতিপদ → কৃষ্ণ অমাবস্যা)
-//   • NAKS[27]    — ২৭টি নক্ষত্রের নাম ও অধিপতি গ্রহ
-//   • YOGAS[27]   — ২৭টি যোগের নাম ও শুভ/অশুভ চিহ্ন
-//   • KARANS[11]  — করণের নাম (৭টি চর + ৪টি স্থির)
-// পরিবর্তন: নামের বানান ঠিক করতে এখানে আসুন
-// ════════════════════════════════════════════════════════
-const TNAMES=['প্রতিপদ','দ্বিতীয়া','তৃতীয়া','চতুর্থী','পঞ্চমী','ষষ্ঠী','সপ্তমী','অষ্টমী','নবমী','দশমী','একাদশী','দ্বাদশী','ত্রয়োদশী','চতুর্দশী','পূর্ণিমা','প্রতিপদ','দ্বিতীয়া','তৃতীয়া','চতুর্থী','পঞ্চমী','ষষ্ঠী','সপ্তমী','অষ্টমী','নবমী','দশমী','একাদশী','দ্বাদশী','ত্রয়োদশী','চতুর্দশী','অমাবস্যা'];
-const NAKS=[['অশ্বিনী','কেতু'],['ভরণী','শুক্র'],['কৃত্তিকা','সূর্য'],['রোহিণী','চন্দ্র'],['মৃগশিরা','মঙ্গল'],['আর্দ্রা','রাহু'],['পুনর্বসু','গুরু'],['পুষ্যা','শনি'],['আশ্লেষা','বুধ'],['মঘা','কেতু'],['পূর্বফাল্গুনী','শুক্র'],['উত্তরফাল্গুনী','সূর্য'],['হস্তা','চন্দ্র'],['চিত্রা','মঙ্গল'],['স্বাতী','রাহু'],['বিশাখা','গুরু'],['অনুরাধা','শনি'],['জ্যেষ্ঠা','বুধ'],['মূলা','কেতু'],['পূর্বাষাঢ়া','শুক্র'],['উত্তরাষাঢ়া','সূর্য'],['শ্রবণা','চন্দ্র'],['ধনিষ্ঠা','মঙ্গল'],['শতভিষা','রাহু'],['পূর্বভাদ্র','গুরু'],['উত্তরভাদ্র','শনি'],['রেবতী','বুধ']];
-const YOGAS=[['বিষ্কুম্ভ','✗'],['প্রীতি','✓'],['আয়ুষ্মান','✓'],['সৌভাগ্য','✓'],['শোভন','✓'],['অতিগণ্ড','✗'],['সুকর্মা','✓'],['ধৃতি','✓'],['শূল','✗'],['গণ্ড','✗'],['বৃদ্ধি','✓'],['ধ্রুব','✓'],['ব্যাঘাত','✗'],['হর্ষণ','✓'],['বজ্র','✗'],['সিদ্ধি','✓'],['ব্যতীপাত','✗'],['বরীয়ান','✓'],['পরিঘ','✗'],['শিব','✓'],['সিদ্ধ','✓'],['সাধ্য','✓'],['শুভ','✓'],['শুক্ল','✓'],['ব্রহ্ম','✓'],['ইন্দ্র','✓'],['বৈধৃতি','✗']];
-const KARANS=['বব','বালব','কৌলব','তৈতিল','গর','বণিজ','বিষ্টি','শকুনি','চতুষ্পাদ','নাগ','কিংস্তুঘ্ন'];
-// ── রাহুকাল / গুলিকাকাল / যমঘণ্ট (দিনের ৮ প্রহরের কোনটি) ──
-// RS: রাহুকাল  — [রবি=4, সোম=2, মঙ্গল=7, বুধ=5, বৃহস্পতি=6, শুক্র=3, শনি=1]
-// GS: গুলিকাকাল — [রবি=5, সোম=4, মঙ্গল=3, বুধ=2, বৃহস্পতি=1, শুক্র=7, শনি=6]
-// YS: যমঘণ্ট   — [রবি=4, সোম=3, মঙ্গল=2, বুধ=1, বৃহস্পতি=7, শুক্র=6, শনি=5]
-// বারবেলা/কালরাত্রি showDetail()-এ গণনা হয় — বিশুদ্ধ সিদ্ধান্ত পদ্ধতি (KalaBela removed)
-const RS=[4,2,7,5,6,3,1],GS=[5,4,3,2,1,7,6],YS=[4,3,2,1,7,6,5];
-// ════════════════════════════════════════════════════════
-// SECTION ⑥ — FESTIVAL LIST (উৎসব ও ব্রতের তালিকা)
-// কাজ: ক্যালেন্ডার ও detail panel-এ উৎসব দেখায়
-// পরিবর্তন: প্রতি বছর নতুন উৎসব যোগ করুন
-//   format: {d:'YYYY-MM-DD', n:'উৎসবের নাম', i:'🎉'}
-// ════════════════════════════════════════════════════════
-const FESTS=[
-  {d:'2025-04-14',n:'পয়লা বৈশাখ – বাংলা নববর্ষ ১৪৩২',i:'🎉'},{d:'2025-04-30',n:'অক্ষয় তৃতীয়া',i:'🌟'},
-  {d:'2025-05-12',n:'বুদ্ধ পূর্ণিমা',i:'☸️'},{d:'2025-06-27',n:'রথযাত্রা',i:'🎡'},
-  {d:'2025-08-09',n:'জন্মাষ্টমী',i:'🦚'},{d:'2025-08-27',n:'গণেশ চতুর্থী',i:'🐘'},
-  {d:'2025-09-29',n:'মহালয়া',i:'🌙'},{d:'2025-10-02',n:'মহাষষ্ঠী',i:'🪔'},
-  {d:'2025-10-03',n:'মহাসপ্তমী',i:'🪔'},{d:'2025-10-04',n:'মহাঅষ্টমী',i:'🪔'},
-  {d:'2025-10-05',n:'মহানবমী',i:'🪔'},{d:'2025-10-06',n:'বিজয়াদশমী',i:'🎊'},
-  {d:'2025-10-20',n:'কোজাগরী লক্ষ্মীপূজা',i:'🌕'},{d:'2025-10-29',n:'কালীপূজা / দীপাবলি',i:'🪔'},
-  {d:'2025-11-05',n:'ভাইফোঁটা',i:'💛'},{d:'2025-12-25',n:'বড়দিন',i:'🎄'},
-  {d:'2026-01-01',n:'ইংরেজি নববর্ষ',i:'🎆'},{d:'2026-01-15',n:'পৌষ সংক্রান্তি / মকরসংক্রান্তি',i:'🌾'},
-  {d:'2026-01-26',n:'প্রজাতন্ত্র দিবস',i:'🇮🇳'},{d:'2026-02-18',n:'মহাশিবরাত্রি',i:'🔱'},
-  {d:'2026-03-04',n:'দোল পূর্ণিমা / হোলি',i:'🎨'},{d:'2026-03-22',n:'চৈত্র নবরাত্রি',i:'🌸'},
-  {d:'2026-03-29',n:'রামনবমী',i:'🏹'},{d:'2026-04-14',n:'মহাবিষুব সংক্রান্তি',i:'🕉️'},
-  {d:'2026-04-15',n:'পয়লা বৈশাখ – বাংলা নববর্ষ ১৪৩৩',i:'🎉'},{d:'2026-05-01',n:'মে দিবস',i:'✊'},
-  {d:'2026-05-31',n:'বুদ্ধ পূর্ণিমা',i:'☸️'},{d:'2026-07-17',n:'রথযাত্রা',i:'🎡'},
-  {d:'2026-08-15',n:'স্বাধীনতা দিবস',i:'🇮🇳'},{d:'2026-08-28',n:'জন্মাষ্টমী',i:'🦚'},
-  {d:'2026-09-17',n:'গণেশ চতুর্থী',i:'🐘'},{d:'2026-10-17',n:'মহালয়া',i:'🌙'},
-  {d:'2026-10-20',n:'মহাষষ্ঠী',i:'🪔'},{d:'2026-10-21',n:'মহাসপ্তমী',i:'🪔'},
-  {d:'2026-10-22',n:'মহাঅষ্টমী',i:'🪔'},{d:'2026-10-23',n:'মহানবমী',i:'🪔'},
-  {d:'2026-10-24',n:'বিজয়াদশমী',i:'🎊'},{d:'2026-11-08',n:'কালীপূজা',i:'🪔'},
-  {d:'2026-12-25',n:'বড়দিন',i:'🎄'},
-];
-// ════════════════════════════════════════════════════════
-// SECTION ⑦ — ECLIPSE DATA (গ্রহণের সময়সূচি ২০২৬–২০২৮)
-// কাজ: গ্রহণের দিনে ক্যালেন্ডারে বেগুনি রঙে দেখায়
-//       detail panel-এ সম্পূর্ণ সময়তালিকা দেখায়
-// পরিবর্তন: নতুন বছরের গ্রহণ যোগ করতে ECLIPSE_DATA array-এ entry যোগ করুন
-//   format: { d:'YYYY-MM-DD', type:'চন্দ্রগ্রহণ', sub:'পূর্ণগ্রাস',
-//             icon:'🌑', visible:'...', grasamana:'১.১০৬',
-//             times:[{l:'গ্রহণ স্পর্শ', t:'দিবা ঘ ৩|২০'}, ...] }
-//   তথ্যসূত্র: বিশুদ্ধ সিদ্ধান্ত পঞ্জিকা / NASA eclipse.gsfc.nasa.gov
-// ════════════════════════════════════════════════════════
-const ECLIPSE_DATA = [
-  // ── ২০২৬ ──
-  {
-    d:'2026-03-03', type:'চন্দ্রগ্রহণ', sub:'পূর্ণগ্রাস',
-    icon:'🌑', visible:'ভারতে সন্ধ্যার পর দৃশ্যমান',
-    grasamana:'১.১০৬',
-    times:[
-      {l:'উপচ্ছায়া প্রবেশ', t:'দিবা ঘ ২|১৩'},
-      {l:'গ্রহণ স্পর্শ',     t:'দিবা ঘ ৩|২০'},
-      {l:'নিমীলন',           t:'সন্ধ্যা ঘ ৪|৩৪'},
-      {l:'গ্রহণ মধ্য',       t:'সন্ধ্যা ঘ ৫|১৫'},
-      {l:'উন্মীলন',          t:'সন্ধ্যা ঘ ৫|৩৩'},
-      {l:'গ্রহণমোক্ষ',       t:'রাত্রি ঘ ৬|৪৮'},
-      {l:'উপচ্ছায়া ত্যাগ',  t:'রাত্রি ঘ ৭|৫৫'},
-    ]
-  },
-  {
-    d:'2026-08-12', type:'সূর্যগ্রহণ', sub:'পূর্ণগ্রাস',
-    icon:'🌞', visible:'ভারতে আংশিক দৃশ্যমান (উত্তর-পশ্চিম)',
-    grasamana:'—',
-    times:[
-      {l:'গ্রহণ স্পর্শ',  t:'দিবা ঘ ১১|৫০'},
-      {l:'গ্রহণ মধ্য',    t:'দিবা ঘ ১৩|২৮'},
-      {l:'গ্রহণমোক্ষ',    t:'দিবা ঘ ১৫|০৭'},
-    ]
-  },
-  {
-    d:'2026-09-28', type:'চন্দ্রগ্রহণ', sub:'আংশিক',
-    icon:'🌕', visible:'ভারতে রাত্রে সম্পূর্ণ দৃশ্যমান',
-    grasamana:'০.০৩',
-    times:[
-      {l:'উপচ্ছায়া প্রবেশ', t:'রাত্রি ঘ ১২|৩২'},
-      {l:'গ্রহণ স্পর্শ',     t:'রাত্রি ঘ ১|৩৪'},
-      {l:'গ্রহণ মধ্য',       t:'রাত্রি ঘ ২|১৪'},
-      {l:'গ্রহণমোক্ষ',       t:'রাত্রি ঘ ২|৫৪'},
-      {l:'উপচ্ছায়া ত্যাগ',  t:'রাত্রি ঘ ৩|৫৬'},
-    ]
-  },
-  // ── ২০২৭ ──
-  {
-    d:'2027-02-20', type:'চন্দ্রগ্রহণ', sub:'পূর্ণগ্রাস',
-    icon:'🌑', visible:'ভারতে সম্পূর্ণ দৃশ্যমান',
-    grasamana:'১.৫১১',
-    times:[
-      {l:'উপচ্ছায়া প্রবেশ', t:'রাত্রি ঘ ১০|৩১'},
-      {l:'গ্রহণ স্পর্শ',     t:'রাত্রি ঘ ১১|৪৪'},
-      {l:'নিমীলন',           t:'রাত্রি ঘ ১২|৫৬'},
-      {l:'গ্রহণ মধ্য',       t:'রাত্রি ঘ ১|৪৭'},
-      {l:'উন্মীলন',          t:'রাত্রি ঘ ২|৩৮'},
-      {l:'গ্রহণমোক্ষ',       t:'রাত্রি ঘ ৩|৫১'},
-      {l:'উপচ্ছায়া ত্যাগ',  t:'রাত্রি ঘ ৫|০৩'},
-    ]
-  },
-  {
-    d:'2027-08-02', type:'সূর্যগ্রহণ', sub:'পূর্ণগ্রাস',
-    icon:'🌞', visible:'ভারতে সংকীর্ণ পথে দৃশ্যমান (মধ্যভারত)',
-    grasamana:'—',
-    times:[
-      {l:'গ্রহণ স্পর্শ',  t:'দিবা ঘ ৯|০৭'},
-      {l:'পূর্ণগ্রাস শুরু', t:'দিবা ঘ ১০|০৭'},
-      {l:'গ্রহণ মধ্য',    t:'দিবা ঘ ১০|৩৮'},
-      {l:'পূর্ণগ্রাস শেষ', t:'দিবা ঘ ১১|০৯'},
-      {l:'গ্রহণমোক্ষ',    t:'দিবা ঘ ১২|১৪'},
-    ]
-  },
-  {
-    d:'2027-08-17', type:'চন্দ্রগ্রহণ', sub:'আংশিক',
-    icon:'🌕', visible:'ভারতে ভোরের দিকে দৃশ্যমান',
-    grasamana:'০.১৪',
-    times:[
-      {l:'উপচ্ছায়া প্রবেশ', t:'রাত্রি ঘ ৩|০২'},
-      {l:'গ্রহণ স্পর্শ',     t:'রাত্রি ঘ ৪|৪১'},
-      {l:'গ্রহণ মধ্য',       t:'ভোর ঘ ৫|৩১'},
-      {l:'গ্রহণমোক্ষ',       t:'ভোর ঘ ৬|২০'},
-      {l:'উপচ্ছায়া ত্যাগ',  t:'ভোর ঘ ৭|৫৯'},
-    ]
-  },
-  // ── ২০২৮ ──
-  {
-    d:'2028-01-12', type:'চন্দ্রগ্রহণ', sub:'আংশিক',
-    icon:'🌕', visible:'ভারতে রাত্রে দৃশ্যমান',
-    grasamana:'০.০৭',
-    times:[
-      {l:'উপচ্ছায়া প্রবেশ', t:'রাত্রি ঘ ৮|২৮'},
-      {l:'গ্রহণ স্পর্শ',     t:'রাত্রি ঘ ৯|৫১'},
-      {l:'গ্রহণ মধ্য',       t:'রাত্রি ঘ ১০|১৫'},
-      {l:'গ্রহণমোক্ষ',       t:'রাত্রি ঘ ১০|৩৯'},
-      {l:'উপচ্ছায়া ত্যাগ',  t:'রাত্রি ঘ ১২|০২'},
-    ]
-  },
-  {
-    d:'2028-07-06', type:'সূর্যগ্রহণ', sub:'পূর্ণগ্রাস',
-    icon:'🌞', visible:'ভারতে দৃশ্যমান নয় (অস্ট্রেলিয়া পথ)',
-    grasamana:'—',
-    times:[
-      {l:'গ্রহণ স্পর্শ', t:'দিবা ঘ ১৩|১১'},
-      {l:'গ্রহণ মধ্য',   t:'দিবা ঘ ১৫|০১'},
-      {l:'গ্রহণমোক্ষ',   t:'দিবা ঘ ১৬|৫০'},
-    ]
-  },
-  {
-    d:'2028-12-31', type:'চন্দ্রগ্রহণ', sub:'পূর্ণগ্রাস',
-    icon:'🌑', visible:'ভারতে সন্ধ্যার পর দৃশ্যমান',
-    grasamana:'১.২৪৬',
-    times:[      {l:'উপচ্ছায়া প্রবেশ', t:'সন্ধ্যা ঘ ৫|৩৩'},
-      {l:'গ্রহণ স্পর্শ',     t:'সন্ধ্যা ঘ ৬|৫২'},
-      {l:'নিমীলন',           t:'রাত্রি ঘ ৮|০৪'},
-      {l:'গ্রহণ মধ্য',       t:'রাত্রি ঘ ৮|৫২'},
-      {l:'উন্মীলন',          t:'রাত্রি ঘ ৯|৩৯'},
-      {l:'গ্রহণমোক্ষ',       t:'রাত্রি ঘ ১০|৫২'},
-      {l:'উপচ্ছায়া ত্যাগ',  t:'রাত্রি ঘ ১২|১০'},
-    ]
-  },
-];
-function getEclipse(ds){return ECLIPSE_DATA.filter(e=>e.d===ds);}
-const getFests=ds=>FESTS.filter(f=>f.d===ds);
+// ═══════════════════════════════════════════════════════════════════════════
+// UI FUNCTIONS (ডিটেইল প্যানেল, ট্যাব, ইভেন্ট রেন্ডারিং)
+// ═══════════════════════════════════════════════════════════════════════════
 
+function moonEmoji(t) {
+    if (t === 15) return '🌕';
+    if (t === 30 || t === 1) return '🌑';
+    if (t < 8) return '🌒';
+    if (t === 8) return '🌓';
+    if (t < 15) return '🌔';
+    if (t < 23) return '🌖';
+    if (t === 23) return '🌗';
+    return '🌘';
+}
 
+function _brahmaT(rise) {
+    var b1 = rise - 96 / 60, b2 = rise - 48 / 60;
+    var h1 = Math.floor(b1), m1 = Math.round((b1 - h1) * 60);
+    var h2 = Math.floor(b2), m2 = Math.round((b2 - h2) * 60);
+    return fmtT(h1, m1) + ' – ' + fmtT(h2, m2);
+}
 
+function _panItem(ico, label, list, mainFn, subFn) {
+    var rows = '';
+    for (var i = 0; i < list.length; i++) {
+        var x = list[i];
+        var nm = mainFn(x.val);
+        var sb = subFn ? subFn(x.val) : '';
+        var arrow = i > 0 ? '<div style="font-size:.42rem;color:var(--txt2);text-align:center;line-height:1;">&#9660;</div>' : '';
+        var timing = x.endTime ? '<div class="dis" style="font-size:.58rem;">' + x.endTime + ' পর্যন্ত</div>' : '<div class="dis" style="font-size:.55rem;color:var(--green);">&#9654; চলতি</div>';
+        rows += arrow + '<div class="div2">' + nm + '</div>' + (sb ? '<div class="dis">' + sb + '</div>' : '') + timing;
+    }
+    return '<div class="di"><div class="dii">' + ico + '</div><div class="dil">' + label + '</div>' + rows + '</div>';
+}
 
+function _festHtml(c) {
+    var html = '';
+    if (c.eclipses && c.eclipses.length) {
+        for (var ei = 0; ei < c.eclipses.length; ei++) {
+            var ec = c.eclipses[ei];
+            var trows = '';
+            for (var ti = 0; ti < ec.times.length; ti++) {
+                trows += '<div class="eclipse-row"><span class="eclipse-lbl">' + ec.times[ti].l + '</span><span class="eclipse-val">' + ec.times[ti].t + '</span></div>';
+            }
+            html += '<div class="eclipse-box"><div class="eclipse-head"><span style="font-size:1.4rem;">' + ec.icon + '</span><span class="eclipse-type">' + ec.type + '</span><span class="eclipse-sub">' + ec.sub + '</span></div><div class="eclipse-visible">&#128205; ' + ec.visible + '</div>' + (ec.grasamana !== '—' ? '<div class="eclipse-mag">গ্রাসমান: ' + ec.grasamana + '</div>' : '') + trows + '</div>';
+        }
+    }
+    if (c.fests && c.fests.length) {
+        for (var fi = 0; fi < c.fests.length; fi++) {
+            html += '<div class="fi"><div class="fiico">' + c.fests[fi].i + '</div><div class="fin">' + c.fests[fi].n + '</div></div>';
+        }
+    }
+    return html || '<div class="nofest">এই দিনে বিশেষ উৎসব নেই।</div>';
+}
 
-// ════════════════════════════════════════════════════════
-// SECTION ⑪ — HEADER RENDER (আজকের তারিখ ব্যানার)
-// কাজ: পেজের উপরে আজকের বাংলা তারিখ ও chip গুলো দেখায়
-// পরিবর্তন: chip-এ কী দেখাবে তা বদলাতে এখানে আসুন
-// ════════════════════════════════════════════════════════
-function renderHeader(){const c=calcDay(TODAY),bn=c.bn;if(!bn)return;document.getElementById('tb-bn').textContent=`${toBn(bn.d)} ${bn.name} ${toBn(bn.y)} বঙ্গাব্দ`;document.getElementById('tb-en').textContent=`${TODAY.getDate()} ${EMS[TODAY.getMonth()]} ${TODAY.getFullYear()} | ${c.vara} | ${bn.ritu} ঋতু`;const rh=Math.floor(c.st.rise),rm=Math.round((c.st.rise-rh)*60);document.getElementById('tb-chips').innerHTML=[c.paksha,c.tName,c.nak[0],`${toBn(rh)}:${String(rm).padStart(2,'0')} উদয়`].map(x=>`<div class="chip">${x}</div>`).join('');}
+function showDetail(date) {
+    if (!(date instanceof Date)) date = new Date(date);
+    selDate = date;
+    renderCal();
+    var c = calcDay(date), bn = c.bn;
+    var y = date.getFullYear(), mo = date.getMonth(), d = date.getDate();
+    document.getElementById('dtbn').textContent = bn ? toBn(bn.d) + ' ' + bn.name + ' ' + toBn(bn.y) + ' বঙ্গাব্দ' : '';
+    document.getElementById('dten').textContent = d + ' ' + EMS[mo] + ' ' + y + ' | ' + c.vara + ' | ' + (bn ? bn.ritu + ' ঋতু' : '');
+    document.getElementById('dtmoon').textContent = moonEmoji(c.tN);
+    document.getElementById('dtpaksha').textContent = c.paksha + ' — ' + c.tName + ' (' + toBn(c.pakDay) + ' তিথি)';
+    document.getElementById('dtvara').textContent = 'বার-অধিপতি: ' + c.varaL;
+    var pct = c.tN <= 15 ? (c.tN / 15 * 100) : ((30 - c.tN) / 15 * 100);
+    document.getElementById('dtprog').style.width = pct + '%';
+    document.getElementById('dtplbl').textContent = c.tN <= 15 ? 'পূর্ণিমা পর্যন্ত ' + toBn(15 - c.tN) + ' তিথি' : 'অমাবস্যা পর্যন্ত ' + toBn(30 - c.tN) + ' তিথি';
+
+    var extraItems = [{i:'☀️',l:'বার',v:c.vara,s:'অধিপতি: '+c.varaL},{i:'🌿',l:'ঋতু',v:bn?bn.ritu:'—',s:bn?bn.name+' মাস':''},{i:'📅',l:'বিক্রম সম্বত',v:bn?toBn(bn.vikram):'—'},{i:'🕉️',l:'শক সম্বত',v:bn?toBn(bn.saka):'—'}];
+    var extraHtml = '';
+    extraItems.forEach(x => { extraHtml += '<div class="di"><div class="dii">'+x.i+'</div><div class="dil">'+x.l+'</div><div class="div2">'+x.v+'</div>'+(x.s?'<div class="dis">'+x.s+'</div>':'')+'</div>'; });
+
+    document.getElementById('dtpan').innerHTML =
+        _panItem('🌙', 'তিথি', c.tithiList, v=>v.pakShort+' '+v.name, v=>v.paksha) +
+        _panItem('⭐', 'নক্ষত্র', c.nakList, v=>v.name, v=>'অধিপতি: '+v.lord) +
+        _panItem('🌟', 'যোগ', c.yogaList, v=>v.name, v=>v.sym==='✓'?'শুভ যোগ':'অশুভ যোগ') +
+        _panItem('🎴', 'করণ', c.karanList, v=>v.name, null) + extraHtml;
+
+    var rh = Math.floor(c.st.rise), rm = Math.round((c.st.rise - rh) * 60);
+    var sh = Math.floor(c.st.set), sm = Math.round((c.st.set - sh) * 60);
+    var row1 = [{ico:'🌅',cls:'shubha',l:'সূর্যোদয়',v:fmtT(rh,rm)},{ico:'🌇',cls:'',l:'সূর্যাস্ত',v:fmtT(sh,sm)},{ico:'🌄',cls:'shubha',l:'ব্রাহ্ম মুহূর্ত',v:_brahmaT(c.st.rise)}];
+    var row2 = [{ico:'⚡',cls:'rahu',l:'রাহুকাল',v:c.rahu},{ico:'🕯️',cls:'rahu',l:'গুলিকাকাল',v:c.gulika},{ico:'💫',cls:'shubha',l:'অভিজিৎ মুহূর্ত',v:c.abhi},{ico:'🔥',cls:'',l:'যমঘণ্ট',v:c.yam}];
+    var mkCard = t => '<div class="dtime '+t.cls+'"><div class="dtl">'+t.ico+' '+t.l+'</div><div class="dtv">'+t.v+'</div></div>';
+    document.getElementById('dttimes').innerHTML =
+        '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.52rem;margin-bottom:.52rem;">'+row1.map(mkCard).join('')+'</div>'+
+        '<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.52rem;">'+row2.map(mkCard).join('')+'</div>';
+    document.getElementById('dtfests').innerHTML = _festHtml(c);
+    document.getElementById('dtp').classList.add('show');
+    setTimeout(()=> document.getElementById('dtp').scrollIntoView({behavior:'smooth', block:'start'}), 100);
+}
+
+function closeD() {
+    document.getElementById('dtp').classList.remove('show');
+    selDate = null;
+    renderCal();
+}
+
+function switchDTab(idx, el) {
+    document.querySelectorAll('.dtab').forEach(t=>t.classList.remove('act'));
+    document.querySelectorAll('.dtab-pane').forEach(p=>p.classList.remove('show'));
+    el.classList.add('act');
+    document.getElementById('dtpane'+idx).classList.add('show');
+}
+function switchCalcTab(idx, el) {
+    document.querySelectorAll('.calc-sec-tab').forEach(t=>t.classList.remove('act'));
+    document.querySelectorAll('.calc-sec-pane').forEach(p=>p.classList.remove('show'));
+    el.classList.add('act');
+    document.getElementById('calcPane'+idx).classList.add('show');
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════════════════════
+window.onload = function() {
+    renderHeader();
+    renderCal();
+    // অন্যান্য রেন্ডারিং ফাংশন যদি panjika-data.js এ থাকে তাহলে কল হবে
+    if (typeof renderTodayEvents === 'function') renderTodayEvents();
+    if (typeof renderMonthEvents === 'function') renderMonthEvents();
+    if (typeof renderGuideCards === 'function') renderGuideCards();
+    if (typeof renderAuspiciousCounter === 'function') renderAuspiciousCounter();
+    showDetail(TODAY);
+};
+
+// WhatsApp bubble
+(function(){
+  var b=document.getElementById('waBubble');
+  if(!b)return;
+  function show(){ b.classList.add('show'); setTimeout(()=>b.classList.remove('show'),4000); }
+  setTimeout(show,3000);
+  setInterval(show,20000);
+})();
+
+// Scroll-to-top
+(function(){
+  var stb=document.getElementById('stb');
+  if(!stb)return;
+  window.addEventListener('scroll',()=>{ stb.classList.toggle('show', window.scrollY>300); },{passive:true});
+})();
+
+// Payment modal functions (keep as is)
+var RZP_KEY = 'rzp_live_SN8p6DJxPYFVL1';
+var _pay = { name:'', price:0, icon:'', custName:'', custPhone:'' };
+function openPayModal(svcName, price, icon) {
+  _pay.name = svcName; _pay.price = price; _pay.icon = icon;
+  document.getElementById('paySvcIco').textContent = icon;
+  document.getElementById('paySvcNm').textContent = svcName;
+  document.getElementById('paySvcPr').textContent = '₹ ' + price.toLocaleString('bn-BD');
+  document.getElementById('payName').value = '';
+  document.getElementById('payPhone').value = '';
+  document.getElementById('payName').classList.remove('error');
+  document.getElementById('payPhone').classList.remove('error');
+  document.getElementById('payNameErr').classList.remove('show');
+  document.getElementById('payPhoneErr').classList.remove('show');
+  document.getElementById('payFormWrap').style.display = '';
+  document.getElementById('paySuccess').classList.remove('show');
+  document.getElementById('paySubmitBtn').classList.remove('loading');
+  document.getElementById('payBtnTxt').textContent = 'নিরাপদ পেমেন্ট করুন — ₹ ' + price.toLocaleString('bn-BD');
+  document.getElementById('payOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(()=> document.getElementById('payName').focus(), 350);
+}
+function closePayModal() {
+  document.getElementById('payOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function handleOverlayClick(e) { if (e.target === document.getElementById('payOverlay')) closePayModal(); }
+document.addEventListener('keydown', e=> { if (e.key === 'Escape') closePayModal(); });
+function initiatePayment() {
+  var name = document.getElementById('payName').value.trim();
+  var phone = document.getElementById('payPhone').value.trim();
+  var valid = true;
+  if (!name || name.length < 2) { document.getElementById('payName').classList.add('error'); document.getElementById('payNameErr').classList.add('show'); valid = false; }
+  else { document.getElementById('payName').classList.remove('error'); document.getElementById('payNameErr').classList.remove('show'); }
+  if (!/^\d{10}$/.test(phone)) { document.getElementById('payPhone').classList.add('error'); document.getElementById('payPhoneErr').classList.add('show'); valid = false; }
+  else { document.getElementById('payPhone').classList.remove('error'); document.getElementById('payPhoneErr').classList.remove('show'); }
+  if (!valid) return;
+  _pay.custName = name; _pay.custPhone = phone;
+  var btn = document.getElementById('paySubmitBtn');
+  btn.classList.add('loading');
+  document.getElementById('payBtnTxt').innerHTML = '<i class="fas fa-spinner fa-spin"></i> অপেক্ষা করুন...';
+  var options = {
+    key: RZP_KEY, amount: _pay.price * 100, currency: 'INR', name: 'MyAstrology', description: _pay.name,
+    image: 'https://www.myastrology.in/images/logo.png', prefill: { name: name, contact: '+91' + phone },
+    notes: { service: _pay.name, customer_name: name, customer_phone: phone }, theme: { color: '#b5860d' },
+    handler: function(response) { onPaymentSuccess(response); }
+  };
+  try { var rzp = new Razorpay(options); rzp.open(); }
+  catch(err) { btn.classList.remove('loading'); document.getElementById('payBtnTxt').textContent = 'নিরাপদ পেমেন্ট করুন — ₹ ' + _pay.price.toLocaleString('bn-BD'); alert('Razorpay লোড হয়নি।'); }
+}
+function onPaymentSuccess(response) {
+  document.getElementById('paySubmitBtn').classList.remove('loading');
+  var waMsg = '🙏 আমি ' + _pay.name + ' পরিষেবার জন্য ' + _pay.price + ' টাকা পেমেন্ট করেছি।\n\n👤 নাম: ' + _pay.custName + '\n📱 মোবাইল: ' + _pay.custPhone + '\n💳 Payment ID: ' + (response.razorpay_payment_id || 'N/A');
+  var waUrl = 'https://wa.me/919333122768?text=' + encodeURIComponent(waMsg);
+  document.getElementById('payFormWrap').style.display = 'none';
+  document.getElementById('paySuccess').classList.add('show');
+  document.getElementById('payWaLink').href = waUrl;
+  setTimeout(() => window.open(waUrl, '_blank'), 1500);
 }
 
 
