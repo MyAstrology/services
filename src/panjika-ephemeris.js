@@ -2647,48 +2647,59 @@ function getPanchangaTransitions(date, rise) {
     return { tithiEnd, nakEnd, yogaEnd, karanEnd };
 }
   
-  // ─────────────────────────────────────────────────────────────────
-  //  সম্পূর্ণ পঞ্চাঙ্গ
-  // ─────────────────────────────────────────────────────────────────
-  function getDailyPanchang(ds,bnMonth){
-    var p=ds.split('-'),dow=new Date(+p[0],+p[1]-1,+p[2]).getDay();
-    var r=getSunrise(ds),s=getSunset(ds);
-    var i=dayIdx(ds),J=START_JD+i+(r-IST)/24,ay=ayanamsa(J);
-    var sL=getSunLon(ds),sSid=(sL-ay+360)%360;
-    var mL=getMoonLon(ds,r),mSid=(mL-ay+360)%360;
-    var diff=(mL-sL+360)%360;
-    var tIdx=Math.floor(diff/12);
-    var paksha=tIdx<15?'শুক্ল':'কৃষ্ণ',tNum=tIdx<15?tIdx+1:tIdx-14;
-    var nakIdx=Math.floor((mSid%360)/(360/27));
-    var yogaIdx=Math.floor(((sSid+mSid)%360)*27/360);
-    var karIdx=Math.floor(diff/6)%11;
-    var nakPada=Math.floor((mSid%(360/27))/(360/27/4))+1;
-    var dr=getDiwaRatri(ds);
-    var lag=getLagna(ds,r);
-    var am=bnMonth?computeAmritaMahendra(r,s,bnMonth,dow):{};
-    var bd=getBanglaDate(ds);
-    return{
-      date:ds,weekday:WEEKDAY_BN[dow],weekdayNum:dow,
-      sunriseStr:hms(r),sunsetStr:hms(s),rise:r,set_:s,
-      diwa:dr.diwa,ratri:dr.ratri,diwaStr:dr.diwaStr,ratriStr:dr.ratriStr,
-      praharDiwa:dr.praharD,praharRatri:dr.praharR,
-      muhurtaDiwa:dr.muhD,muhurtaRatri:dr.muhR,
-      paksha:paksha,tithi:tNum,tithiName:TITHI_NAMES[tIdx],
-      nakshatra:nakIdx,nakshatraName:NAKSHATRA_NAMES[nakIdx],nakshatraPada:nakPada,
-      yoga:yogaIdx,yogaName:YOGA_NAMES[yogaIdx],
-      karana:karIdx,karanaName:KARANA_NAMES[karIdx],
-      lagna:{rashi:lag.rashi,deg:lag.deg,rashiName:lag.rashiName},
-      rahukal:computeRahukal(r,s,dow),gulikakal:computeGulikakal(r,s,dow),
-      abhijit:computeAbhijit(r,s),
-      barabela:computeBarabela(r,s,dow),kalaRatri:computeKalaRatri(r,s,dow),
-      amritaMahendra:am,
-      navagraha:getNavagraha(ds,r),
-      bangla:bd||{},
-      surya:{lon:sSid,rashi:Math.floor(sSid/30)%12,deg:sSid%30},
-      chandra:{lon:mSid,rashi:Math.floor(mSid/30)%12,deg:mSid%30},
-      ayanamsa:ay,jd:J
-    };
-  }
+// ─────────────────────────────────────────────────────────────────
+//  সম্পূর্ণ পঞ্চাঙ্গ (চূড়ান্ত সংস্করণ)
+// ─────────────────────────────────────────────────────────────────
+function getDailyPanchang(ds, bnMonth) {
+  var p = ds.split('-'), dow = new Date(+p[0], +p[1]-1, +p[2]).getDay();
+  var r = getSunrise(ds), s = getSunset(ds);
+  var i = dayIdx(ds), J = START_JD + i + (r - IST) / 24, ay = ayanamsa(J);
+  var sL = getSunLon(ds), sSid = (sL - ay + 360) % 360;
+  var mL = getMoonLon(ds, r), mSid = (mL - ay + 360) % 360;
+  var diff = (mL - sL + 360) % 360;
+  var tIdx = Math.floor(diff / 12);
+  var paksha = tIdx < 15 ? 'শুক্ল' : 'কৃষ্ণ', tNum = tIdx < 15 ? tIdx + 1 : tIdx - 14;
+  var nakIdx = Math.floor((mSid % 360) / (360/27));
+  var yogaIdx = Math.floor(((sSid + mSid) % 360) * 27 / 360);
+  var karIdx = Math.floor(diff / 6) % 11;
+  var nakPada = Math.floor((mSid % (360/27)) / (360/27/4)) + 1;
+  var dr = getDiwaRatri(ds);
+  var lag = getLagna(ds, r);
+  var am = bnMonth ? computeAmritaMahendra(r, s, bnMonth, dow) : {};
+  var bd = getBanglaDate(ds);
+
+  // ═══ নতুন ট্রানজিশন ইঞ্জিন থেকে সময় বের করা ═══
+  var transitions = getPanchangaTransitions(ds, r);
+
+  return {
+    date: ds, weekday: WEEKDAY_BN[dow], weekdayNum: dow,
+    sunriseStr: hms(r), sunsetStr: hms(s), rise: r, set_: s,
+    diwa: dr.diwa, ratri: dr.ratri, diwaStr: dr.diwaStr, ratriStr: dr.ratriStr,
+    praharDiwa: dr.praharD, praharRatri: dr.praharR,
+    muhurtaDiwa: dr.muhD, muhurtaRatri: dr.muhR,
+    paksha: paksha, tithi: tNum, tithiName: TITHI_NAMES[tIdx],
+    nakshatra: nakIdx, nakshatraName: NAKSHATRA_NAMES[nakIdx], nakshatraPada: nakPada,
+    yoga: yogaIdx, yogaName: YOGA_NAMES[yogaIdx],
+    karana: karIdx, karanaName: KARANA_NAMES[karIdx],
+    lagna: { rashi: lag.rashi, deg: lag.deg, rashiName: lag.rashiName },
+    rahukal: computeRahukal(r, s, dow),
+    gulikakal: computeGulikakal(r, s, dow),
+    abhijit: computeAbhijit(r, s),
+    barabela: computeBarabela(r, s, dow),
+    kalaRatri: computeKalaRatri(r, s, dow),
+    amritaMahendra: am,
+    navagraha: getNavagraha(ds, r),
+    bangla: bd || {},
+    surya: { lon: sSid, rashi: Math.floor(sSid/30)%12, deg: sSid%30 },
+    chandra: { lon: mSid, rashi: Math.floor(mSid/30)%12, deg: mSid%30 },
+    ayanamsa: ay, jd: J,
+    // ★ নতুন ট্রানজিশন সময়
+    tithiEnd: transitions.tithiEnd,
+    nakEnd: transitions.nakEnd,
+    yogaEnd: transitions.yogaEnd,
+    karanEnd: transitions.karanEnd
+  };
+}
 
   // ... বিদ্যমান getDailyPanchang-এর শেষাংশে ...
 var bd = getBanglaDate(ds);
