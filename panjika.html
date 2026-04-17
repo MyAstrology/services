@@ -1911,10 +1911,22 @@ function renderCal() {
         h += `<div class="${cls}" onclick="showDetail(new Date('${ds_}'))">${isT?'<div class="tdot"></div>':''}<div class="db">${toBn(bnDay)}</div><div class="de">${enLbl}</div><div class="dti">${tsh}</div>${(c.eclipses&&c.eclipses.length)?`<div class="df" style="color:#7b2fbe;">${c.eclipses[0].icon} ${c.eclipses[0].type}</div>`:fests.length?`<div class="df">${fests[0].i} ${fests[0].n}</div>`:''}</div>`;
     });
     document.getElementById('cbody').innerHTML = h;
+
+    // ─── মলমাস চেক করে হেডারে ব্যাজ দেখানো ──────────────────────────────
+    const firstDay = days[0].date;
+    const monthMalmas = (typeof PANJIKA_DATA !== 'undefined' && PANJIKA_DATA.malmas) 
+        ? PANJIKA_DATA.malmas.find(ml => firstDay >= new Date(ml.startDate + 'T00:00:00') && firstDay <= new Date(ml.endDate + 'T23:59:59'))
+        : null;
+    const cmbn = document.getElementById('cmbn');
+    if (monthMalmas) {
+        cmbn.innerHTML = `${BNM_NAMES[currentBengaliMonth]} ${toBn(currentBengaliYear)} বঙ্গাব্দ <span style="background:#c0392b;color:white;padding:2px 8px;border-radius:20px;font-size:0.7rem;margin-left:8px;">📿 মলমাস</span>`;
+    } else {
+        cmbn.textContent = `${BNM_NAMES[currentBengaliMonth]} ${toBn(currentBengaliYear)} বঙ্গাব্দ`;
+    }
+
     if (typeof renderMonthEvents === 'function') renderMonthEvents();
     if (typeof renderAuspiciousCounter === 'function') renderAuspiciousCounter();
 }
-
 function shiftM(delta) {
     currentBengaliMonth += delta;
     if (currentBengaliMonth > 12) { currentBengaliMonth = 1; currentBengaliYear++; }
@@ -1991,6 +2003,34 @@ function showDetail(date) {
     selDate = date;
     renderCal();
     var c = calcDay(date), bn = c.bn;
+
+    // ─── গ্রহের পূর্ণাঙ্গ অবস্থান (JPL DE441) ────────────────────────────
+    const nav = PEph.getNavagraha(dStr(date), c.st.rise);
+    const grahaData = [
+        { name: 'সূর্য',   data: nav.surya },
+        { name: 'চন্দ্র',  data: nav.chandra },
+        { name: 'মঙ্গল',  data: nav.mangal },
+        { name: 'বুধ',    data: nav.budha },
+        { name: 'গুরু',   data: nav.brihaspati },
+        { name: 'শুক্র',  data: nav.shukra },
+        { name: 'শনি',    data: nav.shani },
+        { name: 'রাহু',   data: nav.rahu },
+        { name: 'কেতু',   data: nav.ketu }
+    ];
+    const nakNames = ['অশ্বিনী','ভরণী','কৃত্তিকা','রোহিণী','মৃগশিরা','আর্দ্রা','পুনর্বসু','পুষ্যা','আশ্লেষা','মঘা','পূর্বফাল্গুনী','উত্তরফাল্গুনী','হস্তা','চিত্রা','স্বাতী','বিশাখা','অনুরাধা','জ্যেষ্ঠা','মূলা','পূর্বাষাঢ়া','উত্তরাষাঢ়া','শ্রবণা','ধনিষ্ঠা','শতভিষা','পূর্বভাদ্র','উত্তরভাদ্র','রেবতী'];
+    const padaSymbol = ['①','②','③','④'];
+    let grahaHtml = '<div style="font-size:.6rem;font-weight:700;color:var(--gold);text-transform:uppercase;padding:.4rem 0 .2rem;border-top:1px solid rgba(201,162,39,.12);margin-top:.2rem;">🪐 গ্রহের অবস্থান (সিদ্ধান্তীয়)</div>';
+    grahaData.forEach(g => {
+        const d = g.data;
+        const deg = d.deg;
+        const degInt = Math.floor(deg);
+        const degMin = Math.floor((deg - degInt) * 60);
+        const nak = nakNames[d.nak];
+        const pada = padaSymbol[d.nakPad - 1] || '';
+        const rashiName = d.rashiName;
+        grahaHtml += `<div class="di"><div class="dii">${g.name[0]}</div><div class="dil">${g.name}</div><div class="div2" style="font-size:.68rem;">${rashiName} ${toBn(degInt)}°${toBn(degMin)}′ ${nak} ${pada}</div></div>`;
+    });
+
     var y = date.getFullYear(), mo = date.getMonth(), d = date.getDate();
     document.getElementById('dtbn').textContent = bn ? toBn(bn.d) + ' ' + bn.name + ' ' + toBn(bn.y) + ' বঙ্গাব্দ' : '';
     document.getElementById('dten').textContent = d + ' ' + EMS[mo] + ' ' + y + ' | ' + c.vara + ' | ' + (bn ? bn.ritu + ' ঋতু' : '');
@@ -2009,7 +2049,7 @@ function showDetail(date) {
         _panItem('🌙', 'তিথি', c.tithiList, v=>v.pakShort+' '+v.name, v=>v.paksha) +
         _panItem('⭐', 'নক্ষত্র', c.nakList, v=>v.name, v=>'অধিপতি: '+v.lord) +
         _panItem('🌟', 'যোগ', c.yogaList, v=>v.name, v=>v.sym==='✓'?'শুভ যোগ':'অশুভ যোগ') +
-        _panItem('🎴', 'করণ', c.karanList, v=>v.name, null) + extraHtml;
+        _panItem('🎴', 'করণ', c.karanList, v=>v.name, null) + extraHtml + grahaHtml;
 
     var rh = Math.floor(c.st.rise), rm = Math.round((c.st.rise - rh) * 60);
     var sh = Math.floor(c.st.set), sm = Math.round((c.st.set - sh) * 60);
@@ -2162,16 +2202,6 @@ function renderMonthEvents() {
     }
 }
 
-  // মলমাস চেক করে হেডারে ব্যাজ দেখানো (ঐচ্ছিক)
-const firstDay = days[0].date;
-const firstDayStr = dStr(firstDay);
-const monthMalmas = PANJIKA_DATA?.malmas?.find(ml => 
-    firstDay >= new Date(ml.startDate + 'T00:00:00') && firstDay <= new Date(ml.endDate + 'T23:59:59')
-);
-if (monthMalmas) {
-    const cmbn = document.getElementById('cmbn');
-    cmbn.innerHTML = `${BNM_NAMES[currentBengaliMonth]} ${toBn(currentBengaliYear)} বঙ্গাব্দ <span style="background:#c0392b;color:white;padding:2px 8px;border-radius:20px;font-size:0.7rem;margin-left:8px;">📿 মলমাস</span>`;
-}
 // ═══════════════════════════════════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════════════════════════════════
