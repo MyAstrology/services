@@ -2287,498 +2287,178 @@ var PEph=(function(){
     ]
   };
 
-  // বারবেলা: দিনের ৮ অংশ  কালরাত্রি: রাতের ৮ অংশ
-  var BARB={0:[4,5],1:[2,7],2:[2,6],3:[3,5],4:[7,8],5:[3,4],6:[1,6,8]};
-  var KALA_N={0:6,1:4,2:2,3:7,5:3},KALA_N2={6:[1,8]};
-  var RAHUKAL={0:5,1:2,2:7,3:5,4:6,5:4,6:3};
-  var GULIKA ={0:7,1:6,2:5,3:4,4:3,5:2,6:1};
 
-// ─────────────────────────────────────────────────────────────────
-//  CORE MATH
-// ─────────────────────────────────────────────────────────────────
-function jd(y,m,d){
-  var a=Math.floor((14-m)/12),yr=y+4800-a,mo=m+12*a-3;
-  return d+Math.floor((153*mo+2)/5)+365*yr+Math.floor(yr/4)
-         -Math.floor(yr/100)+Math.floor(yr/400)-32045-0.5;
-}
-function dayIdx(ds){
-  var p=ds.split('-');
-  return Math.round((new Date(+p[0],+p[1]-1,+p[2])-new Date(2025,0,1))/86400000);
-}
 
-/**
- * NC Lahiri (Chitrapaksha) Sidereal Ayanamsa
- * বিশুদ্ধ সিদ্ধান্ত পঞ্জিকা ১৪৩২–১৪৩৩ বঙ্গাব্দের তথ্যের ভিত্তিতে যথাযথকরণ
- * @param {number} J - জুলিয়ান দিন (UT)
- * @returns {number} অয়নাংশ (ডিগ্রি)
- */
-function ayanamsa(J) {
-    const J2000 = 2451545.0;
-    const T = (J - J2000) / 36525.0;
+  // বারবেলা / কালরাত্রি / রাহুকাল / গুলিকাল
+  var BARB = {0:[4,5],1:[2,7],2:[2,6],3:[3,5],4:[7,8],5:[3,4],6:[1,6,8]};
+  var KALA_N = {0:6,1:4,2:2,3:7,5:3}, KALA_N2 = {6:[1,8]};
+  var RAHUKAL = {0:5,1:2,2:7,3:5,4:6,5:4,6:3};
+  var GULIKA  = {0:7,1:6,2:5,3:4,4:3,5:2,6:1};
 
-    // ভিত্তি: ২০২৫ এপ্রিল ১৫ (বৈশাখ ১৪৩২) ≈ JD 2460780.5
-    // রেফারেন্স মান: ২৪°১২′৩৭″ = 24.21027778°
-    const base = 24.21027778;
-
-    // লাহিড়ী IAU 2000 প্রিসেশন অনুযায়ী গতি
-    const linear = 1.39694444e-3;   // 50.29″ / 3600
-    const quadratic = 2.35e-7;      // দীর্ঘমেয়াদি বক্রতা
-
-    return base + linear * T + quadratic * T * T;
-}
-
-function sid(trop,J){
-    return (trop - ayanamsa(J) + 360) % 360;
-}
-
-  // ─────────────────────────────────────────────────────────────────
-  //  PLANET FUNCTIONS
-  // ─────────────────────────────────────────────────────────────────
-  function _interp(arr,i,f){
-    var n=arr.length;if(i<0)i=0;if(i>=n-1){i=n-2;f=1;}
-    var d=arr[i+1]-arr[i];if(d>180)d-=360;if(d<-180)d+=360;
-    return(arr[i]+f*d+360)%360;
+  // CORE MATH
+  function jd(y, m, d) {
+    var a = Math.floor((14 - m) / 12), yr = y + 4800 - a, mo = m + 12 * a - 3;
+    return d + Math.floor((153 * mo + 2) / 5) + 365 * yr + Math.floor(yr / 4) - Math.floor(yr / 100) + Math.floor(yr / 400) - 32045 - 0.5;
   }
-  function _daily(arr,ds){var i=dayIdx(ds);if(i<0)i=0;if(i>=arr.length)i=arr.length-1;return arr[i];}
+  function dayIdx(ds) {
+    var p = ds.split('-');
+    return Math.round((new Date(+p[0], +p[1] - 1, +p[2]) - new Date(2025, 0, 1)) / 86400000);
+  }
+  function ayanamsa(J) {
+    var J2000 = 2451545.0, T = (J - J2000) / 36525.0;
+    return 24.21027778 + 1.39694444e-3 * T + 2.35e-7 * T * T;
+  }
+  function sid(trop, J) { return (trop - ayanamsa(J) + 360) % 360; }
 
-  /** চন্দ্র — DE441 hourly (2h stored), IST decimal hours */
-  function getMoonLon(ds,istH){
-    var utH=istH-IST,i=dayIdx(ds),t=i*24+utH;
-    return _interp(moonLon,Math.floor(t/MOON_STEP),(t%MOON_STEP)/MOON_STEP);
+  // PLANET FUNCTIONS
+  function _interp(arr, i, f) {
+    var n = arr.length; if (i < 0) i = 0; if (i >= n - 1) { i = n - 2; f = 1; }
+    var d = arr[i + 1] - arr[i]; if (d > 180) d -= 360; if (d < -180) d += 360;
+    return (arr[i] + f * d + 360) % 360;
   }
-  /** বুধ — DE441 6h, IST decimal hours */
-  function getMerLon(ds,istH){
-    var utH=istH-IST,i=dayIdx(ds),t=i*24+utH;
-    return _interp(merLon,Math.floor(t/MER_STEP),(t%MER_STEP)/MER_STEP);
-  }
-  /** শুক্র — DE441 6h, IST decimal hours */
-  function getVenLon(ds,istH){
-    var utH=istH-IST,i=dayIdx(ds),t=i*24+utH;
-    return _interp(venLon,Math.floor(t/VEN_STEP),(t%VEN_STEP)/VEN_STEP);
-  }
-  function getSunLon(ds){return _daily(sunLon,ds);}
-  function getMarLon(ds){return _daily(marLon,ds);}
-  function getJupLon(ds){return _daily(jupLon,ds);}
-  function getSatLon(ds){return _daily(satLon,ds);}
-  function getRahuLon(ds){return _daily(rahLon,ds);}
-  function getKetuLon(ds){return(getRahuLon(ds)+180)%360;}
+  function _daily(arr, ds) { var i = dayIdx(ds); if (i < 0) i = 0; if (i >= arr.length) i = arr.length - 1; return arr[i]; }
+  function getMoonLon(ds, istH) { var utH = istH - IST, i = dayIdx(ds), t = i * 24 + utH; return _interp(moonLon, Math.floor(t / MOON_STEP), (t % MOON_STEP) / MOON_STEP); }
+  function getMerLon(ds, istH) { var utH = istH - IST, i = dayIdx(ds), t = i * 24 + utH; return _interp(merLon, Math.floor(t / MER_STEP), (t % MER_STEP) / MER_STEP); }
+  function getVenLon(ds, istH) { var utH = istH - IST, i = dayIdx(ds), t = i * 24 + utH; return _interp(venLon, Math.floor(t / VEN_STEP), (t % VEN_STEP) / VEN_STEP); }
+  function getSunLon(ds) { return _daily(sunLon, ds); }
+  function getMarLon(ds) { return _daily(marLon, ds); }
+  function getJupLon(ds) { return _daily(jupLon, ds); }
+  function getSatLon(ds) { return _daily(satLon, ds); }
+  function getRahuLon(ds) { return _daily(rahLon, ds); }
+  function getKetuLon(ds) { return (getRahuLon(ds) + 180) % 360; }
 
-  /** সমস্ত নবগ্রহ */
-  function getNavagraha(ds,istH){
-    var i=dayIdx(ds),J=START_JD+i+(istH-IST)/24,ay=ayanamsa(J);
-    function g(l){var s=(l-ay+360)%360;
-      return{trop:l,sid:s,rashi:Math.floor(s/30)%12,deg:s%30,
-             nak:Math.floor(s/(360/27)),nakPad:Math.floor((s%(360/27))/(360/27/4))+1,
-             rashiName:RASHI_NAMES[Math.floor(s/30)%12],nakName:NAKSHATRA_NAMES[Math.floor(s/(360/27))]};
-    }
-    return{
-      surya:g(getSunLon(ds)),       chandra:g(getMoonLon(ds,istH)),
-      mangal:g(getMarLon(ds)),      budha:g(getMerLon(ds,istH)),
-      brihaspati:g(getJupLon(ds)),  shukra:g(getVenLon(ds,istH)),
-      shani:g(getSatLon(ds)),       rahu:g(getRahuLon(ds)),
-      ketu:g((getRahuLon(ds)+180)%360),
-      ayanamsa:ay,jd:J
+  function getNavagraha(ds, istH) {
+    var i = dayIdx(ds), J = START_JD + i + (istH - IST) / 24, ay = ayanamsa(J);
+    function g(l) { var s = (l - ay + 360) % 360; return { trop: l, sid: s, rashi: Math.floor(s / 30) % 12, deg: s % 30, nak: Math.floor(s / (360 / 27)), nakPad: Math.floor((s % (360 / 27)) / (360 / 27 / 4)) + 1, rashiName: RASHI_NAMES[Math.floor(s / 30) % 12], nakName: NAKSHATRA_NAMES[Math.floor(s / (360 / 27))] }; }
+    return { surya: g(getSunLon(ds)), chandra: g(getMoonLon(ds, istH)), mangal: g(getMarLon(ds)), budha: g(getMerLon(ds, istH)), brihaspati: g(getJupLon(ds)), shukra: g(getVenLon(ds, istH)), shani: g(getSatLon(ds)), rahu: g(getRahuLon(ds)), ketu: g((getRahuLon(ds) + 180) % 360), ayanamsa: ay, jd: J };
+  }
+
+  function getSunrise(ds) { return _daily(riseArr, ds); }
+  function getSunset(ds) { return _daily(setArr, ds); }
+
+  function getDiwaRatri(ds) {
+    var p = ds.split('-'), nd = new Date(+p[0], +p[1] - 1, +p[2] + 1);
+    var nds = nd.getFullYear() + '-' + String(nd.getMonth() + 1).padStart(2, '0') + '-' + String(nd.getDate()).padStart(2, '0');
+    var r = getSunrise(ds), s = getSunset(ds), nr = getSunrise(nds);
+    var diwa = s - r, ratri = (nr < s) ? (24 - s + nr) : (nr - s);
+    return { rise: r, set: s, nextRise: nr, diwa: diwa, ratri: ratri, praharD: diwa / 4, praharR: ratri / 4, muhD: diwa / 15, muhR: ratri / 15, riseStr: hms(r), setStr: hms(s), nextRiseStr: hms(nr), diwaStr: hhmmss(diwa), ratriStr: hhmmss(ratri), praharDStr: hhmmss(diwa / 4), praharRStr: hhmmss(ratri / 4), muhDStr: hhmmss(diwa / 15), muhRStr: hhmmss(ratri / 15) };
+  }
+
+  function getLagna(ds, istH) {
+    var p = ds.split('-'), J = jd(+p[0], +p[1], +p[2]) + (istH - IST) / 24, T = (J - 2451545) / 36525, ay = ayanamsa(J);
+    var theta = (280.46061837 + 360.98564736629 * (J - 2451545) + 0.000387933 * T * T) % 360, LST = (theta + LNG + 360) % 360, eps = 23.4392911 - 0.0130042 * T;
+    var lam = Math.atan2(Math.cos(LST * Math.PI / 180), -(Math.sin(LST * Math.PI / 180) * Math.cos(eps * Math.PI / 180) + Math.tan(LAT * Math.PI / 180) * Math.sin(eps * Math.PI / 180))) * 180 / Math.PI;
+    lam = (lam + 360) % 360; var s = (lam - ay + 360) % 360;
+    return { trop: lam, sid: s, rashi: Math.floor(s / 30) % 12, deg: s % 30, rashiName: RASHI_NAMES[Math.floor(s / 30) % 12] };
+  }
+
+  // BANGLA CALENDAR (sankArr ব্যবহার করে)
+  function _sankList() { var out = []; for (var i = 0; i < sankArr.length; i += 6) out.push({ y: sankArr[i], m: sankArr[i + 1], d: sankArr[i + 2], ut: sankArr[i + 3], fr: sankArr[i + 4], to: sankArr[i + 5] }); return out; }
+  function _sankToStart(y, m, d, ut) { var lmt = ut + LMT; var lmtDate = (lmt >= 24) ? new Date(y, m - 1, d + 1) : new Date(y, m - 1, d); if (lmt >= 24) lmt -= 24; var lmtDs = lmtDate.getFullYear() + '-' + String(lmtDate.getMonth() + 1).padStart(2, '0') + '-' + String(lmtDate.getDate()).padStart(2, '0'); var rise = getSunrise(lmtDs); var bengaliDay = new Date(lmtDate); if (lmt < rise) bengaliDay.setDate(bengaliDay.getDate() - 1); bengaliDay.setDate(bengaliDay.getDate() + 1); return bengaliDay; }
+  function _approxGY(bnY, bnM) { return bnM >= 10 ? bnY + 594 : bnY + 593; }
+  function getBanglaMonthStart(bnY, bnM) { var tR = bnM - 1, aY = _approxGY(bnY, bnM), list = _sankList(); for (var i = 0; i < list.length; i++) { var s = list[i]; if (s.to !== tR || s.y !== aY) continue; return _sankToStart(s.y, s.m, s.d, s.ut); } return null; }
+  function getBanglaDate(ds) { var p = ds.split('-'), target = new Date(+p[0], +p[1] - 1, +p[2]), list = _sankList(), prev = null; for (var i = 0; i < list.length; i++) { var s = list[i], ns = _sankToStart(s.y, s.m, s.d, s.ut); if (ns <= target) prev = { s: s, start: new Date(ns) }; else if (!prev) break; } if (!prev) return null; var bnM = prev.s.to + 1, bnD = Math.round((target - prev.start) / 86400000) + 1, gy = prev.start.getFullYear(), gm = prev.start.getMonth() + 1, bnY = bnM === 1 ? gy - 593 : (gm >= 4 ? gy - 593 : gy - 594); return { bnYear: bnY, bnMonth: bnM, bnDay: bnD, bnMonthName: BN_MONTH_NAMES[bnM] || '' }; }
+
+  // TRANSIT ENGINE (বাইনারি সার্চ)
+  function findTransitTime(date, rise, targetFunc, tol) { var dayMs = 86400000, start = rise, end = rise + 24; var nextDayRise = getSunrise(dStr(new Date(date.getTime() + dayMs))); end = Math.max(end, nextDayRise + 24); var fS = targetFunc(start), fE = targetFunc(end); if (Math.abs(fS) < 1e-9) return start; if (Math.abs(fE) < 1e-9) return end; if (fS * fE > 0) return null; var lo = start, hi = end; for (var iter = 0; iter < 80; iter++) { var mid = (lo + hi) / 2, fM = targetFunc(mid); if (Math.abs(fM) < 1e-9) return mid; if (fS * fM < 0) hi = mid; else lo = mid; if (hi - lo < (tol || 0.1) / 3600) break; } return (lo + hi) / 2; }
+
+  function getPanchangaTransitions(ds, rise) {
+    var nextDate = new Date(ds + 'T00:00:00'); nextDate.setDate(nextDate.getDate() + 1); var nextDs = dStr(nextDate), nextRise = getSunrise(nextDs);
+    var todaySun = getSunLon(ds), todayMoon = getMoonLon(ds, rise);
+    var tomorrowSun = getSunLon(nextDs), tomorrowMoon = getMoonLon(nextDs, nextRise);
+    var todayDiff = (todayMoon - todaySun + 360) % 360, tomorrowDiff = (tomorrowMoon - tomorrowSun + 360) % 360;
+    var tithiEnd = null, nakEnd = null, yogaEnd = null, karanEnd = null;
+    var todayTithiIdx = Math.floor(todayDiff / 12), tomorrowTithiIdx = Math.floor(tomorrowDiff / 12);
+    if (tomorrowTithiIdx !== todayTithiIdx) { tithiEnd = findTransitTime(new Date(ds), rise, function(h) { var dt = new Date(new Date(ds).getTime() + (h - rise) * 3600000); var dss = dStr(dt); var moon = getMoonLon(dss, h), sun = getSunLon(dss); return (moon - sun + 360) % 360 - (todayTithiIdx + 1) * 12; }); }
+    var todayNakIdx = Math.floor((todayMoon % 360) / (360 / 27)), tomorrowNakIdx = Math.floor((tomorrowMoon % 360) / (360 / 27));
+    if (tomorrowNakIdx !== todayNakIdx) { nakEnd = findTransitTime(new Date(ds), rise, function(h) { var dt = new Date(new Date(ds).getTime() + (h - rise) * 3600000); var dss = dStr(dt); var moon = getMoonLon(dss, h) % 360; return moon - (todayNakIdx + 1) * (360 / 27); }); }
+    var todayYogaSum = (todaySun + todayMoon) % 360, tomorrowYogaSum = (tomorrowSun + tomorrowMoon) % 360;
+    var todayYogaIdx = Math.floor(todayYogaSum * 27 / 360), tomorrowYogaIdx = Math.floor(tomorrowYogaSum * 27 / 360);
+    if (tomorrowYogaIdx !== todayYogaIdx) { yogaEnd = findTransitTime(new Date(ds), rise, function(h) { var dt = new Date(new Date(ds).getTime() + (h - rise) * 3600000); var dss = dStr(dt); var sum = (getSunLon(dss) + getMoonLon(dss, h)) % 360; return sum - (todayYogaIdx + 1) * (360 / 27); }); }
+    var todayKaranIdx = Math.floor(todayDiff / 6) % 11, tomorrowKaranIdx = Math.floor(tomorrowDiff / 6) % 11;
+    if (tomorrowKaranIdx !== todayKaranIdx) { karanEnd = findTransitTime(new Date(ds), rise, function(h) { var dt = new Date(new Date(ds).getTime() + (h - rise) * 3600000); var dss = dStr(dt); var moon = getMoonLon(dss, h), sun = getSunLon(dss); return (moon - sun + 360) % 360 - (todayKaranIdx + 1) * 6; }); }
+    return { tithiEnd: tithiEnd, nakEnd: nakEnd, yogaEnd: yogaEnd, karanEnd: karanEnd };
+  }
+
+  // MAIN PANCHANG
+  function getDailyPanchang(ds, bnMonth) {
+    var p = ds.split('-'), dow = new Date(+p[0], +p[1] - 1, +p[2]).getDay();
+    var r = getSunrise(ds), s = getSunset(ds);
+    var i = dayIdx(ds), J = START_JD + i + (r - IST) / 24, ay = ayanamsa(J);
+    var sL = getSunLon(ds), sSid = (sL - ay + 360) % 360;
+    var mL = getMoonLon(ds, r), mSid = (mL - ay + 360) % 360;
+    var diff = (mL - sL + 360) % 360, tIdx = Math.floor(diff / 12);
+    var paksha = tIdx < 15 ? 'শুক্ল' : 'কৃষ্ণ', tNum = tIdx < 15 ? tIdx + 1 : tIdx - 14;
+    var nakIdx = Math.floor((mSid % 360) / (360 / 27));
+    var yogaIdx = Math.floor(((sSid + mSid) % 360) * 27 / 360);
+    var karIdx = Math.floor(diff / 6) % 11;
+    var dr = getDiwaRatri(ds), lag = getLagna(ds, r);
+    var transitions = getPanchangaTransitions(ds, r);
+    return {
+      date: ds, weekday: WEEKDAY_BN[dow], weekdayNum: dow, sunriseStr: hms(r), sunsetStr: hms(s), rise: r, set_: s,
+      diwa: dr.diwa, ratri: dr.ratri, diwaStr: dr.diwaStr, ratriStr: dr.ratriStr, praharDiwa: dr.praharD, praharRatri: dr.praharR, muhurtaDiwa: dr.muhD, muhurtaRatri: dr.muhR,
+      paksha: paksha, tithi: tNum, tithiName: TITHI_NAMES[tIdx],
+      nakshatra: nakIdx, nakshatraName: NAKSHATRA_NAMES[nakIdx], nakshatraPada: Math.floor((mSid % (360 / 27)) / (360 / 27 / 4)) + 1,
+      yoga: yogaIdx, yogaName: YOGA_NAMES[yogaIdx], karana: karIdx, karanaName: KARANA_NAMES[karIdx],
+      lagna: { rashi: lag.rashi, deg: lag.deg, rashiName: lag.rashiName },
+      rahukal: computeRahukal(r, s, dow), gulikakal: computeGulikakal(r, s, dow), abhijit: computeAbhijit(r, s),
+      barabela: computeBarabela(r, s, dow), kalaRatri: computeKalaRatri(r, s, dow),
+      navagraha: getNavagraha(ds, r), bangla: getBanglaDate(ds) || {},
+      surya: { lon: sSid, rashi: Math.floor(sSid / 30) % 12, deg: sSid % 30 },
+      chandra: { lon: mSid, rashi: Math.floor(mSid / 30) % 12, deg: mSid % 30 },
+      ayanamsa: ay, jd: J,
+      tithiEnd: transitions.tithiEnd, nakEnd: transitions.nakEnd, yogaEnd: transitions.yogaEnd, karanEnd: transitions.karanEnd
     };
   }
 
-  // ─────────────────────────────────────────────────────────────────
-  //  সূর্যোদয় / অস্ত / দিনমান
-  // ─────────────────────────────────────────────────────────────────
-  function getSunrise(ds){return _daily(riseArr,ds);}
-  function getSunset(ds) {return _daily(setArr,ds);}
+  // MUHURTA HELPERS
+  function _win(nums, base, muh) { if (!nums || !nums.length) return []; var s = nums.slice().sort(function(a,b){return a-b;}), out=[], a=s[0], b=s[0]; for(var k=1; k<s.length; k++){ if(s[k]===b+1) b=s[k]; else{ out.push({start:(base+(a-1)*muh)%24, end:(base+b*muh)%24, startStr:hm(base+(a-1)*muh), endStr:hm(base+b*muh)}); a=b=s[k]; } } out.push({start:(base+(a-1)*muh)%24, end:(base+b*muh)%24, startStr:hm(base+(a-1)*muh), endStr:hm(base+b*muh)}); return out; }
+  function computeRahukal(r,s,dow){ var seg=(s-r)/8, n=RAHUKAL[dow%7]-1; return {start:r+n*seg, end:r+(n+1)*seg, startStr:hm(r+n*seg), endStr:hm(r+(n+1)*seg)}; }
+  function computeGulikakal(r,s,dow){ var seg=(s-r)/8, n=GULIKA[dow%7]-1; return {start:r+n*seg, end:r+(n+1)*seg, startStr:hm(r+n*seg), endStr:hm(r+(n+1)*seg)}; }
+  function computeAbhijit(r,s){ var noon=(r+s)/2; return {start:noon-0.2, end:noon+0.2, startStr:hm(noon-0.2), endStr:hm(noon+0.2)}; }
+  function computeBarabela(r,s,dow){ var seg=(s-r)/8, segs=BARB[dow%7]||[]; return segs.map(function(n){ return {start:r+(n-1)*seg, end:r+n*seg, startStr:hm(r+(n-1)*seg), endStr:hm(r+n*seg)}; }); }
+  function computeKalaRatri(r,s,dow){ if(dow%7===4){ var seg=(s-r)/8, n=5; return [{start:r+(n-1)*seg, end:r+n*seg, startStr:hm(r+(n-1)*seg), endStr:hm(r+n*seg), type:'day'}]; } var seg=(24-(s-r))/8, ns=KALA_N2[dow%7]||(KALA_N[dow%7]?[KALA_N[dow%7]]:[]); return ns.map(function(n){ return {start:(s+(n-1)*seg)%24, end:(s+n*seg)%24, startStr:hm((s+(n-1)*seg)%24), endStr:hm((s+n*seg)%24), type:'night'}; }); }
 
-  /** দিনমান ও রাত্রিমান (২০২৫-১২-৩১ উদাহরণ: দিন=১০:৩৮:১০, রাত=১৩:২২:০৯) */
-  function getDiwaRatri(ds){
-    var p=ds.split('-'),nd=new Date(+p[0],+p[1]-1,+p[2]+1);
-    var nds=nd.getFullYear()+'-'+String(nd.getMonth()+1).padStart(2,'0')+'-'+String(nd.getDate()).padStart(2,'0');
-    var r=getSunrise(ds),s=getSunset(ds),nr=getSunrise(nds);
-    var diwa=s-r,ratri=(nr<s)?(24-s+nr):(nr-s);
-    return{rise:r,set:s,nextRise:nr,diwa:diwa,ratri:ratri,
-           praharD:diwa/4,praharR:ratri/4,muhD:diwa/15,muhR:ratri/15,
-           riseStr:hms(r),setStr:hms(s),nextRiseStr:hms(nr),
-           diwaStr:hhmmss(diwa),ratriStr:hhmmss(ratri),
-           praharDStr:hhmmss(diwa/4),praharRStr:hhmmss(ratri/4),
-           muhDStr:hhmmss(diwa/15),muhRStr:hhmmss(ratri/15)};
-  }
+  function hms(h){ h=((h%24)+24)%24; var hh=Math.floor(h), mm=Math.floor((h%1)*60), ss=Math.round(((h%1)*60%1)*60); if(ss===60){mm++;ss=0;} if(mm===60){hh++;mm=0;} return (hh<10?'0':'')+hh+':'+(mm<10?'0':'')+mm+':'+(ss<10?'0':'')+ss; }
+  function hm(h){ h=((h%24)+24)%24; var hh=Math.floor(h), mm=Math.floor((h%1)*60); return (hh<10?'0':'')+hh+':'+(mm<10?'0':'')+mm; }
+  function hhmmss(d){ d=Math.abs(d); var hh=Math.floor(d), mm=Math.floor((d%1)*60), ss=Math.round(((d%1)*60%1)*60); if(ss===60){mm++;ss=0;} if(mm===60){hh++;mm=0;} return hh+':'+(mm<10?'0':'')+mm+':'+(ss<10?'0':'')+ss; }
 
-  // ─────────────────────────────────────────────────────────────────
-  //  লগ্ন (Ascendant)
-  // ─────────────────────────────────────────────────────────────────
-  function getLagna(ds,istH){
-    var p=ds.split('-'),J=jd(+p[0],+p[1],+p[2])+(istH-IST)/24;
-    var T=(J-2451545)/36525,ay=ayanamsa(J);
-    var theta=(280.46061837+360.98564736629*(J-2451545)+0.000387933*T*T)%360;
-    var LST=(theta+LNG+360)%360;
-    var eps=23.4392911-0.0130042*T;
-    var lam=Math.atan2(
-      Math.cos(LST*Math.PI/180),
-      -(Math.sin(LST*Math.PI/180)*Math.cos(eps*Math.PI/180)
-        +Math.tan(LAT*Math.PI/180)*Math.sin(eps*Math.PI/180))
-    )*180/Math.PI;
-    lam=(lam+360)%360;
-    var s=(lam-ay+360)%360;
-    return{trop:lam,sid:s,rashi:Math.floor(s/30)%12,deg:s%30,
-           rashiName:RASHI_NAMES[Math.floor(s/30)%12]};
-  }
-
-  // ─────────────────────────────────────────────────────────────────
-  //  বাংলা মাস / তারিখ গণনা
-  // ─────────────────────────────────────────────────────────────────
-  function _sankList(){
-    var out=[];
-    for(var i=0;i<sankArr.length;i+=6)
-      out.push({y:sankArr[i],m:sankArr[i+1],d:sankArr[i+2],
-                ut:sankArr[i+3],fr:sankArr[i+4],to:sankArr[i+5]});
-    return out;
-  }
-
-  /**
-   * সংক্রান্তি থেকে নতুন মাসের শুরু নির্ধারণ
-   * নিয়ম: যে বাংলা দিনে সংক্রান্তি পড়ে সেটি শেষ দিন; পরের বাংলা দিন = ১ তারিখ
-   * বাংলা দিন সীমা: সূর্যোদয় → পরদিন সূর্যোদয়
-   */
-  function _sankToStart(y,m,d,ut){
-    var lmt=ut+LMT;
-    if(lmt>=24){lmt-=24; var lmtDate=new Date(y,m-1,d+1);}
-    else var lmtDate=new Date(y,m-1,d);
-    var lmtDs=lmtDate.getFullYear()+'-'+String(lmtDate.getMonth()+1).padStart(2,'0')+'-'+String(lmtDate.getDate()).padStart(2,'0');
-    var rise=getSunrise(lmtDs);
-    var bengaliDay=new Date(lmtDate);
-    if(lmt<rise) bengaliDay.setDate(bengaliDay.getDate()-1);
-    bengaliDay.setDate(bengaliDay.getDate()+1); // +1 = নতুন মাসের ১ তারিখ
-    return bengaliDay;
-  }
-
-  /** বাংলা মাসের অনুমানিত Gregorian বছর */
-  function _approxGY(bnY,bnM){return bnM>=10?bnY+594:bnY+593;}
-
-  /**
-   * getBanglaMonthStart(bnYear, bnMonth)
-   * bnMonth: 1=বৈশাখ … 12=চৈত্র
-   * Returns: Date object (new month start)
-   */
-  function getBanglaMonthStart(bnY,bnM){
-    var tR=bnM-1,aY=_approxGY(bnY,bnM);
-    var list=_sankList();
-    for(var i=0;i<list.length;i++){
-      var s=list[i];
-      if(s.to!==tR||s.y!==aY) continue;
-      return _sankToStart(s.y,s.m,s.d,s.ut);
-    }
-    return null;
-  }
-
-  /**
-   * getBanglaDate(dateStr)
-   * Returns: {bnYear, bnMonth, bnDay, bnMonthName}
-   */
-  function getBanglaDate(ds){
-    var p=ds.split('-'),target=new Date(+p[0],+p[1]-1,+p[2]);
-    var list=_sankList(),prev=null;
-    for(var i=0;i<list.length;i++){
-      var s=list[i];
-      var ns=_sankToStart(s.y,s.m,s.d,s.ut);
-      if(ns<=target) prev={s:s,start:new Date(ns)};
-      else if(!prev) break;
-    }
-    if(!prev) return null;
-    var bnM=prev.s.to+1,bnD=Math.round((target-prev.start)/86400000)+1;
-    var gy=prev.start.getFullYear(),gm=prev.start.getMonth()+1;
-    var bnY=bnM===1?gy-593:(gm>=4?gy-593:gy-594);
-    return{bnYear:bnY,bnMonth:bnM,bnDay:bnD,bnMonthName:BN_MONTH_NAMES[bnM]||''};
-  }
-
-  // ─────────────────────────────────────────────────────────────────
-  //  মুহূর্ত ফাংশন
-  // ─────────────────────────────────────────────────────────────────
-  function _season(bm){return(bm===2||bm===3)?'C':(bm>=6&&bm<=9)?'B':'A';}
-  function _win(nums,base,muh){
-    if(!nums||!nums.length)return[];
-    var s=nums.slice().sort(function(a,b){return a-b;}),out=[],a=s[0],b=s[0];
-    for(var k=1;k<s.length;k++){
-      if(s[k]===b+1)b=s[k];
-      else{out.push({start:(base+(a-1)*muh)%24,end:(base+b*muh)%24,
-             startStr:hm(base+(a-1)*muh),endStr:hm(base+b*muh)});a=b=s[k];}
-    }
-    out.push({start:(base+(a-1)*muh)%24,end:(base+b*muh)%24,
-              startStr:hm(base+(a-1)*muh),endStr:hm(base+b*muh)});
-    return out;
-  }
-
-  function computeAmritaMahendra(r,s,bm,dow){
-    var dr=s-r,nr=24-dr,mD=dr/15,mR=nr/15,row=MUHTBL[_season(bm)][dow%7];
-    if(!row)return{};
-    return{amritaDay:_win(row[0],r,mD),amritaNight:_win(row[1],s,mR),
-           mahendraDay:_win(row[2],r,mD),mahendraNight:_win(row[3],s,mR)};
-  }
-  function computeBarabela(r,s,dow){
-    var seg=(s-r)/8,segs=BARB[dow%7]||[];
-    return segs.map(function(n){return{start:r+(n-1)*seg,end:r+n*seg,
-      startStr:hm(r+(n-1)*seg),endStr:hm(r+n*seg)};});
-  }
-  function computeKalaRatri(r,s,dow){
-    if(dow%7===4){var seg=(s-r)/8,n=5;
-      return[{start:r+(n-1)*seg,end:r+n*seg,startStr:hm(r+(n-1)*seg),endStr:hm(r+n*seg),type:'day'}];}
-    var seg=(24-(s-r))/8,ns=KALA_N2[dow%7]||(KALA_N[dow%7]?[KALA_N[dow%7]]:[]);
-    return ns.map(function(n){return{start:(s+(n-1)*seg)%24,end:(s+n*seg)%24,
-      startStr:hm((s+(n-1)*seg)%24),endStr:hm((s+n*seg)%24),type:'night'};});
-  }
-  function computeRahukal(r,s,dow){
-    var seg=(s-r)/8,n=RAHUKAL[dow%7]-1;
-    return{start:r+n*seg,end:r+(n+1)*seg,startStr:hm(r+n*seg),endStr:hm(r+(n+1)*seg)};
-  }
-  function computeGulikakal(r,s,dow){
-    var seg=(s-r)/8,n=GULIKA[dow%7]-1;
-    return{start:r+n*seg,end:r+(n+1)*seg,startStr:hm(r+n*seg),endStr:hm(r+(n+1)*seg)};
-  }
-  function computeAbhijit(r,s){
-    var noon=(r+s)/2;
-    return{start:noon-0.2,end:noon+0.2,startStr:hm(noon-0.2),endStr:hm(noon+0.2)};
-  }
-
-// ========== উচ্চ নির্ভুলতা ট্রানজিট ইঞ্জিন (বাইনারি সার্চ) ==========
-function findTransitTime(date, rise, targetFunc, toleranceSec = 0.1) {
-    const dayMs = 24 * 3600 * 1000;
-    const start = rise;
-    // পরদিন সূর্যোদয় পর্যন্ত খুঁজব, প্রয়োজনে আরও আগাতে পারি
-    let end = rise + 24;
-    // নিরাপত্তার জন্য আরও ৬ ঘণ্টা বাড়ানো (যদি পরিবর্তন পরদিন সকালের পরে হয়)
-    const nextDayRise = PEph.getSunrise(dStr(new Date(date.getTime() + dayMs)));
-    if (nextDayRise < end) end = nextDayRise + 24;
-    else end = nextDayRise + 24;
-
-    const fStart = targetFunc(start);
-    const fEnd = targetFunc(end);
-    if (Math.abs(fStart) < 1e-9) return start;
-    if (Math.abs(fEnd) < 1e-9) return end;
-    if (fStart * fEnd > 0) return null; // এই সীমার মধ্যে পরিবর্তন নেই
-
-    let low = start, high = end;
-    for (let iter = 0; iter < 80; iter++) {
-        const mid = (low + high) / 2;
-        const fMid = targetFunc(mid);
-        if (Math.abs(fMid) < 1e-9) return mid;
-        if (fStart * fMid < 0) {
-            high = mid;
-        } else {
-            low = mid;
-        }
-        if (high - low < toleranceSec / 3600) break;
-    }
-    return (low + high) / 2;
-}
-
-/**
- * নির্দিষ্ট তারিখ ও সূর্যোদয়ের জন্য তিথি, নক্ষত্র, যোগ, করণের শেষ সময় নির্ণয়
- */
-function getPanchangaTransitions(date, rise) {
-    const ds = dStr(date);
-    const nextDate = new Date(date);
-    nextDate.setDate(nextDate.getDate() + 1);
-    const nextDs = dStr(nextDate);
-    const nextRise = PEph.getSunrise(nextDs);
-
-    // ---- তিথি ----
-    const todaySun = PEph.getSunLon(ds);
-    const todayMoon = PEph.getMoonLon(ds, rise);
-    const todayDiff = (todayMoon - todaySun + 360) % 360;
-    const todayTithiIdx = Math.floor(todayDiff / 12);
-    const tomorrowDiff = (PEph.getMoonLon(nextDs, nextRise) - PEph.getSunLon(nextDs) + 360) % 360;
-    const tomorrowTithiIdx = Math.floor(tomorrowDiff / 12);
-    let tithiEnd = null;
-    if (tomorrowTithiIdx !== todayTithiIdx) {
-        const targetDiff = (todayTithiIdx + 1) * 12;
-        tithiEnd = findTransitTime(date, rise, (h) => {
-            const dt = new Date(date.getTime() + (h - rise) * 3600000);
-            const dss = dStr(dt);
-            const moon = PEph.getMoonLon(dss, h);
-            const sun = PEph.getSunLon(dss);
-            const diff = (moon - sun + 360) % 360;
-            return diff - targetDiff;
-        });
-    }
-
-    // ---- নক্ষত্র ----
-    const todayNakIdx = Math.floor((todayMoon % 360) / (360/27));
-    const tomorrowNakIdx = Math.floor((PEph.getMoonLon(nextDs, nextRise) % 360) / (360/27));
-    let nakEnd = null;
-    if (tomorrowNakIdx !== todayNakIdx) {
-        const targetNak = (todayNakIdx + 1) * (360/27);
-        nakEnd = findTransitTime(date, rise, (h) => {
-            const dt = new Date(date.getTime() + (h - rise) * 3600000);
-            const dss = dStr(dt);
-            const moon = PEph.getMoonLon(dss, h) % 360;
-            return moon - targetNak;
-        });
-    }
-
-    // ---- যোগ ----
-    const todayYogaSum = (todaySun + todayMoon) % 360;
-    const todayYogaIdx = Math.floor(todayYogaSum * 27 / 360);
-    const tomorrowYogaSum = (PEph.getSunLon(nextDs) + PEph.getMoonLon(nextDs, nextRise)) % 360;
-    const tomorrowYogaIdx = Math.floor(tomorrowYogaSum * 27 / 360);
-    let yogaEnd = null;
-    if (tomorrowYogaIdx !== todayYogaIdx) {
-        const targetYoga = (todayYogaIdx + 1) * (360/27);
-        yogaEnd = findTransitTime(date, rise, (h) => {
-            const dt = new Date(date.getTime() + (h - rise) * 3600000);
-            const dss = dStr(dt);
-            const sum = (PEph.getSunLon(dss) + PEph.getMoonLon(dss, h)) % 360;
-            return sum - targetYoga;
-        });
-    }
-
-    // ---- করণ ----
-    const todayKaranIdx = Math.floor(todayDiff / 6) % 11;
-    const tomorrowKaranIdx = Math.floor(tomorrowDiff / 6) % 11;
-    let karanEnd = null;
-    if (tomorrowKaranIdx !== todayKaranIdx) {
-        const targetDiff = (todayKaranIdx + 1) * 6;
-        karanEnd = findTransitTime(date, rise, (h) => {
-            const dt = new Date(date.getTime() + (h - rise) * 3600000);
-            const dss = dStr(dt);
-            const moon = PEph.getMoonLon(dss, h);
-            const sun = PEph.getSunLon(dss);
-            const diff = (moon - sun + 360) % 360;
-            return diff - targetDiff;
-        });
-    }
-
-    return { tithiEnd, nakEnd, yogaEnd, karanEnd };
-}
-  
-// ─────────────────────────────────────────────────────────────────
-//  সম্পূর্ণ পঞ্চাঙ্গ (চূড়ান্ত সংস্করণ)
-// ─────────────────────────────────────────────────────────────────
-function getDailyPanchang(ds, bnMonth) {
-  var p = ds.split('-'), dow = new Date(+p[0], +p[1]-1, +p[2]).getDay();
-  var r = getSunrise(ds), s = getSunset(ds);
-  var i = dayIdx(ds), J = START_JD + i + (r - IST) / 24, ay = ayanamsa(J);
-  var sL = getSunLon(ds), sSid = (sL - ay + 360) % 360;
-  var mL = getMoonLon(ds, r), mSid = (mL - ay + 360) % 360;
-  var diff = (mL - sL + 360) % 360;
-  var tIdx = Math.floor(diff / 12);
-  var paksha = tIdx < 15 ? 'শুক্ল' : 'কৃষ্ণ', tNum = tIdx < 15 ? tIdx + 1 : tIdx - 14;
-  var nakIdx = Math.floor((mSid % 360) / (360/27));
-  var yogaIdx = Math.floor(((sSid + mSid) % 360) * 27 / 360);
-  var karIdx = Math.floor(diff / 6) % 11;
-  var nakPada = Math.floor((mSid % (360/27)) / (360/27/4)) + 1;
-  var dr = getDiwaRatri(ds);
-  var lag = getLagna(ds, r);
-  var am = bnMonth ? computeAmritaMahendra(r, s, bnMonth, dow) : {};
-  var bd = getBanglaDate(ds);
-
-  // ═══ নতুন ট্রানজিশন ইঞ্জিন থেকে সময় বের করা ═══
-  var transitions = getPanchangaTransitions(ds, r);
+  var TITHI_NAMES = ['প্রতিপদ','দ্বিতীয়া','তৃতীয়া','চতুর্থী','পঞ্চমী','ষষ্ঠী','সপ্তমী','অষ্টমী','নবমী','দশমী','একাদশী','দ্বাদশী','ত্রয়োদশী','চতুর্দশী','পূর্ণিমা','প্রতিপদ','দ্বিতীয়া','তৃতীয়া','চতুর্থী','পঞ্চমী','ষষ্ঠী','সপ্তমী','অষ্টমী','নবমী','দশমী','একাদশী','দ্বাদশী','ত্রয়োদশী','চতুর্দশী','অমাবস্যা'];
+  var NAKSHATRA_NAMES = ['অশ্বিনী','ভরণী','কৃত্তিকা','রোহিণী','মৃগশিরা','আর্দ্রা','পুনর্বসু','পুষ্যা','আশ্লেষা','মঘা','পূর্বফাল্গুনী','উত্তরফাল্গুনী','হস্তা','চিত্রা','স্বাতী','বিশাখা','অনুরাধা','জ্যেষ্ঠা','মূলা','পূর্বাষাঢ়া','উত্তরাষাঢ়া','শ্রবণা','ধনিষ্ঠা','শতভিষা','পূর্বভাদ্রপদ','উত্তরভাদ্রপদ','রেবতী'];
+  var YOGA_NAMES = ['বিষ্কুম্ভ','প্রীতি','আয়ুষ্মান','সৌভাগ্য','শোভন','অতিগণ্ড','সুকর্মা','ধৃতি','শূল','গণ্ড','বৃদ্ধি','ধ্রুব','ব্যাঘাত','হর্ষণ','বজ্র','সিদ্ধি','ব্যতীপাত','বরীয়ান','পরিঘ','শিব','সিদ্ধ','সাধ্য','শুভ','শুক্ল','ব্রহ্ম','ঐন্দ্র','বৈধৃতি'];
+  var KARANA_NAMES = ['বব','বালব','কৌলব','তৈতিল','গর','বণিজ','বিষ্টি','শকুনি','চতুষ্পদ','নাগ','কিন্তুঘ্ন'];
+  var RASHI_NAMES = ['মেষ','বৃষ','মিথুন','কর্কট','সিংহ','কন্যা','তুলা','বৃশ্চিক','ধনু','মকর','কুম্ভ','মীন'];
+  var BN_MONTH_NAMES = ['','বৈশাখ','জ্যৈষ্ঠ','আষাঢ়','শ্রাবণ','ভাদ্র','আশ্বিন','কার্তিক','অগ্রহায়ণ','পৌষ','মাঘ','ফাল্গুন','চৈত্র'];
+  var WEEKDAY_BN = ['রবিবার','সোমবার','মঙ্গলবার','বুধবার','বৃহস্পতিবার','শুক্রবার','শনিবার'];
 
   return {
-    date: ds, weekday: WEEKDAY_BN[dow], weekdayNum: dow,
-    sunriseStr: hms(r), sunsetStr: hms(s), rise: r, set_: s,
-    diwa: dr.diwa, ratri: dr.ratri, diwaStr: dr.diwaStr, ratriStr: dr.ratriStr,
-    praharDiwa: dr.praharD, praharRatri: dr.praharR,
-    muhurtaDiwa: dr.muhD, muhurtaRatri: dr.muhR,
-    paksha: paksha, tithi: tNum, tithiName: TITHI_NAMES[tIdx],
-    nakshatra: nakIdx, nakshatraName: NAKSHATRA_NAMES[nakIdx], nakshatraPada: nakPada,
-    yoga: yogaIdx, yogaName: YOGA_NAMES[yogaIdx],
-    karana: karIdx, karanaName: KARANA_NAMES[karIdx],
-    lagna: { rashi: lag.rashi, deg: lag.deg, rashiName: lag.rashiName },
-    rahukal: computeRahukal(r, s, dow),
-    gulikakal: computeGulikakal(r, s, dow),
-    abhijit: computeAbhijit(r, s),
-    barabela: computeBarabela(r, s, dow),
-    kalaRatri: computeKalaRatri(r, s, dow),
-    amritaMahendra: am,
-    navagraha: getNavagraha(ds, r),
-    bangla: bd || {},
-    surya: { lon: sSid, rashi: Math.floor(sSid/30)%12, deg: sSid%30 },
-    chandra: { lon: mSid, rashi: Math.floor(mSid/30)%12, deg: mSid%30 },
-    ayanamsa: ay, jd: J,
-    // ★ নতুন ট্রানজিশন সময়
-    tithiEnd: transitions.tithiEnd,
-    nakEnd: transitions.nakEnd,
-    yogaEnd: transitions.yogaEnd,
-    karanEnd: transitions.karanEnd
-  };
-}
-
-  // ... বিদ্যমান getDailyPanchang-এর শেষাংশে ...
-var bd = getBanglaDate(ds);
-var transitions = getPanchangaTransitions(ds, r); // r = sunrise hour
-
-return {
-  date: ds, weekday: WEEKDAY_BN[dow], weekdayNum: dow,
-  sunriseStr: hms(r), sunsetStr: hms(s), rise: r, set_: s,
-  diwa: dr.diwa, ratri: dr.ratri, diwaStr: dr.diwaStr, ratriStr: dr.ratriStr,
-  praharDiwa: dr.praharD, praharRatri: dr.praharR,
-  muhurtaDiwa: dr.muhD, muhurtaRatri: dr.muhR,
-  paksha: paksha, tithi: tNum, tithiName: TITHI_NAMES[tIdx],
-  nakshatra: nakIdx, nakshatraName: NAKSHATRA_NAMES[nakIdx], nakshatraPada: nakPada,
-  yoga: yogaIdx, yogaName: YOGA_NAMES[yogaIdx],
-  karana: karIdx, karanaName: KARANA_NAMES[karIdx],
-  lagna: { rashi: lag.rashi, deg: lag.deg, rashiName: lag.rashiName },
-  rahukal: computeRahukal(r, s, dow),
-  gulikakal: computeGulikakal(r, s, dow),
-  abhijit: computeAbhijit(r, s),
-  barabela: computeBarabela(r, s, dow),
-  kalaRatri: computeKalaRatri(r, s, dow),
-  amritaMahendra: am,
-  navagraha: getNavagraha(ds, r),
-  bangla: bd || {},
-  surya: { lon: sSid, rashi: Math.floor(sSid/30)%12, deg: sSid%30 },
-  chandra: { lon: mSid, rashi: Math.floor(mSid/30)%12, deg: mSid%30 },
-  ayanamsa: ay, jd: J,
-  tithiEnd: transitions.tithiEnd,
-  nakEnd: transitions.nakEnd,
-  yogaEnd: transitions.yogaEnd,
-  karanEnd: transitions.karanEnd
-};
-  
-  // ─────────────────────────────────────────────────────────────────
-  //  FORMAT  &  NAME TABLES
-  // ─────────────────────────────────────────────────────────────────
-  function hms(h){h=((h%24)+24)%24;var hh=Math.floor(h),mm=Math.floor((h%1)*60),ss=Math.round(((h%1)*60%1)*60);if(ss===60){mm++;ss=0;}if(mm===60){hh++;mm=0;}return(hh<10?'0':'')+hh+':'+(mm<10?'0':'')+mm+':'+(ss<10?'0':'')+ss;}
-  function hm(h){h=((h%24)+24)%24;var hh=Math.floor(h),mm=Math.floor((h%1)*60);return(hh<10?'0':'')+hh+':'+(mm<10?'0':'')+mm;}
-  function hhmmss(d){d=Math.abs(d);var hh=Math.floor(d),mm=Math.floor((d%1)*60),ss=Math.round(((d%1)*60%1)*60);if(ss===60){mm++;ss=0;}if(mm===60){hh++;mm=0;}return hh+':'+(mm<10?'0':'')+mm+':'+(ss<10?'0':'')+ss;}
-
-  var TITHI_NAMES=['প্রতিপদ','দ্বিতীয়া','তৃতীয়া','চতুর্থী','পঞ্চমী','ষষ্ঠী','সপ্তমী','অষ্টমী','নবমী','দশমী','একাদশী','দ্বাদশী','ত্রয়োদশী','চতুর্দশী','পূর্ণিমা','প্রতিপদ','দ্বিতীয়া','তৃতীয়া','চতুর্থী','পঞ্চমী','ষষ্ঠী','সপ্তমী','অষ্টমী','নবমী','দশমী','একাদশী','দ্বাদশী','ত্রয়োদশী','চতুর্দশী','অমাবস্যা'];
-  var NAKSHATRA_NAMES=['অশ্বিনী','ভরণী','কৃত্তিকা','রোহিণী','মৃগশিরা','আর্দ্রা','পুনর্বসু','পুষ্যা','আশ্লেষা','মঘা','পূর্বফাল্গুনী','উত্তরফাল্গুনী','হস্তা','চিত্রা','স্বাতী','বিশাখা','অনুরাধা','জ্যেষ্ঠা','মূলা','পূর্বাষাঢ়া','উত্তরাষাঢ়া','শ্রবণা','ধনিষ্ঠা','শতভিষা','পূর্বভাদ্রপদ','উত্তরভাদ্রপদ','রেবতী'];
-  var YOGA_NAMES=['বিষ্কুম্ভ','প্রীতি','আয়ুষ্মান','সৌভাগ্য','শোভন','অতিগণ্ড','সুকর্মা','ধৃতি','শূল','গণ্ড','বৃদ্ধি','ধ্রুব','ব্যাঘাত','হর্ষণ','বজ্র','সিদ্ধি','ব্যতীপাত','বরীয়ান','পরিঘ','শিব','সিদ্ধ','সাধ্য','শুভ','শুক্ল','ব্রহ্ম','ঐন্দ্র','বৈধৃতি'];
-  var KARANA_NAMES=['বব','বালব','কৌলব','তৈতিল','গর','বণিজ','বিষ্টি','শকুনি','চতুষ্পদ','নাগ','কিন্তুঘ্ন'];
-  var RASHI_NAMES=['মেষ','বৃষ','মিথুন','কর্কট','সিংহ','কন্যা','তুলা','বৃশ্চিক','ধনু','মকর','কুম্ভ','মীন'];
-  var BN_MONTH_NAMES=['','বৈশাখ','জ্যৈষ্ঠ','আষাঢ়','শ্রাবণ','ভাদ্র','আশ্বিন','কার্তিক','অগ্রহায়ণ','পৌষ','মাঘ','ফাল্গুন','চৈত্র'];
-  var WEEKDAY_BN=['রবিবার','সোমবার','মঙ্গলবার','বুধবার','বৃহস্পতিবার','শুক্রবার','শনিবার'];
-
-  // ─────────────────────────────────────────────────────────────────
-  //  PUBLIC API
-  // ─────────────────────────────────────────────────────────────────
-  return{
-    jd:jd, ayanamsa:ayanamsa, sid:sid,
-    getMoonLon:getMoonLon,  getMerLon:getMerLon, getVenLon:getVenLon,
-    getSunLon:getSunLon,    getMarLon:getMarLon, getJupLon:getJupLon,
-    getSatLon:getSatLon,    getRahuLon:getRahuLon, getKetuLon:getKetuLon,
-    getNavagraha:getNavagraha,
-    getSunrise:getSunrise,  getSunset:getSunset, getDiwaRatri:getDiwaRatri,
-    getLagna:getLagna,
-    getBanglaDate:getBanglaDate, getBanglaMonthStart:getBanglaMonthStart,
-    getSankrantiList:function(){return _sankList();},
-    getDailyPanchang:getDailyPanchang,
-    computeAmritaMahendra:computeAmritaMahendra,
-    computeBarabela:computeBarabela, computeKalaRatri:computeKalaRatri,
-    computeRahukal:computeRahukal, computeGulikakal:computeGulikakal,
-    computeAbhijit:computeAbhijit,
-    hms:hms, hm:hm, hhmmss:hhmmss,
-    TITHI_NAMES:TITHI_NAMES, NAKSHATRA_NAMES:NAKSHATRA_NAMES,
-    YOGA_NAMES:YOGA_NAMES,   KARANA_NAMES:KARANA_NAMES,
-    RASHI_NAMES:RASHI_NAMES, BN_MONTH_NAMES:BN_MONTH_NAMES,
-    LAT:LAT, LNG:LNG, IST:IST, LMT:LMT, START:START
+    jd: jd, ayanamsa: ayanamsa, sid: sid,
+    getMoonLon: getMoonLon, getMerLon: getMerLon, getVenLon: getVenLon,
+    getSunLon: getSunLon, getMarLon: getMarLon, getJupLon: getJupLon,
+    getSatLon: getSatLon, getRahuLon: getRahuLon, getKetuLon: getKetuLon,
+    getNavagraha: getNavagraha,
+    getSunrise: getSunrise, getSunset: getSunset, getDiwaRatri: getDiwaRatri,
+    getLagna: getLagna,
+    getBanglaDate: getBanglaDate, getBanglaMonthStart: getBanglaMonthStart,
+    getSankrantiList: function(){ return _sankList(); },
+    getDailyPanchang: getDailyPanchang,
+    computeBarabela: computeBarabela, computeKalaRatri: computeKalaRatri,
+    computeRahukal: computeRahukal, computeGulikakal: computeGulikakal,
+    computeAbhijit: computeAbhijit,
+    hms: hms, hm: hm, hhmmss: hhmmss,
+    TITHI_NAMES: TITHI_NAMES, NAKSHATRA_NAMES: NAKSHATRA_NAMES,
+    YOGA_NAMES: YOGA_NAMES, KARANA_NAMES: KARANA_NAMES,
+    RASHI_NAMES: RASHI_NAMES, BN_MONTH_NAMES: BN_MONTH_NAMES,
+    LAT: LAT, LNG: LNG, IST: IST, LMT: LMT, START: START
   };
 })();
 
 // ── Backward-compat ─────────────────────────────────────────────
-var PD=PD||{};
-PD.ay=function(j){return PEph.ayanamsa(j);};
-PD.moon=function(d,h){return PEph.getMoonLon(d,(h||0)+PEph.IST);};
-PD.sun=function(d){return{rise:PEph.getSunrise(d),set:PEph.getSunset(d)};};
-PD.graha=function(d){return PEph.getNavagraha(d,PEph.getSunrise(d));};
-PD.panchang=function(d,m){return PEph.getDailyPanchang(d,m||12);};
-// EOF panjika-ephemeris.js v5.2
+var PD = PD || {};
+PD.ay = function(j) { return PEph.ayanamsa(j); };
+PD.moon = function(d, h) { return PEph.getMoonLon(d, (h || 0) + PEph.IST); };
+PD.sun = function(d) { return { rise: PEph.getSunrise(d), set: PEph.getSunset(d) }; };
+PD.graha = function(d) { return PEph.getNavagraha(d, PEph.getSunrise(d)); };
+PD.panchang = function(d, m) { return PEph.getDailyPanchang(d, m || 12); };
+// EOF panjika-ephemeris.js v5.3
+          
