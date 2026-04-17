@@ -2691,18 +2691,31 @@ function getPanchangaTransitions(date, rise) {
   }
 
   // ... বিদ্যমান getDailyPanchang-এর শেষাংশে ...
-var bd=getBanglaDate(ds);
-var transitions = getPanchangaTransitions(ds, r); // ← এই লাইন যোগ করুন
+var bd = getBanglaDate(ds);
+var transitions = getPanchangaTransitions(ds, r); // r = sunrise hour
 
-return{
-  date:ds, weekday:WEEKDAY_BN[dow], weekdayNum:dow,
-  sunriseStr:hms(r),sunsetStr:hms(s),rise:r,set_:s,
-  // ... অন্যান্য সব ফিল্ড ...
-  bangla:bd||{},
-  surya:{lon:sSid,rashi:Math.floor(sSid/30)%12,deg:sSid%30},
-  chandra:{lon:mSid,rashi:Math.floor(mSid/30)%12,deg:mSid%30},
-  ayanamsa:ay,jd:J,
-  // নতুন ট্রানজিশন ডেটা:
+return {
+  date: ds, weekday: WEEKDAY_BN[dow], weekdayNum: dow,
+  sunriseStr: hms(r), sunsetStr: hms(s), rise: r, set_: s,
+  diwa: dr.diwa, ratri: dr.ratri, diwaStr: dr.diwaStr, ratriStr: dr.ratriStr,
+  praharDiwa: dr.praharD, praharRatri: dr.praharR,
+  muhurtaDiwa: dr.muhD, muhurtaRatri: dr.muhR,
+  paksha: paksha, tithi: tNum, tithiName: TITHI_NAMES[tIdx],
+  nakshatra: nakIdx, nakshatraName: NAKSHATRA_NAMES[nakIdx], nakshatraPada: nakPada,
+  yoga: yogaIdx, yogaName: YOGA_NAMES[yogaIdx],
+  karana: karIdx, karanaName: KARANA_NAMES[karIdx],
+  lagna: { rashi: lag.rashi, deg: lag.deg, rashiName: lag.rashiName },
+  rahukal: computeRahukal(r, s, dow),
+  gulikakal: computeGulikakal(r, s, dow),
+  abhijit: computeAbhijit(r, s),
+  barabela: computeBarabela(r, s, dow),
+  kalaRatri: computeKalaRatri(r, s, dow),
+  amritaMahendra: am,
+  navagraha: getNavagraha(ds, r),
+  bangla: bd || {},
+  surya: { lon: sSid, rashi: Math.floor(sSid/30)%12, deg: sSid%30 },
+  chandra: { lon: mSid, rashi: Math.floor(mSid/30)%12, deg: mSid%30 },
+  ayanamsa: ay, jd: J,
   tithiEnd: transitions.tithiEnd,
   nakEnd: transitions.nakEnd,
   yogaEnd: transitions.yogaEnd,
