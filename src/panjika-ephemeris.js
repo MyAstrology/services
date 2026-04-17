@@ -2536,6 +2536,117 @@ function sid(trop,J){
     return{start:noon-0.2,end:noon+0.2,startStr:hm(noon-0.2),endStr:hm(noon+0.2)};
   }
 
+// ========== উচ্চ নির্ভুলতা ট্রানজিট ইঞ্জিন (বাইনারি সার্চ) ==========
+function findTransitTime(date, rise, targetFunc, toleranceSec = 0.1) {
+    const dayMs = 24 * 3600 * 1000;
+    const start = rise;
+    // পরদিন সূর্যোদয় পর্যন্ত খুঁজব, প্রয়োজনে আরও আগাতে পারি
+    let end = rise + 24;
+    // নিরাপত্তার জন্য আরও ৬ ঘণ্টা বাড়ানো (যদি পরিবর্তন পরদিন সকালের পরে হয়)
+    const nextDayRise = PEph.getSunrise(dStr(new Date(date.getTime() + dayMs)));
+    if (nextDayRise < end) end = nextDayRise + 24;
+    else end = nextDayRise + 24;
+
+    const fStart = targetFunc(start);
+    const fEnd = targetFunc(end);
+    if (Math.abs(fStart) < 1e-9) return start;
+    if (Math.abs(fEnd) < 1e-9) return end;
+    if (fStart * fEnd > 0) return null; // এই সীমার মধ্যে পরিবর্তন নেই
+
+    let low = start, high = end;
+    for (let iter = 0; iter < 80; iter++) {
+        const mid = (low + high) / 2;
+        const fMid = targetFunc(mid);
+        if (Math.abs(fMid) < 1e-9) return mid;
+        if (fStart * fMid < 0) {
+            high = mid;
+        } else {
+            low = mid;
+        }
+        if (high - low < toleranceSec / 3600) break;
+    }
+    return (low + high) / 2;
+}
+
+/**
+ * নির্দিষ্ট তারিখ ও সূর্যোদয়ের জন্য তিথি, নক্ষত্র, যোগ, করণের শেষ সময় নির্ণয়
+ */
+function getPanchangaTransitions(date, rise) {
+    const ds = dStr(date);
+    const nextDate = new Date(date);
+    nextDate.setDate(nextDate.getDate() + 1);
+    const nextDs = dStr(nextDate);
+    const nextRise = PEph.getSunrise(nextDs);
+
+    // ---- তিথি ----
+    const todaySun = PEph.getSunLon(ds);
+    const todayMoon = PEph.getMoonLon(ds, rise);
+    const todayDiff = (todayMoon - todaySun + 360) % 360;
+    const todayTithiIdx = Math.floor(todayDiff / 12);
+    const tomorrowDiff = (PEph.getMoonLon(nextDs, nextRise) - PEph.getSunLon(nextDs) + 360) % 360;
+    const tomorrowTithiIdx = Math.floor(tomorrowDiff / 12);
+    let tithiEnd = null;
+    if (tomorrowTithiIdx !== todayTithiIdx) {
+        const targetDiff = (todayTithiIdx + 1) * 12;
+        tithiEnd = findTransitTime(date, rise, (h) => {
+            const dt = new Date(date.getTime() + (h - rise) * 3600000);
+            const dss = dStr(dt);
+            const moon = PEph.getMoonLon(dss, h);
+            const sun = PEph.getSunLon(dss);
+            const diff = (moon - sun + 360) % 360;
+            return diff - targetDiff;
+        });
+    }
+
+    // ---- নক্ষত্র ----
+    const todayNakIdx = Math.floor((todayMoon % 360) / (360/27));
+    const tomorrowNakIdx = Math.floor((PEph.getMoonLon(nextDs, nextRise) % 360) / (360/27));
+    let nakEnd = null;
+    if (tomorrowNakIdx !== todayNakIdx) {
+        const targetNak = (todayNakIdx + 1) * (360/27);
+        nakEnd = findTransitTime(date, rise, (h) => {
+            const dt = new Date(date.getTime() + (h - rise) * 3600000);
+            const dss = dStr(dt);
+            const moon = PEph.getMoonLon(dss, h) % 360;
+            return moon - targetNak;
+        });
+    }
+
+    // ---- যোগ ----
+    const todayYogaSum = (todaySun + todayMoon) % 360;
+    const todayYogaIdx = Math.floor(todayYogaSum * 27 / 360);
+    const tomorrowYogaSum = (PEph.getSunLon(nextDs) + PEph.getMoonLon(nextDs, nextRise)) % 360;
+    const tomorrowYogaIdx = Math.floor(tomorrowYogaSum * 27 / 360);
+    let yogaEnd = null;
+    if (tomorrowYogaIdx !== todayYogaIdx) {
+        const targetYoga = (todayYogaIdx + 1) * (360/27);
+        yogaEnd = findTransitTime(date, rise, (h) => {
+            const dt = new Date(date.getTime() + (h - rise) * 3600000);
+            const dss = dStr(dt);
+            const sum = (PEph.getSunLon(dss) + PEph.getMoonLon(dss, h)) % 360;
+            return sum - targetYoga;
+        });
+    }
+
+    // ---- করণ ----
+    const todayKaranIdx = Math.floor(todayDiff / 6) % 11;
+    const tomorrowKaranIdx = Math.floor(tomorrowDiff / 6) % 11;
+    let karanEnd = null;
+    if (tomorrowKaranIdx !== todayKaranIdx) {
+        const targetDiff = (todayKaranIdx + 1) * 6;
+        karanEnd = findTransitTime(date, rise, (h) => {
+            const dt = new Date(date.getTime() + (h - rise) * 3600000);
+            const dss = dStr(dt);
+            const moon = PEph.getMoonLon(dss, h);
+            const sun = PEph.getSunLon(dss);
+            const diff = (moon - sun + 360) % 360;
+            return diff - targetDiff;
+        });
+    }
+
+    return { tithiEnd, nakEnd, yogaEnd, karanEnd };
+}
+  
   // ─────────────────────────────────────────────────────────────────
   //  সম্পূর্ণ পঞ্চাঙ্গ
   // ─────────────────────────────────────────────────────────────────
