@@ -2020,16 +2020,20 @@ function showDetail(date) {
     const nakNames = ['অশ্বিনী','ভরণী','কৃত্তিকা','রোহিণী','মৃগশিরা','আর্দ্রা','পুনর্বসু','পুষ্যা','আশ্লেষা','মঘা','পূর্বফাল্গুনী','উত্তরফাল্গুনী','হস্তা','চিত্রা','স্বাতী','বিশাখা','অনুরাধা','জ্যেষ্ঠা','মূলা','পূর্বাষাঢ়া','উত্তরাষাঢ়া','শ্রবণা','ধনিষ্ঠা','শতভিষা','পূর্বভাদ্র','উত্তরভাদ্র','রেবতী'];
     const padaSymbol = ['①','②','③','④'];
     let grahaHtml = '<div style="font-size:.7rem;font-weight:700;color:var(--gold);text-transform:uppercase;padding:.5rem 0 .2rem;border-top:1px solid rgba(201,162,39,.12);margin-top:.2rem;">🪐 গ্রহের অবস্থান (সিদ্ধান্তীয়)</div>';
-    grahaHtml += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.3rem;">';
-    grahaData.forEach(g => {
-        const d = g.data;
-        const degInt = Math.floor(d.deg);
-        const degMin = Math.floor((d.deg - degInt) * 60);
-        const nak = nakNames[d.nak];
-        const pada = padaSymbol[d.nakPad - 1] || '';
-        grahaHtml += `<div class="di" style="padding:.4rem .5rem;"><div style="font-weight:700;color:var(--gold-d);margin-bottom:.1rem;">${g.name}</div><div style="font-size:.68rem;line-height:1.3;">${d.rashiName} ${toBn(degInt)}°${toBn(degMin)}′ ${nak} ${pada}</div></div>`;
-    });
-    grahaHtml += '</div>';
+    // আগের কোডের বদলে নিচেরটা দিন
+grahaHtml += '<div style="display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.5rem;">';
+grahaData.forEach(g => {
+    const d = g.data;
+    const degInt = Math.floor(d.deg);
+    const degMin = Math.floor((d.deg - degInt) * 60);
+    const nak = nakNames[d.nak];
+    const pada = padaSymbol[d.nakPad - 1] || '';
+    grahaHtml += `<div style="background:rgba(181,134,13,0.06); border:1px solid rgba(181,134,13,0.2); border-radius:10px; padding:0.45rem 0.8rem; flex:1 0 130px;">
+        <div style="font-weight:700; color:var(--gold-d); font-size:0.7rem;">${g.name}</div>
+        <div style="font-size:0.7rem; line-height:1.3;">${d.rashiName} ${toBn(degInt)}°${toBn(degMin)}′ ${nak} ${pada}</div>
+    </div>`;
+});
+grahaHtml += '</div>';
 
     var y = date.getFullYear(), mo = date.getMonth(), d = date.getDate();
     document.getElementById('dtbn').textContent = bn ? toBn(bn.d) + ' ' + bn.name + ' ' + toBn(bn.y) + ' বঙ্গাব্দ' : '';
