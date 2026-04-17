@@ -2130,8 +2130,7 @@ function renderMonthEvents() {
             evts.births.forEach(b => allEvts.push({icon:b.icon, name:b.name, type:'জন্মদিন'}));
             evts.deaths.forEach(d => allEvts.push({icon:d.icon, name:d.name, type:'তিরোধান'}));
             evts.modern.forEach(m => allEvts.push({icon:m.icon, name:m.name, type:'দিবস'}));
-            if(evts.malmas) allEvts.push({icon:'📿', name:evts.malmas.monthName, type:'মলমাস'});
-
+            
             // পুরনো FESTS অ্যারে থেকেও আনতে পারেন
             if (typeof getFests === 'function') {
                 var fests = getFests(ds);
@@ -2161,6 +2160,17 @@ function renderMonthEvents() {
         console.error('renderMonthEvents error:', e);
         document.getElementById('monthEventsList').innerHTML = '<div class="sd-empty">ডেটা লোড করতে সমস্যা হয়েছে।</div>';
     }
+}
+
+  // মলমাস চেক করে হেডারে ব্যাজ দেখানো (ঐচ্ছিক)
+const firstDay = days[0].date;
+const firstDayStr = dStr(firstDay);
+const monthMalmas = PANJIKA_DATA?.malmas?.find(ml => 
+    firstDay >= new Date(ml.startDate + 'T00:00:00') && firstDay <= new Date(ml.endDate + 'T23:59:59')
+);
+if (monthMalmas) {
+    const cmbn = document.getElementById('cmbn');
+    cmbn.innerHTML = `${BNM_NAMES[currentBengaliMonth]} ${toBn(currentBengaliYear)} বঙ্গাব্দ <span style="background:#c0392b;color:white;padding:2px 8px;border-radius:20px;font-size:0.7rem;margin-left:8px;">📿 মলমাস</span>`;
 }
 // ═══════════════════════════════════════════════════════════════════════════
 // INIT
