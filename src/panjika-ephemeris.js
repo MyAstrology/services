@@ -2690,6 +2690,25 @@ function getPanchangaTransitions(date, rise) {
     };
   }
 
+  // ... বিদ্যমান getDailyPanchang-এর শেষাংশে ...
+var bd=getBanglaDate(ds);
+var transitions = getPanchangaTransitions(ds, r); // ← এই লাইন যোগ করুন
+
+return{
+  date:ds, weekday:WEEKDAY_BN[dow], weekdayNum:dow,
+  sunriseStr:hms(r),sunsetStr:hms(s),rise:r,set_:s,
+  // ... অন্যান্য সব ফিল্ড ...
+  bangla:bd||{},
+  surya:{lon:sSid,rashi:Math.floor(sSid/30)%12,deg:sSid%30},
+  chandra:{lon:mSid,rashi:Math.floor(mSid/30)%12,deg:mSid%30},
+  ayanamsa:ay,jd:J,
+  // নতুন ট্রানজিশন ডেটা:
+  tithiEnd: transitions.tithiEnd,
+  nakEnd: transitions.nakEnd,
+  yogaEnd: transitions.yogaEnd,
+  karanEnd: transitions.karanEnd
+};
+  
   // ─────────────────────────────────────────────────────────────────
   //  FORMAT  &  NAME TABLES
   // ─────────────────────────────────────────────────────────────────
