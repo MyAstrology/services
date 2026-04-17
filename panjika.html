@@ -2020,7 +2020,10 @@ function showDetail(date) {
     const nakNames = ['অশ্বিনী','ভরণী','কৃত্তিকা','রোহিণী','মৃগশিরা','আর্দ্রা','পুনর্বসু','পুষ্যা','আশ্লেষা','মঘা','পূর্বফাল্গুনী','উত্তরফাল্গুনী','হস্তা','চিত্রা','স্বাতী','বিশাখা','অনুরাধা','জ্যেষ্ঠা','মূলা','পূর্বাষাঢ়া','উত্তরাষাঢ়া','শ্রবণা','ধনিষ্ঠা','শতভিষা','পূর্বভাদ্র','উত্তরভাদ্র','রেবতী'];
     const padaSymbol = ['①','②','③','④'];
     let grahaHtml = '<div style="font-size:.7rem;font-weight:700;color:var(--gold);text-transform:uppercase;padding:.5rem 0 .2rem;border-top:1px solid rgba(201,162,39,.12);margin-top:.2rem;">🪐 গ্রহের অবস্থান (সিদ্ধান্তীয়)</div>';
-    // আগের কোডের বদলে নিচেরটা দিন
+
+// তার নিচের অংশটি মুছে দিন এবং নিচের কোডটি বসান:
+
+let grahaHtml = '<div style="font-size:.7rem;font-weight:700;color:var(--gold);text-transform:uppercase;padding:.5rem 0 .2rem;border-top:1px solid rgba(201,162,39,.12);margin-top:.2rem;">🪐 গ্রহের অবস্থান (সিদ্ধান্তীয়)</div>';
 grahaHtml += '<div style="display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.5rem;">';
 grahaData.forEach(g => {
     const d = g.data;
@@ -2049,13 +2052,55 @@ grahaHtml += '</div>';
     var extraHtml = '';
     extraItems.forEach(x => { extraHtml += '<div class="di"><div class="dii">'+x.i+'</div><div class="dil">'+x.l+'</div><div class="div2">'+x.v+'</div>'+(x.s?'<div class="dis">'+x.s+'</div>':'')+'</div>'; });
 
-    // পঞ্চাঙ্গের মূল অংশ (তিথি, নক্ষত্র, যোগ, করণ)
-    document.getElementById('dtpan').innerHTML =
-        _panItem('🌙', 'তিথি', c.tithiList, v=>v.pakShort+' '+v.name, v=>v.paksha) +
-        _panItem('⭐', 'নক্ষত্র', c.nakList, v=>v.name, v=>'অধিপতি: '+v.lord) +
-        _panItem('🌟', 'যোগ', c.yogaList, v=>v.name, v=>v.sym==='✓'?'শুভ যোগ':'অশুভ যোগ') +
-        _panItem('🎴', 'করণ', c.karanList, v=>v.name, null) + extraHtml + grahaHtml;
+    // পঞ্চাঙ্গের মূল অংশ (তিথি, নক্ষত্র, যোগ, করণ) — সময় স্লট সহ
+const trans = getPanchangaTransitions(date, c.st.rise);
+const tithiEndStr = trans.tithiEnd ? fmtT(trans.tithiEnd, 0) : 'আগামীকাল';
+const nakEndStr = trans.nakEnd ? fmtT(trans.nakEnd, 0) : 'আগামীকাল';
+const yogaEndStr = trans.yogaEnd ? fmtT(trans.yogaEnd, 0) : 'আগামীকাল';
+const karanEndStr = trans.karanEnd ? fmtT(trans.karanEnd, 0) : 'আগামীকাল';
 
+// পরবর্তী তিথি ও নক্ষত্রের নাম (c.tithiList ও c.nakList থেকে)
+const nextTithi = c.tithiList[1] ? c.tithiList[1].val.name : '—';
+const nextNak = c.nakList[1] ? c.nakList[1].val.name : '—';
+
+let panHtml = `
+<div class="di">
+    <div class="dii">🌙</div><div class="dil">তিথি</div>
+    <div class="div2">${c.paksha==='শুক্ল'?'শু':'কৃ'} ${c.tName}</div>
+    <div class="dis" style="color:var(--green);">▶ চলতি</div>
+    <div class="dis">⏱️ শেষ: ${tithiEndStr}</div>
+    <div class="dis">⏩ পরবর্তী: ${nextTithi}</div>
+</div>
+<div class="di">
+    <div class="dii">⭐</div><div class="dil">নক্ষত্র</div>
+    <div class="div2">${c.nak[0]}</div>
+    <div class="dis" style="color:var(--green);">▶ চলতি</div>
+    <div class="dis">⏱️ শেষ: ${nakEndStr}</div>
+    <div class="dis">⏩ পরবর্তী: ${nextNak}</div>
+    <div class="dis">অধিপতি: ${c.nak[1]}</div>
+</div>
+<div class="di">
+    <div class="dii">🌟</div><div class="dil">যোগ</div>
+    <div class="div2">${c.yoga[0]}</div>
+    <div class="dis">⏱️ শেষ: ${yogaEndStr}</div>
+    <div class="dis">${c.yoga[1]==='✓'?'✅ শুভ যোগ':'❌ অশুভ যোগ'}</div>
+</div>
+<div class="di">
+    <div class="dii">🎴</div><div class="dil">করণ</div>
+    <div class="div2">${c.karan}</div>
+    <div class="dis">⏱️ শেষ: ${karanEndStr}</div>
+</div>
+`;
+
+// এরপর extraItems যোগ করুন (বার, ঋতু, সম্বত ইত্যাদি)
+extraItems.forEach(x => { 
+    panHtml += `<div class="di"><div class="dii">${x.i}</div><div class="dil">${x.l}</div><div class="div2">${x.v}</div>${x.s?`<div class="dis">${x.s}</div>`:''}</div>`; 
+});
+
+// অবশেষে গ্রহের অবস্থান যোগ করুন
+panHtml += grahaHtml;
+
+document.getElementById('dtpan').innerHTML = panHtml;
     // ─── সময় সম্পর্কিত তথ্য (সূর্যোদয়, সূর্যাস্ত, ব্রাহ্ম মুহূর্ত, রাহুকাল, গুলিকাল, অভিজিৎ, যমঘণ্ট) ───
     var rh = Math.floor(c.st.rise), rm = Math.round((c.st.rise - rh) * 60);
     var sh = Math.floor(c.st.set), sm = Math.round((c.st.set - sh) * 60);
@@ -2138,7 +2183,82 @@ function switchCalcTab(idx, el) {
     el.classList.add('act');
     document.getElementById('calcPane'+idx).classList.add('show');
 }
+// ========== পঞ্চাঙ্গের ট্রানজিশন সময় গণনার ইঞ্জিন ==========
+function getPanchangaTransitions(date, rise) {
+    const ds = dStr(date);
+    const nextDate = new Date(date);
+    nextDate.setDate(nextDate.getDate() + 1);
+    const nextDs = dStr(nextDate);
+    const nextRise = PEph.getSunrise(nextDs);
 
+    // বর্তমান ও পরবর্তী দিনের সূর্য ও চন্দ্রের দ্রাঘিমাংশ (সূর্যোদয়ের সময়)
+    const todaySun = PEph.getSunLon(ds);
+    const todayMoon = PEph.getMoonLon(ds, rise);
+    const tomorrowSun = PEph.getSunLon(nextDs);
+    const tomorrowMoon = PEph.getMoonLon(nextDs, nextRise);
+
+    // ---------- তিথি ট্রানজিশন ----------
+    const todayDiff = (todayMoon - todaySun + 360) % 360;
+    const tomorrowDiff = (tomorrowMoon - tomorrowSun + 360) % 360;
+    const todayTithiIdx = Math.floor(todayDiff / 12);
+    const tomorrowTithiIdx = Math.floor(tomorrowDiff / 12);
+    let tithiEnd = null;
+    if (tomorrowTithiIdx > todayTithiIdx) {
+        const targetDiff = (todayTithiIdx + 1) * 12;
+        const needed = targetDiff - todayDiff;
+        const totalChange = tomorrowDiff - todayDiff;
+        if (totalChange > 0) {
+            const fraction = needed / totalChange;
+            tithiEnd = rise + fraction * 24;
+        }
+    }
+
+    // ---------- নক্ষত্র ট্রানজিশন ----------
+    const todayNakIdx = Math.floor((todayMoon % 360) / (360/27));
+    const tomorrowNakIdx = Math.floor((tomorrowMoon % 360) / (360/27));
+    let nakEnd = null;
+    if (tomorrowNakIdx > todayNakIdx) {
+        const targetNak = (todayNakIdx + 1) * (360/27);
+        const needed = targetNak - (todayMoon % 360);
+        const totalChange = tomorrowMoon - todayMoon;
+        if (totalChange > 0) {
+            const fraction = needed / totalChange;
+            nakEnd = rise + fraction * 24;
+        }
+    }
+
+    // ---------- যোগ ট্রানজিশন ----------
+    const todayYogaIdx = Math.floor(((todaySun + todayMoon) % 360) * 27 / 360);
+    const tomorrowYogaIdx = Math.floor(((tomorrowSun + tomorrowMoon) % 360) * 27 / 360);
+    let yogaEnd = null;
+    if (tomorrowYogaIdx > todayYogaIdx) {
+        const targetYoga = (todayYogaIdx + 1) * (360/27);
+        const todayYogaDeg = (todaySun + todayMoon) % 360;
+        const tomorrowYogaDeg = (tomorrowSun + tomorrowMoon) % 360;
+        const needed = targetYoga - todayYogaDeg;
+        const totalChange = tomorrowYogaDeg - todayYogaDeg;
+        if (totalChange > 0) {
+            const fraction = needed / totalChange;
+            yogaEnd = rise + fraction * 24;
+        }
+    }
+
+    // ---------- করণ ট্রানজিশন ----------
+    const todayKaranIdx = Math.floor(todayDiff / 6) % 11;
+    const tomorrowKaranIdx = Math.floor(tomorrowDiff / 6) % 11;
+    let karanEnd = null;
+    if (tomorrowKaranIdx > todayKaranIdx) {
+        const targetDiff = (todayKaranIdx + 1) * 6;
+        const needed = targetDiff - todayDiff;
+        const totalChange = tomorrowDiff - todayDiff;
+        if (totalChange > 0) {
+            const fraction = needed / totalChange;
+            karanEnd = rise + fraction * 24;
+        }
+    }
+
+    return { tithiEnd, nakEnd, yogaEnd, karanEnd };
+}
 
   // ═══════════════════════════════════════════════════════════════════════════
 // EVENT RENDERERS (panjika-data.js এর উপর নির্ভরশীল)
