@@ -1904,22 +1904,27 @@ function calcDay(date) {
     const tithiNum = tIdx + 1;
     const nakLord = (NAKS[pc.nakshatra] && NAKS[pc.nakshatra][1]) || '';
     return {
-        w: pc.weekdayNum, bn: bnInfo, tN: tithiNum, tName: pc.tithiName,
-        paksha: pc.paksha, pakDay: pc.tithi, nak: [pc.nakshatraName, nakLord],
-        yoga: [pc.yogaName, pc.yoga < 6 ? '✓' : '✗'], karan: pc.karanaName,
-        vara: pc.weekday, varaL: VLORD[pc.weekdayNum],
-        st: { rise: pc.rise, set: pc.set_ },
-        rahu: `${pc.rahukal.startStr} – ${pc.rahukal.endStr}`,
-        gulika: `${pc.gulikakal.startStr} – ${pc.gulikakal.endStr}`,
-        yam: (pc.kalaRatri && pc.kalaRatri.length) ? `${pc.kalaRatri[0].startStr} – ${pc.kalaRatri[0].endStr}` : '',
-        abhi: `${pc.abhijit.startStr} – ${pc.abhijit.endStr}`,
-        eclipses: (typeof getEclipse==='function'?getEclipse(ds):[]),
-        fests: (typeof getFests==='function'?getFests(ds):[]),
-        tithiList: [{ val: { pakShort: pc.paksha==='শুক্ল'?'শু':'কৃ', name: pc.tithiName, paksha: pc.paksha }, endTime: null }],
-        nakList: [{ val: { name: pc.nakshatraName, lord: nakLord }, endTime: null }],
-        yogaList: [{ val: { name: pc.yogaName, sym: pc.yoga < 6 ? '✓' : '✗' }, endTime: null }],
-        karanList: [{ val: { name: pc.karanaName }, endTime: null }]
-    };
+    w: pc.weekdayNum, bn: bnInfo, tN: tithiNum, tName: pc.tithiName,
+    paksha: pc.paksha, pakDay: pc.tithi, nak: [pc.nakshatraName, nakLord],
+    yoga: [pc.yogaName, pc.yoga < 6 ? '✓' : '✗'], karan: pc.karanaName,
+    vara: pc.weekday, varaL: VLORD[pc.weekdayNum],
+    st: { rise: pc.rise, set: pc.set_ },
+    rahu: `${pc.rahukal.startStr} – ${pc.rahukal.endStr}`,
+    gulika: `${pc.gulikakal.startStr} – ${pc.gulikakal.endStr}`,
+    yam: (pc.kalaRatri && pc.kalaRatri.length) ? `${pc.kalaRatri[0].startStr} – ${pc.kalaRatri[0].endStr}` : '',
+    abhi: `${pc.abhijit.startStr} – ${pc.abhijit.endStr}`,
+    eclipses: (typeof getEclipse==='function'?getEclipse(ds):[]),
+    fests: (typeof getFests==='function'?getFests(ds):[]),
+    tithiList: [{ val: { pakShort: pc.paksha==='শুক্ল'?'শু':'কৃ', name: pc.tithiName, paksha: pc.paksha }, endTime: null }],
+    nakList: [{ val: { name: pc.nakshatraName, lord: nakLord }, endTime: null }],
+    yogaList: [{ val: { name: pc.yogaName, sym: pc.yoga < 6 ? '✓' : '✗' }, endTime: null }],
+    karanList: [{ val: { name: pc.karanaName }, endTime: null }],
+    // ★ নিচের চারটি লাইন যোগ করুন
+    tithiEnd: pc.tithiEnd,
+    nakEnd: pc.nakEnd,
+    yogaEnd: pc.yogaEnd,
+    karanEnd: pc.karanEnd
+};
 }
 
 function findTodayIdx() {
