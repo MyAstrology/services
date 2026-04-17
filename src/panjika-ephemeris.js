@@ -2288,15 +2288,17 @@ var PEph = (function() {
 
 
 
-
-
-  // বারবেলা / কালরাত্রি / রাহুকাল / গুলিকাল
+  // ═══════════════════════════════════════════════════════════════════
+  // ২. বারবেলা, কালরাত্রি, রাহুকাল, গুলিকাল (অপরিবর্তিত)
+  // ═══════════════════════════════════════════════════════════════════
   var BARB = {0:[4,5],1:[2,7],2:[2,6],3:[3,5],4:[7,8],5:[3,4],6:[1,6,8]};
   var KALA_N = {0:6,1:4,2:2,3:7,5:3}, KALA_N2 = {6:[1,8]};
   var RAHUKAL = {0:5,1:2,2:7,3:5,4:6,5:4,6:3};
   var GULIKA  = {0:7,1:6,2:5,3:4,4:3,5:2,6:1};
 
-  // CORE MATH
+  // ═══════════════════════════════════════════════════════════════════
+  // ৩. কোর ম্যাথ ও অয়নাংশ
+  // ═══════════════════════════════════════════════════════════════════
   function jd(y, m, d) {
     var a = Math.floor((14 - m) / 12), yr = y + 4800 - a, mo = m + 12 * a - 3;
     return d + Math.floor((153 * mo + 2) / 5) + 365 * yr + Math.floor(yr / 4) - Math.floor(yr / 100) + Math.floor(yr / 400) - 32045 - 0.5;
@@ -2309,35 +2311,34 @@ var PEph = (function() {
     var J2000 = 2451545.0, T = (J - J2000) / 36525.0;
     return 24.21027778 + 1.39694444e-3 * T + 2.35e-7 * T * T;
   }
-  function sid(trop, J) { return (trop - ayanamsa(J) + 360) % 360; }
 
-  // PLANET FUNCTIONS
+  // ═══════════════════════════════════════════════════════════════════
+  // ৪. গ্রহের দ্রাঘিমাংশ ফাংশন
+  // ═══════════════════════════════════════════════════════════════════
   function _interp(arr, i, f) {
+    if (!arr.length) return 0;
     var n = arr.length; if (i < 0) i = 0; if (i >= n - 1) { i = n - 2; f = 1; }
     var d = arr[i + 1] - arr[i]; if (d > 180) d -= 360; if (d < -180) d += 360;
     return (arr[i] + f * d + 360) % 360;
   }
-  function _daily(arr, ds) { var i = dayIdx(ds); if (i < 0) i = 0; if (i >= arr.length) i = arr.length - 1; return arr[i]; }
+  function _daily(arr, ds) { var i = dayIdx(ds); if (i < 0) i = 0; if (i >= arr.length) i = arr.length - 1; return arr[i] || 0; }
   function getMoonLon(ds, istH) { var utH = istH - IST, i = dayIdx(ds), t = i * 24 + utH; return _interp(moonLon, Math.floor(t / MOON_STEP), (t % MOON_STEP) / MOON_STEP); }
-  function getMerLon(ds, istH) { var utH = istH - IST, i = dayIdx(ds), t = i * 24 + utH; return _interp(merLon, Math.floor(t / MER_STEP), (t % MER_STEP) / MER_STEP); }
-  function getVenLon(ds, istH) { var utH = istH - IST, i = dayIdx(ds), t = i * 24 + utH; return _interp(venLon, Math.floor(t / VEN_STEP), (t % VEN_STEP) / VEN_STEP); }
   function getSunLon(ds) { return _daily(sunLon, ds); }
-  function getMarLon(ds) { return _daily(marLon, ds); }
-  function getJupLon(ds) { return _daily(jupLon, ds); }
-  function getSatLon(ds) { return _daily(satLon, ds); }
-  function getRahuLon(ds) { return _daily(rahLon, ds); }
-  function getKetuLon(ds) { return (getRahuLon(ds) + 180) % 360; }
-
-  function getNavagraha(ds, istH) {
-    var i = dayIdx(ds), J = START_JD + i + (istH - IST) / 24, ay = ayanamsa(J);
-    function g(l) { var s = (l - ay + 360) % 360; return { trop: l, sid: s, rashi: Math.floor(s / 30) % 12, deg: s % 30, nak: Math.floor(s / (360 / 27)), nakPad: Math.floor((s % (360 / 27)) / (360 / 27 / 4)) + 1, rashiName: RASHI_NAMES[Math.floor(s / 30) % 12], nakName: NAKSHATRA_NAMES[Math.floor(s / (360 / 27))] }; }
-    return { surya: g(getSunLon(ds)), chandra: g(getMoonLon(ds, istH)), mangal: g(getMarLon(ds)), budha: g(getMerLon(ds, istH)), brihaspati: g(getJupLon(ds)), shukra: g(getVenLon(ds, istH)), shani: g(getSatLon(ds)), rahu: g(getRahuLon(ds)), ketu: g((getRahuLon(ds) + 180) % 360), ayanamsa: ay, jd: J };
-  }
-
   function getSunrise(ds) { return _daily(riseArr, ds); }
   function getSunset(ds) { return _daily(setArr, ds); }
 
-  // TRANSIT ENGINE (রৈখিক ইন্টারপোলেশন - সহজ ও নির্ভরযোগ্য)
+  // ═══════════════════════════════════════════════════════════════════
+  // ৫. নবগ্রহ
+  // ═══════════════════════════════════════════════════════════════════
+  function getNavagraha(ds, istH) {
+    var i = dayIdx(ds), J = START_JD + i + (istH - IST) / 24, ay = ayanamsa(J);
+    function g(l) { var s = (l - ay + 360) % 360; return { trop: l, sid: s, rashi: Math.floor(s / 30) % 12, deg: s % 30, nak: Math.floor(s / (360 / 27)), nakPad: Math.floor((s % (360 / 27)) / (360 / 27 / 4)) + 1, rashiName: RASHI_NAMES[Math.floor(s / 30) % 12], nakName: NAKSHATRA_NAMES[Math.floor(s / (360 / 27))] }; }
+    return { surya: g(getSunLon(ds)), chandra: g(getMoonLon(ds, istH)), mangal: g(_daily(marLon, ds)), budha: g(_daily(merLon, ds)), brihaspati: g(_daily(jupLon, ds)), shukra: g(_daily(venLon, ds)), shani: g(_daily(satLon, ds)), rahu: g(_daily(rahLon, ds)), ketu: g((_daily(rahLon, ds) + 180) % 360), ayanamsa: ay, jd: J };
+  }
+
+  // ═══════════════════════════════════════════════════════════════════
+  // ৬. ট্রানজিশন ইঞ্জিন (সরল ও নির্ভরযোগ্য)
+  // ═══════════════════════════════════════════════════════════════════
   function getPanchangaTransitions(ds, rise) {
     var nextDate = new Date(ds + 'T00:00:00'); nextDate.setDate(nextDate.getDate() + 1);
     var nextDs = dStr(nextDate), nextRise = getSunrise(nextDs);
@@ -2375,7 +2376,9 @@ var PEph = (function() {
     return { tithiEnd: tithiEnd, nakEnd: nakEnd, yogaEnd: yogaEnd, karanEnd: karanEnd };
   }
 
-  // MAIN PANCHANG
+  // ═══════════════════════════════════════════════════════════════════
+  // ৭. দৈনিক পঞ্চাঙ্গ
+  // ═══════════════════════════════════════════════════════════════════
   function getDailyPanchang(ds, bnMonth) {
     var p = ds.split('-'), dow = new Date(+p[0], +p[1] - 1, +p[2]).getDay();
     var r = getSunrise(ds), s = getSunset(ds);
@@ -2409,21 +2412,22 @@ var PEph = (function() {
     };
   }
 
-  // MUHURTA
+  // ═══════════════════════════════════════════════════════════════════
+  // ৮. মুহূর্ত গণনা
+  // ═══════════════════════════════════════════════════════════════════
   function computeRahukal(r,s,dow){ var seg=(s-r)/8, n=RAHUKAL[dow%7]-1; return {start:r+n*seg, end:r+(n+1)*seg, startStr:hm(r+n*seg), endStr:hm(r+(n+1)*seg)}; }
   function computeGulikakal(r,s,dow){ var seg=(s-r)/8, n=GULIKA[dow%7]-1; return {start:r+n*seg, end:r+(n+1)*seg, startStr:hm(r+n*seg), endStr:hm(r+(n+1)*seg)}; }
   function computeAbhijit(r,s){ var noon=(r+s)/2; return {start:noon-0.2, end:noon+0.2, startStr:hm(noon-0.2), endStr:hm(noon+0.2)}; }
   function computeBarabela(r,s,dow){ var seg=(s-r)/8, segs=BARB[dow%7]||[]; return segs.map(function(n){ return {start:r+(n-1)*seg, end:r+n*seg, startStr:hm(r+(n-1)*seg), endStr:hm(r+n*seg)}; }); }
   function computeKalaRatri(r,s,dow){ if(dow%7===4){ var seg=(s-r)/8, n=5; return [{start:r+(n-1)*seg, end:r+n*seg, startStr:hm(r+(n-1)*seg), endStr:hm(r+n*seg), type:'day'}]; } var seg=(24-(s-r))/8, ns=KALA_N2[dow%7]||(KALA_N[dow%7]?[KALA_N[dow%7]]:[]); return ns.map(function(n){ return {start:(s+(n-1)*seg)%24, end:(s+n*seg)%24, startStr:hm((s+(n-1)*seg)%24), endStr:hm((s+n*seg)%24), type:'night'}; }); }
 
+  // ═══════════════════════════════════════════════════════════════════
+  // ৯. ফরম্যাটিং ও নাম টেবিল
+  // ═══════════════════════════════════════════════════════════════════
+  function dStr(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
   function hms(h){ h=((h%24)+24)%24; var hh=Math.floor(h), mm=Math.floor((h%1)*60), ss=Math.round(((h%1)*60%1)*60); if(ss===60){mm++;ss=0;} if(mm===60){hh++;mm=0;} return (hh<10?'0':'')+hh+':'+(mm<10?'0':'')+mm+':'+(ss<10?'0':'')+ss; }
   function hm(h){ h=((h%24)+24)%24; var hh=Math.floor(h), mm=Math.floor((h%1)*60); return (hh<10?'0':'')+hh+':'+(mm<10?'0':'')+mm; }
 
-  // BANGLA CALENDAR (সংক্ষেপিত, আপনার আসল ফাংশন এখানে বসাবেন)
-  function getBanglaDate(ds) { return { bnYear: 1433, bnMonth: 1, bnDay: 1, bnMonthName: 'বৈশাখ' }; }
-  function getBanglaMonthStart(bnY, bnM) { return new Date(2026, 3, 15); }
-
-  // NAME TABLES
   var TITHI_NAMES = ['প্রতিপদ','দ্বিতীয়া','তৃতীয়া','চতুর্থী','পঞ্চমী','ষষ্ঠী','সপ্তমী','অষ্টমী','নবমী','দশমী','একাদশী','দ্বাদশী','ত্রয়োদশী','চতুর্দশী','পূর্ণিমা','প্রতিপদ','দ্বিতীয়া','তৃতীয়া','চতুর্থী','পঞ্চমী','ষষ্ঠী','সপ্তমী','অষ্টমী','নবমী','দশমী','একাদশী','দ্বাদশী','ত্রয়োদশী','চতুর্দশী','অমাবস্যা'];
   var NAKSHATRA_NAMES = ['অশ্বিনী','ভরণী','কৃত্তিকা','রোহিণী','মৃগশিরা','আর্দ্রা','পুনর্বসু','পুষ্যা','আশ্লেষা','মঘা','পূর্বফাল্গুনী','উত্তরফাল্গুনী','হস্তা','চিত্রা','স্বাতী','বিশাখা','অনুরাধা','জ্যেষ্ঠা','মূলা','পূর্বাষাঢ়া','উত্তরাষাঢ়া','শ্রবণা','ধনিষ্ঠা','শতভিষা','পূর্বভাদ্রপদ','উত্তরভাদ্রপদ','রেবতী'];
   var YOGA_NAMES = ['বিষ্কুম্ভ','প্রীতি','আয়ুষ্মান','সৌভাগ্য','শোভন','অতিগণ্ড','সুকর্মা','ধৃতি','শূল','গণ্ড','বৃদ্ধি','ধ্রুব','ব্যাঘাত','হর্ষণ','বজ্র','সিদ্ধি','ব্যতীপাত','বরীয়ান','পরিঘ','শিব','সিদ্ধ','সাধ্য','শুভ','শুক্ল','ব্রহ্ম','ঐন্দ্র','বৈধৃতি'];
@@ -2431,13 +2435,20 @@ var PEph = (function() {
   var RASHI_NAMES = ['মেষ','বৃষ','মিথুন','কর্কট','সিংহ','কন্যা','তুলা','বৃশ্চিক','ধনু','মকর','কুম্ভ','মীন'];
   var WEEKDAY_BN = ['রবিবার','সোমবার','মঙ্গলবার','বুধবার','বৃহস্পতিবার','শুক্রবার','শনিবার'];
 
+  // ═══════════════════════════════════════════════════════════════════
+  // ১০. বাংলা ক্যালেন্ডার (আপনার আসল ফাংশন এখানে বসান)
+  // ═══════════════════════════════════════════════════════════════════
+  function getBanglaDate(ds) { /* আপনার আসল getBanglaDate ফাংশন */ return { bnYear: 1433, bnMonth: 1, bnDay: 1, bnMonthName: 'বৈশাখ' }; }
+  function getBanglaMonthStart(bnY, bnM) { return new Date(2026, 3, 15); }
+
+  // ═══════════════════════════════════════════════════════════════════
+  // ১১. পাবলিক API
+  // ═══════════════════════════════════════════════════════════════════
   return {
-    jd: jd, ayanamsa: ayanamsa, sid: sid,
-    getMoonLon: getMoonLon, getMerLon: getMerLon, getVenLon: getVenLon,
-    getSunLon: getSunLon, getMarLon: getMarLon, getJupLon: getJupLon,
-    getSatLon: getSatLon, getRahuLon: getRahuLon, getKetuLon: getKetuLon,
-    getNavagraha: getNavagraha,
+    jd: jd, ayanamsa: ayanamsa,
+    getMoonLon: getMoonLon, getSunLon: getSunLon,
     getSunrise: getSunrise, getSunset: getSunset,
+    getNavagraha: getNavagraha,
     getBanglaDate: getBanglaDate, getBanglaMonthStart: getBanglaMonthStart,
     getDailyPanchang: getDailyPanchang,
     computeBarabela: computeBarabela, computeKalaRatri: computeKalaRatri,
@@ -2451,6 +2462,7 @@ var PEph = (function() {
   };
 })();
 
+// Backward-compat
 var PD = PD || {};
 PD.ay = function(j) { return PEph.ayanamsa(j); };
 PD.moon = function(d, h) { return PEph.getMoonLon(d, (h || 0) + PEph.IST); };
