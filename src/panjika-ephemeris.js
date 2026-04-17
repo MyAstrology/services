@@ -2362,23 +2362,93 @@ var PEph=(function(){
   // TRANSIT ENGINE (বাইনারি সার্চ)
   function findTransitTime(date, rise, targetFunc, tol) { var dayMs = 86400000, start = rise, end = rise + 24; var nextDayRise = getSunrise(dStr(new Date(date.getTime() + dayMs))); end = Math.max(end, nextDayRise + 24); var fS = targetFunc(start), fE = targetFunc(end); if (Math.abs(fS) < 1e-9) return start; if (Math.abs(fE) < 1e-9) return end; if (fS * fE > 0) return null; var lo = start, hi = end; for (var iter = 0; iter < 80; iter++) { var mid = (lo + hi) / 2, fM = targetFunc(mid); if (Math.abs(fM) < 1e-9) return mid; if (fS * fM < 0) hi = mid; else lo = mid; if (hi - lo < (tol || 0.1) / 3600) break; } return (lo + hi) / 2; }
 
-  function getPanchangaTransitions(ds, rise) {
-    var nextDate = new Date(ds + 'T00:00:00'); nextDate.setDate(nextDate.getDate() + 1); var nextDs = dStr(nextDate), nextRise = getSunrise(nextDs);
-    var todaySun = getSunLon(ds), todayMoon = getMoonLon(ds, rise);
-    var tomorrowSun = getSunLon(nextDs), tomorrowMoon = getMoonLon(nextDs, nextRise);
-    var todayDiff = (todayMoon - todaySun + 360) % 360, tomorrowDiff = (tomorrowMoon - tomorrowSun + 360) % 360;
-    var tithiEnd = null, nakEnd = null, yogaEnd = null, karanEnd = null;
-    var todayTithiIdx = Math.floor(todayDiff / 12), tomorrowTithiIdx = Math.floor(tomorrowDiff / 12);
-    if (tomorrowTithiIdx !== todayTithiIdx) { tithiEnd = findTransitTime(new Date(ds), rise, function(h) { var dt = new Date(new Date(ds).getTime() + (h - rise) * 3600000); var dss = dStr(dt); var moon = getMoonLon(dss, h), sun = getSunLon(dss); return (moon - sun + 360) % 360 - (todayTithiIdx + 1) * 12; }); }
-    var todayNakIdx = Math.floor((todayMoon % 360) / (360 / 27)), tomorrowNakIdx = Math.floor((tomorrowMoon % 360) / (360 / 27));
-    if (tomorrowNakIdx !== todayNakIdx) { nakEnd = findTransitTime(new Date(ds), rise, function(h) { var dt = new Date(new Date(ds).getTime() + (h - rise) * 3600000); var dss = dStr(dt); var moon = getMoonLon(dss, h) % 360; return moon - (todayNakIdx + 1) * (360 / 27); }); }
-    var todayYogaSum = (todaySun + todayMoon) % 360, tomorrowYogaSum = (tomorrowSun + tomorrowMoon) % 360;
-    var todayYogaIdx = Math.floor(todayYogaSum * 27 / 360), tomorrowYogaIdx = Math.floor(tomorrowYogaSum * 27 / 360);
-    if (tomorrowYogaIdx !== todayYogaIdx) { yogaEnd = findTransitTime(new Date(ds), rise, function(h) { var dt = new Date(new Date(ds).getTime() + (h - rise) * 3600000); var dss = dStr(dt); var sum = (getSunLon(dss) + getMoonLon(dss, h)) % 360; return sum - (todayYogaIdx + 1) * (360 / 27); }); }
-    var todayKaranIdx = Math.floor(todayDiff / 6) % 11, tomorrowKaranIdx = Math.floor(tomorrowDiff / 6) % 11;
-    if (tomorrowKaranIdx !== todayKaranIdx) { karanEnd = findTransitTime(new Date(ds), rise, function(h) { var dt = new Date(new Date(ds).getTime() + (h - rise) * 3600000); var dss = dStr(dt); var moon = getMoonLon(dss, h), sun = getSunLon(dss); return (moon - sun + 360) % 360 - (todayKaranIdx + 1) * 6; }); }
-    return { tithiEnd: tithiEnd, nakEnd: nakEnd, yogaEnd: yogaEnd, karanEnd: karanEnd };
-  }
+  // ========== উন্নত ট্রানজিশন ইঞ্জিন (পুরনো নির্ভরযোগ্য পদ্ধতি + নতুন API) ==========
+function getPanchangaTransitions(ds, rise) {
+    // পরবর্তী দিনের সূর্যোদয়
+    var nextDate = new Date(ds + 'T00:00:00');
+    nextDate.setDate(nextDate.getDate() + 1);
+    var nextDs = dStr(nextDate);
+    var nextRise = PEph.getSunrise(nextDs);
+
+    // জুলিয়ান ডে (দিনের শুরুতে)
+    var jdStart = JD(new Date(ds).getFullYear(), new Date(ds).getMonth()+1, new Date(ds).getDate()) + (rise - IST) / 24;
+    var jdEnd   = JD(nextDate.getFullYear(), nextDate.getMonth()+1, nextDate.getDate()) + (nextRise - IST) / 24;
+
+    // বর্তমান তিথি/নক্ষত্র/যোগ/করণ ইনডেক্স
+    var todaySun = PEph.getSunLon(ds);
+    var todayMoon = PEph.getMoonLon(ds, rise);
+    var todayDiff = (todayMoon - todaySun + 360) % 360;
+    var tithiIdx = Math.floor(todayDiff / 12);
+    var nakIdx   = Math.floor((todayMoon % 360) / (360/27));
+    var yogaIdx  = Math.floor(((todaySun + todayMoon) % 360) * 27 / 360);
+    var karanIdx = Math.floor(todayDiff / 6) % 11;
+
+    // ট্রানজিট খোঁজার জেনেরিক ফাংশন (বাইনারি সার্চ)
+    function findTransit(targetFunc, currentIdx) {
+        var fStart = targetFunc(jdStart);
+        if (Math.floor(fStart) !== currentIdx) return null; // সুরক্ষা
+        var fEnd = targetFunc(jdEnd);
+        if (Math.floor(fEnd) === currentIdx) return null; // কোন পরিবর্তন নেই
+        var lo = jdStart, hi = jdEnd;
+        for (var iter = 0; iter < 60; iter++) {
+            var mid = (lo + hi) / 2;
+            var val = targetFunc(mid);
+            if (Math.floor(val) === currentIdx) lo = mid;
+            else hi = mid;
+            if (hi - lo < 1e-7) break; // প্রায় ০.০১ সেকেন্ড
+        }
+        var transitJD = (lo + hi) / 2;
+        var transitHour = (transitJD - JD(new Date(ds).getFullYear(), new Date(ds).getMonth()+1, new Date(ds).getDate())) * 24 + IST;
+        // নিশ্চিত করুন যে সময়টি rise এবং nextRise+24 এর মধ্যে আছে
+        return transitHour;
+    }
+
+    var tithiEnd = findTransit(function(jd) {
+        var h = (jd - Math.floor(jd)) * 24;
+        var dt = new Date(ds);
+        dt.setHours(0,0,0,0);
+        var dss = dStr(new Date(dt.getTime() + h * 3600000));
+        var moon = PEph.getMoonLon(dss, h);
+        var sun = PEph.getSunLon(dss);
+        return (moon - sun + 360) % 360 / 12;
+    }, tithiIdx);
+
+    var nakEnd = findTransit(function(jd) {
+        var h = (jd - Math.floor(jd)) * 24;
+        var dt = new Date(ds);
+        dt.setHours(0,0,0,0);
+        var dss = dStr(new Date(dt.getTime() + h * 3600000));
+        var moon = PEph.getMoonLon(dss, h) % 360;
+        return moon / (360/27);
+    }, nakIdx);
+
+    var yogaEnd = findTransit(function(jd) {
+        var h = (jd - Math.floor(jd)) * 24;
+        var dt = new Date(ds);
+        dt.setHours(0,0,0,0);
+        var dss = dStr(new Date(dt.getTime() + h * 3600000));
+        var sun = PEph.getSunLon(dss);
+        var moon = PEph.getMoonLon(dss, h);
+        return ((sun + moon) % 360) * 27 / 360;
+    }, yogaIdx);
+
+    var karanEnd = findTransit(function(jd) {
+        var h = (jd - Math.floor(jd)) * 24;
+        var dt = new Date(ds);
+        dt.setHours(0,0,0,0);
+        var dss = dStr(new Date(dt.getTime() + h * 3600000));
+        var moon = PEph.getMoonLon(dss, h);
+        var sun = PEph.getSunLon(dss);
+        return ((moon - sun + 360) % 360) / 6 % 11;
+    }, karanIdx);
+
+    return {
+        tithiEnd: tithiEnd,
+        nakEnd: nakEnd,
+        yogaEnd: yogaEnd,
+        karanEnd: karanEnd
+    };
+}
 
   // MAIN PANCHANG
   function getDailyPanchang(ds, bnMonth) {
