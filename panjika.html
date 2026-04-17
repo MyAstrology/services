@@ -2138,14 +2138,13 @@ grahaHtml += '</div>';
     var extraHtml = '';
     extraItems.forEach(x => { extraHtml += '<div class="di"><div class="dii">'+x.i+'</div><div class="dil">'+x.l+'</div><div class="div2">'+x.v+'</div>'+(x.s?'<div class="dis">'+x.s+'</div>':'')+'</div>'; });
 
-    // পঞ্চাঙ্গের মূল অংশ (তিথি, নক্ষত্র, যোগ, করণ) — সময় স্লট সহ
-const trans = getPanchangaTransitions(date, c.st.rise);
-const tithiEndStr = trans.tithiEnd ? fmtT(trans.tithiEnd, 0) : 'আগামীকাল';
-const nakEndStr = trans.nakEnd ? fmtT(trans.nakEnd, 0) : 'আগামীকাল';
-const yogaEndStr = trans.yogaEnd ? fmtT(trans.yogaEnd, 0) : 'আগামীকাল';
-const karanEndStr = trans.karanEnd ? fmtT(trans.karanEnd, 0) : 'আগামীকাল';
+    // পঞ্চাঙ্গের মূল অংশ (তিথি, নক্ষত্র, যোগ, করণ) — নির্ভুল সময় স্লট সহ
+const tithiEndStr = c.tithiEnd ? fmtT(c.tithiEnd, 0) : '—';
+const nakEndStr = c.nakEnd ? fmtT(c.nakEnd, 0) : '—';
+const yogaEndStr = c.yogaEnd ? fmtT(c.yogaEnd, 0) : '—';
+const karanEndStr = c.karanEnd ? fmtT(c.karanEnd, 0) : '—';
 
-// পরবর্তী তিথি ও নক্ষত্রের নাম (c.tithiList ও c.nakList থেকে)
+// পরবর্তী তিথি ও নক্ষত্রের নাম
 const nextTithi = c.tithiList[1] ? c.tithiList[1].val.name : '—';
 const nextNak = c.nakList[1] ? c.nakList[1].val.name : '—';
 
@@ -2183,8 +2182,10 @@ extraItems.forEach(x => {
     panHtml += `<div class="di"><div class="dii">${x.i}</div><div class="dil">${x.l}</div><div class="div2">${x.v}</div>${x.s?`<div class="dis">${x.s}</div>`:''}</div>`; 
 });
 
-// অবশেষে গ্রহের অবস্থান যোগ করুন
+// অবশেষে গ্রহের অবস্থান যোগ করুন (এটি আগের flex কন্টেইনার সহ)
 panHtml += grahaHtml;
+
+document.getElementById('dtpan').innerHTML = panHtml;
 
 document.getElementById('dtpan').innerHTML = panHtml;
     // ─── সময় সম্পর্কিত তথ্য (সূর্যোদয়, সূর্যাস্ত, ব্রাহ্ম মুহূর্ত, রাহুকাল, গুলিকাল, অভিজিৎ, যমঘণ্ট) ───
