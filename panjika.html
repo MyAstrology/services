@@ -2107,18 +2107,19 @@ function showDetail(date) {
     const padaSymbol = ['①','②','③','④'];
     
 
-  // গ্রহের অবস্থানের জন্য HTML তৈরি (শুধু একবার ডিক্লেয়ার করুন)
+  // গ্রহের অবস্থানের জন্য HTML (ফ্লেক্স কন্টেইনার)
 let grahaHtml = '<div style="font-size:.7rem;font-weight:700;color:var(--gold);text-transform:uppercase;padding:.5rem 0 .2rem;border-top:1px solid rgba(201,162,39,.12);margin-top:.2rem;">🪐 গ্রহের অবস্থান (সিদ্ধান্তীয়)</div>';
-grahaHtml += '<div style="display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.5rem;">';
+grahaHtml += '<div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:0.5rem;">';
 grahaData.forEach(g => {
     const d = g.data;
     const degInt = Math.floor(d.deg);
     const degMin = Math.floor((d.deg - degInt) * 60);
     const nak = nakNames[d.nak];
     const pada = padaSymbol[d.nakPad - 1] || '';
-    grahaHtml += `<div style="background:rgba(181,134,13,0.06); border:1px solid rgba(181,134,13,0.2); border-radius:10px; padding:0.45rem 0.8rem; flex:1 0 130px;">
-        <div style="font-weight:700; color:var(--gold-d); font-size:0.7rem;">${g.name}</div>
-        <div style="font-size:0.7rem; line-height:1.3;">${d.rashiName} ${toBn(degInt)}°${toBn(degMin)}′ ${nak} ${pada}</div>
+    grahaHtml += `<div style="background:rgba(181,134,13,0.06); border:1px solid rgba(181,134,13,0.2); border-radius:12px; padding:0.6rem 1rem; flex:1 1 auto; min-width:120px; text-align:center;">
+        <div style="font-weight:700; color:var(--gold-d); font-size:0.8rem; margin-bottom:3px;">${g.name}</div>
+        <div style="font-size:0.75rem; line-height:1.4;">${d.rashiName} ${toBn(degInt)}°${toBn(degMin)}′</div>
+        <div style="font-size:0.7rem; color:var(--txt2);">${nak} ${pada}</div>
     </div>`;
 });
 grahaHtml += '</div>';
