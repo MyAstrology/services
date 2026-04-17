@@ -2211,50 +2211,93 @@ function _buildList(startIdx,trans,nameFn){
 }
 
 // ════════════════════════════════════════════════════════
-// SECTION ⑩ — calcDay() (মূল পঞ্চাঙ্গ গণনা ফাংশন)
-// কাজ: একটি তারিখের সব পঞ্চাঙ্গ তথ্য return করে
-//   return: { tithiList, nakList, yogaList, karanList,
-//             vara, st (sunrise/set), rahu, gulika, yam, abhi,
-//             fests, eclipses, bn (বাংলা তারিখ) }
-// পরিবর্তন: সাধারণত দরকার নেই
+// SECTION ⑩ — CORE SYSTEM ADAPTER (Final Restoration)
 // ════════════════════════════════════════════════════════
-function calcDay(date){
-  const y=date.getFullYear(),m=date.getMonth()+1,d=date.getDate(),w=date.getDay();
-  const st=sunTimes(y,m,d);const bn=getBnInfo(date);
-  // Sunrise JD
-  const jdRise=JD(y,m,d)+(st.rise-TZ)/24;
-  // Next sunrise JD
-  const nd=new Date(date);nd.setDate(nd.getDate()+1);
-  const stN=sunTimes(nd.getFullYear(),nd.getMonth()+1,nd.getDate());
-  const jdNext=JD(nd.getFullYear(),nd.getMonth()+1,nd.getDate())+(stN.rise-TZ)/24;
-  // Starting indices at sunrise
-  const tIdx0=_getTithiIdx(jdRise);
-  const nIdx0=_getNakIdx(jdRise);
-  const yIdx0=_getYogaIdx(jdRise);
-  const kNum0=_getKaranNum(jdRise);
-  // Transitions
-  const tTrans=_findTrans(jdRise,jdNext,_getTithiIdx,y,m,d);
-  const nTrans=_findTrans(jdRise,jdNext,_getNakIdx,y,m,d);
-  const yTrans=_findTrans(jdRise,jdNext,_getYogaIdx,y,m,d);
-  const kTrans=_findTrans(jdRise,jdNext,_getKaranNum,y,m,d);
-  // Build lists
-  const tithiList=_buildList(tIdx0,tTrans,idx=>{const i=((idx%30)+30)%30;return{name:TNAMES[i],paksha:i<15?'শুক্লপক্ষ':'কৃষ্ণপক্ষ',pakShort:i<15?'শু':'কৃ',pakDay:i<15?i+1:i-14};});
-  const nakList=_buildList(nIdx0,nTrans,idx=>({name:NAKS[idx%27][0],lord:NAKS[idx%27][1]}));
-  const yogaList=_buildList(yIdx0,yTrans,idx=>({name:YOGAS[idx%27][0],sym:YOGAS[idx%27][1]}));
-  const karanList=_buildList(kNum0,kTrans,kn=>({name:_karanaName(kn)}));
-  // Primary (backward compat)
-  const p=tithiList[0].val;
-  const tN=p.pakDay+(p.paksha==='কৃষ্ণপক্ষ'?15:0);
-  return{w,bn,tN,tName:p.name,paksha:p.paksha,pakDay:p.pakDay,
-    nak:NAKS[nIdx0],yoga:YOGAS[yIdx0],karan:karanList[0].val.name,
-    vara:VDAYS[w],varaL:VLORD[w],st,
-    rahu:slotT(st.rise,st.set,RS[w]),gulika:slotT(st.rise,st.set,GS[w]),
-    yam:slotT(st.rise,st.set,YS[w]),abhi:abhiT(st.rise,st.set),
-    eclipses:getEclipse(dStr(date)),
-    fests:getFests(dStr(date)),
-    tithiList,nakList,yogaList,karanList};
+
+// ১. গ্লোবাল ডাটা রিস্টোর (Missing Variables Fix)
+var BD = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+var toBn = function(n) { return String(Math.abs(Math.round(n))).replace(/[0-9]/g, function(d){ return BD[+d]; }); };
+var VLORD = ['সূর্য','চন্দ্র','মঙ্গল','বুধ','বৃহস্পতি','শুক্র','শনি'];
+
+// তারিখ হেল্পার (PEph ইঞ্জিন YYYY-MM-DD ফরম্যাট পছন্দ করে)
+var fmtDs = function(d) {
+    if (!(d instanceof Date)) d = new Date(d);
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+};
+
+if (typeof PEph !== "undefined") {
+    console.log("✅ PEph Engine v5.2 Connected Successfully!");
+
+    // ২. ডিজাইনের জন্য মেইন কানেক্টর (calcDay)
+    window.calcDay = function(date) {
+        var ds = fmtDs(date);
+        var bn = typeof getBnInfo === "function" ? getBnInfo(date) : {m: date.getMonth(), d: date.getDate(), y: date.getFullYear()-593};
+        var res = PEph.getDailyPanchang(ds, bn.m + 1);
+        
+        // ডিজাইন যে অবজেক্ট ফরম্যাট চায় সেভাবে সাজানো:
+        return {
+            w: date.getDay(), bn: bn, tN: res.tithi, tName: res.tithiName,
+            paksha: res.paksha + 'পক্ষ', pakDay: res.tithi,
+            nak: [res.nakshatraName, ''], yoga: [res.yogaName, ''], karan: res.karanaName,
+            vara: res.weekday, varaL: VLORD[date.getDay()],
+            st: { rise: res.rise, set: res.set_ },
+            rahu: res.rahukal.startStr + ' – ' + res.rahukal.endStr,
+            gulika: res.gulikakal.startStr + ' – ' + res.gulikakal.endStr,
+            abhi: res.abhijit.startStr + ' – ' + res.abhijit.endStr,
+            yam: res.kalaRatri.length > 0 ? res.kalaRatri[0].startStr + ' – ' + res.kalaRatri[0].endStr : "",
+            eclipses: (typeof getEclipse === 'function') ? getEclipse(ds) : [],
+            fests: (typeof getFests === 'function') ? getFests(ds) : [],
+            tithiList: [{val: {name: res.tithiName, paksha: res.paksha+'পক্ষ', pakShort: res.paksha.substring(0,1), pakDay: res.tithi}, endTime: null}],
+            nakList: [{val: {name: res.nakshatraName, lord: ''}, endTime: null}],
+            yogaList: [{val: {name: res.yogaName, sym: ''}, endTime: null}],
+            karanList: [{val: {name: res.karanaName}, endTime: null}]
+        };
+    };
+
+    // ৩. গণিতের জন্য গ্লোবাল এলাইয়াস (Aliases for UI scripts)
+    window.JD = PEph.jd;
+    window.lahiriAY = PEph.ayanamsa;
+    window.moonL = function(jd) { var d = new Date((jd - 2440587.5) * 86400000); return PEph.getMoonLon(fmtDs(d), d.getHours() + d.getMinutes()/60); };
+    window.sunL = function(jd) { var d = new Date((jd - 2440587.5) * 86400000); return PEph.getSunLon(fmtDs(d)); };
+    window.getMarsLong = function(jd) { var d = new Date((jd - 2440587.5) * 86400000); return PEph.getMarLon(fmtDs(d)); };
+    window.rahuL = function(jd) { var d = new Date((jd - 2440587.5) * 86400000); return PEph.getRahuLon(fmtDs(d)); };
+    
+    window.sunTimes = function(y, m, d) {
+        var ds = y + '-' + String(m).padStart(2, '0') + '-' + String(d).padStart(2, '0');
+        return { rise: PEph.getSunrise(ds), set: PEph.getSunset(ds) };
+    };
+    window.sunTimesForBela = window.sunTimes;
+
+    window.jupiterSid = function(jd, ay) { 
+        var d = new Date((jd - 2440587.5) * 86400000); 
+        return (PEph.getJupLon(fmtDs(d)) - ay + 360) % 360; 
+    };
+    window.saturnSid = function(jd, ay) { 
+        var d = new Date((jd - 2440587.5) * 86400000); 
+        return (PEph.getSatLon(fmtDs(d)) - ay + 360) % 360; 
+    };
+
+    window.calcLagnaAt = function(jd, lat, lng) {
+        var d = new Date((jd - 2440587.5) * 86400000);
+        var lag = PEph.getLagna(fmtDs(d), d.getHours() + d.getMinutes()/60);
+        return { sid: lag.sid, ri: lag.rashi, descRi: (lag.rashi + 6) % 12 };
+    };
+
+} else {
+    console.error("❌ PEph Engine (panjika-ephemeris.js) NOT FOUND!");
 }
-function moonEmoji(t){if(t===15)return'🌕';if(t===30||t===1)return'🌑';if(t<8)return'🌒';if(t===8)return'🌓';if(t<15)return'🌔';if(t<23)return'🌖';if(t===23)return'🌗';return'🌘';}
+
+// ৪. মুন ইমোজি
+function moonEmoji(t) {
+    if(t === 15) return '🌕';
+    if(t === 30 || t === 1) return '🌑';
+    if(t < 8) return '🌒';
+    if(t === 8) return '🌓';
+    if(t < 15) return '🌔';
+    if(t < 23) return '🌖';
+    if(t === 23) return '🌗';
+    return '🌘';
+}
 
 // ════════════════════════════════════════════════════════
 // SECTION ⑪ — HEADER RENDER (আজকের তারিখ ব্যানার)
