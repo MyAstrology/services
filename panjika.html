@@ -2043,6 +2043,125 @@ function switchCalcTab(idx, el) {
     document.getElementById('calcPane'+idx).classList.add('show');
 }
 
+
+  // ═══════════════════════════════════════════════════════════════════════════
+// EVENT RENDERERS (panjika-data.js এর উপর নির্ভরশীল)
+// ═══════════════════════════════════════════════════════════════════════════
+
+function renderTodayEvents() {
+    try {
+        var ds = dStr(TODAY);
+        var mmdd = ds.slice(5);
+        var evts = typeof getPanjikaEvents === 'function' ? getPanjikaEvents(ds, mmdd) : { festivals:[], births:[], deaths:[], modern:[], malmas:null };
+        var c = calcDay(TODAY);
+        var html = '';
+
+        // মলমাস
+        if (evts.malmas) {
+            var ml = evts.malmas;
+            html += '<div class="sd-card malmas"><div class="sd-head"><span class="sd-icon">📿</span><span class="sd-name">'+ml.monthName+'</span><span class="sd-type malmas">মলমাস</span></div>';
+            html += '<div class="sd-sig">'+ml.significance+'</div>';
+            html += '<div class="sd-mantra">মন্ত্র: '+ml.mantra+'</div></div>';
+        }
+
+        evts.festivals.forEach(function(f){
+            html += '<div class="sd-card festival"><div class="sd-head"><span class="sd-icon">'+f.icon+'</span><span class="sd-name">'+f.name+'</span><span class="sd-type festival">উৎসব</span></div>';
+            html += '<div class="sd-sig">'+f.significance+'</div>';
+            if(f.mantra) html += '<div class="sd-mantra">🕉️ '+f.mantra+'</div>';
+            if(f.pujaTime) html += '<div class="sd-works" style="margin-top:.25rem;">⏰ পূজার সময়: '+f.pujaTime+'</div>';
+            html += '</div>';
+        });
+
+        evts.births.forEach(function(b){
+            html += '<div class="sd-card birthday"><div class="sd-head"><span class="sd-icon">'+b.icon+'</span><span class="sd-name">'+b.name+'</span><span class="sd-type birthday">জন্মদিন</span></div>';
+            html += '<div class="sd-sig">'+b.birthYear+'–'+b.deathYear+' | '+b.message+'</div>';
+            html += '<div class="sd-quote">'+b.quote+'</div>';
+            if(b.notableWorks && b.notableWorks.length) html += '<div class="sd-works">📚 উল্লেখযোগ্য: '+b.notableWorks.join(', ')+'</div>';
+            html += '</div>';
+        });
+
+        evts.deaths.forEach(function(d){
+            html += '<div class="sd-card death"><div class="sd-head"><span class="sd-icon">'+d.icon+'</span><span class="sd-name">'+d.name+'</span><span class="sd-type death">তিরোধান</span></div>';
+            html += '<div class="sd-sig">'+d.tribute+'</div></div>';
+        });
+
+        evts.modern.forEach(function(m){
+            html += '<div class="sd-card modern"><div class="sd-head"><span class="sd-icon">'+m.icon+'</span><span class="sd-name">'+m.name+'</span><span class="sd-type modern">দিবস</span></div>';
+            html += '<div class="sd-sig">'+m.message+'</div>';
+            if(m.loveMantra) html += '<div class="sd-mantra">'+m.loveMantra+'</div>';
+            html += '</div>';
+        });
+
+        // বিশেষ যোগ
+        try {
+            var jdNow = JD(TODAY.getFullYear(), TODAY.getMonth()+1, TODAY.getDate()) + 0.5;
+            var nIdx = _getNakIdx(jdNow);
+            var syogas = typeof checkSpecialYogas === 'function' ? checkSpecialYogas(TODAY.getDay(), nIdx) : [];
+            syogas.forEach(function(y){
+                html += '<div class="sd-card yoga"><div class="sd-head"><span class="sd-icon">'+y.icon+'</span><span class="sd-name">'+y.name+'</span><span class="sd-type yoga">বিশেষ যোগ</span></div>';
+                html += '<div class="sd-sig">'+y.significance+'</div>';
+                html += '<div class="sd-works">উপযোগী কাজ: '+y.suitableWork.join(', ')+'</div></div>';
+            });
+        } catch(e) {}
+
+        if (!html) html = '<div class="sd-empty">আজ বিশেষ কোনো দিন নেই।</div>';
+        document.getElementById('specialDayList').innerHTML = html;
+    } catch(e) {
+        console.error('renderTodayEvents error:', e);
+        document.getElementById('specialDayList').innerHTML = '<div class="sd-empty">ডেটা লোড করতে সমস্যা হয়েছে।</div>';
+    }
+}
+
+function renderMonthEvents() {
+    try {
+        var days = getBnMonthDaysForCurrent();
+        if (!days.length) return;
+        document.getElementById('monthEventsTitle').textContent = '📅 ' + BNM_NAMES[currentBengaliMonth] + ' ' + toBn(currentBengaliYear) + ' বঙ্গাব্দের গুরুত্বপূর্ণ দিন';
+
+        var rows = [];
+        days.forEach(function(item){
+            var dt = item.date;
+            var ds = dStr(dt);
+            var mmdd = ds.slice(5);
+            var evts = typeof getPanjikaEvents === 'function' ? getPanjikaEvents(ds, mmdd) : { festivals:[], births:[], deaths:[], modern:[], malmas:null };
+            var allEvts = [];
+
+            evts.festivals.forEach(f => allEvts.push({icon:f.icon, name:f.name, type:'উৎসব'}));
+            evts.births.forEach(b => allEvts.push({icon:b.icon, name:b.name, type:'জন্মদিন'}));
+            evts.deaths.forEach(d => allEvts.push({icon:d.icon, name:d.name, type:'তিরোধান'}));
+            evts.modern.forEach(m => allEvts.push({icon:m.icon, name:m.name, type:'দিবস'}));
+            if(evts.malmas) allEvts.push({icon:'📿', name:evts.malmas.monthName, type:'মলমাস'});
+
+            // পুরনো FESTS অ্যারে থেকেও আনতে পারেন
+            if (typeof getFests === 'function') {
+                var fests = getFests(ds);
+                fests.forEach(f => { if (!evts.festivals.find(x => x.date===ds)) allEvts.push({icon:f.i, name:f.n, type:'উৎসব'}); });
+            }
+
+            allEvts.forEach(ev => rows.push({date:dt, bnDay:item.bnDay, event:ev, ds:ds}));
+        });
+
+        if (!rows.length) {
+            document.getElementById('monthEventsList').innerHTML = '<div class="sd-empty">এই মাসে কোনো বিশেষ দিন নেই।</div>';
+            return;
+        }
+
+        var html = '';
+        rows.forEach(function(r){
+            var dayName = VDAYS[r.date.getDay()];
+            html += '<div class="me-row" onclick="showDetail(new Date(\''+r.ds+'\'))">';
+            html += '<span class="me-date">'+toBn(r.date.getDate())+'</span>';
+            html += '<span class="me-icon">'+r.event.icon+'</span>';
+            html += '<span class="me-name">'+r.event.name+'</span>';
+            html += '<span class="me-tag">'+dayName+' · '+r.event.type+'</span>';
+            html += '</div>';
+        });
+        document.getElementById('monthEventsList').innerHTML = html;
+    } catch(e) {
+        console.error('renderMonthEvents error:', e);
+        document.getElementById('monthEventsList').innerHTML = '<div class="sd-empty">ডেটা লোড করতে সমস্যা হয়েছে।</div>';
+    }
+}
 // ═══════════════════════════════════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════════════════════════════════
@@ -2056,82 +2175,6 @@ window.onload = function() {
     if (typeof renderAuspiciousCounter === 'function') renderAuspiciousCounter();
     showDetail(TODAY);
 };
-
-// WhatsApp bubble
-(function(){
-  var b=document.getElementById('waBubble');
-  if(!b)return;
-  function show(){ b.classList.add('show'); setTimeout(()=>b.classList.remove('show'),4000); }
-  setTimeout(show,3000);
-  setInterval(show,20000);
-})();
-
-// Scroll-to-top
-(function(){
-  var stb=document.getElementById('stb');
-  if(!stb)return;
-  window.addEventListener('scroll',()=>{ stb.classList.toggle('show', window.scrollY>300); },{passive:true});
-})();
-
-// Payment modal functions (keep as is)
-var RZP_KEY = 'rzp_live_SN8p6DJxPYFVL1';
-var _pay = { name:'', price:0, icon:'', custName:'', custPhone:'' };
-function openPayModal(svcName, price, icon) {
-  _pay.name = svcName; _pay.price = price; _pay.icon = icon;
-  document.getElementById('paySvcIco').textContent = icon;
-  document.getElementById('paySvcNm').textContent = svcName;
-  document.getElementById('paySvcPr').textContent = '₹ ' + price.toLocaleString('bn-BD');
-  document.getElementById('payName').value = '';
-  document.getElementById('payPhone').value = '';
-  document.getElementById('payName').classList.remove('error');
-  document.getElementById('payPhone').classList.remove('error');
-  document.getElementById('payNameErr').classList.remove('show');
-  document.getElementById('payPhoneErr').classList.remove('show');
-  document.getElementById('payFormWrap').style.display = '';
-  document.getElementById('paySuccess').classList.remove('show');
-  document.getElementById('paySubmitBtn').classList.remove('loading');
-  document.getElementById('payBtnTxt').textContent = 'নিরাপদ পেমেন্ট করুন — ₹ ' + price.toLocaleString('bn-BD');
-  document.getElementById('payOverlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-  setTimeout(()=> document.getElementById('payName').focus(), 350);
-}
-function closePayModal() {
-  document.getElementById('payOverlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
-function handleOverlayClick(e) { if (e.target === document.getElementById('payOverlay')) closePayModal(); }
-document.addEventListener('keydown', e=> { if (e.key === 'Escape') closePayModal(); });
-function initiatePayment() {
-  var name = document.getElementById('payName').value.trim();
-  var phone = document.getElementById('payPhone').value.trim();
-  var valid = true;
-  if (!name || name.length < 2) { document.getElementById('payName').classList.add('error'); document.getElementById('payNameErr').classList.add('show'); valid = false; }
-  else { document.getElementById('payName').classList.remove('error'); document.getElementById('payNameErr').classList.remove('show'); }
-  if (!/^\d{10}$/.test(phone)) { document.getElementById('payPhone').classList.add('error'); document.getElementById('payPhoneErr').classList.add('show'); valid = false; }
-  else { document.getElementById('payPhone').classList.remove('error'); document.getElementById('payPhoneErr').classList.remove('show'); }
-  if (!valid) return;
-  _pay.custName = name; _pay.custPhone = phone;
-  var btn = document.getElementById('paySubmitBtn');
-  btn.classList.add('loading');
-  document.getElementById('payBtnTxt').innerHTML = '<i class="fas fa-spinner fa-spin"></i> অপেক্ষা করুন...';
-  var options = {
-    key: RZP_KEY, amount: _pay.price * 100, currency: 'INR', name: 'MyAstrology', description: _pay.name,
-    image: 'https://www.myastrology.in/images/logo.png', prefill: { name: name, contact: '+91' + phone },
-    notes: { service: _pay.name, customer_name: name, customer_phone: phone }, theme: { color: '#b5860d' },
-    handler: function(response) { onPaymentSuccess(response); }
-  };
-  try { var rzp = new Razorpay(options); rzp.open(); }
-  catch(err) { btn.classList.remove('loading'); document.getElementById('payBtnTxt').textContent = 'নিরাপদ পেমেন্ট করুন — ₹ ' + _pay.price.toLocaleString('bn-BD'); alert('Razorpay লোড হয়নি।'); }
-}
-function onPaymentSuccess(response) {
-  document.getElementById('paySubmitBtn').classList.remove('loading');
-  var waMsg = '🙏 আমি ' + _pay.name + ' পরিষেবার জন্য ' + _pay.price + ' টাকা পেমেন্ট করেছি।\n\n👤 নাম: ' + _pay.custName + '\n📱 মোবাইল: ' + _pay.custPhone + '\n💳 Payment ID: ' + (response.razorpay_payment_id || 'N/A');
-  var waUrl = 'https://wa.me/919333122768?text=' + encodeURIComponent(waMsg);
-  document.getElementById('payFormWrap').style.display = 'none';
-  document.getElementById('paySuccess').classList.add('show');
-  document.getElementById('payWaLink').href = waUrl;
-  setTimeout(() => window.open(waUrl, '_blank'), 1500);
-}
 
 
           
