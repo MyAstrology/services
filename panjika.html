@@ -2250,51 +2250,80 @@ window.calcDay = function(date) {
         yoga: [res.yogaName, ""],
         karan: res.karanaName,
         vara: VDAYS[date.getDay()],
-        varaL: VLORD[date.getDay()],
-        st: { rise: res.rise, set: res.set_ },
-        rahu: res.rahukal.startStr + ' – ' + res.rahukal.endStr,
-        gulika: res.gulikakal.startStr + ' – ' + res.gulikakal.endStr,
-        yam: res.kalaRatri.length > 0 ? res.kalaRatri[0].startStr + ' – ' + res.kalaRatri[0].endStr : "",
-        abhi: res.abhijit.startStr + ' – ' + res.abhijit.endStr,
-        eclipses: typeof getEclipse === 'function' ? getEclipse(ds) : [],
-        fests: typeof getFests === 'function' ? getFests(ds) : [],
-        
-        // লিস্ট ফরম্যাট (পুরনো _buildList এর বিকল্প)
-        tithiList: [{val: {name: res.tithiName, paksha: res.paksha+'পক্ষ', pakShort: res.paksha.substring(0,1), pakDay: res.tithi}, endTime: null}],
-        nakList: [{val: {name: res.nakshatraName, lord: ''}, endTime: null}],
-        yogaList: [{val: {name: res.yogaName, sym: ''}, endTime: null}],
-        karanList: [{val: {name: res.karanaName}, endTime: null}]
-    };
 
-    return output;
-};
+// ════════════════════════════════════════════════════════
+// SECTION ⑨ — TRANSITION RECOVERY (হারিয়ে যাওয়া লজিক পুনরুদ্ধার)
+// ════════════════════════════════════════════════════════
+function _getTithiIdx(jd){ return Math.floor(((PEph.getMoonLon(getPEphDateStr(new Date((jd-2440587.5)*86400000)), 12) - PEph.getSunLon(getPEphDateStr(new Date((jd-2440587.5)*86400000))) + 360) % 360) / 12) % 30; }
+function _getNakIdx(jd){ const ay=PEph.ayanamsa(jd); return Math.floor(((PEph.getMoonLon(getPEphDateStr(new Date((jd-2440587.5)*86400000)), 12) - ay + 360) % 360) / (360/27)) % 27; }
+function _getYogaIdx(jd){ const ay=PEph.ayanamsa(jd); return Math.floor(((PEph.getSunLon(getPEphDateStr(new Date((jd-2440587.5)*86400000))) - ay + PEph.getMoonLon(getPEphDateStr(new Date((jd-2440587.5)*86400000)), 12) - ay + 720) % 360) / (360/27)) % 27; }
+function _getKaranNum(jd){ return Math.floor(((PEph.getMoonLon(getPEphDateStr(new Date((jd-2440587.5)*86400000)), 12) - PEph.getSunLon(getPEphDateStr(new Date((jd-2440587.5)*86400000))) + 360) % 360) / 6) % 60; }
+function _karanaName(n){ const k=((n%60)+60)%60; if(k===0)return KARANS[10]; if(k===57)return KARANS[7]; if(k===58)return KARANS[8]; if(k===59)return KARANS[9]; return KARANS[(k-1)%7]; }
 
-// ৪. ইঞ্জিনের গাণিতিক ফাংশনগুলোকে গ্লোবাল করা (যাতে পুরনো স্ক্রিপ্ট এরর না দেয়)
+function _findTrans(jdStart, jdEnd, getFn, y, m, d){
+  const STEPS=288; const results=[]; let prev=getFn(jdStart);
+  for(let i=1; i<=STEPS; i++){
+    const jd=jdStart+(jdEnd-jdStart)*i/STEPS; const cur=getFn(jd);
+    if(cur!==prev){
+      let lo=jdStart+(jdEnd-jdStart)*(i-1)/STEPS, hi=jd;
+      for(let j=0; j<52; j++){ const mid=(lo+hi)/2; if(getFn(mid)===prev)lo=mid; else hi=mid; }
+      const bnd=(lo+hi)/2; const localH=(bnd-PEph.jd(y,m,d))*24+5.5;
+      const hh=((Math.floor(localH)%24)+24)%24; let mm=Math.round((localH-Math.floor(localH))*60);
+      const fh=mm>=60?hh+1:hh, fm=mm>=60?0:mm;
+      results.push({fromIdx:prev, toIdx:cur, time:fmtT(fh,fm)}); prev=cur;
+    }
+  }
+  return results;
+}
+function _buildList(startIdx, trans, nameFn){
+  if(!trans.length) return[{val:nameFn(startIdx), endTime:null}];
+  const list=[]; let cur=startIdx;
+  for(const t of trans){ list.push({val:nameFn(cur), endTime:t.time}); cur=t.toIdx; }
+  list.push({val:nameFn(cur), endTime:null});
+  return list;
+}
+var getPEphDateStr = function(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
+
+// ════════════════════════════════════════════════════════
+// SECTION ⑩ — calcDay() (ইঞ্জিন অ্যাডাপ্টার সহ রিমেইক)
+// ════════════════════════════════════════════════════════
+function calcDay(date){
+  const y=date.getFullYear(), m=date.getMonth()+1, d=date.getDate(), w=date.getDay();
+  const ds=getPEphDateStr(date);
+  const st={rise: PEph.getSunrise(ds), set: PEph.getSunset(ds)};
+  const bn=getBnInfo(date);
+  const jdRise=PEph.jd(y,m,d)+(st.rise-5.5)/24;
+  const nd=new Date(date); nd.setDate(nd.getDate()+1);
+  const stN={rise: PEph.getSunrise(getPEphDateStr(nd))};
+  const jdNext=PEph.jd(nd.getFullYear(),nd.getMonth()+1,nd.getDate())+(stN.rise-5.5)/24;
+
+  const tIdx0=_getTithiIdx(jdRise), nIdx0=_getNakIdx(jdRise), yIdx0=_getYogaIdx(jdRise), kNum0=_getKaranNum(jdRise);
+  const tTrans=_findTrans(jdRise,jdNext,_getTithiIdx,y,m,d);
+  const nTrans=_findTrans(jdRise,jdNext,_getNakIdx,y,m,d);
+  const yTrans=_findTrans(jdRise,jdNext,_getYogaIdx,y,m,d);
+  const kTrans=_findTrans(jdRise,jdNext,_getKaranNum,y,m,d);
+
+  const tithiList=_buildList(tIdx0,tTrans,idx=>{const i=((idx%30)+30)%30; return{name:TNAMES[i], paksha:i<15?'শুক্লপক্ষ':'কৃষ্ণপক্ষ', pakShort:i<15?'শু':'কৃ', pakDay:i<15?i+1:i-14};});
+  const nakList=_buildList(nIdx0,nTrans,idx=>({name:NAKS[idx%27][0], lord:NAKS[idx%27][1]}));
+  const yogaList=_buildList(yIdx0,yTrans,idx=>({name:YOGAS[idx%27][0], sym:YOGAS[idx%27][1]}));
+  const karanList=_buildList(kNum0,kTrans,kn=>({name:_karanaName(kn)}));
+
+  const p=tithiList[0].val;
+  return{w, bn, tN:(p.pakDay+(p.paksha==='কৃষ্ণপক্ষ'?15:0)), tName:p.name, paksha:p.paksha, pakDay:p.pakDay,
+    nak:NAKS[nIdx0], yoga:YOGAS[yIdx0], karan:karanList[0].val.name,
+    vara:VDAYS[w], varaL:VLORD[w], st,
+    rahu:slotT(st.rise,st.set,RS[w]), gulika:slotT(st.rise,st.set,GS[w]),
+    yam:slotT(st.rise,st.set,YS[w]), abhi:abhiT(st.rise,st.set),
+    eclipses:getEclipse(dStr(date)), fests:getFests(dStr(date)),
+    tithiList, nakList, yogaList, karanList};
+}
 window.JD = PEph.jd;
 window.lahiriAY = PEph.ayanamsa;
-window.moonL = function(jd) { 
-    var d = new Date((jd - 2440587.5) * 86400000);
-    var dstr = d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
-    return PEph.getMoonLon(dstr, d.getHours() + d.getMinutes()/60);
-};
-
-window.sunTimes = function(y, m, d) {
-    var dstr = y + '-' + String(m).padStart(2, '0') + '-' + String(d).padStart(2, '0');
-    return { rise: PEph.getSunrise(dstr), set: PEph.getSunset(dstr) };
-};
+window.moonL = function(jd) { return PEph.getMoonLon(getPEphDateStr(new Date((jd-2440587.5)*86400000)), 12); };
+window.sunL = function(jd) { return PEph.getSunLon(getPEphDateStr(new Date((jd-2440587.5)*86400000))); };
+window.sunTimes = function(y,m,d) { const ds=y+'-'+String(m).padStart(2,'0')+'-'+String(d).padStart(2,'0'); return {rise:PEph.getSunrise(ds), set:PEph.getSunset(ds)}; };
 window.sunTimesForBela = window.sunTimes;
-
-// ৫. মুন ইমোজি
-window.moonEmoji = function(t) {
-    if(t === 15) return '🌕';
-    if(t === 30 || t === 1) return '🌑';
-    if(t < 8) return '🌒';
-    if(t === 8) return '🌓';
-    if(t < 15) return '🌔';
-    if(t < 23) return '🌖';
-    if(t === 23) return '🌗';
-    return '🌘';
-};
+function moonEmoji(t){if(t===15)return'🌕';if(t===30||t===1)return'🌑';if(t<8)return'🌒';if(t===8)return'🌓';if(t<15)return'🌔';if(t<23)return'🌖';if(t===23)return'🌗';return'🌘';}
 
 
 // ════════════════════════════════════════════════════════
