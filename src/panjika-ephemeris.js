@@ -2293,21 +2293,43 @@ var PEph=(function(){
   var RAHUKAL={0:5,1:2,2:7,3:5,4:6,5:4,6:3};
   var GULIKA ={0:7,1:6,2:5,3:4,4:3,5:2,6:1};
 
-  // ─────────────────────────────────────────────────────────────────
-  //  CORE MATH
-  // ─────────────────────────────────────────────────────────────────
-  function jd(y,m,d){
-    var a=Math.floor((14-m)/12),yr=y+4800-a,mo=m+12*a-3;
-    return d+Math.floor((153*mo+2)/5)+365*yr+Math.floor(yr/4)
-           -Math.floor(yr/100)+Math.floor(yr/400)-32045-0.5;
-  }
-  function dayIdx(ds){
-    var p=ds.split('-');
-    return Math.round((new Date(+p[0],+p[1]-1,+p[2])-new Date(2025,0,1))/86400000);
-  }
-  /** লাহিড়ী অয়নাংশ — ২৪ মাসে সর্বোচ্চ ২″ পার্থক্য */
-  function ayanamsa(J){return 23.819167+1.548210*(J-2451545)/36525;}
-  function sid(trop,J){return(trop-ayanamsa(J)+360)%360;}
+// ─────────────────────────────────────────────────────────────────
+//  CORE MATH
+// ─────────────────────────────────────────────────────────────────
+function jd(y,m,d){
+  var a=Math.floor((14-m)/12),yr=y+4800-a,mo=m+12*a-3;
+  return d+Math.floor((153*mo+2)/5)+365*yr+Math.floor(yr/4)
+         -Math.floor(yr/100)+Math.floor(yr/400)-32045-0.5;
+}
+function dayIdx(ds){
+  var p=ds.split('-');
+  return Math.round((new Date(+p[0],+p[1]-1,+p[2])-new Date(2025,0,1))/86400000);
+}
+
+/**
+ * NC Lahiri (Chitrapaksha) Sidereal Ayanamsa
+ * বিশুদ্ধ সিদ্ধান্ত পঞ্জিকা ১৪৩২–১৪৩৩ বঙ্গাব্দের তথ্যের ভিত্তিতে যথাযথকরণ
+ * @param {number} J - জুলিয়ান দিন (UT)
+ * @returns {number} অয়নাংশ (ডিগ্রি)
+ */
+function ayanamsa(J) {
+    const J2000 = 2451545.0;
+    const T = (J - J2000) / 36525.0;
+
+    // ভিত্তি: ২০২৫ এপ্রিল ১৫ (বৈশাখ ১৪৩২) ≈ JD 2460780.5
+    // রেফারেন্স মান: ২৪°১২′৩৭″ = 24.21027778°
+    const base = 24.21027778;
+
+    // লাহিড়ী IAU 2000 প্রিসেশন অনুযায়ী গতি
+    const linear = 1.39694444e-3;   // 50.29″ / 3600
+    const quadratic = 2.35e-7;      // দীর্ঘমেয়াদি বক্রতা
+
+    return base + linear * T + quadratic * T * T;
+}
+
+function sid(trop,J){
+    return (trop - ayanamsa(J) + 360) % 360;
+}
 
   // ─────────────────────────────────────────────────────────────────
   //  PLANET FUNCTIONS
