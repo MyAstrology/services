@@ -119,6 +119,24 @@ window.addEventListener('load', function() {
 <!-- পঞ্জিকা ডেটা ফাইল (উৎসব, মহাপুরুষ, আধুনিক দিবস, মলমাস) -->
 <script data-cfasync="false" src="src/panjika-ephemeris.js"></script>
 <script data-cfasync="false" src="src/panjika-data.js"></script>
+
+  <script>
+// Fallback for missing panjika-data.js
+if (typeof PANJIKA_DATA === 'undefined') {
+  window.PANJIKA_DATA = { festivals:[], birthAnniversaries:[], deathAnniversaries:[], modernDays:[], malmas:[] };
+}
+if (typeof getPanjikaEvents !== 'function') {
+  window.getPanjikaEvents = function(ds, mmdd) {
+    return { festivals:[], births:[], deaths:[], modern:[], malmas:null };
+  };
+}
+if (typeof renderGuideCards !== 'function') {
+  window.renderGuideCards = function() {};
+}
+if (typeof renderAuspiciousCounter !== 'function') {
+  window.renderAuspiciousCounter = function() {};
+}
+</script>
   
   <style>
 :root{
@@ -1812,6 +1830,23 @@ function _getNakIdx(jd) {
     const d = new Date((jd - 2440587.5) * 86400000);
     const c = calcDay(d);
     return NAKS.findIndex(n => n[0] === c.nak[0]);
+}
+
+  // Additional helpers
+function JD(y, m, d) {
+    return PEph.jd(y, m, d);
+}
+function _getNakIdx(jd) {
+    var date = new Date((jd - 2440587.5) * 86400000);
+    var c = calcDay(date);
+    return NAKS.findIndex(function(n) { return n[0] === c.nak[0]; });
+}
+// Dummy eclipse & festival functions
+if (typeof getEclipse !== 'function') {
+    window.getEclipse = function(ds) { return []; };
+}
+if (typeof getFests !== 'function') {
+    window.getFests = function(ds) { return []; };
 }
   
 // বাংলা মাস ও ঋতু
