@@ -516,6 +516,43 @@ function checkSpecialYogas(weekday, nakIdx) {
   return yogas;
 }
 
+// ─── প্রতি বছর একই গ্রেগরিয়ান তারিখে পড়ে এমন দিবস (MM-DD ফরম্যাট) ───
+const FIXED_ANNUAL_FESTS = [
+  { mmdd:'01-01', name:'ইংরেজি নববর্ষ', icon:'🎆' },
+  { mmdd:'01-26', name:'প্রজাতন্ত্র দিবস', icon:'🇮🇳' },
+  { mmdd:'02-14', name:'ভ্যালেন্টাইনস ডে', icon:'💕' },
+  { mmdd:'03-08', name:'আন্তর্জাতিক নারী দিবস', icon:'♀️' },
+  { mmdd:'04-07', name:'বিশ্ব স্বাস্থ্য দিবস', icon:'🏥' },
+  { mmdd:'04-22', name:'পৃথিবী দিবস', icon:'🌍' },
+  { mmdd:'05-01', name:'মে দিবস / শ্রমিক দিবস', icon:'✊' },
+  { mmdd:'06-05', name:'বিশ্ব পরিবেশ দিবস', icon:'🌱' },
+  { mmdd:'06-21', name:'বিশ্ব যোগ দিবস', icon:'🧘' },
+  { mmdd:'08-15', name:'স্বাধীনতা দিবস', icon:'🇮🇳' },
+  { mmdd:'10-02', name:'গান্ধী জয়ন্তী / আন্তর্জাতিক অহিংসা দিবস', icon:'🕊️' },
+  { mmdd:'11-14', name:'শিশু দিবস', icon:'🧒' },
+  { mmdd:'12-25', name:'বড়দিন', icon:'🎄' },
+];
+
+// ─── তিথিভিত্তিক উৎসব সূত্র (বাংলা মাস + পক্ষ + তিথি) ───
+// bMonth: 0=বৈশাখ … 11=চৈত্র; paksha: 'শুক্লপক্ষ'/'কৃষ্ণপক্ষ'; tithi: 1-15
+const TITHI_FESTS = [
+  { bMonth:0,  paksha:'শুক্লপক্ষ', tithi:3,  name:'অক্ষয় তৃতীয়া',            icon:'🌟' },
+  { bMonth:4,  paksha:'কৃষ্ণপক্ষ', tithi:8,  name:'জন্মাষ্টমী',               icon:'🦚' },
+  { bMonth:5,  paksha:'কৃষ্ণপক্ষ', tithi:15, name:'মহালয়া',                   icon:'🌙' },
+  { bMonth:5,  paksha:'শুক্লপক্ষ', tithi:6,  name:'মহাষষ্ঠী',                 icon:'🪔' },
+  { bMonth:5,  paksha:'শুক্লপক্ষ', tithi:7,  name:'মহাসপ্তমী',               icon:'🪔' },
+  { bMonth:5,  paksha:'শুক্লপক্ষ', tithi:8,  name:'মহাঅষ্টমী',               icon:'🪔' },
+  { bMonth:5,  paksha:'শুক্লপক্ষ', tithi:9,  name:'মহানবমী',                 icon:'🪔' },
+  { bMonth:5,  paksha:'শুক্লপক্ষ', tithi:10, name:'বিজয়াদশমী',              icon:'🎊' },
+  { bMonth:6,  paksha:'শুক্লপক্ষ', tithi:15, name:'কোজাগরী লক্ষ্মীপূজা',   icon:'🌕' },
+  { bMonth:6,  paksha:'কৃষ্ণপক্ষ', tithi:15, name:'কালীপূজা / দীপাবলি',    icon:'🪔' },
+  { bMonth:7,  paksha:'শুক্লপক্ষ', tithi:2,  name:'ভাইফোঁটা',               icon:'💛' },
+  { bMonth:9,  paksha:'শুক্লপক্ষ', tithi:5,  name:'সরস্বতী পূজা',          icon:'🎓' },
+  { bMonth:9,  paksha:'শুক্লপক্ষ', tithi:15, name:'রাসপূর্ণিমা',           icon:'🎵' },
+  { bMonth:10, paksha:'শুক্লপক্ষ', tithi:15, name:'দোল পূর্ণিমা / হোলি', icon:'🎨' },
+  { bMonth:11, paksha:'শুক্লপক্ষ', tithi:9,  name:'রামনবমী',                icon:'🏹' },
+];
+
 // ─── একটি তারিখের PANJIKA_DATA থেকে সব ইভেন্ট বের করুন ───
 function getPanjikaEvents(dateStr, mmdd) {
   const result = { festivals:[], births:[], deaths:[], modern:[], malmas:null };
@@ -527,9 +564,13 @@ function getPanjikaEvents(dateStr, mmdd) {
   PANJIKA_DATA.birthAnniversaries.forEach(b => { if (b.mmdd === mmdd) result.births.push(b); });
   PANJIKA_DATA.deathAnniversaries.forEach(d => { if (d.mmdd === mmdd) result.deaths.push(d); });
 
-  // আধুনিক দিবস
+  // আধুনিক দিবস — প্রথমে নির্দিষ্ট তারিখ, তারপর বার্ষিক mm-dd দিবস
   PANJIKA_DATA.modernDays.forEach(m => {
     if (m.date === dateStr) result.modern.push(m);
+  });
+  FIXED_ANNUAL_FESTS.forEach(f => {
+    if (f.mmdd === mmdd && !result.modern.find(m => m.name === f.name) && !result.festivals.find(x => x.name === f.name))
+      result.modern.push({ date: dateStr, name: f.name, icon: f.icon, message: '' });
   });
 
   // মলমাস
