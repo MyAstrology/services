@@ -1117,9 +1117,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <button class="cnav" onclick="shiftM(1)">পরের মাস ▶</button>
     </div>
-    <div style="text-align:center;padding:4px 0 8px;">
-      <a id="rashifal-today-link" href="#" target="_blank" rel="noopener" style="font-size:.82rem;color:var(--acc);text-decoration:none;border:1px solid currentColor;border-radius:20px;padding:3px 14px;opacity:.85;">🔮 আজকের রাশিফল</a>
+    <div style="text-align:center;padding:6px 0 10px;">
+      <a id="rashifal-today-link" href="#" target="_blank" rel="noopener"
+         style="display:inline-flex;align-items:center;gap:6px;font-size:.88rem;font-weight:700;font-family:'Baloo Da 2',sans-serif;
+                color:#fff;text-decoration:none;
+                background:linear-gradient(135deg,#6a0dad,#b52896,#e8471a);
+                border-radius:22px;padding:6px 20px;
+                box-shadow:0 3px 12px rgba(181,40,150,.45);
+                letter-spacing:.03em;
+                animation:rashiPulse 2.8s ease-in-out infinite;">
+        🔮 <span>আজকের রাশিফল দেখুন</span> ✨
+      </a>
     </div>
+    <style>
+      @keyframes rashiPulse{0%,100%{box-shadow:0 3px 12px rgba(181,40,150,.45);}50%{box-shadow:0 4px 20px rgba(181,40,150,.75),0 0 28px rgba(106,13,173,.3);}}
+    </style>
     <div class="cwdr">
       <div class="cwd ws">রবি</div><div class="cwd">সোম</div>
       <div class="cwd">মঙ্গল</div><div class="cwd">বুধ</div>
@@ -1158,7 +1170,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="dtab" onclick="switchDTab(3,this)">মন্ত্র ও বিধি</div>
         <div class="dtab" onclick="switchDTab(4,this)">মলমাস</div>
         <div class="dtab" onclick="switchDTab(5,this)">জন্মরাশি</div>
-        <div class="dtab" onclick="switchDTab(6,this)">মৃত্যু দোষ</div>
       </div>
 
       <!-- ট্যাব ০: পঞ্চাঙ্গ -->
@@ -1223,28 +1234,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
 
-      <!-- ট্যাব ৬: মৃত্যু দোষ -->
-      <div class="dtab-pane" id="dtpane6">
-        <div class="calc-form">
-          <p style="font-size:.73rem;color:var(--txt2);margin-bottom:.7rem;">মৃত্যুর তারিখ ও সময় দিলে সূতক কাল, পিণ্ডদান ও তর্পণের বিধি দেখাবে।</p>
-          <div class="calc-field">
-            <label>মৃত্যুর তারিখ</label>
-            <input type="date" id="deathDate2" />
-          </div>
-          <div class="calc-row">
-            <div class="calc-field">
-              <label>ঘণ্টা (0–23)</label>
-              <input type="number" id="deathHour2" min="0" max="23" placeholder="যেমন: 10" />
-            </div>
-            <div class="calc-field">
-              <label>মিনিট (0–59)</label>
-              <input type="number" id="deathMin2" min="0" max="59" placeholder="যেমন: 0" />
-            </div>
-          </div>
-          <button class="calc-btn" onclick="calcDeathDosha2()">📿 দোষ নির্ধারণ করুন</button>
-          <div class="calc-result" id="deathResult2"></div>
-        </div>
-      </div>
 
     </div>
   </div>
@@ -1260,7 +1249,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="calculator-section">
     <div class="calc-sec-tabs">
       <div class="calc-sec-tab act" onclick="switchCalcTab(0,this)">🔮 জন্মরাশি নির্ধারণ</div>
-      <div class="calc-sec-tab" onclick="switchCalcTab(1,this)">📿 মৃত্যু দোষ বিচার</div>
     </div>
 
     <!-- পেন ০: জন্মরাশি -->
@@ -1294,26 +1282,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="calc-result" id="birthResultMain"></div>
     </div>
 
-    <!-- পেন ১: মৃত্যু দোষ -->
-    <div class="calc-sec-pane" id="calcPane1">
-      <p style="font-size:.73rem;color:var(--txt2);margin-bottom:.8rem;">মৃত্যুর তারিখ ও সময় দিলে সূতক কাল, পিণ্ডদান তিথি ও বার্ষিক শ্রাদ্ধের তারিখ দেখাবে।</p>
-      <div class="calc-field">
-        <label>মৃত্যুর তারিখ</label>
-        <input type="date" id="deathDateMain" />
-      </div>
-      <div class="calc-row">
-        <div class="calc-field">
-          <label>মৃত্যু সময় — ঘণ্টা (0–23)</label>
-          <input type="number" id="deathHourMain" min="0" max="23" placeholder="যেমন: 10" />
-        </div>
-        <div class="calc-field">
-          <label>মিনিট (0–59)</label>
-          <input type="number" id="deathMinMain" min="0" max="59" placeholder="যেমন: 0" />
-        </div>
-      </div>
-      <button class="calc-btn" onclick="calcDeathDoshaMain()">📿 দোষ নির্ধারণ করুন</button>
-      <div class="calc-result" id="deathResultMain"></div>
-    </div>
   </div>
 
 
@@ -1742,9 +1710,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       SECTION ③  HELPERS            — fmtT, slotT, toBn ইত্যাদি
 
    📅 পঞ্জিকা ডেটা  ← এখানে বেশিরভাগ আপডেট হবে
-      SECTION ④  BENGALI MONTHS     — বাংলা মাসের তারিখ তালিকা (বছর যোগ করুন)
+      SECTION ④  BENGALI MONTHS     — Dynamic: getBanglaMonthStart দিয়ে সংক্রান্তি থেকে স্বয়ংক্রিয় গণনা
+                                       getBnMonthDaysDynamic, getBnInfoDynamic — BMS তালিকা এখন নেই
+                                       currentBnYear/currentBnMonth দিয়ে navigation
       SECTION ⑤  PANJIKA NAMES      — তিথি/নক্ষত্র/যোগ/করণের বাংলা নাম
-      SECTION ⑥  FESTIVAL LIST      — উৎসব ও ব্রতের তালিকা (প্রতি বছর আপডেট)
+      SECTION ⑥  FESTIVAL LIST      — উৎসব ও ব্রতের তালিকা
+                                       FESTS: নির্দিষ্ট তারিখের উৎসব
+                                       FIXED_ANNUAL_FESTS: mm-dd ভিত্তিক বার্ষিক দিবস (panjika-data.js)
+                                       TITHI_FESTS: তিথিভিত্তিক উৎসব সূত্র (panjika-data.js)
       SECTION ⑦  ECLIPSE DATA       — গ্রহণের সময়সূচি ২০২৬–২০২৮ (বছর বাড়ালে যোগ করুন)
 
    🔭 ASTRONOMY ENGINE  ← সাধারণত পরিবর্তন দরকার নেই
@@ -1754,17 +1727,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
    🖥️ UI RENDERING  ← দেখতে পরিবর্তন করতে এখানে আসুন
       SECTION ⑪  HEADER             — আজকের তারিখ ব্যানার (উপরের চিপস)
-      SECTION ⑫  CALENDAR           — মাসিক ক্যালেন্ডার গ্রিড
+      SECTION ⑫  CALENDAR           — মাসিক ক্যালেন্ডার গ্রিড + রাশিফল লিঙ্ক
       SECTION ⑬  DETAIL PANEL       — তারিখে ক্লিক করলে বিস্তারিত প্যানেল
-
-   🌟 রাশিফল  ← রাশিফল পরিবর্তন করতে এখানে আসুন
-      SECTION ⑭  RASHI DATA         — ১২ রাশির তথ্য (প্রতীক/অধিপতি/রত্ন)
-      SECTION ⑮  RASHIFAL TEXT DB   — প্রেম/কর্ম/স্বাস্থ্য/আর্থিক বার্তা ভাণ্ডার
-      SECTION ⑯  RASHIFAL RENDER    — রাশিফল UI তৈরি ও score গণনা
-
-   🚀 SECTION ⑰  INIT              — পেজ লোডের সময় প্রথমে চালু হয়
-
-   ⚡ দ্রুত খুঁজে পেতে Ctrl+F → "SECTION ④" লিখুন
+                                       ট্যাব ০: পঞ্চাঙ্গ (লগ্ন ২টি: চলমান + পরবর্তী)
+                                       ট্যাব ১: শুভ সময় | ট্যাব ২: উৎসব
+                                       ট্যাব ৩: মন্ত্র | ট্যাব ৪: মলমাস
+                                       ট্যাব ৫: জন্মরাশি ক্যালকুলেটর
+      SECTION ⑭  TAB HELPERS        — switchDTab, switchCalcTab
+      SECTION ⑮  TODAY EVENTS       — আজকের বিশেষ দিন
+      SECTION ⑯  MONTH EVENTS       — মাসের গুরুত্বপূর্ণ দিন (সর্বাধিক ৫টি আসন্ন)
+      SECTION ⑰  GUIDE CARDS        — শুভ সময় গাইড কার্ড
+      SECTION ⑱  AUSPICIOUS COUNTER — শুভ দিনের কাউন্টার
+      SECTION ⑲  RASHI CALCULATOR   — জন্মরাশি নির্ধারণ ক্যালকুলেটর
+      SECTION ㉑  showDetail         — ৫ ট্যাব বিস্তারিত প্যানেল
+      SECTION ㉒  renderCal          — ইভেন্ট আইকন সহ ক্যালেন্ডার
+      SECTION ㉓  INIT               — পেজ লোড
    ████████████████████████████████████████████████████████████████████ */
 
 // ════════════════════════════════════════════════════════
@@ -3266,8 +3243,13 @@ function renderMonthEvents() {
     });
   });
 
+  // শুধু আজ বা আগামী দিনের ইভেন্ট রাখুন, সর্বাধিক ৫টি
+  var todayMs = TODAY.setHours(0,0,0,0);
+  rows = rows.filter(function(r){ return r.date.getTime() >= todayMs; });
+  rows = rows.slice(0, 5);
+
   if (!rows.length) {
-    document.getElementById('monthEventsList').innerHTML = '<div class="sd-empty">এই মাসে কোনো বিশেষ দিন নেই।</div>';
+    document.getElementById('monthEventsList').innerHTML = '<div class="sd-empty">এই মাসে কোনো আসন্ন বিশেষ দিন নেই।</div>';
     return;
   }
 
@@ -3757,13 +3739,13 @@ function showDetail(date) {
   (function(){
     var moonNakIdx=Math.floor(graha.moon/(360/27))%27;
     var moonRashiIdx=Math.floor(graha.moon/30)%12;
-    var dashLord=typeof PD!=='undefined'?PD.dashLord(moonNakIdx):'—';
+    var dashLord=NAKS[moonNakIdx]?NAKS[moonNakIdx][1]:(typeof PD!=='undefined'&&typeof PD.dashLord==='function'?PD.dashLord(moonNakIdx):'—');
     // চন্দ্রের নক্ষত্র — time slot (nakList থেকে)
     var nakSlots='';
     c.nakList.forEach(function(n){
       if(!n||!n.val)return;
       var nIdx=NAK_L.indexOf(n.val.name);
-      var dL=typeof PD!=='undefined'?PD.dashLord(nIdx):'—';
+      var dL=(nIdx>=0&&NAKS[nIdx])?NAKS[nIdx][1]:(typeof PD!=='undefined'&&typeof PD.dashLord==='function'?PD.dashLord(nIdx):'—');
       var birthRashi=Math.floor(nIdx*40/90)%12;
       nakSlots+='<div class="dtime" style="background:rgba(30,90,60,.18);">'
         +'<div class="dtl">⭐ '+n.val.name+(n.endTime?' ('+n.endTime+' পর্যন্ত)':' (চলতি)')+'</div>'
@@ -3903,10 +3885,19 @@ function showDetail(date) {
     var jdNR=JD(nd2.getFullYear(),nd2.getMonth()+1,nd2.getDate())+(stN2.rise-TZ)/24;
     var LBN2=['মেষ','বৃষ','মিথুন','কর্কট','সিংহ','কন্যা','তুলা','বৃশ্চিক','ধনু','মকর','কুম্ভ','মীন'];
     var lgnSlots=calcLagnaSlots(date.getFullYear(),date.getMonth()+1,date.getDate(),jdR,jdNR);
+    // চলমান ও পরবর্তী লগ্ন — সর্বাধিক ২টি
+    var nowIST=(((Date.now()/3600000)+5.5)%24+24)%24;
+    var isToday2=date.toDateString()===TODAY.toDateString();
+    var curLagIdx=0;
+    if(isToday2){
+      for(var li2=0;li2<lgnSlots.length;li2++){if(lgnSlots[li2].endH==null||lgnSlots[li2].endH>nowIST){curLagIdx=li2;break;}}
+    }
+    var displaySlots=lgnSlots.slice(curLagIdx,curLagIdx+2);
     var lgnSlotsH='<div style="display:grid;grid-template-columns:1fr 1fr;gap:.25rem;margin-top:.25rem;">';
-    lgnSlots.forEach(function(s){
+    displaySlots.forEach(function(s,si){
       var endStr=s.endH!=null?fmtTSec(s.endH):'পরের উদয়';
-      lgnSlotsH+='<div class="dtime" style="padding:.25rem .45rem;"><div class="dtl" style="font-size:.62rem;">'+LBN2[s.ri]+' লগ্ন</div><div class="dtv" style="font-size:.6rem;">পর্যন্ত '+endStr+'</div></div>';
+      var lbl=si===0?(isToday2?'⬆️ চলমান লগ্ন':'প্রথম লগ্ন'):'পরবর্তী লগ্ন';
+      lgnSlotsH+='<div class="dtime" style="padding:.25rem .45rem;'+(si===0?'border-left:2px solid var(--gold);':'')+'"><div class="dtl" style="font-size:.62rem;">'+lbl+': '+LBN2[s.ri]+'</div><div class="dtv" style="font-size:.6rem;">পর্যন্ত '+endStr+'</div></div>';
     });
     lgnSlotsH+='</div>';
     // মৃত্যু দোষ
@@ -3928,27 +3919,11 @@ function showDetail(date) {
     var ddAfter='';
     if((dTi&&c.tithiList.length>1)||(dNak&&c.nakList&&c.nakList.length>1)){var newPads2=dBar;if(newPads2<pads)ddAfter='এরপর: '+(newPads2===0?'দোষ নেই':DDN[newPads2]);}
     var ddH='<div class="dtime" style="background:'+ddBg+';border-color:'+ddBg+';margin-top:.35rem;"><div class="dtl">💀 মৃত্যু দোষ</div><div class="dtv" style="color:'+ddFg+';">'+(DDN[pads]||'পুষ্কর দোষ')+'<div style="font-size:.6rem;color:var(--txt2);margin-top:.18rem;line-height:1.6;">'+(ddParts.join('<br>')||'')+(ddAfter?'<br><em>'+ddAfter+'</em>':'')+'</div></div></div>';
-    // বিমশোত্তরী দশা: আজকের জন্মনক্ষত্র ও দশাক্রম
-    var moonSidNow=((moonL(jdR)-lahiriAY(jdR))%360+360)%360;
-    var nakIdxNow=Math.floor(moonSidNow/(360/27));
-    var nakFracNow=(moonSidNow%(360/27))/(360/27);
-    var vimshDashas=calcVimshottariDasha(jdR,nakIdxNow,nakFracNow);
-    var TODAY_JD=JD(date.getFullYear(),date.getMonth()+1,date.getDate());
-    var vimshH='<div style="font-size:.6rem;color:var(--txt2);margin-bottom:.2rem;">আজ চন্দ্র নক্ষত্র: '+NAKS[nakIdxNow][0]+' — এই নক্ষত্রে জন্মগ্রহণকারীদের দশাক্রম:</div>';
-    vimshH+='<div style="display:flex;flex-direction:column;gap:.18rem;">';
-    vimshDashas.slice(0,5).forEach(function(ds,i){
-      var isCur=(TODAY_JD>=ds.startJD&&TODAY_JD<ds.endJD);
-      var bg=isCur?'rgba(201,162,39,.12)':'transparent';
-      var clr=isCur?'var(--gold)':'var(--txt)';
-      var sStr=jdToDateStr(ds.startJD),eStr=jdToDateStr(ds.endJD);
-      vimshH+='<div style="display:flex;justify-content:space-between;padding:.18rem .4rem;background:'+bg+';border-radius:4px;font-size:.62rem;color:'+clr+';">'+'<span>'+(isCur?'▶ ':'')+ds.lord+' মহাদশা ('+toBn(ds.years)+' বছর)</span>'+'<span style="color:var(--txt2);font-size:.58rem;">'+sStr+' – '+eStr+'</span></div>';
-    });
-    vimshH+='</div>';
     // Section header helper
     function sec(t){return '<div style="font-size:.61rem;font-weight:700;color:var(--gold);text-transform:uppercase;padding:.28rem 0 .15rem;border-top:1px solid rgba(201,162,39,.12);margin-top:.15rem;">'+t+'</div>';}
     // নিষিদ্ধ সময় (বারবেলা + চন্দ্রদগ্ধা + ত্রিস্পর্শ + যোগবর্জ্য + মলমাস)
     var forbidHtml=renderForbiddenTimes(date,c);
-    var extra=sec('🚫 নিষিদ্ধ সময় (বারবেলা · কালরাত্রি · চন্দ্রদগ্ধা · যোগবর্জ্য)')+'<div style="margin-bottom:.35rem;">'+forbidHtml+'</div>'+sec('✨ অমৃতযোগ · মাহেন্দ্রযোগ · অক্ষয়যোগ')+'<div style="display:flex;flex-direction:column;gap:.35rem;margin-bottom:.35rem;">'+amH+'</div>'+sec('🌅 লগ্ন সময়-স্লট (সূর্যোদয় থেকে পরের সূর্যোদয়)')+lgnSlotsH+sec('💀 মৃত্যু দোষ বিশ্লেষণ')+ddH+sec('🪐 বিমশোত্তরী দশা (চন্দ্রনক্ষত্র অনুযায়ী)')+vimshH;
+    var extra=sec('🚫 নিষিদ্ধ সময় (বারবেলা · কালরাত্রি · চন্দ্রদগ্ধা · যোগবর্জ্য)')+'<div style="margin-bottom:.35rem;">'+forbidHtml+'</div>'+sec('✨ অমৃতযোগ · মাহেন্দ্রযোগ · অক্ষয়যোগ')+'<div style="display:flex;flex-direction:column;gap:.35rem;margin-bottom:.35rem;">'+amH+'</div>'+sec('🌅 চলমান ও পরবর্তী লগ্ন')+lgnSlotsH+sec('💀 মৃত্যু দোষ বিশ্লেষণ')+ddH;
     document.getElementById('dttimes').innerHTML=
       '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.52rem;margin-bottom:.52rem;">'+row1.map(mkCard).join('')+'</div>'+
       '<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.52rem;margin-bottom:.35rem;">'+row2.map(mkCard).join('')+'</div>'+
