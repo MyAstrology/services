@@ -3681,14 +3681,35 @@ function showDetail(date) {
     extraHtml += '<div class="di"><div class="dii">'+x.i+'</div><div class="dil">'+x.l+'</div><div class="div2">'+x.v+'</div>'+(x.s?'<div class="dis">'+x.s+'</div>':'')+'</div>';
   }
 
-  // ── লগ্ন (Ascendant) — সূর্যোদয়কালীন লগ্ন ──
+  // ── লগ্ন (Ascendant) — সূর্যোদয় + বর্তমান + পরবর্তী ──
   var lagnaHtml='';
   if(typeof PD!=='undefined'&&PD.lagnaAt){
     var lagInfo=PD.lagnaAt(jdRise2);
-    var lagName=typeof PD!=='undefined'?PD.LAGNA_NAME[lagInfo.rashi]:(RASHI_L[lagInfo.rashi]+' লগ্ন');
-    var lagDeg=Math.floor(lagInfo.degInRashi);
-    var lagMin=Math.floor((lagInfo.degInRashi%1)*60);
-    lagnaHtml='<div class="di"><div class="dii">⬆️</div><div class="dil">লগ্ন (উদয়)</div><div class="div2">'+lagName+'</div><div class="dis">'+toBn(lagDeg)+'°'+toBn(lagMin)+'′ (JPL DE441)</div></div>';
+    var lagName=PD.LAGNA_NAME[lagInfo.rashi]||(RASHI_L[lagInfo.rashi]+' লগ্ন');
+    var lagDeg=Math.floor(lagInfo.degInRashi),lagMin=Math.floor((lagInfo.degInRashi%1)*60);
+    // বর্তমান লগ্ন ও পরবর্তী লগ্ন (2440587.5 = JD of Unix epoch)
+    var nowJD=2440587.5+Date.now()/86400000;
+    var nowLag=PD.lagnaAt(nowJD);
+    var nowLagName=PD.LAGNA_NAME[nowLag.rashi]||(RASHI_L[nowLag.rashi]+' লগ্ন');
+    // পরবর্তী লগ্ন পরিবর্তনের সময় খোঁজা (~2h steps, then narrow)
+    var nextLagJD=nowJD,curRashi=nowLag.rashi;
+    for(var li=1;li<=24;li++){
+      var tJD=nowJD+li*0.083333; // ~2h increments
+      if(PD.lagnaAt(tJD).rashi!==curRashi){nextLagJD=tJD;break;}
+    }
+    // narrow to minute
+    if(nextLagJD!==nowJD){
+      var lo=nextLagJD-0.083333,hi=nextLagJD;
+      for(var bi=0;bi<8;bi++){var mid=(lo+hi)/2;if(PD.lagnaAt(mid).rashi===curRashi)lo=mid;else hi=mid;}
+      nextLagJD=(lo+hi)/2;
+    }
+    var nextLagIST=((nextLagJD+0.5)%1)*24+5.5;
+    if(nextLagIST>=24)nextLagIST-=24;
+    var nextLag=PD.lagnaAt(nextLagJD+0.001);
+    var nextLagName=PD.LAGNA_NAME[nextLag.rashi]||(RASHI_L[nextLag.rashi]+' লগ্ন');
+    lagnaHtml='<div style="font-size:.6rem;font-weight:700;color:var(--gold);padding:.4rem 0 .2rem;border-top:1px solid rgba(201,162,39,.12);margin-top:.2rem;">⬆️ লগ্ন</div>'
+      +'<div class="di"><div class="dii">⬆️</div><div class="dil">উদয়কালীন লগ্ন</div><div class="div2">'+lagName+'</div><div class="dis">'+toBn(lagDeg)+'°'+toBn(lagMin)+'′</div></div>'
+      +'<div class="di"><div class="dii">⬆️</div><div class="dil">বর্তমান লগ্ন</div><div class="div2">'+nowLagName+'</div><div class="dis">পরিবর্তন: '+fmtT(Math.floor(((nextLagIST%24)+24)%24),Math.round(((((nextLagIST%24)+24)%24)%1)*60))+' → '+nextLagName+'</div></div>';
   }
 
   // ── গ্রহের অবস্থান HTML ──
@@ -3720,11 +3741,10 @@ function showDetail(date) {
       if(!n||!n.val)return;
       var nIdx=NAK_L.indexOf(n.val.name);
       var dL=typeof PD!=='undefined'?PD.dashLord(nIdx):'—';
-      var rIdx=Math.floor(graha.moon/30)%12;
-      // প্রতিটি নক্ষত্র slot-এর রাশি বের করা (আপাতত উদয়ের রাশি দেখাচ্ছি)
+      var birthRashi=Math.floor(nIdx*40/90)%12;
       nakSlots+='<div class="dtime" style="background:rgba(30,90,60,.18);">'
         +'<div class="dtl">⭐ '+n.val.name+(n.endTime?' ('+n.endTime+' পর্যন্ত)':' (চলতি)')+'</div>'
-        +'<div class="dtv" style="font-size:.62rem;">জন্মে '+RASHI_L[nIdx<9?Math.floor(nIdx/3)%12:Math.floor(graha.moon/30)%12]+' রাশি — '+dL+'র দশা</div>'
+        +'<div class="dtv" style="font-size:.62rem;">জন্মে '+RASHI_L[birthRashi]+' রাশি — '+dL+'র দশা</div>'
         +'</div>';
     });
     moonRashiHtml='<div style="font-size:.6rem;font-weight:700;color:#4CAF50;padding:.4rem 0 .2rem;border-top:1px solid rgba(76,175,80,.15);margin-top:.3rem;">🌙 চন্দ্র রাশি — নক্ষত্র — জন্ম দশা</div>'
