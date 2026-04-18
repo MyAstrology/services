@@ -2,44 +2,44 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
   <url>
-    <loc>https://www.myastrology.in/rashifal/2026-04-16.html</loc>
+    <loc>https://www.myastrology.in/rashifal/2026-04-19.html</loc>
     <news:news>
       <news:publication>
         <news:name>MyAstrology</news:name>
         <news:language>bn</news:language>
       </news:publication>
-      <news:publication_date>2026-04-16T05:00:00+05:30</news:publication_date>
-      <news:title>২ বৈশাখ ১৪৩৩ — দৈনিক রাশিফল | ১২ রাশির বিস্তারিত ফল</news:title>
+      <news:publication_date>2026-04-19T05:00:00+05:30</news:publication_date>
+      <news:title>৫ বৈশাখ ১৪৩৩ — দৈনিক রাশিফল | ১২ রাশির বিস্তারিত ফল</news:title>
     </news:news>
-    <lastmod>2026-04-16</lastmod>
+    <lastmod>2026-04-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://www.myastrology.in/rashifal/2026-04-15.html</loc>
+    <loc>https://www.myastrology.in/rashifal/2026-04-18.html</loc>
     <news:news>
       <news:publication>
         <news:name>MyAstrology</news:name>
         <news:language>bn</news:language>
       </news:publication>
-      <news:publication_date>2026-04-15T05:00:00+05:30</news:publication_date>
-      <news:title>১ বৈশাখ ১৪৩৩ — দৈনিক রাশিফল | ১২ রাশির বিস্তারিত ফল</news:title>
+      <news:publication_date>2026-04-18T05:00:00+05:30</news:publication_date>
+      <news:title>৪ বৈশাখ ১৪৩৩ — দৈনিক রাশিফল | ১২ রাশির বিস্তারিত ফল</news:title>
     </news:news>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://www.myastrology.in/rashifal/2026-04-14.html</loc>
+    <loc>https://www.myastrology.in/rashifal/2026-04-17.html</loc>
     <news:news>
       <news:publication>
         <news:name>MyAstrology</news:name>
         <news:language>bn</news:language>
       </news:publication>
-      <news:publication_date>2026-04-14T05:00:00+05:30</news:publication_date>
-      <news:title>৩১ চৈত্র ১৪৩২ — দৈনিক রাশিফল | ১২ রাশির বিস্তারিত ফল</news:title>
+      <news:publication_date>2026-04-17T05:00:00+05:30</news:publication_date>
+      <news:title>৩ বৈশাখ ১৪৩৩ — দৈনিক রাশিফল | ১২ রাশির বিস্তারিত ফল</news:title>
     </news:news>
-    <lastmod>2026-04-14</lastmod>
+    <lastmod>2026-04-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
