@@ -3290,22 +3290,27 @@ PD.jdIST=function(jd){
   return{dt:new Date(Date.UTC(year,month-1,day)),h:h};
 };
 
-// সূর্যের সিদ্ধান্তীয় দ্রাঘিমা (JPL data থেকে linear interpolation)
+// সূর্যের সিদ্ধান্তীয় দ্রাঘিমা (JPL DE441 — UT-aligned linear interpolation)
+// PD.p[i] ডেটা 0h UT (UT মধ্যরাত) = IST 5:30h এ সংগ্রহ করা
+// moonAt()-এর মতো UT-ভিত্তিক fraction ব্যবহার করতে হবে
 PD.sunSid=function(jd){
   var ist=PD.jdIST(jd);
-  var g0=PD.geo(ist.dt);
-  var g1=PD.geo(new Date(ist.dt.getTime()+86400000));
-  if(!g0){
+  if(!ist)return null;
+  // UT hour থেকে সঠিক day index ও fraction বের করা
+  var hUT=ist.h-5.5; // IST থেকে UT-এ রূপান্তর
+  var dayOff=0;
+  if(hUT<0){hUT+=24;dayOff=-1;} // UT মধ্যরাতের আগে = আগের দিনের ডেটা
+  var i0=PD.di(ist.dt)+dayOff;
+  if(i0<0||i0+1>=PD.p.length){
     // Fallback: Meeus simplified
     var n=jd-2451545,L=((280.46+0.9856474*n)%360+360)%360,g2=((357.528+0.9856003*n)%360+360)*Math.PI/180;
     var lam=L+1.915*Math.sin(g2)+0.02*Math.sin(2*g2);
     var T=(jd-2451545)/36525,ay=23.819167+1.548210*T;
     return((lam-ay)%360+360)%360;
   }
-  if(!g1)return g0.sun;
-  var frac=ist.h/24,d=g1.sun-g0.sun;
-  if(d>180)d-=360;if(d<-180)d+=360;
-  return(g0.sun+frac*d+360)%360;
+  var s0=PD.p[i0][0],s1=PD.p[i0+1][0];
+  var d=s1-s0;if(d>180)d-=360;if(d<-180)d+=360;
+  return(s0+hUT/24*d+360)%360;
 };
 
 // চন্দ্রের সিদ্ধান্তীয় দ্রাঘিমা (6-hourly PD data থেকে)
