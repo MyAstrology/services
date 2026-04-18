@@ -1117,6 +1117,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <button class="cnav" onclick="shiftM(1)">পরের মাস ▶</button>
     </div>
+    <div style="text-align:center;padding:4px 0 8px;">
+      <a id="rashifal-today-link" href="#" target="_blank" rel="noopener" style="font-size:.82rem;color:var(--acc);text-decoration:none;border:1px solid currentColor;border-radius:20px;padding:3px 14px;opacity:.85;">🔮 আজকের রাশিফল</a>
+    </div>
     <div class="cwdr">
       <div class="cwd ws">রবি</div><div class="cwd">সোম</div>
       <div class="cwd">মঙ্গল</div><div class="cwd">বুধ</div>
@@ -1829,40 +1832,39 @@ function dStr(d){return`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'
 // ════════════════════════════════════════════════════════
 const BNM_NAMES=['বৈশাখ','জ্যৈষ্ঠ','আষাঢ়','শ্রাবণ','ভাদ্র','আশ্বিন','কার্তিক','অগ্রহায়ণ','পৌষ','মাঘ','ফাল্গুন','চৈত্র'];
 const RITU=['গ্রীষ্ম','গ্রীষ্ম','বর্ষা','বর্ষা','শরৎ','শরৎ','হেমন্ত','হেমন্ত','শীত','শীত','বসন্ত','বসন্ত'];
-const BMS=[
-  {y:1431,m:0,s:'2024-04-14'},{y:1431,m:1,s:'2024-05-15'},{y:1431,m:2,s:'2024-06-15'},
-  {y:1431,m:3,s:'2024-07-16'},{y:1431,m:4,s:'2024-08-17'},{y:1431,m:5,s:'2024-09-17'},
-  {y:1431,m:6,s:'2024-10-17'},{y:1431,m:7,s:'2024-11-16'},{y:1431,m:8,s:'2024-12-16'},
-  {y:1431,m:9,s:'2025-01-14'},{y:1431,m:10,s:'2025-02-13'},{y:1431,m:11,s:'2025-03-14'},
-  {y:1432,m:0,s:'2025-04-15'},{y:1432,m:1,s:'2025-05-16'},{y:1432,m:2,s:'2025-06-16'},
-  {y:1432,m:3,s:'2025-07-17'},{y:1432,m:4,s:'2025-08-18'},{y:1432,m:5,s:'2025-09-18'},
-  {y:1432,m:6,s:'2025-10-18'},{y:1432,m:7,s:'2025-11-17'},{y:1432,m:8,s:'2025-12-17'},
-  {y:1432,m:9,s:'2026-01-15'},{y:1432,m:10,s:'2026-02-14'},{y:1432,m:11,s:'2026-03-16'},
-  {y:1433,m:0,s:'2026-04-15'},{y:1433,m:1,s:'2026-05-16'},{y:1433,m:2,s:'2026-06-16'},
-  {y:1433,m:3,s:'2026-07-18'},{y:1433,m:4,s:'2026-08-19'},{y:1433,m:5,s:'2026-09-17'},
-  {y:1433,m:6,s:'2026-10-17'},{y:1433,m:7,s:'2026-11-18'},{y:1433,m:8,s:'2026-12-17'},
-  {y:1433,m:9,s:'2027-01-15'},{y:1433,m:10,s:'2027-02-13'},{y:1433,m:11,s:'2027-03-14'},
-  {y:1434,m:0,s:'2027-04-14'},{y:1434,m:1,s:'2027-05-15'},{y:1434,m:2,s:'2027-06-15'},
-  {y:1434,m:3,s:'2027-07-16'},{y:1434,m:4,s:'2027-08-17'},{y:1434,m:5,s:'2027-09-17'},
-  {y:1434,m:6,s:'2027-10-17'},{y:1434,m:7,s:'2027-11-16'},{y:1434,m:8,s:'2027-12-16'},
-  {y:1434,m:9,s:'2028-01-15'},{y:1434,m:10,s:'2028-02-14'},{y:1434,m:11,s:'2028-03-14'},
-  {y:1435,m:0,s:'2028-04-13'},{y:1435,m:1,s:'2028-05-14'},{y:1435,m:2,s:'2028-06-15'},
-  {y:1435,m:3,s:'2028-07-16'},{y:1435,m:4,s:'2028-08-16'},{y:1435,m:5,s:'2028-09-16'},
-  {y:1435,m:6,s:'2028-10-16'},{y:1435,m:7,s:'2028-11-15'},{y:1435,m:8,s:'2028-12-15'},
-  {y:1435,m:9,s:'2029-01-14'},{y:1435,m:10,s:'2029-02-13'},{y:1435,m:11,s:'2029-03-14'},
-  {y:1436,m:0,s:'2029-04-14'},{y:1436,m:1,s:'2029-05-15'},{y:1436,m:2,s:'2029-06-15'},
-  {y:1436,m:3,s:'2029-07-17'},{y:1436,m:4,s:'2029-08-17'},{y:1436,m:5,s:'2029-09-17'},
-  {y:1436,m:6,s:'2029-10-18'},{y:1436,m:7,s:'2029-11-17'},{y:1436,m:8,s:'2029-12-17'},
-  {y:1436,m:9,s:'2030-01-15'},{y:1436,m:10,s:'2030-02-14'},{y:1436,m:11,s:'2030-03-16'},
-  {y:1437,m:0,s:'2030-04-15'},{y:1437,m:1,s:'2030-05-16'},{y:1437,m:2,s:'2030-06-16'},
-  {y:1437,m:3,s:'2030-07-18'},{y:1437,m:4,s:'2030-08-18'},{y:1437,m:5,s:'2030-09-18'},
-  {y:1437,m:6,s:'2030-10-18'},{y:1437,m:7,s:'2030-11-17'},{y:1437,m:8,s:'2030-12-17'},
-  {y:1437,m:9,s:'2031-01-15'},{y:1437,m:10,s:'2031-02-14'},{y:1437,m:11,s:'2031-03-16'},
-  {y:1438,m:0,s:'2031-04-15'}
-];
-function getBnInfo(date){const t=date.getTime();let idx=-1;for(let i=BMS.length-1;i>=0;i--){if(t>=new Date(BMS[i].s+'T00:00:00').getTime()){idx=i;break;}}if(idx<0)return null;const e=BMS[idx];const s=new Date(e.s+'T00:00:00');const d=Math.floor((t-s.getTime())/86400000)+1;return{y:e.y,m:e.m,d,name:BNM_NAMES[e.m],ritu:RITU[e.m],vikram:e.y+57,saka:e.y-78};}
-function getBnMonthDays(idx){const e=BMS[idx];if(!e||idx+1>=BMS.length)return[];const s=new Date(e.s+'T00:00:00');const nx=new Date(BMS[idx+1].s+'T00:00:00');const days=[];let d=new Date(s),bn=1;while(d<nx){days.push({date:new Date(d),bnDay:bn});d.setDate(d.getDate()+1);bn++;}return days;}
-function findTodayIdx(){const t=TODAY.getTime();for(let i=BMS.length-1;i>=0;i--){if(t>=new Date(BMS[i].s+'T00:00:00').getTime())return i;}return 0;}
+// BMS static array removed — month starts now computed dynamically from sankranti
+var _bmsCache={};
+function getBanglaMonthStart(bnYear,bnMonth){
+  var key=bnYear+'.'+bnMonth;
+  if(_bmsCache[key]!==undefined)return _bmsCache[key];
+  var targetRashi=bnMonth;
+  var gYear=bnYear+593;
+  if(bnMonth>=9)gYear++;
+  var approxGMs=[4,5,6,7,8,9,10,11,12,1,2,3];
+  var gMonth=approxGMs[bnMonth];
+  var sd=new Date(gYear,gMonth-1,7);
+  var rPrev=-1,result=null;
+  for(var i=0;i<40;i++){
+    var d=new Date(sd);d.setDate(d.getDate()+i);
+    var y2=d.getFullYear(),m2=d.getMonth()+1,day2=d.getDate();
+    var st2=sunTimes(y2,m2,day2);
+    var jdR=JD(y2,m2,day2)+(st2.rise-TZ)/24;
+    var rNow=sunRashi(jdR);
+    if(i>0&&rPrev!==targetRashi&&rNow===targetRashi){result=d;break;}
+    rPrev=rNow;
+  }
+  _bmsCache[key]=result;
+  return result;
+}
+function getBnMonthDaysDynamic(bnYear,bnMonth){
+  var start=getBanglaMonthStart(bnYear,bnMonth);
+  var nm=(bnMonth+1)%12,ny=bnYear+(nm===0?1:0);
+  var end=getBanglaMonthStart(ny,nm);
+  if(!start||!end)return[];
+  var days=[],d=new Date(start),bn=1;
+  while(d<end){days.push({date:new Date(d),bnDay:bn});d.setDate(d.getDate()+1);bn++;}
+  return days;
+}
 
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -1945,12 +1947,12 @@ function getBnInfoDynamic(date){
   const bnYear=y-593+(bnMonth<0?0:0);
   // সঠিক বাংলা বছর: চৈত্র (মাস 11) এপ্রিলের আগে থাকলে পূর্ববর্তী বাংলা বছর
   let by=y-593;
-  if(bnMonth>=9 && m<=4) by=y-594; // পৌষ-চৈত্র জানুয়ারি-এপ্রিলে
-  if(bnMonth<=2 && m>=10) by=y-592; // বৈশাখ-আষাঢ় অক্টোবরে (অসম্ভব, safety)
-  // আরো সঠিক: BMS টেবিল থেকে cross-reference
-  const bn=getBnInfo(date); // existing function
-  if(bn) return bn; // existing is good for pre-computed years
-  return{y:by,m:bnMonth,d:1,name:BNM_NAMES[bnMonth],ritu:RITU[bnMonth],vikram:by+57,saka:by-78};
+  if(bnMonth>=9 && m<=4) by=y-594;
+  const monthStart=getBanglaMonthStart(by,bnMonth);
+  if(!monthStart)return{y:by,m:bnMonth,d:1,name:BNM_NAMES[bnMonth],ritu:RITU[bnMonth],vikram:by+57,saka:by-78};
+  const dateOnly=new Date(y,m-1,d);
+  const bnDay=Math.floor((dateOnly.getTime()-monthStart.getTime())/86400000)+1;
+  return{y:by,m:bnMonth,d:bnDay,name:BNM_NAMES[bnMonth],ritu:RITU[bnMonth],vikram:by+57,saka:by-78};
 }
 
 // ════════════════════════════════════════════════════════
@@ -2271,7 +2273,13 @@ const ECLIPSE_DATA = [
   },
 ];
 function getEclipse(ds){return ECLIPSE_DATA.filter(e=>e.d===ds);}
-const getFests=ds=>FESTS.filter(f=>f.d===ds);
+const getFests=ds=>{
+  const mmdd=ds.slice(5);
+  const fromFests=FESTS.filter(f=>f.d===ds);
+  if(typeof FIXED_ANNUAL_FESTS==='undefined') return fromFests;
+  const fromFixed=FIXED_ANNUAL_FESTS.filter(f=>f.mmdd===mmdd&&!fromFests.find(x=>x.n===f.name)).map(f=>({d:ds,n:f.name,i:f.icon}));
+  return [...fromFests,...fromFixed];
+};
 // ════════════════════════════════════════════════════════
 // SECTION ⑨ — TRANSITION ENGINE (পঞ্চাঙ্গ পরিবর্তনের সময় গণনা)
 // কাজ: দিনের মধ্যে তিথি/নক্ষত্র/যোগ/করণ কখন বদলায় তা বের করে
@@ -2322,7 +2330,7 @@ function _buildList(startIdx,trans,nameFn){
 // ════════════════════════════════════════════════════════
 function calcDay(date){
   const y=date.getFullYear(),m=date.getMonth()+1,d=date.getDate(),w=date.getDay();
-  const st=sunTimes(y,m,d);const bn=getBnInfo(date);
+  const st=sunTimes(y,m,d);const bn=getBnInfoDynamic(date);
   // Sunrise JD
   const jdRise=JD(y,m,d)+(st.rise-TZ)/24;
   // Next sunrise JD
@@ -2347,13 +2355,17 @@ function calcDay(date){
   // Primary (backward compat)
   const p=tithiList[0].val;
   const tN=p.pakDay+(p.paksha==='কৃষ্ণপক্ষ'?15:0);
+  // তিথিভিত্তিক উৎসব মেলানো
+  const tithiFests=(typeof TITHI_FESTS!=='undefined'&&bn)?TITHI_FESTS.filter(tf=>
+    tf.bMonth===bn.m&&tithiList.some(t=>t.val.paksha===tf.paksha&&t.val.pakDay===tf.tithi)
+  ).map(tf=>({d:dStr(date),n:tf.name,i:tf.icon})):[];
   return{w,bn,tN,tName:p.name,paksha:p.paksha,pakDay:p.pakDay,
     nak:NAKS[nIdx0],yoga:YOGAS[yIdx0],karan:karanList[0].val.name,
     vara:VDAYS[w],varaL:VLORD[w],st,
     rahu:slotT(st.rise,st.set,RS[w]),gulika:slotT(st.rise,st.set,GS[w]),
     yam:slotT(st.rise,st.set,YS[w]),abhi:abhiT(st.rise,st.set),
     eclipses:getEclipse(dStr(date)),
-    fests:getFests(dStr(date)),
+    fests:[...getFests(dStr(date)),...tithiFests],
     tithiList,nakList,yogaList,karanList};
 }
 function moonEmoji(t){if(t===15)return'🌕';if(t===30||t===1)return'🌑';if(t<8)return'🌒';if(t===8)return'🌓';if(t<15)return'🌔';if(t<23)return'🌖';if(t===23)return'🌗';return'🌘';}
@@ -2372,9 +2384,12 @@ function renderHeader(){const c=calcDay(TODAY),bn=c.bn;if(!bn)return;document.ge
 //   • renderCal()   — সম্পূর্ণ calendar আবার draw করে
 // পরিবর্তন: cell-এ কী দেখাবে (তিথি/উৎসব) তা বদলাতে এখানে আসুন
 // ════════════════════════════════════════════════════════
-let calIdx=findTodayIdx(),selDate=null;
-function shiftM(d){calIdx=Math.max(0,Math.min(BMS.length-2,calIdx+d));renderCal();}
-function renderCal(){const days=getBnMonthDays(calIdx);if(!days.length)return;const e=BMS[calIdx];const f=days[0].date,l=days[days.length-1].date;const enRange=f.getMonth()===l.getMonth()?`${EMS[f.getMonth()]} ${f.getFullYear()}`:`${EMSh[f.getMonth()]}–${EMSh[l.getMonth()]} ${l.getFullYear()}`;document.getElementById('cmbn').textContent=`${BNM_NAMES[e.m]} ${toBn(e.y)} বঙ্গাব্দ`;document.getElementById('cmen').textContent=enRange;const first=days[0].date.getDay();let h='';for(let i=0;i<first;i++)h+=`<div class="cd ce"></div>`;days.forEach(({date,bnDay})=>{const wd=date.getDay();const isT=date.toDateString()===TODAY.toDateString();const isS=selDate&&date.toDateString()===selDate.toDateString();const c=calcDay(date);const fests=c.fests;const ds_=dStr(date);const enLbl=`${date.getDate()} ${EMSh[date.getMonth()]}`;const tsh=c.tithiList.length>1?`${c.tithiList[0].val.pakShort} ${c.tithiList[0].val.name}/${c.tithiList[1].val.pakShort} ${c.tithiList[1].val.name}`:`${c.tithiList[0].val.pakShort} ${c.tithiList[0].val.name}`;let cls='cd';if(wd===0)cls+=' ds';if(wd===6)cls+=' dsa';if(isT)cls+=' ct';if(isS)cls+=' cs';h+=`<div class="${cls}" onclick="showDetail(new Date('${ds_}'))">${isT?'<div class="tdot"></div>':''}<div class="db">${toBn(bnDay)}</div><div class="de">${enLbl}</div><div class="dti">${tsh}</div>${(c.eclipses&&c.eclipses.length)?`<div class="df" style="color:#7b2fbe;">${c.eclipses[0].icon} ${c.eclipses[0].type}</div>`:fests.length?`<div class="df">${fests[0].i} ${fests[0].n}</div>`:''}</div>`;});document.getElementById('cbody').innerHTML=h;}
+var _tdBn=getBnInfoDynamic(TODAY);
+var currentBnYear=_tdBn?_tdBn.y:1433;
+var currentBnMonth=_tdBn?_tdBn.m:0;
+let selDate=null;
+function shiftM(d){currentBnMonth+=d;while(currentBnMonth<0){currentBnMonth+=12;currentBnYear--;}while(currentBnMonth>11){currentBnMonth-=12;currentBnYear++;}renderCal();}
+function renderCal(){const days=getBnMonthDaysDynamic(currentBnYear,currentBnMonth);if(!days.length)return;const f=days[0].date,l=days[days.length-1].date;const enRange=f.getMonth()===l.getMonth()?`${EMS[f.getMonth()]} ${f.getFullYear()}`:`${EMSh[f.getMonth()]}–${EMSh[l.getMonth()]} ${l.getFullYear()}`;document.getElementById('cmbn').textContent=`${BNM_NAMES[currentBnMonth]} ${toBn(currentBnYear)} বঙ্গাব্দ`;document.getElementById('cmen').textContent=enRange;const first=days[0].date.getDay();let h='';for(let i=0;i<first;i++)h+=`<div class="cd ce"></div>`;days.forEach(({date,bnDay})=>{const wd=date.getDay();const isT=date.toDateString()===TODAY.toDateString();const isS=selDate&&date.toDateString()===selDate.toDateString();const c=calcDay(date);const fests=c.fests;const ds_=dStr(date);const enLbl=`${date.getDate()} ${EMSh[date.getMonth()]}`;const tsh=c.tithiList.length>1?`${c.tithiList[0].val.pakShort} ${c.tithiList[0].val.name}/${c.tithiList[1].val.pakShort} ${c.tithiList[1].val.name}`:`${c.tithiList[0].val.pakShort} ${c.tithiList[0].val.name}`;let cls='cd';if(wd===0)cls+=' ds';if(wd===6)cls+=' dsa';if(isT)cls+=' ct';if(isS)cls+=' cs';h+=`<div class="${cls}" onclick="showDetail(new Date('${ds_}'))">${isT?'<div class="tdot"></div>':''}<div class="db">${toBn(bnDay)}</div><div class="de">${enLbl}</div><div class="dti">${tsh}</div>${(c.eclipses&&c.eclipses.length)?`<div class="df" style="color:#7b2fbe;">${c.eclipses[0].icon} ${c.eclipses[0].type}</div>`:fests.length?`<div class="df">${fests[0].i} ${fests[0].n}</div>`:''}</div>`;});document.getElementById('cbody').innerHTML=h;}
 
 // ════════════════════════════════════════════════════════
 // SECTION ⑬ — DETAIL PANEL (দিনের বিস্তারিত প্যানেল)
@@ -3224,10 +3239,9 @@ function renderTodayEvents() {
 // SECTION ⑯ — MONTH EVENTS RENDER (মাসের গুরুত্বপূর্ণ দিন)
 // ════════════════════════════════════════════════════════
 function renderMonthEvents() {
-  var days = getBnMonthDays(calIdx);
+  var days = getBnMonthDaysDynamic(currentBnYear, currentBnMonth);
   if (!days.length) return;
-  var e = BMS[calIdx];
-  document.getElementById('monthEventsTitle').textContent = '📅 ' + BNM_NAMES[e.m] + ' ' + toBn(e.y) + ' বঙ্গাব্দের গুরুত্বপূর্ণ দিন';
+  document.getElementById('monthEventsTitle').textContent = '📅 ' + BNM_NAMES[currentBnMonth] + ' ' + toBn(currentBnYear) + ' বঙ্গাব্দের গুরুত্বপূর্ণ দিন';
 
   var rows = [];
   days.forEach(function(item){
@@ -3454,7 +3468,7 @@ function _isShubhaDay(dt, nakNeed, tithiNeed, karmaType) {
 }
 
 function _getMonthShubhaDays(nakNeed, tithiNeed, extraBadDays, karmaType) {
-  var days = getBnMonthDays(calIdx);
+  var days = getBnMonthDaysDynamic(currentBnYear, currentBnMonth);
   return days.filter(function(item){
     if (extraBadDays && extraBadDays.includes(item.date.getDay())) return false;
     return _isShubhaDay(item.date, nakNeed, tithiNeed, karmaType);
@@ -3866,7 +3880,7 @@ function showDetail(date) {
     var MHN_A=[[],[],[5,6],[5,6,7],[7,14,15],[],[2,9,10,11,12]];
 
     // বাংলা মাস অনুযায়ী ঋতু নির্বাচন (0=বৈশাখ … 11=চৈত্র)
-    var bnM2=getBnInfo(date).m;
+    var bnM2=getBnInfoDynamic(date).m;
     var aT=(bnM2===1||bnM2===2)?{D:AMD_C,dH:MHD_C,N:AMN_C,nH:MHN_C}:
            (bnM2>=5&&bnM2<=8)?{D:AMD_B,dH:MHD_B,N:AMN_B,nH:MHN_B}:
            {D:AMD_A,dH:MHD_A,N:AMN_A,nH:MHN_A};
@@ -4097,12 +4111,11 @@ function closeD() { document.getElementById('dtp').classList.remove('show'); sel
 // override renderCal to add event icons from PANJIKA_DATA
 var _origRenderCal = renderCal;
 function renderCal(){
-  var days=getBnMonthDays(calIdx);
+  var days=getBnMonthDaysDynamic(currentBnYear,currentBnMonth);
   if(!days.length)return;
-  var e=BMS[calIdx];
   var f=days[0].date,l=days[days.length-1].date;
   var enRange=f.getMonth()===l.getMonth()?EMS[f.getMonth()]+' '+f.getFullYear():EMSh[f.getMonth()]+'–'+EMSh[l.getMonth()]+' '+l.getFullYear();
-  document.getElementById('cmbn').textContent=BNM_NAMES[e.m]+' '+toBn(e.y)+' বঙ্গাব্দ';
+  document.getElementById('cmbn').textContent=BNM_NAMES[currentBnMonth]+' '+toBn(currentBnYear)+' বঙ্গাব্দ';
   document.getElementById('cmen').textContent=enRange;
   var first=days[0].date.getDay();
   var h='';
@@ -4150,6 +4163,7 @@ function renderCal(){
 // ════════════════════════════════════════════════════════
 let _initLoad=true;
 try {
+  (function(){var el=document.getElementById('rashifal-today-link');if(el)el.href='https://www.myastrology.in/rashifal/'+dStr(TODAY)+'.html';})();
   renderHeader();
   renderCal();
   renderTodayEvents();
