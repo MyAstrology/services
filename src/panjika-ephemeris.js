@@ -3557,7 +3557,7 @@ PD._jd=function(y,m,d){
   var A=Math.floor(y/100),B=2-A+Math.floor(A/4);
   return Math.floor(365.25*(y+4716))+Math.floor(30.6001*(m+1))+d+B-1524.5-5.5/24;
 };
-=======
+
 // ═══════════════════════════════════════════════════════════════════════
 // panjika-ephemeris.js — v5.2  |  MyAstrology বাংলা পঞ্জিকা ইঞ্জিন
 // ড. প্রদ্যুৎ আচার্য | MyAstrology, রানাঘাট | www.myastrology.in
