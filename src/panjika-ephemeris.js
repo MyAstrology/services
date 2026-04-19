@@ -3272,7 +3272,7 @@ PD.sun=function(dt){
 
 // ════════════════════════════════════════════════════════════════════════════
 // পঞ্চাঙ্গ গণনা ইঞ্জিন — JPL DE441 ভিত্তিক (বিশুদ্ধ সিদ্ধান্ত পদ্ধতি)
-// স্থান: কলকাতা (LAT=22.5833°N, LNG=88.3767°E, IST=+5.5h)
+// স্থান: রানাঘাট (LAT=23.1677°N, LNG=88.5808°E, IST=+5.5h)
 // ════════════════════════════════════════════════════════════════════════════
 
 // JD (UT) → {dt: Date (UTC midnight of IST calendar date), h: IST hour (0-24)}
@@ -3323,14 +3323,23 @@ PD.moonSid=function(jd){
 // PD.geo() একদিনের সরাসরি JPL data; গ্রহগুলো slow তাই daily interpolation যথেষ্ট
 PD.allPlanets=function(jd){
   var ist=PD.jdIST(jd);
-  var g0=PD.geo(ist.dt);
-  var g1=PD.geo(new Date(ist.dt.getTime()+86400000));
+  // PD.p[] ডেটা 0h UT-এ; IST থেকে UT ঘণ্টায় রূপান্তর করে সঠিক day pair নির্বাচন
+  var hUT=ist.h-5.5;
+  var dayOff=0;
+  if(hUT<0){hUT+=24;dayOff=-1;}
+  var dt0=new Date(ist.dt.getTime()+dayOff*86400000);
+  var dt1=new Date(ist.dt.getTime()+(dayOff+1)*86400000);
+  var dt_prev=new Date(dt0.getTime()-86400000);
+  var g0=PD.geo(dt0);
+  var g1=PD.geo(dt1);
+  var g_prev=PD.geo(dt_prev);
   if(!g0)return null;
-  if(!g1)return{sun:g0.sun,moon:PD.moonSid(jd),mars:g0.mars,jup:g0.jup,sat:g0.sat,ven:g0.ven,mer:g0.mer,rahu:g0.rahu,ketu:g0.ketu};
-  var frac=ist.h/24;
+  if(!g1)return{sun:PD.sunSid(jd),moon:PD.moonSid(jd),mars:g0.mars,jup:g0.jup,sat:g0.sat,ven:g0.ven,mer:g0.mer,rahu:g0.rahu,ketu:(g0.rahu+180)%360,retro:{mars:false,jup:false,sat:false,ven:false,mer:false,rahu:true,ketu:true}};
+  var frac=hUT/24;
   function interp(k){var d=g1[k]-g0[k];if(d>180)d-=360;if(d<-180)d+=360;return(g0[k]+frac*d+360)%360;}
+  function isRetro(k){if(!g_prev)return false;var d=g0[k]-g_prev[k];if(d>180)d-=360;if(d<-180)d+=360;return d<0;}
   var rahu=interp('rahu');
-  return{sun:PD.sunSid(jd),moon:PD.moonSid(jd),mars:interp('mars'),jup:interp('jup'),sat:interp('sat'),ven:interp('ven'),mer:interp('mer'),rahu:rahu,ketu:(rahu+180)%360};
+  return{sun:PD.sunSid(jd),moon:PD.moonSid(jd),mars:interp('mars'),jup:interp('jup'),sat:interp('sat'),ven:interp('ven'),mer:interp('mer'),rahu:rahu,ketu:(rahu+180)%360,retro:{mars:isRetro('mars'),jup:isRetro('jup'),sat:isRetro('sat'),ven:isRetro('ven'),mer:isRetro('mer'),rahu:true,ketu:true}};
 };
 
 // সূর্যোদয় ও সূর্যাস্ত — PD lookup (decimal IST hours)
@@ -3364,10 +3373,10 @@ PD.karanaNum=function(jd){
 PD.lagnaAt=function(jd){
   var T=(jd-2451545)/36525;
   var GMST=((280.46061837+360.98564736629*(jd-2451545)+0.000387933*T*T)%360+360)%360;
-  var LST=(GMST+88.3767+360)%360; // Kolkata longitude
+  var LST=(GMST+88.5808+360)%360; // Ranaghat longitude
   var LSTR=LST*Math.PI/180;
   var eps=(23.439291-0.013004*T)*Math.PI/180;
-  var latR=22.5833*Math.PI/180; // Kolkata latitude
+  var latR=23.1677*Math.PI/180; // Ranaghat latitude
   var ascTrop=Math.atan2(Math.cos(LSTR),-Math.sin(LSTR)*Math.cos(eps)-Math.tan(latR)*Math.sin(eps));
   ascTrop=(ascTrop*180/Math.PI+360)%360;
   if(Math.sin(LSTR)>0)ascTrop=(ascTrop+180)%360;
@@ -3543,7 +3552,7 @@ PD._jd=function(y,m,d){
 "use strict";
 var PEph=(function(){
 
-  var LAT=22.583333, LNG=88.376667, IST=5.5, LMT=5.891667;
+  var LAT=23.1677, LNG=88.5808, IST=5.5, LMT=5.905387;
   var START="2025-01-01", START_JD=2460676.5;
   var MOON_STEP=2, MER_STEP=6, VEN_STEP=6;  // hour steps
 
