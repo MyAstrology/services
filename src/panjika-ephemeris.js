@@ -3257,10 +3257,26 @@ PD.moonAt=function(dt,hIST){
   return(l0+f*d+360)%360;
 };
 
-// Lahiri Ayanamsa (Bishuddha Siddhanta calibrated)
+// Bishuddha Siddhanta ayanamsa — 24-month table with linear interpolation/extrapolation
 PD.ay=function(jd){
-  var T=(jd-2451545)/36525;
-  return 23.819167+1.548210*T;
+  var JDS=[2460780.5,2460811.5,2460842.5,2460873.5,2460905.5,2460936.5,
+           2460966.5,2460996.5,2461026.5,2461055.5,2461085.5,2461115.5,
+           2461145.5,2461176.5,2461207.5,2461239.5,2461271.5,2461300.5,
+           2461330.5,2461362.5,2461391.5,2461420.5,2461449.5,2461479.5];
+  var AYS=[24.21028,24.21167,24.21333,24.21528,24.21639,24.21722,
+           24.21833,24.21944,24.22083,24.22250,24.22417,24.22500,
+           24.22583,24.22694,24.22861,24.23000,24.23167,24.23278,
+           24.23389,24.23500,24.23639,24.23806,24.23917,24.24028];
+  var rate=(AYS[23]-AYS[0])/(JDS[23]-JDS[0]);
+  if(jd<=JDS[0])return AYS[0]+rate*(jd-JDS[0]);
+  if(jd>=JDS[23])return AYS[23]+rate*(jd-JDS[23]);
+  for(var i=0;i<23;i++){
+    if(jd>=JDS[i]&&jd<JDS[i+1]){
+      var t=(jd-JDS[i])/(JDS[i+1]-JDS[i]);
+      return AYS[i]+t*(AYS[i+1]-AYS[i]);
+    }
+  }
+  return AYS[23];
 };
 
 // Sunrise & Sunset for date (decimal hours IST)
@@ -3319,6 +3335,33 @@ PD.moonSid=function(jd){
   return PD.moonAt(ist.dt,ist.h);
 };
 
+// বৃহস্পতির জন্য রেফারেন্স-ভিত্তিক সংশোধন — 35-বিন্দু টেবিল থেকে ইন্টারপোলেট
+// correction = ref - stored (positive → stored was too low, negative → stored was too high)
+PD.jupCorr=function(jd){
+  var JDC=[2460780.5,2460810.5,2460841.5,2460871.5,2460902.5,2460933.5,
+           2460963.5,2460994.5,2461024.5,2461055.5,2461086.5,2461114.5,
+           2461145.5,2461175.5,2461206.5,2461236.5,2461267.5,2461298.5,
+           2461328.5,2461359.5,2461389.5,2461420.5,2461479.5,2461571.5,
+           2461663.5,2461754.5,2461845.5,2461937.5,2462029.5,2462151.5,
+           2462302.5,2462485.5,2462667.5,2462850.5,2463032.5,2463215.5];
+  var COR=[-0.0372,-0.0378,-0.0378,-0.0436,-0.0458,-0.0475,
+           -0.0550,-0.0558,-0.0675,-0.0661,-0.0669,-0.0594,
+           -0.0503,-0.0397,-0.0422,-0.0333,-0.0408,-0.0356,
+           -0.0347,-0.0442,-0.0436,-0.0539,-0.0442,-0.0333,
+           -0.0211,-0.0139,-0.0214,-0.0125,+0.0047,+0.0169,
+           +0.0264,+0.0372,+0.0544,+0.0528,+0.0578,+0.0506];
+  var n=JDC.length-1;
+  if(jd<=JDC[0])return COR[0];
+  if(jd>=JDC[n])return COR[n];
+  for(var i=0;i<n;i++){
+    if(jd>=JDC[i]&&jd<JDC[i+1]){
+      var t=(jd-JDC[i])/(JDC[i+1]-JDC[i]);
+      return COR[i]+t*(COR[i+1]-COR[i]);
+    }
+  }
+  return COR[n];
+};
+
 // সমস্ত গ্রহের সিদ্ধান্তীয় দ্রাঘিমা {sun,moon,mars,jup,sat,ven,mer,rahu,ketu}
 // PD.geo() একদিনের সরাসরি JPL data; গ্রহগুলো slow তাই daily interpolation যথেষ্ট
 PD.allPlanets=function(jd){
@@ -3334,12 +3377,14 @@ PD.allPlanets=function(jd){
   var g1=PD.geo(dt1);
   var g_prev=PD.geo(dt_prev);
   if(!g0)return null;
-  if(!g1)return{sun:PD.sunSid(jd),moon:PD.moonSid(jd),mars:g0.mars,jup:g0.jup,sat:g0.sat,ven:g0.ven,mer:g0.mer,rahu:g0.rahu,ketu:(g0.rahu+180)%360,retro:{mars:false,jup:false,sat:false,ven:false,mer:false,rahu:true,ketu:true}};
+  var corr=PD.jupCorr(jd);
+  if(!g1)return{sun:PD.sunSid(jd),moon:PD.moonSid(jd),mars:g0.mars,jup:(g0.jup+corr+360)%360,sat:g0.sat,ven:g0.ven,mer:g0.mer,rahu:g0.rahu,ketu:(g0.rahu+180)%360,retro:{mars:false,jup:false,sat:false,ven:false,mer:false,rahu:true,ketu:true}};
   var frac=hUT/24;
   function interp(k){var d=g1[k]-g0[k];if(d>180)d-=360;if(d<-180)d+=360;return(g0[k]+frac*d+360)%360;}
   function isRetro(k){if(!g_prev)return false;var d=g0[k]-g_prev[k];if(d>180)d-=360;if(d<-180)d+=360;return d<0;}
   var rahu=interp('rahu');
-  return{sun:PD.sunSid(jd),moon:PD.moonSid(jd),mars:interp('mars'),jup:interp('jup'),sat:interp('sat'),ven:interp('ven'),mer:interp('mer'),rahu:rahu,ketu:(rahu+180)%360,retro:{mars:isRetro('mars'),jup:isRetro('jup'),sat:isRetro('sat'),ven:isRetro('ven'),mer:isRetro('mer'),rahu:true,ketu:true}};
+  var jup=(interp('jup')+corr+360)%360;
+  return{sun:PD.sunSid(jd),moon:PD.moonSid(jd),mars:interp('mars'),jup:jup,sat:interp('sat'),ven:interp('ven'),mer:interp('mer'),rahu:rahu,ketu:(rahu+180)%360,retro:{mars:isRetro('mars'),jup:isRetro('jup'),sat:isRetro('sat'),ven:isRetro('ven'),mer:isRetro('mer'),rahu:true,ketu:true}};
 };
 
 // সূর্যোদয় ও সূর্যাস্ত — PD lookup (decimal IST hours)
@@ -5820,8 +5865,27 @@ var PEph=(function(){
     var p=ds.split('-');
     return Math.round((new Date(+p[0],+p[1]-1,+p[2])-new Date(2025,0,1))/86400000);
   }
-  /** লাহিড়ী অয়নাংশ — ২৪ মাসে সর্বোচ্চ ২″ পার্থক্য */
-  function ayanamsa(J){return 23.819167+1.548210*(J-2451545)/36525;}
+  /** বিশুদ্ধ সিদ্ধান্ত অয়নাংশ — ২৪ মাসের টেবিল থেকে ইন্টারপোলেট */
+  var _AY_JDS=[2460780.5,2460811.5,2460842.5,2460873.5,2460905.5,2460936.5,
+               2460966.5,2460996.5,2461026.5,2461055.5,2461085.5,2461115.5,
+               2461145.5,2461176.5,2461207.5,2461239.5,2461271.5,2461300.5,
+               2461330.5,2461362.5,2461391.5,2461420.5,2461449.5,2461479.5];
+  var _AY_VAL=[24.21028,24.21167,24.21333,24.21528,24.21639,24.21722,
+               24.21833,24.21944,24.22083,24.22250,24.22417,24.22500,
+               24.22583,24.22694,24.22861,24.23000,24.23167,24.23278,
+               24.23389,24.23500,24.23639,24.23806,24.23917,24.24028];
+  var _AY_RATE=(_AY_VAL[23]-_AY_VAL[0])/(_AY_JDS[23]-_AY_JDS[0]);
+  function ayanamsa(J){
+    if(J<=_AY_JDS[0])return _AY_VAL[0]+_AY_RATE*(J-_AY_JDS[0]);
+    if(J>=_AY_JDS[23])return _AY_VAL[23]+_AY_RATE*(J-_AY_JDS[23]);
+    for(var _i=0;_i<23;_i++){
+      if(J>=_AY_JDS[_i]&&J<_AY_JDS[_i+1]){
+        var _t=(J-_AY_JDS[_i])/(_AY_JDS[_i+1]-_AY_JDS[_i]);
+        return _AY_VAL[_i]+_t*(_AY_VAL[_i+1]-_AY_VAL[_i]);
+      }
+    }
+    return _AY_VAL[23];
+  }
   function sid(trop,J){return(trop-ayanamsa(J)+360)%360;}
 
   // ─────────────────────────────────────────────────────────────────
