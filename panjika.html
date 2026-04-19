@@ -1805,7 +1805,7 @@ const TODAY=new Date();
 // অবস্থান: কলকাতা (২২°৩৪′N, ৮৮°২২′E) — Vishuddhasiddha Panjika রেফারেন্স অনুযায়ী
 // প্রেসিডেন্সি কলেজ মানমন্দির: ২২°৩৫′N, ৮৮°২২.৬′E (বিশুদ্ধ সিদ্ধান্ত পঞ্জিকার স্থানীয় মান সময় ৫ঘ ৫৩মি ৩০সে)
 // আলিপুর মানমন্দির: LAT=22.5333, LNG=88.3333 (৫ঘ ৫৩মি ২০সে)
-const LAT=22.5833,LNG=88.3767,TZ=5.5;
+const LAT=23.1677,LNG=88.5808,TZ=5.5;
 
 // ════════════════════════════════════════════════════════
 // SECTION ③ — HELPERS (সহায়ক ফাংশন)
@@ -3695,7 +3695,7 @@ function showDetail(date) {
   var PAD_BN=['','(১)','(২)','(৩)','(৪)'];
   var RASHI_L=typeof PD!=='undefined'?PD.RASHI:['মেষ','বৃষ','মিথুন','কর্কট','সিংহ','কন্যা','তুলা','বৃশ্চিক','ধনু','মকর','কুম্ভ','মীন'];
   var NAK_L=typeof PD!=='undefined'?PD.NAKSHATRA:['অশ্বিনী','ভরণী','কৃত্তিকা','রোহিণী','মৃগশিরা','আর্দ্রা','পুনর্বসু','পুষ্যা','আশ্লেষা','মঘা','পূর্বফাল্গুনী','উত্তরফাল্গুনী','হস্তা','চিত্রা','স্বাতী','বিশাখা','অনুরাধা','জ্যেষ্ঠা','মূলা','পূর্বাষাঢ়া','উত্তরাষাঢ়া','শ্রবণা','ধনিষ্ঠা','শতভিষা','পূর্বভাদ্র','উত্তরভাদ্র','রেবতী'];
-  function _grahaSub(sid){var ri=Math.floor(sid/30)%12;var deg=sid%30;var nakI=Math.floor(sid/(360/27))%27;var pad=Math.floor((sid%(360/27))/(360/108))%4+1;return RASHI_L[ri]+' '+toBn(Math.floor(deg))+'°'+toBn(Math.floor((deg%1)*60))+'′ '+NAK_L[nakI]+' '+PAD_BN[pad];}
+  function _grahaSub(sid,retro){var ri=Math.floor(sid/30)%12;var deg=sid%30;var mn=deg%1*60;var sec=Math.round(mn%1*60);if(sec>=60){sec=0;mn+=1;}var nakI=Math.floor(sid/(360/27))%27;var pad=Math.floor((sid%(360/27))/(360/108))%4+1;var r=retro?' (প)':'';return RASHI_L[ri]+' '+toBn(Math.floor(deg))+'°'+toBn(Math.floor(mn))+'′'+toBn(sec)+'″ '+NAK_L[nakI]+' '+PAD_BN[pad]+r;}
 
   // JPL DE441 গ্রহ অবস্থান — PD.allPlanets() ব্যবহার করে
   var graha={};
@@ -3747,16 +3747,17 @@ function showDetail(date) {
 
   // ── গ্রহের অবস্থান HTML ──
   var grahaHtml='<div style="font-size:.6rem;font-weight:700;color:var(--gold);text-transform:uppercase;padding:.4rem 0 .2rem;border-top:1px solid rgba(201,162,39,.12);margin-top:.2rem;">🪐 গ্রহের অবস্থান — JPL DE441 সিদ্ধান্তীয়</div>';
+  var _r=graha.retro||{};
   var grahaData=[
-    {i:'☀️',l:'সূর্য',v:_grahaSub(graha.sun)},
-    {i:'🌙',l:'চন্দ্র',v:_grahaSub(graha.moon)},
-    {i:'🔴',l:'মঙ্গল',v:_grahaSub(graha.mars)+_combustBadge(graha.mars,'মঙ্গল')},
-    {i:'🟡',l:'গুরু',v:_grahaSub(graha.jup)+_combustBadge(graha.jup,'গুরু')},
-    {i:'⬛',l:'শনি',v:_grahaSub(graha.sat)+_combustBadge(graha.sat,'শনি')},
-    {i:'⚪',l:'শুক্র',v:_grahaSub(graha.ven)+_combustBadge(graha.ven,'শুক্র')},
-    {i:'🟢',l:'বুধ',v:_grahaSub(graha.mer)+_combustBadge(graha.mer,'বুধ')},
-    {i:'🔵',l:'রাহু',v:_grahaSub(graha.rahu)},
-    {i:'⚫',l:'কেতু',v:_grahaSub(graha.ketu)}
+    {i:'☀️',l:'সূর্য',v:_grahaSub(graha.sun,false)},
+    {i:'🌙',l:'চন্দ্র',v:_grahaSub(graha.moon,false)},
+    {i:'🔴',l:'মঙ্গল',v:_grahaSub(graha.mars,_r.mars)+_combustBadge(graha.mars,'মঙ্গল')},
+    {i:'🟡',l:'গুরু',v:_grahaSub(graha.jup,_r.jup)+_combustBadge(graha.jup,'গুরু')},
+    {i:'⬛',l:'শনি',v:_grahaSub(graha.sat,_r.sat)+_combustBadge(graha.sat,'শনি')},
+    {i:'⚪',l:'শুক্র',v:_grahaSub(graha.ven,_r.ven)+_combustBadge(graha.ven,'শুক্র')},
+    {i:'🟢',l:'বুধ',v:_grahaSub(graha.mer,_r.mer)+_combustBadge(graha.mer,'বুধ')},
+    {i:'🔵',l:'রাহু',v:_grahaSub(graha.rahu,true)},
+    {i:'⚫',l:'কেতু',v:_grahaSub(graha.ketu,true)}
   ];
   grahaData.forEach(function(g){
     grahaHtml+='<div class="di"><div class="dii">'+g.i+'</div><div class="dil">'+g.l+'</div><div class="div2" style="font-size:.68rem;">'+g.v+'</div></div>';
