@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -151,6 +150,119 @@ body{background:var(--bg);color:var(--txt);font-family:'Baloo Da 2',sans-serif;p
 .tb-left{display:flex;align-items:center;}
 .tb-center{flex:1;text-align:center;padding:0 .5rem;}
 .tb-right{display:flex;align-items:center;gap:.75rem;}
+
+/* ═══ CITY SELECTOR ═══ */
+.city-btn{
+  display:flex;align-items:center;gap:.28rem;
+  background:rgba(181,134,13,.09);border:1px solid var(--border);
+  border-radius:8px;padding:.28rem .5rem .28rem .38rem;
+  cursor:pointer;font-size:.68rem;color:var(--gold-l);
+  font-family:'Baloo Da 2',sans-serif;white-space:nowrap;
+  max-width:110px;overflow:hidden;transition:background .18s;
+  flex-shrink:0;
+}
+.city-btn:hover,.city-btn:active{background:rgba(181,134,13,.18);}
+.city-btn-ico{font-size:.78rem;flex-shrink:0;line-height:1;}
+.city-btn-lbl{
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  font-weight:600;max-width:76px;
+}
+/* Modal overlay */
+.city-modal{
+  display:none;position:fixed;inset:0;z-index:1500;
+  background:rgba(0,0,0,.52);
+}
+.city-modal.open{display:flex;align-items:flex-end;}
+@media(min-width:560px){
+  .city-modal.open{align-items:center;justify-content:center;}
+}
+/* Modal box */
+.city-box{
+  background:var(--card);width:100%;
+  max-height:85vh;border-radius:20px 20px 0 0;
+  display:flex;flex-direction:column;overflow:hidden;
+}
+@media(min-width:560px){
+  .city-box{max-width:440px;border-radius:18px;max-height:80vh;}
+}
+.city-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.85rem 1.1rem .55rem;
+  border-bottom:1px solid var(--border);flex-shrink:0;
+}
+.city-head-title{
+  font-family:'Tiro Bangla',serif;font-size:.95rem;
+  color:var(--gold-l);font-weight:700;
+}
+.city-head-close{
+  background:none;border:none;font-size:1.35rem;cursor:pointer;
+  color:var(--txt2);line-height:1;padding:.15rem .4rem;border-radius:6px;
+}
+.city-head-close:hover{background:rgba(0,0,0,.06);}
+/* Search */
+.city-search-wrap{padding:.55rem 1rem;flex-shrink:0;}
+.city-search{
+  width:100%;padding:.52rem .75rem;
+  border:1px solid var(--border);border-radius:10px;
+  background:var(--bg2);color:var(--txt);
+  font-size:.85rem;font-family:'Baloo Da 2',sans-serif;
+  outline:none;box-sizing:border-box;
+}
+.city-search:focus{border-color:var(--gold);}
+/* Scrollable list */
+.city-list{overflow-y:auto;flex:1;}
+.city-grp-lbl{
+  font-size:.58rem;font-weight:700;letter-spacing:.12em;
+  color:var(--gold-l);text-transform:uppercase;
+  padding:.5rem 1.1rem .18rem;background:var(--bg2);
+  position:sticky;top:0;z-index:2;
+}
+.city-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.52rem 1.1rem;cursor:pointer;
+  border-bottom:1px solid rgba(181,134,13,.06);
+  transition:background .12s;
+}
+.city-row:hover,.city-row:active{background:rgba(181,134,13,.07);}
+.city-row.sel{background:rgba(181,134,13,.11);}
+.city-row-main{font-size:.84rem;color:var(--txt);font-weight:500;}
+.city-row-coord{font-size:.6rem;color:var(--txt2);margin-top:.05rem;}
+.city-row-tick{color:var(--gold);font-size:.95rem;display:none;flex-shrink:0;}
+.city-row.sel .city-row-tick{display:block;}
+/* Custom location section */
+.city-custom{
+  padding:.7rem 1rem .9rem;
+  border-top:2px solid var(--border);
+  background:var(--card);flex-shrink:0;
+  display:none;
+}
+.city-custom.open{display:block;}
+.city-custom-title{
+  font-size:.7rem;font-weight:700;color:var(--gold-l);margin-bottom:.5rem;
+}
+.city-custom-row{display:flex;gap:.45rem;align-items:flex-end;}
+.city-custom-field{flex:1;min-width:0;}
+.city-custom-field label{
+  font-size:.62rem;color:var(--txt2);display:block;margin-bottom:.18rem;
+}
+.city-custom-field input{
+  width:100%;padding:.42rem .55rem;
+  border:1px solid var(--border);border-radius:8px;
+  background:var(--bg2);color:var(--txt);
+  font-size:.8rem;box-sizing:border-box;outline:none;
+}
+.city-custom-field input:focus{border-color:var(--gold);}
+.city-custom-apply{
+  background:linear-gradient(135deg,var(--gold-d),var(--gold));
+  color:#fff;border:none;border-radius:8px;
+  padding:.42rem .8rem;font-size:.78rem;cursor:pointer;
+  white-space:nowrap;flex-shrink:0;
+  font-family:'Baloo Da 2',sans-serif;font-weight:600;
+}
+.city-empty{
+  padding:2rem 1rem;text-align:center;
+  color:var(--txt2);font-size:.83rem;
+}
 
 /* Hamburger */
 .hamburger{
@@ -1045,11 +1157,53 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 
+  <!-- Right: City Selector + Hamburger -->
+  <div style="display:flex;align-items:center;gap:.55rem;">
+    <button class="city-btn" id="cityBtn" onclick="openCityModal()" aria-label="শহর বেছে নিন" title="অবস্থান পরিবর্তন করুন">
+      <span class="city-btn-ico">📍</span>
+      <span class="city-btn-lbl" id="cityBtnLbl">রানাঘাট</span>
+    </button>
+
   <!-- Right: Hamburger -->
   <div class="hamburger" id="hbg" aria-label="Menu">
     <span></span><span></span><span></span>
   </div>
+  </div><!-- /tb-right wrapper -->
 
+</div>
+
+<!-- ═══ CITY SELECTOR MODAL ═══ -->
+<div class="city-modal" id="cityModal" onclick="if(event.target===this)closeCityModal()">
+  <div class="city-box">
+    <div class="city-head">
+      <span class="city-head-title">📍 আপনার শহর বেছে নিন</span>
+      <button class="city-head-close" onclick="closeCityModal()">✕</button>
+    </div>
+    <div class="city-search-wrap">
+      <input class="city-search" id="citySearchInp" type="search"
+        placeholder="শহরের নাম লিখুন…" oninput="_cityFilter(this.value)"
+        autocomplete="off" spellcheck="false">
+    </div>
+    <div class="city-list" id="cityList"></div>
+    <div class="city-custom" id="cityCustom">
+      <div class="city-custom-title">🌐 কাস্টম অবস্থান লিখুন</div>
+      <div class="city-custom-row">
+        <div class="city-custom-field">
+          <label>অক্ষাংশ (°N)</label>
+          <input type="number" id="customLatInp" placeholder="যেমন: 23.45" step="0.0001" min="-90" max="90">
+        </div>
+        <div class="city-custom-field">
+          <label>দ্রাঘিমাংশ (°E)</label>
+          <input type="number" id="customLngInp" placeholder="যেমন: 88.50" step="0.0001" min="-180" max="180">
+        </div>
+        <div class="city-custom-field" style="max-width:68px;">
+          <label>টাইমজোন</label>
+          <input type="number" id="customTzInp" placeholder="5.5" step="0.25" value="5.5">
+        </div>
+        <button class="city-custom-apply" onclick="_applyCustomCity()">✓ প্রয়োগ</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- ═══ SIDE NAV ═══ -->
@@ -1806,7 +1960,270 @@ const TODAY=new Date();
 // অবস্থান: কলকাতা (২২°৩৪′N, ৮৮°২২′E) — Vishuddhasiddha Panjika রেফারেন্স অনুযায়ী
 // প্রেসিডেন্সি কলেজ মানমন্দির: ২২°৩৫′N, ৮৮°২২.৬′E (বিশুদ্ধ সিদ্ধান্ত পঞ্জিকার স্থানীয় মান সময় ৫ঘ ৫৩মি ৩০সে)
 // আলিপুর মানমন্দির: LAT=22.5333, LNG=88.3333 (৫ঘ ৫৩মি ২০সে)
-const LAT=23.1677,LNG=88.5808,TZ=5.5;
+// ═══════════════════════════════════════════════════════════════════
+// SECTION ② — CONFIG + CITY SELECTOR
+// ═══════════════════════════════════════════════════════════════════
+
+// ── City database ──
+const CITY_DB=[
+  // পশ্চিমবঙ্গ
+  {g:'পশ্চিমবঙ্গ',n:'Ranaghat',bn:'রানাঘাট',lat:23.1677,lng:88.5808},
+  {g:'পশ্চিমবঙ্গ',n:'Kolkata',bn:'কলকাতা',lat:22.5726,lng:88.3639},
+  {g:'পশ্চিমবঙ্গ',n:'Bardhaman',bn:'বর্ধমান',lat:23.2324,lng:87.8615},
+  {g:'পশ্চিমবঙ্গ',n:'Krishnanagar',bn:'কৃষ্ণনগর',lat:23.4045,lng:88.4942},
+  {g:'পশ্চিমবঙ্গ',n:'Howrah',bn:'হাওড়া',lat:22.5958,lng:88.2636},
+  {g:'পশ্চিমবঙ্গ',n:'Murshidabad',bn:'মুর্শিদাবাদ',lat:24.1837,lng:88.2732},
+  {g:'পশ্চিমবঙ্গ',n:'Berhampore',bn:'বহরমপুর',lat:24.1050,lng:88.2467},
+  {g:'পশ্চিমবঙ্গ',n:'Malda',bn:'মালদা',lat:25.0109,lng:88.1418},
+  {g:'পশ্চিমবঙ্গ',n:'Siliguri',bn:'শিলিগুড়ি',lat:26.7271,lng:88.3953},
+  {g:'পশ্চিমবঙ্গ',n:'Darjeeling',bn:'দার্জিলিং',lat:27.0417,lng:88.2631},
+  {g:'পশ্চিমবঙ্গ',n:'Kalimpong',bn:'কালিম্পং',lat:27.0667,lng:88.4667},
+  {g:'পশ্চিমবঙ্গ',n:'Jalpaiguri',bn:'জলপাইগুড়ি',lat:26.5167,lng:88.7333},
+  {g:'পশ্চিমবঙ্গ',n:'Cooch Behar',bn:'কোচবিহার',lat:26.3167,lng:89.4333},
+  {g:'পশ্চিমবঙ্গ',n:'Alipurduar',bn:'আলিপুরদুয়ার',lat:26.5000,lng:89.5667},
+  {g:'পশ্চিমবঙ্গ',n:'Raiganj',bn:'রায়গঞ্জ',lat:25.6167,lng:88.1167},
+  {g:'পশ্চিমবঙ্গ',n:'Balurghat',bn:'বালুরঘাট',lat:25.2167,lng:88.7667},
+  {g:'পশ্চিমবঙ্গ',n:'Asansol',bn:'আসানসোল',lat:23.6889,lng:86.9661},
+  {g:'পশ্চিমবঙ্গ',n:'Durgapur',bn:'দুর্গাপুর',lat:23.4800,lng:87.3200},
+  {g:'পশ্চিমবঙ্গ',n:'Purulia',bn:'পুরুলিয়া',lat:23.3333,lng:86.3667},
+  {g:'পশ্চিমবঙ্গ',n:'Bankura',bn:'বাঁকুড়া',lat:23.2500,lng:87.0667},
+  {g:'পশ্চিমবঙ্গ',n:'Suri',bn:'সিউড়ি',lat:23.9167,lng:87.5333},
+  {g:'পশ্চিমবঙ্গ',n:'Bolpur',bn:'বোলপুর',lat:23.6700,lng:87.7200},
+  {g:'পশ্চিমবঙ্গ',n:'Santiniketan',bn:'শান্তিনিকেতন',lat:23.6833,lng:87.6833},
+  {g:'পশ্চিমবঙ্গ',n:'Medinipur',bn:'মেদিনীপুর',lat:22.4333,lng:87.3333},
+  {g:'পশ্চিমবঙ্গ',n:'Kharagpur',bn:'খড়্গপুর',lat:22.3302,lng:87.3237},
+  {g:'পশ্চিমবঙ্গ',n:'Contai',bn:'কাঁথি',lat:21.7800,lng:87.7500},
+  {g:'পশ্চিমবঙ্গ',n:'Digha',bn:'দিঘা',lat:21.6200,lng:87.5000},
+  {g:'পশ্চিমবঙ্গ',n:'Tamluk',bn:'তমলুক',lat:22.3000,lng:87.9200},
+  {g:'পশ্চিমবঙ্গ',n:'Haldia',bn:'হলদিয়া',lat:22.0600,lng:88.0600},
+  {g:'পশ্চিমবঙ্গ',n:'Diamond Harbour',bn:'ডায়মন্ড হারবার',lat:22.1900,lng:88.1900},
+  {g:'পশ্চিমবঙ্গ',n:'Kalyani',bn:'কল্যাণী',lat:22.9750,lng:88.4344},
+  {g:'পশ্চিমবঙ্গ',n:'Bongaon',bn:'বনগাঁ',lat:23.0500,lng:88.8300},
+  {g:'পশ্চিমবঙ্গ',n:'Basirhat',bn:'বসিরহাট',lat:22.6600,lng:88.8900},
+  {g:'পশ্চিমবঙ্গ',n:'Barasat',bn:'বারাসাত',lat:22.7167,lng:88.4833},
+  {g:'পশ্চিমবঙ্গ',n:'Barrackpore',bn:'ব্যারাকপুর',lat:22.7600,lng:88.3700},
+  {g:'পশ্চিমবঙ্গ',n:'Serampore',bn:'শ্রীরামপুর',lat:22.7500,lng:88.3400},
+  {g:'পশ্চিমবঙ্গ',n:'Chandannagar',bn:'চন্দননগর',lat:22.8700,lng:88.3800},
+  {g:'পশ্চিমবঙ্গ',n:'Naihati',bn:'নৈহাটি',lat:22.9000,lng:88.4200},
+  {g:'পশ্চিমবঙ্গ',n:'Kanchrapara',bn:'কাঁচড়াপাড়া',lat:22.9500,lng:88.4300},
+  {g:'পশ্চিমবঙ্গ',n:'Rampurhat',bn:'রামপুরহাট',lat:24.1667,lng:87.7833},
+  // বাংলাদেশ
+  {g:'বাংলাদেশ',n:'Dhaka',bn:'ঢাকা',lat:23.7104,lng:90.4074,tz:6},
+  {g:'বাংলাদেশ',n:'Chattogram',bn:'চট্টগ্রাম',lat:22.3569,lng:91.7832,tz:6},
+  {g:'বাংলাদেশ',n:'Khulna',bn:'খুলনা',lat:22.8167,lng:89.5500,tz:6},
+  {g:'বাংলাদেশ',n:'Rajshahi',bn:'রাজশাহী',lat:24.3667,lng:88.6000,tz:6},
+  {g:'বাংলাদেশ',n:'Sylhet',bn:'সিলেট',lat:24.9000,lng:91.8667,tz:6},
+  {g:'বাংলাদেশ',n:'Barisal',bn:'বরিশাল',lat:22.7000,lng:90.3667,tz:6},
+  {g:'বাংলাদেশ',n:'Rangpur',bn:'রংপুর',lat:25.7500,lng:89.2500,tz:6},
+  {g:'বাংলাদেশ',n:'Mymensingh',bn:'ময়মনসিংহ',lat:24.7500,lng:90.4000,tz:6},
+  {g:'বাংলাদেশ',n:'Comilla',bn:'কুমিল্লা',lat:23.4500,lng:91.2000,tz:6},
+  {g:'বাংলাদেশ',n:'Narayanganj',bn:'নারায়ণগঞ্জ',lat:23.6200,lng:90.5000,tz:6},
+  {g:'বাংলাদেশ',n:'Bogra',bn:'বগুড়া',lat:24.8500,lng:89.3667,tz:6},
+  {g:'বাংলাদেশ',n:'Jessore',bn:'যশোর',lat:23.1667,lng:89.2167,tz:6},
+  {g:'বাংলাদেশ',n:'Dinajpur',bn:'দিনাজপুর',lat:25.6333,lng:88.6333,tz:6},
+  {g:'বাংলাদেশ',n:'Coxs Bazar',bn:"কক্সবাজার",lat:21.4500,lng:91.9833,tz:6},
+  {g:'বাংলাদেশ',n:'Faridpur',bn:'ফরিদপুর',lat:23.6000,lng:89.8333,tz:6},
+  {g:'বাংলাদেশ',n:'Tangail',bn:'টাঙ্গাইল',lat:24.2500,lng:89.9167,tz:6},
+  {g:'বাংলাদেশ',n:'Pabna',bn:'পাবনা',lat:24.0167,lng:89.3000,tz:6},
+  {g:'বাংলাদেশ',n:'Sunamganj',bn:'সুনামগঞ্জ',lat:25.0667,lng:91.4000,tz:6},
+  {g:'বাংলাদেশ',n:'Habiganj',bn:'হবিগঞ্জ',lat:24.3833,lng:91.4167,tz:6},
+  {g:'বাংলাদেশ',n:'Moulvibazar',bn:'মৌলভীবাজার',lat:24.4833,lng:91.7667,tz:6},
+  {g:'বাংলাদেশ',n:'Sreemangal',bn:'শ্রীমঙ্গল',lat:24.3000,lng:91.7333,tz:6},
+  // উত্তর-পূর্ব ভারত
+  {g:'উত্তর-পূর্ব ভারত',n:'Agartala',bn:'আগরতলা',lat:23.8315,lng:91.2868},
+  {g:'উত্তর-পূর্ব ভারত',n:'Guwahati',bn:'গুয়াহাটি',lat:26.1445,lng:91.7362},
+  {g:'উত্তর-পূর্ব ভারত',n:'Shillong',bn:'শিলং',lat:25.5788,lng:91.8933},
+  {g:'উত্তর-পূর্ব ভারত',n:'Silchar',bn:'শিলচর',lat:24.8333,lng:92.7667},
+  {g:'উত্তর-পূর্ব ভারত',n:'Dibrugarh',bn:'ডিব্রুগড়',lat:27.4833,lng:94.9000},
+  {g:'উত্তর-পূর্ব ভারত',n:'Jorhat',bn:'যোরহাট',lat:26.7500,lng:94.2167},
+  {g:'উত্তর-পূর্ব ভারত',n:'Aizawl',bn:'আইজল',lat:23.7271,lng:92.7176},
+  {g:'উত্তর-পূর্ব ভারত',n:'Imphal',bn:'ইম্ফল',lat:24.8170,lng:93.9368},
+  // ভারত (অন্যান্য)
+  {g:'ভারত (অন্যান্য)',n:'Delhi',bn:'দিল্লি',lat:28.6139,lng:77.2090},
+  {g:'ভারত (অন্যান্য)',n:'Mumbai',bn:'মুম্বই',lat:19.0760,lng:72.8777},
+  {g:'ভারত (অন্যান্য)',n:'Bengaluru',bn:'বেঙ্গালুরু',lat:12.9716,lng:77.5946},
+  {g:'ভারত (অন্যান্য)',n:'Chennai',bn:'চেন্নাই',lat:13.0827,lng:80.2707},
+  {g:'ভারত (অন্যান্য)',n:'Hyderabad',bn:'হায়দ্রাবাদ',lat:17.3850,lng:78.4867},
+  {g:'ভারত (অন্যান্য)',n:'Ahmedabad',bn:'আহমেদাবাদ',lat:23.0225,lng:72.5714},
+  {g:'ভারত (অন্যান্য)',n:'Pune',bn:'পুণে',lat:18.5204,lng:73.8567},
+  {g:'ভারত (অন্যান্য)',n:'Patna',bn:'পাটনা',lat:25.5941,lng:85.1376},
+  {g:'ভারত (অন্যান্য)',n:'Bhubaneswar',bn:'ভুবনেশ্বর',lat:20.2961,lng:85.8245},
+  {g:'ভারত (অন্যান্য)',n:'Ranchi',bn:'রাঁচি',lat:23.3441,lng:85.3096},
+  {g:'ভারত (অন্যান্য)',n:'Jamshedpur',bn:'জামশেদপুর',lat:22.8046,lng:86.2029},
+  {g:'ভারত (অন্যান্য)',n:'Varanasi',bn:'বারানসী',lat:25.3176,lng:83.0067},
+  {g:'ভারত (অন্যান্য)',n:'Lucknow',bn:'লখনউ',lat:26.8467,lng:80.9462},
+  {g:'ভারত (অন্যান্য)',n:'Kanpur',bn:'কানপুর',lat:26.4499,lng:80.3319},
+  {g:'ভারত (অন্যান্য)',n:'Gorakhpur',bn:'গোরখপুর',lat:26.7606,lng:83.3732},
+  {g:'ভারত (অন্যান্য)',n:'Allahabad',bn:'এলাহাবাদ',lat:25.4358,lng:81.8463},
+  {g:'ভারত (অন্যান্য)',n:'Jaipur',bn:'জয়পুর',lat:26.9124,lng:75.7873},
+  {g:'ভারত (অন্যান্য)',n:'Jodhpur',bn:'যোধপুর',lat:26.2389,lng:73.0243},
+  {g:'ভারত (অন্যান্য)',n:'Udaipur',bn:'উদয়পুর',lat:24.5713,lng:73.6915},
+  {g:'ভারত (অন্যান্য)',n:'Chandigarh',bn:'চণ্ডীগড়',lat:30.7333,lng:76.7794},
+  {g:'ভারত (অন্যান্য)',n:'Amritsar',bn:'অমৃতসর',lat:31.6340,lng:74.8723},
+  {g:'ভারত (অন্যান্য)',n:'Srinagar',bn:'শ্রীনগর',lat:34.0837,lng:74.7973},
+  {g:'ভারত (অন্যান্য)',n:'Jammu',bn:'জম্মু',lat:32.7266,lng:74.8570},
+  {g:'ভারত (অন্যান্য)',n:'Nagpur',bn:'নাগপুর',lat:21.1458,lng:79.0882},
+  {g:'ভারত (অন্যান্য)',n:'Indore',bn:'ইন্দোর',lat:22.7196,lng:75.8577},
+  {g:'ভারত (অন্যান্য)',n:'Bhopal',bn:'ভোপাল',lat:23.2599,lng:77.4126},
+  {g:'ভারত (অন্যান্য)',n:'Raipur',bn:'রায়পুর',lat:21.2514,lng:81.6296},
+  {g:'ভারত (অন্যান্য)',n:'Dehradun',bn:'দেরাদুন',lat:30.3165,lng:78.0322},
+  // আন্তর্জাতিক
+  {g:'আন্তর্জাতিক',n:'New York',bn:'নিউ ইয়র্ক',lat:40.7128,lng:-74.0060,tz:-4},
+  {g:'আন্তর্জাতিক',n:'London',bn:'লন্ডন',lat:51.5074,lng:-0.1278,tz:1},
+  {g:'আন্তর্জাতিক',n:'Dubai',bn:'দুবাই',lat:25.2048,lng:55.2708,tz:4},
+  {g:'আন্তর্জাতিক',n:'Singapore',bn:'সিঙ্গাপুর',lat:1.3521,lng:103.8198,tz:8},
+  {g:'আন্তর্জাতিক',n:'Kuala Lumpur',bn:'কুয়ালালামপুর',lat:3.1390,lng:101.6869,tz:8},
+  {g:'আন্তর্জাতিক',n:'Tokyo',bn:'টোকিও',lat:35.6895,lng:139.6917,tz:9},
+  {g:'আন্তর্জাতিক',n:'Sydney',bn:'সিডনি',lat:-33.8688,lng:151.2093,tz:10},
+  {g:'আন্তর্জাতিক',n:'Toronto',bn:'টরন্টো',lat:43.6510,lng:-79.3470,tz:-4},
+  {g:'আন্তর্জাতিক',n:'Los Angeles',bn:'লস এঞ্জেলেস',lat:34.0522,lng:-118.2437,tz:-7},
+  {g:'আন্তর্জাতিক',n:'Kathmandu',bn:'কাঠমান্ডু',lat:27.7172,lng:85.3240,tz:5.75},
+  {g:'আন্তর্জাতিক',n:'Colombo',bn:'কলম্বো',lat:6.9271,lng:79.8612,tz:5.5},
+  {g:'আন্তর্জাতিক',n:'Bangkok',bn:'ব্যাংকক',lat:13.7563,lng:100.5018,tz:7},
+  {g:'আন্তর্জাতিক',n:'Yangon',bn:'ইয়াঙ্গন',lat:16.8661,lng:96.1951,tz:6.5},
+  {g:'আন্তর্জাতিক',n:'Karachi',bn:'করাচি',lat:24.8607,lng:67.0011,tz:5},
+  {g:'আন্তর্জাতিক',n:'Islamabad',bn:'ইসলামাবাদ',lat:33.6844,lng:73.0479,tz:5},
+  {g:'আন্তর্জাতিক',n:'Riyadh',bn:'রিয়াদ',lat:24.7136,lng:46.6753,tz:3},
+  {g:'আন্তর্জাতিক',n:'Moscow',bn:'মস্কো',lat:55.7558,lng:37.6173,tz:3},
+  {g:'আন্তর্জাতিক',n:'Paris',bn:'প্যারিস',lat:48.8566,lng:2.3522,tz:2},
+  {g:'আন্তর্জাতিক',n:'Nairobi',bn:'নাইরোবি',lat:-1.2921,lng:36.8219,tz:3},
+  {g:'কাস্টম',n:'Custom',bn:'কাস্টম অবস্থান',lat:null,lng:null},
+];
+
+// ── Current location state ──
+let LAT=23.1677, LNG=88.5808, TZ=5.5;
+let _citySelIdx=0; // Ranaghat default
+
+// ── Restore saved city on load ──
+(function(){
+  try{
+    var s=localStorage.getItem('pjk_city');
+    if(!s) return;
+    var obj=JSON.parse(s);
+    if(obj.custom && obj.lat!=null && obj.lng!=null){
+      LAT=obj.lat; LNG=obj.lng; TZ=isNaN(obj.tz)?5.5:obj.tz;
+      _citySelIdx=-1;
+      // set button label after DOM ready
+      document.addEventListener('DOMContentLoaded',function(){
+        var el=document.getElementById('cityBtnLbl');
+        if(el) el.textContent=obj.label||'কাস্টম';
+      });
+      return;
+    }
+    var idx=CITY_DB.findIndex(function(c){return c.n===obj.n;});
+    if(idx>=0 && CITY_DB[idx].lat!==null){
+      _citySelIdx=idx;
+      var c=CITY_DB[idx];
+      LAT=c.lat; LNG=c.lng; TZ=c.tz!==undefined?c.tz:5.5;
+      document.addEventListener('DOMContentLoaded',function(){
+        var el=document.getElementById('cityBtnLbl');
+        if(el) el.textContent=c.bn||c.n;
+      });
+    }
+  }catch(e){}
+})();
+
+// ── Apply a city from DB ──
+function _applyCity(idx){
+  var c=CITY_DB[idx];
+  if(!c||c.lat===null){_showCustomInput();return;}
+  _citySelIdx=idx;
+  LAT=c.lat; LNG=c.lng; TZ=c.tz!==undefined?c.tz:5.5;
+  document.getElementById('cityBtnLbl').textContent=c.bn||c.n;
+  try{localStorage.setItem('pjk_city',JSON.stringify({n:c.n}));}catch(e){}
+  _reRenderAll();
+  closeCityModal();
+}
+
+// ── Apply custom coordinates ──
+function _applyCustomCity(){
+  var lat=parseFloat(document.getElementById('customLatInp').value);
+  var lng=parseFloat(document.getElementById('customLngInp').value);
+  var tz=parseFloat(document.getElementById('customTzInp').value);
+  if(isNaN(lat)||isNaN(lng)||lat<-90||lat>90||lng<-180||lng>180){
+    alert('সঠিক অক্ষাংশ ও দ্রাঘিমাংশ দিন।'); return;
+  }
+  if(isNaN(tz)) tz=5.5;
+  LAT=lat; LNG=lng; TZ=tz;
+  _citySelIdx=-1;
+  var label=lat.toFixed(2)+'°N '+lng.toFixed(2)+'°E';
+  document.getElementById('cityBtnLbl').textContent=label;
+  try{localStorage.setItem('pjk_city',JSON.stringify({custom:true,lat:lat,lng:lng,tz:tz,label:label}));}catch(e){}
+  _reRenderAll();
+  closeCityModal();
+}
+
+// ── Re-render everything after location change ──
+function _reRenderAll(){
+  try{
+    BNTODAY=getBanglaDayInfo(new Date());
+    renderHeader();
+    renderCal();
+    renderTodayEvents();
+    renderMonthEvents();
+    renderGuideCards();
+    renderAuspiciousCounter();
+    renderLivePanchanga();
+    var sd=(typeof selDate!=='undefined'&&selDate)?selDate:BNTODAY;
+    showDetail(sd);
+  }catch(ex){console.error('city rerender:',ex);}
+}
+
+// ── Modal open / close ──
+function openCityModal(){
+  _cityBuildList('');
+  document.getElementById('citySearchInp').value='';
+  document.getElementById('cityCustom').classList.remove('open');
+  document.getElementById('cityModal').classList.add('open');
+  setTimeout(function(){document.getElementById('citySearchInp').focus();},220);
+}
+function closeCityModal(){
+  document.getElementById('cityModal').classList.remove('open');
+}
+function _showCustomInput(){
+  document.getElementById('cityCustom').classList.add('open');
+  document.getElementById('customLatInp').value='';
+  document.getElementById('customLngInp').value='';
+  document.getElementById('customTzInp').value='5.5';
+  document.getElementById('customLatInp').focus();
+}
+
+// ── Build city list ──
+function _cityBuildList(q){
+  q=q.trim().toLowerCase();
+  var groups={},order=[];
+  CITY_DB.forEach(function(c,idx){
+    var match=!q||
+      c.n.toLowerCase().includes(q)||
+      c.bn.toLowerCase().includes(q)||
+      (c.g||'').toLowerCase().includes(q);
+    if(!match) return;
+    var g=c.g||'অন্যান্য';
+    if(!groups[g]){groups[g]=[];order.push(g);}
+    groups[g].push({c:c,idx:idx});
+  });
+  var html='';
+  order.forEach(function(g){
+    html+='<div class="city-grp-lbl">'+g+'</div>';
+    groups[g].forEach(function(item){
+      var c=item.c,idx=item.idx;
+      var isSel=idx===_citySelIdx;
+      var isCustom=c.lat===null;
+      var coord=isCustom?'':c.lat.toFixed(2)+'°N, '+c.lng.toFixed(2)+'°E';
+      var tz_info=c.tz!==undefined&&c.tz!==5.5?' · UTC+'+c.tz:'';
+      html+='<div class="city-row'+(isSel?' sel':'')+'" onclick="'+
+        (isCustom?'_showCustomInput()':'_applyCity('+idx+')')+'">';
+      html+='<div><div class="city-row-main">'+(c.bn||c.n)+'</div>';
+      if(coord) html+='<div class="city-row-coord">'+coord+tz_info+'</div>';
+      html+='</div><span class="city-row-tick">✓</span></div>';
+    });
+  });
+  document.getElementById('cityList').innerHTML=html||'<div class="city-empty">কোনো শহর পাওয়া যায়নি।</div>';
+}
+function _cityFilter(q){_cityBuildList(q);}
+
+// ── Close on Escape ──
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeCityModal();});
 
 // ════════════════════════════════════════════════════════
 // SECTION ③ — HELPERS (সহায়ক ফাংশন)
