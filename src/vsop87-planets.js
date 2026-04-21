@@ -2296,17 +2296,22 @@ function getRetrogrades(jd) {
 // Returns sidereal longitudes for all 9 grahas (Navagraha)
 // ─────────────────────────────────────────────
 function planetaryPositions(jd) {
-  const ay  = lahiriAY(jd);
+  const ay = lahiriAY(jd);
   const sid = trop => rev(trop - ay);
   const rahu_sid = rev(rahuL(jd) - ay);
+  
   return {
+    // sunL এবং moonL সায়ন রিটার্ন করে, তাই sid() প্রয়োজন
     sun     : sid(sunL(jd)),
     moon    : sid(moonL(jd)),
-    mercury : sid(mercuryL(jd)),
-    venus   : sid(venusL(jd)),
-    mars    : marsL(jd),          // ← already sidereal (LUT)
-    jupiter : sid(jupiterL(jd)),
-    saturn  : sid(saturnL(jd)),
+    
+    // mercuryL, venusL, jupiterL, saturnL ইতিমধ্যেই নিরয়ণ রিটার্ন করে!
+    mercury : mercuryL(jd),      // sid() সরিয়ে ফেলুন
+    venus   : venusL(jd),        // sid() সরিয়ে ফেলুন
+    mars    : marsL(jd),         // ঠিক আছে
+    jupiter : jupiterL(jd),      // sid() সরিয়ে ফেলুন
+    saturn  : saturnL(jd),       // sid() সরিয়ে ফেলুন
+    
     rahu    : rahu_sid,
     ketu    : rev(rahu_sid + 180),
     ayanamsa: ay,
