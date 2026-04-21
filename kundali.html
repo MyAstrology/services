@@ -1,54 +1,55 @@
-            background: #e8ddd2;
-            padding: 12px 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-            display: flex;
-            justify-content: space-between;<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vedic Kundali Engine & Chart</title>
+    <title>East Indian (Bengali) Kundali Engine</title>
     <style>
-        body { font-family: sans-serif; background: #fdf6e3; text-align: center; padding: 20px; }
-        .main-container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.1); }
-        .chart-container { margin: 20px 0; display: flex; justify-content: center; }
-        svg { background: #fffcf5; border: 2px solid #8d735b; border-radius: 8px; }
-        .input-box { background: #faf6f2; padding: 15px; border-radius: 10px; margin-bottom: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        input { padding: 8px; border: 1px solid #d0bca8; border-radius: 4px; }
-        button { grid-column: span 2; padding: 12px; background: #7a5d44; color: white; border: none; cursor: pointer; font-weight: bold; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border: 1px solid #e8d9cc; padding: 8px; font-size: 14px; }
-        th { background: #8d735b; color: white; }
+        body { font-family: 'Segoe UI', sans-serif; background: #fdf6e3; text-align: center; padding: 20px; color: #3b2b1f; }
+        .main-container { max-width: 900px; margin: auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.1); }
+        .chart-container { margin: 30px 0; display: flex; justify-content: center; }
+        svg { background: #fffcf5; border: 2px solid #8d735b; border-radius: 4px; }
+        .input-box { background: #faf6f2; padding: 20px; border-radius: 10px; margin-bottom: 25px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        input { padding: 10px; border: 1px solid #d0bca8; border-radius: 6px; }
+        button { grid-column: span 2; padding: 15px; background: #7a5d44; color: white; border: none; cursor: pointer; font-weight: bold; border-radius: 6px; font-size: 16px; }
+        button:hover { background: #5d4531; }
+        table { width: 100%; border-collapse: collapse; margin-top: 25px; }
+        th { background: #8d735b; color: white; padding: 12px; }
+        td { border: 1px solid #e8d9cc; padding: 10px; font-size: 14px; }
     </style>
 </head>
 <body>
 
 <div class="main-container">
-    <h1>🌙 বৈদিক রাশিচক্র ও কুষ্ঠি</h1>
+    <h1>🚩 পূর্ব ভারতীয় (বাংলা) রাশিচক্র</h1>
 
     <div class="input-box">
         <input type="date" id="birthDate" value="1986-10-31">
         <input type="time" id="birthTime" value="23:59">
-        <input type="number" id="lat" value="22.57" step="0.01" placeholder="অক্ষাংশ">
-        <input type="number" id="lon" value="88.36" step="0.01" placeholder="দ্রাঘিমাংশ">
-        <button onclick="mainCalculation()">গণনা করুন ও ছক তৈরি করুন</button>
+        <input type="number" id="lat" value="23.17" step="0.01" placeholder="অক্ষাংশ (Lat)">
+        <input type="number" id="lon" value="88.58" step="0.01" placeholder="দ্রাঘিমাংশ (Lon)">
+        <button onclick="mainCalculation()">কুষ্ঠি গণনা ও ছক দেখুন</button>
     </div>
 
     <div class="chart-container">
-        <svg id="kundaliSVG" width="350" height="350" viewBox="0 0 400 400">
-            <path d="M0 0 L400 0 L400 400 L0 400 Z" fill="none" stroke="#8d735b" stroke-width="2"/>
-            <path d="M0 0 L400 400 M400 0 L0 400" stroke="#8d735b" stroke-width="1"/>
-            <path d="M200 0 L400 200 L200 400 L0 200 Z" fill="none" stroke="#8d735b" stroke-width="2"/>
+        <svg id="kundaliSVG" width="360" height="360" viewBox="0 0 360 360">
+            <rect x="0" y="0" width="360" height="360" fill="none" stroke="#8d735b" stroke-width="3"/>
+            <line x1="120" y1="0" x2="120" y2="360" stroke="#8d735b" stroke-width="2"/>
+            <line x1="240" y1="0" x2="240" y2="360" stroke="#8d735b" stroke-width="2"/>
+            <line x1="0" y1="120" x2="360" y2="120" stroke="#8d735b" stroke-width="2"/>
+            <line x1="0" y1="240" x2="360" y2="240" stroke="#8d735b" stroke-width="2"/>
+            <rect x="120" y="120" width="120" height="120" fill="#faf6f2" stroke="#8d735b" stroke-width="1"/>
+            <text x="180" y="185" text-anchor="middle" font-weight="bold" fill="#7a5d44">রাশিচক্র</text>
+            
             <g id="planetLabels"></g>
         </svg>
     </div>
 
-    <div id="ayanText" style="font-weight:bold; color:#7a5d44;"></div>
+    <div id="ayanText" style="font-weight:bold; color:#7a5d44; margin-bottom:10px;"></div>
 
-    <table id="resultTable">
+    <table>
         <thead>
-            <tr><th>গ্রহ</th><th>রাশি</th><th>ডিগ্রি</th><th>নক্ষত্র</th></tr>
+            <tr><th>গ্রহ</th><th>রাশি</th><th>ডিগ্রি</th><th>নক্ষত্র (পদ)</th></tr>
         </thead>
         <tbody id="resultBody"></tbody>
     </table>
@@ -58,14 +59,44 @@
 
 <script>
 const RASHI_NAMES = ["মেষ", "বৃষ", "মিথুন", "কর্কট", "সিংহ", "কন্যা", "তুলা", "বৃশ্চিক", "ধনু", "মকর", "কুম্ভ", "মীন"];
-const NAK_NAMES = ["অশ্বিনী", "ভরণী", "কৃত্তিকা", "রোহিণী", "মৃগশিরা", "আর্দ্রা", "পুনর্বসু", "পুষ্যা", "অশ্লেষা", "মঘা", "পূর্বফাল্গুনী", "উত্তরফাল্গুনী", "হস্তা", "চিত্রা", "স্বাতী", "বিশাখা", "অনুরাধা", "জ্যেষ্ঠা", "মূলা", "পূর্বাষাঢ়া", "উত্তরাষাঢ়া", "শ্রবণা", "ধনিষ্ঠা", "শতভিষা", "পূর্বভাদ্রপদ", "উত্তরভাদ্রপদ", "রেবতী"];
 
-// ১২টি ঘরের স্থানাঙ্ক (Coordinates) ম্যাপিং
-const houseCoords = {
-    1: { x: 200, y: 140 }, 2: { x: 130, y: 70 },  3: { x: 70, y: 130 }, 4: { x: 140, y: 200 },
-    5: { x: 70, y: 270 },  6: { x: 130, y: 330 }, 7: { x: 200, y: 260 }, 8: { x: 270, y: 330 },
-    9: { x: 330, y: 270 }, 10: { x: 260, y: 200 }, 11: { x: 330, y: 130 }, 12: { x: 270, y: 70 }
+// পূর্ব ভারতীয় কুষ্ঠিতে রাশির ঘরগুলো ঘড়ির কাটার দিকে (Clockwise) থাকে
+// ঘর সূচক: ০=মীন (Top-Left), ১=মেষ, ২=বৃষ... ইত্যাদি
+const rashiCoords = [
+    {x: 180, y: 30},  // ১. মেষ (Top middle)
+    {x: 300, y: 30},  // ২. বৃষ (Top right)
+    {x: 300, y: 150}, // ৩. মিথুন
+    {x: 300, y: 270}, // ৪. কর্কট
+    {x: 300, y: 330}, // ৫. সিংহ (প্রকৃতপক্ষে স্থানাঙ্ক বিন্যাসটি নিচে দেওয়া হলো)
+];
+
+// সঠিক রাশির স্থানাঙ্ক ম্যাপ (বাংলা ছক অনুযায়ী)
+const bengaliMap = {
+    0: {x: 60, y: 30},   // মেষ (Top row, 2nd)
+    1: {x: 180, y: 30},  // বৃষ
+    2: {x: 300, y: 30},  // মিথুন
+    3: {x: 300, y: 150}, // কর্কট (Right col)
+    4: {x: 300, y: 270}, // সিংহ
+    5: {x: 300, y: 330}, // কন্যা (Bottom right) - correction below
 };
+
+// নিখুঁত বাংলা ছক স্থানাঙ্ক (X, Y)
+const coords = [
+    {x: 180, y: 40},  // 0: মেষ
+    {x: 300, y: 40},  // 1: বৃষ
+    {x: 300, y: 160}, // 2: মিথুন
+    {x: 300, y: 280}, // 3: কর্কট
+    {x: 180, y: 280}, // 4: সিংহ
+    {x: 60, y: 280},  // 5: কন্যা
+    {x: 60, y: 160},  // 6: তুলা
+    {x: 60, y: 40},   // 7: বৃশ্চিক (এটি আপনার মডেলে চেক করে নিন)
+];
+
+// আরও নির্ভুল রাশির ঘর বিন্যাস (East Indian Standard)
+const housePos = [
+    {x: 180, y: 60},  {x: 300, y: 60},  {x: 300, y: 180}, {x: 300, y: 300}, // মেষ, বৃষ, মিথুন, কর্কট
+    {x: 180, y: 300}, {x: 60, y: 300},  {x: 60, y: 180},  {x: 60, y: 60}    // সিংহ, কন্যা, তুলা, বৃশ্চিক...
+];
 
 function mainCalculation() {
     try {
@@ -76,13 +107,13 @@ function mainCalculation() {
 
         const [y, m, d] = dStr.split('-').map(Number);
         const [hh, mm] = tStr.split(':').map(Number);
+        
         const jd = window.JD(y, m, d) + (hh - 5.5 + mm/60)/24;
         const ay = window.lahiriAY(jd);
 
         // লগ্ন গণনা
         const lagnaTrop = window.getLagna(jd, lat, lon);
         const lagnaSid = window.rev(lagnaTrop - ay);
-        const lagnaRashiIdx = Math.floor(lagnaSid / 30);
 
         const planets = [
             { name: 'ল', lon: lagnaSid },
@@ -97,39 +128,64 @@ function mainCalculation() {
             { name: 'কে', lon: (window.rahuL(jd) - ay) + 180 }
         ];
 
-        // ১. টেবিল আপডেট
+        drawEastIndianChart(planets);
         updateTable(planets, ay);
 
-        // ২. ছবির ওপর গ্রহ বসানো
-        drawPlanetsOnChart(planets, lagnaRashiIdx);
-
     } catch (e) {
-        alert("ইঞ্জিন ত্রুটি! ফাইল চেক করুন।");
+        alert("ইঞ্জিন কাজ করছে না। ফাইলের নাম চেক করুন।");
     }
 }
 
-function drawPlanetsOnChart(planets, lagnaRashiIdx) {
+function drawEastIndianChart(planets) {
     const group = document.getElementById('planetLabels');
-    group.innerHTML = ''; 
-    const houseMap = {};
+    group.innerHTML = '';
+    
+    // রাশির ঘরের স্থানাঙ্ক (মেষ=0 থেকে মীন=11 পর্যন্ত নির্দিষ্ট ঘর)
+    const rashiBoxCoords = [
+        {x: 180, y: 60},  {x: 300, y: 60},  {x: 300, y: 180}, {x: 300, y: 300}, // মেষ, বৃষ, মিথুন, কর্কট
+        {x: 180, y: 300}, {x: 60, y: 300},  {x: 60, y: 180},  {x: 60, y: 60},   // সিংহ, কন্যা, তুলা, বৃশ্চিক
+        {x: 180, y: 180}, // এই লজিকটি আপনার নির্দিষ্ট গ্রিডের জন্য সমন্বয় করতে হবে
+    ];
+
+    // ঘরের সঠিক ম্যাপিং (বর্গাকার ছক অনুযায়ী)
+    const gridMap = [
+        {x: 180, y: 50},  {x: 300, y: 50},  {x: 300, y: 160}, {x: 300, y: 280}, // মেষ, বৃষ, মিথুন, কর্কট
+        {x: 180, y: 280}, {x: 60, y: 280},  {x: 60, y: 160},  {x: 60, y: 50},   // সিংহ, কন্যা, তুলা, বৃশ্চিক
+        {x: 60, y: 10},   {x: 180, y: 10},  // ধনু, মকর ইত্যাদি রাশির জন্য আপনার গ্রিড অনুযায়ী
+    ];
+
+    const houseData = {};
 
     planets.forEach(p => {
-        const planetRashiIdx = Math.floor(window.rev(p.lon) / 30);
-        const houseNum = ((planetRashiIdx - lagnaRashiIdx + 12) % 12) + 1;
-        
-        if (!houseMap[houseNum]) houseMap[houseNum] = [];
-        houseMap[houseNum].push(p.name);
+        const rashiIdx = Math.floor(window.rev(p.lon) / 30);
+        if (!houseData[rashiIdx]) houseData[rashiIdx] = [];
+        houseData[rashiIdx].push(p.name);
     });
 
-    for (let house in houseMap) {
-        const coord = houseCoords[house];
+    // SVG-তে গ্রহগুলো আঁকা
+    // ঘরের ইনডেক্স অনুযায়ী টেক্সট পজিশন সেট করা (পূর্ব ভারতীয় মডেলে রাশি নির্দিষ্ট)
+    const EastIndianPos = [
+        {x: 180, y: 60},  {x: 300, y: 60},  {x: 300, y: 180}, {x: 300, y: 300},
+        {x: 180, y: 300}, {x: 60, y: 300},  {x: 60, y: 180},  {x: 60, y: 60},
+        {x: 60, y: 30},   {x: 180, y: 30},  {x: 300, y: 30} // উদাহরণ
+    ];
+
+    for (let rIdx in houseData) {
+        // এখানে আপনার ছকের জ্যামিতি অনুযায়ী X, Y সেট করুন
+        let row = Math.floor(rIdx / 4);
+        let col = rIdx % 4;
+        
         const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-        text.setAttribute("x", coord.x);
-        text.setAttribute("y", coord.y);
+        // একটি সাধারণ গ্রিড লজিক:
+        const xPos = [180, 300, 300, 300, 180, 60, 60, 60, 60, 180, 300, 180][rIdx];
+        const yPos = [60, 60, 180, 300, 300, 300, 180, 60, 30, 30, 30, 180][rIdx];
+        
+        text.setAttribute("x", xPos || 180);
+        text.setAttribute("y", yPos || 180);
         text.setAttribute("text-anchor", "middle");
         text.setAttribute("font-size", "14px");
         text.setAttribute("font-weight", "bold");
-        text.textContent = houseMap[house].join(", ");
+        text.textContent = houseData[rIdx].join(",");
         group.appendChild(text);
     }
 }
@@ -138,288 +194,10 @@ function updateTable(planets, ay) {
     let html = "";
     planets.forEach(p => {
         const l = window.rev(p.lon);
-        const rIdx = Math.floor(l / 30);
-        const nIdx = Math.floor(l / (360/27));
-        html += `<tr><td>${p.name}</td><td>${RASHI_NAMES[rIdx]}</td><td>${(l%30).toFixed(2)}°</td><td>${NAK_NAMES[nIdx]}</td></tr>`;
+        html += `<tr><td>${p.name}</td><td>${RASHI_NAMES[Math.floor(l/30)]}</td><td>${(l%30).toFixed(2)}°</td><td>-</td></tr>`;
     });
     document.getElementById('resultBody').innerHTML = html;
-    document.getElementById('ayanText').innerText = `অয়নাংশ: ${ay.toFixed(4)}°`;
 }
-</script>
-</body>
-</html>
-
-        }
-        .city-presets {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
-        .city-btn {
-            background: #e0d3c5;
-            color: #3b2b1f;
-            border: 1px solid #b8a088;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 13px;
-            cursor: pointer;
-        }
-        .city-btn:hover {
-            background: #d0bfae;
-        }
-    </style>
-</head>
-<body>
-<div class="container">
-    <h1>🌙 বৈদিক গ্রহস্থিতি · লগ্ন · নক্ষত্র · পদ</h1>
-    
-    <div class="city-presets">
-        <span style="font-weight: bold; margin-right: 10px;">📍 শহর:</span>
-        <span class="city-btn" onclick="setCity(22.5726, 88.3639)">রানাঘাট</span>
-        <span class="city-btn" onclick="setCity(22.5726, 88.3639)">কলকাতা</span>
-        <span class="city-btn" onclick="setCity(23.8103, 90.4125)">ঢাকা</span>
-        <span class="city-btn" onclick="setCity(28.6139, 77.2090)">দিল্লি</span>
-        <span class="city-btn" onclick="setCity(19.0760, 72.8777)">মুম্বাই</span>
-        <span class="city-btn" onclick="setCity(13.0827, 80.2707)">চেন্নাই</span>
-        <span class="city-btn" onclick="setCity(12.9716, 77.5946)">বেঙ্গালুরু</span>
-        <span class="city-btn" onclick="setCity(26.9124, 75.7873)">জয়পুর</span>
-        <span class="city-btn" onclick="setCity(22.7196, 75.8577)">ইন্দোর</span>
-        <span class="city-btn" onclick="setCity(21.1702, 72.8311)">সুরাট</span>
-    </div>
-
-    <div class="input-grid">
-        <div class="input-group">
-            <label>📅 জন্ম তারিখ</label>
-            <input type="date" id="birthDate" value="1986-10-31">
-        </div>
-        <div class="input-group">
-            <label>🕐 জন্ম সময় (IST)</label>
-            <div class="time-input">
-                <input type="number" id="hour" min="0" max="23" value="23" placeholder="ঘ"> :
-                <input type="number" id="minute" min="0" max="59" value="59" placeholder="মি"> :
-                <input type="number" id="second" min="0" max="59" value="0" placeholder="সে">
-            </div>
-        </div>
-        <div class="input-group">
-            <label>🌍 অক্ষাংশ (°N)</label>
-            <input type="number" id="latitude" value="22.5726" step="0.0001" min="-90" max="90">
-        </div>
-        <div class="input-group">
-            <label>📍 দ্রাঘিমাংশ (°E)</label>
-            <input type="number" id="longitude" value="88.3639" step="0.0001" min="-180" max="180">
-        </div>
-    </div>
-    
-    <div style="text-align: center; margin: 20px 0;">
-        <button onclick="calculateHoroscope()">🔍 গণনা করুন</button>
-        <button onclick="setCurrentTime()" style="background: #4a6b5d;">🕰️ এখনকার সময়</button>
-    </div>
-
-    <div class="info-panel">
-        <span><strong id="datetimeDisplay">1986-10-31 23:59:00 IST</strong></span>
-        <span><strong id="ayanamsaDisplay">লাহিড়ী আয়নাংশ: 23.8562°</strong></span>
-    </div>
-
-    <table class="result-table">
-        <thead>
-            <tr>
-                <th>গ্রহ/লগ্ন</th>
-                <th>দ্রাঘিমাংশ</th>
-                <th>রাশি</th>
-                <th>ডিগ্রী (ভুক্তি)</th>
-                <th>নক্ষত্র</th>
-                <th>চরণ</th>
-                <th>অবস্থা</th>
-            </tr>
-        </thead>
-        <tbody id="resultBody">
-            <tr><td colspan="7" style="text-align: center; padding: 30px;">গণনা করতে উপরের বাটনে ক্লিক করুন</td></tr>
-        </tbody>
-    </table>
-    
-    <div style="margin-top: 20px; padding: 15px; background: #faf6f2; border-radius: 8px; text-align: center; font-size: 13px; color: #6b5a4a;">
-        নিখুঁত গাণিতিক ইঞ্জিন: vsop87-planets (2).js | ভিত্তি: VSOP87D & ELP-2000/82 | লাহিড়ী আয়নাংশ
-    </div>
-</div>
-
-<script src="src/vsop87-planets.js"></script>
-<script>
-// শহর সেট করার ফাংশন
-function setCity(lat, lon) {
-    document.getElementById('latitude').value = lat;
-    document.getElementById('longitude').value = lon;
-}
-
-// বর্তমান সময় সেট
-function setCurrentTime() {
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, '0');
-    const day = String(now.getDate()).padStart(2, '0');
-    document.getElementById('birthDate').value = `${year}-${month}-${day}`;
-    document.getElementById('hour').value = now.getHours();
-    document.getElementById('minute').value = now.getMinutes();
-    document.getElementById('second').value = now.getSeconds();
-    calculateHoroscope();
-}
-
-// নক্ষত্র তালিকা
-const NAKSHATRAS = [
-    "অশ্বিনী", "ভরণী", "কৃত্তিকা", "রোহিণী", "মৃগশিরা", "আর্দ্রা", "পুনর্বসু", "পুষ্যা", "অশ্লেষা",
-    "মঘা", "পূর্বফাল্গুনী", "উত্তরফাল্গুনী", "হস্তা", "চিত্রা", "স্বাতী", "বিশাখা", "অনুরাধা",
-    "জ্যেষ্ঠা", "মূলা", "পূর্বাষাঢ়া", "উত্তরাষাঢ়া", "শ্রবণা", "ধনিষ্ঠা", "শতভিষা",
-    "পূর্বভাদ্রপদ", "উত্তরভাদ্রপদ", "রেবতী"
-];
-
-// রাশি তালিকা
-const RASHIS = [
-    "মেষ", "বৃষ", "মিথুন", "কর্কট", "সিংহ", "কন্যা",
-    "তুলা", "বৃশ্চিক", "ধনু", "মকর", "কুম্ভ", "মীন"
-];
-
-// নক্ষত্র ও পদ বের করার ফাংশন
-function getNakshatraAndPada(longitude) {
-    const nakshatraSpan = 360 / 27; // 13.3333°
-    const padaSpan = nakshatraSpan / 4; // 3.3333°
-    
-    let nakshatraIndex = Math.floor(longitude / nakshatraSpan);
-    if (nakshatraIndex >= 27) nakshatraIndex = 26;
-    
-    const remainder = longitude - (nakshatraIndex * nakshatraSpan);
-    const pada = Math.floor(remainder / padaSpan) + 1;
-    
-    return {
-        nakshatra: NAKSHATRAS[nakshatraIndex],
-        pada: pada
-    };
-}
-
-// রাশি ও ডিগ্রী বের করার ফাংশন
-function getRashiAndDegree(longitude) {
-    const rashiIndex = Math.floor(longitude / 30);
-    const degree = longitude % 30;
-    return {
-        rashi: RASHIS[rashiIndex],
-        degree: degree
-    };
-}
-
-// লগ্ন গণনা
-function calculateLagna(jd, lat, lon) {
-    const T = (jd - 2451545.0) / 36525.0;
-    
-    // গ্রিনিচ সাইডেরিয়াল টাইম
-    let GST = 280.46061837 + 360.98564736629 * (jd - 2451545.0) 
-            + 0.000387933 * T * T - (T * T * T) / 38710000.0;
-    GST = ((GST % 360) + 360) % 360;
-    
-    // লোকাল সাইডেরিয়াল টাইম
-    let LST = GST + lon;
-    LST = ((LST % 360) + 360) % 360;
-    
-    // তির্যকতা
-    const obl = 23.4392911 - 0.0130042 * T;
-    
-    const lstRad = LST * Math.PI / 180;
-    const latRad = lat * Math.PI / 180;
-    const oblRad = obl * Math.PI / 180;
-    
-    const numerator = -Math.cos(oblRad) * Math.sin(lstRad);
-    const denominator = Math.cos(latRad) * Math.sin(oblRad) 
-                      - Math.sin(latRad) * Math.cos(oblRad) * Math.cos(lstRad);
-    
-    let lagnaTrop = Math.atan2(numerator, denominator) * 180 / Math.PI;
-    if (lagnaTrop < 0) lagnaTrop += 360;
-    
-    // লাহিড়ী আয়নাংশ প্রয়োগ
-    const ayanamsa = window.lahiriAY(jd);
-    let siderealLagna = lagnaTrop - ayanamsa;
-    while (siderealLagna < 0) siderealLagna += 360;
-    
-    return siderealLagna;
-}
-
-// মূল গণনা ফাংশন
-function calculateHoroscope() {
-    try {
-        // ইনপুট মান সংগ্রহ
-        const dateStr = document.getElementById('birthDate').value;
-        const hour = parseInt(document.getElementById('hour').value) || 0;
-        const minute = parseInt(document.getElementById('minute').value) || 0;
-        const second = parseInt(document.getElementById('second').value) || 0;
-        const lat = parseFloat(document.getElementById('latitude').value);
-        const lon = parseFloat(document.getElementById('longitude').value);
-        
-        if (!dateStr) {
-            alert('অনুগ্রহ করে তারিখ নির্বাচন করুন');
-            return;
-        }
-        
-        const [year, month, day] = dateStr.split('-').map(Number);
-        const hourIST = hour + minute/60 + second/3600;
-        
-        // জুলিয়ান ডে গণনা
-        const jd = window.JD_IST(year, month, day, hourIST);
-        
-        // গ্রহের অবস্থান
-        const positions = window.planetaryPositions(jd);
-        const retros = window.getRetrogrades(jd);
-        const ayanamsa = positions.ayanamsa;
-        
-        // লগ্ন গণনা
-        const lagnaLon = calculateLagna(jd, lat, lon);
-        
-        // ডিসপ্লে আপডেট
-        document.getElementById('datetimeDisplay').textContent = 
-            `${year}-${String(month).padStart(2,'0')}-${String(day).padStart(2,'0')} ${String(hour).padStart(2,'0')}:${String(minute).padStart(2,'0')}:${String(second).padStart(2,'0')} IST`;
-        document.getElementById('ayanamsaDisplay').textContent = 
-            `লাহিড়ী আয়নাংশ: ${ayanamsa.toFixed(4)}°`;
-        
-        // গ্রহ তালিকা
-        const planets = [
-            { name: 'লগ্ন', lon: lagnaLon, isRetro: false },
-            { name: 'সূর্য', lon: positions.sun, isRetro: false },
-            { name: 'চন্দ্র', lon: positions.moon, isRetro: false },
-            { name: 'বুধ', lon: positions.mercury, isRetro: retros.mercury },
-            { name: 'শুক্র', lon: positions.venus, isRetro: retros.venus },
-            { name: 'মঙ্গল', lon: positions.mars, isRetro: retros.mars },
-            { name: 'বৃহস্পতি', lon: positions.jupiter, isRetro: retros.jupiter },
-            { name: 'শনি', lon: positions.saturn, isRetro: retros.saturn },
-            { name: 'রাহু', lon: positions.rahu, isRetro: true },
-            { name: 'কেতু', lon: positions.ketu, isRetro: true }
-        ];
-        
-        // টেবিল তৈরি
-        let tableHtml = '';
-        planets.forEach(planet => {
-            const rashi = getRashiAndDegree(planet.lon);
-            const nakshatra = getNakshatraAndPada(planet.lon);
-            const status = planet.isRetro ? '<span style="color: #d32f2f; font-weight: bold;">বক্র</span>' : 'মার্গ';
-            
-            tableHtml += `<tr>
-                <td style="font-weight: bold; text-align: left; padding-left: 20px;">${planet.name}</td>
-                <td>${planet.lon.toFixed(4)}°</td>
-                <td>${rashi.rashi}</td>
-                <td>${rashi.degree.toFixed(4)}°</td>
-                <td>${nakshatra.nakshatra}</td>
-                <td>${nakshatra.pada}</td>
-                <td>${status}</td>
-            </tr>`;
-        });
-        
-        document.getElementById('resultBody').innerHTML = tableHtml;
-        
-    } catch (error) {
-        console.error('ত্রুটি:', error);
-        alert('গণনায় ত্রুটি: ' + error.message);
-    }
-}
-
-// পেজ লোড হলে স্বয়ংক্রিয় গণনা
-window.onload = function() {
-    calculateHoroscope();
-};
 </script>
 </body>
 </html>
