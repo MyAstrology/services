@@ -3,101 +3,295 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔮 নির্ভুল বৈদিক ক্যালকুলেটর · লগ্ন · নক্ষত্র</title>
+    <title>🌿 সম্পূর্ণ বৈদিক কুণ্ডলী · লগ্ন · নক্ষত্র · রাশি</title>
     <style>
-        * { box-sizing: border-box; font-family: 'Segoe UI', 'Noto Sans Bengali', sans-serif; }
-        body { background: #f2ede4; margin: 20px; display: flex; justify-content: center; }
-        .card { max-width: 1350px; width: 100%; background: #fffdf9; border-radius: 28px; box-shadow: 0 12px 28px rgba(0,0,0,0.08); padding: 24px 28px; border: 1px solid #ddd0be; }
-        h1 { font-size: 2.1rem; color: #382e22; margin-bottom: 12px; border-bottom: 3px solid #c6ad93; padding-bottom: 16px; }
-        .input-panel { background: #efe6db; padding: 20px 24px; border-radius: 24px; margin-bottom: 28px; display: flex; flex-wrap: wrap; align-items: flex-end; gap: 18px 25px; }
-        .field { display: flex; flex-direction: column; gap: 6px; }
-        .field label { font-weight: 600; color: #4d3826; }
-        .field input, .field select { padding: 10px 14px; border-radius: 20px; border: 1px solid #b8a088; font-size: 1rem; background: white; }
-        .btn { background: #7b5e45; border: none; color: white; font-weight: bold; padding: 10px 26px; border-radius: 40px; font-size: 1.1rem; cursor: pointer; transition: 0.2s; box-shadow: 0 3px 6px rgba(0,0,0,0.1); border: 1px solid #5c4431; }
-        .btn:hover { background: #5b4532; }
-        .btn-outline { background: transparent; color: #3e2f20; border: 1.5px solid #7b5e45; box-shadow: none; }
-        .now-btn { background: #2a5e4b; border-color: #1e4438; }
-        table { width: 100%; border-collapse: collapse; background: white; border-radius: 18px; overflow: hidden; box-shadow: 0 6px 12px rgba(0,0,0,0.04); margin: 22px 0; }
-        th { background: #b7a088; color: #1e160f; font-weight: 700; padding: 14px 8px; text-align: center; }
-        td { padding: 10px 6px; text-align: center; border-bottom: 1px solid #e5d7ca; }
-        .planet-name { font-weight: 700; background: #fbf4ec; text-align: left; padding-left: 20px; }
-        .retro-badge { background: #b34a3a; color: white; font-size: 0.7rem; border-radius: 30px; padding: 3px 9px; margin-left: 8px; }
-        .yoga-section { background: #f3ebe3; border-radius: 22px; padding: 18px 22px; margin-top: 20px; }
-        .yoga-item { background: white; border-radius: 30px; padding: 8px 22px; border-left: 6px solid #b4875a; margin: 5px; display: inline-block; }
-        .ayanamsa-badge { background: #dacbbc; padding: 6px 18px; border-radius: 30px; font-weight: 600; }
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Noto Sans Bengali', sans-serif;
+        }
+        body {
+            background: #f4ede4;
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .card {
+            max-width: 1350px;
+            width: 100%;
+            background: #fffcf7;
+            border-radius: 28px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            padding: 25px 30px;
+            border: 1px solid #e0cfbd;
+        }
+        h1 {
+            color: #3b2e21;
+            border-bottom: 3px solid #c6aa91;
+            padding-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        h1 small {
+            font-size: 1rem;
+            font-weight: normal;
+            color: #6f543c;
+            margin-left: auto;
+        }
+        .input-grid {
+            background: #f0e6db;
+            border-radius: 26px;
+            padding: 22px 25px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 18px 22px;
+            margin-bottom: 28px;
+            border: 1px solid #d6c3b0;
+        }
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .field label {
+            font-weight: 700;
+            color: #4d3724;
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
+        }
+        .field input, .field select {
+            padding: 11px 14px;
+            border: 1px solid #bba690;
+            border-radius: 24px;
+            font-size: 1rem;
+            background: white;
+            transition: 0.15s;
+        }
+        .field input:focus, .field select:focus {
+            border-color: #8b684b;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(139,104,75,0.1);
+        }
+        .time-group {
+            display: flex;
+            gap: 8px;
+        }
+        .time-group input {
+            width: 70px;
+            text-align: center;
+        }
+        .btn-bar {
+            grid-column: 1 / -1;
+            display: flex;
+            gap: 16px;
+            justify-content: flex-end;
+            margin-top: 5px;
+        }
+        .btn {
+            background: #7a5d44;
+            border: none;
+            color: white;
+            font-weight: bold;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+            border: 1px solid #5b432f;
+        }
+        .btn:hover {
+            background: #5f4632;
+            transform: scale(1.01);
+        }
+        .btn-outline {
+            background: transparent;
+            color: #4e3925;
+            border: 1.5px solid #7a5d44;
+        }
+        .now-btn {
+            background: #1f5a49;
+            border-color: #154234;
+        }
+        .result-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 15px 0 5px;
+        }
+        .ayan-badge {
+            background: #dbcdbc;
+            padding: 6px 22px;
+            border-radius: 40px;
+            font-weight: 600;
+            color: #281f15;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.04);
+            margin: 18px 0 25px;
+        }
+        th {
+            background: #b8a189;
+            color: #1e1810;
+            font-weight: 700;
+            padding: 14px 6px;
+            text-align: center;
+            font-size: 1rem;
+        }
+        td {
+            padding: 11px 6px;
+            text-align: center;
+            border-bottom: 1px solid #ecdccc;
+        }
+        .planet-name {
+            font-weight: 700;
+            background: #fbf4eb;
+            text-align: left;
+            padding-left: 22px;
+        }
+        .retro-badge {
+            background: #b34a3a;
+            color: white;
+            font-size: 0.7rem;
+            border-radius: 30px;
+            padding: 3px 10px;
+            margin-left: 6px;
+            font-weight: 600;
+        }
+        .yoga-panel {
+            background: #efe3d7;
+            border-radius: 24px;
+            padding: 18px 24px;
+            margin-top: 10px;
+        }
+        .yoga-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #382b1e;
+        }
+        .yoga-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 20px;
+        }
+        .yoga-card {
+            background: white;
+            border-radius: 30px;
+            padding: 9px 24px;
+            border-left: 6px solid #b4885e;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.03);
+        }
+        .footnote {
+            margin-top: 18px;
+            color: #5e4b37;
+        }
     </style>
 </head>
 <body>
 <div class="card">
-    <h1>🌙 বৈদিক গ্রহস্থিতি · লগ্ন · নক্ষত্র পদ <span style="font-size:1.2rem; margin-left:20px;">VSOP87D / ELP-2000</span></h1>
+    <h1>
+        ✦ বৈদিক গ্রহ-নক্ষত্র গণনা ✦
+        <small>লাহিড়ী আয়নাংশ · VSOP87 · ELP-2000</small>
+    </h1>
 
-    <div class="input-panel">
+    <div class="input-grid">
         <div class="field">
-            <label>📅 তারিখ (DD/MM/YYYY বা YYYY-MM-DD)</label>
-            <input type="text" id="dateInput" value="31/10/1986" placeholder="31/10/1986">
+            <label>📅 তারিখ (YYYY-MM-DD)</label>
+            <input type="date" id="dateInput" value="1986-10-31">
         </div>
         <div class="field">
             <label>🕒 সময় (IST, ২৪ঘ)</label>
-            <input type="text" id="timeInput" value="23:59" placeholder="HH:MM">
+            <div class="time-group">
+                <input type="number" id="hourInput" min="0" max="23" value="23" placeholder="ঘ" step="1"> :
+                <input type="number" id="minuteInput" min="0" max="59" value="59" placeholder="মি" step="1"> :
+                <input type="number" id="secondInput" min="0" max="59" value="0" placeholder="সে" step="1">
+            </div>
+        </div>
+        <div class="field">
+            <label>🌍 শহর নির্বাচন</label>
+            <select id="citySelect">
+                <option value="custom">📍 নিজে লিখুন</option>
+                <option value="22.5726,88.3639">রানাঘাট (কল্যাণী)</option>
+                <option value="22.5726,88.3639">কলকাতা (Kolkata)</option>
+                <option value="23.8103,90.4125">ঢাকা (Dhaka)</option>
+                <option value="28.6139,77.2090">দিল্লি (Delhi)</option>
+                <option value="19.0760,72.8777">মুম্বাই (Mumbai)</option>
+                <option value="13.0827,80.2707">চেন্নাই (Chennai)</option>
+                <option value="12.9716,77.5946">বেঙ্গালুরু (Bangalore)</option>
+                <option value="26.9124,75.7873">জয়পুর (Jaipur)</option>
+                <option value="25.3176,83.0082">বারাণসী (Varanasi)</option>
+                <option value="26.8467,80.9462">লখনউ (Lucknow)</option>
+                <option value="23.0225,72.5714">আহমেদাবাদ (Ahmedabad)</option>
+            </select>
         </div>
         <div class="field">
             <label>🌐 অক্ষাংশ (°N)</label>
-            <input type="number" id="latInput" value="22.5726" step="0.01">
+            <input type="number" id="latInput" value="22.5726" step="0.0001" min="-90" max="90">
         </div>
         <div class="field">
-            <label>📍 দ্রাঘিমা (°E)</label>
-            <input type="number" id="lonInput" value="88.3639" step="0.01">
+            <label>📍 দ্রাঘিমাংশ (°E)</label>
+            <input type="number" id="lonInput" value="88.3639" step="0.0001" min="-180" max="180">
         </div>
-        <div class="btn-group">
-            <button class="btn" id="calcBtn">🔍 গণনা</button>
-            <button class="btn btn-outline now-btn" id="nowBtn">🕰️ এখন</button>
+        <div class="btn-bar">
+            <button class="btn" id="calcBtn">🔍 কুণ্ডলী গণনা</button>
+            <button class="btn btn-outline now-btn" id="nowBtn">🕰️ এখনই দেখুন</button>
         </div>
     </div>
 
-    <div style="display: flex; justify-content: space-between;">
+    <div class="result-bar">
         <div><strong id="displayDateTime">—</strong></div>
-        <div class="ayanamsa-badge" id="ayanamsaDisplay">আয়নাংশ: —</div>
+        <div class="ayan-badge" id="ayanamsaDisplay">আয়নাংশ: —</div>
     </div>
 
     <table id="chartTable">
-        <thead><tr><th>গ্রহ</th><th>দ্রাঘিমাংশ</th><th>রাশি</th><th>ডিগ্রী</th><th>নক্ষত্র</th><th>পদ</th><th>বক্র?</th></tr></thead>
-        <tbody id="tableBody"><tr><td colspan="7">গণনা করতে উপরের তথ্য দিন</td></tr></tbody>
+        <thead>
+            <tr><th>গ্রহ</th><th>দ্রাঘিমাংশ</th><th>রাশি</th><th>ডিগ্রী</th><th>নক্ষত্র</th><th>পদ</th><th>গতি</th></tr>
+        </thead>
+        <tbody id="tableBody">
+            <tr><td colspan="7" style="padding:30px;">গণনা শুরু করতে উপরের তথ্য পূরণ করুন</td></tr>
+        </tbody>
     </table>
 
-    <div class="yoga-section">
-        <div style="font-size:1.5rem; font-weight:700;">🪷 যোগফল</div>
-        <div id="yogaList" style="margin-top:14px;">—</div>
+    <div class="yoga-panel" id="yogaPanel">
+        <div class="yoga-title">🪷 সক্রিয় গ্রহযোগ</div>
+        <div class="yoga-container" id="yogaList">—</div>
     </div>
+    <div class="footnote">* লগ্ন: সমরাশি পদ্ধতি। নক্ষত্র পদ ১-৪ (৩°২০′ করে)। বক্র/মার্গ গতি।</div>
 </div>
 
+<!-- src/vsop87-planets.js ফাইলটি যুক্ত -->
 <script src="src/vsop87-planets.js"></script>
 <script>
     (function(){
+        // গ্লোবাল ফাংশনগুলো নেওয়া
         const { JD_IST, planetaryPositions, getRetrogrades, detectYogas, lahiriAY } = window;
 
-        // ইউটিলিটি: বিভিন্ন তারিখ ফরম্যাট পার্স (DD/MM/YYYY বা YYYY-MM-DD)
-        function parseDateInput(str) {
-            str = str.trim();
-            if (/^\d{4}-\d{2}-\d{2}$/.test(str)) {
-                const [y,m,d] = str.split('-').map(Number);
-                return { year: y, month: m, day: d };
+        // ----------  শহর নির্বাচন হ্যান্ডলার ----------
+        const citySelect = document.getElementById('citySelect');
+        const latInput = document.getElementById('latInput');
+        const lonInput = document.getElementById('lonInput');
+        citySelect.addEventListener('change', function() {
+            const val = this.value;
+            if (val !== 'custom') {
+                const [lat, lon] = val.split(',').map(Number);
+                latInput.value = lat;
+                lonInput.value = lon;
             }
-            // DD/MM/YYYY বা D/M/YYYY
-            const parts = str.split(/[\/\-\.]/);
-            if (parts.length === 3) {
-                let d, m, y;
-                if (parts[0].length === 4) { // YYYY-MM-DD already handled, but fallback
-                    y = +parts[0]; m = +parts[1]; d = +parts[2];
-                } else {
-                    d = +parts[0]; m = +parts[1]; y = +parts[2];
-                }
-                if (y < 100) y += 2000;
-                return { year: y, month: m, day: d };
-            }
-            return null;
-        }
+        });
 
-        const NAKSHATRAS = ["অশ্বিনী","ভরণী","কৃত্তিকা","রোহিণী","মৃগশিরা","আর্দ্রা","পুনর্বসু","পুষ্যা","অশ্লেষা","মঘা","পূর্বফাল্গুনী","উত্তরফাল্গুনী","হস্তা","চিত্রা","স্বাতী","বিশাখা","অনুরাধা","জ্যেষ্ঠা","মূলা","পূর্বাষাঢ়া","উত্তরাষাঢ়া","শ্রবণা","ধনিষ্ঠা","শতভিষা","পূর্বভাদ্রপদ","উত্তরভাদ্রপদ","রেবতী"];
+        // ----------  নক্ষত্র ও পদ ----------
+        const NAKSHATRAS = [
+            "অশ্বিনী","ভরণী","কৃত্তিকা","রোহিণী","মৃগশিরা","আর্দ্রা","পুনর্বসু","পুষ্যা","অশ্লেষা",
+            "মঘা","পূর্বফাল্গুনী","উত্তরফাল্গুনী","হস্তা","চিত্রা","স্বাতী","বিশাখা","অনুরাধা",
+            "জ্যেষ্ঠা","মূলা","পূর্বাষাঢ়া","উত্তরাষাঢ়া","শ্রবণা","ধনিষ্ঠা","শতভিষা",
+            "পূর্বভাদ্রপদ","উত্তরভাদ্রপদ","রেবতী"
+        ];
         const RASHI_NAMES = ["মেষ","বৃষ","মিথুন","কর্কট","সিংহ","কন্যা","তুলা","বৃশ্চিক","ধনু","মকর","কুম্ভ","মীন"];
 
         function getNakshatraPada(lon) {
@@ -105,87 +299,115 @@
             const padaSpan = span / 4;
             let idx = Math.floor(lon / span);
             if (idx >= 27) idx = 26;
-            const rem = lon - idx * span;
-            const pada = Math.floor(rem / padaSpan) + 1;
+            const remainder = lon - idx * span;
+            const pada = Math.floor(remainder / padaSpan) + 1;
             return { nakshatra: NAKSHATRAS[idx], pada };
         }
 
         function getRashiAndDegree(lon) {
             const rIdx = Math.floor(lon / 30);
             const deg = (lon % 30).toFixed(4);
-            return { rashi: RASHI_NAMES[rIdx], degree: deg, rashiIndex: rIdx };
+            return { rashi: RASHI_NAMES[rIdx], degree: deg };
         }
 
-        // উন্নত লগ্ন গণনা (Meeus + লাহিড়ী)
+        // ----------  লগ্ন (Ascendant) সমরাশি/প্লাসিডাস ভিত্তিক ----------
         function calculateLagna(jd, lat, lon) {
             const T = (jd - 2451545.0) / 36525.0;
+            // গড় নক্ষত্র সময় (Greenwich Sidereal Time)
             let GST = 280.46061837 + 360.98564736629 * (jd - 2451545.0) + 0.000387933 * T * T - T*T*T/38710000.0;
             GST = ((GST % 360) + 360) % 360;
+            // স্থানীয় নক্ষত্র সময় (LST)
             let LST = GST + lon;
             LST = ((LST % 360) + 360) % 360;
+            // ক্রান্তিবৃত্তের তির্যকতা
             const obl = 23.4392911 - 0.0130042 * T;
-            const lstRad = LST * Math.PI/180;
-            const latRad = lat * Math.PI/180;
-            const oblRad = obl * Math.PI/180;
-            const num = -Math.cos(oblRad) * Math.sin(lstRad);
-            const den = Math.cos(latRad)*Math.sin(oblRad) - Math.sin(latRad)*Math.cos(oblRad)*Math.cos(lstRad);
-            let lagnaTrop = Math.atan2(num, den) * 180 / Math.PI;
+            const lstRad = LST * Math.PI / 180;
+            const latRad = lat * Math.PI / 180;
+            const oblRad = obl * Math.PI / 180;
+            
+            const numerator = -Math.cos(oblRad) * Math.sin(lstRad);
+            const denominator = Math.cos(latRad) * Math.sin(oblRad) - Math.sin(latRad) * Math.cos(oblRad) * Math.cos(lstRad);
+            let lagnaTrop = Math.atan2(numerator, denominator) * 180 / Math.PI;
             if (lagnaTrop < 0) lagnaTrop += 360;
+            
             const ay = lahiriAY(jd);
             return (lagnaTrop - ay + 360) % 360;
         }
 
+        // ----------  রেন্ডার ----------
         function render(data) {
             const { positions, retros, yogas, ayanamsa, lagnaLon } = data;
             const tbody = document.getElementById('tableBody');
             const planets = [
-                { key:'lagna', name:'লগ্ন', lon: lagnaLon },
-                { key:'sun', name:'সূর্য', lon: positions.sun },
-                { key:'moon', name:'চন্দ্র', lon: positions.moon },
-                { key:'mercury', name:'বুধ', lon: positions.mercury },
-                { key:'venus', name:'শুক্র', lon: positions.venus },
-                { key:'mars', name:'মঙ্গল', lon: positions.mars },
-                { key:'jupiter', name:'বৃহস্পতি', lon: positions.jupiter },
-                { key:'saturn', name:'শনি', lon: positions.saturn },
-                { key:'rahu', name:'রাহু', lon: positions.rahu },
-                { key:'ketu', name:'কেতু', lon: positions.ketu }
+                { key: 'lagna', name: 'লগ্ন', lon: lagnaLon },
+                { key: 'sun', name: 'সূর্য', lon: positions.sun },
+                { key: 'moon', name: 'চন্দ্র', lon: positions.moon },
+                { key: 'mercury', name: 'বুধ', lon: positions.mercury },
+                { key: 'venus', name: 'শুক্র', lon: positions.venus },
+                { key: 'mars', name: 'মঙ্গল', lon: positions.mars },
+                { key: 'jupiter', name: 'বৃহস্পতি', lon: positions.jupiter },
+                { key: 'saturn', name: 'শনি', lon: positions.saturn },
+                { key: 'rahu', name: 'রাহু', lon: positions.rahu },
+                { key: 'ketu', name: 'কেতু', lon: positions.ketu }
             ];
+
             let html = '';
             planets.forEach(p => {
-                const rData = getRashiAndDegree(p.lon);
+                const rashiData = getRashiAndDegree(p.lon);
                 const nData = getNakshatraPada(p.lon);
-                const retro = (p.key!=='lagna' && p.key!=='rahu' && p.key!=='ketu') ? retros[p.key] : false;
-                const retroBadge = retro ? '<span class="retro-badge">বক্র</span>' : '—';
-                html += `<tr><td class="planet-name">${p.name}</td><td>${p.lon.toFixed(4)}°</td><td>${rData.rashi}</td><td>${rData.degree}°</td><td>${nData.nakshatra}</td><td>${nData.pada}</td><td>${retroBadge}</td></tr>`;
+                const isRetro = (p.key !== 'lagna' && p.key !== 'rahu' && p.key !== 'ketu') 
+                                ? (retros[p.key] || false) : false;
+                const retroText = isRetro ? '<span class="retro-badge">বক্র</span>' : 'মার্গ';
+                html += `<tr>
+                    <td class="planet-name">${p.name}</td>
+                    <td>${p.lon.toFixed(4)}°</td>
+                    <td>${rashiData.rashi}</td>
+                    <td>${rashiData.degree}°</td>
+                    <td>${nData.nakshatra}</td>
+                    <td>${nData.pada}</td>
+                    <td>${retroText}</td>
+                </tr>`;
             });
             tbody.innerHTML = html;
-            document.getElementById('ayanamsaDisplay').innerText = `আয়নাংশ (লাহিড়ী): ${ayanamsa.toFixed(4)}°`;
+            document.getElementById('ayanamsaDisplay').innerText = `লাহিড়ী আয়নাংশ: ${ayanamsa.toFixed(4)}°`;
+            
             const yogaDiv = document.getElementById('yogaList');
-            if (yogas.length) {
-                yogaDiv.innerHTML = yogas.map(y => `<div class="yoga-item"><b>${y.name}</b> (${y.type}) · ${y.description}</div>`).join('');
-            } else yogaDiv.innerText = 'কোনো প্রধান যোগ সক্রিয় নয়।';
+            if (yogas && yogas.length) {
+                yogaDiv.innerHTML = yogas.map(y => 
+                    `<div class="yoga-card"><strong>${y.name}</strong> (${y.type}) · ${y.description}</div>`
+                ).join('');
+            } else {
+                yogaDiv.innerHTML = '<div style="padding:8px;">কোনো প্রধান যোগ সক্রিয় নয়।</div>';
+            }
         }
 
+        // ----------  গণনা ----------
         function compute() {
-            const dateRaw = document.getElementById('dateInput').value.trim();
-            const timeRaw = document.getElementById('timeInput').value.trim();
-            const lat = parseFloat(document.getElementById('latInput').value);
-            const lon = parseFloat(document.getElementById('lonInput').value);
-            const parsed = parseDateInput(dateRaw);
-            if (!parsed) { alert('তারিখ ফরম্যাট: DD/MM/YYYY বা YYYY-MM-DD'); return; }
-            const { year, month, day } = parsed;
-            const [h, m] = timeRaw.split(':').map(Number);
-            if (isNaN(h) || isNaN(m)) { alert('সময় HH:MM ফরম্যাটে দিন'); return; }
-            const hourIST = h + m/60.0;
-            const jd = JD_IST(year, month, day, hourIST);
+            const dateStr = document.getElementById('dateInput').value;
+            const hour = parseInt(document.getElementById('hourInput').value) || 0;
+            const minute = parseInt(document.getElementById('minuteInput').value) || 0;
+            const second = parseInt(document.getElementById('secondInput').value) || 0;
+            const lat = parseFloat(latInput.value);
+            const lon = parseFloat(lonInput.value);
+            
+            if (!dateStr || isNaN(lat) || isNaN(lon)) {
+                alert('তারিখ ও স্থানাঙ্ক সম্পূর্ণ করুন');
+                return;
+            }
+            const [y, m, d] = dateStr.split('-').map(Number);
+            const hourIST = hour + minute/60 + second/3600;
+            const jd = JD_IST(y, m, d, hourIST);
+            
             const positions = planetaryPositions(jd);
             const retros = getRetrogrades(jd);
             const ayanamsa = positions.ayanamsa;
             const lagnaLon = calculateLagna(jd, lat, lon);
             const yogas = detectYogas(positions);
+            
             const pad = (n) => n.toString().padStart(2,'0');
             document.getElementById('displayDateTime').innerHTML = 
-                `${year}-${pad(month)}-${pad(day)} ${pad(h)}:${pad(m)} IST, অক্ষ ${lat.toFixed(3)}° দ্রাঘি ${lon.toFixed(3)}°`;
+                `${y}-${pad(m)}-${pad(d)} ${pad(hour)}:${pad(minute)}:${pad(second)} IST, অক্ষা ${lat.toFixed(4)}° দ্রাঘি ${lon.toFixed(4)}°`;
+            
             render({ positions, retros, yogas, ayanamsa, lagnaLon });
         }
 
@@ -194,19 +416,23 @@
             const y = now.getFullYear();
             const m = String(now.getMonth()+1).padStart(2,'0');
             const d = String(now.getDate()).padStart(2,'0');
-            document.getElementById('dateInput').value = `${d}/${m}/${y}`;
-            document.getElementById('timeInput').value = `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
+            document.getElementById('dateInput').value = `${y}-${m}-${d}`;
+            document.getElementById('hourInput').value = now.getHours();
+            document.getElementById('minuteInput').value = now.getMinutes();
+            document.getElementById('secondInput').value = now.getSeconds();
+            // লোকেশন কলকাতা/রানাঘাট ডিফল্ট
+            if (citySelect.value === 'custom' && !latInput.value) {
+                latInput.value = '22.5726';
+                lonInput.value = '88.3639';
+            }
             compute();
         }
 
         document.getElementById('calcBtn').addEventListener('click', compute);
         document.getElementById('nowBtn').addEventListener('click', setNow);
+        
         window.addEventListener('DOMContentLoaded', () => {
-            // ডিফল্ট হিসেবে 31/10/1986 23:59 সেট
-            document.getElementById('dateInput').value = '31/10/1986';
-            document.getElementById('timeInput').value = '23:59';
-            document.getElementById('latInput').value = '22.5726';
-            document.getElementById('lonInput').value = '88.3639';
+            // ডিফল্ট লোড: আপনার প্রদত্ত তারিখ
             compute();
         });
     })();
