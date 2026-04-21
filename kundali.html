@@ -2,7 +2,7 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <title>VSOP87 Engine Test</title>
+    <title>VSOP87 Engine Test - Fixed</title>
     <style>
         body { font-family: sans-serif; background: #f4f1ea; padding: 20px; }
         .box { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); max-width: 900px; margin: auto; }
@@ -10,6 +10,7 @@
         th, td { border: 1px solid #d1bfa7; padding: 10px; text-align: center; }
         th { background: #8d735b; color: white; }
         button { background: #7a5d44; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px; }
+        .ayan-text { font-weight: bold; color: #7a5d44; margin-top: 10px; }
     </style>
 </head>
 <body>
@@ -17,12 +18,12 @@
 <div class="box">
     <h2>🌙 গ্রহাবস্থান পরীক্ষা (VSOP87)</h2>
     <div style="margin-bottom: 15px;">
-        তারিখ: <input type="date" id="d" value="1986-10-31">
-        সময়: <input type="time" id="t" value="23:59">
-        <button onclick="check()">গণনা করুন</button>
+        তারিখ: <input type="date" id="birthDate" value="1986-10-31">
+        সময়: <input type="time" id="birthTime" value="23:59">
+        <button onclick="calculateHoroscope()">গণনা করুন</button>
     </div>
 
-    <div id="ayan">অয়নাংশ: --</div>
+    <div id="ayanDisplay" class="ayan-text">অয়নাংশ: --</div>
 
     <table>
         <thead>
@@ -33,36 +34,53 @@
                 <th>নক্ষত্র (পদ)</th>
             </tr>
         </thead>
-        <tbody id="out"></tbody>
+        <tbody id="resultBody">
+            <tr><td colspan="4">তথ্য প্রদর্শনের জন্য বাটনে ক্লিক করুন</td></tr>
+        </tbody>
     </table>
 </div>
 
 <script src="vsop87-planets.js"></script>
 
 <script>
-const R = ["মেষ", "বৃষ", "মিথুন", "কর্কট", "সিংহ", "কন্যা", "তুলা", "বৃশ্চিক", "ধনু", "মকর", "কুম্ভ", "মীন"];
-const N = ["অশ্বিনী", "ভরণী", "কৃত্তিকা", "রোহিণী", "মৃগশিরা", "আর্দ্রা", "পুনর্বসু", "পুষ্যা", "অশ্লেষা", "মঘা", "পূর্বফাল্গুনী", "উত্তরফাল্গুনী", "হস্তা", "চিত্রা", "স্বাতী", "বিশাখা", "অনুরাধা", "জ্যেষ্ঠা", "মূলা", "পূর্বাষাঢ়া", "উত্তরাষাঢ়া", "শ্রবণা", "ধনিষ্ঠা", "শতভিষা", "পূর্বভাদ্রপদ", "উত্তরভাদ্রপদ", "রেবতী"];
+const RASHIS = ["মেষ", "বৃষ", "মিথুন", "কর্কট", "সিংহ", "কন্যা", "তুলা", "বৃশ্চিক", "ধনু", "মকর", "কুম্ভ", "মীন"];
+const NAKSHATRAS = ["অশ্বিনী", "ভরণী", "কৃত্তিকা", "রোহিণী", "মৃগশিরা", "আর্দ্রা", "পুনর্বসু", "পুষ্যা", "অশ্লেষা", "মঘা", "পূর্বফাল্গুনী", "উত্তরফাল্গুনী", "হস্তা", "চিত্রা", "স্বাতী", "বিশাখা", "অনুরাধা", "জ্যেষ্ঠা", "মূলা", "পূর্বাষাঢ়া", "উত্তরাষাঢ়া", "শ্রবণা", "ধনিষ্ঠা", "শতভিষা", "পূর্বভাদ্রপদ", "উত্তরভাদ্রপদ", "রেবতী"];
+
+// হেল্পার ফাংশন যা আপনার কোডে মিসিং ছিল
+function getDetails(lon) {
+    const l = ((lon % 360) + 360) % 360;
+    const rIdx = Math.floor(l / 30);
+    const deg = l % 30;
+    const nIdx = Math.floor(l / (360/27));
+    const pada = Math.floor((l % (360/27)) / (360/108)) + 1;
+    return {
+        rashi: RASHIS[rIdx % 12],
+        dms: `${Math.floor(deg)}°${Math.floor((deg%1)*60)}'`,
+        nak: `${NAKSHATRAS[nIdx % 27]} (${pada})`
+    };
+}
 
 function calculateHoroscope() {
     try {
         const dateStr = document.getElementById('birthDate').value;
-        const h = parseInt(document.getElementById('hour').value) || 0;
-        const m = parseInt(document.getElementById('minute').value) || 0;
-        const s = parseInt(document.getElementById('second').value) || 0;
+        const timeStr = document.getElementById('birthTime').value;
+        if(!dateStr || !timeStr) { alert("তারিখ ও সময় দিন"); return; }
+
         const [year, month, day] = dateStr.split('-').map(Number);
+        const [h, m] = timeStr.split(':').map(Number);
         
         // ১. জুলিয়ান ডে গণনা (IST to UT: -5.5)
-        const jd = window.JD(year, month, day) + (h - 5.5 + m/60 + s/3600)/24;
+        const jd = window.JD(year, month, day) + (h - 5.5 + m/60)/24;
         
         // ২. অয়নাংশ
         const ay = window.lahiriAY(jd);
-        document.getElementById('ayanamsaDisplay').textContent = `লাহিড়ী আয়নাংশ: ${ay.toFixed(4)}°`;
+        document.getElementById('ayanDisplay').textContent = `লাহিড়ী আয়নাংশ: ${ay.toFixed(4)}°`;
 
-        // ৩. গ্রহের ডাটা (সরাসরি আপনার ফাংশন থেকে)
+        // ৩. গ্রহের ডাটা (সরাসরি আপনার JS ফাইলের ফাংশন থেকে)
         const planets = [
             { name: 'সূর্য', lon: window.sunL(jd) - ay },
             { name: 'চন্দ্র', lon: window.moonL(jd) - ay },
-            { name: 'মঙ্গল', lon: window.marsL(jd) }, // আপনার ফাইলে মঙ্গল অলরেডি নিরয়ণ
+            { name: 'মঙ্গল', lon: window.marsL(jd) }, 
             { name: 'বুধ', lon: window.mercuryL(jd) },
             { name: 'বৃহস্পতি', lon: window.jupiterL(jd) },
             { name: 'শুক্র', lon: window.venusL(jd) },
@@ -73,26 +91,21 @@ function calculateHoroscope() {
 
         let html = '';
         planets.forEach(p => {
-            const r = getRashiAndDegree(window.rev(p.lon));
-            const n = getNakshatraAndPada(window.rev(p.lon));
+            const det = getDetails(p.lon);
             html += `<tr>
                 <td style="font-weight:bold; text-align:left; padding-left:20px;">${p.name}</td>
-                <td>${window.rev(p.lon).toFixed(4)}°</td>
-                <td>${r.rashi}</td>
-                <td>${r.degree.toFixed(2)}°</td>
-                <td>${n.nakshatra}</td>
-                <td>${n.pada}</td>
-                <td>মার্গ</td>
+                <td>${det.rashi}</td>
+                <td>${det.dms}</td>
+                <td>${det.nak}</td>
             </tr>`;
         });
         document.getElementById('resultBody').innerHTML = html;
 
     } catch (error) {
         console.error(error);
-        alert("ইঞ্জিন কাজ করছে না! কনসোল চেক করুন।");
+        alert("ত্রুটি: আপনার vsop87-planets.js ফাইলটি কি একই ফোল্ডারে আছে? চেক করুন।");
     }
 }
-
 </script>
 </body>
 </html>
