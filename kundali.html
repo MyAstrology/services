@@ -1,145 +1,87 @@
-<!DOCTYPE html>
-<html lang="bn">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vedic VSOP87 Engine Checker</title>
-    <style>
-        :root {
-            --primary: #2c3e50;
-            --accent: #d4af37;
-            --bg: #f8f9fa;
-        }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg); margin: 0; padding: 20px; }
-        .container { max-width: 900px; margin: auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        h1 { text-align: center; color: var(--primary); margin-bottom: 30px; border-bottom: 3px solid var(--accent); padding-bottom: 10px; }
-        
-        .input-panel { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; background: #f1f3f5; padding: 20px; border-radius: 10px; margin-bottom: 30px; }
-        .field { display: flex; flex-direction: column; }
-        label { font-weight: bold; margin-bottom: 5px; color: #495057; }
-        input { padding: 10px; border: 1px solid #ced4da; border-radius: 5px; font-size: 16px; }
-        
-        button { width: 100%; padding: 15px; background: var(--primary); color: white; border: none; border-radius: 8px; font-size: 18px; cursor: pointer; transition: 0.3s; }
-        button:hover { background: #1a252f; transform: translateY(-2px); }
-
-        table { width: 100%; border-collapse: collapse; margin-top: 30px; background: white; }
-        th { background: var(--primary); color: white; padding: 15px; }
-        td { padding: 12px; border: 1px solid #dee2e6; text-align: center; font-size: 15px; }
-        tr:hover { background-color: #fff9db; }
-        
-        .badge { padding: 5px 10px; border-radius: 15px; font-size: 12px; font-weight: bold; }
-        .retro { background: #ffe3e3; color: #e03131; }
-        .exalted { background: #ebfbee; color: #2f9e44; }
-        
-        .footer { margin-top: 40px; text-align: center; font-size: 13px; color: #868e96; }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <h1>VSOP87 পঞ্জিকা ইঞ্জিন চেকার</h1>
-    
-    <div class="input-panel">
-        <div class="field">
-            <label>জন্ম তারিখ</label>
-            <input type="date" id="birthDate" value="1986-10-31">
-        </div>
-        <div class="field">
-            <label>সময় (IST)</label>
-            <input type="time" id="birthTime" value="23:59">
-        </div>
-        <div class="field">
-            <label>অক্ষাংশ (Lat)</label>
-            <input type="number" id="lat" value="23.17" step="0.01">
-        </div>
-        <div class="field">
-            <label>দ্রাঘিমাংশ (Lng)</label>
-            <input type="number" id="lng" value="88.58" step="0.01">
-        </div>
-    </div>
-
-    <button onclick="runCalculation()">গণনা করুন</button>
-
-    <div id="resultOutput">
-        <table>
-            <thead>
-                <tr>
-                    <th>গ্রহ/লগ্ন</th>
-                    <th>রাশি</th>
-                    <th>ডিগ্রি (ভুক্তি)</th>
-                    <th>নক্ষত্র (চরণ)</th>
-                    <th>অবস্থা</th>
-                </tr>
-            </thead>
-            <tbody id="tableBody">
-                </tbody>
-        </table>
-    </div>
-
-    <div class="footer">
-        নিখুঁত গাণিতিক ইঞ্জিন: vsop87-planets (2).js | ভিত্তি: VSOP87 & Meeus
-    </div>
-</div>
-
-<script src="src/vsop87-planets (2).js"></script>
+<script src="src/vsop87-planets.js"></script> 
 
 <script>
-    function runCalculation() {
-        const date = document.getElementById('birthDate').value;
-        const time = document.getElementById('birthTime').value;
-        const lat = parseFloat(document.getElementById('lat').value);
-        const lng = parseFloat(document.getElementById('lng').value);
+// শহর সেট করার ফাংশন
+function setCity(lat, lon) {
+    document.getElementById('latitude').value = lat;
+    document.getElementById('longitude').value = lon;
+}
 
-        if (!date || !time) return;
+// বর্তমান সময় সেট
+function setCurrentTime() {
+    const now = new Date();
+    document.getElementById('birthDate').value = now.toISOString().split('T')[0];
+    document.getElementById('hour').value = now.getHours();
+    document.getElementById('minute').value = now.getMinutes();
+    document.getElementById('second').value = now.getSeconds();
+    calculateHoroscope();
+}
 
-        const [y, m, d] = date.split('-').map(Number);
-        const [hh, mm] = time.split(':').map(Number);
+// নক্ষত্র ও রাশি তালিকা (আগের মতোই থাকবে)
+const NAKSHATRAS = ["অশ্বিনী", "ভরণী", "কৃত্তিকা", "রোহিণী", "মৃগশিরা", "আর্দ্রা", "পুনর্বসু", "পুষ্যা", "অশ্লেষা", "মঘা", "পূর্বফাল্গুনী", "উত্তরফাল্গুনী", "হস্তা", "চিত্রা", "স্বাতী", "বিশাখা", "অনুরাধা", "জ্যেষ্ঠা", "মূলা", "পূর্বাষাঢ়া", "উত্তরাষাঢ়া", "শ্রবণা", "ধনিষ্ঠা", "শতভিষা", "পূর্বভাদ্রপদ", "উত্তরভাদ্রপদ", "রেবতী"];
+const RASHIS = ["মেষ", "বৃষ", "মিথুন", "কর্কট", "সিংহ", "কন্যা", "তুলা", "বৃশ্চিক", "ধনু", "মকর", "কুম্ভ", "মীন"];
 
-        // ১. জুলিয়ান ডেট বের করা (আপনার ইঞ্জিন থেকে)
-        const jd = JD(y, m, d) + (hh - 5.5 + mm / 60) / 24;
+function getDetails(lon) {
+    const normLon = rev(lon);
+    const rIdx = Math.floor(normLon / 30);
+    const deg = normLon % 30;
+    const nIdx = Math.floor(normLon / (360/27));
+    const pada = Math.floor((normLon % (360/27)) / (360/108)) + 1;
+    return { rashi: RASHIS[rIdx], degree: deg, nak: NAKSHATRAS[nIdx], pada: pada };
+}
+
+function calculateHoroscope() {
+    try {
+        const dateStr = document.getElementById('birthDate').value;
+        const h = parseInt(document.getElementById('hour').value) || 0;
+        const m = parseInt(document.getElementById('minute').value) || 0;
+        const s = parseInt(document.getElementById('second').value) || 0;
+        const lat = parseFloat(document.getElementById('latitude').value);
+        const lon = parseFloat(document.getElementById('longitude').value);
+
+        const [year, month, day] = dateStr.split('-').map(Number);
         
-        // ২. আপনার ইঞ্জিনের ফাংশনগুলো কল করা (এখানে একটি লুপের মাধ্যমে ডাটা সাজানো হয়েছে)
-        // দ্রষ্টব্য: আপনার ইঞ্জিনের ফাংশনগুলোর নাম অনুযায়ী নিচের ম্যাপটি চেক করে নিন
-        const planets = [
-            { id: 'Lagna', label: 'লগ্ন' },
-            { id: 'Sun', label: 'সূর্য' },
-            { id: 'Moon', label: 'চন্দ্র' },
-            { id: 'Mars', label: 'মঙ্গল' },
-            { id: 'Mercury', label: 'বুধ' },
-            { id: 'Jupiter', label: 'বৃহস্পতি' },
-            { id: 'Venus', label: 'শুক্র' },
-            { id: 'Saturn', label: 'শনি' },
-            { id: 'Rahu', label: 'রাহু' },
-            { id: 'Ketu', label: 'কেতু' }
+        // IST থেকে UT তে রূপান্তর (৫:৩০ ঘণ্টা বিয়োগ)
+        const utHour = h + m/60 + s/3600 - 5.5;
+        const jd = JD(year, month, day) + utHour/24;
+        
+        // আপনার ফাইলের অয়নাংশ ফাংশন
+        const ay = lahiriAY(jd);
+        document.getElementById('ayanamsaDisplay').textContent = `লাহিড়ী আয়নাংশ: ${ay.toFixed(4)}°`;
+
+        // আপনার ফাইলের গ্রহের ফাংশনগুলো ব্যবহার করে ডেটা তৈরি
+        const planetList = [
+            { name: 'সূর্য', lon: rev(sun(jd) - ay) },
+            { name: 'চন্দ্র', lon: rev(moon(jd) - ay) },
+            { name: 'বুধ', lon: rev(mercury(jd) - ay) },
+            { name: 'শুক্র', lon: rev(venus(jd) - ay) },
+            { name: 'মঙ্গল', lon: rev(mars(jd) - ay) },
+            { name: 'বৃহস্পতি', lon: rev(jupiter(jd) - ay) },
+            { name: 'শনি', lon: rev(saturn(jd) - ay) },
+            { name: 'রাহু', lon: rev(rahu(jd)) }, // রাহু সাধারণত সায়নাংশেই থাকে আপনার ফাইলে
+            { name: 'কেতু', lon: rev(rahu(jd) + 180) }
         ];
 
-        let rows = "";
-        
-        // এটি একটি ডেমো লুপ। আপনার ইঞ্জিনের মেইন আউটপুট অবজেক্টটি এখানে বসাতে হবে।
-        planets.forEach(p => {
-            // উদাহরণস্বরূপ আপনার ইঞ্জিনের আউটপুট ফরম্যাট অনুযায়ী:
-            // let data = getPlanetData(p.id, jd, lat, lng);
-            
-            rows += `
-                <tr>
-                    <td><strong>${p.label}</strong></td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td><span class="badge">অপেক্ষা করুন...</span></td>
-                </tr>
-            `;
+        let html = '';
+        planetList.forEach(p => {
+            const d = getDetails(p.lon);
+            html += `<tr>
+                <td class="planet-name">${p.name}</td>
+                <td>${p.lon.toFixed(4)}°</td>
+                <td>${d.rashi}</td>
+                <td>${d.degree.toFixed(2)}°</td>
+                <td>${d.nak}</td>
+                <td>${d.pada}</td>
+                <td>মার্গ</td>
+            </tr>`;
         });
+        document.getElementById('resultBody').innerHTML = html;
 
-        document.getElementById('tableBody').innerHTML = "<tr><td colspan='5'>আপনার ইঞ্জিনের সাথে কানেক্ট করা হচ্ছে... (ইঞ্জিন ফাইলটি ফোল্ডারে রাখুন)</td></tr>";
-        
-        // সঠিক আউটপুট দেখানোর জন্য আপনার ইঞ্জিনের মেইন ক্যালকুলেশন লুপটি এখানে বসান
-        console.log("Calculated JD:", jd);
+    } catch (error) {
+        console.error(error);
+        alert("আপনার vsop87-planets.js ফাইলটি লোড হতে পারেনি। ফাইলের নাম চেক করুন।");
     }
+}
 
-    // পেজ লোড হলে একবার রান হবে
-    window.onload = runCalculation;
+window.onload = calculateHoroscope;
 </script>
-
-</body>
-</html>
