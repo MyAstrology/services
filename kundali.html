@@ -50,9 +50,7 @@
         <thead>
             <tr><th>গ্রহ</th><th>রাশি</th><th>ডিগ্রি</th><th>নক্ষত্র (পদ)</th></tr>
         </thead>
-        <tbody id="dataBody">
-            <tr><td colspan="4">তথ্য প্রদর্শনের জন্য গণনা করুন</td></tr>
-        </tbody>
+        <tbody id="dataBody"></tbody>
     </table>
 </div>
 
@@ -61,66 +59,38 @@
 const R_NAMES = ["মেষ", "বৃষ", "মিথুন", "কর্কট", "সিংহ", "কন্যা", "তুলা", "বৃশ্চিক", "ধনু", "মকর", "কুম্ভ", "মীন"];
 const N_NAMES = ["অশ্বিনী", "ভরণী", "কৃত্তিকা", "রোহিণী", "মৃগশিরা", "আর্দ্রা", "পুনর্বসু", "পুষ্যা", "অশ্লেষা", "মঘা", "পূর্বফাল্গুনী", "উত্তরফাল্গুনী", "হস্তা", "চিত্রা", "স্বাতী", "বিশাখা", "অনুরাধা", "জ্যেষ্ঠা", "মূলা", "পূর্বাষাঢ়া", "উত্তরাষাঢ়া", "শ্রবণা", "ধনিষ্ঠা", "শতভিষা", "পূর্বভাদ্রপদ", "উত্তরভাদ্রপদ", "রেবতী"];
 
-// ১. আপনার ম্যাপ অনুযায়ী ঘরগুলোর স্থানাঙ্ক (ঘড়ির কাঁটার বিপরীতে / Counter-Clockwise)
+// ১. পূর্ব ভারতীয় মডেলে রাশি নির্দিষ্ট ঘরে থাকে (মেষ=০ থেকে মীন=১১)
 const CUSTOM_MAP = [
-    {x: 180, y: 55},  // 0: মেষ (Top Middle)
-    {x: 60, y: 55},   // 1: বৃষ (Top Left Inner)
-    {x: 40, y: 40},   // 2: মিথুন (Top Left Corner)
-    {x: 45, y: 150},  // 3: কর্কট (Left Middle)
-    {x: 40, y: 320},  // 4: সিংহ (Bottom Left Corner)
-    {x: 60, y: 315},  // 5: কন্যা (Bottom Left Inner)
-    {x: 180, y: 315}, // 6: তুলা (Bottom Middle)
-    {x: 300, y: 320}, // 7: বৃশ্চিক (Bottom Right Corner)
-    {x: 315, y: 270}, // 8: ধনু (Bottom Right Inner)
-    {x: 320, y: 150}, // 9: মকর (Right Middle)
-    {x: 315, y: 40},  // 10: কুম্ভ (Top Right Corner)
-    {x: 300, y: 55}   // 11: মীন (Top Right Inner)
+    {x: 180, y: 55},  // 0: মেষ (ওপরের মাঝখানে)
+    {x: 60, y: 55},   // 1: বৃষ
+    {x: 40, y: 40},   // 2: মিথুন
+    {x: 45, y: 150},  // 3: কর্কট
+    {x: 40, y: 320},  // 4: সিংহ
+    {x: 60, y: 315},  // 5: কন্যা
+    {x: 180, y: 315}, // 6: তুলা
+    {x: 300, y: 320}, // 7: বৃশ্চিক
+    {x: 315, y: 270}, // 8: ধনু
+    {x: 320, y: 150}, // 9: মকর
+    {x: 315, y: 40},  // 10: কুম্ভ
+    {x: 300, y: 55}   // 11: মীন
 ];
 
-// ২. সংশোধিত ডিসপ্লে ফাংশন
-function drawOutput(planets) {
-    const pGroup = document.getElementById('planetsGroup');
-    const rGroup = document.getElementById('rashiLabels');
-    const tBody = document.getElementById('dataBody');
-    pGroup.innerHTML = ''; rGroup.innerHTML = ''; tBody.innerHTML = '';
-
-    const rashiData = Array.from({length: 12}, () => []);
-
-    planets.forEach(p => {
-        const lon = window.rev(p.v);
-        const rIdx = Math.floor(lon / 30);
-        const nIdx = Math.floor(lon / (360/27));
-        const pada = Math.floor((lon % (360/27)) / (360/108)) + 1;
-        
-        rashiData[rIdx].push(`${p.id}(${nIdx + 1})`);
-
-        tBody.innerHTML += `<tr>
-            <td style="font-weight:bold">${p.n}</td>
-            <td>${R_NAMES[rIdx]}</td>
-            <td>${(lon % 30).toFixed(2)}°</td>
-            <td>${N_NAMES[nIdx]} (${pada})</td>
-        </tr>`;
-    });
-
-    CUSTOM_MAP.forEach((pos, i) => {
-        // রাশির নাম বসানো
-        const rText = document.createElementNS("http://www.w3.org/2000/svg", "text");
-        rText.setAttribute("x", pos.x); rText.setAttribute("y", pos.y - 15);
-        rText.setAttribute("text-anchor", "middle"); rText.setAttribute("class", "rashi-label");
-        rText.textContent = R_NAMES[i];
-        rGroup.appendChild(rText);
-
-        // গ্রহের নাম ও নক্ষত্র বসানো
-        if(rashiData[i].length > 0) {
-            const pText = document.createElementNS("http://www.w3.org/2000/svg", "text");
-            pText.setAttribute("x", pos.x); pText.setAttribute("y", pos.y + 5);
-            pText.setAttribute("text-anchor", "middle"); pText.setAttribute("class", "planet-txt");
-            pText.textContent = rashiData[i].join(",");
-            pGroup.appendChild(pText);
-        }
-    });
-}
-
+// লগ্ন গণনার হেল্পার ফাংশন
+window.getLagna = function(jd, lat, lon) {
+    const T = (jd - 2451545.0) / 36525.0;
+    const JD0 = Math.floor(jd - 0.5) + 0.5;
+    const UT = (jd - JD0) * 24.0;
+    const T0 = (JD0 - 2451545.0) / 36525.0;
+    let gmst = 100.46061837 + 36000.770053608 * T0 + 0.000387933 * T0 * T0 + 360.985647366 * (UT / 24.0);
+    gmst = ((gmst % 360) + 360) % 360;
+    let lst = ((gmst + lon) % 360 + 360) % 360 * (Math.PI / 180);
+    let eps = (23.4392911 - (46.8150 / 3600) * T) * (Math.PI / 180);
+    let latR = lat * (Math.PI / 180);
+    let y = -Math.cos(lst);
+    let x = Math.sin(eps) * Math.tan(latR) + Math.cos(eps) * Math.sin(lst);
+    let asc = Math.atan2(y, x) * (180 / Math.PI);
+    return ((asc % 360) + 360) % 360;
+};
 
 function calculateKundali() {
     try {
@@ -146,7 +116,7 @@ function calculateKundali() {
             {id: "কে", n: "কেতু", v: (window.rahuL(jd) - ay) + 180}
         ];
         drawOutput(planets);
-    } catch(e) { alert("ইঞ্জিন লোড হতে পারেনি। পাথ চেক করুন।"); }
+    } catch(e) { console.error(e); alert("গণনা করতে ত্রুটি হয়েছে। কনসোল দেখুন।"); }
 }
 
 function drawOutput(planets) {
