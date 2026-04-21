@@ -2515,15 +2515,21 @@ function detectYogas(positions) {
   return yogas;
 }
 
-module.exports.JD_IST = JD_IST;
-module.exports.getAspects = getAspects;
-module.exports.getMoonAspects = getMoonAspects;
-module.exports.detectYogas = detectYogas;
-
-// Updated module.exports:
-module.exports = {
-  JD, lahiriAY,
-  sunL, moonL, mercuryL, venusL, marsL, jupiterL, saturnL, rahuL, ketuL,
-  isRetrograde, getRetrogrades, planetaryPositions,
-  JD_IST, getAspects, getMoonAspects, detectYogas,
-};
+// ফাইলের শেষে module.exports এর বদলে এটি ব্যবহার করুন
+if (typeof window !== 'undefined') {
+    window.JD = JD;
+    window.lahiriAY = lahiriAY;
+    window.sunL = sunL;
+    window.moonL = moonL;
+    window.mercuryL = mercuryL;
+    window.venusL = venusL;
+    window.marsL = marsL; // নিশ্চিত করুন marsL ফাংশনটি পূর্ণাঙ্গ
+    window.jupiterL = jupiterL;
+    window.saturnL = saturnL;
+    window.rahuL = rahuL;
+    window.ketuL = ketuL;
+    window.rev = rev;
+    window.planetaryPositions = planetaryPositions;
+    window.getRetrogrades = getRetrogrades;
+    window.JD_IST = JD_IST;
+}
