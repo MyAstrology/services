@@ -2,147 +2,90 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VSOP87 নিখুঁত পঞ্জিকা ক্যালকুলেটর</title>
+    <title>VSOP87 Engine Test</title>
     <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; background: #fdf6e3; margin: 0; padding: 20px; color: #5a4430; }
-        .container { max-width: 1000px; margin: auto; background: white; padding: 25px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid #d4b99b; }
-        h1 { text-align: center; color: #3b2b1f; border-bottom: 2px solid #d4b99b; padding-bottom: 10px; }
-        .input-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; background: #faf6f2; padding: 20px; border-radius: 10px; margin-bottom: 25px; }
-        .group { display: flex; flex-direction: column; }
-        label { font-weight: bold; margin-bottom: 5px; }
-        input { padding: 10px; border: 1px solid #d0bca8; border-radius: 6px; font-size: 15px; }
-        button { width: 100%; padding: 15px; background: #7a5d44; color: white; border: none; border-radius: 8px; font-size: 18px; cursor: pointer; transition: 0.3s; font-weight: bold; }
-        button:hover { background: #5d4531; }
-        table { width: 100%; border-collapse: collapse; margin-top: 30px; }
-        th { background: #8b725a; color: white; padding: 12px; }
-        td { padding: 10px; border: 1px solid #e8d9cc; text-align: center; }
-        tr:nth-child(even) { background: #faf6f2; }
-        .info { text-align: center; margin: 15px 0; font-weight: bold; color: #7a5d44; }
-        .footer { text-align: center; font-size: 12px; margin-top: 30px; color: #999; }
+        body { font-family: sans-serif; background: #f4f1ea; padding: 20px; }
+        .box { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); max-width: 900px; margin: auto; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #d1bfa7; padding: 10px; text-align: center; }
+        th { background: #8d735b; color: white; }
+        button { background: #7a5d44; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>🌙 বৈদিক গ্রহস্থিতি ক্যালকুলেটর (VSOP87)</h1>
-    
-    <div class="input-grid">
-        <div class="group">
-            <label>জন্ম তারিখ</label>
-            <input type="date" id="date" value="1986-10-31">
-        </div>
-        <div class="group">
-            <label>সময় (IST)</label>
-            <input type="time" id="time" value="23:59">
-        </div>
-        <div class="group">
-            <label>অক্ষাংশ (Lat)</label>
-            <input type="number" id="lat" value="23.17" step="0.01">
-        </div>
-        <div class="group">
-            <label>দ্রাঘিমাংশ (Lng)</label>
-            <input type="number" id="lng" value="88.58" step="0.01">
-        </div>
+<div class="box">
+    <h2>🌙 গ্রহাবস্থান পরীক্ষা (VSOP87)</h2>
+    <div style="margin-bottom: 15px;">
+        তারিখ: <input type="date" id="d" value="1986-10-31">
+        সময়: <input type="time" id="t" value="23:59">
+        <button onclick="check()">গণনা করুন</button>
     </div>
 
-    <button onclick="calculate()">🔍 গণনা করুন</button>
-
-    <div class="info" id="ayanDisplay">লাহিড়ী অয়নাংশ: --</div>
+    <div id="ayan">অয়নাংশ: --</div>
 
     <table>
         <thead>
             <tr>
-                <th>গ্রহ/লগ্ন</th>
+                <th>গ্রহ</th>
                 <th>রাশি</th>
                 <th>ডিগ্রি (ভুক্তি)</th>
-                <th>নক্ষত্র (চরণ)</th>
-                <th>অবস্থা</th>
+                <th>নক্ষত্র (পদ)</th>
             </tr>
         </thead>
-        <tbody id="resultBody">
-            <tr><td colspan="5">তথ্য প্রদর্শনের জন্য গণনা করুন বাটনে ক্লিক করুন</td></tr>
-        </tbody>
+        <tbody id="out"></tbody>
     </table>
-
-    <div class="footer">
-        ইঞ্জিন: vsop87-planets (2).js | ভিত্তি: VSOP87D & Meeus Algorithm
-    </div>
 </div>
 
 <script src="vsop87-planets.js"></script>
 
 <script>
-const RASHIS = ["মেষ", "বৃষ", "মিথুন", "কর্কট", "সিংহ", "কন্যা", "তুলা", "বৃশ্চিক", "ধনু", "মকর", "কুম্ভ", "মীন"];
-const NAKSHATRAS = ["অশ্বিনী", "ভরণী", "কৃত্তিকা", "রোহিণী", "মৃগশিরা", "আর্দ্রা", "পুনর্বসু", "পুষ্যা", "অশ্লেষা", "মঘা", "পূর্বফাল্গুনী", "উত্তরফাল্গুনী", "হস্তা", "চিত্রা", "স্বাতী", "বিশাখা", "অনুরাধা", "জ্যেষ্ঠা", "মূলা", "পূর্বাষাঢ়া", "উত্তরাষাঢ়া", "শ্রবণা", "ধনিষ্ঠা", "শতভিষা", "পূর্বভাদ্রপদ", "উত্তরভাদ্রপদ", "রেবতী"];
+const R = ["মেষ", "বৃষ", "মিথুন", "কর্কট", "সিংহ", "কন্যা", "তুলা", "বৃশ্চিক", "ধনু", "মকর", "কুম্ভ", "মীন"];
+const N = ["অশ্বিনী", "ভরণী", "কৃত্তিকা", "রোহিণী", "মৃগশিরা", "আর্দ্রা", "পুনর্বসু", "পুষ্যা", "অশ্লেষা", "মঘা", "পূর্বফাল্গুনী", "উত্তরফাল্গুনী", "হস্তা", "চিত্রা", "স্বাতী", "বিশাখা", "অনুরাধা", "জ্যেষ্ঠা", "মূলা", "পূর্বাষাঢ়া", "উত্তরাষাঢ়া", "শ্রবণা", "ধনিষ্ঠা", "শতভিষা", "পূর্বভাদ্রপদ", "উত্তরভাদ্রপদ", "রেবতী"];
 
-function getDetails(lon) {
-    const l = rev(lon);
+function getInfo(lon) {
+    const l = ((lon % 360) + 360) % 360;
     const rIdx = Math.floor(l / 30);
     const deg = l % 30;
     const nIdx = Math.floor(l / (360/27));
     const pada = Math.floor((l % (360/27)) / (360/108)) + 1;
-    return {
-        rashi: RASHIS[rIdx % 12],
-        dms: `${Math.floor(deg)}°${Math.floor((deg%1)*60)}'${Math.floor(((deg%1)*60)%1*60)}"`,
-        nak: `${NAKSHATRAS[nIdx % 27]} (${pada})`
-    };
+    return { r: R[rIdx], d: deg.toFixed(2), n: N[nIdx], p: pada };
 }
 
-function calculate() {
+function check() {
     try {
-        const dStr = document.getElementById('date').value;
-        const tStr = document.getElementById('time').value;
-        if(!dStr || !tStr) return;
+        const dt = document.getElementById('d').value.split('-');
+        const tm = document.getElementById('t').value.split(':');
+        const y = parseInt(dt[0]), m = parseInt(dt[1]), d = parseInt(dt[2]);
+        const h = parseInt(tm[0]), min = parseInt(tm[1]);
 
-        const [y, m, d] = dStr.split('-').map(Number);
-        const [hh, mm] = tStr.split(':').map(Number);
-        const lat = parseFloat(document.getElementById('lat').value);
-        const lng = parseFloat(document.getElementById('lng').value);
-
-        // ১. জুলিয়ান ডে গণনা (IST to UT -5.5 hours)
-        const jd = JD(y, m, d) + (hh - 5.5 + mm/60)/24;
-        
-        // ২. অয়নাংশ
+        // আপনার ফাইলের JD ফাংশন (IST to UT: -5.5)
+        const jd = JD(y, m, d) + (h - 5.5 + min/60)/24;
         const ay = lahiriAY(jd);
-        document.getElementById('ayanDisplay').innerText = `লাহিড়ী অয়নাংশ: ${ay.toFixed(4)}°`;
+        document.getElementById('ayan').innerText = "লাহিড়ী অয়নাংশ: " + ay.toFixed(4);
 
-        // ৩. গ্রহের অবস্থান (আপনার ইঞ্জিনের ফাংশন কল করা)
-        const planetList = [
-            { name: 'সূর্য', pos: rev(sun(jd) - ay) },
-            { name: 'চন্দ্র', pos: rev(moon(jd) - ay) },
-            { name: 'মঙ্গল', pos: rev(mars(jd) - ay) },
-            { name: 'বুধ', pos: rev(mercury(jd) - ay) },
-            { name: 'বৃহস্পতি', pos: rev(jupiter(jd) - ay) },
-            { name: 'শুক্র', pos: rev(venus(jd) - ay) },
-            { name: 'শনি', pos: rev(saturn(jd) - ay) },
-            { name: 'রাহু', pos: rev(rahu(jd)) },
-            { name: 'কেতু', pos: rev(rahu(jd) + 180) }
+        // আপনার ফাইলের আসল ফাংশনগুলো কল করা হচ্ছে
+        const planets = [
+            { n: 'সূর্য', v: sun(jd) - ay },
+            { n: 'চন্দ্র', v: moon(jd) - ay },
+            { n: 'মঙ্গল', v: mars(jd) - ay },
+            { n: 'বুধ', v: mercury(jd) - ay },
+            { n: 'বৃহস্পতি', v: jupiter(jd) - ay },
+            { n: 'শুক্র', v: venus(jd) - ay },
+            { n: 'শনি', v: saturn(jd) - ay }
         ];
 
-        let html = "";
-        planetList.forEach(p => {
-            const det = getDetails(p.pos);
-            html += `<tr>
-                <td><strong>${p.name}</strong></td>
-                <td>${det.rashi}</td>
-                <td>${det.dms}</td>
-                <td>${det.nak}</td>
-                <td>মার্গ</td>
-            </tr>`;
+        let htm = "";
+        planets.forEach(p => {
+            const i = getInfo(p.v);
+            htm += `<tr><td>${p.n}</td><td>${i.r}</td><td>${i.d}°</td><td>${i.n} (${i.p})</td></tr>`;
         });
-
-        document.getElementById('resultBody').innerHTML = html;
-
+        document.getElementById('out').innerHTML = htm;
     } catch (e) {
-        alert("ইঞ্জিন ফাইলটি পাওয়া যায়নি। নিশ্চিত করুন ফাইলের নাম vsop87-planets.js এবং এটি index.html এর পাশেই আছে।");
-        console.error(e);
+        alert("ভুল: " + e.message + "\nনিশ্চিত করুন vsop87-planets.js ফাইলটি ঠিক আছে।");
     }
 }
-
-// পেজ লোড হলে একবার রান হবে
-window.onload = calculate;
+window.onload = check;
 </script>
-
 </body>
 </html>
