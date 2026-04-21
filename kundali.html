@@ -43,49 +43,56 @@
 const R = ["মেষ", "বৃষ", "মিথুন", "কর্কট", "সিংহ", "কন্যা", "তুলা", "বৃশ্চিক", "ধনু", "মকর", "কুম্ভ", "মীন"];
 const N = ["অশ্বিনী", "ভরণী", "কৃত্তিকা", "রোহিণী", "মৃগশিরা", "আর্দ্রা", "পুনর্বসু", "পুষ্যা", "অশ্লেষা", "মঘা", "পূর্বফাল্গুনী", "উত্তরফাল্গুনী", "হস্তা", "চিত্রা", "স্বাতী", "বিশাখা", "অনুরাধা", "জ্যেষ্ঠা", "মূলা", "পূর্বাষাঢ়া", "উত্তরাষাঢ়া", "শ্রবণা", "ধনিষ্ঠা", "শতভিষা", "পূর্বভাদ্রপদ", "উত্তরভাদ্রপদ", "রেবতী"];
 
-function getInfo(lon) {
-    const l = ((lon % 360) + 360) % 360;
-    const rIdx = Math.floor(l / 30);
-    const deg = l % 30;
-    const nIdx = Math.floor(l / (360/27));
-    const pada = Math.floor((l % (360/27)) / (360/108)) + 1;
-    return { r: R[rIdx], d: deg.toFixed(2), n: N[nIdx], p: pada };
-}
-
-function check() {
+function calculateHoroscope() {
     try {
-        const dt = document.getElementById('d').value.split('-');
-        const tm = document.getElementById('t').value.split(':');
-        const y = parseInt(dt[0]), m = parseInt(dt[1]), d = parseInt(dt[2]);
-        const h = parseInt(tm[0]), min = parseInt(tm[1]);
+        const dateStr = document.getElementById('birthDate').value;
+        const h = parseInt(document.getElementById('hour').value) || 0;
+        const m = parseInt(document.getElementById('minute').value) || 0;
+        const s = parseInt(document.getElementById('second').value) || 0;
+        const [year, month, day] = dateStr.split('-').map(Number);
+        
+        // ১. জুলিয়ান ডে গণনা (IST to UT: -5.5)
+        const jd = window.JD(year, month, day) + (h - 5.5 + m/60 + s/3600)/24;
+        
+        // ২. অয়নাংশ
+        const ay = window.lahiriAY(jd);
+        document.getElementById('ayanamsaDisplay').textContent = `লাহিড়ী আয়নাংশ: ${ay.toFixed(4)}°`;
 
-        // আপনার ফাইলের JD ফাংশন (IST to UT: -5.5)
-        const jd = JD(y, m, d) + (h - 5.5 + min/60)/24;
-        const ay = lahiriAY(jd);
-        document.getElementById('ayan').innerText = "লাহিড়ী অয়নাংশ: " + ay.toFixed(4);
-
-        // আপনার ফাইলের আসল ফাংশনগুলো কল করা হচ্ছে
+        // ৩. গ্রহের ডাটা (সরাসরি আপনার ফাংশন থেকে)
         const planets = [
-            { n: 'সূর্য', v: sun(jd) - ay },
-            { n: 'চন্দ্র', v: moon(jd) - ay },
-            { n: 'মঙ্গল', v: mars(jd) - ay },
-            { n: 'বুধ', v: mercury(jd) - ay },
-            { n: 'বৃহস্পতি', v: jupiter(jd) - ay },
-            { n: 'শুক্র', v: venus(jd) - ay },
-            { n: 'শনি', v: saturn(jd) - ay }
+            { name: 'সূর্য', lon: window.sunL(jd) - ay },
+            { name: 'চন্দ্র', lon: window.moonL(jd) - ay },
+            { name: 'মঙ্গল', lon: window.marsL(jd) }, // আপনার ফাইলে মঙ্গল অলরেডি নিরয়ণ
+            { name: 'বুধ', lon: window.mercuryL(jd) },
+            { name: 'বৃহস্পতি', lon: window.jupiterL(jd) },
+            { name: 'শুক্র', lon: window.venusL(jd) },
+            { name: 'শনি', lon: window.saturnL(jd) },
+            { name: 'রাহু', lon: window.rahuL(jd) - ay },
+            { name: 'কেতু', lon: (window.rahuL(jd) - ay) + 180 }
         ];
 
-        let htm = "";
+        let html = '';
         planets.forEach(p => {
-            const i = getInfo(p.v);
-            htm += `<tr><td>${p.n}</td><td>${i.r}</td><td>${i.d}°</td><td>${i.n} (${i.p})</td></tr>`;
+            const r = getRashiAndDegree(window.rev(p.lon));
+            const n = getNakshatraAndPada(window.rev(p.lon));
+            html += `<tr>
+                <td style="font-weight:bold; text-align:left; padding-left:20px;">${p.name}</td>
+                <td>${window.rev(p.lon).toFixed(4)}°</td>
+                <td>${r.rashi}</td>
+                <td>${r.degree.toFixed(2)}°</td>
+                <td>${n.nakshatra}</td>
+                <td>${n.pada}</td>
+                <td>মার্গ</td>
+            </tr>`;
         });
-        document.getElementById('out').innerHTML = htm;
-    } catch (e) {
-        alert("ভুল: " + e.message + "\nনিশ্চিত করুন vsop87-planets.js ফাইলটি ঠিক আছে।");
+        document.getElementById('resultBody').innerHTML = html;
+
+    } catch (error) {
+        console.error(error);
+        alert("ইঞ্জিন কাজ করছে না! কনসোল চেক করুন।");
     }
 }
-window.onload = check;
+
 </script>
 </body>
 </html>
