@@ -787,6 +787,12 @@
     <priority>0.72</priority>
   </url>
   <url>
+    <loc>https://www.myastrology.in/kundali.html</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
     <loc>https://www.myastrology.in/numerology.html</loc>
     <lastmod>2026-04-21</lastmod>
     <changefreq>monthly</changefreq>
