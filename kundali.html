@@ -1,114 +1,154 @@
-<!DOCTYPE html>
-<html lang="bn">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>বৈদিক গ্রহস্থিতি ক্যালকুলেটর</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', 'Noto Sans Bengali', Arial, sans-serif;
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-            background: #f5f0eb;
-        }
-        .container {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #3b2b1f;
-            border-bottom: 2px solid #d4b99b;
-            padding-bottom: 15px;
-            margin-bottom: 25px;
-        }
-        .input-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 25px;
-            background: #faf6f2;
-            padding: 20px;
-            border-radius: 10px;
-        }
-        .input-group {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-        .input-group label {
-            font-weight: bold;
-            color: #5a4430;
-        }
-        .input-group input, .input-group select {
-            padding: 10px;
-            border: 1px solid #d0bca8;
-            border-radius: 6px;
-            font-size: 14px;
-        }
-        .time-input {
-            display: flex;
-            gap: 5px;
-            align-items: center;
-        }
-        .time-input input {
-            width: 60px;
-            text-align: center;
-        }
-        button {
-            background: #7a5d44;
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.2s;
-            margin-right: 10px;
-        }
-        button:hover {
-            background: #5d4531;
-        }
-        .result-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 25px;
-            background: white;
-        }
-        .result-table th {
-            background: #8b725a;
-            color: white;
-            padding: 12px;
-            text-align: center;
-            font-weight: 600;
-        }
-        .result-table td {
-            padding: 10px;
-            text-align: center;
-            border-bottom: 1px solid #e8d9cc;
-        }
-        .result-table tr:hover {
-            background: #f5f0eb;
-        }
-        .planet-name {
-            font-weight: bold;
-            text-align: left;
-            padding-left: 20px;
-        }
-        .retrograde {
-            color: #d32f2f;
-            font-weight: bold;
-        }
-        .info-panel {
             background: #e8ddd2;
             padding: 12px 20px;
             border-radius: 8px;
             margin: 20px 0;
             display: flex;
-            justify-content: space-between;
+            justify-content: space-between;<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vedic Kundali Engine & Chart</title>
+    <style>
+        body { font-family: sans-serif; background: #fdf6e3; text-align: center; padding: 20px; }
+        .main-container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.1); }
+        .chart-container { margin: 20px 0; display: flex; justify-content: center; }
+        svg { background: #fffcf5; border: 2px solid #8d735b; border-radius: 8px; }
+        .input-box { background: #faf6f2; padding: 15px; border-radius: 10px; margin-bottom: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        input { padding: 8px; border: 1px solid #d0bca8; border-radius: 4px; }
+        button { grid-column: span 2; padding: 12px; background: #7a5d44; color: white; border: none; cursor: pointer; font-weight: bold; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #e8d9cc; padding: 8px; font-size: 14px; }
+        th { background: #8d735b; color: white; }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+    <h1>🌙 বৈদিক রাশিচক্র ও কুষ্ঠি</h1>
+
+    <div class="input-box">
+        <input type="date" id="birthDate" value="1986-10-31">
+        <input type="time" id="birthTime" value="23:59">
+        <input type="number" id="lat" value="22.57" step="0.01" placeholder="অক্ষাংশ">
+        <input type="number" id="lon" value="88.36" step="0.01" placeholder="দ্রাঘিমাংশ">
+        <button onclick="mainCalculation()">গণনা করুন ও ছক তৈরি করুন</button>
+    </div>
+
+    <div class="chart-container">
+        <svg id="kundaliSVG" width="350" height="350" viewBox="0 0 400 400">
+            <path d="M0 0 L400 0 L400 400 L0 400 Z" fill="none" stroke="#8d735b" stroke-width="2"/>
+            <path d="M0 0 L400 400 M400 0 L0 400" stroke="#8d735b" stroke-width="1"/>
+            <path d="M200 0 L400 200 L200 400 L0 200 Z" fill="none" stroke="#8d735b" stroke-width="2"/>
+            <g id="planetLabels"></g>
+        </svg>
+    </div>
+
+    <div id="ayanText" style="font-weight:bold; color:#7a5d44;"></div>
+
+    <table id="resultTable">
+        <thead>
+            <tr><th>গ্রহ</th><th>রাশি</th><th>ডিগ্রি</th><th>নক্ষত্র</th></tr>
+        </thead>
+        <tbody id="resultBody"></tbody>
+    </table>
+</div>
+
+<script src="vsop87-planets.js"></script>
+
+<script>
+const RASHI_NAMES = ["মেষ", "বৃষ", "মিথুন", "কর্কট", "সিংহ", "কন্যা", "তুলা", "বৃশ্চিক", "ধনু", "মকর", "কুম্ভ", "মীন"];
+const NAK_NAMES = ["অশ্বিনী", "ভরণী", "কৃত্তিকা", "রোহিণী", "মৃগশিরা", "আর্দ্রা", "পুনর্বসু", "পুষ্যা", "অশ্লেষা", "মঘা", "পূর্বফাল্গুনী", "উত্তরফাল্গুনী", "হস্তা", "চিত্রা", "স্বাতী", "বিশাখা", "অনুরাধা", "জ্যেষ্ঠা", "মূলা", "পূর্বাষাঢ়া", "উত্তরাষাঢ়া", "শ্রবণা", "ধনিষ্ঠা", "শতভিষা", "পূর্বভাদ্রপদ", "উত্তরভাদ্রপদ", "রেবতী"];
+
+// ১২টি ঘরের স্থানাঙ্ক (Coordinates) ম্যাপিং
+const houseCoords = {
+    1: { x: 200, y: 140 }, 2: { x: 130, y: 70 },  3: { x: 70, y: 130 }, 4: { x: 140, y: 200 },
+    5: { x: 70, y: 270 },  6: { x: 130, y: 330 }, 7: { x: 200, y: 260 }, 8: { x: 270, y: 330 },
+    9: { x: 330, y: 270 }, 10: { x: 260, y: 200 }, 11: { x: 330, y: 130 }, 12: { x: 270, y: 70 }
+};
+
+function mainCalculation() {
+    try {
+        const dStr = document.getElementById('birthDate').value;
+        const tStr = document.getElementById('birthTime').value;
+        const lat = parseFloat(document.getElementById('lat').value);
+        const lon = parseFloat(document.getElementById('lon').value);
+
+        const [y, m, d] = dStr.split('-').map(Number);
+        const [hh, mm] = tStr.split(':').map(Number);
+        const jd = window.JD(y, m, d) + (hh - 5.5 + mm/60)/24;
+        const ay = window.lahiriAY(jd);
+
+        // লগ্ন গণনা
+        const lagnaTrop = window.getLagna(jd, lat, lon);
+        const lagnaSid = window.rev(lagnaTrop - ay);
+        const lagnaRashiIdx = Math.floor(lagnaSid / 30);
+
+        const planets = [
+            { name: 'ল', lon: lagnaSid },
+            { name: 'সূ', lon: window.sunL(jd) - ay },
+            { name: 'চ', lon: window.moonL(jd) - ay },
+            { name: 'ম', lon: window.marsL(jd) },
+            { name: 'বু', lon: window.mercuryL(jd) },
+            { name: 'বৃ', lon: window.jupiterL(jd) },
+            { name: 'শু', lon: window.venusL(jd) },
+            { name: 'শ', lon: window.saturnL(jd) },
+            { name: 'রা', lon: window.rahuL(jd) - ay },
+            { name: 'কে', lon: (window.rahuL(jd) - ay) + 180 }
+        ];
+
+        // ১. টেবিল আপডেট
+        updateTable(planets, ay);
+
+        // ২. ছবির ওপর গ্রহ বসানো
+        drawPlanetsOnChart(planets, lagnaRashiIdx);
+
+    } catch (e) {
+        alert("ইঞ্জিন ত্রুটি! ফাইল চেক করুন।");
+    }
+}
+
+function drawPlanetsOnChart(planets, lagnaRashiIdx) {
+    const group = document.getElementById('planetLabels');
+    group.innerHTML = ''; 
+    const houseMap = {};
+
+    planets.forEach(p => {
+        const planetRashiIdx = Math.floor(window.rev(p.lon) / 30);
+        const houseNum = ((planetRashiIdx - lagnaRashiIdx + 12) % 12) + 1;
+        
+        if (!houseMap[houseNum]) houseMap[houseNum] = [];
+        houseMap[houseNum].push(p.name);
+    });
+
+    for (let house in houseMap) {
+        const coord = houseCoords[house];
+        const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        text.setAttribute("x", coord.x);
+        text.setAttribute("y", coord.y);
+        text.setAttribute("text-anchor", "middle");
+        text.setAttribute("font-size", "14px");
+        text.setAttribute("font-weight", "bold");
+        text.textContent = houseMap[house].join(", ");
+        group.appendChild(text);
+    }
+}
+
+function updateTable(planets, ay) {
+    let html = "";
+    planets.forEach(p => {
+        const l = window.rev(p.lon);
+        const rIdx = Math.floor(l / 30);
+        const nIdx = Math.floor(l / (360/27));
+        html += `<tr><td>${p.name}</td><td>${RASHI_NAMES[rIdx]}</td><td>${(l%30).toFixed(2)}°</td><td>${NAK_NAMES[nIdx]}</td></tr>`;
+    });
+    document.getElementById('resultBody').innerHTML = html;
+    document.getElementById('ayanText').innerText = `অয়নাংশ: ${ay.toFixed(4)}°`;
+}
+</script>
+</body>
+</html>
+
         }
         .city-presets {
             display: flex;
