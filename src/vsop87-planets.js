@@ -2275,8 +2275,6 @@ function ketuL(jd) {
 // decreases over a 2-day span
 // ─────────────────────────────────────────────
 function isRetrograde(fn, jd) {
-  // For marsL (returns sidereal), compare directly
-  // For others (tropical), still works
   let d = fn(jd + 1) - fn(jd - 1);
   if (d >  300) d -= 360;
   if (d < -300) d += 360;
@@ -2284,17 +2282,10 @@ function isRetrograde(fn, jd) {
 }
 
 function getRetrogrades(jd) {
-  // Note: use _marsL_formula for retrograde since marsL=sidereal LUT
-  const marsRetro = (function() {
-    const a = _marsL_formula(jd - 1);
-    const b = _marsL_formula(jd + 1);
-    let d = b - a; if (d > 300) d -= 360; if (d < -300) d += 360;
-    return d < 0;
-  })();
   return {
     mercury : isRetrograde(mercuryL, jd),
     venus   : isRetrograde(venusL,   jd),
-    mars    : marsRetro,
+    mars    : isRetrograde(marsL,    jd),
     jupiter : isRetrograde(jupiterL, jd),
     saturn  : isRetrograde(saturnL,  jd),
   };
@@ -2532,7 +2523,7 @@ module.exports.detectYogas = detectYogas;
 // Updated module.exports:
 module.exports = {
   JD, lahiriAY,
-  sunL, moonL, mercuryL, venusL, marsL, jupiterL, saturnL, rahuL,
+  sunL, moonL, mercuryL, venusL, marsL, jupiterL, saturnL, rahuL, ketuL,
   isRetrograde, getRetrogrades, planetaryPositions,
   JD_IST, getAspects, getMoonAspects, detectYogas,
 };
