@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>পূর্ব ভারতীয় রাশিচক্র ক্যালকুলেটর</title>
+    <title>পূর্ব ভারতীয় রাশিচক্র (Fixed Chart)</title>
     <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; background: #fdf6e3; text-align: center; padding: 20px; }
-        .container { max-width: 900px; margin: auto; background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.1); }
-        .input-box { background: #faf6f2; padding: 20px; border-radius: 10px; margin-bottom: 25px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        input { padding: 10px; border: 1px solid #d0bca8; border-radius: 6px; }
-        button { grid-column: span 2; padding: 15px; background: #7a5d44; color: white; border: none; cursor: pointer; font-weight: bold; border-radius: 6px; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #fffaf0; display: flex; justify-content: center; padding: 20px; }
+        .container { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-width: 400px; width: 100%; text-align: center; }
+        h1 { font-size: 22px; color: #333; margin-bottom: 20px; }
+        .input-group { background: #fdf6e3; padding: 15px; border-radius: 12px; margin-bottom: 20px; }
+        input { width: 90%; padding: 10px; margin: 5px 0; border: 1px solid #ccc; border-radius: 8px; font-size: 14px; }
+        button { width: 100%; padding: 15px; background: #7a5d44; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 16px; transition: 0.3s; }
+        button:hover { background: #5d4531; }
+        .chart-box { margin-top: 25px; position: relative; display: flex; justify-content: center; }
         
-        /* চার্ট স্টাইল */
-        .chart-wrapper { display: flex; justify-content: center; margin: 20px 0; }
-        svg { background: #fff; border: 2px solid #e03131; }
+        /* ছবির আদলে লাল বর্ডার এবং কাঠামো */
+        svg { background: white; border: 2px solid #e03131; }
         .cell-label { font-size: 11px; fill: #999; }
-        .planet-text { font-size: 13px; font-weight: bold; fill: #333; }
+        .planet-txt { font-size: 13px; font-weight: bold; fill: #333; }
         .lagna-text { fill: #e03131; }
     </style>
 </head>
@@ -23,46 +25,46 @@
 
 <div class="container">
     <h1>🚩 পূর্ব ভারতীয় (বাংলা) কুষ্ঠি ছক</h1>
-
-    <div class="input-box">
-        <input type="date" id="birthDate" value="1986-10-31">
-        <input type="time" id="birthTime" value="23:59">
+    <div class="input-group">
+        <input type="date" id="d" value="1986-10-31">
+        <input type="time" id="t" value="23:59">
         <input type="number" id="lat" value="23.17" step="0.01" placeholder="অক্ষাংশ">
         <input type="number" id="lon" value="88.58" step="0.01" placeholder="দ্রাঘিমাংশ">
-        <button onclick="calculateAndDraw()">গণনা করুন ও ছকে দেখান</button>
     </div>
+    <button onclick="drawBengaliChart()">গণনা করুন ও ছকে দেখান</button>
 
-    <div class="chart-wrapper">
-        <svg id="chartSVG" width="400" height="300" viewBox="0 0 400 300">
-            <rect x="0" y="0" width="400" height="300" fill="none" stroke="#e03131" stroke-width="2"/>
+    <div class="chart-box">
+        <svg id="s" width="300" height="300" viewBox="0 0 300 300">
+            <rect width="300" height="300" fill="none" stroke="#e03131" stroke-width="2"/>
             
             <line x1="100" y1="0" x2="100" y2="300" stroke="#e03131"/>
             <line x1="200" y1="0" x2="200" y2="300" stroke="#e03131"/>
-            <line x1="300" y1="0" x2="300" y2="300" stroke="#e03131"/>
-            <line x1="0" y1="100" x2="400" y2="100" stroke="#e03131"/>
-            <line x1="0" y1="200" x2="400" y2="200" stroke="#e03131"/>
+            
+            <line x1="0" y1="100" x2="300" y2="100" stroke="#e03131"/>
+            <line x1="0" y1="200" x2="300" y2="200" stroke="#e03131"/>
             
             <line x1="0" y1="0" x2="100" y2="100" stroke="#e03131"/>
-            <line x1="400" y1="0" x2="300" y2="100" stroke="#e03131"/>
+            <line x1="300" y1="0" x2="200" y2="100" stroke="#e03131"/>
             <line x1="0" y1="300" x2="100" y2="200" stroke="#e03131"/>
-            <line x1="400" y1="300" x2="300" y2="200" stroke="#e03131"/>
+            <line x1="300" y1="300" x2="200" y2="200" stroke="#e03131"/>
+            
+            <rect x="100" y="100" width="100" height="100" fill="#fdf6e3" stroke="#e03131" stroke-width="1"/>
+            <text x="150" y="155" text-anchor="middle" font-weight="bold" fill="#7a5d44">রাশিচক্র</text>
 
-            <g id="planetsGroup"></g>
+            <g id="planets"></g>
         </svg>
     </div>
-
-    <div id="ayanamsaDisplay" style="margin-top: 10px; font-weight: bold;"></div>
+    <div id="ayanText" style="margin-top: 10px; font-weight: bold;"></div>
 </div>
 
 <script src="vsop87-planets.js"></script>
-
 <script>
 // পূর্ব ভারতীয় (বাংলা) ছকের রাশির স্থানাঙ্ক ম্যাপ
 // 0: মেষ, 1: বৃষ... 11: মীন
 const cellCoords = [
-    {x: 150, y: 50},  // 0: মেষ (Top row, middle-left)
-    {x: 250, y: 50},  // 1: বৃষ (Top row, middle-right)
-    {x: 350, y: 50},  // 2: মিথুন (Top corner right) - Adjusted to corners
+    {x: 150, y: 50},  // 0: মেষ
+    {x: 250, y: 50},  // 1: বৃষ
+    {x: 350, y: 50},  // 2: মিথুন
     {x: 350, y: 150}, // 3: কর্কট
     {x: 350, y: 250}, // 4: সিংহ
     {x: 250, y: 250}, // 5: কন্যা
@@ -70,85 +72,57 @@ const cellCoords = [
     {x: 50, y: 250},  // 7: বৃশ্চিক
     {x: 50, y: 150},  // 8: ধনু
     {x: 50, y: 50},   // 9: মকর
-    {x: 150, y: 150}, // 10: কুম্ভ (Center left)
-    {x: 250, y: 150}  // 11: মীন (Center right)
+    {x: 150, y: 150}, // 10: কুম্ভ (অ্যাডজাস্টেবল)
+    {x: 250, y: 150}  // 11: মীন
 ];
 
-// আপনার স্ক্রিনশটের ডিজাইন অনুযায়ী সঠিক বাংলা ম্যাপ (Adjusted)
-const bengaliSigns = [
-    {id: 0, x: 200, y: 50, name: "মেষ"}, {id: 1, x: 350, y: 50, name: "বৃষ"}, 
-    {id: 2, x: 350, y: 150, name: "মিথুন"}, {id: 3, x: 350, y: 250, name: "কর্কট"},
-    {id: 4, x: 200, y: 250, name: "সিংহ"}, {id: 5, x: 50, y: 250, name: "কন্যা"},
-    {id: 6, x: 50, y: 150, name: "তুলা"}, {id: 7, x: 50, y: 50, name: "বৃশ্চিক"},
-    {id: 8, x: 100, y: 50, name: "ধনু"}, {id: 9, x: 200, y: 150, name: "মকর"}, // Placeholder logic
-    {id: 10, x: 100, y: 150, name: "কুম্ভ"}, {id: 11, x: 150, y: 50, name: "মীন"}
-];
-
-function calculateAndDraw() {
+function drawBengaliChart() {
     try {
-        const d = document.getElementById('birthDate').value.split('-').map(Number);
-        const t = document.getElementById('birthTime').value.split(':').map(Number);
-        const lat = parseFloat(document.getElementById('lat').value);
-        const lon = parseFloat(document.getElementById('lon').value);
-
-        // আপনার ইঞ্জিনের ফাংশন ব্যবহার
-        const jd = window.JD(d[0], d[1], d[2]) + (t[0] - 5.5 + t[1]/60)/24;
+        const dv = document.getElementById('d').value.split('-');
+        const tv = document.getElementById('t').value.split(':');
+        const jd = window.JD(parseInt(dv[0]), parseInt(dv[1]), parseInt(dv[2])) + (parseInt(tv[0]) - 5.5 + parseInt(tv[1])/60)/24;
         const ay = window.lahiriAY(jd);
-        document.getElementById('ayanamsaDisplay').innerText = `লাহিড়ী অয়নাংশ: ${ay.toFixed(4)}°`;
+        document.getElementById('ayanText').innerText = `অয়নাংশ: ${ay.toFixed(4)}°`;
 
-        // গ্রহের অবস্থান সংগ্রহ
         const planets = [
-            { n: 'সূ', v: window.sunL(jd) - ay },
-            { n: 'চ', v: window.moonL(jd) - ay },
-            { n: 'ম', v: window.marsL(jd) },
-            { n: 'বু', v: window.mercuryL(jd) },
-            { n: 'বৃ', v: window.jupiterL(jd) },
-            { n: 'শু', v: window.venusL(jd) },
-            { n: 'শ', v: window.saturnL(jd) },
-            { n: 'রা', v: window.rahuL(jd) - ay },
-            { n: 'কে', v: (window.rahuL(jd) - ay) + 180 },
-            { n: 'ল', v: window.getLagna ? window.getLagna(jd, lat, lon) - ay : 0 } // লগ্ন
+            {n: 'সূ', v: window.sunL(jd)-ay}, {n: 'চ', v: window.moonL(jd)-ay},
+            {n: 'ম', v: window.marsL(jd)}, {n: 'বু', v: window.mercuryL(jd)},
+            {n: 'বৃ', v: window.jupiterL(jd)}, {n: 'শু', v: window.venusL(jd)},
+            {n: 'শ', v: window.saturnL(jd)}, {n: 'রা', v: window.rahuL(jd)-ay},
+            {n: 'কে', v: (window.rahuL(jd)-ay)+180},
+            {n: 'ল', v: window.getLagna ? window.getLagna(jd, 22.57, 88.36) - ay : 0} // লগ্ন (ডিফল্ট Lat/Lon)
         ];
 
-        drawPlanets(planets);
-    } catch (e) {
-        alert("ইঞ্জিন ফাইলটি লোড হয়নি। নিশ্চিত করুন vsop87-planets.js ফাইলটি ঠিক আছে।");
-    }
-}
+        const g = document.getElementById('planets');
+        g.innerHTML = '';
+        const data = Array.from({length: 12}, () => []);
 
-function drawPlanets(planets) {
-    const group = document.getElementById('planetsGroup');
-    group.innerHTML = '';
-    
-    const rashiData = Array.from({length: 12}, () => []);
+        planets.forEach(p => {
+            const idx = Math.floor(window.rev(p.v) / 30);
+            data[idx].push(p.n);
+        });
 
-    planets.forEach(p => {
-        const rIdx = Math.floor(window.rev(p.v) / 30);
-        rashiData[rIdx].push(p.n);
-    });
+        // পূর্ব ভারতীয় ছকের ১২টি ঘরের স্থানাঙ্ক বিন্যাস
+        const signPositions = [
+            {x: 150, y: 50}, {x: 250, y: 50}, {x: 350, y: 50},  // মেষ, বৃষ, মিথুন
+            {x: 350, y: 150}, {x: 350, y: 250},               // কর্কট, সিংহ
+            {x: 250, y: 250}, {x: 150, y: 250}, {x: 50, y: 250}, // কন্যা, তুলা, বৃশ্চিক
+            {x: 50, y: 150}, {x: 50, y: 50},                  // ধনু, মকর
+            {x: 150, y: 150}, {x: 250, y: 150}                // কুম্ভ, মীন
+        ];
 
-    // পূর্ব ভারতীয় ছকের ১২টি ঘরের স্থানাঙ্ক বিন্যাস (আপনার আপলোড করা ছবির কাঠামোর সাথে মিল রেখে)
-    const signPositions = [
-        {x: 150, y: 50}, {x: 250, y: 50}, {x: 350, y: 50},  // মেষ, বৃষ, মিথুন
-        {x: 350, y: 150}, {x: 350, y: 250},               // কর্কট, সিংহ
-        {x: 250, y: 250}, {x: 150, y: 250}, {x: 50, y: 250}, // কন্যা, তুলা, বৃশ্চিক
-        {x: 50, y: 150}, {x: 50, y: 50},                  // ধনু, মকর
-        {x: 150, y: 150}, {x: 250, y: 150}                // কুম্ভ, মীন
-    ];
-
-    rashiData.forEach((names, i) => {
-        if (names.length > 0) {
-            const pos = signPositions[i];
-            const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-            text.setAttribute("x", pos.x);
-            text.setAttribute("y", pos.y);
-            text.setAttribute("text-anchor", "middle");
-            text.setAttribute("class", "planet-text");
-            if (names.includes('ল')) text.setAttribute("class", "planet-text lagna-text");
-            text.textContent = names.join(", ");
-            group.appendChild(text);
-        }
-    });
+        data.forEach((names, i) => {
+            if (names.length > 0) {
+                const pos = signPositions[i];
+                const t = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                t.setAttribute("x", pos.x); t.setAttribute("y", pos.y);
+                t.setAttribute("text-anchor", "middle"); t.setAttribute("class", "planet-txt");
+                if (names.includes('ল')) t.setAttribute("class", "planet-txt lagna-text");
+                t.textContent = names.join(", ");
+                g.appendChild(t);
+            }
+        });
+    } catch (e) { alert("ইঞ্জিন কাজ করছে না। ফাইলের নাম চেক করুন।"); }
 }
 </script>
 </body>
