@@ -2,36 +2,38 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <title>পূর্ব ভারতীয় কুষ্ঠি - কাস্টম মডেল</title>
+    <title>পূর্ব ভারতীয় কুষ্ঠি - বিশুদ্ধ বাংলা মডেল</title>
     <style>
         body { font-family: 'Segoe UI', sans-serif; background: #fffaf0; text-align: center; padding: 20px; }
         .container { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); max-width: 500px; margin: auto; }
         .input-box { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; background: #fdf6e3; padding: 15px; border-radius: 10px; }
-        input { padding: 8px; border: 1px solid #ccc; border-radius: 5px; }
-        button { grid-column: span 2; padding: 12px; background: #e03131; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        input { padding: 8px; border: 1px solid #ccc; border-radius: 5px; width: 80%; margin: auto; }
+        button { grid-column: span 2; padding: 12px; background: #7a5d44; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 16px; }
         
         /* চার্ট ডিজাইন */
         svg { background: white; border: 2px solid #e03131; margin: 20px 0; }
-        .rashi-name { font-size: 10px; fill: #999; }
+        .rashi-label { font-size: 10px; fill: #d32f2f; font-weight: bold; }
         .planet-txt { font-size: 12px; font-weight: bold; fill: #333; }
+        .lagna-txt { fill: #e03131; }
         
         /* টেবিল ডিজাইন */
         table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 13px; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
-        th { background-color: #f4f4f4; }
+        th, td { border: 1px solid #e8d9cc; padding: 10px; text-align: center; }
+        th { background-color: #8b725a; color: white; }
+        tr:nth-child(even) { background-color: #faf6f2; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h2>🚩 আপনার ম্যাপ অনুযায়ী রাশিচক্র</h2>
+    <h2>🚩 পূর্ব ভারতীয় (বাংলা) রাশিচক্র</h2>
     
     <div class="input-box">
         <input type="date" id="d" value="1986-10-31">
         <input type="time" id="t" value="23:59">
-        <input type="number" id="lat" value="23.17" placeholder="Lat">
-        <input type="number" id="lon" value="88.58" placeholder="Lon">
-        <button onclick="calculateKundali()">কুষ্ঠি তৈরি করুন</button>
+        <input type="number" id="lat" value="22.57" step="0.01">
+        <input type="number" id="lon" value="88.36" step="0.01">
+        <button onclick="calculateKundali()">কুষ্ঠি গণনা ও ছক তৈরি করুন</button>
     </div>
 
     <svg id="chart" width="360" height="360" viewBox="0 0 360 360">
@@ -45,124 +47,118 @@
         <line x1="0" y1="360" x2="120" y2="240" stroke="#e03131"/>
         <line x1="360" y1="360" x2="240" y2="240" stroke="#e03131"/>
         
-        <g id="rashiNames"></g>
+        <text x="180" y="185" text-anchor="middle" font-weight="bold" fill="#7a5d44" font-size="16">রাশিচক্র</text>
+        
+        <g id="rashiLabels"></g>
         <g id="planetsGroup"></g>
     </svg>
+
+    <div id="ayanInfo" style="font-weight:bold; color:#7a5d44; margin-bottom:10px;"></div>
 
     <table id="dataTable">
         <thead>
             <tr><th>গ্রহ</th><th>রাশি</th><th>ডিগ্রি</th><th>নক্ষত্র (পদ)</th></tr>
         </thead>
-        <tbody id="dataBody"></tbody>
+        <tbody id="dataBody">
+            <tr><td colspan="4">তথ্য প্রদর্শনের জন্য গণনা করুন</td></tr>
+        </tbody>
     </table>
 </div>
 
-<script src=" src/vsop87-planets.js"></script>
+<script src="vsop87-planets.js"></script>
+
 <script>
-const RASHIS = ["মেষ", "বৃষ", "মিথুন", "কর্কট", "সিংহ", "কন্যা", "তুলা", "বৃশ্চিক", "ধনু", "মকর", "কুম্ভ", "মীন"];
-const NAKSHATRAS = ["অশ্বিনী", "ভরণী", "কৃত্তিকা", "রোহিণী", "মৃগশিরা", "আর্দ্রা", "পুনর্বসু", "পুষ্যা", "অশ্লেষা", "মঘা", "পূর্বফাল্গুনী", "উত্তরফাল্গুনী", "হস্তা", "চিত্রা", "স্বাতী", "বিশাখা", "অনুরাধা", "জ্যেষ্ঠা", "মূলা", "পূর্বাষাঢ়া", "উত্তরাষাঢ়া", "শ্রবণা", "ধনিষ্ঠা", "শতভিষা", "পূর্বভাদ্রপদ", "উত্তরভাদ্রপদ", "রেবতী"];
+const R_NAMES = ["মেষ", "বৃষ", "মিথুন", "কর্কট", "সিংহ", "কন্যা", "তুলা", "বৃশ্চিক", "ধনু", "মকর", "কুম্ভ", "মীন"];
+const N_NAMES = ["অশ্বিনী", "ভরণী", "কৃত্তিকা", "রোহিণী", "মৃগশিরা", "আর্দ্রা", "পুনর্বসু", "পুষ্যা", "অশ্লেষা", "মঘা", "পূর্বফাল্গুনী", "উত্তরফাল্গুনী", "হস্তা", "চিত্রা", "স্বাতী", "বিশাখা", "অনুরাধা", "জ্যেষ্ঠা", "মূলা", "পূর্বাষাঢ়া", "উত্তরাষাঢ়া", "শ্রবণা", "ধনিষ্ঠা", "শতভিষা", "পূর্বভাদ্রপদ", "উত্তরভাদ্রপদ", "রেবতী"];
 
-// আপনার ম্যাপ অনুযায়ী স্থানাঙ্ক (X, Y)
-const boxCoords = [
-    {x: 180, y: 30, name: "মেষ"}, {x: 300, y: 30, name: "বৃষ"}, {x: 330, y: 150, name: "মিথুন"},
-    {x: 330, y: 270, name: "কর্কট"}, {x: 300, y: 330, name: "সিংহ"}, {x: 180, y: 330, name: "কন্যা"},
-    {x: 60, y: 330, name: "তুলা"}, {x: 30, y: 270, name: "বৃশ্চিক"}, {x: 30, y: 150, name: "ধনু"},
-    {x: 30, y: 30, name: "মকর"}, {x: 60, y: 60, name: "কুম্ভ"}, {x: 180, y: 180, name: "মীন"} 
-];
-
-// আপনার ম্যাপের ১২টি ঘরের সঠিক পজিশন (Clockwise Bengali style)
-const housePos = [
-    {x: 180, y: 60}, {x: 300, y: 60}, {x: 300, y: 180}, {x: 300, y: 300},
-    {x: 180, y: 300}, {x: 60, y: 300}, {x: 60, y: 180}, {x: 60, y: 60},
-    {x: 20, y: 60}, {x: 60, y: 20}, {x: 120, y: 60}, {x: 60, y: 120} // Adjusted
+// আপনার আঁকা ম্যাপ অনুযায়ী ১২টি রাশির সঠিক সেন্টার কোঅর্ডিনেট (X, Y)
+const CUSTOM_MAP = [
+    {x: 180, y: 55},  // 0: মেষ (Top Middle)
+    {x: 300, y: 55},  // 1: বৃষ (Top Right)
+    {x: 315, y: 150}, // 2: মিথুন (Right Middle)
+    {x: 315, y: 270}, // 3: কর্কট (Bottom Right - Outer)
+    {x: 300, y: 315}, // 4: সিংহ (Bottom Right - Inner)
+    {x: 180, y: 315}, // 5: কন্যা (Bottom Middle)
+    {x: 60, y: 315},  // 6: তুলা (Bottom Left - Inner)
+    {x: 45, y: 270},  // 7: বৃশ্চিক (Bottom Left - Outer)
+    {x: 45, y: 150},  // 8: ধনু (Left Middle)
+    {x: 60, y: 55},   // 9: মকর (Top Left - Inner)
+    {x: 45, y: 45},   // 10: কুম্ভ (Top Left - Outer)
+    {x: 270, y: 45}   // 11: মীন (Top Right - Outer)
 ];
 
 function calculateKundali() {
-    const dv = document.getElementById('d').value.split('-');
-    const tv = document.getElementById('t').value.split(':');
-    const jd = window.JD(Number(dv[0]), Number(dv[1]), Number(dv[2])) + (Number(tv[0]) - 5.5 + Number(tv[1])/60)/24;
-    const ay = window.lahiriAY(jd);
+    try {
+        const d = document.getElementById('d').value.split('-').map(Number);
+        const t = document.getElementById('t').value.split(':').map(Number);
+        const lat = parseFloat(document.getElementById('lat').value);
+        const lon = parseFloat(document.getElementById('lon').value);
 
-    const planets = [
-        {id: "ল", n: "লগ্ন", v: window.getLagna ? window.getLagna(jd, 22, 88) - ay : 0},
-        {id: "সূ", n: "সূর্য", v: window.sunL(jd) - ay},
-        {id: "চ", n: "চন্দ্র", v: window.moonL(jd) - ay},
-        {id: "ম", n: "মঙ্গল", v: window.marsL(jd)},
-        {id: "বু", n: "বুধ", v: window.mercuryL(jd)},
-        {id: "বৃ", n: "বৃহস্পতি", v: window.jupiterL(jd)},
-        {id: "শু", n: "শুক্র", v: window.venusL(jd)},
-        {id: "শ", n: "শনি", v: window.saturnL(jd)},
-        {id: "রা", n: "রাহু", v: window.rahuL(jd) - ay},
-        {id: "কে", n: "কেতু", v: (window.rahuL(jd) - ay) + 180}
-    ];
+        const jd = window.JD(d[0], d[1], d[2]) + (t[0] - 5.5 + t[1]/60)/24;
+        const ay = window.lahiriAY(jd);
+        document.getElementById('ayanInfo').innerText = `লাহিড়ী অয়নাংশ: ${ay.toFixed(4)}°`;
 
-    drawChart(planets);
-    drawTable(planets);
+        const planets = [
+            {id: "ল", n: "লগ্ন", v: window.getLagna(jd, lat, lon) - ay},
+            {id: "সূ", n: "সূর্য", v: window.sunL(jd) - ay},
+            {id: "চ", n: "চন্দ্র", v: window.moonL(jd) - ay},
+            {id: "ম", n: "মঙ্গল", v: window.marsL(jd)},
+            {id: "বু", n: "বুধ", v: window.mercuryL(jd)},
+            {id: "বৃ", n: "বৃহস্পতি", v: window.jupiterL(jd)},
+            {id: "শু", n: "শুক্র", v: window.venusL(jd)},
+            {id: "শ", n: "শনি", v: window.saturnL(jd)},
+            {id: "রা", n: "রাহু", v: window.rahuL(jd) - ay},
+            {id: "কে", n: "কেতু", v: (window.rahuL(jd) - ay) + 180}
+        ];
+
+        drawOutput(planets);
+    } catch(e) { alert("ইঞ্জিন লোড হতে পারেনি। ফাইলের নাম ও পাথ চেক করুন।"); }
 }
 
-function drawChart(planets) {
+function drawOutput(planets) {
     const pGroup = document.getElementById('planetsGroup');
-    const rGroup = document.getElementById('rashiNames');
-    pGroup.innerHTML = ''; rGroup.innerHTML = '';
-    
-    const rashiBuckets = Array.from({length: 12}, () => []);
+    const rGroup = document.getElementById('rashiLabels');
+    const tBody = document.getElementById('dataBody');
+    pGroup.innerHTML = ''; rGroup.innerHTML = ''; tBody.innerHTML = '';
+
+    const rashiData = Array.from({length: 12}, () => []);
 
     planets.forEach(p => {
-        const val = window.rev(p.v);
-        const rIdx = Math.floor(val / 30);
-        const nIdx = Math.floor(val / (360/27)) + 1; // নক্ষত্র সংখ্যা
-        rashiBuckets[rIdx].push(`${p.id}(${nIdx})`);
-        p.nak = nIdx; p.deg = val % 30; p.rIdx = rIdx;
+        const lon = window.rev(p.v);
+        const rIdx = Math.floor(lon / 30);
+        const nIdx = Math.floor(lon / (360/27));
+        const pada = Math.floor((lon % (360/27)) / (360/108)) + 1;
+        
+        // চার্টের জন্য লেবেল (যেমন: সূ(১৪))
+        rashiData[rIdx].push(`${p.id}(${nIdx + 1})`);
+
+        // টেবিল তৈরি
+        tBody.innerHTML += `<tr>
+            <td style="font-weight:bold">${p.n}</td>
+            <td>${R_NAMES[rIdx]}</td>
+            <td>${(lon % 30).toFixed(2)}°</td>
+            <td>${N_NAMES[nIdx]} (${pada})</td>
+        </tr>`;
     });
 
-    // আপনার ম্যাপ অনুযায়ী ঘরের ইনডেক্স ঠিক করা
-    // বাঙালি কুষ্ঠিতে মেষ সাধারণত ১০ম ঘর (Top Middle) থেকে শুরু হয়
-    const bengaliVisualMap = [9, 10, 11, 0, 1, 2, 3, 4, 5, 6, 7, 8]; 
-    const houseCoords = [
-        {x: 60, y: 60}, {x: 180, y: 60}, {x: 300, y: 60},
-        {x: 300, y: 180}, {x: 300, y: 300}, {x: 180, y: 300},
-        {x: 60, y: 300}, {x: 60, y: 180}, {x: 60, y: 60} // simplified logic
-    ];
+    // আপনার ম্যাপ অনুযায়ী চার্টে গ্রহ বসানো
+    CUSTOM_MAP.forEach((pos, i) => {
+        // রাশির নাম বসানো
+        const rText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        rText.setAttribute("x", pos.x); rText.setAttribute("y", pos.y - 15);
+        rText.setAttribute("text-anchor", "middle"); rText.setAttribute("class", "rashi-label");
+        rText.textContent = R_NAMES[i];
+        rGroup.appendChild(rText);
 
-    // ঘরের নাম এবং গ্রহ বসানো (Manual placement based on your drawing)
-    const fixedCoords = [
-       {x: 180, y: 80, name: "মেষ"}, {x: 300, y: 80, name: "বৃষ"}, 
-       {x: 300, y: 180, name: "মিথুন"}, {x: 300, y: 280, name: "কর্কট"},
-       {x: 180, y: 280, name: "সিংহ"}, {x: 60, y: 280, name: "কন্যা"},
-       {x: 60, y: 180, name: "তুলা"}, {x: 60, y: 80, name: "বৃশ্চিক"},
-       {x: 30, y: 30, name: "ধনু"}, {x: 150, y: 30, name: "মকর"},
-       {x: 270, y: 30, name: "কুম্ভ"}, {x: 150, y: 150, name: "মীন"}
-    ];
-
-    rashiBuckets.forEach((list, i) => {
-        const pos = fixedCoords[i]; // i=0 is Mesha
-        if(pos) {
-            // রাশির নাম
-            let t1 = document.createElementNS("http://www.w3.org/2000/svg", "text");
-            t1.setAttribute("x", pos.x); t1.setAttribute("y", pos.y - 30);
-            t1.setAttribute("class", "rashi-name"); t1.setAttribute("text-anchor", "middle");
-            t1.textContent = RASHIS[i];
-            rGroup.appendChild(t1);
-
-            // গ্রহের নাম ও নক্ষত্র সংখ্যা
-            let t2 = document.createElementNS("http://www.w3.org/2000/svg", "text");
-            t2.setAttribute("x", pos.x); t2.setAttribute("y", pos.y);
-            t2.setAttribute("class", "planet-txt"); t2.setAttribute("text-anchor", "middle");
-            t2.textContent = list.join(", ");
-            pGroup.appendChild(t2);
+        // গ্রহ ও নক্ষত্র সংখ্যা বসানো
+        if(rashiData[i].length > 0) {
+            const pText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            pText.setAttribute("x", pos.x); pText.setAttribute("y", pos.y + 5);
+            pText.setAttribute("text-anchor", "middle"); pText.setAttribute("class", "planet-txt");
+            pText.textContent = rashiData[i].join(", ");
+            pGroup.appendChild(pText);
         }
     });
-}
-
-function drawTable(planets) {
-    let html = "";
-    planets.forEach(p => {
-        const deg = p.v % 30;
-        const nIdx = Math.floor(window.rev(p.v) / (360/27));
-        const pada = Math.floor((window.rev(p.v) % (360/27)) / (360/108)) + 1;
-        html += `<tr><td>${p.n}</td><td>${RASHIS[Math.floor(window.rev(p.v)/30)]}</td><td>${window.rev(deg).toFixed(2)}°</td><td>${NAKSHATRAS[nIdx]} (${pada})</td></tr>`;
-    });
-    document.getElementById('dataBody').innerHTML = html;
 }
 </script>
 </body>
