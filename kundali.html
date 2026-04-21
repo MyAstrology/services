@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>বৈদিক জ্যোতিষ ক্যালকুলেটর · লগ্ন · রাশি · নক্ষত্র</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Noto Sans Bengali', system-ui, sans-serif;
+        }
+        body {
+            background: #f5efe6;
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .card {
+            max-width: 1300px;
+            width: 100%;
+            background: #fffaf2;
+            border-radius: 28px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+            padding: 24px 28px;
+            border: 1px solid #e9dccc;
+        }
+        h1 {
+            font-size: 2.1rem;
+            color: #3b2b1f;
+            margin-top: 0;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 3px solid #d4b594;
+            padding-bottom: 16px;
+        }
+        h1 small {
+            font-size: 1rem;
+            font-weight: normal;
+            color: #7e5e42;
+            margin-left: auto;
+        }
+        .input-panel {
+            background: #f3ede5;
+            padding: 18px 22px;
+            border-radius: 24px;
+            margin-bottom: 28px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            gap: 20px 30px;
+            border: 1px solid #dccbbc;
+        }
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .field label {
+            font-weight: 600;
+            color: #4f3a28;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+        }
+        .field input, .field select {
+            padding: 10px 14px;
+            border: 1px solid #c8b6a2;
+            border-radius: 20px;
+            font-size: 1rem;
+            background: white;
+            min-width: 130px;
+        }
+        .field input:focus {
+            border-color: #a47148;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(164,113,72,0.15);
+        }
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-left: auto;
+        }
+        .btn {
+            background: #7c5f45;
+            border: none;
+            color: white;
+            font-weight: bold;
+            padding: 10px 26px;
+            border-radius: 40px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            border: 1px solid #624a35;
+        }
+        .btn:hover {
+            background: #5f4732;
+            transform: scale(1.02);
+        }
+        .btn-outline {
+            background: transparent;
+            color: #4a3723;
+            border: 1.5px solid #7c5f45;
+            box-shadow: none;
+        }
+        .btn-outline:hover {
+            background: #e7dbcd;
+        }
+        .now-btn {
+            background: #2d5e4f;
+            border-color: #1d4036;
+        }
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-top: 5px;
+            margin-bottom: 12px;
+        }
+        .ayanamsa-badge {
+            background: #ddd0c0;
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-weight: 600;
+            color: #2f2419;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+        }
+        th {
+            background: #b7a48b;
+            color: #1e160f;
+            font-weight: 700;
+            padding: 14px 10px;
+            font-size: 1.1rem;
+            text-align: center;
+            border-right: 1px solid #9b8a76;
+        }
+        td {
+            padding: 10px 8px;
+            text-align: center;
+            border-bottom: 1px solid #e7dbce;
+            font-size: 1rem;
+        }
+        .planet-name {
+            font-weight: 700;
+            background: #fbf6f0;
+            text-align: left;
+            padding-left: 18px;
+        }
+        .retro-badge {
+            background: #ac3e2b;
+            color: white;
+            font-size: 0.7rem;
+            border-radius: 30px;
+            padding: 3px 9px;
+            margin-left: 8px;
+            font-weight: 600;
+        }
+        .rashi-cell {
+            font-weight: 600;
+            background: #fef9f2;
+        }
+        .nakshatra-cell {
+            color: #2c4a3a;
+        }
+        .pada-cell {
+            font-family: monospace;
+            font-weight: 600;
+        }
+        .yoga-section {
+            margin-top: 20px;
+            background: #f1ebe4;
+            border-radius: 24px;
+            padding: 18px 22px;
+        }
+        .yoga-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #3d2e1e;
+        }
+        .yoga-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 18px;
+        }
+        .yoga-item {
+            background: white;
+            border-radius: 30px;
+            padding: 8px 22px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            border-left: 6px solid #b4875a;
+        }
+        .footnote {
+            font-size: 0.9rem;
+            margin-top: 16px;
+            color: #5f4d38;
+        }
+        .error-msg {
+            color: #b13e3e;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h1>🌿 কোষ্ঠী গণনা <span style="font-size:1.4rem;">· লগ্ন · নবগ্রহ · নক্ষত্র পদ</span>
+        <small>লাহিড়ী আয়নাংশ · VSOP87 + ELP-2000</small>
+    </h1>
+
+    <div class="input-panel">
+        <div class="field">
+            <label>📅 তারিখ (বাংলা/ইং)</label>
+            <input type="date" id="dateInput" value="2026-04-21">
+        </div>
+        <div class="field">
+            <label>🕒 সময় (IST, ২৪ঘ)</label>
+            <input type="text" id="timeInput" value="12:00" placeholder="HH:MM">
+        </div>
+        <div class="field">
+            <label>🌐 স্থানাঙ্ক (অক্ষাংশ)</label>
+            <input type="number" id="latInput" value="22.5726" step="0.01" placeholder="অক্ষাংশ °N">
+        </div>
+        <div class="field">
+            <label>📍 দ্রাঘিমাংশ</label>
+            <input type="number" id="lonInput" value="88.3639" step="0.01" placeholder="দ্রাঘিমা °E">
+        </div>
+        <div class="btn-group">
+            <button class="btn" id="calcBtn">🔍 গণনা</button>
+            <button class="btn btn-outline now-btn" id="nowBtn">🕰️ এখন</button>
+        </div>
+    </div>
+
+    <div class="result-header">
+        <div><strong id="displayDateTime">—</strong></div>
+        <div class="ayanamsa-badge" id="ayanamsaDisplay">আয়নাংশ: —</div>
+    </div>
+
+    <div style="overflow-x: auto;">
+        <table id="chartTable">
+            <thead>
+                <tr>
+                    <th>গ্রহ</th><th>দ্রাঘিমাংশ (নিরয়ণ)</th><th>রাশি</th><th>ডিগ্রী</th><th>নক্ষত্র</th><th>পদ</th><th>বক্র?</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <tr><td colspan="7" style="padding:30px;">গণনা করতে উপরের তথ্য পূরণ করুন</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="yoga-section" id="yogaPanel">
+        <div class="yoga-title">🪷 সক্রিয় যোগ</div>
+        <div class="yoga-list" id="yogaList">—</div>
+    </div>
+    <div class="footnote">
+        * লগ্ন গণনায় স্থানীয় সময় ও ভৌগোলিক দ্রাঘিমা ব্যবহৃত। নক্ষত্র পদ: ১-৪ (প্রতি পদ ৩°২০′)।
+    </div>
+</div>
+
+<script src="vsop87-planets.js"></script>
+<script>
+    (function(){
+        // গ্লোবাল ফাংশন — vsop87-planets.js থেকে এক্সপোর্টেড
+        const { JD_IST, planetaryPositions, getRetrogrades, detectYogas, sunL, moonL, mercuryL, venusL, marsL, jupiterL, saturnL, rahuL, ketuL } = window;
+
+        // ----------  নক্ষত্র ও পদ নির্ণয় ----------
+        const NAKSHATRAS = [
+            "অশ্বিনী", "ভরণী", "কৃত্তিকা", "রোহিণী", "মৃগশিরা", "আর্দ্রা", "পুনর্বসু", "পুষ্যা", "অশ্লেষা",
+            "মঘা", "পূর্বফাল্গুনী", "উত্তরফাল্গুনী", "হস্তা", "চিত্রা", "স্বাতী", "বিশাখা", "অনুরাধা",
+            "জ্যেষ্ঠা", "মূলা", "পূর্বাষাঢ়া", "উত্তরাষাঢ়া", "শ্রবণা", "ধনিষ্ঠা", "শতভিষা", 
+            "পূর্বভাদ্রপদ", "উত্তরভাদ্রপদ", "রেবতী"
+        ];
+
+        function getNakshatraPada(lon) {
+            // lon: 0–360 নিরয়ণ দ্রাঘিমা
+            let total = lon;
+            const nakshatraSpan = 360 / 27; // 13.3333°
+            const padaSpan = nakshatraSpan / 4;  // 3.3333°
+            
+            let index = Math.floor(total / nakshatraSpan);
+            if (index >= 27) index = 26;
+            const remainder = total - (index * nakshatraSpan);
+            const pada = Math.floor(remainder / padaSpan) + 1; // 1-4
+            
+            return {
+                nakshatra: NAKSHATRAS[index],
+                pada: pada
+            };
+        }
+
+        // রাশির নাম (১২)
+        const RASHI_NAMES = ["মেষ", "বৃষ", "মিথুন", "কর্কট", "সিংহ", "কন্যা", "তুলা", "বৃশ্চিক", "ধনু", "মকর", "কুম্ভ", "মীন"];
+
+        function getRashiAndDegree(lon) {
+            const rashiIndex = Math.floor(lon / 30);
+            const deg = (lon % 30).toFixed(2);
+            return {
+                rashi: RASHI_NAMES[rashiIndex],
+                degree: deg,
+                rashiIndex
+            };
+        }
+
+        // ----------  লগ্ন (সায়ন → নিরয়ণ)  ----------
+        function calculateLagna(jd, latitude, longitude) {
+            // সাইডেরিয়াল টাইম আনুমানিক (Meeus)
+            const T = (jd - 2451545.0) / 36525.0;
+            let GST = 280.46061837 + 360.98564736629 * (jd - 2451545.0) 
+                        + 0.000387933 * T * T - T * T * T / 38710000.0;
+            GST = ((GST % 360) + 360) % 360;
+            
+            // স্থানীয় নক্ষত্র সময় (LST)
+            let LST = GST + longitude;
+            LST = ((LST % 360) + 360) % 360;
+            
+            // রামসে (সায়ন লগ্ন আনুমানিক)
+            const obl = 23.4392911 - 0.0130042 * T;  // তির্যকতা
+            const lstRad = LST * Math.PI / 180;
+            const latRad = latitude * Math.PI / 180;
+            const oblRad = obl * Math.PI / 180;
+            
+            const numerator = -Math.cos(oblRad) * Math.sin(lstRad);
+            const denominator = Math.cos(latRad) * Math.sin(oblRad) - Math.sin(latRad) * Math.cos(oblRad) * Math.cos(lstRad);
+            let lagnaTrop = Math.atan2(numerator, denominator) * 180 / Math.PI;
+            if (lagnaTrop < 0) lagnaTrop += 360;
+            
+            // আয়নাংশ বিয়োগ করে নিরয়ণ লগ্ন
+            const ay = window.lahiriAY ? window.lahiriAY(jd) : 24.0; // fallback
+            let siderealLagna = (lagnaTrop - ay + 360) % 360;
+            return siderealLagna;
+        }
+
+        // ----------  টেবিল রেন্ডার  ----------
+        function renderChart(data) {
+            const { jd, positions, retros, yogas, ayanamsa, lagnaLon } = data;
+            const tbody = document.getElementById('tableBody');
+            
+            const planets = [
+                { key: 'lagna', name: 'লগ্ন', lon: lagnaLon },
+                { key: 'sun', name: 'সূর্য', lon: positions.sun },
+                { key: 'moon', name: 'চন্দ্র', lon: positions.moon },
+                { key: 'mercury', name: 'বুধ', lon: positions.mercury },
+                { key: 'venus', name: 'শুক্র', lon: positions.venus },
+                { key: 'mars', name: 'মঙ্গল', lon: positions.mars },
+                { key: 'jupiter', name: 'বৃহস্পতি', lon: positions.jupiter },
+                { key: 'saturn', name: 'শনি', lon: positions.saturn },
+                { key: 'rahu', name: 'রাহু', lon: positions.rahu },
+                { key: 'ketu', name: 'কেতু', lon: positions.ketu }
+            ];
+
+            let html = '';
+            for (let p of planets) {
+                const lon = p.lon;
+                const rashiData = getRashiAndDegree(lon);
+                const nakshatraInfo = getNakshatraPada(lon);
+                const isRetro = (p.key !== 'lagna' && p.key !== 'rahu' && p.key !== 'ketu') 
+                                ? (retros[p.key] || false) : false;
+                const retroText = isRetro ? '<span class="retro-badge">বক্র</span>' : '—';
+                
+                html += `<tr>
+                    <td class="planet-name">${p.name}</td>
+                    <td>${lon.toFixed(4)}°</td>
+                    <td class="rashi-cell">${rashiData.rashi}</td>
+                    <td>${rashiData.degree}°</td>
+                    <td class="nakshatra-cell">${nakshatraInfo.nakshatra}</td>
+                    <td class="pada-cell">${nakshatraInfo.pada}</td>
+                    <td>${retroText}</td>
+                </tr>`;
+            }
+            tbody.innerHTML = html;
+
+            // আয়নাংশ দেখানো
+            document.getElementById('ayanamsaDisplay').innerText = `আয়নাংশ (লাহিড়ী): ${ayanamsa.toFixed(4)}°`;
+            
+            // যোগ প্রদর্শন
+            const yogaContainer = document.getElementById('yogaList');
+            if (yogas && yogas.length) {
+                let yogaHtml = '';
+                yogas.forEach(y => {
+                    yogaHtml += `<div class="yoga-item"><strong>${y.name}</strong> (${y.type}) · ${y.description}</div>`;
+                });
+                yogaContainer.innerHTML = yogaHtml;
+            } else {
+                yogaContainer.innerHTML = '<div style="padding:8px;">কোনো প্রধান যোগ সক্রিয় নয়।</div>';
+            }
+        }
+
+        // ----------  মূল গণনা ফাংশন  ----------
+        function computeAll() {
+            const dateStr = document.getElementById('dateInput').value;
+            const timeStr = document.getElementById('timeInput').value;
+            const lat = parseFloat(document.getElementById('latInput').value);
+            const lon = parseFloat(document.getElementById('lonInput').value);
+            
+            if (!dateStr || !timeStr || isNaN(lat) || isNaN(lon)) {
+                alert('তারিখ, সময় ও স্থানাঙ্ক পূর্ণ করুন।');
+                return;
+            }
+            
+            const [year, month, day] = dateStr.split('-').map(Number);
+            const [hour, minute] = timeStr.split(':').map(Number);
+            if (hour === undefined || minute === undefined) {
+                alert('সময় HH:MM ফরম্যাটে লিখুন');
+                return;
+            }
+            
+            const hourIST = hour + minute / 60.0;
+            const jd = JD_IST(year, month, day, hourIST);
+            
+            // গ্রহের নিরয়ণ অবস্থান (positions includes ayanamsa)
+            const positions = planetaryPositions(jd);
+            const retros = getRetrogrades(jd);
+            const ayanamsa = positions.ayanamsa;
+            
+            // লগ্ন গণনা (পৃথক, কারণ লগ্ন positions-এ নেই)
+            const lagnaLon = calculateLagna(jd, lat, lon);
+            
+            // যোগ সনাক্তকরণ (positions সঠিক ফরম্যাট)
+            const yogas = detectYogas(positions);
+            
+            // প্রদর্শনের সময়
+            const pad = (n) => n.toString().padStart(2,'0');
+            document.getElementById('displayDateTime').innerHTML = 
+                `${year}-${pad(month)}-${pad(day)} ${pad(hour)}:${pad(minute)} IST, অক্ষা ${lat.toFixed(3)}° দ্রাঘি ${lon.toFixed(3)}°`;
+            
+            renderChart({ jd, positions, retros, yogas, ayanamsa, lagnaLon });
+        }
+
+        // বর্তমান সময় সেট
+        function setNow() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2,'0');
+            const day = String(now.getDate()).padStart(2,'0');
+            const hours = String(now.getHours()).padStart(2,'0');
+            const minutes = String(now.getMinutes()).padStart(2,'0');
+            
+            document.getElementById('dateInput').value = `${year}-${month}-${day}`;
+            document.getElementById('timeInput').value = `${hours}:${minutes}`;
+            // কলকাতা ডিফল্ট রাখা যেতে পারে
+            if (!document.getElementById('latInput').value) {
+                document.getElementById('latInput').value = '22.5726';
+                document.getElementById('lonInput').value = '88.3639';
+            }
+            computeAll();
+        }
+
+        // ইভেন্ট লিসেনার
+        document.getElementById('calcBtn').addEventListener('click', computeAll);
+        document.getElementById('nowBtn').addEventListener('click', setNow);
+        
+        // পেজ লোডে ডিফল্ট গণনা (আজকের তারিখ)
+        window.addEventListener('DOMContentLoaded', () => {
+            // ডিফল্ট হিসেবে আজকের তারিখ দেখানো
+            const today = new Date();
+            const y = today.getFullYear();
+            const m = String(today.getMonth()+1).padStart(2,'0');
+            const d = String(today.getDate()).padStart(2,'0');
+            document.getElementById('dateInput').value = `${y}-${m}-${d}`;
+            document.getElementById('timeInput').value = '12:00';
+            // লোকেশন কলকাতা ডিফল্ট
+            document.getElementById('latInput').value = '22.5726';
+            document.getElementById('lonInput').value = '88.3639';
+            computeAll();
+        });
+
+        // এক্সপোজ কিছু ইউটিলিটি
+        window.computeAll = computeAll;
+    })();
+</script>
+</body>
+</html>
