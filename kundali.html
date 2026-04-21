@@ -71,21 +71,60 @@
 const R_NAMES = ["মেষ", "বৃষ", "মিথুন", "কর্কট", "সিংহ", "কন্যা", "তুলা", "বৃশ্চিক", "ধনু", "মকর", "কুম্ভ", "মীন"];
 const N_NAMES = ["অশ্বিনী", "ভরণী", "কৃত্তিকা", "রোহিণী", "মৃগশিরা", "আর্দ্রা", "পুনর্বসু", "পুষ্যা", "অশ্লেষা", "মঘা", "পূর্বফাল্গুনী", "উত্তরফাল্গুনী", "হস্তা", "চিত্রা", "স্বাতী", "বিশাখা", "অনুরাধা", "জ্যেষ্ঠা", "মূলা", "পূর্বাষাঢ়া", "উত্তরাষাঢ়া", "শ্রবণা", "ধনিষ্ঠা", "শতভিষা", "পূর্বভাদ্রপদ", "উত্তরভাদ্রপদ", "রেবতী"];
 
-// আপনার আঁকা ম্যাপ অনুযায়ী ১২টি রাশির সঠিক সেন্টার কোঅর্ডিনেট (X, Y)
+// আপনার হাতে আঁকা ম্যাপ অনুযায়ী ঘরগুলোর নিখুঁত স্থানাঙ্ক (X, Y)
 const CUSTOM_MAP = [
-    {x: 180, y: 55},  // 0: মেষ (Top Middle)
-    {x: 300, y: 55},  // 1: বৃষ (Top Right)
-    {x: 315, y: 150}, // 2: মিথুন (Right Middle)
-    {x: 315, y: 270}, // 3: কর্কট (Bottom Right - Outer)
-    {x: 300, y: 315}, // 4: সিংহ (Bottom Right - Inner)
-    {x: 180, y: 315}, // 5: কন্যা (Bottom Middle)
-    {x: 60, y: 315},  // 6: তুলা (Bottom Left - Inner)
-    {x: 45, y: 270},  // 7: বৃশ্চিক (Bottom Left - Outer)
-    {x: 45, y: 150},  // 8: ধনু (Left Middle)
-    {x: 60, y: 55},   // 9: মকর (Top Left - Inner)
-    {x: 45, y: 45},   // 10: কুম্ভ (Top Left - Outer)
-    {x: 270, y: 45}   // 11: মীন (Top Right - Outer)
+    {x: 180, y: 60},  // 0: মেষ (Top Middle)
+    {x: 300, y: 60},  // 1: বৃষ (Top Right - Inner)
+    {x: 330, y: 150}, // 2: মিথুন (Top Right - Outer)
+    {x: 330, y: 270}, // 3: কর্কট (Right Middle)
+    {x: 300, y: 300}, // 4: সিংহ (Bottom Right - Inner)
+    {x: 180, y: 300}, // 5: কন্যা (Bottom Right - Outer)
+    {x: 60, y: 300},  // 6: তুলা (Bottom Middle)
+    {x: 30, y: 300},  // 7: বৃশ্চিক (Bottom Left - Inner)
+    {x: 30, y: 150},  // 8: ধনু (Bottom Left - Outer)
+    {x: 30, y: 60},   // 9: মকর (Left Middle)
+    {x: 60, y: 60},   // 10: কুম্ভ (Top Left - Inner)
+    {x: 150, y: 150}  // 11: মীন (Top Left - Outer)
 ];
+
+// এই ফাংশনটি দিয়ে গ্রহগুলো আপনার ম্যাপ অনুযায়ী ঘরে বসবে
+function drawOutput(planets) {
+    const pGroup = document.getElementById('planetsGroup');
+    const rGroup = document.getElementById('rashiLabels');
+    pGroup.innerHTML = ''; rGroup.innerHTML = '';
+
+    const rashiData = Array.from({length: 12}, () => []);
+
+    planets.forEach(p => {
+        const lon = window.rev(p.v);
+        const rIdx = Math.floor(lon / 30); // রাশির ইনডেক্স (০-১১)
+        const nIdx = Math.floor(lon / (360/27)) + 1; // নক্ষত্র সংখ্যা
+        rashiData[rIdx].push(`${p.id}(${nIdx})`);
+    });
+
+    // আপনার ম্যাপের ঘর অনুযায়ী লুপ চালানো
+    CUSTOM_MAP.forEach((pos, i) => {
+        // ১. প্রতিটি ঘরে রাশির নাম লেখা (যেমন: মেষ, বৃষ)
+        const rText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        rText.setAttribute("x", pos.x); 
+        rText.setAttribute("y", pos.y - 20); // নামের একটু ওপরে
+        rText.setAttribute("class", "rashi-label"); 
+        rText.setAttribute("text-anchor", "middle");
+        rText.textContent = R_NAMES[i];
+        rGroup.appendChild(rText);
+
+        // ২. ওই রাশির ঘরে গ্রহের নামগুলো বসানো
+        if(rashiData[i].length > 0) {
+            const pText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            pText.setAttribute("x", pos.x); 
+            pText.setAttribute("y", pos.y + 5); 
+            pText.setAttribute("class", "planet-txt"); 
+            pText.setAttribute("text-anchor", "middle");
+            pText.textContent = rashiData[i].join(", ");
+            pGroup.appendChild(pText);
+        }
+    });
+}
 
 function calculateKundali() {
     try {
