@@ -2520,7 +2520,7 @@ function detectYogas(positions) {
   return yogas;
 }
 
-// ফাইলের শেষে module.exports এর বদলে এটি ব্যবহার করুন
+// ফাইলের একদম শেষে থাকা module.exports অংশটি মুছে এটি বসান
 if (typeof window !== 'undefined') {
     window.JD = JD;
     window.lahiriAY = lahiriAY;
@@ -2528,13 +2528,10 @@ if (typeof window !== 'undefined') {
     window.moonL = moonL;
     window.mercuryL = mercuryL;
     window.venusL = venusL;
-    window.marsL = marsL; // নিশ্চিত করুন marsL ফাংশনটি পূর্ণাঙ্গ
+    window.marsL = marsL;
     window.jupiterL = jupiterL;
     window.saturnL = saturnL;
     window.rahuL = rahuL;
-    window.ketuL = ketuL;
     window.rev = rev;
-    window.planetaryPositions = planetaryPositions;
-    window.getRetrogrades = getRetrogrades;
-    window.JD_IST = JD_IST;
 }
+
