@@ -98,7 +98,7 @@ birthAnniversaries: [
     quote:'"ভারত নিয়তির দেশ।"',
     message:'শিশু দিবসে শিশুদের প্রতি ভালোবাসা দেখান। তাদের স্বপ্ন পূরণে সাহায্য করুন।',
     notableWorks:['Discovery of India','Glimpses of World History'] },
-  { mmdd:'11-22', name:'কাজী নজরুল ইসলাম', icon:'🎵',
+  { mmdd:'11-26', name:'কাজী নজরুল ইসলাম', icon:'🎵',
     birthYear:1899, deathYear:1976,
     quote:'"গাহি সাম্যের গান, মানুষের চেয়ে বড় কিছু নাই।"',
     message:'বিদ্রোহী কবির জন্মদিনে অন্যায়ের বিরুদ্ধে সোচ্চার হওয়ার শপথ নিন।',
