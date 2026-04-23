@@ -1052,6 +1052,181 @@ function getShadbalaTable(shadbalaData) {
     return html;
 }
 
-console.log("✅ ষড়বল গণনার ফাংশন লোড সম্পন্ন হয়েছে।");
-console.log("🔍 ব্যবহার: calculateShadbala('সূর্য', planetData, birthInfo)");
-console.log("🔍 ব্যবহার: calculateAllShadbala(planets, birthInfo)");
+// remedy-determiner.js
+// কার জন্য কী রেমেডি প্রয়োজন - নির্ধারণের ফাংশন
+// পূর্ব ভারতীয় কুষ্ঠি সফটওয়্যার
+
+/**
+ * গ্রহের দুর্বলতা নির্ণয় করে
+ * @param {string} planetName - গ্রহের নাম
+ * @param {object} planetData - গ্রহের ডেটা
+ * @param {object} shadbalaData - ষড়বলের ডেটা (ঐচ্ছিক)
+ * @returns {object} দুর্বলতার তথ্য
+ */
+function checkPlanetWeakness(planetName, planetData, shadbalaData) {
+    const reasons = [];
+    let needsRemedy = false;
+    let severity = "কোনো নয়"; // কোনোটিই নয়, সামান্য, মধ্যম, গুরুতর
+    
+    const { rashi, house, isRetrograde, nakshatra } = planetData;
+    
+    // ১. নীচস্থ চেক
+    const debilitation = {
+        "সূর্য": { rashi: 6, degree: 10 },   // তুলা
+        "চন্দ্র": { rashi: 7, degree: 3 },    // বৃশ্চিক
+        "মঙ্গল": { rashi: 3, degree: 28 },    // কর্কট
+        "বুধ": { rashi: 11, degree: 15 },     // মীন
+        "বৃহস্পতি": { rashi: 9, degree: 5 }, // মকর
+        "শুক্র": { rashi: 5, degree: 27 },    // কন্যা
+        "শনি": { rashi: 0, degree: 20 }       // মেষ
+    };
+    
+    if (debilitation[planetName] && rashi === debilitation[planetName].rashi) {
+        reasons.push(`${planetName} নীচস্থ (দুর্বলতম অবস্থায়)`);
+        needsRemedy = true;
+        severity = "গুরুতর";
+    }
+    
+    // ২. শত্রু রাশি চেক
+    const enemyRashis = {
+        "সূর্য": [6, 10],           // তুলা, মকর
+        "চন্দ্র": [7, 8, 9],        // বৃশ্চিক, ধনু, মকর
+        "মঙ্গল": [1, 2, 3, 6],      // বৃষ, মিথুন, কর্কট, তুলা
+        "বুধ": [11],                 // মীন
+        "বৃহস্পতি": [1, 5, 6],      // বৃষ, কন্যা, তুলা
+        "শুক্র": [0, 4],             // মেষ, সিংহ
+        "শনি": [0, 3, 4, 11]        // মেষ, কর্কট, সিংহ, মীন
+    };
+    
+    if (enemyRashis[planetName] && enemyRashis[planetName].includes(rashi)) {
+        reasons.push(`${planetName} শত্রু রাশিতে অবস্থিত`);
+        needsRemedy = true;
+        if (severity === "কোনো নয়") severity = "মধ্যম";
+    }
+    
+    // ৩. অশুভ ভাবে (৬, ৮, ১২) অবস্থান চেক
+    if ([6, 8, 12].includes(house)) {
+        reasons.push(`${planetName} অশুভ ভাবে (${house}ম) অবস্থিত`);
+        needsRemedy = true;
+        if (severity === "কোনো নয়") severity = "সামান্য";
+    }
+    
+    // ৪. বক্রী চেক
+    if (isRetrograde && planetName !== "সূর্য" && planetName !== "চন্দ্র") {
+        reasons.push(`${planetName} বক্রী গতিতে আছে`);
+        needsRemedy = true;
+        if (severity === "কোনো নয়" || severity === "সামান্য") severity = "মধ্যম";
+    }
+    
+    // ৫. ষড়বল চেক
+    if (shadbalaData && shadbalaData[planetName]) {
+        const bala = parseFloat(shadbalaData[planetName].totalRupa);
+        if (bala < 3) {
+            reasons.push(`${planetName} ষড়বলে অত্যন্ত দুর্বল (${bala} রূপা)`);
+            needsRemedy = true;
+            if (severity !== "গুরুতর") severity = "গুরুতর";
+        } else if (bala < 5) {
+            reasons.push(`${planetName} ষড়বলে দুর্বল (${bala} রূপা)`);
+            needsRemedy = true;
+            if (severity === "কোনো নয়") severity = "সামান্য";
+        }
+    }
+    
+    return {
+        planet: planetName,
+        needsRemedy,
+        severity,
+        reasons,
+        rashi,
+        house,
+        isRetrograde
+    };
+}
+
+/**
+ * সমস্ত গ্রহের রেমেডি প্রয়োজনীয়তা পরীক্ষা করে
+ * @param {object} chartData - পূর্ণাঙ্গ কুষ্ঠি ডেটা
+ * @param {object} shadbalaData - ষড়বল ডেটা
+ * @returns {array} রেমেডি প্রয়োজন এমন গ্রহের তালিকা
+ */
+function determineAllRemedies(chartData, shadbalaData) {
+    const planets = chartData.planets || [];
+    const remedies = [];
+    
+    // শুধু এই গ্রহগুলোর জন্য চেক করব
+    const planetNames = ["সূর্য", "চন্দ্র", "মঙ্গল", "বুধ", "বৃহস্পতি", "শুক্র", "শনি"];
+    
+    planetNames.forEach(name => {
+        const planet = planets.find(p => p.name === name);
+        if (planet) {
+            const result = checkPlanetWeakness(name, planet, shadbalaData);
+            if (result.needsRemedy) {
+                remedies.push(result);
+            }
+        }
+    });
+    
+    // গুরুত্ব অনুযায়ী সাজানো (গুরুতর আগে)
+    const severityOrder = { "গুরুতর": 0, "মধ্যম": 1, "সামান্য": 2 };
+    remedies.sort((a, b) => severityOrder[a.severity] - severityOrder[b.severity]);
+    
+    return remedies;
+}
+
+/**
+ * রেমেডি প্রেডিকশন তৈরি করে
+ * @param {array} remedies - determineAllRemedies থেকে প্রাপ্ত
+ * @returns {string} পূর্ণাঙ্গ রেমেডি প্রেডিকশন
+ */
+function generateRemedyPrediction(remedies) {
+    if (!remedies || remedies.length === 0) {
+        return "আপনার কুষ্ঠিতে সমস্ত গ্রহ শক্তিশালী অবস্থানে আছে। বিশেষ কোনো রেমেডির প্রয়োজন নেই। তবে নিয়মিত পূজা ও দান করুন।";
+    }
+    
+    let output = "🙏 গ্রহ শান্তির জন্য লাল কিতাব টোটকা ও পূজা বিধান\n";
+    output += "─".repeat(45) + "\n\n";
+    
+    remedies.forEach((remedy, index) => {
+        const lalKitab = LALKITAB_REMEDIES[remedy.planet];
+        if (!lalKitab) return;
+        
+        output += `🟊 ${remedy.planet} (${remedy.severity} দুর্বলতা)\n`;
+        
+        // কারণ
+        output += `   কারণ: ${remedy.reasons.join("; ")}\n\n`;
+        
+        // লাল কিতাব টোটকা
+        output += `   📿 লাল কিতাব টোটকা:\n`;
+        lalKitab.totka.forEach((t, i) => {
+            output += `   ${i + 1}. ${t}\n`;
+        });
+        
+        // পূজা অর্চনা
+        output += `\n   🕉️ পূজা অর্চনা:\n`;
+        lalKitab.puja.forEach((p, i) => {
+            output += `   ${i + 1}. ${p}\n`;
+        });
+        
+        // দান
+        output += `\n   🎁 দান:\n`;
+        output += `   ${lalKitab.donation}\n`;
+        
+        // সতর্কতা
+        output += `\n   ⚠️ সতর্কতা:\n`;
+        output += `   ${lalKitab.caution}\n`;
+        
+        if (index < remedies.length - 1) {
+            output += "\n" + "─".repeat(30) + "\n\n";
+        }
+    });
+    
+    output += "\n" + "─".repeat(45) + "\n";
+    output += "⚠️ দ্রষ্টব্য: লাল কিতাবের টোটকাগুলি বিশ্বাস ও নিষ্ঠার সাথে করতে হবে। ফল পেতে সময় লাগতে পারে। ধৈর্য ধরুন।\n";
+    
+    return output;
+}
+
+console.log("✅ রেমেডি নির্ধারণের ফাংশন লোড সম্পন্ন হয়েছে।");
+console.log("🔍 ব্যবহার: checkPlanetWeakness('সূর্য', planetData, shadbalaData)");
+console.log("🔍 ব্যবহার: determineAllRemedies(chartData, shadbalaData)");
+console.log("🔍 ব্যবহার: generateRemedyPrediction(remedies)");
