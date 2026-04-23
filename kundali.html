@@ -232,7 +232,11 @@
                 <tbody id="dashaTimelineBody"></tbody>
             </table>
         </div>
-
+<!-- যোগ সেকশন -->
+<div class="chart-box" id="yogaSection">
+    <h3>✨ শুভ ও অশুভ যোগ</h3>
+    <div id="yogaTable"></div>
+</div>
         <!-- প্রেডিকশন -->
         <div class="prediction-box" id="predictionDisplay"></div>
     </div>
@@ -527,7 +531,16 @@ const shadbalaDiv = document.getElementById('shadbalaTable');
 if (shadbalaDiv) {
     shadbalaDiv.innerHTML = getShadbalaTable(shadbalaData);
 }
-
+// যোগ নির্ণয়
+const yogas = detectAllYogas({
+    planets: chartPlanets,
+    lagna: { degree: lagnaLon }
+});
+console.log("যোগ:", yogas);
+    const yogaDiv = document.getElementById('yogaTable');
+if (yogaDiv) {
+    yogaDiv.innerHTML = getYogaTable(yogas);
+}
 function downloadAsPDF() { window.print(); }
 
 // পেজ লোডে
