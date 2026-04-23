@@ -205,6 +205,12 @@
             <tbody id="planetTableBody"></tbody>
         </table>
 
+        <!-- ষড়বল সেকশন -->
+<div class="chart-box" id="shadbalaSection">
+    <h3>💪 ষড়বল (গ্রহের শক্তি)</h3>
+    <div id="shadbalaTable"></div>
+</div>
+        
         <!-- দশা সেকশন -->
         <div class="chart-box" id="dashaSection">
             <h3>⏳ বিংশোত্তরী দশা</h3>
@@ -216,7 +222,8 @@
                 <p><strong>মহাদশা শেষ (বয়স):</strong> <span id="mdEnd">-</span></p>
                 <p><strong>জন্ম দশা ভারসাম্য:</strong> <span id="birthBalance">-</span></p>
             </div>
-            
+
+   
             <h4 style="margin-bottom:10px;">📊 পূর্ণাঙ্গ মহাদশা সারণী</h4>
             <table class="planet-table" id="dashaTimelineTable">
                 <thead>
@@ -514,6 +521,11 @@ function calculateFullKundali() {
         console.error(e);
         alert('গণনায় ত্রুটি: ' + e.message);
     }
+}
+    // ষড়বল টেবিল আপডেট
+const shadbalaDiv = document.getElementById('shadbalaTable');
+if (shadbalaDiv) {
+    shadbalaDiv.innerHTML = getShadbalaTable(shadbalaData);
 }
 
 function downloadAsPDF() { window.print(); }
