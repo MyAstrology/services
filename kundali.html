@@ -541,6 +541,21 @@ console.log("যোগ:", yogas);
 if (yogaDiv) {
     yogaDiv.innerHTML = getYogaTable(yogas);
 }
+// calculateFullKundali() ফাংশনের ভেতরে
+
+// রেমেডি নির্ধারণ
+const remedies = determineAllRemedies(
+    { planets: chartPlanets },
+    shadbalaData
+);
+
+// রেমেডি প্রেডিকশন
+const remedyText = generateRemedyPrediction(remedies);
+console.log("রেমেডি:", remedyText);
+
+// HTML এ দেখানো
+document.getElementById('remedyDisplay').textContent = remedyText;
+    
 function downloadAsPDF() { window.print(); }
 
 // পেজ লোডে
