@@ -471,7 +471,264 @@ function getAgeYears(birthJD) {
     return (nowJD - birthJD) / 365.25;
 }
 
+// bhava-chalit.js
+// ভাব কুণ্ডলী (Bhava Chalit) গণনা ও SVG চার্ট
+// পূর্ব ভারতীয় কুষ্ঠি সফটওয়্যার
+
+// ==================== ১. ভাব সীমানা গণনা ====================
+
+/**
+ * লগ্ন ডিগ্রি থেকে ১২টি ভাবের সীমানা নির্ণয়
+ * @param {number} lagnaDegree - লগ্নের নিরয়ণ ডিগ্রি (০-৩৬০)
+ * @returns {array} ১২টি ভাবের সীমানা [{start, end, rashiStart, rashiEnd}]
+ */
+function calculateBhavaBoundaries(lagnaDegree) {
+    const boundaries = [];
+    const lagnaDeg = lagnaDegree % 30; // রাশির মধ্যে লগ্নের ডিগ্রি
+    const lagnaRashi = Math.floor(lagnaDegree / 30); // লগ্নের রাশি (০-১১)
+    
+    for (let i = 0; i < 12; i++) {
+        // প্রতিটি ভাবের মধ্যবিন্দু
+        const midPoint = (lagnaDeg + i * 30) % 360;
+        
+        // মধ্যবিন্দু থেকে ১৫° আগে ও পরে = ভাবের সীমানা
+        const start = ((midPoint - 15) + 360) % 360;
+        const end = ((midPoint + 15) + 360) % 360;
+        
+        // এই ভাবটি কোন রাশিতে শুরু ও শেষ হচ্ছে?
+        const rashiStart = Math.floor(start / 30) % 12;
+        const rashiEnd = Math.floor(end / 30) % 12;
+        
+        boundaries.push({
+            bhava: i + 1,               // ভাব নম্বর (১-১২)
+            midPoint: midPoint % 360,   // মধ্যবিন্দুর ডিগ্রি
+            start: start % 360,         // শুরুর ডিগ্রি
+            end: end % 360,             // শেষের ডিগ্রি
+            rashiOfMidPoint: Math.floor((midPoint % 360) / 30), // মধ্যবিন্দুর রাশি
+            rashiStart: rashiStart,
+            rashiEnd: rashiEnd,
+            startDegreeInRashi: start % 30,
+            endDegreeInRashi: end % 30
+        });
+    }
+    
+    return boundaries;
+}
+
+/**
+ * ভাব কুণ্ডলী অনুযায়ী গ্রহের ভাব নির্ণয়
+ * @param {number} planetLongitude - গ্রহের নিরয়ণ দ্রাঘিমাংশ (০-৩৬০)
+ * @param {array} boundaries - calculateBhavaBoundaries থেকে প্রাপ্ত
+ * @returns {number} গ্রহটি যে ভাবে আছে (১-১২)
+ */
+function getBhavaForPlanet(planetLongitude, boundaries) {
+    for (let i = 0; i < boundaries.length; i++) {
+        const b = boundaries[i];
+        const lon = planetLongitude % 360;
+        
+        // সাধারণ ক্ষেত্রে: start < end
+        if (b.start < b.end) {
+            if (lon >= b.start && lon < b.end) {
+                return b.bhava;
+            }
+        } 
+        // রাশির সীমানা অতিক্রম করলে: start > end
+        else {
+            if (lon >= b.start || lon < b.end) {
+                return b.bhava;
+            }
+        }
+    }
+    
+    // যদি কোনো ভাবেই না পড়ে (সাধারণত হয় না), রাশি অনুযায়ী নির্ণয়
+    const rashi = Math.floor(planetLongitude / 30);
+    const lagnaRashi = Math.floor(boundaries[0].midPoint / 30);
+    return ((rashi - lagnaRashi + 12) % 12) + 1;
+}
+
+/**
+ * সম্পূর্ণ ভাব কুণ্ডলী তথ্য তৈরি করে
+ * @param {number} lagnaDegree - লগ্নের ডিগ্রি
+ * @param {array} planets - গ্রহের তালিকা [{name, lon}]
+ * @returns {object} ভাব কুণ্ডলীর সম্পূর্ণ তথ্য
+ */
+function getBhavaChalitData(lagnaDegree, planets) {
+    const boundaries = calculateBhavaBoundaries(lagnaDegree);
+    
+    // গ্রহদের ভাবগত অবস্থান
+    const planetsInBhava = planets.map(p => ({
+        ...p,
+        rashiBhava: ((Math.floor(p.lon / 30) - Math.floor(lagnaDegree / 30) + 12) % 12) + 1,
+        chalitBhava: getBhavaForPlanet(p.lon, boundaries),
+        changed: false // পরে চেক করব
+    }));
+    
+    // যেসব গ্রহের ভাব পরিবর্তন হয়েছে
+    planetsInBhava.forEach(p => {
+        p.changed = (p.rashiBhava !== p.chalitBhava);
+    });
+    
+    return {
+        lagnaDegree,
+        boundaries,
+        planets: planetsInBhava,
+        changedPlanets: planetsInBhava.filter(p => p.changed)
+    };
+}
+
+// ==================== ২. ভাব কুণ্ডলী SVG চার্ট ====================
+
+// পূর্ব ভারতীয় ছকের অবস্থান
+const CHART_POSITIONS = [
+    {x: 170, y: 40},   // ০: মেষ (১ম ভাবের জন্য উপরের মাঝে)
+    {x: 75, y: 35},    // ১: বৃষ
+    {x: 35, y: 75},    // ২: মিথুন
+    {x: 55, y: 170},   // ৩: কর্কট
+    {x: 35, y: 265},   // ৪: সিংহ
+    {x: 75, y: 305},   // ৫: কন্যা
+    {x: 170, y: 300},  // ৬: তুলা
+    {x: 265, y: 305},  // ৭: বৃশ্চিক
+    {x: 305, y: 265},  // ৮: ধনু
+    {x: 285, y: 170},  // ৯: মকর
+    {x: 305, y: 75},   // ১০: কুম্ভ
+    {x: 265, y: 35}    // ১১: মীন
+];
+
+/**
+ * ভাব কুণ্ডলীর SVG চার্ট তৈরি করে
+ * @param {string} svgId - SVG এলিমেন্টের ID
+ * @param {object} bhavaData - getBhavaChalitData থেকে প্রাপ্ত
+ * @param {array} rashiNames - ১২ রাশির নাম
+ */
+function drawBhavaChalitChart(svgId, bhavaData, rashiNames) {
+    const svg = document.getElementById(svgId);
+    if (!svg) {
+        console.warn(`SVG element '${svgId}' পাওয়া যায়নি`);
+        return;
+    }
+    
+    // SVG ক্লিয়ার করা
+    while (svg.firstChild) {
+        svg.removeChild(svg.firstChild);
+    }
+    
+    // ব্যাকগ্রাউন্ড
+    const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    rect.setAttribute("width", "340");
+    rect.setAttribute("height", "340");
+    rect.setAttribute("fill", "#fdfaf6");
+    rect.setAttribute("stroke", "#8b0000");
+    rect.setAttribute("stroke-width", "2");
+    svg.appendChild(rect);
+    
+    // গ্রিড লাইন
+    const lines = [
+        {x1:113,y1:0,x2:113,y2:340}, {x1:227,y1:0,x2:227,y2:340},
+        {x1:0,y1:113,x2:340,y2:113}, {x1:0,y1:227,x2:340,y2:227},
+        {x1:0,y1:0,x2:113,y2:113}, {x1:340,y1:0,x2:227,y2:113},
+        {x1:0,y1:340,x2:113,y2:227}, {x1:340,y1:340,x2:227,y2:227}
+    ];
+    
+    lines.forEach(l => {
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        line.setAttribute("x1", l.x1); line.setAttribute("y1", l.y1);
+        line.setAttribute("x2", l.x2); line.setAttribute("y2", l.y2);
+        line.setAttribute("stroke", "#8b0000");
+        line.setAttribute("stroke-width", "1");
+        svg.appendChild(line);
+    });
+    
+    // রাশির নাম ও ভাব নম্বর
+    const lagnaRashi = Math.floor(bhavaData.lagnaDegree / 30);
+    
+    CHART_POSITIONS.forEach((pos, i) => {
+        // রাশির নাম
+        const rashiText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        rashiText.setAttribute("x", pos.x);
+        rashiText.setAttribute("y", pos.y - 12);
+        rashiText.setAttribute("text-anchor", "middle");
+        rashiText.setAttribute("fill", i === lagnaRashi ? "#8b0000" : "#8b6914");
+        rashiText.setAttribute("font-size", "10");
+        rashiText.setAttribute("font-weight", i === lagnaRashi ? "bold" : "normal");
+        rashiText.textContent = i === lagnaRashi ? `[${rashiNames[i]}]` : rashiNames[i];
+        svg.appendChild(rashiText);
+        
+        // ভাব নম্বর
+        const bhavaNum = ((i - lagnaRashi + 12) % 12) + 1;
+        const bhavaText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        bhavaText.setAttribute("x", pos.x);
+        bhavaText.setAttribute("y", pos.y - 22);
+        bhavaText.setAttribute("text-anchor", "middle");
+        bhavaText.setAttribute("fill", "#2c1810");
+        bhavaText.setAttribute("font-size", "8");
+        bhavaText.textContent = `ভা:${bhavaNum}`;
+        svg.appendChild(bhavaText);
+    });
+    
+    // গ্রহ বসানো (ভাব কুণ্ডলী অনুযায়ী)
+    const rashiPlanets = Array(12).fill().map(() => []);
+    
+    bhavaData.planets.forEach(planet => {
+        // ভাব কুণ্ডলীতে গ্রহের রাশি
+        const chalitRashi = CHART_POSITIONS.findIndex((pos, i) => {
+            const rashiStart = i * 30;
+            const rashiEnd = (i + 1) * 30;
+            return planet.lon >= rashiStart && planet.lon < rashiEnd;
+        });
+        
+        if (chalitRashi >= 0) {
+            const symbol = planet.name.substring(0, 2);
+            const marker = planet.changed ? `${symbol}*` : symbol;
+            rashiPlanets[chalitRashi].push(marker);
+        }
+    });
+    
+    CHART_POSITIONS.forEach((pos, i) => {
+        if (rashiPlanets[i].length > 0) {
+            const planetText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            planetText.setAttribute("x", pos.x);
+            planetText.setAttribute("y", pos.y + 8);
+            planetText.setAttribute("text-anchor", "middle");
+            planetText.setAttribute("fill", "#1a1a2e");
+            planetText.setAttribute("font-size", "10");
+            planetText.setAttribute("font-weight", "bold");
+            planetText.textContent = rashiPlanets[i].join(',');
+            svg.appendChild(planetText);
+        }
+    });
+}
+
+/**
+ * ভাব কুণ্ডলীর তথ্য দেখানোর জন্য HTML টেবিল তৈরি করে
+ * @param {object} bhavaData - getBhavaChalitData থেকে প্রাপ্ত
+ * @returns {string} HTML টেবিল
+ */
+function getBhavaChalitTable(bhavaData) {
+    let html = '<table class="planet-table"><thead><tr>';
+    html += '<th>গ্রহ</th><th>রাশি ভাব</th><th>ভাব কুণ্ডলী</th><th>পরিবর্তন</th>';
+    html += '</tr></thead><tbody>';
+    
+    bhavaData.planets.forEach(p => {
+        if (p.name === 'লগ্ন') return;
+        html += '<tr>';
+        html += `<td><strong>${p.name}</strong></td>`;
+        html += `<td>${p.rashiBhava}ম ভাব</td>`;
+        html += `<td style="color:${p.changed ? '#d32f2f' : '#2c1810'}">${p.chalitBhava}ম ভাব</td>`;
+        html += `<td>${p.changed ? '✅ পরিবর্তিত' : '—'}</td>`;
+        html += '</tr>';
+    });
+    
+    html += '</tbody></table>';
+    
+    if (bhavaData.changedPlanets.length > 0) {
+        html += `<p style="color:#d32f2f; margin-top:10px;">⚠️ ভাব কুণ্ডলীতে ${bhavaData.changedPlanets.length}টি গ্রহের ভাব পরিবর্তিত হয়েছে। ভাবফল বিচারে ভাব কুণ্ডলীর ভাবকেই প্রাধান্য দেওয়া হয়।</p>`;
+    }
+    
+    return html;
+}
+
 // ==================== ৩. টেস্টিং ====================
-console.log("✅ দশা গণনার ফাংশন লোড সম্পন্ন হয়েছে।");
-console.log("🔍 ব্যবহার: calculateBirthDasha(moonLongitude)");
-console.log("🔍 ব্যবহার: getFullDashaInfo(moonLongitude, ageYears)");
+console.log("✅ ভাব কুণ্ডলী গণনার ফাংশন লোড সম্পন্ন হয়েছে।");
+console.log("🔍 ব্যবহার: calculateBhavaBoundaries(lagnaDegree)");
+console.log("🔍 ব্যবহার: getBhavaChalitData(lagnaDegree, planets)");
+console.log("🔍 ব্যবহার: drawBhavaChalitChart('svgId', bhavaData, rashiNames)");
