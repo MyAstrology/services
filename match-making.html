@@ -1,67 +1,324 @@
-<!-- match-making.html -->
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <title>কুষ্ঠি মিলন - পূর্ব ভারতীয় কুষ্ঠি</title>
-    <!-- একই CSS -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>কুষ্ঠি মিলন - পূর্ব ভারতীয় জ্যোতিষ</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Noto Sans Bengali',sans-serif;background:#0d1117;color:#e6edf3;min-height:100vh}
+    nav{background:#161b22;padding:14px 24px;display:flex;align-items:center;gap:24px;border-bottom:1px solid #30363d;position:sticky;top:0;z-index:100}
+    nav .logo{font-size:1.3rem;font-weight:800;color:#f0c040;text-decoration:none}
+    nav a{color:#8b949e;text-decoration:none;font-size:.95rem;padding:6px 12px;border-radius:6px;transition:all .2s}
+    nav a:hover,nav a.active{color:#e6edf3;background:#21262d}
+    .container{max-width:1100px;margin:0 auto;padding:24px 16px}
+    h1{text-align:center;font-size:1.9rem;margin-bottom:8px;color:#f0c040}
+    .subtitle{text-align:center;color:#8b949e;margin-bottom:28px;font-size:.95rem}
+    .dual-panel{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px}
+    @media(max-width:700px){.dual-panel{grid-template-columns:1fr}}
+    .panel{background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px}
+    .panel h3{font-size:1.1rem;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid #30363d}
+    .girl-panel h3{color:#e91e8c}
+    .boy-panel h3{color:#2196f3}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+    @media(max-width:500px){.form-row{grid-template-columns:1fr}}
+    label{display:block;font-size:.82rem;color:#8b949e;margin-bottom:3px}
+    input[type=text],input[type=date],input[type=time],input[type=number]{
+      width:100%;padding:9px 11px;background:#0d1117;border:1px solid #30363d;border-radius:7px;
+      color:#e6edf3;font-size:.92rem;font-family:inherit}
+    input:focus{outline:none;border-color:#f0c040}
+    .city-wrap{position:relative;margin-bottom:10px}
+    .city-suggestions{position:absolute;top:100%;left:0;right:0;background:#1c2128;border:1px solid #30363d;border-radius:0 0 7px 7px;max-height:200px;overflow-y:auto;z-index:50;display:none;list-style:none}
+    .city-suggestions li{padding:8px 12px;cursor:pointer;font-size:.9rem}
+    .city-suggestions li:hover{background:#21262d}
+    .coords{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+    .calc-btn{display:block;width:100%;max-width:320px;margin:0 auto 28px;padding:14px;background:linear-gradient(135deg,#f0c040,#e0900a);color:#0d1117;font-size:1.1rem;font-weight:800;border:none;border-radius:10px;cursor:pointer;transition:all .2s}
+    .calc-btn:hover{transform:translateY(-2px);box-shadow:0 4px 16px #f0c04055}
+    #resultsArea{display:none}
+    .score-hero{text-align:center;padding:28px;background:#161b22;border:1px solid #30363d;border-radius:12px;margin-bottom:24px}
+    .score-number{font-size:3.5rem;font-weight:900;line-height:1}
+    .score-label{font-size:1rem;color:#8b949e;margin-top:6px}
+    .score-bar{height:14px;border-radius:7px;background:#21262d;margin:16px auto;max-width:400px;overflow:hidden}
+    .score-fill{height:100%;border-radius:7px;transition:width 1s}
+    .verdict{font-size:1.15rem;font-weight:700;margin-top:10px}
+    .section-title{font-size:1.15rem;font-weight:700;color:#f0c040;margin-bottom:14px;padding-bottom:6px;border-bottom:1px solid #30363d}
+    .card{background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px;margin-bottom:20px}
+    table{width:100%;border-collapse:collapse}
+    th{background:#21262d;padding:10px;text-align:left;font-size:.85rem;color:#8b949e}
+    td{padding:10px;border-bottom:1px solid #21262d;font-size:.92rem}
+    tr:last-child td{border-bottom:none}
+    .pts{font-weight:700;font-size:1rem}
+    .pts.good{color:#28a745}
+    .pts.avg{color:#ffc107}
+    .pts.bad{color:#dc3545}
+    .manglik-box{padding:14px 18px;border-radius:8px;margin-bottom:8px;font-weight:600}
+    .manglik-yes{background:#dc354522;border:1px solid #dc3545;color:#f8827b}
+    .manglik-no{background:#28a74522;border:1px solid #28a745;color:#7ed9a0}
+    .manglik-cancel{background:#ffc10722;border:1px solid #ffc107;color:#ffe082}
+    .report-text{white-space:pre-wrap;line-height:1.8;font-size:.95rem;color:#c9d1d9;padding:16px;background:#0d1117;border-radius:8px}
+  </style>
 </head>
 <body>
-    <h1>💑 কুষ্ঠি মিলন (Match Making)</h1>
-    
+<nav>
+  <a href="index.html" class="logo">🔮 MyAstrology</a>
+  <a href="kundali.html">কুষ্ঠি</a>
+  <a href="match-making.html" class="active">কুষ্ঠি মিলন</a>
+  <a href="blog.html">ব্লগ</a>
+</nav>
+
+<div class="container">
+  <h1>💑 কুষ্ঠি মিলন</h1>
+  <p class="subtitle">অষ্টকূট পদ্ধতিতে বিবাহযোগ্যতা বিচার • পূর্ব ভারতীয় পদ্ধতি</p>
+
+  <div class="dual-panel">
     <!-- মেয়ের তথ্য -->
-    <div class="input-panel">
-        <h3>👰 মেয়ের তথ্য</h3>
-        <input type="text" id="girlName" placeholder="মেয়ের নাম">
-        <input type="date" id="girlDOB">
-        <input type="time" id="girlTOB">
-        <!-- ... -->
+    <div class="panel girl-panel">
+      <h3>👰 মেয়ের তথ্য</h3>
+      <div style="margin-bottom:10px">
+        <label>নাম</label>
+        <input type="text" id="girlName" placeholder="মেয়ের নাম লিখুন">
+      </div>
+      <div class="form-row">
+        <div><label>জন্ম তারিখ</label><input type="date" id="girlDOB"></div>
+        <div><label>জন্ম সময়</label><input type="time" id="girlTOB"></div>
+      </div>
+      <div class="city-wrap">
+        <label>জন্মস্থান</label>
+        <input type="text" id="girlCity" placeholder="শহরের নাম টাইপ করুন..." autocomplete="off">
+        <ul class="city-suggestions" id="girlCitySugg"></ul>
+      </div>
+      <div class="coords">
+        <div><label>অক্ষাংশ</label><input type="number" id="girlLat" step="0.0001" placeholder="22.5726"></div>
+        <div><label>দ্রাঘিমাংশ</label><input type="number" id="girlLon" step="0.0001" placeholder="88.3639"></div>
+      </div>
     </div>
-    
+
     <!-- ছেলের তথ্য -->
-    <div class="input-panel">
-        <h3>🤵 ছেলের তথ্য</h3>
-        <input type="text" id="boyName" placeholder="ছেলের নাম">
-        <input type="date" id="boyDOB">
-        <input type="time" id="boyTOB">
-        <!-- ... -->
+    <div class="panel boy-panel">
+      <h3>🤵 ছেলের তথ্য</h3>
+      <div style="margin-bottom:10px">
+        <label>নাম</label>
+        <input type="text" id="boyName" placeholder="ছেলের নাম লিখুন">
+      </div>
+      <div class="form-row">
+        <div><label>জন্ম তারিখ</label><input type="date" id="boyDOB"></div>
+        <div><label>জন্ম সময়</label><input type="time" id="boyTOB"></div>
+      </div>
+      <div class="city-wrap">
+        <label>জন্মস্থান</label>
+        <input type="text" id="boyCity" placeholder="শহরের নাম টাইপ করুন..." autocomplete="off">
+        <ul class="city-suggestions" id="boyCitySugg"></ul>
+      </div>
+      <div class="coords">
+        <div><label>অক্ষাংশ</label><input type="number" id="boyLat" step="0.0001" placeholder="22.5726"></div>
+        <div><label>দ্রাঘিমাংশ</label><input type="number" id="boyLon" step="0.0001" placeholder="88.3639"></div>
+      </div>
     </div>
-    
-    <button onclick="calculateMatch()">মিলন গণনা করুন</button>
-    
-    <div id="matchResult"></div>
-    
-    <script src="src/vsop87-planets.js"></script>
-    <script src="src/match-making.js"></script>
-    <script>
-        function calculateMatch() {
-            // মেয়ের কুষ্ঠি গণনা
-            // ছেলের কুষ্ঠি গণনা
-            
-            const girlData = {
-                moonNakshatra: "রোহিণী",
-                moonNakshatraIndex: 3,
-                moonRashi: "বৃষ",
-                marsRashi: "মেষ",
-                lagnaRashi: "মিথুন"
-            };
-            
-            const boyData = {
-                moonNakshatra: "অশ্বিনী",
-                moonNakshatraIndex: 0,
-                moonRashi: "মেষ",
-                marsRashi: "সিংহ",
-                lagnaRashi: "কর্কট"
-            };
-            
-            const result = calculateMatchMaking(girlData, boyData);
-            const report = generateMatchMakingReport(result, 
-                document.getElementById('girlName').value,
-                document.getElementById('boyName').value
-            );
-            
-            document.getElementById('matchResult').innerText = report;
-        }
-    </script>
+  </div>
+
+  <button class="calc-btn" onclick="runMatchCalc()">💑 কুষ্ঠি মিলন গণনা করুন</button>
+
+  <div id="resultsArea">
+    <!-- স্কোর হিরো -->
+    <div class="score-hero" id="scoreHero"></div>
+
+    <!-- অষ্টকূট তালিকা -->
+    <div class="card">
+      <div class="section-title">📊 অষ্টকূট বিবরণ</div>
+      <table><thead><tr><th>কূট</th><th>মেয়ে</th><th>ছেলে</th><th>পূর্ণ নম্বর</th><th>প্রাপ্ত নম্বর</th><th>ফলাফল</th></tr></thead>
+      <tbody id="kootaTbody"></tbody></table>
+    </div>
+
+    <!-- মাঙ্গলিক দোষ -->
+    <div class="card">
+      <div class="section-title">🔴 মাঙ্গলিক দোষ বিচার</div>
+      <div id="manglikDiv"></div>
+    </div>
+
+    <!-- গদ্য রিপোর্ট -->
+    <div class="card">
+      <div class="section-title">📝 বিস্তারিত বিবরণ</div>
+      <div class="report-text" id="reportText"></div>
+    </div>
+  </div>
+</div>
+
+<script src="src/vsop87-planets.js"></script>
+<script src="src/cities.js"></script>
+<script src="src/match-making.js"></script>
+<script>
+const RASHI_NAMES = ["মেষ","বৃষ","মিথুন","কর্কট","সিংহ","কন্যা","তুলা","বৃশ্চিক","ধনু","মকর","কুম্ভ","মীন"];
+const NAKSHATRA_NAMES = ["অশ্বিনী","ভরণী","কৃত্তিকা","রোহিণী","মৃগশিরা","আর্দ্রা","পুনর্বসু","পুষ্যা","অশ্লেষা","মঘা","পূর্বফাল্গুনী","উত্তরফাল্গুনী","হস্তা","চিত্রা","স্বাতী","বিশাখা","অনুরাধা","জ্যেষ্ঠা","মূলা","পূর্বাষাঢ়া","উত্তরাষাঢ়া","শ্রবণ","ধনিষ্ঠা","শতভিষা","পূর্বভাদ্রপদ","উত্তরভাদ্রপদ","রেবতী"];
+const VARA_NAMES = ["রবিবার","সোমবার","মঙ্গলবার","বুধবার","বৃহস্পতিবার","শুক্রবার","শনিবার"];
+
+function getLagna(jd, lat, lon) {
+  const T = (jd - 2451545.0) / 36525;
+  let gmst = 280.46061837 + 360.98564736629*(jd-2451545) + 0.000387933*T*T;
+  gmst = ((gmst % 360) + 360) % 360;
+  const lst = ((gmst + lon) % 360 + 360) % 360;
+  const ay = lahiriAY(jd);
+  const sidLST = ((lst - ay) % 360 + 360) % 360;
+  return sidLST;
+}
+
+function getNakshatraAndPada(lon) {
+  const idx = Math.floor(lon / (360/27));
+  const pada = Math.floor((lon % (360/27)) / (360/108)) + 1;
+  return {name: NAKSHATRA_NAMES[idx % 27], idx: idx % 27, pada};
+}
+
+function getPlanetData(dobVal, tobVal, latVal, lonVal) {
+  if (!dobVal || !tobVal) return null;
+  const [y, mo, d] = dobVal.split('-').map(Number);
+  const [h, mi] = tobVal.split(':').map(Number);
+  const lat = parseFloat(latVal), lon = parseFloat(lonVal);
+  if (isNaN(lat) || isNaN(lon)) return null;
+  const jd = JD(y, mo, d) + (h - 5.5 + mi/60) / 24;
+  const ay = lahiriAY(jd);
+  const moonLon  = rev(moonL(jd)    - ay);
+  const marsLon  = rev(marsL(jd)    - ay);
+  const lagnaLon = getLagna(jd, lat, lon);
+  const nakInfo  = getNakshatraAndPada(moonLon);
+  return {
+    moonNakshatra: nakInfo.name,
+    moonNakshatraIndex: nakInfo.idx,
+    moonRashi: RASHI_NAMES[Math.floor(moonLon/30)],
+    marsRashi: RASHI_NAMES[Math.floor(marsLon/30)],
+    lagnaRashi: RASHI_NAMES[Math.floor(lagnaLon/30)]
+  };
+}
+
+
+function runMatchCalc() {
+  const girlData = getPlanetData(
+    document.getElementById('girlDOB').value,
+    document.getElementById('girlTOB').value,
+    document.getElementById('girlLat').value,
+    document.getElementById('girlLon').value
+  );
+  const boyData = getPlanetData(
+    document.getElementById('boyDOB').value,
+    document.getElementById('boyTOB').value,
+    document.getElementById('boyLat').value,
+    document.getElementById('boyLon').value
+  );
+
+  if (!girlData || !boyData) {
+    alert("অনুগ্রহ করে উভয়ের সম্পূর্ণ তথ্য দিন।");
+    return;
+  }
+
+  const result = calculateMatchMaking(girlData, boyData);
+  const gName = document.getElementById('girlName').value || "কন্যা";
+  const bName = document.getElementById('boyName').value || "বর";
+
+  // স্কোর হিরো
+  const total = result.totalScore || 0;
+  const pct = (total / 36) * 100;
+  const color = pct >= 72 ? '#28a745' : pct >= 50 ? '#ffc107' : '#dc3545';
+  const verdict = pct >= 72 ? '✅ মিলন শুভ' : pct >= 50 ? '⚠️ মিলন মধ্যম' : '❌ মিলন অশুভ';
+  document.getElementById('scoreHero').innerHTML = `
+    <div class="score-number" style="color:${color}">${total}<span style="font-size:1.5rem;color:#8b949e">/36</span></div>
+    <div class="score-label">অষ্টকূট মোট নম্বর</div>
+    <div class="score-bar"><div class="score-fill" style="width:${pct}%;background:${color}"></div></div>
+    <div class="verdict" style="color:${color}">${verdict}</div>`;
+
+  // অষ্টকূট তালিকা
+  const kootaNames = ["বর্ণ","বশ্য","তারা","যোনি","গ্রহমৈত্রী","গণ","ভকূট","নাড়ী"];
+  const kootaMax   = [1,2,3,4,5,6,7,8];
+  const kootaKeys  = ["varna","vashya","tara","yoni","graha","gana","bhakoot","nadi"];
+  let rows = '';
+  kootaKeys.forEach((k, i) => {
+    const sc = result[k] !== undefined ? result[k] : 0;
+    const mx = kootaMax[i];
+    const cls = sc >= mx*0.75 ? 'good' : sc >= mx*0.4 ? 'avg' : 'bad';
+    const status = sc >= mx*0.75 ? '✅ শুভ' : sc >= mx*0.4 ? '⚠️ মধ্যম' : '❌ অশুভ';
+    rows += `<tr><td>${kootaNames[i]}</td>
+      <td>${girlData.moonNakshatra}</td>
+      <td>${boyData.moonNakshatra}</td>
+      <td style="text-align:center">${mx}</td>
+      <td style="text-align:center"><span class="pts ${cls}">${sc}</span></td>
+      <td>${status}</td></tr>`;
+  });
+  rows += `<tr style="font-weight:700;background:#21262d"><td colspan="4">মোট</td>
+    <td style="text-align:center;color:${color}">${total}/36</td><td>${verdict}</td></tr>`;
+  document.getElementById('kootaTbody').innerHTML = rows;
+
+
+  // মাঙ্গলিক দোষ
+  let mangHtml = '';
+  const girlManglik = checkManglikDosha(girlData.marsRashi, girlData.lagnaRashi);
+  const boyManglik  = checkManglikDosha(boyData.marsRashi,  boyData.lagnaRashi);
+  const bothManglik = girlManglik.isManglik && boyManglik.isManglik;
+
+  function mangBox(label, mk) {
+    if (mk.isManglik) {
+      return `<div class="manglik-box manglik-yes">🔴 ${label}: মাঙ্গলিক দোষ আছে — মঙ্গল ${mk.marsRashi} রাশিতে</div>`;
+    }
+    return `<div class="manglik-box manglik-no">🟢 ${label}: মাঙ্গলিক দোষ নেই</div>`;
+  }
+
+  mangHtml += mangBox(gName, girlManglik);
+  mangHtml += mangBox(bName, boyManglik);
+  if (bothManglik) {
+    mangHtml += `<div class="manglik-box manglik-cancel">✨ উভয়ই মাঙ্গলিক — দোষ পরস্পর বাতিল হয়ে যায়</div>`;
+  } else if (girlManglik.isManglik || boyManglik.isManglik) {
+    mangHtml += `<div class="manglik-box manglik-yes" style="font-size:.9rem;font-weight:400">⚠️ একপক্ষ মাঙ্গলিক হলে বিবাহের আগে জ্যোতিষীর পরামর্শ নেওয়া উচিত।</div>`;
+  }
+  document.getElementById('manglikDiv').innerHTML = mangHtml;
+
+  // গদ্য রিপোর্ট
+  const report = generateMatchMakingReport(result, gName, bName);
+  document.getElementById('reportText').textContent = report;
+
+  // দেখাও
+  document.getElementById('resultsArea').style.display = 'block';
+  document.getElementById('resultsArea').scrollIntoView({behavior:'smooth'});
+}
+
+
+// শহর অনুসন্ধান
+function setupCitySearch(inputId, suggId, latId, lonId) {
+  const inp = document.getElementById(inputId);
+  const sugg = document.getElementById(suggId);
+  if (!inp || !sugg) return;
+
+  inp.addEventListener('input', function() {
+    const q = this.value.trim().toLowerCase();
+    sugg.innerHTML = '';
+    if (q.length < 2) { sugg.style.display='none'; return; }
+    const cityData = (typeof CITIES !== 'undefined') ? CITIES : (typeof cities !== 'undefined' ? cities : []);
+    const matches = cityData.filter(c => {
+      const n = (c.name || c[0] || '').toLowerCase();
+      return n.startsWith(q);
+    }).slice(0, 8);
+    if (!matches.length) { sugg.style.display='none'; return; }
+    matches.forEach(c => {
+      const name = c.name || c[0];
+      const lat  = c.lat  || c[1];
+      const lon  = c.lon  || c[2];
+      const li = document.createElement('li');
+      li.textContent = name;
+      li.addEventListener('click', () => {
+        inp.value = name;
+        document.getElementById(latId).value = parseFloat(lat).toFixed(4);
+        document.getElementById(lonId).value = parseFloat(lon).toFixed(4);
+        sugg.style.display = 'none';
+      });
+      sugg.appendChild(li);
+    });
+    sugg.style.display = 'block';
+  });
+
+  document.addEventListener('click', e => {
+    if (!inp.contains(e.target)) sugg.style.display = 'none';
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  setupCitySearch('girlCity','girlCitySugg','girlLat','girlLon');
+  setupCitySearch('boyCity','boyCitySugg','boyLat','boyLon');
+});
+</script>
 </body>
 </html>
