@@ -619,6 +619,23 @@ function calculateFullKundali() {
         // চার্ট আঁকা
         drawChart('d1', chartPlanets.concat([{ name: "লগ্ন", lon: planets[0].lon }]), lagnaRashiIdx);
         drawChart('d9', chartPlanets.concat([{ name: "লগ্ন", lon: planets[0].lon }]), lagnaRashiIdx);
+        // দশা গণনা ও প্রদর্শন
+const moonLon = window.rev(window.moonL(jd) - ay);
+const birthJD = window.JD(dob[0], dob[1], dob[2]) + (tob[0] - 5.5 + tob[1]/60)/24;
+const ageYears = (jd - birthJD) / 365.25;
+const dashaInfo = getFullDashaInfo(moonLon, ageYears);
+
+console.log("দশা তথ্য:", dashaInfo);
+
+// দশা টেবিল আপডেট
+updateDashaDisplay(dashaInfo, ageYears);
+
+// বর্তমান দশার প্রেডিকশন
+if (dashaInfo.currentMD && dashaInfo.currentAD) {
+    const dashaPrediction = getCurrentDashaPrediction(dashaInfo);
+    console.log("দশা প্রেডিকশন:", dashaPrediction);
+}
+       
         
         // প্রেডিকশন ইঞ্জিন চালানো
         predictionEngine.setUserName(userName);
