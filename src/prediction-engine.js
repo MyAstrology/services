@@ -1226,6 +1226,39 @@ function generateRemedyPrediction(remedies) {
     return output;
 }
 
+// PredictionEngine ক্লাসের ভেতরে এই ফাংশনগুলো যোগ করুন:
+
+class PredictionEngine {
+    // ... আগের কোড ...
+    
+    // যোগ সেকশন
+    generateYogaSection() {
+        const yogas = this.chartData.yogas;
+        if (!yogas || yogas.length === 0) return "";
+        
+        let output = "✨ কুষ্ঠিগত বিশেষ যোগ\n";
+        output += "─".repeat(40) + "\n";
+        
+        yogas.forEach(yoga => {
+            output += `🕉️ ${yoga.name}:\n`;
+            output += getYogaFullPrediction(yoga.name) + "\n\n";
+        });
+        
+        return output;
+    }
+    
+    // রেমেডি সেকশন
+    generateRemedySection() {
+        const weakPlanets = this.chartData.weakPlanets;
+        return generateFullRemedyText(weakPlanets);
+    }
+    
+    // generateFullPrediction() ফাংশনে এই লাইন যোগ করুন:
+    generateFullPrediction() {
+        
+    }
+}
+
 console.log("✅ রেমেডি নির্ধারণের ফাংশন লোড সম্পন্ন হয়েছে।");
 console.log("🔍 ব্যবহার: checkPlanetWeakness('সূর্য', planetData, shadbalaData)");
 console.log("🔍 ব্যবহার: determineAllRemedies(chartData, shadbalaData)");
