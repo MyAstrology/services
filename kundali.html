@@ -330,6 +330,27 @@
             </div>
         </div>
 
+        <!-- দশা টেবিল -->
+<div class="chart-box" id="dashaSection" style="margin-bottom:25px;">
+    <h3>⏳ বিংশোত্তরী দশা</h3>
+    <div id="currentDashaInfo" style="background:#fdf6e3; padding:15px; border-radius:10px; margin-bottom:20px; text-align:left;">
+        <p><strong>বর্তমান মহাদশা:</strong> <span id="currentMD">-</span></p>
+        <p><strong>অন্তর্দশা:</strong> <span id="currentAD">-</span></p>
+        <p><strong>প্রত্যংতর দশা:</strong> <span id="currentPD">-</span></p>
+        <p><strong>মহাদশা শুরু:</strong> <span id="mdStart">-</span></p>
+        <p><strong>মহাদশা শেষ:</strong> <span id="mdEnd">-</span></p>
+        <p><strong>জন্ম দশা ভারসাম্য:</strong> <span id="birthBalance">-</span></p>
+    </div>
+    
+    <h4 style="margin-bottom:10px;">📊 সমস্ত মহাদশার সময়সীমা</h4>
+    <table class="planet-table" id="dashaTimelineTable">
+        <thead>
+            <tr><th>মহাদশা</th><th>শুরু (বয়স)</th><th>শেষ (বয়স)</th><th>সময়কাল</th><th>অবস্থা</th></tr>
+        </thead>
+        <tbody id="dashaTimelineBody"></tbody>
+    </table>
+</div>
+
         <!-- গ্রহ সারণী -->
         <table class="planet-table" id="planetTable">
             <thead>
@@ -593,6 +614,7 @@ function calculateFullKundali() {
                 <td>${p.name === 'লগ্ন' ? '-' : house + 'ম ভাব'}</td>
             </tr>`;
         });
+
         
         // চার্ট আঁকা
         drawChart('d1', chartPlanets.concat([{ name: "লগ্ন", lon: planets[0].lon }]), lagnaRashiIdx);
@@ -638,6 +660,75 @@ window.addEventListener('DOMContentLoaded', function() {
     }
     calculateFullKundali();
 });
+/**
+ * দশা টেবিল আপডেট করে
+ * @param {object} dashaInfo - getFullDashaInfo থেকে প্রাপ্ত
+ * @param {number} ageYears - বর্তমান বয়স
+ */
+function updateDashaDisplay(dashaInfo, ageYears) {
+    if (!dashaInfo) return;
+    
+    // বর্তমান মহাদশা
+    if (dashaInfo.currentMD) {
+        document.getElementById('currentMD').textContent = 
+            `${dashaInfo.currentMD.lord} (${dashaInfo.currentMD.elapsed.toFixed(2)}/${dashaInfo.currentMD.period} বছর)`;
+        document.getElementById('mdStart').textContent = 
+            `${dashaInfo.currentMD.start.toFixed(2)} বছর`;
+        document.getElementById('mdEnd').textContent = 
+            `${dashaInfo.currentMD.end.toFixed(2)} বছর`;
+    }
+    
+    // বর্তমান অন্তর্দশা
+    if (dashaInfo.currentAD) {
+        document.getElementById('currentAD').textContent = 
+            `${dashaInfo.currentAD.lord} (${dashaInfo.currentAD.elapsed.toFixed(2)}/${dashaInfo.currentAD.total.toFixed(2)} বছর)`;
+    }
+    
+    // বর্তমান প্রত্যংতর
+    if (dashaInfo.currentPD) {
+        document.getElementById('currentPD').textContent = 
+            `${dashaInfo.currentPD.lord} (${dashaInfo.currentPD.elapsed.toFixed(2)}/${dashaInfo.currentPD.total.toFixed(2)} বছর)`;
+    } else {
+        document.getElementById('currentPD').textContent = 'গণনা করা যায়নি';
+    }
+    
+    // জন্ম ভারসাম্য
+    if (dashaInfo.birth) {
+        document.getElementById('birthBalance').textContent = 
+            `${dashaInfo.birth.birthLord} দশার ${dashaInfo.birth.balanceYears.toFixed(2)} বছর বাকি ছিল`;
+    }
+    
+    // দশা সময়রেখা
+    const timelineBody = document.getElementById('dashaTimelineBody');
+    timelineBody.innerHTML = '';
+    
+    if (dashaInfo.allDasha) {
+        dashaInfo.allDasha.forEach(dasha => {
+            const isCurrent = dashaInfo.currentMD && dasha.lord === dashaInfo.currentMD.lord;
+            const row = document.createElement('tr');
+            if (isCurrent) {
+                row.style.background = '#fdf6e3';
+                row.style.fontWeight = 'bold';
+            }
+            
+            const status = isCurrent ? '🔴 চলছে' : 
+                          (dasha.end < ageYears ? '✅ শেষ' : '⏳ ভবিষ্যৎ');
+            
+            row.innerHTML = `
+                <td>${dasha.lord}</td>
+                <td>${dasha.start.toFixed(2)} বছর</td>
+                <td>${dasha.end.toFixed(2)} বছর</td>
+                <td>${dasha.period} বছর</td>
+                <td>${status}</td>
+            `;
+            timelineBody.appendChild(row);
+        });
+    }
+    
+    // দশা সেকশন দেখানো
+    document.getElementById('dashaSection').style.display = 'block';
+}
+    
 </script>
 </body>
 </html>
