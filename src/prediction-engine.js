@@ -727,8 +727,331 @@ function getBhavaChalitTable(bhavaData) {
     return html;
 }
 
-// ==================== ৩. টেস্টিং ====================
-console.log("✅ ভাব কুণ্ডলী গণনার ফাংশন লোড সম্পন্ন হয়েছে।");
-console.log("🔍 ব্যবহার: calculateBhavaBoundaries(lagnaDegree)");
-console.log("🔍 ব্যবহার: getBhavaChalitData(lagnaDegree, planets)");
-console.log("🔍 ব্যবহার: drawBhavaChalitChart('svgId', bhavaData, rashiNames)");
+// shadbala-calculator.js
+// ষড়বল (Shadbala) গণনার ফাংশন
+// পূর্ব ভারতীয় কুষ্ঠি সফটওয়্যার
+
+// ==================== ১. কনস্ট্যান্ট ====================
+
+// নৈসর্গিক বল (স্থায়ী)
+const NAISARGIKA_BALA = {
+    "সূর্য": 6.0,
+    "চন্দ্র": 6.5,
+    "মঙ্গল": 5.0,
+    "বুধ": 7.0,
+    "বৃহস্পতি": 6.5,
+    "শুক্র": 5.5,
+    "শনি": 5.0,
+    "রাহু": 0,   // ছায়াগ্রহের নৈসর্গিক বল নেই
+    "কেতু": 0
+};
+
+// উচ্চ রাশি ও ডিগ্রি (তুঙ্গস্থান)
+const EXALTATION = {
+    "সূর্য": { rashi: 0, degree: 10 },      // মেষ ১০°
+    "চন্দ্র": { rashi: 1, degree: 3 },       // বৃষ ৩°
+    "মঙ্গল": { rashi: 9, degree: 28 },       // মকর ২৮°
+    "বুধ": { rashi: 5, degree: 15 },         // কন্যা ১৫°
+    "বৃহস্পতি": { rashi: 3, degree: 5 },    // কর্কট ৫°
+    "শুক্র": { rashi: 11, degree: 27 },      // মীন ২৭°
+    "শনি": { rashi: 6, degree: 20 },         // তুলা ২০°
+};
+
+// নীচ রাশি (দুর্বলস্থান)
+const DEBILITATION = {
+    "সূর্য": { rashi: 6, degree: 10 },       // তুলা ১০°
+    "চন্দ্র": { rashi: 7, degree: 3 },        // বৃশ্চিক ৩°
+    "মঙ্গল": { rashi: 3, degree: 28 },        // কর্কট ২৮°
+    "বুধ": { rashi: 11, degree: 15 },         // মীন ১৫°
+    "বৃহস্পতি": { rashi: 9, degree: 5 },     // মকর ৫°
+    "শুক্র": { rashi: 5, degree: 27 },        // কন্যা ২৭°
+    "শনি": { rashi: 0, degree: 20 },          // মেষ ২০°
+};
+
+// নিজরাশি
+const OWN_RASHI = {
+    "সূর্য": [4],              // সিংহ
+    "চন্দ্র": [3],             // কর্কট
+    "মঙ্গল": [0, 7],           // মেষ, বৃশ্চিক
+    "বুধ": [2, 5],             // মিথুন, কন্যা
+    "বৃহস্পতি": [8, 11],      // ধনু, মীন
+    "শুক্র": [1, 6],           // বৃষ, তুলা
+    "শনি": [9, 10],            // মকর, কুম্ভ
+};
+
+// মিত্র রাশি
+const FRIEND_RASHI = {
+    "সূর্য": [3, 4, 8],        // কর্কট, সিংহ, ধনু
+    "চন্দ্র": [0, 1, 4],       // মেষ, বৃষ, সিংহ
+    "মঙ্গল": [4, 8, 11],       // সিংহ, ধনু, মীন
+    "বুধ": [0, 4, 6],          // মেষ, সিংহ, তুলা
+    "বৃহস্পতি": [0, 3, 4],    // মেষ, কর্কট, সিংহ
+    "শুক্র": [2, 9, 10],       // মিথুন, মকর, কুম্ভ
+    "শনি": [1, 2, 6],          // বৃষ, মিথুন, তুলা
+};
+
+// মৌলত্রিকোণ
+const MOOLTRIKONA = {
+    "সূর্য": { rashi: 4, start: 0, end: 20 },      // সিংহ ০°-২০°
+    "চন্দ্র": { rashi: 1, start: 3, end: 30 },      // বৃষ ৩°-৩০°
+    "মঙ্গল": { rashi: 0, start: 0, end: 12 },       // মেষ ০°-১২°
+    "বুধ": { rashi: 5, start: 15, end: 20 },        // কন্যা ১৫°-২০°
+    "বৃহস্পতি": { rashi: 8, start: 0, end: 10 },   // ধনু ০°-১০°
+    "শুক্র": { rashi: 6, start: 0, end: 15 },       // তুলা ০°-১৫°
+    "শনি": { rashi: 10, start: 0, end: 20 },        // কুম্ভ ০°-২০°
+};
+
+// গ্রহের দিক বল (Dik Bala)
+const DIK_BALA_HOUSE = {
+    "সূর্য": 10,
+    "চন্দ্র": 4,
+    "মঙ্গল": 10,
+    "বুধ": 1,
+    "বৃহস্পতি": 1,
+    "শুক্র": 4,
+    "শনি": 7,
+};
+
+// ==================== ২. বল গণনার ফাংশন ====================
+
+/**
+ * ১. স্থান বল (Sthana Bala) গণনা
+ * গ্রহের রাশিগত অবস্থানের উপর ভিত্তি করে
+ */
+function calculateSthanaBala(planetName, rashiIndex, degreeInRashi) {
+    let bala = 0;
+    
+    // উচ্চ বল (Uccha Bala)
+    if (EXALTATION[planetName]) {
+        const exalt = EXALTATION[planetName];
+        if (rashiIndex === exalt.rashi) {
+            const diff = Math.abs(degreeInRashi - exalt.degree);
+            bala += Math.max(0, 60 - diff * 2); // সর্বোচ্চ ৬০ বিরূপ
+        }
+    }
+    
+    // সপ্তবর্গীয় বল (Saptavargiya Bala)
+    // নিজরাশি
+    if (OWN_RASHI[planetName] && OWN_RASHI[planetName].includes(rashiIndex)) {
+        bala += 30;
+    }
+    // মিত্র রাশি
+    else if (FRIEND_RASHI[planetName] && FRIEND_RASHI[planetName].includes(rashiIndex)) {
+        bala += 15;
+    }
+    // উচ্চ রাশি
+    else if (EXALTATION[planetName] && EXALTATION[planetName].rashi === rashiIndex) {
+        bala += 20;
+    }
+    // মৌলত্রিকোণ
+    if (MOOLTRIKONA[planetName]) {
+        const mt = MOOLTRIKONA[planetName];
+        if (rashiIndex === mt.rashi && degreeInRashi >= mt.start && degreeInRashi <= mt.end) {
+            bala += 45;
+        }
+    }
+    // নীচ রাশি
+    if (DEBILITATION[planetName] && DEBILITATION[planetName].rashi === rashiIndex) {
+        bala -= 30;
+    }
+    
+    return Math.max(0, bala);
+}
+
+/**
+ * ২. দিক বল (Dik Bala) গণনা
+ * গ্রহ যে ভাবে আছে তার উপর ভিত্তি করে
+ */
+function calculateDikBala(planetName, house) {
+    if (DIK_BALA_HOUSE[planetName] && house === DIK_BALA_HOUSE[planetName]) {
+        return 60; // পূর্ণ দিক বল
+    }
+    return 0;
+}
+
+/**
+ * ৩. কাল বল (Kala Bala) গণনা
+ * সময়ের উপর ভিত্তি করে (সরলীকৃত)
+ */
+function calculateKalaBala(planetName, birthTimeHours, moonPhase) {
+    let bala = 30; // বেস
+    
+    // চন্দ্রের জন্য পক্ষ বল
+    if (planetName === "চন্দ্র") {
+        if (moonPhase === "শুক্ল") bala += 15;
+        else bala -= 15;
+    }
+    
+    // সূর্যের জন্য দিনের সময়
+    if (planetName === "সূর্য") {
+        if (birthTimeHours >= 6 && birthTimeHours < 18) bala += 20; // দিন
+        else bala -= 10; // রাত
+    }
+    
+    // শনির জন্য রাত
+    if (planetName === "শনি") {
+        if (birthTimeHours >= 18 || birthTimeHours < 6) bala += 20; // রাত
+        else bala -= 10;
+    }
+    
+    return Math.max(0, bala);
+}
+
+/**
+ * ৪. চেষ্টা বল (Chesta Bala) গণনা
+ * গ্রহের গতির উপর ভিত্তি করে (সরলীকৃত)
+ */
+function calculateChestaBala(planetName, isRetrograde) {
+    // বক্রী হলে অতিরিক্ত বল
+    if (isRetrograde) {
+        return 30;
+    }
+    // সূর্য ও চন্দ্র কখনো বক্রী হয় না
+    if (planetName === "সূর্য" || planetName === "চন্দ্র") {
+        return 20;
+    }
+    return 10;
+}
+
+/**
+ * ৫. নৈসর্গিক বল (Naisargika Bala)
+ * গ্রহের জন্মগত স্থায়ী শক্তি
+ */
+function calculateNaisargikaBala(planetName) {
+    return NAISARGIKA_BALA[planetName] || 0;
+}
+
+/**
+ * ৬. দৃক বল (Drik Bala)
+ * গ্রহের উপর অন্যান্য গ্রহের দৃষ্টির প্রভাব (সরলীকৃত)
+ */
+function calculateDrikBala(planetName, aspects) {
+    let bala = 0;
+    
+    if (!aspects) return bala;
+    
+    // শুভ গ্রহ (বুধ, বৃহস্পতি, শুক্র) থেকে দৃষ্টি = বল বৃদ্ধি
+    // অশুভ গ্রহ (মঙ্গল, শনি, সূর্য) থেকে দৃষ্টি = বল হ্রাস
+    const benefics = ["বুধ", "বৃহস্পতি", "শুক্র"];
+    const malefics = ["মঙ্গল", "শনি", "সূর্য"];
+    
+    aspects.forEach(aspect => {
+        if (benefics.includes(aspect.planet)) bala += 5;
+        if (malefics.includes(aspect.planet)) bala -= 5;
+    });
+    
+    return Math.max(-30, Math.min(30, bala));
+}
+
+/**
+ * সম্পূর্ণ ষড়বল গণনা
+ * @param {string} planetName - গ্রহের নাম
+ * @param {object} planetData - গ্রহের ডেটা {rashiIndex, degreeInRashi, house, isRetrograde}
+ * @param {object} birthInfo - জন্ম তথ্য {birthTimeHours, moonPhase, aspects}
+ * @returns {object} ষড়বলের পূর্ণাঙ্গ তথ্য
+ */
+function calculateShadbala(planetName, planetData, birthInfo = {}) {
+    const {
+        rashiIndex = 0,
+        degreeInRashi = 0,
+        house = 1,
+        isRetrograde = false,
+        aspects = []
+    } = planetData;
+    
+    const {
+        birthTimeHours = 12,
+        moonPhase = "শুক্ল"
+    } = birthInfo;
+    
+    const sthanaBala = calculateSthanaBala(planetName, rashiIndex, degreeInRashi);
+    const dikBala = calculateDikBala(planetName, house);
+    const kalaBala = calculateKalaBala(planetName, birthTimeHours, moonPhase);
+    const chestaBala = calculateChestaBala(planetName, isRetrograde);
+    const naisargikaBala = calculateNaisargikaBala(planetName);
+    const drikBala = calculateDrikBala(planetName, aspects);
+    
+    const totalVirupa = sthanaBala + dikBala + kalaBala + chestaBala + drikBala;
+    const totalRupa = naisargikaBala + (totalVirupa / 60);
+    
+    let strength = "মধ্যম";
+    if (totalRupa >= 8) strength = "অত্যন্ত শক্তিশালী";
+    else if (totalRupa >= 6) strength = "শক্তিশালী";
+    else if (totalRupa >= 4) strength = "মধ্যম";
+    else if (totalRupa >= 2) strength = "দুর্বল";
+    else strength = "অত্যন্ত দুর্বল";
+    
+    return {
+        sthanaBala,
+        dikBala,
+        kalaBala,
+        chestaBala,
+        naisargikaBala,
+        drikBala,
+        totalVirupa,
+        totalRupa: totalRupa.toFixed(2),
+        strength
+    };
+}
+
+/**
+ * সমস্ত গ্রহের ষড়বল গণনা
+ * @param {array} planets - গ্রহের তালিকা
+ * @param {object} birthInfo - জন্ম তথ্য
+ * @returns {object} সব গ্রহের ষড়বল
+ */
+function calculateAllShadbala(planets, birthInfo = {}) {
+    const result = {};
+    
+    const planetNames = ["সূর্য", "চন্দ্র", "মঙ্গল", "বুধ", "বৃহস্পতি", "শুক্র", "শনি"];
+    
+    planetNames.forEach(name => {
+        const planet = planets.find(p => p.name === name);
+        if (planet) {
+            result[name] = calculateShadbala(name, {
+                rashiIndex: Math.floor(planet.lon / 30),
+                degreeInRashi: planet.lon % 30,
+                house: planet.house || 1,
+                isRetrograde: planet.isRetrograde || false,
+                aspects: planet.aspects || []
+            }, birthInfo);
+        }
+    });
+    
+    return result;
+}
+
+/**
+ * ষড়বলের HTML টেবিল তৈরি করে
+ * @param {object} shadbalaData - calculateAllShadbala থেকে প্রাপ্ত
+ * @returns {string} HTML টেবিল
+ */
+function getShadbalaTable(shadbalaData) {
+    let html = '<table class="planet-table"><thead><tr>';
+    html += '<th>গ্রহ</th><th>স্থান বল</th><th>দিক বল</th><th>কাল বল</th><th>চেষ্টা বল</th><th>নৈসর্গিক</th><th>দৃক বল</th><th>মোট রূপা</th><th>শক্তি</th>';
+    html += '</tr></thead><tbody>';
+    
+    Object.entries(shadbalaData).forEach(([planet, data]) => {
+        const color = data.strength.includes("শক্তিশালী") ? "#28a745" : 
+                     data.strength.includes("দুর্বল") ? "#dc3545" : "#ffc107";
+        
+        html += '<tr>';
+        html += `<td><strong>${planet}</strong></td>`;
+        html += `<td>${data.sthanaBala}</td>`;
+        html += `<td>${data.dikBala}</td>`;
+        html += `<td>${data.kalaBala}</td>`;
+        html += `<td>${data.chestaBala}</td>`;
+        html += `<td>${data.naisargikaBala}</td>`;
+        html += `<td>${data.drikBala}</td>`;
+        html += `<td><strong>${data.totalRupa}</strong></td>`;
+        html += `<td style="color:${color};font-weight:bold;">${data.strength}</td>`;
+        html += '</tr>';
+    });
+    
+    html += '</tbody></table>';
+    return html;
+}
+
+console.log("✅ ষড়বল গণনার ফাংশন লোড সম্পন্ন হয়েছে।");
+console.log("🔍 ব্যবহার: calculateShadbala('সূর্য', planetData, birthInfo)");
+console.log("🔍 ব্যবহার: calculateAllShadbala(planets, birthInfo)");
