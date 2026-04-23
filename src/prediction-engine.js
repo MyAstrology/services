@@ -1182,84 +1182,31 @@ function generateRemedyPrediction(remedies) {
     if (!remedies || remedies.length === 0) {
         return "আপনার কুষ্ঠিতে সমস্ত গ্রহ শক্তিশালী অবস্থানে আছে। বিশেষ কোনো রেমেডির প্রয়োজন নেই। তবে নিয়মিত পূজা ও দান করুন।";
     }
-    
-    let output = "🙏 গ্রহ শান্তির জন্য লাল কিতাব টোটকা ও পূজা বিধান\n";
+
+    let output = "🙏 গ্রহ শান্তির জন্য পূজা বিধান ও প্রতিকার\n";
     output += "─".repeat(45) + "\n\n";
-    
+
     remedies.forEach((remedy, index) => {
-        const lalKitab = LALKITAB_REMEDIES[remedy.planet];
-        if (!lalKitab) return;
-        
+        const remedyData = (typeof TRI_SHAKTI_REMEDIES !== 'undefined') ? TRI_SHAKTI_REMEDIES[remedy.planet] : null;
+
         output += `🟊 ${remedy.planet} (${remedy.severity} দুর্বলতা)\n`;
-        
-        // কারণ
         output += `   কারণ: ${remedy.reasons.join("; ")}\n\n`;
-        
-        // লাল কিতাব টোটকা
-        output += `   📿 লাল কিতাব টোটকা:\n`;
-        lalKitab.totka.forEach((t, i) => {
-            output += `   ${i + 1}. ${t}\n`;
-        });
-        
-        // পূজা অর্চনা
-        output += `\n   🕉️ পূজা অর্চনা:\n`;
-        lalKitab.puja.forEach((p, i) => {
-            output += `   ${i + 1}. ${p}\n`;
-        });
-        
-        // দান
-        output += `\n   🎁 দান:\n`;
-        output += `   ${lalKitab.donation}\n`;
-        
-        // সতর্কতা
-        output += `\n   ⚠️ সতর্কতা:\n`;
-        output += `   ${lalKitab.caution}\n`;
-        
-        if (index < remedies.length - 1) {
-            output += "\n" + "─".repeat(30) + "\n\n";
+
+        if (remedyData) {
+            if (remedyData.lalKitabTotka) output += `   📿 লাল কিতাব টোটকা:\n   ${remedyData.lalKitabTotka}\n\n`;
+            if (remedyData.puja) output += `   🕉️ পূজা অর্চনা:\n   ${remedyData.puja}\n\n`;
+            if (remedyData.seva) output += `   🌟 সেবা:\n   ${remedyData.seva}\n\n`;
+            if (remedyData.donation) output += `   🎁 দান:\n   ${remedyData.donation}\n\n`;
+            if (remedyData.caution) output += `   ⚠️ সতর্কতা:\n   ${remedyData.caution}\n`;
         }
+
+        if (index < remedies.length - 1) output += "\n" + "─".repeat(30) + "\n\n";
     });
-    
+
     output += "\n" + "─".repeat(45) + "\n";
-    output += "⚠️ দ্রষ্টব্য: লাল কিতাবের টোটকাগুলি বিশ্বাস ও নিষ্ঠার সাথে করতে হবে। ফল পেতে সময় লাগতে পারে। ধৈর্য ধরুন।\n";
-    
+    output += "⚠️ দ্রষ্টব্য: রেমেডিগুলি বিশ্বাস ও নিষ্ঠার সাথে করতে হবে। ফল পেতে সময় লাগতে পারে। ধৈর্য ধরুন।\n";
+
     return output;
 }
 
-// PredictionEngine ক্লাসের ভেতরে এই ফাংশনগুলো যোগ করুন:
-
-class PredictionEngine {
-    // ... আগের কোড ...
-    
-    // যোগ সেকশন
-    generateYogaSection() {
-        const yogas = this.chartData.yogas;
-        if (!yogas || yogas.length === 0) return "";
-        
-        let output = "✨ কুষ্ঠিগত বিশেষ যোগ\n";
-        output += "─".repeat(40) + "\n";
-        
-        yogas.forEach(yoga => {
-            output += `🕉️ ${yoga.name}:\n`;
-            output += getYogaFullPrediction(yoga.name) + "\n\n";
-        });
-        
-        return output;
-    }
-    
-    // রেমেডি সেকশন
-    generateRemedySection() {
-        const weakPlanets = this.chartData.weakPlanets;
-        return generateFullRemedyText(weakPlanets);
-    }
-    
-    // generateFullPrediction() ফাংশনে এই লাইন যোগ করুন:
-    generateFullPrediction() {
-        
-    }
-}
-
 console.log("✅ রেমেডি নির্ধারণের ফাংশন লোড সম্পন্ন হয়েছে।");
-console.log("🔍 ব্যবহার: checkPlanetWeakness('সূর্য', planetData, shadbalaData)");
-console.log("🔍 ব্যবহার: determineAllRemedies(chartData, shadbalaData)");
-console.log("🔍 ব্যবহার: generateRemedyPrediction(remedies)");
