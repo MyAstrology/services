@@ -1,0 +1,67 @@
+<!-- match-making.html -->
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <title>কুষ্ঠি মিলন - পূর্ব ভারতীয় কুষ্ঠি</title>
+    <!-- একই CSS -->
+</head>
+<body>
+    <h1>💑 কুষ্ঠি মিলন (Match Making)</h1>
+    
+    <!-- মেয়ের তথ্য -->
+    <div class="input-panel">
+        <h3>👰 মেয়ের তথ্য</h3>
+        <input type="text" id="girlName" placeholder="মেয়ের নাম">
+        <input type="date" id="girlDOB">
+        <input type="time" id="girlTOB">
+        <!-- ... -->
+    </div>
+    
+    <!-- ছেলের তথ্য -->
+    <div class="input-panel">
+        <h3>🤵 ছেলের তথ্য</h3>
+        <input type="text" id="boyName" placeholder="ছেলের নাম">
+        <input type="date" id="boyDOB">
+        <input type="time" id="boyTOB">
+        <!-- ... -->
+    </div>
+    
+    <button onclick="calculateMatch()">মিলন গণনা করুন</button>
+    
+    <div id="matchResult"></div>
+    
+    <script src="src/vsop87-planets.js"></script>
+    <script src="src/match-making.js"></script>
+    <script>
+        function calculateMatch() {
+            // মেয়ের কুষ্ঠি গণনা
+            // ছেলের কুষ্ঠি গণনা
+            
+            const girlData = {
+                moonNakshatra: "রোহিণী",
+                moonNakshatraIndex: 3,
+                moonRashi: "বৃষ",
+                marsRashi: "মেষ",
+                lagnaRashi: "মিথুন"
+            };
+            
+            const boyData = {
+                moonNakshatra: "অশ্বিনী",
+                moonNakshatraIndex: 0,
+                moonRashi: "মেষ",
+                marsRashi: "সিংহ",
+                lagnaRashi: "কর্কট"
+            };
+            
+            const result = calculateMatchMaking(girlData, boyData);
+            const report = generateMatchMakingReport(result, 
+                document.getElementById('girlName').value,
+                document.getElementById('boyName').value
+            );
+            
+            document.getElementById('matchResult').innerText = report;
+        }
+    </script>
+</body>
+</html>
