@@ -608,12 +608,25 @@ function calculateFullKundali(){
   if(typeof PredictionEngine==='function'){
     try{
       const engine=new PredictionEngine();
-      const bd={name,jd,lat,lon:lonVal,lagnaRashiIdx,lagnaLon,
-        sunLon,moonLon,marsLon,mercLon,jupLon,venLon,satLon,rahuLon,ketuLon,
-        moonNakshatraIdx:nakInfo.idx,moonNakshatra:nakInfo.name,
-        sunRashi:sunRashiName,moonRashi:RASHI_NAMES[Math.floor(moonLon/30)%12],
-        lagnaRashi:lagnaRashiName,dashaInfo,age,yogas:yogaList};
-      predText=engine.generateFullPrediction(bd);
+      engine.setUserName(name);
+      // chartData — prediction-engine.js যে ফরম্যাট আশা করে
+      const chartPlanets=planets.filter(p=>p.name!=='লগ্ন').map(p=>{
+        const ri=Math.floor(p.lon/30)%12;
+        const nak=getNakshatraAndPada(p.lon);
+        const house=(ri-lagnaRashiIdx+12)%12+1;
+        return{name:p.name,rashi:RASHI_NAMES[ri],nakshatra:nak.name,house};
+      });
+      const chartData={
+        planets:chartPlanets,
+        lagna:{rashi:lagnaRashiName},
+        tithi:{paksha:tithi.paksha,name:tithi.name},
+        yoga:{name:yogaName},
+        birthDate:dobVal,
+        birthTime:tobVal,
+        birthPlace:document.getElementById('citySearch').value||'',
+      };
+      engine.setChartData(chartData);
+      predText=engine.generateFullPrediction();
     }catch(e){predText="ভবিষ্যদ্বাণী গণনায় সমস্যা: "+e.message;}
   }else{predText="ভবিষ্যদ্বাণী মডিউল লোড হয়নি।";}
   document.getElementById('predictionDiv').textContent=predText;
