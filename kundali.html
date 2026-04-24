@@ -66,8 +66,10 @@ h1{text-align:center;color:var(--red);font-family:var(--fh);font-size:1.9rem;mar
 .input-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-bottom:16px}
 .ig{display:flex;flex-direction:column}
 .ig label{font-weight:700;margin-bottom:4px;color:#5c3d2e;font-size:.85rem}
-.ig input{padding:10px 12px;border:2px solid #e0cdbc;border-radius:9px;font-size:.95rem;background:#fefcf9;font-family:inherit;transition:border .2s}
+.ig input{padding:10px 12px;border:2px solid #e0cdbc;border-radius:9px;font-size:.95rem;background:#fefcf9;font-family:inherit;transition:border .2s;width:100%}
 .ig input:focus{border-color:#b8860b;outline:none}
+.sel-ctrl{padding:10px 8px;border:2px solid #e0cdbc;border-radius:9px;font-size:.93rem;background:#fefcf9;font-family:inherit;width:100%;cursor:pointer}
+.sel-ctrl:focus{border-color:#b8860b;outline:none}
 .city-wrap{position:relative}
 .suggestions{position:absolute;top:100%;left:0;right:0;max-height:200px;overflow-y:auto;background:#fff;border:2px solid #e0cdbc;border-top:none;border-radius:0 0 9px 9px;z-index:200;display:none;list-style:none;box-shadow:0 5px 15px rgba(0,0,0,.1)}
 .suggestions li{padding:9px 14px;cursor:pointer;border-bottom:1px solid #f0e6d8;font-size:.9rem}
@@ -95,10 +97,31 @@ svg{background:#fefcf9;border-radius:8px;max-width:100%;height:auto}
 .dasha-info{background:#fdf6e3;padding:14px;border-radius:9px;margin-bottom:14px;line-height:1.9}
 .dasha-info p{margin:3px 0;font-size:.92rem}
 .prediction-box{background:#fefcf9;border-radius:10px;padding:18px;white-space:pre-wrap;line-height:1.85;font-size:.93rem;border:1px solid #e8d5c0}
-@media(max-width:700px){.chart-section{grid-template-columns:1fr}.pg-grid{grid-template-columns:repeat(3,1fr)}h1{font-size:1.4rem}}
+/* ── Mobile ── */
+@media(max-width:700px){
+  .chart-section{grid-template-columns:1fr}
+  .pg-grid{grid-template-columns:repeat(3,1fr)}
+  h1{font-size:1.4rem}
+  .input-grid{grid-template-columns:repeat(2,1fr)}
+  .ig[style*="grid-column"]{grid-column:1/-1!important}
+  .card{padding:14px 12px}
+  .k-wrap{padding:14px 10px 32px}
+  .footer-grid{grid-template-columns:1fr!important}
+  .btn{padding:14px 20px;font-size:.95rem;width:100%}
+  .btn-row{flex-direction:column;align-items:stretch}
+  .planet-table{font-size:.78rem}
+  .planet-table th,.planet-table td{padding:7px 4px}
+  .chart-box{padding:10px 6px}
+  .pg-item .val{font-size:.82rem}
+  .sb-bar-wrap{flex-wrap:wrap}
+}
+@media(max-width:400px){
+  .input-grid{grid-template-columns:1fr}
+  .pg-grid{grid-template-columns:repeat(2,1fr)}
+}
 @media print{.site-header,.nav,.btn-row,.ig,.card:first-child{display:none}}
 /* ── Tabs ── */
-.tab-btn{background:transparent;border:none;color:#b0c4dc;padding:12px 14px;font-size:.82rem;font-weight:700;cursor:pointer;border-bottom:3px solid transparent;transition:color .2s,border-color .2s;font-family:inherit;white-space:nowrap;flex-shrink:0}
+.tab-btn{background:transparent;border:none;color:#b0c4dc;padding:11px 12px;font-size:.8rem;font-weight:700;cursor:pointer;border-bottom:3px solid transparent;transition:color .2s,border-color .2s;font-family:inherit;white-space:nowrap;flex-shrink:0}
 .tab-btn:hover{color:#ffd700}
 .tab-btn.active{color:#ffd700;border-bottom-color:#ffd700}
 /* Dasha accordion */
@@ -151,64 +174,67 @@ svg{background:#fefcf9;border-radius:8px;max-width:100%;height:auto}
 
   <!-- ইনপুট -->
   <div class="card">
-    <div class="input-grid">
-      <div class="ig" style="grid-column:1/-1"><label>👤 আপনার নাম</label><input type="text" id="userName" placeholder="পূর্ণ নাম লিখুন" oninput="validateForm()"></div>
-      <!-- তারিখ -->
-      <div class="ig"><label>📅 দিন</label>
-        <select id="dobDay" onchange="validateForm()" style="padding:10px 8px;border:2px solid #e0cdbc;border-radius:9px;font-size:.95rem;background:#fefcf9;font-family:inherit">
+    <div style="margin-bottom:12px">
+      <div class="ig"><label>👤 আপনার নাম</label><input type="text" id="userName" placeholder="পূর্ণ নাম লিখুন" oninput="validateForm()" style="width:100%;padding:10px 12px;border:2px solid #e0cdbc;border-radius:9px;font-size:.95rem;background:#fefcf9;font-family:inherit;transition:border .2s"></div>
+    </div>
+    <!-- তারিখ -->
+    <div style="margin-bottom:10px">
+      <label style="font-weight:700;color:#5c3d2e;font-size:.85rem;display:block;margin-bottom:5px">📅 জন্ম তারিখ</label>
+      <div style="display:grid;grid-template-columns:1fr 2fr 2fr;gap:8px">
+        <select id="dobDay" onchange="validateForm()" class="sel-ctrl">
           <option value="">দিন</option>
         </select>
-      </div>
-      <div class="ig"><label>📅 মাস</label>
-        <select id="dobMonth" onchange="validateForm()" style="padding:10px 8px;border:2px solid #e0cdbc;border-radius:9px;font-size:.95rem;background:#fefcf9;font-family:inherit">
+        <select id="dobMonth" onchange="validateForm()" class="sel-ctrl">
           <option value="">মাস</option>
           <option value="1">জানুয়ারি</option><option value="2">ফেব্রুয়ারি</option><option value="3">মার্চ</option>
           <option value="4">এপ্রিল</option><option value="5">মে</option><option value="6">জুন</option>
           <option value="7">জুলাই</option><option value="8">আগস্ট</option><option value="9">সেপ্টেম্বর</option>
           <option value="10">অক্টোবর</option><option value="11">নভেম্বর</option><option value="12">ডিসেম্বর</option>
         </select>
-      </div>
-      <div class="ig"><label>📅 বছর</label>
-        <select id="dobYear" onchange="validateForm()" style="padding:10px 8px;border:2px solid #e0cdbc;border-radius:9px;font-size:.95rem;background:#fefcf9;font-family:inherit">
+        <select id="dobYear" onchange="validateForm()" class="sel-ctrl">
           <option value="">বছর</option>
         </select>
       </div>
-      <!-- সময় -->
-      <div class="ig"><label>⏰ ঘন্টা</label>
-        <select id="tobHour" onchange="validateForm()" style="padding:10px 8px;border:2px solid #e0cdbc;border-radius:9px;font-size:.95rem;background:#fefcf9;font-family:inherit">
+    </div>
+    <!-- সময় -->
+    <div style="margin-bottom:10px">
+      <label style="font-weight:700;color:#5c3d2e;font-size:.85rem;display:block;margin-bottom:5px">⏰ জন্ম সময়</label>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+        <select id="tobHour" onchange="validateForm()" class="sel-ctrl">
           <option value="">ঘন্টা</option>
         </select>
-      </div>
-      <div class="ig"><label>⏰ মিনিট</label>
-        <select id="tobMin" onchange="validateForm()" style="padding:10px 8px;border:2px solid #e0cdbc;border-radius:9px;font-size:.95rem;background:#fefcf9;font-family:inherit">
+        <select id="tobMin" onchange="validateForm()" class="sel-ctrl">
           <option value="">মিনিট</option>
         </select>
-      </div>
-      <div class="ig"><label>⏰ সেকেন্ড</label>
-        <select id="tobSec" style="padding:10px 8px;border:2px solid #e0cdbc;border-radius:9px;font-size:.95rem;background:#fefcf9;font-family:inherit">
-          <option value="0">০০</option>
+        <select id="tobSec" class="sel-ctrl">
+          <option value="0">০০ সে.</option>
         </select>
       </div>
-      <div class="ig">
-        <label>🏙️ শহর অনুসন্ধান</label>
-        <div class="city-wrap">
-          <div style="display:flex;gap:6px">
-            <input type="text" id="citySearch" placeholder="৩ অক্ষর লিখুন..." autocomplete="off" style="flex:1">
-            <button type="button" onclick="getGPSLocation()" title="GPS লোকেশন" style="padding:0 12px;border:2px solid #e0cdbc;border-radius:9px;background:#fefcf9;cursor:pointer;font-size:1.1rem;color:#5c3d2e">📍</button>
-          </div>
-          <ul class="suggestions" id="citySuggestions"></ul>
+    </div>
+    <!-- শহর -->
+    <div style="margin-bottom:10px">
+      <label style="font-weight:700;color:#5c3d2e;font-size:.85rem;display:block;margin-bottom:5px">🏙️ শহর অনুসন্ধান</label>
+      <div class="city-wrap">
+        <div style="display:flex;gap:6px">
+          <input type="text" id="citySearch" placeholder="৩ অক্ষর লিখুন..." autocomplete="off" style="flex:1;padding:10px 12px;border:2px solid #e0cdbc;border-radius:9px;font-size:.95rem;background:#fefcf9;font-family:inherit">
+          <button type="button" onclick="getGPSLocation()" title="GPS লোকেশন" style="padding:0 14px;border:2px solid #e0cdbc;border-radius:9px;background:#fefcf9;cursor:pointer;font-size:1.2rem;flex-shrink:0">📍</button>
         </div>
+        <ul class="suggestions" id="citySuggestions"></ul>
       </div>
-      <div class="ig"><label>🌍 অক্ষাংশ</label><input type="number" id="lat" placeholder="23.1677" step="0.0001" oninput="validateForm()"></div>
-      <div class="ig"><label>🌏 দ্রাঘিমাংশ</label><input type="number" id="lon" placeholder="88.5808" step="0.0001" oninput="validateForm()"></div>
+    </div>
+    <!-- অক্ষাংশ / দ্রাঘিমাংশ -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:4px">
+      <div class="ig"><label>🌍 অক্ষাংশ</label><input type="number" id="lat" placeholder="23.1677" step="0.0001" oninput="validateForm()" style="width:100%;padding:10px 8px;border:2px solid #e0cdbc;border-radius:9px;font-size:.93rem;background:#fefcf9;font-family:inherit"></div>
+      <div class="ig"><label>🌏 দ্রাঘিমাংশ</label><input type="number" id="lon" placeholder="88.5808" step="0.0001" oninput="validateForm()" style="width:100%;padding:10px 8px;border:2px solid #e0cdbc;border-radius:9px;font-size:.93rem;background:#fefcf9;font-family:inherit"></div>
     </div>
     <div class="btn-row">
       <button class="btn btn-primary" id="calcBtn" onclick="calculateFullKundali()">📊 কুষ্ঠি গণনা করুন</button>
     </div>
   </div>
+</div><!-- /inputSection k-wrap -->
 
-  <!-- ফলাফল -->
-  <div id="resultsArea" style="display:none">
+<!-- ফলাফল — inputSection-এর বাইরে -->
+<div class="k-wrap" id="resultsArea" style="display:none">
 
     <!-- পঞ্চাঙ্গ -->
     <div class="card">
@@ -274,7 +300,7 @@ svg{background:#fefcf9;border-radius:8px;max-width:100%;height:auto}
     </div>
 
     <!-- ট্যাব নেভিগেশন -->
-    <div id="tabNav" style="position:sticky;top:66px;z-index:800;background:#0a192f;border-bottom:2px solid #b8860b;margin:0 -16px;padding:0 16px;overflow-x:auto;white-space:nowrap;display:flex;gap:0">
+    <div id="tabNav" style="position:sticky;top:66px;z-index:800;background:#0a192f;border-bottom:2px solid #b8860b;margin:0 -10px;padding:0;overflow-x:auto;white-space:nowrap;display:flex;gap:0;-webkit-overflow-scrolling:touch;scrollbar-width:none">
       <button class="tab-btn active" onclick="showTab('tabBhava',this)">ভাব কুণ্ডলি</button>
       <button class="tab-btn" onclick="showTab('tabPanchang',this)">পঞ্চাঙ্গ</button>
       <button class="tab-btn" onclick="showTab('tabDasha',this)">বিংশোত্তরী দশা</button>
@@ -358,8 +384,7 @@ svg{background:#fefcf9;border-radius:8px;max-width:100%;height:auto}
     </div>
     </div><!-- /tabYoga -->
 
-  </div><!-- /resultsArea -->
-</div>
+</div><!-- /resultsArea k-wrap -->
 
 <!-- FOOTER -->
 <footer class="site-footer">
@@ -819,9 +844,10 @@ function calculateFullKundali(){
 
   /* ফর্ম হাইড করো, ফলাফল দেখাও */
   document.getElementById('inputSection').style.display='none';
-  document.getElementById('resultsArea').style.display='block';
-  showTab('tabBhava',document.querySelector('.tab-btn'));
-  document.getElementById('tabNav').scrollIntoView({behavior:'smooth'});
+  const ra=document.getElementById('resultsArea');
+  ra.style.display='block';
+  showTab('tabBhava',document.querySelector('#tabNav .tab-btn'));
+  ra.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
 /* ── শহর অনুসন্ধান ── */
