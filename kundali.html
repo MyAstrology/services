@@ -632,14 +632,14 @@ document.addEventListener('DOMContentLoaded',function(){
     const q=this.value.trim().toLowerCase();
     sugg.innerHTML='';
     if(q.length<2){sugg.style.display='none';return;}
-    const cd=(typeof CITIES!=='undefined')?CITIES:(typeof cities!=='undefined'?cities:[]);
+    const cd=(typeof CITY_DB!=='undefined')?CITY_DB:[];
     const matches=cd.filter(c=>{
-      const n=(c.name||c[0]||'').toLowerCase();
+      const n=(c.n||'').toLowerCase();
       return n.startsWith(q);
     }).slice(0,8);
     if(!matches.length){sugg.style.display='none';return;}
     matches.forEach(c=>{
-      const nm=c.name||c[0],la=c.lat||c[1],lo=c.lon||c[2];
+      const nm=c.n,la=c.lat,lo=c.lng;
       const li=document.createElement('li');li.textContent=nm;
       li.addEventListener('click',()=>{
         inp.value=nm;
