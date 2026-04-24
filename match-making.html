@@ -308,11 +308,11 @@ function setupCitySearch(inputId,suggId,latId,lonId){
   inp.addEventListener('input',function(){
     const q=this.value.trim().toLowerCase();sugg.innerHTML='';
     if(q.length<2){sugg.style.display='none';return;}
-    const cd=(typeof CITIES!=='undefined')?CITIES:(typeof cities!=='undefined'?cities:[]);
-    const m=cd.filter(c=>(c.name||c[0]||'').toLowerCase().startsWith(q)).slice(0,8);
+    const cd=(typeof CITY_DB!=='undefined')?CITY_DB:[];
+    const m=cd.filter(c=>(c.n||'').toLowerCase().startsWith(q)).slice(0,8);
     if(!m.length){sugg.style.display='none';return;}
     m.forEach(c=>{
-      const nm=c.name||c[0],la=c.lat||c[1],lo=c.lon||c[2];
+      const nm=c.n,la=c.lat,lo=c.lng;
       const li=document.createElement('li');li.textContent=nm;
       li.addEventListener('click',()=>{inp.value=nm;document.getElementById(latId).value=parseFloat(la).toFixed(4);document.getElementById(lonId).value=parseFloat(lo).toFixed(4);sugg.style.display='none';});
       sugg.appendChild(li);
