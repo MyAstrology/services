@@ -3,107 +3,150 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>পূর্ব ভারতীয় কুষ্ঠি - MyAstrology</title>
+<title>জন্মকুষ্ঠি - পূর্ব ভারতীয় বৈদিক জ্যোতিষ | MyAstrology</title>
+<meta name="description" content="বিনামূল্যে জন্মকুষ্ঠি গণনা — VSOP87 নির্ভুল গ্রহ গণনা, লাহিড়ী অয়নাংশ, রাশিচক্র, নক্ষত্র, দশা ও ফলাদেশ।">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Source+Sans+3:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700&family=Source+Sans+3:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;700&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"></noscript>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Noto Sans Bengali',sans-serif;background:linear-gradient(145deg,#fdf8f2,#f5ebe0);min-height:100vh;color:#2c1810}
-.nav{background:#7a2e2e;padding:12px 20px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
-.nav a{color:#fdf8f2;text-decoration:none;font-weight:bold;font-size:.95rem;padding:6px 14px;border-radius:20px;transition:background .2s}
-.nav a:hover,.nav a.active{background:rgba(255,255,255,.2)}
-.nav-brand{color:#f9d77e;font-size:1.1rem;font-weight:800;margin-right:auto}
-.container{max-width:960px;margin:0 auto;padding:20px}
-h1{text-align:center;color:#7a2e2e;font-size:2rem;margin:15px 0 5px;text-shadow:1px 1px 3px rgba(0,0,0,.1)}
-.subtitle{text-align:center;color:#8b6914;margin-bottom:20px;font-style:italic}
-.card{background:#fff;border-radius:16px;padding:22px;box-shadow:0 4px 20px rgba(0,0,0,.08);border:1px solid #e8d5c0;margin-bottom:20px}
-.input-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:18px}
-.input-group{display:flex;flex-direction:column}
-.input-group label{font-weight:700;margin-bottom:5px;color:#5c3d2e;font-size:.88rem}
-.input-group input{padding:11px;border:2px solid #e0cdbc;border-radius:10px;font-size:1rem;background:#fefcf9;font-family:inherit;transition:border .2s}
-.input-group input:focus{border-color:#b8860b;outline:none}
+:root{
+  --navy:#0a192f;--navy2:#0e1e38;--navy3:#112240;
+  --gold:#b8860b;--gold2:#c8950c;--gold3:#ffd700;
+  --gold-lt:#fff4ca;--gold-bg:#fdf8ed;
+  --cream:#fafaf6;--cream2:#f4ede0;
+  --text:#181825;--muted:#464662;--red:#780b0b;
+  --border:#ddd0b5;
+  --fh:'Playfair Display',Georgia,serif;
+  --fb:'Source Sans 3','Noto Sans Bengali','Segoe UI',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{font-family:var(--fb);background:var(--cream);color:var(--text);padding-top:66px}
+/* ── Header ── */
+.site-header{position:fixed;width:100%;top:0;z-index:900;display:flex;align-items:center;gap:12px;padding:0 20px;height:66px;background:var(--navy);box-shadow:0 2px 18px rgba(0,0,0,.5);border-bottom:2px solid var(--gold);}
+.ham{background:rgba(255,255,255,.06);border:1.5px solid rgba(184,134,11,.45);cursor:pointer;color:var(--gold-lt);font-size:1.25rem;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:7px;flex-shrink:0;transition:background .2s;}
+.ham:hover{background:rgba(184,134,11,.18)}
+.header-brand{font-family:var(--fh);font-size:1.18rem;font-weight:700;color:var(--gold-lt);letter-spacing:.05em;flex:1;text-align:center;}
+.header-logo{width:46px;height:46px;border-radius:8px;object-fit:contain;background:var(--navy);padding:2px;flex-shrink:0;}
+/* ── Nav ── */
+.nav{display:none;flex-direction:column;position:fixed;top:66px;left:0;right:0;background:var(--navy2);border-top:2px solid var(--gold);z-index:899;max-height:82vh;overflow-y:auto;box-shadow:0 10px 30px rgba(0,0,0,.45);}
+.nav.open{display:flex}
+.nav-overlay{display:none;position:fixed;inset:0;top:66px;background:rgba(0,0,0,.45);z-index:898}
+.nav-overlay.open{display:block}
+.nav a{color:#b0c4dc;padding:12px 22px;font-size:.93rem;font-weight:600;border-bottom:1px solid rgba(255,255,255,.06);transition:background .2s,color .2s;text-decoration:none;}
+.nav a i{width:20px;margin-right:9px;color:var(--gold3);opacity:.85}
+.nav a:hover,.nav a.active-link{background:rgba(184,134,11,.12);color:var(--gold-lt)}
+body.nav-open{overflow-y:hidden}
+/* ── Footer ── */
+.site-footer{background:linear-gradient(180deg,#0a1628 0%,#060e1a 100%);border-top:3px solid var(--gold);color:#6888a8;}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.1fr;gap:0;max-width:1080px;margin:0 auto;padding:44px 24px 36px;border-bottom:1px solid rgba(255,255,255,.05);}
+.footer-col{padding:0 28px 0 0;border-right:1px solid rgba(255,255,255,.05);}
+.footer-col:first-child{padding-left:0}.footer-col:last-child{padding-right:0;border-right:none}
+.footer-col+.footer-col{padding-left:28px}
+.footer-col h4{font-family:var(--fh);color:var(--gold);font-size:.8rem;letter-spacing:.13em;text-transform:uppercase;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid rgba(184,134,11,.25);}
+.footer-col p,.footer-col a{font-size:.82rem;color:#8aabcb;display:block;margin-bottom:8px;transition:color .2s;line-height:1.65;text-decoration:none;}
+.footer-col a:hover{color:var(--gold-lt)}.footer-col i{width:15px;margin-right:7px;opacity:.75;color:var(--gold);font-size:.78rem;}
+.footer-bottom{max-width:1080px;margin:0 auto;padding:22px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+.footer-bottom p{font-size:.76rem;color:#3d5570;}
+.social-row{display:flex;gap:8px;flex-wrap:wrap}
+.social-row a{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;color:#fff;transition:transform .2s,filter .2s;filter:brightness(.8);}
+.social-row a:hover{transform:translateY(-3px);filter:brightness(1)}
+.s-wa{background:#25d366}.s-fb{background:#1877f2}.s-yt{background:#ff0000}
+.s-ig{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285aeb 90%)}
+.s-tw{background:#14171a}.s-li{background:#0077b5}
+@media(max-width:860px){.footer-grid{grid-template-columns:1fr 1fr;gap:0}.footer-col{border-right:none;padding:0 0 24px 0!important}.footer-col+.footer-col{padding-left:0!important}}
+@media(max-width:480px){.footer-grid{grid-template-columns:1fr}.footer-bottom{flex-direction:column;text-align:center}}
+/* ── Page Content ── */
+.k-wrap{max-width:960px;margin:0 auto;padding:24px 16px 40px}
+h1{text-align:center;color:var(--red);font-family:var(--fh);font-size:1.9rem;margin:16px 0 4px}
+.subtitle{text-align:center;color:#8b6914;margin-bottom:20px;font-style:italic;font-size:.95rem}
+.card{background:#fff;border-radius:14px;padding:20px;box-shadow:0 4px 20px rgba(0,0,0,.07);border:1px solid var(--border);margin-bottom:20px}
+.input-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-bottom:16px}
+.ig{display:flex;flex-direction:column}
+.ig label{font-weight:700;margin-bottom:4px;color:#5c3d2e;font-size:.85rem}
+.ig input{padding:10px 12px;border:2px solid #e0cdbc;border-radius:9px;font-size:.95rem;background:#fefcf9;font-family:inherit;transition:border .2s}
+.ig input:focus{border-color:#b8860b;outline:none}
 .city-wrap{position:relative}
-.suggestions{position:absolute;top:100%;left:0;right:0;max-height:190px;overflow-y:auto;background:#fff;border:2px solid #e0cdbc;border-top:none;border-radius:0 0 10px 10px;z-index:999;display:none;box-shadow:0 5px 15px rgba(0,0,0,.1)}
-.sug-item{padding:9px 14px;cursor:pointer;border-bottom:1px solid #f0e6d8;font-size:.9rem}
-.sug-item:hover{background:#fdf6e3}
+.suggestions{position:absolute;top:100%;left:0;right:0;max-height:200px;overflow-y:auto;background:#fff;border:2px solid #e0cdbc;border-top:none;border-radius:0 0 9px 9px;z-index:200;display:none;list-style:none;box-shadow:0 5px 15px rgba(0,0,0,.1)}
+.suggestions li{padding:9px 14px;cursor:pointer;border-bottom:1px solid #f0e6d8;font-size:.9rem}
+.suggestions li:hover{background:#fdf6e3}
 .btn-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 .btn{padding:13px 28px;border:none;border-radius:50px;font-size:1rem;font-weight:700;cursor:pointer;transition:all .3s;font-family:inherit}
 .btn-primary{background:#7a2e2e;color:#fff;box-shadow:0 4px 12px rgba(122,46,46,.3)}
 .btn-primary:hover{background:#8b3d3d;transform:translateY(-2px)}
-.btn-secondary{background:#5c7a44;color:#fff}
-.btn-secondary:hover{background:#6e8b55}
-.panchang-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;text-align:center}
-.pg-item{background:linear-gradient(135deg,#fdf8f2,#f5e6d8);padding:12px 8px;border-radius:12px;border:1px solid #e8d5c0}
-.pg-item .lbl{font-size:.72rem;color:#8b6914;text-transform:uppercase;font-weight:700;margin-bottom:4px}
-.pg-item .val{font-size:1.05rem;font-weight:700;color:#2c1810}
+.btn-secondary{background:#5c7a44;color:#fff}.btn-secondary:hover{background:#6e8b55}
+.pg-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;text-align:center}
+.pg-item{background:linear-gradient(135deg,#fdf8f2,#f5e6d8);padding:11px 6px;border-radius:11px;border:1px solid #e8d5c0}
+.pg-item .lbl{font-size:.68rem;color:#8b6914;text-transform:uppercase;font-weight:700;margin-bottom:3px}
+.pg-item .val{font-size:.95rem;font-weight:700;color:#2c1810}
 .chart-section{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:20px}
-.chart-box{background:#fff;border-radius:16px;padding:18px;box-shadow:0 4px 20px rgba(0,0,0,.08);border:1px solid #e8d5c0;text-align:center}
-.chart-box h3{color:#7a2e2e;margin-bottom:12px;font-size:1.15rem}
-svg{background:#fefcf9;border-radius:10px;max-width:100%;height:auto}
+.chart-box{background:#fff;border-radius:14px;padding:16px;box-shadow:0 4px 20px rgba(0,0,0,.07);border:1px solid var(--border);text-align:center}
+.chart-box h3{color:#7a2e2e;margin-bottom:10px;font-size:1.05rem;font-family:var(--fh)}
+svg{background:#fefcf9;border-radius:8px;max-width:100%;height:auto}
 .planet-table{width:100%;border-collapse:collapse;font-size:.88rem}
-.planet-table th{background:#7a5d44;color:#fff;padding:11px 8px;font-weight:600;text-align:center}
+.planet-table th{background:#7a5d44;color:#fff;padding:10px 8px;font-weight:600;text-align:center}
 .planet-table td{padding:9px 8px;border-bottom:1px solid #e8d5c0;text-align:center}
 .planet-table tr:nth-child(even){background:#fdf8f2}
 .planet-table tr:hover{background:#fdf6e3}
-.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px}
-.dasha-info{background:#fdf6e3;padding:14px;border-radius:10px;margin-bottom:16px;line-height:1.9}
-.dasha-info p{margin:3px 0;font-size:.93rem}
-.cur-dasha{background:#fdf0cc;font-weight:700}
-.section-title{color:#7a2e2e;font-size:1.2rem;margin-bottom:14px;display:flex;align-items:center;gap:8px}
-.yoga-badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:.78rem;font-weight:700;margin-left:8px}
-.yoga-shubha{background:#d4edda;color:#155724}
-.yoga-ashubha{background:#f8d7da;color:#721c24}
-.yoga-mixed{background:#fff3cd;color:#856404}
-.prediction-box{background:#fff;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,.08);border:1px solid #e8d5c0;white-space:pre-wrap;line-height:1.85;font-size:.95rem;margin-bottom:20px}
-.footer{text-align:center;padding:20px;color:#8b6914;font-size:.85rem;border-top:1px solid #e8d5c0;margin-top:10px}
-@media(max-width:700px){.chart-section{grid-template-columns:1fr}.panchang-grid{grid-template-columns:repeat(3,1fr)}h1{font-size:1.5rem}}
-@media print{.nav,.btn-row,.input-panel{display:none}}
+.cur-dasha{background:#fdf0cc!important;font-weight:700}
+.section-title{color:#7a2e2e;font-size:1.1rem;margin-bottom:12px;display:flex;align-items:center;gap:8px;font-family:var(--fh)}
+.dasha-info{background:#fdf6e3;padding:14px;border-radius:9px;margin-bottom:14px;line-height:1.9}
+.dasha-info p{margin:3px 0;font-size:.92rem}
+.prediction-box{background:#fefcf9;border-radius:10px;padding:18px;white-space:pre-wrap;line-height:1.85;font-size:.93rem;border:1px solid #e8d5c0}
+@media(max-width:700px){.chart-section{grid-template-columns:1fr}.pg-grid{grid-template-columns:repeat(3,1fr)}h1{font-size:1.4rem}}
+@media print{.site-header,.nav,.btn-row,.ig,.card:first-child{display:none}}
 </style>
 </head>
 <body>
 
-<nav class="nav">
-  <span class="nav-brand">🔮 MyAstrology</span>
-  <a href="/">হোম</a>
-  <a href="kundali.html" class="active">জন্মকুষ্ঠি</a>
-  <a href="match-making.html">কুষ্ঠি মিলন</a>
-  <a href="blog-list.html">ব্লগ</a>
+<!-- HEADER -->
+<header class="site-header">
+  <button class="ham" onclick="toggleNav()" aria-label="মেনু খুলুন"><i class="fas fa-bars"></i></button>
+  <span class="header-brand">MyAstrology</span>
+  <img src="images/MyAstrology-Ranghat-logo.png" alt="MyAstrology Logo" class="header-logo" width="46" height="46" loading="eager">
+</header>
+
+<!-- NAV -->
+<nav class="nav" id="navMenu" aria-label="মূল নেভিগেশন">
+  <a href="/"><i class="fas fa-home"></i>হোম</a>
+  <a href="kundali.html" class="active-link"><i class="fas fa-scroll"></i>জন্মকুষ্ঠি</a>
+  <a href="match-making.html"><i class="fas fa-heart"></i>কুষ্ঠি মিলন</a>
+  <a href="astrology.html"><i class="fas fa-star"></i>জ্যোতিষ শাস্ত্র</a>
+  <a href="palmistry.html"><i class="fas fa-hand-paper"></i>হস্তরেখা</a>
+  <a href="gemstone.html"><i class="fas fa-gem"></i>রত্নপাথর</a>
+  <a href="vastu-science.html"><i class="fas fa-building"></i>বাস্তু শাস্ত্র</a>
+  <a href="rashifal.html"><i class="fas fa-circle-notch"></i>রাশিফল</a>
+  <a href="panjika.html"><i class="fas fa-calendar-alt"></i>পঞ্জিকা</a>
+  <a href="numerology.html"><i class="fas fa-calculator"></i>সংখ্যা জ্যোতিষ</a>
+  <a href="blog-list.html"><i class="fas fa-blog"></i>ব্লগ</a>
+  <a href="about.html"><i class="fas fa-user"></i>আমাদের সম্পর্কে</a>
+  <a href="contact.html"><i class="fas fa-address-card"></i>যোগাযোগ</a>
+  <a href="https://wa.me/919333122768" target="_blank" rel="noopener" style="color:#4ade80;font-weight:700"><i class="fab fa-whatsapp"></i>📲 WhatsApp পরামর্শ</a>
 </nav>
+<div class="nav-overlay" id="navOverlay" onclick="closeNav()"></div>
 
-<div class="container">
-  <h1>🚩 পূর্ব ভারতীয় কুষ্ঠি</h1>
-  <div class="subtitle">বিশুদ্ধ বাংলা মডেল — রাশিচক্র, নক্ষত্র, দশা ও ফলাফল</div>
+<!-- PAGE CONTENT -->
+<div class="k-wrap">
+  <h1>🚩 পূর্ব ভারতীয় জন্মকুষ্ঠি</h1>
+  <div class="subtitle">বিশুদ্ধ বাংলা মডেল — রাশিচক্র, নক্ষত্র, দশা ও ফলাদেশ | VSOP87 নির্ভুল গণনা</div>
 
-  <!-- ইনপুট প্যানেল -->
-  <div class="card input-panel">
+  <!-- ইনপুট -->
+  <div class="card">
     <div class="input-grid">
-      <div class="input-group">
-        <label>👤 আপনার নাম</label>
-        <input type="text" id="userName" placeholder="নাম লিখুন">
-      </div>
-      <div class="input-group">
-        <label>📅 জন্ম তারিখ</label>
-        <input type="date" id="dob" value="1995-08-15">
-      </div>
-      <div class="input-group">
-        <label>⏰ জন্ম সময়</label>
-        <input type="time" id="tob" value="10:30">
-      </div>
-      <div class="input-group">
+      <div class="ig"><label>👤 আপনার নাম</label><input type="text" id="userName" placeholder="নাম লিখুন"></div>
+      <div class="ig"><label>📅 জন্ম তারিখ</label><input type="date" id="dob" value="1995-08-15"></div>
+      <div class="ig"><label>⏰ জন্ম সময়</label><input type="time" id="tob" value="10:30"></div>
+      <div class="ig">
         <label>🏙️ শহর অনুসন্ধান</label>
         <div class="city-wrap">
           <input type="text" id="citySearch" placeholder="শহরের নাম..." autocomplete="off">
-          <div class="suggestions" id="citySuggestions"></div>
+          <ul class="suggestions" id="citySuggestions"></ul>
         </div>
       </div>
-      <div class="input-group">
-        <label>🌍 অক্ষাংশ</label>
-        <input type="number" id="lat" value="23.1677" step="0.0001">
-      </div>
-      <div class="input-group">
-        <label>🌏 দ্রাঘিমাংশ</label>
-        <input type="number" id="lon" value="88.5808" step="0.0001">
-      </div>
+      <div class="ig"><label>🌍 অক্ষাংশ</label><input type="number" id="lat" value="23.1677" step="0.0001"></div>
+      <div class="ig"><label>🌏 দ্রাঘিমাংশ</label><input type="number" id="lon" value="88.5808" step="0.0001"></div>
     </div>
     <div class="btn-row">
       <button class="btn btn-primary" onclick="calculateFullKundali()">📊 সম্পূর্ণ কুষ্ঠি গণনা</button>
@@ -117,7 +160,7 @@ svg{background:#fefcf9;border-radius:10px;max-width:100%;height:auto}
     <!-- পঞ্চাঙ্গ -->
     <div class="card">
       <div class="section-title">🗓️ জন্মকালীন পঞ্চাঙ্গ</div>
-      <div class="panchang-grid">
+      <div class="pg-grid">
         <div class="pg-item"><div class="lbl">বার</div><div class="val" id="pgVar">—</div></div>
         <div class="pg-item"><div class="lbl">সূর্য রাশি</div><div class="val" id="pgSunRashi">—</div></div>
         <div class="pg-item"><div class="lbl">লগ্ন</div><div class="val" id="pgLagna">—</div></div>
@@ -125,16 +168,16 @@ svg{background:#fefcf9;border-radius:10px;max-width:100%;height:auto}
         <div class="pg-item"><div class="lbl">যোগ</div><div class="val" id="pgYoga">—</div></div>
         <div class="pg-item"><div class="lbl">তিথি</div><div class="val" id="pgTithi">—</div></div>
       </div>
-      <div style="text-align:center;margin-top:12px;font-size:.9rem;color:#5c3d2e">
+      <div style="text-align:center;margin-top:10px;font-size:.88rem;color:#5c3d2e">
         অয়নাংশ: <strong id="pgAyan">—</strong>° &nbsp;|&nbsp; গণ: <strong id="pgGana">—</strong>
       </div>
     </div>
 
-    <!-- কুষ্ঠি চার্ট -->
+    <!-- চার্ট -->
     <div class="chart-section">
       <div class="chart-box">
         <h3>🟊 জন্মকুষ্ঠি (D1)</h3>
-        <svg id="d1Chart" width="320" height="320" viewBox="0 0 320 320">
+        <svg id="d1Chart" width="300" height="300" viewBox="0 0 320 320">
           <rect width="320" height="320" fill="#fdfaf6" stroke="#8b0000" stroke-width="2"/>
           <line x1="107" y1="0" x2="107" y2="320" stroke="#8b0000" stroke-width="1.5"/>
           <line x1="213" y1="0" x2="213" y2="320" stroke="#8b0000" stroke-width="1.5"/>
@@ -144,13 +187,12 @@ svg{background:#fefcf9;border-radius:10px;max-width:100%;height:auto}
           <line x1="320" y1="0" x2="213" y2="107" stroke="#8b0000" stroke-width="1"/>
           <line x1="0" y1="320" x2="107" y2="213" stroke="#8b0000" stroke-width="1"/>
           <line x1="320" y1="320" x2="213" y2="213" stroke="#8b0000" stroke-width="1"/>
-          <g id="d1Labels"></g>
-          <g id="d1Planets"></g>
+          <g id="d1Labels"></g><g id="d1Planets"></g>
         </svg>
       </div>
       <div class="chart-box">
         <h3>🔮 নবাংশ কুষ্ঠি (D9)</h3>
-        <svg id="d9Chart" width="320" height="320" viewBox="0 0 320 320">
+        <svg id="d9Chart" width="300" height="300" viewBox="0 0 320 320">
           <rect width="320" height="320" fill="#fdfaf6" stroke="#8b0000" stroke-width="2"/>
           <line x1="107" y1="0" x2="107" y2="320" stroke="#8b0000" stroke-width="1.5"/>
           <line x1="213" y1="0" x2="213" y2="320" stroke="#8b0000" stroke-width="1.5"/>
@@ -160,8 +202,7 @@ svg{background:#fefcf9;border-radius:10px;max-width:100%;height:auto}
           <line x1="320" y1="0" x2="213" y2="107" stroke="#8b0000" stroke-width="1"/>
           <line x1="0" y1="320" x2="107" y2="213" stroke="#8b0000" stroke-width="1"/>
           <line x1="320" y1="320" x2="213" y2="213" stroke="#8b0000" stroke-width="1"/>
-          <g id="d9Labels"></g>
-          <g id="d9Planets"></g>
+          <g id="d9Labels"></g><g id="d9Planets"></g>
         </svg>
       </div>
     </div>
@@ -170,20 +211,20 @@ svg{background:#fefcf9;border-radius:10px;max-width:100%;height:auto}
     <div class="card">
       <div class="section-title">🪐 গ্রহের অবস্থান</div>
       <div style="overflow-x:auto">
-        <table class="planet-table" id="planetTable">
-          <thead><tr><th>গ্রহ</th><th>রাশি</th><th>ডিগ্রি</th><th>নক্ষত্র (পদ)</th><th>ভাব</th></tr></thead>
+        <table class="planet-table">
+          <thead><tr><th>গ্রহ</th><th>রাশি</th><th>ডিগ্রি</th><th>নক্ষত্র (পদ)</th><th>নবাংশ রাশি</th><th>ভাব</th></tr></thead>
           <tbody id="planetTbody"></tbody>
         </table>
       </div>
     </div>
 
     <!-- বিংশোত্তরী দশা -->
-    <div class="card" id="dashaSection">
+    <div class="card">
       <div class="section-title">⏳ বিংশোত্তরী দশা</div>
       <div class="dasha-info" id="dashaInfo"></div>
-      <div class="section-title" style="font-size:1rem;margin-top:10px">📊 পূর্ণাঙ্গ মহাদশা সারণী</div>
+      <div class="section-title" style="font-size:.95rem;margin-top:8px">📊 মহাদশা সারণী</div>
       <div style="overflow-x:auto">
-        <table class="planet-table" id="dashaTable">
+        <table class="planet-table">
           <thead><tr><th>মহাদশা</th><th>শুরু (বয়স)</th><th>শেষ (বয়স)</th><th>সময়কাল</th><th>অবস্থা</th></tr></thead>
           <tbody id="dashaTbody"></tbody>
         </table>
@@ -202,16 +243,68 @@ svg{background:#fefcf9;border-radius:10px;max-width:100%;height:auto}
       <div id="yogaDiv"></div>
     </div>
 
-    <!-- প্রেডিকশন -->
+    <!-- ফলাদেশ -->
     <div class="card">
       <div class="section-title">📖 পূর্ণাঙ্গ ফলাদেশ</div>
       <div class="prediction-box" id="predictionDiv"></div>
     </div>
 
   </div><!-- /resultsArea -->
-
-  <div class="footer">© পূর্ব ভারতীয় কুষ্ঠি সফটওয়্যার | লাহিড়ী অয়নাংশ | VSOP87 নির্ভুল গণনা | <a href="https://www.myastrology.in" style="color:#8b6914">www.myastrology.in</a></div>
 </div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>MyAstrology</h4>
+      <p><i class="fas fa-map-marker-alt"></i>রাণাঘাট, নদিয়া, পশ্চিমবঙ্গ — ৭৪১২০২</p>
+      <p><i class="fas fa-phone"></i>+91 93331 22768</p>
+      <a href="https://wa.me/919333122768" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i>WhatsApp পরামর্শ</a>
+      <a href="astrology.html"><i class="fas fa-calendar-check"></i>অনলাইন বুকিং</a>
+    </div>
+    <div class="footer-col">
+      <h4>সেবাসমূহ</h4>
+      <a href="palmistry.html">হস্তরেখা বিচার</a>
+      <a href="astrology.html">জন্মকুণ্ডলী বিশ্লেষণ</a>
+      <a href="match-making.html">কুণ্ডলী মিলন</a>
+      <a href="vastu-science.html">বাস্তু শাস্ত্র</a>
+      <a href="gemstone.html">রত্নপাথর পরামর্শ</a>
+      <a href="rashifal.html">দৈনন্দিন রাশিফল</a>
+      <a href="panjika.html">পঞ্জিকা</a>
+    </div>
+    <div class="footer-col">
+      <h4>তথ্য</h4>
+      <a href="about.html">ড. আচার্য সম্পর্কে</a>
+      <a href="blog-list.html">সমস্ত ব্লগ পোস্ট</a>
+      <a href="video.html">ভিডিও</a>
+      <a href="gallery.html">গ্যালারি</a>
+      <a href="reviews.html">সমস্ত রিভিউ</a>
+      <a href="vedic-astronomy.html">জ্যোতির্বিজ্ঞান</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-of-use.html">Terms of Use</a>
+    </div>
+    <div class="footer-col">
+      <h4>সেবা এলাকা</h4>
+      <a href="best-astrologer-in-west-bengal.html">সেরা জ্যোতিষী পশ্চিমবঙ্গ</a>
+      <a href="best-astrologer-in-kolkata.html">সেরা জ্যোতিষী কলকাতা</a>
+      <a href="best-astrologer-in-nadia.html">সেরা জ্যোতিষী নদিয়া</a>
+      <p style="margin-top:8px;font-size:.8rem;color:#8aabcb">রাণাঘাট · নদিয়া · কলকাতা · পশ্চিমবঙ্গ · সারা ভারতে অনলাইন</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 MyAstrology · ড. প্রদ্যুৎ আচার্য, PhD in Vedic Jyotish · রাণাঘাট, পশ্চিমবঙ্গ ·
+      <a href="privacy-policy.html" style="color:#5a7a9a;border-bottom:1px solid #3d5570">Privacy</a> ·
+      <a href="terms-of-use.html" style="color:#5a7a9a;border-bottom:1px solid #3d5570">Terms</a></p>
+    <div class="social-row">
+      <a href="https://wa.me/919333122768" class="s-wa" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://www.facebook.com/Dr.ProdyutAcharya" class="s-fb" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://youtube.com/@myastrology" class="s-yt" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="https://www.instagram.com/myastrology.in" class="s-ig" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://x.com/AcharyaProdyut" class="s-tw" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://www.linkedin.com/in/ProdyutAcharya" class="s-li" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+  </div>
+</footer>
 
 <!-- Scripts -->
 <script src="src/vsop87-planets.js"></script>
@@ -223,385 +316,343 @@ svg{background:#fefcf9;border-radius:10px;max-width:100%;height:auto}
 <script src="src/planet-house-remedy.js"></script>
 <script src="src/prediction-engine.js"></script>
 <script>
-// ===== কনস্ট্যান্ট =====
-const RASHI_NAMES = ["মেষ","বৃষ","মিথুন","কর্কট","সিংহ","কন্যা","তুলা","বৃশ্চিক","ধনু","মকর","কুম্ভ","মীন"];
-const NAKSHATRA_NAMES = ["অশ্বিনী","ভরণী","কৃত্তিকা","রোহিণী","মৃগশিরা","আর্দ্রা","পুনর্বসু","পুষ্যা","অশ্লেষা","মঘা","পূর্বফাল্গুনী","উত্তরফাল্গুনী","হস্তা","চিত্রা","স্বাতী","বিশাখা","অনুরাধা","জ্যেষ্ঠা","মূলা","পূর্বাষাঢ়া","উত্তরাষাঢ়া","শ্রবণা","ধনিষ্ঠা","শতভিষা","পূর্বভাদ্রপদ","উত্তরভাদ্রপদ","রেবতী"];
-const VARA_NAMES = ["রবিবার","সোমবার","মঙ্গলবার","বুধবার","বৃহস্পতিবার","শুক্রবার","শনিবার"];
-const TITHI_NAMES = ["প্রতিপদ","দ্বিতীয়া","তৃতীয়া","চতুর্থী","পঞ্চমী","ষষ্ঠী","সপ্তমী","অষ্টমী","নবমী","দশমী","একাদশী","দ্বাদশী","ত্রয়োদশী","চতুর্দশী"];
-const YOGA_NAMES = ["বিষ্কুম্ভ","প্রীতি","আয়ুষ্মান","সৌভাগ্য","শোভন","অতিগণ্ড","সুকর্মা","ধৃতি","শূল","গণ্ড","বৃদ্ধি","ধ্রুব","ব্যাঘাত","হর্ষণ","বজ্র","সিদ্ধি","ব্যতিপাত","বরীয়ান","পরিঘ","শিব","সিদ্ধ","সাধ্য","শুভ","শুক্ল","ব্রহ্ম","ঐন্দ্র","বৈধৃতি"];
-const KARANA_NAMES = ["বব","বালব","কৌলব","তৈতিল","গর","বণিজ","বিষ্টি","শকুনি","চতুষ্পদ","নাগ","কিংস্তুঘ্ন"];
-const NAKSHATRA_GANA = {"অশ্বিনী":"দেব","ভরণী":"মনুষ্য","কৃত্তিকা":"রাক্ষস","রোহিণী":"মনুষ্য","মৃগশিরা":"দেব","আর্দ্রা":"মনুষ্য","পুনর্বসু":"দেব","পুষ্যা":"দেব","অশ্লেষা":"রাক্ষস","মঘা":"রাক্ষস","পূর্বফাল্গুনী":"মনুষ্য","উত্তরফাল্গুনী":"মনুষ্য","হস্তা":"দেব","চিত্রা":"রাক্ষস","স্বাতী":"দেব","বিশাখা":"রাক্ষস","অনুরাধা":"দেব","জ্যেষ্ঠা":"রাক্ষস","মূলা":"রাক্ষস","পূর্বাষাঢ়া":"মনুষ্য","উত্তরাষাঢ়া":"মনুষ্য","শ্রবণা":"দেব","ধনিষ্ঠা":"রাক্ষস","শতভিষা":"রাক্ষস","পূর্বভাদ্রপদ":"মনুষ্য","উত্তরভাদ্রপদ":"মনুষ্য","রেবতী":"দেব"};
-const PLANET_SHORT = {"লগ্ন":"ল","সূর্য":"সূ","চন্দ্র":"চ","মঙ্গল":"মঙ","বুধ":"বু","বৃহস্পতি":"বৃ","শুক্র":"শু","শনি":"শ","রাহু":"রা","কেতু":"কে"};
-const PLANET_COLOR = {"সূর্য":"#e65c00","চন্দ্র":"#2980b9","মঙ্গল":"#c0392b","বুধ":"#27ae60","বৃহস্পতি":"#8e44ad","শুক্র":"#e91e8c","শনি":"#5d4037","রাহু":"#7f8c8d","কেতু":"#95a5a6","লগ্ন":"#8b0000"};
+/* ── Nav ── */
+function toggleNav(){
+  var nav=document.getElementById('navMenu'),ov=document.getElementById('navOverlay');
+  nav.classList.toggle('open');ov.classList.toggle('open');
+  document.body.classList.toggle('nav-open',nav.classList.contains('open'));
+}
+function closeNav(){
+  document.getElementById('navMenu').classList.remove('open');
+  document.getElementById('navOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('click',function(e){
+  var nav=document.getElementById('navMenu'),ham=document.querySelector('.ham');
+  if(nav&&nav.classList.contains('open')&&!nav.contains(e.target)&&ham&&!ham.contains(e.target)){closeNav();}
+});
+document.querySelectorAll('#navMenu a').forEach(function(a){a.addEventListener('click',closeNav);});
 
-// ===== গণনার ফাংশন =====
-function getNakshatraAndPada(lon) {
-  const n = ((lon % 360) + 360) % 360;
-  const idx = Math.floor(n / (360/27));
-  const pada = Math.floor((n % (360/27)) / (360/108)) + 1;
-  return { name: NAKSHATRA_NAMES[idx % 27], pada, idx: idx % 27 };
+/* ── কনস্ট্যান্ট ── */
+const RASHI_NAMES=["মেষ","বৃষ","মিথুন","কর্কট","সিংহ","কন্যা","তুলা","বৃশ্চিক","ধনু","মকর","কুম্ভ","মীন"];
+const NAKSHATRA_NAMES=["অশ্বিনী","ভরণী","কৃত্তিকা","রোহিণী","মৃগশিরা","আর্দ্রা","পুনর্বসু","পুষ্যা","অশ্লেষা","মঘা","পূর্বফাল্গুনী","উত্তরফাল্গুনী","হস্তা","চিত্রা","স্বাতী","বিশাখা","অনুরাধা","জ্যেষ্ঠা","মূলা","পূর্বাষাঢ়া","উত্তরাষাঢ়া","শ্রবণা","ধনিষ্ঠা","শতভিষা","পূর্বভাদ্রপদ","উত্তরভাদ্রপদ","রেবতী"];
+const VARA_NAMES=["রবিবার","সোমবার","মঙ্গলবার","বুধবার","বৃহস্পতিবার","শুক্রবার","শনিবার"];
+const TITHI_NAMES=["প্রতিপদ","দ্বিতীয়া","তৃতীয়া","চতুর্থী","পঞ্চমী","ষষ্ঠী","সপ্তমী","অষ্টমী","নবমী","দশমী","একাদশী","দ্বাদশী","ত্রয়োদশী","চতুর্দশী"];
+const YOGA_NAMES=["বিষ্কুম্ভ","প্রীতি","আয়ুষ্মান","সৌভাগ্য","শোভন","অতিগণ্ড","সুকর্মা","ধৃতি","শূল","গণ্ড","বৃদ্ধি","ধ্রুব","ব্যাঘাত","হর্ষণ","বজ্র","সিদ্ধি","ব্যতিপাত","বরীয়ান","পরিঘ","শিব","সিদ্ধ","সাধ্য","শুভ","শুক্ল","ব্রহ্ম","ঐন্দ্র","বৈধৃতি"];
+const NAKSHATRA_GANA={"অশ্বিনী":"দেব","ভরণী":"মনুষ্য","কৃত্তিকা":"রাক্ষস","রোহিণী":"মনুষ্য","মৃগশিরা":"দেব","আর্দ্রা":"মনুষ্য","পুনর্বসু":"দেব","পুষ্যা":"দেব","অশ্লেষা":"রাক্ষস","মঘা":"রাক্ষস","পূর্বফাল্গুনী":"মনুষ্য","উত্তরফাল্গুনী":"মনুষ্য","হস্তা":"দেব","চিত্রা":"রাক্ষস","স্বাতী":"দেব","বিশাখা":"রাক্ষস","অনুরাধা":"দেব","জ্যেষ্ঠা":"রাক্ষস","মূলা":"রাক্ষস","পূর্বাষাঢ়া":"মনুষ্য","উত্তরাষাঢ়া":"মনুষ্য","শ্রবণা":"দেব","ধনিষ্ঠা":"রাক্ষস","শতভিষা":"রাক্ষস","পূর্বভাদ্রপদ":"মনুষ্য","উত্তরভাদ্রপদ":"মনুষ্য","রেবতী":"দেব"};
+const PLANET_SHORT={"লগ্ন":"ল","সূর্য":"সূ","চন্দ্র":"চ","মঙ্গল":"মঙ","বুধ":"বু","বৃহস্পতি":"বৃ","শুক্র":"শু","শনি":"শ","রাহু":"রা","কেতু":"কে"};
+const PLANET_COLOR={"সূর্য":"#e65c00","চন্দ্র":"#2980b9","মঙ্গল":"#c0392b","বুধ":"#27ae60","বৃহস্পতি":"#8e44ad","শুক্র":"#e91e8c","শনি":"#5d4037","রাহু":"#7f8c8d","কেতু":"#95a5a6","লগ্ন":"#8b0000"};
+
+/* ── হেল্পার ফাংশন ── */
+function getNakshatraAndPada(lon){
+  const n=((lon%360)+360)%360;
+  const idx=Math.floor(n/(360/27));
+  const pada=Math.floor((n%(360/27))/(360/108))+1;
+  return{name:NAKSHATRA_NAMES[idx%27],pada,idx:idx%27};
 }
 
-function getLagna(jd, lat, lon) {
-  const T = (jd - 2451545.0) / 36525.0;
-  const JD0 = Math.floor(jd - 0.5) + 0.5;
-  const UT = (jd - JD0) * 24.0;
-  const T0 = (JD0 - 2451545.0) / 36525.0;
-  let gmst = 100.46061837 + 36000.770053608*T0 + 0.000387933*T0*T0 + 360.985647366*(UT/24.0);
-  gmst = ((gmst % 360) + 360) % 360;
-  const lst = ((gmst + lon) % 360 + 360) % 360 * (Math.PI/180);
-  const eps = (23.4392911 - (46.8150/3600)*T) * (Math.PI/180);
-  const latR = lat * (Math.PI/180);
-  const y = -Math.cos(lst);
-  const x = Math.sin(eps)*Math.tan(latR) + Math.cos(eps)*Math.sin(lst);
-  return ((Math.atan2(y, x) * (180/Math.PI) % 360) + 360) % 360;
+function getLagna(jd,lat,lon){
+  const T=(jd-2451545.0)/36525.0;
+  const JD0=Math.floor(jd-0.5)+0.5;
+  const UT=(jd-JD0)*24.0;
+  const T0=(JD0-2451545.0)/36525.0;
+  let gmst=100.46061837+36000.770053608*T0+0.000387933*T0*T0+360.985647366*(UT/24.0);
+  gmst=((gmst%360)+360)%360;
+  const lst=((gmst+lon)%360+360)%360*(Math.PI/180);
+  const eps=(23.4392911-(46.8150/3600)*T)*(Math.PI/180);
+  const latR=lat*(Math.PI/180);
+  const y=-Math.cos(lst);
+  const x=Math.sin(eps)*Math.tan(latR)+Math.cos(eps)*Math.sin(lst);
+  return((Math.atan2(y,x)*(180/Math.PI)%360)+360)%360;
 }
 
-function getTithi(jd) {
-  const ay = lahiriAY(jd);
-  const s = rev(sunL(jd) - ay), m = rev(moonL(jd) - ay);
-  const diff = rev(m - s);
-  const num = Math.floor(diff / 12) + 1;
-  if (num === 15) return { number:15, paksha:"শুক্ল", name:"পূর্ণিমা" };
-  if (num === 30) return { number:30, paksha:"কৃষ্ণ", name:"অমাবস্যা" };
-  const paksha = num <= 15 ? "শুক্ল" : "কৃষ্ণ";
-  const tn = num <= 15 ? num : num - 15;
-  return { number:num, paksha, name: TITHI_NAMES[tn-1] || "" };
+function getTithi(jd){
+  const ay=lahiriAY(jd);
+  const s=rev(sunL(jd)-ay),m=rev(moonL(jd)-ay);
+  const diff=rev(m-s);
+  const num=Math.floor(diff/12)+1;
+  if(num===15)return{paksha:"শুক্ল",name:"পূর্ণিমা"};
+  if(num===30||num===0)return{paksha:"কৃষ্ণ",name:"অমাবস্যা"};
+  const paksha=num<=15?"শুক্ল":"কৃষ্ণ";
+  const tn=num<=15?num:num-15;
+  return{paksha,name:TITHI_NAMES[(tn-1)%14]||""};
 }
 
-function getYoga(jd) {
-  const ay = lahiriAY(jd);
-  const s = rev(sunL(jd) - ay), m = rev(moonL(jd) - ay);
-  return { name: YOGA_NAMES[Math.floor(((s + m) % 360) / (360/27))] };
+function getYoga(jd){
+  const ay=lahiriAY(jd);
+  const s=rev(sunL(jd)-ay),m=rev(moonL(jd)-ay);
+  return YOGA_NAMES[Math.floor(((s+m)%360)/(360/27))];
 }
 
-function getKarana(jd) {
-  const ay = lahiriAY(jd);
-  const s = rev(sunL(jd) - ay), m = rev(moonL(jd) - ay);
-  const diff = rev(m - s);
-  const half = Math.floor(diff / 6);
-  const idx = (half <= 1) ? 10 : (half >= 57) ? (half - 57) + 7 : (half - 2) % 7;
-  return { name: KARANA_NAMES[Math.min(idx, 10)] };
+function getNavamshaRashi(lon){
+  const sign=Math.floor(lon/30)%12;
+  const part=Math.floor((lon%30)/(30/9));
+  if([0,3,6,9].includes(sign))return part%12;
+  if([1,4,7,10].includes(sign))return(part+9)%12;
+  return(part+5)%12;
 }
 
-function getNavamshaSign(lon) {
-  const sign = Math.floor(lon / 30);
-  const part = Math.floor((lon % 30) / (30/9));
-  if ([0,3,6,9].includes(sign)) return part;
-  if ([1,4,7,10].includes(sign)) return (part + 9) % 12;
-  return (part + 5) % 12;
-}
-
-// ===== চার্ট আঁকা =====
-function drawChart(suffix, planets, lagnaRashiIdx) {
-  // CHART_POSITIONS is defined in prediction-engine.js
-  const pos = typeof CHART_POSITIONS !== 'undefined' ? CHART_POSITIONS : [
+/* ── চার্ট আঁকা ── */
+function drawChart(suffix,planets,lagnaRashiIdx){
+  const pos=typeof CHART_POSITIONS!=='undefined'?CHART_POSITIONS:[
     {x:160,y:35},{x:70,y:30},{x:30,y:70},{x:50,y:160},{x:30,y:250},{x:70,y:290},
     {x:160,y:285},{x:250,y:290},{x:290,y:250},{x:270,y:160},{x:290,y:70},{x:250,y:30}
   ];
-  const labelsG = document.getElementById(suffix+'Labels');
-  const planetsG = document.getElementById(suffix+'Planets');
-  if (!labelsG || !planetsG) return;
-  labelsG.innerHTML = ''; planetsG.innerHTML = '';
-  const ns = "http://www.w3.org/2000/svg";
-  pos.forEach((p, i) => {
-    const t = document.createElementNS(ns, "text");
-    t.setAttribute("x", p.x); t.setAttribute("y", p.y - 8);
-    t.setAttribute("text-anchor", "middle");
-    t.setAttribute("fill", i === lagnaRashiIdx ? "#8b0000" : "#8b6914");
-    t.setAttribute("font-size", "9");
-    t.setAttribute("font-weight", i === lagnaRashiIdx ? "bold" : "normal");
-    t.textContent = i === lagnaRashiIdx ? "[" + RASHI_NAMES[i] + "]" : RASHI_NAMES[i];
+  const labelsG=document.getElementById(suffix+'Labels');
+  const planetsG=document.getElementById(suffix+'Planets');
+  if(!labelsG||!planetsG)return;
+  labelsG.innerHTML='';planetsG.innerHTML='';
+  const ns="http://www.w3.org/2000/svg";
+  pos.forEach((p,i)=>{
+    const t=document.createElementNS(ns,"text");
+    t.setAttribute("x",p.x);t.setAttribute("y",p.y-8);
+    t.setAttribute("text-anchor","middle");
+    t.setAttribute("fill",i===lagnaRashiIdx?"#8b0000":"#8b6914");
+    t.setAttribute("font-size","9");
+    t.setAttribute("font-weight",i===lagnaRashiIdx?"bold":"normal");
+    t.textContent=i===lagnaRashiIdx?"["+RASHI_NAMES[i]+"]":RASHI_NAMES[i];
     labelsG.appendChild(t);
   });
-  const rashiMap = Array(12).fill(null).map(() => []);
-  planets.forEach(p => {
-    const rIdx = suffix === 'd1Labels' ? Math.floor(p.lon/30) % 12 : getNavamshaSign(p.lon);
-    rashiMap[rIdx].push(PLANET_SHORT[p.name] || p.name[0]);
+  const rashiMap=Array(12).fill(null).map(()=>[]);
+  planets.forEach(p=>{
+    const rIdx=Math.floor(p.lon/30)%12;
+    rashiMap[rIdx].push(PLANET_SHORT[p.name]||p.name[0]);
   });
-  pos.forEach((p, i) => {
-    if (!rashiMap[i].length) return;
-    const t = document.createElementNS(ns, "text");
-    t.setAttribute("x", p.x); t.setAttribute("y", p.y + 10);
-    t.setAttribute("text-anchor", "middle"); t.setAttribute("fill", "#1a1a2e");
-    t.setAttribute("font-size", "9"); t.setAttribute("font-weight", "bold");
-    t.textContent = rashiMap[i].join(" ");
+  pos.forEach((p,i)=>{
+    if(!rashiMap[i].length)return;
+    const t=document.createElementNS(ns,"text");
+    t.setAttribute("x",p.x);t.setAttribute("y",p.y+10);
+    t.setAttribute("text-anchor","middle");t.setAttribute("fill","#1a1a2e");
+    t.setAttribute("font-size","9");t.setAttribute("font-weight","bold");
+    t.textContent=rashiMap[i].join(" ");
     planetsG.appendChild(t);
   });
 }
 
-// ===== যোগ নির্ণয় =====
-function detectAllYogas(planets, lagnaRashiIdx) {
-  const yogas = [];
-  const get = name => planets.find(p => p.name === name);
-  const house = p => (Math.floor(p.lon/30) - lagnaRashiIdx + 12) % 12 + 1;
-  const kendra = h => [1,4,7,10].includes(h);
-
-  [
-    {name:"রুচক যোগ",pl:"মঙ্গল",own:[0,7],ex:9},
-    {name:"ভদ্র যোগ",pl:"বুধ",own:[2,5],ex:5},
-    {name:"হংস যোগ",pl:"বৃহস্পতি",own:[8,11],ex:3},
-    {name:"মালব্য যোগ",pl:"শুক্র",own:[1,6],ex:11},
-    {name:"শশ যোগ",pl:"শনি",own:[9,10],ex:6},
-  ].forEach(({name,pl,own,ex}) => {
-    const p = get(pl); if (!p) return;
-    const ri = Math.floor(p.lon/30) % 12, h = house(p);
-    if (kendra(h) && (own.includes(ri) || ri === ex))
-      yogas.push({name, type:"পঞ্চমহাপুরুষ", nature:"শুভ", desc: pl+" কেন্দ্রে নিজ/উচ্চ রাশিতে"});
+/* ── যোগ নির্ণয় ── */
+function detectAllYogas(planets,lagnaRashiIdx){
+  const yogas=[];
+  const get=name=>planets.find(p=>p.name===name);
+  const house=p=>(Math.floor(p.lon/30)-lagnaRashiIdx+12)%12+1;
+  const kendra=h=>[1,4,7,10].includes(h);
+  [{name:"রুচক যোগ",pl:"মঙ্গল",own:[0,7],ex:9},
+   {name:"ভদ্র যোগ",pl:"বুধ",own:[2,5],ex:5},
+   {name:"হংস যোগ",pl:"বৃহস্পতি",own:[8,11],ex:3},
+   {name:"মালব্য যোগ",pl:"শুক্র",own:[1,6],ex:11},
+   {name:"শশ যোগ",pl:"শনি",own:[9,10],ex:6}
+  ].forEach(({name,pl,own,ex})=>{
+    const p=get(pl);if(!p)return;
+    const ri=Math.floor(p.lon/30)%12,h=house(p);
+    if(kendra(h)&&(own.includes(ri)||ri===ex))
+      yogas.push({name,type:"পঞ্চমহাপুরুষ",nature:"শুভ",desc:pl+" কেন্দ্রে নিজ/উচ্চ রাশিতে"});
   });
-
-  const moon = get("চন্দ্র"), jup = get("বৃহস্পতি");
-  if (moon && jup) {
-    const d = (Math.floor(jup.lon/30) - Math.floor(moon.lon/30) + 12) % 12 + 1;
-    if (kendra(d)) yogas.push({name:"গজকেশরী যোগ", type:"বিশেষ", nature:"শুভ", desc:"বৃহস্পতি চন্দ্র থেকে কেন্দ্রে"});
+  const moon=get("চন্দ্র"),jup=get("বৃহস্পতি");
+  if(moon&&jup){
+    const d=(Math.floor(jup.lon/30)-Math.floor(moon.lon/30)+12)%12+1;
+    if(kendra(d))yogas.push({name:"গজকেশরী যোগ",type:"বিশেষ",nature:"শুভ",desc:"বৃহস্পতি চন্দ্র থেকে কেন্দ্রে"});
   }
-  const sun = get("সূর্য"), mer = get("বুধ");
-  if (sun && mer && Math.floor(sun.lon/30) === Math.floor(mer.lon/30))
-    yogas.push({name:"বুধাদিত্য যোগ", type:"বিশেষ", nature:"শুভ", desc:"সূর্য-বুধ একই রাশিতে"});
-
-  const mars = get("মঙ্গল");
-  if (moon && mars && Math.floor(moon.lon/30) === Math.floor(mars.lon/30))
-    yogas.push({name:"চন্দ্র মঙ্গল যোগ", type:"বিশেষ", nature:"মিশ্র", desc:"চন্দ্র-মঙ্গল একই রাশিতে"});
-
-  const rahu = get("রাহু"), ketu = get("কেতু");
-  if (rahu && ketu) {
-    const rL = rahu.lon, kL = ketu.lon;
-    const span = (kL - rL + 360) % 360;
-    const others = planets.filter(p => !["রাহু","কেতু","লগ্ন"].includes(p.name));
-    if (others.length >= 5 && others.every(p => (p.lon - rL + 360) % 360 <= span))
-      yogas.push({name:"কালসর্প যোগ", type:"দোষ", nature:"অশুভ", desc:"সব গ্রহ রাহু-কেতুর মধ্যে"});
+  const sun=get("সূর্য"),mer=get("বুধ");
+  if(sun&&mer&&Math.floor(sun.lon/30)===Math.floor(mer.lon/30))
+    yogas.push({name:"বুধাদিত্য যোগ",type:"বিশেষ",nature:"শুভ",desc:"সূর্য-বুধ একই রাশিতে"});
+  const mars=get("মঙ্গল");
+  if(moon&&mars&&Math.floor(moon.lon/30)===Math.floor(mars.lon/30))
+    yogas.push({name:"চন্দ্র মঙ্গল যোগ",type:"বিশেষ",nature:"মিশ্র",desc:"চন্দ্র-মঙ্গল একই রাশিতে"});
+  const rahu=get("রাহু"),ketu=get("কেতু");
+  if(rahu&&ketu){
+    const rL=rahu.lon,kL=ketu.lon;
+    const span=(kL-rL+360)%360;
+    const others=planets.filter(p=>!["রাহু","কেতু","লগ্ন"].includes(p.name));
+    if(others.length>=5&&others.every(p=>(p.lon-rL+360)%360<=span))
+      yogas.push({name:"কালসর্প যোগ",type:"দোষ",nature:"অশুভ",desc:"সব গ্রহ রাহু-কেতুর মধ্যে"});
   }
   return yogas;
 }
 
-function getYogaTableHTML(yogas) {
-  if (!yogas.length) return '<p style="color:#666;text-align:center;padding:12px">এই কুষ্ঠিতে বিশেষ যোগ পাওয়া যায়নি।</p>';
-  let h = '<table class="planet-table"><thead><tr><th>যোগের নাম</th><th>ধরন</th><th>প্রকৃতি</th><th>বিবরণ</th></tr></thead><tbody>';
-  yogas.forEach(y => {
-    const c = y.nature==="শুভ"?"#28a745":y.nature==="অশুভ"?"#dc3545":"#856404";
-    h += `<tr><td><strong>${y.name}</strong></td><td>${y.type}</td><td style="color:${c};font-weight:700">${y.nature}</td><td>${y.desc}</td></tr>`;
+function getYogaTableHTML(yogas){
+  if(!yogas.length)return'<p style="color:#666;text-align:center;padding:12px">এই কুষ্ঠিতে বিশেষ যোগ পাওয়া যায়নি।</p>';
+  let h='<table class="planet-table"><thead><tr><th>যোগের নাম</th><th>ধরন</th><th>প্রকৃতি</th><th>বিবরণ</th></tr></thead><tbody>';
+  yogas.forEach(y=>{
+    const c=y.nature==="শুভ"?"#28a745":y.nature==="অশুভ"?"#dc3545":"#856404";
+    h+=`<tr><td><strong>${y.name}</strong></td><td>${y.type}</td><td style="color:${c};font-weight:700">${y.nature}</td><td>${y.desc}</td></tr>`;
   });
-  return h + '</tbody></table>';
+  return h+'</tbody></table>';
 }
 
-// ===== দশা ডিসপ্লে =====
-function updateDashaDisplay(dashaInfo, age) {
-  if (!dashaInfo) return;
-  const {currentMD, currentAD, currentPD, birth, allDasha} = dashaInfo;
-  let info = '';
-  if (birth) info += `<p><strong>জন্ম দশা ভারসাম্য:</strong> ${birth.birthLord} দশার ${birth.balanceYears.toFixed(2)} বছর বাকি ছিল</p>`;
-  if (currentMD) info += `<p><strong>বর্তমান মহাদশা:</strong> ${currentMD.lord} (${currentMD.elapsed.toFixed(1)}/${currentMD.period} বছর)</p>`;
-  if (currentAD) info += `<p><strong>অন্তর্দশা:</strong> ${currentAD.lord}</p>`;
-  if (currentPD) info += `<p><strong>প্রত্যন্তর দশা:</strong> ${currentPD.lord}</p>`;
-  document.getElementById('dashaInfo').innerHTML = info;
-
-  let rows = '';
-  if (allDasha) allDasha.forEach(d => {
-    const cur = currentMD && d.lord === currentMD.lord;
-    const status = cur ? '🔴 চলছে' : d.end < age ? '✅ শেষ' : '⏳ ভবিষ্যৎ';
-    rows += `<tr class="${cur?'cur-dasha':''}"><td>${d.lord}</td><td>${d.start.toFixed(1)}</td><td>${d.end.toFixed(1)}</td><td>${d.period} বছর</td><td>${status}</td></tr>`;
+/* ── দশা ডিসপ্লে ── */
+function updateDashaDisplay(dashaInfo,age){
+  if(!dashaInfo)return;
+  const{currentMD,currentAD,birth,allDasha}=dashaInfo;
+  let info='';
+  if(birth)info+=`<p><strong>জন্ম দশা ভারসাম্য:</strong> ${birth.birthLord} দশার ${birth.balanceYears.toFixed(2)} বছর বাকি ছিল</p>`;
+  if(currentMD)info+=`<p><strong>বর্তমান মহাদশা:</strong> ${currentMD.lord} (${currentMD.elapsed.toFixed(1)}/${currentMD.period} বছর)</p>`;
+  if(currentAD)info+=`<p><strong>অন্তর্দশা:</strong> ${currentAD.lord}</p>`;
+  document.getElementById('dashaInfo').innerHTML=info||'<p>দশা তথ্য উপলব্ধ নেই।</p>';
+  let rows='';
+  if(allDasha)allDasha.forEach(d=>{
+    const cur=currentMD&&d.lord===currentMD.lord;
+    const status=cur?'🔴 চলছে':d.end<age?'✅ শেষ':'⏳ ভবিষ্যৎ';
+    rows+=`<tr class="${cur?'cur-dasha':''}"><td>${d.lord}</td><td>${d.start.toFixed(1)}</td><td>${d.end.toFixed(1)}</td><td>${d.period} বছর</td><td>${status}</td></tr>`;
   });
-  document.getElementById('dashaTbody').innerHTML = rows;
+  document.getElementById('dashaTbody').innerHTML=rows;
 }
 
-// ===== মূল গণনা ফাংশন =====
-function calculateFullKundali() {
-  const name = document.getElementById('personName').value.trim() || "জাতক";
-  const dobVal = document.getElementById('dob').value;
-  const tobVal = document.getElementById('tob').value;
-  const lat = parseFloat(document.getElementById('lat').value);
-  const lon = parseFloat(document.getElementById('lon').value);
+/* ── মূল গণনা ── */
+function calculateFullKundali(){
+  const name=document.getElementById('userName').value.trim()||"জাতক";
+  const dobVal=document.getElementById('dob').value;
+  const tobVal=document.getElementById('tob').value;
+  const lat=parseFloat(document.getElementById('lat').value);
+  const lonVal=parseFloat(document.getElementById('lon').value);
 
-  if (!dobVal || !tobVal || isNaN(lat) || isNaN(lon)) {
-    alert("অনুগ্রহ করে সমস্ত তথ্য পূরণ করুন।");
-    return;
+  if(!dobVal||!tobVal||isNaN(lat)||isNaN(lonVal)){
+    alert("অনুগ্রহ করে সমস্ত তথ্য পূরণ করুন।");return;
   }
+  const[y,mo,d]=dobVal.split('-').map(Number);
+  const[h,mi]=tobVal.split(':').map(Number);
+  const jd=JD(y,mo,d)+(h-5.5+mi/60)/24;
+  const ay=lahiriAY(jd);
 
-  const [y, mo, d] = dobVal.split('-').map(Number);
-  const [h, mi] = tobVal.split(':').map(Number);
+  const sunLon  =rev(sunL(jd)-ay);
+  const moonLon =rev(moonL(jd)-ay);
+  const marsLon =rev(marsL(jd)-ay);
+  const mercLon =rev(mercuryL(jd)-ay);
+  const jupLon  =rev(jupiterL(jd)-ay);
+  const venLon  =rev(venusL(jd)-ay);
+  const satLon  =rev(saturnL(jd)-ay);
+  const rahuLon =rev(rahuL(jd)-ay);
+  const ketuLon =rev(rahuLon+180);
+  const lagnaLon=getLagna(jd,lat,lonVal);
+  const lagnaRashiIdx=Math.floor(lagnaLon/30)%12;
 
-  // জুলিয়ান দিন
-  const jd = JD(y, mo, d) + (h - 5.5 + mi / 60) / 24;
-  const ay = lahiriAY(jd);
+  /* পঞ্চাঙ্গ */
+  const vara=VARA_NAMES[Math.floor((jd+1.5)%7)];
+  const nakInfo=getNakshatraAndPada(moonLon);
+  const tithi=getTithi(jd);
+  const yogaName=getYoga(jd);
+  const sunRashiName=RASHI_NAMES[Math.floor(sunLon/30)%12];
+  const lagnaRashiName=RASHI_NAMES[lagnaRashiIdx];
 
-  // গ্রহের দ্রাঘিমা (সায়ন → নিরয়ন)
-  const sunLon   = rev(sunL(jd)     - ay);
-  const moonLon  = rev(moonL(jd)    - ay);
-  const marsLon  = rev(marsL(jd)    - ay);
-  const mercLon  = rev(mercuryL(jd) - ay);
-  const jupLon   = rev(jupiterL(jd) - ay);
-  const venLon   = rev(venusL(jd)   - ay);
-  const satLon   = rev(saturnL(jd)  - ay);
-  const rahuLon  = rev(rahuL(jd)    - ay);
-  const ketuLon  = rev(rahuLon + 180);
-  const lagnaLon = getLagna(jd, lat, lon);
+  document.getElementById('pgVar').textContent=vara;
+  document.getElementById('pgSunRashi').textContent=sunRashiName;
+  document.getElementById('pgLagna').textContent=lagnaRashiName;
+  document.getElementById('pgNakshatra').textContent=nakInfo.name+' '+nakInfo.pada+'য় পাদ';
+  document.getElementById('pgYoga').textContent=yogaName;
+  document.getElementById('pgTithi').textContent=tithi.paksha+' '+tithi.name;
+  document.getElementById('pgAyan').textContent=ay.toFixed(4);
+  document.getElementById('pgGana').textContent=NAKSHATRA_GANA[nakInfo.name]||'—';
 
-  const lagnaRashiIdx = Math.floor(lagnaLon / 30);
-
-
-  // পঞ্চাঙ্গ
-  const vara = VARA_NAMES[Math.floor((jd + 1.5) % 7)];
-  const nakshatraInfo = getNakshatraAndPada(moonLon);
-  const tithi = getTithi(jd);
-  const yoga = getYoga(jd);
-  const karana = getKarana(jd);
-  const sunRashiName = RASHI_NAMES[Math.floor(sunLon / 30)];
-  const lagnaRashiName = RASHI_NAMES[lagnaRashiIdx];
-
-  document.getElementById('pBara').textContent = vara;
-  document.getElementById('pSun').textContent = sunRashiName;
-  document.getElementById('pLagna').textContent = lagnaRashiName;
-  document.getElementById('pNak').textContent = nakshatraInfo.name + ' ' + nakshatraInfo.pada + 'য় পাদ';
-  document.getElementById('pYoga').textContent = yoga;
-  document.getElementById('pTithi').textContent = tithi;
-
-  // গ্রহ তালিকা
-  const planets = [
-    {name:"লগ্ন",   lon: lagnaLon,  rashi: lagnaRashiIdx},
-    {name:"সূর্য",  lon: sunLon,    rashi: Math.floor(sunLon/30)},
-    {name:"চন্দ্র", lon: moonLon,   rashi: Math.floor(moonLon/30)},
-    {name:"মঙ্গল",  lon: marsLon,   rashi: Math.floor(marsLon/30)},
-    {name:"বুধ",    lon: mercLon,   rashi: Math.floor(mercLon/30)},
-    {name:"বৃহস্পতি",lon: jupLon,  rashi: Math.floor(jupLon/30)},
-    {name:"শুক্র",  lon: venLon,    rashi: Math.floor(venLon/30)},
-    {name:"শনি",    lon: satLon,    rashi: Math.floor(satLon/30)},
-    {name:"রাহু",   lon: rahuLon,   rashi: Math.floor(rahuLon/30)},
-    {name:"কেতু",   lon: ketuLon,   rashi: Math.floor(ketuLon/30)},
+  /* গ্রহ তালিকা */
+  const planets=[
+    {name:"লগ্ন",  lon:lagnaLon},
+    {name:"সূর্য", lon:sunLon},
+    {name:"চন্দ্র",lon:moonLon},
+    {name:"মঙ্গল", lon:marsLon},
+    {name:"বুধ",   lon:mercLon},
+    {name:"বৃহস্পতি",lon:jupLon},
+    {name:"শুক্র", lon:venLon},
+    {name:"শনি",   lon:satLon},
+    {name:"রাহু",  lon:rahuLon},
+    {name:"কেতু",  lon:ketuLon},
   ];
 
-
-  // গ্রহ তালিকা HTML
-  let planetRows = '';
-  planets.forEach(p => {
-    if (p.name === 'লগ্ন') return;
-    const lon = p.lon;
-    const rashiIdx = Math.floor(lon / 30);
-    const deg = Math.floor(lon % 30);
-    const min = Math.floor((lon % 1) * 60);
-    const nakInfo = getNakshatraAndPada(lon);
-    const navLon = lon * 9;
-    const navRashi = RASHI_NAMES[Math.floor(navLon / 30) % 12];
-    const col = PLANET_COLOR[p.name] || '#333';
-    planetRows += `<tr>
+  let planetRows='';
+  planets.forEach(p=>{
+    if(p.name==='লগ্ন')return;
+    const ri=Math.floor(p.lon/30)%12;
+    const deg=Math.floor(p.lon%30);
+    const min=Math.floor((p.lon%1)*60);
+    const nak=getNakshatraAndPada(p.lon);
+    const navRashi=RASHI_NAMES[getNavamshaRashi(p.lon)];
+    const bhava=(ri-lagnaRashiIdx+12)%12+1;
+    const col=PLANET_COLOR[p.name]||'#333';
+    planetRows+=`<tr>
       <td style="color:${col};font-weight:700">${p.name}</td>
-      <td>${RASHI_NAMES[rashiIdx]}</td>
-      <td>${deg}°${min}'</td>
-      <td>${nakInfo.name} ${nakInfo.pada}য় পাদ</td>
+      <td>${RASHI_NAMES[ri]}</td>
+      <td>${deg}°${String(min).padStart(2,'0')}'</td>
+      <td>${nak.name} ${nak.pada}য় পাদ</td>
       <td>${navRashi}</td>
+      <td>${bhava}</td>
     </tr>`;
   });
-  document.getElementById('planetTbody').innerHTML = planetRows;
+  document.getElementById('planetTbody').innerHTML=planetRows;
 
+  /* D1 চার্ট */
+  drawChart('d1',planets,lagnaRashiIdx);
 
-  // D1 এবং D9 চার্ট আঁকা
-  drawChart('d1', planets, lagnaRashiIdx);
-  const navPlanets = planets.map(p => ({
-    name: p.name,
-    lon: (p.lon * 9) % 360,
-    rashi: Math.floor((p.lon * 9 / 30)) % 12
-  }));
-  const navLagnaIdx = Math.floor(((lagnaLon * 9) % 360) / 30);
-  drawChart('d9', navPlanets, navLagnaIdx);
+  /* D9 চার্ট — নবাংশ দ্রাঘিমা দিয়ে */
+  const navPlanets=planets.map(p=>({name:p.name,lon:getNavamshaRashi(p.lon)*30+(p.lon%30)*9/30}));
+  const navLagnaIdx=getNavamshaRashi(lagnaLon);
+  drawChart('d9',navPlanets,navLagnaIdx);
 
-  // দশা
-  const ageMs = Date.now() - new Date(dobVal).getTime();
-  const age = ageMs / (1000 * 60 * 60 * 24 * 365.25);
-  let dashaInfo = null;
-  if (typeof getFullDashaInfo === 'function') {
-    dashaInfo = getFullDashaInfo(moonLon, age);
-  }
-  updateDashaDisplay(dashaInfo, age);
+  /* দশা */
+  const ageMs=Date.now()-new Date(dobVal).getTime();
+  const age=ageMs/(1000*60*60*24*365.25);
+  let dashaInfo=null;
+  if(typeof getFullDashaInfo==='function')dashaInfo=getFullDashaInfo(moonLon,age);
+  updateDashaDisplay(dashaInfo,age);
 
-  // ষড়বল
-  if (typeof calculateAllShadbala === 'function') {
-    const shadbalaData = calculateAllShadbala(planets, lagnaRashiIdx, jd);
-    if (typeof getShadbalaTable === 'function') {
-      document.getElementById('shadbalaDiv').innerHTML = getShadbalaTable(shadbalaData);
-    }
+  /* ষড়বল */
+  if(typeof calculateAllShadbala==='function'){
+    const sb=calculateAllShadbala(planets,lagnaRashiIdx,jd);
+    if(typeof getShadbalaTable==='function')
+      document.getElementById('shadbalaDiv').innerHTML=getShadbalaTable(sb);
+    else document.getElementById('shadbalaDiv').innerHTML='<p style="color:#666;padding:10px">ষড়বল মডিউল লোড হয়নি।</p>';
   }
 
-  // যোগ
-  const yogaList = detectAllYogas(planets, lagnaRashiIdx);
-  document.getElementById('yogaDiv').innerHTML = getYogaTableHTML(yogaList);
+  /* যোগ */
+  const yogaList=detectAllYogas(planets,lagnaRashiIdx);
+  document.getElementById('yogaDiv').innerHTML=getYogaTableHTML(yogaList);
 
+  /* ফলাদেশ */
+  let predText='';
+  if(typeof PredictionEngine==='function'){
+    try{
+      const engine=new PredictionEngine();
+      const bd={name,jd,lat,lon:lonVal,lagnaRashiIdx,lagnaLon,
+        sunLon,moonLon,marsLon,mercLon,jupLon,venLon,satLon,rahuLon,ketuLon,
+        moonNakshatraIdx:nakInfo.idx,moonNakshatra:nakInfo.name,
+        sunRashi:sunRashiName,moonRashi:RASHI_NAMES[Math.floor(moonLon/30)%12],
+        lagnaRashi:lagnaRashiName,dashaInfo,age,yogas:yogaList};
+      predText=engine.generateFullPrediction(bd);
+    }catch(e){predText="ভবিষ্যদ্বাণী গণনায় সমস্যা: "+e.message;}
+  }else{predText="ভবিষ্যদ্বাণী মডিউল লোড হয়নি।";}
+  document.getElementById('predictionDiv').textContent=predText;
 
-  // পূর্ণ ভবিষ্যদ্বাণী
-  let predText = '';
-  if (typeof PredictionEngine === 'function') {
-    try {
-      const engine = new PredictionEngine();
-      const birthData = {
-        name, jd, lat, lon: lon,
-        lagnaRashiIdx, lagnaLon,
-        sunLon, moonLon, marsLon, mercLon, jupLon, venLon, satLon, rahuLon, ketuLon,
-        moonNakshatraIdx: nakshatraInfo.idx,
-        moonNakshatra: nakshatraInfo.name,
-        sunRashi: RASHI_NAMES[Math.floor(sunLon/30)],
-        moonRashi: RASHI_NAMES[Math.floor(moonLon/30)],
-        lagnaRashi: lagnaRashiName,
-        dashaInfo, age, yogas: yogaList
-      };
-      predText = engine.generateFullPrediction(birthData);
-    } catch(e) {
-      predText = "ভবিষ্যদ্বাণী গণনায় সমস্যা: " + e.message;
-    }
-  } else {
-    predText = "ভবিষ্যদ্বাণী মডিউল লোড হয়নি।";
-  }
-  document.getElementById('predictionText').textContent = predText;
-
-  // ফলাফল দেখাও
-  document.getElementById('resultsArea').style.display = 'block';
+  /* দেখাও */
+  document.getElementById('resultsArea').style.display='block';
   document.getElementById('resultsArea').scrollIntoView({behavior:'smooth'});
 }
 
-
-// ===== শহর অনুসন্ধান =====
-function setupCitySearch() {
-  const cityInput = document.getElementById('citySearch');
-  const suggestions = document.getElementById('citySuggestions');
-  if (!cityInput || !suggestions) return;
-
-  cityInput.addEventListener('input', function() {
-    const q = this.value.trim().toLowerCase();
-    suggestions.innerHTML = '';
-    if (q.length < 2) { suggestions.style.display='none'; return; }
-
-    const cityData = (typeof CITIES !== 'undefined') ? CITIES : (typeof cities !== 'undefined' ? cities : []);
-    const matches = cityData.filter(c => {
-      const name = (c.name || c[0] || '').toLowerCase();
-      return name.startsWith(q);
-    }).slice(0, 8);
-
-    if (!matches.length) { suggestions.style.display='none'; return; }
-
-    matches.forEach(c => {
-      const name = c.name || c[0];
-      const lat  = c.lat  || c[1];
-      const lon  = c.lon  || c[2];
-      const li = document.createElement('li');
-      li.textContent = name;
-      li.style.cssText = 'padding:8px 12px;cursor:pointer;border-bottom:1px solid #eee;';
-      li.addEventListener('mouseenter', () => li.style.background='#f0f4ff');
-      li.addEventListener('mouseleave', () => li.style.background='');
-      li.addEventListener('click', () => {
-        cityInput.value = name;
-        document.getElementById('lat').value = parseFloat(lat).toFixed(4);
-        document.getElementById('lon').value = parseFloat(lon).toFixed(4);
-        suggestions.style.display = 'none';
+/* ── শহর অনুসন্ধান ── */
+document.addEventListener('DOMContentLoaded',function(){
+  const inp=document.getElementById('citySearch');
+  const sugg=document.getElementById('citySuggestions');
+  if(!inp||!sugg)return;
+  inp.addEventListener('input',function(){
+    const q=this.value.trim().toLowerCase();
+    sugg.innerHTML='';
+    if(q.length<2){sugg.style.display='none';return;}
+    const cd=(typeof CITIES!=='undefined')?CITIES:(typeof cities!=='undefined'?cities:[]);
+    const matches=cd.filter(c=>{
+      const n=(c.name||c[0]||'').toLowerCase();
+      return n.startsWith(q);
+    }).slice(0,8);
+    if(!matches.length){sugg.style.display='none';return;}
+    matches.forEach(c=>{
+      const nm=c.name||c[0],la=c.lat||c[1],lo=c.lon||c[2];
+      const li=document.createElement('li');li.textContent=nm;
+      li.addEventListener('click',()=>{
+        inp.value=nm;
+        document.getElementById('lat').value=parseFloat(la).toFixed(4);
+        document.getElementById('lon').value=parseFloat(lo).toFixed(4);
+        sugg.style.display='none';
       });
-      suggestions.appendChild(li);
+      sugg.appendChild(li);
     });
-    suggestions.style.display = 'block';
+    sugg.style.display='block';
   });
-
-  document.addEventListener('click', e => {
-    if (!cityInput.contains(e.target)) suggestions.style.display = 'none';
-  });
-}
-
-document.addEventListener('DOMContentLoaded', setupCitySearch);
-
+  document.addEventListener('click',e=>{if(!inp.contains(e.target))sugg.style.display='none';});
+});
 </script>
 </body>
 </html>
