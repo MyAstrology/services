@@ -243,6 +243,29 @@ svg{background:#fefcf9;border-radius:8px;max-width:100%;height:auto}
       <div id="yogaDiv"></div>
     </div>
 
+    <!-- ভাব কুণ্ডলী (চলিত) -->
+    <div class="card">
+      <div class="section-title">🏠 ভাব কুণ্ডলী (চলিত)</div>
+      <div class="chart-section" style="grid-template-columns:1fr 1fr">
+        <div class="chart-box">
+          <h3>🔷 ভাব কুণ্ডলী</h3>
+          <svg id="chalitChart" width="300" height="300" viewBox="0 0 340 340">
+            <rect width="340" height="340" fill="#fdfaf6" stroke="#8b0000" stroke-width="2"/>
+            <line x1="113" y1="0" x2="113" y2="340" stroke="#8b0000" stroke-width="1.5"/>
+            <line x1="227" y1="0" x2="227" y2="340" stroke="#8b0000" stroke-width="1.5"/>
+            <line x1="0" y1="113" x2="340" y2="113" stroke="#8b0000" stroke-width="1.5"/>
+            <line x1="0" y1="227" x2="340" y2="227" stroke="#8b0000" stroke-width="1.5"/>
+            <line x1="0" y1="0" x2="113" y2="113" stroke="#8b0000" stroke-width="1"/>
+            <line x1="340" y1="0" x2="227" y2="113" stroke="#8b0000" stroke-width="1"/>
+            <line x1="0" y1="340" x2="113" y2="227" stroke="#8b0000" stroke-width="1"/>
+            <line x1="340" y1="340" x2="227" y2="227" stroke="#8b0000" stroke-width="1"/>
+            <g id="chalitLabels"></g><g id="chalitPlanets"></g>
+          </svg>
+        </div>
+        <div style="overflow-x:auto;padding:10px" id="chalitTable"></div>
+      </div>
+    </div>
+
     <!-- ফলাদেশ -->
     <div class="card">
       <div class="section-title">📖 পূর্ণাঙ্গ ফলাদেশ</div>
@@ -603,6 +626,15 @@ function calculateFullKundali(){
   const yogaList=detectAllYogas(planets,lagnaRashiIdx);
   document.getElementById('yogaDiv').innerHTML=getYogaTableHTML(yogaList);
 
+  /* ভাব কুণ্ডলী (চলিত) */
+  if(typeof getBhavaChalitData==='function'){
+    const chalitData=getBhavaChalitData(lagnaLon, planets.filter(p=>p.name!=='লগ্ন'));
+    if(typeof drawBhavaChalitChart==='function')
+      drawBhavaChalitChart('chalitChart', chalitData, RASHI_NAMES);
+    if(typeof getBhavaChalitTable==='function')
+      document.getElementById('chalitTable').innerHTML=getBhavaChalitTable(chalitData);
+  }
+
   /* ফলাদেশ */
   let predText='';
   if(typeof PredictionEngine==='function'){
@@ -616,11 +648,14 @@ function calculateFullKundali(){
         const house=(ri-lagnaRashiIdx+12)%12+1;
         return{name:p.name,rashi:RASHI_NAMES[ri],nakshatra:nak.name,house};
       });
+      const karanaInfo=getKarana(jd);
       const chartData={
         planets:chartPlanets,
         lagna:{rashi:lagnaRashiName},
         tithi:{paksha:tithi.paksha,name:tithi.name},
         yoga:{name:yogaName},
+        karana:{name:karanaInfo.name},
+        dashaInfo,
         birthDate:dobVal,
         birthTime:tobVal,
         birthPlace:document.getElementById('citySearch').value||'',
