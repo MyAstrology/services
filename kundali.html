@@ -407,6 +407,16 @@ function getYoga(jd){
   return YOGA_NAMES[Math.floor(((s+m)%360)/(360/27))];
 }
 
+const KARANA_NAMES=["বব","বালব","কৌলব","তৈতিল","গর","বণিজ","বিষ্টি","শকুনি","চতুষ্পদ","নাগ","কিংস্তুঘ্ন"];
+function getKarana(jd){
+  const ay=lahiriAY(jd);
+  const s=rev(sunL(jd)-ay),m=rev(moonL(jd)-ay);
+  const diff=rev(m-s);
+  const half=Math.floor(diff/6);
+  const idx=(half<=1)?10:(half>=57)?(half-57)+7:(half-2)%7;
+  return{name:KARANA_NAMES[Math.min(idx,10)]};
+}
+
 function getNavamshaRashi(lon){
   const sign=Math.floor(lon/30)%12;
   const part=Math.floor((lon%30)/(30/9));

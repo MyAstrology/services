@@ -536,12 +536,10 @@ function getAgeYears(birthJD) {
  */
 function calculateBhavaBoundaries(lagnaDegree) {
     const boundaries = [];
-    const lagnaDeg = lagnaDegree % 30; // রাশির মধ্যে লগ্নের ডিগ্রি
-    const lagnaRashi = Math.floor(lagnaDegree / 30); // লগ্নের রাশি (০-১১)
-    
+
     for (let i = 0; i < 12; i++) {
-        // প্রতিটি ভাবের মধ্যবিন্দু
-        const midPoint = (lagnaDeg + i * 30) % 360;
+        // প্রতিটি ভাবের মধ্যবিন্দু — লগ্নের পূর্ণ ডিগ্রি থেকে শুরু
+        const midPoint = (lagnaDegree + i * 30) % 360;
         
         // মধ্যবিন্দু থেকে ১৫° আগে ও পরে = ভাবের সীমানা
         const start = ((midPoint - 15) + 360) % 360;
