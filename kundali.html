@@ -97,6 +97,20 @@ svg{background:#fefcf9;border-radius:8px;max-width:100%;height:auto}
 .prediction-box{background:#fefcf9;border-radius:10px;padding:18px;white-space:pre-wrap;line-height:1.85;font-size:.93rem;border:1px solid #e8d5c0}
 @media(max-width:700px){.chart-section{grid-template-columns:1fr}.pg-grid{grid-template-columns:repeat(3,1fr)}h1{font-size:1.4rem}}
 @media print{.site-header,.nav,.btn-row,.ig,.card:first-child{display:none}}
+/* ── Tabs ── */
+.tab-btn{background:transparent;border:none;color:#b0c4dc;padding:12px 14px;font-size:.82rem;font-weight:700;cursor:pointer;border-bottom:3px solid transparent;transition:color .2s,border-color .2s;font-family:inherit;white-space:nowrap;flex-shrink:0}
+.tab-btn:hover{color:#ffd700}
+.tab-btn.active{color:#ffd700;border-bottom-color:#ffd700}
+/* Dasha accordion */
+.md-row{cursor:pointer;background:#fdf0cc;font-weight:700}
+.md-row:hover{background:#fde89a}
+.ad-row{background:#fefcf9;display:none}
+.ad-row.open{display:table-row}
+.ad-row td:first-child{padding-left:24px;color:#5c3d2e}
+/* Shadbala bars */
+.sb-bar-wrap{display:flex;align-items:center;gap:8px;margin:4px 0}
+.sb-bar-bg{flex:1;background:#e8d5c0;border-radius:4px;height:14px;overflow:hidden}
+.sb-bar-fill{height:100%;border-radius:4px;transition:width .6s}
 </style>
 </head>
 <body>
@@ -128,29 +142,68 @@ svg{background:#fefcf9;border-radius:8px;max-width:100%;height:auto}
 <div class="nav-overlay" id="navOverlay" onclick="closeNav()"></div>
 
 <!-- PAGE CONTENT -->
-<div class="k-wrap">
-  <h1>🚩 পূর্ব ভারতীয় জন্মকুষ্ঠি</h1>
-  <div class="subtitle">বিশুদ্ধ বাংলা মডেল — রাশিচক্র, নক্ষত্র, দশা ও ফলাদেশ | VSOP87 নির্ভুল গণনা</div>
+<div class="k-wrap" id="inputSection">
+  <div style="text-align:center;padding:18px 0 8px">
+    <div style="font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:#8b6914;font-weight:700;margin-bottom:6px">MyAstrology · ড. প্রদ্যুৎ আচার্য</div>
+    <h1 style="font-family:var(--fh);color:#7a2e2e;font-size:2rem;margin:0 0 6px">জন্মকুষ্ঠি বিশ্লেষণ</h1>
+    <div class="subtitle">পূর্ব ভারতীয় বৈদিক পদ্ধতি | লাহিড়ী অয়নাংশ | VSOP87 নির্ভুল গ্রহ গণনা</div>
+  </div>
 
   <!-- ইনপুট -->
   <div class="card">
     <div class="input-grid">
-      <div class="ig"><label>👤 আপনার নাম</label><input type="text" id="userName" placeholder="নাম লিখুন"></div>
-      <div class="ig"><label>📅 জন্ম তারিখ</label><input type="date" id="dob" value="1995-08-15"></div>
-      <div class="ig"><label>⏰ জন্ম সময়</label><input type="time" id="tob" value="10:30"></div>
+      <div class="ig" style="grid-column:1/-1"><label>👤 আপনার নাম</label><input type="text" id="userName" placeholder="পূর্ণ নাম লিখুন" oninput="validateForm()"></div>
+      <!-- তারিখ -->
+      <div class="ig"><label>📅 দিন</label>
+        <select id="dobDay" onchange="validateForm()" style="padding:10px 8px;border:2px solid #e0cdbc;border-radius:9px;font-size:.95rem;background:#fefcf9;font-family:inherit">
+          <option value="">দিন</option>
+        </select>
+      </div>
+      <div class="ig"><label>📅 মাস</label>
+        <select id="dobMonth" onchange="validateForm()" style="padding:10px 8px;border:2px solid #e0cdbc;border-radius:9px;font-size:.95rem;background:#fefcf9;font-family:inherit">
+          <option value="">মাস</option>
+          <option value="1">জানুয়ারি</option><option value="2">ফেব্রুয়ারি</option><option value="3">মার্চ</option>
+          <option value="4">এপ্রিল</option><option value="5">মে</option><option value="6">জুন</option>
+          <option value="7">জুলাই</option><option value="8">আগস্ট</option><option value="9">সেপ্টেম্বর</option>
+          <option value="10">অক্টোবর</option><option value="11">নভেম্বর</option><option value="12">ডিসেম্বর</option>
+        </select>
+      </div>
+      <div class="ig"><label>📅 বছর</label>
+        <select id="dobYear" onchange="validateForm()" style="padding:10px 8px;border:2px solid #e0cdbc;border-radius:9px;font-size:.95rem;background:#fefcf9;font-family:inherit">
+          <option value="">বছর</option>
+        </select>
+      </div>
+      <!-- সময় -->
+      <div class="ig"><label>⏰ ঘন্টা</label>
+        <select id="tobHour" onchange="validateForm()" style="padding:10px 8px;border:2px solid #e0cdbc;border-radius:9px;font-size:.95rem;background:#fefcf9;font-family:inherit">
+          <option value="">ঘন্টা</option>
+        </select>
+      </div>
+      <div class="ig"><label>⏰ মিনিট</label>
+        <select id="tobMin" onchange="validateForm()" style="padding:10px 8px;border:2px solid #e0cdbc;border-radius:9px;font-size:.95rem;background:#fefcf9;font-family:inherit">
+          <option value="">মিনিট</option>
+        </select>
+      </div>
+      <div class="ig"><label>⏰ সেকেন্ড</label>
+        <select id="tobSec" style="padding:10px 8px;border:2px solid #e0cdbc;border-radius:9px;font-size:.95rem;background:#fefcf9;font-family:inherit">
+          <option value="0">০০</option>
+        </select>
+      </div>
       <div class="ig">
         <label>🏙️ শহর অনুসন্ধান</label>
         <div class="city-wrap">
-          <input type="text" id="citySearch" placeholder="শহরের নাম..." autocomplete="off">
+          <div style="display:flex;gap:6px">
+            <input type="text" id="citySearch" placeholder="৩ অক্ষর লিখুন..." autocomplete="off" style="flex:1">
+            <button type="button" onclick="getGPSLocation()" title="GPS লোকেশন" style="padding:0 12px;border:2px solid #e0cdbc;border-radius:9px;background:#fefcf9;cursor:pointer;font-size:1.1rem;color:#5c3d2e">📍</button>
+          </div>
           <ul class="suggestions" id="citySuggestions"></ul>
         </div>
       </div>
-      <div class="ig"><label>🌍 অক্ষাংশ</label><input type="number" id="lat" value="23.1677" step="0.0001"></div>
-      <div class="ig"><label>🌏 দ্রাঘিমাংশ</label><input type="number" id="lon" value="88.5808" step="0.0001"></div>
+      <div class="ig"><label>🌍 অক্ষাংশ</label><input type="number" id="lat" placeholder="23.1677" step="0.0001" oninput="validateForm()"></div>
+      <div class="ig"><label>🌏 দ্রাঘিমাংশ</label><input type="number" id="lon" placeholder="88.5808" step="0.0001" oninput="validateForm()"></div>
     </div>
     <div class="btn-row">
-      <button class="btn btn-primary" onclick="calculateFullKundali()">📊 সম্পূর্ণ কুষ্ঠি গণনা</button>
-      <button class="btn btn-secondary" onclick="window.print()">🖨️ প্রিন্ট / PDF</button>
+      <button class="btn btn-primary" id="calcBtn" onclick="calculateFullKundali()">📊 কুষ্ঠি গণনা করুন</button>
     </div>
   </div>
 
@@ -176,7 +229,6 @@ svg{background:#fefcf9;border-radius:8px;max-width:100%;height:auto}
     <!-- চার্ট -->
     <div class="chart-section">
       <div class="chart-box">
-        <h3>🟊 জন্মকুষ্ঠি (D1)</h3>
         <svg id="d1Chart" width="300" height="300" viewBox="0 0 320 320">
           <rect width="320" height="320" fill="#fdfaf6" stroke="#8b0000" stroke-width="2"/>
           <line x1="107" y1="0" x2="107" y2="320" stroke="#8b0000" stroke-width="1.5"/>
@@ -187,11 +239,12 @@ svg{background:#fefcf9;border-radius:8px;max-width:100%;height:auto}
           <line x1="320" y1="0" x2="213" y2="107" stroke="#8b0000" stroke-width="1"/>
           <line x1="0" y1="320" x2="107" y2="213" stroke="#8b0000" stroke-width="1"/>
           <line x1="320" y1="320" x2="213" y2="213" stroke="#8b0000" stroke-width="1"/>
+          <text x="160" y="154" text-anchor="middle" font-size="12" fill="#8b0000" font-weight="bold" font-family="Noto Sans Bengali,serif">রাশি</text>
+          <text x="160" y="172" text-anchor="middle" font-size="12" fill="#8b0000" font-weight="bold" font-family="Noto Sans Bengali,serif">চক্র</text>
           <g id="d1Labels"></g><g id="d1Planets"></g>
         </svg>
       </div>
       <div class="chart-box">
-        <h3>🔮 নবাংশ কুষ্ঠি (D9)</h3>
         <svg id="d9Chart" width="300" height="300" viewBox="0 0 320 320">
           <rect width="320" height="320" fill="#fdfaf6" stroke="#8b0000" stroke-width="2"/>
           <line x1="107" y1="0" x2="107" y2="320" stroke="#8b0000" stroke-width="1.5"/>
@@ -202,6 +255,8 @@ svg{background:#fefcf9;border-radius:8px;max-width:100%;height:auto}
           <line x1="320" y1="0" x2="213" y2="107" stroke="#8b0000" stroke-width="1"/>
           <line x1="0" y1="320" x2="107" y2="213" stroke="#8b0000" stroke-width="1"/>
           <line x1="320" y1="320" x2="213" y2="213" stroke="#8b0000" stroke-width="1"/>
+          <text x="160" y="150" text-anchor="middle" font-size="11" fill="#1a3a6e" font-weight="bold" font-family="Noto Sans Bengali,serif">নবাংশ্য</text>
+          <text x="160" y="168" text-anchor="middle" font-size="11" fill="#1a3a6e" font-weight="bold" font-family="Noto Sans Bengali,serif">চক্র</text>
           <g id="d9Labels"></g><g id="d9Planets"></g>
         </svg>
       </div>
@@ -218,37 +273,24 @@ svg{background:#fefcf9;border-radius:8px;max-width:100%;height:auto}
       </div>
     </div>
 
-    <!-- বিংশোত্তরী দশা -->
-    <div class="card">
-      <div class="section-title">⏳ বিংশোত্তরী দশা</div>
-      <div class="dasha-info" id="dashaInfo"></div>
-      <div class="section-title" style="font-size:.95rem;margin-top:8px">📊 মহাদশা সারণী</div>
-      <div style="overflow-x:auto">
-        <table class="planet-table">
-          <thead><tr><th>মহাদশা</th><th>শুরু (বয়স)</th><th>শেষ (বয়স)</th><th>সময়কাল</th><th>অবস্থা</th></tr></thead>
-          <tbody id="dashaTbody"></tbody>
-        </table>
-      </div>
+    <!-- ট্যাব নেভিগেশন -->
+    <div id="tabNav" style="position:sticky;top:66px;z-index:800;background:#0a192f;border-bottom:2px solid #b8860b;margin:0 -16px;padding:0 16px;overflow-x:auto;white-space:nowrap;display:flex;gap:0">
+      <button class="tab-btn active" onclick="showTab('tabBhava',this)">ভাব কুণ্ডলি</button>
+      <button class="tab-btn" onclick="showTab('tabPanchang',this)">পঞ্চাঙ্গ</button>
+      <button class="tab-btn" onclick="showTab('tabDasha',this)">বিংশোত্তরী দশা</button>
+      <button class="tab-btn" onclick="showTab('tabLakshan',this)">সাধারণ বৈশিষ্ট্য</button>
+      <button class="tab-btn" onclick="showTab('tabDashaFal',this)">দশাফল</button>
+      <button class="tab-btn" onclick="showTab('tabYoga',this)">যোটক বিচার</button>
+      <button class="tab-btn" onclick="window.location.href='panjika.html'">পঞ্জিকা</button>
+      <button class="tab-btn" onclick="openRashifal()">রাশিফল</button>
     </div>
 
-    <!-- ষড়বল -->
-    <div class="card">
-      <div class="section-title">💪 ষড়বল (গ্রহের শক্তি)</div>
-      <div style="overflow-x:auto" id="shadbalaDiv"></div>
-    </div>
-
-    <!-- যোগ -->
-    <div class="card">
-      <div class="section-title">✨ কুষ্ঠিগত যোগ</div>
-      <div id="yogaDiv"></div>
-    </div>
-
+    <!-- Tab 1: ভাব কুণ্ডলি -->
+    <div id="tabBhava" class="tab-panel">
     <!-- ভাব কুণ্ডলী (চলিত) -->
     <div class="card">
-      <div class="section-title">🏠 ভাব কুণ্ডলী (চলিত)</div>
       <div class="chart-section" style="grid-template-columns:1fr 1fr">
         <div class="chart-box">
-          <h3>🔷 ভাব কুণ্ডলী</h3>
           <svg id="chalitChart" width="300" height="300" viewBox="0 0 340 340">
             <rect width="340" height="340" fill="#fdfaf6" stroke="#8b0000" stroke-width="2"/>
             <line x1="113" y1="0" x2="113" y2="340" stroke="#8b0000" stroke-width="1.5"/>
@@ -259,18 +301,62 @@ svg{background:#fefcf9;border-radius:8px;max-width:100%;height:auto}
             <line x1="340" y1="0" x2="227" y2="113" stroke="#8b0000" stroke-width="1"/>
             <line x1="0" y1="340" x2="113" y2="227" stroke="#8b0000" stroke-width="1"/>
             <line x1="340" y1="340" x2="227" y2="227" stroke="#8b0000" stroke-width="1"/>
+            <text x="170" y="162" text-anchor="middle" font-size="12" fill="#8b0000" font-weight="bold" font-family="Noto Sans Bengali,serif">ভাব</text>
+            <text x="170" y="180" text-anchor="middle" font-size="12" fill="#8b0000" font-weight="bold" font-family="Noto Sans Bengali,serif">কুণ্ডলী</text>
             <g id="chalitLabels"></g><g id="chalitPlanets"></g>
           </svg>
         </div>
         <div style="overflow-x:auto;padding:10px" id="chalitTable"></div>
       </div>
     </div>
+    </div><!-- /tabBhava -->
 
-    <!-- ফলাদেশ -->
+    <!-- Tab 2: পঞ্চাঙ্গ -->
+    <div id="tabPanchang" class="tab-panel" style="display:none">
     <div class="card">
-      <div class="section-title">📖 পূর্ণাঙ্গ ফলাদেশ</div>
-      <div class="prediction-box" id="predictionDiv"></div>
+      <div class="section-title">🗓️ বিস্তারিত পঞ্চাঙ্গ</div>
+      <div id="panchangDetail" style="line-height:2;font-size:.93rem"></div>
     </div>
+    </div><!-- /tabPanchang -->
+
+    <!-- Tab 3: বিংশোত্তরী দশা -->
+    <div id="tabDasha" class="tab-panel" style="display:none">
+    <div class="card">
+      <div class="section-title">⏳ বিংশোত্তরী দশা</div>
+      <div class="dasha-info" id="dashaInfo"></div>
+      <div style="overflow-x:auto" id="dashaAccordion"></div>
+    </div>
+    </div><!-- /tabDasha -->
+
+    <!-- Tab 4: সাধারণ বৈশিষ্ট্য -->
+    <div id="tabLakshan" class="tab-panel" style="display:none">
+    <div class="card">
+      <div class="section-title">🌟 সাধারণ বৈশিষ্ট্য</div>
+      <div class="prediction-box" id="lakshanaDiv"></div>
+    </div>
+    </div><!-- /tabLakshan -->
+
+    <!-- Tab 5: দশাফল -->
+    <div id="tabDashaFal" class="tab-panel" style="display:none">
+    <div class="card">
+      <div class="section-title">📖 দশাফল ও প্রতিকার</div>
+      <div class="prediction-box" id="dashaFalDiv"></div>
+    </div>
+    </div><!-- /tabDashaFal -->
+
+    <!-- Tab 6: যোটক বিচার -->
+    <div id="tabYoga" class="tab-panel" style="display:none">
+    <!-- ষড়বল -->
+    <div class="card">
+      <div class="section-title">💪 ষড়বল (গ্রহের শক্তি)</div>
+      <div style="overflow-x:auto" id="shadbalaDiv"></div>
+    </div>
+    <!-- যোগ -->
+    <div class="card">
+      <div class="section-title">✨ কুষ্ঠিগত যোগ</div>
+      <div id="yogaDiv"></div>
+    </div>
+    </div><!-- /tabYoga -->
 
   </div><!-- /resultsArea -->
 </div>
@@ -339,6 +425,37 @@ svg{background:#fefcf9;border-radius:8px;max-width:100%;height:auto}
 <script src="src/planet-house-remedy.js"></script>
 <script src="src/prediction-engine.js"></script>
 <script>
+/* ── Dropdown populate ── */
+(function(){
+  const day=document.getElementById('dobDay');
+  for(let i=1;i<=31;i++){const o=document.createElement('option');o.value=i;o.textContent=i;day.appendChild(o);}
+  const yr=document.getElementById('dobYear');
+  for(let y=new Date().getFullYear();y>=1900;y--){const o=document.createElement('option');o.value=y;o.textContent=y;yr.appendChild(o);}
+  const hr=document.getElementById('tobHour');
+  for(let h=0;h<24;h++){const o=document.createElement('option');o.value=h;o.textContent=String(h).padStart(2,'0');hr.appendChild(o);}
+  const mn=document.getElementById('tobMin');
+  for(let m=0;m<60;m++){const o=document.createElement('option');o.value=m;o.textContent=String(m).padStart(2,'0');mn.appendChild(o);}
+  const sc=document.getElementById('tobSec');
+  for(let s=1;s<60;s++){const o=document.createElement('option');o.value=s;o.textContent=String(s).padStart(2,'0');sc.appendChild(o);}
+})();
+
+/* ── ফর্ম যাচাই ── */
+function validateForm(){
+  const ok=document.getElementById('userName').value.trim()&&
+    document.getElementById('dobDay').value&&
+    document.getElementById('dobMonth').value&&
+    document.getElementById('dobYear').value&&
+    document.getElementById('tobHour').value!==''&&
+    document.getElementById('tobMin').value!==''&&
+    document.getElementById('lat').value&&
+    document.getElementById('lon').value;
+  const btn=document.getElementById('calcBtn');
+  btn.disabled=!ok;
+  btn.style.opacity=ok?'1':'0.5';
+  btn.style.cursor=ok?'pointer':'not-allowed';
+}
+validateForm();
+
 /* ── Nav ── */
 function toggleNav(){
   var nav=document.getElementById('navMenu'),ov=document.getElementById('navOverlay');
@@ -511,38 +628,25 @@ function getYogaTableHTML(yogas){
   return h+'</tbody></table>';
 }
 
-/* ── দশা ডিসপ্লে ── */
-function updateDashaDisplay(dashaInfo,age){
-  if(!dashaInfo)return;
-  const{currentMD,currentAD,birth,allDasha}=dashaInfo;
-  let info='';
-  if(birth)info+=`<p><strong>জন্ম দশা ভারসাম্য:</strong> ${birth.birthLord} দশার ${birth.balanceYears.toFixed(2)} বছর বাকি ছিল</p>`;
-  if(currentMD)info+=`<p><strong>বর্তমান মহাদশা:</strong> ${currentMD.lord} (${currentMD.elapsed.toFixed(1)}/${currentMD.period} বছর)</p>`;
-  if(currentAD)info+=`<p><strong>অন্তর্দশা:</strong> ${currentAD.lord}</p>`;
-  document.getElementById('dashaInfo').innerHTML=info||'<p>দশা তথ্য উপলব্ধ নেই।</p>';
-  let rows='';
-  if(allDasha)allDasha.forEach(d=>{
-    const cur=currentMD&&d.lord===currentMD.lord;
-    const status=cur?'🔴 চলছে':d.end<age?'✅ শেষ':'⏳ ভবিষ্যৎ';
-    rows+=`<tr class="${cur?'cur-dasha':''}"><td>${d.lord}</td><td>${d.start.toFixed(1)}</td><td>${d.end.toFixed(1)}</td><td>${d.period} বছর</td><td>${status}</td></tr>`;
-  });
-  document.getElementById('dashaTbody').innerHTML=rows;
-}
 
 /* ── মূল গণনা ── */
 function calculateFullKundali(){
   const name=document.getElementById('userName').value.trim()||"জাতক";
-  const dobVal=document.getElementById('dob').value;
-  const tobVal=document.getElementById('tob').value;
+  const d=parseInt(document.getElementById('dobDay').value);
+  const mo=parseInt(document.getElementById('dobMonth').value);
+  const y=parseInt(document.getElementById('dobYear').value);
+  const h=parseInt(document.getElementById('tobHour').value);
+  const mi=parseInt(document.getElementById('tobMin').value);
+  const sc=parseInt(document.getElementById('tobSec').value)||0;
   const lat=parseFloat(document.getElementById('lat').value);
   const lonVal=parseFloat(document.getElementById('lon').value);
 
-  if(!dobVal||!tobVal||isNaN(lat)||isNaN(lonVal)){
+  if(!d||!mo||!y||isNaN(h)||isNaN(mi)||isNaN(lat)||isNaN(lonVal)){
     alert("অনুগ্রহ করে সমস্ত তথ্য পূরণ করুন।");return;
   }
-  const[y,mo,d]=dobVal.split('-').map(Number);
-  const[h,mi]=tobVal.split(':').map(Number);
-  const jd=JD(y,mo,d)+(h-5.5+mi/60)/24;
+  const dobVal=`${y}-${String(mo).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+  const tobVal=`${String(h).padStart(2,'0')}:${String(mi).padStart(2,'0')}:${String(sc).padStart(2,'0')}`;
+  const jd=JD(y,mo,d)+(h-5.5+mi/60+sc/3600)/24;
   const ay=lahiriAY(jd);
 
   const sunLon  =rev(sunL(jd)-ay);
@@ -588,7 +692,20 @@ function calculateFullKundali(){
     {name:"কেতু",  lon:ketuLon},
   ];
 
-  let planetRows='';
+  /* লগ্ন প্রথম সারি */
+  const lagnaInSign=lagnaLon%30;
+  const lagnaDeg=Math.floor(lagnaInSign);
+  const lagnaMin=Math.floor((lagnaInSign%1)*60);
+  const lagnaNak=getNakshatraAndPada(lagnaLon);
+  const lagnaNavR=RASHI_NAMES[getNavamshaRashi(lagnaLon)];
+  let planetRows=`<tr>
+    <td style="color:#8b0000;font-weight:700">লগ্ন</td>
+    <td>${RASHI_NAMES[lagnaRashiIdx]}</td>
+    <td>${lagnaDeg}°${String(lagnaMin).padStart(2,'0')}'</td>
+    <td>${lagnaNak.name} ${lagnaNak.pada}য় পাদ</td>
+    <td>${lagnaNavR}</td>
+    <td>১</td>
+  </tr>`;
   planets.forEach(p=>{
     if(p.name==='লগ্ন')return;
     const ri=Math.floor(p.lon/30)%12;
@@ -622,14 +739,26 @@ function calculateFullKundali(){
   const age=ageMs/(1000*60*60*24*365.25);
   let dashaInfo=null;
   if(typeof getFullDashaInfo==='function')dashaInfo=getFullDashaInfo(moonLon,age);
-  updateDashaDisplay(dashaInfo,age);
+  const{currentMD,currentAD,birth,allDasha}=dashaInfo||{};
+  let dashaInfoHtml='';
+  if(birth)dashaInfoHtml+=`<p><strong>জন্ম দশা ভারসাম্য:</strong> ${birth.birthLord} দশার ${birth.balanceYears.toFixed(2)} বছর বাকি ছিল</p>`;
+  if(currentMD)dashaInfoHtml+=`<p><strong>বর্তমান মহাদশা:</strong> ${currentMD.lord} (${currentMD.elapsed.toFixed(1)}/${currentMD.period} বছর)</p>`;
+  if(currentAD)dashaInfoHtml+=`<p><strong>অন্তর্দশা:</strong> ${currentAD.lord}</p>`;
+  document.getElementById('dashaInfo').innerHTML=dashaInfoHtml||'<p>দশা তথ্য উপলব্ধ নেই।</p>';
+  buildDashaAccordion(dashaInfo,dobVal);
+
+  /* করণ */
+  const karanaInfo=getKarana(jd);
+  const gana=NAKSHATRA_GANA[nakInfo.name]||'—';
 
   /* ষড়বল */
+  let sbData=null;
   if(typeof calculateAllShadbala==='function'){
-    const sb=calculateAllShadbala(planets,lagnaRashiIdx,jd);
+    sbData=calculateAllShadbala(planets,lagnaRashiIdx,jd);
     if(typeof getShadbalaTable==='function')
-      document.getElementById('shadbalaDiv').innerHTML=getShadbalaTable(sb);
+      document.getElementById('shadbalaDiv').innerHTML=getShadbalaTable(sbData);
     else document.getElementById('shadbalaDiv').innerHTML='<p style="color:#666;padding:10px">ষড়বল মডিউল লোড হয়নি।</p>';
+    buildShadbalaWithBars(sbData);
   }
 
   /* যোগ */
@@ -645,20 +774,21 @@ function calculateFullKundali(){
       document.getElementById('chalitTable').innerHTML=getBhavaChalitTable(chalitData);
   }
 
-  /* ফলাদেশ */
-  let predText='';
+  /* পঞ্চাঙ্গ বিস্তারিত */
+  buildPanchangDetail(jd,lat,lonVal,dobVal,gana,nakInfo,tithi,yogaName,karanaInfo,vara,sunRashiName);
+
+  /* ফলাদেশ engine */
+  let engine=null;
   if(typeof PredictionEngine==='function'){
     try{
-      const engine=new PredictionEngine();
+      engine=new PredictionEngine();
       engine.setUserName(name);
-      // chartData — prediction-engine.js যে ফরম্যাট আশা করে
       const chartPlanets=planets.filter(p=>p.name!=='লগ্ন').map(p=>{
         const ri=Math.floor(p.lon/30)%12;
-        const nak=getNakshatraAndPada(p.lon);
+        const nak2=getNakshatraAndPada(p.lon);
         const house=(ri-lagnaRashiIdx+12)%12+1;
-        return{name:p.name,rashi:RASHI_NAMES[ri],nakshatra:nak.name,house};
+        return{name:p.name,rashi:RASHI_NAMES[ri],nakshatra:nak2.name,house};
       });
-      const karanaInfo=getKarana(jd);
       const chartData={
         planets:chartPlanets,
         lagna:{rashi:lagnaRashiName},
@@ -671,14 +801,27 @@ function calculateFullKundali(){
         birthPlace:document.getElementById('citySearch').value||'',
       };
       engine.setChartData(chartData);
-      predText=engine.generateFullPrediction();
-    }catch(e){predText="ভবিষ্যদ্বাণী গণনায় সমস্যা: "+e.message;}
-  }else{predText="ভবিষ্যদ্বাণী মডিউল লোড হয়নি।";}
-  document.getElementById('predictionDiv').textContent=predText;
+    }catch(e){engine=null;}
+  }
 
-  /* দেখাও */
+  /* সাধারণ বৈশিষ্ট্য (Tab 4) */
+  buildLakshana(nakInfo,gana,lagnaRashiName,tithi,karanaInfo,sunRashiName,engine);
+
+  /* দশাফল (Tab 5) */
+  let dashaFalText='';
+  if(engine){
+    try{
+      if(typeof engine.generateDashaAnalysis==='function')dashaFalText+=engine.generateDashaAnalysis()+'\n\n';
+      if(typeof engine.generateRemedySection==='function')dashaFalText+=engine.generateRemedySection();
+    }catch(e){dashaFalText='দশাফল গণনায় সমস্যা: '+e.message;}
+  }
+  document.getElementById('dashaFalDiv').textContent=dashaFalText||'দশাফল তথ্য পাওয়া যায়নি।';
+
+  /* ফর্ম হাইড করো, ফলাফল দেখাও */
+  document.getElementById('inputSection').style.display='none';
   document.getElementById('resultsArea').style.display='block';
-  document.getElementById('resultsArea').scrollIntoView({behavior:'smooth'});
+  showTab('tabBhava',document.querySelector('.tab-btn'));
+  document.getElementById('tabNav').scrollIntoView({behavior:'smooth'});
 }
 
 /* ── শহর অনুসন্ধান ── */
@@ -689,7 +832,7 @@ document.addEventListener('DOMContentLoaded',function(){
   inp.addEventListener('input',function(){
     const q=this.value.trim().toLowerCase();
     sugg.innerHTML='';
-    if(q.length<2){sugg.style.display='none';return;}
+    if(q.length<3){sugg.style.display='none';return;}
     const cd=(typeof CITY_DB!=='undefined')?CITY_DB:[];
     const matches=cd.filter(c=>{
       const n=(c.n||'').toLowerCase();
@@ -711,6 +854,158 @@ document.addEventListener('DOMContentLoaded',function(){
   });
   document.addEventListener('click',e=>{if(!inp.contains(e.target))sugg.style.display='none';});
 });
+
+/* ── ট্যাব ── */
+function showTab(id,btn){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.style.display='none');
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  const el=document.getElementById(id);
+  if(el)el.style.display='block';
+  if(btn)btn.classList.add('active');
+}
+function openRashifal(){
+  const dob=document.getElementById('dobYear').value+'-'+
+    String(document.getElementById('dobMonth').value).padStart(2,'0')+'-'+
+    String(document.getElementById('dobDay').value).padStart(2,'0');
+  window.open('https://www.myastrology.in/rashifal/'+dob+'.html','_blank');
+}
+
+/* ── পঞ্চাঙ্গ বিস্তারিত ── */
+function buildPanchangDetail(jd,lat,lon,dobVal,gana,nakInfo,tithi,yogaName,karanaInfo,vara,sunRashiName){
+  const BN_MONTHS_EN=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const BN_MONTHS_BN=['জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
+  const EN_DAYS=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const BN_BENGALI_MONTHS=['বৈশাখ','জ্যৈষ্ঠ','আষাঢ়','শ্রাবণ','ভাদ্র','আশ্বিন','কার্তিক','অগ্রহায়ণ','পৌষ','মাঘ','ফাল্গুন','চৈত্র'];
+  const dt=new Date(dobVal);
+  const mIdx=dt.getMonth();
+  const enDay=EN_DAYS[dt.getDay()];
+  // Bengali calendar approx: month based on sun position
+  const sunR=Math.floor(rev(sunL(jd)-lahiriAY(jd))/30)%12;
+  const bnMonth=BN_BENGALI_MONTHS[sunR];
+  // Sunrise approx: civil twilight + lat offset (simplified)
+  const srHour=6-lat*0.0167;
+  const ssHour=18+lat*0.0167;
+  const fmtHour=h=>{const hh=Math.floor(h),mm=Math.round((h-hh)*60);return`${String(hh).padStart(2,'0')}:${String(mm).padStart(2,'0')}`};
+  const srStr=fmtHour(srHour),ssStr=fmtHour(ssHour);
+  // Hindu vara (changes at sunrise)
+  const jdSr=Math.floor(jd-0.5)+0.5+(srHour-5.5)/24;
+  const hinduVar=VARA_NAMES[Math.floor((jdSr+1.5)%7)];
+  let html=`<table class="planet-table">
+    <tr><th colspan="2" style="background:#4a3728">পঞ্চাঙ্গ তথ্য</th></tr>
+    <tr><td>সূর্যোদয়</td><td>${srStr} (স্থানীয় আনুমানিক)</td></tr>
+    <tr><td>সূর্যাস্ত</td><td>${ssStr} (স্থানীয় আনুমানিক)</td></tr>
+    <tr><td>তিথি</td><td>${tithi.paksha} ${tithi.name}</td></tr>
+    <tr><td>নক্ষত্র</td><td>${nakInfo.name} — ${nakInfo.pada}য় পাদ</td></tr>
+    <tr><td>যোগ</td><td>${yogaName}</td></tr>
+    <tr><td>করণ</td><td>${karanaInfo.name}</td></tr>
+    <tr><td>গণ</td><td>${gana}</td></tr>
+    <tr><td>বাংলা মাস (রবি রাশি)</td><td>${bnMonth}</td></tr>
+    <tr><td>ইংরেজি মাস</td><td>${BN_MONTHS_BN[mIdx]} (${BN_MONTHS_EN[mIdx]})</td></tr>
+    <tr><td>হিন্দু বার (সূর্যোদয়ে পরিবর্তন)</td><td>${hinduVar}</td></tr>
+    <tr><td>ইংরেজি বার (মধ্যরাতে পরিবর্তন)</td><td>${vara} (${enDay})</td></tr>
+  </table>`;
+  document.getElementById('panchangDetail').innerHTML=html;
+}
+
+/* ── দশা অ্যাকর্ডিয়ন ── */
+function buildDashaAccordion(dashaInfo,dobVal){
+  if(!dashaInfo||!dashaInfo.allDasha){
+    document.getElementById('dashaAccordion').innerHTML='<p style="color:#666;padding:10px">দশা তথ্য নেই।</p>';
+    return;
+  }
+  const birthDate=new Date(dobVal);
+  const fmtDate=d=>{if(!(d instanceof Date)||isNaN(d))return'—';return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');};
+  const ageToDate=y=>{const d=new Date(birthDate);d.setFullYear(d.getFullYear()+Math.floor(y));d.setDate(d.getDate()+Math.round((y%1)*365.25));return d;};
+  const cur=dashaInfo.currentMD;
+  let html='<table class="planet-table" style="width:100%"><thead><tr><th>মহাদশা</th><th>শুরু তারিখ</th><th>শেষ তারিখ</th><th>সময়কাল</th><th>অবস্থা</th></tr></thead><tbody>';
+  dashaInfo.allDasha.forEach((d,i)=>{
+    const isCur=cur&&d.lord===cur.lord;
+    const startD=fmtDate(ageToDate(d.start));
+    const endD=fmtDate(ageToDate(d.end));
+    const status=isCur?'🔴 চলছে':d.end<(dashaInfo.currentMD?dashaInfo.currentMD.elapsed+dashaInfo.currentMD.start:0)?'✅ শেষ':'⏳ ভবিষ্যৎ';
+    html+=`<tr class="md-row ${isCur?'cur-dasha':''}" onclick="toggleAD(${i})">
+      <td>▶ ${d.lord}</td><td>${startD}</td><td>${endD}</td><td>${d.period} বছর</td><td>${status}</td>
+    </tr>`;
+    if(d.antardashas){
+      d.antardashas.forEach((ad,j)=>{
+        const adStart=fmtDate(ageToDate(d.start+(d.period*(j>0?d.antardashas.slice(0,j).reduce((s,a)=>s+a.period,0):0))));
+        html+=`<tr class="ad-row" data-md="${i}">
+          <td style="padding-left:28px">↳ ${ad.lord}</td>
+          <td colspan="3" style="font-size:.82rem;color:#5c3d2e">${ad.period?ad.period.toFixed(2)+' বছর':''}</td>
+          <td></td>
+        </tr>`;
+      });
+    }
+  });
+  html+='</tbody></table>';
+  document.getElementById('dashaAccordion').innerHTML=html;
+}
+function toggleAD(i){
+  document.querySelectorAll(`.ad-row[data-md="${i}"]`).forEach(r=>r.classList.toggle('open'));
+}
+
+/* ── সাধারণ বৈশিষ্ট্য ── */
+function buildLakshana(nakInfo,gana,lagnaRashiName,tithi,karanaInfo,sunRashiName,engine){
+  let txt='';
+  // Use PredictionEngine sections if available
+  if(engine&&typeof engine.generateLagnaSection==='function')txt+=engine.generateLagnaSection()+'\n\n';
+  if(engine&&typeof engine.generateNakshatraSection==='function')txt+=engine.generateNakshatraSection()+'\n\n';
+  if(engine&&typeof engine.generateTithiSection==='function')txt+=engine.generateTithiSection()+'\n\n';
+  if(engine&&typeof engine.generateKaranaSection==='function')txt+=engine.generateKaranaSection()+'\n\n';
+  if(engine&&typeof engine.generateMonthSection==='function')txt+=engine.generateMonthSection();
+  if(!txt.trim()){
+    txt=`লগ্ন: ${lagnaRashiName}\nজন্ম নক্ষত্র: ${nakInfo.name} (${gana} গণ) — ${nakInfo.pada}য় পাদ\nতিথি: ${tithi.paksha} ${tithi.name}\nকরণ: ${karanaInfo.name}\nসূর্য রাশি: ${sunRashiName}`;
+  }
+  document.getElementById('lakshanaDiv').textContent=txt;
+}
+
+/* ── শক্তি বার ── */
+function buildShadbalaWithBars(shadbalaData){
+  if(!shadbalaData)return;
+  const el=document.getElementById('shadbalaDiv');
+  if(!el)return;
+  // Get existing table HTML from getShadbalaTable if available
+  let tableHTML=el.innerHTML;
+  // Add ranked bars below table
+  if(!shadbalaData.planetStrengths)return;
+  const sorted=[...shadbalaData.planetStrengths].sort((a,b)=>b.total-a.total);
+  const max=sorted[0]?.total||1;
+  const colors=['#e65c00','#2980b9','#c0392b','#27ae60','#8e44ad','#e91e8c','#5d4037'];
+  let bars='<div style="margin-top:16px"><div class="section-title" style="font-size:.9rem;margin-bottom:8px">📊 শক্তির ক্রম (বেশি থেকে কম)</div>';
+  sorted.forEach((p,i)=>{
+    const pct=Math.round((p.total/max)*100);
+    bars+=`<div class="sb-bar-wrap">
+      <div style="width:80px;font-size:.82rem;font-weight:700;color:${colors[i%7]}">${p.name}</div>
+      <div class="sb-bar-bg"><div class="sb-bar-fill" style="width:${pct}%;background:${colors[i%7]}"></div></div>
+      <div style="font-size:.78rem;color:#5c3d2e;width:40px;text-align:right">${p.total?.toFixed?.(1)||p.total}</div>
+    </div>`;
+  });
+  bars+='</div>';
+  el.innerHTML=tableHTML+bars;
+}
+
+/* ── GPS লোকেশন ── */
+function getGPSLocation(){
+  if(!navigator.geolocation){alert('এই ব্রাউজার GPS সমর্থন করে না।');return;}
+  navigator.geolocation.getCurrentPosition(function(pos){
+    const lat=pos.coords.latitude, lon=pos.coords.longitude;
+    document.getElementById('lat').value=lat.toFixed(4);
+    document.getElementById('lon').value=lon.toFixed(4);
+    // কাছের শহর খুঁজুন
+    const cd=(typeof CITY_DB!=='undefined')?CITY_DB:[];
+    let best=null,minD=Infinity;
+    cd.forEach(c=>{
+      const d=Math.hypot(c.lat-lat,c.lng-lon);
+      if(d<minD){minD=d;best=c;}
+    });
+    if(best){
+      document.getElementById('citySearch').value=best.n;
+      document.getElementById('lat').value=parseFloat(best.lat).toFixed(4);
+      document.getElementById('lon').value=parseFloat(best.lng).toFixed(4);
+    }
+    validateForm();
+  },function(){alert('লোকেশন পাওয়া যায়নি। অনুমতি দিন বা ম্যানুয়ালি লিখুন।');});
+}
 </script>
 </body>
 </html>
