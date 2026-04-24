@@ -1,6 +1,8 @@
-// match-making.js
-// অষ্টকূট পদ্ধতিতে কুষ্ঠি মিলন (Match Making)
+// ============================================================
+// match-making.js (COMPLETE UPDATED VERSION)
+// অষ্টকূট পদ্ধতিতে কুষ্ঠি মিলন + YotakBicharEngine
 // পূর্ব ভারতীয় কুষ্ঠি সফটওয়্যার
+// ============================================================
 
 // ==================== ১. নক্ষত্রের ডেটা ====================
 
@@ -56,324 +58,260 @@ const NAKSHATRA_VARNA = {
     "পূর্বভাদ্রপদ": "ব্রাহ্মণ", "উত্তরভাদ্রপদ": "ক্ষত্রিয়", "রেবতী": "শূদ্র"
 };
 
-// ==================== ২. অষ্টকূট মিলন ====================
-
-/**
- * ১. বর্ণ কূট (১ গুণ)
- * বর্ণের মিল অনুযায়ী পয়েন্ট
- */
-function calculateVarnaKoota(girlNakshatra, boyNakshatra) {
-    const girlVarna = NAKSHATRA_VARNA[girlNakshatra];
-    const boyVarna = NAKSHATRA_VARNA[boyNakshatra];
-    
-    if (!girlVarna || !boyVarna) return { points: 0, max: 1, description: "তথ্য নেই" };
-    
-    const varnaOrder = ["ব্রাহ্মণ", "ক্ষত্রিয়", "বৈশ্য", "শূদ্র"];
-    const girlIdx = varnaOrder.indexOf(girlVarna);
-    const boyIdx = varnaOrder.indexOf(boyVarna);
-    
-    if (boyIdx >= girlIdx) return { points: 1, max: 1, description: `ছেলের বর্ণ ${boyVarna}, মেয়ের বর্ণ ${girlVarna} — উত্তম মিল` };
-    if (boyIdx === girlIdx - 1) return { points: 0.5, max: 1, description: `ছেলের বর্ণ ${boyVarna}, মেয়ের বর্ণ ${girlVarna} — মধ্যম মিল` };
-    return { points: 0, max: 1, description: `ছেলের বর্ণ ${boyVarna}, মেয়ের বর্ণ ${girlVarna} — অমিল` };
-}
-
-/**
- * ২. বসু কূট (২ গুণ)
- * রাশির গণনা অনুযায়ী
- */
-function calculateVasuKoota(girlRashi, boyRashi) {
-    const vasuRashi = {
-        "মেষ": 0, "বৃষ": 1, "মিথুন": 2, "কর্কট": 3,
-        "সিংহ": 4, "কন্যা": 5, "তুলা": 6, "বৃশ্চিক": 7,
-        "ধনু": 8, "মকর": 9, "কুম্ভ": 10, "মীন": 11
-    };
-    
-    const girlIdx = vasuRashi[girlRashi] || 0;
-    const boyIdx = vasuRashi[boyRashi] || 0;
-    
-    if (girlIdx === boyIdx) return { points: 0, max: 2, description: "একই রাশি — অমিল" };
-    if (girlIdx === (boyIdx + 12 - 1) % 12 || girlIdx === (boyIdx + 1) % 12) {
-        return { points: 0, max: 2, description: "পার্শ্ববর্তী রাশি — অমিল" };
-    }
-    if (girlIdx === (boyIdx + 12 - 2) % 12 || girlIdx === (boyIdx + 2) % 12) {
-        return { points: 1, max: 2, description: "দ্বিতীয় রাশি — মধ্যম মিল" };
-    }
-    return { points: 2, max: 2, description: "উত্তম মিল" };
-}
-
-/**
- * ৩. তারা কূট (৩ গুণ)
- * নক্ষত্রের দূরত্ব অনুযায়ী
- */
-function calculateTaraKoota(girlNakshatraIndex, boyNakshatraIndex) {
-    const distance = ((girlNakshatraIndex - boyNakshatraIndex + 27) % 27);
-    const tara = (distance % 9) + 1;
-    
-    if (tara === 3 || tara === 5 || tara === 7) {
-        return { points: 0, max: 3, description: `${tara}ম তারা — অশুভ, অমিল` };
-    }
-    return { points: 3, max: 3, description: `${tara}ম তারা — শুভ, উত্তম মিল` };
-}
-
-/**
- * ৪. যোনি কূট (৪ গুণ)
- * পশু প্রকৃতির মিল
- */
-function calculateYoniKoota(girlNakshatra, boyNakshatra) {
-    const girlYoni = NAKSHATRA_YONI[girlNakshatra];
-    const boyYoni = NAKSHATRA_YONI[boyNakshatra];
-    
-    if (!girlYoni || !boyYoni) return { points: 0, max: 4, description: "তথ্য নেই" };
-    
-    if (girlYoni === boyYoni) return { points: 4, max: 4, description: `উভয়ের যোনি ${girlYoni} — একই, সর্বোত্তম মিল` };
-    
-    // বন্ধু যোনি
-    const friendYonis = {
-        "অশ্ব": ["মহিষ"], "গজ": ["মূষিক"], "মেষ": ["মৃগ"],
-        "সর্প": ["মার্জার"], "মার্জার": ["সর্প"], "মূষিক": ["গজ"],
-        "মহিষ": ["অশ্ব"], "মৃগ": ["মেষ"], "শ্বান": ["বানর"],
-        "বানর": ["শ্বান"], "ব্যাঘ্র": ["সিংহ"], "সিংহ": ["ব্যাঘ্র"],
-        "গো": ["নকুল"], "নকুল": ["গো"]
-    };
-    
-    if (friendYonis[girlYoni] && friendYonis[girlYoni].includes(boyYoni)) {
-        return { points: 3, max: 4, description: `মেয়ের যোনি ${girlYoni}, ছেলের যোনি ${boyYoni} — বন্ধু যোনি, ভালো মিল` };
-    }
-    
-    return { points: 0, max: 4, description: `মেয়ের যোনি ${girlYoni}, ছেলের যোনি ${boyYoni} — শত্রু যোনি, অমিল` };
-}
-
-/**
- * ৫. গ্রহমৈত্রী কূট (৫ গুণ)
- * রাশির অধিপতিদের সম্পর্ক
- */
-function calculateGrahaMaitriKoota(girlRashi, boyRashi) {
-    const rashiLords = {
-        "মেষ": "মঙ্গল", "বৃষ": "শুক্র", "মিথুন": "বুধ", "কর্কট": "চন্দ্র",
-        "সিংহ": "সূর্য", "কন্যা": "বুধ", "তুলা": "শুক্র", "বৃশ্চিক": "মঙ্গল",
-        "ধনু": "বৃহস্পতি", "মকর": "শনি", "কুম্ভ": "শনি", "মীন": "বৃহস্পতি"
-    };
-    
-    const friends = {
-        "সূর্য": ["চন্দ্র", "মঙ্গল", "বৃহস্পতি"],
-        "চন্দ্র": ["সূর্য", "বুধ"],
-        "মঙ্গল": ["সূর্য", "চন্দ্র", "বৃহস্পতি"],
-        "বুধ": ["সূর্য", "শুক্র"],
-        "বৃহস্পতি": ["সূর্য", "চন্দ্র", "মঙ্গল"],
-        "শুক্র": ["বুধ", "শনি"],
-        "শনি": ["বুধ", "শুক্র"]
-    };
-    
-    const girlLord = rashiLords[girlRashi];
-    const boyLord = rashiLords[boyRashi];
-    
-    if (girlLord === boyLord) return { points: 5, max: 5, description: `উভয়ের রাশিপতি ${girlLord} — একই, সর্বোত্তম মিল` };
-    if (friends[boyLord] && friends[boyLord].includes(girlLord)) {
-        return { points: 4, max: 5, description: `ছেলের রাশিপতি ${boyLord}, মেয়ের রাশিপতি ${girlLord} — বন্ধু, ভালো মিল` };
-    }
-    return { points: 0, max: 5, description: `ছেলের রাশিপতি ${boyLord}, মেয়ের রাশিপতি ${girlLord} — শত্রু, অমিল` };
-}
-
-/**
- * ৬. গণ কূট (৬ গুণ)
- * দেব/মনুষ্য/রাক্ষস গণ
- */
-function calculateGanaKoota(girlNakshatra, boyNakshatra) {
-    const girlGana = NAKSHATRA_GANA[girlNakshatra];
-    const boyGana = NAKSHATRA_GANA[boyNakshatra];
-    
-    if (!girlGana || !boyGana) return { points: 0, max: 6, description: "তথ্য নেই" };
-    
-    if (girlGana === boyGana) return { points: 6, max: 6, description: `উভয়ের গণ ${girlGana} — একই, সর্বোত্তম মিল` };
-    
-    if (girlGana === "দেব" && boyGana === "মনুষ্য") return { points: 5, max: 6, description: "দেব ও মনুষ্য — ভালো মিল" };
-    if (girlGana === "মনুষ্য" && boyGana === "দেব") return { points: 3, max: 6, description: "মনুষ্য ও দেব — মধ্যম মিল" };
-    if (girlGana === "দেব" && boyGana === "রাক্ষস") return { points: 1, max: 6, description: "দেব ও রাক্ষস — খারাপ মিল" };
-    if (girlGana === "রাক্ষস" && boyGana === "দেব") return { points: 0, max: 6, description: "রাক্ষস ও দেব — অমিল" };
-    if (girlGana === "মনুষ্য" && boyGana === "রাক্ষস") return { points: 3, max: 6, description: "মনুষ্য ও রাক্ষস — মধ্যম মিল" };
-    if (girlGana === "রাক্ষস" && boyGana === "মনুষ্য") return { points: 1, max: 6, description: "রাক্ষস ও মনুষ্য — খারাপ মিল" };
-    
-    return { points: 0, max: 6, description: "অমিল" };
-}
-
-/**
- * ৭. ভকূট (৭ গুণ)
- * রাশির অবস্থান অনুযায়ী
- */
-function calculateBhakoota(girlRashi, boyRashi) {
-    const rashiOrder = ["মেষ", "বৃষ", "মিথুন", "কর্কট", "সিংহ", "কন্যা", "তুলা", "বৃশ্চিক", "ধনু", "মকর", "কুম্ভ", "মীন"];
-    const girlIdx = rashiOrder.indexOf(girlRashi);
-    const boyIdx = rashiOrder.indexOf(boyRashi);
-    
-    const distance = ((boyIdx - girlIdx + 12) % 12) + 1;
-    
-    // ২-১২, ৩-১১, ৪-১০, ৫-৯, ৬-৮ ভকূট দোষ
-    if (distance === 2 || distance === 12) return { points: 0, max: 7, description: `দ্বি-দ্বাদশ অবস্থান — ভকূট দোষ, অমিল` };
-    if (distance === 5 || distance === 9) return { points: 0, max: 7, description: `পঞ্চম-নবম অবস্থান — ভকূট দোষ, অমিল` };
-    if (distance === 1 || distance === 7) return { points: 7, max: 7, description: `এক-সপ্তম অবস্থান — উত্তম মিল` };
-    
-    return { points: 4, max: 7, description: "মধ্যম মিল" };
-}
-
-/**
- * ৮. নাড়ি কূট (৮ গুণ)
- */
-function calculateNadiKoota(girlNakshatra, boyNakshatra) {
-    const girlNadi = NAKSHATRA_NADI[girlNakshatra];
-    const boyNadi = NAKSHATRA_NADI[boyNakshatra];
-    
-    if (!girlNadi || !boyNadi) return { points: 0, max: 8, description: "তথ্য নেই" };
-    
-    if (girlNadi === boyNadi) return { points: 0, max: 8, description: `উভয়ের নাড়ি ${girlNadi} — একই, নাড়ি দোষ, অমিল` };
-    return { points: 8, max: 8, description: `মেয়ের নাড়ি ${girlNadi}, ছেলের নাড়ি ${boyNadi} — ভিন্ন, উত্তম মিল` };
-}
-
-// ==================== ৩. মাঙ্গলিক দোষ ====================
+// ==================== ২. মাঙ্গলিক দোষ ====================
 
 function checkManglikDosha(marsRashi, lagnaRashi) {
     const rashiOrder = ["মেষ", "বৃষ", "মিথুন", "কর্কট", "সিংহ", "কন্যা", "তুলা", "বৃশ্চিক", "ধনু", "মকর", "কুম্ভ", "মীন"];
     const marsIdx = rashiOrder.indexOf(marsRashi);
     const lagnaIdx = rashiOrder.indexOf(lagnaRashi);
     
+    if (marsIdx === -1 || lagnaIdx === -1) return { isManglik: false, house: -1, description: "তথ্য নেই" };
+    
     const house = ((marsIdx - lagnaIdx + 12) % 12) + 1;
-    
-    // ১, ৪, ৭, ৮, ১২ ভাবে মঙ্গল = মাঙ্গলিক দোষ
-    if ([1, 4, 7, 8, 12].includes(house)) {
-        return { hasDosha: true, house, description: `মঙ্গল ${house}ম ভাবে — মাঙ্গলিক দোষ আছে` };
-    }
-    return { hasDosha: false, house, description: `মঙ্গল ${house}ম ভাবে — মাঙ্গলিক দোষ নেই` };
-}
-
-// ==================== ৪. পূর্ণাঙ্গ মিলন ====================
-
-function calculateMatchMaking(girlData, boyData) {
-    const girlNakshatra = girlData.moonNakshatra;
-    const boyNakshatra = boyData.moonNakshatra;
-    const girlNakshatraIndex = girlData.moonNakshatraIndex;
-    const boyNakshatraIndex = boyData.moonNakshatraIndex;
-    const girlRashi = girlData.moonRashi;
-    const boyRashi = boyData.moonRashi;
-    const girlMarsRashi = girlData.marsRashi;
-    const boyMarsRashi = boyData.marsRashi;
-    const girlLagna = girlData.lagnaRashi;
-    const boyLagna = boyData.lagnaRashi;
-    
-    // অষ্টকূট গণনা
-    const varna = calculateVarnaKoota(girlNakshatra, boyNakshatra);
-    const vasu = calculateVasuKoota(girlRashi, boyRashi);
-    const tara = calculateTaraKoota(girlNakshatraIndex, boyNakshatraIndex);
-    const yoni = calculateYoniKoota(girlNakshatra, boyNakshatra);
-    const grahaMaitri = calculateGrahaMaitriKoota(girlRashi, boyRashi);
-    const gana = calculateGanaKoota(girlNakshatra, boyNakshatra);
-    const bhakoota = calculateBhakoota(girlRashi, boyRashi);
-    const nadi = calculateNadiKoota(girlNakshatra, boyNakshatra);
-    
-    const totalPoints = varna.points + vasu.points + tara.points + yoni.points + 
-                       grahaMaitri.points + gana.points + bhakoota.points + nadi.points;
-    const maxPoints = varna.max + vasu.max + tara.max + yoni.max + 
-                     grahaMaitri.max + gana.max + bhakoota.max + nadi.max;
-    
-    // মাঙ্গলিক দোষ
-    const girlManglik = checkManglikDosha(girlMarsRashi, girlLagna);
-    const boyManglik = checkManglikDosha(boyMarsRashi, boyLagna);
-    
-    // ফলাফল
-    let result = "";
-    if (totalPoints >= 32) result = "অত্যুত্তম — বিবাহের জন্য সর্বোত্তম যোগ";
-    else if (totalPoints >= 25) result = "উত্তম — বিবাহের জন্য ভালো যোগ";
-    else if (totalPoints >= 18) result = "মধ্যম — বিবাহ সম্ভব, তবে কিছু প্রতিকার প্রয়োজন";
-    else if (totalPoints >= 12) result = "সাধারণ — বিবাহের আগে সতর্কতা ও প্রতিকার প্রয়োজন";
-    else result = "অশুভ — বিবাহ সুপারিশ করা যায় না";
+    const isManglik = [1, 2, 4, 7, 8, 12].includes(house);
     
     return {
-        kootas: { varna, vasu, tara, yoni, grahaMaitri, gana, bhakoota, nadi },
-        totalPoints,
-        maxPoints,
-        result,
-        manglik: {
-            girl: girlManglik,
-            boy: boyManglik,
-            match: girlManglik.hasDosha === boyManglik.hasDosha
-        },
-        doshaWarnings: getDoshaWarnings(nadi.points, bhakoota.points, gana.points)
+        isManglik,
+        house,
+        description: isManglik 
+            ? `মঙ্গল ${house}ম ভাবে — মাঙ্গলিক দোষ আছে` 
+            : `মঙ্গল ${house}ম ভাবে — মাঙ্গলিক দোষ নেই`
     };
 }
 
-function getDoshaWarnings(nadiPoints, bhakootaPoints, ganaPoints) {
-    const warnings = [];
-    if (nadiPoints === 0) warnings.push("⚠️ নাড়ি দোষ বিদ্যমান — সন্তান জন্মে সমস্যা হতে পারে। বিশেষ পূজা ও দান করে এই দোষ প্রশমিত করা যায়।");
-    if (bhakootaPoints === 0) warnings.push("⚠️ ভকূট দোষ বিদ্যমান — দাম্পত্য জীবনে টানাপোড়েন আসতে পারে। নিয়মিত লক্ষ্মী-নারায়ণ পূজা করলে এই দোষ কাটে।");
-    if (ganaPoints <= 1) warnings.push("⚠️ গণ দোষ বিদ্যমান — মানসিক অমিল হতে পারে। শিব-পার্বতী পূজা করলে এই দোষ প্রশমিত হয়।");
-    return warnings;
+// ==================== ৩. পূর্ণাঙ্গ মিলন (YotakBicharEngine সহ) ====================
+
+function calculateMatchMaking(girlData, boyData) {
+    // YotakBicharEngine ব্যবহার করে পূর্ণাঙ্গ গণনা
+    if (typeof YotakBicharEngine !== 'undefined') {
+        const engine = new YotakBicharEngine();
+        const result = engine.match(girlData, boyData);
+        
+        return {
+            totalScore: result.total,
+            maxScore: result.max,
+            result: result.verdict,
+            varna: result.kootas.varna.points,
+            vashya: result.kootas.vashya.points,
+            tara: result.kootas.tara.points,
+            yoni: result.kootas.yoni.points,
+            graha: result.kootas.grahaMaitri.points,
+            gana: result.kootas.gana.points,
+            bhakoot: result.kootas.rashi.points,
+            nadi: result.kootas.nadi.points,
+            kootas: result.kootas,
+            manglik: result.manglik,
+            isRajaYotak: result.isRajaYotak,
+            verdictFull: result.verdictFull,
+            remedies: result.remedies,
+            fullPredictions: {
+                varna: result.kootas.varna.full,
+                vashya: result.kootas.vashya.full,
+                tara: result.kootas.tara.full,
+                yoni: result.kootas.yoni.full,
+                grahaMaitri: result.kootas.grahaMaitri.full,
+                gana: result.kootas.gana.full,
+                rashi: result.kootas.rashi.full,
+                nadi: result.kootas.nadi.full
+            }
+        };
+    }
+    
+    // ফলব্যাক: পুরনো পদ্ধতি
+    console.warn("⚠️ YotakBicharEngine পাওয়া যায়নি, সরলীকৃত গণনা ব্যবহার করা হচ্ছে।");
+    return fallbackMatchMaking(girlData, boyData);
 }
 
 /**
- * কুষ্ঠি মিলনের পূর্ণাঙ্গ রিপোর্ট তৈরি করে
+ * ফলব্যাক মিলন গণনা (যদি YotakBicharEngine লোড না হয়)
  */
-function generateMatchMakingReport(matchResult, girlName, boyName) {
-    const gName = girlName || "মেয়ে";
-    const bName = boyName || "ছেলে";
+function fallbackMatchMaking(girlData, boyData) {
+    const girlNak = girlData.moonNakshatra;
+    const boyNak = boyData.moonNakshatra;
+    const girlRashi = girlData.moonRashi;
+    const boyRashi = boyData.moonRashi;
+    const girlNakIdx = girlData.moonNakshatraIndex;
+    const boyNakIdx = boyData.moonNakshatraIndex;
     
+    // বর্ণকূট (১)
+    const varnaOrder = ["ব্রাহ্মণ", "ক্ষত্রিয়", "বৈশ্য", "শূদ্র"];
+    const gv = NAKSHATRA_VARNA[girlNak] || "শূদ্র";
+    const bv = NAKSHATRA_VARNA[boyNak] || "শূদ্র";
+    const gvIdx = varnaOrder.indexOf(gv), bvIdx = varnaOrder.indexOf(bv);
+    let varnaPts = 0;
+    if (bvIdx >= gvIdx) varnaPts = 1;
+    else if (bvIdx === gvIdx - 1) varnaPts = 0.5;
+    
+    // তারা কূট (৩)
+    const taraDist = ((girlNakIdx - boyNakIdx + 27) % 27);
+    const tara = (taraDist % 9) + 1;
+    const taraPts = [3,5,7].includes(tara) ? 0 : 3;
+    
+    // যোনি কূট (৪)
+    const gy = NAKSHATRA_YONI[girlNak] || "", by = NAKSHATRA_YONI[boyNak] || "";
+    let yoniPts = 0;
+    if (gy === by) yoniPts = 4;
+    else if (gy && by && gy !== by) yoniPts = 2;
+    
+    // গ্রহমৈত্রী কূট (৫) - সরলীকৃত
+    const grahaPts = 2.5;
+    
+    // গণ কূট (৬)
+    const gg = NAKSHATRA_GANA[girlNak] || "", bg = NAKSHATRA_GANA[boyNak] || "";
+    let ganaPts = 0;
+    if (gg === bg) ganaPts = 6;
+    else if (gg === "দেব" && bg === "মনুষ্য") ganaPts = 5;
+    else if (gg === "মনুষ্য" && bg === "দেব") ganaPts = 3;
+    else if (gg === "দেব" && bg === "রাক্ষস") ganaPts = 1;
+    else if (gg === "মনুষ্য" && bg === "রাক্ষস") ganaPts = 3;
+    else if (gg === "রাক্ষস" && bg === "মনুষ্য") ganaPts = 1;
+    
+    // ভকূট (৭) - সরলীকৃত
+    const rashiOrder = ["মেষ","বৃষ","মিথুন","কর্কট","সিংহ","কন্যা","তুলা","বৃশ্চিক","ধনু","মকর","কুম্ভ","মীন"];
+    const gri = rashiOrder.indexOf(girlRashi), bri = rashiOrder.indexOf(boyRashi);
+    const dist = ((bri - gri + 12) % 12) + 1;
+    let bhakootPts = 0;
+    if ([1,7,4,10,3,11].includes(dist)) bhakootPts = 7;
+    
+    // নাড়ি কূট (৮)
+    const gn = NAKSHATRA_NADI[girlNak] || "", bn = NAKSHATRA_NADI[boyNak] || "";
+    const nadiPts = (gn && bn && gn !== bn) ? 8 : 0;
+    
+    // বশ্যকূট (২) - সরলীকৃত
+    const vashyaPts = 1;
+    
+    const total = varnaPts + vashyaPts + taraPts + yoniPts + grahaPts + ganaPts + bhakootPts + nadiPts;
+    
+    let verdict = "";
+    if (total >= 30) verdict = "শ্রেষ্ঠতম";
+    else if (total >= 25) verdict = "উত্তম";
+    else if (total >= 18) verdict = "মধ্যম";
+    else verdict = "অশুভ";
+    
+    const girlMarsRashi = girlData.marsRashi || "মেষ";
+    const boyMarsRashi = boyData.marsRashi || "মেষ";
+    const girlLagna = girlData.lagnaRashi || "মেষ";
+    const boyLagna = boyData.lagnaRashi || "মেষ";
+    
+    const girlManglik = checkManglikDosha(girlMarsRashi, girlLagna);
+    const boyManglik = checkManglikDosha(boyMarsRashi, boyLagna);
+    
+    return {
+        totalScore: Math.round(total * 10) / 10,
+        maxScore: 36,
+        result: verdict,
+        varna: varnaPts, vashya: vashyaPts, tara: taraPts, yoni: yoniPts,
+        graha: grahaPts, gana: ganaPts, bhakoot: bhakootPts, nadi: nadiPts,
+        manglik: {
+            girl: { hasDosha: girlManglik.isManglik, full: girlManglik.description },
+            boy: { hasDosha: boyManglik.isManglik, full: boyManglik.description },
+            match: girlManglik.isManglik === boyManglik.isManglik
+        },
+        isRajaYotak: false,
+        verdictFull: `মোট ${Math.round(total * 10) / 10} গুণ — ${verdict} মিলন।`,
+        remedies: ["বিস্তারিত জানতে YotakBicharEngine লোড করুন।"],
+        fullPredictions: null
+    };
+}
+
+// ==================== ৪. পূর্ণাঙ্গ রিপোর্ট ====================
+
+function generateMatchMakingReport(matchResult, girlName, boyName) {
+    const gName = girlName || "কন্যা";
+    const bName = boyName || "বর";
+    
+    // যদি YotakBicharEngine থেকে পূর্ণাঙ্গ ডেটা থাকে
+    if (matchResult.fullPredictions) {
+        let output = `╔══════════════════════════════════════════════════╗\n`;
+        output += `║     💑 কুষ্ঠি মিলন — যোটক-বিচার ফলাফল     ║\n`;
+        output += `╚══════════════════════════════════════════════════╝\n\n`;
+        
+        output += `👰 কন্যা: ${gName}\n🤵 বর: ${bName}\n\n`;
+        output += `📊 মোট গুণ: ${matchResult.totalScore} / ${matchResult.maxScore}\n`;
+        output += `📋 ফলাফল: ${matchResult.result}\n\n`;
+        
+        if (matchResult.isRajaYotak) output += `👑 রাজযোটক যোগ বিদ্যমান!\n\n`;
+        output += matchResult.verdictFull + "\n\n";
+        
+        output += `📝 অষ্টকূট বিবরণ:\n${"═".repeat(50)}\n`;
+        const kootaDefs = [
+            { name: "বর্ণকূট", key: "varna", max: 1 },
+            { name: "বশ্যকূট", key: "vashya", max: 2 },
+            { name: "তারাকূট", key: "tara", max: 3 },
+            { name: "যোনিকূট", key: "yoni", max: 4 },
+            { name: "গ্রহমৈত্রীকূট", key: "grahaMaitri", max: 5 },
+            { name: "গণমৈত্রীকূট", key: "gana", max: 6 },
+            { name: "রাশিকূট (ভকূট)", key: "rashi", max: 7 },
+            { name: "ত্রিনাড়ীকূট", key: "nadi", max: 8 }
+        ];
+        
+        kootaDefs.forEach(k => {
+            const pts = matchResult.kootas[k.key]?.points || 0;
+            const icon = pts === k.max ? "✨" : pts === 0 ? "⚠️" : "🔸";
+            output += `${icon} ${k.name}: ${pts}/${k.max} গুণ\n`;
+        });
+        
+        output += `\n📖 বিস্তারিত ফলাফল:\n${"═".repeat(50)}\n\n`;
+        
+        kootaDefs.forEach(k => {
+            const full = matchResult.fullPredictions[k.key];
+            if (full) output += `🕉️ ${k.name}:\n${full}\n\n`;
+        });
+        
+        output += `🔴 মাঙ্গলিক দোষ:\n${"═".repeat(50)}\n`;
+        output += `👰 ${gName}: ${matchResult.manglik.girl.full}\n\n`;
+        output += `🤵 ${bName}: ${matchResult.manglik.boy.full}\n\n`;
+        
+        if (matchResult.manglik.match) {
+            output += `✅ উভয়ের মাঙ্গলিক অবস্থা সমান — দোষ পরস্পর বাতিল।\n\n`;
+        } else {
+            output += `⚠️ উভয়ের মাঙ্গলিক অবস্থা অসমান — প্রতিকার আবশ্যক।\n\n`;
+        }
+        
+        output += `🙏 প্রতিকার:\n${"═".repeat(50)}\n`;
+        (matchResult.remedies || []).forEach(r => output += r + "\n");
+        
+        output += `\n${"═".repeat(50)}\n`;
+        output += `🕉️ ওঁ নমঃ শিবায়। বিবাহ মহাবন্ধন—সঠিক বিচার করে তবেই এই বন্ধনে আবদ্ধ হোন।\n`;
+        output += `শুভম ভবতু। মাঙ্গল্যম ভবতু।\n`;
+        
+        return output;
+    }
+    
+    // সরল রিপোর্ট (ফলব্যাক)
     let output = `💑 ${gName} ও ${bName}-এর কুষ্ঠি মিলন ফলাফল\n`;
     output += "═".repeat(50) + "\n\n";
-    
-    // মোট গুণ
-    output += `📊 মোট গুণ: ${matchResult.totalPoints} / ${matchResult.maxPoints}\n`;
+    output += `📊 মোট গুণ: ${matchResult.totalScore} / ${matchResult.maxScore}\n`;
     output += `📋 ফলাফল: ${matchResult.result}\n\n`;
     
-    // অষ্টকূট টেবিল
-    output += "📝 অষ্টকূট বিবরণ:\n";
-    output += "─".repeat(40) + "\n";
-    
-    const kootas = matchResult.kootas;
-    const kootaNames = [
-        { name: "বর্ণ", data: kootas.varna },
-        { name: "বসু", data: kootas.vasu },
-        { name: "তারা", data: kootas.tara },
-        { name: "যোনি", data: kootas.yoni },
-        { name: "গ্রহমৈত্রী", data: kootas.grahaMaitri },
-        { name: "গণ", data: kootas.gana },
-        { name: "ভকূট", data: kootas.bhakoota },
-        { name: "নাড়ি", data: kootas.nadi }
+    const kootas = [
+        { name: "বর্ণ", key: "varna", max: 1 },
+        { name: "বসু", key: "vashya", max: 2 },
+        { name: "তারা", key: "tara", max: 3 },
+        { name: "যোনি", key: "yoni", max: 4 },
+        { name: "গ্রহমৈত্রী", key: "graha", max: 5 },
+        { name: "গণ", key: "gana", max: 6 },
+        { name: "ভকূট", key: "bhakoot", max: 7 },
+        { name: "নাড়ি", key: "nadi", max: 8 }
     ];
     
-    kootaNames.forEach(k => {
-        const status = k.data.points === k.data.max ? "✅" : k.data.points === 0 ? "❌" : "⚠️";
-        output += `${status} ${k.name}: ${k.data.points}/${k.data.max} — ${k.data.description}\n`;
+    output += "📝 অষ্টকূট:\n" + "─".repeat(40) + "\n";
+    kootas.forEach(k => {
+        const pts = matchResult[k.key] || 0;
+        const icon = pts === k.max ? "✅" : pts === 0 ? "❌" : "⚠️";
+        output += `${icon} ${k.name}: ${pts}/${k.max}\n`;
     });
     
-    output += "\n";
+    output += "\n🔴 মাঙ্গলিক:\n" + "─".repeat(40) + "\n";
+    output += `মেয়ে: ${matchResult.manglik?.girl?.full || 'তথ্য নেই'}\n`;
+    output += `ছেলে: ${matchResult.manglik?.boy?.full || 'তথ্য নেই'}\n`;
     
-    // মাঙ্গলিক দোষ
-    output += "🔴 মাঙ্গলিক দোষ:\n";
-    output += "─".repeat(40) + "\n";
-    output += `মেয়ে: ${matchResult.manglik.girl.description}\n`;
-    output += `ছেলে: ${matchResult.manglik.boy.description}\n`;
-    
-    if (matchResult.manglik.match) {
-        output += "✅ উভয়ের মাঙ্গলিক অবস্থা সমান — এই দোষ প্রশমিত হয়।\n";
-    } else {
-        output += "⚠️ উভয়ের মাঙ্গলিক অবস্থা অসমান — প্রতিকার প্রয়োজন।\n";
-    }
-    
-    output += "\n";
-    
-    // দোষ সতর্কতা
-    if (matchResult.doshaWarnings.length > 0) {
-        output += "⚠️ বিশেষ সতর্কতা:\n";
-        output += "─".repeat(40) + "\n";
-        matchResult.doshaWarnings.forEach(w => {
-            output += w + "\n";
-        });
-        output += "\n";
-    }
-    
-    output += "═".repeat(50) + "\n";
-    output += "🙏 ওঁ নমঃ শিবায়। বিবাহ মহাবন্ধন—সঠিক বিচার করে তবেই এই বন্ধনে আবদ্ধ হোন।\n";
+    output += "\n" + "═".repeat(50) + "\n";
+    output += "🙏 ওঁ নমঃ শিবায়।\n";
     
     return output;
 }
 
-console.log("✅ কুষ্ঠি মিলন (Match Making) সিস্টেম লোড সম্পন্ন হয়েছে।");
-console.log("🔍 ব্যবহার: calculateMatchMaking(girlData, boyData)");
-console.log("🔍 ব্যবহার: generateMatchMakingReport(result, 'মেয়ের নাম', 'ছেলের নাম')");
+console.log("✅ match-making.js — YotakBicharEngine সহ সম্পূর্ণ লোড");
+console.log("🔍 calculateMatchMaking(girlData, boyData)");
+console.log("🔍 generateMatchMakingReport(result, 'মেয়ের নাম', 'ছেলের নাম')");
