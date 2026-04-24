@@ -36,7 +36,9 @@ class PredictionEngine {
         output += this.generateTithiAnalysis();
         output += this.generateYogaAnalysis();
         output += this.generateKaranaAnalysis();
-        
+        output += this.generateDashaAnalysis();
+        output += this.generateRemedySection();
+
         output += "\n" + "═".repeat(50) + "\n";
         output += `✨ ${this.userName}, আপনার জীবন মঙ্গলময় হোক। ✨\n`;
         output += "\n© পূর্ব ভারতীয় কুষ্ঠি সফটওয়্যার | লাহিড়ী অয়নাংশ | VSOP87 নির্ভুল গণনা\n";
@@ -67,17 +69,8 @@ class PredictionEngine {
         let output = "🧠 মানসিক প্রকৃতি (জন্ম নক্ষত্র অনুযায়ী)\n";
         output += "─".repeat(40) + "\n";
         
-        // সরাসরি NAKSHATRA_RASHI_PREDICTIONS থেকে ডেটা নেওয়া
-        if (typeof NAKSHATRA_RASHI_PREDICTIONS !== 'undefined') {
-            const key = `${moon.nakshatra}_${moon.rashi}`;
-            console.log("নক্ষত্র কম্বিনেশন খুঁজছে:", key);
-            if (NAKSHATRA_RASHI_PREDICTIONS[key]) {
-                output += NAKSHATRA_RASHI_PREDICTIONS[key].full + "\n\n";
-            } else if (typeof getNakshatraPrediction === 'function') {
-                output += getNakshatraPrediction(moon.nakshatra, moon.rashi) + "\n\n";
-            } else {
-                output += `আপনার চন্দ্র ${moon.nakshatra} নক্ষত্রে ${moon.rashi} রাশিতে অবস্থিত।\n\n`;
-            }
+        if (typeof getNakshatraPrediction === 'function') {
+            output += getNakshatraPrediction(moon.nakshatra, moon.rashi) + "\n\n";
         } else {
             output += `আপনার চন্দ্র ${moon.nakshatra} নক্ষত্রে ${moon.rashi} রাশিতে অবস্থিত।\n\n`;
         }
@@ -154,9 +147,12 @@ class PredictionEngine {
         planetOrder.forEach(planetName => {
             const planet = planets.find(p => p.name === planetName);
             if (!planet || !planet.house) return;
-            
+
             const dataObjName = houseFunctions[planetName];
-            const key = `${planetName}_ভাব_${planet.house}`;
+            // data uses Bengali numerals (১,২...১২); convert Arabic→Bengali
+            const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+            const toBn = n => String(n).split('').map(d=>bn[+d]||d).join('');
+            const key = `${planetName}_ভাব_${toBn(planet.house)}`;
             
             console.log(`খুঁজছে: ${dataObjName}['${key}']`);
             
@@ -231,6 +227,62 @@ class PredictionEngine {
             output += `আপনার জন্ম ${karana.name} করণে।\n\n`;
         }
         
+        return output;
+    }
+
+    generateDashaAnalysis() {
+        const dashaInfo = this.chartData.dashaInfo;
+        if (!dashaInfo || !dashaInfo.currentMD) return "";
+
+        let output = "⏳ মহাদশা ও অন্তর্দশা ফলাদেশ\n";
+        output += "─".repeat(40) + "\n";
+
+        if (typeof getCurrentDashaPrediction === 'function') {
+            output += getCurrentDashaPrediction(dashaInfo) + "\n";
+        } else {
+            const md = dashaInfo.currentMD;
+            const ad = dashaInfo.currentAD;
+            output += `বর্তমানে ${md.lord} মহাদশা চলছে।\n`;
+            if (ad) {
+                output += `অন্তর্দশা: ${ad.lord}।\n`;
+                if (typeof getAntarDashaPrediction === 'function') {
+                    output += getAntarDashaPrediction(md.lord, ad.lord) + "\n\n";
+                }
+            }
+        }
+        return output;
+    }
+
+    generateRemedySection() {
+        const planets = this.chartData.planets;
+        if (!planets) return "";
+
+        let output = "🙏 গ্রহ শান্তি ও প্রতিকার\n";
+        output += "─".repeat(40) + "\n";
+
+        try {
+            if (typeof determineAllRemedies === 'function') {
+                const remedies = determineAllRemedies(this.chartData, this.chartData.shadbalaData);
+                if (typeof generateRemedyPrediction === 'function') {
+                    output += generateRemedyPrediction(remedies) + "\n";
+                }
+            } else if (typeof TRI_SHAKTI_REMEDIES !== 'undefined') {
+                const planetOrder = ["সূর্য","চন্দ্র","মঙ্গল","বুধ","বৃহস্পতি","শুক্র","শনি","রাহু","কেতু"];
+                planetOrder.forEach(pn => {
+                    const r = TRI_SHAKTI_REMEDIES[pn];
+                    if (!r) return;
+                    output += `\n🔶 ${pn}:\n`;
+                    if (r.puja)      output += `   পূজা: ${r.puja}\n`;
+                    if (r.donation)  output += `   দান: ${r.donation}\n`;
+                    if (r.seva)      output += `   সেবা: ${r.seva}\n`;
+                });
+                output += "\n";
+            } else {
+                output += "প্রতিকার তথ্য লোড হয়নি।\n\n";
+            }
+        } catch(e) {
+            output += "প্রতিকার গণনায় সমস্যা হয়েছে।\n\n";
+        }
         return output;
     }
 }
