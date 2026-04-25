@@ -249,7 +249,9 @@ svg{background:#fefcf9;border-radius:8px;max-width:100%;height:auto}
 <!-- ফলাফল — inputSection-এর বাইরে -->
 <div class="k-wrap" id="resultsArea" style="display:none">
 
-    <!-- পঞ্চাঙ্গ -->
+    <!-- চার্ট -->
+    <div id="mainKundaliSection">
+    <!-- পঞ্চাঙ্গ সারসংক্ষেপ -->
     <div class="card">
       <div class="section-title">🗓️ জন্মকালীন পঞ্চাঙ্গ</div>
       <div class="pg-grid">
@@ -264,9 +266,6 @@ svg{background:#fefcf9;border-radius:8px;max-width:100%;height:auto}
         অয়নাংশ: <strong id="pgAyan">—</strong>° &nbsp;|&nbsp; গণ: <strong id="pgGana">—</strong>
       </div>
     </div>
-
-    <!-- চার্ট -->
-    <div id="mainKundaliSection">
     <div class="chart-section">
       <div class="chart-box">
         <svg id="d1Chart" width="300" height="300" viewBox="0 0 320 320">
@@ -566,10 +565,14 @@ function getGPSLocation(){
     },
     function(err){
       if(!msg)return;
-      if(err.code===1)msg.textContent='❌ GPS অনুমতি দেননি। ব্রাউজার সেটিংস থেকে অনুমতি দিন।';
-      else if(err.code===2)msg.textContent='❌ লোকেশন পাওয়া যায়নি। পরে আবার চেষ্টা করুন।';
+      const latVal=document.getElementById('lat').value;
+      if(err.code===1){
+        if(latVal){msg.textContent='';} // lat/lon already filled, suppress error
+        else msg.textContent='❌ GPS অনুমতি দেননি। ম্যানুয়ালি অক্ষাংশ/দ্রাঘিমাংশ লিখুন।';
+      } else if(err.code===2)msg.textContent='❌ লোকেশন পাওয়া যায়নি। পরে আবার চেষ্টা করুন।';
       else if(err.code===3)msg.textContent='❌ সময়সীমা শেষ। পুনরায় চেষ্টা করুন।';
       else msg.textContent='❌ GPS ত্রুটি।';
+      if(msg.textContent)setTimeout(()=>{msg.textContent='';},5000);
     },
     {timeout:10000,maximumAge:60000}
   );
@@ -889,7 +892,7 @@ function calculateFullKundali(){
   buildAspectTable(planets,lagnaRashiIdx);
 
   /* গ্রহের ভাব ফলাদেশ */
-  buildPlanetHousePred(planets,lagnaRashiIdx,lagnaRashiName);
+  buildPlanetHousePred(planets,lagnaRashiIdx,lagnaRashiName,lagnaLon);
 
   /* যোগ */
   const yogaList=detectAllYogas(planets,lagnaRashiIdx);
@@ -1207,8 +1210,8 @@ function buildShadbalaVerticalBars(shadbalaData){
   barDiv.innerHTML=html;
 }
 
-/* ── গ্রহের ভাব ফলাদেশ ── */
-function buildPlanetHousePred(planets,lagnaRashiIdx,lagnaRashiName){
+/* ── গ্রহের ভাব ফলাদেশ (ভাব চলিত পদ্ধতি: লগ্ন ±15°) ── */
+function buildPlanetHousePred(planets,lagnaRashiIdx,lagnaRashiName,lagnaLon){
   const el=document.getElementById('planetHousePredDiv');if(!el)return;
   let html='';
   const fnMap={
@@ -1224,7 +1227,14 @@ function buildPlanetHousePred(planets,lagnaRashiIdx,lagnaRashiName){
   };
   planets.filter(p=>p.name!=='লগ্ন').forEach(p=>{
     const ri=Math.floor(p.lon/30)%12;
-    const house=(ri-lagnaRashiIdx+12)%12+1;
+    /* ভাব চলিত: লগ্ন ±15° — প্রতিটি ভাব 30° বিস্তৃত */
+    let house;
+    if(lagnaLon!=null){
+      const offset=(p.lon-lagnaLon+360)%360;
+      house=Math.floor((offset+15)/30)%12+1;
+    } else {
+      house=(ri-lagnaRashiIdx+12)%12+1;
+    }
     const fn=fnMap[p.name];
     if(!fn)return;
     const pred=fn(house);
@@ -1293,7 +1303,7 @@ function buildLakshana(nakInfo,gana,lagnaRashiName,tithi,karanaInfo,sunRashiName
   if(sunLon!=null&&typeof getMonthSunPrediction==='function'){const p=getMonthSunPrediction(sunLon);if(p)parts.push('☀️ সূর্য নক্ষত্র/মাস জন্ম ফল:\n'+p);}
   if(typeof getTithiPrediction==='function'){const p=getTithiPrediction(tithi.paksha,tithi.name);if(p)parts.push('📅 তিথি ফলাদেশ ('+tithi.paksha+' '+tithi.name+'):\n'+p);}
   if(typeof getKaranaPrediction==='function'){const p=getKaranaPrediction(karanaInfo.name);if(p)parts.push('🎯 করণ ফলাদেশ ('+karanaInfo.name+'):\n'+p);}
-  if(typeof getPredictionsByRashi==='function'){const arr=getPredictionsByRashi(moonRashiName)||[];if(arr.length)parts.push('🌙 চন্দ্র রাশি ফলাদেশ ('+moonRashiName+'):\n'+arr.join('\n'));}
+  if(typeof getPredictionsByRashi==='function'){const arr=getPredictionsByRashi(moonRashiName)||[];const texts=arr.map(a=>a&&a.full?a.full:(typeof a==='string'?a:'')).filter(Boolean);if(texts.length)parts.push('🌙 চন্দ্র রাশি ফলাদেশ ('+moonRashiName+'):\n'+texts.join('\n\n'));}
   el.textContent=parts.join(SEP);
 }
 
