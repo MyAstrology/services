@@ -249,6 +249,27 @@ svg{background:#fefcf9;border-radius:8px;max-width:100%;height:auto}
 <!-- ফলাফল — inputSection-এর বাইরে -->
 <div class="k-wrap" id="resultsArea" style="display:none">
 
+  <!-- গণেশ আশীর্বাদ ব্যানার -->
+  <div style="text-align:center;margin:0 0 14px 0">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" width="100%" height="auto" style="max-width:420px;border-radius:14px;box-shadow:0 2px 12px rgba(212,168,83,.18)">
+      <rect width="400" height="120" rx="15" fill="#FFFEF7" stroke="#D4A853" stroke-width="1.5"/>
+      <g transform="translate(55, 60)">
+        <circle cx="0" cy="0" r="38" fill="#FFF8E1" stroke="#FFD54F" stroke-width="1.5"/>
+        <ellipse cx="0" cy="-5" rx="24" ry="18" fill="#FFF3E0" stroke="#BF360C" stroke-width="2"/>
+        <ellipse cx="-22" cy="-5" rx="10" ry="14" fill="#FFE0B2" stroke="#BF360C" stroke-width="1.5" transform="rotate(-15,-22,-5)"/>
+        <ellipse cx="22" cy="-5" rx="10" ry="14" fill="#FFE0B2" stroke="#BF360C" stroke-width="1.5" transform="rotate(15,22,-5)"/>
+        <circle cx="-9" cy="-10" r="3" fill="#3E2723"/>
+        <circle cx="9" cy="-10" r="3" fill="#3E2723"/>
+        <path d="M0 -5 Q0 10 -5 22 Q-10 30 -3 32 Q2 33 6 27 Q8 22 0 8" fill="#FFF3E0" stroke="#BF360C" stroke-width="2"/>
+        <path d="M-3 -22 L0 -28 L3 -22" fill="#C62828"/>
+      </g>
+      <text x="120" y="38" font-family="'Noto Sans Bengali','Siyam Rupali',sans-serif" font-size="18" font-weight="bold" fill="#5D3A1A">ওঁ শ্রী গণেশায় নমঃ</text>
+      <text x="120" y="62" font-family="'Noto Sans Bengali','Siyam Rupali',sans-serif" font-size="15" fill="#8B5E3C">বিঘ্নহর্তা শ্রী গণেশের চরণে প্রণাম</text>
+      <text x="120" y="84" font-family="'Noto Sans Bengali','Siyam Rupali',sans-serif" font-size="13" fill="#A08060">সকল গ্রহ দোষ নাশক · শুভ সিদ্ধি প্রদায়ক</text>
+      <text x="120" y="105" font-family="serif" font-size="12" fill="#C4A46C">ૐ श्री गणेशाय नमः</text>
+    </svg>
+  </div>
+
     <!-- চার্ট -->
     <div id="mainKundaliSection">
     <!-- পঞ্চাঙ্গ সারসংক্ষেপ -->
@@ -442,6 +463,10 @@ svg{background:#fefcf9;border-radius:8px;max-width:100%;height:auto}
     <div class="card">
       <div class="section-title">📖 দশাফল ও প্রতিকার</div>
       <div id="dashaFalDiv" style="line-height:1.85;font-size:.93rem"></div>
+    </div>
+    <div class="card">
+      <div class="section-title">⚖️ গ্রহ দুর্বলতা বিশ্লেষণ</div>
+      <div id="weaknessAnalysisDiv" style="font-size:.9rem;line-height:1.8;white-space:pre-line"></div>
     </div>
     </div><!-- /tabDashaFal -->
 
@@ -892,6 +917,13 @@ function calculateFullKundali(){
       else sbEl.innerHTML='<p style="color:#666;padding:10px">ষড়বল মডিউল লোড হয়নি।</p>';
     }
     buildShadbalaVerticalBars(sbData);
+
+    /* গ্রহ দুর্বলতা বিশ্লেষণ */
+    if(typeof determineAllRemedies==='function'&&typeof generateRemedyPrediction==='function'){
+      const remedies=determineAllRemedies({planets:planetsWH},sbData||{});
+      const wEl=document.getElementById('weaknessAnalysisDiv');
+      if(wEl)wEl.textContent=generateRemedyPrediction(remedies);
+    }
   }
 
   /* দৃষ্টি ও শত্রু-মিত্র */

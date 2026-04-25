@@ -1118,7 +1118,10 @@ function checkPlanetWeakness(planetName, planetData, shadbalaData) {
     let needsRemedy = false;
     let severity = "কোনো নয়"; // কোনোটিই নয়, সামান্য, মধ্যম, গুরুতর
     
-    const { rashi, house, isRetrograde, nakshatra } = planetData;
+    const rashi = planetData.rashi !== undefined ? planetData.rashi
+                : planetData.rashiIndex !== undefined ? planetData.rashiIndex
+                : Math.floor(((planetData.lon || 0) + 360) % 360 / 30);
+    const { house, isRetrograde, nakshatra } = planetData;
     
     // ১. নীচস্থ চেক
     const debilitation = {
