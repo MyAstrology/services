@@ -1213,18 +1213,22 @@ function buildShadbalaVerticalBars(shadbalaData){
 /* ── গ্রহের ভাব ফলাদেশ (ভাব চলিত পদ্ধতি: লগ্ন ±15°) ── */
 function buildPlanetHousePred(planets,lagnaRashiIdx,lagnaRashiName,lagnaLon){
   const el=document.getElementById('planetHousePredDiv');if(!el)return;
-  let html='';
-  const fnMap={
-    "সূর্য":typeof getSunHousePrediction==='function'?getSunHousePrediction:null,
-    "চন্দ্র":typeof getMoonHousePrediction==='function'?getMoonHousePrediction:null,
-    "মঙ্গল":typeof getMarsHousePrediction==='function'?getMarsHousePrediction:null,
-    "বুধ":typeof getMercuryHousePrediction==='function'?getMercuryHousePrediction:null,
-    "বৃহস্পতি":typeof getJupiterHousePrediction==='function'?getJupiterHousePrediction:null,
-    "শুক্র":typeof getVenusHousePrediction==='function'?getVenusHousePrediction:null,
-    "শনি":typeof getSaturnHousePrediction==='function'?getSaturnHousePrediction:null,
-    "রাহু":typeof getRahuHousePrediction==='function'?getRahuHousePrediction:null,
-    "কেতু":typeof getKetuHousePrediction==='function'?getKetuHousePrediction:null
+  /* Bengali numeral converter */
+  const _bn=['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+  const toBN=n=>String(n).split('').map(d=>_bn[+d]||d).join('');
+  /* Prediction data objects — direct reference (const visible across scripts) */
+  const DATA={
+    "সূর্য":   typeof SUN_HOUSE_PREDICTIONS!=='undefined'?SUN_HOUSE_PREDICTIONS:null,
+    "চন্দ্র":   typeof MOON_HOUSE_PREDICTIONS!=='undefined'?MOON_HOUSE_PREDICTIONS:null,
+    "মঙ্গল":   typeof MARS_HOUSE_PREDICTIONS!=='undefined'?MARS_HOUSE_PREDICTIONS:null,
+    "বুধ":     typeof MERCURY_HOUSE_PREDICTIONS!=='undefined'?MERCURY_HOUSE_PREDICTIONS:null,
+    "বৃহস্পতি":typeof JUPITER_HOUSE_PREDICTIONS!=='undefined'?JUPITER_HOUSE_PREDICTIONS:null,
+    "শুক্র":   typeof VENUS_HOUSE_PREDICTIONS!=='undefined'?VENUS_HOUSE_PREDICTIONS:null,
+    "শনি":     typeof SATURN_HOUSE_PREDICTIONS!=='undefined'?SATURN_HOUSE_PREDICTIONS:null,
+    "রাহু":    typeof RAHU_HOUSE_PREDICTIONS!=='undefined'?RAHU_HOUSE_PREDICTIONS:null,
+    "কেতু":    typeof KETU_HOUSE_PREDICTIONS!=='undefined'?KETU_HOUSE_PREDICTIONS:null
   };
+  let html='';
   planets.filter(p=>p.name!=='লগ্ন').forEach(p=>{
     const ri=Math.floor(p.lon/30)%12;
     /* ভাব চলিত: লগ্ন ±15° — প্রতিটি ভাব 30° বিস্তৃত */
@@ -1235,11 +1239,19 @@ function buildPlanetHousePred(planets,lagnaRashiIdx,lagnaRashiName,lagnaLon){
     } else {
       house=(ri-lagnaRashiIdx+12)%12+1;
     }
-    const fn=fnMap[p.name];
-    if(!fn)return;
-    const pred=fn(house);
+    /* প্রথমে unified function, তারপর direct data object fallback */
+    let pred=null;
+    if(typeof getHousePrediction==='function'){
+      pred=getHousePrediction(p.name,house);
+    }
+    if(!pred){
+      const obj=DATA[p.name];
+      const key=p.name+'_ভাব_'+toBN(house);
+      if(obj&&obj[key])pred=obj[key].full;
+    }
+    if(pred===null)return;
     const col=PLANET_COLOR[p.name]||'#333';
-    html+=`<div style="margin-bottom:12px;padding:11px 12px;background:#fefcf9;border-radius:8px;border-left:3px solid ${col}"><strong style="color:${col}">${p.name}</strong> — ${RASHI_NAMES[ri]} (${house}ম ভাব)<div style="margin-top:5px;line-height:1.75;font-size:.87rem">${pred||'তথ্য নেই'}</div></div>`;
+    html+=`<div style="margin-bottom:12px;padding:11px 12px;background:#fefcf9;border-radius:8px;border-left:3px solid ${col}"><strong style="color:${col}">${p.name}</strong> — ${RASHI_NAMES[ri]} (${house}ম ভাব)<div style="margin-top:5px;line-height:1.75;font-size:.87rem">${pred}</div></div>`;
   });
   el.innerHTML=html||'<p style="color:#666;padding:10px">ভাব ফলাদেশ পাওয়া যায়নি।</p>';
 }

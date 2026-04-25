@@ -1839,6 +1839,27 @@ function getKetuHousePrediction(house) {
     return `কেতু আপনার ${house} নং ভাবে অবস্থান করছে।`;
 }
 
+// ── একক ইউনিফাইড ফাংশন: যেকোনো গ্রহের ভাব ফলাদেশ ──
+function getHousePrediction(planetName, house) {
+    const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+    const toBN = n => String(n).split('').map(d => bn[+d] || d).join('');
+    const key = planetName + '_ভাব_' + toBN(house);
+    const maps = {
+        'সূর্য':    SUN_HOUSE_PREDICTIONS,
+        'চন্দ্র':    MOON_HOUSE_PREDICTIONS,
+        'মঙ্গল':    MARS_HOUSE_PREDICTIONS,
+        'বুধ':      MERCURY_HOUSE_PREDICTIONS,
+        'বৃহস্পতি': JUPITER_HOUSE_PREDICTIONS,
+        'শুক্র':    VENUS_HOUSE_PREDICTIONS,
+        'শনি':      SATURN_HOUSE_PREDICTIONS,
+        'রাহু':     RAHU_HOUSE_PREDICTIONS,
+        'কেতু':     KETU_HOUSE_PREDICTIONS
+    };
+    const obj = maps[planetName];
+    if (obj && obj[key]) return obj[key].full;
+    return null;
+}
+
 // কনসোল লগ
 console.log("✅ কেতুর ১২টি ভাবের পূর্ণাঙ্গ প্রেডিকশন লোড সম্পন্ন হয়েছে।");
 console.log("🔍 ব্যবহার: getKetuHousePrediction(houseNumber)");
