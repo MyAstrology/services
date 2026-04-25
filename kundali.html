@@ -181,6 +181,14 @@ svg{background:#fefcf9;border-radius:8px;max-width:100%;height:auto}
     <div style="margin-bottom:12px">
       <div class="ig"><label>👤 আপনার নাম</label><input type="text" id="userName" placeholder="পূর্ণ নাম লিখুন" oninput="validateForm()" style="width:100%;padding:10px 12px;border:2px solid #e0cdbc;border-radius:9px;font-size:.95rem;background:#fefcf9;font-family:inherit;transition:border .2s"></div>
     </div>
+    <!-- লিঙ্গ -->
+    <div style="margin-bottom:12px">
+      <label style="font-weight:700;color:#5c3d2e;font-size:.85rem;display:block;margin-bottom:6px">🚻 লিঙ্গ</label>
+      <div style="display:flex;gap:20px">
+        <label style="display:flex;align-items:center;gap:7px;cursor:pointer;font-size:.95rem;color:#3a2218"><input type="radio" name="gender" id="genderMale" value="male" checked style="accent-color:#7a2e2e;width:17px;height:17px"> পুরুষ</label>
+        <label style="display:flex;align-items:center;gap:7px;cursor:pointer;font-size:.95rem;color:#3a2218"><input type="radio" name="gender" id="genderFemale" value="female" style="accent-color:#7a2e2e;width:17px;height:17px"> মহিলা</label>
+      </div>
+    </div>
     <!-- তারিখ -->
     <div style="margin-bottom:10px">
       <label style="font-weight:700;color:#5c3d2e;font-size:.85rem;display:block;margin-bottom:5px">📅 জন্ম তারিখ</label>
@@ -313,16 +321,18 @@ svg{background:#fefcf9;border-radius:8px;max-width:100%;height:auto}
     </div><!-- /mainKundaliSection -->
 
     <!-- ট্যাব নেভিগেশন -->
-    <div id="tabNav" style="position:sticky;top:66px;z-index:800;background:#0a192f;border-bottom:2px solid #b8860b;margin:0 -10px;padding:0;overflow-x:auto;white-space:nowrap;display:flex;gap:0;-webkit-overflow-scrolling:touch;scrollbar-width:none">
-      <button class="tab-btn active" onclick="showTab('tabBhava',this)">ক. ভাব</button>
-      <button class="tab-btn" onclick="showTab('tabGochar',this)">খ. গোচর</button>
-      <button class="tab-btn" onclick="showTab('tabPanchang',this)">গ. পঞ্চাঙ্গ</button>
-      <button class="tab-btn" onclick="showTab('tabDasha',this)">ঘ. দশা</button>
-      <button class="tab-btn" onclick="showTab('tabLakshan',this)">ঙ. বৈশিষ্ট্য</button>
-      <button class="tab-btn" onclick="showTab('tabDashaFal',this)">চ. দশাফল</button>
-      <button class="tab-btn" onclick="window.location.href='match-making.html'">ছ. যোটক</button>
-      <button class="tab-btn" onclick="window.location.href='panjika.html'">জ. পঞ্জিকা</button>
-      <button class="tab-btn" onclick="openRashifal()">ঝ. রাশিফল</button>
+    <div id="tabNav" style="position:fixed;top:66px;left:0;right:0;z-index:800;background:#0a192f;border-bottom:2px solid #b8860b;padding:0;overflow-x:auto;white-space:nowrap;display:flex;gap:0;-webkit-overflow-scrolling:touch;scrollbar-width:none">
+      <button class="tab-btn" onclick="showFormSection()">📝 ফর্ম</button>
+      <button class="tab-btn" onclick="showMainSection(this)">📊 কুষ্ঠি</button>
+      <button class="tab-btn" onclick="showTab('tabBhava',this)">🏠 ভাব</button>
+      <button class="tab-btn" onclick="showTab('tabGochar',this)">🌙 গোচর</button>
+      <button class="tab-btn" onclick="showTab('tabPanchang',this)">🗓️ পঞ্চাঙ্গ</button>
+      <button class="tab-btn" onclick="showTab('tabDasha',this)">⏳ দশা</button>
+      <button class="tab-btn" onclick="showTab('tabLakshan',this)">🌟 বৈশিষ্ট্য</button>
+      <button class="tab-btn" onclick="showTab('tabDashaFal',this)">📖 দশাফল</button>
+      <button class="tab-btn" onclick="window.location.href='match-making.html'">💞 যোটক</button>
+      <button class="tab-btn" onclick="window.location.href='panjika.html'">📅 পঞ্জিকা</button>
+      <button class="tab-btn" onclick="openRashifal()">♈ রাশিফল</button>
     </div>
 
     <!-- Tab ক: ভাব কুণ্ডলি -->
@@ -740,6 +750,7 @@ function getYogaTableHTML(yogas){
 
 /* ── মূল গণনা ── */
 function calculateFullKundali(){
+  saveFormToStorage();
   const name=document.getElementById('userName').value.trim()||"জাতক";
   const d=parseInt(document.getElementById('dobDay').value);
   const mo=parseInt(document.getElementById('dobMonth').value);
@@ -898,10 +909,10 @@ function calculateFullKundali(){
   buildPanchangDetail(jd,lat,lonVal,dobVal,gana,nakInfo,tithi,yogaName,karanaInfo,vara,sunRashiName);
 
   /* সাধারণ বৈশিষ্ট্য (Tab ঙ) */
-  buildLakshana(nakInfo,gana,lagnaRashiName,tithi,karanaInfo,sunRashiName,moonRashiName);
+  buildLakshana(nakInfo,gana,lagnaRashiName,tithi,karanaInfo,sunRashiName,moonRashiName,yogaName,sunLon);
 
   /* দশাফল (Tab চ) */
-  buildDashaFal(dashaInfo,planets);
+  buildDashaFal(dashaInfo,planets,sbData);
 
   /* গোচর (Tab খ) */
   buildGocharTab(moonLon,lagnaRashiIdx);
@@ -910,6 +921,10 @@ function calculateFullKundali(){
   document.getElementById('inputSection').style.display='none';
   const ra=document.getElementById('resultsArea');
   ra.style.display='block';
+  ra.style.paddingTop='50px';
+  /* tabNav দেখাও */
+  const tnv=document.getElementById('tabNav');
+  if(tnv)tnv.style.display='flex';
   /* প্রথমে D1/D9 চার্ট + গ্রহ টেবিল দেখাও, সব tab-panel লুকাও */
   document.querySelectorAll('.tab-panel').forEach(p=>p.style.display='none');
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
@@ -919,7 +934,27 @@ function calculateFullKundali(){
 }
 
 /* ── শহর অনুসন্ধান ── */
+/* ── ফর্ম সেভ / রিস্টোর (localStorage) ── */
+function saveFormToStorage(){
+  const fields=['userName','dobDay','dobMonth','dobYear','tobHour','tobMin','tobSec','citySearch','lat','lon'];
+  const data={};
+  fields.forEach(id=>{const el=document.getElementById(id);if(el)data[id]=el.value;});
+  const gEl=document.querySelector('input[name="gender"]:checked');
+  if(gEl)data.gender=gEl.value;
+  try{localStorage.setItem('kundaliForm',JSON.stringify(data));}catch(e){}
+}
+function restoreFormFromStorage(){
+  let data;
+  try{data=JSON.parse(localStorage.getItem('kundaliForm')||'null');}catch(e){}
+  if(!data)return;
+  const fields=['userName','dobDay','dobMonth','dobYear','tobHour','tobMin','tobSec','citySearch','lat','lon'];
+  fields.forEach(id=>{const el=document.getElementById(id);if(el&&data[id]!=null)el.value=data[id];});
+  if(data.gender){const gEl=document.querySelector('input[name="gender"][value="'+data.gender+'"]');if(gEl)gEl.checked=true;}
+  validateForm();
+}
+
 document.addEventListener('DOMContentLoaded',function(){
+  restoreFormFromStorage();
   const inp=document.getElementById('citySearch');
   const sugg=document.getElementById('citySuggestions');
   if(!inp||!sugg)return;
@@ -958,6 +993,23 @@ function showTab(id,btn){
   const el=document.getElementById(id);
   if(el)el.style.display='block';
   if(btn)btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function showMainSection(btn){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.style.display='none');
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  const mks=document.getElementById('mainKundaliSection');
+  if(mks)mks.style.display='block';
+  if(btn)btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function showFormSection(){
+  const ra=document.getElementById('resultsArea');
+  if(ra)ra.style.display='none';
+  const tnv=document.getElementById('tabNav');
+  if(tnv)tnv.style.display='none';
+  document.getElementById('inputSection').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 function openRashifal(){
   const t=new Date();
@@ -1159,10 +1211,6 @@ function buildShadbalaVerticalBars(shadbalaData){
 function buildPlanetHousePred(planets,lagnaRashiIdx,lagnaRashiName){
   const el=document.getElementById('planetHousePredDiv');if(!el)return;
   let html='';
-  if(typeof getLagnaPrediction==='function'){
-    const p=getLagnaPrediction(lagnaRashiName);
-    if(p)html+=`<div style="margin-bottom:16px;padding:12px;background:#fdf6e3;border-radius:8px;border-left:4px solid #b8860b"><strong style="color:#7a2e2e;font-size:.95rem">লগ্ন: ${lagnaRashiName}</strong><div style="margin-top:6px;line-height:1.8;font-size:.88rem">${p}</div></div>`;
-  }
   const fnMap={
     "সূর্য":typeof getSunHousePrediction==='function'?getSunHousePrediction:null,
     "চন্দ্র":typeof getMoonHousePrediction==='function'?getMoonHousePrediction:null,
@@ -1187,7 +1235,7 @@ function buildPlanetHousePred(planets,lagnaRashiIdx,lagnaRashiName){
 }
 
 /* ── দশাফল ও প্রতিকার ── */
-function buildDashaFal(dashaInfo,planets){
+function buildDashaFal(dashaInfo,planets,sbData){
   const el=document.getElementById('dashaFalDiv');if(!el)return;
   let html='';
   if(dashaInfo&&dashaInfo.currentMD&&dashaInfo.currentAD){
@@ -1203,13 +1251,25 @@ function buildDashaFal(dashaInfo,planets){
     }
   }
   if(typeof getTriShaktiRemedy==='function'&&planets&&planets.length){
-    const list=planets.filter(p=>p.name!=='লগ্ন');
-    html+='<div style="margin-top:16px"><div style="font-weight:700;color:#7a2e2e;font-family:var(--fh);margin-bottom:12px;font-size:1rem">🙏 গ্রহ প্রতিকার (ত্রিশক্তি)</div>';
-    list.slice(0,5).forEach(p=>{
+    let weakList=[];
+    if(sbData){
+      const planetList=planets.filter(p=>p.name!=='লগ্ন');
+      const sorted=planetList.slice().sort((a,b)=>{
+        const ra=parseFloat((sbData[a.name]||{}).totalRupa||'99');
+        const rb=parseFloat((sbData[b.name]||{}).totalRupa||'99');
+        return ra-rb;
+      });
+      weakList=sorted.slice(0,2);
+    } else {
+      weakList=planets.filter(p=>p.name!=='লগ্ন').slice(0,2);
+    }
+    html+='<div style="margin-top:16px"><div style="font-weight:700;color:#7a2e2e;font-family:var(--fh);margin-bottom:12px;font-size:1rem">🙏 গ্রহ প্রতিকার — দুর্বলতম ২ গ্রহ (ত্রিশক্তি)</div>';
+    weakList.forEach(p=>{
       const remedy=getTriShaktiRemedy(p.name);
       if(!remedy)return;
       const col=PLANET_COLOR[p.name]||'#333';
-      html+=`<div style="margin-bottom:10px;padding:11px 12px;background:#fefcf9;border-radius:8px;border-left:3px solid ${col}"><strong style="color:${col}">${p.name}</strong>`;
+      const rupa=sbData&&sbData[p.name]?` (ষড়বল: ${parseFloat(sbData[p.name].totalRupa||0).toFixed(2)} রূপা)`:'';
+      html+=`<div style="margin-bottom:10px;padding:11px 12px;background:#fefcf9;border-radius:8px;border-left:3px solid ${col}"><strong style="color:${col}">${p.name}</strong><span style="font-size:.8rem;color:#666">${rupa}</span>`;
       if(remedy.puja)html+=`<div style="font-size:.85rem;margin-top:4px"><strong>পূজা:</strong> ${remedy.puja}</div>`;
       if(remedy.donation)html+=`<div style="font-size:.85rem"><strong>দান:</strong> ${remedy.donation}</div>`;
       if(remedy.seva)html+=`<div style="font-size:.85rem"><strong>সেবা:</strong> ${remedy.seva}</div>`;
@@ -1222,13 +1282,15 @@ function buildDashaFal(dashaInfo,planets){
 }
 
 /* ── সাধারণ বৈশিষ্ট্য ── */
-function buildLakshana(nakInfo,gana,lagnaRashiName,tithi,karanaInfo,sunRashiName,moonRashiName){
+function buildLakshana(nakInfo,gana,lagnaRashiName,tithi,karanaInfo,sunRashiName,moonRashiName,yogaName,sunLon){
   const el=document.getElementById('lakshanaDiv');if(!el)return;
   const SEP='\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n';
   let parts=[];
   parts.push(`📊 মূল তথ্য:\nলগ্ন: ${lagnaRashiName} | গণ: ${gana}\nজন্ম নক্ষত্র: ${nakInfo.name} — ${nakInfo.pada}য় পাদ\nচন্দ্র রাশি: ${moonRashiName} | সূর্য রাশি: ${sunRashiName}\nতিথি: ${tithi.paksha} ${tithi.name} | করণ: ${karanaInfo.name}`);
   if(typeof getLagnaPrediction==='function'){const p=getLagnaPrediction(lagnaRashiName);if(p)parts.push('🌟 লগ্ন ফলাদেশ ('+lagnaRashiName+'):\n'+p);}
   if(typeof getNakshatraPrediction==='function'){const p=getNakshatraPrediction(nakInfo.name,moonRashiName);if(p)parts.push('⭐ নক্ষত্র ফলাদেশ ('+nakInfo.name+'):\n'+p);}
+  if(yogaName&&typeof getYogaPrediction==='function'){const p=getYogaPrediction(yogaName);if(p)parts.push('✨ যোগে জন্ম ফল ('+yogaName+'):\n'+p);}
+  if(sunLon!=null&&typeof getMonthSunPrediction==='function'){const p=getMonthSunPrediction(sunLon);if(p)parts.push('☀️ সূর্য নক্ষত্র/মাস জন্ম ফল:\n'+p);}
   if(typeof getTithiPrediction==='function'){const p=getTithiPrediction(tithi.paksha,tithi.name);if(p)parts.push('📅 তিথি ফলাদেশ ('+tithi.paksha+' '+tithi.name+'):\n'+p);}
   if(typeof getKaranaPrediction==='function'){const p=getKaranaPrediction(karanaInfo.name);if(p)parts.push('🎯 করণ ফলাদেশ ('+karanaInfo.name+'):\n'+p);}
   if(typeof getPredictionsByRashi==='function'){const arr=getPredictionsByRashi(moonRashiName)||[];if(arr.length)parts.push('🌙 চন্দ্র রাশি ফলাদেশ ('+moonRashiName+'):\n'+arr.join('\n'));}
