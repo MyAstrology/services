@@ -370,6 +370,11 @@ svg{background:#fefcf9;border-radius:8px;max-width:100%;height:auto}
       <div class="section-title">🏠 গ্রহের ভাব ফলাদেশ</div>
       <div id="planetHousePredDiv"></div>
     </div>
+    <!-- গ্রহের যুতি ও দৃষ্টি ফলাদেশ -->
+    <div class="card">
+      <div class="section-title">🔗 গ্রহের যুতি ও দৃষ্টি ফলাদেশ</div>
+      <div id="yutiDrishtiPredDiv"></div>
+    </div>
     <!-- যোগ -->
     <div class="card">
       <div class="section-title">✨ কুষ্ঠিগত যোগ</div>
@@ -507,6 +512,7 @@ svg{background:#fefcf9;border-radius:8px;max-width:100%;height:auto}
 <script src="src/prediction-engine.js"></script>
 <script src="src/gochar.js"></script>
 <script src="src/pratanta-dasha.js"></script>
+<script src="src/maha-dasha.js"></script>
 <script>
 /* ── Dropdown populate ── */
 (function(){
@@ -894,6 +900,9 @@ function calculateFullKundali(){
   /* গ্রহের ভাব ফলাদেশ */
   buildPlanetHousePred(planets,lagnaRashiIdx,lagnaRashiName,lagnaLon);
 
+  /* গ্রহের যুতি ও দৃষ্টি ফলাদেশ */
+  buildYutiDrishtiPred(planets,lagnaRashiIdx,lagnaLon);
+
   /* যোগ */
   const yogaList=detectAllYogas(planets,lagnaRashiIdx);
   const ygEl=document.getElementById('yogaDiv');
@@ -1256,6 +1265,69 @@ function buildPlanetHousePred(planets,lagnaRashiIdx,lagnaRashiName,lagnaLon){
   el.innerHTML=html||'<p style="color:#666;padding:10px">ভাব ফলাদেশ পাওয়া যায়নি।</p>';
 }
 
+/* ── গ্রহের যুতি ও দৃষ্টি ফলাদেশ ── */
+function buildYutiDrishtiPred(planets, lagnaRashiIdx, lagnaLon) {
+  const el = document.getElementById('yutiDrishtiPredDiv'); if (!el) return;
+  if (typeof getConjunctionPrediction !== 'function' && typeof getAspectPrediction !== 'function') {
+    el.innerHTML = '<p style="color:#666;padding:10px">যুতি/দৃষ্টি তথ্য পাওয়া যায়নি।</p>'; return;
+  }
+  const list = planets.filter(p => p.name !== 'লগ্ন');
+  const CONJ_ORB = 8; // degrees for conjunction
+  let html = '';
+
+  /* যুতি (conjunction): pairs within CONJ_ORB degrees */
+  const conjHtml = [];
+  for (let i = 0; i < list.length; i++) {
+    for (let j = i + 1; j < list.length; j++) {
+      const p1 = list[i], p2 = list[j];
+      const diff = Math.abs(p1.lon - p2.lon);
+      const orb = Math.min(diff, 360 - diff);
+      if (orb <= CONJ_ORB) {
+        const pred = typeof getConjunctionPrediction === 'function' ? getConjunctionPrediction(p1.name, p2.name) : null;
+        if (pred) {
+          const col1 = PLANET_COLOR[p1.name] || '#333';
+          const col2 = PLANET_COLOR[p2.name] || '#333';
+          conjHtml.push(`<div style="margin-bottom:10px;padding:10px 12px;background:#fff8e7;border-radius:8px;border-left:3px solid #b8860b"><strong style="color:${col1}">${p1.name}</strong> + <strong style="color:${col2}">${p2.name}</strong> <span style="font-size:.78rem;color:#888">(ব্যবধান: ${orb.toFixed(1)}°)</span><div style="margin-top:5px;line-height:1.75;font-size:.86rem">${pred.trim()}</div></div>`);
+        }
+      }
+    }
+  }
+  if (conjHtml.length) {
+    html += `<div style="margin-bottom:14px"><div style="font-weight:700;color:#7a2e2e;font-family:var(--fh);margin-bottom:8px">🔗 গ্রহের যুতি ফলাদেশ</div>${conjHtml.join('')}</div>`;
+  }
+
+  /* দৃষ্টি (aspect): check aspects from each planet */
+  const aspectHtml = [];
+  list.forEach(aspecting => {
+    const ph = lagnaLon != null
+      ? (Math.floor(((aspecting.lon - lagnaLon + 360) % 360 + 15) / 30) % 12 + 1)
+      : (Math.floor(aspecting.lon / 30) % 12 - lagnaRashiIdx + 12) % 12 + 1;
+    const aspects = GRAHA_DRISHTI[aspecting.name] || [7];
+    aspects.forEach(asp => {
+      const targetHouse = (ph + asp - 2 + 12) % 12 + 1;
+      list.forEach(aspected => {
+        if (aspected.name === aspecting.name) return;
+        const ah = lagnaLon != null
+          ? (Math.floor(((aspected.lon - lagnaLon + 360) % 360 + 15) / 30) % 12 + 1)
+          : (Math.floor(aspected.lon / 30) % 12 - lagnaRashiIdx + 12) % 12 + 1;
+        if (ah === targetHouse) {
+          const pred = typeof getAspectPrediction === 'function' ? getAspectPrediction(aspecting.name, aspected.name) : null;
+          if (pred) {
+            const col1 = PLANET_COLOR[aspecting.name] || '#333';
+            const col2 = PLANET_COLOR[aspected.name] || '#333';
+            aspectHtml.push(`<div style="margin-bottom:10px;padding:10px 12px;background:#f5f0fa;border-radius:8px;border-left:3px solid #6a3d9a"><strong style="color:${col1}">${aspecting.name}</strong> → <strong style="color:${col2}">${aspected.name}</strong> <span style="font-size:.78rem;color:#888">(${asp}ম দৃষ্টি)</span><div style="margin-top:5px;line-height:1.75;font-size:.86rem">${pred.trim()}</div></div>`);
+          }
+        }
+      });
+    });
+  });
+  if (aspectHtml.length) {
+    html += `<div><div style="font-weight:700;color:#4a2d72;font-family:var(--fh);margin-bottom:8px">👁️ গ্রহের দৃষ্টি ফলাদেশ</div>${aspectHtml.join('')}</div>`;
+  }
+
+  el.innerHTML = html || '<p style="color:#999;padding:10px;font-size:.88rem">এই কুণ্ডলীতে কোনো গ্রহ যুতি বা বিশেষ দৃষ্টি নেই।</p>';
+}
+
 /* ── দশাফল ও প্রতিকার ── */
 function buildDashaFal(dashaInfo,planets,sbData){
   const el=document.getElementById('dashaFalDiv');if(!el)return;
@@ -1263,13 +1335,18 @@ function buildDashaFal(dashaInfo,planets,sbData){
   if(dashaInfo&&dashaInfo.currentMD&&dashaInfo.currentAD){
     const md=dashaInfo.currentMD.lord,ad=dashaInfo.currentAD.lord;
     const pd=dashaInfo.currentPD?dashaInfo.currentPD.lord:'';
+    if(typeof getMahaDashaPrediction==='function'){
+      const mdpred=getMahaDashaPrediction(md);
+      const mdPeriod=(typeof MAHADASHA_PREDICTIONS!=='undefined'&&MAHADASHA_PREDICTIONS[md])?MAHADASHA_PREDICTIONS[md].period:'';
+      if(mdpred)html+=`<div style="margin-bottom:16px;padding:14px;background:#fff8e7;border-radius:8px;border-left:4px solid #e07b00"><strong style="color:#7a2e2e;font-family:var(--fh);font-size:1rem">☀️ মহাদশাফল: ${md}${mdPeriod?' ('+mdPeriod+' বছর)':''}</strong><div style="font-size:.82rem;color:#888;margin:2px 0 4px">${dashaInfo.currentMD.elapsed?dashaInfo.currentMD.elapsed.toFixed(1)+' / '+dashaInfo.currentMD.period+' বছর অতিবাহিত':''}</div><div style="margin-top:8px;line-height:1.85;font-size:.88rem;white-space:pre-line">${mdpred}</div></div>`;
+    }
     if(typeof getAntarDashaPrediction==='function'){
       const pred=getAntarDashaPrediction(md,ad);
-      if(pred)html+=`<div style="margin-bottom:16px;padding:14px;background:#fdf6e3;border-radius:8px;border-left:4px solid #b8860b"><strong style="color:#7a2e2e;font-family:var(--fh)">বর্তমান দশা: ${md} / ${ad}${pd?' / '+pd:''}</strong><div style="margin-top:8px;line-height:1.85;font-size:.9rem">${pred}</div></div>`;
+      if(pred)html+=`<div style="margin-bottom:16px;padding:14px;background:#fdf6e3;border-radius:8px;border-left:4px solid #b8860b"><strong style="color:#7a2e2e;font-family:var(--fh)">🌙 অন্তর্দশাফল: ${md} / ${ad}${pd?' / '+pd:''}</strong><div style="margin-top:8px;line-height:1.85;font-size:.9rem">${pred}</div></div>`;
     }
     if(pd&&typeof getPratyantarDashaPrediction==='function'){
       const ppred=getPratyantarDashaPrediction(md,ad,pd);
-      if(ppred&&ppred.full)html+=`<div style="margin-bottom:16px;padding:14px;background:#f5f0fa;border-radius:8px;border-left:4px solid #6a3d9a"><strong style="color:#4a2d72;font-family:var(--fh)">প্রত্যন্তর দশাফল: ${pd}</strong><div style="font-size:.82rem;color:#666;margin:2px 0 6px">${ppred.time||''} — ${ppred.type||''}</div><div style="margin-top:6px;line-height:1.85;font-size:.88rem">${ppred.full}</div></div>`;
+      if(ppred&&ppred.full)html+=`<div style="margin-bottom:16px;padding:14px;background:#f5f0fa;border-radius:8px;border-left:4px solid #6a3d9a"><strong style="color:#4a2d72;font-family:var(--fh)">🔮 প্রত্যন্তর দশাফল: ${pd}</strong><div style="font-size:.82rem;color:#666;margin:2px 0 6px">${ppred.time||''} — ${ppred.type||''}</div><div style="margin-top:6px;line-height:1.85;font-size:.88rem">${ppred.full}</div></div>`;
     }
   }
   if(typeof getTriShaktiRemedy==='function'&&planets&&planets.length){
