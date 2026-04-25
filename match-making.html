@@ -264,7 +264,7 @@ function runMatchCalc(){
   const result=calculateMatchMaking(gd,bd);
   const gName=document.getElementById('girlName').value||"কন্যা";
   const bName=document.getElementById('boyName').value||"বর";
-  const total=result.totalScore||0;
+  const total=result.totalPoints||0;
   const pct=(total/36)*100;
   const col=pct>=72?'#2e7d32':pct>=50?'#f57c00':'#c62828';
   const verdict=pct>=72?'✅ মিলন শুভ':pct>=50?'⚠️ মিলন মধ্যম':'❌ মিলন অশুভ';
@@ -277,10 +277,10 @@ function runMatchCalc(){
 
   const kN=["বর্ণ","বশ্য","তারা","যোনি","গ্রহমৈত্রী","গণ","ভকূট","নাড়ী"];
   const kM=[1,2,3,4,5,6,7,8];
-  const kK=["varna","vashya","tara","yoni","graha","gana","bhakoot","nadi"];
+  const kK=["varna","vasu","tara","yoni","grahaMaitri","gana","bhakoota","nadi"];
   let rows='';
   kK.forEach((k,i)=>{
-    const sc=result[k]!==undefined?result[k]:0,mx=kM[i];
+    const sc=(result.kootas&&result.kootas[k]!==undefined)?result.kootas[k].points:0,mx=kM[i];
     const cls=sc>=mx*0.75?'good':sc>=mx*0.4?'avg':'bad';
     const st=sc>=mx*0.75?'✅ শুভ':sc>=mx*0.4?'⚠️ মধ্যম':'❌ অশুভ';
     rows+=`<tr><td>${kN[i]}</td><td>${gd.moonNakshatra}</td><td>${bd.moonNakshatra}</td><td style="text-align:center">${mx}</td><td style="text-align:center"><span class="pts ${cls}">${sc}</span></td><td>${st}</td></tr>`;
@@ -291,9 +291,9 @@ function runMatchCalc(){
   const gm=checkManglikDosha(gd.marsRashi,gd.lagnaRashi);
   const bm=checkManglikDosha(bd.marsRashi,bd.lagnaRashi);
   let mh='';
-  mh+=`<div class="manglik-box ${gm.isManglik?'manglik-yes':'manglik-no'}">${gm.isManglik?'🔴':'🟢'} ${gName}: ${gm.isManglik?'মাঙ্গলিক দোষ আছে — মঙ্গল '+gd.marsRashi+' রাশিতে':'মাঙ্গলিক দোষ নেই'}</div>`;
-  mh+=`<div class="manglik-box ${bm.isManglik?'manglik-yes':'manglik-no'}">${bm.isManglik?'🔴':'🟢'} ${bName}: ${bm.isManglik?'মাঙ্গলিক দোষ আছে — মঙ্গল '+bd.marsRashi+' রাশিতে':'মাঙ্গলিক দোষ নেই'}</div>`;
-  if(gm.isManglik&&bm.isManglik)mh+='<div class="manglik-box" style="background:#fffde7;border-color:#f57c00;color:#e65100;border-left:4px solid">✨ উভয়ই মাঙ্গলিক — দোষ পরস্পর বাতিল হয়ে যায়</div>';
+  mh+=`<div class="manglik-box ${gm.hasDosha?'manglik-yes':'manglik-no'}">${gm.hasDosha?'🔴':'🟢'} ${gName}: ${gm.hasDosha?'মাঙ্গলিক দোষ আছে — মঙ্গল '+gd.marsRashi+' রাশিতে':'মাঙ্গলিক দোষ নেই'}</div>`;
+  mh+=`<div class="manglik-box ${bm.hasDosha?'manglik-yes':'manglik-no'}">${bm.hasDosha?'🔴':'🟢'} ${bName}: ${bm.hasDosha?'মাঙ্গলিক দোষ আছে — মঙ্গল '+bd.marsRashi+' রাশিতে':'মাঙ্গলিক দোষ নেই'}</div>`;
+  if(gm.hasDosha&&bm.hasDosha)mh+='<div class="manglik-box" style="background:#fffde7;border-color:#f57c00;color:#e65100;border-left:4px solid">✨ উভয়ই মাঙ্গলিক — দোষ পরস্পর বাতিল হয়ে যায়</div>';
   document.getElementById('manglikDiv').innerHTML=mh;
 
   document.getElementById('reportText').textContent=generateMatchMakingReport(result,gName,bName);
