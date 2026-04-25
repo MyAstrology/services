@@ -750,6 +750,7 @@ function getYogaTableHTML(yogas){
 
 /* ── মূল গণনা ── */
 function calculateFullKundali(){
+  saveFormToStorage();
   const name=document.getElementById('userName').value.trim()||"জাতক";
   const d=parseInt(document.getElementById('dobDay').value);
   const mo=parseInt(document.getElementById('dobMonth').value);
@@ -933,7 +934,27 @@ function calculateFullKundali(){
 }
 
 /* ── শহর অনুসন্ধান ── */
+/* ── ফর্ম সেভ / রিস্টোর (localStorage) ── */
+function saveFormToStorage(){
+  const fields=['userName','dobDay','dobMonth','dobYear','tobHour','tobMin','tobSec','citySearch','lat','lon'];
+  const data={};
+  fields.forEach(id=>{const el=document.getElementById(id);if(el)data[id]=el.value;});
+  const gEl=document.querySelector('input[name="gender"]:checked');
+  if(gEl)data.gender=gEl.value;
+  try{localStorage.setItem('kundaliForm',JSON.stringify(data));}catch(e){}
+}
+function restoreFormFromStorage(){
+  let data;
+  try{data=JSON.parse(localStorage.getItem('kundaliForm')||'null');}catch(e){}
+  if(!data)return;
+  const fields=['userName','dobDay','dobMonth','dobYear','tobHour','tobMin','tobSec','citySearch','lat','lon'];
+  fields.forEach(id=>{const el=document.getElementById(id);if(el&&data[id]!=null)el.value=data[id];});
+  if(data.gender){const gEl=document.querySelector('input[name="gender"][value="'+data.gender+'"]');if(gEl)gEl.checked=true;}
+  validateForm();
+}
+
 document.addEventListener('DOMContentLoaded',function(){
+  restoreFormFromStorage();
   const inp=document.getElementById('citySearch');
   const sugg=document.getElementById('citySuggestions');
   if(!inp||!sugg)return;
