@@ -1105,9 +1105,13 @@ const SUN_HOUSE_PREDICTIONS = {
 
 };
 
+// Bengali numeral helper for house keys
+const _BN = ["০","১","২","৩","৪","৫","৬","৭","৮","৯"];
+function _toBN(n){return String(n).split("").map(d=>_BN[+d]||d).join("");}
+
 // ফাংশন: সূর্যের ভাব অনুযায়ী প্রেডিকশন প্রদান
 function getSunHousePrediction(house) {
-    const key = `সূর্য_ভাব_${house}`;
+    const key = `সূর্য_ভাব_${_toBN(house)}`;
     if (SUN_HOUSE_PREDICTIONS[key]) {
         return SUN_HOUSE_PREDICTIONS[key].full;
     }
@@ -1197,7 +1201,7 @@ const MOON_HOUSE_PREDICTIONS = {
 
 // ফাংশন: চন্দ্রের ভাব অনুযায়ী প্রেডিকশন প্রদান
 function getMoonHousePrediction(house) {
-    const key = `চন্দ্র_ভাব_${house}`;
+    const key = `চন্দ্র_ভাব_${_toBN(house)}`;
     if (MOON_HOUSE_PREDICTIONS[key]) {
         return MOON_HOUSE_PREDICTIONS[key].full;
     }
@@ -1287,7 +1291,7 @@ const MARS_HOUSE_PREDICTIONS = {
 
 // ফাংশন: মঙ্গলের ভাব অনুযায়ী প্রেডিকশন প্রদান
 function getMarsHousePrediction(house) {
-    const key = `মঙ্গল_ভাব_${house}`;
+    const key = `মঙ্গল_ভাব_${_toBN(house)}`;
     if (MARS_HOUSE_PREDICTIONS[key]) {
         return MARS_HOUSE_PREDICTIONS[key].full;
     }
@@ -1377,7 +1381,7 @@ const MERCURY_HOUSE_PREDICTIONS = {
 
 // ফাংশন: বুধের ভাব অনুযায়ী প্রেডিকশন প্রদান
 function getMercuryHousePrediction(house) {
-    const key = `বুধ_ভাব_${house}`;
+    const key = `বুধ_ভাব_${_toBN(house)}`;
     if (MERCURY_HOUSE_PREDICTIONS[key]) {
         return MERCURY_HOUSE_PREDICTIONS[key].full;
     }
@@ -1467,7 +1471,7 @@ const JUPITER_HOUSE_PREDICTIONS = {
 
 // ফাংশন: বৃহস্পতির ভাব অনুযায়ী প্রেডিকশন প্রদান
 function getJupiterHousePrediction(house) {
-    const key = `বৃহস্পতি_ভাব_${house}`;
+    const key = `বৃহস্পতি_ভাব_${_toBN(house)}`;
     if (JUPITER_HOUSE_PREDICTIONS[key]) {
         return JUPITER_HOUSE_PREDICTIONS[key].full;
     }
@@ -1557,7 +1561,7 @@ const VENUS_HOUSE_PREDICTIONS = {
 
 // ফাংশন: শুক্রের ভাব অনুযায়ী প্রেডিকশন প্রদান
 function getVenusHousePrediction(house) {
-    const key = `শুক্র_ভাব_${house}`;
+    const key = `শুক্র_ভাব_${_toBN(house)}`;
     if (VENUS_HOUSE_PREDICTIONS[key]) {
         return VENUS_HOUSE_PREDICTIONS[key].full;
     }
@@ -1647,7 +1651,7 @@ const SATURN_HOUSE_PREDICTIONS = {
 
 // ফাংশন: শনির ভাব অনুযায়ী প্রেডিকশন প্রদান
 function getSaturnHousePrediction(house) {
-    const key = `শনি_ভাব_${house}`;
+    const key = `শনি_ভাব_${_toBN(house)}`;
     if (SATURN_HOUSE_PREDICTIONS[key]) {
         return SATURN_HOUSE_PREDICTIONS[key].full;
     }
@@ -1737,7 +1741,7 @@ const RAHU_HOUSE_PREDICTIONS = {
 
 // ফাংশন: রাহুর ভাব অনুযায়ী প্রেডিকশন প্রদান
 function getRahuHousePrediction(house) {
-    const key = `রাহু_ভাব_${house}`;
+    const key = `রাহু_ভাব_${_toBN(house)}`;
     if (RAHU_HOUSE_PREDICTIONS[key]) {
         return RAHU_HOUSE_PREDICTIONS[key].full;
     }
@@ -1827,7 +1831,7 @@ const KETU_HOUSE_PREDICTIONS = {
 
 // ফাংশন: কেতুর ভাব অনুযায়ী প্রেডিকশন প্রদান
 function getKetuHousePrediction(house) {
-    const key = `কেতু_ভাব_${house}`;
+    const key = `কেতু_ভাব_${_toBN(house)}`;
     if (KETU_HOUSE_PREDICTIONS[key]) {
         return KETU_HOUSE_PREDICTIONS[key].full;
     }
