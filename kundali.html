@@ -507,6 +507,7 @@ svg{background:#fefcf9;border-radius:8px;max-width:100%;height:auto}
 <script src="src/prediction-engine.js"></script>
 <script src="src/gochar.js"></script>
 <script src="src/pratanta-dasha.js"></script>
+<script src="src/maha-dasha.js"></script>
 <script>
 /* ── Dropdown populate ── */
 (function(){
@@ -1263,13 +1264,18 @@ function buildDashaFal(dashaInfo,planets,sbData){
   if(dashaInfo&&dashaInfo.currentMD&&dashaInfo.currentAD){
     const md=dashaInfo.currentMD.lord,ad=dashaInfo.currentAD.lord;
     const pd=dashaInfo.currentPD?dashaInfo.currentPD.lord:'';
+    if(typeof getMahaDashaPrediction==='function'){
+      const mdpred=getMahaDashaPrediction(md);
+      const mdPeriod=(typeof MAHADASHA_PREDICTIONS!=='undefined'&&MAHADASHA_PREDICTIONS[md])?MAHADASHA_PREDICTIONS[md].period:'';
+      if(mdpred)html+=`<div style="margin-bottom:16px;padding:14px;background:#fff8e7;border-radius:8px;border-left:4px solid #e07b00"><strong style="color:#7a2e2e;font-family:var(--fh);font-size:1rem">☀️ মহাদশাফল: ${md}${mdPeriod?' ('+mdPeriod+' বছর)':''}</strong><div style="font-size:.82rem;color:#888;margin:2px 0 4px">${dashaInfo.currentMD.elapsed?dashaInfo.currentMD.elapsed.toFixed(1)+' / '+dashaInfo.currentMD.period+' বছর অতিবাহিত':''}</div><div style="margin-top:8px;line-height:1.85;font-size:.88rem;white-space:pre-line">${mdpred}</div></div>`;
+    }
     if(typeof getAntarDashaPrediction==='function'){
       const pred=getAntarDashaPrediction(md,ad);
-      if(pred)html+=`<div style="margin-bottom:16px;padding:14px;background:#fdf6e3;border-radius:8px;border-left:4px solid #b8860b"><strong style="color:#7a2e2e;font-family:var(--fh)">বর্তমান দশা: ${md} / ${ad}${pd?' / '+pd:''}</strong><div style="margin-top:8px;line-height:1.85;font-size:.9rem">${pred}</div></div>`;
+      if(pred)html+=`<div style="margin-bottom:16px;padding:14px;background:#fdf6e3;border-radius:8px;border-left:4px solid #b8860b"><strong style="color:#7a2e2e;font-family:var(--fh)">🌙 অন্তর্দশাফল: ${md} / ${ad}${pd?' / '+pd:''}</strong><div style="margin-top:8px;line-height:1.85;font-size:.9rem">${pred}</div></div>`;
     }
     if(pd&&typeof getPratyantarDashaPrediction==='function'){
       const ppred=getPratyantarDashaPrediction(md,ad,pd);
-      if(ppred&&ppred.full)html+=`<div style="margin-bottom:16px;padding:14px;background:#f5f0fa;border-radius:8px;border-left:4px solid #6a3d9a"><strong style="color:#4a2d72;font-family:var(--fh)">প্রত্যন্তর দশাফল: ${pd}</strong><div style="font-size:.82rem;color:#666;margin:2px 0 6px">${ppred.time||''} — ${ppred.type||''}</div><div style="margin-top:6px;line-height:1.85;font-size:.88rem">${ppred.full}</div></div>`;
+      if(ppred&&ppred.full)html+=`<div style="margin-bottom:16px;padding:14px;background:#f5f0fa;border-radius:8px;border-left:4px solid #6a3d9a"><strong style="color:#4a2d72;font-family:var(--fh)">🔮 প্রত্যন্তর দশাফল: ${pd}</strong><div style="font-size:.82rem;color:#666;margin:2px 0 6px">${ppred.time||''} — ${ppred.type||''}</div><div style="margin-top:6px;line-height:1.85;font-size:.88rem">${ppred.full}</div></div>`;
     }
   }
   if(typeof getTriShaktiRemedy==='function'&&planets&&planets.length){
