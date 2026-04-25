@@ -1213,10 +1213,10 @@ function buildShadbalaVerticalBars(shadbalaData){
 /* ── গ্রহের ভাব ফলাদেশ (ভাব চলিত পদ্ধতি: লগ্ন ±15°) ── */
 function buildPlanetHousePred(planets,lagnaRashiIdx,lagnaRashiName,lagnaLon){
   const el=document.getElementById('planetHousePredDiv');if(!el)return;
-  /* Bengali numeral converter (fallback if lagna-vab file not loaded) */
+  /* Bengali numeral converter */
   const _bn=['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
   const toBN=n=>String(n).split('').map(d=>_bn[+d]||d).join('');
-  /* Prediction data objects keyed by planet name */
+  /* Prediction data objects — direct reference (const visible across scripts) */
   const DATA={
     "সূর্য":   typeof SUN_HOUSE_PREDICTIONS!=='undefined'?SUN_HOUSE_PREDICTIONS:null,
     "চন্দ্র":   typeof MOON_HOUSE_PREDICTIONS!=='undefined'?MOON_HOUSE_PREDICTIONS:null,
@@ -1239,7 +1239,7 @@ function buildPlanetHousePred(planets,lagnaRashiIdx,lagnaRashiName,lagnaLon){
     } else {
       house=(ri-lagnaRashiIdx+12)%12+1;
     }
-    /* প্রথমে unified function, তারপর direct data object */
+    /* প্রথমে unified function, তারপর direct data object fallback */
     let pred=null;
     if(typeof getHousePrediction==='function'){
       pred=getHousePrediction(p.name,house);
