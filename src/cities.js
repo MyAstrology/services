@@ -1,5 +1,9 @@
-// cities.js - পার্ট ১/২ (প্রথম ৫০০+ শহর)
-const CITY_DB = [
+// src/cities.js — MyAstrology পঞ্জিকার শহর ডেটাবেস
+// ১,২৬৮+ শহর: পশ্চিমবঙ্গ, বাংলাদেশ, উত্তর-পূর্ব ভারত, অন্যান্য ভারত, আন্তর্জাতিক
+// ★ panjika.html-এ <script src="src/cities.js"></script> দিয়ে লোড করুন
+
+// ── মূল ডেটা (district / state / country সহ) ──
+var _CITY_RAW = [
   // ==================== পশ্চিমবঙ্গের প্রতিটি জেলার প্রধান ১০+ শহর ====================
   
   // ১. কলকাতা জেলা
@@ -1368,41 +1372,52 @@ const CITY_DB = [
   {n:'Custom Location', district:'-', state:'-', country:'-', lat:null, lng:null},
 ];
 
-// ফিল্টার ফাংশন (জেলা, রাজ্য, দেশ সহ অনুসন্ধান)
-function filterCities(searchTerm) {
-    if (!searchTerm || searchTerm.length < 1) return [];
-    const term = searchTerm.toLowerCase();
-    return CITY_DB.filter(city => 
-        city.lat !== null && (
-            city.n.toLowerCase().includes(term) ||
-            city.district.toLowerCase().includes(term) ||
-            city.state.toLowerCase().includes(term) ||
-            city.country.toLowerCase().includes(term)
-        )
-    ).slice(0, 25);
-}
-
-// শহর নির্বাচন
-function selectCity(city) {
-    if (city.lat !== null && city.lng !== null) {
-        document.getElementById('lat').value = city.lat;
-        document.getElementById('lon').value = city.lng;
-        document.getElementById('citySearch').value = `${city.n}, ${city.district}, ${city.state}, ${city.country}`;
+// ── Adapter: panjika.html-এর প্রয়োজনীয় {g, n, bn, lat, lng, tz} ফরম্যাটে রূপান্তর ──
+(function(){
+  function _getGroup(country, state){
+    if(country==='ভারত'){
+      if(state==='পশ্চিমবঙ্গ') return 'পশ্চিমবঙ্গ';
+      var ne=['আসাম','ত্রিপুরা','মেঘালয়','মণিপুর','নাগাল্যান্ড','অরুণাচল প্রদেশ','মিজোরাম','সিকিম'];
+      if(ne.indexOf(state)>=0) return 'উত্তর-পূর্ব ভারত';
+      return 'অন্যান্য ভারত';
     }
-    document.getElementById('citySuggestions').style.display = 'none';
-}
+    if(country==='বাংলাদেশ') return 'বাংলাদেশ';
+    if(country==='নেপাল'||country==='শ্রীলঙ্কা'||country==='মিয়ানমার'||country==='ভুটান') return country;
+    return 'আন্তর্জাতিক';
+  }
+  function _getTZ(country){
+    if(country==='বাংলাদেশ') return 6;
+    if(country==='নেপাল')    return 5.75;
+    if(country==='মিয়ানমার') return 6.5;
+    if(country==='শ্রীলঙ্কা') return 5.5;
+    return 5.5; // India default
+  }
 
-// ডিফল্ট শহর (Ranaghat)
-window.addEventListener('DOMContentLoaded', function() {
-    const defaultCity = CITY_DB.find(c => c.n === 'Ranaghat');
-    if (defaultCity) {
-        document.getElementById('lat').value = defaultCity.lat;
-        document.getElementById('lon').value = defaultCity.lng;
-        document.getElementById('citySearch').placeholder = `${defaultCity.n}, ${defaultCity.district}, ${defaultCity.state}`;
-    }
-});
+  var db = [
+    // ── ডিফল্ট: রানাঘাট (সর্বদা প্রথমে) ──
+    {g:'পশ্চিমবঙ্গ', n:'Ranaghat', bn:'রানাঘাট', lat:23.1677, lng:88.5808}
+  ];
 
-// অ্যারে একত্রিত করা (যদি পার্ট ১ আলাদা থাকে)
-if (typeof CITY_DB_PART1 !== 'undefined') {
-    CITY_DB = [...CITY_DB_PART1, ...CITY_DB];
-}
+  var seen = {Ranaghat:true};
+  _CITY_RAW.forEach(function(c){
+    if(seen[c.n]) return;
+    seen[c.n] = true;
+    var g  = _getGroup(c.country||'ভারত', c.state||'');
+    var tz = _getTZ(c.country||'ভারত');
+    var entry = {
+      g:   g,
+      n:   c.n,
+      bn:  c.district || c.n,   // বাংলা জেলা নাম display-এ ব্যবহার
+      lat: c.lat,
+      lng: c.lng
+    };
+    if(tz !== 5.5) entry.tz = tz;
+    db.push(entry);
+  });
+
+  // ── কাস্টম অবস্থান (সর্বদা শেষে) ──
+  db.push({g:'কাস্টম', n:'Custom', bn:'কাস্টম অবস্থান', lat:null, lng:null});
+
+  // ★ window scope-এ CITY_DB export (panjika.html ব্যবহার করে)
+  window.CITY_DB = db;
+})();
