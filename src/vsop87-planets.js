@@ -660,23 +660,24 @@ const VSOP87_MERCURY_TERMS = {
 
 // VSOP87A বুধ হেলিওসেন্ট্রিক দ্রাঘিমাংশ গণনা
 function computeMercuryHeliocentricL(T) {
+    const tau = T / 10; // VSOP87 চলক: Julian centuries → Julian millennia
     let L = 0.0;
-    
+
     // L0 টার্ম গণনা (১৪৫ পদ)
     VSOP87_MERCURY_TERMS.L0.forEach(term => {
-        L += term[0] * Math.cos(term[1] + term[2] * T);
+        L += term[0] * Math.cos(term[1] + term[2] * tau);
     });
-    
+
     // L1 টার্ম গণনা (৪৫ পদ)
     VSOP87_MERCURY_TERMS.L1.forEach(term => {
-        L += term[0] * Math.cos(term[1] + term[2] * T) * T;
+        L += term[0] * Math.cos(term[1] + term[2] * tau) * tau;
     });
-    
+
     // L2 টার্ম গণনা (১০ পদ)
     VSOP87_MERCURY_TERMS.L2.forEach(term => {
-        L += term[0] * Math.cos(term[1] + term[2] * T) * T * T;
+        L += term[0] * Math.cos(term[1] + term[2] * tau) * tau * tau;
     });
-    
+
     // সঠিক একক রূপান্তর: 10^-8 radian → radian (DEG দিয়ে গুণ হবে _geo-তে)
     return L / 1e8;
 }

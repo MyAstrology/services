@@ -567,6 +567,8 @@ svg{background:#fefcf9;border-radius:8px;max-width:100%;height:auto}
   </div>
 </footer>
 
+<!-- html2pdf.js — direct PDF download -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!-- Scripts -->
 <script src="src/vsop87-planets.js"></script>
 <script src="src/cities.js"></script>
@@ -1566,26 +1568,34 @@ let _pdfRestore=null;
 function downloadPDF(){
   const ra=document.getElementById('resultsArea');
   if(!ra||ra.style.display==='none'){alert('প্রথমে কুষ্ঠি গণনা করুন।');return;}
-  // Save state of all tab panels & main section
+  const btn=document.getElementById('pdfBtn');
+  if(btn){btn.textContent='⏳ তৈরি হচ্ছে…';btn.disabled=true;}
+  // Show all panels & expand all dasha rows
   const saved=[];
   document.querySelectorAll('.tab-panel').forEach(p=>saved.push({el:p,d:p.style.display}));
   const main=document.getElementById('mainKundaliSection');
   if(main)saved.push({el:main,d:main.style.display});
-  // Expand all dasha accordion rows (save those that were closed)
   const closedRows=[];
   document.querySelectorAll('.ad-row:not(.open),.pd-row:not(.open)').forEach(r=>{closedRows.push(r);r.classList.add('open');});
-  // Show all panels + main section
   saved.forEach(({el})=>el.style.display='block');
-  _pdfRestore={saved,closedRows};
-  window.print();
+  function restore(){
+    saved.forEach(({el,d})=>el.style.display=d);
+    closedRows.forEach(r=>r.classList.remove('open'));
+    if(btn){btn.textContent='🖨️ PDF';btn.disabled=false;}
+  }
+  if(typeof html2pdf!=='undefined'){
+    const name=(document.getElementById('pgName')||{}).textContent||'kundali';
+    const opt={margin:[8,4],filename:name+'_kundali.pdf',image:{type:'jpeg',quality:0.95},
+      html2canvas:{scale:2,useCORS:true,logging:false},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}};
+    html2pdf().set(opt).from(ra).save().then(restore).catch(function(){restore();window.print();});
+  } else {
+    // fallback: browser print dialog
+    window.addEventListener('afterprint',function handler(){
+      restore(); window.removeEventListener('afterprint',handler);
+    });
+    window.print();
+  }
 }
-window.addEventListener('afterprint',function(){
-  if(!_pdfRestore)return;
-  const{saved,closedRows}=_pdfRestore;
-  saved.forEach(({el,d})=>el.style.display=d);
-  closedRows.forEach(r=>r.classList.remove('open'));
-  _pdfRestore=null;
-});
 </script>
 </body>
 </html>

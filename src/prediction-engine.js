@@ -1742,10 +1742,6 @@ class NavaTaraNadiUI {
         const bp = birthPlanets || {};
         let html = '<div style="text-align:center;overflow-x:auto;margin:20px 0;">' + this.getNavaTaraChakraSVG(birthNak, bp) + '</div>';
         html += this.getNavaTaraPrediction(birthNak, bp);
-        html += '<hr style="margin:30px 0;">';
-        html += this.getTaraTableHTML(birthNak);
-        html += '<hr style="margin:30px 0;">';
-        html += this.getTriIpapaTableHTML(birthNak);
         if (typeof ShannadiChakraEngine === 'function') {
             try {
                 html += '<hr style="margin:30px 0;">';
@@ -1868,11 +1864,11 @@ class ShannadiChakraEngine {
             const pos = NADI_POS[nadiName];
             if (!pos) continue;
             plList.forEach(({p, transit}, idx) => {
-                const offX = (idx - (plList.length - 1) / 2) * 38;
+                const offX = (idx - (plList.length - 1) / 2) * 42;
                 const col = PLANET_COL[p] || '#888', sn = PLANET_SH[p] || p.substring(0,2);
-                const px = pos.x + offX, py = pos.y + 36;
-                svgBody += `<circle cx="${px}" cy="${py}" r="17" fill="${col}" opacity="0.9" stroke="${transit?'#fff':'#FFD700'}" stroke-width="${transit?1.5:3}"/>`;
-                svgBody += `<text x="${px}" y="${py}" text-anchor="middle" font-size="9" fill="#fff" font-weight="bold" font-family="Noto Sans Bengali,serif" dy="0.35em">${sn}</text>`;
+                const px = pos.x + offX, py = pos.y + 38;
+                svgBody += `<circle cx="${px}" cy="${py}" r="20" fill="${col}" opacity="0.9" stroke="${transit?'#fff':'#FFD700'}" stroke-width="${transit?1.5:3}"/>`;
+                svgBody += `<text x="${px}" y="${py}" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#fff" font-weight="bold" font-family="Noto Sans Bengali,serif">${sn}</text>`;
             });
         }
 
