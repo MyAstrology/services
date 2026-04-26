@@ -286,6 +286,112 @@ class PredictionEngine {
         }
         return output;
     }
+
+    generateTaraAnalysis() {
+        const moon = this.chartData.planets?.find(p => p.name === "চন্দ্র");
+        if (!moon || !moon.nakshatra) return "";
+
+        let output = "🌟 নবতারা চক্র (জন্মনক্ষত্র অনুযায়ী)\n";
+        output += "─".repeat(40) + "\n";
+
+        const engine = new NavaTaraGemEngine();
+        const todayNak = moon.nakshatra;
+        const tara = engine.getTara(moon.nakshatra, todayNak);
+
+        if (tara.error) return "";
+
+        output += `জন্মনক্ষত্র: ${moon.nakshatra}\n`;
+        output += `জন্ম তারা: ${tara.icon} ${tara.taraName} (${tara.taraIndex}ম তারা) — ${tara.type}\n\n`;
+
+        const table = engine.getFullTaraTable(moon.nakshatra);
+        output += "নক্ষত্র → তারা ফল:\n";
+        table.forEach(row => {
+            const isBad = ["বিপৎ", "প্রত্যরি", "নিধন"].includes(row.taraName);
+            output += `  ${row.icon} ${row.nakshatra} → ${row.taraName} (${isBad ? 'অশুভ' : 'শুভ'})\n`;
+        });
+
+        output += "\n";
+        return output;
+    }
+
+    generateRatnaRecommendation() {
+        const lagna = this.chartData.lagna;
+        const planets = this.chartData.planets;
+        if (!lagna || !planets) return "";
+
+        let output = "💎 রত্ন পরামর্শ (পঞ্চমেশ + নবম ভাবস্থ গ্রহ)\n";
+        output += "─".repeat(40) + "\n";
+
+        const engine = new NavaTaraGemEngine();
+
+        const allPlanetSigns = {};
+        planets.forEach(p => {
+            if (p.rashi !== undefined && p.name) allPlanetSigns[p.name] = p.rashi;
+            else if (p.lon !== undefined && p.name) allPlanetSigns[p.name] = Math.floor(((p.lon % 360) + 360) % 360 / 30);
+        });
+
+        const lagnaRashi = lagna.rashi !== undefined ? lagna.rashi : Math.floor(((lagna.lon || 0) % 360 + 360) % 360 / 30);
+        const { recommendations, warnings } = engine.getSafeGemRecommendations(lagnaRashi, allPlanetSigns);
+
+        recommendations.forEach(r => {
+            const icon = r.priority === 1 ? '🥇' : '🥈';
+            output += `\n${icon} ${r.type}: ${r.gem}\n`;
+            output += `   গ্রহ: ${r.planet} (${r.house})\n`;
+            output += `   কারণ: ${r.reason}\n`;
+            output += `   ধাতু: ${r.metal} | আঙুল: ${r.finger}\n`;
+            output += `   ধারণের দিন: ${r.day} | ওজন: ${r.weight}\n`;
+            output += `   মন্ত্র: ${r.mantra}\n`;
+            output += `   উপকারিতা: ${r.benefits}\n`;
+        });
+
+        if (warnings.length > 0) {
+            output += "\n⚠️ সতর্কতা:\n";
+            warnings.forEach(w => output += `   • ${w}\n`);
+        }
+
+        output += "\n🕉️ রত্ন ধারণের নিয়ম: নির্দিষ্ট দিনে সকালে স্নান করে, মন্ত্র ১০৮ বার জপ করে, নির্দিষ্ট আঙুলে ধারণ করুন।\n\n";
+        return output;
+    }
+
+    generateNadiTriIpapaHTML(containerId) {
+        const moon = this.chartData.planets?.find(p => p.name === "চন্দ্র");
+        if (!moon || !moon.nakshatra) return;
+        const ui = new NavaTaraNadiUI();
+        ui.renderAll(moon.nakshatra, containerId);
+    }
+
+    generateFullPredictionWithNewFeatures() {
+        if (!this.userName) this.userName = "জাতক/জাতিকা";
+        if (!this.chartData || !this.chartData.planets) {
+            return "দুঃখিত, কুষ্ঠির ডেটা পাওয়া যায়নি।";
+        }
+
+        let output = "";
+        output += `🪐 শ্রী ${this.userName}-এর পূর্ণাঙ্গ পূর্ব ভারতীয় কুষ্ঠি বিশ্লেষণ\n`;
+        output += "═".repeat(50) + "\n\n";
+        output += `প্রিয় ${this.userName},\n\n`;
+        output += "আপনার জন্মছত্রের গ্রহ-নক্ষত্রের অবস্থানের উপর ভিত্তি করে এই পূর্ণাঙ্গ কুষ্ঠি বিশ্লেষণ প্রস্তুত করা হলো।\n\n";
+
+        output += this.generateBirthDetails();
+        output += this.generateMentalAnalysis();
+        output += this.generateLagnaAnalysis();
+        output += this.generateSunAnalysis();
+        output += this.generatePlanetHouseAnalysis();
+        output += this.generateTithiAnalysis();
+        output += this.generateYogaAnalysis();
+        output += this.generateKaranaAnalysis();
+        output += this.generateDashaAnalysis();
+        output += this.generateTaraAnalysis();
+        output += this.generateRatnaRecommendation();
+        output += this.generateRemedySection();
+
+        output += "\n" + "═".repeat(50) + "\n";
+        output += `✨ ${this.userName}, আপনার জীবন মঙ্গলময় হোক। ✨\n`;
+        output += "\n© পূর্ব ভারতীয় কুষ্ঠি সফটওয়্যার | লাহিড়ী অয়নাংশ | VSOP87 নির্ভুল গণনা\n";
+
+        return output;
+    }
+
 }
 
 // dasha-calculator.js
@@ -720,17 +826,19 @@ function drawBhavaChalitChart(svgId, bhavaData, rashiNames) {
     const rashiPlanets = Array(12).fill().map(() => []);
     
     bhavaData.planets.forEach(planet => {
-        // ভাব কুণ্ডলীতে গ্রহের রাশি
-        const chalitRashi = CHART_POSITIONS.findIndex((pos, i) => {
-            const rashiStart = i * 30;
-            const rashiEnd = (i + 1) * 30;
-            return planet.lon >= rashiStart && planet.lon < rashiEnd;
-        });
+        // ভাব কুণ্ডলীতে গ্রহের chalitBhava অনুযায়ী রাশি নির্ধারণ
+        let chartPosIdx;
+        if (planet.chalitBhava !== undefined) {
+            chartPosIdx = (lagnaRashi + planet.chalitBhava - 1) % 12;
+        } else {
+            const normLon = ((planet.lon || 0) % 360 + 360) % 360;
+            chartPosIdx = Math.floor(normLon / 30);
+        }
         
-        if (chalitRashi >= 0) {
+        if (chartPosIdx >= 0 && chartPosIdx < 12) {
             const symbol = planet.name.substring(0, 2);
             const marker = planet.changed ? `${symbol}*` : symbol;
-            rashiPlanets[chalitRashi].push(marker);
+            rashiPlanets[chartPosIdx].push(marker);
         }
     });
     
@@ -1501,137 +1609,3 @@ class NavaTaraNadiUI {
     }
 }
 
-// ==================== দ্বিতীয় ভাগ ====================
-// PredictionEngine ক্লাসের ভেতরে এই মেথডগুলো যোগ করুন
-// (generateRemedySection() মেথডের পরে বসান)
-
-/**
- * নবতারা চক্র বিশ্লেষণ
- */
-generateTaraAnalysis() {
-    const moon = this.chartData.planets?.find(p => p.name === "চন্দ্র");
-    if (!moon || !moon.nakshatra) return "";
-
-    let output = "🌟 নবতারা চক্র (জন্মনক্ষত্র অনুযায়ী)\n";
-    output += "─".repeat(40) + "\n";
-
-    const engine = new NavaTaraGemEngine();
-    const todayNak = moon.nakshatra; // জন্মের দিনের চন্দ্র নক্ষত্র
-    const tara = engine.getTara(moon.nakshatra, todayNak);
-
-    if (tara.error) return "";
-
-    output += `জন্মনক্ষত্র: ${moon.nakshatra}\n`;
-    output += `আজকের তারা: ${tara.icon} ${tara.taraName} (${tara.taraIndex}ম তারা) — ${tara.type}\n\n`;
-
-    // নবতারা টেবিল (সংক্ষিপ্ত)
-    const table = engine.getFullTaraTable(moon.nakshatra);
-    output += "নক্ষত্র → তারা ফল:\n";
-    table.forEach(row => {
-        const isBad = ["বিপৎ", "প্রত্যরি", "নিধন"].includes(row.taraName);
-        output += `  ${row.icon} ${row.nakshatra} → ${row.taraName} (${isBad ? 'অশুভ' : 'শুভ'})\n`;
-    });
-
-    output += "\n";
-    return output;
-}
-
-/**
- * দ্বি-রত্ন পরামর্শ
- */
-generateRatnaRecommendation() {
-    const lagna = this.chartData.lagna;
-    const planets = this.chartData.planets;
-    if (!lagna || !planets) return "";
-
-    let output = "💎 রত্ন পরামর্শ (পঞ্চমেশ + নবম ভাবস্থ গ্রহ)\n";
-    output += "─".repeat(40) + "\n";
-
-    const engine = new NavaTaraGemEngine();
-
-    // গ্রহদের রাশি ম্যাপ তৈরি
-    const allPlanetSigns = {};
-    planets.forEach(p => {
-        if (p.rashi && p.name) allPlanetSigns[p.name] = p.rashi;
-    });
-
-    const { recommendations, warnings } = engine.getSafeGemRecommendations(lagna.rashi, allPlanetSigns);
-
-    recommendations.forEach(r => {
-        const icon = r.priority === 1 ? '🥇' : '🥈';
-        output += `\n${icon} ${r.type}: ${r.gem}\n`;
-        output += `   গ্রহ: ${r.planet} (${r.house})\n`;
-        output += `   কারণ: ${r.reason}\n`;
-        output += `   ধাতু: ${r.metal} | আঙুল: ${r.finger}\n`;
-        output += `   ধারণের দিন: ${r.day} | ওজন: ${r.weight}\n`;
-        output += `   মন্ত্র: ${r.mantra}\n`;
-        output += `   উপকারিতা: ${r.benefits}\n`;
-    });
-
-    if (warnings.length > 0) {
-        output += "\n⚠️ সতর্কতা:\n";
-        warnings.forEach(w => output += `   • ${w}\n`);
-    }
-
-    output += "\n🕉️ রত্ন ধারণের নিয়ম: নির্দিষ্ট দিনে সকালে স্নান করে, মন্ত্র ১০৮ বার জপ করে, নির্দিষ্ট আঙুলে ধারণ করুন।\n";
-    output += "\n";
-    return output;
-}
-
-/**
- * ষড়নাড়ি চক্র + ত্রিইপাপ (HTML ফরম্যাটে — kundali.html পেজের জন্য)
- */
-generateNadiTriIpapaHTML(containerId) {
-    const moon = this.chartData.planets?.find(p => p.name === "চন্দ্র");
-    if (!moon || !moon.nakshatra) return;
-
-    const ui = new NavaTaraNadiUI();
-    ui.renderAll(moon.nakshatra, containerId);
-}
-
-/**
- * পূর্ণাঙ্গ প্রেডিকশনে এই নতুন সেকশন যোগ করার আপডেটেড generateFullPrediction()
- * (যদি আগের generateFullPrediction() আপডেট করতে চান)
- */
-generateFullPredictionWithNewFeatures() {
-    if (!this.userName) this.userName = "জাতক/জাতিকা";
-    if (!this.chartData || !this.chartData.planets) {
-        return "দুঃখিত, কুষ্ঠির ডেটা পাওয়া যায়নি।";
-    }
-
-    let output = "";
-
-    output += `🪐 শ্রী ${this.userName}-এর পূর্ণাঙ্গ পূর্ব ভারতীয় কুষ্ঠি বিশ্লেষণ\n`;
-    output += "═".repeat(50) + "\n\n";
-    output += `প্রিয় ${this.userName},\n\n`;
-    output += "আপনার জন্মছত্রের গ্রহ-নক্ষত্রের অবস্থানের উপর ভিত্তি করে এই পূর্ণাঙ্গ কুষ্ঠি বিশ্লেষণ প্রস্তুত করা হলো।\n\n";
-
-    output += this.generateBirthDetails();
-    output += this.generateMentalAnalysis();
-    output += this.generateLagnaAnalysis();
-    output += this.generateSunAnalysis();
-    output += this.generatePlanetHouseAnalysis();
-    output += this.generateTithiAnalysis();
-    output += this.generateYogaAnalysis();
-    output += this.generateKaranaAnalysis();
-    output += this.generateDashaAnalysis();
-
-    // ============ নতুন তিনটি সেকশন ============
-    output += this.generateTaraAnalysis();        // নবতারা চক্র
-    output += this.generateRatnaRecommendation(); // দ্বি-রত্ন পরামর্শ
-    // =========================================
-
-    output += this.generateRemedySection();
-
-    output += "\n" + "═".repeat(50) + "\n";
-    output += `✨ ${this.userName}, আপনার জীবন মঙ্গলময় হোক। ✨\n`;
-    output += "\n© পূর্ব ভারতীয় কুষ্ঠি সফটওয়্যার | লাহিড়ী অয়নাংশ | VSOP87 নির্ভুল গণনা\n";
-
-    return output;
-}
-
-console.log("✅ prediction-engine.js — দ্বিতীয় ভাগ: PredictionEngine-এ নতুন মেথড যোগ হয়েছে");
-console.log("🔍 generateTaraAnalysis() — নবতারা চক্র");
-console.log("🔍 generateRatnaRecommendation() — দ্বি-রত্ন পরামর্শ");
-console.log("🔍 generateNadiTriIpapaHTML('container-id') — ষড়নাড়ি + ত্রিইপাপ (HTML)");
-console.log("🔍 generateFullPredictionWithNewFeatures() — সব একসাথে");
