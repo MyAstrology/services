@@ -1953,3 +1953,428 @@ class ShannadiChakraEngine {
     }
 }
 
+/**
+ * ============================================================
+ * life-predictions.js (DETAILED VERSION)
+ * Education, Career, Marriage, Fortune — Philosophical & Expanded
+ * Language: Bengali (বাংলা) | Deep & Elaborate
+ * ============================================================
+ */
+
+class LifePredictionEngine {
+    constructor() {
+        this.planetRelations = {
+            "সূর্য": { friends: ["চন্দ্র","মঙ্গল","বৃহস্পতি"], enemies: ["শুক্র","শনি"] },
+            "চন্দ্র": { friends: ["সূর্য","বুধ"], enemies: ["শুক্র","শনি"] },
+            "মঙ্গল": { friends: ["সূর্য","চন্দ্র","বৃহস্পতি"], enemies: ["বুধ","শুক্র","শনি"] },
+            "বুধ": { friends: ["সূর্য","শুক্র"], enemies: ["চন্দ্র"] },
+            "বৃহস্পতি": { friends: ["সূর্য","চন্দ্র","মঙ্গল"], enemies: ["বুধ","শুক্র"] },
+            "শুক্র": { friends: ["বুধ","শনি"], enemies: ["সূর্য","চন্দ্র"] },
+            "শনি": { friends: ["বুধ","শুক্র"], enemies: ["সূর্য","চন্দ্র","মঙ্গল"] }
+        };
+
+        this.signs = ["মেষ","বৃষ","মিথুন","কর্কট","সিংহ","কন্যা","তুলা","বৃশ্চিক","ধনু","মকর","কুম্ভ","মীন"];
+        this.signLords = {"মেষ":"মঙ্গল","বৃষ":"শুক্র","মিথুন":"বুধ","কর্কট":"চন্দ্র","সিংহ":"সূর্য","কন্যা":"বুধ","তুলা":"শুক্র","বৃশ্চিক":"মঙ্গল","ধনু":"বৃহস্পতি","মকর":"শনি","কুম্ভ":"শনি","মীন":"বৃহস্পতি"};
+        this.exalted = {"সূর্য":"মেষ","চন্দ্র":"বৃষ","মঙ্গল":"মকর","বুধ":"কন্যা","বৃহস্পতি":"কর্কট","শুক্র":"মীন","শনি":"তুলা"};
+        this.debilitated = {"সূর্য":"তুলা","চন্দ্র":"বৃশ্চিক","মঙ্গল":"কর্কট","বুধ":"মীন","বৃহস্পতি":"মকর","শুক্র":"কন্যা","শনি":"মেষ"};
+    }
+
+    getHouseSign(lagnaSign, house) { const li = this.signs.indexOf(lagnaSign); return li === -1 ? null : this.signs[(li + house - 1) % 12]; }
+    getSignLord(sign) { return this.signLords[sign] || null; }
+    getHouse(planetSign, lagnaSign) { const pi = this.signs.indexOf(planetSign); const li = this.signs.indexOf(lagnaSign); return (pi === -1 || li === -1) ? 0 : ((pi - li + 12) % 12) + 1; }
+    areFriends(p1, p2) { return p1 === p2 || this.planetRelations[p1]?.friends?.includes(p2) || false; }
+    areEnemies(p1, p2) { return this.planetRelations[p1]?.enemies?.includes(p2) || false; }
+
+    getPlanetScore(planetName, chartData) {
+        const p = chartData.planets?.find(pl => pl.name === planetName);
+        if (!p) return 0;
+        let score = 0;
+        if ([1,4,5,7,9,10].includes(p.house)) score += 2;
+        else if ([6,8,12].includes(p.house)) score -= 2;
+        if (this.exalted[planetName] === p.rashi) score += 3;
+        else if (this.debilitated[planetName] === p.rashi) score -= 3;
+        return score;
+    }
+
+    // ==================== ১. পড়াশোনা ====================
+    analyzeEducation(chartData) {
+        const lagna = chartData.lagna;
+        const planets = chartData.planets;
+        if (!lagna || !planets) return null;
+
+        const fifthLord = this.getSignLord(this.getHouseSign(lagna.rashi, 5));
+        const ninthLord = this.getSignLord(this.getHouseSign(lagna.rashi, 9));
+        const fourthLord = this.getSignLord(this.getHouseSign(lagna.rashi, 4));
+        const secondLord = this.getSignLord(this.getHouseSign(lagna.rashi, 2));
+
+        const fifthLordPlanet = planets.find(p => p.name === fifthLord);
+        const ninthLordPlanet = planets.find(p => p.name === ninthLord);
+        const mercury = planets.find(p => p.name === "বুধ");
+        const jupiter = planets.find(p => p.name === "বৃহস্পতি");
+        const moon = planets.find(p => p.name === "চন্দ্র");
+
+        let score = 0;
+        const goodLords = ["বৃহস্পতি", "বুধ", "শুক্র", "চন্দ্র"];
+        const badLords = ["শনি", "মঙ্গল", "রাহু", "কেতু"];
+
+        if (goodLords.includes(fifthLord)) score += 3; else if (badLords.includes(fifthLord)) score -= 1;
+        if (goodLords.includes(ninthLord)) score += 3; else if (badLords.includes(ninthLord)) score -= 1;
+        if (this.areFriends(fifthLord, ninthLord)) score += 2;
+        if (this.areEnemies(fifthLord, ninthLord)) score -= 2;
+        score += this.getPlanetScore("বুধ", chartData);
+        score += this.getPlanetScore("বৃহস্পতি", chartData);
+        score += this.getPlanetScore("চন্দ্র", chartData);
+
+        const fifthHousePlanets = planets.filter(p => p.house === 5);
+        const ninthHousePlanets = planets.filter(p => p.house === 9);
+        const fourthHousePlanets = planets.filter(p => p.house === 4);
+
+        for (const pp of fifthHousePlanets) { if (["রাহু","শনি","মঙ্গল","কেতু"].includes(pp.name)) score -= 1; else score += 1; }
+        for (const pp of ninthHousePlanets) { if (["রাহু","শনি","মঙ্গল","কেতু"].includes(pp.name)) score -= 1; else score += 1; }
+        for (const pp of fourthHousePlanets) { if (["রাহু","শনি","মঙ্গল","কেতু"].includes(pp.name)) score -= 1; }
+
+        const dasha = chartData.dashaInfo?.currentMD;
+        if (dasha && [fifthLord, ninthLord, "বুধ", "বৃহস্পতি"].includes(dasha.lord)) score += 2;
+
+        // বিস্তারিত প্রেডিকশন
+        let level = "", prediction = "";
+
+        if (score >= 10) {
+            level = "অসাধারণ";
+            prediction = `আপনার কুষ্ঠিতে বিদ্যা ও উচ্চশিক্ষার যোগ অত্যন্ত প্রবল ও সুদৃঢ়। পঞ্চম ভাবের অধিপতি ${fifthLord} এবং নবম ভাবের অধিপতি ${ninthLord}—এই দুই গ্রহই আপনার জ্ঞানার্জনের পথে সহায়ক শক্তি হিসেবে দাঁড়িয়ে আছে। পঞ্চম পতি ${fifthLord} ${fifthLordPlanet ? (fifthLordPlanet.house + 'ম ভাবে অবস্থান করছেন, যা আপনার বুদ্ধিবৃত্তির বিকাশে সহায়ক।') : 'আপনার বুদ্ধির কারক হিসেবে কাজ করছেন।'} নবম পতি ${ninthLord} ${ninthLordPlanet ? (ninthLordPlanet.house + 'ম ভাবে আছেন—এটি উচ্চশিক্ষা ও ভাগ্যকে সংযুক্ত করছে।') : 'উচ্চশিক্ষার দ্বার উন্মুক্ত করছেন।'}
+
+বুধ আপনার বুদ্ধির গ্রহ—${mercury ? (mercury.house + 'ম ভাবে ' + mercury.rashi + ' রাশিতে অবস্থান করছে।') : 'আপনার চিন্তাশক্তিকে প্রখর করছে।'} ${this.exalted["বুধ"] === mercury?.rashi ? 'বুধ তুঙ্গস্থ কন্যা রাশিতে—এটি আপনার বুদ্ধিমত্তাকে চরম শিখরে পৌঁছে দিয়েছে। আপনি যেকোনো বিষয় সহজেই আয়ত্ত করতে পারেন, জটিল তত্ত্বও আপনার কাছে জলভাত।' : ''} ${this.debilitated["বুধ"] === mercury?.rashi ? 'তবে বুধ নীচস্থ মীন রাশিতে—পড়ায় কিছুটা অস্থিরতা আসতে পারে, কিন্তু চেষ্টা করলে তা কাটিয়ে উঠবেন।' : ''}
+
+বৃহস্পতি জ্ঞানের গ্রহ—${jupiter ? (jupiter.house + 'ম ভাবে ' + jupiter.rashi + ' রাশিতে আছেন।') : 'আপনার জ্ঞানপিপাসা জাগ্রত করছেন।'} ${this.exalted["বৃহস্পতি"] === jupiter?.rashi ? 'বৃহস্পতি তুঙ্গস্থ কর্কট রাশিতে—এটি পরম শুভ লক্ষণ। উচ্চশিক্ষা, গবেষণা ও বিদেশে পড়াশোনার পথ সম্পূর্ণ উন্মুক্ত।' : ''}
+
+চন্দ্র আপনার মনের গ্রহ—${moon ? (moon.house + 'ম ভাবে আছেন।') : ''} ${moon && [1,4,5,7,9,10].includes(moon.house) ? 'চন্দ্র শুভ ভাবে থাকায় আপনার মন পড়াশোনায় স্থির থাকবে।' : 'চন্দ্র দুঃস্থানে থাকায় মাঝেমধ্যে পড়ায় মন বসাতে কষ্ট হতে পারে—তবে অভ্যাসে সবকিছু ঠিক হবে।'}
+
+${dasha && [fifthLord, ninthLord, "বুধ", "বৃহস্পতি"].includes(dasha.lord) ? `বর্তমানে আপনার ${dasha.lord} মহাদশা চলছে—যা শিক্ষার পক্ষে অত্যন্ত অনুকূল। এই দশায় আপনি উচ্চশিক্ষায় বড় সাফল্য পাবেন।` : ''}
+
+আপনি উচ্চশিক্ষায় অসামান্য সাফল্য পাবেন—গবেষণা, বিদেশে পড়াশোনা বা বৃত্তি লাভের সম্ভাবনা প্রবল। আপনার জ্ঞান শুধু ডিগ্রির জন্য নয়, সত্যিকারের বোধির জন্য—এই আপনার জীবনের সবচেয়ে বড় প্রাপ্তি। পঞ্চম ভাবের গ্রহগুলো আপনার সৃজনশীলতাকে জাগ্রত করবে, আর নবম ভাব আপনাকে দেবে দিশা। মনে রাখবেন—যে জ্ঞান অন্যের কল্যাণে লাগে, সেই জ্ঞানই প্রকৃত বিদ্যা।`;
+        } else if (score >= 6) {
+            level = "ভালো";
+            prediction = `আপনার পড়াশোনার যোগ ভালো ও আশাপ্রদ। পঞ্চম পতি ${fifthLord} এবং নবম পতি ${ninthLord}—উভয়ের অবস্থান মোটামুটি শুভ, তবে কিছুটা চ্যালেঞ্জও আছে। ${fifthLordPlanet ? (fifthLordPlanet.house + 'ম ভাবে পঞ্চম পতি থাকায় আপনার বুদ্ধির বিকাশ স্বাভাবিক গতিতে হবে।') : ''} ${ninthLordPlanet ? ('নবম পতি ' + ninthLordPlanet.house + 'ম ভাবে থাকায় উচ্চশিক্ষার পথ প্রশস্ত হলেও, তার জন্য পরিশ্রম করতে হবে।') : ''}
+
+${mercury ? ('বুধ আপনার ' + mercury.house + 'ম ভাবে ' + mercury.rashi + ' রাশিতে—এটি আপনার চিন্তাশক্তিকে শানিত করছে।') : ''} ${jupiter ? ('বৃহস্পতি ' + jupiter.house + 'ম ভাবে—জ্ঞানের পথ দেখাচ্ছেন, তবে কিছুটা ধীর গতিতে।') : ''}
+
+আপনি দেশের ভালো প্রতিষ্ঠান থেকে ডিগ্রি লাভের সম্ভাবনা আছে। বিদেশে পড়ার সুযোগ এলে তাও গ্রহণ করতে পারেন—কিন্তু তা কিছুটা চ্যালেঞ্জিং হবে। ${dasha && [fifthLord, ninthLord, "বুধ", "বৃহস্পতি"].includes(dasha.lord) ? 'বর্তমান দশা শিক্ষার পক্ষে সহায়ক—এই সময়টার সদ্ব্যবহার করুন।' : 'বর্তমান দশা শিক্ষার জন্য বিশেষ সহায়ক নয়—তবে চেষ্টা চালিয়ে যান।'}
+
+মনে রাখবেন—যে ফুল ধীরে ফোটে, তার ঘ্রাণ সবচেয়ে মিষ্টি হয়। যে বিদ্যা অর্জিত হয় পরিশ্রমে, তার মূল্য অপরিসীম। আপনার জ্ঞানার্জনের পথ বাধামুক্ত নয়, কিন্তু অসম্ভবও নয়। পড়াশোনার পাশাপাশি ব্যবহারিক জ্ঞানও অর্জন করুন—দুটোই আপনাকে সফল করবে।`;
+        } else if (score >= 3) {
+            level = "মধ্যম";
+            prediction = `আপনার শিক্ষাজীবনে কিছু ওঠাপড়া থাকবে। পঞ্চমপতি ${fifthLord} বা নবমপতি ${ninthLord} কিছুটা দুর্বল অবস্থানে থাকায় পড়াশোনায় বাধা আসতে পারে। ${fifthLordPlanet ? (fifthLordPlanet.house + 'ম ভাবে পঞ্চম পতি থাকায় বুদ্ধির বিকাশে বাধা আসতে পারে।') : ''} ${ninthLordPlanet ? ('নবম পতি ' + ninthLordPlanet.house + 'ম ভাবে—উচ্চশিক্ষার পথ সুগম নয়, চেষ্টা করতে হবে।') : ''}
+
+${fifthHousePlanets.filter(p => ["রাহু","শনি","মঙ্গল","কেতু"].includes(p.name)).length > 0 ? 'পঞ্চম ভাবে পাপগ্রহ থাকায় পড়ায় মনোযোগের অভাব বা বাধা আসতে পারে।' : ''} ${ninthHousePlanets.filter(p => ["রাহু","শনি","মঙ্গল","কেতু"].includes(p.name)).length > 0 ? 'নবম ভাবে পাপগ্রহ থাকায় উচ্চশিক্ষায় বিঘ্ন ঘটতে পারে।' : ''}
+
+তবে এটি অসম্ভব নয়—চেষ্টা ও অধ্যবসায় দিয়ে আপনি সফল হবেন। পেশাদারি কোর্স, ডিপ্লোমা বা ভোকেশনাল ট্রেনিং আপনার জন্য বেশি উপযোগী হতে পারে। তাত্ত্বিক পড়াশোনার চেয়ে হাতেকলমে শেখা আপনার পক্ষে ভালো ফল দেবে। মনে রাখবেন—শিক্ষা শুধু বইয়ের পাতায় নয়, জীবনেও হয়। যে নদী পাহাড় ডিঙিয়ে আসে, তার স্রোত সবচেয়ে শক্তিশালী হয়—আপনার সংগ্রামই হোক আপনার শক্তি।`;
+        } else {
+            level = "চ্যালেঞ্জিং";
+            prediction = `আপনার কুষ্ঠিতে উচ্চশিক্ষার পথ কিছুটা কঠিন ও চ্যালেঞ্জিং। পঞ্চম ও নবম ভাবের অধিপতি দুর্বল অবস্থানে থাকায়, এবং পাপগ্রহের প্রভাবে পড়াশোনায় বিঘ্ন আসতে পারে। ${fifthLordPlanet ? ('পঞ্চম পতি ' + fifthLordPlanet.house + 'ম ভাবে—দুর্বল অবস্থানে।') : ''} ${ninthLordPlanet ? ('নবম পতি ' + ninthLordPlanet.house + 'ম ভাবে—উচ্চশিক্ষার পথ রুদ্ধ।') : ''}
+
+${fifthHousePlanets.length > 0 ? 'পঞ্চম ভাবে পাপগ্রহের প্রভাবে মন অস্থির থাকবে, পড়ায় বসতে কষ্ট হবে।' : ''} ${ninthHousePlanets.length > 0 ? 'নবম ভাবেও অশুভ প্রভাব—উচ্চশিক্ষার পরিকল্পনা বাধাগ্রস্ত হতে পারে।' : ''} ${fourthHousePlanets.length > 0 ? 'চতুর্থ ভাবেও পাপগ্রহ—পড়ার পরিবেশও অনুকূল নয়।' : ''}
+
+কিন্তু হাল ছাড়বেন না। ব্যবহারিক জ্ঞান, হাতেকলমে শিক্ষা বা কারিগরি প্রশিক্ষণের দিকে ঝুঁকুন—সেখানেই আপনার সাফল্য লুকিয়ে আছে। তাত্ত্বিক ডিগ্রির পেছনে না ছুটে, দক্ষতা অর্জন করুন। ${dasha && ["শনি","মঙ্গল"].includes(dasha.lord) ? 'বর্তমান দশা কঠিন—কিন্তু এই সময়ই আপনাকে পরিণত করবে।' : ''}
+
+মনে রাখবেন—অ্যালবার্ট আইনস্টাইন স্কুলে ফেল করেছিলেন, স্টিভ জবস কলেজ ড্রপআউট ছিলেন। শিক্ষা প্রতিষ্ঠানের গ্রেড কখনো মানুষের প্রকৃত মূল্য নির্ধারণ করে না। আপনার লড়াই, আপনার চেষ্টা—সেটাই আপনার প্রকৃত শিক্ষা।`;
+        }
+
+        return { area: "পড়াশোনা", level, score, prediction };
+    }
+
+    // ==================== ২. কর্ম ====================
+    analyzeCareer(chartData) {
+        const lagna = chartData.lagna;
+        const planets = chartData.planets;
+        if (!lagna || !planets) return null;
+
+        const tenthLord = this.getSignLord(this.getHouseSign(lagna.rashi, 10));
+        const sixthLord = this.getSignLord(this.getHouseSign(lagna.rashi, 6));
+        const secondLord = this.getSignLord(this.getHouseSign(lagna.rashi, 2));
+        const eleventhLord = this.getSignLord(this.getHouseSign(lagna.rashi, 11));
+
+        const tenthLordPlanet = planets.find(p => p.name === tenthLord);
+        const tenthHousePlanets = planets.filter(p => p.house === 10);
+        const sun = planets.find(p => p.name === "সূর্য");
+        const saturn = planets.find(p => p.name === "শনি");
+        const mars = planets.find(p => p.name === "মঙ্গল");
+
+        let score = 0;
+        score += this.getPlanetScore(tenthLord, chartData);
+        score += this.getPlanetScore("সূর্য", chartData);
+        score += this.getPlanetScore("শনি", chartData);
+        if ([1,4,5,7,9,10].includes(tenthLordPlanet?.house || 0)) score += 3;
+        if ([6,8,12].includes(tenthLordPlanet?.house || 0)) score -= 3;
+
+        let careerType = "";
+        const sun10 = planets.find(p => p.name === "সূর্য" && p.house === 10);
+        const sat10 = planets.find(p => p.name === "শনি" && p.house === 10);
+        const mer10 = planets.find(p => p.name === "বুধ" && p.house === 10);
+        const mar10 = planets.find(p => p.name === "মঙ্গল" && p.house === 10);
+        const ven10 = planets.find(p => p.name === "শুক্র" && p.house === 10);
+        const jup10 = planets.find(p => p.name === "বৃহস্পতি" && p.house === 10);
+
+        if (sun10) careerType = "সরকারি চাকরি, প্রশাসনিক পদ, রাজনীতি, নেতৃত্বমূলক কাজ ও উচ্চপদস্থ অফিসার";
+        else if (sat10) careerType = "ইঞ্জিনিয়ারিং, নির্মাণ শিল্প, খনি, আইন, বিচারক, দীর্ঘমেয়াদী প্রশাসনিক চাকরি";
+        else if (mer10) careerType = "ব্যবসা-বাণিজ্য, লেখালেখি, সাংবাদিকতা, পরামর্শদাতা, আইটি, অ্যাকাউন্টিং, কূটনীতি";
+        else if (mar10) careerType = "সেনাবাহিনী, পুলিশ, খেলাধুলা, সার্জন, ইঞ্জিনিয়ারিং, অগ্নিনির্বাপক, ক্রীড়া প্রশিক্ষক";
+        else if (ven10) careerType = "শিল্পকলা, সঙ্গীত, ফ্যাশন ডিজাইন, বিলাসদ্রব্য, কূটনীতি, হোটেল ব্যবসা, বিউটি ইন্ডাস্ট্রি";
+        else if (jup10) careerType = "শিক্ষকতা, ধর্মগুরু, আইন, ব্যাংকিং, প্রশাসন, পরামর্শদাতা, প্রকাশনা";
+        else careerType = "মিশ্র—চাকরি ও ব্যবসা উভয়ই সম্ভব, অথবা ফ্রিল্যান্সিং";
+
+        const dasha = chartData.dashaInfo?.currentMD;
+        if (dasha && [tenthLord, sixthLord, eleventhLord].includes(dasha.lord)) score += 2;
+
+        let level = "", prediction = "";
+
+        if (score >= 10) {
+            level = "অসাধারণ";
+            prediction = `আপনার কর্মজীবন অত্যন্ত সফল ও সম্মানজনক হবে। দশম পতি ${tenthLord} অত্যন্ত বলবান অবস্থায় আছেন—${tenthLordPlanet ? (tenthLordPlanet.house + 'ম ভাবে ' + tenthLordPlanet.rashi + ' রাশিতে অবস্থান করছেন।') : 'আপনার কর্মজীবনের ভিত মজবুত করছেন।'} ${this.exalted[tenthLord] === tenthLordPlanet?.rashi ? tenthLord + ' তুঙ্গস্থ—এটি রাজযোগের ইঙ্গিত। আপনার কর্মক্ষেত্রে আপনি অপ্রতিদ্বন্দ্বী হয়ে উঠবেন।' : ''}
+
+${careerType}—আপনার জন্য সবচেয়ে উপযোগী পেশা। আপনি কর্মক্ষেত্রে উচ্চপদ, সম্মান ও স্বীকৃতি পাবেন। আপনার নেতৃত্বগুণ এতটাই স্পষ্ট হবে যে সহকর্মীরা আপনাকে অনুসরণ করবে, উর্ধ্বতনরা আপনার উপর আস্থা রাখবে।
+
+${sun && sun.house === 10 ? 'সূর্য দশম ভাবে থাকায় আপনি স্বভাবতই নেতা—প্রশাসন বা রাজনীতিতে আপনার বিশেষ সাফল্য আসবে।' : ''} ${saturn && saturn.house === 10 ? 'শনি দশম ভাবে—আপনি ধীরে ধীরে কিন্তু নিশ্চিতভাবে শিখরে পৌঁছাবেন। আপনার সাফল্য হবে দীর্ঘস্থায়ী।' : ''}
+
+${dasha && [tenthLord].includes(dasha.lord) ? 'বর্তমানে আপনার দশম পতির মহাদশা/অন্তর্দশা চলছে—এটি কর্মজীবনের শ্রেষ্ঠ সময়। পদোন্নতি বা নতুন সুযোগ আসতে পারে।' : ''}
+
+তবে সাফল্য যেন অহংকার না আনে। সূর্যের মতো বিনয়ী থেকে আলো ছড়ান। আপনার সাফল্যে অন্যরাও যেন আলোকিত হয়—এই আপনার জীবনের সবচেয়ে বড় কর্মযোগ।`;
+        } else if (score >= 6) {
+            level = "ভালো";
+            prediction = `আপনার কর্মজীবন ধীরে ধীরে কিন্তু নিশ্চিতভাবে উন্নতি করবে। দশম পতি ${tenthLord}-এর অবস্থান মোটামুটি শুভ—${tenthLordPlanet ? (tenthLordPlanet.house + 'ম ভাবে আছেন।') : ''} ${careerType}—আপনার জন্য উপযুক্ত পেশা।
+
+${tenthHousePlanets.length > 0 ? 'দশম ভাবে গ্রহের উপস্থিতি আপনার কর্মজীবনকে প্রভাবিত করছে—' + tenthHousePlanets.map(p => p.name).join(', ') + '।' : 'দশম ভাবে কোনো গ্রহ নেই—আপনার কর্মজীবন স্থিতিশীল থাকবে।'}
+
+পরিশ্রম করুন, ধৈর্য ধরুন—যে গাছ ধীরে বাড়ে, তার শিকড় গভীরে যায়। ${saturn ? 'শনি আপনার কর্মজীবনে ধীর গতির ইঙ্গিত দিচ্ছে—কিন্তু শনির দেওয়া সাফল্যই সবচেয়ে স্থায়ী হয়।' : ''} ${dasha && [tenthLord, sixthLord, eleventhLord].includes(dasha.lord) ? 'বর্তমান দশা কর্মের পক্ষে সহায়ক।' : 'বর্তমান দশায় কিছু ধৈর্য ধরতে হবে।'}
+
+মনে রাখবেন—যে মানুষ নিজের কাজকে ভালোবাসে, তার কাছে প্রতিদিনই ছুটির দিন। আপনি আপনার কাজকে ভালোবাসতে শিখুন, সাফল্য আপনার পেছনে ছুটবে।`;
+        } else if (score >= 3) {
+            level = "মধ্যম";
+            prediction = `আপনার কর্মজীবনে ওঠাপড়া থাকবে। দশম পতি ${tenthLord} কিছুটা দুর্বল অবস্থানে—${tenthLordPlanet ? (tenthLordPlanet.house + 'ম ভাবে থাকায়') : ''} চাকরি বা ব্যবসায় স্থিতিশীলতা পেতে সময় লাগবে। ${careerType}—চেষ্টা করতে পারেন, তবে সাবধানতা প্রয়োজন।
+
+${tenthHousePlanets.filter(p => ["রাহু","কেতু","শনি","মঙ্গল"].includes(p.name)).length > 0 ? 'দশম ভাবে পাপগ্রহের প্রভাবে কর্মক্ষেত্রে প্রতিযোগিতা ও ষড়যন্ত্রের সম্মুখীন হতে পারেন।' : ''}
+
+কিন্তু হাল ছাড়বেন না—যে আগুন ধীরে জ্বলে, তার তাপ দীর্ঘস্থায়ী হয়। ${mars ? 'মঙ্গলের প্রভাবে আপনি লড়াই করতে জানেন—এই গুণই আপনাকে সফল করবে।' : ''} ${dasha && ["শনি","মঙ্গল"].includes(dasha.lord) ? 'বর্তমান দশা কঠিন—কিন্তু এই সময়ই আপনাকে ভবিষ্যতের জন্য প্রস্তুত করছে।' : ''}
+
+মনে রাখবেন—যে সূর্য আজ মাথার উপরে, তাকেও সন্ধ্যায় অস্ত যেতে হয়। কিন্তু পরের দিন সে আবার ওঠে, আরও উজ্জ্বল হয়ে। আপনার ক্যারিয়ারও তেমনই—পতন মানেই শেষ নয়, তা নতুন উত্থানেরই পূর্বাভাস।`;
+        } else {
+            level = "চ্যালেঞ্জিং";
+            prediction = `আপনার কর্মজীবন সংগ্রামপূর্ণ হতে পারে। দশম পতি ${tenthLord} দুর্বল অবস্থানে—${tenthLordPlanet ? (tenthLordPlanet.house + 'ম ভাবে, যা কর্মজীবনের জন্য চ্যালেঞ্জিং।') : ''} ${careerType}—ক্ষেত্রে গেলে বিশেষ সাবধানতা প্রয়োজন।
+
+${tenthHousePlanets.length > 0 && tenthHousePlanets.every(p => ["রাহু","কেতু","শনি","মঙ্গল"].includes(p.name)) ? 'দশম ভাবে একাধিক পাপগ্রহ—কর্মক্ষেত্রে তীব্র প্রতিযোগিতা, ষড়যন্ত্র ও অনিশ্চয়তা থাকবে।' : ''}
+
+কিন্তু এই সংগ্রামই আপনাকে শক্তিশালী করবে—যেমন নদী পাথর কেটে পথ তৈরি করে। ${saturn ? 'শনি আপনার ওপর কঠোর—কিন্তু শনি যাকে পরীক্ষা নেয়, তাকেই সাফল্যের শিখরে তোলে।' : ''}
+
+${dasha && ["শনি","মঙ্গল","কেতু"].includes(dasha.lord) ? 'বর্তমান দশা অত্যন্ত কঠিন—ধৈর্য ও অধ্যবসায়ই আপনার একমাত্র সম্বল।' : ''} ফ্রিল্যান্সিং, নিজস্ব উদ্যোগ বা একাধিক উৎস থেকে আয়ের চেষ্টা করুন। এক জায়গায় নির্ভর না করে, বিকল্প পথ তৈরি করুন। মনে রাখবেন—যে পাখি ঝড়ে উড়তে শেখে, তার ডানা সবচেয়ে শক্তিশালী হয়।`;
+        }
+
+        return { area: "কর্ম", level, score, careerType, prediction };
+    }
+
+    // ==================== ৩. বিবাহ ====================
+    analyzeMarriage(chartData) {
+        const lagna = chartData.lagna;
+        const planets = chartData.planets;
+        if (!lagna || !planets) return null;
+
+        const seventhLord = this.getSignLord(this.getHouseSign(lagna.rashi, 7));
+        const eighthLord = this.getSignLord(this.getHouseSign(lagna.rashi, 8));
+
+        const seventhLordPlanet = planets.find(p => p.name === seventhLord);
+        const seventhHousePlanets = planets.filter(p => p.house === 7);
+        const venus = planets.find(p => p.name === "শুক্র");
+        const jupiter = planets.find(p => p.name === "বৃহস্পতি");
+        const mars = planets.find(p => p.name === "মঙ্গল");
+
+        let score = 0;
+        score += this.getPlanetScore(seventhLord, chartData);
+        score += this.getPlanetScore("শুক্র", chartData);
+        score += this.getPlanetScore("বৃহস্পতি", chartData);
+
+        const isManglik = mars && [1,2,4,7,8,12].includes(mars.house);
+        if (isManglik) score -= 2;
+
+        for (const pp of seventhHousePlanets) {
+            if (["বৃহস্পতি","শুক্র","বুধ","চন্দ্র"].includes(pp.name)) score += 3;
+            if (["রাহু","কেতু","শনি","মঙ্গল"].includes(pp.name)) score -= 2;
+            if (pp.name === "শনি") score += 1;
+        }
+
+        const dasha = chartData.dashaInfo?.currentMD;
+        if (dasha && [seventhLord, "শুক্র", "বৃহস্পতি"].includes(dasha.lord)) score += 2;
+
+        let level = "", prediction = "";
+
+        if (score >= 10) {
+            level = "অসাধারণ";
+            prediction = `আপনার দাম্পত্য জীবন অত্যন্ত সুখের হবে। সপ্তম পতি ${seventhLord} বলবান অবস্থায় আছেন—${seventhLordPlanet ? (seventhLordPlanet.house + 'ম ভাবে ' + seventhLordPlanet.rashi + ' রাশিতে।') : ''} শুক্র-বৃহস্পতির আশীর্বাদ আপনার উপর বর্ষিত হচ্ছে।
+
+${venus ? ('শুক্র আপনার ' + venus.house + 'ম ভাবে ' + venus.rashi + ' রাশিতে—প্রেম ও দাম্পত্যের কারক হিসেবে শুভ ফল দিচ্ছেন।') : ''} ${jupiter ? ('বৃহস্পতি ' + jupiter.house + 'ম ভাবে—নারীর স্বামীকারক হিসেবে শুভ।') : ''}
+
+${seventhHousePlanets.filter(p => ["বৃহস্পতি","শুক্র","বুধ","চন্দ্র"].includes(p.name)).length > 0 ? 'সপ্তম ভাবে শুভ গ্রহের উপস্থিতি আপনার দাম্পত্য জীবনকে স্বর্গীয় করে তুলবে।' : ''}
+
+আপনার জীবনসঙ্গী হবেন গুণী, সুন্দর ও সহৃদয়। দাম্পত্য জীবন হবে পূর্ণিমার চাঁদের মতো—স্নিগ্ধ, শান্ত ও পরিপূর্ণ। ${isManglik ? 'মাঙ্গলিক দোষ থাকলেও অন্যান্য শুভ যোগের কারণে তার প্রভাব প্রশমিত হবে।' : 'মাঙ্গলিক দোষ নেই—নিশ্চিন্ত থাকুন।'}
+
+${dasha && [seventhLord, "শুক্র", "বৃহস্পতি"].includes(dasha.lord) ? 'বর্তমান দশা বিবাহের পক্ষে অত্যন্ত অনুকূল—শীঘ্রই শুভ সংবাদ পেতে পারেন।' : ''}
+
+মনে রাখবেন—প্রকৃত দাম্পত্য হলো দুই আত্মার মিলন, যা জন্ম-জন্মান্তরের বন্ধন।`;
+        } else if (score >= 6) {
+            level = "ভালো";
+            prediction = `আপনার দাম্পত্য জীবন সুখের হবে। সপ্তম পতি ${seventhLord}-এর অবস্থান মোটামুটি শুভ—${seventhLordPlanet ? (seventhLordPlanet.house + 'ম ভাবে।') : ''}
+
+${venus ? ('শুক্রের অবস্থান—' + venus.house + 'ম ভাবে, যা আপনার প্রেমজীবনকে প্রভাবিত করছে।') : ''} ${jupiter ? ('বৃহস্পতি ' + jupiter.house + 'ম ভাবে—দাম্পত্যে স্থিতিশীলতা দিচ্ছেন।') : ''}
+
+${isManglik ? 'মাঙ্গলিক দোষ আছে—তবে তা সামান্য, প্রতিকারে কেটে যাবে। হনুমান পূজা ও মঙ্গলবার উপবাস করুন।' : 'মাঙ্গলিক দোষ নেই—নিশ্চিন্ত থাকুন।'}
+
+${seventhHousePlanets.length > 0 ? 'সপ্তম ভাবে গ্রহের উপস্থিতি—আপনার জীবনসঙ্গী হবেন বিশেষ ব্যক্তিত্বের অধিকারী।' : ''}
+
+আপনার জীবনসঙ্গী হবেন বিশ্বস্ত ও যত্নশীল। ${dasha && [seventhLord, "শুক্র", "বৃহস্পতি"].includes(dasha.lord) ? 'বর্তমান দশা অনুকূল—বিয়ের সম্ভাবনা আছে।' : 'বিয়ের জন্য সঠিক সময়ের অপেক্ষা করুন।'}
+
+মনে রাখবেন—ভালোবাসা মানে পরস্পরকে বদলানো নয়, পরস্পরকে গ্রহণ করা।`;
+        } else if (score >= 3) {
+            level = "মধ্যম";
+            prediction = `দাম্পত্য জীবনে কিছু চ্যালেঞ্জ আসবে। সপ্তম পতি ${seventhLord} কিছুটা দুর্বল বা পাপগ্রহের প্রভাবে থাকায়—${isManglik ? 'মাঙ্গলিক দোষ ও অন্যান্য বাধা রয়েছে।' : 'সম্পর্কে টানাপোড়েন আসতে পারে।'}
+
+${seventhHousePlanets.filter(p => ["রাহু","কেতু","শনি","মঙ্গল"].includes(p.name)).length > 0 ? 'সপ্তম ভাবে পাপগ্রহ—দাম্পত্য জীবনে অশান্তি ও ভুল বোঝাবুঝির সম্ভাবনা আছে।' : ''} ${seventhHousePlanets.find(p => p.name === "শনি") ? 'শনি সপ্তম ভাবে—বিয়ে দেরিতে হবে, কিন্তু সম্পর্ক স্থায়ী হবে।' : ''}
+
+তবে ধৈর্য ও বোঝাপড়া দিয়ে সব সমস্যার সমাধান হবে। ${isManglik ? 'মাঙ্গলিক দোষের প্রতিকার করুন—কুম্ভবিবাহ বা হনুমান পূজা উপকারী।' : ''} ${dasha && ["শনি","মঙ্গল"].includes(dasha.lord) ? 'বর্তমান দশায় বিয়েতে বিলম্ব হতে পারে।' : ''}
+
+মনে রাখবেন—যে নদী বাঁক নেয়, সে-ই সাগরে পৌঁছায়। সম্পর্কেও বাঁক আসবে—সোজা পথে চলার চেষ্টা করবেন না, বাঁক মেনে চলুন।`;
+        } else {
+            level = "চ্যালেঞ্জিং";
+            prediction = `দাম্পত্য জীবনে বড় চ্যালেঞ্জ আছে। সপ্তম ভাবে পাপগ্রহ বা সপ্তম পতি ${seventhLord} দুর্বল অবস্থানে। ${isManglik ? 'মাঙ্গলিক দোষ প্রবল—বিশেষ প্রতিকার আবশ্যক। কুম্ভবিবাহ, হনুমান চালিশা ও মঙ্গলবার উপবাস করুন।' : 'বিয়েতে দেরি ও অশান্তির সম্ভাবনা আছে।'}
+
+${seventhHousePlanets.length > 0 ? 'সপ্তম ভাবে পাপগ্রহের আধিক্য—একাধিক বিয়ে, বিবাহ বিচ্ছেদ বা দাম্পত্য জীবনে চরম অশান্তির ইঙ্গিত।' : ''}
+
+${dasha && ["শনি","মঙ্গল","রাহু","কেতু"].includes(dasha.lord) ? 'বর্তমান দশা বিবাহের পক্ষে অশুভ—তাড়াহুড়ো করবেন না।' : ''}
+
+মনে রাখবেন—যে সম্পর্ক ঝড় সহ্য করে, তা-ই সবচেয়ে মজবুত হয়। কিন্তু ঝড় যদি সম্পর্ক ভেঙে দেয়, তবে বুঝতে হবে সেই সম্পর্ক দুর্বল ছিলই। নিজের আত্মসম্মান বজায় রাখুন—কারও জন্য নিজেকে ধ্বংস করবেন না।`;
+        }
+
+        return { area: "বিবাহ", level, score, isManglik, prediction };
+    }
+
+    // ==================== ৪. ভাগ্য ====================
+    analyzeFortune(chartData) {
+        const lagna = chartData.lagna;
+        const planets = chartData.planets;
+        if (!lagna || !planets) return null;
+
+        const ninthLord = this.getSignLord(this.getHouseSign(lagna.rashi, 9));
+        const ninthLordPlanet = planets.find(p => p.name === ninthLord);
+        const ninthHousePlanets = planets.filter(p => p.house === 9);
+        const jupiter = planets.find(p => p.name === "বৃহস্পতি");
+
+        let score = 0;
+        score += this.getPlanetScore(ninthLord, chartData);
+        score += this.getPlanetScore("বৃহস্পতি", chartData);
+
+        for (const pp of ninthHousePlanets) {
+            if (["বৃহস্পতি","শুক্র","বুধ","চন্দ্র","সূর্য"].includes(pp.name)) score += 3;
+            if (["রাহু","কেতু","শনি","মঙ্গল"].includes(pp.name)) score -= 2;
+        }
+
+        if (ninthLordPlanet && [1,4,5,7,9,10].includes(ninthLordPlanet.house)) score += 3;
+        if (ninthLordPlanet && [6,8,12].includes(ninthLordPlanet.house)) score -= 3;
+
+        const dasha = chartData.dashaInfo?.currentMD;
+        if (dasha && [ninthLord, "বৃহস্পতি"].includes(dasha.lord)) score += 2;
+
+        let level = "", prediction = "";
+
+        if (score >= 10) {
+            level = "অসাধারণ";
+            prediction = `আপনার ভাগ্য অত্যন্ত প্রসন্ন ও শক্তিশালী। নবম পতি ${ninthLord} পরম শুভ অবস্থানে আছেন—${ninthLordPlanet ? (ninthLordPlanet.house + 'ম ভাবে ' + ninthLordPlanet.rashi + ' রাশিতে।') : ''} বৃহস্পতির অনুগ্রহ আপনার উপর সম্পূর্ণরূপে বর্ষিত হচ্ছে।
+
+${jupiter ? ('বৃহস্পতি ' + jupiter.house + 'ম ভাবে ' + jupiter.rashi + ' রাশিতে—ভাগ্যের কারক হিসেবে অত্যন্ত শুভ।') : ''} ${this.exalted["বৃহস্পতি"] === jupiter?.rashi ? 'বৃহস্পতি তুঙ্গস্থ কর্কট রাশিতে—এটি পরম শুভ লক্ষণ। আপনার ভাগ্য স্বয়ং দেবগুরুর হাতে।' : ''}
+
+${ninthHousePlanets.filter(p => ["বৃহস্পতি","শুক্র","বুধ","চন্দ্র","সূর্য"].includes(p.name)).length > 0 ? 'নবম ভাবে শুভ গ্রহের উপস্থিতি আপনার ভাগ্যকে বহুগুণে বাড়িয়ে দিয়েছে।' : ''}
+
+আপনি যেখানেই হাত দেবেন, সাফল্য আসবে—যেন ভাগ্য নিজেই আপনার জন্য পথ তৈরি করে রেখেছে। জীবনে বড় কোনো অভাব স্পর্শ করবে না। ${dasha && [ninthLord, "বৃহস্পতি"].includes(dasha.lord) ? 'বর্তমান দশা ভাগ্যের পক্ষে অত্যন্ত অনুকূল—এই সময় যা শুরু করবেন, সফল হবেন।' : ''}
+
+তীর্থযাত্রা ও দান-ধ্যানে আপনার ভাগ্য আরও বৃদ্ধি পাবে। মনে রাখবেন—ভাগ্য তাদেরই সহায় হয়, যারা পরিশ্রম করতে জানে।`;
+        } else if (score >= 6) {
+            level = "ভালো";
+            prediction = `আপনার ভাগ্য সহায়। নবম পতি ${ninthLord}-এর অবস্থান শুভ—${ninthLordPlanet ? (ninthLordPlanet.house + 'ম ভাবে।') : ''} ${jupiter ? ('বৃহস্পতি ' + jupiter.house + 'ম ভাবে—ভাগ্যকে শক্তিশালী করছেন।') : ''}
+
+আপনি পরিশ্রম করলে ভাগ্যও আপনার পাশে দাঁড়াবে। জীবনে বড় সাফল্য আসবে, তবে তার জন্য ধৈর্য ধরতে হবে। গুরুর আশীর্বাদ ও ধর্মপথে চলা আপনার ভাগ্যকে আরও শক্তিশালী করবে।
+
+${ninthHousePlanets.length > 0 ? 'নবম ভাবে গ্রহের উপস্থিতি—আপনার ভাগ্য কখনও কখনও চমকপ্রদ ফল দেবে।' : ''} ${dasha && [ninthLord, "বৃহস্পতি"].includes(dasha.lord) ? 'বর্তমান দশা ভাগ্যের জন্য সহায়ক।' : ''}
+
+মনে রাখবেন—মানুষের ভাগ্য আকাশের তারার মতো লেখা থাকে না, তা নিজের হাতে গড়ে নিতে হয়।`;
+        } else if (score >= 3) {
+            level = "মধ্যম";
+            prediction = `ভাগ্য কখনও পাশে দাঁড়াবে, কখনও বিপক্ষে যাবে। নবম পতি ${ninthLord} কিছুটা দুর্বল বা পাপগ্রহের প্রভাবে থাকায়—${ninthLordPlanet ? (ninthLordPlanet.house + 'ম ভাবে।') : ''} ভাগ্যের পূর্ণ সহায়তা পেতে দেরি হবে।
+
+${ninthHousePlanets.filter(p => ["রাহু","কেতু","শনি","মঙ্গল"].includes(p.name)).length > 0 ? 'নবম ভাবে পাপগ্রহ—ভাগ্য বাধাগ্রস্ত হবে, অপ্রত্যাশিত বিপর্যয় আসতে পারে।' : ''}
+
+তবে হাল ছাড়বেন না—চেষ্টা করতে থাকুন, ভাগ্যও একদিন আপনার দিকে ফিরবে। ${dasha && ["শনি","মঙ্গল"].includes(dasha.lord) ? 'বর্তমান দশায় ভাগ্য কিছুটা প্রতিকূলে—ধৈর্য ধরুন।' : ''}
+
+মনে রাখবেন—ভাগ্য বদলাতে একটি মাত্র মুহূর্ত লাগে। সেই মুহূর্ত আপনার জন্যও আসবে।`;
+        } else {
+            level = "চ্যালেঞ্জিং";
+            prediction = `ভাগ্য আপনার প্রতিকূলে থাকবে—অন্তত এই সময়ে। নবম ভাবে পাপগ্রহ বা নবম পতি ${ninthLord} দুর্বল অবস্থানে থাকায়—${ninthLordPlanet ? (ninthLordPlanet.house + 'ম ভাবে।') : ''} বারবার বাধা আসবে।
+
+${ninthHousePlanets.filter(p => ["রাহু","কেতু","শনি","মঙ্গল"].includes(p.name)).length > 0 ? 'নবম ভাবে পাপগ্রহ—ভাগ্যহানি, ধর্মে সংশয় ও পিতৃকষ্টের ইঙ্গিত।' : ''}
+
+কিন্তু এই কষ্টই আপনাকে পরিণত করবে—যেমন সোনা আগুনে পুড়লেই খাঁটি হয়। ${dasha && ["শনি","রাহু","কেতু"].includes(dasha.lord) ? 'বর্তমান দশা অত্যন্ত কঠিন—কিন্তু এর পরেই শুভ সময় আসবে।' : ''}
+
+দান-ধ্যান, তীর্থযাত্রা, পিতৃতর্পণ ও গুরুর সেবায় আপনার ভাগ্য ফিরবে। মনে রাখবেন—যার ভাগ্য সবচেয়ে খারাপ, তার ভাগ্য ফেরার সম্ভাবনাই সবচেয়ে বেশি।`;
+        }
+
+        return { area: "ভাগ্য", level, score, prediction };
+    }
+
+    // ==================== পূর্ণাঙ্গ বিশ্লেষণ ====================
+    analyzeAll(chartData) {
+        return {
+            education: this.analyzeEducation(chartData),
+            career: this.analyzeCareer(chartData),
+            marriage: this.analyzeMarriage(chartData),
+            fortune: this.analyzeFortune(chartData)
+        };
+    }
+
+    formatReport(chartData) {
+        const result = this.analyzeAll(chartData);
+        const name = chartData.name || "জাতক/জাতিকা";
+        let output = "";
+
+        output += `╔══════════════════════════════════════════════════╗\n`;
+        output += `║  🌟 ${name}-এর জীবন বিশ্লেষণ (চার অঙ্গ)\n`;
+        output += `╚══════════════════════════════════════════════════╝\n\n`;
+
+        const areas = [
+            { key: "education", title: "🎓 পড়াশোনা", icon: "📚" },
+            { key: "career", title: "💼 কর্মজীবন", icon: "💪" },
+            { key: "marriage", title: "💑 বিবাহ", icon: "❤️" },
+            { key: "fortune", title: "🍀 ভাগ্য", icon: "🌟" }
+        ];
+
+        for (const a of areas) {
+            const r = result[a.key];
+            if (!r) continue;
+            const levelColor = r.level === "অসাধারণ" ? "🌟" : r.level === "ভালো" ? "✅" : r.level === "মধ্যম" ? "⚠️" : "💀";
+            output += `${"═".repeat(50)}\n`;
+            output += `${a.icon} ${a.title}: ${levelColor} ${r.level} (স্কোর: ${r.score})\n`;
+            output += `${"═".repeat(50)}\n\n`;
+            output += `${r.prediction}\n\n`;
+            if (r.careerType) output += `💡 উপযোগী পেশা: ${r.careerType}\n\n`;
+            if (r.isManglik !== undefined) output += `${r.isManglik ? '⚠️ মাঙ্গলিক দোষ: হ্যাঁ' : '✅ মাঙ্গলিক দোষ: নেই'}\n\n`;
+        }
+
+        output += `${"═".repeat(50)}\n`;
+        output += `🕉️ জীবন চার অঙ্গের এই বিশ্লেষণ আপনার জন্মকুষ্ঠির গ্রহ-নক্ষত্রের অবস্থানের উপর ভিত্তি করে।\n`;
+        output += `মনে রাখবেন—আপনার ইচ্ছাশক্তি ও কর্মই আপনার শ্রেষ্ঠ গ্রহ।\n`;
+
+        return output;
+    }
+}
+
+// Export
+if (typeof module !== "undefined" && module.exports) {
+    module.exports = LifePredictionEngine;
+}
+
+console.log("✅ life-predictions.js — DETAILED Education, Career, Marriage, Fortune ইঞ্জিন লোড");
+console.log("🔍 ব্যবহার: new LifePredictionEngine().analyzeAll(chartData)");
+console.log("🔍 রিপোর্ট: new LifePredictionEngine().formatReport(chartData)");
