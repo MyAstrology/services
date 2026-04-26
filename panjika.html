@@ -392,12 +392,10 @@ body{background:var(--bg);color:var(--txt);font-family:'Baloo Da 2',sans-serif;p
    চলমান পঞ্চাঙ্গ (Live Panchanga)
 ═══════════════════════════════════ */
 .rt-pan-wrap{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:.9rem 1.1rem;margin-bottom:1.1rem;box-shadow:0 3px 14px rgba(181,134,13,.06);}
-.rt-pan-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:.4rem;}
-@media(max-width:420px){
+.rt-pan-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:.4rem;}
+@media(max-width:480px){
+  /* mobile: 3×2 grid — সব 6টি সমান কলামে */
   .rt-pan-grid{grid-template-columns:repeat(3,1fr);}
-  /* ★ Fix: করণ (4th) takes 1 col, লগ্ন (5th/last) spans remaining 2 cols — no empty cell */
-  .rt-pan-grid .rt-item:nth-child(4){grid-column:span 1;}
-  .rt-pan-grid .rt-item:last-child{grid-column:span 2;}
 }
 /* ★ Fix: dpan grid-এ section header divs full-width রাখতে */
 .dpan-hdr{grid-column:1/-1;}
@@ -1355,9 +1353,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="dtabs" id="dtabs">
         <div class="dtab act" onclick="switchDTab(0,this)">পঞ্চাঙ্গ</div>
         <div class="dtab" onclick="switchDTab(3,this)">মন্ত্র ও বিধি</div>
-        <div class="dtab" onclick="switchDTab(6,this)">🍃 ভক্ষ্য</div>
-        <div class="dtab" onclick="switchDTab(7,this)">🔥 মাসদগ্ধা</div>
-        <div class="dtab" onclick="switchDTab(8,this)">🛕 দেবী বাহন</div>
+
       </div>
 
       <!-- ট্যাব ০: পঞ্চাঙ্গ -->
@@ -1379,20 +1375,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="dfests" id="dtspecial"></div>
       </div>
 
-      <!-- ট্যাব ৬: তিথি ভেদে ভক্ষ্য -->
-      <div class="dtab-pane" id="dtpane6">
-        <div id="dtbhakshya"></div>
-      </div>
-      <!-- ট্যাব ৭: মাসদগ্ধা তিথি -->
-      <div class="dtab-pane" id="dtpane7">
-        <div id="dtmasdagdha"></div>
-      </div>
-      <!-- ট্যাব ৮: দেবীর আগমন-গমন -->
-      <div class="dtab-pane" id="dtpane8">
-        <div id="dtdevi"></div>
-      </div>
+      <!-- ট্যাব ৩: মন্ত্র ও বিধি -->
+      <!-- ═══ ভক্ষ্য / মাসদগ্ধা / দেবী বাহন — inline in পঞ্চাঙ্গ tab ═══ -->
+      <div id="dtbhakshya" style="border-top:1px solid rgba(181,134,13,.12);margin-top:.4rem;"></div>
+      <div id="dtmasdagdha" style="border-top:1px solid rgba(181,134,13,.12);margin-top:.4rem;"></div>
+      <div id="dtdevi" style="border-top:1px solid rgba(181,134,13,.12);margin-top:.4rem;"></div>
 
-            <!-- ট্যাব ৩: মন্ত্র ও বিধি -->
       <div class="dtab-pane" id="dtpane3">
         <div class="dfests" id="dtmantra"></div>
       </div>
@@ -3155,7 +3143,7 @@ function renderForbiddenTimes(date, c){
     if(g[1]===8)te=st.set;
     bbItems.push('<div class="dtime rahu"><div class="dtl">🚫 বারবেলা ('+g[0]+(g[0]===g[1]?'':'–'+g[1])+'ম)</div><div class="dtv">'+fT2(ts)+' – '+fT2(te)+'</div></div>');
   });
-  html+='<div style="display:grid;grid-template-columns:1fr 1fr;gap:.3rem;">'+bbItems.join('')+'</div>';
+  html+='<div style="display:grid;grid-template-columns:'+(bbItems.length>1?'1fr 1fr':'1fr')+';gap:.3rem;">'+bbItems.join('')+'</div>';
   // ★ Fix 5: কালরাত্রি full-width
   mk2G2(KR_MULTI2[w]).forEach(function(g){
     var ts=st.set+(g[0]-1)*krP2/60;
@@ -4094,7 +4082,7 @@ function showDetail(date) {
     var moonRashiIdx=Math.floor(graha.moon/30)%12;
     var dashLord=NAKS[moonNakIdx]?NAKS[moonNakIdx][1]:(typeof PD!=='undefined'&&typeof PD.dashLord==='function'?PD.dashLord(moonNakIdx):'—');
     // চন্দ্রের নক্ষত্র — time slot (nakList থেকে)
-    var nakSlots='';
+    var nakSlots='',_nakCount=0;
     c.nakList.forEach(function(n){
       if(!n||!n.val)return;
       var nIdx=NAK_L.indexOf(n.val.name);
@@ -4105,6 +4093,8 @@ function showDetail(date) {
         +'<div class="dtv" style="font-size:.62rem;">জন্মে '+RASHI_L[birthRashi]+' রাশি — '+dL+'র দশা</div>'
         +'</div>';
     });
+    // nakSlots odd count → শেষটি full-width
+    if(_nakCount%2===1) nakSlots=nakSlots.slice(0,-6)+'style="grid-column:span 2;"></div>';
     moonRashiHtml='<div class="dpan-hdr" style="font-size:.6rem;font-weight:700;color:#4CAF50;padding:.4rem 0 .2rem;border-top:1px solid rgba(76,175,80,.15);margin-top:.3rem;">🌙 চন্দ্র রাশি — নক্ষত্র — জন্ম দশা</div>'
       +'<div class="di"><div class="dii">🌙</div><div class="dil">চন্দ্র রাশি</div><div class="div2">'+RASHI_L[moonRashiIdx]+'</div><div class="dis">নক্ষত্র: '+NAK_L[moonNakIdx]+' | দশা: '+dashLord+'</div></div>'
       +nakSlots;
@@ -4211,8 +4201,9 @@ function showDetail(date) {
     if(amN.length){amH+='<div class="dtime shubha"><div class="dtl">🌙 অমৃতযোগ (রাত্রি)</div><div class="dtv" style="font-size:.65rem;line-height:1.6;">'+amN.map(function(a){return fT(a.st)+' – '+fT(a.en);}).join('<br>')+'</div></div>';}
     else{amH+='<div class="dtime" style="opacity:.5"><div class="dtl">🌙 অমৃতযোগ (রাত্রি)</div><div class="dtv" style="font-size:.65rem;">নেই</div></div>';}
     amH+='</div>';
+    // মাহেন্দ্রযোগ: থাকলে দেখাও, না থাকলে লুকাও
     if(mhAll.length){amH+='<div class="dtime shubha" style="width:100%;"><div class="dtl">🌠 মাহেন্দ্রযোগ</div><div class="dtv" style="font-size:.65rem;line-height:1.6;">'+mhAll.map(function(a){return fT(a.st)+' – '+fT(a.en);}).join('<br>')+'</div></div>';}
-    else{amH+='<div class="dtime" style="opacity:.5;width:100%;"><div class="dtl">🌠 মাহেন্দ্রযোগ</div><div class="dtv" style="font-size:.65rem;">মাহেন্দ্রযোগ নেই</div></div>';}
+    // না থাকলে কিছু দেখানো হবে না
     // লগ্ন সময়-স্লট গণনা (সব রাশির উদয়কাল)
     var jdR=JD(date.getFullYear(),date.getMonth()+1,date.getDate())+(rise-TZ)/24;
     var jdNR=JD(nd2.getFullYear(),nd2.getMonth()+1,nd2.getDate())+(stN2.rise-TZ)/24;
@@ -4732,17 +4723,24 @@ function renderLivePanchanga(){
   var yData=YOGAS[((yIdx%27)+27)%27];
   var yName=yData[0]+' '+yData[1];
   var kName=_karanaName(kNum);
-  // Lagna
-  var lgnName='—',lgnEnd=null;
+  // Lagna — চলমান + পরবর্তী
+  var lgnName='—',lgnUntil=null,nextLgnName='—',nextLgnUntil=null;
   try{
     var _RNAMES=typeof RASHI_NAMES_FULL!=='undefined'?RASHI_NAMES_FULL:['মেষ','বৃষ','মিথুন','কর্কট','সিংহ','কন্যা','তুলা','বৃশ্চিক','ধনু','মকর','কুম্ভ','মীন'];
     var _lFn=(typeof PD!=='undefined'&&PD.lagnaAt)?function(jd){return PD.lagnaAt(jd).rashi;}:function(jd){return calcLagnaAt(jd,LAT,LNG).ri;};
     lgnName=_RNAMES[_lFn(jdNow)];
-    // ★ Fix: window 0.15 দিন (3.6h) — কুম্ভের মতো ছোট লগ্নও ধরতে পারে
+    // চলমান লগ্নের শেষ সময় এবং পরবর্তী লগ্ন
     var lgnTrans=_findTrans(jdNow,jdNow+0.15,_lFn,y,m,d);
     if(lgnTrans.length){
-      var nxtR=lgnTrans[0].toIdx;
-      lgnEnd=lgnTrans[0].time+' → '+_RNAMES[nxtR];
+      lgnUntil=lgnTrans[0].time;
+      nextLgnName=_RNAMES[lgnTrans[0].toIdx];
+      // পরবর্তী লগ্নের শেষ সময়
+      if(lgnTrans.length>1) nextLgnUntil=lgnTrans[1].time;
+      else {
+        var jdNext=jdNow+0.06+lgnTrans[0].localH/24;
+        var nxtTrans=_findTrans(jdNow+0.06,jdNow+0.3,_lFn,y,m,d);
+        if(nxtTrans.length) nextLgnUntil=nxtTrans[0].time;
+      }
     }
   }catch(e){}
   function _ri(lbl,val,end){
@@ -4750,7 +4748,8 @@ function renderLivePanchanga(){
       +'<div class="rt-val">'+val+'</div>'
       +'<div class="rt-end">'+(end?'→ '+end:'চলতি')+'</div></div>';
   }
-  grid.innerHTML=_ri('তিথি',tName,tEnd)+_ri('নক্ষত্র',nName,nEnd)+_ri('যোগ',yName,yEnd)+_ri('করণ',kName,kEnd)+_ri('চলমান লগ্ন',lgnName,lgnEnd);
+  grid.innerHTML=_ri('তিথি',tName,tEnd)+_ri('নক্ষত্র',nName,nEnd)+_ri('যোগ',yName,yEnd)+_ri('করণ',kName,kEnd)
+    +_ri('চলমান লগ্ন',lgnName,lgnUntil)+_ri('পরবর্তী লগ্ন',nextLgnName,nextLgnUntil);
 }
 
 // ════════════════════════════════════════════════════════
