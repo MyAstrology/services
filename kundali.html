@@ -250,23 +250,141 @@ svg{background:#fefcf9;border-radius:8px;max-width:100%;height:auto}
 <div class="k-wrap" id="resultsArea" style="display:none">
 
   <!-- গণেশ আশীর্বাদ ব্যানার -->
-  <div style="text-align:center;margin:0 0 14px 0">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" width="100%" height="auto" style="max-width:420px;border-radius:14px;box-shadow:0 2px 12px rgba(212,168,83,.18)">
-      <rect width="400" height="120" rx="15" fill="#FFFEF7" stroke="#D4A853" stroke-width="1.5"/>
-      <g transform="translate(55, 60)">
-        <circle cx="0" cy="0" r="38" fill="#FFF8E1" stroke="#FFD54F" stroke-width="1.5"/>
-        <ellipse cx="0" cy="-5" rx="24" ry="18" fill="#FFF3E0" stroke="#BF360C" stroke-width="2"/>
-        <ellipse cx="-22" cy="-5" rx="10" ry="14" fill="#FFE0B2" stroke="#BF360C" stroke-width="1.5" transform="rotate(-15,-22,-5)"/>
-        <ellipse cx="22" cy="-5" rx="10" ry="14" fill="#FFE0B2" stroke="#BF360C" stroke-width="1.5" transform="rotate(15,22,-5)"/>
-        <circle cx="-9" cy="-10" r="3" fill="#3E2723"/>
-        <circle cx="9" cy="-10" r="3" fill="#3E2723"/>
-        <path d="M0 -5 Q0 10 -5 22 Q-10 30 -3 32 Q2 33 6 27 Q8 22 0 8" fill="#FFF3E0" stroke="#BF360C" stroke-width="2"/>
-        <path d="M-3 -22 L0 -28 L3 -22" fill="#C62828"/>
-      </g>
-      <text x="120" y="38" font-family="'Noto Sans Bengali','Siyam Rupali',sans-serif" font-size="18" font-weight="bold" fill="#5D3A1A">ওঁ শ্রী গণেশায় নমঃ</text>
-      <text x="120" y="62" font-family="'Noto Sans Bengali','Siyam Rupali',sans-serif" font-size="15" fill="#8B5E3C">বিঘ্নহর্তা শ্রী গণেশের চরণে প্রণাম</text>
-      <text x="120" y="84" font-family="'Noto Sans Bengali','Siyam Rupali',sans-serif" font-size="13" fill="#A08060">সকল গ্রহ দোষ নাশক · শুভ সিদ্ধি প্রদায়ক</text>
-      <text x="120" y="105" font-family="serif" font-size="12" fill="#C4A46C">ૐ श्री गणेशाय नमः</text>
+  <!-- গণেশ আশীর্বাদ ব্যানার -->
+  <div style="text-align:center;margin:0 0 18px 0">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 160" width="100%" height="auto" style="max-width:560px;border-radius:18px;box-shadow:0 4px 24px rgba(180,120,30,.28)">
+      <defs>
+        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#3a1c00;stop-opacity:1"/>
+          <stop offset="50%" style="stop-color:#7a3a00;stop-opacity:1"/>
+          <stop offset="100%" style="stop-color:#3a1c00;stop-opacity:1"/>
+        </linearGradient>
+        <linearGradient id="goldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#ffe066;stop-opacity:1"/>
+          <stop offset="50%" style="stop-color:#d4a017;stop-opacity:1"/>
+          <stop offset="100%" style="stop-color:#f0c040;stop-opacity:1"/>
+        </linearGradient>
+        <linearGradient id="skinGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#f5a623;stop-opacity:1"/>
+          <stop offset="100%" style="stop-color:#d4820a;stop-opacity:1"/>
+        </linearGradient>
+        <radialGradient id="haloGrad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" style="stop-color:#fffbe0;stop-opacity:.9"/>
+          <stop offset="70%" style="stop-color:#ffd54f;stop-opacity:.5"/>
+          <stop offset="100%" style="stop-color:#ff9800;stop-opacity:0"/>
+        </radialGradient>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+          <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <!-- Background -->
+      <rect width="520" height="160" rx="18" fill="url(#bgGrad)"/>
+      <!-- Decorative border (double) -->
+      <rect x="4" y="4" width="512" height="152" rx="15" fill="none" stroke="url(#goldGrad)" stroke-width="2.5"/>
+      <rect x="8" y="8" width="504" height="144" rx="12" fill="none" stroke="#c8820a" stroke-width="0.8" stroke-dasharray="4,3"/>
+      <!-- Corner lotus petals top-left -->
+      <ellipse cx="22" cy="22" rx="12" ry="7" fill="#8b4500" stroke="#d4a017" stroke-width="1" transform="rotate(-45,22,22)"/>
+      <ellipse cx="22" cy="22" rx="12" ry="7" fill="#8b4500" stroke="#d4a017" stroke-width="1" transform="rotate(45,22,22)"/>
+      <circle cx="22" cy="22" r="5" fill="url(#goldGrad)"/>
+      <!-- Corner lotus petals top-right -->
+      <ellipse cx="498" cy="22" rx="12" ry="7" fill="#8b4500" stroke="#d4a017" stroke-width="1" transform="rotate(45,498,22)"/>
+      <ellipse cx="498" cy="22" rx="12" ry="7" fill="#8b4500" stroke="#d4a017" stroke-width="1" transform="rotate(-45,498,22)"/>
+      <circle cx="498" cy="22" r="5" fill="url(#goldGrad)"/>
+      <!-- Corner lotus petals bottom-left -->
+      <ellipse cx="22" cy="138" rx="12" ry="7" fill="#8b4500" stroke="#d4a017" stroke-width="1" transform="rotate(45,22,138)"/>
+      <ellipse cx="22" cy="138" rx="12" ry="7" fill="#8b4500" stroke="#d4a017" stroke-width="1" transform="rotate(-45,22,138)"/>
+      <circle cx="22" cy="138" r="5" fill="url(#goldGrad)"/>
+      <!-- Corner lotus petals bottom-right -->
+      <ellipse cx="498" cy="138" rx="12" ry="7" fill="#8b4500" stroke="#d4a017" stroke-width="1" transform="rotate(-45,498,138)"/>
+      <ellipse cx="498" cy="138" rx="12" ry="7" fill="#8b4500" stroke="#d4a017" stroke-width="1" transform="rotate(45,498,138)"/>
+      <circle cx="498" cy="138" r="5" fill="url(#goldGrad)"/>
+      <!-- Halo behind Ganesha -->
+      <circle cx="80" cy="80" r="58" fill="url(#haloGrad)"/>
+      <!-- Lotus seat -->
+      <ellipse cx="80" cy="136" rx="44" ry="10" fill="#8b4500" stroke="url(#goldGrad)" stroke-width="1.5"/>
+      <!-- Lotus petals -->
+      <ellipse cx="56" cy="128" rx="14" ry="7" fill="#c8004a" stroke="#d4a017" stroke-width="1" transform="rotate(-20,56,128)"/>
+      <ellipse cx="80" cy="125" rx="14" ry="7" fill="#e0005a" stroke="#d4a017" stroke-width="1"/>
+      <ellipse cx="104" cy="128" rx="14" ry="7" fill="#c8004a" stroke="#d4a017" stroke-width="1" transform="rotate(20,104,128)"/>
+      <!-- Body (dhoti - orange/gold) -->
+      <rect x="54" y="102" width="52" height="30" rx="6" fill="#d48000" stroke="#a06000" stroke-width="1"/>
+      <line x1="80" y1="102" x2="80" y2="132" stroke="#c07000" stroke-width="1"/>
+      <!-- Torso (pot belly) -->
+      <ellipse cx="80" cy="95" rx="26" ry="22" fill="url(#skinGrad)" stroke="#c07020" stroke-width="1.5"/>
+      <!-- Sacred thread (upavita) -->
+      <path d="M62 80 Q55 95 62 110" stroke="#f5f0d0" stroke-width="1.5" fill="none"/>
+      <!-- Arms (4 arms) -->
+      <!-- Upper-left arm -->
+      <path d="M56 82 Q36 62 32 50" stroke="url(#skinGrad)" stroke-width="9" fill="none" stroke-linecap="round"/>
+      <!-- Upper-right arm -->
+      <path d="M104 82 Q124 62 128 50" stroke="url(#skinGrad)" stroke-width="9" fill="none" stroke-linecap="round"/>
+      <!-- Lower-left arm (holding modak) -->
+      <path d="M56 95 Q40 108 38 118" stroke="url(#skinGrad)" stroke-width="8" fill="none" stroke-linecap="round"/>
+      <!-- Lower-right arm (abhaya mudra) -->
+      <path d="M104 95 Q120 108 122 118" stroke="url(#skinGrad)" stroke-width="8" fill="none" stroke-linecap="round"/>
+      <!-- Hands -->
+      <circle cx="32" cy="50" r="7" fill="#d4820a" stroke="#a06000" stroke-width="1"/><!-- trishul holder -->
+      <circle cx="128" cy="50" r="7" fill="#d4820a" stroke="#a06000" stroke-width="1"/><!-- lotus holder -->
+      <circle cx="38" cy="118" r="8" fill="#d4820a" stroke="#a06000" stroke-width="1"/><!-- modak -->
+      <circle cx="122" cy="118" r="7" fill="#d4820a" stroke="#a06000" stroke-width="1"/>
+      <!-- Modak (sweet ball) -->
+      <circle cx="38" cy="118" r="6" fill="#f0c040" stroke="#d4a017" stroke-width="1"/>
+      <circle cx="38" cy="115" r="3" fill="#fff8a0" opacity=".6"/>
+      <!-- Ankusha (goad) in upper-right -->
+      <line x1="128" y1="43" x2="133" y2="30" stroke="#d4a017" stroke-width="2"/>
+      <path d="M133 30 Q138 25 133 20" stroke="#d4a017" stroke-width="1.5" fill="none"/>
+      <!-- Trishul in upper-left -->
+      <line x1="32" y1="43" x2="27" y2="28" stroke="#d4a017" stroke-width="2"/>
+      <line x1="27" y1="28" x2="22" y2="20" stroke="#d4a017" stroke-width="1.5"/>
+      <line x1="27" y1="28" x2="32" y2="20" stroke="#d4a017" stroke-width="1.5"/>
+      <line x1="27" y1="28" x2="27" y2="20" stroke="#d4a017" stroke-width="1.5"/>
+      <!-- Head (elephant head) -->
+      <ellipse cx="80" cy="64" rx="28" ry="24" fill="url(#skinGrad)" stroke="#c07020" stroke-width="1.5"/>
+      <!-- Crown (mukut) -->
+      <path d="M55 50 Q60 28 70 22 Q80 16 90 22 Q100 28 105 50" fill="#8b4500" stroke="url(#goldGrad)" stroke-width="2"/>
+      <path d="M65 38 L68 20 L72 38" fill="url(#goldGrad)"/>
+      <path d="M77 34 L80 14 L83 34" fill="url(#goldGrad)"/>
+      <path d="M88 38 L92 20 L95 38" fill="url(#goldGrad)"/>
+      <circle cx="80" cy="14" r="5" fill="#e74c3c" stroke="url(#goldGrad)" stroke-width="1"/>
+      <!-- Ears (large elephant ears) -->
+      <ellipse cx="48" cy="65" rx="16" ry="22" fill="#c07020" stroke="#a06000" stroke-width="1.5" opacity=".9"/>
+      <ellipse cx="112" cy="65" rx="16" ry="22" fill="#c07020" stroke="#a06000" stroke-width="1.5" opacity=".9"/>
+      <ellipse cx="48" cy="65" rx="11" ry="16" fill="#e8902a" opacity=".6"/>
+      <ellipse cx="112" cy="65" rx="11" ry="16" fill="#e8902a" opacity=".6"/>
+      <!-- Trunk (curved) -->
+      <path d="M72 74 Q65 85 68 98 Q70 108 62 112" stroke="#c07020" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <path d="M72 74 Q65 85 68 98 Q70 108 62 112" stroke="#d4820a" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <!-- Eyes -->
+      <ellipse cx="67" cy="60" rx="5" ry="5.5" fill="#fff"/>
+      <ellipse cx="93" cy="60" rx="5" ry="5.5" fill="#fff"/>
+      <circle cx="67" cy="61" r="3" fill="#1a0a00"/>
+      <circle cx="93" cy="61" r="3" fill="#1a0a00"/>
+      <circle cx="68" cy="59.5" r="1.2" fill="#fff"/>
+      <circle cx="94" cy="59.5" r="1.2" fill="#fff"/>
+      <!-- Third eye (tilak) -->
+      <ellipse cx="80" cy="57" rx="3" ry="2" fill="#c00"/>
+      <!-- Tusk (one broken, one full) -->
+      <path d="M70 76 Q60 88 56 96" stroke="#fffbe0" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path d="M70 76 Q60 88 54 98 L52 100" stroke="#e0d8b0" stroke-width="2" fill="none"/>
+      <!-- broken tusk -->
+      <path d="M89 76 Q96 86 94 93" stroke="#fffbe0" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path d="M94 93 L96 95" stroke="#fffbe0" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <!-- Om symbol on forehead -->
+      <!-- Mouse (vahana) below the lotus -->
+      <ellipse cx="80" cy="148" rx="14" ry="8" fill="#6b3a1a" stroke="#d4a017" stroke-width="1"/>
+      <circle cx="70" cy="144" r="5" fill="#6b3a1a"/>
+      <ellipse cx="68" cy="141" rx="3" ry="5" fill="#6b3a1a"/>
+      <ellipse cx="72" cy="141" rx="3" ry="5" fill="#6b3a1a"/>
+      <!-- Text section -->
+      <text x="170" y="36" font-family="'Noto Sans Bengali','Siyam Rupali',serif" font-size="19" font-weight="bold" fill="url(#goldGrad)" filter="url(#glow)" text-anchor="middle">ওঁ শ্রী গণেশায় নমঃ</text>
+      <line x1="175" y1="44" x2="420" y2="44" stroke="url(#goldGrad)" stroke-width="0.8"/>
+      <text x="300" y="44" font-family="serif" font-size="13" fill="#ffd54f" text-anchor="middle">❀ ❀ ❀</text>
+      <text x="300" y="68" font-family="'Noto Sans Bengali','Siyam Rupali',serif" font-size="14" fill="#f0c878" text-anchor="middle">বিঘ্নহর্তা গণপতি — মঙ্গলমূর্তি</text>
+      <text x="300" y="90" font-family="'Noto Sans Bengali','Siyam Rupali',serif" font-size="12.5" fill="#d4a860" text-anchor="middle">সকল কর্মের আদিতে শ্রী গণেশের বন্দনা</text>
+      <text x="300" y="112" font-family="'Noto Sans Bengali','Siyam Rupali',serif" font-size="12" fill="#c89040" text-anchor="middle">গ্রহ দোষ নাশক · বিদ্যা-বুদ্ধি প্রদায়ক</text>
+      <text x="300" y="133" font-family="'Noto Sans Bengali','Siyam Rupali',serif" font-size="12" fill="#b87830" text-anchor="middle">শুভ সিদ্ধি · শুভ লক্ষণ · শুভ আশীর্বাদ</text>
+      <text x="300" y="152" font-family="serif" font-size="11" fill="#a06820" text-anchor="middle">ૐ गणेशाय नमः · ॐ एकदन्ताय विद्महे</text>
     </svg>
   </div>
 
@@ -350,6 +468,7 @@ svg{background:#fefcf9;border-radius:8px;max-width:100%;height:auto}
       <button class="tab-btn" onclick="showTab('tabDasha',this)">⏳ দশা</button>
       <button class="tab-btn" onclick="showTab('tabLakshan',this)">🌟 বৈশিষ্ট্য</button>
       <button class="tab-btn" onclick="showTab('tabDashaFal',this)">📖 দশাফল</button>
+      <button class="tab-btn" onclick="showTab('tabNadiTripap',this)">🌟 নবতারা</button>
       <button class="tab-btn" onclick="window.location.href='match-making.html'">💞 যোটক</button>
       <button class="tab-btn" onclick="window.location.href='panjika.html'">📅 পঞ্জিকা</button>
       <button class="tab-btn" onclick="openRashifal()">♈ রাশিফল</button>
@@ -469,6 +588,14 @@ svg{background:#fefcf9;border-radius:8px;max-width:100%;height:auto}
       <div id="weaknessAnalysisDiv" style="font-size:.9rem;line-height:1.8;white-space:pre-line"></div>
     </div>
     </div><!-- /tabDashaFal -->
+
+    <!-- Tab ছ: নবতারা · ষড়নাড়ি · ত্রিপাপ চক্র -->
+    <div id="tabNadiTripap" class="tab-panel" style="display:none">
+    <div class="card">
+      <div class="section-title">🌟 নবতারা চক্র · ষড়নাড়ি চক্র · ত্রিপাপ চক্র</div>
+      <div id="nadiTripapDiv" style="line-height:1.85;font-size:.93rem;overflow-x:auto"></div>
+    </div>
+    </div><!-- /tabNadiTripap -->
 
 </div><!-- /resultsArea k-wrap -->
 
@@ -957,6 +1084,11 @@ function calculateFullKundali(){
 
   /* দশাফল (Tab চ) */
   buildDashaFal(dashaInfo,planets,sbData);
+
+  /* নবতারা · ষড়নাড়ি · ত্রিপাপ চক্র (Tab ছ) */
+  if(typeof NavaTaraNadiUI==='function'&&nakInfo&&nakInfo.name){
+    try{new NavaTaraNadiUI().renderAll(nakInfo.name,'nadiTripapDiv');}catch(e){console.warn('NavaTaraNadiUI error:',e);}
+  }
 
   /* গোচর (Tab খ) */
   buildGocharTab(moonLon,lagnaRashiIdx);
