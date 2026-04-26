@@ -4201,9 +4201,8 @@ function showDetail(date) {
     if(amN.length){amH+='<div class="dtime shubha"><div class="dtl">🌙 অমৃতযোগ (রাত্রি)</div><div class="dtv" style="font-size:.65rem;line-height:1.6;">'+amN.map(function(a){return fT(a.st)+' – '+fT(a.en);}).join('<br>')+'</div></div>';}
     else{amH+='<div class="dtime" style="opacity:.5"><div class="dtl">🌙 অমৃতযোগ (রাত্রি)</div><div class="dtv" style="font-size:.65rem;">নেই</div></div>';}
     amH+='</div>';
-    // মাহেন্দ্রযোগ: থাকলে দেখাও, না থাকলে লুকাও
     if(mhAll.length){amH+='<div class="dtime shubha" style="width:100%;"><div class="dtl">🌠 মাহেন্দ্রযোগ</div><div class="dtv" style="font-size:.65rem;line-height:1.6;">'+mhAll.map(function(a){return fT(a.st)+' – '+fT(a.en);}).join('<br>')+'</div></div>';}
-    // না থাকলে কিছু দেখানো হবে না
+    else{amH+='<div class="dtime" style="opacity:.6;width:100%;"><div class="dtl">🌠 মাহেন্দ্রযোগ</div><div class="dtv" style="font-size:.65rem;">মাহেন্দ্রযোগ নেই</div></div>';}
     // লগ্ন সময়-স্লট গণনা (সব রাশির উদয়কাল)
     var jdR=JD(date.getFullYear(),date.getMonth()+1,date.getDate())+(rise-TZ)/24;
     var jdNR=JD(nd2.getFullYear(),nd2.getMonth()+1,nd2.getDate())+(stN2.rise-TZ)/24;
@@ -4441,191 +4440,156 @@ function showDetail(date) {
     }).join('');
   })();
 
-  // ── ট্যাব ৬: তিথি ভেদে ভক্ষ্য (অভক্ষ্য) ──
+  // ── ১. তিথি ভেদে ভক্ষ্য — শুধু আজকেরটা দেখাও ──
   (function(){
+    var el=document.getElementById('dtbhakshya');
+    if(!el)return;
     var ABHAKSHYA=[
-      {pd:1, name:'প্রতিপদ', food:'কুষ্মাণ্ড (কুমড়া)', reason:'হরিনাম বিস্মরণ'},
-      {pd:2, name:'দ্বিতীয়া', food:'বৃহতী (সাদা গোল বেগুন)', reason:'পুণ্য নাশ'},
-      {pd:3, name:'তৃতীয়া', food:'পটোল', reason:'শত্রু বৃদ্ধি'},
-      {pd:4, name:'চতুর্থী', food:'মূলক (মুলো)', reason:'অর্থহানি'},
-      {pd:5, name:'পঞ্চমী', food:'বিল্ব (বেল)', reason:'কলঙ্ক'},
-      {pd:6, name:'ষষ্ঠী', food:'নিম্ব (নিমপাতা)', reason:'তির্যকযোনী প্রাপ্তি'},
-      {pd:7, name:'সপ্তমী', food:'তাল (তালের ফল)', reason:'দেহনাশ'},
-      {pd:8, name:'অষ্টমী', food:'নারিকেল', reason:'মাংস সেবনের সমান দোষ'},
-      {pd:9, name:'নবমী', food:'অলাবু (লাউ)', reason:'ধনহানি'},
-      {pd:10, name:'দশমী', food:'কলম্বী শাক', reason:'বহু শত্রু'},
-      {pd:11, name:'একাদশী', food:'শিম্বী (শিম/বরবটি)', reason:'উপবাস ভঙ্গের দোষ'},
-      {pd:12, name:'দ্বাদশী', food:'পূতিকা (পুঁইশাক)', reason:'পুণ্য নাশ'},
-      {pd:13, name:'ত্রয়োদশী', food:'বার্তাকু (বেগুন)', reason:'পাপ বৃদ্ধি'},
-      {pd:14, name:'চতুর্দশী', food:'মাষকলাই', reason:'মাংস সেবনের সমান দোষ'},
-      {pd:15, name:'পূর্ণিমা', food:'মৎস্য, মাংস, স্ত্রীসম্ভোগ', reason:'বল ও বীর্য নাশ'},
-      {pd:30, name:'অমাবস্যা', food:'মৎস্য, মাংস, স্ত্রীসম্ভোগ', reason:'পিতৃদোষ ও মানসিক অস্থিরতা'}
+      {pd:1,food:'কুষ্মাণ্ড (কুমড়া)',reason:'হরিনাম বিস্মরণ'},
+      {pd:2,food:'বৃহতী (সাদা গোল বেগুন)',reason:'পুণ্য নাশ'},
+      {pd:3,food:'পটোল',reason:'শত্রু বৃদ্ধি'},
+      {pd:4,food:'মূলক (মুলো)',reason:'অর্থহানি'},
+      {pd:5,food:'বিল্ব (বেল)',reason:'কলঙ্ক'},
+      {pd:6,food:'নিম্ব (নিমপাতা)',reason:'তির্যকযোনী প্রাপ্তি'},
+      {pd:7,food:'তাল (তালের ফল)',reason:'দেহনাশ'},
+      {pd:8,food:'নারিকেল',reason:'মাংস সেবনের সমান দোষ'},
+      {pd:9,food:'অলাবু (লাউ)',reason:'ধনহানি'},
+      {pd:10,food:'কলম্বী শাক',reason:'বহু শত্রু'},
+      {pd:11,food:'শিম্বী (শিম/বরবটি)',reason:'উপবাস ভঙ্গের দোষ'},
+      {pd:12,food:'পূতিকা (পুঁইশাক)',reason:'পুণ্য নাশ'},
+      {pd:13,food:'বার্তাকু (বেগুন)',reason:'পাপ বৃদ্ধি'},
+      {pd:14,food:'মাষকলাই',reason:'মাংস সেবনের সমান দোষ'},
+      {pd:15,food:'মৎস্য, মাংস, স্ত্রীসম্ভোগ',reason:'বল ও বীর্য নাশ'},
+      {pd:30,food:'মৎস্য, মাংস, স্ত্রীসম্ভোগ',reason:'পিতৃদোষ ও মানসিক অস্থিরতা'}
     ];
-    // বর্তমান পাক্ষিক দিন
-    var curPD = c.tN; // 1-15 শুক্ল, 16-30 কৃষ্ণ → pakDay 1-15 for both
-    var curPakDay = (curPD <= 15) ? curPD : curPD - 15;
-    // Find today's entry
-    var todayEntry = ABHAKSHYA.find(function(a){return a.pd===curPakDay || (curPD===15&&a.pd===15) || (curPD===30&&a.pd===30);});
-    // Dynamic alert
-    var alertH = '';
-    if(todayEntry){
-      alertH = '<div style="background:rgba(181,134,13,.1);border:1px solid rgba(181,134,13,.3);border-radius:10px;padding:.6rem .9rem;margin:.6rem;font-size:.73rem;color:var(--gold-l);font-weight:700;">'+
-        '🍃 আজ '+c.tName+' — <strong>'+todayEntry.food+'</strong> ভক্ষণ নিষিদ্ধ।</div>';
+    var curPD=c.tN;
+    var curPakDay=(curPD<=15)?curPD:curPD-15;
+    var entry=ABHAKSHYA.find(function(a){
+      return a.pd===curPakDay||(curPD===15&&a.pd===15)||(curPD===30&&a.pd===30);
+    });
+    var h='';
+    // আজকের অভক্ষ্য
+    if(entry){
+      h+='<div style="background:rgba(181,134,13,.08);border:1.5px solid rgba(181,134,13,.25);border-radius:10px;padding:.65rem .9rem;margin:.4rem 0;">'
+        +'<div style="font-size:.62rem;color:var(--txt2);margin-bottom:.2rem;">🍃 আজ '+c.tName+' — অভক্ষ্য</div>'
+        +'<div style="font-size:.88rem;font-weight:700;color:#b52020;">'+entry.food+'</div>'
+        +'<div style="font-size:.65rem;color:var(--txt2);margin-top:.15rem;">📜 '+entry.reason+'</div>'
+        +'</div>';
     }
-    // Sunday extra
-    var sunH = '';
+    // রবিবার বিশেষ নিষেধ
     if(date.getDay()===0){
-      sunH = '<div style="background:rgba(181,32,32,.07);border:1px solid rgba(181,32,32,.2);border-radius:10px;padding:.5rem .9rem;margin:.4rem .6rem;font-size:.7rem;color:#b52020;">'+
-        '☀️ আজ রবিবার — মৎস্য, মাংস, মাষ, মসুর, নিম্ব, আর্দ্রক ও দগ্ধ দ্রব্য নিষিদ্ধ।</div>';
+      h+='<div style="background:rgba(181,32,32,.06);border:1px solid rgba(181,32,32,.18);border-radius:10px;padding:.55rem .9rem;margin:.3rem 0;font-size:.7rem;color:#b52020;">'
+        +'☀️ আজ রবিবার — মৎস্য, মাংস, মাষ, মসুর, নিম, আর্দ্রক ও দগ্ধ দ্রব্য নিষিদ্ধ।</div>';
     }
-    // Full table
-    var tblH = '<div style="margin:.5rem .5rem 0;"><table style="width:100%;border-collapse:collapse;font-size:.68rem;">' +
-      '<thead><tr style="background:rgba(181,134,13,.12);">' +
-      '<th style="padding:.35rem .5rem;text-align:left;border-bottom:1px solid rgba(181,134,13,.2);">তিথি</th>' +
-      '<th style="padding:.35rem .5rem;text-align:left;border-bottom:1px solid rgba(181,134,13,.2);">অভক্ষ্য</th>' +
-      '<th style="padding:.35rem .5rem;text-align:left;border-bottom:1px solid rgba(181,134,13,.2);">কারণ</th>' +
-      '</tr></thead><tbody>';
-    ABHAKSHYA.forEach(function(a){
-      var isCur = (a.pd===curPakDay && curPD!==30) || (a.pd===30 && curPD===30);
-      var rowStyle = isCur ? 'background:rgba(181,134,13,.12);font-weight:700;' : (a.pd%2===0?'background:rgba(0,0,0,.02);':'');
-      tblH += '<tr style="'+rowStyle+'">'+
-        '<td style="padding:.3rem .5rem;border-bottom:1px solid rgba(181,134,13,.07);">'+(isCur?'▶ ':'')+a.name+'</td>'+
-        '<td style="padding:.3rem .5rem;border-bottom:1px solid rgba(181,134,13,.07);color:#b52020;">'+a.food+'</td>'+
-        '<td style="padding:.3rem .5rem;border-bottom:1px solid rgba(181,134,13,.07);color:var(--txt2);font-size:.62rem;">'+a.reason+'</td>'+
-        '</tr>';
-    });
-    tblH += '</tbody></table></div>';
-    // Extra rules
-    var extraH = '<div style="margin:.5rem .6rem;font-size:.68rem;color:var(--txt2);border-top:1px solid rgba(181,134,13,.12);padding-top:.4rem;">'+
-      '<strong style="color:var(--gold);">অতিরিক্ত নিষেধ:</strong><br>'+
-      '• ভাদ্রমাসে লাউ • মাঘমাসে মুলো • চৈত্রমাসে শিম ভক্ষণ নিষেধ'+
-      '</div>';
-    document.getElementById('dtbhakshya').innerHTML = alertH + sunH + tblH + extraH;
+    // ভাদ্র/মাঘ/চৈত্র মাসের বিশেষ নিষেধ
+    if(c.bn){
+      var bnm=c.bn.m;
+      var masNishedh=bnm===4?'আজ ভাদ্রমাস — লাউ ভক্ষণ বিশেষভাবে নিষিদ্ধ।'
+        :bnm===9?'আজ মাঘমাস — মুলো ভক্ষণ বিশেষভাবে নিষিদ্ধ।'
+        :bnm===11?'আজ চৈত্রমাস — শিম ভক্ষণ বিশেষভাবে নিষিদ্ধ।':'';
+      if(masNishedh) h+='<div style="background:rgba(181,32,32,.06);border:1px solid rgba(181,32,32,.18);border-radius:10px;padding:.5rem .9rem;margin:.3rem 0;font-size:.7rem;color:#b52020;">📅 '+masNishedh+'</div>';
+    }
+    if(!h) h='<div style="font-size:.72rem;color:var(--txt2);padding:.5rem 0;">আজ কোনো বিশেষ অভক্ষ্য নেই।</div>';
+    el.innerHTML=h;
   })();
 
-  // ── ট্যাব ৭: মাসদগ্ধা তিথি ──
+  // ── ২. মাসদগ্ধা তিথি — শুধু সেদিনই দেখাও ──
   (function(){
-    var MASDAGDHA = [
-      {rashi:0, bnMas:'বৈশাখ', paksha:'শুক্লপক্ষ', pd:6, tName:'শুক্লা ষষ্ঠী'},
-      {rashi:1, bnMas:'জ্যৈষ্ঠ', paksha:'কৃষ্ণপক্ষ', pd:4, tName:'কৃষ্ণা চতুর্থী'},
-      {rashi:2, bnMas:'আষাঢ়', paksha:'শুক্লপক্ষ', pd:8, tName:'শুক্লা অষ্টমী'},
-      {rashi:3, bnMas:'শ্রাবণ', paksha:'কৃষ্ণপক্ষ', pd:6, tName:'কৃষ্ণা ষষ্ঠী'},
-      {rashi:4, bnMas:'ভাদ্র', paksha:'শুক্লপক্ষ', pd:10, tName:'শুক্লা দশমী'},
-      {rashi:5, bnMas:'আশ্বিন', paksha:'কৃষ্ণপক্ষ', pd:8, tName:'কৃষ্ণা অষ্টমী'},
-      {rashi:6, bnMas:'কার্তিক', paksha:'শুক্লপক্ষ', pd:12, tName:'শুক্লা দ্বাদশী'},
-      {rashi:7, bnMas:'অগ্রহায়ণ', paksha:'কৃষ্ণপক্ষ', pd:10, tName:'কৃষ্ণা দশমী'},
-      {rashi:8, bnMas:'পৌষ', paksha:'শুক্লপক্ষ', pd:2, tName:'শুক্লা দ্বিতীয়া'},
-      {rashi:9, bnMas:'মাঘ', paksha:'কৃষ্ণপক্ষ', pd:12, tName:'কৃষ্ণা দ্বাদশী'},
-      {rashi:10, bnMas:'ফাল্গুন', paksha:'শুক্লপক্ষ', pd:4, tName:'শুক্লা চতুর্থী'},
-      {rashi:11, bnMas:'চৈত্র', paksha:'কৃষ্ণপক্ষ', pd:2, tName:'কৃষ্ণা দ্বিতীয়া'}
+    var el=document.getElementById('dtmasdagdha');
+    if(!el){el=document.createElement('div');el.id='dtmasdagdha';}
+    var MASDAGDHA=[
+      {rashi:0,bnMas:'বৈশাখ',paksha:'শুক্লপক্ষ',pd:6,tName:'শুক্লা ষষ্ঠী'},
+      {rashi:1,bnMas:'জ্যৈষ্ঠ',paksha:'কৃষ্ণপক্ষ',pd:4,tName:'কৃষ্ণা চতুর্থী'},
+      {rashi:2,bnMas:'আষাঢ়',paksha:'শুক্লপক্ষ',pd:8,tName:'শুক্লা অষ্টমী'},
+      {rashi:3,bnMas:'শ্রাবণ',paksha:'কৃষ্ণপক্ষ',pd:6,tName:'কৃষ্ণা ষষ্ঠী'},
+      {rashi:4,bnMas:'ভাদ্র',paksha:'শুক্লপক্ষ',pd:10,tName:'শুক্লা দশমী'},
+      {rashi:5,bnMas:'আশ্বিন',paksha:'কৃষ্ণপক্ষ',pd:8,tName:'কৃষ্ণা অষ্টমী'},
+      {rashi:6,bnMas:'কার্তিক',paksha:'শুক্লপক্ষ',pd:12,tName:'শুক্লা দ্বাদশী'},
+      {rashi:7,bnMas:'অগ্রহায়ণ',paksha:'কৃষ্ণপক্ষ',pd:10,tName:'কৃষ্ণা দশমী'},
+      {rashi:8,bnMas:'পৌষ',paksha:'শুক্লপক্ষ',pd:2,tName:'শুক্লা দ্বিতীয়া'},
+      {rashi:9,bnMas:'মাঘ',paksha:'কৃষ্ণপক্ষ',pd:12,tName:'কৃষ্ণা দ্বাদশী'},
+      {rashi:10,bnMas:'ফাল্গুন',paksha:'শুক্লপক্ষ',pd:4,tName:'শুক্লা চতুর্থী'},
+      {rashi:11,bnMas:'চৈত্র',paksha:'কৃষ্ণপক্ষ',pd:2,tName:'কৃষ্ণা দ্বিতীয়া'}
     ];
-    // Get current sun rashi from PD.geo
-    var sunRashi = 0;
+    var sunRashi=0;
     if(typeof PD!=='undefined'&&PD.geo){var gm=PD.geo(date);if(gm)sunRashi=Math.floor(gm.sun/30)%12;}
-    var curPaksha = c.paksha; // 'শুক্লপক্ষ' or 'কৃষ্ণপক্ষ'
-    var curPakDay = (c.tN<=15)?c.tN:c.tN-15;
-    var todayMD = MASDAGDHA.find(function(m){
-      return m.rashi===sunRashi && m.paksha===curPaksha && m.pd===curPakDay;
+    var curPaksha=c.paksha;
+    var curPakDay=(c.tN<=15)?c.tN:c.tN-15;
+    var todayMD=MASDAGDHA.find(function(m){
+      return m.rashi===sunRashi&&m.paksha===curPaksha&&m.pd===curPakDay;
     });
-    var alertH = '';
+    // শুধু মাসদগ্ধা তিথিতে দেখাও
     if(todayMD){
-      alertH = '<div style="background:rgba(181,32,32,.1);border:1px solid rgba(181,32,32,.3);border-radius:10px;padding:.6rem .9rem;margin:.6rem;font-size:.73rem;color:#b52020;font-weight:700;">'+
-        '⛔ আজ '+todayMD.bnMas+' মাসের '+todayMD.tName+' — মাসদগ্ধা তিথি। সমস্ত শুভ কাজ কর্ম নিষিদ্ধ।</div>';
+      el.innerHTML='<div style="background:rgba(181,32,32,.08);border:1.5px solid rgba(181,32,32,.28);border-radius:10px;padding:.65rem .9rem;margin:.4rem 0;">'
+        +'<div style="font-size:.62rem;color:var(--txt2);margin-bottom:.2rem;">🔥 মাসদগ্ধা তিথি</div>'
+        +'<div style="font-size:.88rem;font-weight:700;color:#b52020;">'+todayMD.bnMas+' মাসের '+todayMD.tName+'</div>'
+        +'<div style="font-size:.7rem;color:#b52020;margin-top:.2rem;font-weight:700;">⛔ সমস্ত শুভ কাজ কর্ম নিষিদ্ধ।</div>'
+        +'<div style="font-size:.63rem;color:var(--txt2);margin-top:.2rem;">📜 সূর্যের তেজে এই তিথি দগ্ধ — বিবাহ, গৃহপ্রবেশ, ব্যবসা শুরু সম্পূর্ণ বর্জনীয়।</div>'
+        +'</div>';
+    } else {
+      el.innerHTML=''; // মাসদগ্ধা না হলে কিছু দেখাবে না
     }
-    // Table
-    var tblH = '<div style="margin:.5rem .5rem 0;"><table style="width:100%;border-collapse:collapse;font-size:.68rem;">' +
-      '<thead><tr style="background:rgba(181,32,32,.08);">' +
-      '<th style="padding:.35rem .5rem;text-align:left;border-bottom:1px solid rgba(181,32,32,.15);">সৌর মাস</th>' +
-      '<th style="padding:.35rem .5rem;text-align:left;border-bottom:1px solid rgba(181,32,32,.15);">মাসদগ্ধা তিথি</th>' +
-      '</tr></thead><tbody>';
-    MASDAGDHA.forEach(function(m){
-      var isCur = m.rashi===sunRashi;
-      var rowStyle = isCur ? 'background:rgba(181,32,32,.1);font-weight:700;' : (m.rashi%2===0?'background:rgba(0,0,0,.02);':'');
-      var isMD = todayMD&&m.rashi===todayMD.rashi;
-      tblH += '<tr style="'+rowStyle+'">'+
-        '<td style="padding:.3rem .5rem;border-bottom:1px solid rgba(181,32,32,.07);">'+(isCur?'▶ ':'')+m.bnMas+'</td>'+
-        '<td style="padding:.3rem .5rem;border-bottom:1px solid rgba(181,32,32,.07);color:'+(isMD?'#b52020':'var(--txt)')+';">'+m.tName+(isMD?' ⛔':isCur?' (চলতি মাস)':'')+'</td>'+
-        '</tr>';
-    });
-    tblH += '</tbody></table></div>';
-    var infoH = '<div style="margin:.5rem .6rem;font-size:.68rem;color:var(--txt2);border-top:1px solid rgba(181,32,32,.1);padding-top:.4rem;">'+
-      '📜 <em>সূর্য যখন নির্দিষ্ট রাশিতে অবস্থান করেন, তখন চন্দ্রের একটি নির্দিষ্ট তিথি সূর্যের তেজে দগ্ধ হয়। এই তিথিগুলোতে সমস্ত শুভকর্ম নিষিদ্ধ।</em></div>';
-    document.getElementById('dtmasdagdha').innerHTML = alertH + tblH + infoH;
   })();
 
-  // ── ট্যাব ৮: দেবীর আগমন-গমন ──
+  // ── ৩. দেবীর আগমন-গমন — শুধু দুর্গাপূজার ১৫ দিন আগে থেকে দশমী পর্যন্ত ──
   (function(){
+    var el=document.getElementById('dtdevi');
+    if(!el)return;
     var VAHAN=[
-      {w:0, name:'রবিবার', v:'🐘 গজ (হাতি)', result:'শুভ', detail:'শস্যপূর্ণা বসুন্ধরা — ভালো ফসল, বৃষ্টি, সমৃদ্ধি'},
-      {w:1, name:'সোমবার', v:'🐘 গজ (হাতি)', result:'শুভ', detail:'শস্যপূর্ণা বসুন্ধরা — ভালো ফসল, বৃষ্টি, সমৃদ্ধি'},
-      {w:2, name:'মঙ্গলবার', v:'🐎 ঘোটক (ঘোড়া)', result:'অশুভ', detail:'ছত্রভঙ্গ — যুদ্ধ, রাজনৈতিক অস্থিরতা'},
-      {w:3, name:'বুধবার', v:'🚢 নৌকা', result:'শুভ', detail:'শস্যবৃদ্ধি ও প্রচুর জল — কৃষির জন্য উত্তম'},
-      {w:4, name:'বৃহস্পতিবার', v:'🛕 দোলা (পালকি)', result:'অশুভ', detail:'মড়ক ভবেৎ — মহামারী বা ব্যাপক রোগের আশঙ্কা'},
-      {w:5, name:'শুক্রবার', v:'🛕 দোলা (পালকি)', result:'অশুভ', detail:'মড়ক ভবেৎ — মহামারী বা ব্যাপক রোগের আশঙ্কা'},
-      {w:6, name:'শনিবার', v:'🐎 ঘোটক (ঘোড়া)', result:'অশুভ', detail:'ছত্রভঙ্গ — যুদ্ধ, রাজনৈতিক অস্থিরতা'}
+      {v:'🐘 গজ (হাতি)',result:'শুভ',detail:'শস্যপূর্ণা বসুন্ধরা — ভালো ফসল, বৃষ্টি, সমৃদ্ধি'},
+      {v:'🐘 গজ (হাতি)',result:'শুভ',detail:'শস্যপূর্ণা বসুন্ধরা — ভালো ফসল, বৃষ্টি, সমৃদ্ধি'},
+      {v:'🐎 ঘোটক (ঘোড়া)',result:'অশুভ',detail:'ছত্রভঙ্গ — যুদ্ধ, রাজনৈতিক অস্থিরতা'},
+      {v:'🚢 নৌকা',result:'শুভ',detail:'শস্যবৃদ্ধি ও প্রচুর জল — কৃষির জন্য উত্তম'},
+      {v:'🛕 দোলা (পালকি)',result:'অশুভ',detail:'মড়ক ভবেৎ — মহামারী বা ব্যাপক রোগের আশঙ্কা'},
+      {v:'🛕 দোলা (পালকি)',result:'অশুভ',detail:'মড়ক ভবেৎ — মহামারী বা ব্যাপক রোগের আশঙ্কা'},
+      {v:'🐎 ঘোটক (ঘোড়া)',result:'অশুভ',detail:'ছত্রভঙ্গ — যুদ্ধ, রাজনৈতিক অস্থিরতা'}
     ];
-    // Check if Durga Puja period: Ashwin Shukla Saptami ± 15 days
-    // Calculate approximate Saptami date: bMonth=5 (আশ্বিন), শুক্ল ৭
-    var bm = c.bn ? c.bn.m : -1;
-    var isPujaPeriod = false;
-    var saptamiWeekday = null, dashamiWeekday = null;
-    // Find Saptami & Dashami weekday by scanning ±20 days
-    var scanBase = new Date(date); scanBase.setDate(scanBase.getDate() - 10);
-    for(var si=-15;si<=30;si++){
+    var WDAYS=['রবি','সোম','মঙ্গল','বুধ','বৃহঃ','শুক্র','শনি'];
+    // সপ্তমী ও দশমীর weekday খুঁজি (আশ্বিন শুক্লপক্ষ)
+    var saptW=null,dashW=null,deviYear=date.getFullYear();
+    for(var si=-20;si<=20;si++){
       var sd=new Date(date); sd.setDate(sd.getDate()+si);
       try{
         var sc=calcDay(sd);
         if(!sc||!sc.bn)continue;
-        if(sc.bn.m===5&&sc.paksha==='শুক্লপক্ষ'&&sc.pakDay===7&&saptamiWeekday===null) saptamiWeekday=sd.getDay();
-        if(sc.bn.m===5&&sc.paksha==='শুক্লপক্ষ'&&sc.pakDay===10&&dashamiWeekday===null) dashamiWeekday=sd.getDay();
+        if(sc.bn.m===5&&sc.paksha==='শুক্লপক্ষ'){
+          if(sc.pakDay===6&&saptW===null) saptW=sd.getDay(); // ষষ্ঠী = আগমন দিন
+          if(sc.pakDay===10&&dashW===null) dashW=sd.getDay(); // দশমী = গমন দিন
+        }
       }catch(e){}
     }
-    // Show if within 15 days of Saptami or during puja
-    if(bm===5||(bm===4&&c.pakDay>=11)||(bm===5&&c.pakDay<=12)) isPujaPeriod=true;
-    var deviH='';
+    // পূজার সময়কাল: আশ্বিন মাস বা ভাদ্রের শেষ দিক থেকে (সপ্তমীর ১৫ দিন আগে)
+    var bm=c.bn?c.bn.m:-1;
+    var isPujaPeriod=(bm===5)||( bm===4&&c.pakDay>=8);
     if(!isPujaPeriod){
-      deviH='<div style="margin:.8rem .6rem;text-align:center;font-size:.73rem;color:var(--txt2);padding:1.5rem 1rem;border:1px dashed rgba(181,134,13,.2);border-radius:12px;">'+
-        '🛕 এই তথ্যটি শারদীয় দুর্গাপূজার সময় (মহাষষ্ঠী থেকে বিজয়া দশমী) প্রাসঙ্গিক।<br><br>'+
-        '<span style="font-size:.65rem;">আসন্ন পূজার সময় এখানে দেবীর আগমন ও গমনের বাহন এবং ফলাফল দেখাবে।</span></div>';
-    } else {
-      // Show arrival & departure info
-      var arrV=saptamiWeekday!==null?VAHAN[saptamiWeekday]:null;
-      var depV=dashamiWeekday!==null?VAHAN[dashamiWeekday]:null;
-      if(arrV){
-        var aclr=arrV.result==='শুভ'?'rgba(37,102,37,.1)':'rgba(181,32,32,.1)';
-        deviH+='<div style="background:'+aclr+';border-radius:10px;padding:.7rem .9rem;margin:.5rem .6rem;">'+
-          '<div style="font-size:.62rem;font-weight:700;color:var(--txt2);margin-bottom:.2rem;">🌅 আগমন (মহাষষ্ঠী · '+['রবি','সোম','মঙ্গল','বুধ','বৃহঃ','শুক্র','শনি'][saptamiWeekday]+'বার)</div>'+
-          '<div style="font-size:.9rem;font-weight:700;">'+arrV.v+'</div>'+
-          '<div style="font-size:.7rem;color:'+(arrV.result==='শুভ'?'var(--green)':'#b52020')+';">'+arrV.result+' — '+arrV.detail+'</div></div>';
-      }
-      if(depV){
-        var dclr=depV.result==='শুভ'?'rgba(37,102,37,.1)':'rgba(181,32,32,.1)';
-        deviH+='<div style="background:'+dclr+';border-radius:10px;padding:.7rem .9rem;margin:.5rem .6rem;">'+
-          '<div style="font-size:.62rem;font-weight:700;color:var(--txt2);margin-bottom:.2rem;">🌇 গমন (বিজয়া দশমী · '+['রবি','সোম','মঙ্গল','বুধ','বৃহঃ','শুক্র','শনি'][dashamiWeekday]+'বার)</div>'+
-          '<div style="font-size:.9rem;font-weight:700;">'+depV.v+'</div>'+
-          '<div style="font-size:.7rem;color:'+(depV.result==='শুভ'?'var(--green)':'#b52020')+';">'+depV.result+' — '+depV.detail+'</div></div>';
-      }
+      el.innerHTML=''; // পূজার সময় না হলে কিছু দেখাবে না
+      return;
     }
-    // Full table (always show)
-    var tblH='<div style="margin:.5rem;"><table style="width:100%;border-collapse:collapse;font-size:.67rem;">'+
-      '<thead><tr style="background:rgba(181,134,13,.1);">'+
-      '<th style="padding:.3rem .4rem;border-bottom:1px solid rgba(181,134,13,.2);">বার</th>'+
-      '<th style="padding:.3rem .4rem;border-bottom:1px solid rgba(181,134,13,.2);">বাহন</th>'+
-      '<th style="padding:.3rem .4rem;border-bottom:1px solid rgba(181,134,13,.2);">ফলাফল</th>'+
-      '</tr></thead><tbody>';
-    VAHAN.forEach(function(v){
-      var isCur=v.w===date.getDay();
-      tblH+='<tr style="'+(isCur?'background:rgba(181,134,13,.1);font-weight:700;':(v.w%2===0?'background:rgba(0,0,0,.02);':''))+'">'+'\n'+
-        '<td style="padding:.28rem .4rem;border-bottom:1px solid rgba(181,134,13,.07);">'+(isCur?'▶ ':'')+v.name+'</td>'+
-        '<td style="padding:.28rem .4rem;border-bottom:1px solid rgba(181,134,13,.07);">'+v.v+'</td>'+
-        '<td style="padding:.28rem .4rem;border-bottom:1px solid rgba(181,134,13,.07);color:'+(v.result==='শুভ'?'var(--green)':'#b52020')+';">'+v.result+'</td>'+
-        '</tr>';
-    });
-    tblH+='</tbody></table></div>';
-    var shlokH='<div style="margin:.4rem .6rem .6rem;font-size:.64rem;color:var(--txt2);font-style:italic;border-top:1px solid rgba(181,134,13,.12);padding-top:.4rem;">'+
-      '📜 রবৌ চন্দ্রে গজারূঢ়া রোটকে শনিভৌময়োঃ। গুরৌ শুক্রে চ দোলায়াং নৌকায়াং বুধবাসরে॥</div>';
-    document.getElementById('dtdevi').innerHTML = deviH + tblH + shlokH;
+    var h='';
+    if(saptW!==null){
+      var av=VAHAN[saptW];
+      var aclr=av.result==='শুভ'?'rgba(37,102,37,.1)':'rgba(181,32,32,.08)';
+      var atclr=av.result==='শুভ'?'var(--green)':'#b52020';
+      h+='<div style="background:'+aclr+';border:1.5px solid '+(av.result==='শুভ'?'rgba(37,102,37,.25)':'rgba(181,32,32,.25)')+';border-radius:10px;padding:.65rem .9rem;margin:.4rem 0;">'
+        +'<div style="font-size:.62rem;color:var(--txt2);margin-bottom:.15rem;">🌅 দেবীর আগমন (মহাষষ্ঠী · '+WDAYS[saptW]+'বার)</div>'
+        +'<div style="font-size:.88rem;font-weight:700;">'+av.v+'</div>'
+        +'<div style="font-size:.7rem;color:'+atclr+';margin-top:.15rem;">'+av.result+' — '+av.detail+'</div>'
+        +'</div>';
+    }
+    if(dashW!==null){
+      var dv=VAHAN[dashW];
+      var dclr=dv.result==='শুভ'?'rgba(37,102,37,.1)':'rgba(181,32,32,.08)';
+      var dtclr=dv.result==='শুভ'?'var(--green)':'#b52020';
+      h+='<div style="background:'+dclr+';border:1.5px solid '+(dv.result==='শুভ'?'rgba(37,102,37,.25)':'rgba(181,32,32,.25)')+';border-radius:10px;padding:.65rem .9rem;margin:.4rem 0;">'
+        +'<div style="font-size:.62rem;color:var(--txt2);margin-bottom:.15rem;">🌇 দেবীর গমন (বিজয়া দশমী · '+WDAYS[dashW]+'বার)</div>'
+        +'<div style="font-size:.88rem;font-weight:700;">'+dv.v+'</div>'
+        +'<div style="font-size:.7rem;color:'+dtclr+';margin-top:.15rem;">'+dv.result+' — '+dv.detail+'</div>'
+        +'</div>';
+    }
+    h+='<div style="font-size:.63rem;color:var(--txt2);padding:.3rem 0;font-style:italic;">📜 রবৌ চন্দ্রে গজারূঢ়া রোটকে শনিভৌময়োঃ। গুরৌ শুক্রে চ দোলায়াং নৌকায়াং বুধবাসরে॥</div>';
+    el.innerHTML=h;
   })();
+
 
 
   // ট্যাব ০ activate
