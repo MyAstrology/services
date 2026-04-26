@@ -120,7 +120,7 @@ svg{background:#fefcf9;border-radius:8px;max-width:100%;height:auto}
   .pg-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media print{
-  .site-header,.nav,.nav-overlay,.btn-row,.ig,.site-footer,#tabNav,.print-btn-wrap{display:none!important}
+  .site-header,.nav,.nav-overlay,.btn-row,.ig,.site-footer,#tabNav{display:none!important}
   body{padding-top:0!important;background:#fff!important;color:#000!important}
   .k-wrap{padding:8px!important;max-width:100%!important}
   #inputSection{display:none!important}
@@ -131,6 +131,7 @@ svg{background:#fefcf9;border-radius:8px;max-width:100%;height:auto}
   svg{max-width:100%!important}
   .prediction-box{border:1px solid #ccc!important}
   table{page-break-inside:avoid;font-size:.8rem!important}
+  .ad-row,.pd-row{display:table-row!important}
   @page{margin:15mm 10mm}
 }
 /* ── Tabs ── */
@@ -262,11 +263,6 @@ svg{background:#fefcf9;border-radius:8px;max-width:100%;height:auto}
 <!-- ফলাফল — inputSection-এর বাইরে -->
 <div class="k-wrap" id="resultsArea" style="display:none">
 
-  <!-- PDF প্রিন্ট বাটন -->
-  <div class="print-btn-wrap" style="text-align:center;margin:0 0 14px">
-    <button onclick="window.print()" style="background:#7a2e2e;color:#fff;border:none;border-radius:50px;padding:10px 26px;font-size:.9rem;font-weight:700;cursor:pointer;font-family:inherit;box-shadow:0 3px 10px rgba(122,46,46,.3)">🖨️ PDF সংরক্ষণ / প্রিন্ট</button>
-  </div>
-
   <!-- গণেশ আশীর্বাদ ব্যানার -->
   <div style="text-align:center;margin:0 0 16px 0">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" width="100%" height="100%" style="max-width:480px;border-radius:12px;box-shadow:0 2px 16px rgba(180,140,30,.22)">
@@ -389,6 +385,7 @@ svg{background:#fefcf9;border-radius:8px;max-width:100%;height:auto}
       <button class="tab-btn" onclick="window.location.href='match-making.html'">💞 যোটক</button>
       <button class="tab-btn" onclick="window.location.href='panjika.html'">📅 পঞ্জিকা</button>
       <button class="tab-btn" onclick="openRashifal()">♈ রাশিফল</button>
+      <button class="tab-btn" id="pdfBtn" onclick="downloadPDF()" style="color:#ffd700;font-weight:900;border-left:1px solid rgba(184,134,11,.5);padding-left:14px">🖨️ PDF</button>
     </div>
 
     <!-- Tab ক: ভাব কুণ্ডলি -->
@@ -774,7 +771,7 @@ function drawChart(suffix,planets,lagnaRashiIdx){
     const inBot=p.y>160;
     rashiMap[i].forEach((nm,ni)=>{
       const t=document.createElementNS(ns,"text");
-      const ty=inBot?p.y-8-(cnt-1-ni)*lH:p.y+12+ni*lH;
+      const ty=inBot?p.y-22-ni*lH:p.y+12+ni*lH;
       t.setAttribute("x",p.x);t.setAttribute("y",ty);
       t.setAttribute("text-anchor","middle");t.setAttribute("fill","#1a1a2e");
       t.setAttribute("font-size",String(fS));t.setAttribute("font-weight","bold");
@@ -1563,6 +1560,32 @@ function buildGocharTab(moonLon,lagnaRashiIdx){
   const predEl=document.getElementById('gocharPredDiv');
   if(predEl)predEl.innerHTML=predHtml||'<p style="color:#666;padding:10px">গোচর ফলাদেশ লোড হয়নি।</p>';
 }
+
+/* ── PDF ডাউনলোড ── */
+let _pdfRestore=null;
+function downloadPDF(){
+  const ra=document.getElementById('resultsArea');
+  if(!ra||ra.style.display==='none'){alert('প্রথমে কুষ্ঠি গণনা করুন।');return;}
+  // Save state of all tab panels & main section
+  const saved=[];
+  document.querySelectorAll('.tab-panel').forEach(p=>saved.push({el:p,d:p.style.display}));
+  const main=document.getElementById('mainKundaliSection');
+  if(main)saved.push({el:main,d:main.style.display});
+  // Expand all dasha accordion rows (save those that were closed)
+  const closedRows=[];
+  document.querySelectorAll('.ad-row:not(.open),.pd-row:not(.open)').forEach(r=>{closedRows.push(r);r.classList.add('open');});
+  // Show all panels + main section
+  saved.forEach(({el})=>el.style.display='block');
+  _pdfRestore={saved,closedRows};
+  window.print();
+}
+window.addEventListener('afterprint',function(){
+  if(!_pdfRestore)return;
+  const{saved,closedRows}=_pdfRestore;
+  saved.forEach(({el,d})=>el.style.display=d);
+  closedRows.forEach(r=>r.classList.remove('open'));
+  _pdfRestore=null;
+});
 </script>
 </body>
 </html>
