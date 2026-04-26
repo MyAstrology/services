@@ -805,8 +805,9 @@ function drawBhavaChalitChart(svgId, bhavaData, rashiNames) {
         rashiText.setAttribute("y", pos.y - 12);
         rashiText.setAttribute("text-anchor", "middle");
         rashiText.setAttribute("fill", i === lagnaRashi ? "#8b0000" : "#8b6914");
-        rashiText.setAttribute("font-size", "10");
+        rashiText.setAttribute("font-size", "11");
         rashiText.setAttribute("font-weight", i === lagnaRashi ? "bold" : "normal");
+        rashiText.setAttribute("font-family", "Noto Sans Bengali,serif");
         rashiText.textContent = i === lagnaRashi ? `[${rashiNames[i]}]` : rashiNames[i];
         svg.appendChild(rashiText);
         
@@ -822,11 +823,14 @@ function drawBhavaChalitChart(svgId, bhavaData, rashiNames) {
         svg.appendChild(bhavaText);
     });
     
+    // গ্রহ সংক্ষিপ্ত নাম
+    const BCHRT_SHORT={"লগ্ন":"ল","সূর্য":"রবি","চন্দ্র":"চন্দ্র","মঙ্গল":"মঙ্গ",
+        "বুধ":"বুধ","বৃহস্পতি":"বৃহ","শুক্র":"শুক্র","শনি":"শনি","রাহু":"রাহু","কেতু":"কেতু"};
+
     // গ্রহ বসানো (ভাব কুণ্ডলী অনুযায়ী)
     const rashiPlanets = Array(12).fill().map(() => []);
     
     bhavaData.planets.forEach(planet => {
-        // ভাব কুণ্ডলীতে গ্রহের chalitBhava অনুযায়ী রাশি নির্ধারণ
         let chartPosIdx;
         if (planet.chalitBhava !== undefined) {
             chartPosIdx = (lagnaRashi + planet.chalitBhava - 1) % 12;
@@ -834,26 +838,26 @@ function drawBhavaChalitChart(svgId, bhavaData, rashiNames) {
             const normLon = ((planet.lon || 0) % 360 + 360) % 360;
             chartPosIdx = Math.floor(normLon / 30);
         }
-        
         if (chartPosIdx >= 0 && chartPosIdx < 12) {
-            const symbol = planet.name.substring(0, 2);
-            const marker = planet.changed ? `${symbol}*` : symbol;
-            rashiPlanets[chartPosIdx].push(marker);
+            const symbol = BCHRT_SHORT[planet.name] || planet.name.substring(0, 2);
+            rashiPlanets[chartPosIdx].push(planet.changed ? symbol + '*' : symbol);
         }
     });
     
+    const ns2 = "http://www.w3.org/2000/svg";
     CHART_POSITIONS.forEach((pos, i) => {
-        if (rashiPlanets[i].length > 0) {
-            const planetText = document.createElementNS("http://www.w3.org/2000/svg", "text");
-            planetText.setAttribute("x", pos.x);
-            planetText.setAttribute("y", pos.y + 8);
-            planetText.setAttribute("text-anchor", "middle");
-            planetText.setAttribute("fill", "#1a1a2e");
-            planetText.setAttribute("font-size", "10");
-            planetText.setAttribute("font-weight", "bold");
-            planetText.textContent = rashiPlanets[i].join(',');
-            svg.appendChild(planetText);
-        }
+        rashiPlanets[i].forEach((nm, ni) => {
+            const t = document.createElementNS(ns2, "text");
+            t.setAttribute("x", pos.x);
+            t.setAttribute("y", pos.y + 12 + ni * 13);
+            t.setAttribute("text-anchor", "middle");
+            t.setAttribute("fill", nm.endsWith("*") ? "#c62828" : "#1a1a2e");
+            t.setAttribute("font-size", "11");
+            t.setAttribute("font-weight", "bold");
+            t.setAttribute("font-family", "Noto Sans Bengali,serif");
+            t.textContent = nm;
+            svg.appendChild(t);
+        });
     });
 }
 
@@ -1771,248 +1775,3 @@ class ShannadiChakraEngine {
     }
 }
 
-
-
-/**
- * ============================================================
- * shannadi-chakra.js
- * ষণ্ণাড়ী চক্র (6 Nadi Chakra) — পূর্ণাঙ্গ ইঞ্জিন
- * Vedic Astrology | Transit Impact on 6 Nadis
- * Language: Bengali (বাংলা)
- * ============================================================
- */
-
-class ShannadiChakraEngine {
-    constructor() {
-        // ২৭ নক্ষত্র
-        this.nakshatras = [
-            "অশ্বিনী", "ভরণী", "কৃত্তিকা", "রোহিণী", "মৃগশিরা", "আর্দ্রা",
-            "পুনর্বসু", "পুষ্যা", "অশ্লেষা", "মঘা", "পূর্বফাল্গুনী", "উত্তরফাল্গুনী",
-            "হস্তা", "চিত্রা", "স্বাতী", "বিশাখা", "অনুরাধা", "জ্যেষ্ঠা",
-            "মূলা", "পূর্বাষাঢ়া", "উত্তরাষাঢ়া", "শ্রবণা", "ধনিষ্ঠা", "শতভিষা",
-            "পূর্বভাদ্রপদ", "উত্তরভাদ্রপদ", "রেবতী"
-        ];
-
-        // ষণ্ণাড়ীর ৬টি নাড়ী ও তাদের নিয়ম (জন্মনক্ষত্র থেকে)
-        this.nadiRules = {
-            "জন্মনাড়ী": 1,        // জন্মনক্ষত্র নিজেই
-            "কর্মনাড়ী": 10,       // জন্ম থেকে ১০ম নক্ষত্র
-            "সাংঘাতিক নাড়ী": 16,  // জন্ম থেকে ১৬শ নক্ষত্র
-            "সমুদয় নাড়ী": 18,     // জন্ম থেকে ১৮শ নক্ষত্র
-            "বিনাশ নাড়ী": 23,     // জন্ম থেকে ২৩শ নক্ষত্র
-            "মানস নাড়ী": 25       // জন্ম থেকে ২৫শ নক্ষত্র
-        };
-
-        // নাড়ীর অর্থ ও প্রভাব
-        this.nadiDescriptions = {
-            "জন্মনাড়ী": {
-                area: "শরীর ও স্বাস্থ্য",
-                badEffect: "শরীর-স্বাস্থ্য খারাপ হবে, দেহকষ্ট, পারিবারিক ঝঞ্ঝাট, গৃহে অশান্তি দেখা দিতে পারে।",
-                icon: "🏥"
-            },
-            "কর্মনাড়ী": {
-                area: "কর্ম ও পেশা",
-                badEffect: "কর্মহানি হবে, কর্মস্থলে ঝামেলা, অর্থনাশ, অপযশ, চাকরিতে পদাবনতি বা পরিবর্তন দেখা দিতে পারে।",
-                icon: "💼"
-            },
-            "সাংঘাতিক নাড়ী": {
-                area: "জীবনের ভুল সংগঠন",
-                badEffect: "শরীর, অর্থ, সম্পর্ক — সবক্ষেত্রে অসুবিধা। বিপদ, দুর্ঘটনা, শত্রুবৃদ্ধি, মামলা ও বন্ধনভয় উপস্থিত হয়।",
-                icon: "⚠️"
-            },
-            "সমুদয় নাড়ী": {
-                area: "সহযোগী ও পরিবেশ",
-                badEffect: "দুঃখ, শোক, প্রতিবেশী বা কর্মচারীর সাথে অসুবিধা। উন্নতিতে বাধা, অ-সাফল্য, অর্থনাশ ও লোকনিন্দা হয়।",
-                icon: "👥"
-            },
-            "বিনাশ নাড়ী": {
-                area: "কাজের বিনাশ",
-                badEffect: "কাজ আটকাবে, ক্ষতি হবে, শরীর খারাপ হবে। কঠিন পীড়া, মৃত্যুভয়, স্বজনবিয়োগ পর্যন্ত হতে পারে।",
-                icon: "💀"
-            },
-            "মানস নাড়ী": {
-                area: "মানসিকতা ও মন",
-                badEffect: "মানসিক অশান্তি, মানসিক চাপ, আশাভঙ্গ, মনোকষ্ট, বন্ধুবিচ্ছেদ ও দুশ্চিন্তা উপস্থিত হয়।",
-                icon: "🧠"
-            }
-        };
-
-        // পাপগ্রহ (ক্রূর গ্রহ)
-        this.papaGrahas = ["শনি", "রাহু", "কেতু", "মঙ্গল", "সূর্য"];
-    }
-
-    /**
-     * জন্মনক্ষত্র থেকে ষণ্ণাড়ী চক্রের ৬টি নক্ষত্র বের করা
-     * @param {string} birthNakshatra - জন্মনক্ষত্র
-     * @returns {object} ৬টি নাড়ীর তথ্য
-     */
-    getShannadiChakra(birthNakshatra) {
-        const bi = this.nakshatras.indexOf(birthNakshatra);
-        if (bi === -1) return { error: "নক্ষত্র সঠিক নয়" };
-
-        const chakra = {};
-
-        for (const [name, rule] of Object.entries(this.nadiRules)) {
-            const targetIndex = (bi + rule - 1) % 27;
-            const targetNak = this.nakshatras[targetIndex];
-            chakra[name] = {
-                nakshatra: targetNak,
-                index: targetIndex + 1,
-                ...this.nadiDescriptions[name]
-            };
-        }
-
-        chakra["জন্ম_নক্ষত্র"] = birthNakshatra;
-
-        return chakra;
-    }
-
-    /**
-     * ট্রানজিটে কোনো পাপগ্রহ ষণ্ণাড়ীর কোনো নাড়ীতে আছে কিনা চেক করা
-     * @param {string} birthNakshatra - জন্মনক্ষত্র
-     * @param {object} transitPlanets - ট্রানজিটের গ্রহ { "শনি": "অশ্বিনী", "রাহু": "রোহিণী", ... }
-     * @returns {object} কোন নাড়ীতে কোন পাপগ্রহ আছে
-     */
-    checkTransitImpact(birthNakshatra, transitPlanets = {}) {
-        const chakra = this.getShannadiChakra(birthNakshatra);
-        if (chakra.error) return chakra;
-
-        const impacts = [];
-
-        for (const [planet, transitNak] of Object.entries(transitPlanets)) {
-            // শুধু পাপগ্রহ চেক
-            if (!this.papaGrahas.includes(planet)) continue;
-
-            // এই পাপগ্রহটি কোন নাড়ীতে আছে?
-            for (const [nadiName, nadiData] of Object.entries(chakra)) {
-                if (nadiName === "জন্ম_নক্ষত্র") continue;
-                if (nadiData.nakshatra === transitNak) {
-                    impacts.push({
-                        planet,
-                        nadiName,
-                        nadiData,
-                        severity: (planet === "শনি" || planet === "রাহু") ? "তীব্র" : 
-                                  (planet === "মঙ্গল" || planet === "কেতু") ? "মধ্যম" : "সামান্য"
-                    });
-                }
-            }
-        }
-
-        return {
-            chakra,
-            impacts,
-            hasImpact: impacts.length > 0,
-            summary: impacts.length > 0 ? 
-                `${impacts.length}টি পাপগ্রহ ষণ্ণাড়ীতে অবস্থান করছে` : 
-                "কোনো পাপগ্রহ ষণ্ণাড়ীতে অবস্থান করছে না — এই সময় তুলনামূলক শুভ"
-        };
-    }
-
-    /**
-     * পূর্ণাঙ্গ ষণ্ণাড়ী প্রেডিকশন (টেক্সট)
-     * @param {string} birthNakshatra - জন্মনক্ষত্র
-     * @param {object} transitPlanets - ট্রানজিটের গ্রহ
-     * @returns {string}
-     */
-    getShannadiPrediction(birthNakshatra, transitPlanets = {}) {
-        const result = this.checkTransitImpact(birthNakshatra, transitPlanets);
-        if (result.error) return result.error;
-
-        let output = `\n╔══════════════════════════════════════════════════╗\n`;
-        output += `║  🔮 ষণ্ণাড়ী চক্র — ট্রানজিট প্রভাব\n`;
-        output += `║  জন্মনক্ষত্র: ${birthNakshatra}\n`;
-        output += `╚══════════════════════════════════════════════════╝\n\n`;
-
-        output += `📋 ষণ্ণাড়ীর ৬টি নাড়ী:\n`;
-        output += `${"─".repeat(45)}\n`;
-        for (const [name, data] of Object.entries(result.chakra)) {
-            if (name === "জন্ম_নক্ষত্র") continue;
-            output += `${data.icon} ${name}: ${data.nakshatra} (${data.index}তম)\n`;
-            output += `   বিষয়: ${data.area}\n`;
-        }
-
-        output += `\n${"─".repeat(45)}\n`;
-
-        if (result.hasImpact) {
-            output += `\n⚠️ ট্রানজিটে পাপগ্রহের প্রভাব:\n\n`;
-            result.impacts.forEach(imp => {
-                output += `${imp.nadiData.icon} **${imp.nadiName}** (${imp.nadiData.nakshatra}) — ${imp.planet} (${imp.severity} প্রভাব)\n`;
-                output += `   ${imp.nadiData.badEffect}\n\n`;
-            });
-        } else {
-            output += `\n✅ এই মুহূর্তে কোনো পাপগ্রহ ষণ্ণাড়ীতে নেই — সময় তুলনামূলক শুভ ও নিরাপদ।\n`;
-        }
-
-        output += `\n🕉️ ষণ্ণাড়ী চক্র পাপগ্রহের ট্রানজিটজনিত অশুভ প্রভাব বোঝার জন্য ব্যবহৃত হয়।\n`;
-
-        return output;
-    }
-
-    /**
-     * ষণ্ণাড়ী চক্র HTML টেবিল (kundali.html-এ বসানোর জন্য)
-     * @param {string} birthNakshatra - জন্মনক্ষত্র
-     * @param {object} transitPlanets - ট্রানজিটের গ্রহ
-     * @returns {string} HTML
-     */
-    getShannadiTableHTML(birthNakshatra, transitPlanets = {}) {
-        const result = this.checkTransitImpact(birthNakshatra, transitPlanets);
-        if (result.error) return `<p>${result.error}</p>`;
-
-        // কোন নাড়ীতে কোন পাপগ্রহ আছে — ম্যাপ
-        const impactedNadis = {};
-        result.impacts.forEach(imp => {
-            if (!impactedNadis[imp.nadiName]) impactedNadis[imp.nadiName] = [];
-            impactedNadis[imp.nadiName].push(imp.planet);
-        });
-
-        let html = `<div style="overflow-x:auto;margin:20px 0;">
-            <h3 style="text-align:center;color:#5D4037;">🔮 ষণ্ণাড়ী চক্র</h3>
-            <p style="text-align:center;font-size:0.9rem;color:#666;">জন্মনক্ষত্র: <strong>${birthNakshatra}</strong></p>
-            <table style="width:100%;border-collapse:collapse;text-align:center;font-size:0.85rem;">
-            <thead><tr style="background:#5D4037;color:#fff;">
-                <th>নাড়ী</th><th>নক্ষত্র</th><th>ক্রম</th><th>বিষয়</th><th>পাপগ্রহ</th><th>অবস্থা</th>
-            </tr></thead><tbody>`;
-
-        for (const [name, data] of Object.entries(result.chakra)) {
-            if (name === "জন্ম_নক্ষত্র") continue;
-            const planetsHere = impactedNadis[name] || [];
-            const hasImpact = planetsHere.length > 0;
-
-            html += `<tr style="background:${hasImpact ? '#FFF5F5' : '#fff'}">
-                <td>${data.icon} ${name}</td>
-                <td><strong>${data.nakshatra}</strong></td>
-                <td>${data.index}তম</td>
-                <td>${data.area}</td>
-                <td style="color:${hasImpact ? '#c62828' : '#666'};font-weight:bold;">${hasImpact ? planetsHere.join(', ') : '—'}</td>
-                <td style="color:${hasImpact ? '#c62828' : '#2e7d32'};font-weight:bold;">${hasImpact ? '⚠️ অশুভ' : '✅ শুদ্ধ'}</td>
-            </tr>`;
-        }
-
-        html += `</tbody></table>`;
-
-        // কোনো প্রভাব থাকলে বিস্তারিত
-        if (result.hasImpact) {
-            html += `<div style="margin-top:15px;padding:12px;background:#FFF5F5;border-left:4px solid #c62828;border-radius:4px;">`;
-            html += `<strong>⚠️ বিস্তারিত প্রভাব:</strong><br>`;
-            result.impacts.forEach(imp => {
-                html += `<span style="color:#c62828;">●</span> <strong>${imp.nadiName}</strong> (${imp.nadiData.nakshatra}) — ${imp.planet}: ${imp.nadiData.badEffect}<br>`;
-            });
-            html += `</div>`;
-        } else {
-            html += `<div style="margin-top:15px;padding:12px;background:#E8F5E9;border-left:4px solid #2e7d32;border-radius:4px;">✅ এই মুহূর্তে কোনো পাপগ্রহ ষণ্ণাড়ীতে নেই।</div>`;
-        }
-
-        html += `</div>`;
-        return html;
-    }
-}
-
-// Export
-if (typeof module !== "undefined" && module.exports) {
-    module.exports = ShannadiChakraEngine;
-}
-
-console.log("✅ shannadi-chakra.js — ষণ্ণাড়ী চক্র ইঞ্জিন লোড");
-console.log("🔍 ব্যবহার:");
-console.log("   engine.getShannadiPrediction('অশ্বিনী', { 'শনি': 'মঘা', 'রাহু': 'রোহিণী' })");
-console.log("   engine.getShannadiTableHTML('অশ্বিনী', { 'শনি': 'মঘা' }) — kundali.html-এ");
