@@ -1392,35 +1392,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- ট্যাব ৫: জন্মরাশি -->
       <div class="dtab-pane" id="dtpane5">
-        <div class="calc-form">
-          <p style="font-size:.73rem;color:var(--txt2);margin-bottom:.7rem;">শিশুর জন্ম তারিখ, সময় ও স্থান দিলে রাশি, নক্ষত্র ও লগ্ন দেখাবে।</p>
-          <div class="calc-field">
-            <label>জন্ম তারিখ</label>
-            <input type="date" id="birthDate2" />
-          </div>
-          <div class="calc-row">
-            <div class="calc-field">
-              <label>ঘণ্টা (0–23)</label>
-              <input type="number" id="birthHour2" min="0" max="23" placeholder="যেমন: 14" />
+        <a href="https://www.myastrology.in/kundali.html" target="_blank"
+          style="display:block;text-decoration:none;margin:.6rem .4rem;">
+          <div style="background:linear-gradient(135deg,rgba(181,134,13,.1),rgba(181,134,13,.05));
+            border:1.5px solid rgba(181,134,13,.3);border-radius:14px;padding:1.2rem 1rem;
+            text-align:center;">
+            <div style="font-size:2rem;margin-bottom:.4rem;">🪐</div>
+            <div style="font-family:'Tiro Bangla',serif;font-size:1rem;font-weight:700;
+              color:var(--gold-l);margin-bottom:.35rem;">বিনামূল্যে জন্ম কুণ্ডলী</div>
+            <div style="font-size:.72rem;color:var(--txt2);line-height:1.5;margin-bottom:.7rem;">
+              জন্ম তারিখ, সময় ও স্থান দিয়ে সম্পূর্ণ কুণ্ডলী বিশ্লেষণ করুন।<br>
+              লগ্ন · রাশি · নক্ষত্র · দশা · গ্রহ অবস্থান সহ বিস্তারিত।
             </div>
-            <div class="calc-field">
-              <label>মিনিট (0–59)</label>
-              <input type="number" id="birthMin2" min="0" max="59" placeholder="যেমন: 30" />
-            </div>
-          </div>
-          <div class="calc-row">
-            <div class="calc-field">
-              <label>অক্ষাংশ (°N)</label>
-              <input type="number" id="birthLat2" step="0.01" placeholder="23.17 (রানাঘাট)" value="23.17" />
-            </div>
-            <div class="calc-field">
-              <label>দ্রাঘিমাংশ (°E)</label>
-              <input type="number" id="birthLng2" step="0.01" placeholder="88.58" value="88.58" />
+            <div style="display:inline-block;background:var(--gold);color:#fff;
+              font-size:.75rem;font-weight:700;padding:.45rem 1.2rem;
+              border-radius:20px;font-family:'Baloo Da 2',sans-serif;">
+              কুণ্ডলী দেখুন →
             </div>
           </div>
-          <button class="calc-btn" onclick="calcBirthRashi2()">🔮 রাশি নির্ধারণ করুন</button>
-          <div class="calc-result" id="birthResult2"></div>
-        </div>
+        </a>
       </div>
 
 
@@ -4060,7 +4050,7 @@ function showDetail(date) {
   var _r=graha.retro||{};
   var grahaData=[
     {i:'☀️',l:'সূর্য',v:_grahaSub(graha.sun,false)},
-    {i:'🌙',l:'চন্দ্র',v:_grahaSub(graha.moon,false)},
+    // চন্দ্র moonRashiHtml section-এ দেখানো হয়, এখানে নেই
     {i:'🔴',l:'মঙ্গল',v:_grahaSub(graha.mars,_r.mars)+_combustBadge(graha.mars,'মঙ্গল')},
     {i:'🟡',l:'গুরু',v:_grahaSub(graha.jup,_r.jup)+_combustBadge(graha.jup,'গুরু')},
     {i:'⬛',l:'শনি',v:_grahaSub(graha.sat,_r.sat)+_combustBadge(graha.sat,'শনি')},
@@ -4180,7 +4170,8 @@ function showDetail(date) {
 
     // বাংলা মাস অনুযায়ী ঋতু নির্বাচন (0=বৈশাখ … 11=চৈত্র)
     var bnM2=getBnInfoDynamic(date).m;
-    var aT=(bnM2===1||bnM2===2)?{D:AMD_C,dH:MHD_C,N:AMN_C,nH:MHN_C}:
+    // Season: C=গ্রীষ্ম (বৈশাখ bm=0 + জ্যৈষ্ঠ bm=1), B=শীত (আশ্বিন bm=5 – পৌষ bm=8), A=অন্যান্য
+    var aT=(bnM2===0||bnM2===1)?{D:AMD_C,dH:MHD_C,N:AMN_C,nH:MHN_C}:
            (bnM2>=5&&bnM2<=8)?{D:AMD_B,dH:MHD_B,N:AMN_B,nH:MHN_B}:
            {D:AMD_A,dH:MHD_A,N:AMN_A,nH:MHN_A};
 
@@ -4419,10 +4410,7 @@ function showDetail(date) {
     var curPD2=c.tN; var curPakDay2=(curPD2<=15)?curPD2:curPD2-15;
     var isMD=MASDAGDHA2.find(function(m){return m.rashi===sunRashi2&&m.paksha===c.paksha&&m.pd===curPakDay2;});
     if(isMD) alerts.push({t:'error', html:'⛔ আজ '+isMD.bnMas+' মাসের '+isMD.tName+' — মাসদগ্ধা তিথি। সমস্ত শুভ কাজ নিষিদ্ধ।'});
-    // ২. অভক্ষ্য
-    var ABHAKSHYA2=[{pd:1,food:'কুষ্মাণ্ড (কুমড়া)'},{pd:2,food:'বৃহতী (বেগুন)'},{pd:3,food:'পটোল'},{pd:4,food:'মূলক (মুলো)'},{pd:5,food:'বিল্ব (বেল)'},{pd:6,food:'নিম্ব (নিমপাতা)'},{pd:7,food:'তাল'},{pd:8,food:'নারিকেল'},{pd:9,food:'অলাবু (লাউ)'},{pd:10,food:'কলম্বী শাক'},{pd:11,food:'শিম্বী (শিম)'},{pd:12,food:'পূতিকা (পুঁইশাক)'},{pd:13,food:'বার্তাকু (বেগুন)'},{pd:14,food:'মাষকলাই'},{pd:15,food:'মৎস্য ও মাংস'},{pd:30,food:'মৎস্য ও মাংস'}];
-    var abEnt=ABHAKSHYA2.find(function(a){return a.pd===curPakDay2||(curPD2===30&&a.pd===30);});
-    if(abEnt) alerts.push({t:'warn', html:'🍃 আজ '+c.tName+' — <strong>'+abEnt.food+'</strong> ভক্ষণ নিষিদ্ধ।'});
+    // ভক্ষ্য alert সরানো — dtbhakshya section-এ দেখানো হয়
     // ৩. দেবী আগমন-গমন (শুধু দুর্গাপূজার সময়)
     var bm3=c.bn?c.bn.m:-1;
     if(bm3===5&&c.paksha==='শুক্লপক্ষ'&&c.pakDay>=6&&c.pakDay<=10){
