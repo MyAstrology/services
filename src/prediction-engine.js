@@ -854,7 +854,7 @@ function drawBhavaChalitChart(svgId, bhavaData, rashiNames) {
         rashiPlanets[i].forEach((nm, ni) => {
             const t = document.createElementNS(ns2, "text");
             t.setAttribute("x", pos.x);
-            const ty = inBot ? pos.y - 8 - (cnt - 1 - ni) * lH : pos.y + 12 + ni * lH;
+            const ty = inBot ? pos.y - 22 - ni * lH : pos.y + 12 + ni * lH;
             t.setAttribute("y", ty);
             t.setAttribute("text-anchor", "middle");
             t.setAttribute("fill", nm.endsWith("*") ? "#c62828" : "#1a1a2e");
@@ -1632,13 +1632,17 @@ class NavaTaraNadiUI {
             if (!nakPlanets[nak]) nakPlanets[nak] = [];
             nakPlanets[nak].push(pl);
         }
+        // anticlockwise: sector 0 at top, going left (counterclockwise on screen)
         const SA = (2 * Math.PI) / 27;
         let svg = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;background:#FFFEF9;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.1);">`;
         svg += `<text x="${cx}" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#5D4037" font-family="Noto Sans Bengali,serif">🌟 নবতারা চক্র</text>`;
-        svg += `<text x="${cx}" y="52" text-anchor="middle" font-size="12" fill="#888" font-family="Noto Sans Bengali,serif">জন্মনক্ষত্র: ${birthNak} | গ্রহের নক্ষত্র অবস্থান</text>`;
+        svg += `<text x="${cx}" y="52" text-anchor="middle" font-size="12" fill="#888" font-family="Noto Sans Bengali,serif">জন্মনক্ষত্র: ${birthNak} | গ্রহের নক্ষত্র অবস্থান (anticlockwise)</text>`;
         svg += `<circle cx="${cx}" cy="${cy}" r="${outerR}" fill="#f8f4ec" stroke="#c9b07a" stroke-width="1"/>`;
         for (let i = 0; i < 27; i++) {
-            const sa = -Math.PI/2 + i * SA, ea = sa + SA, ma = sa + SA / 2;
+            // anticlockwise: start at top (-π/2), go left (decrease angle)
+            const sa = -Math.PI/2 - i * SA;
+            const ea = sa - SA;
+            const ma = sa - SA / 2; // midpoint angle
             const isBirth = i === bi;
             const dist = (i - bi + 27) % 27, taraName = this.taraNames[dist % 9];
             const isBad = ["বিপৎ","প্রত্যরি","নিধন"].includes(taraName);
@@ -1651,17 +1655,21 @@ class NavaTaraNadiUI {
             const ox2=cx+outerR*Math.cos(ea), oy2=cy+outerR*Math.sin(ea);
             const sx1=cx+sectorR*Math.cos(sa), sy1=cy+sectorR*Math.sin(sa);
             const sx2=cx+sectorR*Math.cos(ea), sy2=cy+sectorR*Math.sin(ea);
-            svg += `<path d="M ${sx1.toFixed(1)} ${sy1.toFixed(1)} L ${ox1.toFixed(1)} ${oy1.toFixed(1)} A ${outerR} ${outerR} 0 0 1 ${ox2.toFixed(1)} ${oy2.toFixed(1)} L ${sx2.toFixed(1)} ${sy2.toFixed(1)} A ${sectorR} ${sectorR} 0 0 0 ${sx1.toFixed(1)} ${sy1.toFixed(1)} Z" fill="${fill}" stroke="#c9b07a" stroke-width="0.7"/>`;
+            // outer arc anticlockwise (sweep=0), inner arc clockwise (sweep=1) to close sector
+            svg += `<path d="M ${sx1.toFixed(1)} ${sy1.toFixed(1)} L ${ox1.toFixed(1)} ${oy1.toFixed(1)} A ${outerR} ${outerR} 0 0 0 ${ox2.toFixed(1)} ${oy2.toFixed(1)} L ${sx2.toFixed(1)} ${sy2.toFixed(1)} A ${sectorR} ${sectorR} 0 0 1 ${sx1.toFixed(1)} ${sy1.toFixed(1)} Z" fill="${fill}" stroke="#c9b07a" stroke-width="0.7"/>`;
+            // label: clock-face rotation so text is always readable
             const lx=(cx+bandMid*Math.cos(ma)).toFixed(1), ly=(cy+bandMid*Math.sin(ma)).toFixed(1);
-            const rot=((ma*180/Math.PI)+90).toFixed(1);
-            svg += `<text x="${lx}" y="${ly}" text-anchor="middle" font-size="${isBirth?8:7}" fill="${isBirth?'#8B0000':'#555'}" font-weight="${isBirth?'bold':'normal'}" font-family="Noto Sans Bengali,serif" transform="rotate(${rot},${lx},${ly})" dy="0.35em">${naks[i]}</text>`;
+            let rot = ma * 180 / Math.PI + 90;
+            if (Math.sin(ma) > 0) rot += 180; // flip bottom-half labels to stay readable
+            svg += `<text x="${lx}" y="${ly}" text-anchor="middle" font-size="${isBirth?8:7}" fill="${isBirth?'#8B0000':'#555'}" font-weight="${isBirth?'bold':'normal'}" font-family="Noto Sans Bengali,serif" transform="rotate(${rot.toFixed(1)},${lx},${ly})" dy="0.35em">${naks[i]}</text>`;
         }
         svg += `<circle cx="${cx}" cy="${cy}" r="${sectorR}" fill="#FFFEF9"/>`;
         svg += `<circle cx="${cx}" cy="${cy}" r="${planetR}" fill="none" stroke="#e0d0b5" stroke-width="0.8" stroke-dasharray="3,3"/>`;
         for (const [nak, planets] of Object.entries(nakPlanets)) {
             const ni = naks.indexOf(nak);
             if (ni === -1) continue;
-            const baseMa = -Math.PI/2 + (ni + 0.5) * SA;
+            // anticlockwise planet angle: same direction as sectors
+            const baseMa = -Math.PI/2 - (ni + 0.5) * SA;
             planets.forEach((pl, pi) => {
                 const spread = planets.length > 1 ? SA * 0.28 * (pi - (planets.length - 1) / 2) : 0;
                 const angle = baseMa + spread;
@@ -1742,7 +1750,7 @@ class NavaTaraNadiUI {
             try {
                 html += '<hr style="margin:30px 0;">';
                 const eng = new ShannadiChakraEngine();
-                html += eng.getShannadiTableHTML(birthNak, transitNaks || {});
+                html += eng.getShannadiTableHTML(birthNak, transitNaks || {}, bp);
             } catch(e) { console.warn('ShannadiChakraEngine error:', e); }
         }
         c.innerHTML = html;
@@ -1813,7 +1821,7 @@ class ShannadiChakraEngine {
         return { chakra, impacts, hasImpact: impacts.length > 0 };
     }
 
-    getShannadiTableHTML(birthNakshatra, transitPlanets = {}) {
+    getShannadiTableHTML(birthNakshatra, transitPlanets = {}, birthPlanets = {}) {
         const result = this.checkTransitImpact(birthNakshatra, transitPlanets);
         if (result.error) return `<p>${result.error}</p>`;
         const impactedNadis = {};
@@ -1823,7 +1831,51 @@ class ShannadiChakraEngine {
         });
         const hasTransit = Object.keys(transitPlanets).length > 0;
 
-        // ষড়নাড়ী চক্র SVG diagram (user-provided)
+        // SVG nadi center positions (inside the triangular sections)
+        const NADI_POS = {
+            "কর্মনাড়ী":       {x:250,y:230},
+            "সাংঘাতিক নাড়ী": {x:550,y:230},
+            "মানস নাড়ী":      {x:650,y:340},
+            "জন্মনাড়ী":       {x:150,y:340},
+            "বিনাশ নাড়ী":    {x:550,y:450},
+            "সমুদয় নাড়ী":   {x:250,y:450}
+        };
+        const PLANET_COL = {
+            "সূর্য":"#FF6B35","চন্দ্র":"#4169E1","মঙ্গল":"#DC143C","বুধ":"#2E8B57",
+            "বৃহস্পতি":"#DAA520","শুক্র":"#C71585","শনি":"#4B0082","রাহু":"#2F4F4F","কেতু":"#8B4513"
+        };
+        const PLANET_SH = {
+            "সূর্য":"রবি","চন্দ্র":"চন্দ্র","মঙ্গল":"মঙ্গ","বুধ":"বুধ",
+            "বৃহস্পতি":"বৃহ","শুক্র":"শুক্র","শনি":"শনি","রাহু":"রাহু","কেতু":"কেতু"
+        };
+
+        // Collect all planets (transit + birth) per nadi
+        const nadiPlanets = {}; // nadiName → [{planet, isTransit}]
+        for (const [nadiName, nadiData] of Object.entries(result.chakra)) {
+            if (nadiName === "জন্ম_নক্ষত্র") continue;
+            // transit planets already in impactedNadis; add birth planets
+            const allForNadi = [];
+            (impactedNadis[nadiName] || []).forEach(p => allForNadi.push({p, transit: true}));
+            for (const [pl, nak] of Object.entries(birthPlanets)) {
+                if (nak === nadiData.nakshatra) allForNadi.push({p: pl, transit: false});
+            }
+            if (allForNadi.length) nadiPlanets[nadiName] = allForNadi;
+        }
+
+        // ষড়নাড়ী চক্র SVG with planet markers
+        let svgBody = ``;
+        for (const [nadiName, plList] of Object.entries(nadiPlanets)) {
+            const pos = NADI_POS[nadiName];
+            if (!pos) continue;
+            plList.forEach(({p, transit}, idx) => {
+                const offX = (idx - (plList.length - 1) / 2) * 38;
+                const col = PLANET_COL[p] || '#888', sn = PLANET_SH[p] || p.substring(0,2);
+                const px = pos.x + offX, py = pos.y + 36;
+                svgBody += `<circle cx="${px}" cy="${py}" r="17" fill="${col}" opacity="0.9" stroke="${transit?'#fff':'#FFD700'}" stroke-width="${transit?1.5:3}"/>`;
+                svgBody += `<text x="${px}" y="${py}" text-anchor="middle" font-size="9" fill="#fff" font-weight="bold" font-family="Noto Sans Bengali,serif" dy="0.35em">${sn}</text>`;
+            });
+        }
+
         let html = `<div style="text-align:center;margin-bottom:20px;overflow-x:auto">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 580" width="100%" style="max-width:700px">
   <defs>
@@ -1853,6 +1905,8 @@ class ShannadiChakraEngine {
     <text x="550" y="450">বিনাশ</text>
     <text x="250" y="450">সমুদয়</text>
   </g>
+  ${svgBody}
+  <text x="120" y="565" font-family="'Noto Sans Bengali',sans-serif" font-size="11" fill="#888">⚪ সাদা বর্ডার = গোচর গ্রহ &nbsp;&nbsp; 🟡 সোনালি বর্ডার = জন্মগ্রহ</text>
 </svg></div>`;
 
         html += `<div style="overflow-x:auto;margin:16px 0">
