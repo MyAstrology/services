@@ -846,13 +846,19 @@ function drawBhavaChalitChart(svgId, bhavaData, rashiNames) {
     
     const ns2 = "http://www.w3.org/2000/svg";
     CHART_POSITIONS.forEach((pos, i) => {
+        const cnt = rashiPlanets[i].length;
+        if (!cnt) return;
+        const lH = cnt <= 2 ? 12 : 10;
+        const fS = cnt <= 2 ? 11 : cnt <= 3 ? 10 : 9;
+        const inBot = pos.y > 170;
         rashiPlanets[i].forEach((nm, ni) => {
             const t = document.createElementNS(ns2, "text");
             t.setAttribute("x", pos.x);
-            t.setAttribute("y", pos.y + 12 + ni * 13);
+            const ty = inBot ? pos.y - 8 - (cnt - 1 - ni) * lH : pos.y + 12 + ni * lH;
+            t.setAttribute("y", ty);
             t.setAttribute("text-anchor", "middle");
             t.setAttribute("fill", nm.endsWith("*") ? "#c62828" : "#1a1a2e");
-            t.setAttribute("font-size", "11");
+            t.setAttribute("font-size", String(fS));
             t.setAttribute("font-weight", "bold");
             t.setAttribute("font-family", "Noto Sans Bengali,serif");
             t.textContent = nm;
@@ -1606,14 +1612,132 @@ class NavaTaraNadiUI {
         return svg;
     }
 
-    renderAll(birthNak, containerId, transitNaks) {
+    getNavaTaraChakraSVG(birthNak, birthPlanets = {}) {
+        const naks = this.nakshatras;
+        const bi = naks.indexOf(birthNak);
+        if (bi === -1) return '';
+        const W = 600, H = 640, cx = 300, cy = 325;
+        const outerR = 245, sectorR = 170, planetR = 140, innerR = 68;
+        const bandMid = (outerR + sectorR) / 2;
+        const PC = {
+            "সূর্য":"#FF6B35","চন্দ্র":"#4169E1","মঙ্গল":"#DC143C","বুধ":"#2E8B57",
+            "বৃহস্পতি":"#DAA520","শুক্র":"#C71585","শনি":"#4B0082","রাহু":"#2F4F4F","কেতু":"#8B4513"
+        };
+        const PS = {
+            "সূর্য":"রবি","চন্দ্র":"চন্দ্র","মঙ্গল":"মঙ্গ","বুধ":"বুধ",
+            "বৃহস্পতি":"বৃহ","শুক্র":"শুক্র","শনি":"শনি","রাহু":"রাহু","কেতু":"কেতু"
+        };
+        const nakPlanets = {};
+        for (const [pl, nak] of Object.entries(birthPlanets)) {
+            if (!nakPlanets[nak]) nakPlanets[nak] = [];
+            nakPlanets[nak].push(pl);
+        }
+        const SA = (2 * Math.PI) / 27;
+        let svg = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;background:#FFFEF9;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.1);">`;
+        svg += `<text x="${cx}" y="28" text-anchor="middle" font-size="20" font-weight="bold" fill="#5D4037" font-family="Noto Sans Bengali,serif">🌟 নবতারা চক্র</text>`;
+        svg += `<text x="${cx}" y="52" text-anchor="middle" font-size="12" fill="#888" font-family="Noto Sans Bengali,serif">জন্মনক্ষত্র: ${birthNak} | গ্রহের নক্ষত্র অবস্থান</text>`;
+        svg += `<circle cx="${cx}" cy="${cy}" r="${outerR}" fill="#f8f4ec" stroke="#c9b07a" stroke-width="1"/>`;
+        for (let i = 0; i < 27; i++) {
+            const sa = -Math.PI/2 + i * SA, ea = sa + SA, ma = sa + SA / 2;
+            const isBirth = i === bi;
+            const dist = (i - bi + 27) % 27, taraName = this.taraNames[dist % 9];
+            const isBad = ["বিপৎ","প্রত্যরি","নিধন"].includes(taraName);
+            const isGood = ["সম্পদ","ক্ষেম","সাধক","মিত্র","অতিমিত্র"].includes(taraName);
+            let fill = '#faf7f0';
+            if (isBirth) fill = '#FFD700';
+            else if (isBad) fill = '#fff0f0';
+            else if (isGood) fill = '#f0fff4';
+            const ox1=cx+outerR*Math.cos(sa), oy1=cy+outerR*Math.sin(sa);
+            const ox2=cx+outerR*Math.cos(ea), oy2=cy+outerR*Math.sin(ea);
+            const sx1=cx+sectorR*Math.cos(sa), sy1=cy+sectorR*Math.sin(sa);
+            const sx2=cx+sectorR*Math.cos(ea), sy2=cy+sectorR*Math.sin(ea);
+            svg += `<path d="M ${sx1.toFixed(1)} ${sy1.toFixed(1)} L ${ox1.toFixed(1)} ${oy1.toFixed(1)} A ${outerR} ${outerR} 0 0 1 ${ox2.toFixed(1)} ${oy2.toFixed(1)} L ${sx2.toFixed(1)} ${sy2.toFixed(1)} A ${sectorR} ${sectorR} 0 0 0 ${sx1.toFixed(1)} ${sy1.toFixed(1)} Z" fill="${fill}" stroke="#c9b07a" stroke-width="0.7"/>`;
+            const lx=(cx+bandMid*Math.cos(ma)).toFixed(1), ly=(cy+bandMid*Math.sin(ma)).toFixed(1);
+            const rot=((ma*180/Math.PI)+90).toFixed(1);
+            svg += `<text x="${lx}" y="${ly}" text-anchor="middle" font-size="${isBirth?8:7}" fill="${isBirth?'#8B0000':'#555'}" font-weight="${isBirth?'bold':'normal'}" font-family="Noto Sans Bengali,serif" transform="rotate(${rot},${lx},${ly})" dy="0.35em">${naks[i]}</text>`;
+        }
+        svg += `<circle cx="${cx}" cy="${cy}" r="${sectorR}" fill="#FFFEF9"/>`;
+        svg += `<circle cx="${cx}" cy="${cy}" r="${planetR}" fill="none" stroke="#e0d0b5" stroke-width="0.8" stroke-dasharray="3,3"/>`;
+        for (const [nak, planets] of Object.entries(nakPlanets)) {
+            const ni = naks.indexOf(nak);
+            if (ni === -1) continue;
+            const baseMa = -Math.PI/2 + (ni + 0.5) * SA;
+            planets.forEach((pl, pi) => {
+                const spread = planets.length > 1 ? SA * 0.28 * (pi - (planets.length - 1) / 2) : 0;
+                const angle = baseMa + spread;
+                const px=(cx+planetR*Math.cos(angle)).toFixed(1), py=(cy+planetR*Math.sin(angle)).toFixed(1);
+                const col = PC[pl] || '#888', sn = PS[pl] || pl.substring(0,2);
+                svg += `<circle cx="${px}" cy="${py}" r="16" fill="${col}" opacity="0.9" stroke="#fff" stroke-width="1.5"/>`;
+                svg += `<text x="${px}" y="${py}" text-anchor="middle" font-size="9" fill="#fff" font-weight="bold" font-family="Noto Sans Bengali,serif" dy="0.35em">${sn}</text>`;
+            });
+        }
+        svg += `<circle cx="${cx}" cy="${cy}" r="${innerR}" fill="#f9f0e3" stroke="#8B6914" stroke-width="1.5"/>`;
+        svg += `<text x="${cx}" y="${cy-16}" text-anchor="middle" font-size="13" font-weight="bold" fill="#5D4037" font-family="Noto Sans Bengali,serif">${birthNak}</text>`;
+        svg += `<text x="${cx}" y="${cy+4}" text-anchor="middle" font-size="10" fill="#888" font-family="Noto Sans Bengali,serif">জন্মনক্ষত্র</text>`;
+        svg += `<text x="${cx}" y="${cy+22}" text-anchor="middle" font-size="9" fill="#5D4037" font-family="Noto Sans Bengali,serif">${bi+1}তম</text>`;
+        const ly2 = cy + outerR + 45;
+        [{col:'#FFD700',label:'জন্মনক্ষত্র'},{col:'#fff0f0',stroke:'#e09090',label:'অশুভ তারা'},{col:'#f0fff4',stroke:'#90c098',label:'শুভ তারা'},{col:'#faf7f0',stroke:'#c9b07a',label:'নিরপেক্ষ'}]
+        .forEach((it, idx) => {
+            const ix = 30 + idx * 140;
+            svg += `<rect x="${ix}" y="${ly2-10}" width="14" height="14" fill="${it.col}" stroke="${it.stroke||'#c9b07a'}" stroke-width="1"/>`;
+            svg += `<text x="${ix+18}" y="${ly2+2}" font-size="10" fill="#555" font-family="Noto Sans Bengali,serif">${it.label}</text>`;
+        });
+        svg += `</svg>`;
+        return svg;
+    }
+
+    getNavaTaraPrediction(birthNak, birthPlanets = {}) {
+        if (!Object.keys(birthPlanets).length) return '';
+        const bi = this.nakshatras.indexOf(birthNak);
+        if (bi === -1) return '';
+        const EFF = {
+            "জন্ম":      {t:"নিরপেক্ষ", msg:"স্বাস্থ্য ও ব্যক্তিত্বে প্রভাব — মিশ্র ফল দেয়।"},
+            "সম্পদ":     {t:"শুভ",       msg:"ধন-সম্পদ, আর্থিক লাভ ও সুখ বৃদ্ধি করে।"},
+            "বিপৎ":      {t:"অশুভ",      msg:"বিপদ, বাধা, অসুস্থতা ও শত্রুবৃদ্ধি পায়।"},
+            "ক্ষেম":     {t:"শুভ",       msg:"সুখ, শান্তি ও পারিবারিক মঙ্গল প্রদান করে।"},
+            "প্রত্যরি":  {t:"অশুভ",      msg:"শত্রুতা, বিবাদ ও মানসিক অশান্তি দেয়।"},
+            "সাধক":      {t:"শুভ",       msg:"কার্যসিদ্ধি, উন্নতি ও সাফল্য প্রদান করে।"},
+            "নিধন":      {t:"অশুভ",      msg:"ক্ষতি, গুরুতর বিপদ ও মৃত্যুভয় সৃষ্টি করে।"},
+            "মিত্র":     {t:"শুভ",       msg:"বন্ধুত্ব, সহযোগিতা ও সাফল্য আনে।"},
+            "অতিমিত্র": {t:"শুভ",       msg:"মহাশুভ — সর্বোচ্চ সাফল্য ও সমৃদ্ধি দেয়।"}
+        };
+        let html = `<div style="overflow-x:auto;margin:16px 0"><h3 style="text-align:center;color:#5D4037;margin-bottom:6px">📊 নবতারা গ্রহ বিশ্লেষণ</h3>
+<p style="text-align:center;font-size:.88rem;color:#666;margin-bottom:10px">জন্মনক্ষত্র <strong>${birthNak}</strong> থেকে প্রতিটি গ্রহের তারা অবস্থান</p>
+<table style="width:100%;border-collapse:collapse;font-size:.85rem">
+<thead><tr style="background:#5D4037;color:#fff">
+<th style="padding:8px 6px">গ্রহ</th><th style="padding:8px 6px">নক্ষত্র</th><th style="padding:8px 6px">তারা</th>
+<th style="padding:8px 6px">প্রভাব</th><th style="padding:8px 6px">ফলাদেশ</th>
+</tr></thead><tbody>`;
+        for (const [planet, nak] of Object.entries(birthPlanets)) {
+            const ni = this.nakshatras.indexOf(nak);
+            if (ni === -1) continue;
+            const dist = (ni - bi + 27) % 27, taraName = this.taraNames[dist % 9];
+            const ti = this.taraIcons[taraName], eff = EFF[taraName] || {};
+            const bad = eff.t === 'অশুভ', neu = eff.t === 'নিরপেক্ষ';
+            const bg = bad ? '#fff5f5' : neu ? '#fffdf0' : '#f5fff8';
+            const col = bad ? '#c62828' : neu ? '#8B6914' : '#2e7d32';
+            html += `<tr style="background:${bg};border-bottom:1px solid #e8d5c0">
+<td style="padding:7px 6px;font-weight:700;color:${col}">${planet}</td>
+<td style="padding:7px 6px;color:#5D4037;font-weight:600">${nak}</td>
+<td style="padding:7px 6px;text-align:center">${ti.icon} ${taraName}</td>
+<td style="padding:7px 6px;text-align:center;font-weight:bold;color:${col}">${bad?'⚠️ অশুভ':neu?'🔸 নিরপেক্ষ':'✅ শুভ'}</td>
+<td style="padding:7px 6px;color:${col};font-size:.82rem">${eff.msg||''}</td>
+</tr>`;
+        }
+        html += `</tbody></table></div>`;
+        return html;
+    }
+
+    renderAll(birthNak, containerId, transitNaks, birthPlanets) {
         const c = document.getElementById(containerId);
         if (!c) return;
-        let html = this.getTaraTableHTML(birthNak);
+        const bp = birthPlanets || {};
+        let html = '<div style="text-align:center;overflow-x:auto;margin:20px 0;">' + this.getNavaTaraChakraSVG(birthNak, bp) + '</div>';
+        html += this.getNavaTaraPrediction(birthNak, bp);
+        html += '<hr style="margin:30px 0;">';
+        html += this.getTaraTableHTML(birthNak);
         html += '<hr style="margin:30px 0;">';
         html += this.getTriIpapaTableHTML(birthNak);
-        html += '<hr style="margin:30px 0;"><div style="text-align:center;">' + this.getNadiChakraSVG(birthNak) + '</div>';
-        // ষণ্ণাড়ী চক্র
         if (typeof ShannadiChakraEngine === 'function') {
             try {
                 html += '<hr style="margin:30px 0;">';
