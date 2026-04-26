@@ -4050,7 +4050,7 @@ function showDetail(date) {
   var _r=graha.retro||{};
   var grahaData=[
     {i:'☀️',l:'সূর্য',v:_grahaSub(graha.sun,false)},
-    // চন্দ্র moonRashiHtml section-এ দেখানো হয়, এখানে নেই
+    {i:'🌙',l:'চন্দ্র',v:_grahaSub(graha.moon,false)},
     {i:'🔴',l:'মঙ্গল',v:_grahaSub(graha.mars,_r.mars)+_combustBadge(graha.mars,'মঙ্গল')},
     {i:'🟡',l:'গুরু',v:_grahaSub(graha.jup,_r.jup)+_combustBadge(graha.jup,'গুরু')},
     {i:'⬛',l:'শনি',v:_grahaSub(graha.sat,_r.sat)+_combustBadge(graha.sat,'শনি')},
@@ -4085,9 +4085,11 @@ function showDetail(date) {
     });
     // nakSlots odd count → শেষটি full-width
     if(_nakCount%2===1) nakSlots=nakSlots.slice(0,-6)+'style="grid-column:span 2;"></div>';
-    moonRashiHtml='<div class="dpan-hdr" style="font-size:.6rem;font-weight:700;color:#4CAF50;padding:.4rem 0 .2rem;border-top:1px solid rgba(76,175,80,.15);margin-top:.3rem;">🌙 চন্দ্র রাশি — নক্ষত্র — জন্ম দশা</div>'
-      +'<div class="di"><div class="dii">🌙</div><div class="dil">চন্দ্র রাশি</div><div class="div2">'+RASHI_L[moonRashiIdx]+'</div><div class="dis">নক্ষত্র: '+NAK_L[moonNakIdx]+' | দশা: '+dashLord+'</div></div>'
-      +nakSlots;
+    // ★ Fix: চন্দ্র রাশি main card সরানো — গ্রহ grid-এ degree সহ চন্দ্র আছে
+    // শুধু নক্ষত্র time slot (জন্ম দশা) দেখাও
+    moonRashiHtml=nakSlots
+      ?('<div class="dpan-hdr" style="font-size:.6rem;font-weight:700;color:#4CAF50;padding:.4rem 0 .2rem;border-top:1px solid rgba(76,175,80,.15);margin-top:.3rem;">🌙 চন্দ্র নক্ষত্র — জন্ম দশা</div>'+nakSlots)
+      :'';
   })();
 
   // ── মৃত্যু দোষ — এখন lagnaHtml section-এর ভেতরে দেখায়, আলাদা block নেই ──
