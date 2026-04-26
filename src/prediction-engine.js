@@ -1602,10 +1602,172 @@ class NavaTaraNadiUI {
         return svg;
     }
 
-    renderAll(birthNak, containerId) {
+    renderAll(birthNak, containerId, transitNaks) {
         const c = document.getElementById(containerId);
         if (!c) return;
-        c.innerHTML = this.getTaraTableHTML(birthNak) + '<hr style="margin:30px 0;">' + this.getTriIpapaTableHTML(birthNak) + '<hr style="margin:30px 0;"><div style="text-align:center;">' + this.getNadiChakraSVG(birthNak) + '</div>';
+        let html = this.getTaraTableHTML(birthNak);
+        html += '<hr style="margin:30px 0;">';
+        html += this.getTriIpapaTableHTML(birthNak);
+        html += '<hr style="margin:30px 0;"><div style="text-align:center;">' + this.getNadiChakraSVG(birthNak) + '</div>';
+        // ষণ্ণাড়ী চক্র
+        if (typeof ShannadiChakraEngine === 'function') {
+            try {
+                html += '<hr style="margin:30px 0;">';
+                const eng = new ShannadiChakraEngine();
+                html += eng.getShannadiTableHTML(birthNak, transitNaks || {});
+            } catch(e) { console.warn('ShannadiChakraEngine error:', e); }
+        }
+        c.innerHTML = html;
+    }
+}
+
+// ============================================================
+// ষণ্ণাড়ী চক্র (6 Nadi Chakra) ইঞ্জিন
+// Vedic Astrology | Transit Impact on 6 Nadis
+// ============================================================
+class ShannadiChakraEngine {
+    constructor() {
+        this.nakshatras = [
+            "অশ্বিনী","ভরণী","কৃত্তিকা","রোহিণী","মৃগশিরা","আর্দ্রা",
+            "পুনর্বসু","পুষ্যা","অশ্লেষা","মঘা","পূর্বফাল্গুনী","উত্তরফাল্গুনী",
+            "হস্তা","চিত্রা","স্বাতী","বিশাখা","অনুরাধা","জ্যেষ্ঠা",
+            "মূলা","পূর্বাষাঢ়া","উত্তরাষাঢ়া","শ্রবণা","ধনিষ্ঠা","শতভিষা",
+            "পূর্বভাদ্রপদ","উত্তরভাদ্রপদ","রেবতী"
+        ];
+        this.nadiRules = {
+            "জন্মনাড়ী": 1,
+            "কর্মনাড়ী": 10,
+            "সাংঘাতিক নাড়ী": 16,
+            "সমুদয় নাড়ী": 18,
+            "বিনাশ নাড়ী": 23,
+            "মানস নাড়ী": 25
+        };
+        this.nadiDescriptions = {
+            "জন্মনাড়ী":      { area: "শরীর ও স্বাস্থ্য",        badEffect: "দেহকষ্ট, পারিবারিক ঝঞ্ঝাট, গৃহে অশান্তি।",                                  icon: "🏥" },
+            "কর্মনাড়ী":      { area: "কর্ম ও পেশা",             badEffect: "কর্মহানি, অর্থনাশ, চাকরিতে পদাবনতি।",                                       icon: "💼" },
+            "সাংঘাতিক নাড়ী": { area: "বিপদ ও সংকট",             badEffect: "দুর্ঘটনা, শত্রুবৃদ্ধি, মামলা ও বন্ধনভয়।",                                   icon: "⚠️" },
+            "সমুদয় নাড়ী":   { area: "সহযোগী ও পরিবেশ",          badEffect: "দুঃখ, শোক, উন্নতিতে বাধা, লোকনিন্দা।",                                     icon: "👥" },
+            "বিনাশ নাড়ী":   { area: "কাজের বিনাশ",              badEffect: "কঠিন পীড়া, স্বজনবিয়োগ, সর্বনাশ।",                                          icon: "💀" },
+            "মানস নাড়ী":    { area: "মানসিকতা ও মন",            badEffect: "মানসিক অশান্তি, আশাভঙ্গ, বন্ধুবিচ্ছেদ।",                                    icon: "🧠" }
+        };
+        this.papaGrahas = ["শনি","রাহু","কেতু","মঙ্গল","সূর্য"];
+    }
+
+    getShannadiChakra(birthNakshatra) {
+        const bi = this.nakshatras.indexOf(birthNakshatra);
+        if (bi === -1) return { error: "নক্ষত্র সঠিক নয়" };
+        const chakra = {};
+        for (const [name, rule] of Object.entries(this.nadiRules)) {
+            const idx = (bi + rule - 1) % 27;
+            chakra[name] = { nakshatra: this.nakshatras[idx], index: idx + 1, ...this.nadiDescriptions[name] };
+        }
+        chakra["জন্ম_নক্ষত্র"] = birthNakshatra;
+        return chakra;
+    }
+
+    checkTransitImpact(birthNakshatra, transitPlanets = {}) {
+        const chakra = this.getShannadiChakra(birthNakshatra);
+        if (chakra.error) return chakra;
+        const impacts = [];
+        for (const [planet, transitNak] of Object.entries(transitPlanets)) {
+            if (!this.papaGrahas.includes(planet)) continue;
+            for (const [nadiName, nadiData] of Object.entries(chakra)) {
+                if (nadiName === "জন্ম_নক্ষত্র") continue;
+                if (nadiData.nakshatra === transitNak) {
+                    impacts.push({
+                        planet, nadiName, nadiData,
+                        severity: (planet === "শনি" || planet === "রাহু") ? "তীব্র" :
+                                  (planet === "মঙ্গল" || planet === "কেতু") ? "মধ্যম" : "সামান্য"
+                    });
+                }
+            }
+        }
+        return { chakra, impacts, hasImpact: impacts.length > 0 };
+    }
+
+    getShannadiTableHTML(birthNakshatra, transitPlanets = {}) {
+        const result = this.checkTransitImpact(birthNakshatra, transitPlanets);
+        if (result.error) return `<p>${result.error}</p>`;
+        const impactedNadis = {};
+        result.impacts.forEach(imp => {
+            if (!impactedNadis[imp.nadiName]) impactedNadis[imp.nadiName] = [];
+            impactedNadis[imp.nadiName].push(imp.planet);
+        });
+        const hasTransit = Object.keys(transitPlanets).length > 0;
+
+        // ষড়নাড়ী চক্র SVG diagram (user-provided)
+        let html = `<div style="text-align:center;margin-bottom:20px;overflow-x:auto">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 580" width="100%" style="max-width:700px">
+  <defs>
+    <filter id="shad" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="2" dy="2" stdDeviation="1.5" flood-color="#000" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+  <rect width="800" height="580" fill="#FDF8F5"/>
+  <rect x="15" y="15" width="770" height="550" fill="none" stroke="#E6D5C3" stroke-width="1.5"/>
+  <rect x="20" y="20" width="760" height="540" fill="none" stroke="#E6D5C3" stroke-width="0.5"/>
+  <text x="400" y="70" font-family="'Noto Sans Bengali','SolaimanLipi',sans-serif" font-size="46" font-weight="bold" fill="#DAA520" stroke="#5C4033" stroke-width="1.5" text-anchor="middle" filter="url(#shad)">ষড়নাড়ী চক্র</text>
+  <line x1="260" y1="90" x2="540" y2="90" stroke="#8D6E63" stroke-width="2"/>
+  <polygon points="260,90 255,86 250,90 255,94" fill="#8D6E63"/>
+  <polygon points="540,90 545,86 550,90 545,94" fill="#8D6E63"/>
+  <g stroke="#B28D67" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="100" y="130" width="600" height="400"/>
+    <line x1="100" y1="130" x2="400" y2="530"/>
+    <line x1="100" y1="530" x2="400" y2="130"/>
+    <line x1="400" y1="130" x2="700" y2="530"/>
+    <line x1="400" y1="530" x2="700" y2="130"/>
+  </g>
+  <g font-family="'Noto Sans Bengali','SolaimanLipi',sans-serif" font-size="28" font-weight="bold" fill="#C21E56" text-anchor="middle">
+    <text x="250" y="230">কর্ম</text>
+    <text x="550" y="230">সাংঘাতিক</text>
+    <text x="650" y="340">মানস</text>
+    <text x="150" y="340">জন্ম</text>
+    <text x="550" y="450">বিনাশ</text>
+    <text x="250" y="450">সমুদয়</text>
+  </g>
+</svg></div>`;
+
+        html += `<div style="overflow-x:auto;margin:16px 0">
+<h3 style="text-align:center;color:#5D4037;margin-bottom:4px">🔮 ষণ্ণাড়ী চক্র — নক্ষত্র তালিকা</h3>
+<p style="text-align:center;font-size:.88rem;color:#666;margin-bottom:10px">জন্মনক্ষত্র: <strong>${birthNakshatra}</strong>${hasTransit ? ' | বর্তমান গোচর পাপগ্রহ বিশ্লেষণ' : ''}</p>
+<table style="width:100%;border-collapse:collapse;font-size:.85rem">
+<thead><tr style="background:#5D4037;color:#fff">
+  <th style="padding:8px 6px">নাড়ী</th><th style="padding:8px 6px">নক্ষত্র</th><th style="padding:8px 6px">ক্রম</th><th style="padding:8px 6px">বিষয়</th>
+  ${hasTransit ? '<th style="padding:8px 6px">পাপগ্রহ</th><th style="padding:8px 6px">অবস্থা</th>' : ''}
+</tr></thead><tbody>`;
+
+        for (const [name, data] of Object.entries(result.chakra)) {
+            if (name === "জন্ম_নক্ষত্র") continue;
+            const planetsHere = impactedNadis[name] || [];
+            const hasImpact = planetsHere.length > 0;
+            const bg = hasImpact ? '#FFF5F5' : (Object.keys(impactedNadis).length % 2 === 0 ? '#fff' : '#fefcf9');
+            html += `<tr style="background:${bg};border-bottom:1px solid #e8d5c0">
+  <td style="padding:7px 6px;font-weight:700">${data.icon} ${name}</td>
+  <td style="padding:7px 6px;font-weight:700;color:#5D4037">${data.nakshatra}</td>
+  <td style="padding:7px 6px;text-align:center">${data.index}তম</td>
+  <td style="padding:7px 6px;color:#555">${data.area}</td>
+  ${hasTransit ? `<td style="padding:7px 6px;color:${hasImpact?'#c62828':'#888'};font-weight:bold;text-align:center">${hasImpact?planetsHere.join(', '):'—'}</td>
+  <td style="padding:7px 6px;font-weight:bold;text-align:center;color:${hasImpact?'#c62828':'#2e7d32'}">${hasImpact?'⚠️ অশুভ':'✅ শুদ্ধ'}</td>` : ''}
+</tr>`;
+        }
+
+        html += `</tbody></table>`;
+
+        if (hasTransit) {
+            if (result.hasImpact) {
+                html += `<div style="margin-top:12px;padding:12px;background:#FFF5F5;border-left:4px solid #c62828;border-radius:6px;font-size:.87rem">
+<strong style="color:#c62828">⚠️ গোচর পাপগ্রহের প্রভাব:</strong><br>`;
+                result.impacts.forEach(imp => {
+                    html += `<span style="color:#c62828">●</span> <strong>${imp.nadiName}</strong> (${imp.nadiData.nakshatra}) — <strong>${imp.planet}</strong> [${imp.severity}]: ${imp.nadiData.badEffect}<br>`;
+                });
+                html += `</div>`;
+            } else {
+                html += `<div style="margin-top:12px;padding:12px;background:#E8F5E9;border-left:4px solid #2e7d32;border-radius:6px;font-size:.87rem">✅ এই মুহূর্তে কোনো পাপগ্রহ ষণ্ণাড়ীতে নেই — সময় তুলনামূলক শুভ।</div>`;
+            }
+        }
+
+        html += `<p style="margin-top:10px;font-size:.82rem;color:#888;text-align:center">🕉️ ষণ্ণাড়ী চক্র — গোচরে পাপগ্রহের ট্রানজিটজনিত অশুভ প্রভাব নির্ণয়ের জন্য ব্যবহৃত</p></div>`;
+        return html;
     }
 }
 
