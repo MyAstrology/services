@@ -2364,6 +2364,42 @@ ${ninthHousePlanets.filter(p => ["রাহু","কেতু","শনি","ম�
 
         return output;
     }
+
+    getHTMLReport(chartData) {
+        const result = this.analyzeAll(chartData);
+        const areas = [
+            { key: "education", icon: "📚", title: "পড়াশোনা" },
+            { key: "career",    icon: "💼", title: "কর্ম" },
+            { key: "marriage",  icon: "💍", title: "বিবাহ" },
+            { key: "fortune",   icon: "🍀", title: "ভাগ্য" }
+        ];
+        const levelStyle = {
+            "অসাধারণ": { color:"#1b5e20", bg:"#e8f5e9", badge:"🌟" },
+            "ভালো":    { color:"#2e7d32", bg:"#f1f8e9", badge:"✅" },
+            "মধ্যম":   { color:"#e65100", bg:"#fff3e0", badge:"⚖️" },
+            "চ্যালেঞ্জিং": { color:"#b71c1c", bg:"#fce4ec", badge:"⚠️" }
+        };
+        let html = `<div style="font-family:'Noto Sans Bengali',sans-serif;padding:4px">`;
+        html += `<h3 style="text-align:center;color:#4a148c;margin-bottom:16px;font-size:1.1rem">🧬 জীবনের চার ক্ষেত্রে জ্যোতিষ বিশ্লেষণ</h3>`;
+        for (const a of areas) {
+            const r = result[a.key];
+            if (!r) continue;
+            const st = levelStyle[r.level] || { color:"#555", bg:"#f5f5f5", badge:"⭐" };
+            html += `<div style="margin-bottom:14px;border-radius:10px;border:1px solid #ddd;overflow:hidden">`;
+            html += `<div style="background:${st.bg};padding:10px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #ddd">`;
+            html += `<span style="font-size:1.4rem">${a.icon}</span>`;
+            html += `<span style="font-size:1rem;font-weight:bold;color:${st.color}">${a.title}</span>`;
+            html += `<span style="margin-left:auto;background:${st.color};color:#fff;padding:2px 10px;border-radius:20px;font-size:.82rem">${st.badge} ${r.level}</span>`;
+            html += `</div>`;
+            html += `<div style="padding:10px 14px;background:#fff;font-size:.87rem;color:#333;line-height:1.7;white-space:pre-wrap">${r.prediction}</div>`;
+            if (r.careerType) html += `<div style="padding:4px 14px 10px;background:#fff;font-size:.83rem;color:#555">💡 উপযোগী পেশা: ${r.careerType}</div>`;
+            if (r.isManglik !== undefined) html += `<div style="padding:4px 14px 10px;background:#fff;font-size:.83rem;color:${r.isManglik?'#c62828':'#2e7d32'}">${r.isManglik ? '⚠️ মাঙ্গলিক দোষ: আছে' : '✅ মাঙ্গলিক দোষ: নেই'}</div>`;
+            html += `</div>`;
+        }
+        html += `<p style="text-align:center;font-size:.78rem;color:#999;margin-top:8px">🕉️ এই বিশ্লেষণ জ্যোতিষশাস্ত্রের ঐতিহ্যবাহী পদ্ধতিতে প্রস্তুত — নির্দেশনামূলক, চূড়ান্ত নয়</p>`;
+        html += `</div>`;
+        return html;
+    }
 }
 
 // Export
