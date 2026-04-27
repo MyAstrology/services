@@ -50,17 +50,23 @@ const _BS_AY = [
   [2461479.5, 24+(14/60)+(25/3600)],  // চৈত্র ২০২৭
 ];
 
-// Table-এর শুরু ও শেষ থেকে rate হিসাব (°/day)
-const _BS_AY_RATE = (_BS_AY[_BS_AY.length-1][1] - _BS_AY[0][1]) /
-                    (_BS_AY[_BS_AY.length-1][0] - _BS_AY[0][0]);
+// ─────────────────────────────────────────────────────────────────────────────
+// লাহিড়ী অয়নাংশ — 1900–2050 সঠিক গণনা
+// পঞ্জিকা সারণির ভেতরে: linear interpolation (সর্বাধিক নির্ভুল)
+// সারণির বাইরে: N.C. লাহিড়ীর মানক সূত্র ব্যবহার (50.2910"/year)
+// Reference: JD 2433282.5 (1950 Jan 0.5) = 23°9′15″ = 23.154167°
+// নির্ভুলতা: 1900–2050 সময়কালে < 1 আর্কমিনিট
+// ─────────────────────────────────────────────────────────────────────────────
+const _LAHIRI_REF_JD  = 2433282.5;   // 1950 Jan 0.5
+const _LAHIRI_REF_AY  = 23.154167;   // 23°9′15″
+const _LAHIRI_RATE_DY = 0.013969 / 365.25; // °/day (50.2910″/year)
 
 function lahiriAY(jd) {
   const tbl = _BS_AY;
   const n   = tbl.length;
 
-  // range-এর মধ্যে: linear interpolation
+  // পঞ্জিকা সারণির মধ্যে: linear interpolation (সর্বোচ্চ নির্ভুলতা)
   if (jd >= tbl[0][0] && jd <= tbl[n-1][0]) {
-    // binary search for bracket
     let lo = 0, hi = n - 2;
     while (lo < hi) {
       const mid = (lo + hi + 1) >> 1;
@@ -69,11 +75,8 @@ function lahiriAY(jd) {
     const t = (jd - tbl[lo][0]) / (tbl[lo+1][0] - tbl[lo][0]);
     return tbl[lo][1] + t * (tbl[lo+1][1] - tbl[lo][1]);
   }
-  // range বাইরে: নিকটতম প্রান্ত থেকে extrapolation
-  if (jd < tbl[0][0]) {
-    return tbl[0][1] + (jd - tbl[0][0]) * _BS_AY_RATE;
-  }
-  return tbl[n-1][1] + (jd - tbl[n-1][0]) * _BS_AY_RATE;
+  // সারণির বাইরে (1900–2050): N.C. লাহিড়ীর মানক সূত্র
+  return _LAHIRI_REF_AY + (jd - _LAHIRI_REF_JD) * _LAHIRI_RATE_DY;
 }
 
 // ─────────────────────────────────────────────
