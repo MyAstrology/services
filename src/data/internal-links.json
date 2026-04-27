@@ -1,4 +1,34 @@
 {
+  "mukher-katha-i-bhagya-rishi-golpo-panjika": {
+    "relatedByTag": [],
+    "relatedByPillar": [
+      "manglik-yog-ki-prathamik-dharona",
+      "yoga-calculation-method",
+      "kumbha-lagna-jataker-swabhab-karma-bibaha-bhagya"
+    ],
+    "relatedByCluster": [
+      "manglik-yog-ki-prathamik-dharona",
+      "yoga-calculation-method",
+      "kumbha-lagna-jataker-swabhab-karma-bibaha-bhagya"
+    ],
+    "topRelated": [
+      {
+        "slug": "manglik-yog-ki-prathamik-dharona",
+        "score": 0.3687329228638898
+      },
+      {
+        "slug": "yoga-calculation-method",
+        "score": 0.36602766798418973
+      },
+      {
+        "slug": "kumbha-lagna-jataker-swabhab-karma-bibaha-bhagya",
+        "score": 0.3621284271284272
+      }
+    ],
+    "cluster": "জ্যোতিষ",
+    "confidence": 0.2,
+    "manualLinks": []
+  },
   "day-calculation-method": {
     "relatedByTag": [],
     "relatedByPillar": [
@@ -93,13 +123,13 @@
     "relatedByTag": [],
     "relatedByPillar": [
       "molmas-adhikmas-ki-keno-proyojon",
-      "tithi-calculation-method",
-      "nakshatra-calculation-method"
+      "mukher-katha-i-bhagya-rishi-golpo-panjika",
+      "tithi-calculation-method"
     ],
     "relatedByCluster": [
       "molmas-adhikmas-ki-keno-proyojon",
-      "tithi-calculation-method",
-      "nakshatra-calculation-method"
+      "mukher-katha-i-bhagya-rishi-golpo-panjika",
+      "tithi-calculation-method"
     ],
     "topRelated": [
       {
@@ -107,12 +137,12 @@
         "score": 0.36044733044733046
       },
       {
-        "slug": "tithi-calculation-method",
-        "score": 0.35270568561872906
+        "slug": "mukher-katha-i-bhagya-rishi-golpo-panjika",
+        "score": 0.35702797202797204
       },
       {
-        "slug": "nakshatra-calculation-method",
-        "score": 0.3504079254079254
+        "slug": "tithi-calculation-method",
+        "score": 0.35270568561872906
       }
     ],
     "cluster": "জ্যোতিষ",
