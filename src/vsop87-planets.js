@@ -2267,8 +2267,9 @@ function getLagna(jd, lat, lon) {
   let   asc    = Math.atan2(y, x) * DEG;
   asc = rev(asc);
 
-  // নিরয়ণ লগ্ন = সায়ন − অয়নাংশ
-  return rev(asc - lahiriAY(jd));
+  // নিরয়ণ লগ্ন = সায়ন + ১৮০° − অয়নাংশ
+  // atan2 formula yields the descending (setting) ecliptic point; +180° gives the ascending point
+  return rev(asc + 180 - lahiriAY(jd));
 }
 
 // ════════════════════════════════════════════════════════════════════════════

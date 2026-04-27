@@ -701,20 +701,6 @@ function getNakshatraAndPada(lon){
   return{name:NAKSHATRA_NAMES[idx%27],pada,idx:idx%27};
 }
 
-function getLagna(jd,lat,lon){
-  const T=(jd-2451545.0)/36525.0;
-  const JD0=Math.floor(jd-0.5)+0.5;
-  const UT=(jd-JD0)*24.0;
-  const T0=(JD0-2451545.0)/36525.0;
-  let gmst=100.46061837+36000.770053608*T0+0.000387933*T0*T0+360.985647366*(UT/24.0);
-  gmst=((gmst%360)+360)%360;
-  const lst=((gmst+lon)%360+360)%360*(Math.PI/180);
-  const eps=(23.4392911-(46.8150/3600)*T)*(Math.PI/180);
-  const latR=lat*(Math.PI/180);
-  const y=-Math.cos(lst);
-  const x=Math.sin(eps)*Math.tan(latR)+Math.cos(eps)*Math.sin(lst);
-  return((Math.atan2(y,x)*(180/Math.PI)%360)+360)%360;
-}
 
 function getTithi(jd){
   const ay=lahiriAY(jd);
