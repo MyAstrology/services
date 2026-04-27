@@ -72,9 +72,10 @@ function checkManglikDosha(marsRashi, lagnaRashi) {
     
     return {
         isManglik,
+        hasDosha: isManglik,
         house,
-        description: isManglik 
-            ? `মঙ্গল ${house}ম ভাবে — মাঙ্গলিক দোষ আছে` 
+        description: isManglik
+            ? `মঙ্গল ${house}ম ভাবে — মাঙ্গলিক দোষ আছে`
             : `মঙ্গল ${house}ম ভাবে — মাঙ্গলিক দোষ নেই`
     };
 }
@@ -196,19 +197,31 @@ function fallbackMatchMaking(girlData, boyData) {
     const girlManglik = checkManglikDosha(girlMarsRashi, girlLagna);
     const boyManglik = checkManglikDosha(boyMarsRashi, boyLagna);
     
+    const totalRounded = Math.round(total * 10) / 10;
     return {
-        totalScore: Math.round(total * 10) / 10,
+        totalScore: totalRounded,
+        totalPoints: totalRounded,
         maxScore: 36,
         result: verdict,
         varna: varnaPts, vashya: vashyaPts, tara: taraPts, yoni: yoniPts,
         graha: grahaPts, gana: ganaPts, bhakoot: bhakootPts, nadi: nadiPts,
+        kootas: {
+            varna:       { points: varnaPts },
+            vasu:        { points: vashyaPts },
+            tara:        { points: taraPts },
+            yoni:        { points: yoniPts },
+            grahaMaitri: { points: grahaPts },
+            gana:        { points: ganaPts },
+            bhakoota:    { points: bhakootPts },
+            nadi:        { points: nadiPts }
+        },
         manglik: {
             girl: { hasDosha: girlManglik.isManglik, full: girlManglik.description },
             boy: { hasDosha: boyManglik.isManglik, full: boyManglik.description },
             match: girlManglik.isManglik === boyManglik.isManglik
         },
         isRajaYotak: false,
-        verdictFull: `মোট ${Math.round(total * 10) / 10} গুণ — ${verdict} মিলন।`,
+        verdictFull: `মোট ${totalRounded} গুণ — ${verdict} মিলন।`,
         remedies: ["বিস্তারিত জানতে YotakBicharEngine লোড করুন।"],
         fullPredictions: null
     };

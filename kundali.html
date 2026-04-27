@@ -1492,6 +1492,42 @@ function buildDashaFal(dashaInfo,planets,sbData){
     });
     html+='</div>';
   }
+  // গ্রহ রত্ন পরামর্শ
+  if(typeof NavaTaraGemEngine==='function'&&planets&&planets.length){
+    try{
+      const lagnaEntry=planets.find(p=>p.name==='লগ্ন');
+      const lagnaSignName=lagnaEntry?RASHI_NAMES[Math.floor(lagnaEntry.lon/30)%12]:RASHI_NAMES[0];
+      const allSigns={};
+      planets.filter(p=>p.name!=='লগ্ন').forEach(p=>{
+        allSigns[p.name]=RASHI_NAMES[Math.floor(p.lon/30)%12];
+      });
+      const gemEng=new NavaTaraGemEngine();
+      const{recommendations,warnings}=gemEng.getSafeGemRecommendations(lagnaSignName,allSigns);
+      if(recommendations&&recommendations.length){
+        html+='<div style="margin-top:20px"><div style="font-weight:700;color:#4a2d72;font-family:var(--fh);margin-bottom:12px;font-size:1rem">💎 গ্রহ রত্ন পরামর্শ (পঞ্চমেশ + নবম ভাব)</div>';
+        recommendations.forEach(r=>{
+          const icon=r.priority===1?'🥇':'🥈';
+          html+=`<div style="margin-bottom:12px;padding:12px 14px;background:#faf5ff;border-radius:8px;border-left:3px solid #7c3aed">`;
+          html+=`<div style="font-weight:700;color:#4a2d72;margin-bottom:6px">${icon} ${r.type} — ${r.gem}</div>`;
+          html+=`<div style="font-size:.83rem;color:#555;line-height:1.8">`;
+          html+=`<strong>গ্রহ:</strong> ${r.planet} (${r.house})<br>`;
+          html+=`<strong>ধাতু:</strong> ${r.metal} &nbsp;|&nbsp; <strong>আঙুল:</strong> ${r.finger}<br>`;
+          html+=`<strong>ধারণের দিন:</strong> ${r.day} &nbsp;|&nbsp; <strong>ওজন:</strong> ${r.weight}<br>`;
+          html+=`<strong>মন্ত্র:</strong> ${r.mantra}<br>`;
+          html+=`<strong>উপকারিতা:</strong> ${r.benefits}<br>`;
+          html+=`<strong>কারণ:</strong> <span style="color:#666">${r.reason}</span>`;
+          html+='</div></div>';
+        });
+        if(warnings&&warnings.length){
+          html+='<div style="font-size:.8rem;color:#b45309;margin-top:4px">';
+          warnings.forEach(w=>{html+=`⚠️ ${w}<br>`;});
+          html+='</div>';
+        }
+        html+='<div style="font-size:.78rem;color:#888;margin-top:6px">🕉️ রত্ন ধারণের নিয়ম: নির্দিষ্ট দিনে সকালে স্নান করে, মন্ত্র ১০৮ বার জপ করে ধারণ করুন।</div>';
+        html+='</div>';
+      }
+    }catch(e){/* NavaTaraGemEngine error — skip */}
+  }
   el.innerHTML=html||'<p style="color:#666;padding:10px">দশাফল তথ্য পাওয়া যায়নি।</p>';
 }
 
@@ -1623,8 +1659,14 @@ function downloadPDF(){
   if(typeof html2pdf!=='undefined'){
     const name=(document.getElementById('pgName')||{}).textContent||'kundali';
     const opt={margin:[8,4],filename:name+'_kundali.pdf',image:{type:'jpeg',quality:0.95},
-      html2canvas:{scale:2,useCORS:true,logging:false},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}};
-    html2pdf().set(opt).from(ra).save().then(restore).catch(function(){restore();window.print();});
+      html2canvas:{scale:2,useCORS:true,logging:false,scrollX:0,scrollY:0,windowWidth:document.documentElement.scrollWidth},
+      jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}};
+    // Wait two animation frames so the DOM fully repaints after un-hiding panels
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){
+        html2pdf().set(opt).from(ra).save().then(restore).catch(function(){restore();window.print();});
+      });
+    });
   } else {
     // fallback: browser print dialog
     window.addEventListener('afterprint',function handler(){

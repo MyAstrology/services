@@ -233,20 +233,12 @@ document.querySelectorAll('#navMenu a').forEach(function(a){a.addEventListener('
 const RASHI_NAMES=["মেষ","বৃষ","মিথুন","কর্কট","সিংহ","কন্যা","তুলা","বৃশ্চিক","ধনু","মকর","কুম্ভ","মীন"];
 const NAKSHATRA_NAMES=["অশ্বিনী","ভরণী","কৃত্তিকা","রোহিণী","মৃগশিরা","আর্দ্রা","পুনর্বসু","পুষ্যা","অশ্লেষা","মঘা","পূর্বফাল্গুনী","উত্তরফাল্গুনী","হস্তা","চিত্রা","স্বাতী","বিশাখা","অনুরাধা","জ্যেষ্ঠা","মূলা","পূর্বাষাঢ়া","উত্তরাষাঢ়া","শ্রবণা","ধনিষ্ঠা","শতভিষা","পূর্বভাদ্রপদ","উত্তরভাদ্রপদ","রেবতী"];
 
-function getLagna(jd,lat,lon){
-  const T=(jd-2451545)/36525,JD0=Math.floor(jd-0.5)+0.5,UT=(jd-JD0)*24,T0=(JD0-2451545)/36525;
-  let g=100.46061837+36000.770053608*T0+0.000387933*T0*T0+360.985647366*(UT/24);
-  g=((g%360)+360)%360;
-  const lst=((g+lon)%360+360)%360*(Math.PI/180),eps=(23.4392911-(46.815/3600)*T)*(Math.PI/180);
-  const y=-Math.cos(lst),x=Math.sin(eps)*Math.tan(lat*Math.PI/180)+Math.cos(eps)*Math.sin(lst);
-  return((Math.atan2(y,x)*180/Math.PI%360)+360)%360;
-}
-
 function getPlanetData(dob,tob,lat,lon){
   if(!dob||!tob||isNaN(lat)||isNaN(lon))return null;
   const[y,mo,d]=dob.split('-').map(Number),[h,mi]=tob.split(':').map(Number);
   const jd=JD(y,mo,d)+(h-5.5+mi/60)/24,ay=lahiriAY(jd);
-  const moonLon=rev(moonL(jd)-ay),marsLon=rev(marsL(jd)-ay),lagnaLon=getLagna(jd,lat,lon);
+  const moonLon=rev(moonL(jd)-ay),marsLon=rev(marsL(jd)-ay);
+  const lagnaLon=getLagna(jd,lat,lon); // vsop87-planets.js getLagna returns sidereal lagna
   const idx=Math.floor(moonLon/(360/27))%27;
   return{
     moonNakshatra:NAKSHATRA_NAMES[idx],moonNakshatraIndex:idx,

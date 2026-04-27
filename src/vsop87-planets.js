@@ -2268,7 +2268,7 @@ function getLagna(jd, lat, lon) {
   asc = rev(asc);
 
   // নিরয়ণ লগ্ন = সায়ন − অয়নাংশ
-  return rev(asc + 180 - lahiriAY(jd)); // +180° = Eastern horizon (Ascendant)
+  return rev(asc - lahiriAY(jd));
 }
 
 // ════════════════════════════════════════════════════════════════════════════
