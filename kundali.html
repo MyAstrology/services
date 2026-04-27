@@ -430,6 +430,11 @@ svg{background:#fefcf9;border-radius:8px;max-width:100%;height:auto}
       <div class="section-title">🔗 গ্রহের যুতি ও দৃষ্টি ফলাদেশ</div>
       <div id="yutiDrishtiPredDiv"></div>
     </div>
+    <!-- মাঙ্গলিক ও কালসর্প দোষ বিচার -->
+    <div class="card">
+      <div class="section-title">🔴 মাঙ্গলিক ও কালসর্প দোষ বিচার</div>
+      <div id="doshaDiv"></div>
+    </div>
     <!-- যোগ -->
     <div class="card">
       <div class="section-title">✨ কুষ্ঠিগত যোগ</div>
@@ -827,8 +832,12 @@ function detectAllYogas(planets,lagnaRashiIdx){
     const span=(kL-rL+360)%360;
     const others=planets.filter(p=>!["রাহু","কেতু","লগ্ন"].includes(p.name));
     if(others.length>=5&&others.every(p=>(p.lon-rL+360)%360<=span))
-      yogas.push({name:"কালসর্প যোগ",type:"দোষ",nature:"অশুভ",desc:"সব গ্রহ রাহু-কেতুর মধ্যে"});
+      yogas.push({name:"কালসর্প যোগ",type:"দোষ",nature:"অশুভ",desc:"সব গ্রহ রাহু-কেতুর মধ্যে — বিশেষ কালসর্প বিভাগে বিস্তারিত দেখুন"});
   }
+  // মাঙ্গলিক দোষ
+  const mangalH=mars?house(mars):0;
+  if(mars&&[1,2,4,7,8,12].includes(mangalH))
+    yogas.push({name:"মাঙ্গলিক দোষ",type:"দোষ",nature:"অশুভ",desc:`মঙ্গল ${mangalH}ম ভাবে — বিবাহে সতর্কতা আবশ্যক, বিস্তারিত দোষ বিভাগে দেখুন`});
   return yogas;
 }
 
@@ -995,6 +1004,9 @@ function calculateFullKundali(){
 
   /* গ্রহের যুতি ও দৃষ্টি ফলাদেশ */
   buildYutiDrishtiPred(planets,lagnaRashiIdx,lagnaLon);
+
+  /* মাঙ্গলিক ও কালসর্প দোষ */
+  buildDoshaSection(planets, lagnaRashiIdx);
 
   /* যোগ */
   const yogaList=detectAllYogas(planets,lagnaRashiIdx);
@@ -1441,6 +1453,137 @@ function buildYutiDrishtiPred(planets, lagnaRashiIdx, lagnaLon) {
   }
 
   el.innerHTML = html || '<p style="color:#999;padding:10px;font-size:.88rem">এই কুণ্ডলীতে কোনো গ্রহ যুতি বা বিশেষ দৃষ্টি নেই।</p>';
+}
+
+/* ── মাঙ্গলিক ও কালসর্প দোষ বিচার ── */
+function buildDoshaSection(planets, lagnaRashiIdx) {
+  const el = document.getElementById('doshaDiv');
+  if (!el) return;
+
+  const get = name => planets.find(p => p.name === name);
+  const house = p => (Math.floor(p.lon / 30) - lagnaRashiIdx + 12) % 12 + 1;
+
+  // ── মাঙ্গলিক দোষ ──
+  const mars = get('মঙ্গল');
+  const marsHouse = mars ? house(mars) : 0;
+  const isManglik = mars && [1, 2, 4, 7, 8, 12].includes(marsHouse);
+  const HOUSE_NAMES = ['','প্রথম','দ্বিতীয়','তৃতীয়','চতুর্থ','পঞ্চম','ষষ্ঠ','সপ্তম','অষ্টম','নবম','দশম','একাদশ','দ্বাদশ'];
+  const HOUSE_EFFECTS = {
+    1:  'লগ্নে মঙ্গল — ব্যক্তিত্বে উগ্রতা, বিবাহে মতভেদ।',
+    2:  'দ্বিতীয় ভাবে মঙ্গল — পারিবারিক বাক্‌বিতণ্ডা, অর্থ-বিরোধ।',
+    4:  'চতুর্থ ভাবে মঙ্গল — গার্হস্থ্য জীবনে উত্তেজনা, সম্পত্তি বিরোধ।',
+    7:  'সপ্তম ভাবে মঙ্গল — দাম্পত্যে কলহ, বিবাহ-বিচ্ছেদের আশঙ্কা।',
+    8:  'অষ্টম ভাবে মঙ্গল — বৈধব্য বা বিচ্ছেদের ইঙ্গিত, গোপন সংঘাত।',
+    12: 'দ্বাদশ ভাবে মঙ্গল — শয্যাসুখে বিঘ্ন, বৈবাহিক অসন্তোষ।'
+  };
+
+  // মাঙ্গলিক প্রশমন পরীক্ষা (partial cancellation)
+  const lagna = get('লগ্ন');
+  const lagnaRashi = lagna ? RASHI_NAMES[lagnaRashiIdx] : '';
+  const KUJA_DOSHA_CANCEL = {
+    'মেষ':  ['মঙ্গল লগ্নে', 'মঙ্গল মেষ বা বৃশ্চিকে'],
+    'বৃশ্চিক': ['মঙ্গল লগ্নে'],
+    'মকর': ['মঙ্গল উচ্চে (মকর) — দোষ হ্রাস পায়'],
+    'কর্কট': ['মঙ্গল নীচে — দোষ তীব্র']
+  };
+  let manglikHTML = '';
+  if (isManglik) {
+    const effect = HOUSE_EFFECTS[marsHouse] || '';
+    manglikHTML = `<div style="padding:14px;background:#fff5f5;border-radius:10px;border-left:4px solid #c62828;margin-bottom:14px">
+      <div style="font-weight:700;color:#c62828;font-size:1rem;margin-bottom:8px">⚠️ মাঙ্গলিক দোষ আছে</div>
+      <div style="font-size:.88rem;color:#3a2218;line-height:1.85">
+        মঙ্গল আপনার <strong>${HOUSE_NAMES[marsHouse]} (${marsHouse}ম) ভাবে</strong> অবস্থান করছে — এটি মাঙ্গলিক ভাব।<br>
+        ${effect}<br><br>
+        <strong style="color:#7a2e2e">🔶 প্রভাব:</strong> বিবাহে দেরি, দাম্পত্য কলহ এবং সম্পর্কে উত্তেজনার আশঙ্কা থাকে। তবে মাঙ্গলিক দোষ থাকলে মাঙ্গলিক পাত্র/পাত্রীর সাথে বিবাহে দোষ পরস্পর বাতিল হয়ে যায়।<br><br>
+        <strong style="color:#2e7d32">🙏 প্রতিকার:</strong><br>
+        • প্রতি মঙ্গলবার হনুমানজীর পূজা ও সুন্দরকাণ্ড পাঠ<br>
+        • মঙ্গলবার উপবাস বা লাল মসুর ডাল দান<br>
+        • বিবাহের পূর্বে কুম্ভবিবাহ বা বিষ্ণু বিবাহ সংস্কার<br>
+        • ৭ মুখী রুদ্রাক্ষ ধারণ (মঙ্গলের উপশম)<br>
+        • প্রবাল (Red Coral) রত্ন পরিধান — বিশেষজ্ঞের পরামর্শে
+      </div>
+    </div>`;
+  } else {
+    const marsHouseText = mars ? `মঙ্গল আপনার <strong>${HOUSE_NAMES[marsHouse]} (${marsHouse}ম) ভাবে</strong> অবস্থান করছে, যা মাঙ্গলিক ভাব নয়।` : '';
+    manglikHTML = `<div style="padding:14px;background:#f0fdf4;border-radius:10px;border-left:4px solid #2e7d32;margin-bottom:14px">
+      <div style="font-weight:700;color:#2e7d32;font-size:1rem;margin-bottom:8px">✅ মাঙ্গলিক দোষ নেই</div>
+      <div style="font-size:.88rem;color:#3a2218;line-height:1.85">
+        আপনার কুষ্ঠিতে <strong>মাঙ্গলিক দোষ নেই</strong> — ${marsHouseText}<br>
+        আপনার বিবাহ ও দাম্পত্য জীবনে মঙ্গলের কোনো বিশেষ প্রতিকূল প্রভাব নেই। যে কোনো যোগ্য পাত্র/পাত্রীর সাথে বিবাহে কোনো মাঙ্গলিক বাধা নেই।
+      </div>
+    </div>`;
+  }
+
+  // ── কালসর্প যোগ ──
+  const rahu = get('রাহু'), ketu = get('কেতু');
+  let hasKalsarp = false, isPartial = false;
+  if (rahu && ketu) {
+    const rL = rahu.lon, kL = ketu.lon;
+    const span = (kL - rL + 360) % 360;
+    const others = planets.filter(p => !['রাহু','কেতু','লগ্ন'].includes(p.name));
+    const inside = others.filter(p => (p.lon - rL + 360) % 360 <= span).length;
+    if (inside === others.length) hasKalsarp = true;
+    else if (inside >= 5) isPartial = true;
+  }
+
+  const KALSARP_TYPES = [
+    { name:'অনন্ত', rahu:'মেষ', desc:'কর্মে বাধা, প্রতিষ্ঠা পেতে দেরি' },
+    { name:'কুলিক', rahu:'বৃষ', desc:'অর্থনৈতিক সংকট, পারিবারিক কলহ' },
+    { name:'বাসুকি', rahu:'মিথুন', desc:'ভ্রাতৃ কলহ, যোগাযোগ বিঘ্ন' },
+    { name:'শঙ্খপাল', rahu:'কর্কট', desc:'মাতৃ-গৃহে সমস্যা, মানসিক অস্থিরতা' },
+    { name:'পদ্ম', rahu:'সিংহ', desc:'পিতৃ সমস্যা, রাজকীয় বাধা' },
+    { name:'মহাপদ্ম', rahu:'কন্যা', desc:'ঋণ, রোগ ও শত্রু বৃদ্ধি' },
+    { name:'তক্ষক', rahu:'তুলা', desc:'দাম্পত্য কলহ, অংশীদারি বিরোধ' },
+    { name:'কর্কট', rahu:'বৃশ্চিক', desc:'গোপন শত্রু, আকস্মিক বিপদ' },
+    { name:'শঙ্খনাদ', rahu:'ধনু', desc:'ধর্মীয় বাধা, ভাগ্যহীনতা' },
+    { name:'পাতক', rahu:'মকর', desc:'কর্মক্ষেত্রে প্রতারণা, পিতৃদোষ' },
+    { name:'বিষধর', rahu:'কুম্ভ', desc:'রাজদণ্ড, সামাজিক বদনাম' },
+    { name:'শেষনাগ', rahu:'মীন', desc:'মোক্ষপথে বাধা, আধ্যাত্মিক দ্বন্দ্ব' }
+  ];
+  let kalsarpTypeName = '';
+  if (rahu && hasKalsarp) {
+    const rahul = Math.floor(rahu.lon / 30) % 12;
+    kalsarpTypeName = (KALSARP_TYPES[rahul] || {}).name || '';
+  }
+
+  let kalsarpHTML = '';
+  if (hasKalsarp) {
+    const rahul = rahu ? Math.floor(rahu.lon / 30) % 12 : 0;
+    const ktype = KALSARP_TYPES[rahul] || { name:'কালসর্প', desc:'সব গ্রহ রাহু-কেতুর মধ্যে' };
+    kalsarpHTML = `<div style="padding:14px;background:#fff8e1;border-radius:10px;border-left:4px solid #e65100">
+      <div style="font-weight:700;color:#e65100;font-size:1rem;margin-bottom:8px">⚠️ কালসর্প যোগ আছে (${ktype.name} কালসর্প)</div>
+      <div style="font-size:.88rem;color:#3a2218;line-height:1.85">
+        আপনার কুষ্ঠিতে <strong>${ktype.name} কালসর্প যোগ</strong> বিদ্যমান — সমস্ত গ্রহ রাহু-কেতু অক্ষের মধ্যবর্তী অর্ধবৃত্তে অবস্থান করছে।<br>
+        <strong>প্রভাব:</strong> ${ktype.desc}। জীবনে চড়াই-উতরাই বেশি, কিন্তু রাহু-কেতুর মহাদশায় অভূতপূর্ব উন্নতিও সম্ভব।<br><br>
+        <strong style="color:#2e7d32">🙏 প্রতিকার:</strong><br>
+        • নাগপঞ্চমীতে শিবমন্দিরে কালসর্প পূজা<br>
+        • প্রতি সোমবার রুদ্রাভিষেক<br>
+        • উজ্জয়িনীর মহাকালেশ্বর বা ত্র্যম্বকেশ্বরে কালসর্প শান্তি পূজা<br>
+        • গোমেদ (Hessonite) রত্ন (রাহুর) ও লহসুনিয়া (Cat's Eye) রত্ন (কেতুর) — বিশেষজ্ঞের পরামর্শে<br>
+        • "ওঁ নমঃ শিবায়" ১০৮ বার দৈনিক জপ
+      </div>
+    </div>`;
+  } else if (isPartial) {
+    kalsarpHTML = `<div style="padding:14px;background:#fffde7;border-radius:10px;border-left:4px solid #f9a825">
+      <div style="font-weight:700;color:#f57c00;font-size:1rem;margin-bottom:8px">🔶 আংশিক কালসর্প যোগ</div>
+      <div style="font-size:.88rem;color:#3a2218;line-height:1.85">
+        আপনার কুষ্ঠিতে <strong>পূর্ণ কালসর্প যোগ নেই</strong>, তবে অধিকাংশ গ্রহ রাহু-কেতু অক্ষের একপাশে — আংশিক প্রভাব থাকতে পারে।<br>
+        সাধারণ সতর্কতা হিসেবে রাহু-কেতুর দশায় নিয়মিত শিব পূজা উপকারী।
+      </div>
+    </div>`;
+  } else {
+    kalsarpHTML = `<div style="padding:14px;background:#f0fdf4;border-radius:10px;border-left:4px solid #2e7d32">
+      <div style="font-weight:700;color:#2e7d32;font-size:1rem;margin-bottom:8px">✅ কালসর্প যোগ নেই</div>
+      <div style="font-size:.88rem;color:#3a2218;line-height:1.85">
+        আপনার রাশি চক্রে <strong>কালসর্প যোগ নেই</strong> — সমস্ত গ্রহ রাহু-কেতু অক্ষের বাইরে অবাধে বিচরণ করছে। আপনি এই দোষ থেকে সম্পূর্ণ মুক্ত।
+      </div>
+    </div>`;
+  }
+
+  el.innerHTML = `<div style="font-size:.8rem;color:#666;margin-bottom:12px;padding:6px 10px;background:#fdf8f2;border-radius:6px">
+    ℹ️ মাঙ্গলিক দোষ ও কালসর্প যোগ নিয়ে অহেতুক আতঙ্কের প্রয়োজন নেই। সঠিক প্রতিকার ও বিচারে এই দোষ সহজেই নিরসনযোগ্য।
+  </div>
+  ${manglikHTML}${kalsarpHTML}`;
 }
 
 /* ── দশাফল ও প্রতিকার ── */
