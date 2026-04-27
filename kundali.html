@@ -383,7 +383,7 @@ svg{background:#fefcf9;border-radius:8px;max-width:100%;height:auto}
       <button class="tab-btn" onclick="showTab('tabDashaFal',this)">📖 দশাফল</button>
       <button class="tab-btn" onclick="showTab('tabNadiTripap',this)">🌟 নবতারা</button>
       <button class="tab-btn" onclick="showTab('tabLifePred',this)">🧬 জীবন</button>
-      <button class="tab-btn" onclick="window.location.href='match-making.html'">💞 যোটক</button>
+      <button class="tab-btn" onclick="goToYotak()">💞 যোটক</button>
       <button class="tab-btn" onclick="window.location.href='panjika.html'">📅 পঞ্জিকা</button>
       <button class="tab-btn" onclick="openRashifal()">♈ রাশিফল</button>
       <button class="tab-btn" id="pdfBtn" onclick="downloadPDF()" style="color:#ffd700;font-weight:900;border-left:1px solid rgba(184,134,11,.5);padding-left:14px">🖨️ PDF</button>
@@ -1634,6 +1634,29 @@ function buildGocharTab(moonLon,lagnaRashiIdx){
   }
   const predEl=document.getElementById('gocharPredDiv');
   if(predEl)predEl.innerHTML=predHtml||'<p style="color:#666;padding:10px">গোচর ফলাদেশ লোড হয়নি।</p>';
+}
+
+/* ── যোটক বিচার — ফর্ম ডেটা পাস করুন ── */
+function goToYotak(){
+  const name=document.getElementById('userName').value.trim();
+  const d=document.getElementById('dobDay').value;
+  const mo=document.getElementById('dobMonth').value;
+  const y=document.getElementById('dobYear').value;
+  const h=document.getElementById('tobHour').value;
+  const mi=document.getElementById('tobMin').value;
+  const lat=document.getElementById('lat').value;
+  const lon=document.getElementById('lon').value;
+  const city=document.getElementById('citySearch').value.trim();
+  const genderEl=document.querySelector('input[name="gender"]:checked');
+  const gender=genderEl?genderEl.value:'male';
+  if(d&&mo&&y&&h&&mi&&lat&&lon){
+    const dob=`${y}-${String(d).padStart(2,'0')}-${String(mo).padStart(2,'0')}`;
+    const tob=`${String(h).padStart(2,'0')}:${String(mi).padStart(2,'0')}`;
+    const params=new URLSearchParams({name,dob,tob,lat,lon,city,gender});
+    window.location.href='match-making.html?'+params.toString();
+  } else {
+    window.location.href='match-making.html';
+  }
 }
 
 /* ── PDF ডাউনলোড ── */

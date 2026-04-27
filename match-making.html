@@ -157,6 +157,8 @@ tr:last-child td{border-bottom:none}
 
   <button class="calc-btn" onclick="runMatchCalc()">💑 কুষ্ঠি মিলন গণনা করুন</button>
 
+  <button id="mmPdfBtn" onclick="downloadMatchPDF()" style="display:none;margin:16px auto;background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;border:none;padding:11px 26px;border-radius:10px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:inherit">🖨️ PDF ডাউনলোড</button>
+
   <div id="resultsArea">
     <div class="score-hero" id="scoreHero"></div>
     <div class="card">
@@ -220,6 +222,8 @@ tr:last-child td{border-bottom:none}
   </div>
 </footer>
 
+<!-- html2pdf.js — PDF ডাউনলোড -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="src/vsop87-planets.js"></script>
 <script src="src/cities.js"></script>
 <script src="src/match-making.js"></script>
@@ -289,8 +293,11 @@ function runMatchCalc(){
   document.getElementById('manglikDiv').innerHTML=mh;
 
   document.getElementById('reportText').textContent=generateMatchMakingReport(result,gName,bName);
-  document.getElementById('resultsArea').style.display='block';
-  document.getElementById('resultsArea').scrollIntoView({behavior:'smooth'});
+  const ra=document.getElementById('resultsArea');
+  ra.style.display='block';
+  const pdfBtn=document.getElementById('mmPdfBtn');
+  if(pdfBtn)pdfBtn.style.display='block';
+  ra.scrollIntoView({behavior:'smooth'});
 }
 
 /* শহর অনুসন্ধান */
@@ -313,9 +320,65 @@ function setupCitySearch(inputId,suggId,latId,lonId){
   });
   document.addEventListener('click',e=>{if(!inp.contains(e.target))sugg.style.display='none';});
 }
+function downloadMatchPDF(){
+  const ra=document.getElementById('resultsArea');
+  if(!ra||ra.style.display==='none'){alert('প্রথমে কুষ্ঠি মিলন গণনা করুন।');return;}
+  const btn=document.getElementById('mmPdfBtn');
+  if(btn){btn.textContent='⏳ তৈরি হচ্ছে…';btn.disabled=true;}
+  function restore(){if(btn){btn.textContent='🖨️ PDF ডাউনলোড';btn.disabled=false;}}
+  if(typeof html2pdf!=='undefined'){
+    const gName=document.getElementById('girlName').value||'কন্যা';
+    const bName=document.getElementById('boyName').value||'বর';
+    const opt={margin:[8,4],filename:gName+'_'+bName+'_যোটক.pdf',
+      image:{type:'jpeg',quality:0.95},
+      html2canvas:{scale:2,useCORS:true,logging:false,scrollX:0,scrollY:0,windowWidth:document.documentElement.scrollWidth},
+      jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}};
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){
+        html2pdf().set(opt).from(ra).save().then(restore).catch(function(){restore();window.print();});
+      });
+    });
+  } else {
+    window.addEventListener('afterprint',function h(){restore();window.removeEventListener('afterprint',h);});
+    window.print();
+  }
+}
+
+function prefillFromURL(){
+  const p=new URLSearchParams(window.location.search);
+  if(!p.get('dob'))return;
+  const gender=p.get('gender')||'male';
+  const prefix=gender==='female'?'girl':'boy';
+  const name=p.get('name')||'';
+  const dob=p.get('dob')||'';
+  const tob=p.get('tob')||'';
+  const lat=p.get('lat')||'';
+  const lon=p.get('lon')||'';
+  const city=p.get('city')||'';
+  const nameEl=document.getElementById(prefix+'Name');
+  const dobEl=document.getElementById(prefix+'DOB');
+  const tobEl=document.getElementById(prefix+'TOB');
+  const latEl=document.getElementById(prefix+'Lat');
+  const lonEl=document.getElementById(prefix+'Lon');
+  const cityEl=document.getElementById(prefix+'City');
+  if(nameEl)nameEl.value=name;
+  if(dobEl)dobEl.value=dob;
+  if(tobEl)tobEl.value=tob;
+  if(latEl)latEl.value=lat;
+  if(lonEl)lonEl.value=lon;
+  if(cityEl)cityEl.value=city;
+  // অপর পক্ষের প্যানেল হাইলাইট করুন যাতে বোঝা যায় পূরণ করতে হবে
+  const otherPrefix=prefix==='girl'?'boy':'girl';
+  const otherPanel=document.querySelector('.'+otherPrefix+'-panel');
+  if(otherPanel)otherPanel.style.boxShadow='0 0 0 3px #ffd700';
+  const otherName=document.getElementById(otherPrefix+'Name');
+  if(otherName)setTimeout(()=>otherName.focus(),100);
+}
+
 document.addEventListener('DOMContentLoaded',function(){
   setupCitySearch('girlCity','girlCitySugg','girlLat','girlLon');
   setupCitySearch('boyCity','boyCitySugg','boyLat','boyLon');
+  prefillFromURL();
 });
 </script>
 </body>
