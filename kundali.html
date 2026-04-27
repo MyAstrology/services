@@ -1522,9 +1522,9 @@ function buildLifePredictions(planets, lagnaRashiName, lagnaRashiIdx, dashaInfo)
   try {
     const chartData = {
       lagna: { rashi: lagnaRashiName },
-      planets: planets.map(p => ({
+      planets: planets.filter(p => p.name !== 'লগ্ন').map(p => ({
         name: p.name,
-        rashi: p.rashi,
+        rashi: RASHI_NAMES[Math.floor(p.lon / 30) % 12],
         house: (Math.floor(p.lon / 30) % 12 - lagnaRashiIdx + 12) % 12 + 1
       })),
       dashaInfo: dashaInfo
