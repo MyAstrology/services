@@ -1969,6 +1969,21 @@ const TODAY=new Date();
 
 // ── Current location state ──
 let LAT=23.1677, LNG=88.5808, TZ=5.5;
+
+// ── Timezone utility ──────────────────────────────────────
+// Browser-এর timezone offset (IST = +5.5, London = +1 ইত্যাদি)
+// getTimezoneOffset() returns NEGATIVE for IST (+5.5 → -330 minutes)
+var _BROWSER_TZ = -(new Date().getTimezoneOffset()) / 60;
+
+// Selected city-তে এখন কটা বাজে (decimal hours)
+// যেকোনো timezone-এ সঠিকভাবে কাজ করে
+function nowCityH() {
+  var n = new Date();
+  // browser local hour → UTC → selected city local hour
+  var utcH = n.getHours() + n.getMinutes()/60 + n.getSeconds()/3600 - _BROWSER_TZ;
+  return ((utcH + TZ) % 24 + 24) % 24;
+}
+// ──────────────────────────────────────────────────────────
 let _citySelIdx=0; // Ranaghat default
 
 // ── Restore saved city on load ──
@@ -2032,6 +2047,11 @@ function _applyCustomCity(){
 
 // ── Re-render everything after location change ──
 function _reRenderAll(){
+  // ★ Fix: city change হলে BROWSER_TZ update না করলেও
+  // nowCityH() TZ ব্যবহার করে — তাই শুধু BNTODAY recalculate করলেই চলবে
+  BNTODAY = getBanglaDayInfo(new Date());
+  var _bn = getBnInfoDynamic(BNTODAY);
+  if(_bn){ currentBnYear=_bn.y; currentBnMonth=_bn.m; }
   try{
     BNTODAY=getBanglaDayInfo(new Date());
     renderHeader();
@@ -2120,7 +2140,7 @@ function slotT(rise,set,s){const len=(set-rise)/8,st=rise+len*(s-1),en=st+len;co
 function abhiT(rise,set){const n=(rise+set)/2,s=n-24/60,e=n+24/60;return`${fmtT(Math.floor(s),Math.round((s-Math.floor(s))*60))} – ${fmtT(Math.floor(e),Math.round((e-Math.floor(e))*60))}`;}
 function dStr(d){return`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;}
 // সূর্যোদয়-ভিত্তিক বাংলা দিন: সূর্যোদয়ের আগে হলে গতকালের তারিখ ফেরত দেয়
-function getBanglaDayInfo(now){var y=now.getFullYear(),m=now.getMonth()+1,d=now.getDate();var st=sunTimes(y,m,d);var nowIST=now.getHours()+now.getMinutes()/60+now.getSeconds()/3600;if(nowIST<st.rise){var yest=new Date(now);yest.setDate(yest.getDate()-1);return yest;}return new Date(y,m-1,d);}
+function getBanglaDayInfo(now){var y=now.getFullYear(),m=now.getMonth()+1,d=now.getDate();var st=sunTimes(y,m,d);var nowLocalTime=nowCityH();if(nowLocalTime<st.rise){var yest=new Date(now);yest.setDate(yest.getDate()-1);return yest;}return new Date(y,m-1,d);}
 var BNTODAY=getBanglaDayInfo(new Date());
 
 // ════════════════════════════════════════════════════════
@@ -4203,7 +4223,7 @@ function showDetail(date) {
     var LBN2=['মেষ','বৃষ','মিথুন','কর্কট','সিংহ','কন্যা','তুলা','বৃশ্চিক','ধনু','মকর','কুম্ভ','মীন'];
     var lgnSlots=calcLagnaSlots(date.getFullYear(),date.getMonth()+1,date.getDate(),jdR,jdNR);
     // চলমান ও পরবর্তী লগ্ন — সর্বাধিক ২টি
-    var nowIST=(((Date.now()/3600000)+5.5)%24+24)%24;
+    var nowIST=nowCityH(); // ★ Fix: selected city local time
     var isToday2=date.toDateString()===BNTODAY.toDateString();
     var curLagIdx=0;
     if(isToday2){
@@ -4656,7 +4676,7 @@ function renderLivePanchanga(){
   if(!grid)return;
   var now=new Date();
   var y=now.getFullYear(),m=now.getMonth()+1,d=now.getDate();
-  var jdNow=JD(y,m,d)+(now.getHours()+now.getMinutes()/60+now.getSeconds()/3600-TZ)/24;
+  var jdNow=JD(y,m,d)+(nowCityH()-TZ)/24; // ★ Fix: selected city local time
   // Current panchanga indexes
   var tIdx=_getTithiIdx(jdNow);
   var nIdx=_getNakIdx(jdNow);
