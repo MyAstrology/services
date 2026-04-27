@@ -382,6 +382,7 @@ svg{background:#fefcf9;border-radius:8px;max-width:100%;height:auto}
       <button class="tab-btn" onclick="showTab('tabLakshan',this)">🌟 বৈশিষ্ট্য</button>
       <button class="tab-btn" onclick="showTab('tabDashaFal',this)">📖 দশাফল</button>
       <button class="tab-btn" onclick="showTab('tabNadiTripap',this)">🌟 নবতারা</button>
+      <button class="tab-btn" onclick="showTab('tabLifePred',this)">🧬 জীবন</button>
       <button class="tab-btn" onclick="window.location.href='match-making.html'">💞 যোটক</button>
       <button class="tab-btn" onclick="window.location.href='panjika.html'">📅 পঞ্জিকা</button>
       <button class="tab-btn" onclick="openRashifal()">♈ রাশিফল</button>
@@ -511,6 +512,14 @@ svg{background:#fefcf9;border-radius:8px;max-width:100%;height:auto}
     </div>
     </div><!-- /tabNadiTripap -->
 
+    <!-- Tab জ: জীবন প্রেডিকশন -->
+    <div id="tabLifePred" class="tab-panel" style="display:none">
+    <div class="card">
+      <div class="section-title">🧬 জীবন বিশ্লেষণ</div>
+      <div id="lifePredDiv" style="line-height:1.85;font-size:.93rem;overflow-x:auto"></div>
+    </div>
+    </div><!-- /tabLifePred -->
+
 </div><!-- /resultsArea k-wrap -->
 
 <!-- FOOTER -->
@@ -567,6 +576,8 @@ svg{background:#fefcf9;border-radius:8px;max-width:100%;height:auto}
   </div>
 </footer>
 
+<!-- html2pdf.js — direct PDF download -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!-- Scripts -->
 <script src="src/vsop87-planets.js"></script>
 <script src="src/cities.js"></script>
@@ -1029,6 +1040,9 @@ function calculateFullKundali(){
 
   /* গোচর (Tab খ) */
   buildGocharTab(moonLon,lagnaRashiIdx);
+
+  /* জীবন প্রেডিকশন */
+  buildLifePredictions(planets, lagnaRashiName, lagnaRashiIdx, dashaInfo);
 
   /* ফর্ম হাইড করো, ফলাফল দেখাও */
   document.getElementById('inputSection').style.display='none';
@@ -1497,6 +1511,31 @@ function buildLakshana(nakInfo,gana,lagnaRashiName,tithi,karanaInfo,sunRashiName
   el.textContent=parts.join(SEP);
 }
 
+/* ── জীবন প্রেডিকশন ── */
+function buildLifePredictions(planets, lagnaRashiName, lagnaRashiIdx, dashaInfo) {
+  const el = document.getElementById('lifePredDiv');
+  if (!el) return;
+  if (typeof LifePredictionEngine === 'undefined') {
+    el.innerHTML = '<p style="color:#c62828">LifePredictionEngine লোড হয়নি।</p>';
+    return;
+  }
+  try {
+    const chartData = {
+      lagna: { rashi: lagnaRashiName },
+      planets: planets.map(p => ({
+        name: p.name,
+        rashi: p.rashi,
+        house: (Math.floor(p.lon / 30) % 12 - lagnaRashiIdx + 12) % 12 + 1
+      })),
+      dashaInfo: dashaInfo
+    };
+    el.innerHTML = new LifePredictionEngine().getHTMLReport(chartData);
+  } catch(e) {
+    el.innerHTML = '<p style="color:#c62828">বিশ্লেষণে ত্রুটি: ' + e.message + '</p>';
+    console.error('LifePredictionEngine error:', e);
+  }
+}
+
 /* ── গোচর ট্যাব ── */
 function buildGocharTab(moonLon,lagnaRashiIdx){
   const today=new Date();
@@ -1566,26 +1605,34 @@ let _pdfRestore=null;
 function downloadPDF(){
   const ra=document.getElementById('resultsArea');
   if(!ra||ra.style.display==='none'){alert('প্রথমে কুষ্ঠি গণনা করুন।');return;}
-  // Save state of all tab panels & main section
+  const btn=document.getElementById('pdfBtn');
+  if(btn){btn.textContent='⏳ তৈরি হচ্ছে…';btn.disabled=true;}
+  // Show all panels & expand all dasha rows
   const saved=[];
   document.querySelectorAll('.tab-panel').forEach(p=>saved.push({el:p,d:p.style.display}));
   const main=document.getElementById('mainKundaliSection');
   if(main)saved.push({el:main,d:main.style.display});
-  // Expand all dasha accordion rows (save those that were closed)
   const closedRows=[];
   document.querySelectorAll('.ad-row:not(.open),.pd-row:not(.open)').forEach(r=>{closedRows.push(r);r.classList.add('open');});
-  // Show all panels + main section
   saved.forEach(({el})=>el.style.display='block');
-  _pdfRestore={saved,closedRows};
-  window.print();
+  function restore(){
+    saved.forEach(({el,d})=>el.style.display=d);
+    closedRows.forEach(r=>r.classList.remove('open'));
+    if(btn){btn.textContent='🖨️ PDF';btn.disabled=false;}
+  }
+  if(typeof html2pdf!=='undefined'){
+    const name=(document.getElementById('pgName')||{}).textContent||'kundali';
+    const opt={margin:[8,4],filename:name+'_kundali.pdf',image:{type:'jpeg',quality:0.95},
+      html2canvas:{scale:2,useCORS:true,logging:false},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}};
+    html2pdf().set(opt).from(ra).save().then(restore).catch(function(){restore();window.print();});
+  } else {
+    // fallback: browser print dialog
+    window.addEventListener('afterprint',function handler(){
+      restore(); window.removeEventListener('afterprint',handler);
+    });
+    window.print();
+  }
 }
-window.addEventListener('afterprint',function(){
-  if(!_pdfRestore)return;
-  const{saved,closedRows}=_pdfRestore;
-  saved.forEach(({el,d})=>el.style.display=d);
-  closedRows.forEach(r=>r.classList.remove('open'));
-  _pdfRestore=null;
-});
 </script>
 </body>
 </html>

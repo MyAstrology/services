@@ -1742,10 +1742,6 @@ class NavaTaraNadiUI {
         const bp = birthPlanets || {};
         let html = '<div style="text-align:center;overflow-x:auto;margin:20px 0;">' + this.getNavaTaraChakraSVG(birthNak, bp) + '</div>';
         html += this.getNavaTaraPrediction(birthNak, bp);
-        html += '<hr style="margin:30px 0;">';
-        html += this.getTaraTableHTML(birthNak);
-        html += '<hr style="margin:30px 0;">';
-        html += this.getTriIpapaTableHTML(birthNak);
         if (typeof ShannadiChakraEngine === 'function') {
             try {
                 html += '<hr style="margin:30px 0;">';
@@ -1868,11 +1864,11 @@ class ShannadiChakraEngine {
             const pos = NADI_POS[nadiName];
             if (!pos) continue;
             plList.forEach(({p, transit}, idx) => {
-                const offX = (idx - (plList.length - 1) / 2) * 38;
+                const offX = (idx - (plList.length - 1) / 2) * 42;
                 const col = PLANET_COL[p] || '#888', sn = PLANET_SH[p] || p.substring(0,2);
-                const px = pos.x + offX, py = pos.y + 36;
-                svgBody += `<circle cx="${px}" cy="${py}" r="17" fill="${col}" opacity="0.9" stroke="${transit?'#fff':'#FFD700'}" stroke-width="${transit?1.5:3}"/>`;
-                svgBody += `<text x="${px}" y="${py}" text-anchor="middle" font-size="9" fill="#fff" font-weight="bold" font-family="Noto Sans Bengali,serif" dy="0.35em">${sn}</text>`;
+                const px = pos.x + offX, py = pos.y + 38;
+                svgBody += `<circle cx="${px}" cy="${py}" r="20" fill="${col}" opacity="0.9" stroke="${transit?'#fff':'#FFD700'}" stroke-width="${transit?1.5:3}"/>`;
+                svgBody += `<text x="${px}" y="${py}" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#fff" font-weight="bold" font-family="Noto Sans Bengali,serif">${sn}</text>`;
             });
         }
 
@@ -2367,6 +2363,42 @@ ${ninthHousePlanets.filter(p => ["রাহু","কেতু","শনি","ম�
         output += `মনে রাখবেন—আপনার ইচ্ছাশক্তি ও কর্মই আপনার শ্রেষ্ঠ গ্রহ।\n`;
 
         return output;
+    }
+
+    getHTMLReport(chartData) {
+        const result = this.analyzeAll(chartData);
+        const areas = [
+            { key: "education", icon: "📚", title: "পড়াশোনা" },
+            { key: "career",    icon: "💼", title: "কর্ম" },
+            { key: "marriage",  icon: "💍", title: "বিবাহ" },
+            { key: "fortune",   icon: "🍀", title: "ভাগ্য" }
+        ];
+        const levelStyle = {
+            "অসাধারণ": { color:"#1b5e20", bg:"#e8f5e9", badge:"🌟" },
+            "ভালো":    { color:"#2e7d32", bg:"#f1f8e9", badge:"✅" },
+            "মধ্যম":   { color:"#e65100", bg:"#fff3e0", badge:"⚖️" },
+            "চ্যালেঞ্জিং": { color:"#b71c1c", bg:"#fce4ec", badge:"⚠️" }
+        };
+        let html = `<div style="font-family:'Noto Sans Bengali',sans-serif;padding:4px">`;
+        html += `<h3 style="text-align:center;color:#4a148c;margin-bottom:16px;font-size:1.1rem">🧬 জীবনের চার ক্ষেত্রে জ্যোতিষ বিশ্লেষণ</h3>`;
+        for (const a of areas) {
+            const r = result[a.key];
+            if (!r) continue;
+            const st = levelStyle[r.level] || { color:"#555", bg:"#f5f5f5", badge:"⭐" };
+            html += `<div style="margin-bottom:14px;border-radius:10px;border:1px solid #ddd;overflow:hidden">`;
+            html += `<div style="background:${st.bg};padding:10px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #ddd">`;
+            html += `<span style="font-size:1.4rem">${a.icon}</span>`;
+            html += `<span style="font-size:1rem;font-weight:bold;color:${st.color}">${a.title}</span>`;
+            html += `<span style="margin-left:auto;background:${st.color};color:#fff;padding:2px 10px;border-radius:20px;font-size:.82rem">${st.badge} ${r.level}</span>`;
+            html += `</div>`;
+            html += `<div style="padding:10px 14px;background:#fff;font-size:.87rem;color:#333;line-height:1.7;white-space:pre-wrap">${r.prediction}</div>`;
+            if (r.careerType) html += `<div style="padding:4px 14px 10px;background:#fff;font-size:.83rem;color:#555">💡 উপযোগী পেশা: ${r.careerType}</div>`;
+            if (r.isManglik !== undefined) html += `<div style="padding:4px 14px 10px;background:#fff;font-size:.83rem;color:${r.isManglik?'#c62828':'#2e7d32'}">${r.isManglik ? '⚠️ মাঙ্গলিক দোষ: আছে' : '✅ মাঙ্গলিক দোষ: নেই'}</div>`;
+            html += `</div>`;
+        }
+        html += `<p style="text-align:center;font-size:.78rem;color:#999;margin-top:8px">🕉️ এই বিশ্লেষণ জ্যোতিষশাস্ত্রের ঐতিহ্যবাহী পদ্ধতিতে প্রস্তুত — নির্দেশনামূলক, চূড়ান্ত নয়</p>`;
+        html += `</div>`;
+        return html;
     }
 }
 
