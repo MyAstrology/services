@@ -1900,12 +1900,14 @@ function downloadPDF(){
   }
   if(typeof html2pdf!=='undefined'){
     const name=(document.getElementById('pgName')||{}).textContent||'kundali';
-    const opt={margin:[8,4],filename:name+'_kundali.pdf',image:{type:'jpeg',quality:0.92},
-      html2canvas:{scale:1.5,useCORS:true,allowTaint:true,logging:false,scrollX:0,scrollY:0},
+    const ww=document.documentElement.clientWidth||960;
+    const opt={margin:[8,4],filename:name+'_kundali.pdf',image:{type:'jpeg',quality:0.90},
+      html2canvas:{scale:1.5,useCORS:true,allowTaint:true,logging:false,
+        scrollX:0,scrollY:0,windowWidth:ww,backgroundColor:'#fafaf6'},
       jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}};
     setTimeout(function(){
       html2pdf().set(opt).from(ra).save().then(restore).catch(function(){restore();window.print();});
-    },300);
+    },500);
   } else {
     window.addEventListener('afterprint',function h(){restore();window.removeEventListener('afterprint',h);});
     window.print();
