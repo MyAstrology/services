@@ -74,7 +74,7 @@
   --fb:'Source Sans 3','Noto Sans Bengali','Segoe UI',sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;overflow-x:clip}
+html{scroll-behavior:smooth;overflow-x:hidden}
 body{font-family:var(--fb);background:var(--cream);color:var(--text);padding-top:66px}
 /* ── Header ── */
 .site-header{position:fixed;width:100%;top:0;z-index:900;display:flex;align-items:center;gap:12px;padding:0 20px;height:66px;background:var(--navy);box-shadow:0 2px 18px rgba(0,0,0,.5);border-bottom:2px solid var(--gold);}
@@ -1893,12 +1893,14 @@ function downloadPDF(){
   }
   if(typeof html2pdf!=='undefined'){
     const name=(document.getElementById('pgName')||{}).textContent||'kundali';
-    const opt={margin:[8,4],filename:name+'_kundali.pdf',image:{type:'jpeg',quality:0.92},
-      html2canvas:{scale:1.5,useCORS:true,allowTaint:true,logging:false,scrollX:0,scrollY:0},
+    const ww=document.documentElement.clientWidth||960;
+    const opt={margin:[8,4],filename:name+'_kundali.pdf',image:{type:'jpeg',quality:0.90},
+      html2canvas:{scale:1.5,useCORS:true,allowTaint:true,logging:false,
+        scrollX:0,scrollY:0,windowWidth:ww,backgroundColor:'#fafaf6'},
       jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}};
     setTimeout(function(){
-      html2pdf().set(opt).from(ra).save().then(restore).catch(function(){restore();window.print();});
-    },300);
+      html2pdf().set(opt).from(ra).save().then(restore).catch(function(e){restore();window.print();});
+    },500);
   } else {
     window.addEventListener('afterprint',function h(){restore();window.removeEventListener('afterprint',h);});
     window.print();
