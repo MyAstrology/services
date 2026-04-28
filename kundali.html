@@ -1895,31 +1895,32 @@ function downloadPDF(){
   if(mks) mks.style.display='block';
   document.querySelectorAll('.tab-panel').forEach(function(p){p.style.display='block';});
   setTimeout(function(){
-    /* build a clean offscreen container — avoids all position:fixed / overflow issues */
     const ww=document.documentElement.clientWidth||960;
+    /* temporarily remove overflow-x clipping so left:-9999px isn't hidden from html2canvas */
+    const docEl=document.documentElement, bdy=document.body;
+    const savedDocOX=docEl.style.overflowX, savedBdyOX=bdy.style.overflowX;
+    docEl.style.overflowX='visible'; bdy.style.overflowX='visible';
+    /* build clean offscreen clone */
     const wrap=document.createElement('div');
-    /* top:99999px puts wrap far below fold — body overflow-x:hidden only clips horizontal,
-       so vertical placement is NOT clipped and html2canvas can see the element */
-    wrap.style.cssText='position:absolute;left:0;top:99999px;width:'+ww+'px;background:#fafaf6;font-family:inherit;overflow:visible;';
+    wrap.style.cssText='position:absolute;left:-9999px;top:0;width:'+ww+'px;background:#fafaf6;overflow:visible;';
     const clone=ra.cloneNode(true);
     clone.style.cssText='display:block;overflow:visible;position:static;background:#fafaf6;';
-    /* fix tabNav inside clone */
     var tnv=clone.querySelector('#tabNav');
     if(tnv){tnv.style.position='static';tnv.style.top='auto';tnv.style.zIndex='auto';}
-    /* show all panels in clone */
     clone.querySelectorAll('.tab-panel').forEach(function(p){
       p.style.display='block';p.style.visibility='visible';p.style.opacity='1';
     });
     var cm=clone.querySelector('#mainKundaliSection');
     if(cm){cm.style.display='block';cm.style.visibility='visible';}
     clone.querySelectorAll('.ad-row,.pd-row').forEach(function(r){r.classList.add('open');});
-    /* remove any remaining fixed/sticky positioning in clone */
     clone.querySelectorAll('*').forEach(function(el){
       if(el.style&&(el.style.position==='fixed'||el.style.position==='sticky'))el.style.position='static';
     });
     wrap.appendChild(clone);
     document.body.appendChild(wrap);
     function done(){
+      /* restore overflow clipping */
+      docEl.style.overflowX=savedDocOX; bdy.style.overflowX=savedBdyOX;
       try{document.body.removeChild(wrap);}catch(e){}
       document.querySelectorAll('.ad-row,.pd-row').forEach(function(r){r.classList.remove('open');});
       document.querySelectorAll('.tab-panel').forEach(function(p){if(p.id!=='tabBhava')p.style.display='none';});
