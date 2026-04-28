@@ -1887,7 +1887,6 @@ function downloadPDF(){
   if(!ra||ra.style.display==='none'){alert('প্রথমে কুষ্ঠি গণনা করুন।');return;}
   const btn=document.getElementById('pdfBtn');
   if(btn){btn.textContent='⏳ তৈরি হচ্ছে…';btn.disabled=true;}
-  // Show all panels in live DOM so html2canvas can capture them
   const saved=[];
   document.querySelectorAll('.tab-panel').forEach(function(p){saved.push({el:p,d:p.style.display});p.style.display='block';});
   const mks=document.getElementById('mainKundaliSection');
@@ -1903,11 +1902,29 @@ function downloadPDF(){
     const ww=document.documentElement.clientWidth||960;
     const opt={margin:[8,4],filename:name+'_kundali.pdf',image:{type:'jpeg',quality:0.90},
       html2canvas:{scale:1.5,useCORS:true,allowTaint:true,logging:false,
-        scrollX:0,scrollY:0,windowWidth:ww,backgroundColor:'#fafaf6'},
+        scrollX:0,scrollY:-window.scrollY,windowWidth:ww,backgroundColor:'#fafaf6',
+        onclone:function(doc){
+          /* position:fixed tabNav causes blank canvas — make it static in clone */
+          var tnv=doc.getElementById('tabNav');
+          if(tnv){tnv.style.position='static';tnv.style.top='auto';}
+          /* hide fixed header/nav in clone */
+          ['site-header','navMenu','navOverlay'].forEach(function(id){
+            var el=doc.getElementById(id);if(el)el.style.display='none';
+          });
+          /* show all tab panels */
+          doc.querySelectorAll('.tab-panel').forEach(function(p){p.style.display='block';p.style.visibility='visible';p.style.opacity='1';});
+          var m=doc.getElementById('mainKundaliSection');
+          if(m){m.style.display='block';m.style.visibility='visible';}
+          doc.querySelectorAll('.ad-row,.pd-row').forEach(function(r){r.classList.add('open');});
+          /* remove overflow clipping from html/body in clone */
+          doc.documentElement.style.overflow='visible';
+          doc.body.style.overflow='visible';
+          doc.body.style.paddingTop='0';
+        }},
       jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}};
     setTimeout(function(){
       html2pdf().set(opt).from(ra).save().then(restore).catch(function(e){restore();window.print();});
-    },500);
+    },600);
   } else {
     window.addEventListener('afterprint',function h(){restore();window.removeEventListener('afterprint',h);});
     window.print();
