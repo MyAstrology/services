@@ -246,7 +246,100 @@ var _CITY_RAW = [
   {n:'Phansidewa', district:'দার্জিলিং', state:'পশ্চিমবঙ্গ', country:'ভারত', lat:26.5500, lng:88.3667},
   {n:'Matigara', district:'দার্জিলিং', state:'পশ্চিমবঙ্গ', country:'ভারত', lat:26.7167, lng:88.3833},
   {n:'Kharibari', district:'দার্জিলিং', state:'পশ্চিমবঙ্গ', country:'ভারত', lat:26.5500, lng:88.1833},
+// ==================== আসাম ====================
 
+// কামরূপ মেট্রো জেলা
+{n:'Guwahati', district:'কামরূপ মেট্রো', state:'আসাম', country:'ভারত', lat:26.1445, lng:91.7362},
+{n:'Dispur', district:'কামরূপ মেট্রো', state:'আসাম', country:'ভারত', lat:26.1400, lng:91.7900},
+{n:'North Guwahati', district:'কামরূপ মেট্রো', state:'আসাম', country:'ভারত', lat:26.1974, lng:91.7250},
+
+// কামরূপ জেলা
+{n:'Rangia', district:'কামরূপ', state:'আসাম', country:'ভারত', lat:26.4500, lng:91.6000},
+{n:'Mirza', district:'কামরূপ', state:'আসাম', country:'ভারত', lat:26.0700, lng:91.5300},
+{n:'Palasbari', district:'কামরূপ', state:'আসাম', country:'ভারত', lat:26.1300, lng:91.5000},
+{n:'Boko', district:'কামরূপ', state:'আসাম', country:'ভারত', lat:25.9700, lng:91.2300},
+
+// ডিব্রুগড় জেলা
+{n:'Dibrugarh', district:'ডিব্রুগড়', state:'আসাম', country:'ভারত', lat:27.4728, lng:94.9120},
+{n:'Naharkatia', district:'ডিব্রুগড়', state:'আসাম', country:'ভারত', lat:27.2800, lng:95.3300},
+{n:'Moran', district:'ডিব্রুগড়', state:'আসাম', country:'ভারত', lat:27.1700, lng:94.9200},
+{n:'Chabua', district:'ডিব্রুগড়', state:'আসাম', country:'ভারত', lat:27.4800, lng:95.1800},
+
+// যোরহাট জেলা
+{n:'Jorhat', district:'যোরহাট', state:'আসাম', country:'ভারত', lat:26.7500, lng:94.2200},
+{n:'Mariani', district:'যোরহাট', state:'আসাম', country:'ভারত', lat:26.6600, lng:94.3300},
+{n:'Titabor', district:'যোরহাট', state:'আসাম', country:'ভারত', lat:26.6000, lng:94.2000},
+
+// শিবসাগর জেলা
+{n:'Sivasagar', district:'শিবসাগর', state:'আসাম', country:'ভারত', lat:26.9800, lng:94.6300},
+{n:'Sonari', district:'চরাইদেও', state:'আসাম', country:'ভারত', lat:27.0300, lng:95.0300},
+{n:'Nazira', district:'শিবসাগর', state:'আসাম', country:'ভারত', lat:26.9200, lng:94.7300},
+
+// তিনসুকিয়া জেলা
+{n:'Tinsukia', district:'তিনসুকিয়া', state:'আসাম', country:'ভারত', lat:27.5000, lng:95.3700},
+{n:'Digboi', district:'তিনসুকিয়া', state:'আসাম', country:'ভারত', lat:27.3800, lng:95.6300},
+{n:'Doom Dooma', district:'তিনসুকিয়া', state:'আসাম', country:'ভারত', lat:27.5700, lng:95.5700},
+{n:'Margherita', district:'তিনসুকিয়া', state:'আসাম', country:'ভারত', lat:27.2800, lng:95.6800},
+{n:'Makum', district:'তিনসুকিয়া', state:'আসাম', country:'ভারত', lat:27.5000, lng:95.4500},
+
+// লখিমপুর জেলা
+{n:'North Lakhimpur', district:'লখিমপুর', state:'আসাম', country:'ভারত', lat:27.2400, lng:94.1000},
+{n:'Narayanpur', district:'লখিমপুর', state:'আসাম', country:'ভারত', lat:26.9800, lng:93.9000},
+{n:'Bihpuria', district:'লখিমপুর', state:'আসাম', country:'ভারত', lat:27.0300, lng:93.9000},
+
+// ধেমাজি জেলা
+{n:'Dhemaji', district:'ধেমাজি', state:'আসাম', country:'ভারত', lat:27.4800, lng:94.5800},
+{n:'Silapathar', district:'ধেমাজি', state:'আসাম', country:'ভারত', lat:27.6000, lng:94.7200},
+
+// গোলাঘাট জেলা
+{n:'Golaghat', district:'গোলাঘাট', state:'আসাম', country:'ভারত', lat:26.5200, lng:93.9700},
+{n:'Bokakhat', district:'গোলাঘাট', state:'আসাম', country:'ভারত', lat:26.6300, lng:93.6000},
+{n:'Sarupathar', district:'গোলাঘাট', state:'আসাম', country:'ভারত', lat:26.2000, lng:93.8800},
+
+// নগাঁও জেলা
+{n:'Nagaon', district:'নগাঁও', state:'আসাম', country:'ভারত', lat:26.3500, lng:92.6800},
+{n:'Raha', district:'নগাঁও', state:'আসাম', country:'ভারত', lat:26.2300, lng:92.5200},
+{n:'Hojai', district:'হোজাই', state:'আসাম', country:'ভারত', lat:26.0000, lng:92.8500},
+
+// তেজপুর / শোণিতপুর জেলা
+{n:'Tezpur', district:'শোণিতপুর', state:'আসাম', country:'ভারত', lat:26.6300, lng:92.8000},
+{n:'Dhekiajuli', district:'শোণিতপুর', state:'আসাম', country:'ভারত', lat:26.7000, lng:92.5000},
+{n:'Rangapara', district:'শোণিতপুর', state:'আসাম', country:'ভারত', lat:26.8200, lng:92.6500},
+{n:'Biswanath Chariali', district:'বিশ্বনাথ', state:'আসাম', country:'ভারত', lat:26.7300, lng:93.1500},
+
+// বরপেটা জেলা
+{n:'Barpeta', district:'বরপেটা', state:'আসাম', country:'ভারত', lat:26.3200, lng:91.0000},
+{n:'Pathsala', district:'বরপেটা', state:'আসাম', country:'ভারত', lat:26.5000, lng:91.1800},
+
+// বঙাইগাঁও জেলা
+{n:'Bongaigaon', district:'বঙাইগাঁও', state:'আসাম', country:'ভারত', lat:26.4800, lng:90.5600},
+{n:'Abhayapuri', district:'বঙাইগাঁও', state:'আসাম', country:'ভারত', lat:26.3300, lng:90.6700},
+
+// কাছাড় জেলা
+{n:'Silchar', district:'কাছাড়', state:'আসাম', country:'ভারত', lat:24.8300, lng:92.8000},
+{n:'Lakhipur', district:'কাছাড়', state:'আসাম', country:'ভারত', lat:24.8000, lng:93.0200},
+
+// করিমগঞ্জ জেলা
+{n:'Karimganj', district:'করিমগঞ্জ', state:'আসাম', country:'ভারত', lat:24.8700, lng:92.3500},
+{n:'Badarpur', district:'করিমগঞ্জ', state:'আসাম', country:'ভারত', lat:24.8700, lng:92.5700},
+
+// হাইলাকান্দি জেলা
+{n:'Hailakandi', district:'হাইলাকান্দি', state:'আসাম', country:'ভারত', lat:24.6800, lng:92.5700},
+
+// ধুবড়ী জেলা
+{n:'Dhubri', district:'ধুবড়ী', state:'আসাম', country:'ভারত', lat:26.0200, lng:89.9700},
+{n:'Bilasipara', district:'ধুবড়ী', state:'আসাম', country:'ভারত', lat:26.2300, lng:90.2300},
+{n:'Gauripur', district:'ধুবড়ী', state:'আসাম', country:'ভারত', lat:26.0800, lng:89.9700},
+
+// গোয়ালপাড়া জেলা
+{n:'Goalpara', district:'গোয়ালপাড়া', state:'আসাম', country:'ভারত', lat:26.1700, lng:90.6200},
+
+// কোকরাঝাড় জেলা
+{n:'Kokrajhar', district:'কোকরাঝাড়', state:'আসাম', country:'ভারত', lat:26.4000, lng:90.2700},
+
+// ডিপু (কার্বি আংলং জেলা)
+{n:'Diphu', district:'কার্বি আংলং', state:'আসাম', country:'ভারত', lat:25.8400, lng:93.4300},
+  
   // ==================== বাংলাদেশের প্রধান শহর ====================
   
   // ঢাকা বিভাগ
