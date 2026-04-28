@@ -18,7 +18,7 @@
   --fh:'Playfair Display',Georgia,serif;--fb:'Source Sans 3','Noto Sans Bengali','Segoe UI',sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;overflow-x:clip}
+html{scroll-behavior:smooth;overflow-x:hidden}
 body{font-family:var(--fb);background:var(--cream);color:var(--text);padding-top:66px}
 .site-header{position:fixed;width:100%;top:0;z-index:900;display:flex;align-items:center;gap:12px;padding:0 20px;height:66px;background:var(--navy);box-shadow:0 2px 18px rgba(0,0,0,.5);border-bottom:2px solid var(--gold);}
 .ham{background:rgba(255,255,255,.06);border:1.5px solid rgba(184,134,11,.45);cursor:pointer;color:var(--gold-lt);font-size:1.25rem;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:7px;flex-shrink:0;transition:background .2s;}
@@ -89,6 +89,13 @@ tr:last-child td{border-bottom:none}
 .manglik-no{background:#f1f8e9;border-color:#2e7d32;color:#1b5e20}
 .manglik-cancel{background:#fffde7;border-color:#f57c00;color:#e65100}
 .report-text{white-space:pre-wrap;line-height:1.85;font-size:.93rem;color:#3a2a1a;padding:14px;background:#fefcf9;border-radius:8px;border:1px solid #e8d5c0}
+.chart-pair{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:10px}
+.chart-lbl{font-size:.72rem;color:#888;text-align:center;margin-bottom:3px}
+.mm-planet-tbl{width:100%;border-collapse:collapse;font-size:.8rem}
+.mm-planet-tbl th{padding:4px 6px;text-align:left;color:#fff;font-size:.78rem}
+.mm-planet-tbl td{padding:4px 6px;border-bottom:1px solid #e8d5c0}
+.mm-charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:500px){.mm-charts-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -161,6 +168,80 @@ tr:last-child td{border-bottom:none}
 
   <div id="resultsArea">
     <div class="score-hero" id="scoreHero"></div>
+
+    <!-- কুণ্ডলী চার্ট ও গ্রহ অবস্থান -->
+    <div class="card" id="mmChartsCard">
+      <div class="section-title">🔭 জন্মকুণ্ডলী ও গ্রহ অবস্থান</div>
+      <div class="mm-charts-grid">
+        <!-- মেয়ে -->
+        <div>
+          <h4 style="text-align:center;color:#c2185b;font-family:var(--fh);margin-bottom:8px">👰 মেয়ে</h4>
+          <div class="chart-pair">
+            <div><div class="chart-lbl">রাশিচক্র</div>
+              <svg id="girlD1" width="155" height="155" viewBox="0 0 320 320" style="max-width:100%">
+                <rect width="320" height="320" fill="#fdfaf6" stroke="#c2185b" stroke-width="2"/>
+                <line x1="107" y1="0" x2="107" y2="320" stroke="#c2185b" stroke-width="1.5"/><line x1="213" y1="0" x2="213" y2="320" stroke="#c2185b" stroke-width="1.5"/>
+                <line x1="0" y1="107" x2="320" y2="107" stroke="#c2185b" stroke-width="1.5"/><line x1="0" y1="213" x2="320" y2="213" stroke="#c2185b" stroke-width="1.5"/>
+                <line x1="0" y1="0" x2="107" y2="107" stroke="#c2185b" stroke-width="1"/><line x1="320" y1="0" x2="213" y2="107" stroke="#c2185b" stroke-width="1"/>
+                <line x1="0" y1="320" x2="107" y2="213" stroke="#c2185b" stroke-width="1"/><line x1="320" y1="320" x2="213" y2="213" stroke="#c2185b" stroke-width="1"/>
+                <text x="160" y="154" text-anchor="middle" font-size="12" fill="#c2185b" font-weight="bold" font-family="Noto Sans Bengali,serif">রাশি</text>
+                <text x="160" y="172" text-anchor="middle" font-size="12" fill="#c2185b" font-weight="bold" font-family="Noto Sans Bengali,serif">চক্র</text>
+                <g id="girlD1Labels"></g><g id="girlD1Planets"></g>
+              </svg>
+            </div>
+            <div><div class="chart-lbl">নবাংশ চক্র</div>
+              <svg id="girlD9" width="155" height="155" viewBox="0 0 320 320" style="max-width:100%">
+                <rect width="320" height="320" fill="#fdfaf6" stroke="#c2185b" stroke-width="2"/>
+                <line x1="107" y1="0" x2="107" y2="320" stroke="#c2185b" stroke-width="1.5"/><line x1="213" y1="0" x2="213" y2="320" stroke="#c2185b" stroke-width="1.5"/>
+                <line x1="0" y1="107" x2="320" y2="107" stroke="#c2185b" stroke-width="1.5"/><line x1="0" y1="213" x2="320" y2="213" stroke="#c2185b" stroke-width="1.5"/>
+                <line x1="0" y1="0" x2="107" y2="107" stroke="#c2185b" stroke-width="1"/><line x1="320" y1="0" x2="213" y2="107" stroke="#c2185b" stroke-width="1"/>
+                <line x1="0" y1="320" x2="107" y2="213" stroke="#c2185b" stroke-width="1"/><line x1="320" y1="320" x2="213" y2="213" stroke="#c2185b" stroke-width="1"/>
+                <text x="160" y="150" text-anchor="middle" font-size="11" fill="#c2185b" font-weight="bold" font-family="Noto Sans Bengali,serif">নবাংশ</text>
+                <text x="160" y="168" text-anchor="middle" font-size="11" fill="#c2185b" font-weight="bold" font-family="Noto Sans Bengali,serif">চক্র</text>
+                <g id="girlD9Labels"></g><g id="girlD9Planets"></g>
+              </svg>
+            </div>
+          </div>
+          <div style="overflow-x:auto">
+            <table class="mm-planet-tbl"><thead><tr style="background:#c2185b"><th>গ্রহ</th><th>রাশি</th><th>ডিগ্রি</th><th>নক্ষত্র</th><th>ভাব</th></tr></thead><tbody id="girlPlanetTbody"></tbody></table>
+          </div>
+        </div>
+        <!-- ছেলে -->
+        <div>
+          <h4 style="text-align:center;color:#1565c0;font-family:var(--fh);margin-bottom:8px">🤵 ছেলে</h4>
+          <div class="chart-pair">
+            <div><div class="chart-lbl">রাশিচক্র</div>
+              <svg id="boyD1" width="155" height="155" viewBox="0 0 320 320" style="max-width:100%">
+                <rect width="320" height="320" fill="#fdfaf6" stroke="#1565c0" stroke-width="2"/>
+                <line x1="107" y1="0" x2="107" y2="320" stroke="#1565c0" stroke-width="1.5"/><line x1="213" y1="0" x2="213" y2="320" stroke="#1565c0" stroke-width="1.5"/>
+                <line x1="0" y1="107" x2="320" y2="107" stroke="#1565c0" stroke-width="1.5"/><line x1="0" y1="213" x2="320" y2="213" stroke="#1565c0" stroke-width="1.5"/>
+                <line x1="0" y1="0" x2="107" y2="107" stroke="#1565c0" stroke-width="1"/><line x1="320" y1="0" x2="213" y2="107" stroke="#1565c0" stroke-width="1"/>
+                <line x1="0" y1="320" x2="107" y2="213" stroke="#1565c0" stroke-width="1"/><line x1="320" y1="320" x2="213" y2="213" stroke="#1565c0" stroke-width="1"/>
+                <text x="160" y="154" text-anchor="middle" font-size="12" fill="#1565c0" font-weight="bold" font-family="Noto Sans Bengali,serif">রাশি</text>
+                <text x="160" y="172" text-anchor="middle" font-size="12" fill="#1565c0" font-weight="bold" font-family="Noto Sans Bengali,serif">চক্র</text>
+                <g id="boyD1Labels"></g><g id="boyD1Planets"></g>
+              </svg>
+            </div>
+            <div><div class="chart-lbl">নবাংশ চক্র</div>
+              <svg id="boyD9" width="155" height="155" viewBox="0 0 320 320" style="max-width:100%">
+                <rect width="320" height="320" fill="#fdfaf6" stroke="#1565c0" stroke-width="2"/>
+                <line x1="107" y1="0" x2="107" y2="320" stroke="#1565c0" stroke-width="1.5"/><line x1="213" y1="0" x2="213" y2="320" stroke="#1565c0" stroke-width="1.5"/>
+                <line x1="0" y1="107" x2="320" y2="107" stroke="#1565c0" stroke-width="1.5"/><line x1="0" y1="213" x2="320" y2="213" stroke="#1565c0" stroke-width="1.5"/>
+                <line x1="0" y1="0" x2="107" y2="107" stroke="#1565c0" stroke-width="1"/><line x1="320" y1="0" x2="213" y2="107" stroke="#1565c0" stroke-width="1"/>
+                <line x1="0" y1="320" x2="107" y2="213" stroke="#1565c0" stroke-width="1"/><line x1="320" y1="320" x2="213" y2="213" stroke="#1565c0" stroke-width="1"/>
+                <text x="160" y="150" text-anchor="middle" font-size="11" fill="#1565c0" font-weight="bold" font-family="Noto Sans Bengali,serif">নবাংশ</text>
+                <text x="160" y="168" text-anchor="middle" font-size="11" fill="#1565c0" font-weight="bold" font-family="Noto Sans Bengali,serif">চক্র</text>
+                <g id="boyD9Labels"></g><g id="boyD9Planets"></g>
+              </svg>
+            </div>
+          </div>
+          <div style="overflow-x:auto">
+            <table class="mm-planet-tbl"><thead><tr style="background:#1565c0"><th>গ্রহ</th><th>রাশি</th><th>ডিগ্রি</th><th>নক্ষত্র</th><th>ভাব</th></tr></thead><tbody id="boyPlanetTbody"></tbody></table>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="card">
       <div class="section-title">📊 অষ্টকূট বিবরণ</div>
       <div style="overflow-x:auto">
@@ -236,19 +317,69 @@ document.querySelectorAll('#navMenu a').forEach(function(a){a.addEventListener('
 
 const RASHI_NAMES=["মেষ","বৃষ","মিথুন","কর্কট","সিংহ","কন্যা","তুলা","বৃশ্চিক","ধনু","মকর","কুম্ভ","মীন"];
 const NAKSHATRA_NAMES=["অশ্বিনী","ভরণী","কৃত্তিকা","রোহিণী","মৃগশিরা","আর্দ্রা","পুনর্বসু","পুষ্যা","অশ্লেষা","মঘা","পূর্বফাল্গুনী","উত্তরফাল্গুনী","হস্তা","চিত্রা","স্বাতী","বিশাখা","অনুরাধা","জ্যেষ্ঠা","মূলা","পূর্বাষাঢ়া","উত্তরাষাঢ়া","শ্রবণা","ধনিষ্ঠা","শতভিষা","পূর্বভাদ্রপদ","উত্তরভাদ্রপদ","রেবতী"];
+const PLANET_SHORT={"লগ্ন":"ল","সূর্য":"রবি","চন্দ্র":"চন্দ্র","মঙ্গল":"মঙ্গ","বুধ":"বুধ","বৃহস্পতি":"বৃহ","শুক্র":"শুক্র","শনি":"শনি","রাহু":"রাহু","কেতু":"কেতু"};
+const CHART_POS=[{x:160,y:35},{x:70,y:30},{x:30,y:70},{x:50,y:160},{x:30,y:250},{x:70,y:290},{x:160,y:285},{x:250,y:290},{x:290,y:250},{x:270,y:160},{x:290,y:70},{x:250,y:30}];
+
+function getNavamshaRashi(lon){const sign=Math.floor(((lon%360)+360)%360/30)%12,part=Math.floor((((lon%360)+360)%360%30)/(30/9));return(sign%3===0?0:sign%3===1?9:18)+part;}
+
+function drawMMChart(labGId,plGId,planets,lagnaIdx){
+  const labG=document.getElementById(labGId),plG=document.getElementById(plGId);
+  if(!labG||!plG)return;
+  labG.innerHTML='';plG.innerHTML='';
+  const ns="http://www.w3.org/2000/svg";
+  CHART_POS.forEach((p,i)=>{
+    const t=document.createElementNS(ns,"text");
+    t.setAttribute("x",p.x);t.setAttribute("y",p.y-6);t.setAttribute("text-anchor","middle");
+    t.setAttribute("fill",i===lagnaIdx?"#8b0000":"#5c3d2e");t.setAttribute("font-size","10");
+    t.setAttribute("font-weight",i===lagnaIdx?"bold":"normal");t.setAttribute("font-family","Noto Sans Bengali,serif");
+    t.textContent=i===lagnaIdx?"["+RASHI_NAMES[i]+"]":RASHI_NAMES[i];
+    labG.appendChild(t);
+  });
+  const rashiMap=Array(12).fill(null).map(()=>[]);
+  planets.forEach(p=>{rashiMap[Math.floor(((p.lon||0)%360+360)%360/30)%12].push(PLANET_SHORT[p.name]||p.name);});
+  CHART_POS.forEach((p,i)=>{
+    if(!rashiMap[i].length)return;
+    const cnt=rashiMap[i].length,lH=cnt<=2?12:10,fS=cnt<=2?11:cnt<=3?10:9,inBot=p.y>160;
+    rashiMap[i].forEach((nm,ni)=>{
+      const t=document.createElementNS(ns,"text"),ty=inBot?p.y-22-ni*lH:p.y+12+ni*lH;
+      t.setAttribute("x",p.x);t.setAttribute("y",ty);t.setAttribute("text-anchor","middle");
+      t.setAttribute("fill","#1a1a2e");t.setAttribute("font-size",String(fS));t.setAttribute("font-weight","bold");
+      t.setAttribute("font-family","Noto Sans Bengali,serif");t.textContent=nm;plG.appendChild(t);
+    });
+  });
+}
+
+function buildPlanetTable(tbodyId,planets,lagnaIdx){
+  const tbody=document.getElementById(tbodyId);if(!tbody)return;tbody.innerHTML='';
+  planets.forEach(p=>{
+    const lon=((p.lon||0)%360+360)%360,ri=Math.floor(lon/30)%12,deg=Math.floor(lon%30),mn=Math.floor((lon%30-deg)*60);
+    const ni=Math.floor(lon/(360/27))%27,house=p.name==='লগ্ন'?'লগ্ন':(((ri-lagnaIdx+12)%12)+1)+'ম';
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td>${p.name}</td><td>${RASHI_NAMES[ri]}</td><td>${deg}°${mn}'</td><td>${NAKSHATRA_NAMES[ni]}</td><td>${house}</td>`;
+    tbody.appendChild(tr);
+  });
+}
 
 function getPlanetData(dob,tob,lat,lon){
   if(!dob||!tob||isNaN(lat)||isNaN(lon))return null;
   const[y,mo,d]=dob.split('-').map(Number),[h,mi]=tob.split(':').map(Number);
   const jd=JD(y,mo,d)+(h-5.5+mi/60)/24,ay=lahiriAY(jd);
-  const moonLon=rev(moonL(jd)-ay),marsLon=rev(marsL(jd)-ay);
-  const lagnaLon=getLagna(jd,lat,lon); // vsop87-planets.js getLagna returns sidereal lagna
-  const idx=Math.floor(moonLon/(360/27))%27;
+  const sunLon=rev(sunL(jd)-ay),moonLon=rev(moonL(jd)-ay),marsLon=rev(marsL(jd)-ay);
+  const mercLon=rev(mercuryL(jd)-ay),jupLon=rev(jupiterL(jd)-ay),venLon=rev(venusL(jd)-ay);
+  const satLon=rev(saturnL(jd)-ay),rahuLon=rev(rahuL(jd)-ay),ketuLon=rev(rahuLon+180);
+  const lagnaLon=getLagna(jd,lat,lon);
+  const lagnaIdx=Math.floor(lagnaLon/30)%12;
+  const moonIdx=Math.floor(moonLon/(360/27))%27;
   return{
-    moonNakshatra:NAKSHATRA_NAMES[idx],moonNakshatraIndex:idx,
+    moonNakshatra:NAKSHATRA_NAMES[moonIdx],moonNakshatraIndex:moonIdx,
     moonRashi:RASHI_NAMES[Math.floor(moonLon/30)%12],
     marsRashi:RASHI_NAMES[Math.floor(marsLon/30)%12],
-    lagnaRashi:RASHI_NAMES[Math.floor(lagnaLon/30)%12]
+    lagnaRashi:RASHI_NAMES[lagnaIdx],lagnaIdx,
+    planets:[
+      {name:"লগ্ন",lon:lagnaLon},{name:"সূর্য",lon:sunLon},{name:"চন্দ্র",lon:moonLon},
+      {name:"মঙ্গল",lon:marsLon},{name:"বুধ",lon:mercLon},{name:"বৃহস্পতি",lon:jupLon},
+      {name:"শুক্র",lon:venLon},{name:"শনি",lon:satLon},{name:"রাহু",lon:rahuLon},{name:"কেতু",lon:ketuLon}
+    ]
   };
 }
 
@@ -260,23 +391,41 @@ function runMatchCalc(){
   const result=calculateMatchMaking(gd,bd);
   const gName=document.getElementById('girlName').value||"কন্যা";
   const bName=document.getElementById('boyName').value||"বর";
-  const total=result.totalPoints||0;
+  const total=result.totalPoints||result.totalScore||0;
   const pct=(total/36)*100;
   const col=pct>=72?'#2e7d32':pct>=50?'#f57c00':'#c62828';
   const verdict=pct>=72?'✅ মিলন শুভ':pct>=50?'⚠️ মিলন মধ্যম':'❌ মিলন অশুভ';
 
   document.getElementById('scoreHero').innerHTML=`
+    <div style="font-size:.95rem;color:#5c3d2e;margin-bottom:4px">👰 <strong>${gName}</strong> &nbsp;💑&nbsp; <strong>${bName}</strong> 🤵</div>
     <div class="score-number" style="color:${col}">${total}<span style="font-size:1.5rem;color:#999">/36</span></div>
     <div class="score-label">অষ্টকূট মোট নম্বর</div>
     <div class="score-bar"><div class="score-fill" style="width:${pct}%;background:${col}"></div></div>
     <div class="verdict" style="color:${col}">${verdict}</div>`;
+
+  // চার্ট আঁকো
+  if(gd.planets){
+    const gNavPlanets=gd.planets.map(p=>({name:p.name,lon:getNavamshaRashi(p.lon)*30}));
+    const gNavLagnaIdx=getNavamshaRashi(gd.planets[0].lon);
+    drawMMChart('girlD1Labels','girlD1Planets',gd.planets,gd.lagnaIdx);
+    drawMMChart('girlD9Labels','girlD9Planets',gNavPlanets,gNavLagnaIdx);
+    buildPlanetTable('girlPlanetTbody',gd.planets,gd.lagnaIdx);
+  }
+  if(bd.planets){
+    const bNavPlanets=bd.planets.map(p=>({name:p.name,lon:getNavamshaRashi(p.lon)*30}));
+    const bNavLagnaIdx=getNavamshaRashi(bd.planets[0].lon);
+    drawMMChart('boyD1Labels','boyD1Planets',bd.planets,bd.lagnaIdx);
+    drawMMChart('boyD9Labels','boyD9Planets',bNavPlanets,bNavLagnaIdx);
+    buildPlanetTable('boyPlanetTbody',bd.planets,bd.lagnaIdx);
+  }
 
   const kN=["বর্ণ","বশ্য","তারা","যোনি","গ্রহমৈত্রী","গণ","ভকূট","নাড়ী"];
   const kM=[1,2,3,4,5,6,7,8];
   const kK=["varna","vasu","tara","yoni","grahaMaitri","gana","bhakoota","nadi"];
   let rows='';
   kK.forEach((k,i)=>{
-    const sc=(result.kootas&&result.kootas[k]!==undefined)?result.kootas[k].points:0,mx=kM[i];
+    const pts=result.kootas&&result.kootas[k]!=null?result.kootas[k].points??result.kootas[k]:0;
+    const sc=typeof pts==='number'?pts:0,mx=kM[i];
     const cls=sc>=mx*0.75?'good':sc>=mx*0.4?'avg':'bad';
     const st=sc>=mx*0.75?'✅ শুভ':sc>=mx*0.4?'⚠️ মধ্যম':'❌ অশুভ';
     rows+=`<tr><td>${kN[i]}</td><td>${gd.moonNakshatra}</td><td>${bd.moonNakshatra}</td><td style="text-align:center">${mx}</td><td style="text-align:center"><span class="pts ${cls}">${sc}</span></td><td>${st}</td></tr>`;
@@ -289,7 +438,7 @@ function runMatchCalc(){
   let mh='';
   mh+=`<div class="manglik-box ${gm.hasDosha?'manglik-yes':'manglik-no'}">${gm.hasDosha?'🔴':'🟢'} ${gName}: ${gm.hasDosha?'মাঙ্গলিক দোষ আছে — মঙ্গল '+gd.marsRashi+' রাশিতে':'মাঙ্গলিক দোষ নেই'}</div>`;
   mh+=`<div class="manglik-box ${bm.hasDosha?'manglik-yes':'manglik-no'}">${bm.hasDosha?'🔴':'🟢'} ${bName}: ${bm.hasDosha?'মাঙ্গলিক দোষ আছে — মঙ্গল '+bd.marsRashi+' রাশিতে':'মাঙ্গলিক দোষ নেই'}</div>`;
-  if(gm.hasDosha&&bm.hasDosha)mh+='<div class="manglik-box" style="background:#fffde7;border-color:#f57c00;color:#e65100;border-left:4px solid">✨ উভয়ই মাঙ্গলিক — দোষ পরস্পর বাতিল হয়ে যায়</div>';
+  if(gm.hasDosha&&bm.hasDosha)mh+='<div class="manglik-box manglik-cancel">✨ উভয়ই মাঙ্গলিক — দোষ পরস্পর বাতিল হয়ে যায়</div>';
   document.getElementById('manglikDiv').innerHTML=mh;
 
   document.getElementById('reportText').textContent=generateMatchMakingReport(result,gName,bName);
@@ -331,13 +480,11 @@ function downloadMatchPDF(){
     const bName=document.getElementById('boyName').value||'বর';
     const opt={margin:[8,4],filename:gName+'_'+bName+'_যোটক.pdf',
       image:{type:'jpeg',quality:0.95},
-      html2canvas:{scale:2,useCORS:true,logging:false,scrollX:0,scrollY:0,windowWidth:document.documentElement.scrollWidth},
+      html2canvas:{scale:2,useCORS:true,logging:false,scrollX:0,scrollY:0,
+        onclone:function(doc){doc.getElementById('mmPdfBtn').style.display='none';}
+      },
       jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}};
-    requestAnimationFrame(function(){
-      requestAnimationFrame(function(){
-        html2pdf().set(opt).from(ra).save().then(restore).catch(function(){restore();window.print();});
-      });
-    });
+    html2pdf().set(opt).from(ra).save().then(restore).catch(function(){restore();window.print();});
   } else {
     window.addEventListener('afterprint',function h(){restore();window.removeEventListener('afterprint',h);});
     window.print();

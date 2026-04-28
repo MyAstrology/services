@@ -87,33 +87,37 @@ function calculateMatchMaking(girlData, boyData) {
     if (typeof YotakBicharEngine !== 'undefined') {
         const engine = new YotakBicharEngine();
         const result = engine.match(girlData, boyData);
-        
+        const k = result.kootas;
+
+        // Normalize kootas keys to match the HTML display (vasu, bhakoota)
+        const kootas = {
+            varna:       k.varna,
+            vasu:        k.vashya,      // engine uses "vashya", HTML expects "vasu"
+            tara:        k.tara,
+            yoni:        k.yoni,
+            grahaMaitri: k.grahaMaitri,
+            gana:        k.gana,
+            bhakoota:    k.rashi,        // engine uses "rashi", HTML expects "bhakoota"
+            nadi:        k.nadi
+        };
+
         return {
-            totalScore: result.total,
-            maxScore: result.max,
-            result: result.verdict,
-            varna: result.kootas.varna.points,
-            vashya: result.kootas.vashya.points,
-            tara: result.kootas.tara.points,
-            yoni: result.kootas.yoni.points,
-            graha: result.kootas.grahaMaitri.points,
-            gana: result.kootas.gana.points,
-            bhakoot: result.kootas.rashi.points,
-            nadi: result.kootas.nadi.points,
-            kootas: result.kootas,
+            totalScore:  result.total,
+            totalPoints: result.total,  // alias used by HTML display
+            maxScore:    result.max,
+            result:      result.verdict,
+            varna: k.varna.points, vashya: k.vashya.points, tara: k.tara.points,
+            yoni: k.yoni.points, graha: k.grahaMaitri.points, gana: k.gana.points,
+            bhakoot: k.rashi.points, nadi: k.nadi.points,
+            kootas,
             manglik: result.manglik,
             isRajaYotak: result.isRajaYotak,
             verdictFull: result.verdictFull,
             remedies: result.remedies,
             fullPredictions: {
-                varna: result.kootas.varna.full,
-                vashya: result.kootas.vashya.full,
-                tara: result.kootas.tara.full,
-                yoni: result.kootas.yoni.full,
-                grahaMaitri: result.kootas.grahaMaitri.full,
-                gana: result.kootas.gana.full,
-                rashi: result.kootas.rashi.full,
-                nadi: result.kootas.nadi.full
+                varna: k.varna.full, vashya: k.vashya.full, tara: k.tara.full,
+                yoni: k.yoni.full, grahaMaitri: k.grahaMaitri.full, gana: k.gana.full,
+                rashi: k.rashi.full, nadi: k.nadi.full
             }
         };
     }

@@ -1779,7 +1779,7 @@ function goToYotak(){
   const genderEl=document.querySelector('input[name="gender"]:checked');
   const gender=genderEl?genderEl.value:'male';
   if(d&&mo&&y&&h&&mi&&lat&&lon){
-    const dob=`${y}-${String(d).padStart(2,'0')}-${String(mo).padStart(2,'0')}`;
+    const dob=`${y}-${String(mo).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
     const tob=`${String(h).padStart(2,'0')}:${String(mi).padStart(2,'0')}`;
     const params=new URLSearchParams({name,dob,tob,lat,lon,city,gender});
     window.location.href='match-making.html?'+params.toString();
@@ -1789,41 +1789,28 @@ function goToYotak(){
 }
 
 /* ── PDF ডাউনলোড ── */
-let _pdfRestore=null;
 function downloadPDF(){
   const ra=document.getElementById('resultsArea');
   if(!ra||ra.style.display==='none'){alert('প্রথমে কুষ্ঠি গণনা করুন।');return;}
   const btn=document.getElementById('pdfBtn');
   if(btn){btn.textContent='⏳ তৈরি হচ্ছে…';btn.disabled=true;}
-  // Show all panels & expand all dasha rows
-  const saved=[];
-  document.querySelectorAll('.tab-panel').forEach(p=>saved.push({el:p,d:p.style.display}));
-  const main=document.getElementById('mainKundaliSection');
-  if(main)saved.push({el:main,d:main.style.display});
-  const closedRows=[];
-  document.querySelectorAll('.ad-row:not(.open),.pd-row:not(.open)').forEach(r=>{closedRows.push(r);r.classList.add('open');});
-  saved.forEach(({el})=>el.style.display='block');
-  function restore(){
-    saved.forEach(({el,d})=>el.style.display=d);
-    closedRows.forEach(r=>r.classList.remove('open'));
-    if(btn){btn.textContent='🖨️ PDF';btn.disabled=false;}
-  }
+  function restore(){if(btn){btn.textContent='🖨️ PDF';btn.disabled=false;}}
   if(typeof html2pdf!=='undefined'){
     const name=(document.getElementById('pgName')||{}).textContent||'kundali';
     const opt={margin:[8,4],filename:name+'_kundali.pdf',image:{type:'jpeg',quality:0.95},
-      html2canvas:{scale:2,useCORS:true,logging:false,scrollX:0,scrollY:0,windowWidth:document.documentElement.scrollWidth},
+      html2canvas:{scale:2,useCORS:true,logging:false,scrollX:0,scrollY:0,
+        onclone:function(doc){
+          // In captured clone: show all panels and expand dasha rows
+          doc.querySelectorAll('.tab-panel').forEach(p=>p.style.display='block');
+          const mks=doc.getElementById('mainKundaliSection');
+          if(mks)mks.style.display='block';
+          doc.querySelectorAll('.ad-row,.pd-row').forEach(r=>r.classList.add('open'));
+        }
+      },
       jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}};
-    // Wait two animation frames so the DOM fully repaints after un-hiding panels
-    requestAnimationFrame(function(){
-      requestAnimationFrame(function(){
-        html2pdf().set(opt).from(ra).save().then(restore).catch(function(){restore();window.print();});
-      });
-    });
+    html2pdf().set(opt).from(ra).save().then(restore).catch(function(){restore();window.print();});
   } else {
-    // fallback: browser print dialog
-    window.addEventListener('afterprint',function handler(){
-      restore(); window.removeEventListener('afterprint',handler);
-    });
+    window.addEventListener('afterprint',function h(){restore();window.removeEventListener('afterprint',h);});
     window.print();
   }
 }
