@@ -1898,7 +1898,9 @@ function downloadPDF(){
     /* build a clean offscreen container — avoids all position:fixed / overflow issues */
     const ww=document.documentElement.clientWidth||960;
     const wrap=document.createElement('div');
-    wrap.style.cssText='position:absolute;left:-9999px;top:0;width:'+ww+'px;background:#fafaf6;font-family:inherit;overflow:visible;';
+    /* top:99999px puts wrap far below fold — body overflow-x:hidden only clips horizontal,
+       so vertical placement is NOT clipped and html2canvas can see the element */
+    wrap.style.cssText='position:absolute;left:0;top:99999px;width:'+ww+'px;background:#fafaf6;font-family:inherit;overflow:visible;';
     const clone=ra.cloneNode(true);
     clone.style.cssText='display:block;overflow:visible;position:static;background:#fafaf6;';
     /* fix tabNav inside clone */
