@@ -236,21 +236,20 @@ function fallbackMatchMaking(girlData, boyData) {
 function generateMatchMakingReport(matchResult, girlName, boyName) {
     const gName = girlName || "কন্যা";
     const bName = boyName || "বর";
-    
+    const SEP = "\n" + "- ".repeat(20) + "\n";
+
     // যদি YotakBicharEngine থেকে পূর্ণাঙ্গ ডেটা থাকে
     if (matchResult.fullPredictions) {
-        let output = `╔══════════════════════════════════════════════════╗\n`;
-        output += `║     💑 কুষ্ঠি মিলন — যোটক-বিচার ফলাফল     ║\n`;
-        output += `╚══════════════════════════════════════════════════╝\n\n`;
-        
+        let output = "💑 কুষ্ঠি মিলন — যোটক-বিচার ফলাফল\n" + SEP;
+
         output += `👰 কন্যা: ${gName}\n🤵 বর: ${bName}\n\n`;
         output += `📊 মোট গুণ: ${matchResult.totalScore} / ${matchResult.maxScore}\n`;
         output += `📋 ফলাফল: ${matchResult.result}\n\n`;
-        
-        if (matchResult.isRajaYotak) output += `👑 রাজযোটক যোগ বিদ্যমান!\n\n`;
+
+        if (matchResult.isRajaYotak) output += "👑 রাজযোটক যোগ বিদ্যমান!\n\n";
         output += matchResult.verdictFull + "\n\n";
-        
-        output += `📝 অষ্টকূট বিবরণ:\n${"═".repeat(50)}\n`;
+
+        output += "📝 অষ্টকূট বিবরণ:" + SEP;
         const kootaDefs = [
             { name: "বর্ণকূট", key: "varna", max: 1 },
             { name: "বশ্যকূট", key: "vashya", max: 2 },
@@ -259,48 +258,45 @@ function generateMatchMakingReport(matchResult, girlName, boyName) {
             { name: "গ্রহমৈত্রীকূট", key: "grahaMaitri", max: 5 },
             { name: "গণমৈত্রীকূট", key: "gana", max: 6 },
             { name: "রাশিকূট (ভকূট)", key: "rashi", max: 7 },
-            { name: "ত্রিনাড়ীকূট", key: "nadi", max: 8 }
+            { name: "ত্রিনাড়ীকূট", key: "nadi", max: 8 }
         ];
-        
+
         kootaDefs.forEach(k => {
             const pts = matchResult.kootas[k.key]?.points || 0;
             const icon = pts === k.max ? "✨" : pts === 0 ? "⚠️" : "🔸";
             output += `${icon} ${k.name}: ${pts}/${k.max} গুণ\n`;
         });
-        
-        output += `\n📖 বিস্তারিত ফলাফল:\n${"═".repeat(50)}\n\n`;
-        
+
+        output += "\n📖 বিস্তারিত ফলাফল:" + SEP;
+
         kootaDefs.forEach(k => {
             const full = matchResult.fullPredictions[k.key];
             if (full) output += `🕉️ ${k.name}:\n${full}\n\n`;
         });
-        
-        output += `🔴 মাঙ্গলিক দোষ:\n${"═".repeat(50)}\n`;
+
+        output += "🔴 মাঙ্গলিক দোষ:" + SEP;
         output += `👰 ${gName}: ${matchResult.manglik.girl.full}\n\n`;
         output += `🤵 ${bName}: ${matchResult.manglik.boy.full}\n\n`;
-        
+
         if (matchResult.manglik.match) {
-            output += `✅ উভয়ের মাঙ্গলিক অবস্থা সমান — দোষ পরস্পর বাতিল।\n\n`;
+            output += "✅ উভয়ের মাঙ্গলিক অবস্থা সমান — দোষ পরস্পর বাতিল।\n\n";
         } else {
-            output += `⚠️ উভয়ের মাঙ্গলিক অবস্থা অসমান — প্রতিকার আবশ্যক।\n\n`;
+            output += "⚠️ উভয়ের মাঙ্গলিক অবস্থা অসমান — প্রতিকার আবশ্যক।\n\n";
         }
-        
-        output += `🙏 প্রতিকার:\n${"═".repeat(50)}\n`;
+
+        output += "🙏 প্রতিকার:" + SEP;
         (matchResult.remedies || []).forEach(r => output += r + "\n");
-        
-        output += `\n${"═".repeat(50)}\n`;
-        output += `🕉️ ওঁ নমঃ শিবায়। বিবাহ মহাবন্ধন—সঠিক বিচার করে তবেই এই বন্ধনে আবদ্ধ হোন।\n`;
-        output += `শুভম ভবতু। মাঙ্গল্যম ভবতু।\n`;
-        
+
+        output += SEP + "🕉️ ওঁ নমঃ শিবায়। বিবাহ মহাবন্ধন—সঠিক বিচার করে তবেই এই বন্ধনে আবদ্ধ হোন।\nশুভম ভবতু। মাঙ্গল্যম ভবতু।\n";
+
         return output;
     }
-    
+
     // সরল রিপোর্ট (ফলব্যাক)
-    let output = `💑 ${gName} ও ${bName}-এর কুষ্ঠি মিলন ফলাফল\n`;
-    output += "═".repeat(50) + "\n\n";
+    let output = `💑 ${gName} ও ${bName}-এর কুষ্ঠি মিলন ফলাফল\n` + SEP;
     output += `📊 মোট গুণ: ${matchResult.totalScore} / ${matchResult.maxScore}\n`;
     output += `📋 ফলাফল: ${matchResult.result}\n\n`;
-    
+
     const kootas = [
         { name: "বর্ণ", key: "varna", max: 1 },
         { name: "বসু", key: "vashya", max: 2 },
@@ -311,21 +307,20 @@ function generateMatchMakingReport(matchResult, girlName, boyName) {
         { name: "ভকূট", key: "bhakoot", max: 7 },
         { name: "নাড়ি", key: "nadi", max: 8 }
     ];
-    
-    output += "📝 অষ্টকূট:\n" + "─".repeat(40) + "\n";
+
+    output += "📝 অষ্টকূট:" + SEP;
     kootas.forEach(k => {
         const pts = matchResult[k.key] || 0;
         const icon = pts === k.max ? "✅" : pts === 0 ? "❌" : "⚠️";
         output += `${icon} ${k.name}: ${pts}/${k.max}\n`;
     });
-    
-    output += "\n🔴 মাঙ্গলিক:\n" + "─".repeat(40) + "\n";
+
+    output += "\n🔴 মাঙ্গলিক:" + SEP;
     output += `মেয়ে: ${matchResult.manglik?.girl?.full || 'তথ্য নেই'}\n`;
     output += `ছেলে: ${matchResult.manglik?.boy?.full || 'তথ্য নেই'}\n`;
-    
-    output += "\n" + "═".repeat(50) + "\n";
-    output += "🙏 ওঁ নমঃ শিবায়।\n";
-    
+
+    output += SEP + "🙏 ওঁ নমঃ শিবায়।\n";
+
     return output;
 }
 
@@ -761,10 +756,11 @@ class YotakBicharEngine {
      */
     format(girlName, boyName, result) {
         const g = girlName || "কন্যা", b = boyName || "বর";
-        let out = `\n╔══════════════════════════════════════════════════╗\n║  💑 যোটক-বিচার (অষ্টকূট মিলন)\n║  ${g} ও ${b}-এর কুষ্ঠি মিলন ফলাফল\n╚══════════════════════════════════════════════════╝\n\n`;
+        const SEP = "\n" + "- ".repeat(20) + "\n";
+        let out = "\n💑 যোটক-বিচার (অষ্টকূট মিলন)" + SEP;
         out += `📊 মোট গুণ: ${result.total} / ${result.max}\n📋 ফলাফল: ${result.verdict}\n\n${result.verdictFull}\n\n`;
 
-        out += `📝 অষ্টকূট বিবরণ:\n${"═".repeat(50)}\n`;
+        out += "📝 অষ্টকূট বিবরণ:" + SEP;
         const kootaDefs = [
             { name: "বর্ণকূট", key: "varna", max: 1 },
             { name: "বশ্যকূট", key: "vashya", max: 2 },
@@ -782,20 +778,20 @@ class YotakBicharEngine {
             out += `${icon} ${k.name}: ${pts}/${k.max} গুণ\n`;
         }
 
-        out += `\n📖 বিস্তারিত ফলাফল:\n${"═".repeat(50)}\n`;
+        out += "\n📖 বিস্তারিত ফলাফল:" + SEP;
         for (const k of kootaDefs) {
             out += `\n🕉️ ${k.name}:\n${result.kootas[k.key]?.full || "তথ্য নেই"}\n`;
         }
 
-        out += `\n🔴 মাঙ্গলিক দোষ:\n${"═".repeat(50)}\n`;
+        out += "\n🔴 মাঙ্গলিক দোষ:" + SEP;
         out += `${result.manglik.girl.full}\n\n${result.manglik.boy.full}\n\n`;
         if (result.manglik.match) out += `✅ উভয়ের মাঙ্গলিক অবস্থা সমান — দোষ পরস্পর বাতিল।\n\n`;
         else out += `⚠️ উভয়ের মাঙ্গলিক অবস্থা অসমান — প্রতিকার আবশ্যক।\n\n`;
 
-        out += `🙏 প্রতিকার:\n${"═".repeat(50)}\n`;
+        out += "🙏 প্রতিকার:" + SEP;
         result.remedies.forEach(r => out += r + "\n");
 
-        out += `\n${"═".repeat(50)}\n🕉️ ওঁ নমঃ শিবায়। যেখানে প্রেম সত্য, সেখানেই ভগবান।\nশুভম ভবতু। মাঙ্গল্যম ভবতু।\n`;
+        out += SEP + "🕉️ ওঁ নমঃ শিবায়। যেখানে প্রেম সত্য, সেখানেই ভগবান।\nশুভম ভবতু। মাঙ্গল্যম ভবতু।\n";
         return out;
     }
 }

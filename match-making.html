@@ -19,7 +19,7 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;overflow-x:hidden}
-body{font-family:var(--fb);background:var(--cream);color:var(--text);padding-top:66px}
+body{font-family:var(--fb);background:var(--cream);color:var(--text);padding-top:66px;overflow-x:hidden}
 .site-header{position:fixed;width:100%;top:0;z-index:900;display:flex;align-items:center;gap:12px;padding:0 20px;height:66px;background:var(--navy);box-shadow:0 2px 18px rgba(0,0,0,.5);border-bottom:2px solid var(--gold);}
 .ham{background:rgba(255,255,255,.06);border:1.5px solid rgba(184,134,11,.45);cursor:pointer;color:var(--gold-lt);font-size:1.25rem;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:7px;flex-shrink:0;transition:background .2s;}
 .ham:hover{background:rgba(184,134,11,.18)}
@@ -88,14 +88,16 @@ tr:last-child td{border-bottom:none}
 .manglik-yes{background:#fff5f5;border-color:#c62828;color:#b71c1c}
 .manglik-no{background:#f1f8e9;border-color:#2e7d32;color:#1b5e20}
 .manglik-cancel{background:#fffde7;border-color:#f57c00;color:#e65100}
-.report-text{white-space:pre-wrap;line-height:1.85;font-size:.93rem;color:#3a2a1a;padding:14px;background:#fefcf9;border-radius:8px;border:1px solid #e8d5c0}
-.chart-pair{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:10px}
+.report-text{white-space:pre-wrap;overflow-wrap:anywhere;overflow-x:hidden;line-height:1.85;font-size:.93rem;color:#3a2a1a;padding:14px;background:#fefcf9;border-radius:8px;border:1px solid #e8d5c0;max-width:100%}
+.chart-pair{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:10px}
 .chart-lbl{font-size:.72rem;color:#888;text-align:center;margin-bottom:3px}
 .mm-planet-tbl{width:100%;border-collapse:collapse;font-size:.8rem}
 .mm-planet-tbl th{padding:4px 6px;text-align:left;color:#fff;font-size:.78rem}
 .mm-planet-tbl td{padding:4px 6px;border-bottom:1px solid #e8d5c0}
 .mm-charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media(max-width:500px){.mm-charts-grid{grid-template-columns:1fr}}
+@media(max-width:680px){.mm-charts-grid{grid-template-columns:1fr}}
+@media(max-width:680px){.chart-pair{flex-direction:column;align-items:center}}
+@media(max-width:680px){.chart-pair svg{width:min(300px,90vw)!important;height:min(300px,90vw)!important}}
 </style>
 </head>
 <body>
@@ -125,6 +127,7 @@ tr:last-child td{border-bottom:none}
   <h1>💑 কুষ্ঠি মিলন</h1>
   <p class="subtitle">অষ্টকূট পদ্ধতিতে বিবাহযোগ্যতা বিচার • পূর্ব ভারতীয় পদ্ধতি</p>
 
+  <div id="mmInputSection">
   <div class="dual-panel">
     <div class="panel girl-panel">
       <h3>👰 মেয়ের তথ্য</h3>
@@ -163,6 +166,9 @@ tr:last-child td{border-bottom:none}
   </div>
 
   <button class="calc-btn" onclick="runMatchCalc()">💑 কুষ্ঠি মিলন গণনা করুন</button>
+  </div><!-- /mmInputSection -->
+
+  <button id="mmEditBtn" onclick="showMMForm()" style="display:none;margin:0 auto 18px;background:#5c3d2e;color:#fff;border:none;padding:10px 24px;border-radius:50px;font-size:.92rem;font-weight:700;cursor:pointer;font-family:inherit">↩ ফর্মে ফিরুন / নতুন গণনা</button>
 
   <button id="mmPdfBtn" onclick="downloadMatchPDF()" style="display:none;margin:16px auto;background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;border:none;padding:11px 26px;border-radius:10px;font-size:.95rem;font-weight:700;cursor:pointer;font-family:inherit">🖨️ PDF ডাউনলোড</button>
 
@@ -178,7 +184,7 @@ tr:last-child td{border-bottom:none}
           <h4 style="text-align:center;color:#c2185b;font-family:var(--fh);margin-bottom:8px">👰 মেয়ে</h4>
           <div class="chart-pair">
             <div><div class="chart-lbl">রাশিচক্র</div>
-              <svg id="girlD1" width="155" height="155" viewBox="0 0 320 320" style="max-width:100%">
+              <svg id="girlD1" width="240" height="240" viewBox="0 0 320 320" style="max-width:100%">
                 <rect width="320" height="320" fill="#fdfaf6" stroke="#c2185b" stroke-width="2"/>
                 <line x1="107" y1="0" x2="107" y2="320" stroke="#c2185b" stroke-width="1.5"/><line x1="213" y1="0" x2="213" y2="320" stroke="#c2185b" stroke-width="1.5"/>
                 <line x1="0" y1="107" x2="320" y2="107" stroke="#c2185b" stroke-width="1.5"/><line x1="0" y1="213" x2="320" y2="213" stroke="#c2185b" stroke-width="1.5"/>
@@ -190,7 +196,7 @@ tr:last-child td{border-bottom:none}
               </svg>
             </div>
             <div><div class="chart-lbl">নবাংশ চক্র</div>
-              <svg id="girlD9" width="155" height="155" viewBox="0 0 320 320" style="max-width:100%">
+              <svg id="girlD9" width="240" height="240" viewBox="0 0 320 320" style="max-width:100%">
                 <rect width="320" height="320" fill="#fdfaf6" stroke="#c2185b" stroke-width="2"/>
                 <line x1="107" y1="0" x2="107" y2="320" stroke="#c2185b" stroke-width="1.5"/><line x1="213" y1="0" x2="213" y2="320" stroke="#c2185b" stroke-width="1.5"/>
                 <line x1="0" y1="107" x2="320" y2="107" stroke="#c2185b" stroke-width="1.5"/><line x1="0" y1="213" x2="320" y2="213" stroke="#c2185b" stroke-width="1.5"/>
@@ -211,7 +217,7 @@ tr:last-child td{border-bottom:none}
           <h4 style="text-align:center;color:#1565c0;font-family:var(--fh);margin-bottom:8px">🤵 ছেলে</h4>
           <div class="chart-pair">
             <div><div class="chart-lbl">রাশিচক্র</div>
-              <svg id="boyD1" width="155" height="155" viewBox="0 0 320 320" style="max-width:100%">
+              <svg id="boyD1" width="240" height="240" viewBox="0 0 320 320" style="max-width:100%">
                 <rect width="320" height="320" fill="#fdfaf6" stroke="#1565c0" stroke-width="2"/>
                 <line x1="107" y1="0" x2="107" y2="320" stroke="#1565c0" stroke-width="1.5"/><line x1="213" y1="0" x2="213" y2="320" stroke="#1565c0" stroke-width="1.5"/>
                 <line x1="0" y1="107" x2="320" y2="107" stroke="#1565c0" stroke-width="1.5"/><line x1="0" y1="213" x2="320" y2="213" stroke="#1565c0" stroke-width="1.5"/>
@@ -223,7 +229,7 @@ tr:last-child td{border-bottom:none}
               </svg>
             </div>
             <div><div class="chart-lbl">নবাংশ চক্র</div>
-              <svg id="boyD9" width="155" height="155" viewBox="0 0 320 320" style="max-width:100%">
+              <svg id="boyD9" width="240" height="240" viewBox="0 0 320 320" style="max-width:100%">
                 <rect width="320" height="320" fill="#fdfaf6" stroke="#1565c0" stroke-width="2"/>
                 <line x1="107" y1="0" x2="107" y2="320" stroke="#1565c0" stroke-width="1.5"/><line x1="213" y1="0" x2="213" y2="320" stroke="#1565c0" stroke-width="1.5"/>
                 <line x1="0" y1="107" x2="320" y2="107" stroke="#1565c0" stroke-width="1.5"/><line x1="0" y1="213" x2="320" y2="213" stroke="#1565c0" stroke-width="1.5"/>
@@ -446,7 +452,20 @@ function runMatchCalc(){
   ra.style.display='block';
   const pdfBtn=document.getElementById('mmPdfBtn');
   if(pdfBtn)pdfBtn.style.display='block';
+  // Hide form, show "back to form" button
+  const mmIn=document.getElementById('mmInputSection');
+  if(mmIn)mmIn.style.display='none';
+  const mmEdit=document.getElementById('mmEditBtn');
+  if(mmEdit)mmEdit.style.display='block';
   ra.scrollIntoView({behavior:'smooth'});
+}
+
+function showMMForm(){
+  const mmIn=document.getElementById('mmInputSection');
+  if(mmIn)mmIn.style.display='block';
+  const mmEdit=document.getElementById('mmEditBtn');
+  if(mmEdit)mmEdit.style.display='none';
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
 /* শহর অনুসন্ধান */
@@ -509,8 +528,8 @@ function prefillFromURL(){
   const lonEl=document.getElementById(prefix+'Lon');
   const cityEl=document.getElementById(prefix+'City');
   if(nameEl)nameEl.value=name;
-  if(dobEl)dobEl.value=dob;
-  if(tobEl)tobEl.value=tob;
+  if(dobEl){dobEl.setAttribute('value',dob);dobEl.value=dob;dobEl.dispatchEvent(new Event('change'));}
+  if(tobEl){tobEl.setAttribute('value',tob);tobEl.value=tob;}
   if(latEl)latEl.value=lat;
   if(lonEl)lonEl.value=lon;
   if(cityEl)cityEl.value=city;

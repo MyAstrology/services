@@ -1794,21 +1794,25 @@ function downloadPDF(){
   if(!ra||ra.style.display==='none'){alert('প্রথমে কুষ্ঠি গণনা করুন।');return;}
   const btn=document.getElementById('pdfBtn');
   if(btn){btn.textContent='⏳ তৈরি হচ্ছে…';btn.disabled=true;}
-  function restore(){if(btn){btn.textContent='🖨️ PDF';btn.disabled=false;}}
+  // Show all panels in live DOM so html2canvas can capture them
+  const saved=[];
+  document.querySelectorAll('.tab-panel').forEach(function(p){saved.push({el:p,d:p.style.display});p.style.display='block';});
+  const mks=document.getElementById('mainKundaliSection');
+  if(mks){saved.push({el:mks,d:mks.style.display});mks.style.display='block';}
+  document.querySelectorAll('.ad-row,.pd-row').forEach(function(r){r.classList.add('open');});
+  function restore(){
+    saved.forEach(function(s){s.el.style.display=s.d;});
+    document.querySelectorAll('.ad-row,.pd-row').forEach(function(r){r.classList.remove('open');});
+    if(btn){btn.textContent='🖨️ PDF';btn.disabled=false;}
+  }
   if(typeof html2pdf!=='undefined'){
     const name=(document.getElementById('pgName')||{}).textContent||'kundali';
-    const opt={margin:[8,4],filename:name+'_kundali.pdf',image:{type:'jpeg',quality:0.95},
-      html2canvas:{scale:2,useCORS:true,logging:false,scrollX:0,scrollY:0,
-        onclone:function(doc){
-          // In captured clone: show all panels and expand dasha rows
-          doc.querySelectorAll('.tab-panel').forEach(p=>p.style.display='block');
-          const mks=doc.getElementById('mainKundaliSection');
-          if(mks)mks.style.display='block';
-          doc.querySelectorAll('.ad-row,.pd-row').forEach(r=>r.classList.add('open'));
-        }
-      },
+    const opt={margin:[8,4],filename:name+'_kundali.pdf',image:{type:'jpeg',quality:0.92},
+      html2canvas:{scale:1.5,useCORS:true,allowTaint:true,logging:false,scrollX:0,scrollY:0},
       jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}};
-    html2pdf().set(opt).from(ra).save().then(restore).catch(function(){restore();window.print();});
+    setTimeout(function(){
+      html2pdf().set(opt).from(ra).save().then(restore).catch(function(){restore();window.print();});
+    },300);
   } else {
     window.addEventListener('afterprint',function h(){restore();window.removeEventListener('afterprint',h);});
     window.print();
