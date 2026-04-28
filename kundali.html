@@ -1887,48 +1887,48 @@ function downloadPDF(){
   if(!ra||ra.style.display==='none'){alert('প্রথমে কুষ্ঠি গণনা করুন।');return;}
   const btn=document.getElementById('pdfBtn');
   if(btn){btn.textContent='⏳ তৈরি হচ্ছে…';btn.disabled=true;}
-  const saved=[];
-  document.querySelectorAll('.tab-panel').forEach(function(p){saved.push({el:p,d:p.style.display});p.style.display='block';});
-  const mks=document.getElementById('mainKundaliSection');
-  if(mks){saved.push({el:mks,d:mks.style.display});mks.style.display='block';}
+  function restore(){if(btn){btn.textContent='🖨️ PDF';btn.disabled=false;}}
+  if(typeof html2pdf==='undefined'){restore();window.print();return;}
+  /* open accordions in live DOM before cloning */
   document.querySelectorAll('.ad-row,.pd-row').forEach(function(r){r.classList.add('open');});
-  function restore(){
-    saved.forEach(function(s){s.el.style.display=s.d;});
-    document.querySelectorAll('.ad-row,.pd-row').forEach(function(r){r.classList.remove('open');});
-    if(btn){btn.textContent='🖨️ PDF';btn.disabled=false;}
-  }
-  if(typeof html2pdf!=='undefined'){
-    const name=(document.getElementById('pgName')||{}).textContent||'kundali';
+  const mks=document.getElementById('mainKundaliSection');
+  if(mks) mks.style.display='block';
+  document.querySelectorAll('.tab-panel').forEach(function(p){p.style.display='block';});
+  setTimeout(function(){
+    /* build a clean offscreen container — avoids all position:fixed / overflow issues */
     const ww=document.documentElement.clientWidth||960;
+    const wrap=document.createElement('div');
+    wrap.style.cssText='position:absolute;left:-9999px;top:0;width:'+ww+'px;background:#fafaf6;font-family:inherit;overflow:visible;';
+    const clone=ra.cloneNode(true);
+    clone.style.cssText='display:block;overflow:visible;position:static;background:#fafaf6;';
+    /* fix tabNav inside clone */
+    var tnv=clone.querySelector('#tabNav');
+    if(tnv){tnv.style.position='static';tnv.style.top='auto';tnv.style.zIndex='auto';}
+    /* show all panels in clone */
+    clone.querySelectorAll('.tab-panel').forEach(function(p){
+      p.style.display='block';p.style.visibility='visible';p.style.opacity='1';
+    });
+    var cm=clone.querySelector('#mainKundaliSection');
+    if(cm){cm.style.display='block';cm.style.visibility='visible';}
+    clone.querySelectorAll('.ad-row,.pd-row').forEach(function(r){r.classList.add('open');});
+    /* remove any remaining fixed/sticky positioning in clone */
+    clone.querySelectorAll('*').forEach(function(el){
+      if(el.style&&(el.style.position==='fixed'||el.style.position==='sticky'))el.style.position='static';
+    });
+    wrap.appendChild(clone);
+    document.body.appendChild(wrap);
+    function done(){
+      try{document.body.removeChild(wrap);}catch(e){}
+      document.querySelectorAll('.ad-row,.pd-row').forEach(function(r){r.classList.remove('open');});
+      document.querySelectorAll('.tab-panel').forEach(function(p){if(p.id!=='tabBhava')p.style.display='none';});
+      restore();
+    }
+    const name=(document.getElementById('pgName')||{}).textContent||'kundali';
     const opt={margin:[8,4],filename:name+'_kundali.pdf',image:{type:'jpeg',quality:0.90},
-      html2canvas:{scale:1.5,useCORS:true,allowTaint:true,logging:false,
-        scrollX:0,scrollY:-window.scrollY,windowWidth:ww,backgroundColor:'#fafaf6',
-        onclone:function(doc){
-          /* position:fixed tabNav causes blank canvas — make it static in clone */
-          var tnv=doc.getElementById('tabNav');
-          if(tnv){tnv.style.position='static';tnv.style.top='auto';}
-          /* hide fixed header/nav in clone */
-          ['site-header','navMenu','navOverlay'].forEach(function(id){
-            var el=doc.getElementById(id);if(el)el.style.display='none';
-          });
-          /* show all tab panels */
-          doc.querySelectorAll('.tab-panel').forEach(function(p){p.style.display='block';p.style.visibility='visible';p.style.opacity='1';});
-          var m=doc.getElementById('mainKundaliSection');
-          if(m){m.style.display='block';m.style.visibility='visible';}
-          doc.querySelectorAll('.ad-row,.pd-row').forEach(function(r){r.classList.add('open');});
-          /* remove overflow clipping from html/body in clone */
-          doc.documentElement.style.overflow='visible';
-          doc.body.style.overflow='visible';
-          doc.body.style.paddingTop='0';
-        }},
+      html2canvas:{scale:1.5,useCORS:true,allowTaint:true,logging:false,backgroundColor:'#fafaf6'},
       jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}};
-    setTimeout(function(){
-      html2pdf().set(opt).from(ra).save().then(restore).catch(function(e){restore();window.print();});
-    },600);
-  } else {
-    window.addEventListener('afterprint',function h(){restore();window.removeEventListener('afterprint',h);});
-    window.print();
-  }
+    html2pdf().set(opt).from(wrap).save().then(done).catch(function(e){done();window.print();});
+  },700);
 }
 </script>
 </body>
