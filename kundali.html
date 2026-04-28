@@ -1906,7 +1906,7 @@ function downloadPDF(){
         scrollX:0,scrollY:0,windowWidth:ww,backgroundColor:'#fafaf6'},
       jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}};
     setTimeout(function(){
-      html2pdf().set(opt).from(ra).save().then(restore).catch(function(){restore();window.print();});
+      html2pdf().set(opt).from(ra).save().then(restore).catch(function(e){restore();window.print();});
     },500);
   } else {
     window.addEventListener('afterprint',function h(){restore();window.removeEventListener('afterprint',h);});
