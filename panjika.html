@@ -3702,7 +3702,9 @@ function renderGuideCards() {
 // ════════════════════════════════════════════════════════
 // SECTION ⑱ — AUSPICIOUS COUNTER (শুভ দিনের কাউন্টার)
 // ════════════════════════════════════════════════════════
-var SHUBHA_TITHIS_VIVAH = [1,2,4,6,9,10,12]; // 0-indexed (দ্বিতীয়া=1...)
+// শুক্ল: দ্বিতীয়া(1),তৃতীয়া(2),পঞ্চমী(4),সপ্তমী(6),দশমী(9),একাদশী(10),ত্রয়োদশী(12)
+// কৃষ্ণ: দ্বিতীয়া(16),তৃতীয়া(17),পঞ্চমী(19),সপ্তমী(21),দশমী(24),একাদশী(25),ত্রয়োদশী(27)
+var SHUBHA_TITHIS_VIVAH = [1,2,4,6,9,10,12, 16,17,19,21,24,25,27];
 var SHUBHA_TITHIS_GRIHA  = [0,1,2,4,6,9,10,12];
 var SHUBHA_NAKS_VIVAH   = [3,4,7,12,13,14,16,11,20,25,26];
 var SHUBHA_NAKS_GRIHA   = [3,4,7,12,13,11,20,25,26];
@@ -3773,8 +3775,8 @@ function _isShubhaDay(dt, nakNeed, tithiNeed, karmaType) {
     var tIdxSet=Math.floor(((moonSidSet-sunSidSet+360)%360)/12); // 0-indexed 0-29
 
     // ═══ বর্জনীয় তিথি ═══
-    // রিক্তা (চতুর্থী=3, নবমী=8, চতুর্দশী=13), অমাবস্যা=29, পূর্ণিমা=14
-    var rikta=[3,8,13];
+    // রিক্তা — শুক্ল: চতুর্থী(3),নবমী(8),চতুর্দশী(13) | কৃষ্ণ: চতুর্থী(18),নবমী(23),চতুর্দশী(28)
+    var rikta=[3,8,13,18,23,28]; // উভয় পক্ষের রিক্তা
     var satNight=(wd===6); // শনিবার → রিক্তা রাত্রিতে বৈধ
     if([29,14].indexOf(tIdxSet)>=0) return false; // অমাবস্যা/পূর্ণিমা — সবসময় নিষিদ্ধ
     if(!satNight&&rikta.indexOf(tIdxSet)>=0) return false; // রিক্তা শনিবার রাতে বৈধ
@@ -3789,6 +3791,26 @@ function _isShubhaDay(dt, nakNeed, tithiNeed, karmaType) {
     if(karmaType==='vivah'){
       if(_VIVAH_BAD_NAKS.indexOf(nIdxSet)>=0) return false;
       if(nIdxSet===2&&mRashiSet===1) return false; // কৃত্তিকা বৃষে
+
+      // ── যোগবর্জ্য: ব্যতীপাত(16) ও বৈধৃতি(26) — সম্পূর্ণ দিন নিষিদ্ধ ──
+      var yogaSumSet=((moonSidSet+sunSidSet)%360+360)%360;
+      var yogaIdxSet=Math.floor(yogaSumSet/(360/27))%27;
+      if(yogaIdxSet===16||yogaIdxSet===26) return false;
+
+      // ── বর্জনীয় করণ (সূর্যাস্তে) ──
+      // বিষ্টি,শকুনি,চতুষ্পাদ,নাগ,কিন্তুঘ্ন নিষিদ্ধ (শনিবার রাতে কিন্তুঘ্ন বৈধ)
+      var elongSet=((moonSidSet-sunSidSet+360)%360);
+      var karIdxSet=Math.floor(elongSet/6);
+      var _knSet;
+      if(karIdxSet===0)_knSet='কিন্তুঘ্ন';
+      else if(karIdxSet===57)_knSet='শকুনি';
+      else if(karIdxSet===58)_knSet='চতুষ্পাদ';
+      else if(karIdxSet===59)_knSet='নাগ';
+      else _knSet=['বব','বালব','কৌলব','তৈতিল','গর','বণিজ','বিষ্টি'][(karIdxSet-1)%7];
+      var _badKarSet=['বিষ্টি','শকুনি','চতুষ্পাদ','নাগ','কিন্তুঘ্ন'];
+      if(_badKarSet.indexOf(_knSet)>=0){
+        if(!(_knSet==='কিন্তুঘ্ন'&&satNight)) return false;
+      }
 
       // দশযোগবিদ্ধ চেক
       var sunNakN=Math.floor(sunSidSet/(360/27))%27;
@@ -3821,7 +3843,7 @@ function _getMonthShubhaDays(nakNeed, tithiNeed, extraBadDays, karmaType) {
 
 function renderAuspiciousCounter() {
   var CATS = [
-    {label:'বিবাহের শুভ দিন', icon:'💒', nakNeed:null, tithiNeed:null, karmaType:'vivah'},
+    {label:'বিবাহের শুভ দিন', icon:'💒', nakNeed:SHUBHA_NAKS_VIVAH, tithiNeed:SHUBHA_TITHIS_VIVAH, karmaType:'vivah'},
     {label:'গৃহপ্রবেশের শুভ দিন', icon:'🏠', nakNeed:SHUBHA_NAKS_GRIHA, tithiNeed:SHUBHA_TITHIS_GRIHA},
     {label:'গৃহ নির্মাণের শুভ দিন', icon:'🏗️', nakNeed:SHUBHA_NAKS_NIRMAN, tithiNeed:SHUBHA_TITHIS_GRIHA},
     {label:'গর্ভধারণের শুভ দিন', icon:'🤰', nakNeed:SHUBHA_NAKS_GARB, tithiNeed:null},
@@ -3841,7 +3863,7 @@ function renderAuspiciousCounter() {
 }
 
 var _acCats = [
-  {label:'বিবাহের শুভ দিন', icon:'💒', nakNeed:null, tithiNeed:null, karmaType:'vivah'},
+  {label:'বিবাহের শুভ দিন', icon:'💒', nakNeed:SHUBHA_NAKS_VIVAH, tithiNeed:SHUBHA_TITHIS_VIVAH, karmaType:'vivah'},
   {label:'গৃহপ্রবেশের শুভ দিন', icon:'🏠', nakNeed:SHUBHA_NAKS_GRIHA, tithiNeed:SHUBHA_TITHIS_GRIHA},
   {label:'গৃহ নির্মাণের শুভ দিন', icon:'🏗️', nakNeed:SHUBHA_NAKS_NIRMAN, tithiNeed:SHUBHA_TITHIS_GRIHA},
   {label:'গর্ভধারণের শুভ দিন', icon:'🤰', nakNeed:SHUBHA_NAKS_GARB, tithiNeed:null},
